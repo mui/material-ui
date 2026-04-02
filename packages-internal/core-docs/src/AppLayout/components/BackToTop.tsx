@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
-import { Theme } from '@mui/material/styles';
 import { useTranslate } from '../../i18n';
 
 export function BackToTop() {
@@ -50,6 +49,7 @@ export function BackToTop() {
             data-ga-event-category="docs"
             data-ga-event-action="click-back-to-top"
             sx={(theme) => ({
+              color: (theme.vars || theme).palette.primary[800],
               backgroundColor: (theme.vars || theme).palette.primary[50],
               border: `1px solid ${(theme.vars || theme).palette.primary[200]}`,
               boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.1)`,
@@ -57,6 +57,7 @@ export function BackToTop() {
                 backgroundColor: (theme.vars || theme).palette.primary[200],
               },
               ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primary[200],
                 backgroundColor: (theme.vars || theme).palette.primary[900],
                 borderColor: (theme.vars || theme).palette.primary[700],
                 boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.8)`,
@@ -66,14 +67,7 @@ export function BackToTop() {
               }),
             })}
           >
-            <KeyboardArrowUpRoundedIcon
-              sx={(theme: Theme) => ({
-                color: (theme.vars || theme).palette.primary[800],
-                ...theme.applyDarkStyles({
-                  color: (theme.vars || theme).palette.primary[200],
-                }),
-              })}
-            />
+            <KeyboardArrowUpRoundedIcon />
           </Fab>
         </Tooltip>
       </Box>
