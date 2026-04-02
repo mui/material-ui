@@ -40,7 +40,7 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Circular custom scale
 
-You can change the default 0 -> 100 scale by using the `minValue` and `maxValue` props.
+By default, progress values are expected in the 0–100 range. You can customize this range by using the `minValue` and `maxValue` props.
 
 {{"demo": "CircularCustomScale.js"}}
 
