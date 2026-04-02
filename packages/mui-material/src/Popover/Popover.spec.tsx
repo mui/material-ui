@@ -13,8 +13,7 @@ function Test() {
   return (
     <React.Fragment>
       <Popover open />;
-      <Popover open PaperProps={paperProps} />;
-      <Popover open anchorEl={document.body} slotProps={{ transition: { timeout: 'auto' } }} />;
+      <Popover open slotProps={{ paper: paperProps }} />;
       <Popover
         open
         slotProps={{
