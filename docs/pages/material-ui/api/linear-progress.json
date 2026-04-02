@@ -17,7 +17,7 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "value": { "type": { "name": "number" } },
+    "value": { "type": { "name": "number" }, "default": "0" },
     "valueBuffer": { "type": { "name": "number" } },
     "variant": {
       "type": {

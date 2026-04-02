@@ -215,26 +215,19 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const rootProps = {};
 
   if (variant === 'determinate') {
-    if (value !== undefined) {
-      const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
+    const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
 
-      circleStyle.strokeDasharray = circumference.toFixed(3);
-      circleStyle.strokeDashoffset = `${(((maxValue - value) / (maxValue - minValue)) * circumference).toFixed(3)}px`;
-      rootStyle.transform = 'rotate(-90deg)';
+    circleStyle.strokeDasharray = circumference.toFixed(3);
+    circleStyle.strokeDashoffset = `${(((maxValue - value) / (maxValue - minValue)) * circumference).toFixed(3)}px`;
+    rootStyle.transform = 'rotate(-90deg)';
 
-      rootProps['aria-valuenow'] = Math.round(value);
-      rootProps['aria-valuemin'] = minValue;
-      rootProps['aria-valuemax'] = maxValue;
+    rootProps['aria-valuenow'] = Math.round(value);
+    rootProps['aria-valuemin'] = minValue;
+    rootProps['aria-valuemax'] = maxValue;
 
-      if (value < minValue || value > maxValue) {
-        console.error(
-          `MUI: The value provided to the CircularProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
-        );
-      }
-    } else if (process.env.NODE_ENV !== 'production') {
+    if ((value < minValue || value > maxValue) && process.env.NODE_ENV !== 'production') {
       console.error(
-        'MUI: You need to provide a value prop ' +
-          'when using the determinate variant of CircularProgress.',
+        `MUI: The value provided to the CircularProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
       );
     }
   }
@@ -326,12 +319,12 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    */
   enableTrackSlot: PropTypes.bool,
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
+   * The maximum value for the progress indicator for the determinate variant.
    * @default 100
    */
   maxValue: PropTypes.number,
   /**
-   * The minimum value of progress in determinate and buffer variants.
+   * The minimum value for the progress indicator for the determinate variant.
    * @default 0
    */
   minValue: PropTypes.number,

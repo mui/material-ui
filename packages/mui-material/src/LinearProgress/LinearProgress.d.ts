@@ -29,12 +29,12 @@ export interface LinearProgressProps extends StandardProps<
       >
     | undefined;
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
+   * The maximum value for the progress indicator for the determinate and buffer variants.
    * @default 100
    */
   maxValue?: number | undefined;
   /**
-   * The minimum value of progress in determinate and buffer variants.
+   * The minimum value for the progress indicator for the determinate and buffer variants.
    * @default 0
    */
   minValue?: number | undefined;
@@ -44,12 +44,13 @@ export interface LinearProgressProps extends StandardProps<
   sx?: SxProps<Theme> | undefined;
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
+   * @default 0
    */
   value?: number | undefined;
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
    */
   valueBuffer?: number | undefined;
   /**

@@ -41,12 +41,12 @@ export interface CircularProgressProps extends StandardProps<
    */
   enableTrackSlot?: boolean | undefined;
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
+   * The maximum value for the progress indicator for the determinate variant.
    * @default 100
    */
   maxValue?: number | undefined;
   /**
-   * The minimum value of progress in determinate and buffer variants.
+   * The minimum value for the progress indicator for the determinate variant.
    * @default 0
    */
   minValue?: number | undefined;

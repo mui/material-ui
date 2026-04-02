@@ -473,12 +473,12 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The value of the progress indicator for the determinate and buffer variants.
+   * The maximum value for the progress indicator for the determinate and buffer variants.
    * @default 100
    */
   maxValue: PropTypes.number,
   /**
-   * The minimum value of progress in determinate and buffer variants.
+   * The minimum value for the progress indicator for the determinate and buffer variants.
    * @default 0
    */
   minValue: PropTypes.number,
@@ -492,12 +492,13 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
+   * @default 0
    */
   value: PropTypes.number,
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between `minValue` and `maxValue`.
    */
   valueBuffer: PropTypes.number,
   /**
