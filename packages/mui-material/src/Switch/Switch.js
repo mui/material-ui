@@ -193,8 +193,8 @@ const SwitchTrack = styled('span', {
     height: '100%',
     width: '100%',
     borderRadius: 14 / 2,
-    borderStyle: 'solid',
-    borderColor: 'transparent',
+    boxSizing: 'border-box',
+    border: '1px solid transparent',
     zIndex: -1,
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
@@ -215,8 +215,8 @@ const SwitchThumb = styled('span', {
   memoTheme(({ theme }) => ({
     boxShadow: (theme.vars || theme).shadows[1],
     backgroundColor: 'currentColor',
-    borderStyle: 'solid',
-    borderColor: 'transparent',
+    boxSizing: 'border-box',
+    border: '1px solid transparent',
     width: 20,
     height: 20,
     borderRadius: '50%',
