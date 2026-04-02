@@ -26,6 +26,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import SideNavigationBanner from 'docs/src/components/banner/SideNavigationBanner';
+import { ScrollArea as BaseScrollArea } from '@base-ui/react/scroll-area';
 import { MuiPage } from '@mui/docs/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -145,6 +146,82 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
+interface VersionSelectorProps {
+  versions: ProductVersion[];
+  onClose: () => void;
+}
+
+function VersionSelector(props: VersionSelectorProps) {
+  const { versions, onClose } = props;
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  if (!versions?.length) {
+    return null;
+  }
+
+  const currentVersion = versions.find((version) => version.current) || versions[0];
+  return (
+    <React.Fragment>
+      <Button
+        variant="text"
+        color="secondary"
+        size="small"
+        id="mui-version-selector"
+        onClick={(event) => {
+          setAnchorEl(event.currentTarget);
+        }}
+        endIcon={
+          versions.length > 1 ? (
+            <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
+          ) : null
+        }
+        sx={customButtonStyles}
+      >
+        {currentVersion.text}
+      </Button>
+      <Menu
+        id="mui-version-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
+        {versions.map((item) => {
+          if (item.text === 'View all versions') {
+            return [
+              <Divider key="divider" />,
+              <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
+                {`View all versions`}
+              </MenuItem>,
+            ];
+          }
+          return (
+            <MenuItem
+              key={item.text}
+              {...(item.current
+                ? {
+                    selected: true,
+                    onClick: () => setAnchorEl(null),
+                  }
+                : {
+                    component: 'a',
+                    href: item.href,
+                    onClick: onClose,
+                  })}
+            >
+              {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
+            </MenuItem>
+          );
+        })}
+      </Menu>
+    </React.Fragment>
+  );
+}
+
+VersionSelector.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  versions: PropTypes.array.isRequired,
+};
+
 interface ProductIdentifierProps {
   name: string;
   metadata: string;
@@ -184,6 +261,18 @@ ProductIdentifier.propTypes = {
 // To match scrollMarginBottom
 const browserUrlPreviewMarge = 120;
 
+function findScrollParent(element: HTMLElement | null): HTMLElement | null {
+  let el = element?.parentElement ?? null;
+  while (el) {
+    const { overflowY } = getComputedStyle(el);
+    if (overflowY === 'auto' || overflowY === 'scroll') {
+      return el;
+    }
+    el = el.parentElement;
+  }
+  return null;
+}
+
 interface PersistScrollProps {
   children: React.ReactNode;
   enabled: boolean;
@@ -195,7 +284,7 @@ function PersistScroll(props: PersistScrollProps) {
   const rootRef = React.useRef<HTMLDivElement>(null);
 
   useEnhancedEffect(() => {
-    const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
+    const scrollContainer = findScrollParent(rootRef.current);
     const activeDrawerLink = scrollContainer?.querySelector('.app-drawer-active');
 
     if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
@@ -257,6 +346,61 @@ const AppNavPaperComponent = styled('div')(() => {
     overflowY: 'unset !important' as 'unset', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
+});
+
+const ScrollAreaScrollbar = styled(BaseScrollArea.Scrollbar)(({ theme }) => ({
+  width: 6,
+  borderRadius: 10,
+  marginBlock: 3,
+  marginInlineEnd: 3,
+  backgroundColor: 'oklch(12% 9% 264deg / 7%)',
+  opacity: 0,
+  transition: 'opacity 150ms',
+  pointerEvents: 'none',
+  '&[data-scrolling]': {
+    transitionDuration: '0ms',
+  },
+  '&[data-hovering], &[data-scrolling]': {
+    opacity: 1,
+    pointerEvents: 'auto',
+  },
+  ...theme.applyDarkStyles({
+    backgroundColor: 'oklch(29% 0.75% 264deg / 80%)',
+  }),
+}));
+
+const ScrollAreaThumb = styled(BaseScrollArea.Thumb)(({ theme }) => ({
+  borderRadius: 'inherit',
+  backgroundColor: 'oklch(12% 7.5% 264deg / 50%)',
+  ...theme.applyDarkStyles({
+    backgroundColor: 'oklch(64% 1% 264deg / 80%)',
+  }),
+}));
+
+const ScrollAreaViewport = styled(BaseScrollArea.Viewport)({
+  height: '100%',
+  paddingTop: 4,
+  paddingBottom: 40,
+});
+
+const ScrollArea = styled(
+  React.forwardRef<HTMLDivElement, React.ComponentProps<typeof BaseScrollArea.Root>>(
+    function ScrollArea({ children, ...props }, ref) {
+      return (
+        <BaseScrollArea.Root ref={ref} {...props}>
+          <ScrollAreaViewport>
+            <BaseScrollArea.Content>{children}</BaseScrollArea.Content>
+          </ScrollAreaViewport>
+          <ScrollAreaScrollbar>
+            <ScrollAreaThumb />
+          </ScrollAreaScrollbar>
+        </BaseScrollArea.Root>
+      );
+    },
+  ),
+)({
+  flexGrow: 1,
+  overflow: 'hidden',
 });
 
 interface RenderNavItemsOptions {
@@ -383,76 +527,12 @@ export interface AppNavDrawerProps {
 export default function AppNavDrawer(props: AppNavDrawerProps) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
   const swipeableDrawer = disablePermanent || mobile;
 
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
-
-    const renderVersionSelector = (versions: ProductVersion[]) => {
-      if (!versions?.length) {
-        return null;
-      }
-
-      const currentVersion = versions.find((version) => version.current) || versions[0];
-      return (
-        <React.Fragment>
-          <Button
-            variant="text"
-            color="secondary"
-            size="small"
-            id="mui-version-selector"
-            onClick={(event) => {
-              setAnchorEl(event.currentTarget);
-            }}
-            endIcon={
-              versions.length > 1 ? (
-                <ArrowDropDownRoundedIcon fontSize="small" sx={{ ml: -0.5 }} />
-              ) : null
-            }
-            sx={customButtonStyles}
-          >
-            {currentVersion.text}
-          </Button>
-          <Menu
-            id="mui-version-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={() => setAnchorEl(null)}
-          >
-            {versions.map((item) => {
-              if (item.text === 'View all versions') {
-                return [
-                  <Divider key="divider" />,
-                  <MenuItem key="all-versions" component="a" href={item.href} onClick={onClose}>
-                    {`View all versions`}
-                  </MenuItem>,
-                ];
-              }
-              return (
-                <MenuItem
-                  key={item.text}
-                  {...(item.current
-                    ? {
-                        selected: true,
-                        onClick: () => setAnchorEl(null),
-                      }
-                    : {
-                        component: 'a',
-                        href: item.href,
-                        onClick: onClose,
-                      })}
-                >
-                  {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 'auto' }} />}
-                </MenuItem>
-              );
-            })}
-          </Menu>
-        </React.Fragment>
-      );
-    };
 
     return (
       <React.Fragment>
@@ -465,7 +545,9 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
           <ProductIdentifier
             name={productIdentifier.name}
             metadata={productIdentifier.metadata}
-            versionSelector={renderVersionSelector(productIdentifier.versions)}
+            versionSelector={
+              <VersionSelector versions={productIdentifier.versions} onClose={onClose} />
+            }
           />
         </ToolbarDiv>
         <Box
@@ -482,19 +564,11 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
                 }),
           }}
         >
-          <Box
-            sx={{
-              pt: 0.5,
-              pb: 5,
-              overflowY: 'auto',
-              flexGrow: 1,
-              scrollbarWidth: 'thin',
-            }}
-          >
+          <ScrollArea>
             <PersistScroll slot="side" enabled>
               {navItems}
             </PersistScroll>
-          </Box>
+          </ScrollArea>
           <Box
             sx={{
               flexShrink: 0,
@@ -512,7 +586,7 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
         </Box>
       </React.Fragment>
     );
-  }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
+  }, [onClose, pages, activePageParents, t, productIdentifier, swipeableDrawer]);
 
   if (process.env.NODE_ENV !== 'production') {
     if (!productIdentifier) {
