@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import { HighlightedCodeWithTabs } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
 import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
-import { Demo } from '@mui/internal-core-docs/Demo';
-import DemoToolbar from 'docs/src/modules/components/DemoToolbar';
+import { Demo, DemoToolbar } from '@mui/internal-core-docs/Demo';
 
 function noComponent(moduleID) {
   return function NoComponent() {

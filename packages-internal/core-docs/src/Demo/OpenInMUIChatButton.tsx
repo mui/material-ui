@@ -4,11 +4,12 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import PageContext from '@mui/internal-core-docs/PageContext';
-import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
-import { type DemoData, createMuiChat } from '@mui/internal-core-docs/Demo';
+import PageContext from '../PageContext';
+import { useDemoContext } from '../DemoContext';
+import { createMuiChat } from './sandbox/MuiChat';
+import type { DemoData } from './sandbox/types';
 
-interface OpenInMUIChatButtonProps extends ButtonProps {
+export interface OpenInMUIChatButtonProps extends ButtonProps {
   demoData: DemoData;
 }
 
@@ -88,7 +89,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
+export const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
   function OpenInMUIChatButton({ demoData, ...props }, ref) {
     const { productId } = React.useContext(PageContext);
     const { csb } = useDemoContext();
@@ -156,5 +157,3 @@ const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatBut
     );
   },
 );
-
-export default OpenInMUIChatButton;
