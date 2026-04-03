@@ -108,10 +108,10 @@ Breaking changes, codemods, and checklist items for moving to v9 are centralized
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

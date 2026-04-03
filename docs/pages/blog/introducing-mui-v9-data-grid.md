@@ -111,10 +111,10 @@ Work through that alongside the sections above if you rely on lazy loading, tree
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

@@ -1,6 +1,6 @@
 ---
-title: 'Material UI v9 primitives'
-description: 'Material UI v9 primitives for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
+title: 'Material UI v9 foundation'
+description: 'Material UI v9 foundation for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['Material UI', 'Product']
@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 Material UI v9 is here.
-This release focuses on what developers feel immediately: better accessibility defaults, more reliable keyboard navigation, and theming primitives that make CSS integration smoother.
+This release focuses on what developers feel immediately: better accessibility defaults, more reliable keyboard navigation, and theming foundations that make CSS integration smoother.
 
 For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
 
@@ -47,11 +47,11 @@ Base UI adoption is expanding across Material UI: for now through component re
     style="border: 0; width: 100%; max-width: 496px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-primitives/NumberField.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-foundation/NumberField.mov"
       type="video/quicktime"
     />
   </video>
-  <figcaption>NumberField, implemented on Base UI primitives.</figcaption>
+  <figcaption>NumberField, implemented on Base UI.</figcaption>
 </figure>
 
 See the [NumberField](/material-ui/react-number-field/) documentation for API detail and examples.
@@ -72,7 +72,7 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
     style="border: 0; width: 100%; max-width: 731px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-primitives/Menubar.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-v9-foundation/Menubar.mov"
       type="video/quicktime"
     />
   </video>
@@ -209,10 +209,10 @@ Earlier majors are covered in the [v6](/material-ui/migration/upgrade-to-v6/) an
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 To share feedback or report issues, visit [mui/material-ui on GitHub](https://github.com/mui/material-ui).

@@ -1,6 +1,6 @@
 ---
 title: 'Introducing Material UI and MUI X v9'
-description: 'Introducing Material UI + MUI X v9: unified major version, new primitives, advanced components, and AI-native workflows.'
+description: 'Introducing Material UI + MUI X v9: unified major version, new foundations, advanced components, and AI-native workflows.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['Material UI', 'MUI X', 'Product']
@@ -33,12 +33,12 @@ In this cycle we're aligning major versions, growing both the primitive and adva
 This post is the aggregator for v9.
 It introduces the shared version story, our long‑term direction, and links to dedicated deep dives:
 
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 ## Table of contents
 
@@ -48,8 +48,8 @@ It introduces the shared version story, our long‑term direction, and links to 
 - [Renaming MUI Chat to MUI Recipes](#renaming-mui-chat-to-mui-recipes)
 - [What's next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
-  - [v10 styling layer and modern theme layering](#v10-styling-layer-and-modern-theme-layering)
   - [AI-native workflows](#ai-native-workflows)
+  - [Remove emotion and add modern theme layering](#remove-emotion-and-add-modern-theme-layering)
 - [Deep dives](#deep-dives)
 - [We want your feedback](#we-want-your-feedback)
 
@@ -64,7 +64,7 @@ So for v9 we're realigning: Material UI moves from v7 straight to v9 (there is 
 
 With v9, we're synchronizing the major version across the stack:
 
-- **Material UI v9:** the design‑system primitives and layout foundations.
+- **Material UI v9:** the design‑system foundation.
 - **MUI X v9:** the advanced components built on top: Data Grid, Charts, Tree View, Date and Time Pickers, Scheduler, Chat, and more.
 
 A single major version number makes it easier to:
@@ -90,12 +90,12 @@ A single major version number makes it easier to:
 We've focused on stability, accessibility, and new building blocks across the v9 cycle.
 The deep dives cover each area in full; these bullets summarize the direction:
 
-- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library. See the [Material UI primitives](/blog/introducing-mui-v9-primitives/) post.
-- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; refactors that align with Material UI v9 internals. See [Data Grid](/blog/introducing-mui-v9-data-grid/).
-- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; composition tweaks (for example tooltips portaling through `ChartsLayerContainer`). See [Charts](/blog/introducing-mui-v9-charts/).
+- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library. See the [Material UI](/blog/introducing-mui-v9-foundation/) post.
+- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; refactors that align with Material UI v9 internals. See [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/).
+- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; composition tweaks (for example tooltips portaling through `ChartsLayerContainer`). See [MUI X Charts](/blog/introducing-mui-v9-charts/).
 - **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), flatter event lists, and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs ([Tree View section](/blog/introducing-mui-v9-tree-view-and-pickers/#tree-view)).
 - **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`) ([Date and Time Pickers section](/blog/introducing-mui-v9-tree-view-and-pickers/#date-and-time-pickers)).
-- **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and ChatBox for conversational UI with adapters and streaming. Both are debuting at alpha; product detail, tiers, and onboarding live in the [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/) and [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/) posts.
+- **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and ChatBox for conversational UI with adapters and streaming. Both are debuting at alpha; product detail, tiers, and onboarding live in the [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/) and [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/) posts.
 
 Use the links at the top of this post when you're ready to go deeper on a specific area.
 
@@ -138,30 +138,29 @@ Advanced components keep getting more complete surfaces: workflow‑driven data 
 These updates are designed for full product workflows, not just side‑by‑side experiments.
 They help developers ship UIs that stay transparent and controllable, with state that users can understand and that apps can integrate with cleanly.
 
-### v10 styling layer and modern theme layering
-
-For v10, we're reworking the styling layer and theme layering model to better support modern design-system workflows:
-
-- Peel back the Material Design styling layer and introduce a more flexible, modern theme layering model.
-- Use current Material, MD3, or have a separate theme with your own brand, without having to override every class.
-- Target independence from Emotion and better integration paths for teams using Tailwind.
-
 ### AI-native workflows
 
 The [Data Grid AI Assistant](/blog/introducing-mui-v9-data-grid/#ai-assistant) is the first large piece of that story in production. Together with [Console](#new-console-application), where you can handle licenses and service keys in one flow, it forms a clearer path from trying assistive features to rolling them out, without stitching together separate tools for assistants and account management.
 
 We believe that integrated AI workflows can materially improve everyday UX, pun intended. They speed up repetitive data and configuration work that would usually require multiple menus, without hiding the underlying model from the user. Throughout the v9 cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
 
+### Remove emotion and add modern theme layering
+
+We're listening you, and for the next major we're going to explore refactoring the styling layer and theme layering model to better support modern design-system workflows:
+
+- Target independence from Emotion and better integration paths for teams using Tailwind.
+- The ability for you to use Material, or have a separate theme with your own brand, without having to override every class.
+
 ## Deep dives
 
 Each area below has a dedicated post with more detail, migration notes where relevant, and doc links in context:
 
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 ## We want your feedback
 

@@ -45,10 +45,10 @@ The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration no
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

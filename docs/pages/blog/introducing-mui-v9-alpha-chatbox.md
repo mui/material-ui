@@ -87,17 +87,17 @@ Phase 0-1 (v9) is delivered as one milestone: package APIs, core hooks, themed 
 
 Phase 2 expands workflow patterns ("chat with your data," "chat with your schedule," mixed chart and grid flows), with production-ready docs that help teams ship without reinventing glue code.
 
-Phase 3 ships templates and tighter ecosystem combinations (advanced components + Material UI primitives + Console where licensing applies), aligned with the v9 direction of clear intents and reversible state.
+Phase 3 ships templates and tighter ecosystem combinations (advanced components + Material UI + Console where licensing applies), aligned with the v9 direction of clear intents and reversible state.
 
 We will roll these milestones through the v9 cycle in regular releases; follow [MUI X releases](https://github.com/mui/mui-x/releases) for packaged updates.
 
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI primitives](/blog/introducing-mui-v9-primitives/)
-- [Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [Charts](/blog/introducing-mui-v9-charts/)
-- [Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Material UI](/blog/introducing-mui-v9-foundation/)
+- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
+- [MUI X Charts](/blog/introducing-mui-v9-charts/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

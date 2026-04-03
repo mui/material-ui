@@ -1,5 +1,5 @@
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
-import { docs } from './introducing-mui-v9-primitives.md?muiMarkdown';
+import { docs } from './introducing-mui-v9-foundation.md?muiMarkdown';
 
 export default function Page() {
   return <TopLayoutBlog docs={docs} />;
