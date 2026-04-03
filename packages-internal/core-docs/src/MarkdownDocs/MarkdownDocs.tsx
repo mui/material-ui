@@ -1,18 +1,27 @@
-import PropTypes from 'prop-types';
-import { exactProp } from '@mui/utils';
-import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
-import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { AppLayoutDocs } from '@mui/internal-core-docs/AppLayout';
-import { useUserLanguage } from '@mui/internal-core-docs/i18n';
+import * as React from 'react';
+import { Ad, AdGuest } from '../Ad';
+import { RichMarkdownElement } from './RichMarkdownElement';
+import { AppLayoutDocs } from '../AppLayout';
+import { useUserLanguage } from '../i18n';
 
-export default function MarkdownDocs(props) {
+export interface MarkdownDocsProps {
+  wideLayout?: boolean;
+  demoComponents?: Record<string, React.ComponentType<any>>;
+  demos?: Record<string, any>;
+  disableAd?: boolean;
+  disableToc?: boolean;
+  docs: Record<string, any>;
+  srcComponents?: Record<string, React.ComponentType<any>>;
+}
+
+export function MarkdownDocs(props: MarkdownDocsProps) {
   const {
     disableAd = false,
     disableToc = false,
     wideLayout,
     demos = {},
     docs,
-    demoComponents,
+    demoComponents = {},
     srcComponents,
   } = props;
 
@@ -38,7 +47,7 @@ export default function MarkdownDocs(props) {
           <Ad />
         </AdGuest>
       )}
-      {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
+      {localizedDoc.rendered.map((renderedMarkdownOrDemo: any, index: number) => (
         <RichMarkdownElement
           key={`demos-section-${index}`}
           demoComponents={demoComponents}
@@ -51,18 +60,4 @@ export default function MarkdownDocs(props) {
       ))}
     </AppLayoutDocs>
   );
-}
-
-MarkdownDocs.propTypes = {
-  wideLayout: PropTypes.bool,
-  demoComponents: PropTypes.object,
-  demos: PropTypes.object,
-  disableAd: PropTypes.bool,
-  disableToc: PropTypes.bool,
-  docs: PropTypes.object.isRequired,
-  srcComponents: PropTypes.object,
-};
-
-if (process.env.NODE_ENV !== 'production') {
-  MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }

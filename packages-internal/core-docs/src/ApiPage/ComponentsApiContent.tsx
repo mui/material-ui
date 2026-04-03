@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { Translate, useTranslate, useUserLanguage } from '../i18n';
 import { SectionTitle, SectionTitleProps } from '../SectionTitle';
 import { HighlightedCode } from '../HighlightedCode';
-import { MarkdownElement } from '../MarkdownElement';
+import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import type { LayoutStorageKeys } from './types';
 import { getPropsApiDefinitions } from './definitions/properties';
 import { getClassApiDefinitions } from './definitions/classes';
