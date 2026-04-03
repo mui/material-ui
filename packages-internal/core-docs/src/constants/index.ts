@@ -1,3 +1,3 @@
 export * from './constants';
-export * from './featureToggle';
-export * from './route';
+export { FEATURE_TOGGLE } from './featureToggle';
+export { ROUTES } from './route';
