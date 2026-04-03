@@ -75,7 +75,7 @@ A single major version number makes it easier to:
 
 <figure>
   <img
-    src="/static/blog/introducing-mui-v9/stub_v9-ecosystem-overview.png"
+    src="/static/blog/introducing-mui-v9/v9-ecosystem-overview.png"
     alt="MUI v9 ecosystem overview."
     width="1600"
     height="900"
