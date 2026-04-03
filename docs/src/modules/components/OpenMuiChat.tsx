@@ -6,8 +6,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import PageContext from '@mui/internal-core-docs/PageContext';
 import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
-import { createMuiChat } from '../sandbox/MuiChat';
-import { DemoData } from '../sandbox/types';
+import { type DemoData, createMuiChat } from '@mui/internal-core-docs/Demo';
 
 interface OpenInMUIChatButtonProps extends ButtonProps {
   demoData: DemoData;

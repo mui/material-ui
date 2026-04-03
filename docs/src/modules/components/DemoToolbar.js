@@ -23,8 +23,7 @@ import { useSetCodeVariant } from '@mui/internal-core-docs/codeVariant';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
 import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
-import codeSandbox from '../sandbox/CodeSandbox';
-import stackBlitz from '../sandbox/StackBlitz';
+import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
 
 const Root = styled('div')(({ theme }) => [
   {

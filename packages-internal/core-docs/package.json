@@ -31,6 +31,7 @@
     "@babel/runtime": "^7.29.2",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
+    "lz-string": "^1.5.0",
     "clsx": "^2.1.1",
     "es-toolkit": "^1.45.1",
     "fg-loadcss": "^3.1.0",
