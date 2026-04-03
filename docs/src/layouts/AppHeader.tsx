@@ -51,7 +51,6 @@ export default function AppHeader(props: AppHeaderProps) {
         <Box
           component="a"
           id="tours"
-          name="tours"
           tabIndex={-1}
           sx={{
             position: 'absolute',

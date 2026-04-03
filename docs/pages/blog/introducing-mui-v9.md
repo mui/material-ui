@@ -64,7 +64,7 @@ So for v9 we're realigning: Material UI moves from v7 straight to v9 (there is 
 
 With v9, we're synchronizing the major version across the stack:
 
-- **Material UI v9:** the design‑system foundation.
+- **Material UI v9:** the design‑system and layouts foundation.
 - **MUI X v9:** the advanced components built on top: Data Grid, Charts, Tree View, Date and Time Pickers, Scheduler, Chat, and more.
 
 A single major version number makes it easier to:
@@ -91,9 +91,9 @@ We've focused on stability, accessibility, and new building blocks across the v9
 The deep dives cover each area in full; these bullets summarize the direction:
 
 - **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library. See the [Material UI](/blog/introducing-mui-v9-foundation/) post.
-- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; refactors that align with Material UI v9 internals. See [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/).
-- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; composition tweaks (for example tooltips portaling through `ChartsLayerContainer`). See [MUI X Charts](/blog/introducing-mui-v9-charts/).
-- **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), flatter event lists, and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs ([Tree View section](/blog/introducing-mui-v9-tree-view-and-pickers/#tree-view)).
+- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; See [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/).
+- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; tooltips portaling through `ChartsLayerContainer` so you get predictable composition when charts live inside scroll regions, dialogs, or grids—tooltips stay visible instead of being clipped by ancestor `overflow`, and their stacking lines up with the rest of the chart layer model. See [MUI X Charts](/blog/introducing-mui-v9-charts/).
+- **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs ([Tree View section](/blog/introducing-mui-v9-tree-view-and-pickers/#tree-view)).
 - **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`) ([Date and Time Pickers section](/blog/introducing-mui-v9-tree-view-and-pickers/#date-and-time-pickers)).
 - **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and ChatBox for conversational UI with adapters and streaming. Both are debuting at alpha; product detail, tiers, and onboarding live in the [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/) and [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/) posts.
 
