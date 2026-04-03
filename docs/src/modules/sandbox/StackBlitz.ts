@@ -1,4 +1,4 @@
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
+import { addHiddenInput } from '@mui/internal-core-docs/utils';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';

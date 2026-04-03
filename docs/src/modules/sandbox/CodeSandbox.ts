@@ -1,6 +1,6 @@
 // @ts-ignore
 import LZString from 'lz-string';
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
+import { addHiddenInput } from '@mui/internal-core-docs/utils';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
