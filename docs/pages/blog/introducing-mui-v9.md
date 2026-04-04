@@ -32,7 +32,7 @@ We are thrilled to announce the simultaneous release of **Material UI v9** and 
 We are re-aligning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
 This is more than a version bump; it represents one step toward a strongly unified ecosystem for the MUI products.
 
-This announcement post gives you the high-level overview of each of the products that we released, the strategic themes that guided our work, and where to go next.
+This announcement gives you the high-level overview of each of the products that we released, the strategic themes that guided our work, and where we go next.
 
 With v9, we focused on three strategic pillars:
 
@@ -53,27 +53,26 @@ With v9, we focused on three strategic pillars:
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [AI-native workflows](#ai-native-workflows)
   - [Remove emotion and add modern theme layering](#remove-emotion-and-add-modern-theme-layering)
-- [We want your feedback](#we-want-your-feedback)
 
 ## What we released
 
-All the announcements:
+All the announcements per product:
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0;">
   <a href="/blog/introducing-material-ui-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">Material UI v9</strong>
+    <strong style="font-size: 1.1rem; color: #1976d2;">Material UI v9.0</strong>
     <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Improved design-system foundations.</p>
   </a>
   <a href="/blog/introducing-mui-x-data-grid-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Data Grid v9</strong>
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Data Grid v9.0</strong>
     <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Dynamic data, in-grid charts, AI assistant.</p>
   </a>
   <a href="/blog/introducing-mui-x-charts-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Charts v9</strong>
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Charts v9.0</strong>
     <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Candlestick, improved UX.</p>
   </a>
   <a href="/blog/introducing-mui-x-tree-view-and-pickers-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Tree View and Pickers v9</strong>
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X v9.0: Tree View, Date Pickers</strong>
     <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Virtualization, keyboard navigation, and locale support.</p>
   </a>
   <a href="/blog/introducing-mui-x-scheduler-v9-alpha/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">

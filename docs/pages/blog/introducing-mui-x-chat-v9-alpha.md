@@ -1,5 +1,5 @@
 ---
-title: 'MUI X Chat v9 alpha'
+title: MUI X Chat v9 alpha
 description: 'An early look at MUI X Chat v9 alpha: ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
@@ -11,7 +11,8 @@ In v9 we're laying the groundwork for AI-native conversational experiences in MU
 [MUI X Chat](/x/react-chat/) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 
 This post is an orientation, not an API reference: how the layers stack, why adapters and streams sit at the center, and how early work connects to Data Grid, Scheduler, and the v9 overview.
-For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+
+This new major is part of a coordinated effort across the entire product suite; for a complete look at the MUI ecosystem changes, check out the [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/) blog post.
 
 ## Table of contents
 
@@ -21,8 +22,7 @@ For ecosystem context, see [Material UI and MUI X v9 overview](/blog/introduci
 - [Chat showcase](#chat-showcase)
 - [State, adapters, and streaming](#state-adapters-and-streaming)
 - [Message parts beyond plain text](#message-parts-beyond-plain-text)
-- [Roadmap](#roadmap)
-- [Where to go next](#where-to-go-next)
+- [What's next](#whats-next)
 
 ## Quick start
 
@@ -57,7 +57,7 @@ Keeping Chat in alpha is intentional, because this is the phase where we can sti
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-x-chat-v9-alpha/stub_ghost_chat-showcase.mov"
+      src="/static/blog/introducing-mui-x-chat-v9-alpha/stub_ghost_chat-showcase.mov"
       type="video/quicktime"
     />
   </video>
@@ -80,7 +80,7 @@ Modeling messages as parts (such as tool calls and results, sources, and file at
 
 Streaming treats responses as sequences of parts and tokens, not one immutable blob, which matters when Chat works alongside Data Grid transforms, Scheduler mutations, or other multi‑step automations where results arrive gradually.
 
-## Roadmap
+## What's next
 
 Phase 0-1 (v9) is delivered as one milestone: package APIs, core hooks, themed `ChatBox`, docs and examples, opinionated layouts (conversation surface, input, history, threads), and first-class wiring to other MUI X components.
 
@@ -90,13 +90,8 @@ Phase 3 ships templates and tighter ecosystem combinations (advanced components
 
 We will roll these milestones through the v9 cycle in regular releases; follow [MUI X releases](https://github.com/mui/mui-x/releases) for packaged updates.
 
-## Where to go next
+## We want your feedback
 
-- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-material-ui-v9/)
-- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
-- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
-
-To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).
+Your input drives our direction.
+Join our GitHub communities today to share your insights, report issues, and help shape the future.
+Visit [MUI X on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue%20label%3A%22scope%3A%20chat%22).

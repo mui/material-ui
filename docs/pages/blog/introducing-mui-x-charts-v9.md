@@ -1,18 +1,17 @@
 ---
-title: 'MUI X Charts v9'
-description: 'MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).'
+title: MUI X Charts v9.0
+description: 'MUI X Charts v9.0, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
-Charts are a core part of the MUI X advanced stack.
-In v9, we're continuing the same story you saw accelerate in v8: interaction and accessibility by default, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
+In v9, we continued the same story you saw accelerate in v8: better default micro interactions and better default accessibility, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
 
-This post groups those directions so you can scan the major without reading a release notes dump.
-For the full v9 picture, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
-For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x/releases) timeline and the published codemods.
+For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
+
+This new major is part of a coordinated effort across the entire product suite; for a complete look at the MUI ecosystem changes, check out the [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/) blog post.
 
 ## Table of contents
 
@@ -20,9 +19,8 @@ For every rename and fix, use the [MUI X releases](https://github.com/mui/mui-x
 - [Range bar charts](#range-bar-charts) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Interaction and accessibility](#interaction-and-accessibility)
 - [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
+- [Breaking changes and migration](#breaking-changes-and-migration)
 - [What's next](#whats-next)
-- [Upgrading from v8](#upgrading-from-v8)
-- [Where to go next](#where-to-go-next)
 
 ## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
@@ -42,7 +40,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mov"
+      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mov"
       type="video/quicktime"
     />
   </video>
@@ -67,7 +65,7 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-x-charts-v9/stub_ghost_rangebar.mov"
+      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_rangebar.mov"
       type="video/quicktime"
     />
   </video>
@@ -92,6 +90,10 @@ Tooltips align with the layer container model: portaling through `ChartsLayerCon
 
 For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
 
+## Breaking changes and migration
+
+Breaking changes, codemods, and checklist items for moving to v9 are centralized in [Migration from v8 to v9 (Charts)](/x/migration/migration-charts-v8/).
+
 ## What's next
 
 On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
@@ -100,10 +102,8 @@ We also want Charts to ride the same Base UI wave as Material UI: clearer comp
 
 Follow all updates in the [Charts](/x/react-charts/) documentation.
 
-## Upgrading from v8
+## We want your feedback
 
-Breaking changes, codemods, and checklist items for moving to v9 are centralized in [Migration from v8 to v9 (Charts)](/x/migration/migration-charts-v8/).
-
-## Where to go next
-
-To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).
+Your input drives our direction.
+Join our GitHub communities today to share your insights, report issues, and help shape the future.
+Visit [MUI X on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue%20label%3A%22scope%3A%20charts%22).

@@ -1,5 +1,5 @@
 ---
-title: 'MUI X Scheduler v9 alpha'
+title: MUI X Scheduler v9 alpha
 description: 'An early look at MUI X Scheduler v9 alpha: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
@@ -12,7 +12,10 @@ The Scheduler is a new advanced component in MUI X aimed at time‑ and resourc
 We're shipping it in alpha: useful for prototypes and roadmap planning, but the APIs are subject to change until the stable release—and we're hoping to get your feedback so we can move through this phase quickly.
 
 This post explains what we're building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
-For the broader v9 context, read [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/).
+
+For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
+
+This new major is part of a coordinated effort across the entire product suite; for a complete look at the MUI ecosystem changes, check out the [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/) blog post.
 
 ## Table of contents
 
@@ -24,7 +27,7 @@ For the broader v9 context, read [Introducing Material UI and MUI X v9](/blog/
 - [Timeline](#timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Community and Premium](#community-and-premium)
 - [Fit with the rest of MUI X](#fit-with-the-rest-of-mui-x)
-- [Where to go next](#where-to-go-next)
+- [What's next](#whats-next)
 
 ## Quick start
 
@@ -48,7 +51,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 
 <figure>
   <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png"
+    src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png"
     alt="Scheduler event planning in MUI X."
     width="1600"
     height="900"
@@ -84,7 +87,7 @@ This is the best default when your users already understand calendar metaphors a
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-calendar.mov"
+      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-calendar.mov"
       type="video/quicktime"
     />
   </video>
@@ -110,7 +113,7 @@ The point is one underlying schedule that can be re-visualized without rewriting
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-timeline.mov"
+      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-timeline.mov"
       type="video/quicktime"
     />
   </video>
@@ -134,13 +137,12 @@ Technically, Scheduler follows the v9 peer and theme story: align versions with 
 Conceptually, it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
 Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
-## Where to go next
+## What's next
 
-- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-material-ui-v9/)
-- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
-- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
+TODO
 
-To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).
+## We want your feedback
+
+Your input drives our direction.
+Join our GitHub communities today to share your insights, report issues, and help shape the future.
+Visit [MUI X on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue%20label%3A%22scope%3A%20scheduler%22).

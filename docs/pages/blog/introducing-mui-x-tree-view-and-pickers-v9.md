@@ -1,5 +1,5 @@
 ---
-title: 'MUI X v9 Tree View and Date and Time Pickers'
+title: 'MUI X v9.0: Tree View, Date Pickers'
 description: 'Tree View and Date and Time Pickers in MUI X v9: virtualization-by-default trees, picker field and focus ergonomics, locales, and migration-oriented cleanups.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
@@ -7,18 +7,17 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
-Tree View and Date and Time Pickers are the everyday workhorses of MUI X: hierarchies everywhere, dates in almost every form.
-Their v9 slice of the cycle is deliberately focused: large trees that stay fast and predictable, and pickers that behave well on keyboard, in forms, and next to other controls, with locale and adapter coverage that stays aligned with the Data Grid and the rest of the suite.
+In v9, we focused: large trees that stay fast and predictable, and pickers that behave well on keyboard, in forms, and next to other controls, with locale and adapter coverage that stays aligned with all the other components.
 
-This single post covers both because they share that "foundational UX" role compared with heavier hitters like Data Grid or Charts in this major.
+For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
 
-For the full v9 narrative, see the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+This new major is part of a coordinated effort across the entire product suite; for a complete look at the MUI ecosystem changes, check out the [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/) blog post.
 
 ## Table of contents
 
 - [Tree View](#tree-view) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Date and Time Pickers](#date-and-time-pickers)
-- [Where to go next](#where-to-go-next)
+- [What's next](#whats-next)
 
 ## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
@@ -41,13 +40,12 @@ Locales and adapters expand (for example, `thTH` in step with the Data Grid, and
 
 The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration notes) remain the source of truth for API deltas as v9 stabilizes.
 
-## Where to go next
+## What's next
 
-- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-material-ui-v9/)
-- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
-- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
+TODO
 
-To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).
+## We want your feedback
+
+Your input drives our direction.
+Join our GitHub communities today to share your insights, report issues, and help shape the future.
+Visit [MUI X on GitHub](https://github.com/mui/mui-x).
