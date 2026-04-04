@@ -1529,6 +1529,72 @@ describe('<Autocomplete />', () => {
         'aria-activedescendant',
       );
     });
+
+    // https://github.com/mui/material-ui/issues/31081
+    it('should not set tabIndex on option elements', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+      const options = screen.getAllByRole('option');
+      options.forEach((option) => {
+        expect(option).not.to.have.attribute('tabindex');
+      });
+    });
+
+    it('should still support keyboard navigation without tabIndex on options', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        screen.getAllByRole('option')[0].id,
+      );
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        screen.getAllByRole('option')[1].id,
+      );
+
+      await user.keyboard('{Enter}');
+      expect(screen.getByRole('combobox').value).to.equal('two');
+    });
+
+    it('should skip disabled options during keyboard navigation without tabIndex', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          getOptionDisabled={(option) => option === 'two'}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        screen.getAllByRole('option')[0].id,
+      );
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('combobox')).to.have.attribute(
+        'aria-activedescendant',
+        screen.getAllByRole('option')[2].id,
+      );
+    });
   });
 
   describe('when popup closed', () => {

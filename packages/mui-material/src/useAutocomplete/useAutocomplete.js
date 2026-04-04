@@ -343,7 +343,7 @@ function useAutocomplete(props) {
         ? false
         : !option || option.disabled || option.getAttribute('aria-disabled') === 'true';
 
-      if (option && option.hasAttribute('tabindex') && !nextFocusDisabled) {
+      if (option && option.getAttribute('role') === 'option' && !nextFocusDisabled) {
         // The next option is available
         return nextFocus;
       }
@@ -1428,7 +1428,6 @@ function useAutocomplete(props) {
 
       return {
         key: getOptionKey?.(option) ?? getOptionLabel(option),
-        tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
         onMouseMove: handleOptionMouseMove,
