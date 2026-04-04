@@ -35,7 +35,7 @@ Then layer your event model and resources on top, and switch to Timeline when yo
 ## What alpha means
 
 We expect the same release arc that we've followed for other advanced components: alpha, then beta, then stable, with migration notes as the surface hardens.
-Today that means you should prototype and send feedback—don't assume imports are frozen or that slot APIs can't be changed.
+Today, that means you should prototype and send feedback—don't assume imports are frozen or that slot APIs can't be changed.
 If you've shipped on Data Grid or Charts through early majors, the process should feel familiar.
 
 ## When to expect the stable
@@ -43,7 +43,7 @@ If you've shipped on Data Grid or Charts through early majors, the process shoul
 We're targeting a stable Scheduler release in early July, based on the feedback and usage signals we collect during alpha.
 The date is an expectation, not a hard promise: we ship when quality is there.
 
-Keeping Scheduler in alpha right now is intentional, because it gives us the room to make necessary breaking changes before the next major, while APIs are still being validated in real projects.
+Keeping Scheduler in alpha right now is intentional because it gives us the room to make necessary breaking changes before the next major, while APIs are still being validated in real projects.
 
 ## What you can build
 
@@ -59,19 +59,19 @@ Keeping Scheduler in alpha right now is intentional, because it gives us the roo
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
-At the center is an event model with start and end times, titles and metadata, and links back to your domain (tickets, customers, orders, and so on).
+At the center is an event model with start and end times, titles, and metadata, and links back to your domain (tickets, customers, orders, and so on).
 You can place those events on resources (people, rooms, assets) or looser groupings that match your product.
 
 Recurring events target real calendars: daily/weekly/monthly and custom rules, editable as a series or as one‑off exceptions, with timezone‑aware evaluation so a daily 09:00 meeting stays at 09:00 local time even across DST changes.
 
-Timezones are modeled so you can store canonically (for example UTC), render in the user's zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
+Timezones are modeled so you can store canonically (for example, UTC), render in the user's zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
 
 ## Event Calendar
 
 Event Calendar views read like classic planners: day, week, month, filtered slices such as "this project only" or "my meetings".
 They suit appointment booking, service desks, team coordination, and smaller‑scale capacity questions where users think in calendar blocks first.
 
-This is the best default when your users already understand calendar metaphors and need fast navigation across dates with lightweight resource context.
+This is the best default when your users already understand calendar metaphors and need fast navigation across dates with a lightweight resource context.
 
 <figure>
   <video
@@ -132,8 +132,8 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 
 Technically, Scheduler follows the v9 peer and theme story: align versions with Material UI and sibling MUI X packages, use shared theme augmentation and `sx` like the rest of the line, and keep Premium features packaged so you opt in explicitly.
 
-Conceptually it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
-Together they're the workflow-heavy side of the stack we're shipping in v9.
+Conceptually, it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
+Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Where to go next
 

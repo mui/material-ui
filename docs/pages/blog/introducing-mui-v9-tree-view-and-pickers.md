@@ -24,7 +24,7 @@ For the full v9 narrative, see the [Material UI and MUI X v9 overview](/blog/i
 ## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Rich Tree View Pro in v9 ships virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
-That shift comes with practical defaults (for example row height, set `itemHeight` when content differs) and a flatter events surface on Pro so focus and performance stay easier to reason about on big trees.
+That shift comes with practical defaults (for example, row height, set `itemHeight` when content differs) and a flatter events surface on Pro, so focus and performance stay easier to reason about on big trees.
 
 API and styling hygiene matter too: older model and ref hooks are replaced by the richer variants (`useRichTreeViewApiRef`, `useSimpleTreeViewApiRef`, `useRichTreeViewProApiRef`), `TreeViewBaseItem` is removed in favor of documented model shapes, and state tokens on `treeItemClasses` that encoded expanded/selected styling are dropped in favor of `data-*` attributes you can target in CSS.
 
@@ -38,7 +38,7 @@ Pickers in v9 continue the keyboard‑first calendar work: move through day, mon
 `fieldRef` stabilizes with `clearValue`, which matters in long forms, filters, and anywhere "reset this field" must be reliable.
 
 We also smoothed focus when dismissing the popover so click‑away is less likely to strand focus on the wrong control, especially near dialogs, drawers, and embedded grid filters.
-Locales and adapters expand (for example `thTH` in step with the Data Grid, and `AdapterDayjsBuddhist` for non‑Gregorian cases); if you use range pickers across zones, re‑validate edge cases after upgrading.
+Locales and adapters expand (for example, `thTH` in step with the Data Grid, and `AdapterDayjsBuddhist` for non‑Gregorian cases); if you use range pickers across zones, re‑validate edge cases after upgrading.
 
 The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration notes) remain the source of truth for API deltas as v9 stabilizes.
 

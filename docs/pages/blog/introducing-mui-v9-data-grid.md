@@ -9,7 +9,7 @@ hideFromHomeList: true
 ---
 
 The Data Grid is one of the main pillars of MUI X.
-In v9 we're tightening how the grid works with live and server-backed data, making tabular-plus-visual dashboards first-class, and continuing to treat AI assistance as part of the product, not a side demo.
+In v9, we're tightening how the grid works with live and server-backed data, making tabular-plus-visual dashboards first-class, and continuing to treat AI assistance as part of the product, not a side demo.
 
 This post orients you around those themes.
 For the shared ecosystem story, start with the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
@@ -49,7 +49,7 @@ We also kept the implementation in step with Material UI v9 so the grid and cha
 </figure>
 
 If you already combine the two, plan a quick pass on your dashboards after upgrading.
-For usage and API detail, see the [Data Grid](/x/react-data-grid/) documentation.
+For usage and API details, see the [Data Grid](/x/react-data-grid/) documentation.
 
 ## Dynamic data, editing, and everyday UX
 
@@ -85,14 +85,14 @@ The Data Grid AI Assistant remains a flagship example of AI‑native design in M
 
 Turning that on in production is not only a front‑end story.
 [Console](https://console.mui.com) brings licensing, service API keys, and billing into one place so teams can create and rotate keys without routing every request through support; see [New Console application](/blog/introducing-mui-v9/#new-console-application) in the v9 overview.
-Where governance matters, bring your own key lets you supply your own provider credentials so traffic and policies stay under your control while the same assistant flows apply to the grid.
+Where governance matters, bring your own key lets you supply your own provider credentials so traffic and policies stay under your control, while the same assistant flows apply to the grid.
 
 Together, Console, clearer onboarding documentation, and the assistant docs make a stronger end‑to‑end path: from trying the feature in docs, to provisioning keys and billing, to shipping the same flows in your product without stitching together separate tools.
 
-Conceptually we keep a simple chain: question → interpretation → grid API calls → inspectable configuration.
+Conceptually, we keep a simple chain: question → interpretation → grid API calls → inspectable configuration.
 That matches how we want other advanced components to behave: clear intents, observable state, and purpose‑built UI for history and applied changes, not a generic chat bolt‑on.
 
-See the [AI Assistant](/x/react-data-grid/ai-assistant/) documentation for integration and API detail.
+See the [AI Assistant](/x/react-data-grid/ai-assistant/) documentation for integration and API details.
 
 ## What's next
 

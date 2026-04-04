@@ -1,5 +1,5 @@
 ---
-title: 'Material UI v9 foundation'
+title: Material UI v9 foundation
 description: 'Material UI v9 foundation for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
@@ -33,7 +33,8 @@ For the v9 ecosystem story across MUI X, Scheduler, and Chatbox, see the [Mater
 
 ## NumberField
 
-Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow. `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
+Base UI adoption is expanding across Material UI: for now through component recipes, with more native Material UI surfaces to follow.
+`NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
   <video
@@ -54,11 +55,12 @@ Base UI adoption is expanding across Material UI: for now through component re
   <figcaption>NumberField, implemented on Base UI.</figcaption>
 </figure>
 
-See the [NumberField](/material-ui/react-number-field/) documentation for API detail and examples.
+See the [NumberField](/material-ui/react-number-field/) documentation for API details and examples.
 
 ## Menubar and submenus
 
-`Menubar` is the other new Base UI-backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI. On this stack we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
+`Menubar` is the other new Base UI-backed surface in v9: a horizontal menu bar pattern with strong keyboard support, aligned with how menus and navigation are modeled in Base UI.
+On this stack, we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
   <video
@@ -81,7 +83,7 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
 
 Together, NumberField and Menubar show where we're headed in v9: wider Base UI adoption in Material UI, and interactions, including keyboard support, that stay clear and consistent even in dense UIs.
 
-See the [Menubar](/material-ui/react-menubar/) documentation for API detail and examples.
+See the [Menubar](/material-ui/react-menubar/) documentation for API details and examples.
 
 ## Theme and CSS variables
 
@@ -188,7 +190,7 @@ Improved roving TabIndex focus is a key v9 highlight for keyboard-first componen
 
 ### CSS rule cleanup (partial revert)
 
-- Partially revert duplicated CSS rules cleanup where it proved too aggressive.
+- Partially revert duplicated CSS rules cleanup, where it proved too aggressive.
 
 ### Repository note
 
