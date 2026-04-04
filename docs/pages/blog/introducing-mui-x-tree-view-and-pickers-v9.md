@@ -5,7 +5,6 @@ date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 Tree View and Date and Time Pickers are the everyday workhorses of MUI X: hierarchies everywhere, dates in almost every form.
@@ -45,10 +44,10 @@ The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration no
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

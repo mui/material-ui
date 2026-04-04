@@ -1,11 +1,10 @@
 ---
-title: 'MUI X v9 Chat (alpha)'
-description: 'MUI X Chat in v9 (alpha): ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.'
+title: 'MUI X Chat v9 alpha'
+description: 'An early look at MUI X Chat v9 alpha: ChatBox, adapters and streaming, and how it fits AI-native workflows across the stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 In v9 we're laying the groundwork for AI-native conversational experiences in MUI X.
@@ -58,7 +57,7 @@ Keeping Chat in alpha is intentional, because this is the phase where we can sti
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-chatbox/stub_ghost_chat-showcase.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-chat-v9-alpha/stub_ghost_chat-showcase.mov"
       type="video/quicktime"
     />
   </video>
@@ -94,10 +93,10 @@ We will roll these milestones through the v9 cycle in regular releases; follow [
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
+- [Material UI](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

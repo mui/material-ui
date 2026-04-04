@@ -1,11 +1,10 @@
 ---
-title: 'MUI X v9 Charts'
+title: 'MUI X Charts v9'
 description: 'MUI X Charts v9, keyboard-first by default, composition and codemods, Pro and Premium updates (heatmap, Sankey, export, WebGL).'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 Charts are a core part of the MUI X advanced stack.
@@ -43,7 +42,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_ghost_cansdlestick.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mov"
       type="video/quicktime"
     />
   </video>
@@ -68,7 +67,7 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-charts/stub_ghost_rangebar.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-charts-v9/stub_ghost_rangebar.mov"
       type="video/quicktime"
     />
   </video>
@@ -106,12 +105,5 @@ Follow all updates in the [Charts](/x/react-charts/) documentation.
 Breaking changes, codemods, and checklist items for moving to v9 are centralized in [Migration from v8 to v9 (Charts)](/x/migration/migration-charts-v8/).
 
 ## Where to go next
-
-- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

@@ -23,7 +23,9 @@ export interface BlogPost {
   authors?: Array<string>;
   date?: string;
   rank?: string;
-  /** When `'true'`, the post is omitted from the /blog index card grid (direct URLs still work). */
+  /**
+   * If `true`, it omits posts with `hideFromHomeList: true` in frontmatter. Use it for SEO only blog posts.
+   */
   hideFromHomeList?: string;
 }
 

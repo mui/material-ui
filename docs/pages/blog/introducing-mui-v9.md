@@ -2,7 +2,7 @@
 title: Introducing Material UI and MUI X v9
 description: 'Introducing Material UI + MUI X v9: unified major version, new foundations, advanced components, and AI-native workflows.'
 date: 2026-04-08T08:00:00.000Z
-authors: ['josefreitas']
+authors: ['josefreitas', 'oliviertassinari']
 tags: ['Material UI', 'MUI X', 'Product']
 manualCard: true
 ---
@@ -27,40 +27,74 @@ manualCard: true
   />
 </a>
 
-Material UI and MUI X ship together on v9.
-In this cycle, we're aligning major versions, growing both the primitive and advanced component portfolios, and preparing the ecosystem for AI-native workflows.
+We are thrilled to announce the simultaneous release of **Material UI v9** and of each **MUI X v9 components**.
 
-This post is the aggregator for v9.
-It introduces the shared version story, our long‑term direction, and links to dedicated deep dives:
+We are re-aligning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
+This is more than a version bump; it represents one step toward a strongly unified ecosystem for the MUI products.
 
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+This announcement post gives you the high-level overview of each of the products that we released, the strategic themes that guided our work, and where to go next.
+
+With v9, we focused on three strategic pillars:
+
+- **Better integration**: No more guessing which version of MUI X works with which version of Material UI. Moving forward, both libraries will share major versioning, simplifying upgrades across the tech stack.
+
+- **Expanding the portfolio**: We are growing both the primitives (thanks to Base UI that is adding many new components) and the advanced (MUI X) components.
+
+- **Taking advantage of AI**: We are preparing our ecosystem for the future of UX and frontend engineering that is ruled by AI.
 
 ## Table of contents
 
-- [One major version, one ecosystem](#one-major-version-one-ecosystem)
+- [What we released](#what-we-released)
+- [One MUI ecosystem, a synced major version](#one-mui-ecosystem-a-synced-major-version)
 - [Components highlights](#components-highlights)
-- [New Console application](#new-console-application)
-- [Renaming MUI Chat to MUI Recipes](#renaming-mui-chat-to-mui-recipes)
+- [New MUI Console application](#new-mui-console-application)
+- ["MUI Chat" renamed to "MUI Recipes"](#mui-chat-renamed-to-mui-recipes)
 - [What's next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [AI-native workflows](#ai-native-workflows)
   - [Remove emotion and add modern theme layering](#remove-emotion-and-add-modern-theme-layering)
-- [Deep dives](#deep-dives)
 - [We want your feedback](#we-want-your-feedback)
 
-## One major version, one ecosystem
+## What we released
 
-When we shipped MUI X v6 in 2023, [we decoupled MUI X's major version from Material UI and the rest of MUI Core](/blog/mui-x-v6/#decoupling-versions-from-mui-core), at a time when Material UI was still on v5.
-The goal was to give advanced components a faster, predictable release rhythm without tying every breaking change to Material UI's schedule.
+All the announcements:
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0;">
+  <a href="/blog/introducing-material-ui-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: #1976d2;">Material UI v9</strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Improved design-system foundations.</p>
+  </a>
+  <a href="/blog/introducing-mui-x-data-grid-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Data Grid v9</strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Dynamic data, in-grid charts, AI assistant.</p>
+  </a>
+  <a href="/blog/introducing-mui-x-charts-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Charts v9</strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Candlestick, improved UX.</p>
+  </a>
+  <a href="/blog/introducing-mui-x-tree-view-and-pickers-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Tree View and Pickers v9</strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Virtualization, keyboard navigation, and locale support.</p>
+  </a>
+  <a href="/blog/introducing-mui-x-scheduler-v9-alpha/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: rgba(155, 39, 176, 0.76);">MUI X Scheduler v9 <span style="background: #f3e5f5; color: #7b1fa2; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">alpha</span></strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Resource-aware calendars and timelines.</p>
+  </a>
+  <a href="/blog/introducing-mui-x-chat-v9-alpha/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
+    <strong style="font-size: 1.1rem; color: rgba(155, 39, 176, 0.76);">MUI X Chat v9 <span style="background: #f3e5f5; color: #7b1fa2; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">alpha</span></strong>
+    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Conversational UI for LLMs with adapters.</p>
+  </a>
+</div>
+
+## One MUI ecosystem, a synced major version
+
+When we shipped MUI X v6 in 2023, [we decoupled MUI X's major version from Material UI](/blog/mui-x-v6/#decoupling-versions-from-mui-core), at a time when Material UI was still on v5.
+The goal was to give advanced components a faster, predictable release rhythm without tying every breaking change to Material UI's release schedule.
 We also assumed that, over time, breaking-change pressure might push the two major lines further apart.
 
 In practice, that divergence never really increased the way we expected, while keeping independent major numbers still made upgrades, peer dependencies, and communication across the stack heavier than we liked.
-So for v9, we're realigning: Material UI moves from v7 straight to v9 (there is no Material UI v8), in step with MUI X v9, restoring a single shared major for the suite for the first time since that split.
+
+So for v9, we're realigning: Material UI moves from v7 straight to v9 (there is no Material UI v8, like there is no v2), in step with MUI X v9, restoring a single shared major for the suite for the first time since that split.
 
 With v9, we're synchronizing the major version across the stack:
 
@@ -69,9 +103,9 @@ With v9, we're synchronizing the major version across the stack:
 
 A single major version number makes it easier to:
 
+- Stage cross‑cutting improvements, such as accessibility and keyboard navigation upgrades, across both layers at once.
 - Align upgrade windows and migration guides across packages.
 - Communicate compatibility, for example, "MUI X v9 is designed to pair with Material UI v9".
-- Stage cross‑cutting improvements, such as accessibility and keyboard navigation upgrades, across both layers at once.
 
 <figure>
   <img
@@ -87,40 +121,44 @@ A single major version number makes it easier to:
 
 ## Components highlights
 
-We've focused on stability, accessibility, and new building blocks across the v9 cycle.
-The deep dives cover each area in full; these bullets summarize the direction:
+We've focused on stability, accessibility, and new building blocks across the v9 major; these bullets summarize the direction:
 
-- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library.
-  See the [Material UI](/blog/introducing-mui-v9-foundation/) post.
-- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals; See [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/).
-- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; tooltips portaling through `ChartsLayerContainer` so you get predictable composition when charts live inside scroll regions, dialogs, or grids—tooltips stay visible instead of being clipped by ancestor `overflow`, and their stacking lines up with the rest of the chart layer model.
-  See [MUI X Charts](/blog/introducing-mui-v9-charts/).
-- **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs ([Tree View section](/blog/introducing-mui-v9-tree-view-and-pickers/#tree-view)).
-- **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`) ([Date and Time Pickers section](/blog/introducing-mui-v9-tree-view-and-pickers/#date-and-time-pickers)).
-- **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and ChatBox for conversational UI with adapters and streaming.
-  Both are debuting at alpha; product detail, tiers, and onboarding live in the [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/) and [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/) posts.
+- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library.\
+  See the [Material UI v9](/blog/introducing-material-ui-v9/) post.
+- **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals.\
+  See the [MUI X Data Grid v9](/blog/introducing-mui-x-data-grid-v9/) post.
+- **Charts:** removal of long‑deprecated chart entry points in favor of `Charts*` APIs; keyboard navigation on by default; axis tooltip and legend refinements; Candlestick in Charts Premium; tooltips portaling through `ChartsLayerContainer` so you get predictable composition when charts live inside scroll regions, dialogs, or grids—tooltips stay visible instead of being clipped by ancestor `overflow`, and their stacking lines up with the rest of the chart layer model.\
+  See the [MUI X Charts v9](/blog/introducing-mui-x-charts-v9/) post.
+- **Tree View:** Rich Tree View Pro gets virtualization on by default (with opt‑out), and `treeItemClasses` / hook cleanups when you theme trees or call imperative APIs.\
+  See the [MUI X v9 Tree View](/blog/introducing-mui-x-tree-view-and-pickers-v9/#tree-view) section.
+- **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`).\
+  See the [MUI X v9 Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/#date-and-time-pickers) section.
+- **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and Chat for conversational UI with adapters and streaming.
+  Both are debuting at alpha; product detail, onboarding, and tiers in the [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/) and [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/) posts.
 
-Use the links at the top of this post when you're ready to go deeper on a specific area.
+## New MUI Console application
 
-## New Console application
+Last year, we began offering [AI assistance for the Data Grid](/blog/introducing-mui-x-data-grid-v9/#ai-assistant): users describe what they want in natural language, and the grid applies structured changes while keeping state visible and editable.
 
-Last year, we began offering [AI assistance for the Data Grid](/blog/introducing-mui-v9-data-grid/#ai-assistant): users describe what they want in natural language, and the grid applies structured changes while keeping state visible and editable.
-Until now, turning that on in production meant extra friction; teams had to request API keys through our support channel instead of generating and managing them next to licenses and the rest of their commercial setup.
+Until now, turning that on in production was hard; teams had no visibility of request usage, teams had to request API keys through our support channel instead of generating and managing them next to licenses and the rest of their commercial setup.
 
-[Console](https://console.mui.com) is the application we're rolling out to remove that friction.
+The [MUI Console](https://console.mui.com) is the application we're rolling out to remove this friction.
 It gathers license keys, service API keys (including for assistant and add-on experiences), billing, and usage in one place: an operational hub for MUI's commercial offerings rather than scattered tickets and dashboards.
 
-With Console, teams can:
+With the console, teams can:
 
 - See license status and seat assignments at a glance.
 - Manage billing, renewals, upgrades, and service add‑ons in one workflow.
 - Create, view, and rotate API keys for commercial services without relying on a support round‑trip for routine access.
 
-Over time, Console will also surface usage‑aware guidance, based on how your organization already uses the suite.
+Over time, the console will also surface usage‑aware guidance, based on how your organization already uses the suite.
 
-## Renaming MUI Chat to MUI Recipes
+## "MUI Chat" renamed to "MUI Recipes"
 
-MUI Chat is our generative UI tool in the same vein as products like v0 and Lovable: you describe what you want, and we help you land working Material UI and MUI X usage faster than writing from a blank file.
+[MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idomatic API of Material UI, MUI X, or Base UI if you asked for it.
+
+It's much faster than writing from a blank file.
+It's better integrated with our component libraries than a general‑purpose tool, so the output is more likely to be something you can ship with minimal adjustments.
 
 In practice, we use it mostly to deliver custom recipes and customization grounded in what you already see in the docs: variations on our examples, tuned layouts, and branded panels that stay aligned with the same APIs and patterns we document.
 
@@ -131,14 +169,14 @@ So MUI Chat is being renamed to [MUI Recipes](https://recipes.mui.com), a name
 
 ## What's next
 
-The next phase keeps iterating on developer experience, with a stronger focus on design‑system updates, continued component portfolio expansion, and exploring new AI‑native workflows.
+Over the coming months, we plan to focus our work on the following areas.
 
 ### Component portfolio expansion
 
 Advanced components keep getting more complete surfaces: workflow‑driven data in Data Grid, time‑based planning in Scheduler, and conversational layers in MUI X Chat, each described in its deep dive rather than recapped here.
 
+- NumberField and Menubar will ship as npm components, not only as documentation recipes you copy from the docs.
 - Data Grid continues to evolve advanced workflow surfaces, including AI workflows, where they enhance the user's job.
-- NumberField and Menubar will ship as components in the npm package, not only as documentation recipes you copy from the docs.
   We'll keep growing the Material UI portfolio as Base UI releases new primitives.
 - Scheduler will keep iterating on Event Calendar and Timeline so teams can move from classic appointment views to dense resource planning in one package, and we will keep shipping additional Base UI-powered components as they are ready.
 
@@ -147,36 +185,25 @@ They help developers ship UIs that stay transparent and controllable, with state
 
 ### AI-native workflows
 
-The [Data Grid AI Assistant](/blog/introducing-mui-v9-data-grid/#ai-assistant) is the first large piece of that story in production.
-Together with [Console](#new-console-application), where you can handle licenses and service keys in one flow, it forms a clearer path from trying assistive features to rolling them out, without stitching together separate tools for assistants and account management.
+The [Data Grid AI Assistant](/blog/introducing-mui-x-data-grid-v9/#ai-assistant) is the first large piece of that story in production.
+Together with the [MUI Console](#new-mui-console-application), where you can handle licenses and service keys in one flow, it forms a clearer path from trying assistive features to rolling them out, without stitching together separate tools for assistants and account management.
 
-We believe that integrated AI workflows can materially improve everyday UX, pun intended.
-They speed up repetitive data and configuration work that would usually require multiple menus, without hiding the underlying model from the user.
-Throughout the v9 cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
+We believe that integrated AI workflows can materially improve the UX.
+They speed up repetitive UI interactions that would usually require multiple menus, without hiding the underlying model from the user.
+
+Throughout the v9 minor release cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
 
 ### Remove emotion and add modern theme layering
 
 We're listening to you, and for the next major, we're going to explore refactoring the styling layer and theme layering model to better support modern design-system workflows:
 
-- Target independence from Emotion and better integration paths for teams using Tailwind.
+- Target independence from Emotion and better integration paths for teams using Tailwind CSS.
 - The ability for you to use Material Design, or have a separate theme with your own brand, without having to override every class.
-
-## Deep dives
-
-Each area below has a dedicated post with more detail, migration notes where relevant, and doc links in context:
-
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
 
 ## We want your feedback
 
-Your input drives our innovation.
-Join our GitHub communities today to share your insights, report issues, and help shape the future of Material UI and MUI X.
+Your input drives our direction.
+Join our GitHub communities today to share your insights, report issues, and help shape the future:
 
-[GitHub - Material UI](https://github.com/mui/material-ui)
-
-[GitHub - MUI X](https://github.com/mui/mui-x)
+- Visit [Material UI on GitHub](https://github.com/mui/material-ui)
+- Visit [MUI X on GitHub](https://github.com/mui/mui-x)

@@ -1,11 +1,10 @@
 ---
-title: 'MUI X v9 Scheduler (alpha)'
-description: 'An early look at Scheduler in MUI X v9: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.'
+title: 'MUI X Scheduler v9 alpha'
+description: 'An early look at MUI X Scheduler v9 alpha: event and resource planning, calendar and timeline views, Community vs Premium, and how it fits the advanced stack.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 The Scheduler is a new advanced component in MUI X aimed at time‑ and resource‑centric applications: not just a decorative calendar, but events bound to people, rooms, equipment, and projects, with interactions that match how real products work.
@@ -13,7 +12,7 @@ The Scheduler is a new advanced component in MUI X aimed at time‑ and resourc
 We're shipping it in alpha: useful for prototypes and roadmap planning, but the APIs are subject to change until the stable release—and we're hoping to get your feedback so we can move through this phase quickly.
 
 This post explains what we're building, how Community and Premium differ, and where it sits next to Data Grid, Charts, and Chat.
-For the broader v9 context, read the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+For the broader v9 context, read [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/).
 
 ## Table of contents
 
@@ -49,7 +48,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 
 <figure>
   <img
-    src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-scheduler/stub_scheduler-showcase.png"
+    src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png"
     alt="Scheduler event planning in MUI X."
     width="1600"
     height="900"
@@ -85,7 +84,7 @@ This is the best default when your users already understand calendar metaphors a
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-scheduler/stub_ghost_scheduler-calendar.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-calendar.mov"
       type="video/quicktime"
     />
   </video>
@@ -111,7 +110,7 @@ The point is one underlying schedule that can be re-visualized without rewriting
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-alpha-scheduler/stub_ghost_scheduler-timeline.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-timeline.mov"
       type="video/quicktime"
     />
   </video>
@@ -138,10 +137,10 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

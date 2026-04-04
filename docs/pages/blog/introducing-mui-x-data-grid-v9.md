@@ -1,18 +1,17 @@
 ---
-title: 'MUI X v9 Data Grid'
-description: 'Data Grid in MUI X v9: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.'
+title: 'MUI X Data Grid v9'
+description: 'MUI X Data Grid v9: stronger dynamic data and lazy loading, stable Charts in the grid, and AI Assistant with Console and bring your own key.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 The Data Grid is one of the main pillars of MUI X.
 In v9, we're tightening how the grid works with live and server-backed data, making tabular-plus-visual dashboards first-class, and continuing to treat AI assistance as part of the product, not a side demo.
 
 This post orients you around those themes.
-For the shared ecosystem story, start with the [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/).
+For the shared ecosystem story, start with [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/).
 For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
 
 ## Table of contents
@@ -41,7 +40,7 @@ We also kept the implementation in step with Material UI v9 so the grid and cha
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_ghost_datagrid-charts-integration.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-charts-integration.mov"
       type="video/quicktime"
     />
   </video>
@@ -74,7 +73,7 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
     style="border: 0; width: 100%; max-width: 800px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-data-grid/stub_ghost_datagrid-ai-assistant.mov"
+      src="/static/blog/introducing-mui-v9/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-ai-assistant.mov"
       type="video/quicktime"
     />
   </video>
@@ -111,10 +110,10 @@ Work through that alongside the sections above if you rely on lazy loading, tree
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [Material UI](/blog/introducing-mui-v9-foundation/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [Material UI](/blog/introducing-material-ui-v9/)
+- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
 
 To share feedback or report issues, visit [mui/mui-x on GitHub](https://github.com/mui/mui-x).

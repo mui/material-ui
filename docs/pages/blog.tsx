@@ -193,7 +193,6 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   // On the `/blog` index we:
   // - show the v9 aggregator card (see FEATURED_BLOG_SLUG)
   // - optionally show one additional recent card
-  // - omit posts with `hideFromHomeList: true` in frontmatter (deep dives, etc.)
   // All posts remain fully discoverable by direct URL and RSS.
   const FEATURED_BLOG_SLUG = 'introducing-mui-v9';
   const featuredPosts = allBlogPosts.filter((post) => post.slug === FEATURED_BLOG_SLUG);

@@ -1,11 +1,10 @@
 ---
-title: Material UI v9 foundation
-description: 'Material UI v9 foundation for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
+title: Material UI v9
+description: 'Material UI v9 for developers: theming, accessibility, keyboard navigation, performance, and new Base UI-powered additions.'
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['Material UI', 'Product']
 manualCard: false
-hideFromHomeList: true
 ---
 
 Material UI v9 is here.
@@ -48,7 +47,7 @@ Base UI adoption is expanding across Material UI: for now through component re
     style="border: 0; width: 100%; max-width: 496px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-foundation/NumberField.mov"
+      src="/static/blog/introducing-mui-v9/introducing-material-ui-v9/NumberField.mov"
       type="video/quicktime"
     />
   </video>
@@ -74,7 +73,7 @@ On this stack, we can finally support submenus, nested menus off the bar, instea
     style="border: 0; width: 100%; max-width: 731px; height: auto"
   >
     <source
-      src="/static/blog/introducing-mui-v9/introducing-mui-v9-foundation/Menubar.mov"
+      src="/static/blog/introducing-mui-v9/introducing-material-ui-v9/Menubar.mov"
       type="video/quicktime"
     />
   </video>
@@ -211,10 +210,12 @@ Earlier majors are covered in the [v6](/material-ui/migration/upgrade-to-v6/) an
 ## Where to go next
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
-- [MUI X Data Grid](/blog/introducing-mui-v9-data-grid/)
-- [MUI X Charts](/blog/introducing-mui-v9-charts/)
-- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-v9-tree-view-and-pickers/)
-- [MUI X Scheduler (alpha)](/blog/introducing-mui-v9-alpha-scheduler/)
-- [MUI X Chat (alpha)](/blog/introducing-mui-v9-alpha-chatbox/)
+- [MUI X Data Grid](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Tree View and Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler (alpha)](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat (alpha)](/blog/introducing-mui-x-chat-v9-alpha/)
+
+## We want your feedback
 
 To share feedback or report issues, visit [mui/material-ui on GitHub](https://github.com/mui/material-ui).
