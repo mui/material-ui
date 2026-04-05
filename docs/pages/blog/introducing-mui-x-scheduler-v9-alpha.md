@@ -24,9 +24,9 @@ This new major is part of a coordinated effort across the entire product suite; 
 - [When to expect the stable](#when-to-expect-the-stable)
 - [What you can build](#what-you-can-build)
 - [Event Calendar](#event-calendar)
-- [Timeline](#timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Community and Premium](#community-and-premium)
 - [Fit with the rest of MUI X](#fit-with-the-rest-of-mui-x)
+- [Timeline](#timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Community and Premium](#community-and-premium) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [What's next](#whats-next)
 
 ## Quick start
@@ -37,7 +37,7 @@ Then layer your event model and resources on top, and switch to Timeline when yo
 ## What alpha means
 
 We expect the same release arc that we've followed for other advanced components: alpha, then beta, then stable, with migration notes as the surface hardens.
-Today, that means you should prototype and send feedback—don't assume imports are frozen or that slot APIs can't be changed.
+Today, that means you can prototype and send feedback—don't assume imports are frozen or that slot APIs can't be changed.
 If you've shipped on Data Grid or Charts through early majors, the process should feel familiar.
 
 ## When to expect the stable
@@ -50,14 +50,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 ## What you can build
 
 <figure>
-  <img
-    src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png"
-    alt=""
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100px;"
-  />
+  <img src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png" alt="" width="1600" height="900" loading="lazy" style="border: 0; width: 100px;"/>
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
@@ -85,6 +78,13 @@ This is the best default when your users already understand calendar metaphors a
   <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
 </figure>
 
+## Fit with the rest of MUI X
+
+Technically, Scheduler follows the v9 peer and theme story: align versions with Material UI and sibling MUI X packages, use shared theme augmentation and `sx` like the rest of the line, and keep Premium features packaged so you opt in explicitly.
+
+Conceptually, it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
+Together, they're the workflow-heavy side of the stack we're shipping in v9.
+
 ## Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
@@ -102,22 +102,15 @@ The point is one underlying schedule that can be re-visualized without rewriting
   <figcaption>Timeline in MUI X Scheduler (Premium).</figcaption>
 </figure>
 
-## Community and Premium
+## Community and Premium [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-As with other MUI X products, Scheduler ships with Community and commercial tiers (see [MUI X pricing](/pricing/)).
+As with other MUI X products, Scheduler ships with open-source and commercial tiers (see [MUI X pricing](/pricing/)).
 
-Community (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and DnD.
+The Community plan (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and DnD.
 
 Premium (commercial) adds what enterprises usually need next: recurrence, lazy loading, and richer timeline experiences for dense schedules, with virtualization for huge event grids planned for the stable release.
 
 Most teams can prove UX on Community and move up when recurrence or massive event counts demand it.
-
-## Fit with the rest of MUI X
-
-Technically, Scheduler follows the v9 peer and theme story: align versions with Material UI and sibling MUI X packages, use shared theme augmentation and `sx` like the rest of the line, and keep Premium features packaged so you opt in explicitly.
-
-Conceptually, it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
-Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## What's next
 

@@ -15,12 +15,30 @@ This new major is part of a coordinated effort across the entire product suite; 
 
 ## Table of contents
 
-- [Candlestick](#candlestick) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
-- [Range bar charts](#range-bar-charts) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Interaction and accessibility](#interaction-and-accessibility)
 - [Composition, naming, and breaking cleanup](#composition-naming-and-breaking-cleanup)
+- [Candlestick](#candlestick) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Range bar charts](#range-bar-charts) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Breaking changes and migration](#breaking-changes-and-migration)
 - [What's next](#whats-next)
+
+## Interaction and accessibility
+
+Keyboard navigation is on by default in v9, with follow‑through work on focus, tooltips, radar, and tier‑appropriate behaviors (for example, funnel, heatmap, and Sankey on Pro, range‑bar on Premium).
+Across MIT, Pro, and Premium, we've kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don't fight the internals.
+
+The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
+
+See the [Charts](/x/react-charts/) overview for APIs and examples.
+
+## Composition, naming, and breaking cleanup
+
+v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes.
+
+Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
+Tooltips align with the layer container model: portaling through `ChartsLayerContainer` means tooltip markup is not trapped under the SVG or a parent with `overflow: hidden`, so you spend less time debugging clipped overlays when charts sit in scroll areas, dialogs, or Data Grid cells, and z-order stays consistent with other chart layers. Shared primitives also accept `className` more predictably, so bar, line, radar, and shared wrappers theme the same way.
+
+For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
 
 ## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
@@ -53,24 +71,6 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
   </video>
   <figcaption>Range bar charts preview in MUI X Charts.</figcaption>
 </figure>
-
-## Interaction and accessibility
-
-Keyboard navigation is on by default in v9, with follow‑through work on focus, tooltips, radar, and tier‑appropriate behaviors (for example, funnel, heatmap, and Sankey on Pro, range‑bar on Premium).
-Across MIT, Pro, and Premium, we've kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don't fight the internals.
-
-The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
-
-See the [Charts](/x/react-charts/) overview for APIs and examples.
-
-## Composition, naming, and breaking cleanup
-
-v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes.
-
-Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
-Tooltips align with the layer container model: portaling through `ChartsLayerContainer` means tooltip markup is not trapped under the SVG or a parent with `overflow: hidden`, so you spend less time debugging clipped overlays when charts sit in scroll areas, dialogs, or Data Grid cells, and z-order stays consistent with other chart layers. Shared primitives also accept `className` more predictably, so bar, line, radar, and shared wrappers theme the same way.
-
-For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
 
 ## Breaking changes and migration
 

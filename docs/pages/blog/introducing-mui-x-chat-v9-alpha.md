@@ -39,7 +39,7 @@ If you're experimenting with tools, agents, or assistant UX beside your product 
 ## When to expect the stable
 
 We're targeting a stable Chat release in early June, based on the feedback and adoption patterns we see during alpha.
-That target is expectation-setting, not a quality trade-off: we ship stable only when the product is ready.
+That target is expectation-setting, we will only ship as stable when the components are ready.
 
 Keeping Chat in alpha is intentional, because this is the phase where we can still make breaking changes before the next major while the API surface is being stress-tested.
 
