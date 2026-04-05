@@ -48,4 +48,4 @@ TODO
 
 Your input drives our direction.
 Join our GitHub communities today to share your insights, report issues, and help shape the future.
-Visit [MUI X on GitHub](https://github.com/mui/mui-x).
+Visit [MUI X on GitHub](https://github.com/mui/mui-x/issues?q=is%3Aissue%20label%3A%22scope%3A%20tree%20view%22%20OR%20label%3A%22scope%3A%20pickers%22).

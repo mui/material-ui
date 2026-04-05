@@ -46,19 +46,10 @@ Keeping Chat in alpha is intentional, because this is the phase where we can sti
 ## Chat showcase
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1600"
-    height="900"
-    controls
-    style="border: 0; width: 100%; max-width: 800px; height: auto"
-  >
+  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-chat-v9-alpha/stub_ghost_chat-showcase.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-mui-x-chat-v9-alpha/stub_ghost_chat-showcase.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>ChatBox showcase in MUI X v9 alpha.</figcaption>

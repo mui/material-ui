@@ -38,7 +38,7 @@ Base UI adoption is expanding across Material UI: for now through component re
 `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="992" height="562" style="width: 496px;">
+  <video autoplay muted loop playsinline controls width="992" height="562" style="width: 496px; border-radius: 0; border: 0;">
     <source
       src="/static/blog/introducing-material-ui-v9/number-field.mp4"
       type="video/mp4"
@@ -55,19 +55,10 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
 On this stack, we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1462"
-    height="998"
-    controls
-    style="border: 0; width: 100%; max-width: 731px; height: auto"
-  >
+  <video autoplay muted loop playsinline width="1462" height="998" controls style="border: 0; width: 731px;">
     <source
-      src="/static/blog/introducing-material-ui-v9/Menubar.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-material-ui-v9/menubar.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>Menubar with submenus and keyboard-friendly navigation.</figcaption>

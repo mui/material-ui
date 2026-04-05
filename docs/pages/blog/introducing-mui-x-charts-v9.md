@@ -29,19 +29,10 @@ This new major is part of a coordinated effort across the entire product suite; 
 The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1600"
-    height="900"
-    controls
-    style="border: 0; width: 100%; max-width: 800px; height: auto"
-  >
+  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>Candlestick preview in MUI X Charts.</figcaption>
@@ -54,19 +45,10 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
 They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1600"
-    height="900"
-    controls
-    style="border: 0; width: 100%; max-width: 800px; height: auto"
-  >
+  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_rangebar.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_rangebar.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>Range bar charts preview in MUI X Charts.</figcaption>

@@ -27,19 +27,11 @@ Charts inside the grid is stable in v9: you can ship dashboards that mix tables 
 We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1600"
-    height="900"
-    controls
-    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  <video autoplay muted loop playsinline width="1600" height="900" controls style="border: 0; width: 100%;"
   >
     <source
-      src="/static/blog/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-charts-integration.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-charts-integration.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>Charts integration inside the Data Grid.</figcaption>
@@ -60,19 +52,11 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
 ## AI Assistant
 
 <figure>
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    width="1600"
-    height="900"
-    controls
-    style="border: 0; width: 100%; max-width: 800px; height: auto"
+  <video autoplay muted loop playsinline width="1600" height="900" controls style="border: 0; width: 100%;"
   >
     <source
-      src="/static/blog/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-ai-assistant.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-mui-x-data-grid-v9/stub_ghost_datagrid-ai-assistant.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>Data Grid AI Assistant workflow.</figcaption>
