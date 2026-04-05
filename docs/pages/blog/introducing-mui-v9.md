@@ -17,14 +17,7 @@ manualCard: true
 </style>
 
 <a href="https://github.com/mui/material-ui/releases/tag/v9.0.0">
-  <img
-    id="blog-responsive-image"
-    src="/static/blog/introducing-mui-v9/intro.png"
-    alt=""
-    height="2400"
-    width="800"
-    style="width: 100%; object-fit: cover; object-position: center; border: 0px;"
-  />
+  <img id="blog-responsive-image" src="/static/blog/introducing-mui-v9/intro.png" alt="" width="2400" height="800" />
 </a>
 
 We are thrilled to announce the simultaneous release of **Material UI v9** and of each **MUI X v9 components**.
@@ -107,14 +100,7 @@ A single major version number makes it easier to:
 - Communicate compatibility, for example, "MUI X v9 is designed to pair with Material UI v9".
 
 <figure>
-  <img
-    src="/static/blog/introducing-mui-v9/v9-ecosystem-overview.png"
-    alt="MUI v9 ecosystem overview."
-    width="1600"
-    height="900"
-    loading="lazy"
-    style="border: 0; width: 100%; height: auto;"
-  />
+  <img src="/static/blog/introducing-mui-v9/v9-ecosystem-overview.png" alt="" width="2160" height="1810" loading="lazy" />
   <figcaption>Material UI and MUI X v9 ecosystem overview.</figcaption>
 </figure>
 
