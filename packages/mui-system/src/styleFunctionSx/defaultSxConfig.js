@@ -4,33 +4,28 @@ import { gap, rowGap, columnGap } from '../cssGrid';
 import { paletteTransform } from '../palette';
 import { maxWidth, sizingTransform } from '../sizing';
 
+const border = { themeKey: 'borders', transform: borderTransform };
+const palette = { themeKey: 'palette' };
+const pad = { style: padding };
+const mar = { style: margin };
+const sizing = { transform: sizingTransform };
+const typography = { themeKey: 'typography' };
+const empty = {};
+
 const defaultSxConfig = {
   // borders
-
-  ...Object.fromEntries(
-    ['border', 'borderTop', 'borderRight', 'borderBottom', 'borderLeft', 'outline'].map((prop) => [
-      prop,
-      {
-        themeKey: 'borders',
-        transform: borderTransform,
-      },
-    ]),
-  ),
-  ...Object.fromEntries(
-    [
-      'borderColor',
-      'borderTopColor',
-      'borderRightColor',
-      'borderBottomColor',
-      'borderLeftColor',
-      'outlineColor',
-    ].map((prop) => [
-      prop,
-      {
-        themeKey: 'palette',
-      },
-    ]),
-  ),
+  border,
+  borderTop: border,
+  borderRight: border,
+  borderBottom: border,
+  borderLeft: border,
+  outline: border,
+  borderColor: palette,
+  borderTopColor: palette,
+  borderRightColor: palette,
+  borderBottomColor: palette,
+  borderLeftColor: palette,
+  outlineColor: palette,
 
   borderRadius: {
     themeKey: 'shape.borderRadius',
@@ -38,71 +33,52 @@ const defaultSxConfig = {
   },
 
   // palette
-  color: {
-    themeKey: 'palette',
-    transform: paletteTransform,
-  },
-  bgcolor: {
-    themeKey: 'palette',
-    cssProperty: 'backgroundColor',
-    transform: paletteTransform,
-  },
-  backgroundColor: {
-    themeKey: 'palette',
-    transform: paletteTransform,
-  },
+  color: { themeKey: 'palette', transform: paletteTransform },
+  bgcolor: { themeKey: 'palette', cssProperty: 'backgroundColor', transform: paletteTransform },
+  backgroundColor: { themeKey: 'palette', transform: paletteTransform },
 
   // spacing
+  p: pad,
+  pt: pad,
+  pr: pad,
+  pb: pad,
+  pl: pad,
+  px: pad,
+  py: pad,
+  padding: pad,
+  paddingTop: pad,
+  paddingRight: pad,
+  paddingBottom: pad,
+  paddingLeft: pad,
+  paddingX: pad,
+  paddingY: pad,
+  paddingInline: pad,
+  paddingInlineStart: pad,
+  paddingInlineEnd: pad,
+  paddingBlock: pad,
+  paddingBlockStart: pad,
+  paddingBlockEnd: pad,
 
-  ...Object.fromEntries(
-    [
-      'p',
-      'pt',
-      'pr',
-      'pb',
-      'pl',
-      'px',
-      'py',
-      'padding',
-      'paddingTop',
-      'paddingRight',
-      'paddingBottom',
-      'paddingLeft',
-      'paddingX',
-      'paddingY',
-      'paddingInline',
-      'paddingInlineStart',
-      'paddingInlineEnd',
-      'paddingBlock',
-      'paddingBlockStart',
-      'paddingBlockEnd',
-    ].map((prop) => [prop, { style: padding }]),
-  ),
-
-  ...Object.fromEntries(
-    [
-      'm',
-      'mt',
-      'mr',
-      'mb',
-      'ml',
-      'mx',
-      'my',
-      'margin',
-      'marginTop',
-      'marginRight',
-      'marginBottom',
-      'marginLeft',
-      'marginX',
-      'marginY',
-      'marginInline',
-      'marginInlineStart',
-      'marginInlineEnd',
-      'marginBlock',
-      'marginBlockStart',
-      'marginBlockEnd',
-    ].map((prop) => [prop, { style: margin }]),
-  ),
+  m: mar,
+  mt: mar,
+  mr: mar,
+  mb: mar,
+  ml: mar,
+  mx: mar,
+  my: mar,
+  margin: mar,
+  marginTop: mar,
+  marginRight: mar,
+  marginBottom: mar,
+  marginLeft: mar,
+  marginX: mar,
+  marginY: mar,
+  marginInline: mar,
+  marginInlineStart: mar,
+  marginInlineEnd: mar,
+  marginBlock: mar,
+  marginBlockStart: mar,
+  marginBlockEnd: mar,
 
   // display
   displayPrint: {
@@ -113,107 +89,72 @@ const defaultSxConfig = {
       },
     }),
   },
+  display: empty,
+  overflow: empty,
+  textOverflow: empty,
+  visibility: empty,
+  whiteSpace: empty,
 
-  ...Object.fromEntries(
-    [
-      // display
-      'display',
-      'overflow',
-      'textOverflow',
-      'visibility',
-      'whiteSpace',
-      // flexbox
-      'flexBasis',
-      'flexDirection',
-      'flexWrap',
-      'justifyContent',
-      'alignItems',
-      'alignContent',
-      'order',
-      'flex',
-      'flexGrow',
-      'flexShrink',
-      'alignSelf',
-      'justifyItems',
-      'justifySelf',
-      // grid
-      'gridColumn',
-      'gridRow',
-      'gridAutoFlow',
-      'gridAutoColumns',
-      'gridAutoRows',
-      'gridTemplateColumns',
-      'gridTemplateRows',
-      'gridTemplateAreas',
-      'gridArea',
-      // positions
-      'position',
-      'top',
-      'right',
-      'bottom',
-      'left',
-      // typography
-      'letterSpacing',
-      'textTransform',
-      'lineHeight',
-      'textAlign',
-    ].map((prop) => [prop, {}]),
-  ),
+  // flexbox
+  flexBasis: empty,
+  flexDirection: empty,
+  flexWrap: empty,
+  justifyContent: empty,
+  alignItems: empty,
+  alignContent: empty,
+  order: empty,
+  flex: empty,
+  flexGrow: empty,
+  flexShrink: empty,
+  alignSelf: empty,
+  justifyItems: empty,
+  justifySelf: empty,
+
   // grid
-  gap: {
-    style: gap,
-  },
-  rowGap: {
-    style: rowGap,
-  },
-  columnGap: {
-    style: columnGap,
-  },
+  gap: { style: gap },
+  rowGap: { style: rowGap },
+  columnGap: { style: columnGap },
+  gridColumn: empty,
+  gridRow: empty,
+  gridAutoFlow: empty,
+  gridAutoColumns: empty,
+  gridAutoRows: empty,
+  gridTemplateColumns: empty,
+  gridTemplateRows: empty,
+  gridTemplateAreas: empty,
+  gridArea: empty,
+
   // positions
-  zIndex: {
-    themeKey: 'zIndex',
-  },
+  position: empty,
+  zIndex: { themeKey: 'zIndex' },
+  top: empty,
+  right: empty,
+  bottom: empty,
+  left: empty,
 
   // shadows
-  boxShadow: {
-    themeKey: 'shadows',
-  },
+  boxShadow: { themeKey: 'shadows' },
 
   // sizing
-  ...Object.fromEntries(
-    ['width', 'minWidth', 'height', 'maxHeight', 'minHeight'].map((prop) => [
-      prop,
-      {
-        transform: sizingTransform,
-      },
-    ]),
-  ),
-
-  maxWidth: {
-    style: maxWidth,
-  },
-  boxSizing: {},
+  width: sizing,
+  minWidth: sizing,
+  height: sizing,
+  maxHeight: sizing,
+  minHeight: sizing,
+  maxWidth: { style: maxWidth },
+  boxSizing: empty,
 
   // typography
-  font: {
-    themeKey: 'font',
-  },
-  fontFamily: {
-    themeKey: 'typography',
-  },
-  fontSize: {
-    themeKey: 'typography',
-  },
-  fontStyle: {
-    themeKey: 'typography',
-  },
-  fontWeight: {
-    themeKey: 'typography',
-  },
-  typography: {
-    cssProperty: false,
-    themeKey: 'typography',
-  },
+  font: { themeKey: 'font' },
+  fontFamily: typography,
+  fontSize: typography,
+  fontStyle: typography,
+  fontWeight: typography,
+  letterSpacing: empty,
+  textTransform: empty,
+  lineHeight: empty,
+  textAlign: empty,
+  typography: { cssProperty: false, themeKey: 'typography' },
 };
 
 export default defaultSxConfig;
