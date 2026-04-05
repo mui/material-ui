@@ -219,19 +219,22 @@ const ButtonRoot = styled(ButtonBase, {
             },
           },
         },
-        {
-          style: ({ ownerState: { size, variant } }) => {
-            const paddings = {
-              text: { small: '4px 5px', large: '8px 11px' },
-              outlined: { small: '3px 9px', large: '7px 21px' },
-              contained: { small: '4px 10px', large: '8px 22px' },
-            };
-            const p = paddings[variant]?.[size];
-            return p
-              ? { padding: p, fontSize: theme.typography.pxToRem(size === 'small' ? 13 : 15) }
-              : {};
-          },
-        },
+        ...(() => {
+          const paddings = {
+            text: { small: '4px 5px', large: '8px 11px' },
+            outlined: { small: '3px 9px', large: '7px 21px' },
+            contained: { small: '4px 10px', large: '8px 22px' },
+          };
+          return ['text', 'outlined', 'contained'].flatMap((v) =>
+            ['small', 'large'].map((s) => ({
+              props: { size: s, variant: v },
+              style: {
+                padding: paddings[v][s],
+                fontSize: theme.typography.pxToRem(s === 'small' ? 13 : 15),
+              },
+            })),
+          );
+        })(),
         {
           props: {
             disableElevation: true,
