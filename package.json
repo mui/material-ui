@@ -164,7 +164,7 @@
     "node": ">=22.18.0"
   },
   "resolutions": {
-    "caniuse-lite": "^1.0.30001781",
+    "caniuse-lite": "^1.0.30001784",
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
     "@babel/preset-env": "^7.29.2",

@@ -23,7 +23,7 @@ catalogs:
       version: 4.2.0
 
 overrides:
-  caniuse-lite: ^1.0.30001781
+  caniuse-lite: ^1.0.30001784
   '@babel/core': 7.29.0
   '@babel/plugin-transform-runtime': ^7.29.0
   '@babel/preset-env': ^7.29.2
@@ -504,8 +504,8 @@ importers:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-virtuoso:
-        specifier: ^4.18.3
-        version: 4.18.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^4.18.4
+        version: 4.18.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-window:
         specifier: ^2.2.7
         version: 2.2.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -6481,8 +6481,8 @@ packages:
   camelize@1.0.0:
     resolution: {integrity: sha512-W2lPwkBkMZwFlPCXhIlYgxu+7gC/NUlCtdK652DAJ1JdgV0sTrvuPFshNPrFa1TY2JOkLhgdeEBplB4ezEa+xg==}
 
-  caniuse-lite@1.0.30001781:
-    resolution: {integrity: sha512-RdwNCyMsNBftLjW6w01z8bKEvT6e/5tpPVEgtn22TiLGlstHOVecsX2KHFkD5e/vRnIE4EGzpuIODb3mtswtkw==}
+  caniuse-lite@1.0.30001785:
+    resolution: {integrity: sha512-blhOL/WNR+Km1RI/LCVAvA73xplXA7ZbjzI4YkMK9pa6T/P3F2GxjNpEkyw5repTw9IvkyrjyHpwjnhZ5FOvYQ==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -10548,8 +10548,8 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
 
-  react-virtuoso@4.18.3:
-    resolution: {integrity: sha512-fLz/peHAx4Eu0DLHurFEEI7Y6n5CqEoxBh04rgJM9yMuOJah2a9zWg/MUOmZLcp7zuWYorXq5+5bf3IRgkNvWg==}
+  react-virtuoso@4.18.4:
+    resolution: {integrity: sha512-DNM4Wy2tMA/J6ejMaDdqecOug31rOwgSRg4C/Dw6Iox4dJe9qwcx32M8HdhkE5uHEVVZh7h0koYwAsCSNdxGfQ==}
     peerDependencies:
       react: '>=16 || >=17 || >= 18 || >= 19'
       react-dom: '>=16 || >=17 || >= 18 || >=19'
@@ -17808,7 +17808,7 @@ snapshots:
   browserslist@4.28.1:
     dependencies:
       baseline-browser-mapping: 2.9.11
-      caniuse-lite: 1.0.30001781
+      caniuse-lite: 1.0.30001785
       electron-to-chromium: 1.5.267
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
@@ -17901,7 +17901,7 @@ snapshots:
 
   camelize@1.0.0: {}
 
-  caniuse-lite@1.0.30001781: {}
+  caniuse-lite@1.0.30001785: {}
 
   ccount@2.0.1: {}
 
@@ -21524,7 +21524,7 @@ snapshots:
     dependencies:
       '@next/env': 15.5.14
       '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001781
+      caniuse-lite: 1.0.30001785
       postcss: 8.4.31
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
@@ -22628,7 +22628,7 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  react-virtuoso@4.18.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  react-virtuoso@4.18.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
