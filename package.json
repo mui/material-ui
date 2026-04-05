@@ -155,7 +155,7 @@
     "vitest": "^4.0.13",
     "vitest-fail-on-console": "0.10.1",
     "webpack": "5.105.4",
-    "webpack-cli": "6.0.1",
+    "webpack-cli": "7.0.2",
     "yargs": "18.0.0"
   },
   "packageManager": "pnpm@10.33.0",
