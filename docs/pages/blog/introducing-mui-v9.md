@@ -4,7 +4,7 @@ description: 'Introducing Material UI + MUI X v9: unified major version, new f
 date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas', 'oliviertassinari']
 tags: ['Material UI', 'MUI X', 'Product']
-manualCard: true
+manualCard: false
 ---
 
 <style>

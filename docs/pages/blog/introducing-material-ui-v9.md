@@ -38,10 +38,10 @@ Base UI adoption is expanding across Material UI: for now through component re
 `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="992" height="562" style="width: 416px;">
+  <video autoplay muted loop playsinline controls width="992" height="562" style="width: 496px;">
     <source
-      src="/static/blog/introducing-material-ui-v9/NumberField.mov"
-      type="video/quicktime"
+      src="/static/blog/introducing-material-ui-v9/number-field.mp4"
+      type="video/mp4"
     />
   </video>
   <figcaption>NumberField, implemented on Base UI.</figcaption>
