@@ -47,19 +47,6 @@ export default function AppHeader(props: AppHeaderProps) {
         }}
       />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
-        {/* Used by header navigation fragment link (#tours). */}
-        <Box
-          component="a"
-          id="tours"
-          tabIndex={-1}
-          sx={{
-            position: 'absolute',
-            width: 1,
-            height: 1,
-            overflow: 'hidden',
-            clip: 'rect(0 0 0 0)',
-          }}
-        />
         <LogoWithCopyMenu />
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
