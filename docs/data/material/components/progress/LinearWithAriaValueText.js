@@ -4,12 +4,13 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function LinearProgressWithLabelAndValue({ maxValue, minValue, value, ...rest }) {
-  const progressText = `${value} out of ${maxValue} files`;
+function LinearProgressWithLabelAndValue({ max, min, value, ...rest }) {
+  const progressText = `${value} out of ${max} files`;
+  const progressId = React.useId();
   return (
     <div>
       <Typography
-        id="upload-progress-label"
+        id={progressId}
         variant="body2"
         color="text.secondary"
         sx={{ mr: 1 }}
@@ -20,10 +21,10 @@ function LinearProgressWithLabelAndValue({ maxValue, minValue, value, ...rest })
         <Box sx={{ width: '100%', mr: 1 }}>
           <LinearProgress
             variant="determinate"
-            aria-labelledby="upload-progress-label"
+            aria-labelledby={progressId}
             aria-valuetext={progressText}
-            minValue={minValue}
-            maxValue={maxValue}
+            min={min}
+            max={max}
             value={value}
             {...rest}
           />
@@ -43,16 +44,15 @@ LinearProgressWithLabelAndValue.propTypes = {
    * The maximum value for the progress indicator for the determinate and buffer variants.
    * @default 100
    */
-  maxValue: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
   /**
    * The minimum value for the progress indicator for the determinate and buffer variants.
    * @default 0
    */
-  minValue: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between `minValue` and `maxValue`.
-   * @default 0
+   * Value between `min` and `max`.
    */
   value: PropTypes.number.isRequired,
 };
@@ -71,7 +71,7 @@ export default function LinearWithAriaValueText() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabelAndValue value={progress} minValue={0} maxValue={10} />
+      <LinearProgressWithLabelAndValue value={progress} min={0} max={10} />
     </Box>
   );
 }

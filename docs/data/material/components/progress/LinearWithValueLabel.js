@@ -5,10 +5,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function LinearProgressWithLabelAndValue(props) {
+  const progressId = React.useId();
   return (
     <div>
       <Typography
-        id="upload-progress-label"
+        id={progressId}
         variant="body2"
         color="text.secondary"
         sx={{ mr: 1 }}
@@ -19,7 +20,7 @@ function LinearProgressWithLabelAndValue(props) {
         <Box sx={{ width: '100%', mr: 1 }}>
           <LinearProgress
             variant="determinate"
-            aria-labelledby="upload-progress-label"
+            aria-labelledby={progressId}
             {...props}
           />
         </Box>
@@ -36,8 +37,7 @@ function LinearProgressWithLabelAndValue(props) {
 LinearProgressWithLabelAndValue.propTypes = {
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between `minValue` and `maxValue`.
-   * @default 0
+   * Value between `min` and `max`.
    */
   value: PropTypes.number.isRequired,
 };

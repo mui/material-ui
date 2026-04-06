@@ -1,1 +1,1 @@
-<LinearProgressWithLabelAndValue value={progress} minValue={0} maxValue={10} />
+<LinearProgressWithLabelAndValue value={progress} min={0} max={10} />

@@ -6,10 +6,11 @@ import Box from '@mui/material/Box';
 function LinearProgressWithLabelAndValue(
   props: LinearProgressProps & { value: number },
 ) {
+  const progressId = React.useId();
   return (
     <div>
       <Typography
-        id="upload-progress-label"
+        id={progressId}
         variant="body2"
         color="text.secondary"
         sx={{ mr: 1 }}
@@ -20,7 +21,7 @@ function LinearProgressWithLabelAndValue(
         <Box sx={{ width: '100%', mr: 1 }}>
           <LinearProgress
             variant="determinate"
-            aria-labelledby="upload-progress-label"
+            aria-labelledby={progressId}
             {...props}
           />
         </Box>

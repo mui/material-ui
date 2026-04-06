@@ -4,22 +4,23 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 type LinearProgressWithLabelAndValueProps = LinearProgressProps & {
-  minValue: number;
-  maxValue: number;
+  min: number;
+  max: number;
   value: number;
 };
 
 function LinearProgressWithLabelAndValue({
-  maxValue,
-  minValue,
+  max,
+  min,
   value,
   ...rest
 }: LinearProgressWithLabelAndValueProps) {
-  const progressText = `${value} out of ${maxValue} files`;
+  const progressText = `${value} out of ${max} files`;
+  const progressId = React.useId();
   return (
     <div>
       <Typography
-        id="upload-progress-label"
+        id={progressId}
         variant="body2"
         color="text.secondary"
         sx={{ mr: 1 }}
@@ -30,10 +31,10 @@ function LinearProgressWithLabelAndValue({
         <Box sx={{ width: '100%', mr: 1 }}>
           <LinearProgress
             variant="determinate"
-            aria-labelledby="upload-progress-label"
+            aria-labelledby={progressId}
             aria-valuetext={progressText}
-            minValue={minValue}
-            maxValue={maxValue}
+            min={min}
+            max={max}
             value={value}
             {...rest}
           />
@@ -62,7 +63,7 @@ export default function LinearWithAriaValueText() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabelAndValue value={progress} minValue={0} maxValue={10} />
+      <LinearProgressWithLabelAndValue value={progress} min={0} max={10} />
     </Box>
   );
 }
