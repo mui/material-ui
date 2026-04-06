@@ -14,7 +14,18 @@ async function run() {
       },
     },
   );
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+  }
+
   const apiResponse = await response.json();
+
+  if (!Array.isArray(apiResponse.data)) {
+    throw new Error(
+      `Expected API response to contain a "data" array, got: ${JSON.stringify(apiResponse)}`,
+    );
+  }
 
   const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -27,4 +38,7 @@ async function run() {
   console.log('done');
 }
 
-run();
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
