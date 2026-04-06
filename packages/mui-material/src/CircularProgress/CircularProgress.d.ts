@@ -44,12 +44,12 @@ export interface CircularProgressProps extends StandardProps<
    * The maximum value for the progress indicator for the determinate variant.
    * @default 100
    */
-  maxValue?: number | undefined;
+  max?: number | undefined;
   /**
    * The minimum value for the progress indicator for the determinate variant.
    * @default 0
    */
-  minValue?: number | undefined;
+  min?: number | undefined;
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
@@ -68,7 +68,7 @@ export interface CircularProgressProps extends StandardProps<
   thickness?: number | undefined;
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between `minValue` and `maxValue`.
+   * Value between `min` and `max`.
    * @default 0
    */
   value?: number | undefined;

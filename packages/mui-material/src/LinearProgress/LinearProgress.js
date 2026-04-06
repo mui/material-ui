@@ -357,8 +357,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     className,
     color = 'primary',
-    maxValue = 100,
-    minValue = 0,
+    max = 100,
+    min = 0,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -378,19 +378,21 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (value < min || value > max || min >= max) {
+          console.error(
+            `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+          );
+        }
+      }
       rootProps['aria-valuenow'] = Math.round(value);
-      rootProps['aria-valuemin'] = minValue;
-      rootProps['aria-valuemax'] = maxValue;
-      let transform = ((value - minValue) / (maxValue - minValue)) * 100 - 100;
+      rootProps['aria-valuemin'] = min;
+      rootProps['aria-valuemax'] = max;
+      let transform = ((value - min) / (max - min)) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
-      if ((value < minValue || value > maxValue) && process.env.NODE_ENV !== 'production') {
-        console.error(
-          `MUI: The value provided to the LinearProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
-        );
-      }
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a value prop ' +
@@ -400,19 +402,19 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      let transform = ((valueBuffer - minValue) / (maxValue - minValue)) * 100 - 100;
+      if (process.env.NODE_ENV !== 'production') {
+        if (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max) {
+          console.error(
+            `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
+          );
+        }
+      }
+
+      let transform = ((valueBuffer - min) / (max - min)) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
-      if (
-        (valueBuffer < minValue || valueBuffer > maxValue || valueBuffer < value) &&
-        process.env.NODE_ENV !== 'production'
-      ) {
-        console.error(
-          `MUI: The valueBuffer provided to the LinearProgress component is out of range or less than the value prop (valueBuffer: ${valueBuffer}, value: ${value}, min: ${minValue}, max: ${maxValue}).`,
-        );
-      }
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a valueBuffer prop ' +
@@ -476,12 +478,12 @@ LinearProgress.propTypes /* remove-proptypes */ = {
    * The maximum value for the progress indicator for the determinate and buffer variants.
    * @default 100
    */
-  maxValue: PropTypes.number,
+  max: PropTypes.number,
   /**
    * The minimum value for the progress indicator for the determinate and buffer variants.
    * @default 0
    */
-  minValue: PropTypes.number,
+  min: PropTypes.number,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -492,13 +494,12 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between `minValue` and `maxValue`.
-   * @default 0
+   * Value between `min` and `max`.
    */
   value: PropTypes.number,
   /**
    * The value for the buffer variant.
-   * Value between `minValue` and `maxValue`.
+   * Value between `min` and `max`.
    */
   valueBuffer: PropTypes.number,
   /**

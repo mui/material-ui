@@ -187,8 +187,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     color = 'primary',
     disableShrink = false,
     enableTrackSlot = false,
-    minValue = 0,
-    maxValue = 100,
+    min = 0,
+    max = 100,
     size = 40,
     style,
     thickness = 3.6,
@@ -218,17 +218,19 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
 
     circleStyle.strokeDasharray = circumference.toFixed(3);
-    circleStyle.strokeDashoffset = `${(((maxValue - value) / (maxValue - minValue)) * circumference).toFixed(3)}px`;
+    circleStyle.strokeDashoffset = `${(((max - value) / (max - min)) * circumference).toFixed(3)}px`;
     rootStyle.transform = 'rotate(-90deg)';
 
     rootProps['aria-valuenow'] = Math.round(value);
-    rootProps['aria-valuemin'] = minValue;
-    rootProps['aria-valuemax'] = maxValue;
+    rootProps['aria-valuemin'] = min;
+    rootProps['aria-valuemax'] = max;
 
-    if ((value < minValue || value > maxValue) && process.env.NODE_ENV !== 'production') {
-      console.error(
-        `MUI: The value provided to the CircularProgress component is out of range (value: ${value}, min: ${minValue}, max: ${maxValue}).`,
-      );
+    if (process.env.NODE_ENV !== 'production') {
+      if (value < min || value > max || min >= max) {
+        console.error(
+          `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        );
+      }
     }
   }
 
@@ -322,12 +324,12 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * The maximum value for the progress indicator for the determinate variant.
    * @default 100
    */
-  maxValue: PropTypes.number,
+  max: PropTypes.number,
   /**
    * The minimum value for the progress indicator for the determinate variant.
    * @default 0
    */
-  minValue: PropTypes.number,
+  min: PropTypes.number,
   /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
@@ -354,7 +356,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   thickness: PropTypes.number,
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between `minValue` and `maxValue`.
+   * Value between `min` and `max`.
    * @default 0
    */
   value: PropTypes.number,

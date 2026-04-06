@@ -175,9 +175,9 @@ describe('<CircularProgress />', () => {
     });
   });
 
-  describe('prop: minValue & maxValue', () => {
+  describe('prop: min & max', () => {
     it('should be able to use custom min and max values', () => {
-      render(<CircularProgress variant="determinate" value={5} minValue={0} maxValue={10} />);
+      render(<CircularProgress variant="determinate" value={5} min={0} max={10} />);
       const progressbar = screen.getByRole('progressbar');
 
       expect(progressbar).to.have.attribute('aria-valuenow', '5');
@@ -186,27 +186,40 @@ describe('<CircularProgress />', () => {
     });
 
     it('min and max values should be used to calculate the circumference of the circle', () => {
-      render(<CircularProgress variant="determinate" value={15} minValue={10} maxValue={30} />);
+      render(<CircularProgress variant="determinate" value={15} min={10} max={30} />);
       const progressbar = screen.getByRole('progressbar');
 
       expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
     });
 
-    it('should warn if the value is out of range', () => {
+    it('should error if min, max, and value props are invalid', () => {
       expect(() => {
-        render(<CircularProgress variant="determinate" value={-1} minValue={0} maxValue={10} />);
+        render(<CircularProgress variant="determinate" value={5} min={10} max={0} />);
       }).toErrorDev([
-        `MUI: The value provided to the CircularProgress component is out of range (value: -1, min: 0, max: 10).`,
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
         !strictModeDoubleLoggingSuppressed &&
-          `MUI: The value provided to the CircularProgress component is out of range (value: -1, min: 0, max: 10).`,
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
       ]);
-
       expect(() => {
-        render(<CircularProgress variant="determinate" value={11} minValue={0} maxValue={10} />);
+        render(<CircularProgress variant="determinate" value={15} min={10} max={10} />);
       }).toErrorDev([
-        `MUI: The value provided to the CircularProgress component is out of range (value: 11, min: 0, max: 10).`,
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=15.',
         !strictModeDoubleLoggingSuppressed &&
-          `MUI: The value provided to the CircularProgress component is out of range (value: 11, min: 0, max: 10).`,
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=15.',
+      ]);
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={5} min={10} max={20} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=5.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=5.',
+      ]);
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={25} min={10} max={20} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=25.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=25.',
       ]);
     });
   });

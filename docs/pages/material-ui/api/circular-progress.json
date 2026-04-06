@@ -10,8 +10,8 @@
     },
     "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
     "enableTrackSlot": { "type": { "name": "bool" }, "default": "false" },
-    "maxValue": { "type": { "name": "number" }, "default": "100" },
-    "minValue": { "type": { "name": "number" }, "default": "0" },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
     "size": {
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"

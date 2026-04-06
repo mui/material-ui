@@ -88,35 +88,6 @@ By default, the progress value is read by assistive technology as percentages. U
 
 {{"demo": "LinearWithAriaValueText.js"}}
 
-## Non-standard ranges
-
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
-
-```jsx
-// MIN = Minimum expected value
-// MAX = Maximum expected value
-// Function to normalise the values (MIN / MAX could be integrated)
-const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
-
-// Example component that utilizes the `normalise` function at the point of render.
-function Progress(props) {
-  return (
-    <React.Fragment>
-      <CircularProgress
-        variant="determinate"
-        value={normalise(props.value)}
-        aria-label="Upload photos"
-      />
-      <LinearProgress
-        variant="determinate"
-        value={normalise(props.value)}
-        aria-label="Upload photos"
-      />
-    </React.Fragment>
-  );
-}
-```
-
 ## Customization
 
 Here are some examples of customizing the component.
