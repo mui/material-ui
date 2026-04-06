@@ -172,22 +172,43 @@ Without it, you may see build failures or runtime messages about a missing Suspe
 
 This pattern is common with Material UI: `Table`, `Tabs`, `TextField`, and other controls are often implemented as client components that sync to the query string.
 
-Recommended structure: keep `page.tsx` as a server component when possible, and wrap only the client subtree that calls `useSearchParams` in `<Suspense>`:
+Recommended structure: keep `page.tsx` as a server component when possible, and wrap only the client subtree that calls `useSearchParams` in `<Suspense>`.
+
+Avoid **`fallback={null}`** (or an empty fallback) for UI that reserves space in the layout (toolbars, filters, tab bars, and similar). The server and the initial streamed HTML then omit that subtree, and the real content appears only after the client hydrates, which often causes **layout shift** and hurts CLS. Prefer a fallback whose **size and structure** approximate the final UI—for example Material UI **`Skeleton`** inside a **`Stack`** or **`Box`** with the same **`minHeight`**, flex direction, and breakpoints as the loaded component.
 
 ```tsx title="app/orders/page.tsx"
 import { Suspense } from 'react';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 import OrdersToolbar from './OrdersToolbar';
+
+function OrdersToolbarFallback() {
+  return (
+    <Stack
+      direction="row"
+      spacing={2}
+      useFlexGap
+      sx={{ flexWrap: 'wrap', alignItems: 'center', minHeight: 56 }}
+    >
+      <Skeleton variant="rounded" height={40} sx={{ minWidth: 200, flexGrow: { xs: 1, sm: 0 } }} />
+      <Skeleton variant="rounded" width={120} height={40} />
+      <Box sx={{ flexGrow: 1 }} />
+      <Skeleton variant="rounded" width={100} height={40} />
+    </Stack>
+  );
+}
 
 export default function Page() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<OrdersToolbarFallback />}>
       <OrdersToolbar />
     </Suspense>
   );
 }
 ```
 
-`OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components.
+`OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components. Adjust the fallback’s layout and Skeleton sizes so they match your real toolbar (or filter row) as closely as possible.
 
 For details and version-specific notes, see the Next.js documentation for [`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params).
 
