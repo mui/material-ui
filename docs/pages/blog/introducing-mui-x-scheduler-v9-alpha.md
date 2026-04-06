@@ -87,7 +87,7 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
+Timeline puts time on one axis and resources on the other.
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
 
 The point is one underlying schedule that can be re-visualized without rewriting your domain layer: start in Event Calendar when date-first UX is enough, move to Timeline when resource density and conflict management become central.
