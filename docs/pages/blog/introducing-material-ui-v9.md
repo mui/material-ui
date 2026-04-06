@@ -112,11 +112,6 @@ Dialog and Modal
 
 - Remove the `disableEscapeKeyDown` prop.
 
-Grid
-
-- Remove system props support from the Grid component.
-
-Migration impact: if you rely on system props directly on Grid, plan to migrate those concerns into `sx` or dedicated layout primitives as you move to v9.
 
 TableCell and theme – color mixing for borders
 
@@ -150,9 +145,6 @@ System
 
 - Refactor the container query sorting regex used in the system layer.
 
-Docs infra
-
-- Move shared docs components to `@mui/docs`, consolidating reusable pieces of the documentation system.
 
 ## Keyboard navigation
 
@@ -181,12 +173,10 @@ Improved roving TabIndex focus is a key v9 highlight for keyboard-first componen
 
 ## Breaking changes and migration
 
-In Material UI v9, we removed deprecated props and shipped fixes that sometimes require breaking changes, especially where those fixes unlock consistent accessibility and improved keyboard navigation through stronger Roving TabIndex behavior.
-Several changes already have migration impact worth planning for:
+Main breaking changes are related to removal of deprecated props such as `component` and `componentsProps` across the library, removal of deprecated system props from layout components, and accessibility improvements for Tabs and Menu.
 
-- Grid system props removal: audit your usage of system props on Grid and migrate layout concerns into `sx` or dedicated layout primitives.
-- Dialog/Modal escape key behavior: if you relied on `disableEscapeKeyDown`, plan to keep your escape‑handling logic in one place.
-- Theme typing clean‑ups: if you depend on strongly typed theme extensions, keep an eye on updated type definitions as we continue to refine v9.
+The main benefit of the breaking changes are ~3% bundle size reduction compared to v7 and overall performance gain.
+
 
 For a consolidated upgrade path from Material UI v7, follow the [Upgrade to v9](/material-ui/migration/upgrade-to-v9/) migration guide.
 For earlier majors, find the [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/) upgrade guides.
