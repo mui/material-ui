@@ -20,20 +20,18 @@ manualCard: false
   <img id="blog-responsive-image" src="/static/blog/introducing-mui-v9/intro.png" alt="" width="2400" height="800" />
 </a>
 
-We are thrilled to announce the simultaneous release of **Material UI v9** and of each **MUI X v9 components**.
+**Material UI v9** and **MUI X v9** are now released together.
 
-We are re-aligning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
-This is more than a version bump; it represents one step toward a strongly unified ecosystem for the MUI products.
+The practical change is version alignment: Material UI and MUI X now share the same major version, so upgrades and compatibility checks are simpler across the stack.
+This post links each product announcement and summarizes the concrete changes shipped in v9.
 
-This announcement gives you the high-level overview of each of the products that we released, the strategic themes that guided our work, and where we go next.
-
-With v9, we focused on three strategic pillars:
+In v9, we focused on three concrete areas:
 
 - **Better integration**: No more guessing which version of MUI X works with which version of Material UI. Moving forward, both libraries will share major versioning, simplifying upgrades across the tech stack.
 
-- **Expanding the portfolio**: We are growing both the primitives (thanks to Base UI that is adding many new components) and the advanced (MUI X) components.
+- **Expanding the portfolio**: Material UI adds `NumberField` and `Menubar`; MUI X adds new advanced surfaces like Scheduler and Chat in alpha.
 
-- **Taking advantage of AI**: We are preparing our ecosystem for the future of UX and frontend engineering that is ruled by AI.
+- **AI workflows with operational support**: Data Grid AI Assistant is available, and MUI Console adds license and API key management needed to run it in production.
 
 ## Table of contents
 
@@ -106,9 +104,9 @@ A single major version number makes it easier to:
 
 ## Components highlights
 
-We've focused on stability, accessibility, and new building blocks across the v9 major; these bullets summarize the direction:
+These bullets summarize what shipped in v9:
 
-- **Material UI:** new NumberField and Menubar; clearer keyboard navigation; theme work that extends CSS variables with `color-mix()` for derived colors; plus smaller bundle size, improved accessibility, and other readiness clean‑up across the library.\
+- **Material UI:** new NumberField and Menubar; keyboard and accessibility fixes; and theme updates that extend CSS variables with `color-mix()` for derived colors.\
   See the [Material UI v9](/blog/introducing-material-ui-v9/) post.
 - **Data Grid:** dynamic data and lazy loading hardening; selection, header, and filter ergonomics; stable in-grid Charts integration for dashboards that mix tables and visuals.\
   See the [MUI X Data Grid v9](/blog/introducing-mui-x-data-grid-v9/) post.
@@ -125,10 +123,10 @@ We've focused on stability, accessibility, and new building blocks across the v9
 
 Last year, we began offering [AI assistance for the Data Grid](/blog/introducing-mui-x-data-grid-v9/#ai-assistant): users describe what they want in natural language, and the grid applies structured changes while keeping state visible and editable.
 
-Until now, turning that on in production was hard; teams had no visibility of request usage, teams had to request API keys through our support channel instead of generating and managing them next to licenses and the rest of their commercial setup.
+Until now, production rollout was harder: teams needed support round-trips for API keys and had less visibility into usage alongside licenses.
 
-The [MUI Console](https://console.mui.com) is the application we're rolling out to remove this friction.
-It gathers license keys, service API keys (including for assistant and add-on experiences), billing, and usage in one place: an operational hub for MUI's commercial offerings rather than scattered tickets and dashboards.
+The [MUI Console](https://console.mui.com) is the control plane for this flow.
+It brings license keys, service API keys, billing, and usage into one place so teams can self-serve routine operations.
 
 With the console, teams can:
 
@@ -136,14 +134,14 @@ With the console, teams can:
 - Manage billing, renewals, upgrades, and service add‑ons in one workflow.
 - Create, view, and rotate API keys for commercial services without relying on a support round‑trip for routine access.
 
-Over time, the console will also surface usage‑aware guidance, based on how your organization already uses the suite.
+We will expand Console over time, but v9 already covers the core operational loop: provision keys, manage licenses, and monitor usage.
 
 ## "MUI Chat" renamed to "MUI Recipes"
 
 [MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idomatic API of Material UI, MUI X, or Base UI if you asked for it.
 
-It's much faster than writing from a blank file.
-It's better integrated with our component libraries than a general‑purpose tool, so the output is more likely to be something you can ship with minimal adjustments.
+Compared with starting from a blank file, it generates a first draft UI quickly and uses MUI component APIs directly.
+That reduces the amount of adaptation needed before you can use the output in a real codebase.
 
 In practice, we use it mostly to deliver custom recipes and customization grounded in what you already see in the docs: variations on our examples, tuned layouts, and branded panels that stay aligned with the same APIs and patterns we document.
 
@@ -158,25 +156,22 @@ Over the coming months, we plan to focus our work on the following areas.
 
 ### Component portfolio expansion
 
-Advanced components keep getting more complete surfaces: workflow‑driven data in Data Grid, time‑based planning in Scheduler, and conversational layers in MUI X Chat, each described in its deep dive rather than recapped here.
+Advanced components continue to grow across three workflow types: tabular data (Data Grid), scheduling (Scheduler), and conversational interfaces (Chat).
 
 - NumberField and Menubar will ship as npm components, not only as documentation recipes you copy from the docs.
-- Data Grid continues to evolve advanced workflow surfaces, including AI workflows, where they enhance the user's job.
-  We'll keep growing the Material UI portfolio as Base UI releases new primitives.
+- Data Grid continues to expand AI and workflow features, and Material UI continues to add Base UI-powered components.
 - Scheduler will keep iterating on Event Calendar and Timeline so teams can move from classic appointment views to dense resource planning in one package, and we will keep shipping additional Base UI-powered components as they are ready.
 
-These updates are designed for full product workflows, not just side‑by‑side experiments.
-They help developers ship UIs that stay transparent and controllable, with state that users can understand and that apps can integrate with cleanly.
+The goal is production workflows, not isolated demos: components should keep state inspectable, integrate cleanly, and remain controllable by application logic.
 
 ### AI-native workflows
 
 The [Data Grid AI Assistant](/blog/introducing-mui-x-data-grid-v9/#ai-assistant) is the first large piece of that story in production.
 Together with the [MUI Console](#new-mui-console-application), where you can handle licenses and service keys in one flow, it forms a clearer path from trying assistive features to rolling them out, without stitching together separate tools for assistants and account management.
 
-We believe that integrated AI workflows can materially improve the UX.
-They speed up repetitive UI interactions that would usually require multiple menus, without hiding the underlying model from the user.
+Integrated AI workflows can reduce repetitive multi-step UI actions while keeping the resulting state visible and editable.
 
-Throughout the v9 minor release cycle, expect broader feature coverage for assistant-style experiences, tighter polish on the flows we have today, and deeper integration with the advanced components where automation genuinely helps teams ship.
+Across v9 minors, we plan to expand assistant coverage, improve reliability and documentation, and integrate assistant flows more deeply with advanced components.
 
 ### Remove emotion and add modern theme layering
 

@@ -32,7 +32,7 @@ The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration no
 ## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Rich Tree View Pro in v9 ships virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
-That shift comes with practical defaults (for example, row height, set `itemHeight` when content differs) and a flatter events surface on Pro, so focus and performance stay easier to reason about on big trees.
+That shift comes with practical defaults (for example, row height, set `itemHeight` when content differs). Also, v9 changed Rich Tree View Pro events from a nested tree shape to a flat list (called out in the v9 alpha release notes), which simplifies focus traversal and event handling in large trees.
 
 API and styling hygiene matter too: older model and ref hooks are replaced by the richer variants (`useRichTreeViewApiRef`, `useSimpleTreeViewApiRef`, `useRichTreeViewProApiRef`), `TreeViewBaseItem` is removed in favor of documented model shapes, and state tokens on `treeItemClasses` that encoded expanded/selected styling are dropped in favor of `data-*` attributes you can target in CSS.
 
