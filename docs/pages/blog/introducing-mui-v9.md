@@ -20,10 +20,10 @@ manualCard: false
   <img id="blog-responsive-image" src="/static/blog/introducing-mui-v9/intro.png" alt="" width="2400" height="800" />
 </a>
 
-**Material UI v9** and **MUI X v9** are now released together.
+We are thrilled to announce the simultaneous release of **Material UI v9** and of each **MUI X v9 components**.
 
-The practical change is version alignment: Material UI and MUI X now share the same major version, so upgrades and compatibility checks are simpler across the stack.
-This post links each product announcement and summarizes the concrete changes shipped in v9.
+We are re-aligning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
+This is more than a version bump; it represents one step toward a strongly unified ecosystem for the MUI products.
 
 In v9, we focused on three concrete areas:
 
@@ -40,6 +40,7 @@ In v9, we focused on three concrete areas:
 - [Components highlights](#components-highlights)
 - [New MUI Console application](#new-mui-console-application)
 - ["MUI Chat" renamed to "MUI Recipes"](#mui-chat-renamed-to-mui-recipes)
+- [MUI X pricing and licensing updates](#mui-x-pricing-and-licensing-updates)
 - [What's next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [AI-native workflows](#ai-native-workflows)
@@ -104,7 +105,7 @@ A single major version number makes it easier to:
 
 ## Components highlights
 
-These bullets summarize what shipped in v9:
+We've focused on stability, accessibility, and new building blocks across the v9 major; these bullets summarize the direction:
 
 - **Material UI:** new NumberField and Menubar; keyboard and accessibility fixes; and theme updates that extend CSS variables with `color-mix()` for derived colors.\
   See the [Material UI v9](/blog/introducing-material-ui-v9/) post.
@@ -125,8 +126,8 @@ Last year, we began offering [AI assistance for the Data Grid](/blog/introducing
 
 Until now, production rollout was harder: teams needed support round-trips for API keys and had less visibility into usage alongside licenses.
 
-The [MUI Console](https://console.mui.com) is the control plane for this flow.
-It brings license keys, service API keys, billing, and usage into one place so teams can self-serve routine operations.
+The [MUI Console](https://console.mui.com) is the application we're rolling out to remove this friction.
+It gathers license keys, service API keys (including for assistant and add-on experiences), billing, and usage in one place: an operational hub for MUI's commercial offerings rather than scattered tickets and dashboards.
 
 With the console, teams can:
 
@@ -150,13 +151,26 @@ Keeping the builder under the name "Chat" would collide with that surface and co
 
 So MUI Chat is being renamed to [MUI Recipes](https://recipes.mui.com), a name that matches what the tool is optimized for today: recipe-style outputs and tailored UIs built from our component set, not an embeddable chat runtime.
 
+## MUI X pricing and licensing updates
+
+Starting April 8, 2026, MUI X pricing and licensing are updated:
+
+- Pro and Premium pricing is updated.
+- Pro and Premium move to application-based licensing (single-application and multi-application options).
+- Enterprise remains multi-application with a 15-seat minimum.
+- Existing v8 customers can keep renewing v8 at previous pricing, and can request a v9-compatible key when upgrading.
+- Priority support is now Enterprise-only.
+
+For full details, transition examples, and plan-by-plan terms, read the full announcement:
+[Upcoming Changes to MUI X Pricing and Licensing in 2026](/blog/2026-MUI-X-price-changes/).
+
 ## What's next
 
 Over the coming months, we plan to focus our work on the following areas.
 
 ### Component portfolio expansion
 
-Advanced components continue to grow across three workflow types: tabular data (Data Grid), scheduling (Scheduler), and conversational interfaces (Chat).
+Advanced components continue to grow across three workflow types: data analysis (Data Grid and Charts), Resource management (Calendar and Timeline), and conversational interfaces (Chat).
 
 - NumberField and Menubar will ship as npm components, not only as documentation recipes you copy from the docs.
 - Data Grid continues to expand AI and workflow features, and Material UI continues to add Base UI-powered components.
