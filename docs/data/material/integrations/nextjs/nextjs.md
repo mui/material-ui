@@ -174,7 +174,9 @@ This pattern is common with Material UI: `Table`, `Tabs`, `TextField`, and othe
 
 Recommended structure: keep `page.tsx` as a server component when possible, and wrap only the client subtree that calls `useSearchParams` in `<Suspense>`.
 
-Avoid `fallback={null}` (or an empty fallback) for UI that reserves space in the layout (toolbars, filters, tab bars, and similar). The server and the initial streamed HTML then omit that subtree, and the real content appears only after the client hydrates, which often causes layout shift and hurts CLS. Prefer a fallback whose size and structure approximate the final UI, for example Material UI `Skeleton` inside `Stack` or `Box` with the same `minHeight`, flex direction, and breakpoints as the loaded component.
+Avoid `fallback={null}` (or an empty fallback) for UI that reserves space in the layout (toolbars, filters, tab bars, and similar).
+The server and the initial streamed HTML then omit that subtree, and the real content appears only after the client hydrates, which often causes layout shift and hurts CLS.
+Prefer a fallback whose size and structure approximate the final UI, for example Material UI `Skeleton` inside `Stack` or `Box` with the same `minHeight`, flex direction, and breakpoints as the loaded component.
 
 ```tsx title="app/orders/page.tsx"
 import { Suspense } from 'react';
@@ -212,7 +214,8 @@ export default function Page() {
 }
 ```
 
-`OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components. Adjust the fallback’s layout and Skeleton sizes so they match your real toolbar (or filter row) as closely as possible.
+`OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components.
+Adjust the fallback’s layout and Skeleton sizes so they match your real toolbar (or filter row) as closely as possible.
 
 For details and version-specific notes, see the Next.js documentation for [`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params).
 
