@@ -16,7 +16,7 @@ describe('<CircularProgress />', () => {
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
     testVariantProps: { variant: 'determinate' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render with the primary color by default', () => {

@@ -7,7 +7,7 @@ import Team from 'docs/src/components/about/Team';
 import HowToSupport from 'docs/src/components/about/HowToSupport';
 import AboutEnd from 'docs/src/components/about/AboutEnd';
 import Head from 'docs/src/modules/components/Head';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function About() {

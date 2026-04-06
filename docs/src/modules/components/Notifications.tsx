@@ -13,8 +13,8 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import MuiList from '@mui/material/List';
 import MuiListItem from '@mui/material/ListItem';
 import MuiDivider from '@mui/material/Divider';
-import { getCookie } from '@mui/docs/helpers';
-import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
+import { getCookie } from '@mui/internal-core-docs/helpers';
+import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
 
 async function fetchNotifications() {
   if (process.env.NODE_ENV !== 'production') {

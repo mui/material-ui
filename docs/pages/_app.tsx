@@ -1,19 +1,19 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import { AdConfig } from '@mui/docs/Ad';
-import { SandboxConfig } from '@mui/docs/DemoContext';
-import type { DocsAppProps } from '@mui/docs/DocsApp';
+import { AdConfig } from '@mui/internal-core-docs/Ad';
+import { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
+import type { DocsAppProps } from '@mui/internal-core-docs/DocsApp';
 import {
   DocsApp,
   createGetInitialProps,
   printConsoleBanner,
   reportWebVitals,
-} from '@mui/docs/DocsApp';
-import findActivePage from '@mui/docs/findActivePage';
-import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
-import type { Translations } from '@mui/docs/i18n';
-import type { MuiPage } from '@mui/docs/MuiPage';
+} from '@mui/internal-core-docs/DocsApp';
+import findActivePage from '@mui/internal-core-docs/findActivePage';
+import getProductInfoFromUrl from '@mui/internal-core-docs/getProductInfoFromUrl';
+import type { Translations } from '@mui/internal-core-docs/i18n';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
@@ -33,7 +33,7 @@ import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
-export { fontClasses } from '@mui/docs/nextFonts';
+export { fontClasses } from '@mui/internal-core-docs/nextFonts';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);

@@ -27,13 +27,7 @@ describe('<Slide />', () => {
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeDefaultProps',
-        'themeStyleOverrides',
-        'themeVariants',
-      ],
+      skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 

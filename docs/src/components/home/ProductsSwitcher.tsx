@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import IconImage from '@mui/docs/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 
@@ -33,6 +33,7 @@ function ProductItem({
       }}
     >
       <Box
+        component="span"
         sx={{
           p: 2,
           display: 'flex',
@@ -42,6 +43,7 @@ function ProductItem({
         }}
       >
         <Box
+          component="span"
           sx={{
             height: 32,
             width: 32,
@@ -54,13 +56,21 @@ function ProductItem({
           {icon}
         </Box>
         <span>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography color="text.primary" variant="body2" fontWeight="semiBold">
+          <Box component="span" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: 'text.primary', fontWeight: 'semiBold' }}
+            >
               {name}
             </Typography>
             {chip}
           </Box>
-          <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
+          <Typography
+            component="span"
+            variant="body2"
+            sx={{ color: 'text.secondary', fontWeight: 'regular', my: 0.5 }}
+          >
             {description}
           </Typography>
         </span>

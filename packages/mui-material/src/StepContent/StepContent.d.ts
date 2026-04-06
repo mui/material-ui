@@ -25,7 +25,11 @@ export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component
      */
-    transition: SlotComponentProps<React.ElementType, CollapseProps, StepContentOwnerState>;
+    transition: SlotComponentProps<
+      React.ElementType<CollapseProps>,
+      CollapseProps,
+      StepContentOwnerState
+    >;
   }
 >;
 

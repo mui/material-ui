@@ -134,7 +134,7 @@ export default async function create(
         '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib'),
         '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
         '@mui/private-theming': path.resolve(MONOREPO_ROOT, './packages/mui-private-theming/src'),
-        '@mui/docs': path.resolve(MONOREPO_ROOT, './packages/mui-docs/src'),
+        '@mui/internal-core-docs': path.resolve(MONOREPO_ROOT, './packages-internal/core-docs/src'),
         '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
         docs: path.resolve(MONOREPO_ROOT, './docs'),
       },

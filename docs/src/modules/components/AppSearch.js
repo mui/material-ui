@@ -18,12 +18,12 @@ import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha } from '@mui/material/styles';
-import { pathnameToLanguage } from '@mui/docs/helpers';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
-import { Link } from '@mui/docs/Link';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import useLazyCSS from '@mui/docs/useLazyCSS';
-import PageContext from '@mui/docs/PageContext';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import useLazyCSS from '@mui/internal-core-docs/useLazyCSS';
+import PageContext from '@mui/internal-core-docs/PageContext';
 import SearchButton from './SearchButton';
 
 function NewStartScreen() {
@@ -323,7 +323,7 @@ export default function AppSearch(props) {
             initialQuery={initialQuery}
             appId="TZGZ85B9TB"
             apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui"
+            indexName={process.env.SEARCH_INDEX}
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
               filters,

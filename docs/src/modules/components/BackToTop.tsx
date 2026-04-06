@@ -6,7 +6,7 @@ import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
 import { Theme } from '@mui/material/styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 export default function BackToTop() {
   const t = useTranslate();
@@ -35,14 +35,14 @@ export default function BackToTop() {
 
   return (
     <Fade in={trigger}>
-      <Tooltip
-        title="Scroll to top"
-        placement="left"
-        open={open}
-        onClose={handleClose}
-        onOpen={handleOpen}
-      >
-        <Box className="mui-fixed" sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+      <Box className="mui-fixed" sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+        <Tooltip
+          title="Scroll to top"
+          placement="left"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+        >
           <Fab
             size="small"
             aria-label={t('backToTop')}
@@ -75,8 +75,8 @@ export default function BackToTop() {
               })}
             />
           </Fab>
-        </Box>
-      </Tooltip>
+        </Tooltip>
+      </Box>
     </Fade>
   );
 }

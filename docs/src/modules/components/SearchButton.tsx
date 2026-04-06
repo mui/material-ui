@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const SearchButtonStyled = styled('button')(({ theme }) => [
   {
@@ -96,17 +96,18 @@ function useShortcut() {
 export default function SearchButton({ onClick, onRef, ...props }: SearchButtonProps) {
   const t = useTranslate();
   const shortcut = useShortcut();
+  const labelId = React.useId();
 
   return (
     <SearchButtonStyled
       ref={onRef}
       onClick={onClick}
       disabled={!onClick}
-      aria-labelledby="app-search-label"
+      aria-labelledby={labelId}
       {...props}
     >
       <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
-      <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
+      <SearchLabel id={labelId}>{t('searchButton')}</SearchLabel>
       {shortcut && <Shortcut aria-hidden="true">{shortcut}</Shortcut>}
     </SearchButtonStyled>
   );

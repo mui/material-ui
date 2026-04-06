@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
+import { ResponsiveStyleValue, SxProps } from '@mui/system';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles/createTheme';
 
-export interface StackOwnProps extends SystemProps<Theme> {
+export interface StackOwnProps {
   /**
    * The content of the component.
    */

@@ -17,7 +17,6 @@ describe('<AppBar />', () => {
     refInstanceof: window.HTMLElement,
     testVariantProps: { position: 'relative' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
-    skip: ['componentsProp'],
   }));
 
   it('should render with the root class and primary', () => {

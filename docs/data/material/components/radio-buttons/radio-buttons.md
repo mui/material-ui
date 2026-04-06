@@ -17,7 +17,7 @@ If available options can be collapsed, consider using a [Select component](/mate
 
 Radio buttons should have the most commonly used option selected by default.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Radio group
 

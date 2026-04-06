@@ -7,7 +7,7 @@ import DesignKitValues from 'docs/src/components/productDesignKit/DesignKitValue
 import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 

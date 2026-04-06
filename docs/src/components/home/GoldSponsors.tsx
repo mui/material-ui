@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import ROUTES from 'docs/src/route';
 
 const GOLDs = [

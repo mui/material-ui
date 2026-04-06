@@ -8,9 +8,9 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import { createRender } from '@mui/internal-markdown';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({
@@ -77,7 +77,7 @@ const faqData = [
 
   For those who choose to join as employees:
 
-  - people in France are hired as full-time employees under the French [legal entity](https://www.infogreffe.fr/entreprise-societe/852357748-material-ui-750119B189960000.html).
+  - people in France are hired as full-time employees under the French [legal entity](https://www.infogreffe.fr/entreprise-societe/852357748-material-ui-750119B189960000).
   - people outside of France are hired through an Employer of Record (EOR) such as [Deel](https://www.deel.com/).
 `,
   },

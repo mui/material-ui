@@ -14,7 +14,6 @@ describe('<Typography />', () => {
     muiName: 'MuiTypography',
     testVariantProps: { variant: 'dot' },
     testStateOverrides: { prop: 'variant', value: 'h2', styleKey: 'h2' },
-    skip: ['componentsProp'],
   }));
 
   it('should render the text', () => {
@@ -105,8 +104,8 @@ describe('<Typography />', () => {
     });
   });
 
-  it('combines system properties with the sx prop', () => {
-    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
+  it('applies system properties via the sx prop', () => {
+    const { container } = render(<Typography sx={{ mt: 2, marginRight: 5, mb: 2 }} />);
 
     // @ts-ignore issue with typings on `toHaveComputedStyle`
     expect(container.firstChild).toHaveComputedStyle({

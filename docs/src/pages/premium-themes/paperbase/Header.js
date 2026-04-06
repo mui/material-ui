@@ -78,7 +78,13 @@ function Header(props) {
         <Toolbar>
           <Grid container spacing={1} sx={{ alignItems: 'center' }}>
             <Grid size="grow">
-              <Typography color="inherit" variant="h5" component="h1">
+              <Typography
+                variant="h5"
+                component="h1"
+                sx={{
+                  color: 'inherit',
+                }}
+              >
                 Authentication
               </Typography>
             </Grid>

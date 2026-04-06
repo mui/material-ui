@@ -38,7 +38,6 @@ describe('<SpeedDial />', () => {
     slots: { transition: { testWithElement: null }, root: { expectedClassName: classes.root } },
     skip: [
       'componentProp', // react-transition-group issue
-      'componentsProp',
     ],
   }));
 

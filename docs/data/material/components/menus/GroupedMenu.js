@@ -5,18 +5,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 
-const StyledListHeader = Object.assign(
-  styled(ListSubheader)({
-    backgroundImage: 'var(--Paper-overlay)',
-  }),
-  {
-    // IMPORTANT: The base ListSubheader component sets `muiSkipListHighlight = true`
-    // by default, but wrapping it with `styled(ListSubheader)` does not preserve
-    // that static field. We re-declare it here so the menu list continues to skip
-    // highlighting this non-focusable subheader when navigating with the keyboard.
-    muiSkipListHighlight: true,
-  },
-);
+const StyledListHeader = styled(ListSubheader)({
+  backgroundImage: 'var(--Paper-overlay)',
+});
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);

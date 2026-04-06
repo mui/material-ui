@@ -11,7 +11,7 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const Header = styled('header')(({ theme }) => [
   {

@@ -10,11 +10,11 @@ import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
-import { ThemeOptionsContext } from '@mui/docs/ThemeContext';
-import { useDemoContext } from '@mui/docs/DemoContext';
+import { ThemeOptionsContext } from '@mui/internal-core-docs/ThemeContext';
+import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>

@@ -82,7 +82,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 |              ^3.0.0 | 2018-08-27 | ❌                                                                 |
 |              ^2.0.0 | /          | ❌                                                                 |
 |              ^1.0.0 | 2018-06-18 | ❌                                                                 |
-|             <=1.0.0 | 2014-10-05 | ❌                                                                 |
+|          &lt;=1.0.0 | 2014-10-05 | ❌                                                                 |
 
 ## Community
 

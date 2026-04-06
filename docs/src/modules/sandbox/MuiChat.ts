@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import type { SandboxConfig } from '@mui/docs/DemoContext';
+import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import { DemoData } from './types';
 import SandboxDependencies from './Dependencies';
 import flattenRelativeImports from './FlattenRelativeImports';

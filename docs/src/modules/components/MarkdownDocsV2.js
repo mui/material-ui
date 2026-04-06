@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { kebabCase } from 'es-toolkit/string';
 import { exactProp } from '@mui/utils';
-import { Ad, AdGuest } from '@mui/docs/Ad';
+import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
-import { getPropertiesToc, getClassesToc } from '@mui/docs/ApiPage/private';
+import { getPropertiesToc, getClassesToc } from '@mui/internal-core-docs/ApiPage/private';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {

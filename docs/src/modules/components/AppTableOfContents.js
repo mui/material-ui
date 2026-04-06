@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { throttle } from 'es-toolkit/function';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import TableOfContents, { NavItem, TOC_WIDTH } from 'docs/src/modules/components/TableOfContents';
 import MiniTableOfContents from 'docs/src/modules/components/MiniTableOfContents';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import SideNavigationBanner from 'docs/src/components/banner/SideNavigationBanner';
-import { samePageLinkNavigation } from '@mui/docs/Link';
+import { samePageLinkNavigation } from '@mui/internal-core-docs/Link';
 
 const Nav = styled('nav', {
   shouldForwardProp: (prop) => prop !== 'wideLayout',

@@ -6,12 +6,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import { GlowingIconContainer } from '@mui/docs/InfoCard';
+import { GlowingIconContainer } from '@mui/internal-core-docs/InfoCard';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import ROUTES from 'docs/src/route';
 
 interface MaterialEndProps {

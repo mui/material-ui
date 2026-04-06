@@ -11,6 +11,7 @@
     "focusRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
+    "nativeButton": { "type": { "name": "bool" } },
     "onFocusVisible": { "type": { "name": "func" } },
     "sx": {
       "type": {

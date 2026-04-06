@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/List
 
 Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

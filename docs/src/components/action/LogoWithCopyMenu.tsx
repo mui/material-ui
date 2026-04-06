@@ -1,6 +1,6 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import { Portal } from '@mui/base/Portal';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';

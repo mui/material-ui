@@ -2521,6 +2521,30 @@ npx @mui/codemod@next deprecations/table-sort-label-classes <path>
 npx @mui/codemod@next deprecations/typography-props <path>
 ```
 
+### v9.0.0
+
+#### `system-props`
+
+```bash
+npx @mui/codemod@next v9.0.0/system-props <path>
+```
+
+Remove system props from Box, Stack, Typography, Link, Grid, DialogContentText, TimelineContent, and TimelineOppositeContent components and move them to the `sx` prop.
+
+Compared to the v6 codemod, the v9 version also handles:
+
+- `color="inherit"` on Typography (moved to `sx`)
+- `color="text.secondary"` on Link (moved to `sx`, while keeping named colors like `"primary"` and `"inherit"` as component props)
+- DialogContentText, TimelineContent, and TimelineOppositeContent components
+
+```diff
+-<Typography color="inherit" />
++<Typography sx={{ color: "inherit" }} />
+
+-<Link color="text.secondary" href="#" />
++<Link href="#" sx={{ color: "text.secondary" }} />
+```
+
 ### v7.0.0
 
 #### `theme-color-functions`

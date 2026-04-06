@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
 import exactProp from '@mui/utils/exactProp';
-import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
+import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import type { LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import {
   ApiDisplayLayout,
@@ -19,7 +19,7 @@ import {
   PropertiesSection,
   SlotsSection,
   ClassesSection,
-} from '@mui/docs/ApiPage/private';
+} from '@mui/internal-core-docs/ApiPage/private';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {
@@ -167,7 +167,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
           <br />
           {cssComponent && (
             <React.Fragment>
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
                 }}
@@ -192,7 +192,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
                 hash={`${componentNameKebabCase}-inheritance`}
                 level="h3"
               />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.inheritanceDescription')
                     .replace(/{{component}}/, inheritance.component)
@@ -210,7 +210,7 @@ export default function ComponentsApiContent(props: ComponentsApiContentProps) {
                 hash={`${componentName}-theme-default-props`}
                 level="h4"
               />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.themeDefaultPropsDescription')
                     .replace(/{{muiName}}/, pageContent.muiName)

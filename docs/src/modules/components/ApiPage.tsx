@@ -1,19 +1,19 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import { Ad, AdGuest } from '@mui/docs/Ad';
-import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/docs/ApiPage';
+import { Ad, AdGuest } from '@mui/internal-core-docs/Ad';
+import type { TableOfContentsParams, LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { BrandingProvider, BrandingCssVarsProvider } from '@mui/docs/branding';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { BrandingProvider, BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import {
   ApiDisplayLayout,
@@ -27,7 +27,7 @@ import {
   PropertiesSection,
   SlotsSection,
   ClassesSection,
-} from '@mui/docs/ApiPage/private';
+} from '@mui/internal-core-docs/ApiPage/private';
 
 type ApiHeaderKeys =
   | 'demos'
@@ -220,7 +220,7 @@ export default function ApiPage(props: ApiPageProps) {
               icon={<WarningRoundedIcon fontSize="small" />}
               sx={{ mt: 1.5, mb: 3 }}
             >
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: deprecationInfo || t('api-docs.defaultDeprecationMessage'),
                 }}
@@ -239,7 +239,7 @@ export default function ApiPage(props: ApiPageProps) {
           </Typography>
           <Heading hash="demos" />
           <Alert severity="success" icon={<VerifiedRoundedIcon fontSize="small" />}>
-            <span
+            <div
               dangerouslySetInnerHTML={{
                 __html: `<p>For examples and details on the usage of this React component, visit the component demo pages:</p>
               ${demos}`,
@@ -260,7 +260,7 @@ export default function ApiPage(props: ApiPageProps) {
             <React.Fragment>
               <br />
               <br />
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: componentDescription,
                 }}
@@ -275,7 +275,7 @@ export default function ApiPage(props: ApiPageProps) {
           />
           {cssComponent && (
             <React.Fragment>
-              <span
+              <div
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
                 }}

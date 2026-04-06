@@ -3,18 +3,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { kebabCase } from 'es-toolkit/string';
 import exactProp from '@mui/utils/exactProp';
-import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
-import type { LayoutStorageKeys } from '@mui/docs/ApiPage';
+import { Translate, useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { SectionTitle, SectionTitleProps } from '@mui/internal-core-docs/SectionTitle';
+import type { LayoutStorageKeys } from '@mui/internal-core-docs/ApiPage';
 import { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
 import {
   ApiDisplayLayout,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
   getHookApiDefinitions,
   PropertiesSection,
-} from '@mui/docs/ApiPage/private';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
+} from '@mui/internal-core-docs/ApiPage/private';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

@@ -36,7 +36,11 @@ export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the available props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
      */
-    transition: SlotComponentProps<React.ElementType, TransitionProps, SpeedDialOwnerState>;
+    transition: SlotComponentProps<
+      React.ElementType<TransitionProps>,
+      TransitionProps,
+      SpeedDialOwnerState
+    >;
   }
 >;
 

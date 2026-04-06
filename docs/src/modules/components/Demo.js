@@ -10,21 +10,21 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { CodeTab, CodeTabList } from '@mui/docs/HighlightedCodeWithTabs';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { CodeTab, CodeTabList } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { useDemoContext } from '@mui/docs/DemoContext';
-import { useCodeVariant } from '@mui/docs/codeVariant';
-import { CODE_VARIANTS } from '@mui/docs/constants';
-import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
+import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
+import { useCodeVariant } from '@mui/internal-core-docs/codeVariant';
+import { CODE_VARIANTS } from '@mui/internal-core-docs/constants';
+import { useUserLanguage, useTranslate } from '@mui/internal-core-docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
-import { AdCarbonInline } from '@mui/docs/Ad';
+import { AdCarbonInline } from '@mui/internal-core-docs/Ad';
 import DemoAiSuggestionHero from 'docs/src/modules/components/DemoAiSuggestionHero';
 
 /**

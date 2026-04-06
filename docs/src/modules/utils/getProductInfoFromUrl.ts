@@ -1,4 +1,4 @@
-import { pathnameToLanguage } from '@mui/docs/helpers';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
 
 export type MuiProductId =
   | 'null'
@@ -12,6 +12,7 @@ export type MuiProductId =
   | 'x-date-pickers'
   | 'x-charts'
   | 'x-tree-view'
+  | 'x-scheduler'
   | 'toolpad-studio'
   | 'toolpad-core';
 

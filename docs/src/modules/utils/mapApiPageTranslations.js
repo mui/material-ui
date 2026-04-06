@@ -1,4 +1,4 @@
-import mapApiPageTranslationsBase from '@mui/docs/mapApiPageTranslations';
+import mapApiPageTranslationsBase from '@mui/internal-core-docs/mapApiPageTranslations';
 
 import { LANGUAGES_IGNORE_PAGES } from '../../../config';
 

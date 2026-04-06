@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import MoreInfoBox from 'docs/src/components/action/MoreInfoBox';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';

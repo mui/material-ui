@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
+import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -13,44 +15,39 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = cssContainerQueries({
-    spacing: (val) => `${val * 10}px`,
-    breakpoints: {
-      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-      values: breakpointsValues,
-      unit: 'px',
-      up: (key) => {
-        return `@media (min-width:${breakpointsValues[key]}px)`;
+  const theme = createTheme(
+    cssContainerQueries({
+      spacing: (val) => `${val * 10}px`,
+      breakpoints: createBreakpoints({ values: breakpointsValues }),
+      palette: {
+        primary: {
+          main: 'rgb(0, 0, 255)',
+        },
+        secondary: {
+          main: 'rgb(0, 255, 0)',
+        },
       },
-    },
-    palette: {
-      primary: {
-        main: 'rgb(0, 0, 255)',
-      },
-      secondary: {
-        main: 'rgb(0, 255, 0)',
-      },
-    },
-    typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeightLight: 300,
-      fontSize: 14,
-      body1: {
+      typography: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: '1rem',
-        letterSpacing: `${round(0.15 / 16)}em`,
-        fontWeight: 400,
-        lineHeight: 1.5,
+        fontWeightLight: 300,
+        fontSize: 14,
+        body1: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+        body2: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
       },
-      body2: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: `${14 / 16}rem`,
-        letterSpacing: `${round(0.15 / 14)}em`,
-        fontWeight: 400,
-        lineHeight: 1.43,
-      },
-    },
-  });
+    }),
+  );
 
   describe('system', () => {
     it('resolves system', () => {
@@ -313,6 +310,23 @@ describe('styleFunctionSx', () => {
         '@container (min-width:600px)': { padding: '10px' },
         '@container (min-width:960px)': { padding: '20px', margin: '10px' },
         '@container (min-width:1280px)': { margin: '20px' },
+      });
+    });
+
+    it('resolves container query shorthands for non-system CSS properties', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          opacity: {
+            '@xs': 0.1,
+            '@sm': 0.2,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { opacity: 0.1 },
+        '@container (min-width:600px)': { opacity: 0.2 },
       });
     });
   });

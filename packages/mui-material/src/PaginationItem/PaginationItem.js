@@ -389,6 +389,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
+      internalNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}
@@ -438,6 +439,11 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The current page number.
    */

@@ -14,8 +14,8 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
-import { useColorSchemeShim, useChangeTheme } from '@mui/docs/ThemeContext';
-import { useTranslate } from '@mui/docs/i18n';
+import { useColorSchemeShim, useChangeTheme } from '@mui/internal-core-docs/ThemeContext';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 
 const Heading = styled(Typography)(({ theme }) => ({
   margin: '16px 0 8px',

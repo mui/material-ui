@@ -29,6 +29,10 @@
       }
     },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
+    "role": {
+      "type": { "name": "enum", "description": "'alertdialog'<br>&#124;&nbsp;'dialog'" },
+      "default": "'dialog'"
+    },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"

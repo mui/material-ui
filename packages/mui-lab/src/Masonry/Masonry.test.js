@@ -27,7 +27,7 @@ describe('<Masonry />', () => {
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
       muiName: 'MuiMasonry',
-      skip: ['componentsProp', 'themeVariants'],
+      skip: ['themeVariants'],
     }),
   );
 
