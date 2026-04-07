@@ -61,7 +61,8 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
-At the center is an event model with start and end times, titles, and metadata, and links back to your domain (tickets, customers, orders, and so on).
+At the center is an event model with start and end times, titles, and metadata that you links back to your business logic.
+
 You can group those events under resources representing people, rooms, assets or looser groupings that match your product.
 
 Recurring events support practical scheduling patterns: daily/weekly/monthly and custom rules, editable as a full series or one‑off exceptions, with timezone-aware evaluation so a daily 09:00 meeting stays at 09:00 local time across DST changes.
@@ -70,7 +71,8 @@ Timezones are modeled so you can store canonically (for example, UTC), render in
 
 ## Event Calendar
 
-Event Calendar views read like classic planners: day, week, month, filtered slices such as "this project only" or "my meetings".
+Event Calendar views read like classic planners: day, week, month and agenda.
+
 They suit appointment booking, service desks, team coordination, and smaller‑scale capacity questions where users think in calendar blocks first.
 
 This is the best default when your users already understand calendar metaphors and need fast navigation across dates with a lightweight resource context.
@@ -94,7 +96,7 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Event Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
+The Event Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
 
 The point is one underlying schedule that can be re-visualized without rewriting your domain layer: start in Event Calendar when date-first UX is enough, move to Timeline when resource density and conflict management become central.
