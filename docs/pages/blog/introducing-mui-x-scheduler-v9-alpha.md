@@ -78,7 +78,7 @@ This is the best default when your users already understand calendar metaphors a
 <figure>
   <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-calendar.mp4"
+      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4"
       type="video/mp4"
     />
   </video>

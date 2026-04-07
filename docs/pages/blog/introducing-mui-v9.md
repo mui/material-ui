@@ -39,6 +39,7 @@ In v9, we focused on three concrete areas:
 - [One MUI ecosystem, a synced major version](#one-mui-ecosystem-a-synced-major-version)
 - [Components highlights](#components-highlights)
 - [New MUI Console application](#new-mui-console-application)
+- [Telemetry on commercial components](#telemetry-on-commercial-components)
 - ["MUI Chat" renamed to "MUI Recipes"](#mui-chat-renamed-to-mui-recipes)
 - [MUI X pricing and licensing updates](#mui-x-pricing-and-licensing-updates)
 - [What's next](#whats-next)
@@ -136,6 +137,13 @@ With the console, teams can:
 - Create, view, and rotate API keys for commercial services without relying on a support round‑trip for routine access.
 
 We will expand Console over time, but v9 already covers the core operational loop: provision keys, manage licenses, and monitor usage.
+
+## Telemetry on commercial components
+
+We launched telemetry for commercial components last year.
+In v9, telemetry is now enabled by default in development mode for commercial components, and it remains off in production builds.
+
+Telemetry helps us understand how developers use components in real projects, so we can prioritize fixes, improve defaults, and focus roadmap work on the patterns teams actually use.
 
 ## "MUI Chat" renamed to "MUI Recipes"
 
