@@ -34,12 +34,12 @@ A big thanks to the 15 contributors who made this release possible.
 - [progress] Label all demo components (#48168) @mj12albert
 - [system] Update `styled` API docs for easier understanding (#47969) @olivier-lxo
 - Fix the dark mode footer row shadow for the Data Grid on the advanced components page (#48152) @arminmeh
-- Fix MUI X redirects (#47917) @cherniavskii
+- Fix MUI X redirects (#47917) @cherniavskii
 - Use direct palette vars in Tailwind v4 snippet (#47955) @Ahmad-Alaziz
 
 ### Core
 
-- [blog] Blogpost for upcoming price changes for MUI X (#47820) @DanailH
+- [blog] Blogpost for upcoming price changes for MUI X (#47820) @DanailH
 - [blog] Update the 2026 price changes blogpost (#47944) @DanailH
 - [code-infra] Add pkg-pr-new as dev dependency (#48023) @silviuaavram
 - [docs-infra] Update Release Instructions and Search Index v7 (#48109) @dav-is
