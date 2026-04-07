@@ -13,7 +13,7 @@ npm install @mui/docs@^7.0.0
 ```
 
 The docs has a peer dependency on the core components.
-If you are not already using Material UI in your project, you can add it with:
+If you are not already using Material UI in your project, you can add it with:
 
 <!-- #npm-tag-reference -->
 
