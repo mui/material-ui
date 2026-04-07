@@ -97,12 +97,12 @@ export interface BreadcrumbsTypeMap<
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Breadcrumbs](https://v7.mui.com/material-ui/react-breadcrumbs/)
  *
  * API:
  *
- * - [Breadcrumbs API](https://mui.com/material-ui/api/breadcrumbs/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [Breadcrumbs API](https://v7.mui.com/material-ui/api/breadcrumbs/)
+ * - inherits [Typography API](https://v7.mui.com/material-ui/api/typography/)
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 

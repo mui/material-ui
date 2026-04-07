@@ -60,11 +60,11 @@ export interface SkeletonTypeMap<
  *
  * Demos:
  *
- * - [Skeleton](https://mui.com/material-ui/react-skeleton/)
+ * - [Skeleton](https://v7.mui.com/material-ui/react-skeleton/)
  *
  * API:
  *
- * - [Skeleton API](https://mui.com/material-ui/api/skeleton/)
+ * - [Skeleton API](https://v7.mui.com/material-ui/api/skeleton/)
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 

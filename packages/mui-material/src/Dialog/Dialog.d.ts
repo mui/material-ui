@@ -203,12 +203,12 @@ export interface DialogProps
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://v7.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [Dialog API](https://mui.com/material-ui/api/dialog/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Dialog API](https://v7.mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://v7.mui.com/material-ui/api/modal/)
  */
 export default function Dialog(props: DialogProps): React.JSX.Element;
 

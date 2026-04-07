@@ -167,15 +167,15 @@ export interface DrawerProps
 export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps'> {}
 
 /**
- * The props of the [Modal](https://mui.com/material-ui/api/modal/) component are available
+ * The props of the [Modal](https://v7.mui.com/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
  *
- * - [Drawer](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://v7.mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [Drawer API](https://mui.com/material-ui/api/drawer/)
+ * - [Drawer API](https://v7.mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;

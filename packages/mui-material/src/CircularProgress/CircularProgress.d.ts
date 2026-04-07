@@ -81,10 +81,10 @@ export interface CircularProgressProps extends StandardProps<
  *
  * Demos:
  *
- * - [Progress](https://mui.com/material-ui/react-progress/)
+ * - [Progress](https://v7.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [CircularProgress API](https://mui.com/material-ui/api/circular-progress/)
+ * - [CircularProgress API](https://v7.mui.com/material-ui/api/circular-progress/)
  */
 export default function CircularProgress(props: CircularProgressProps): React.JSX.Element;
