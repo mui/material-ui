@@ -59,7 +59,7 @@ export default function SandboxDependencies(
         return 'latest';
       }
       // #npm-tag-reference
-      return 'latest';
+      return '^7.0.0';
     }
     return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
   }
