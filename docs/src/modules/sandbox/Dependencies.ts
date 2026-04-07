@@ -59,6 +59,10 @@ export default function SandboxDependencies(
         return 'latest';
       }
       // #npm-tag-reference
+      if (packageName === 'lab') {
+        return '^7.0.0-beta';
+      }
+      // #npm-tag-reference
       return '^7.0.0';
     }
     return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
