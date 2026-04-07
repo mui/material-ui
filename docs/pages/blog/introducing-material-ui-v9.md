@@ -112,7 +112,6 @@ Dialog and Modal
 
 - Remove the `disableEscapeKeyDown` prop.
 
-
 TableCell and theme – color mixing for borders
 
 - Apply alpha before color mixing for the `border-bottom` color when `nativeColor` and `cssVariables` are used together.
@@ -145,7 +144,6 @@ System
 
 - Refactor the container query sorting regex used in the system layer.
 
-
 ## Keyboard navigation
 
 Keyboard navigation and accessibility improvements keep moving the ecosystem forward.
@@ -177,13 +175,15 @@ Main breaking changes are related to removal of deprecated props such as `compon
 
 The main benefit of the breaking changes are ~3% bundle size reduction compared to v7 and overall performance gain.
 
-
 For a consolidated upgrade path from Material UI v7, follow the [Upgrade to v9](/material-ui/migration/upgrade-to-v9/) migration guide.
 For earlier majors, find the [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/) upgrade guides.
 
 ## What's next
 
-TODO
+- Remove dependency on Emotion.
+- Performance improvements.
+- Accessibility improvements.
+- Add more components from Base UI.
 
 ## We want your feedback
 
