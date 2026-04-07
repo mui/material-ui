@@ -43,7 +43,7 @@
       "description": "A ref that points to the <code>TouchRipple</code> element."
     },
     "type": {
-      "description": "The <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type\">type</a> attribute applied to the <code>button</code> element."
+      "description": "The HTML <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type\"><code>type</code></a> attribute."
     }
   },
   "classDescriptions": {
