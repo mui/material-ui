@@ -2294,7 +2294,7 @@ npx @mui/codemod@^7.0.0 v7.0.0/input-label-size-normal-medium <path>
 
 <!-- #host-reference -->
 
-You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
+You can find more details about this breaking change in [the migration guide](https://v7.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 

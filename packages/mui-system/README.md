@@ -16,4 +16,4 @@ npm install @mui/system@^7.0.0 @emotion/react @emotion/styled
 
 <!-- #host-reference -->
 
-Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://v7.mui.com/system/getting-started/](https://v7.mui.com/system/getting-started/) to view the full documentation.

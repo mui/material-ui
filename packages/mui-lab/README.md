@@ -25,4 +25,4 @@ npm install @mui/material@^7.0.0 @emotion/react @emotion/styled
 
 <!-- #host-reference -->
 
-Visit [https://mui.com/material-ui/about-the-lab/](https://mui.com/material-ui/about-the-lab/) to view the full documentation.
+Visit [https://v7.mui.com/material-ui/about-the-lab/](https://v7.mui.com/material-ui/about-the-lab/) to view the full documentation.

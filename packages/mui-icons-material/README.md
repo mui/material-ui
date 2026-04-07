@@ -20,8 +20,8 @@ npm install @mui/icons-material@^7.0.0 @mui/material@^7.0.0 @emotion/styled @emo
 
 <!-- #host-reference -->
 
-- Learn more about Material UI's [SVG Icon component](https://mui.com/material-ui/icons/#svgicon).
-- Browse the available icons on the [Material Icons page](https://mui.com/material-ui/material-icons/).
+- Learn more about Material UI's [SVG Icon component](https://v7.mui.com/material-ui/icons/#svgicon).
+- Browse the available icons on the [Material Icons page](https://v7.mui.com/material-ui/material-icons/).
 
 ## Contributing
 

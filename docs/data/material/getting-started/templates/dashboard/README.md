@@ -12,4 +12,4 @@
 
 <!-- #host-reference -->
 
-View the demo at https://mui.com/material-ui/getting-started/templates/dashboard/.
+View the demo at https://v7.mui.com/material-ui/getting-started/templates/dashboard/.
