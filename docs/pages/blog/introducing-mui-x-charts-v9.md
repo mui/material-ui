@@ -24,7 +24,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 
 ## Interaction and accessibility
 
-Keyboard navigation is on by default in v9, with follow‑through work on focus, tooltips, radar, and tier‑appropriate behaviors (for example, funnel, heatmap, and Sankey on Pro, range‑bar on Premium).
+Keyboard navigation is on by default in v9, with follow‑through work on focus and tooltips.
 Across MIT, Pro, and Premium, we've kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don't fight the internals.
 
 The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
@@ -33,7 +33,7 @@ See the [Charts](/x/react-charts/) overview for APIs and examples.
 
 ## Composition, naming, and breaking cleanup
 
-v9 is the release where the long migration from legacy entry points toward `Charts*`-prefixed APIs and `ChartsLayerContainer` / `ChartsDataProvider` patterns really lands: old containers, providers, props, and a long tail of obsolete classes and exports are removed in favor of consistent `data-series` attributes.
+v9 is packed with changes to align components prefixes. Previously a mix of `Chart*` and `Charts*` prefixes were used. Now you should expect `Charts*` to be the only prefix left.
 
 Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
 Tooltips align with the layer container model: portaling through `ChartsLayerContainer` means tooltip markup is not trapped under the SVG or a parent with `overflow: hidden`, so you spend less time debugging clipped overlays when charts sit in scroll areas, dialogs, or Data Grid cells, and z-order stays consistent with other chart layers. Shared primitives also accept `className` more predictably, so bar, line, radar, and shared wrappers theme the same way.
@@ -78,7 +78,7 @@ Breaking changes, codemods, and checklist items for moving to v9 are centralized
 
 ## What's next
 
-On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large point counts without sacrificing responsiveness.
+On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large datasets without sacrificing responsiveness.
 
 We also want Charts to ride the same Base UI wave as Material UI: clearer composition, slots you can lean on for serious layout changes, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 

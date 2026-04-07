@@ -32,7 +32,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 ## Quick start
 
 Install the package and render the Scheduler in minutes: start in the [MUI X Scheduler docs](/x/react-scheduler/) and follow [the quickstart guide](/x/react-scheduler/quickstart/) for your first working calendar.
-Then layer your event model and resources on top, and switch to Timeline when your use case needs dense resource planning.
+Then layer your event model and resources on top, and switch to Event Timeline when your use case needs dense resource planning.
 
 ## What alpha means
 
@@ -62,7 +62,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 </figure>
 
 At the center is an event model with start and end times, titles, and metadata, and links back to your domain (tickets, customers, orders, and so on).
-You can place those events on resources (people, rooms, assets) or looser groupings that match your product.
+You can group those events under resources representing people, rooms, assets or looser groupings that match your product.
 
 Recurring events support practical scheduling patterns: daily/weekly/monthly and custom rules, editable as a full series or one‑off exceptions, with timezone-aware evaluation so a daily 09:00 meeting stays at 09:00 local time across DST changes.
 
@@ -92,7 +92,7 @@ Technically, Scheduler follows the v9 peer and theme story: align versions with 
 Conceptually, it closes a gap: Data Grid for tabular workflows, Charts for visual analytics, Scheduler for resource management and capacity, and Chat for conversational assistance.
 Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
-## Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+## Event Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
