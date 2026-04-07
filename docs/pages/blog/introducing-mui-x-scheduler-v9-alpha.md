@@ -50,14 +50,21 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 ## What you can build
 
 <figure>
-  <img src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-showcase.png" alt="" width="1600" height="900" loading="lazy" style="border: 0; width: 100px;"/>
+  <img
+    src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-showcase.png"
+    alt=""
+    width="1600"
+    height="900"
+    loading="lazy"
+    style="border: 0; width: 100%; height: auto;"
+  />
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
 At the center is an event model with start and end times, titles, and metadata, and links back to your domain (tickets, customers, orders, and so on).
 You can place those events on resources (people, rooms, assets) or looser groupings that match your product.
 
-Recurring events target real calendars: daily/weekly/monthly and custom rules, editable as a series or as one‑off exceptions, with timezone‑aware evaluation so a daily 09:00 meeting stays at 09:00 local time even across DST changes.
+Recurring events support practical scheduling patterns: daily/weekly/monthly and custom rules, editable as a full series or one‑off exceptions, with timezone-aware evaluation so a daily 09:00 meeting stays at 09:00 local time across DST changes.
 
 Timezones are modeled so you can store canonically (for example, UTC), render in the user's zone, and lean on the stack for DST and regional rules instead of reinventing offsets in every app.
 
@@ -106,7 +113,7 @@ The point is one underlying schedule that can be re-visualized without rewriting
 
 As with other MUI X products, Scheduler ships with open-source and commercial tiers (see [MUI X pricing](/pricing/)).
 
-The Community plan (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and DnD.
+The Community plan (MIT) targets the core interactive calendar: resource‑aware layouts, multiple views, drag to move and resize, and a fast path to a credible scheduling UI without hand‑rolling hit targets and drag-and-drop.
 
 Premium (commercial) adds what enterprises usually need next: recurrence, lazy loading, and richer timeline experiences for dense schedules, with virtualization for huge event grids planned for the stable release.
 
@@ -114,7 +121,10 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 
 ## What's next
 
-TODO
+- Event Timeline virtualization, lazy loading, and infinite loading.
+- Resource views for the Event Calendar.
+- Mobile version for the Event Calendar.
+- Integration with existing calendars (ICS import/export, Google Calendar sync, and more).
 
 ## Deep dives
 

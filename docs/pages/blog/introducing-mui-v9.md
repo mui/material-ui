@@ -162,7 +162,7 @@ Starting April 8, 2026, MUI X pricing and licensing are updated:
 - Priority support is now Enterprise-only.
 
 For full details, transition examples, and plan-by-plan terms, read the full announcement:
-[Upcoming Changes to MUI X Pricing and Licensing in 2026](/blog/2026-MUI-X-price-changes/).
+[Upcoming Changes to MUI X Pricing and Licensing in 2026](/blog/2026-mui-x-price-changes/).
 
 ## What's next
 
