@@ -563,8 +563,9 @@ describe('createTheme', () => {
       });
     } catch (error) {
       expect(error.message).to.equal(
+        // #host-reference
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+          'Please use another name or follow the [docs](https://v7.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
   });
