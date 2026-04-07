@@ -90,7 +90,7 @@ Looking past the v9.0 line, we're investing in several directions on the Data Gr
 - **Excel‑style formulas:** We intend to broaden formula and formula‑like behaviors so spreadsheet‑minded workflows feel more at home in the grid.
 - **Data Grid AI Assistant:** Expect broader coverage of grid operations, tighter polish, and continued pairing with Console and documentation so adoption stays straightforward.
 
-## Deep dives
+## Further reading
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI v9](/blog/introducing-material-ui-v9/)

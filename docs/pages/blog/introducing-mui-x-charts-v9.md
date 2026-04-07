@@ -86,7 +86,7 @@ We also want Charts to ride the same Base UI wave as Material UI: clearer comp
 
 Follow all updates in the [Charts](/x/react-charts/) documentation.
 
-## Deep dives
+## Further reading
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI v9](/blog/introducing-material-ui-v9/)

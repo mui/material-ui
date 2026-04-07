@@ -25,7 +25,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 - [What you can build](#what-you-can-build)
 - [Event Calendar](#event-calendar)
 - [Fit with the rest of MUI X](#fit-with-the-rest-of-mui-x)
-- [Timeline](#timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+- [Event Timeline](#event-timeline) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [Community and Premium](#community-and-premium) [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 - [What's next](#whats-next)
 
@@ -128,7 +128,7 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 - Mobile version for the Event Calendar.
 - Integration with existing calendars (ICS import/export, Google Calendar sync, and more).
 
-## Deep dives
+## Further reading
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI v9](/blog/introducing-material-ui-v9/)

@@ -17,7 +17,6 @@ This new major is part of a coordinated effort across the entire product suite; 
 
 - [Date and Time Pickers](#date-and-time-pickers)
 - [Tree View](#tree-view) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-- [What's next](#whats-next)
 
 ## Date and Time Pickers
 
@@ -48,7 +47,7 @@ If you maintain custom themes or imperative code against trees, budget time to r
 
 Full API and migration notes live in the [Tree View](/x/react-tree-view/) documentation.
 
-## Deep dives
+## Further reading
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI v9](/blog/introducing-material-ui-v9/)

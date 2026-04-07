@@ -204,7 +204,7 @@ We're listening to you, and for the next major, we're going to explore refactori
 - Target independence from Emotion and better integration paths for teams using Tailwind CSS.
 - The ability for you to use Material Design, or have a separate theme with your own brand, without having to override every class.
 
-## Deep dives
+## Further reading
 
 - [Material UI v9](/blog/introducing-material-ui-v9/)
 - [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)

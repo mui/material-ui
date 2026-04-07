@@ -81,7 +81,7 @@ Phase 3 ships templates and tighter ecosystem combinations (advanced components
 
 We will roll these milestones through the v9 cycle in regular releases; follow [MUI X releases](https://github.com/mui/mui-x/releases) for packaged updates.
 
-## Deep dives
+## Further reading
 
 - [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
 - [Material UI v9](/blog/introducing-material-ui-v9/)
