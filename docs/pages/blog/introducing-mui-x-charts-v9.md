@@ -82,7 +82,7 @@ Breaking changes, codemods, and checklist items for moving to v9 are centralized
 
 On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large datasets without sacrificing responsiveness.
 
-We also want Charts to ride the same Base UI wave as Material UI: clearer composition, slots you can lean on for serious layout changes, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
+We also want Charts to ride the same Base UI wave as Material UI: clearer composition, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 
 Follow all updates in the [Charts](/x/react-charts/) documentation.
 
