@@ -25,6 +25,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 ## Interaction and accessibility
 
 Keyboard navigation is on by default in v9, with follow‑through work on focus and tooltips.
+
 Across MIT, Pro, and Premium, we've kept tightening legend and axis ergonomics: clearer hooks for layout and ticks, better control over axis tooltips and ordering, and refinements to how series identity and highlighting behave so custom themes don't fight the internals.
 
 The headline is a charting stack that feels reachable from the keyboard and easier to tune without diving into copy‑paste workarounds.
@@ -36,6 +37,7 @@ See the [Charts](/x/react-charts/) overview for APIs and examples.
 v9 is packed with changes to align components prefixes. Previously a mix of `Chart*` and `Charts*` prefixes were used. Now you should expect `Charts*` to be the only prefix left.
 
 Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
+
 Tooltips align with the layer container model: portaling through `ChartsLayerContainer` means tooltip markup is not trapped under the SVG or a parent with `overflow: hidden`, so you spend less time debugging clipped overlays when charts sit in scroll areas, dialogs, or Data Grid cells, and z-order stays consistent with other chart layers. Shared primitives also accept `className` more predictably, so bar, line, radar, and shared wrappers theme the same way.
 
 For composition patterns and layering, see [Charts composition](/x/react-charts/composition/).
