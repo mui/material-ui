@@ -81,6 +81,15 @@ Phase 3 ships templates and tighter ecosystem combinations (advanced components
 
 We will roll these milestones through the v9 cycle in regular releases; follow [MUI X releases](https://github.com/mui/mui-x/releases) for packaged updates.
 
+## Deep dives
+
+- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
+- [Material UI v9](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts v9.0](/blog/introducing-mui-x-charts-v9/)
+- [MUI X v9.0: Tree View, Date Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/)
+
 ## We want your feedback
 
 Your input drives our direction.

@@ -50,7 +50,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 ## What you can build
 
 <figure>
-  <img src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_scheduler-showcase.png" alt="" width="1600" height="900" loading="lazy" style="border: 0; width: 100px;"/>
+  <img src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-showcase.png" alt="" width="1600" height="900" loading="lazy" style="border: 0; width: 100px;"/>
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
@@ -87,7 +87,7 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-Timeline puts time on one axis and resources on the other.
+Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
 
 The point is one underlying schedule that can be re-visualized without rewriting your domain layer: start in Event Calendar when date-first UX is enough, move to Timeline when resource density and conflict management become central.
@@ -115,6 +115,15 @@ Most teams can prove UX on Community and move up when recurrence or massive even
 ## What's next
 
 TODO
+
+## Deep dives
+
+- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
+- [Material UI v9](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts v9.0](/blog/introducing-mui-x-charts-v9/)
+- [MUI X v9.0: Tree View, Date Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/)
 
 ## We want your feedback
 

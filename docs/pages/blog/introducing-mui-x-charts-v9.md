@@ -49,7 +49,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
 <figure>
   <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_cansdlestick.mp4"
+      src="/static/blog/introducing-mui-x-charts-v9/candlestick.mp4"
       type="video/mp4"
     />
   </video>
@@ -65,7 +65,7 @@ They sit on the Premium side of the line‑up and follow the same `Charts*` comp
 <figure>
   <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-charts-v9/stub_ghost_rangebar.mp4"
+      src="/static/blog/introducing-mui-x-charts-v9/rangebar.mp4"
       type="video/mp4"
     />
   </video>
@@ -83,6 +83,15 @@ On the commercial plan, expect continued polish on candlestick and other advance
 We also want Charts to ride the same Base UI wave as Material UI: clearer composition, slots you can lean on for serious layout changes, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 
 Follow all updates in the [Charts](/x/react-charts/) documentation.
+
+## Deep dives
+
+- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
+- [Material UI v9](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X v9.0: Tree View, Date Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/)
 
 ## We want your feedback
 

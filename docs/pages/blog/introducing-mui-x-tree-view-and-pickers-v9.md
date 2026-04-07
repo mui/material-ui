@@ -44,6 +44,15 @@ Full API and migration notes live in the [Tree View](/x/react-tree-view/) docume
 
 TODO
 
+## Deep dives
+
+- [Material UI and MUI X v9 overview](/blog/introducing-mui-v9/)
+- [Material UI v9](/blog/introducing-material-ui-v9/)
+- [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts v9.0](/blog/introducing-mui-x-charts-v9/)
+- [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/)
+
 ## We want your feedback
 
 Your input drives our direction.
