@@ -39,9 +39,9 @@ In v9, we focused on three concrete areas:
 - [One MUI ecosystem, a synced major version](#one-mui-ecosystem-a-synced-major-version)
 - [Components highlights](#components-highlights)
 - [New MUI Console application](#new-mui-console-application)
-- [Telemetry on commercial components](#telemetry-on-commercial-components)
 - ["MUI Chat" renamed to "MUI Recipes"](#mui-chat-renamed-to-mui-recipes)
 - [MUI X pricing and licensing updates](#mui-x-pricing-and-licensing-updates)
+- [Telemetry on commercial components](#telemetry-on-commercial-components)
 - [What's next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [AI-native workflows](#ai-native-workflows)
@@ -138,13 +138,6 @@ With the console, teams can:
 
 We will expand Console over time, but v9 already covers the core operational loop: provision keys, manage licenses, and monitor usage.
 
-## Telemetry on commercial components
-
-We launched telemetry for commercial components last year.
-In v9, telemetry is now enabled by default in development mode for commercial components, and it remains off in production builds.
-
-Telemetry helps us understand how developers use components in real projects, so we can prioritize fixes, improve defaults, and focus roadmap work on the patterns teams actually use.
-
 ## "MUI Chat" renamed to "MUI Recipes"
 
 [MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idomatic API of Material UI, MUI X, or Base UI if you asked for it.
@@ -171,6 +164,15 @@ Starting April 8, 2026, MUI X pricing and licensing are updated:
 
 For full details, transition examples, and plan-by-plan terms, read the full announcement:
 [Upcoming Changes to MUI X Pricing and Licensing in 2026](/blog/2026-mui-x-price-changes/).
+
+## Telemetry on commercial components
+
+We launched telemetry for commercial components last year.
+In v9, telemetry is now enabled by default in development mode for commercial components, and it remains off in production builds.
+
+Telemetry helps us understand how developers use components in real projects, so we can prioritize fixes, improve defaults, and focus roadmap work on the patterns teams actually use.
+If your workspace requires it, you can opt out by following the documented steps:
+[Opting out of telemetry](/x/guides/telemetry/#opting-out).
 
 ## What's next
 
