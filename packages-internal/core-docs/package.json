@@ -75,18 +75,6 @@
     "styled-components": "^5.3.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
-    "@docsearch/react": {
-      "optional": true
-    },
-    "@types/react": {
-      "optional": true
-    },
-    "react-runner": {
-      "optional": true
-    },
-    "react-simple-code-editor": {
-      "optional": true
-    },
     "styled-components": {
       "optional": true
     }
