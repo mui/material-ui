@@ -12,7 +12,7 @@ In the `package.json` file, change the package version from `latest` to `next`.
 ```
 
 Using `next` ensures your project always uses the latest v9 pre-releases.
-Alternatively, you can also target and fix it to a specific version, for example, `9.0.0-alpha.0`.
+Alternatively, you can pin it to a specific version, for example, `9.0.0-alpha.0`.
 
 ## Supported browsers and versions
 
@@ -44,8 +44,10 @@ The listbox does not toggle anymore when using right click on the input. The lef
 
 #### freeSolo type related changes
 
-When the `freeSolo` prop is passed as `true`, the `getOptionLabel` and `isOptionEqualToValue` props
-accept `string` as well for their `option` and, respectively, `value` arguments:
+When `freeSolo` is `true`:
+
+- The `getOptionLabel` prop accepts `string` for its `option` argument
+- The `isOptionEqualToValue` prop accepts `string` for its `value` argument
 
 ```diff
 - isOptionEqualToValue?: (option: Value, value: Value) => boolean;
@@ -84,7 +86,7 @@ When sending Enter and Spacebar keys on the ButtonBase or components that are co
 the click event now bubbles to their ancestors.
 
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
-in the ButtonBase keyboard handlers. This is actually the expected behavior.
+in the ButtonBase keyboard handlers. This matches the expected behavior.
 
 #### Event handlers on disabled non-native buttons
 
@@ -137,7 +139,7 @@ by checking the value of the `reason` argument in `onClose`:
   );
 ```
 
-The `Modal` change is the same.
+The same applies to `Modal`.
 
 ### GridLegacy
 
@@ -166,7 +168,7 @@ See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) fo
 
 ### List
 
-`ListItemIcon` default min-width changes to `36px` (was `56px`) to be consistent with the menu item and uses `theme.spacing` instead of a hardcoded number.
+The `ListItemIcon` default min-width has changed to `36px` (previously `56px`) to be consistent with the menu item, and now uses `theme.spacing` instead of a hardcoded number.
 
 ### Material Icons
 
@@ -188,7 +190,7 @@ Theme variants of these icons (for example, `InfoOutlineRounded`, `DeleteOutline
 
 When using `variant="selectedMenu"`, the `tabindex` attribute for each menu item will change on Arrow Key, Home / End or Character Key navigation. Previously, keyboard navigation moved DOM focus without updating `tabindex` on focused items. Now, we move DOM focus and also add `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
 
-This change also applies both `Menu` and `MenuList` with `variant="selectedMenu"`.
+This change also applies to both `Menu` and `MenuList` with `variant="selectedMenu"`.
 
 The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
 
@@ -202,7 +204,7 @@ Custom children that set `role="menuitem"` but do not wrap the `MenuItem` compon
 
 ### Slider
 
-The `Slider` component uses pointer events instead of mouse events. Previously `onMouseDown={(event) => event.preventDefault()}` will cancel a drag from starting, now `onPointerDown` must be used instead.
+The `Slider` component uses pointer events instead of mouse events. Previously, `onMouseDown={(event) => event.preventDefault()}` would cancel a drag from starting. Now, `onPointerDown` must be used instead.
 
 ### Stepper, Step and StepButton
 
@@ -308,7 +310,7 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 ### jsdom support
 
 The behavior of the components in test environments has been improved to be more reliable.
-The use of `process.env.NODE_ENV === 'test'` was replaced with feature detection or user-agent sniffing wherever it's more accurate with the intention of the code.
+The use of `process.env.NODE_ENV === 'test'` has been replaced with feature detection or user-agent sniffing wherever it more accurately reflects the intention of the code.
 This change shouldn't impact most users, but it might lead to unintended CI changes.
 For example, the code has been updated to auto-detect DOM environments that don't support layout, such as [jsdom](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom), with user-agent sniffing.
 
@@ -1106,8 +1108,8 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
-The deprecated `Divider` prop have been removed.
-Use `sx={{ opacity : "0.6" }}` (or any opacity):
+The deprecated `Divider` prop has been removed.
+Use `sx={{ opacity: 0.6 }}` (or any opacity):
 
 ```diff
  <Divider
