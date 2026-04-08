@@ -24,15 +24,15 @@ const linkStyleOverrides = (theme: Theme) => ({
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2026 roadmap! Take our latest`}
+      {`🎉 Material UI v9 is out now! Check out the `}
       &nbsp;
       <Link
-        href="https://tally.so/r/3jOKG1?source=website"
+        href="https://mui.com/blog/introducing-mui-v9/"
         target="_blank"
         underline="always"
         sx={linkStyleOverrides}
       >
-        Developer Survey →
+        announcement blog post. →
       </Link>
     </React.Fragment>
   );
