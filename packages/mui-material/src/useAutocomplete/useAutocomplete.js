@@ -564,6 +564,7 @@ function useAutocomplete(props) {
         currentOption &&
         value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
+        setHighlightedIndex({ index: highlightedIndexRef.current });
         return;
       }
 
