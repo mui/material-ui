@@ -38,7 +38,7 @@ Base UI adoption is expanding across Material UI: for now through component re
 `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="992" height="562" style="width: 496px; border-radius: 0; border: 0;">
+  <video muted playsinline autoplay loop preload="auto" controls width="992" height="562" style="width: 496px; border-radius: 0; border: 0;">
     <source
       src="/static/blog/introducing-material-ui-v9/number-field.mp4"
       type="video/mp4"
@@ -55,7 +55,7 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
 On this stack, we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
-  <video autoplay muted loop playsinline width="1462" height="998" controls style="border: 0; width: 731px;">
+  <video muted playsinline autoplay loop preload="auto" width="1462" height="998" controls style="border: 0; width: 731px;">
     <source
       src="/static/blog/introducing-material-ui-v9/menubar.mp4"
       type="video/mp4"
@@ -184,6 +184,15 @@ For earlier majors, find the [v6](/material-ui/migration/upgrade-to-v6/) and [v7
 - Performance improvements.
 - Accessibility improvements.
 - Add more components from Base UI.
+
+## Further reading
+
+- [Introducing Material UI and MUI X v9](/blog/introducing-mui-v9/)
+- [MUI X Data Grid v9.0](/blog/introducing-mui-x-data-grid-v9/)
+- [MUI X Charts v9.0](/blog/introducing-mui-x-charts-v9/)
+- [MUI X v9.0: Tree View, Date Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/)
+- [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/)
+- [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/)
 
 ## We want your feedback
 

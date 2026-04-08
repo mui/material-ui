@@ -49,7 +49,7 @@ For composition patterns and layering, see [Charts composition](/x/react-charts/
 The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
+  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
       src="/static/blog/introducing-mui-x-charts-v9/candlestick.mp4"
       type="video/mp4"
@@ -65,7 +65,7 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
 They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
+  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
       src="/static/blog/introducing-mui-x-charts-v9/rangebar.mp4"
       type="video/mp4"

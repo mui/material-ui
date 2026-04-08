@@ -78,7 +78,7 @@ They suit appointment booking, service desks, team coordination, and smaller‑s
 This is the best default when your users already understand calendar metaphors and need fast navigation across dates with a lightweight resource context.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
+  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
     <source
       src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4"
       type="video/mp4"
@@ -102,9 +102,9 @@ It fits dispatching, workforce shifts, room/equipment allocation, manufacturing 
 The point is one underlying schedule that can be re-visualized without rewriting your domain layer: start in Event Calendar when date-first UX is enough, move to Timeline when resource density and conflict management become central.
 
 <figure>
-  <video autoplay muted loop playsinline controls width="1600" height="900" style="border: 0; width: 800px;">
+  <video muted playsinline autoplay loop preload="auto" controls width="2130" height="1404" style="border: 0; width: 800px;">
     <source
-      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/stub_ghost_scheduler-timeline.mp4"
+      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-timeline.mp4"
       type="video/mp4"
     />
   </video>
