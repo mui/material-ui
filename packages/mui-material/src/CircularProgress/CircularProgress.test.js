@@ -240,10 +240,10 @@ describe('<CircularProgress />', () => {
       ]);
     });
 
-    it('should error if min and max props are provided with an indeterminate variant', () => {
+    it('should warn if min and max props are provided with an indeterminate variant', () => {
       expect(() => {
         render(<CircularProgress variant="indeterminate" min={0} max={10} />);
-      }).toErrorDev([
+      }).toWarnDev([
         "MUI: You have provided the `min` or `max` props with a 'indeterminate' variant. These props will have no effect.",
         !strictModeDoubleLoggingSuppressed &&
           "MUI: You have provided the `min` or `max` props with a 'indeterminate' variant. These props will have no effect.",

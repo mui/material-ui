@@ -199,7 +199,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 
   if (process.env.NODE_ENV !== 'production') {
     if (variant === 'indeterminate' && (minProp !== undefined || maxProp !== undefined)) {
-      console.error(
+      console.warn(
         `MUI: You have provided the \`min\` or \`max\` props with a 'indeterminate' variant. These props will have no effect.`,
       );
     }

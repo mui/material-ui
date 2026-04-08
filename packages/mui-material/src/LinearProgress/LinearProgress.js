@@ -375,7 +375,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       ['indeterminate', 'query'].includes(variant) &&
       (minProp !== undefined || maxProp !== undefined)
     ) {
-      console.error(
+      console.warn(
         `MUI: You have provided the \`min\` or \`max\` props with a 'indeterminate' or 'query' variant. These props will have no effect.`,
       );
     }

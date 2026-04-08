@@ -301,10 +301,10 @@ describe('<LinearProgress />', () => {
       ]);
     });
 
-    it('should error if variant is indeterminate or query and min or max props are provided', () => {
+    it('should warn if variant is indeterminate or query and min or max props are provided', () => {
       expect(() => {
         render(<LinearProgress variant="indeterminate" min={0} />);
-      }).toErrorDev([
+      }).toWarnDev([
         "MUI: You have provided the `min` or `max` props with a 'indeterminate' or 'query' variant. These props will have no effect.",
         !strictModeDoubleLoggingSuppressed &&
           "MUI: You have provided the `min` or `max` props with a 'indeterminate' or 'query' variant. These props will have no effect.",
@@ -312,7 +312,7 @@ describe('<LinearProgress />', () => {
 
       expect(() => {
         render(<LinearProgress variant="query" max={100} />);
-      }).toErrorDev([
+      }).toWarnDev([
         "MUI: You have provided the `min` or `max` props with a 'indeterminate' or 'query' variant. These props will have no effect.",
         !strictModeDoubleLoggingSuppressed &&
           "MUI: You have provided the `min` or `max` props with a 'indeterminate' or 'query' variant. These props will have no effect.",
