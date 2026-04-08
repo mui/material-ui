@@ -2,11 +2,11 @@ import * as React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export default function CircularCustomScale() {
-  const [progress, setProgress] = React.useState(0);
+  const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 20 ? 0 : prevProgress + 2));
+      setProgress((prevProgress) => (prevProgress >= 20 ? 10 : prevProgress + 2));
     }, 800);
 
     return () => {
