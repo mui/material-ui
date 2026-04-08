@@ -6,7 +6,9 @@
 
 _Apr 7, 2026_
 
-A big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible. A few highlights ✨:
+
+- 📖 Added the Menubar component page to the docs.
 
 ### `@mui/material@7.3.10`
 
@@ -18,7 +20,7 @@ A big thanks to the 15 contributors who made this release possible.
 - [autocomplete] Support full slots for clearIndicator and popupIndicator (#47913) @silviuaavram
 - [button-base] Fix native button detection (#47994) @mj12albert
 - [input] Fix high contrast cutoff on first character (#48160) @silviuaavram
-- [material-ui] Partially revert "[material-ui] Clean up duplicated CSS rules (#47838)" (#47938) @sai6855
+- [list item text][card header] Revert cleanup of duplicated CSS rules (#47938) @sai6855
 - [popper] Add missing classes export (#48033) @mj12albert
 - [select] Fix focus visible always set on menu item (#48022) @silviuaavram
 - [slider] Accept readonly array for the value prop (#47961) @pcorpet
@@ -28,7 +30,6 @@ A big thanks to the 15 contributors who made this release possible.
 
 ### Docs
 
-- Revert "[website] Implement the latest price changes proposal (#47606)" (#47921) @DanailH
 - [codemod] Add v7 migration docs for deprecated Autocomplete APIs and Autocomplete codemod (#47954) @ZeeshanTamboli
 - [menubar] Add Menubar component page (#47942) @siriwatknp
 - [progress] Label all demo components (#48168) @mj12albert
