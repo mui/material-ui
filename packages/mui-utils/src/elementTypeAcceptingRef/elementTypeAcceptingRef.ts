@@ -49,7 +49,7 @@ function elementTypeAcceptingRef(
     warningHint = 'Did you accidentally provide a React.Fragment instead?';
   }
 
-// #host-reference
+  // #host-reference
   if (warningHint !== undefined) {
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
