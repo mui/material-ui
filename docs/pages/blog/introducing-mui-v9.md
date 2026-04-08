@@ -14,6 +14,92 @@ manualCard: false
       height: 167px;
     }
   }
+
+  .v9-release-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .v9-release-cards__link {
+    display: block;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+  }
+
+  .v9-release-cards__link:hover {
+    border-color: #bdbdbd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .v9-release-cards__title {
+    font-size: 1.1rem;
+    color: #1976d2;
+  }
+
+  .v9-release-cards__title--alpha {
+    font-size: 1.1rem;
+    color: #7b1fa2;
+  }
+
+  .v9-release-cards__badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    vertical-align: middle;
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border: 1px solid rgba(106, 27, 154, 0.12);
+  }
+
+  .v9-release-cards__desc {
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    color: #616161;
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__link,
+  .mode-dark .v9-release-cards__link {
+    border-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__link:hover,
+  .mode-dark .v9-release-cards__link:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__title,
+  .mode-dark .v9-release-cards__title {
+    color: #90caf9;
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__title--alpha,
+  .mode-dark .v9-release-cards__title--alpha {
+    color: #e1bee7;
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__badge,
+  .mode-dark .v9-release-cards__badge {
+    background: rgba(156, 39, 176, 0.22);
+    color: #f3e5f5;
+    border-color: rgba(206, 147, 216, 0.35);
+  }
+
+  [data-mui-color-scheme='dark'] .v9-release-cards__desc,
+  .mode-dark .v9-release-cards__desc {
+    color: rgba(255, 255, 255, 0.74);
+  }
 </style>
 
 <a href="https://github.com/mui/material-ui/releases/tag/v9.0.0">
@@ -51,30 +137,30 @@ In v9, we focused on three concrete areas:
 
 All the announcements per product:
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0;">
-  <a href="/blog/introducing-material-ui-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">Material UI v9.0</strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Improved design-system foundations.</p>
+<div class="v9-release-cards">
+  <a class="v9-release-cards__link" href="/blog/introducing-material-ui-v9/">
+    <strong class="v9-release-cards__title">Material UI v9.0</strong>
+    <p class="v9-release-cards__desc">Improved design-system foundations.</p>
   </a>
-  <a href="/blog/introducing-mui-x-data-grid-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Data Grid v9.0</strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Dynamic data, in-grid charts, AI assistant.</p>
+  <a class="v9-release-cards__link" href="/blog/introducing-mui-x-data-grid-v9/">
+    <strong class="v9-release-cards__title">MUI X Data Grid v9.0</strong>
+    <p class="v9-release-cards__desc">Dynamic data, in-grid charts, AI assistant.</p>
   </a>
-  <a href="/blog/introducing-mui-x-charts-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X Charts v9.0</strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Candlestick, improved UX.</p>
+  <a class="v9-release-cards__link" href="/blog/introducing-mui-x-charts-v9/">
+    <strong class="v9-release-cards__title">MUI X Charts v9.0</strong>
+    <p class="v9-release-cards__desc">Candlestick, improved UX.</p>
   </a>
-  <a href="/blog/introducing-mui-x-tree-view-and-pickers-v9/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: #1976d2;">MUI X v9.0: Tree View, Date Pickers</strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Virtualization, keyboard navigation, and locale support.</p>
+  <a class="v9-release-cards__link" href="/blog/introducing-mui-x-tree-view-and-pickers-v9/">
+    <strong class="v9-release-cards__title">MUI X v9.0: Tree View, Date Pickers</strong>
+    <p class="v9-release-cards__desc">Virtualization, keyboard navigation, and locale support.</p>
   </a>
-  <a href="/blog/introducing-mui-x-scheduler-v9-alpha/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: rgba(155, 39, 176, 0.76);">MUI X Scheduler v9 <span style="background: #f3e5f5; color: #7b1fa2; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">alpha</span></strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Resource-aware calendars and timelines.</p>
+  <a class="v9-release-cards__link" href="/blog/introducing-mui-x-scheduler-v9-alpha/">
+    <strong class="v9-release-cards__title--alpha">MUI X Scheduler v9 <span class="v9-release-cards__badge">alpha</span></strong>
+    <p class="v9-release-cards__desc">Resource-aware calendars and timelines.</p>
   </a>
-  <a href="/blog/introducing-mui-x-chat-v9-alpha/" style="display: block; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, border-color 0.2s;">
-    <strong style="font-size: 1.1rem; color: rgba(155, 39, 176, 0.76);">MUI X Chat v9 <span style="background: #f3e5f5; color: #7b1fa2; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">alpha</span></strong>
-    <p style="margin: 8px 0 0; color: #666; font-size: 0.9rem;">Conversational UI for LLMs with adapters.</p>
+  <a class="v9-release-cards__link" href="/blog/introducing-mui-x-chat-v9-alpha/">
+    <strong class="v9-release-cards__title--alpha">MUI X Chat v9 <span class="v9-release-cards__badge">alpha</span></strong>
+    <p class="v9-release-cards__desc">Conversational UI for LLMs with adapters.</p>
   </a>
 </div>
 
