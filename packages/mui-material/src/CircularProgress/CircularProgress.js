@@ -217,14 +217,6 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   if (variant === 'determinate') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
 
-    circleStyle.strokeDasharray = circumference.toFixed(3);
-    circleStyle.strokeDashoffset = `${(((max - value) / (max - min)) * circumference).toFixed(3)}px`;
-    rootStyle.transform = 'rotate(-90deg)';
-
-    rootProps['aria-valuenow'] = Math.round(value);
-    rootProps['aria-valuemin'] = min;
-    rootProps['aria-valuemax'] = max;
-
     if (process.env.NODE_ENV !== 'production') {
       if (value < min || value > max || min >= max) {
         console.error(
@@ -232,6 +224,16 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         );
       }
     }
+
+    const range = max - min;
+    circleStyle.strokeDasharray = circumference.toFixed(3);
+    circleStyle.strokeDashoffset =
+      range > 0 ? `${(((max - value) / range) * circumference).toFixed(3)}px` : '0px';
+    rootStyle.transform = 'rotate(-90deg)';
+
+    rootProps['aria-valuenow'] = Math.round(value);
+    rootProps['aria-valuemin'] = min;
+    rootProps['aria-valuemax'] = max;
   }
 
   return (

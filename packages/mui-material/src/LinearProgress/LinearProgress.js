@@ -385,14 +385,17 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
           );
         }
       }
-      rootProps['aria-valuenow'] = Math.round(value);
-      rootProps['aria-valuemin'] = min;
-      rootProps['aria-valuemax'] = max;
-      let transform = ((value - min) / (max - min)) * 100 - 100;
+
+      const range = max - min;
+      let transform = ((value - min) / range) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar1.transform = `translateX(${transform}%)`;
+      inlineStyles.bar1.transform = range > 0 ? `translateX(${transform}%)` : undefined;
+
+      rootProps['aria-valuenow'] = Math.round(value);
+      rootProps['aria-valuemin'] = min;
+      rootProps['aria-valuemax'] = max;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a value prop ' +
@@ -410,11 +413,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
         }
       }
 
-      let transform = ((valueBuffer - min) / (max - min)) * 100 - 100;
+      const range = max - min;
+      let transform = ((valueBuffer - min) / range) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar2.transform = `translateX(${transform}%)`;
+      inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : undefined;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a valueBuffer prop ' +

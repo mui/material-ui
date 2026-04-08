@@ -217,6 +217,29 @@ describe('<LinearProgress />', () => {
       );
     });
 
+    it('should not add transform style to the progress bar when min is equal or larger than max', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<LinearProgress variant="determinate" value={5} min={10} max={0} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar.children[0].style.transform).to.equal('');
+
+      errorSpy.mockRestore();
+    });
+
+    it('should not add transform style to the buffer bar when min is equal or larger than max', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<LinearProgress variant="buffer" value={5} valueBuffer={5} min={10} max={0} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar.children[1].style.transform).to.equal('');
+      expect(progressbar.children[2].style.transform).to.equal('');
+
+      errorSpy.mockRestore();
+    });
+
     it('should warn if the value is out of range', () => {
       expect(() => {
         render(<LinearProgress variant="determinate" value={-1} min={0} max={10} />);
