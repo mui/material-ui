@@ -231,6 +231,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     open,
     PaperComponent = Paper,
     PaperProps = {},
+    role = 'dialog',
     scroll = 'paper',
     slots = {},
     slotProps = {},
@@ -365,7 +366,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           <PaperSlot
             as={PaperComponent}
             elevation={24}
-            role="dialog"
+            role={role}
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
@@ -479,6 +480,13 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @deprecated Use `slotProps.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperProps: PropTypes.object,
+  /**
+   * The ARIA role for the dialog element.
+   * The main dialog role is `dialog`, but `alertdialog` can be used if the content of the dialog requires immediate attention.
+   * See https://www.w3.org/TR/wai-aria-1.2/#dialog and https://www.w3.org/TR/wai-aria-1.2/#alertdialog for more details.
+   * @default 'dialog'
+   */
+  role: PropTypes.oneOf(['alertdialog', 'dialog']),
   /**
    * Determine the container for scrolling the dialog.
    * @default 'paper'

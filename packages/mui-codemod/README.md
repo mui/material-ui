@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod <codemod> <paths...>
+npx @mui/codemod@^7.0.0 <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -2209,7 +2209,7 @@ Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/grid-props <path>
+npx @mui/codemod@^7.0.0 v7.0.0/grid-props <path>
 ```
 
 Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
@@ -2230,7 +2230,7 @@ You can provide the theme breakpoints via options, for example, `--jscodeshift='
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@^7.0.0 v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 ```diff
@@ -2243,7 +2243,7 @@ npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/lab-removed-components <path>
+npx @mui/codemod@^7.0.0 v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2289,12 +2289,12 @@ Updates the `InputLabel`'s `size` value from `normal` to `medium`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
+npx @mui/codemod@^7.0.0 v7.0.0/input-label-size-normal-medium <path>
 ```
 
 <!-- #host-reference -->
 
-You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
+You can find more details about this breaking change in [the migration guide](https://v7.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 
@@ -2809,7 +2809,7 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/autocomplete-rename-closeicon  <path>
+npx @mui/codemod@^7.0.0 v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#autocomplete).
@@ -2828,7 +2828,7 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/autocomplete-rename-option  <path>
+npx @mui/codemod@^7.0.0 v5.0.0/autocomplete-rename-option  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#autocomplete).
@@ -2847,7 +2847,7 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/avatar-circle-circular <path>
+npx @mui/codemod@^7.0.0 v5.0.0/avatar-circle-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#avatar).
@@ -2882,7 +2882,7 @@ Renames the badge's props.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/badge-overlap-value <path>
+npx @mui/codemod@^7.0.0 v5.0.0/badge-overlap-value <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#badge).
@@ -2906,7 +2906,7 @@ This change only affects Base UI components.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/base-rename-components-to-slots <path>
+npx @mui/codemod@^7.0.0 v5.0.0/base-rename-components-to-slots <path>
 ```
 
 The associated breaking change was done in [#34693](https://github.com/mui/material-ui/pull/34693).
@@ -2925,7 +2925,7 @@ Updates the Box API from separate system props to `sx`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/box-borderradius-values <path>
+npx @mui/codemod@^7.0.0 v5.0.0/box-borderradius-values <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
@@ -2961,7 +2961,7 @@ Renames the Box `grid*Gap` props.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/box-rename-gap <path>
+npx @mui/codemod@^7.0.0 v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#box).
@@ -2978,7 +2978,7 @@ Removes the outdated `color` prop values.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/button-color-prop <path>
+npx @mui/codemod@^7.0.0 v5.0.0/button-color-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#button).
@@ -2995,7 +2995,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/chip-variant-prop <path>
+npx @mui/codemod@^7.0.0 v5.0.0/chip-variant-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#chip).
@@ -3012,7 +3012,7 @@ Renames the CircularProgress `static` variant to `determinate`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/circularprogress-variant <path>
+npx @mui/codemod@^7.0.0 v5.0.0/circularprogress-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#circularprogress).
@@ -3031,7 +3031,7 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/collapse-rename-collapsedheight <path>
+npx @mui/codemod@^7.0.0 v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#collapse).
@@ -3050,7 +3050,7 @@ A generic codemod to rename any component prop.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
+npx @mui/codemod@^7.0.0 v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
 #### `core-styles-import`
@@ -3162,7 +3162,7 @@ Renames the `fade` style utility import and calls to `alpha()`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/fade-rename-alpha <path>
+npx @mui/codemod@^7.0.0 v5.0.0/fade-rename-alpha <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#styles).
@@ -3179,7 +3179,7 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/grid-justify-justifycontent <path>
+npx @mui/codemod@^7.0.0 v5.0.0/grid-justify-justifycontent <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#grid).
@@ -3463,7 +3463,7 @@ or
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/moved-lab-modules <path>
+npx @mui/codemod@^7.0.0 v5.0.0/moved-lab-modules <path>
 ```
 
 You can find more details about this breaking change in the migration guide.
@@ -3527,7 +3527,7 @@ Fix private import paths.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/optimal-imports <path>
+npx @mui/codemod@^7.0.0 v5.0.0/optimal-imports <path>
 ```
 
 #### `root-ref`
@@ -3656,7 +3656,7 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/theme-breakpoints <path>
+npx @mui/codemod@^7.0.0 v5.0.0/theme-breakpoints <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -3730,7 +3730,7 @@ Removes the 'px' suffix from some template strings.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/theme-spacing <path>
+npx @mui/codemod@^7.0.0 v5.0.0/theme-spacing <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#theme).
@@ -3763,7 +3763,7 @@ Converts all `@mui/material` submodule imports to the root module:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/top-level-imports <path>
+npx @mui/codemod@^7.0.0 v5.0.0/top-level-imports <path>
 ```
 
 Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -3815,7 +3815,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/use-transitionprops <path>
+npx @mui/codemod@^7.0.0 v5.0.0/use-transitionprops <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](/material-ui/migration/v5-component-changes/#dialog).
@@ -3845,7 +3845,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v5.0.0/variant-prop <path>
+npx @mui/codemod@^7.0.0 v5.0.0/variant-prop <path>
 ```
 
 #### `with-mobile-dialog`
@@ -3956,7 +3956,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v4.0.0/theme-spacing-api <path>
+npx @mui/codemod@^7.0.0 v4.0.0/theme-spacing-api <path>
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -3983,7 +3983,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v4.0.0/optimal-imports <path>
+npx @mui/codemod@^7.0.0 v4.0.0/optimal-imports <path>
 ```
 
 Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -4001,7 +4001,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v4.0.0/top-level-imports <path>
+npx @mui/codemod@^7.0.0 v4.0.0/top-level-imports <path>
 ```
 
 Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -4022,7 +4022,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v1.0.0/import-path <path>
+npx @mui/codemod@^7.0.0 v1.0.0/import-path <path>
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -4049,7 +4049,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v1.0.0/color-imports <path>
+npx @mui/codemod@^7.0.0 v1.0.0/color-imports <path>
 ```
 
 **additional options**
@@ -4057,7 +4057,7 @@ npx @mui/codemod@latest v1.0.0/color-imports <path>
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
+npx @mui/codemod@^7.0.0 v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
 #### `svg-icon-imports`
@@ -4075,7 +4075,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v1.0.0/svg-icon-imports <path>
+npx @mui/codemod@^7.0.0 v1.0.0/svg-icon-imports <path>
 ```
 
 #### `menu-item-primary-text`
@@ -4093,7 +4093,7 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
+npx @mui/codemod@^7.0.0 v1.0.0/menu-item-primary-text <path>
 ```
 
 ### v0.15.0
@@ -4117,5 +4117,5 @@ The diff should look like this:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest v0.15.0/import-path <path>
+npx @mui/codemod@^7.0.0 v0.15.0/import-path <path>
 ```

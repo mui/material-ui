@@ -41,7 +41,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': '^7.0.0',
       '@mui/base': 'latest',
       'prop-types': 'latest',
     });
@@ -73,7 +73,7 @@ const suggestions = [
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': '^7.0.0',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -103,8 +103,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': '^7.0.0',
+      '@mui/lab': '^7.0.0-beta',
     });
   });
 
@@ -131,8 +131,8 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': '^7.0.0',
+      '@mui/lab': '^7.0.0-beta',
       exceljs: 'latest',
     });
   });
@@ -151,7 +151,7 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': '^7.0.0',
       '@mui/base': 'latest',
       typescript: 'latest',
     });
@@ -206,8 +206,8 @@ import {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': '^7.0.0',
+      '@mui/lab': '^7.0.0-beta',
     });
   });
 
@@ -227,8 +227,8 @@ import lab from '@mui/lab';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
+      '@mui/material': '^7.0.0',
+      '@mui/lab': '^7.0.0-beta',
     });
   });
 
@@ -533,10 +533,10 @@ export default function EmailExample() {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/icons-material': 'latest',
+      '@mui/icons-material': '^7.0.0',
       '@mui/joy': 'latest',
-      '@mui/material': 'latest',
-      '@mui/system': 'latest',
+      '@mui/material': '^7.0.0',
+      '@mui/system': '^7.0.0',
       typescript: 'latest',
     });
   });
@@ -558,7 +558,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'latest',
+      '@mui/material': '^7.0.0',
       '@base-ui/react': 'latest',
       typescript: 'latest',
     });

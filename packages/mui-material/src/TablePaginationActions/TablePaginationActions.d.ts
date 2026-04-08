@@ -99,11 +99,11 @@ export interface TablePaginationActionsSlots {
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Pagination](https://v7.mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [TablePaginationActions API](https://mui.com/material-ui/api/table-pagination-actions/)
+ * - [TablePaginationActions API](https://v7.mui.com/material-ui/api/table-pagination-actions/)
  */
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 

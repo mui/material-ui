@@ -35,11 +35,11 @@ export interface SpeedDialIconProps extends StandardProps<
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://v7.mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDialIcon API](https://mui.com/material-ui/api/speed-dial-icon/)
+ * - [SpeedDialIcon API](https://v7.mui.com/material-ui/api/speed-dial-icon/)
  */
 declare const SpeedDialIcon: ((props: SpeedDialIconProps) => React.JSX.Element) & {
   muiName: string;

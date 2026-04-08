@@ -9,11 +9,11 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/system @emotion/react @emotion/styled
+npm install @mui/system@^7.0.0 @emotion/react @emotion/styled
 ```
 
 ## Documentation
 
 <!-- #host-reference -->
 
-Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.
+Visit [https://v7.mui.com/system/getting-started/](https://v7.mui.com/system/getting-started/) to view the full documentation.

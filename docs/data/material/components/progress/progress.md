@@ -86,8 +86,16 @@ const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 function Progress(props) {
   return (
     <React.Fragment>
-      <CircularProgress variant="determinate" value={normalise(props.value)} />
-      <LinearProgress variant="determinate" value={normalise(props.value)} />
+      <CircularProgress
+        variant="determinate"
+        value={normalise(props.value)}
+        aria-label="Upload photos"
+      />
+      <LinearProgress
+        variant="determinate"
+        value={normalise(props.value)}
+        aria-label="Upload photos"
+      />
     </React.Fragment>
   );
 }
@@ -108,6 +116,10 @@ Normally, no special feedback is necessary during delays of more than 0.1 but le
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "DelayingAppearance.js"}}
+
+## Accessibility
+
+Progress bars must be given an accessible name by either setting `aria-labelledby` that points to the `id` of a visible text label, or using the `aria-label` attribute.
 
 ## Limitations
 

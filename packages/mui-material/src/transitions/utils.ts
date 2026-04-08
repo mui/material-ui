@@ -18,6 +18,42 @@ interface TransitionProps {
   delay: string | undefined;
 }
 
+export function normalizedTransitionCallback(
+  nodeRef: React.RefObject<HTMLElement | null>,
+  callback: ((node: HTMLElement, isAppearing?: boolean) => void) | undefined,
+): (maybeIsAppearing?: boolean) => void {
+  return (maybeIsAppearing) => {
+    if (callback) {
+      const node = nodeRef.current!;
+      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      if (maybeIsAppearing === undefined) {
+        callback(node);
+      } else {
+        callback(node, maybeIsAppearing);
+      }
+    }
+  };
+}
+
+type TransitionState = 'entering' | 'entered' | 'exiting' | 'exited';
+
+/**
+ * Computes the child style for a transition component, reusing existing
+ * references when possible to preserve referential equality for React.memo.
+ */
+export function getTransitionChildStyle(
+  state: TransitionState,
+  inProp: boolean | undefined,
+  baseStyles: Record<string, React.CSSProperties>,
+  hiddenStyles: React.CSSProperties,
+  styleProp: React.CSSProperties | undefined,
+  childStyle: React.CSSProperties | undefined,
+): React.CSSProperties | undefined {
+  const base =
+    state === 'exited' && !inProp ? hiddenStyles : baseStyles[state] || baseStyles.exited;
+  return styleProp || childStyle ? { ...base, ...styleProp, ...childStyle } : base;
+}
+
 export function getTransitionProps(props: ComponentProps, options: Options): TransitionProps {
   const { timeout, easing, style = {} } = props;
 

@@ -2,6 +2,7 @@
 import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
+import * as semver from 'semver';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';

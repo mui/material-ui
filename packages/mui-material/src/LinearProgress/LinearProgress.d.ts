@@ -64,10 +64,10 @@ export interface LinearProgressProps extends StandardProps<
  *
  * Demos:
  *
- * - [Progress](https://mui.com/material-ui/react-progress/)
+ * - [Progress](https://v7.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://mui.com/material-ui/api/linear-progress/)
+ * - [LinearProgress API](https://v7.mui.com/material-ui/api/linear-progress/)
  */
 export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;

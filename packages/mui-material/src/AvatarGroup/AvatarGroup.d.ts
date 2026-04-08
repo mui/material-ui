@@ -109,11 +109,11 @@ export interface AvatarGroupTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://v7.mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [AvatarGroup API](https://mui.com/material-ui/api/avatar-group/)
+ * - [AvatarGroup API](https://v7.mui.com/material-ui/api/avatar-group/)
  */
 declare const AvatarGroup: OverridableComponent<AvatarGroupTypeMap>;
 

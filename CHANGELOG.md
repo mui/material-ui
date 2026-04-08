@@ -1,5 +1,52 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.10
+
+<!-- generated comparing v7.3.9..v7.x -->
+
+_Apr 8, 2026_
+
+A big thanks to the 15 contributors who made this release possible. A few highlights ✨:
+
+- 📖 Added the Menubar component page to the docs.
+
+### `@mui/material@7.3.10`
+
+- [alert][dialog] Accessibility improvements (#48161) @silviuaavram
+- [autocomplete] Add `root` slot (#47916) @GerardasB
+- [autocomplete] Fix helper text focusing input when clicked (#48162) @mj12albert
+- [autocomplete] Fix popup reopening on window focus regain with openOnFocus (#47914) @aman44444
+- [autocomplete] Optimize selected option lookup (#48027) @anchmelev
+- [autocomplete] Support full slots for clearIndicator and popupIndicator (#47913) @silviuaavram
+- [button-base] Fix native button detection (#47994) @mj12albert
+- [input] Fix high contrast cutoff on first character (#48160) @silviuaavram
+- [list item text][card header] Revert cleanup of duplicated CSS rules (#47938) @sai6855
+- [popper] Add missing classes export (#48033) @mj12albert
+- [select] Fix focus visible always set on menu item (#48022) @silviuaavram
+- [slider] Accept readonly array for the value prop (#47961) @pcorpet
+- [switch] Add border to make it visible in high contrast mode (#48210) @silviuaavram
+- [theme] Do not create channel tokens for custom colors when `nativeColor` is used (#48144) @ZeeshanTamboli
+- [transitions] Performance improvements & misc fixes (#48217) @mj12albert
+
+### Docs
+
+- [codemod] Add v7 migration docs for deprecated Autocomplete APIs and Autocomplete codemod (#47954) @ZeeshanTamboli
+- [menubar] Add Menubar component page (#47942) @siriwatknp
+- [progress] Label all demo components (#48168) @mj12albert
+- [system] Update `styled` API docs for easier understanding (#47969) @olivier-lxo
+- Fix the dark mode footer row shadow for the Data Grid on the advanced components page (#48152) @arminmeh
+- Fix MUI X redirects (#47917) @cherniavskii
+- Use direct palette vars in Tailwind v4 snippet (#47955) @Ahmad-Alaziz
+
+### Core
+
+- [blog] Blogpost for upcoming price changes for MUI X (#47820) @DanailH
+- [blog] Update the 2026 price changes blogpost (#47944) @DanailH
+- [code-infra] Add pkg-pr-new as dev dependency (#48023) @silviuaavram
+- [docs-infra] Update Release Instructions and Search Index v7 (#48109) @dav-is
+
+All contributors of this release in alphabetical order: @Ahmad-Alaziz, @aman44444, @anchmelev, @arminmeh, @cherniavskii, @DanailH, @dav-is, @GerardasB, @mj12albert, @olivier-lxo, @pcorpet, @sai6855, @silviuaavram, @siriwatknp, @ZeeshanTamboli
+
 ## 7.3.9
 
 <!-- generated comparing v7.3.8..v7.x -->

@@ -35,11 +35,11 @@ If you're using yarn, you can configure it using a package resolution:
 ```diff title="package.json"
  {
    "dependencies": {
--    "@mui/styled-engine": "latest"
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+-    "@mui/styled-engine": "^7.0.0"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@^7.0.0"
    },
 +  "resolutions": {
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@^7.0.0"
 +  },
  }
 ```

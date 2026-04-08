@@ -358,11 +358,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://mui.com/material-ui/react-slider/)
+ * - [Slider](https://v7.mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://mui.com/material-ui/api/slider/)
+ * - [Slider API](https://v7.mui.com/material-ui/api/slider/)
  */
 declare const Slider: SliderType;
 

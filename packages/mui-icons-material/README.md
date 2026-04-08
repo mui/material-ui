@@ -13,15 +13,15 @@ The Material Icons package depends on Material UI—install both with the follo
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install @mui/icons-material@^7.0.0 @mui/material@^7.0.0 @emotion/styled @emotion/react
 ```
 
 ## Documentation
 
 <!-- #host-reference -->
 
-- Learn more about Material UI's [SVG Icon component](https://mui.com/material-ui/icons/#svgicon).
-- Browse the available icons on the [Material Icons page](https://mui.com/material-ui/material-icons/).
+- Learn more about Material UI's [SVG Icon component](https://v7.mui.com/material-ui/icons/#svgicon).
+- Browse the available icons on the [Material Icons page](https://v7.mui.com/material-ui/material-icons/).
 
 ## Contributing
 

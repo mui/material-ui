@@ -51,13 +51,13 @@ const PopperRoot = styled(BasePopper, {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popper](https://mui.com/material-ui/react-popper/)
+ * - [Autocomplete](https://v7.mui.com/material-ui/react-autocomplete/)
+ * - [Menu](https://v7.mui.com/material-ui/react-menu/)
+ * - [Popper](https://v7.mui.com/material-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://mui.com/material-ui/api/popper/)
+ * - [Popper API](https://v7.mui.com/material-ui/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,

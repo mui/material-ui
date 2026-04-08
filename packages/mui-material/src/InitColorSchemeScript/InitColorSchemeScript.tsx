@@ -56,11 +56,11 @@ export interface InitColorSchemeScriptProps {
  *
  * Demos:
  *
- * - [InitColorSchemeScript](https://mui.com/material-ui/react-init-color-scheme-script/)
+ * - [InitColorSchemeScript](https://v7.mui.com/material-ui/react-init-color-scheme-script/)
  *
  * API:
  *
- * - [InitColorSchemeScript API](https://mui.com/material-ui/api/init-color-scheme-script/)
+ * - [InitColorSchemeScript API](https://v7.mui.com/material-ui/api/init-color-scheme-script/)
  */
 function InitColorSchemeScript(props: InitColorSchemeScriptProps) {
   const {
