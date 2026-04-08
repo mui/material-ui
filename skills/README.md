@@ -31,15 +31,32 @@ skills/
     └── reference.md
 ```
 
-## Cursor
+## Files in each skill
 
-Symlinks under `.cursor/skills/<skill-name>` point at `skills/<skill-name>` so Cursor loads `SKILL.md` while the canonical content stays in `skills/`.
+| File | Purpose |
+| --- | --- |
+| `AGENTS.md` | Full guide — the canonical source of truth for all agents and tools |
+| `SKILL.md` | Cursor entry point and index (frontmatter + section summary) |
+| `README.md` | Human-readable overview |
+| `metadata.json` | Machine-readable metadata (version, references) |
+| `reference.md` | Quick-reference cheat sheet (imports, API shapes) |
+
+## Tool-specific discovery
+
+### All AGENTS.md-compatible tools (Claude Code, Copilot, etc.)
+
+The root `AGENTS.md` lists each skill and links directly to `skills/<name>/AGENTS.md`. Any agent that reads `AGENTS.md` files will find the skills from there.
+
+### Cursor
+
+Symlinks under `.cursor/skills/<skill-name>` point at `skills/<skill-name>` so Cursor loads `SKILL.md` while the canonical content stays in `skills/`. See [.cursor/skills/README.md](../.cursor/skills/README.md).
 
 ## Adding a skill
 
-1. Create `skills/<kebab-case-name>/` with `AGENTS.md`, `SKILL.md`, `README.md`, `metadata.json` (optional: `reference.md` or a `rules/` subtree later).
-2. Add `ln -s ../../skills/<name> .cursor/skills/<name>` from the repo root (see existing symlinks).
-3. List the new skill in the table below.
+1. Create `skills/<kebab-case-name>/` with `AGENTS.md`, `SKILL.md`, `README.md`, `metadata.json` (optional: `reference.md`).
+2. Add an entry to the table in the root `AGENTS.md` linking to the new `AGENTS.md`.
+3. For Cursor: `ln -s ../../skills/<name> .cursor/skills/<name>` from the repo root (see existing symlinks).
+4. List the new skill in the catalog below.
 
 ## Catalog
 
