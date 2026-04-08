@@ -299,9 +299,7 @@ function AppWrapper(props) {
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${materialPkgJson.version}`, current: true },
-        ],
+        versions: [{ text: `v${materialPkgJson.version}`, current: true }],
       };
     }
 
