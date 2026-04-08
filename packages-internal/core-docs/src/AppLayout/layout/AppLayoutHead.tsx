@@ -17,7 +17,7 @@ export interface AppLayoutHeadProps {
 
 const DEFAULT_HOST_URL = process.env.PULL_REQUEST_ID
   ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-  : 'https://next.mui.com';
+  : 'https://mui.com';
 
 export function AppLayoutHead(props: AppLayoutHeadProps) {
   const t = useTranslate();
@@ -64,7 +64,7 @@ export function AppLayoutHead(props: AppLayoutHeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://next.mui.com${
+              href={`https://mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
               hrefLang={userLanguage2}
