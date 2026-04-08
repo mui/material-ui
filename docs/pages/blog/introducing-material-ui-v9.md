@@ -5,6 +5,7 @@ date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['Material UI', 'Product']
 manualCard: false
+hideFromHomeList: true
 ---
 
 <style>

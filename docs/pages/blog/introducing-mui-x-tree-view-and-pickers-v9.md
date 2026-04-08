@@ -5,6 +5,7 @@ date: 2026-04-08T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
+hideFromHomeList: true
 ---
 
 In v9, we focused: large trees that stay fast and predictable, and pickers that behave well on keyboard, in forms, and next to other controls, with locale and adapter coverage that stays aligned with all the other components.
