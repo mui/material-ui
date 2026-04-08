@@ -258,7 +258,7 @@ describe('<LinearProgress />', () => {
       ]);
     });
 
-    it('should warn if the valueBuffer is out of range or less than the value prop', () => {
+    it('should error if the valueBuffer is out of range or less than the value prop', () => {
       expect(() => {
         render(<LinearProgress variant="buffer" value={5} valueBuffer={4} min={0} max={10} />);
       }).toErrorDev([
@@ -284,7 +284,7 @@ describe('<LinearProgress />', () => {
       ]);
     });
 
-    it('should warn if min is equal or greater than max', () => {
+    it('should error if min is equal or greater than max', () => {
       expect(() => {
         render(<LinearProgress variant="determinate" value={5} min={10} max={0} />);
       }).toErrorDev([
@@ -298,6 +298,24 @@ describe('<LinearProgress />', () => {
         'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
         !strictModeDoubleLoggingSuppressed &&
           'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
+      ]);
+    });
+
+    it('should error if variant is indeterminate or query and min or max props are provided', () => {
+      expect(() => {
+        render(<LinearProgress variant="indeterminate" min={0} />);
+      }).toErrorDev([
+        'MUI: You have provided the `min` or `max` props with a \'indeterminate\' or \'query\' variant. These props will have no effect.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: You have provided the `min` or `max` props with a \'indeterminate\' or \'query\' variant. These props will have no effect.',
+      ]);
+
+      expect(() => {
+        render(<LinearProgress variant="query" max={100} />);
+      }).toErrorDev([
+        'MUI: You have provided the `min` or `max` props with a \'indeterminate\' or \'query\' variant. These props will have no effect.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: You have provided the `min` or `max` props with a \'indeterminate\' or \'query\' variant. These props will have no effect.',
       ]);
     });
   });

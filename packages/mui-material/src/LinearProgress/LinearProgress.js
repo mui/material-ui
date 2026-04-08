@@ -357,8 +357,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     className,
     color = 'primary',
-    max = 100,
-    min = 0,
+    max: maxProp,
+    min: minProp,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -369,6 +369,20 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     color,
     variant,
   };
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (
+      ['indeterminate', 'query'].includes(variant) &&
+      (minProp !== undefined || maxProp !== undefined)
+    ) {
+      console.error(
+        `MUI: You have provided the \`min\` or \`max\` props with a 'indeterminate' or 'query' variant. These props will have no effect.`,
+      );
+    }
+  }
+
+  const min = minProp ?? 0;
+  const max = maxProp ?? 100;
 
   const classes = useUtilityClasses(ownerState);
   const isRtl = useRtl();

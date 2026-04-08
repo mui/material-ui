@@ -239,5 +239,15 @@ describe('<CircularProgress />', () => {
           'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=25.',
       ]);
     });
+
+    it('should error if min and max props are provided with an indeterminate variant', () => {
+      expect(() => {
+        render(<CircularProgress variant="indeterminate" min={0} max={10} />);
+      }).toErrorDev([
+        "MUI: You have provided the `min` or `max` props with a 'indeterminate' variant. These props will have no effect.",
+        !strictModeDoubleLoggingSuppressed &&
+          "MUI: You have provided the `min` or `max` props with a 'indeterminate' variant. These props will have no effect.",
+      ]);
+    });
   });
 });
