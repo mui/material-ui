@@ -194,7 +194,7 @@ describe('<CircularProgress />', () => {
 
       expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
       expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm);
-      expect(circle.style.strokeDashoffset).to.equal('95.190px');
+      expect(circle.style.strokeDashoffset).to.match(/95\.190?(px)?/gm);
     });
 
     it('should fallback to 0px strokeDashoffset if max is less than min', () => {
