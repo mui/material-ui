@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid';
 import Section from 'docs/src/layouts/Section';
 import { InfoCard } from '@mui/internal-core-docs/InfoCard';
 import { Theme } from '@mui/material/styles';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import { MuiLogomarkIcon } from '@mui/internal-core-docs/svgIcons';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
@@ -21,7 +21,7 @@ const logoColor = (theme: Theme) => ({
 
 const content = [
   {
-    icon: <SvgMuiLogomark width={14} height={14} sx={logoColor} />,
+    icon: <MuiLogomarkIcon width={14} height={14} sx={logoColor} />,
     title: 'Material UI',
     description: "An open-source React component library that implements Google's Material Design.",
     link: '/material-ui/',

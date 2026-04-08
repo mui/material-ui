@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { MuiProductId } from '../getProductInfoFromUrl';
+import type { MuiProductId } from '../utils/getProductInfoFromUrl';
 
 export type CodeVariant = 'TS' | 'JS';
 

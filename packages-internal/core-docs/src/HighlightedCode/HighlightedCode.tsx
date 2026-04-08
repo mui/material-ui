@@ -4,7 +4,7 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { ButtonProps } from '@mui/material/Button';
 import { SxProps, styled } from '@mui/material/styles';
 import { useCodeCopy, CodeCopyButton } from '../CodeCopy';
-import { MarkdownElement } from '../MarkdownElement';
+import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 
 const Pre = styled('pre')(({ theme }) => ({
   margin: 0,

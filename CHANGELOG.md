@@ -1,5 +1,33 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0
+
+<!-- generated comparing v9.0.0-beta.1..master -->
+
+_Apr 7, 2026_
+
+A big thanks to the 7 contributors who made this release possible.
+
+🥳 We're excited to announce the stable release of Material UI v9! This major release focus on accessibility improvements, sx prop performance, and cleanup of deprecated APIs.
+
+For more details, check out the [upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v9/).
+
+### `@mui/material@9.0.0`
+
+- [slider] Use pointer events instead of mouse events (#48164) @mj12albert
+- [switch] Add border to make it visible in high contrast mode (#48180) @silviuaavram
+- [transitions] Performance improvements & misc fixes (#48151) @mj12albert
+- Remove unnecessary overridesResolvers from styled components (#48204) @sai6855
+
+### Core
+
+- [code-infra] Setup workflow to publish internal packages (#47952) @brijeshb42
+- [core-docs] Add `x-scheduler` to `MuiProductId` type (#48185) @rita-codes
+- [docs-infra] Add scheduler to product switcher (#48208) @rita-codes
+- [internal] Prepare libraries for v9 stable release (#48206) @siriwatknp
+
+All contributors of this release in alphabetical order: @brijeshb42, @mj12albert, @noraleonte, @rita-codes, @sai6855, @silviuaavram, @siriwatknp
+
 ## 9.0.0-beta.1
 
 <!-- generated comparing v9.0.0-beta.0..master -->

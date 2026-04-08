@@ -1,6 +1,6 @@
 import { createSvgIcon } from '@mui/material/utils';
 
-export default createSvgIcon(
+export const FigmaIcon = createSvgIcon(
   <g fillRule="nonzero" fill="none">
     <path d="M8 24a4 4 0 004-4v-4H8a4 4 0 000 8z" fill="#0ACF83" />
     <path d="M4 12a4 4 0 014-4h4v8H8a4 4 0 01-4-4z" fill="#A259FF" />

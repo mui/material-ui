@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Head from 'docs/src/modules/components/Head';
+import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';

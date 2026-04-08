@@ -933,7 +933,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * Callback function that is fired when the `mouseup` is triggered.
+   * Callback function that is fired when the pointer or touch interaction ends.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {Value} value The new value.
