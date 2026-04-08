@@ -215,7 +215,7 @@ export default function Page() {
 ```
 
 `OrdersToolbar` would be a file marked with `'use client'` that calls `useSearchParams()` and renders Material UI components.
-Adjust the fallback’s layout and Skeleton sizes so they match your real toolbar (or filter row) as closely as possible.
+Adjust the fallback's layout and Skeleton sizes so they match your real toolbar (or filter row) as closely as possible.
 
 For details and version-specific notes, see the Next.js documentation for [`useSearchParams`](https://nextjs.org/docs/app/api-reference/functions/use-search-params).
 

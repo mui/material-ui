@@ -21,7 +21,7 @@ Agent skill for theme creation, design tokens, light/dark, and CSS theme variabl
 ## Sections in AGENTS.md
 
 | Area          | Topics                                                          |
-| ------------- | --------------------------------------------------------------- |
+| :------------ | :-------------------------------------------------------------- |
 | Core setup    | Imports, provider placement, `useTheme`                         |
 | Token map     | palette, typography, spacing, shape, breakpoints, components, … |
 | Palette       | `main` / derived colors, `@mui/material/colors`, `mode`         |

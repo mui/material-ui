@@ -5,7 +5,7 @@ Covers Tailwind CSS v4 with Material UI (cascade layers, `enableCssLayer`) and s
 ## Files in this folder
 
 | File          | Purpose                                         |
-| ------------- | ----------------------------------------------- |
+| :------------ | :---------------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                         |
 | SKILL.md      | Cursor skill entry                              |
 | metadata.json | Version, abstract, references                   |

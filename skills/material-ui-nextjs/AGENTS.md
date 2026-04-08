@@ -118,7 +118,7 @@ That wraps MUI output in `@layer mui` so anonymous layers can override as intend
 
 ## Next.js Link and `component` prop
 
-Next.js v16: passing `next/link` directly into `component` can trigger “Functions cannot be passed directly to Client Components”. Fix: a small client re-export:
+Next.js v16: passing `next/link` directly into `component` can trigger "Functions cannot be passed directly to Client Components". Fix: a small client re-export:
 
 ```tsx
 'use client';
@@ -135,7 +135,7 @@ Pages Router and theme-wide patterns: see [Routing libraries—Next.js Pages Rou
 ## Further reading
 
 | Topic                            | Link                                                                                                   |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------- |
 | Full integration guide           | [Next.js integration](https://mui.com/material-ui/integrations/nextjs/)                                |
 | Example (App Router, TypeScript) | [material-ui-nextjs-ts](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts) |
 | Routing + Link adapters          | [Routing libraries](https://mui.com/material-ui/integrations/routing/)                                 |

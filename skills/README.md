@@ -34,7 +34,7 @@ skills/
 ## Files in each skill
 
 | File            | Purpose                                                             |
-| --------------- | ------------------------------------------------------------------- |
+| :-------------- | :------------------------------------------------------------------ |
 | `AGENTS.md`     | Full guide — the canonical source of truth for all agents and tools |
 | `SKILL.md`      | Cursor entry point and index (frontmatter + section summary)        |
 | `README.md`     | Human-readable overview                                             |
@@ -61,7 +61,7 @@ Symlinks under `.cursor/skills/<skill-name>` point at `skills/<skill-name>` so C
 ## Catalog
 
 | Folder                                          | Focus                                                                                                          |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
 | [material-ui-styling](./material-ui-styling/)   | Choosing styling scope: `sx`, `styled()`, theme overrides, global CSS; slots and state                         |
 | [material-ui-theming](./material-ui-theming/)   | Theme object, design tokens, `colorSchemes`, `cssVariables` / `theme.vars`, composition, TS augmentation       |
 | [material-ui-nextjs](./material-ui-nextjs/)     | `@mui/material-nextjs`, App/Pages Router, Emotion cache, `next/font`, CSS layers, Next `Link` + MUI            |

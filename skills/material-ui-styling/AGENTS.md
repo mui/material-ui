@@ -8,7 +8,7 @@ Version 1.0.0
 
 ## Abstract
 
-Material UI stacks four strategies from narrowest to broadest scope. Pick the smallest scope that solves the problem to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme’s `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
+Material UI stacks four strategies from narrowest to broadest scope. Pick the smallest scope that solves the problem to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme's `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
 
 ---
 
@@ -75,7 +75,7 @@ import { styled } from '@mui/material/styles';
 
 - Prefer `@mui/material/styles` when using Material UI so the default theme matches the rest of the app.
 - `styled()` adds theme integration, optional `name` / `slot` for theme overrides, and `sx` on the result (unless disabled).
-- For custom props, use `shouldForwardProp` so DOM/React does not receive invalid attributes. Extend the component’s prop types in TypeScript.
+- For custom props, use `shouldForwardProp` so DOM/React does not receive invalid attributes. Extend the component's prop types in TypeScript.
 
 Dynamic styling: prefer CSS variables or conditional style objects in the style callback; avoid per-field functions inside the style object for readability (see [styled() docs](https://mui.com/system/styled/)).
 
@@ -108,12 +108,12 @@ Use when: styling raw HTML elements or app-wide snippets that are not tied to a 
 ## `sx` vs `styled()`: differences agents should know
 
 | Topic                                        | `sx`               | `styled()` style object                                      |
-| -------------------------------------------- | ------------------ | ------------------------------------------------------------ |
+| :------------------------------------------- | :----------------- | :----------------------------------------------------------- |
 | Theme spacing shorthand (`m`, `p`, `gap`, …) | Yes                | No. Use `theme.spacing()` in a function or plain CSS values. |
 | Meaning of numeric padding like `1`          | Theme spacing unit | Pixels, not `theme.spacing(1)`                               |
 | Theme palette strings (`'primary.main'`)     | Yes                | Use `theme` in a function                                    |
 
-To reuse `sx` logic inside `styled()`, use theme’s `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
+To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()—Difference with the sx prop](https://mui.com/system/styled/#difference-with-the-sx-prop)).
 
 ---
 
@@ -127,7 +127,7 @@ To reuse `sx` logic inside `styled()`, use theme’s `unstable_sx` (see [styled(
 ## Further reading (repo / site)
 
 | Topic                   | Doc                                                                                         |
-| ----------------------- | ------------------------------------------------------------------------------------------- |
+| :---------------------- | :------------------------------------------------------------------------------------------ |
 | Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize/)             |
 | `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/)                          |
 | `styled()` API          | [styled()](https://mui.com/system/styled/)                                                  |

@@ -23,7 +23,7 @@ Agent skill for Next.js + Material UI wiring (SSR/streaming, cache providers, fo
 ## Sections in AGENTS.md
 
 | Area          | Topics                                                                                  |
-| ------------- | --------------------------------------------------------------------------------------- |
+| :------------ | :-------------------------------------------------------------------------------------- |
 | App Router    | `AppRouterCacheProvider`, `@emotion/cache`, `options`, `useSearchParams` + `<Suspense>` |
 | Pages Router  | `_document`, `_app`, `DocumentHeadTags`, `AppCacheProvider`                             |
 | Fonts         | `'use client'` theme, `next/font`, CSS variables on `html`                              |

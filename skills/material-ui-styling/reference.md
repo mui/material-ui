@@ -5,7 +5,7 @@
 Use only in combination with a component or scoped selector (never alone).
 
 | State         | Global class        |
-| ------------- | ------------------- |
+| :------------ | :------------------ |
 | active        | `.Mui-active`       |
 | checked       | `.Mui-checked`      |
 | completed     | `.Mui-completed`    |
@@ -28,4 +28,4 @@ For selectors, use the stable fragment `Mui[ComponentName]-[slot]` (e.g. `.MuiSl
 
 ## Theme component keys
 
-Override via `createTheme({ components: { MuiButton: { ... } } })`. The key matches the component’s internal name (e.g. `MuiButton`, `MuiTextField`). Check the component’s Customization section in the docs for slot names and theme key.
+Override via `createTheme({ components: { MuiButton: { ... } } })`. The key matches the component's internal name (e.g. `MuiButton`, `MuiTextField`). Check the component's Customization section in the docs for slot names and theme key.

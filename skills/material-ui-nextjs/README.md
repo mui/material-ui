@@ -5,7 +5,7 @@ Integration guide for Material UI with the Next.js App Router and Pages Router: 
 ## Files in this folder
 
 | File          | Purpose                                  |
-| ------------- | ---------------------------------------- |
+| :------------ | :--------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                  |
 | SKILL.md      | Cursor skill entry (frontmatter + index) |
 | metadata.json | Version, abstract, references            |

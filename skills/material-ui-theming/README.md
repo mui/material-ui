@@ -5,7 +5,7 @@ Theming and design tokens for Material UI: `createTheme`, `ThemeProvider`, palet
 ## Files in this folder
 
 | File          | Purpose                                  |
-| ------------- | ---------------------------------------- |
+| :------------ | :--------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                  |
 | SKILL.md      | Cursor skill entry (frontmatter + index) |
 | metadata.json | Version, abstract, references            |

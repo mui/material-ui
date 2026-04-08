@@ -8,7 +8,7 @@ Version 1.0.0
 
 ## Abstract
 
-Tailwind CSS v4 integration with Material UI is built on CSS cascade layers: MUI emits styles inside `@layer mui`, and Tailwind’s `utilities` layer must come after so utilities can override without `!important`. Enable MUI’s layer mode with `enableCssLayer: true` (Next.js via `AppRouterCacheProvider` / shared `createEmotionCache`) or `StyledEngineProvider` with `enableCssLayer` (Vite and other SPAs). Declare layer order (for example `@layer theme, base, mui, components, utilities`) before `@import 'tailwindcss'` (or inject the same string with `GlobalStyles` where the docs show). Tailwind CSS v3 uses a different recipe (preflight off, `important`, `StyledEngineProvider` with `injectFirst`, portal `container`). Prefer v4 for new work when possible.
+Tailwind CSS v4 integration with Material UI is built on CSS cascade layers: MUI emits styles inside `@layer mui`, and Tailwind's `utilities` layer must come after so utilities can override without `!important`. Enable MUI's layer mode with `enableCssLayer: true` (Next.js via `AppRouterCacheProvider` / shared `createEmotionCache`) or `StyledEngineProvider` with `enableCssLayer` (Vite and other SPAs). Declare layer order (for example `@layer theme, base, mui, components, utilities`) before `@import 'tailwindcss'` (or inject the same string with `GlobalStyles` where the docs show). Tailwind CSS v3 uses a different recipe (preflight off, `important`, `StyledEngineProvider` with `injectFirst`, portal `container`). Prefer v4 for new work when possible.
 
 ---
 
@@ -121,7 +121,7 @@ v3: verify `important` selector matches root `id`, `preflight: false`, and `inje
 ## Further reading
 
 | Topic                     | Link                                                                                                                                      |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | Tailwind CSS v4 + MUI     | [Tailwind CSS v4 integration](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/)                                       |
 | CSS layers (MUI concepts) | [CSS Layers](https://mui.com/material-ui/customization/css-layers/)                                                                       |
 | Interior slots            | [Overriding component structure—Interior slots](https://mui.com/material-ui/customization/overriding-component-structure/#interior-slots) |

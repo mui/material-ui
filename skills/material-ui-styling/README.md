@@ -5,7 +5,7 @@ Material UI-specific guidance for which styling mechanism to use (`sx`, `styled(
 ## Files in this folder
 
 | File          | Purpose                                                        |
-| ------------- | -------------------------------------------------------------- |
+| :------------ | :------------------------------------------------------------- |
 | AGENTS.md     | Full agent/LLM document (read this for complete rules)         |
 | SKILL.md      | Cursor skill entry: frontmatter + index + pointer to AGENTS.md |
 | metadata.json | Version, abstract, references                                  |

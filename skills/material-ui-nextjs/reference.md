@@ -2,10 +2,10 @@
 
 ## `@mui/material-nextjs` entry points
 
-Pick the `v1X-*` segment that matches the app’s Next.js major (see the package’s README on npm if a new major adds a new entry).
+Pick the `v1X-*` segment that matches the app's Next.js major (see the package's README on npm if a new major adds a new entry).
 
 | Router       | Typical import path                                                    |
-| ------------ | ---------------------------------------------------------------------- |
+| :----------- | :--------------------------------------------------------------------- |
 | App Router   | `@mui/material-nextjs/v15-appRouter` (or `v14-appRouter`, etc.)        |
 | Pages Router | `@mui/material-nextjs/v15-pagesRouter` (or matching `v1X-pagesRouter`) |
 

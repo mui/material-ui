@@ -22,7 +22,7 @@ Agent skill for MUI + Tailwind. SKILL.md is the entry; AGENTS.md is the full gui
 ## Sections in AGENTS.md
 
 | Area         | Topics                                                |
-| ------------ | ----------------------------------------------------- |
+| :----------- | :---------------------------------------------------- |
 | v4           | `@layer` order, `mui` before `utilities`              |
 | Next.js      | `enableCssLayer`, Pages `GlobalStyles` + shared cache |
 | SPA          | `StyledEngineProvider` + `enableCssLayer`             |

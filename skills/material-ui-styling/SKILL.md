@@ -20,7 +20,7 @@ Agent skill for picking the correct styling layer in Material UI (narrowest scop
 ## Sections in AGENTS.md (by priority)
 
 | Order | Topic                          | Scope                                 |
-| ----- | ------------------------------ | ------------------------------------- |
+| :---- | :----------------------------- | :------------------------------------ |
 | 1     | Quick decision                 | Pick `sx` → `styled` → theme → global |
 | 2     | `sx` prop                      | One-off / local                       |
 | 3     | `styled()`                     | Reusable wrapper                      |
