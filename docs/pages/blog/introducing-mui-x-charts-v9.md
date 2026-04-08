@@ -54,8 +54,9 @@ For composition patterns and layering, see [Charts composition](/x/react-charts/
 ## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 [Candlestick charts](/x/react-charts/candlestick/) visualize OHLC (open, high, low, close) series over time, the familiar shape for equities, FX, and other interval‑based price data.
+The chart is build on top of WebGL to insure high performance.
 
-The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
+The feature is still in preview: visuals, APIs, and defaults may change in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
 
 <figure>
   <video

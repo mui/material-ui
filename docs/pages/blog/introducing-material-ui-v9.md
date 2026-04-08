@@ -161,7 +161,7 @@ Material UI
 
 - Bundle size improvements.
 
-- `sx` prop performance improvements (details in PR https://github.com/mui/material-ui/pull/44254).
+- `sx` prop performance improvements up to 30% for a heavy sx usage (details in [PR #44254](https://github.com/mui/material-ui/pull/44254)).
 
 System
 
