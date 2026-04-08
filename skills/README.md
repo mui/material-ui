@@ -33,13 +33,13 @@ skills/
 
 ## Files in each skill
 
-| File | Purpose |
-| --- | --- |
-| `AGENTS.md` | Full guide — the canonical source of truth for all agents and tools |
-| `SKILL.md` | Cursor entry point and index (frontmatter + section summary) |
-| `README.md` | Human-readable overview |
-| `metadata.json` | Machine-readable metadata (version, references) |
-| `reference.md` | Quick-reference cheat sheet (imports, API shapes) |
+| File            | Purpose                                                             |
+| --------------- | ------------------------------------------------------------------- |
+| `AGENTS.md`     | Full guide — the canonical source of truth for all agents and tools |
+| `SKILL.md`      | Cursor entry point and index (frontmatter + section summary)        |
+| `README.md`     | Human-readable overview                                             |
+| `metadata.json` | Machine-readable metadata (version, references)                     |
+| `reference.md`  | Quick-reference cheat sheet (imports, API shapes)                   |
 
 ## Tool-specific discovery
 
