@@ -49,11 +49,12 @@ function elementTypeAcceptingRef(
     warningHint = 'Did you accidentally provide a React.Fragment instead?';
   }
 
+// #host-reference
   if (warningHint !== undefined) {
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
         `Expected an element type that can hold a ref. ${warningHint} ` +
-        'For more information see https://mui.com/r/caveat-with-refs-guide',
+        'For more information see https://v7.mui.com/r/caveat-with-refs-guide',
     );
   }
 
