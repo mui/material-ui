@@ -730,7 +730,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       );
     }
 
-    const optionKey = getOptionKey?.(option) ?? getOptionLabel(option);
+    let optionKey = getOptionKey?.(option);
+    if (optionKey == null) {
+      optionKey = `${getOptionLabel(option)}-${index}`;
+    }
 
     return (
       <AutocompleteOptionRenderer
