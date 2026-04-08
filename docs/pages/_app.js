@@ -244,6 +244,10 @@ function AppWrapper(props) {
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
+          {
+            text: 'v9',
+            href: `https://mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'v6',
