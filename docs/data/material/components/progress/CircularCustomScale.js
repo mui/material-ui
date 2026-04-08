@@ -17,7 +17,7 @@ export default function CircularCustomScale() {
   return (
     <CircularProgress
       variant="determinate"
-      min={5}
+      min={10}
       max={20}
       value={progress}
       aria-label="Loading"
