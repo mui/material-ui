@@ -83,12 +83,6 @@ importers:
       '@eslint/compat':
         specifier: 2.0.3
         version: 2.0.3(eslint@10.1.0(jiti@2.6.1))
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:^
-        version: link:packages-internal/api-docs-builder
-      '@mui-internal/api-docs-builder-core':
-        specifier: workspace:^
-        version: link:packages-internal/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 2.0.8-canary.25
         version: 2.0.8-canary.25(@babel/core@7.29.0)
@@ -519,9 +513,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.28.5
         version: 7.28.5(@babel/core@7.29.0)
-      '@mui-internal/api-docs-builder':
+      '@mui/internal-api-docs-builder':
         specifier: workspace:^
-        version: link:../packages-internal/api-docs-builder
+        version: link:../packages-internal/api-docs-builder/build
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../packages-internal/docs-utils
@@ -673,12 +667,13 @@ importers:
       sinon:
         specifier: 21.0.3
         version: 21.0.3
+    publishDirectory: build
 
   packages-internal/api-docs-builder-core:
     dependencies:
-      '@mui-internal/api-docs-builder':
+      '@mui/internal-api-docs-builder':
         specifier: workspace:^
-        version: link:../api-docs-builder
+        version: link:../api-docs-builder/build
       '@mui/internal-core-docs':
         specifier: workspace:^
         version: link:../core-docs/build
@@ -792,12 +787,12 @@ importers:
         specifier: catalog:docs
         version: 4.2.0
     devDependencies:
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:*
-        version: link:../api-docs-builder
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../../packages/mui-icons-material/build
+      '@mui/internal-api-docs-builder':
+        specifier: workspace:*
+        version: link:../api-docs-builder/build
       '@mui/material':
         specifier: workspace:*
         version: link:../../packages/mui-material/build

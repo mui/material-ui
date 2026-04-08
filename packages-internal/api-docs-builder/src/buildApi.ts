@@ -5,7 +5,7 @@ import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
 import generateComponentApi from './ApiBuilders/ComponentApiBuilder';
-import generateHookApi from './ApiBuilders/HookApiBuilder';
+import { generateHookApi } from './ApiBuilders/HookApiBuilder';
 import {
   CreateTypeScriptProjectOptions,
   TypeScriptProjectBuilder,
