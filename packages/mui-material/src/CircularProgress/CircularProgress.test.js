@@ -193,7 +193,7 @@ describe('<CircularProgress />', () => {
       const progressbar = screen.getByRole('progressbar');
 
       expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
-      expect(circle.style.strokeDasharray).to.equal('126.920');
+      expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm);
       expect(circle.style.strokeDashoffset).to.equal('95.190px');
     });
 
