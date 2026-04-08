@@ -63,7 +63,7 @@ export default function LinearWithAriaValueText() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgressWithLabelAndValue value={progress} min={0} max={10} />
+      <LinearProgressWithLabelAndValue value={progress} min={10} max={20} />
     </Box>
   );
 }
