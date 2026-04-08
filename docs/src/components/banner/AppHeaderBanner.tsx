@@ -19,7 +19,7 @@ const linkStyleOverrides = (theme: Theme) => ({
   }),
 });
 
-function getSurveyMessage() {
+function getCustomMessage() {
   return (
     <React.Fragment>
       {`🚀 Material UI and MUI X v9 are out! Check out the `}
@@ -55,8 +55,8 @@ function getDefaultHiringMessage() {
 }
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = true;
-  const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
+  const showCustomMessage = true;
+  const bannerMessage = showCustomMessage ? getCustomMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
