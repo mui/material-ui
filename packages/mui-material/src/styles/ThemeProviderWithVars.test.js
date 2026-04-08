@@ -385,7 +385,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     expect(() => {
       fireEvent.click(screen.getByText('Dark'));
     }).toErrorDev([
-      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).\nTo toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.\nTo learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
+      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).\nTo toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.\nTo learn more, visit https://v7.mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
     ]);
   });
 
