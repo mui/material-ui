@@ -12,6 +12,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 
@@ -40,6 +41,10 @@ const useUtilityClasses = (ownerState) => {
 const ChipRoot = styled('div', {
   name: 'MuiChip',
   slot: 'Root',
+  shouldForwardProp: (prop) =>
+    rootShouldForwardProp(prop) &&
+    prop !== 'focusableWhenDisabled' &&
+    prop !== 'skipFocusWhenDisabled',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     const { color, clickable, onDelete, size, variant } = ownerState;
@@ -381,6 +386,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
 
   const chipRef = React.useRef(null);
   const handleRef = useForkRef(chipRef, ref);
@@ -439,8 +445,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     component === ButtonBase
       ? {
           component: ComponentProp || 'div',
+          internalNativeButton: false,
           focusVisibleClassName: classes.focusVisible,
           ...(onDelete && { disableRipple: true }),
+          ...(nativeButton !== undefined && { nativeButton }),
         }
       : {};
 
@@ -489,7 +497,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     elementType: ChipRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
-      ...other,
+      ...buttonBaseProps,
     },
     ownerState,
     // The `component` prop is preserved because `Chip` relies on it for internal logic. If `shouldForwardComponentProp` were `false`, `useSlot` would remove the `component` prop, potentially breaking the component's behavior.
@@ -597,6 +605,13 @@ Chip.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   label: PropTypes.node,
+  /**
+   * If `true`, the component is expected to resolve to a native `<button>` element.
+   * When omitted, custom components inherit the default button semantics of the current wrapper.
+   * Set to `true` when a custom component resolves to a native `<button>`, or `false`
+   * when it resolves to a non-button host.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * @ignore
    */

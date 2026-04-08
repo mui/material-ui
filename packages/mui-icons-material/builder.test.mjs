@@ -190,6 +190,62 @@ describe('builder', () => {
   });
 });
 
+// These 23 legacy *Outline icons were removed in v9 because they were
+// exact SVG-path duplicates of their *Outlined counterparts.
+// This test prevents them from being silently reintroduced.
+// eslint-disable-next-line import/prefer-default-export
+export const LEGACY_OUTLINE_ICONS = [
+  'AddCircleOutline',
+  'ChatBubbleOutline',
+  'CheckCircleOutline',
+  'DeleteOutline',
+  'DoneOutline',
+  'DriveFileMoveOutline',
+  'ErrorOutline',
+  'HelpOutline',
+  'InfoOutline',
+  'LabelImportantOutline',
+  'LightbulbOutline',
+  'LockOutline',
+  'MailOutline',
+  'ModeEditOutline',
+  'PauseCircleOutline',
+  'PeopleOutline',
+  'PersonOutline',
+  'PieChartOutline',
+  'PlayCircleOutline',
+  'RemoveCircleOutline',
+  'StarOutline',
+  'WorkOutline',
+  'WorkspacesOutline',
+];
+
+describe('Legacy *Outline icon removal', () => {
+  let indexContent;
+
+  beforeAll(() => {
+    indexContent = fs.readFileSync(path.join(currentDirectory, 'lib', 'index.js'), {
+      encoding: 'utf8',
+    });
+  });
+
+  LEGACY_OUTLINE_ICONS.forEach((name) => {
+    it(`should not export ${name}`, () => {
+      // Check that the icon is not exported from the package index
+      expect(indexContent).not.to.include(`"${name}"`);
+      // Check that the component file does not exist
+      expect(fs.existsSync(path.join(currentDirectory, 'lib', `${name}.js`))).to.equal(false);
+    });
+  });
+
+  it('should still export DriveFileRenameOutline (not a duplicate)', () => {
+    expect(indexContent).to.include('"DriveFileRenameOutline"');
+    expect(fs.existsSync(path.join(currentDirectory, 'lib', 'DriveFileRenameOutline.js'))).to.equal(
+      true,
+    );
+  });
+});
+
 async function emptyDir(dir) {
   await fs.promises.rm(dir, { recursive: true, force: true });
   await fs.promises.mkdir(dir, { recursive: true });

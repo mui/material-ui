@@ -13,7 +13,6 @@ describe('<Skeleton />', () => {
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSkeleton',
     testVariantProps: { variant: 'circular', animation: 'wave' },
-    skip: ['componentsProp'],
   }));
 
   it('should render', () => {

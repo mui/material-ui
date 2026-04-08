@@ -18,7 +18,6 @@ describe('<ListItemButton />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render with gutters classes', () => {
@@ -245,6 +244,17 @@ describe('<ListItemButton />', () => {
       expect(screen.getByTestId(customLinkId)).not.to.equal(null);
       expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('href', href);
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('uses link mode (not native-button) when href is present', () => {
+      render(<ListItemButton href="https://example.com" />);
+
+      const link = screen.getByRole('link');
+      expect(link).to.have.tagName('A');
+      expect(link).not.to.have.attribute('type', 'button');
+      expect(link).not.to.have.attribute('role', 'button');
     });
   });
 });

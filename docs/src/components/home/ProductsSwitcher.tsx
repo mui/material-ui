@@ -5,9 +5,9 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import IconImage from '@mui/docs/IconImage';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import IconImage from '@mui/internal-core-docs/IconImage';
+import { Highlighter } from '@mui/internal-core-docs/AppLayout';
+import { MuiLogomarkIcon } from '@mui/internal-core-docs/svgIcons';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
@@ -33,6 +33,7 @@ function ProductItem({
       }}
     >
       <Box
+        component="span"
         sx={{
           p: 2,
           display: 'flex',
@@ -42,6 +43,7 @@ function ProductItem({
         }}
       >
         <Box
+          component="span"
           sx={{
             height: 32,
             width: 32,
@@ -54,13 +56,18 @@ function ProductItem({
           {icon}
         </Box>
         <span>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
+          <Box component="span" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{ color: 'text.primary', fontWeight: 'semiBold' }}
+            >
               {name}
             </Typography>
             {chip}
           </Box>
           <Typography
+            component="span"
             variant="body2"
             sx={{ color: 'text.secondary', fontWeight: 'regular', my: 0.5 }}
           >
@@ -83,7 +90,7 @@ export default function ProductsSwitcher(props: {
     <ProductItem
       name="Material UI"
       description="Foundational components for shipping features faster."
-      icon={<SvgMuiLogomark height={28} width={28} />}
+      icon={<MuiLogomarkIcon height={28} width={28} />}
     />,
     <ProductItem
       name="MUI X"

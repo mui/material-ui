@@ -58,7 +58,7 @@ describe('<Drawer />', () => {
           testWithElement: CustomTransition,
         },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 
@@ -79,7 +79,7 @@ describe('<Drawer />', () => {
           expectedClassName: classes.docked,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 

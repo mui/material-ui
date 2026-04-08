@@ -52,13 +52,13 @@ import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import IconImage from '@mui/docs/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens } from '@mui/docs/branding';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { getDesignTokens } from '@mui/internal-core-docs/branding';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 function Checkboxes() {
   const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };

@@ -18,7 +18,7 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Combo box
 

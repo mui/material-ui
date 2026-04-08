@@ -15,7 +15,7 @@ Switches are the preferred way to adjust settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic switches
 

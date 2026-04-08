@@ -15,8 +15,20 @@ function Test() {
     <React.Fragment>
       <Dialog open />;
       <Dialog open slotProps={{ paper: paperProps }} />;
+      <Dialog
+        open
+        slotProps={{
+          // @ts-expect-error — unknown props should be rejected
+          transition: { randomInvalidProp: 'test' },
+        }}
+      />
+      ;
     </React.Fragment>
   );
+}
+
+function DialogWithAlertRole() {
+  return <Dialog open role="alertdialog" />;
 }
 
 function Custom(props: DialogProps) {

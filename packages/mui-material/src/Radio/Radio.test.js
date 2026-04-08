@@ -30,7 +30,7 @@ describe('<Radio />', () => {
         expectedClassName: switchBaseClasses.input,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('styleSheet', () => {

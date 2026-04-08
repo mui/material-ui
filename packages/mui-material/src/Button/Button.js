@@ -589,6 +589,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
+      internalNativeButton
       type={type}
       id={loading ? loadingId : idProp}
       {...other}

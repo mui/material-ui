@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Typography
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Roboto font
 

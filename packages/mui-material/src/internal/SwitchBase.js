@@ -104,6 +104,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
@@ -182,7 +183,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     externalForwardedProps: {
       ...externalForwardedProps,
       component: 'span',
-      ...other,
+      ...buttonBaseProps,
     },
     getSlotProps: (handlers) => ({
       ...handlers,

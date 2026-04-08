@@ -3,14 +3,13 @@ import { CssVarsProvider } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
-import Frame from 'docs/src/components/action/Frame';
+import { Item, Group, Highlighter, Frame } from '@mui/internal-core-docs/AppLayout';
+import { SvgMaterialDesignIcon } from '@mui/internal-core-docs/svgIcons';
+
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
 
 const code = `
@@ -94,7 +93,7 @@ export default function MaterialTheming() {
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
-                icon={<SvgMaterialDesign />}
+                icon={<SvgMaterialDesignIcon />}
                 title="Material Design"
                 description="Every component comes with Google's tried and tested design system ready for use."
               />

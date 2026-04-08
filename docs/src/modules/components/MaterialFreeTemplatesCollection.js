@@ -10,11 +10,10 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import { useTranslate } from '@mui/docs/i18n';
-import { pascalCase } from '@mui/docs/helpers';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { pascalCase } from '@mui/internal-core-docs/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
-import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 

@@ -22,8 +22,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as mui from '@mui/icons-material';
-import { Link } from '@mui/docs/Link';
-import { useTranslate } from '@mui/docs/i18n';
+import { Link } from '@mui/internal-core-docs/Link';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 
 // For Debugging
@@ -47,7 +47,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import synonyms from './synonyms';
 
 const FlexSearchIndex = flexsearch.Index;
@@ -98,7 +98,7 @@ const iconWidth = 35;
 
 const SVG_ICON_CLASS = 'svg-icon';
 
-const StyledIcon = styled('span')(({ theme }) => ({
+const StyledIcon = styled('div')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   color: (theme.vars ?? theme).palette.text.secondary,
@@ -666,7 +666,7 @@ export default function SearchIcons() {
         <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={!!selectedIcon}
+        open={Boolean(dialogSelectedIcon)}
         selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />

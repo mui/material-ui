@@ -13,10 +13,10 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 // The teamMembers.json file should be synced with `pnpm docs:sync-team`.

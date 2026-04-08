@@ -23,7 +23,6 @@ describe('<AvatarGroup />', () => {
       slots: {
         surplus: { expectedClassName: classes.avatar },
       },
-      skip: ['componentsProp'],
     }),
   );
 

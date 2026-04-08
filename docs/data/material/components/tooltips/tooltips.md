@@ -14,7 +14,7 @@ githubSource: packages/mui-material/src/Tooltip
 
 When activated, Tooltips display a text label identifying an element, such as a description of its function.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic tooltip
 

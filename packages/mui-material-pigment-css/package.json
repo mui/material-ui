@@ -1,8 +1,9 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
+  "license": "MIT",
   "keywords": [
     "react",
     "mui",
@@ -15,7 +16,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material-pigment-css"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },

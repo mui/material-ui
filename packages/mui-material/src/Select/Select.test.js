@@ -33,7 +33,7 @@ describe('<Select />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
@@ -679,51 +679,24 @@ describe('<Select />', () => {
     });
 
     describe('when the first child is a ListSubheader wrapped in a custom component', () => {
-      describe('with the `muiSkipListHighlight` static field', () => {
-        function WrappedListSubheader(props) {
-          return <ListSubheader {...props} />;
-        }
+      function WrappedListSubheader(props) {
+        return <ListSubheader {...props} />;
+      }
 
-        WrappedListSubheader.muiSkipListHighlight = true;
+      it('highlights the first selectable option below the header without extra skip markers', () => {
+        render(
+          <Select defaultValue="" open>
+            <WrappedListSubheader>Category 1</WrappedListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <WrappedListSubheader>Category 2</WrappedListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
 
-        it('highlights the first selectable option below the header', () => {
-          render(
-            <Select defaultValue="" open>
-              <WrappedListSubheader>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
-              <WrappedListSubheader>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
-            </Select>,
-          );
-
-          const expectedHighlightedOption = screen.getByText('Option 1');
-          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
-        });
-      });
-
-      describe('with the `muiSkipListHighlight` prop', () => {
-        function WrappedListSubheader(props) {
-          const { muiSkipListHighlight, ...other } = props;
-          return <ListSubheader {...other} />;
-        }
-
-        it('highlights the first selectable option below the header', () => {
-          render(
-            <Select defaultValue="" open>
-              <WrappedListSubheader muiSkipListHighlight>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
-              <WrappedListSubheader muiSkipListHighlight>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
-            </Select>,
-          );
-
-          const expectedHighlightedOption = screen.getByText('Option 1');
-          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
-        });
+        const expectedHighlightedOption = screen.getByText('Option 1');
+        expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
       });
     });
 
@@ -955,6 +928,30 @@ describe('<Select />', () => {
       const backdrop = screen.getByTestId('backdrop');
 
       expect(backdrop.style).to.have.property('backgroundColor', 'red');
+    });
+
+    // https://github.com/mui/material-ui/issues/34218
+    it('supports keyboard navigation after mouse opening when disablePortal is true', async function test() {
+      clock.restore();
+
+      const { user } = render(
+        <Select value="" MenuProps={{ disablePortal: true, transitionDuration: 0 }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+
+      const options = screen.getAllByRole('option', { hidden: true });
+      expect(options[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowDown}');
+      expect(options[1]).toHaveFocus();
+
+      await user.keyboard('{ArrowUp}');
+      expect(options[0]).toHaveFocus();
     });
   });
 
@@ -1541,7 +1538,7 @@ describe('<Select />', () => {
       <Select
         value={1}
         inputRef={(input) => {
-          if (input !== null) {
+          if (input != null) {
             input.focus();
           }
         }}

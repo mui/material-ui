@@ -14,7 +14,7 @@ githubSource: packages/mui-material/src/SpeedDial
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic speed dial
 

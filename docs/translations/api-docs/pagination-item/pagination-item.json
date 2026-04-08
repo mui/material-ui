@@ -9,6 +9,9 @@
       "description": "The component used for the root node. Either a string to use a HTML element or a component."
     },
     "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "nativeButton": {
+      "description": "Whether the custom component should render a native <code>&lt;button&gt;</code> element when rendering a React component with the <code>component</code> or <code>slots</code> prop."
+    },
     "page": { "description": "The current page number." },
     "selected": { "description": "If <code>true</code> the pagination item is selected." },
     "shape": { "description": "The shape of the pagination item." },

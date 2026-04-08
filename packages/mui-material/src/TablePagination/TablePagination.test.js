@@ -69,7 +69,7 @@ describe('<TablePagination />', () => {
         selectLabel: { expectedClassName: classes.selectLabel },
         displayedRows: { expectedClassName: classes.displayedRows },
       },
-      skip: ['themeVariants', 'componentsProps'],
+      skip: ['themeVariants'],
     }),
   );
 

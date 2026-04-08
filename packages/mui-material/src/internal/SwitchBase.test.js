@@ -34,7 +34,7 @@ describe('<SwitchBase />', () => {
           expectedClassName: classes.input,
         },
       },
-      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
+      skip: ['themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 

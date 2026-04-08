@@ -1,8 +1,9 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-styled-engine-sc"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },

@@ -54,7 +54,7 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & TooltipTransitionSlotPropsOverrides,
       TooltipOwnerState
     >;
@@ -187,10 +187,10 @@ export interface TooltipOwnerState extends TooltipProps {}
  *
  * Demos:
  *
- * - [Tooltip](https://next.mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
+ * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): React.JSX.Element;

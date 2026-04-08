@@ -54,7 +54,7 @@ describe('<TextField />', () => {
           testWithElement: TestFormControl,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 

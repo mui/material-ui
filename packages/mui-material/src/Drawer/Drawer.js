@@ -63,9 +63,6 @@ const DrawerDockedRoot = styled('div', {
 const DrawerPaper = styled(Paper, {
   name: 'MuiDrawer',
   slot: 'Paper',
-  overridesResolver: (props, styles) => {
-    return [styles.paper];
-  },
 })(
   memoTheme(({ theme }) => ({
     overflowY: 'auto',

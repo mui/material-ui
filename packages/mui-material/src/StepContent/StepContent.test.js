@@ -22,7 +22,7 @@ describe('<StepContent />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
     slots: {
       transition: {
         expectedClassName: classes.transition,

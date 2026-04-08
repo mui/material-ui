@@ -3,7 +3,7 @@ import {
   Document as MuiDocsDocument,
   createGetInitialProps,
   type DocumentProps,
-} from '@mui/docs/Document';
+} from '@mui/internal-core-docs/Document';
 
 export default class MuiDocument extends NextDocument {
   static getInitialProps = createGetInitialProps({ setupStyledComponents: true });

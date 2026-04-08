@@ -17,7 +17,7 @@ describe('<ToggleButtonGroup />', () => {
     render,
     muiName: 'MuiToggleButtonGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
     testVariantProps: { size: 'small' },
     testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
   }));

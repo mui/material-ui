@@ -1,19 +1,21 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import { AdConfig } from '@mui/docs/Ad';
-import { SandboxConfig } from '@mui/docs/DemoContext';
-import type { DocsAppProps } from '@mui/docs/DocsApp';
+import { AdConfig } from '@mui/internal-core-docs/Ad';
+import { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import {
   DocsApp,
   createGetInitialProps,
   printConsoleBanner,
   reportWebVitals,
-} from '@mui/docs/DocsApp';
-import findActivePage from '@mui/docs/findActivePage';
-import getProductInfoFromUrl from '@mui/docs/getProductInfoFromUrl';
-import type { Translations } from '@mui/docs/i18n';
-import type { MuiPage } from '@mui/docs/MuiPage';
+  type DocsAppProps,
+} from '@mui/internal-core-docs/DocsApp';
+import { DEFAULT_DOCS_CONFIG, type DocsConfig } from '@mui/internal-core-docs/DocsProvider';
+import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
+import findActivePage from '@mui/internal-core-docs/findActivePage';
+import { getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
+import type { Translations } from '@mui/internal-core-docs/i18n';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
@@ -24,16 +26,16 @@ import docsInfraPages from 'docs/data/docs-infra/pages';
 import generalDocsPages from 'docs/data/docs/pages';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import SvgMuiLogomark, {
+import {
+  MuiLogomarkIcon,
   muiSvgLogoString,
   muiSvgWordmarkString,
-} from 'docs/src/icons/SvgMuiLogomark';
+} from '@mui/internal-core-docs/svgIcons';
 
-import * as config from '../config';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
-export { fontClasses } from '@mui/docs/nextFonts';
+export { fontClasses } from '@mui/internal-core-docs/nextFonts';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
@@ -73,7 +75,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Material UI',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -106,7 +108,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'MUI System',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -128,7 +130,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'MUI Core',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -145,7 +147,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Docs-infra',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -161,7 +163,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
       return {
         metadata: '',
         name: 'Home docs',
-        logo: SvgMuiLogomark,
+        logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
@@ -207,6 +209,17 @@ const CSB_CONFIG: SandboxConfig = {
 
 const GA_AD_CONFIG: AdConfig = { GADisplayRatio: 0.1 };
 
+const docsConfig: DocsConfig = {
+  ...DEFAULT_DOCS_CONFIG,
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchNotifications: (): Promise<NotificationMessage[]> =>
+      import('../notifications.json').then((mod) => mod.default),
+  }),
+  hostUrl: process.env.PULL_REQUEST_ID
+    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+    : 'https://mui.com',
+};
+
 function useDemoDisplayName() {
   const router = useRouter();
   const { productId } = React.useMemo(() => getProductInfoFromUrl(router.asPath), [router.asPath]);
@@ -240,7 +253,6 @@ export default function MyApp(
       {...props}
       Component={Component}
       pageProps={pageProps}
-      docsConfig={config}
       serviceWorkerPath="/sw.js"
       adConfig={GA_AD_CONFIG}
       activePage={activePage}
@@ -251,6 +263,7 @@ export default function MyApp(
       productCategoryId={productCategoryId}
       demoDisplayName={demoDisplayName}
       csbConfig={CSB_CONFIG}
+      docsConfig={docsConfig}
     />
   );
 }

@@ -1,5 +1,81 @@
 # [Versions](https://mui.com/versions/)
 
+## 9.0.0
+
+<!-- generated comparing v9.0.0-beta.1..master -->
+
+_Apr 7, 2026_
+
+A big thanks to the 7 contributors who made this release possible.
+
+🥳 We're excited to announce the stable release of Material UI v9! This major release focus on accessibility improvements, sx prop performance, and cleanup of deprecated APIs.
+
+For more details, check out the [upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v9/).
+
+### `@mui/material@9.0.0`
+
+- [slider] Use pointer events instead of mouse events (#48164) @mj12albert
+- [switch] Add border to make it visible in high contrast mode (#48180) @silviuaavram
+- [transitions] Performance improvements & misc fixes (#48151) @mj12albert
+- Remove unnecessary overridesResolvers from styled components (#48204) @sai6855
+
+### Core
+
+- [code-infra] Setup workflow to publish internal packages (#47952) @brijeshb42
+- [core-docs] Add `x-scheduler` to `MuiProductId` type (#48185) @rita-codes
+- [docs-infra] Add scheduler to product switcher (#48208) @rita-codes
+- [internal] Prepare libraries for v9 stable release (#48206) @siriwatknp
+
+All contributors of this release in alphabetical order: @brijeshb42, @mj12albert, @noraleonte, @rita-codes, @sai6855, @silviuaavram, @siriwatknp
+
+## 9.0.0-beta.1
+
+<!-- generated comparing v9.0.0-beta.0..master -->
+
+_Apr 2, 2026_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@9.0.0-beta.1`
+
+#### Breaking Changes
+
+- [grid] Remove 'column' and 'column-reverse' options from `direction` prop (#47564) @sai6855
+- [icons] Remove legacy `*Outline` icons (#48116) @mj12albert
+- [list-item-icon] Use theme spacing instead of hardcoded minWidth (#46597) @adiitxa
+
+#### Changes
+
+- [all components] Fix `slotProps.transition` types (#48153) @mj12albert
+- [alert][dialog] Accessibility improvements (#48113) @silviuaavram
+- [autocomplete] Fix helper text focusing input when clicked (#48156) @mj12albert
+- [button-base] Add `nativeButton` prop (#47989) @mj12albert
+- [input] Fix high contrast cutoff on first character (#48150) @silviuaavram
+- [menu] Fix empty roving focus container (#48114) @mj12albert
+- [utils] Explicitly register roving tab items with parent (#48122) @mj12albert
+
+### Docs
+
+- Fix HTML validation errors (#48107) @Janpot
+- Fix duplicate IDs and HTML validation issues (#48095) @Janpot
+- Fix the dark mode footer row shadow for the Data Grid on the advanced components page (#48149) @arminmeh
+- Improve jsdom section (#48098) @oliviertassinari
+- Update "Deprecated APIs removed" section to h2 in "Upgrade to v9" docs (#48115) @ZeeshanTamboli
+- [docs][progress] Label all demo components (#48143) @mj12albert
+- [docs-infra] Add x-scheduler to component API URL resolver (#48097) @rita-codes
+- [docs-infra] Resolve some redirects (#48165) @Janpot
+- [docs-infra] Update v9 Search Index (#48028) @dav-is
+
+### Core
+
+- [code-infra] Discover exports for bundle size report (#48170) @Janpot
+- [internal] Fix use of ellipsis (#48096) @oliviertassinari
+- [test] Add screenshot test for Virtualized Table (#47947) @mnajdova
+- [test] Remove `componentsProp` from `describeConformance` tests (#48142) @ZeeshanTamboli
+- [theme] Do not create channel tokens for custom colors when `nativeColor` is used (#47765) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @adiitxa, @arminmeh, @dav-is, @Janpot, @mj12albert, @mnajdova, @oliviertassinari, @rita-codes, @sai6855, @silviuaavram, @ZeeshanTamboli
+
 ## 9.0.0-beta.0
 
 <!-- generated comparing v9.0.0-alpha.4..master -->

@@ -65,6 +65,11 @@ export interface ButtonBaseOwnProps {
    */
   LinkComponent?: React.ElementType | undefined;
   /**
+   * Whether the custom component is expected to render a native `<button>` element
+   * when passing a React component to the `component` or `slots` prop.
+   */
+  nativeButton?: boolean | undefined;
+  /**
    * Callback fired when the component is focused with a keyboard.
    * We trigger a `onFocus` callback too.
    */
@@ -117,11 +122,11 @@ export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 

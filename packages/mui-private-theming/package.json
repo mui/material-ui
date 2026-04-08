@@ -1,8 +1,9 @@
 {
   "name": "@mui/private-theming",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-private-theming"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.2",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {

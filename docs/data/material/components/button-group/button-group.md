@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/ButtonGroup
 
 <p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic button group
 

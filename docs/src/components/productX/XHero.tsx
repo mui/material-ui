@@ -17,9 +17,9 @@ import { useDemoData } from '@mui/x-data-grid-generator';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
-import IconImage from '@mui/docs/IconImage';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import dayjs from 'dayjs';
 
 const startDate = dayjs();
@@ -240,7 +240,6 @@ export default function XHero() {
                       '& .MuiDataGrid-pinnedRows': {
                         backgroundColor: alpha(theme.palette.primaryDark[800], 1),
                         backgroundImage: 'none',
-                        boxShadow: '0px -6px 12px rgba(0 0 0 /  0.5)',
                         '& .MuiDataGrid-footerCell': {
                           color: 'primary.light',
                         },
@@ -326,7 +325,7 @@ export default function XHero() {
                     lineHeight: 0,
                     margin: 0,
                   },
-                  '& .MuiPickersDay-root': {
+                  '& .MuiPickerDay-root': {
                     width: { xs: 28, xl: 32 },
                     height: { xs: 28, xl: 32 },
                     fontWeight: 400,
