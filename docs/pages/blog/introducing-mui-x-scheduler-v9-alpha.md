@@ -115,6 +115,7 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 ## Event Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 The Event Timeline puts time on one axis and resources on the other, which is the model teams use for scheduling operations.
+In this alpha, Event Timeline is available as a preview feature under the Premium plan.
 
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
 

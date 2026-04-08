@@ -207,6 +207,8 @@ We've focused on stability, accessibility, and new building blocks across the v9
 - **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and Chat for conversational UI with adapters and streaming.
   Both are debuting at alpha; product detail, onboarding, and tiers in the [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/) and [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/) posts.
 
+Note: Event Timeline and advanced Charts preview features are available under the Premium plan.
+
 ## New MUI Console application
 
 Last year, we began offering [AI assistance for the Data Grid](/blog/introducing-mui-x-data-grid-v9/#ai-assistant): users describe what they want in natural language, and the grid applies structured changes while keeping state visible and editable.
