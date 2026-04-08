@@ -10,25 +10,31 @@ import isLayoutSupported from '../utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
-import { reflow, getTransitionProps } from '../transitions/utils';
+import { normalizedTransitionCallback, reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
+
+const hiddenStyles = { visibility: 'hidden' };
 
 // Translate the node so it can't be seen on the screen.
 // Later, we're going to translate the node back to its original location with `none`.
 function getTranslateValue(direction, node, resolvedContainer) {
-  const rect = node.getBoundingClientRect();
   const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
-  let transform;
 
-  if (node.fakeTransform) {
-    transform = node.fakeTransform;
-  } else {
-    const computedStyle = containerWindow.getComputedStyle(node);
-    transform =
-      computedStyle.getPropertyValue('-webkit-transform') ||
-      computedStyle.getPropertyValue('transform');
-  }
+  // Clear the inline transform and transition before reading layout and computed
+  // style so we compute from the element's natural position, not its previous
+  // off-screen translation. The transition must also be cleared, otherwise the
+  // browser may report an animated intermediate value from a still-running
+  // enter transition when reading getComputedStyle during exit.
+  const previousTransform = node.style.transform;
+  const previousTransition = node.style.transition;
+  node.style.transition = '';
+  node.style.transform = '';
+  const rect = node.getBoundingClientRect();
+  const computedStyle = containerWindow.getComputedStyle(node);
+  const transform = computedStyle.getPropertyValue('transform');
+  node.style.transform = previousTransform;
+  node.style.transition = previousTransition;
 
   let offsetX = 0;
   let offsetY = 0;
@@ -78,7 +84,6 @@ export function setTranslateValue(direction, node, containerProp) {
   const transform = getTranslateValue(direction, node, resolvedContainer);
 
   if (transform) {
-    node.style.webkitTransform = transform;
     node.style.transform = transform;
   }
 }
@@ -115,26 +120,13 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
-    // eslint-disable-next-line react/prop-types
-    TransitionComponent = Transition,
     ...other
   } = props;
 
   const childrenRef = React.useRef(null);
   const handleRef = useForkRef(getReactElementRef(children), childrenRef, ref);
 
-  const normalizedTransitionCallback = (callback) => (isAppearing) => {
-    if (callback) {
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (isAppearing === undefined) {
-        callback(childrenRef.current);
-      } else {
-        callback(childrenRef.current, isAppearing);
-      }
-    }
-  };
-
-  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
+  const handleEnter = normalizedTransitionCallback(childrenRef, (node, isAppearing) => {
     setTranslateValue(direction, node, containerProp);
     reflow(node);
 
@@ -143,7 +135,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
-  const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
+  const handleEntering = normalizedTransitionCallback(childrenRef, (node, isAppearing) => {
     const transitionProps = getTransitionProps(
       { timeout, style, easing: easingProp },
       {
@@ -151,25 +143,18 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       },
     );
 
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      ...transitionProps,
-    });
+    node.style.transition = theme.transitions.create('transform', transitionProps);
 
-    node.style.transition = theme.transitions.create('transform', {
-      ...transitionProps,
-    });
-
-    node.style.webkitTransform = 'none';
     node.style.transform = 'none';
     if (onEntering) {
       onEntering(node, isAppearing);
     }
   });
 
-  const handleEntered = normalizedTransitionCallback(onEntered);
-  const handleExiting = normalizedTransitionCallback(onExiting);
+  const handleEntered = normalizedTransitionCallback(childrenRef, onEntered);
+  const handleExiting = normalizedTransitionCallback(childrenRef, onExiting);
 
-  const handleExit = normalizedTransitionCallback((node) => {
+  const handleExit = normalizedTransitionCallback(childrenRef, (node) => {
     const transitionProps = getTransitionProps(
       { timeout, style, easing: easingProp },
       {
@@ -177,7 +162,6 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       },
     );
 
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
     setTranslateValue(direction, node, containerProp);
@@ -187,9 +171,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
-  const handleExited = normalizedTransitionCallback((node) => {
+  const handleExited = normalizedTransitionCallback(childrenRef, (node) => {
     // No need for transitions when the component is hidden
-    node.style.webkitTransition = '';
     node.style.transition = '';
 
     if (onExited) {
@@ -239,7 +222,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   }, [inProp, updatePosition]);
 
   return (
-    <TransitionComponent
+    <Transition
       nodeRef={childrenRef}
       onEnter={handleEnter}
       onEntered={handleEntered}
@@ -255,17 +238,25 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     >
       {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        let childStyle;
+        if (state === 'exited' && !inProp) {
+          childStyle =
+            style || children.props.style
+              ? { visibility: 'hidden', ...style, ...children.props.style }
+              : hiddenStyles;
+        } else if (style && children.props.style) {
+          childStyle = { ...style, ...children.props.style };
+        } else {
+          childStyle = style || children.props.style;
+        }
+
         return React.cloneElement(children, {
           ref: handleRef,
-          style: {
-            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-            ...style,
-            ...children.props.style,
-          },
+          style: childStyle,
           ...restChildProps,
         });
       }}
-    </TransitionComponent>
+    </Transition>
   );
 });
 

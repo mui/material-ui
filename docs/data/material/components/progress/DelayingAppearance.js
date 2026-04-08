@@ -47,7 +47,7 @@ export default function DelayingAppearance() {
           }}
           unmountOnExit
         >
-          <CircularProgress />
+          <CircularProgress aria-label="Loading…" />
         </Fade>
       </Box>
       <Button onClick={handleClickLoading} sx={{ m: 2 }}>
@@ -64,7 +64,7 @@ export default function DelayingAppearance() {
             }}
             unmountOnExit
           >
-            <CircularProgress />
+            <CircularProgress aria-label="Loading…" />
           </Fade>
         )}
       </Box>

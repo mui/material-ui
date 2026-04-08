@@ -36,4 +36,4 @@ It includes `@mui/material` and [Pigment CSS](https://github.com/mui/pigment-cs
 <!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v7.mui.com/material-ui/getting-started/templates/) section.

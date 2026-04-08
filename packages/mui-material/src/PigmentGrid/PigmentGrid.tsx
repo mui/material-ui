@@ -122,11 +122,11 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
  *
  * Demos:
  *
- * - [Grid](https://mui.com/material-ui/react-grid/)
+ * - [Grid](https://v7.mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [PigmentGrid API](https://mui.com/material-ui/api/pigment-grid/)
+ * - [PigmentGrid API](https://v7.mui.com/material-ui/api/pigment-grid/)
  */
 const PigmentGrid = React.forwardRef(function PigmentGrid(props, ref) {
   const { className, ...other } = props;

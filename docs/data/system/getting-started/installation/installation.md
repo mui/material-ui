@@ -9,15 +9,15 @@ Run one of the following commands to add MUI System to your project:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/system @emotion/react @emotion/styled
+npm install @mui/system@^7.0.0 @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/system @emotion/react @emotion/styled
+pnpm add @mui/system@^7.0.0 @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/system @emotion/react @emotion/styled
+yarn add @mui/system@^7.0.0 @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -44,15 +44,15 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/system @mui/styled-engine-sc styled-components
+npm install @mui/system@^7.0.0 @mui/styled-engine-sc@^7.0.0 styled-components
 ```
 
 ```bash pnpm
-pnpm add @mui/system @mui/styled-engine-sc styled-components
+pnpm add @mui/system@^7.0.0 @mui/styled-engine-sc@^7.0.0 styled-components
 ```
 
 ```bash yarn
-yarn add @mui/system @mui/styled-engine-sc styled-components
+yarn add @mui/system@^7.0.0 @mui/styled-engine-sc@^7.0.0 styled-components
 ```
 
 </codeblock>

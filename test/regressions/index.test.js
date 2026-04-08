@@ -160,6 +160,36 @@ async function main() {
       });
     });
 
+    describe('Switch', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-Switch/SimpleSwitch');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
+    describe('TextField', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-TextField/StandardTextField');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-TextField/StandardTextFieldForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('Textarea', () => {
       it('should keep input caret position at the end when adding a newline', async () => {
         await renderFixture('/regression-Textarea/TextareaAutosize');

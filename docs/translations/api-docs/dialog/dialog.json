@@ -36,6 +36,9 @@
     "PaperProps": {
       "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/paper/\"><code>Paper</code></a> element."
     },
+    "role": {
+      "description": "The ARIA role for the dialog element. The main dialog role is <code>dialog</code>, but <code>alertdialog</code> can be used if the content of the dialog requires immediate attention. See <a href=\"https://www.w3.org/TR/wai-aria-1.2/#dialog\">https://www.w3.org/TR/wai-aria-1.2/#dialog</a> and <a href=\"https://www.w3.org/TR/wai-aria-1.2/#alertdialog\">https://www.w3.org/TR/wai-aria-1.2/#alertdialog</a> for more details."
+    },
     "scroll": { "description": "Determine the container for scrolling the dialog." },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },

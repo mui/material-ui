@@ -199,7 +199,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
         : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
       const drawerStyle = paperRef.current.style;
-      drawerStyle.webkitTransform = transform;
       drawerStyle.transform = transform;
 
       let transition = '';
@@ -221,7 +220,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       }
 
       if (changeTransition) {
-        drawerStyle.webkitTransition = transition;
         drawerStyle.transition = transition;
       }
 
@@ -230,7 +228,6 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         backdropStyle.opacity = 1 - translate / getMaxTranslate(horizontalSwipe, paperRef.current);
 
         if (changeTransition) {
-          backdropStyle.webkitTransition = transition;
           backdropStyle.transition = transition;
         }
       }

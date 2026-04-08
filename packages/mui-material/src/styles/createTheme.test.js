@@ -563,8 +563,9 @@ describe('createTheme', () => {
       });
     } catch (error) {
       expect(error.message).to.equal(
+        // #host-reference
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
+          'Please use another name or follow the [docs](https://v7.mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
   });
@@ -782,6 +783,21 @@ describe('createTheme', () => {
       expect(theme.darken(theme.palette.secondary.main, 0.2)).to.equal(
         'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
       );
+    });
+
+    it('should not warn about channel token if nativeColor is used and custom palette colors are provided', () => {
+      expect(() =>
+        createTheme({
+          cssVariables: { nativeColor: true },
+          palette: {
+            divider: 'var(--mui-palette-divider)',
+            background: {
+              default: 'var(--mui-palette-background-default)',
+              paper: 'var(--mui-palette-background-paper)',
+            },
+          },
+        }),
+      ).not.toWarnDev();
     });
   });
 
