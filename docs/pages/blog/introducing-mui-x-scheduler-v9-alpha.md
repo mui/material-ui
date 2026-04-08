@@ -61,7 +61,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
   <figcaption>Scheduler in MUI X v9 alpha.</figcaption>
 </figure>
 
-At the center is an event model with start and end times, titles, and metadata that you links back to your business logic.
+At the center is an event model with start and end times, titles, and metadata that you link back to your business logic.
 
 You can group those events under resources representing people, rooms, assets or looser groupings that match your product.
 
@@ -78,11 +78,19 @@ They suit appointment booking, service desks, team coordination, and smaller‑s
 This is the best default when your users already understand calendar metaphors and need fast navigation across dates with a lightweight resource context.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
-    <source
-      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1600"
+    height="900"
+    style="border: 0; width: 800px;"
+  >
+    <source src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4" type="video/mp4" />
   </video>
   <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
 </figure>
@@ -96,17 +104,26 @@ Together, they're the workflow-heavy side of the stack we're shipping in v9.
 
 ## Event Timeline [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-The Event Timeline puts time on one axis and resources on the other, which is the model teams use for operations scheduling in products like FullCalendar Timeline and Bryntum Scheduler.
+The Event Timeline puts time on one axis and resources on the other, which is the model teams use for scheduling operations.
+
 It fits dispatching, workforce shifts, room/equipment allocation, manufacturing plans, and logistics boards where the key question is "who is doing what, when" across many parallel resources.
 
 The point is one underlying schedule that can be re-visualized without rewriting your domain layer: start in Event Calendar when date-first UX is enough, move to Timeline when resource density and conflict management become central.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" controls width="2130" height="1404" style="border: 0; width: 800px;">
-    <source
-      src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-timeline.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-timeline.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="2130"
+    height="1404"
+    style="border: 0; width: 800px;"
+  >
+    <source src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-timeline.mp4" type="video/mp4" />
   </video>
   <figcaption>Timeline in MUI X Scheduler (Premium).</figcaption>
 </figure>

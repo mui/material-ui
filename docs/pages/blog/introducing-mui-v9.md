@@ -140,7 +140,7 @@ We will expand Console over time, but v9 already covers the core operational loo
 
 ## "MUI Chat" renamed to "MUI Recipes"
 
-[MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idomatic API of Material UI, MUI X, or Base UI if you asked for it.
+[MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idiomatic API of Material UI, MUI X, or Base UI if you asked for it.
 
 Compared with starting from a blank file, it generates a first draft UI quickly and uses MUI component APIs directly.
 That reduces the amount of adaptation needed before you can use the output in a real codebase.

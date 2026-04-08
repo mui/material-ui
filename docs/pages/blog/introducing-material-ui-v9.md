@@ -38,11 +38,19 @@ Base UI adoption is expanding across Material UI: for now through component re
 `NumberField` is the first new primitive in this cycle built on that stack: a focused control for numeric input with consistent accessibility and styling hooks.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" controls width="992" height="562" style="width: 496px; border-radius: 0; border: 0;">
-    <source
-      src="/static/blog/introducing-material-ui-v9/number-field.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-material-ui-v9/number-field.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="992"
+    height="562"
+    style="width: 496px; border-radius: 0; border: 0;"
+  >
+    <source src="/static/blog/introducing-material-ui-v9/number-field.mp4" type="video/mp4" />
   </video>
   <figcaption>NumberField, implemented on Base UI.</figcaption>
 </figure>
@@ -55,11 +63,19 @@ See the [NumberField](/material-ui/react-number-field/) documentation for API de
 On this stack, we can finally support submenus, nested menus off the bar, instead of stopping at a single-level strip.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" width="1462" height="998" controls style="border: 0; width: 731px;">
-    <source
-      src="/static/blog/introducing-material-ui-v9/menubar.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-material-ui-v9/menubar.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1462"
+    height="998"
+    style="border: 0; width: 731px;"
+  >
+    <source src="/static/blog/introducing-material-ui-v9/menubar.mp4" type="video/mp4" />
   </video>
   <figcaption>Menubar with submenus and keyboard-friendly navigation.</figcaption>
 </figure>
@@ -86,9 +102,7 @@ This gives you:
 
 Current behavior and props are documented on the [Tooltip](/material-ui/react-tooltip/) page.
 
-Internal: preparing libraries for the v9 cycle
-
-Behind the scenes, we invested in internal prep work so the codebase could handle the v9 cycle smoothly, including versioning and build changes for the v9 cycle, plus internal adjustments that reduce friction for future breaking‑change work.
+Behind the scenes, we invested in prep work so the codebase could handle the v9 cycle smoothly, including versioning and build changes, plus adjustments that reduce friction for future breaking‑change work.
 
 ## Interaction and accessibility fixes
 

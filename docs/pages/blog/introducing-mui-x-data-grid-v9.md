@@ -27,12 +27,19 @@ Charts inside the grid is stable in v9: you can ship dashboards that mix tables 
 We also kept the implementation in step with Material UI v9 so the grid and charts don't drift as both packages evolve.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" width="1792" height="1610" controls style="border: 0; width: 100%;"
+  <video
+    src="/static/blog/introducing-mui-x-data-grid-v9/charts-integration.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1792"
+    height="1610"
+    style="border: 0; width: 100%;"
   >
-    <source
-      src="/static/blog/introducing-mui-x-data-grid-v9/charts-integration.mp4"
-      type="video/mp4"
-    />
+    <source src="/static/blog/introducing-mui-x-data-grid-v9/charts-integration.mp4" type="video/mp4" />
   </video>
   <figcaption>Charts integration inside the Data Grid.</figcaption>
 </figure>
@@ -52,12 +59,19 @@ The [Server‑side data](/x/react-data-grid/server-side-data/) guide covers lazy
 ## AI Assistant
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" width="1656" height="1028" controls style="border: 0; width: 100%;"
+  <video
+    src="/static/blog/introducing-mui-x-data-grid-v9/ai-assistant-showcase.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1656"
+    height="1028"
+    style="border: 0; width: 100%;"
   >
-    <source
-      src="/static/blog/introducing-mui-x-data-grid-v9/ai-assistant-showcase.mp4"
-      type="video/mp4"
-    />
+    <source src="/static/blog/introducing-mui-x-data-grid-v9/ai-assistant-showcase.mp4" type="video/mp4" />
   </video>
   <figcaption>Data Grid AI Assistant workflow.</figcaption>
 </figure>

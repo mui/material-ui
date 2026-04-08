@@ -49,11 +49,19 @@ For composition patterns and layering, see [Charts composition](/x/react-charts/
 The feature is still in preview: visuals, APIs, and defaults may move in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
-    <source
-      src="/static/blog/introducing-mui-x-charts-v9/candlestick.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-mui-x-charts-v9/candlestick.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1600"
+    height="900"
+    style="border: 0; width: 800px;"
+  >
+    <source src="/static/blog/introducing-mui-x-charts-v9/candlestick.mp4" type="video/mp4" />
   </video>
   <figcaption>Candlestick preview in MUI X Charts.</figcaption>
 </figure>
@@ -65,11 +73,19 @@ The feature is still in preview: visuals, APIs, and defaults may move in upcomin
 They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
 <figure>
-  <video muted playsinline autoplay loop preload="auto" controls width="1600" height="900" style="border: 0; width: 800px;">
-    <source
-      src="/static/blog/introducing-mui-x-charts-v9/rangebar.mp4"
-      type="video/mp4"
-    />
+  <video
+    src="/static/blog/introducing-mui-x-charts-v9/rangebar.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+    width="1600"
+    height="900"
+    style="border: 0; width: 800px;"
+  >
+    <source src="/static/blog/introducing-mui-x-charts-v9/rangebar.mp4" type="video/mp4" />
   </video>
   <figcaption>Range bar charts preview in MUI X Charts.</figcaption>
 </figure>
