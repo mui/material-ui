@@ -538,7 +538,7 @@ function useAutocomplete(props) {
     // If it exists and the value and the inputValue haven't changed, just update its index, otherwise continue execution
     const previousHighlightedOptionIndex = getPreviousHighlightedOptionIndex();
     if (previousHighlightedOptionIndex !== -1) {
-      highlightedIndexRef.current = previousHighlightedOptionIndex;
+      setHighlightedIndex({ index: previousHighlightedOptionIndex });
       return;
     }
 

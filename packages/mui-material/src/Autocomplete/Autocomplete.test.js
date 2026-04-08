@@ -458,6 +458,45 @@ describe('<Autocomplete />', () => {
       });
       checkHighlightIs(screen.getByRole('listbox'), 'two');
     });
+
+    it('should restore visual highlight when reopening popup in multiple mode', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          options={['one', 'two', 'three']}
+          defaultValue={['one']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      // Open popup
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      let listbox = screen.getByRole('listbox');
+      checkHighlightIs(listbox, 'one');
+
+      // Navigate to 'two'
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      checkHighlightIs(listbox, 'two');
+
+      // Close popup by pressing Escape
+      fireEvent.keyDown(textbox, { key: 'Escape' });
+      expect(screen.queryByRole('listbox')).to.equal(null);
+
+      // Reopen popup by ArrowDown
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      listbox = screen.getByRole('listbox');
+
+      // Visual highlight should be restored to 'two' (the previously highlighted option)
+      checkHighlightIs(listbox, 'two');
+
+      // Enter should select 'two', not toggle it off
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['one', 'two']);
+    });
   });
 
   describe('prop: limitTags', () => {
