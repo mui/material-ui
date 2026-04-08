@@ -52,12 +52,12 @@ Keeping Chat in alpha is intentional, because this is the phase where we can sti
       type="video/mp4"
     />
   </video>
-  <figcaption>MUI X Chat showcase in v9 alpha.</figcaption>
+  <figcaption>MUI X Chat showcase in v9 alpha.</figcaption>
 </figure>
 
 ## State, adapters, and streaming
 
-MUI X Chat work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don't turn into duplicated, fragile state as histories grow.
+MUI X Chat work centers on entity types and a normalized store so conversations, threads, messages, participants, tool calls, and results don't turn into duplicated, fragile state as histories grow.
 
 An adapter sits between that state and your backend: same UI whether you call OpenAI, an in‑house model, HTTP, WebSockets, or SSE, and the same boundary when orchestration lives outside React.
 
