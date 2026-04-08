@@ -1,5 +1,5 @@
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import { AppFrame } from '@mui/internal-core-docs/AppLayout';
+import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from 'docs/data/material/components/links/links.md?muiMarkdown';
 
 export default function Page() {

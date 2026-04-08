@@ -14,8 +14,10 @@ import Paper from '@mui/material/Paper';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { Item, Group, Highlighter } from '@mui/internal-core-docs/AppLayout';
-import { TwinkleIcon, SvgMaterialDesignIcon } from '@mui/internal-core-docs/svgIcons';
+import Item, { Group } from 'docs/src/components/action/Item';
+import Highlighter from 'docs/src/components/action/Highlighter';
+import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
+import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
 import EditProgress from 'docs/src/components/x-grid/EditProgress';
@@ -108,14 +110,14 @@ export default function XTheming() {
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
-                icon={<TwinkleIcon />}
+                icon={<SvgTwinkle />}
                 title="Custom theme"
                 description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
-                icon={<SvgMaterialDesignIcon />}
+                icon={<SvgMaterialDesign />}
                 title="Material Design"
                 description="Every component comes with Google's tried-and-tested design system, built-in and ready for use."
               />

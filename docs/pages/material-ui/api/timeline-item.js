@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ApiPage } from '@mui/internal-core-docs/ApiPage';
+import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 import jsonPageContent from './timeline-item.json';
 

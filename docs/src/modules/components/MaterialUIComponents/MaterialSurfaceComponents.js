@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid';
-import { ComponentShowcaseCard } from '@mui/internal-core-docs/AppLayout';
+import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 
 const surfaceComponents = [
   {

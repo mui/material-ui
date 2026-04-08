@@ -1,2 +1,3 @@
-export { getPropertiesToc } from './definitions/properties';
-export { getClassesToc } from './definitions/classes';
+export * from './definitions';
+export * from './list';
+export * from './sections';
