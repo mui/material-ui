@@ -7,6 +7,13 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
+<style>
+  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  .markdown-body video {
+    object-fit: contain !important;
+  }
+</style>
+
 In v9 we're laying the groundwork for AI-native conversational experiences in MUI X.
 [MUI X Chat](/x/react-chat/) centers on `ChatBox`, with adapters and streaming designed for real product workflows.
 

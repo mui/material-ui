@@ -7,6 +7,13 @@ tags: ['Material UI', 'Product']
 manualCard: false
 ---
 
+<style>
+  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  .markdown-body video {
+    object-fit: contain !important;
+  }
+</style>
+
 Material UI v9 is here.
 This release focuses on what developers feel immediately: better accessibility defaults, more reliable keyboard navigation, and theming foundations that make CSS integration smoother.
 

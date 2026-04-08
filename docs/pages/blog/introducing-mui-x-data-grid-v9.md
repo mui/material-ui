@@ -7,6 +7,13 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
+<style>
+  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  .markdown-body video {
+    object-fit: contain !important;
+  }
+</style>
+
 In v9, we tightened how the data grid works with live and server-backed data, making tabular-plus-visual dashboards first-class, and continuing to treat AI assistance as part of the product, not a side demo.
 
 For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.

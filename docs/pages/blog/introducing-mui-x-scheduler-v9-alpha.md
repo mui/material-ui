@@ -7,6 +7,13 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
+<style>
+  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  .markdown-body video {
+    object-fit: contain !important;
+  }
+</style>
+
 The Scheduler is a new advanced component in MUI X aimed at time‑ and resource‑centric applications: not just a decorative calendar, but events bound to people, rooms, equipment, and projects, with interactions that match how real products work.
 
 We're shipping it in alpha: useful for prototypes and roadmap planning, but the APIs are subject to change until the stable release—and we're hoping to get your feedback so we can move through this phase quickly.

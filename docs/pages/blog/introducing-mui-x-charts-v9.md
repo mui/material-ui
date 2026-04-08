@@ -7,6 +7,13 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
+<style>
+  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  .markdown-body video {
+    object-fit: contain !important;
+  }
+</style>
+
 In v9, we continued the same story you saw accelerate in v8: better default micro interactions and better default accessibility, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
 
 For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
