@@ -8,9 +8,11 @@ manualCard: false
 ---
 
 <style>
-  /* Overrides blog layout `object-fit: cover` on video only; cover breaks muted autoplay in WebKit. */
+  /* `object-fit: contain` avoids WebKit autoplay issues vs. layout `cover` on video. */
+  /* `clip-path: inset(1px)` trims one decoded pixel per edge (common macroblock/ringing artifacts). */
   .markdown-body video {
     object-fit: contain !important;
+    clip-path: inset(1px);
   }
 </style>
 
