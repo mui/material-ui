@@ -186,10 +186,14 @@ describe('<CircularProgress />', () => {
     });
 
     it('min and max values should be used to calculate the circumference of the circle', () => {
-      render(<CircularProgress variant="determinate" value={15} min={10} max={30} />);
+      const { container } = render(
+        <CircularProgress variant="determinate" value={15} min={10} max={30} />,
+      );
+      const [circle] = container.querySelectorAll('svg circle');
       const progressbar = screen.getByRole('progressbar');
 
       expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
+      expect(circle.style.strokeDashoffset).to.equal('95.190px');
     });
 
     it('should error if min, max, and value props are invalid', () => {
