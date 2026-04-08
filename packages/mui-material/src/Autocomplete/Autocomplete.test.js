@@ -473,7 +473,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
-      // Open popup 
+      // Open popup
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       let listbox = screen.getByRole('listbox');
       // With value=['one', 'two'], sync highlights 'one' (the first value item)
