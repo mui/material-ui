@@ -9,7 +9,7 @@ import {
   HooksApiContent,
   getTranslatedHeader as getComponentTranslatedHeader,
 } from '@mui/internal-core-docs/ApiPage';
-import { RichMarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { AppLayoutDocs, HEIGHT as AppFrameHeight } from '@mui/internal-core-docs/AppLayout';
 import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';

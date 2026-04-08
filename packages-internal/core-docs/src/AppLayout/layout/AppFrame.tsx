@@ -17,7 +17,7 @@ import { AppFrameBanner } from '../components/AppFrameBanner';
 import { SearchButton } from '../components/SearchButton';
 import PageContext from '../../PageContext';
 import { useTranslate } from '../../i18n';
-import { DemoPageThemeProvider } from '../../Demo/DemoThemeProviders';
+import { DemoPageThemeProvider } from '../../Demo';
 
 const sx = { minWidth: { sm: 160 } };
 

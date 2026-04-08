@@ -1,4 +1,4 @@
-export function getFileExtension(codeVariant: 'TS' | 'JS') {
+export default function getFileExtension(codeVariant: 'TS' | 'JS') {
   if (codeVariant === 'TS') {
     return 'tsx';
   }

@@ -1,5 +1,4 @@
 import { createRender } from '@mui/internal-markdown';
-import { LANGUAGES_IGNORE_PAGES } from '../constants';
 
 const notEnglishJsonRegExp = /-([a-z]{2})\.json$/;
 
@@ -13,9 +12,9 @@ interface Req {
  * @param languagesIgnorePages - A function that returns true if the page should not be translated.
  *   Typically `LANGUAGES_IGNORE_PAGES` from the docs config.
  */
-export function mapApiPageTranslations(
+export default function mapApiPageTranslations(
   req: Req,
-  languagesIgnorePages: (pathname: string) => boolean = LANGUAGES_IGNORE_PAGES,
+  languagesIgnorePages?: (pathname: string) => boolean,
 ) {
   const headingHashes: Record<string, string> = {};
   const translations: Record<string, any> = {};

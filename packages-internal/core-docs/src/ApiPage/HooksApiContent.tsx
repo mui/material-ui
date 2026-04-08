@@ -9,7 +9,7 @@ import { getHookApiDefinitions } from './definitions/properties';
 import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { HighlightedCode } from '../HighlightedCode';
-import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
+import { MarkdownElement } from '../MarkdownElement';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

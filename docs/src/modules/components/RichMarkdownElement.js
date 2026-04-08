@@ -1,39 +1,17 @@
-import * as React from 'react';
-import { useTranslate, useUserLanguage } from '../i18n';
-import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
-import { MarkdownElement } from './MarkdownElement';
-import { Demo, type DemoProps } from '../Demo/Demo';
-import { DemoToolbar } from '../Demo/DemoToolbar';
+import PropTypes from 'prop-types';
+import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { HighlightedCodeWithTabs } from '@mui/internal-core-docs/HighlightedCodeWithTabs';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import { Demo } from '@mui/internal-core-docs/Demo';
+import DemoToolbar from 'docs/src/modules/components/DemoToolbar';
 
-function noComponent(moduleID: string) {
+function noComponent(moduleID) {
   return function NoComponent() {
     throw new Error(`No demo component provided for '${moduleID}'`);
   };
 }
 
-export interface RichMarkdownElementProps {
-  activeTab?: string;
-  demoComponents: Record<string, React.ComponentType<any>>;
-  demos?: Record<string, any>;
-  disableAd?: boolean;
-  localizedDoc: {
-    location: string;
-    [key: string]: any;
-  };
-  renderedMarkdownOrDemo:
-    | string
-    | {
-        component?: any;
-        demo?: string;
-        type?: string;
-        data?: any;
-        storageKey?: string;
-        [key: string]: any;
-      };
-  srcComponents?: Record<string, React.ComponentType<any>>;
-}
-
-export function RichMarkdownElement(props: RichMarkdownElementProps) {
+export default function RichMarkdownElement(props) {
   const {
     activeTab,
     demoComponents,
@@ -58,7 +36,7 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
       throw new Error(`No component found at the path 'docs/src/${name}`);
     }
 
-    const additionalProps: Record<string, any> = {};
+    const additionalProps = {};
     if (name === 'modules/components/ComponentPageTabs.js') {
       additionalProps.activeTab = activeTab;
     }
@@ -77,7 +55,7 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
     );
   }
 
-  const name = renderedMarkdownOrDemo.demo!;
+  const name = renderedMarkdownOrDemo.demo;
   const demo = demos?.[name];
   if (demo === undefined) {
     const errorMessage = [
@@ -113,7 +91,7 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
     <Demo
       demo={{
         raw: demo.raw,
-        js: demoComponents[demo.module!] ?? noComponent(demo.module!),
+        js: demoComponents[demo.module] ?? noComponent(demo.module),
         scope: demos.scope,
         jsxPreview: demo.jsxPreview,
         tailwindJsxPreview: demo.tailwindJsxPreview,
@@ -121,7 +99,7 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
         rawTS: demo.rawTS,
         module: demo.module,
         moduleTS: demo.moduleTS,
-        tsx: demoComponents[demo.moduleTS!] ?? noComponent(demo.moduleTS!),
+        tsx: demoComponents[demo.moduleTS] ?? noComponent(demo.moduleTS),
         rawTailwind: demo.rawTailwind,
         rawTailwindTS: demo.rawTailwindTS,
         jsTailwind: demoComponents[demo.moduleTailwind] ?? null,
@@ -133,10 +111,23 @@ export function RichMarkdownElement(props: RichMarkdownElementProps) {
         gaLabel: fileNameWithLocation.replace(/^\/docs\/data\//, ''),
         relativeModules: demo.relativeModules,
       }}
-      disableAd={disableAd ?? false}
-      demoOptions={renderedMarkdownOrDemo as DemoProps['demoOptions']}
+      disableAd={disableAd}
+      demoOptions={renderedMarkdownOrDemo}
       githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
       demoToolbarSlot={DemoToolbar}
     />
   );
 }
+
+RichMarkdownElement.propTypes = {
+  activeTab: PropTypes.string,
+  demoComponents: PropTypes.any,
+  demos: PropTypes.any,
+  disableAd: PropTypes.bool,
+  localizedDoc: PropTypes.any,
+  renderedMarkdownOrDemo: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({ component: PropTypes.any, demo: PropTypes.any }),
+  ]),
+  srcComponents: PropTypes.any,
+};

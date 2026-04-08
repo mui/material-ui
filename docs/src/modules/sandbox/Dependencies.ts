@@ -1,5 +1,5 @@
-import { CODE_VARIANTS } from '../../constants/constants';
-import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import { CODE_VARIANTS } from '@mui/internal-core-docs/constants';
+import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
@@ -40,7 +40,7 @@ function addTypeDeps(deps: Record<string, string>, devDeps: Record<string, strin
 
 type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModules'>;
 
-export function SandboxDependencies(
+export default function SandboxDependencies(
   demo: Demo,
   options: { commitRef?: string; devDeps?: Record<string, string>; csbConfig?: SandboxConfig } = {},
 ) {

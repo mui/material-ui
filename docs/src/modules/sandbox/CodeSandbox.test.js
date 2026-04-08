@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as StackBlitz from './StackBlitz';
+import CodeSandbox from './CodeSandbox';
 
 const testCase = `import * as React from 'react';
 import Stack from '@mui/material/Stack';
@@ -16,9 +16,9 @@ export default function BasicButtons() {
 }
 `;
 
-describe('StackBlitz', () => {
+describe('CodeSandbox', () => {
   it('generate the correct JavaScript result', () => {
-    const { openSandbox, ...result } = StackBlitz.createReactApp({
+    const result = CodeSandbox.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
         'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
@@ -26,12 +26,33 @@ describe('StackBlitz', () => {
       language: 'en',
       raw: testCase,
     });
-    expect(result).to.deep.equal({
-      title: 'BasicButtons Material Demo',
-      description:
-        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
-      files: {
-        'index.html': `<!DOCTYPE html>
+    expect(result.files).to.deep.equal({
+      'package.json': {
+        content: {
+          private: true,
+          description:
+            'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
+          dependencies: {
+            react: 'latest',
+            // #npm-tag-reference
+            '@mui/material': 'latest',
+            'react-dom': 'latest',
+            '@emotion/react': 'latest',
+            '@emotion/styled': 'latest',
+          },
+          devDependencies: {
+            'react-scripts': 'latest',
+          },
+          scripts: {
+            start: 'react-scripts start',
+            build: 'react-scripts build',
+            test: 'react-scripts test',
+            eject: 'react-scripts eject',
+          },
+        },
+      },
+      'public/index.html': {
+        content: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -52,31 +73,11 @@ describe('StackBlitz', () => {
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
-  </body>
+    \n  </body>
 </html>`,
-        'package.json': `{
-  "private": true,
-  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "latest",
-    "@mui/material": "latest",
-    "react-dom": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest"
-  }
-}`,
-        'src/Demo.jsx': `import * as React from 'react';
+      },
+      'src/Demo.js': {
+        content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
@@ -90,7 +91,9 @@ export default function BasicButtons() {
   );
 }
 `,
-        'src/index.jsx': `import * as React from 'react';
+      },
+      'src/index.js': {
+        content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
@@ -102,33 +105,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     </StyledEngineProvider>
   </React.StrictMode>
 );`,
-        'vite.config.js': `
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  define: { 'process.env': {} },
-});`,
-      },
-      dependencies: {
-        react: 'latest',
-        // #npm-tag-reference
-        '@mui/material': 'latest',
-        'react-dom': 'latest',
-        '@emotion/react': 'latest',
-        '@emotion/styled': 'latest',
-      },
-      devDependencies: {
-        '@vitejs/plugin-react': 'latest',
-        vite: 'latest',
       },
     });
   });
 
   it('generate the correct TypeScript result', () => {
-    const { openSandbox, ...result } = StackBlitz.createReactApp({
+    const result = CodeSandbox.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
         'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
@@ -136,12 +118,36 @@ export default defineConfig({
       language: 'en',
       raw: testCase,
     });
-    expect(result).to.deep.equal({
-      title: 'BasicButtons Material Demo',
-      description:
-        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
-      files: {
-        'index.html': `<!DOCTYPE html>
+    expect(result.files).to.deep.equal({
+      'package.json': {
+        content: {
+          private: true,
+          description:
+            'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
+          dependencies: {
+            react: 'latest',
+            // #npm-tag-reference
+            '@mui/material': 'latest',
+            'react-dom': 'latest',
+            '@emotion/react': 'latest',
+            '@emotion/styled': 'latest',
+            typescript: 'latest',
+          },
+          devDependencies: {
+            'react-scripts': 'latest',
+            '@types/react': 'latest',
+            '@types/react-dom': 'latest',
+          },
+          scripts: {
+            build: 'react-scripts build',
+            eject: 'react-scripts eject',
+            start: 'react-scripts start',
+            test: 'react-scripts test',
+          },
+        },
+      },
+      'public/index.html': {
+        content: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -162,34 +168,11 @@ export default defineConfig({
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
-  </body>
+    \n  </body>
 </html>`,
-        'package.json': `{
-  "private": true,
-  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "latest",
-    "@mui/material": "latest",
-    "react-dom": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "typescript": "latest"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest"
-  }
-}`,
-        'src/Demo.tsx': `import * as React from 'react';
+      },
+      'src/Demo.tsx': {
+        content: `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
@@ -203,7 +186,9 @@ export default function BasicButtons() {
   );
 }
 `,
-        'src/index.tsx': `import * as React from 'react';
+      },
+      'src/index.tsx': {
+        content: `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
@@ -215,63 +200,49 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     </StyledEngineProvider>
   </React.StrictMode>
 );`,
-
-        'tsconfig.json': `{
+      },
+      'tsconfig.json': {
+        content: `{
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "jsx": "react"
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
-}`,
-        'tsconfig.node.json': `{
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
-}`,
-        'vite.config.ts': `
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  define: { 'process.env': {} },
-});`,
+  "include": [
+    "src"
+  ]
+}
+`,
       },
-      dependencies: {
-        react: 'latest',
-        // #npm-tag-reference
-        '@mui/material': 'latest',
-        'react-dom': 'latest',
-        '@emotion/react': 'latest',
-        '@emotion/styled': 'latest',
-        typescript: 'latest',
-      },
-      devDependencies: {
-        '@types/react': 'latest',
-        '@types/react-dom': 'latest',
-        '@vitejs/plugin-react': 'latest',
-        vite: 'latest',
-      },
+    });
+    expect(result.dependencies).to.deep.equal({
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      // #npm-tag-reference
+      '@mui/material': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+      typescript: 'latest',
+    });
+    expect(result.devDependencies).to.deep.equal({
+      'react-scripts': 'latest',
+      '@types/react': 'latest',
+      '@types/react-dom': 'latest',
     });
   });
 
@@ -284,12 +255,12 @@ export default defineConfig({
     }
     `;
 
-    const result = StackBlitz.createReactApp({
+    const result = CodeSandbox.createReactApp({
       raw,
       codeVariant: 'JS',
     });
 
-    expect(result.files['index.html']).to.contain(
+    expect(result.files['public/index.html'].content).to.contain(
       'https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone',
     );
   });

@@ -7,7 +7,7 @@ import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/App
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
 import { Link } from '@mui/internal-core-docs/Link';
 import { useTranslate } from '@mui/internal-core-docs/i18n';
 

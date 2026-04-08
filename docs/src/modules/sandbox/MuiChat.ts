@@ -1,7 +1,8 @@
-import type { SandboxConfig } from '../../DemoContext/DemoContext';
-import type { DemoData } from './types';
-import { SandboxDependencies } from './Dependencies';
-import { flattenRelativeImports } from './FlattenRelativeImports';
+/* eslint-disable import/prefer-default-export */
+import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
+import { DemoData } from './types';
+import SandboxDependencies from './Dependencies';
+import flattenRelativeImports from './FlattenRelativeImports';
 
 function getFileExtension(codeVariant: 'TS' | 'JS') {
   if (codeVariant === 'TS') {

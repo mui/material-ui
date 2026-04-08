@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { SandboxDependencies } from './Dependencies';
+import SandboxDependencies from './Dependencies';
 
 describe('Dependencies', () => {
   beforeAll(() => {
