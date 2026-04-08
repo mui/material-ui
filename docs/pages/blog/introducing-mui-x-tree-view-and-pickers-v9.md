@@ -18,6 +18,7 @@ This new major is part of a coordinated effort across the entire product suite; 
 
 - [Date and Time Pickers](#date-and-time-pickers)
 - [Tree View](#tree-view) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+- [Migration guides](#migration-guides)
 
 ## Date and Time Pickers
 
@@ -27,13 +28,10 @@ Pickers in v9 continue the keyboard‑first calendar work: move through day, mon
 We also smoothed focus when dismissing the popover so click‑away is less likely to strand focus on the wrong control, especially near dialogs, drawers, and embedded grid filters.
 Locales and adapters expand (for example, `thTH` in step with the Data Grid, and `AdapterDayjsBuddhist` for non‑Gregorian cases); if you use range pickers across zones, re‑validate edge cases after upgrading.
 
-Two late cleanup changes are also important for v9 migrations:
+Some cleanup changes are also important in v9:
 
 - [#21966](https://github.com/mui/mui-x/pull/21966): removes `enableAccessibleFieldDOMStructure`; the accessible field DOM is now the only supported mode, with codemod support.
 - [#21739](https://github.com/mui/mui-x/pull/21739): removes `PickersDay` and promotes `PickerDay2` as the default day component API.
-
-Use the migration guide checklist to apply the related codemods and API updates:
-[Migration from v8 to v9 (Date and Time Pickers)](/x/migration/migration-pickers-v8/).
 
 The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration notes) remain the source of truth for API deltas as v9 stabilizes.
 
@@ -46,7 +44,14 @@ API and styling hygiene matter too: older model and ref hooks are replaced by th
 
 If you maintain custom themes or imperative code against trees, budget time to revisit refs, virtualization assumptions, and selectors that depended on the old classes.
 
-Full API and migration notes live in the [Tree View](/x/react-tree-view/) documentation.
+Full API notes live in the [Tree View](/x/react-tree-view/) documentation.
+
+## Migration guides
+
+For a complete list of breaking changes and codemod steps, use the dedicated migration guides:
+
+- [Date and Time Pickers: Migration from v8 to v9](/x/migration/migration-pickers-v8/)
+- [Tree View: Migration from v8 to v9](/x/migration/migration-tree-view-v8/)
 
 ## Further reading
 
