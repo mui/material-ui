@@ -507,7 +507,7 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      previousProps.filteredOptions.length > 0 &&
+      previousProps.filteredOptions?.length > 0 &&
       !areArraysSame({
         array1: previousProps.filteredOptions,
         array2: filteredOptions,
@@ -643,10 +643,10 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    if (filteredOptionsChanged || popupOpen) {
+    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
       syncHighlightedIndex();
     }
-  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen]);
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
 
   // Listen for browser window blur to detect when the user switches tabs or windows.
   // This helps prevent the popup from reopening automatically when the window regains focus.
