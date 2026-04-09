@@ -1638,6 +1638,8 @@ importers:
         specifier: 0.12.7
         version: 0.12.7
 
+  test/e2e: {}
+
   test/moduleResolution:
     dependencies:
       '@mui/icons-material':
