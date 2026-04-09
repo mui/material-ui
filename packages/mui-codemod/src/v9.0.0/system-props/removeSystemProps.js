@@ -180,9 +180,14 @@ export default function removeSystemProps(file, api, options) {
     },
   };
   const elementReplacement = {};
-
+  const packageName = options.packageName;
   root
-    .find(j.ImportDeclaration, (decl) => decl.source.value.includes('@mui'))
+    .find(
+      j.ImportDeclaration,
+      (decl) =>
+        decl.source.value.includes('@mui') ||
+        (packageName && decl.source.value.includes(packageName)),
+    )
     .forEach((decl) => {
       decl.node.specifiers.forEach((spec) => {
         if (spec.type === 'ImportSpecifier') {
