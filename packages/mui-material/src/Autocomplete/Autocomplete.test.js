@@ -3716,10 +3716,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           disablePortal
           open
-          options={[
-            { label: 'John' },
-            { label: 'John' },
-          ]}
+          options={[{ label: 'John' }, { label: 'John' }]}
           getOptionLabel={(option) => option.label}
           renderInput={(params) => <TextField {...params} />}
           renderOption={(props, option) => {
