@@ -1,9 +1,9 @@
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
-import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
-import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
-import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
-import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
+import addHiddenInput from '../../utils/addHiddenInput';
+import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import { SandboxDependencies } from './Dependencies';
+import { flattenRelativeImports } from './FlattenRelativeImports';
+import * as CRA from './CreateReactApp';
+import type { CodeVariant, DemoData } from './types';
 
 function getFileExtension(codeVariant: 'TS' | 'JS') {
   if (codeVariant === 'TS') {
@@ -261,7 +261,4 @@ function createReactApp(demoData: DemoData, csbConfig?: SandboxConfig) {
   };
 }
 
-export default {
-  createReactApp,
-  createMaterialTemplate,
-};
+export { createReactApp, createMaterialTemplate };

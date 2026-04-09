@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -18,13 +17,15 @@ import Divider from '@mui/material/Divider';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { useRouter } from 'next/router';
-import { CODE_VARIANTS, stylingSolutionMapping } from '@mui/internal-core-docs/constants';
-import { useSetCodeVariant } from '@mui/internal-core-docs/codeVariant';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
-import { useDemoContext } from '@mui/internal-core-docs/DemoContext';
-import codeSandbox from '../sandbox/CodeSandbox';
-import stackBlitz from '../sandbox/StackBlitz';
+import { CODE_VARIANTS, stylingSolutionMapping } from '../constants';
+import { useSetCodeVariant } from '../codeVariant';
+import { useTranslate } from '../i18n';
+import { OpenInMUIChatButton } from './OpenInMUIChatButton';
+import { useDemoContext } from '../DemoContext';
+import * as codeSandbox from './sandbox/CodeSandbox';
+import * as stackBlitz from './sandbox/StackBlitz';
+import type { DemoData as SandboxDemoData } from './sandbox/types';
+import type { DemoToolbarProps } from './Demo';
 
 const Root = styled('div')(({ theme }) => [
   {
@@ -55,7 +56,7 @@ const Root = styled('div')(({ theme }) => [
   }),
 ]);
 
-function DemoTooltip(props) {
+function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
   return (
     <Tooltip
       slotProps={{
@@ -144,18 +145,16 @@ const ToggleButton = styled(MDToggleButton)(({ theme }) => [
   }),
 ]);
 
-/**
- * @param {React.Ref<HTMLElement>[]} controlRefs
- * @param {object} [options]
- * @param {(index: number) => boolean} [options.isFocusableControl] In case certain controls become unfocusable
- * @param {number} [options.defaultActiveIndex]
- */
-function useToolbar(controlRefs, options = {}) {
+function useToolbar(
+  controlRefs: React.RefObject<HTMLButtonElement | null>[],
+  options: {
+    isFocusableControl?: (index: number) => boolean;
+    defaultActiveIndex?: number;
+  } = {},
+) {
   const { defaultActiveIndex = 0, isFocusableControl = alwaysTrue } = options;
   const [activeControlIndex, setActiveControlIndex] = React.useState(defaultActiveIndex);
 
-  // TODO: do we need to do this during layout practically? It's technically
-  // a bit too late since we allow user interaction between layout and passive effects
   React.useEffect(() => {
     setActiveControlIndex((currentActiveControlIndex) => {
       if (!isFocusableControl(currentActiveControlIndex)) {
@@ -165,8 +164,7 @@ function useToolbar(controlRefs, options = {}) {
     });
   }, [defaultActiveIndex, isFocusableControl]);
 
-  // controlRefs.findIndex(controlRef => controlRef.current = element)
-  function findControlIndex(element) {
+  function findControlIndex(element: EventTarget) {
     let controlIndex = -1;
     controlRefs.forEach((controlRef, index) => {
       if (controlRef.current === element) {
@@ -176,7 +174,7 @@ function useToolbar(controlRefs, options = {}) {
     return controlIndex;
   }
 
-  function handleControlFocus(event) {
+  function handleControlFocus(event: React.FocusEvent) {
     const nextActiveControlIndex = findControlIndex(event.target);
     if (nextActiveControlIndex !== -1) {
       setActiveControlIndex(nextActiveControlIndex);
@@ -192,9 +190,9 @@ function useToolbar(controlRefs, options = {}) {
     }
   }
 
-  let handleToolbarFocus;
+  let handleToolbarFocus: React.FocusEventHandler | undefined;
   if (process.env.NODE_ENV !== 'production') {
-    handleToolbarFocus = (event) => {
+    handleToolbarFocus = (event: React.FocusEvent) => {
       if (findControlIndex(event.target) === -1) {
         console.error(
           'MUI: The toolbar contains a focusable element that is not controlled by the toolbar. ' +
@@ -206,12 +204,9 @@ function useToolbar(controlRefs, options = {}) {
 
   const { direction } = useTheme();
 
-  function handleToolbarKeyDown(event) {
-    // We handle toolbars where controls can be hidden temporarily.
-    // When a control is hidden we can't move focus to it and have to exclude
-    // it from the order.
+  function handleToolbarKeyDown(event: React.KeyboardEvent) {
     let currentFocusableControlIndex = -1;
-    const focusableControls = [];
+    const focusableControls: HTMLElement[] = [];
     controlRefs.forEach((controlRef, index) => {
       const { current: control } = controlRef;
       if (index === activeControlIndex) {
@@ -250,7 +245,7 @@ function useToolbar(controlRefs, options = {}) {
     }
   }
 
-  function getControlProps(index) {
+  function getControlProps(index: number) {
     return {
       onFocus: handleControlFocus,
       ref: controlRefs[index],
@@ -261,15 +256,14 @@ function useToolbar(controlRefs, options = {}) {
   return {
     getControlProps,
     toolbarProps: {
-      // TODO: good opportunity to warn on missing `aria-label`
       onFocus: handleToolbarFocus,
       onKeyDown: handleToolbarKeyDown,
-      role: 'toolbar',
+      role: 'toolbar' as const,
     },
   };
 }
 
-export default function DemoToolbar(props) {
+export function DemoToolbar(props: DemoToolbarProps) {
   const {
     codeOpen,
     codeVariant,
@@ -301,14 +295,14 @@ export default function DemoToolbar(props) {
     return CODE_VARIANTS.JS;
   };
 
-  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
+  const handleCodeLanguageClick = (_event: React.MouseEvent, clickedCodeVariant: string | null) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
       setCodeVariant(clickedCodeVariant);
     }
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleMoreClick = (event) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const handleMoreClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleMoreClose = () => {
@@ -316,31 +310,32 @@ export default function DemoToolbar(props) {
   };
 
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
+  const [snackbarMessage, setSnackbarMessage] = React.useState<string | undefined>(undefined);
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
 
-  const createHandleCodeSourceLink = (anchor, codeVariantParam, stylingSolution) => async () => {
-    try {
-      await copy(
-        `${window.location.href.split('#')[0]}#${
-          stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
-        }${anchor}${codeVariantParam === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
-      );
-      setSnackbarMessage(t('copiedSourceLink'));
-      setSnackbarOpen(true);
-    } finally {
-      handleMoreClose();
-    }
-  };
+  const createHandleCodeSourceLink =
+    (anchor: string, codeVariantParam: string, stylingSolution?: string) => async () => {
+      try {
+        await copy(
+          `${window.location.href.split('#')[0]}#${
+            stylingSolution ? `${stylingSolutionMapping[stylingSolution]}-` : ''
+          }${anchor}${codeVariantParam === CODE_VARIANTS.TS ? '.tsx' : '.js'}`,
+        );
+        setSnackbarMessage(t('copiedSourceLink'));
+        setSnackbarOpen(true);
+      } finally {
+        handleMoreClose();
+      }
+    };
 
   const handleResetFocusClick = () => {
-    initialFocusRef.current.focusVisible();
+    initialFocusRef.current?.focusVisible();
   };
 
-  let showCodeLabel;
+  let showCodeLabel: string;
   if (codeOpen) {
     showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
   } else {
@@ -348,20 +343,20 @@ export default function DemoToolbar(props) {
   }
 
   const controlRefs = [
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
-    React.useRef(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
+    React.useRef<HTMLButtonElement>(null),
   ];
   // if the code is not open we hide the language controls
   const isFocusableControl = React.useCallback(
-    (index) => (codeOpen ? true : index !== 1 && index !== 2),
+    (index: number) => (codeOpen ? true : index !== 1 && index !== 2),
     [codeOpen],
   );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
@@ -369,7 +364,7 @@ export default function DemoToolbar(props) {
     isFocusableControl,
   });
 
-  const devMenuItems = [];
+  const devMenuItems: React.ReactNode[] = [];
   if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
@@ -377,7 +372,7 @@ export default function DemoToolbar(props) {
 
     if (process.env.PULL_REQUEST_ID) {
       devMenuItems.push(
-        <MenuItem
+        <MDMenuItem
           key="link-deploy-preview"
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
@@ -389,12 +384,12 @@ export default function DemoToolbar(props) {
           onClick={handleMoreClose}
         >
           demo on PR #{process.env.PULL_REQUEST_ID}
-        </MenuItem>,
+        </MDMenuItem>,
       );
     }
 
     devMenuItems.push(
-      <MenuItem
+      <MDMenuItem
         key="link-next"
         data-ga-event-category="demo"
         data-ga-event-label={demo.gaLabel}
@@ -406,8 +401,8 @@ export default function DemoToolbar(props) {
         onClick={handleMoreClose}
       >
         demo on&#160;<code>next</code>
-      </MenuItem>,
-      <MenuItem
+      </MDMenuItem>,
+      <MDMenuItem
         key="permalink"
         data-ga-event-category="demo"
         data-ga-event-label={demo.gaLabel}
@@ -419,8 +414,8 @@ export default function DemoToolbar(props) {
         onClick={handleMoreClose}
       >
         demo permalink
-      </MenuItem>,
-      <MenuItem
+      </MDMenuItem>,
+      <MDMenuItem
         key="link-master"
         data-ga-event-category="demo"
         data-ga-event-label={demo.gaLabel}
@@ -432,18 +427,18 @@ export default function DemoToolbar(props) {
         onClick={handleMoreClose}
       >
         demo on&#160;<code>master</code>
-      </MenuItem>,
+      </MDMenuItem>,
     );
   }
 
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        <OpenMuiChat
+        <OpenInMUIChatButton
           data-ga-event-category="mui-chat"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="open-in-mui-chat"
-          demoData={demoData}
+          demoData={demoData as unknown as SandboxDemoData}
         />
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
@@ -482,7 +477,7 @@ export default function DemoToolbar(props) {
         </Fade>
         <Box sx={{ ml: 'auto' }}>
           <Button
-            aria-controls={openDemoSource ? demoSourceId : null}
+            aria-controls={openDemoSource ? demoSourceId : undefined}
             data-ga-event-category="demo"
             data-ga-event-label={demo.gaLabel}
             data-ga-event-action="expand"
@@ -499,7 +494,11 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
-                  onClick={() => stackBlitz.createReactApp(demoData, csb).openSandbox()}
+                  onClick={() =>
+                    stackBlitz
+                      .createReactApp(demoData as unknown as SandboxDemoData, csb)
+                      .openSandbox()
+                  }
                   {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -513,7 +512,11 @@ export default function DemoToolbar(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="codesandbox"
-                  onClick={() => codeSandbox.createReactApp(demoData, csb).openSandbox()}
+                  onClick={() =>
+                    codeSandbox
+                      .createReactApp(demoData as unknown as SandboxDemoData, csb)
+                      .openSandbox()
+                  }
                   {...getControlProps(5)}
                   sx={{ borderRadius: 1 }}
                 >
@@ -587,7 +590,7 @@ export default function DemoToolbar(props) {
           horizontal: 'right',
         }}
       >
-        <MenuItem
+        <MDMenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="github"
@@ -598,7 +601,7 @@ export default function DemoToolbar(props) {
           onClick={handleMoreClose}
         >
           {t('viewGitHub')}
-        </MenuItem>
+        </MDMenuItem>
         <MenuItem
           data-ga-event-category="demo"
           data-ga-event-label={demo.gaLabel}
@@ -626,22 +629,3 @@ export default function DemoToolbar(props) {
     </React.Fragment>
   );
 }
-
-DemoToolbar.propTypes = {
-  codeOpen: PropTypes.bool.isRequired,
-  codeVariant: PropTypes.string.isRequired,
-  copyButtonOnClick: PropTypes.func.isRequired,
-  copyIcon: PropTypes.object.isRequired,
-  demo: PropTypes.object.isRequired,
-  demoData: PropTypes.object.isRequired,
-  demoId: PropTypes.string,
-  demoName: PropTypes.string.isRequired,
-  demoOptions: PropTypes.object.isRequired,
-  demoSourceId: PropTypes.string,
-  hasNonSystemDemos: PropTypes.string,
-  initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
-  onCodeOpenChange: PropTypes.func.isRequired,
-  onResetDemoClick: PropTypes.func.isRequired,
-  openDemoSource: PropTypes.bool.isRequired,
-  showPreview: PropTypes.bool.isRequired,
-};

@@ -1,12 +1,12 @@
 // @ts-ignore
 import LZString from 'lz-string';
-import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
-import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
-import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
-import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
-import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import type { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
-import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
+import addHiddenInput from '../../utils/addHiddenInput';
+import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import { SandboxDependencies } from './Dependencies';
+import * as CRA from './CreateReactApp';
+import { getFileExtension } from './FileExtension';
+import { flattenRelativeImports } from './FlattenRelativeImports';
+import type { DemoData, CodeVariant } from './types';
 
 const CSB_DEV_DEPENDENCIES = {
   'react-scripts': 'latest',
@@ -203,7 +203,4 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   };
 }
 
-export default {
-  createReactApp,
-  createMaterialTemplate,
-};
+export { createReactApp, createMaterialTemplate };

@@ -11,7 +11,7 @@ import { Translate, useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCode } from '../HighlightedCode';
 import { BrandingProvider, BrandingCssVarsProvider } from '../branding';
 import { SectionTitle, SectionTitleProps } from '../SectionTitle';
-import { MarkdownElement } from '../MarkdownElement';
+import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import { AppLayoutDocs } from '../AppLayout';
 import { getPropertiesToc, getPropsApiDefinitions } from './definitions/properties';
 import { getClassesToc, getClassApiDefinitions } from './definitions/classes';

@@ -5,7 +5,7 @@ import { NoSsr } from '@mui/base/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';
-import { MarkdownElement } from '../MarkdownElement';
+import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import { CodeCopyButton, useCodeCopy } from '../CodeCopy';
 import { useTranslate } from '../i18n';
 import { blueDark } from '../branding';
