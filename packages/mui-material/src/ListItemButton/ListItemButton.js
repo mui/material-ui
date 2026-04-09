@@ -192,6 +192,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   const handleRef = useForkRef(listItemRef, ref);
 
   return (
@@ -206,7 +209,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         {...other}
-        classes={classes}
+        classes={forwardedClasses}
       >
         {children}
       </ListItemButtonRoot>

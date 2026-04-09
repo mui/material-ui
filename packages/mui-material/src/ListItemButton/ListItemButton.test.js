@@ -35,6 +35,13 @@ describe('<ListItemButton />', () => {
     expect(screen.getByRole('button')).not.to.have.class(classes.gutters);
   });
 
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<ListItemButton classes={{ root: 'my-root-class' }}>Item</ListItemButton>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
+  });
+
   describe('context: dense', () => {
     it('should forward the context', () => {
       let context = null;
