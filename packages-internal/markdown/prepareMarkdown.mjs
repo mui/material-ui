@@ -44,6 +44,9 @@ function resolveComponentApiUrl(productId, componentPkg, component) {
   if (productId === 'x-scheduler') {
     return `/x/api/scheduler/${kebabCase(component)}/`;
   }
+  if (productId === 'x-chat') {
+    return `/x/api/chat/${kebabCase(component)}/`;
+  }
   if (componentPkg === 'mui-base' || BaseUIReexportedComponents.includes(component)) {
     return `/base-ui/react-${kebabCase(component)}/components-api/#${kebabCase(component)}`;
   }

@@ -99,7 +99,7 @@ export type SliderSlotsAndSlotProps = CreateSlotsAndSlotProps<
     markLabel: SlotProps<'span', SliderMarkLabelSlotPropsOverrides, SliderOwnerState>;
     /**
      * Props forwarded to the value label slot.
-     * By default, the available props are based on the [SliderValueLabel](https://next.mui.com/material-ui/api/slider/) component.
+     * By default, the available props are based on the [SliderValueLabel](https://mui.com/material-ui/api/slider/) component.
      */
     valueLabel: SlotComponentProps<
       typeof SliderValueLabelComponent,
@@ -216,7 +216,7 @@ export interface SliderOwnProps<Value extends number | readonly number[]> {
    */
   onChange?: ((event: Event, value: Value, activeThumb: number) => void) | undefined;
   /**
-   * Callback function that is fired when the `mouseup` is triggered.
+   * Callback function that is fired when the pointer or touch interaction ends.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {Value} value The new value.
@@ -346,11 +346,11 @@ export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
  *
  * Demos:
  *
- * - [Slider](https://next.mui.com/material-ui/react-slider/)
+ * - [Slider](https://mui.com/material-ui/react-slider/)
  *
  * API:
  *
- * - [Slider API](https://next.mui.com/material-ui/api/slider/)
+ * - [Slider API](https://mui.com/material-ui/api/slider/)
  */
 declare const Slider: SliderType;
 

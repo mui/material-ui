@@ -12,6 +12,7 @@ export type MuiProductId =
   | 'x-charts'
   | 'x-tree-view'
   | 'x-scheduler'
+  | 'x-chat'
   | 'toolpad-studio'
   | 'toolpad-core';
 

@@ -64,6 +64,13 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
+  it('should handle MUI X Chat', () => {
+    expect(getProductInfoFromUrl('/x/react-chat/components')).to.deep.equal({
+      productCategoryId: 'x',
+      productId: 'x-chat',
+    });
+  });
+
   it('should handle MUI X', () => {
     expect(getProductInfoFromUrl('/x/migration/migration-data-grid-v5/')).to.deep.equal({
       productCategoryId: 'x',

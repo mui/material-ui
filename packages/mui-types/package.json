@@ -1,8 +1,9 @@
 {
   "name": "@mui/types",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Utility types for Material UI.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-types"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },

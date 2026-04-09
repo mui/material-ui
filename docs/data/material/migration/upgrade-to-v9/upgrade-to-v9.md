@@ -12,7 +12,7 @@ In the `package.json` file, change the package version from `latest` to `next`.
 ```
 
 Using `next` ensures your project always uses the latest v9 pre-releases.
-Alternatively, you can also target and fix it to a specific version, for example, `9.0.0-alpha.0`.
+Alternatively, you can pin it to a specific version, for example, `9.0.0-alpha.0`.
 
 ## Supported browsers and versions
 
@@ -36,50 +36,47 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-### Material Icons
+### Autocomplete
 
-23 legacy icon exports that ended with `Outline` (without the "d") have been removed.
-These were exact duplicates of their `Outlined` counterparts (for example, `InfoOutline` had the same SVG as `InfoOutlined`).
+#### Listbox toggle on right click
 
-To migrate, rename the import to use the `Outlined` suffix:
+The listbox does not toggle anymore when using right click on the input. The left click toggle behavior remains unchanged.
+
+#### freeSolo type related changes
+
+When `freeSolo` is `true`:
+
+- The `getOptionLabel` prop accepts `string` for its `option` argument
+- The `isOptionEqualToValue` prop accepts `string` for its `value` argument
 
 ```diff
--import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
-+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+- isOptionEqualToValue?: (option: Value, value: Value) => boolean;
++ isOptionEqualToValue?: (
++  option: Value,
++  value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>,
++ ) => boolean;
 ```
 
-The full list of removed exports: `AddCircleOutline`, `ChatBubbleOutline`, `CheckCircleOutline`, `DeleteOutline`, `DoneOutline`, `DriveFileMoveOutline`, `ErrorOutline`, `HelpOutline`, `InfoOutline`, `LabelImportantOutline`, `LightbulbOutline`, `LockOutline`, `MailOutline`, `ModeEditOutline`, `PauseCircleOutline`, `PeopleOutline`, `PersonOutline`, `PieChartOutline`, `PlayCircleOutline`, `RemoveCircleOutline`, `StarOutline`, `WorkOutline`, `WorkspacesOutline`.
+```diff
+- getOptionLabel?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
++ getOptionLabel?: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
+```
 
-Theme variants of these icons (for example, `InfoOutlineRounded`, `DeleteOutlineSharp`) are **not** affected and remain available.
+For reference:
+
+```ts
+type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
+  ? string
+  : never;
+
+type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
+```
 
 ### Backdrop
 
 The Backdrop component no longer adds the `aria-hidden="true"` attribute to the Root slot by default.
-
-### Dialog & Modal
-
-The `disableEscapeKeyDown` prop has been removed. The same behavior could be achieved
-by checking the value of the `reason` argument in `onClose`:
-
-```diff
-  const [open, setOpen] = React.useState(true);
-- const handleClose = () => {
--   setOpen(false);
-- };
-+ const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
-+   if (reason !== 'escapeKeyDown') {
-+     setOpen(false);
-+   }
-+ };
-  return (
--  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
-+  <Dialog open={open} onClose={handleClose}>
-    {/* ... */}
-  </Dialog>
-  );
-```
-
-The `Modal` change is the same.
 
 ### ButtonBase
 
@@ -89,7 +86,7 @@ When sending Enter and Spacebar keys on the ButtonBase or components that are co
 the click event now bubbles to their ancestors.
 
 Also, the `event` passed to the `onClick` prop is a `MouseEvent` instead of the `KeyboardEvent` captured
-in the ButtonBase keyboard handlers. This is actually the expected behavior.
+in the ButtonBase keyboard handlers. This matches the expected behavior.
 
 #### Event handlers on disabled non-native buttons
 
@@ -119,41 +116,30 @@ does not match the value of the prop.
 
 The prop can be used for: `<ButtonBase>`, `<Button>`, `<Fab>`, `<IconButton>`, `<ListItemButton>`, `<MenuItem>`, `<StepButton>`, `<Tab>`, `<ToggleButton>`, `<AccordionSummary>`, `<BottomNavigationAction>`, `<CardActionArea>`, `<TableSortLabel>` and `<PaginationItem>`.
 
-### Autocomplete
+### Dialog & Modal
 
-#### Listbox toggle on right click
-
-The listbox does not toggle anymore when using right click on the input. The left click toggle behavior remains unchanged.
-
-#### freeSolo type related changes
-
-When the `freeSolo` prop is passed as `true`, the `getOptionLabel` and `isOptionEqualToValue` props
-accept `string` as well for their `option` and, respectively, `value` arguments:
+The `disableEscapeKeyDown` prop has been removed. The same behavior could be achieved
+by checking the value of the `reason` argument in `onClose`:
 
 ```diff
-- isOptionEqualToValue?: (option: Value, value: Value) => boolean;
-+ isOptionEqualToValue?: (
-+  option: Value,
-+  value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>,
-+ ) => boolean;
+  const [open, setOpen] = React.useState(true);
+- const handleClose = () => {
+-   setOpen(false);
+- };
++ const handleClose = (_event: React.SyntheticEvent<unknown>, reason: string) => {
++   if (reason !== 'escapeKeyDown') {
++     setOpen(false);
++   }
++ };
+  return (
+-  <Dialog open={open} disableEscapeKeyDown onClose={handleClose}>
++  <Dialog open={open} onClose={handleClose}>
+    {/* ... */}
+  </Dialog>
+  );
 ```
 
-```diff
-- getOptionLabel?: (option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
-+ getOptionLabel?: (option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string;
-```
-
-For reference:
-
-```ts
-type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true
-  ? string
-  : never;
-
-type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
-  ? Value | string
-  : Value;
-```
+The same applies to `Modal`.
 
 ### GridLegacy
 
@@ -182,7 +168,66 @@ See the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/) fo
 
 ### List
 
-`ListItemIcon` default min-width changes to `36px` (was `56px`) to be consistent with the menu item and uses `theme.spacing` instead of a hardcoded number.
+The `ListItemIcon` default min-width has changed to `36px` (previously `56px`) to be consistent with the menu item, and now uses `theme.spacing` instead of a hardcoded number.
+
+### Material Icons
+
+23 legacy icon exports that ended with `Outline` (without the "d") have been removed.
+These were exact duplicates of their `Outlined` counterparts (for example, `InfoOutline` had the same SVG as `InfoOutlined`).
+
+To migrate, rename the import to use the `Outlined` suffix:
+
+```diff
+-import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
++import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+```
+
+The full list of removed exports: `AddCircleOutline`, `ChatBubbleOutline`, `CheckCircleOutline`, `DeleteOutline`, `DoneOutline`, `DriveFileMoveOutline`, `ErrorOutline`, `HelpOutline`, `InfoOutline`, `LabelImportantOutline`, `LightbulbOutline`, `LockOutline`, `MailOutline`, `ModeEditOutline`, `PauseCircleOutline`, `PeopleOutline`, `PersonOutline`, `PieChartOutline`, `PlayCircleOutline`, `RemoveCircleOutline`, `StarOutline`, `WorkOutline`, `WorkspacesOutline`.
+
+Theme variants of these icons (for example, `InfoOutlineRounded`, `DeleteOutlineSharp`) are **not** affected and remain available.
+
+### Menu and MenuList
+
+When using `variant="selectedMenu"`, the `tabindex` attribute for each menu item will change on Arrow Key, Home / End or Character Key navigation. Previously, keyboard navigation moved DOM focus without updating `tabindex` on focused items. Now, we move DOM focus and also add `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
+
+This change also applies to both `Menu` and `MenuList` with `variant="selectedMenu"`.
+
+The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
+
+`MenuItem`s will throw an error when rendered outside of `Menu` or `MenuList`.
+
+Keyboard navigation now supports `MenuItem`s inside `React.Fragment`.
+
+Custom non-interactive menu content such as `ListSubheader` or `Divider` no longer need to set `muiSkipListHighlight` to opt-out of the menu's focus management.
+
+Custom children that set `role="menuitem"` but do not wrap the `MenuItem` component are no longer supported inside `Menu` or `MenuList`.
+
+### Slider
+
+The `Slider` component uses pointer events instead of mouse events. Previously, `onMouseDown={(event) => event.preventDefault()}` would cancel a drag from starting. Now, `onPointerDown` must be used instead.
+
+### Stepper, Step and StepButton
+
+The `Stepper` and `Step` markups have changed to improve their semantics:
+
+- `Stepper` returns a `<ol>` element instead of `<div>`.
+- `Step` returns a `<li>` element instead of `<div>`.
+
+The `Stepper` component now supports keyboard navigation when used with `StepButton` descendants. The navigation is implemented as a roving tabindex, supporting Arrow Keys as well as Home and End. Only one `StepButton` is focusable at a time, by having `tabindex="0"`, while the rest all have `tabindex="-1"`. Once selection is changed by Arrow Keys or Home / End, the `tabindex` value is also updated.
+
+The markup for a `Stepper` with `StepButton` descendants has changed further to reflect this behavior. These changes apply on top of the tag changes described above.
+
+The `Stepper` has:
+
+- The `role` of `tablist`.
+- The `aria-orientation` added. The value is either `horizontal` or `vertical` depending on the `orientation` prop.
+
+The `StepButton` has:
+
+- The `role` of `tab`.
+- The `aria-current` changed to `aria-selected`. The value is `true` when step is selected, and `false` otherwise.
+- The `aria-setsize` added. The value is the total number of steps.
+- The `aria-posinset` added. The value is the index of the step inside the list, 1-based.
 
 ### TablePagination numbers are formatted by default
 
@@ -224,6 +269,14 @@ const theme = createTheme(
 );
 ```
 
+### Tabs
+
+The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End navigation. Previously, keyboard navigation moved DOM focus without updating `tabindex` on the focused `Tab`. Now, we move DOM focus and also add the `tabindex="0"` to the focused `Tab`. Other tabs will have `tabindex="-1"` to keep only one focusable `Tab` at a time.
+
+Selecting a `Tab` will update the focus and `tabindex` as before.
+
+`Tab`s not placed inside `Tabs` will now throw an error.
+
 ### TextField
 
 When specifying `<TextField select />` to render a `<Select>`, the underlying `<InputLabel>` renders a `<div>` instead of a native `<label>` element. This does not affect `<InputLabel>` on its own.
@@ -257,56 +310,9 @@ If you were using `MuiTouchRipple` in your theme, remove it and use global CSS w
 ### jsdom support
 
 The behavior of the components in test environments has been improved to be more reliable.
-The use of `process.env.NODE_ENV === 'test'` was replaced with feature detection or user-agent sniffing wherever it's more accurate with the intention of the code.
+The use of `process.env.NODE_ENV === 'test'` has been replaced with feature detection or user-agent sniffing wherever it more accurately reflects the intention of the code.
 This change shouldn't impact most users, but it might lead to unintended CI changes.
 For example, the code has been updated to auto-detect DOM environments that don't support layout, such as [jsdom](https://github.com/jsdom/jsdom) and [happy-dom](https://github.com/capricorn86/happy-dom), with user-agent sniffing.
-
-### Stepper, Step and StepButton
-
-The `Stepper` and `Step` markups have changed to improve their semantics:
-
-- `Stepper` returns a `<ol>` element instead of `<div>`.
-- `Step` returns a `<li>` element instead of `<div>`.
-
-The `Stepper` component now supports keyboard navigation when used with `StepButton` descendants. The navigation is implemented as a roving tabindex, supporting Arrow Keys as well as Home and End. Only one `StepButton` is focusable at a time, by having `tabindex="0"`, while the rest all have `tabindex="-1"`. Once selection is changed by Arrow Keys or Home / End, the `tabindex` value is also updated.
-
-The markup for a `Stepper` with `StepButton` descendants has changed further to reflect this behavior. These changes apply on top of the tag changes described above.
-
-The `Stepper` has:
-
-- The `role` of `tablist`.
-- The `aria-orientation` added. The value is either `horizontal` or `vertical` depending on the `orientation` prop.
-
-The `StepButton` has:
-
-- The `role` of `tab`.
-- The `aria-current` changed to `aria-selected`. The value is `true` when step is selected, and `false` otherwise.
-- The `aria-setsize` added. The value is the total number of steps.
-- The `aria-posinset` added. The value is the index of the step inside the list, 1-based.
-
-### Tabs
-
-The `tabindex` attribute for each tab will be changed on Arrow Key or Home / End navigation. Previously, keyboard navigation moved DOM focus without updating `tabindex` on the focused `Tab`. Now, we move DOM focus and also add the `tabindex="0"` to the focused `Tab`. Other tabs will have `tabindex="-1"` to keep only one focusable `Tab` at a time.
-
-Selecting a `Tab` will update the focus and `tabindex` as before.
-
-`Tab`s not placed inside `Tabs` will now throw an error.
-
-### Menu and MenuList
-
-When using `variant="selectedMenu"`, the `tabindex` attribute for each menu item will change on Arrow Key, Home / End or Character Key navigation. Previously, keyboard navigation moved DOM focus without updating `tabindex` on focused items. Now, we move DOM focus and also add `tabindex="0"` to the focused element. The previously focused element will have its `tabindex` updated to `-1` in order to keep only one focusable `MenuItem` at a time.
-
-This change also applies both `Menu` and `MenuList` with `variant="selectedMenu"`.
-
-The `autoFocus` prop in `MenuList` does not set `tabindex="0"` on the `List` component anymore. It will always stay as `-1`.
-
-`MenuItem`s will throw an error when rendered outside of `Menu` or `MenuList`.
-
-Keyboard navigation now supports `MenuItem`s inside `React.Fragment`.
-
-Custom non-interactive menu content such as `ListSubheader` or `Divider` no longer need to set `muiSkipListHighlight` to opt-out of the menu's focus management.
-
-Custom children that set `role="menuitem"` but do not wrap the `MenuItem` component are no longer supported inside `Menu` or `MenuList`.
 
 ## Deprecated APIs removed (Breaking)
 
@@ -1102,8 +1108,8 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
-The deprecated `Divider` prop have been removed.
-Use `sx={{ opacity : "0.6" }}` (or any opacity):
+The deprecated `Divider` prop has been removed.
+Use `sx={{ opacity: 0.6 }}` (or any opacity):
 
 ```diff
  <Divider

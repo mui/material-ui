@@ -149,7 +149,7 @@ export default function XDateRangeDemo() {
                 padding: 0,
                 paddingTop: 0.5,
               },
-              '& .MuiPickersDay-root': {
+              '& .MuiPickerDay-root': {
                 width: 28,
                 height: 28,
                 fontWeight: 'regular',

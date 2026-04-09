@@ -170,6 +170,21 @@ async function main() {
       });
     });
 
+    describe('Switch', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-Switch/SimpleSwitch');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('TextField', () => {
       it('should render standard variant correctly in forced-colors mode', async () => {
         await page.emulateMedia({ forcedColors: 'active' });
