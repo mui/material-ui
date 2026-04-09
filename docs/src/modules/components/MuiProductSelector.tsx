@@ -11,9 +11,11 @@ import PageContext from '@mui/internal-core-docs/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
+import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
@@ -185,6 +187,20 @@ const advancedProducts = [
     description: 'Hierarchical list components.',
     icon: <AccountTreeRoundedIcon sx={iconStyles} />,
     href: ROUTES.treeViewOverview,
+  },
+  {
+    id: 'x-scheduler',
+    name: 'Scheduler',
+    description: 'Event calendar and timeline.',
+    icon: <EventNoteRoundedIcon sx={iconStyles} />,
+    href: ROUTES.schedulerOverview,
+  },
+  {
+    id: 'x-chat',
+    name: 'Chat',
+    description: 'AI-powered chat components.',
+    icon: <ForumRoundedIcon sx={iconStyles} />,
+    href: ROUTES.chatOverview,
   },
 ];
 

@@ -57,7 +57,7 @@
       }
     },
     "onChangeCommitted": {
-      "description": "Callback function that is fired when the <code>mouseup</code> is triggered.",
+      "description": "Callback function that is fired when the pointer or touch interaction ends.",
       "typeDescriptions": {
         "event": {
           "name": "event",

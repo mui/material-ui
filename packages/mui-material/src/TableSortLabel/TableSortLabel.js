@@ -60,7 +60,6 @@ const TableSortLabelRoot = styled(ButtonBase, {
 const TableSortLabelIcon = styled('span', {
   name: 'MuiTableSortLabel',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })(
   memoTheme(({ theme }) => ({
     fontSize: 18,

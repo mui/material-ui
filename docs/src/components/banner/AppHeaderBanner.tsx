@@ -19,18 +19,18 @@ const linkStyleOverrides = (theme: Theme) => ({
   }),
 });
 
-function getSurveyMessage() {
+function getCustomMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2026 roadmap! Take our latest`}
+      {`🚀 Material UI and MUI X v9 are out! Check out the `}
       &nbsp;
       <Link
-        href="https://tally.so/r/3jOKG1?source=website"
+        href="/blog/introducing-mui-v9/"
         target="_blank"
         underline="always"
         sx={linkStyleOverrides}
       >
-        Developer Survey →
+        announcement blogpost →
       </Link>
     </React.Fragment>
   );
@@ -55,8 +55,8 @@ function getDefaultHiringMessage() {
 }
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = true;
-  const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
+  const showCustomMessage = true;
+  const bannerMessage = showCustomMessage ? getCustomMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography

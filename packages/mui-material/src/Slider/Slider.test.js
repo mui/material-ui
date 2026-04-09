@@ -30,6 +30,19 @@ function createTouches(touches) {
 describe.skipIf(!supportsTouch())('<Slider />', () => {
   const { render } = createRenderer();
 
+  beforeEach(() => {
+    // jsdom doesn't implement Pointer Capture API
+    if (!Element.prototype.setPointerCapture) {
+      Element.prototype.setPointerCapture = stub();
+    }
+    if (!Element.prototype.releasePointerCapture) {
+      Element.prototype.releasePointerCapture = stub();
+    }
+    if (!Element.prototype.hasPointerCapture) {
+      Element.prototype.hasPointerCapture = stub().returns(false);
+    }
+  });
+
   describeConformance(
     <Slider value={0} marks={[{ value: 0, label: '0' }]} valueLabelDisplay="on" />,
     () => ({
@@ -71,7 +84,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     }),
   );
 
-  it('should call handlers', () => {
+  it.skipIf(isJsdom())('should call handlers', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
 
@@ -84,13 +97,15 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     }));
     const slider = screen.getByRole('slider');
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.pointerDown(container.firstChild, {
       buttons: 1,
       clientX: 10,
+      pointerId: 1,
     });
-    fireEvent.mouseUp(container.firstChild, {
+    fireEvent.pointerUp(container.firstChild, {
       buttons: 1,
       clientX: 10,
+      pointerId: 1,
     });
 
     expect(handleChange.callCount).to.equal(1);
@@ -140,7 +155,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
   });
 
-  it('should hedge against a dropped mouseup event', () => {
+  it.skipIf(isJsdom())('should hedge against a dropped pointerup event', () => {
     const handleChange = spy();
     const { container } = render(<Slider onChange={handleChange} value={0} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -148,29 +163,32 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       left: 0,
     }));
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.pointerDown(container.firstChild, {
       buttons: 1,
       clientX: 1,
+      pointerId: 1,
     });
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.equal(1);
 
-    fireEvent.mouseMove(document.body, {
+    fireEvent.pointerMove(document.body, {
       buttons: 1,
       clientX: 10,
+      pointerId: 1,
     });
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.args[1][1]).to.equal(10);
 
-    fireEvent.mouseMove(document.body, {
+    fireEvent.pointerMove(document.body, {
       buttons: 0,
       clientX: 11,
+      pointerId: 1,
     });
-    // The mouse's button was released, stop the dragging session.
+    // The pointer's button was released, stop the dragging session.
     expect(handleChange.callCount).to.equal(2);
   });
 
-  it('should only fire onChange when the value changes', () => {
+  it.skipIf(isJsdom())('should only fire onChange when the value changes', () => {
     const handleChange = spy();
     const { container } = render(<Slider defaultValue={20} onChange={handleChange} />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
@@ -178,19 +196,22 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       left: 0,
     }));
 
-    fireEvent.mouseDown(container.firstChild, {
+    fireEvent.pointerDown(container.firstChild, {
       buttons: 1,
       clientX: 21,
+      pointerId: 1,
     });
 
-    fireEvent.mouseMove(document.body, {
+    fireEvent.pointerMove(document.body, {
       buttons: 1,
       clientX: 22,
+      pointerId: 1,
     });
     // Sometimes another event with the same position is fired by the browser.
-    fireEvent.mouseMove(document.body, {
+    fireEvent.pointerMove(document.body, {
       buttons: 1,
       clientX: 22,
+      pointerId: 1,
     });
 
     expect(handleChange.callCount).to.equal(2);
@@ -324,7 +345,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '0');
     });
 
-    it('should focus the slider when dragging', async () => {
+    it.skipIf(isJsdom())('should focus the slider when dragging', async () => {
       const { container } = render(
         <Slider
           slotProps={{ thumb: { 'data-testid': 'thumb' } }}
@@ -341,9 +362,10 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
         left: 0,
       }));
 
-      fireEvent.mouseDown(thumb, {
+      fireEvent.pointerDown(thumb, {
         buttons: 1,
         clientX: 1,
+        pointerId: 1,
       });
 
       await waitFor(() => {
@@ -384,13 +406,13 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
     });
 
-    it('should not react to right clicks', () => {
+    it.skipIf(isJsdom())('should not react to right clicks', () => {
       const handleChange = spy();
 
       render(<Slider onChange={handleChange} defaultValue={30} step={10} marks />);
 
       const thumb = screen.getByRole('slider');
-      fireEvent.mouseDown(thumb, { button: 2 });
+      fireEvent.pointerDown(thumb, { button: 2, pointerId: 1 });
       expect(handleChange.callCount).to.equal(0);
     });
   });
@@ -1692,37 +1714,165 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     });
   });
 
-  describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
-    it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {
-      const handleChange = spy();
-      const handleChangeCommitted = spy();
+  describe('When the pointer up event occurs at a different location than the last onChange event', () => {
+    it.skipIf(isJsdom())(
+      'should pass onChangeCommitted the same value that was passed to the last onChange event',
+      () => {
+        const handleChange = spy();
+        const handleChangeCommitted = spy();
 
+        const { container } = render(
+          <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+        );
+        stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+          width: 100,
+          left: 0,
+        }));
+
+        fireEvent.pointerDown(container.firstChild, {
+          buttons: 1,
+          clientX: 10,
+          pointerId: 1,
+        });
+        fireEvent.pointerMove(container.firstChild, {
+          buttons: 1,
+          clientX: 15,
+          pointerId: 1,
+        });
+        fireEvent.pointerUp(container.firstChild, {
+          buttons: 1,
+          clientX: 20,
+          pointerId: 1,
+        });
+
+        expect(handleChange.callCount).to.equal(2);
+        expect(handleChange.args[0][1]).to.equal(10);
+        expect(handleChange.args[1][1]).to.equal(15);
+        expect(handleChangeCommitted.callCount).to.equal(1);
+        expect(handleChangeCommitted.args[0][1]).to.equal(15);
+      },
+    );
+  });
+
+  it.skipIf(isJsdom())('should not crash when unmounted during a pointer drag (#26754)', () => {
+    const { container, unmount } = render(<Slider defaultValue={50} />);
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      left: 0,
+    }));
+
+    fireEvent.pointerDown(container.firstChild, { clientX: 100, pointerId: 1 });
+    unmount();
+    fireEvent.pointerMove(document, { clientX: 150, pointerId: 1 });
+    fireEvent.pointerUp(document, { pointerId: 1 });
+  });
+
+  it('should not crash when unmounted during a touch drag (#26754)', () => {
+    const { container, unmount } = render(<Slider defaultValue={50} />);
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+
+    fireEvent.touchStart(
+      container.firstChild,
+      createTouches([{ identifier: 0, clientX: 100, clientY: 5 }]),
+    );
+    unmount();
+    fireEvent.touchMove(document, createTouches([{ identifier: 0, clientX: 150, clientY: 5 }]));
+    fireEvent.touchEnd(document, createTouches([{ identifier: 0, clientX: 150, clientY: 5 }]));
+  });
+
+  it.skipIf(isJsdom())('should end drag when pointermove fires with buttons === 0', () => {
+    const onChangeCommitted = spy();
+    const { container } = render(
+      <Slider defaultValue={50} onChangeCommitted={onChangeCommitted} />,
+    );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      left: 0,
+    }));
+
+    fireEvent.pointerDown(container.firstChild, { clientX: 100, pointerId: 1 });
+    fireEvent.pointerMove(document, { clientX: 150, pointerId: 1, buttons: 0 });
+    expect(onChangeCommitted.callCount).to.equal(1);
+  });
+
+  it.skipIf(isJsdom())(
+    'should allow consumers to prevent drag via onPointerDown + preventDefault()',
+    () => {
+      const handleChange = spy();
       const { container } = render(
-        <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+        <Slider
+          defaultValue={50}
+          onChange={handleChange}
+          slotProps={{
+            root: {
+              onPointerDown: (pointerDownEvent) => pointerDownEvent.preventDefault(),
+            },
+          }}
+        />,
       );
       stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
         width: 100,
         left: 0,
       }));
 
-      fireEvent.mouseDown(container.firstChild, {
-        buttons: 1,
-        clientX: 10,
-      });
-      fireEvent.mouseMove(container.firstChild, {
-        buttons: 1,
-        clientX: 15,
-      });
-      fireEvent.mouseUp(container.firstChild, {
-        buttons: 1,
-        clientX: 20,
-      });
+      fireEvent.pointerDown(container.firstChild, { clientX: 20, pointerId: 1 });
+      expect(handleChange.callCount).to.equal(0);
+    },
+  );
 
+  it.skipIf(isJsdom())(
+    'should not fire onChange twice on touch devices (pointer+touch dual fire)',
+    () => {
+      const handleChange = spy();
+      const { container } = render(<Slider defaultValue={50} onChange={handleChange} />);
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      // Touch devices fire both pointer and touch events for the same physical touch
+      fireEvent.pointerDown(container.firstChild, { clientX: 20, pointerId: 1 });
+      fireEvent.touchStart(container.firstChild, createTouches([{ identifier: 0, clientX: 20 }]));
+
+      // Move — only the pointer path listener should be on document
+      fireEvent.pointerMove(document, { clientX: 40, pointerId: 1, buttons: 1 });
+
+      // onChange: once from pointerDown (value change) + once from pointerMove = 2, not 3
       expect(handleChange.callCount).to.equal(2);
-      expect(handleChange.args[0][1]).to.equal(10);
-      expect(handleChange.args[1][1]).to.equal(15);
-      expect(handleChangeCommitted.callCount).to.equal(1);
-      expect(handleChangeCommitted.args[0][1]).to.equal(15);
-    });
-  });
+    },
+  );
+
+  it.skipIf(isJsdom())(
+    'should ignore pointerup from a different pointer than the one that started the drag',
+    () => {
+      const handleChange = spy();
+      const { container } = render(<Slider defaultValue={50} onChange={handleChange} />);
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      // Start drag with pointer 1
+      fireEvent.pointerDown(container.firstChild, { clientX: 50, pointerId: 1 });
+      const changesAfterDown = handleChange.callCount;
+
+      // A second pointer fires pointerup — should be ignored
+      fireEvent.pointerUp(document, { clientX: 60, pointerId: 2 });
+
+      // The drag should still be active — a move from the original pointer
+      // must still produce onChange. Without pointerId filtering, the stray
+      // pointerup tears down listeners and this move is silently dropped.
+      fireEvent.pointerMove(document, { clientX: 70, pointerId: 1, buttons: 1 });
+      expect(handleChange.callCount).to.be.greaterThan(changesAfterDown);
+    },
+  );
 });

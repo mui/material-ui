@@ -10,7 +10,7 @@ import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
-import { getTransitionProps } from '../transitions/utils';
+import { normalizedTransitionCallback, getTransitionProps } from '../transitions/utils';
 import { useForkRef } from '../utils';
 import useSlot from '../utils/useSlot';
 import { getCollapseUtilityClass } from './collapseClasses';
@@ -179,23 +179,10 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(ref, nodeRef);
 
-  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
-    if (callback) {
-      const node = nodeRef.current;
-
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (maybeIsAppearing === undefined) {
-        callback(node);
-      } else {
-        callback(node, maybeIsAppearing);
-      }
-    }
-  };
-
   const getWrapperSize = () =>
     wrapperRef.current ? wrapperRef.current[isHorizontal ? 'clientWidth' : 'clientHeight'] : 0;
 
-  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
+  const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
     if (wrapperRef.current && isHorizontal) {
       // Set absolute position to get the size of collapsed content
       wrapperRef.current.style.position = 'absolute';
@@ -207,7 +194,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
+  const handleEntering = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
     const wrapperSize = getWrapperSize();
 
     if (wrapperRef.current && isHorizontal) {
@@ -239,7 +226,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const handleEntered = normalizedTransitionCallback((node, isAppearing) => {
+  const handleEntered = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
     node.style[size] = 'auto';
 
     if (onEntered) {
@@ -247,7 +234,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const handleExit = normalizedTransitionCallback((node) => {
+  const handleExit = normalizedTransitionCallback(nodeRef, (node) => {
     node.style[size] = `${getWrapperSize()}px`;
 
     if (onExit) {
@@ -255,9 +242,9 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     }
   });
 
-  const handleExited = normalizedTransitionCallback(onExited);
+  const handleExited = normalizedTransitionCallback(nodeRef, onExited);
 
-  const handleExiting = normalizedTransitionCallback((node) => {
+  const handleExiting = normalizedTransitionCallback(nodeRef, (node) => {
     const wrapperSize = getWrapperSize();
     const { duration: transitionDuration, easing: transitionTimingFunction } = getTransitionProps(
       { style, timeout, easing },

@@ -325,7 +325,7 @@ export default function XHero() {
                     lineHeight: 0,
                     margin: 0,
                   },
-                  '& .MuiPickersDay-root': {
+                  '& .MuiPickerDay-root': {
                     width: { xs: 28, xl: 32 },
                     height: { xs: 28, xl: 32 },
                     fontWeight: 400,

@@ -25,7 +25,6 @@ import {
 } from '@mui/x-tree-view/TreeItem';
 import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
 import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
-import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
 type FileType = 'image' | 'pdf' | 'video' | 'folder';
 
@@ -33,9 +32,10 @@ type ExtendedTreeItemProps = {
   fileType?: FileType;
   id: string;
   label: string;
+  children?: ExtendedTreeItemProps[];
 };
 
-const ITEMS: TreeViewBaseItem<ExtendedTreeItemProps>[] = [
+const ITEMS: ExtendedTreeItemProps[] = [
   {
     id: '1',
     label: 'Drive',
@@ -228,6 +228,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     <TreeItemProvider id={id} itemId={itemId}>
       <StyledTreeItemRoot {...getRootProps(other)}>
         <CustomTreeItemContent
+          status={status}
           {...getContentProps({
             className: clsx('content', {
               'Mui-expanded': status.expanded,
