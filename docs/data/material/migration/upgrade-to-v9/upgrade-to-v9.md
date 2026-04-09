@@ -2,16 +2,16 @@
 
 <p class="description">This guide explains how to upgrade from Material UI v7 to v9.</p>
 
-## Why you should upgrade to Material UI v9
+## Why you should upgrade to Material UI v9
 
 ### Improved accessibility and platform alignment
 
-Material UI v9 continues improving the accessibility and semantics of core components.
+Material UI v9 continues improving the accessibility and semantics of core components.
 This release includes updates to keyboard navigation, focus management, and DOM structure so components align more closely with platform expectations and modern assistive technology behavior.
 
 ### Quality-of-life improvements
 
-Material UI v9 also includes a number of quality-of-life improvements, including:
+Material UI v9 also includes a number of quality-of-life improvements, including:
 
 - removal of deprecated APIs to reduce the API surface and make the docs easier to navigate
 - improved consistency across `slot` and `slotProps` APIs

@@ -1,23 +1,23 @@
 # Upgrade to v9
 
-<p class="description">This guide explains how to upgrade from MUI System v7 to v9.</p>
+<p class="description">This guide explains how to upgrade from MUI System v7 to v9.</p>
 
-## Why you should upgrade to MUI System v9
+## Why you should upgrade to MUI System v9
 
 ### More consistent styling APIs
 
-MUI System v9 removes deprecated system props in favor of the `sx` prop.
+MUI System v9 removes deprecated system props in favor of the `sx` prop.
 This reduces the API surface, makes styling behavior more consistent across components, and avoids conflicts with props that should be forwarded to the underlying element.
 
 ### Clearer layout primitives
 
-MUI System v9 keeps `Grid` focused on two-dimensional layouts and encourages `Stack` for vertical layouts.
+MUI System v9 keeps `Grid` focused on two-dimensional layouts and encourages `Stack` for vertical layouts.
 This makes the layout APIs easier to reason about and aligns them more closely with their intended use cases.
 
 ## Breaking changes
 
 Since v9 is a new major release, it contains some changes that affect the public API.
-The steps you need to take to migrate from MUI System v7 to v9 are described below.
+The steps you need to take to migrate from MUI System v7 to v9 are described below.
 
 ### Deprecated system props removed
 
