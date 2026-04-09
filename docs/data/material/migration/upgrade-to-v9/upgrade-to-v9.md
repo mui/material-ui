@@ -44,11 +44,6 @@ The default bundle targets have changed in v9.
 Since v9 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v7 to v9 are described below.
 
-:::info
-This list is a work in progress.
-Expect updates as new breaking changes are introduced.
-:::
-
 ### Autocomplete
 
 #### Listbox toggle on right click
