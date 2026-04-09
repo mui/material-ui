@@ -3,7 +3,8 @@ import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/internal-core-docs/Link';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const showSurveyMessage = true;
+const showSurveyMessage = false;
+const newVersion = true;
 
 function isBlackFriday() {
   const today = Date.now();
@@ -36,6 +37,9 @@ export default function AppFrameBanner() {
   } else if (mounted && isBlackFriday()) {
     message = `Black Friday is here! Don't miss out on the best offers of the year.`;
     href = 'https://mui.com/store/bundles/?deal=black-friday&from=docs';
+  } else if (newVersion) {
+    message = `🚀 Material UI and MUI X v9 are out! Check out the announcement blogpost.`;
+    href = '/blog/introducing-mui-v9/';
   }
 
   if (process.env.NODE_ENV !== 'production') {
