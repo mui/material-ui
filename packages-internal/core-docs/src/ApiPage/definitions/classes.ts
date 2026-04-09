@@ -1,7 +1,7 @@
 import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import type { ClassDefinition, BaseCssTOCParams } from './types';
-import type { TableOfContentsParams } from '../types';
+import type { TocItem } from '../types';
 
 export const getClassesToc = ({
   classes,
@@ -11,7 +11,7 @@ export const getClassesToc = ({
 }: BaseCssTOCParams & {
   classes: ClassDefinition[];
   componentName?: string;
-}): TableOfContentsParams[] =>
+}): TocItem[] =>
   !classes || classes.length === 0
     ? []
     : [

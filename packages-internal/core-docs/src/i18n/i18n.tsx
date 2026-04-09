@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import deepmerge from '@mui/utils/deepmerge';
 import defaultTranslations from '../translations';
 
@@ -76,11 +75,6 @@ export function UserLanguageProvider(props: UserLanguageProviderProps) {
     </TranslationsProvider>
   );
 }
-
-UserLanguageProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  defaultUserLanguage: PropTypes.string,
-};
 
 export function useUserLanguage() {
   return React.useContext(UserLanguageContext).userLanguage;

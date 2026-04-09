@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import Head from 'docs/src/modules/components/Head';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';

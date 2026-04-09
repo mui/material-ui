@@ -2,7 +2,7 @@ import Paper from '@mui/material/Paper';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { blueberryTwilightPaletteLight } from '@mui/x-charts';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import Frame from 'docs/src/components/action/Frame';
+import { Frame } from '@mui/internal-core-docs/AppLayout';
 
 const code = `
 <BarChart
