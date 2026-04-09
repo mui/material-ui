@@ -37,17 +37,19 @@ It shares the same styles and many of the same props. Refer to the respective co
 Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
 :::
 
-### Filled and standard variants
+### Variants
 
 {{"demo": "SelectVariants.js"}}
 
+:::warning
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo). This is needed for the label floating animation to work correctly.
+:::
+
 ### Labels and helper text
 
-{{"demo": "SelectLabels.js"}}
+Select always needs a label, either visible or through `aria-label`. If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
 
-:::warning
-Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
-:::
+{{"demo": "SelectLabels.js"}}
 
 ### Auto width
 
