@@ -1,4 +1,4 @@
-import { MarkdownDocs } from '@mui/internal-core-docs/MarkdownDocs';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import {
   demos,
   docs,

@@ -6,12 +6,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import FormatShapesRoundedIcon from '@mui/icons-material/FormatShapesRounded';
-import { StorybookIcon } from '@mui/internal-core-docs/svgIcons';
+import SvgStorybook from 'docs/src/icons/SvgStorybook';
 import ImagesearchRollerRoundedIcon from '@mui/icons-material/ImagesearchRollerRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { Item, Group, Highlighter, Frame } from '@mui/internal-core-docs/AppLayout';
+import Item, { Group } from 'docs/src/components/action/Item';
+import Highlighter from 'docs/src/components/action/Highlighter';
+import Frame from 'docs/src/components/action/Frame';
 import { Link } from '@mui/internal-core-docs/Link';
 
 const Image = styled('img')(({ theme }) => ({
@@ -66,7 +68,7 @@ export default function ConnectFeatures() {
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<StorybookIcon />}
+                icon={<SvgStorybook />}
                 title="Preview your changes on Storybook"
                 description="Quickly visualize all the changes you run through Sync on a built-in Storybook preview instance."
               />

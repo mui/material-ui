@@ -6,7 +6,7 @@ import type {
 } from '@mui-internal/api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import type { BaseCssTOCParams, PropertyDefinition } from './types';
-import type { TocItem } from '../types';
+import type { TableOfContentsParams } from '../types';
 
 type GetPropertiesTocParams = BaseCssTOCParams &
   (
@@ -26,7 +26,7 @@ export const getPropertiesToc = ({
   themeDefaultProps,
   t,
   hash,
-}: GetPropertiesTocParams): TocItem => {
+}: GetPropertiesTocParams): TableOfContentsParams => {
   const resolvedProperties =
     properties ??
     Object.keys(componentProps).map((propName) => ({

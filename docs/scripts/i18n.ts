@@ -4,16 +4,22 @@ import fs from 'node:fs/promises';
 import { pageToTitle } from '@mui/internal-core-docs/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
+import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');
   const translationsFile = await fs.readFile(translationsFilename, 'utf8');
-  const output = JSON.parse(translationsFile) as { pages: Record<string, string> };
+  /**
+   * @type {{ pages: Record<String, string> }}
+   */
+  const output = JSON.parse(translationsFile);
   output.pages = {};
 
+  /**
+   * @param {readonly import('@mui/internal-core-docs/MuiPage').MuiPage[]} pages
+   */
   const traverse = (pages: MuiPage[]) => {
     pages.forEach((page) => {
       if (
