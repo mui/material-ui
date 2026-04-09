@@ -76,16 +76,19 @@ function AutocompleteOptionRenderer(props) {
     ownerState,
     optionClassName,
     optionKey,
+    optionStyle,
     ...other
   } = props;
 
   const optionProps = getOptionProps({ option, index });
   const className = [optionClassName, other.className].filter(Boolean).join(' ');
+  const style = optionStyle ? { ...other.style, ...optionStyle } : other.style;
 
   return renderOption(
     {
       ...optionProps,
       ...other,
+      style,
       className,
       key: optionKey,
     },
@@ -94,6 +97,7 @@ function AutocompleteOptionRenderer(props) {
       selected: optionProps['aria-selected'],
       index,
       inputValue,
+      style: optionStyle,
     },
     ownerState,
   );

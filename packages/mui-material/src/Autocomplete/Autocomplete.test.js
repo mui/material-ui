@@ -3607,6 +3607,61 @@ describe('<Autocomplete />', () => {
       expect(screen.getByRole('option')).to.have.text('option-0');
     });
 
+    it('should pass virtualized row style through renderOption state', () => {
+      const optionStyles = [];
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+        const childItems = (Array.isArray(children) ? children : [children]).filter(Boolean);
+
+        return (
+          <div ref={ref} {...other}>
+            {childItems.map((child, index) => {
+              if (!React.isValidElement(child)) {
+                return child;
+              }
+
+              return React.createElement(child.type, {
+                key: child.key,
+                ...child.props,
+                optionStyle: {
+                  position: 'absolute',
+                  top: index * 10,
+                },
+              });
+            })}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={['option-0', 'option-1']}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option, state) => {
+            optionStyles.push(state.style?.top);
+            return (
+              <li {...props} data-testid={option}>
+                {option}
+              </li>
+            );
+          }}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect([...new Set(optionStyles)]).to.deep.equal([0, 10]);
+      const optionNode = screen.getByTestId('option-1');
+      expect(optionNode.style.position).to.equal('absolute');
+      expect(optionNode.style.top).to.equal('10px');
+    });
+
     it('should support duplicate labels in virtualized mode when renderOption provides a unique key', () => {
       const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
         const { children, ...other } = props;

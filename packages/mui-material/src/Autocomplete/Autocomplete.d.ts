@@ -95,6 +95,7 @@ export interface AutocompleteRenderOptionState {
   inputValue: string;
   index: number;
   selected: boolean;
+  style?: React.CSSProperties | undefined;
 }
 
 export interface AutocompleteRenderGroupParams {

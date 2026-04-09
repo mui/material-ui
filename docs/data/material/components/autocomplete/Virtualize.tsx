@@ -51,8 +51,9 @@ function RowComponent({
     );
   }
 
-  return React.cloneElement(dataSet, {
-    style: { ...dataSet.props.style, ...inlineStyle },
+  return React.createElement(dataSet.type, {
+    ...dataSet.props,
+    optionStyle: inlineStyle,
   });
 }
 
@@ -196,7 +197,7 @@ export default function Virtualize() {
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option, state) => (
-        <Typography component="li" {...props} noWrap>
+        <Typography component="li" {...props} style={state.style} noWrap>
           {`#${state.index + 1} - ${option}`}
         </Typography>
       )}
