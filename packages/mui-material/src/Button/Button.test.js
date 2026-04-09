@@ -149,6 +149,14 @@ describe('<Button />', () => {
     expect(button).not.to.have.attribute('aria-disabled');
   });
 
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<Button classes={{ root: 'my-root-class' }}>Hello</Button>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    // The root class is not duplicated, it should only be applied once via the className prop.
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
+  });
+
   it('startIcon and endIcon should have icon class', () => {
     render(
       <Button startIcon={<span>start icon</span>} endIcon={<span>end icon</span>}>
