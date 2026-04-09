@@ -586,7 +586,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(contextProps.className, className, classes.root, positionClassName)}
+      className={clsx(contextProps.className, classes.root, className, positionClassName)}
       component={component}
       disabled={disabled || loading}
       focusRipple={!disableFocusRipple}
