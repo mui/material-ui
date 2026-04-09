@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import loadScript from '../utils/loadScript';
+import { loadScript } from '../utils/loadScript';
 import AdDisplay from './AdDisplay';
 import { adBodyImageStyles } from './ad.styles';
 

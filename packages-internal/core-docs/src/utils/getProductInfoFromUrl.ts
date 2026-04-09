@@ -26,7 +26,7 @@ interface MuiProductInfo {
 // This is a fallback logic to define the productId and productCategoryId of the page.
 // Markdown pages can override this value when the URL patterns they follow are a bit strange,
 // which should stay the rare exception.
-export default function getProductInfoFromUrl(asPath: string): MuiProductInfo {
+export function getProductInfoFromUrl(asPath: string): MuiProductInfo {
   const asPathWithoutLang = pathnameToLanguage(asPath).canonicalAsServer;
   const firstFolder = asPathWithoutLang.replace(/^\/+([^/]+)\/.*/, '$1');
 

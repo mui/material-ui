@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import getProductInfoFromUrl from './getProductInfoFromUrl';
+import { getProductInfoFromUrl } from './getProductInfoFromUrl';
 
 describe('getProductInfoFromUrl', () => {
   it('should handle Material UI', () => {
