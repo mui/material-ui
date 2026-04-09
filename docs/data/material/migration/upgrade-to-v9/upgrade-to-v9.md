@@ -7,7 +7,7 @@
 ### Improved accessibility and platform alignment
 
 Material UI v9 continues improving the accessibility and semantics of core components.
-This release includes updates to keyboard navigation, focus management, and DOM structure so components align more closely with web platform and accessibility expectations and modern assistive technology behavior.
+This release includes updates to keyboard navigation, focus management, and DOM structure so components align more closely with web platform, accessibility expectations and modern assistive technology behavior.
 
 ### Quality-of-life improvements
 
