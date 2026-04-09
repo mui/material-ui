@@ -3,7 +3,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw && pnpm link-check",
+    "build": "pnpm copy-sponsors && rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw && pnpm link-check",
+    "copy-sponsors": "node ./scripts/copySponsorsImages.js",
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
@@ -49,6 +50,7 @@
     "@mui/x-date-pickers-pro": "9.0.0",
     "@mui/x-license": "9.0.0",
     "@mui/x-tree-view": "9.0.0",
+    "@mui/docs-shared-assets": "git+https://github.com/alexfauquette/shared-docs#70d70e84711a0e11bc754379452e60c5399e8f71",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.3",
     "@tailwindcss/postcss": "^4.2.2",

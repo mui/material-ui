@@ -42,6 +42,7 @@
     "@mui-internal/api-docs-builder": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
+    "@mui/docs-shared-assets": "git+https://github.com/alexfauquette/shared-docs",
     "@types/chai": "5.2.3",
     "@types/fg-loadcss": "3.1.3",
     "@types/gtag.js": "0.0.20",

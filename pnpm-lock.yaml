@@ -86,6 +86,9 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages-internal/api-docs-builder-core
+      '@mui/docs-shared-assets':
+        specifier: git+https://github.com/alexfauquette/shared-docs
+        version: https://codeload.github.com/alexfauquette/shared-docs/tar.gz/70d70e84711a0e11bc754379452e60c5399e8f71
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 2.0.8-canary.24
         version: 2.0.8-canary.24(@babel/core@7.29.0)
@@ -311,6 +314,9 @@ importers:
       '@mui/base':
         specifier: 5.0.0-beta.70
         version: 5.0.0-beta.70(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@mui/docs-shared-assets':
+        specifier: git+https://github.com/alexfauquette/shared-docs#70d70e84711a0e11bc754379452e60c5399e8f71
+        version: https://codeload.github.com/alexfauquette/shared-docs/tar.gz/70d70e84711a0e11bc754379452e60c5399e8f71
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
@@ -813,6 +819,9 @@ importers:
       '@mui-internal/api-docs-builder':
         specifier: workspace:*
         version: link:../api-docs-builder
+      '@mui/docs-shared-assets':
+        specifier: git+https://github.com/alexfauquette/shared-docs
+        version: https://codeload.github.com/alexfauquette/shared-docs/tar.gz/3dac5fa340353c1a1cea64486206354e981aa867
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../../packages/mui-icons-material/build
@@ -3621,6 +3630,14 @@ packages:
 
   '@mui/core-downloads-tracker@5.18.0':
     resolution: {integrity: sha512-jbhwoQ1AY200PSSOrNXmrFCaSDSJWP7qk6urkTmIirvRXDROkqe+QwcLlUiw/PrREwsIF/vm3/dAXvjlMHF0RA==}
+
+  '@mui/docs-shared-assets@https://codeload.github.com/alexfauquette/shared-docs/tar.gz/3dac5fa340353c1a1cea64486206354e981aa867':
+    resolution: {tarball: https://codeload.github.com/alexfauquette/shared-docs/tar.gz/3dac5fa340353c1a1cea64486206354e981aa867}
+    version: 0.0.0
+
+  '@mui/docs-shared-assets@https://codeload.github.com/alexfauquette/shared-docs/tar.gz/70d70e84711a0e11bc754379452e60c5399e8f71':
+    resolution: {tarball: https://codeload.github.com/alexfauquette/shared-docs/tar.gz/70d70e84711a0e11bc754379452e60c5399e8f71}
+    version: 0.0.0
 
   '@mui/internal-babel-plugin-display-name@1.0.4-canary.15':
     resolution: {integrity: sha512-IKucc3N9wj9ByYS/37SirpOGq6e2/JTLFZ9/8i29rsiMLIn14MWLdRfJ5C1sApP12/xz7/h+EufdcbwrrjeW5w==}
@@ -14713,6 +14730,10 @@ snapshots:
       '@types/react': 19.2.14
 
   '@mui/core-downloads-tracker@5.18.0': {}
+
+  '@mui/docs-shared-assets@https://codeload.github.com/alexfauquette/shared-docs/tar.gz/3dac5fa340353c1a1cea64486206354e981aa867': {}
+
+  '@mui/docs-shared-assets@https://codeload.github.com/alexfauquette/shared-docs/tar.gz/70d70e84711a0e11bc754379452e60c5399e8f71': {}
 
   '@mui/internal-babel-plugin-display-name@1.0.4-canary.15(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))':
     dependencies:
