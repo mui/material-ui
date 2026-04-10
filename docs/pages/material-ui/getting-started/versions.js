@@ -40,7 +40,7 @@ export async function getStaticProps() {
   const branches = await getBranches();
 
   /**
-   * @type {import('docs/src/pages/versions/VersionsContexl,t').VersionsContextValue}
+   * @type {import('docs/pages/material-ui/getting-started/VersionsContext').VersionsContextValue}
    */
   const versions = [];
   branches.forEach((branch) => {
