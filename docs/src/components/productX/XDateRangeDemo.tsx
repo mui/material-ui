@@ -144,21 +144,19 @@ export default function XDateRangeDemo() {
               '& .MuiDateRangePickerDay-root': {
                 lineHeight: 0,
                 margin: 0,
+                '--PickerDay-horizontalMargin': '0px',
+                '--PickerDay-size': '28px',
+                fontWeight: 'regular',
               },
               '& .MuiPickersArrowSwitcher-root': {
                 padding: 0,
                 paddingTop: 0.5,
               },
-              '& .MuiPickerDay-root': {
-                width: 28,
-                height: 28,
-                fontWeight: 'regular',
-              },
-              '& .MuiDateRangePickerDay-day.Mui-selected': {
+              '& .MuiDateRangePickerDay-selected': {
                 fontWeight: 'semiBold',
               },
-              '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
-                borderColor: 'primary.300',
+              '& .MuiDateRangePickerDay-today': {
+                outlineColor: 'primary.300',
               },
               '& .MuiPickersLayout-actionBar': {
                 borderTop: '1px solid',
@@ -170,7 +168,7 @@ export default function XDateRangeDemo() {
                 '& > div': {
                   bgcolor: 'primaryDark.900',
                 },
-                '& .MuiDateRangePickerDay-day.Mui-selected': {
+                '& .MuiDateRangePickerDay-selected': {
                   color: '#FFF',
                 },
               }),

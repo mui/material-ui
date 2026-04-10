@@ -324,17 +324,15 @@ export default function XHero() {
                   '& .MuiDateRangePickerDay-root': {
                     lineHeight: 0,
                     margin: 0,
-                  },
-                  '& .MuiPickerDay-root': {
-                    width: { xs: 28, xl: 32 },
-                    height: { xs: 28, xl: 32 },
+                    '--PickerDay-horizontalMargin': '0px',
+                    '--PickerDay-size': { xs: '28px', xl: '32px' },
                     fontWeight: 400,
                   },
-                  '& .MuiDateRangePickerDay-day.Mui-selected': {
+                  '& .MuiDateRangePickerDay-selected': {
                     fontWeight: 600,
                   },
-                  '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
-                    borderColor: 'primary.300',
+                  '& .MuiDateRangePickerDay-today': {
+                    outlineColor: 'primary.300',
                   },
                 },
                 (theme) =>
@@ -342,7 +340,7 @@ export default function XHero() {
                     borderColor: 'primaryDark.700',
                     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
                     backgroundColor: 'primaryDark.900',
-                    '& .MuiDateRangePickerDay-day.Mui-selected': {
+                    '& .MuiDateRangePickerDay-selected': {
                       color: '#FFF',
                     },
                   }),
