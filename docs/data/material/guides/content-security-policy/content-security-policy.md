@@ -17,7 +17,7 @@ This vulnerability would allow the attacker to execute anything. However, with a
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
 
 :::info
-CSP is optional. Material UI works without any CSP configuration. If your project doesn't require CSP, you can skip this guide entirely.
+CSP is optional. Material UI works without any CSP configuration. If your project doesn't require CSP, you can skip this guide entirely.
 :::
 
 ## Static websites
@@ -33,9 +33,9 @@ Content-Security-Policy:
 
 ## Dynamic websites
 
-With a server, you can generate a unique nonce per request for tighter security. Material UI requires the following CSP directives:
+With a server, you can generate a unique nonce per request for tighter security. Material UI requires the following CSP directives:
 
-- **`style-src-elem 'nonce-<base64>'`** — Material UI uses [Emotion](https://emotion.sh/) to inject `<style>` tags. Each tag needs a matching nonce.
+- **`style-src-elem 'nonce-<base64>'`** — Material UI uses [Emotion](https://emotion.sh/) to inject `<style>` tags. Each tag needs a matching nonce.
 - **`style-src-attr 'unsafe-inline'`** — Some components apply inline `style` attributes for dynamic values (CSS custom properties, dimensions, positioning).
 - **`script-src 'nonce-<base64>'`** — Only needed if you use `InitColorSchemeScript`, which renders an inline `<script>`.
 
