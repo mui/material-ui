@@ -49,6 +49,10 @@ Content-Security-Policy:
   script-src 'self' 'nonce-<base64>';
 ```
 
+:::info
+Some security scanners flag `style-src-attr 'unsafe-inline'` as a vulnerability. While inline styles can theoretically be used for [CSS-based data exfiltration](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src#unsafe_inline_styles), this requires an attacker to already be able to inject HTML into your page. If your application properly sanitizes user input, `style-src-attr 'unsafe-inline'` does not introduce a meaningful security risk on its own.
+:::
+
 ### Setting up the nonce
 
 A nonce is a randomly generated string that is only used once. You need to add server middleware to generate a new one on each request. A CSP nonce is a Base 64 encoded string. You can generate one like this:
