@@ -45,6 +45,7 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
         id={id}
         render={(props, state) => (
           <OutlinedInput
+            aria-describedby={`${id}-helper-text`}
             label={label}
             inputRef={props.ref}
             value={state.inputValue}
