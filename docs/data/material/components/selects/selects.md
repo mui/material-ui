@@ -47,7 +47,7 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 
 ### Labels and helper text
 
-Select always needs a label, either visible or through `aria-label`. If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
+Select always needs an accessible name. This can come from an associated visible label, such as an `InputLabel` linked to the `Select` with `labelId` or from adding an `aria-label` prop to the `input` slot. If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
 
 {{"demo": "SelectLabels.js"}}
 
