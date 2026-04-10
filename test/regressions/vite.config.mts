@@ -5,13 +5,9 @@ import { alias } from '../../vitest.shared.mts';
 
 // https://vite.dev/config/
 export default defineConfig({
-  esbuild: {
-    minifyIdentifiers: false,
-    keepNames: true,
-  },
   plugins: [
     {
-      // Unfortunately necessary as we opted to write our jsx in js files
+      // Necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
@@ -34,14 +30,12 @@ export default defineConfig({
     react(),
   ],
   define: {
-    'process.env': '{}',
+    'process.env.NODE_ENV': JSON.stringify('production'),
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
     alias,
   },
   optimizeDeps: {
-    force: true,
     esbuildOptions: {
       loader: {
         '.js': 'tsx',
