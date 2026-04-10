@@ -1,4 +1,4 @@
-# Material UI Versions
+# Material UI Versions
 
 <p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
 
@@ -6,19 +6,19 @@
 
 The most recent stable version (✓) is recommended for use in production.
 
-{{"demo": "pages/versions/ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "ReleasedVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Latest versions
 
 Here you can find the latest unreleased documentation and code.
 You can use it to see what changes are coming and provide better feedback to contributors.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
+{{"demo": "LatestVersions.js", "hideToolbar": true, "bg": "inline"}}
 
 ## Versioning strategy
 
 Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly.
-Stability is essential for the ecosystem around Material UI to thrive.
+Stability is essential for the ecosystem around Material UI to thrive.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced predictably.
 

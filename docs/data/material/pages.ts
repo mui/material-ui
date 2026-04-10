@@ -20,6 +20,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
+      { pathname: '/material-ui/getting-started/versions' },
     ],
   },
   {

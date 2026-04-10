@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { Link } from '@mui/internal-core-docs/Link';
-import VersionsContext from 'docs/src/pages/versions/VersionsContext';
+import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsContext';
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui/material-ui/releases/tag/';
 

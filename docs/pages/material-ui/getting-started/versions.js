@@ -1,7 +1,7 @@
 import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import VersionsContext from 'docs/src/pages/versions/VersionsContext';
-import * as pageProps from 'docs/src/pages/versions/versions.md?muiMarkdown';
+import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsContext';
+import * as pageProps from 'docs/data/material/getting-started/versions/versions.md?muiMarkdown';
 
 export default function Page(props) {
   const { versions } = props;
@@ -38,13 +38,15 @@ async function getBranches() {
 export async function getStaticProps() {
   const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
+  const regex = /^v\d+$/;
   const branches = await getBranches();
+
   /**
-   * @type {import('docs/src/pages/versions/VersionsContext').VersionsContextValue}
+   * @type {import('docs/src/pages/versions/VersionsContexl,t').VersionsContextValue}
    */
   const versions = [];
   branches.forEach((branch) => {
-    if (!FILTERED_BRANCHES.includes(branch.name)) {
+    if (!FILTERED_BRANCHES.includes(branch.name) && regex.test(branch.name)) {
       const version = branch.name;
       versions.push({
         version,
