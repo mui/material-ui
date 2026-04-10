@@ -36,7 +36,7 @@ Content-Security-Policy:
 With a server, you can generate a unique nonce per request for tighter security. Material UI requires the following CSP directives:
 
 - **`style-src-elem 'nonce-<base64>'`** — Material UI uses [Emotion](https://emotion.sh/) to inject `<style>` tags. Each tag needs a matching nonce.
-- **`style-src-attr 'unsafe-inline'`** — Some components apply inline `style` attributes for dynamic values (CSS custom properties, dimensions, positioning). This is only needed with server-side rendering (SSR). In client-only apps, React uses the CSSOM API which is not subject to CSP.
+- **`style-src-attr 'unsafe-inline'`** — Some components apply inline `style` attributes for dynamic values (CSS custom properties, dimensions, positioning).
 - **`script-src 'nonce-<base64>'`** — Only needed if you use `InitColorSchemeScript`, which renders an inline `<script>`.
 
 A complete CSP header might look like this:
