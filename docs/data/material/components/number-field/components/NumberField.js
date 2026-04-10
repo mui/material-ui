@@ -96,7 +96,7 @@ function NumberField({ id: idProp, label, error, size = 'medium', ...other }) {
           />
         )}
       />
-      <FormHelperText sx={{ ml: 0, '&:empty': { mt: 0 } }}>
+      <FormHelperText id={`${id}-helper-text`} sx={{ ml: 0, '&:empty': { mt: 0 } }}>
         Enter value between 10 and 40
       </FormHelperText>
     </BaseNumberField.Root>
