@@ -304,12 +304,16 @@ export default function XHero() {
                     overflow: 'auto',
                     backgroundColor: 'initial',
                   },
-                  '& .MuiTypography-subtitle1': {
+                  '& .MuiPickersCalendarHeader-labelContainer': {
                     fontSize: '0.875rem',
                   },
-                  '& .MuiTypography-caption': {
-                    width: { xs: 28, xl: 32 },
+                  '& .MuiDayCalendar-weekDayLabel': {
+                    width: { xs: 32, xl: 36 },
                     height: 32,
+                    margin: 0,
+                  },
+                  '& .MuiDayCalendar-root': {
+                    minWidth: { xs: 268, xl: 300 },
                   },
                   '& .MuiPickersSlideTransition-root': {
                     minWidth: { xs: 268, xl: 300 },
@@ -322,10 +326,8 @@ export default function XHero() {
                     padding: 1,
                   },
                   '& .MuiDateRangePickerDay-root': {
-                    lineHeight: 0,
-                    margin: 0,
                     '--PickerDay-horizontalMargin': '0px',
-                    '--PickerDay-size': { xs: '28px', xl: '32px' },
+                    '--PickerDay-size': { xs: '32px', xl: '36px' },
                     fontWeight: 400,
                   },
                   '& .MuiDateRangePickerDay-selected': {

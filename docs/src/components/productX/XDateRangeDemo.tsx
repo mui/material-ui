@@ -127,12 +127,16 @@ export default function XDateRangeDemo() {
               '& > div > div > div > div': {
                 flexGrow: 1,
               },
-              '& .MuiTypography-subtitle1': {
+              '& .MuiPickersCalendarHeader-labelContainer': {
                 fontSize: '0.875rem',
               },
-              '& .MuiTypography-caption': {
-                width: 28,
+              '& .MuiDayCalendar-weekDayLabel': {
+                width: 32,
                 height: 32,
+                margin: 0,
+              },
+              '& .MuiDayCalendar-root': {
+                minWidth: 258,
               },
               '& .MuiPickersSlideTransition-root': {
                 minWidth: 258,
@@ -142,10 +146,8 @@ export default function XDateRangeDemo() {
                 margin: '4px 0',
               },
               '& .MuiDateRangePickerDay-root': {
-                lineHeight: 0,
-                margin: 0,
                 '--PickerDay-horizontalMargin': '0px',
-                '--PickerDay-size': '28px',
+                '--PickerDay-size': '32px',
                 fontWeight: 'regular',
               },
               '& .MuiPickersArrowSwitcher-root': {
