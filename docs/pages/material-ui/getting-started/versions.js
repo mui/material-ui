@@ -36,8 +36,6 @@ async function getBranches() {
 }
 
 export async function getStaticProps() {
-  const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
-
   const regex = /^v\d+$/;
   const branches = await getBranches();
 
@@ -46,7 +44,7 @@ export async function getStaticProps() {
    */
   const versions = [];
   branches.forEach((branch) => {
-    if (!FILTERED_BRANCHES.includes(branch.name) && regex.test(branch.name)) {
+    if (regex.test(branch.name)) {
       const version = branch.name;
       versions.push({
         version,
