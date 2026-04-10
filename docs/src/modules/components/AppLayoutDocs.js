@@ -74,7 +74,7 @@ const StyledAppContainer = styled(AppContainer, {
         props: ({ disableToc, wideLayout }) => disableToc && !wideLayout,
         style: {
           // 105ch ≈ 930px
-          maxWidth: '105ch',
+          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
         },
       },
       {
