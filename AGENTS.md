@@ -162,18 +162,6 @@ import Button from '@mui/material/Button'; // Good
 import { Button } from '@mui/material'; // Avoid in packages
 ```
 
-## Writing Style (Vale)
-
-Documentation prose is linted by [Vale](https://vale.sh/). Configuration:
-
-- **Config file:** `.vale.ini` (repo root)
-- **Custom styles:** `docs/mui-vale/styles/MUI/` (YAML rules)
-
-Key rules to follow when writing Markdown docs:
-
-- Use a **non-breaking space** (`\u00a0`, Option+Space on Mac) in brand names: `Material\u00a0UI`, `Base\u00a0UI`, `Joy\u00a0UI`, `MUI\u00a0X`
-- Run `pnpm vale docs/path/to/file.md` to check a specific file
-
 ## Pre-PR Checklist
 
 1. `pnpm prettier` - Format code
