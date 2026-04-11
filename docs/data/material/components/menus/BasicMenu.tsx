@@ -19,7 +19,7 @@ export default function BasicMenu() {
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard
