@@ -53,7 +53,7 @@ function RowComponent({
 
   return React.createElement(dataSet.type, {
     ...dataSet.props,
-    optionStyle: inlineStyle,
+    style: { ...dataSet.props.style, ...inlineStyle },
   });
 }
 

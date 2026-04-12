@@ -3602,7 +3602,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      expect(renderOption.callCount).to.be.lessThan(10);
+      expect(renderOption.callCount).to.equal(strictModeDoubleLoggingSuppressed ? 1 : 2);
       expect(screen.getAllByRole('option')).to.have.length(1);
       expect(screen.getByRole('option')).to.have.text('option-0');
     });
@@ -3623,7 +3623,8 @@ describe('<Autocomplete />', () => {
               return React.createElement(child.type, {
                 key: child.key,
                 ...child.props,
-                optionStyle: {
+                style: {
+                  ...child.props.style,
                   position: 'absolute',
                   top: index * 10,
                 },

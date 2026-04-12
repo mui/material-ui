@@ -28,7 +28,7 @@ function RowComponent({ index, itemData, style }) {
 
   return React.createElement(dataSet.type, {
     ...dataSet.props,
-    optionStyle: inlineStyle,
+    style: { ...dataSet.props.style, ...inlineStyle },
   });
 }
 
