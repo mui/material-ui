@@ -115,6 +115,17 @@ describe('styleFunctionSx', () => {
       });
     });
 
+    it('does not mutate theme.typography when using responsive typography shorthand', () => {
+      const body1Before = { ...theme.typography.body1 };
+
+      styleFunctionSx({
+        theme,
+        sx: { typography: { sm: 'body1' }, width: { sm: '80%' }, mt: { sm: 4 } },
+      });
+
+      expect(theme.typography.body1).to.deep.equal(body1Before);
+    });
+
     it('allow values to be `null` or `undefined`', () => {
       const result = styleFunctionSx({
         theme,
