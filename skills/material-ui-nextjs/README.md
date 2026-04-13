@@ -7,7 +7,6 @@ Integration guide for Material�UI with the Next.js App Router and Pages Router
 | File          | Purpose                                  |
 | :------------ | :--------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                  |
-| SKILL.md      | Entry point: frontmatter + index + pointer to AGENTS.md |
+| SKILL.md      | Entry point and index                    |
 | metadata.json | Version, abstract, references            |
 | reference.md  | Import paths and layout sketch           |
-

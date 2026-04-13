@@ -7,7 +7,6 @@ Covers Tailwind�CSS v4 with Material�UI (cascade layers, `enableCssLayer`) a
 | File          | Purpose                                         |
 | :------------ | :---------------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                         |
-| SKILL.md      | Entry point: frontmatter + index + pointer to AGENTS.md |
+| SKILL.md      | Entry point and index                           |
 | metadata.json | Version, abstract, references                   |
 | reference.md  | Layer line, IntelliSense JSON, v3 config sketch |
-

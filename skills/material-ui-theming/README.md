@@ -7,7 +7,6 @@ Theming and design tokens for Material�UI: `createTheme`, `ThemeProvider`, pal
 | File          | Purpose                                  |
 | :------------ | :--------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                  |
-| SKILL.md      | Entry point: frontmatter + index + pointer to AGENTS.md |
+| SKILL.md      | Entry point and index                    |
 | metadata.json | Version, abstract, references            |
 | reference.md  | TypeScript augmentation snippets         |
-
