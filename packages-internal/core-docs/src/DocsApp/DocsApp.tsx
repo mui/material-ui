@@ -5,7 +5,7 @@ import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
 import type { DocsConfig } from '../DocsProvider';
-import { DocsProvider } from '../DocsProvider';
+import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
 import PageContext from '../PageContext';
 import { ThemeProvider } from '../ThemeContext';
@@ -44,7 +44,7 @@ export interface DocsAppProps {
   /**
    * Docs configuration object (from docs/config.ts)
    */
-  docsConfig: DocsConfig;
+  docsConfig?: DocsConfig;
   /**
    * Path to the service worker file, e.g. '/sw.js'
    */
@@ -96,7 +96,7 @@ function DocsApp(props: DocsAppProps) {
     Component,
     emotionCache = clientSideEmotionCache,
     pageProps,
-    docsConfig,
+    docsConfig = DEFAULT_DOCS_CONFIG,
     serviceWorkerPath,
     activePage,
     activePageParents,
