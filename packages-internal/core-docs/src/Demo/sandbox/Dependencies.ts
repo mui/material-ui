@@ -55,7 +55,7 @@ export function SandboxDependencies(
       commitRef === undefined ||
       process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
-      if (['joy', 'base'].includes(packageName)) {
+      if (packageName === 'joy') {
         return 'latest';
       }
       // #npm-tag-reference
@@ -107,7 +107,6 @@ export function SandboxDependencies(
       '@mui/system': getMuiPackageVersion('system'),
       '@mui/private-theming': getMuiPackageVersion('theming'),
       '@mui/private-classnames': getMuiPackageVersion('classnames'),
-      '@mui/base': getMuiPackageVersion('base'),
       '@mui/utils': getMuiPackageVersion('utils'),
       '@mui/material-nextjs': getMuiPackageVersion('material-nextjs'),
     };
