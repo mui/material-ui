@@ -1,15 +1,15 @@
 ---
 name: material-ui-styling
-description: Chooses the right Material UI styling approach (sx, styled, theme overrides, global CSS) from official MUI guidance. Use when styling @mui/material components, customizing themes, overriding slots, or comparing sx vs styled.
+description: Chooses the right MaterialÂ UI styling approach (sx, styled, theme overrides, global CSS) from official MUI guidance. Use when styling @mui/material components, customizing themes, overriding slots, or comparing sx vs styled.
 license: MIT
 metadata:
   author: mui
   version: '1.0.0'
 ---
 
-# Material UI styling
+# Materialï¿½UI styling
 
-Agent skill for picking the correct styling layer in Material UI (narrowest scope first). SKILL.md is the entry and index; AGENTS.md is the full guide.
+Agent skill for picking the correct styling layer in Materialï¿½UI (narrowest scope first). SKILL.md is the entry and index; AGENTS.md is the full guide.
 
 ## When to apply
 
