@@ -361,6 +361,8 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
+            tabIndex={-1}
+            data-mui-focusable=""
             {...paperSlotProps}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
