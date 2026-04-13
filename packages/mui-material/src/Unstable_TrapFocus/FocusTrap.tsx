@@ -9,6 +9,7 @@ import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
+import { getFocusTarget } from '../utils/focusable';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
@@ -158,6 +159,10 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
+    // Reset on every mount — React 18 Strict Mode double-mounts leave this
+    // stuck at `true` after the cleanup of the previous mount set it.
+    ignoreNextEnforceFocus.current = false;
+
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
@@ -166,8 +171,12 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     const doc = ownerDocument(rootRef.current);
     const activeElement = getActiveElement(doc);
 
+    // Prefer the explicitly marked focusable element. Fall back to the root
+    // element for generic FocusTrap usage.
+    const focusTarget = getFocusTarget(rootRef.current) ?? rootRef.current;
+
     if (!contains(rootRef.current, activeElement)) {
-      if (!rootRef.current.hasAttribute('tabIndex')) {
+      if (!focusTarget.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
@@ -177,11 +186,11 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', '-1');
+        focusTarget.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        focusTarget.focus();
       }
     }
 

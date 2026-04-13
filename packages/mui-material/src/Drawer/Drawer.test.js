@@ -168,6 +168,29 @@ describe('<Drawer />', () => {
         expect(paper).to.have.attribute('aria-modal', 'true');
       });
 
+      it('should focus the Paper element on open when variant is temporary', () => {
+        render(
+          <Drawer open variant="temporary">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).to.have.attribute('tabindex', '-1');
+        expect(paper).toHaveFocus();
+      });
+
+      it('should not have tabIndex on Paper when variant is permanent', () => {
+        render(
+          <Drawer variant="permanent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('tabindex');
+      });
+
       it('should not have role="dialog" and aria-modal="true" when variant is permanent', () => {
         render(
           <Drawer variant="permanent">
