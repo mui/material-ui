@@ -55,13 +55,14 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 In general, you can expect the following release cycle:
 
 - A **major** release every 12 months.
-- 1-3 **minor** releases for each major release.
-- A **patch** release every week (anytime for an urgent bug fix).
+- A few **minor** releases for each major release.
+- A **patch** release every month (anytime for an urgent bug fix).
 
 ## Release schedule
 
 | Date           | Version | Status   |
 | :------------- | :------ | :------- |
+| April 2026     | v9.0.0  | Released |
 | March 2025     | v7.0.0  | Released |
 | August 2024    | v6.0.0  | Released |
 | September 2021 | v5.0.0  | Released |
