@@ -136,23 +136,20 @@ const OutlinedInputInput = styled(InputBaseInput, {
 })(
   memoTheme(({ theme }) => ({
     padding: '16.5px 14px',
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars &&
-      theme.applyStyles('dark', {
-        '&:-webkit-autofill': {
+      }),
+      borderRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-          borderRadius: 'inherit',
-        },
-      })),
+        })),
+    },
     variants: [
       {
         props: {
