@@ -27,3 +27,4 @@ export type {
 } from './utils/createTypeScriptProject';
 export { default as replaceUrl } from './utils/replaceUrl';
 export { default as findComponents } from './utils/findComponents';
+export * from './utils/resolveExportSpecifier';
