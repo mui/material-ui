@@ -136,14 +136,12 @@ const OutlinedInputInput = styled(InputBaseInput, {
 })(
   memoTheme(({ theme }) => ({
     padding: '16.5px 14px',
-    '&:-webkit-autofill': {
-      borderRadius: 'inherit',
-    },
     ...(!theme.vars && {
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        borderRadius: 'inherit',
       },
     }),
     ...(theme.vars &&
@@ -152,6 +150,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
+          borderRadius: 'inherit',
         },
       })),
     variants: [

@@ -208,15 +208,13 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingRight: 12,
     paddingBottom: 8,
     paddingLeft: 12,
-    '&:-webkit-autofill': {
-      borderTopLeftRadius: 'inherit',
-      borderTopRightRadius: 'inherit',
-    },
     ...(!theme.vars && {
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit',
       },
     }),
     ...(theme.vars &&
@@ -225,6 +223,8 @@ const FilledInputInput = styled(InputBaseInput, {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
+          borderTopLeftRadius: 'inherit',
+          borderTopRightRadius: 'inherit',
         },
       })),
     variants: [
