@@ -8,7 +8,7 @@ components: Box, Button, Divider, List, ListItemButton, ListItemIcon, ListItemTe
 
 <p class="description">A React component for building accessible application menus.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 The menu bar is a visually persistent menu similar to those found in desktop applications that provides a consistent set of frequently used commands.
 

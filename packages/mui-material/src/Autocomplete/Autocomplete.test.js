@@ -1340,6 +1340,18 @@ describe('<Autocomplete />', () => {
       expect(handleOpen.callCount).to.equal(1);
     });
 
+    it('should not focus the input when clicking helper text', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one']}
+          renderInput={(params) => <TextField {...params} helperText="Some help" />}
+        />,
+      );
+
+      await user.click(screen.getByText('Some help'));
+      expect(screen.getByRole('combobox')).not.toHaveFocus();
+    });
+
     it('does not clear the textbox on Escape', () => {
       const handleChange = spy();
       render(

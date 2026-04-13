@@ -124,7 +124,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               }`,
               left: 0,
               bottom: 0,
-              content: '"\\00a0"',
+              content: '""',
               position: 'absolute',
               right: 0,
               transition: theme.transitions.create('border-bottom-color', {
@@ -208,28 +208,21 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingRight: 12,
     paddingBottom: 8,
     paddingLeft: 12,
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
+      }),
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        },
-      },
-    }),
+        })),
+    },
     variants: [
       {
         props: {

@@ -15,6 +15,7 @@ export { default as unstable_createChainedFunction } from './createChainedFuncti
 export { default as unstable_debounce } from './debounce';
 export { default as unstable_deprecatedPropType } from './deprecatedPropType';
 export { default as unstable_fastDeepAssign } from './fastDeepAssign';
+export { default as unstable_fastObjectShallowCompare } from './fastObjectShallowCompare';
 export { default as unstable_isObjectEmpty } from './isObjectEmpty';
 export { default as unstable_isMuiElement } from './isMuiElement';
 export { default as unstable_ownerDocument } from './ownerDocument';
@@ -51,5 +52,4 @@ export { default as unstable_resolveComponentProps } from './resolveComponentPro
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
 export { default as unstable_getReactNodeRef } from './getReactNodeRef';
 export { default as unstable_getReactElementRef } from './getReactElementRef';
-export { default as unstable_useRovingTabIndex } from './useRovingTabIndex';
 export * from './types';

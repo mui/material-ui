@@ -1,6 +1,6 @@
 import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -11,9 +11,9 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 export default function Home() {
   return (

@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import {
-  createRenderer,
-  screen,
-  fireEvent,
-  strictModeDoubleLoggingSuppressed,
-  reactMajor,
-  isJsdom,
-} from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor, isJsdom } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import { modalClasses } from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -225,27 +219,23 @@ describe('<Menu />', () => {
   });
 
   it('should open during the initial mount', () => {
-    function MenuItem(props) {
-      const { autoFocus, children } = props;
-      return (
-        <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-          {children}
-        </div>
-      );
+    function WrappedMenuItem(props) {
+      return <MenuItem {...props} />;
     }
+
     render(
       <Menu anchorEl={defaultAnchorEl} open>
-        <MenuItem>one</MenuItem>
+        <WrappedMenuItem>one</WrappedMenuItem>
       </Menu>,
     );
 
-    expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
+    expect(screen.getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
   it('should not focus list if autoFocus=false', () => {
     render(
       <Menu anchorEl={defaultAnchorEl} autoFocus={false} open>
-        <div tabIndex={-1} />
+        <MenuItem>one</MenuItem>
       </Menu>,
     );
 
@@ -280,29 +270,18 @@ describe('<Menu />', () => {
   });
 
   it('should call onClose on tab', () => {
-    function MenuItem(props) {
-      const { autoFocus, children } = props;
-
-      const ref = React.useRef(null);
-      React.useEffect(() => {
-        if (autoFocus) {
-          ref.current.focus();
-        }
-      }, [autoFocus]);
-
-      return (
-        <div ref={ref} role="menuitem" tabIndex={-1}>
-          {children}
-        </div>
-      );
+    function WrappedMenuItem(props) {
+      return <MenuItem {...props} />;
     }
+
     const onCloseSpy = spy();
     render(
       <Menu anchorEl={defaultAnchorEl} open onClose={onCloseSpy}>
-        <MenuItem>hello</MenuItem>
+        <WrappedMenuItem>hello</WrappedMenuItem>
       </Menu>,
     );
 
+    expect(screen.getByRole('menuitem')).toHaveFocus();
     fireEvent.keyDown(screen.getByRole('menuitem'), { key: 'Tab' });
 
     expect(onCloseSpy.callCount).to.equal(1);
@@ -325,21 +304,17 @@ describe('<Menu />', () => {
     expect(screen.getAllByRole('menuitem')).to.have.length(1);
   });
 
-  describe('warnings', () => {
-    it('warns a Fragment is passed as a child', () => {
-      expect(() => {
-        render(
-          <Menu anchorEl={defaultAnchorEl} open={false}>
-            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-            <React.Fragment />
-          </Menu>,
-        );
-      }).toErrorDev([
-        "MUI: The Menu component doesn't accept a Fragment as a child.",
-        !strictModeDoubleLoggingSuppressed &&
-          "MUI: The Menu component doesn't accept a Fragment as a child.",
-      ]);
-    });
+  it('supports MenuItems wrapped in a Fragment', () => {
+    render(
+      <Menu anchorEl={defaultAnchorEl} open>
+        <React.Fragment>
+          <MenuItem>one</MenuItem>
+          <MenuItem>two</MenuItem>
+        </React.Fragment>
+      </Menu>,
+    );
+
+    expect(screen.getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
   describe('theme customization', () => {

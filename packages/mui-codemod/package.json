@@ -1,8 +1,9 @@
 {
   "name": "@mui/codemod",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
+  "license": "MIT",
   "bin": "./src/codemod.js",
   "keywords": [
     "react",
@@ -21,7 +22,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-codemod"
   },
-  "license": "MIT",
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-codemod",
   "funding": {
     "type": "opencollective",

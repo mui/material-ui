@@ -7,6 +7,16 @@ import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
 
+// slotProps.transition should reject unknown props
+<StepContent
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+>
+  Step Content
+</StepContent>;
+
 <StepContent slots={{ transition: Fade }}>Step Content</StepContent>;
 <StepContent slots={{ transition: Collapse }}>Step Content</StepContent>;
 <StepContent slots={{ transition: Grow }}>Step Content</StepContent>;

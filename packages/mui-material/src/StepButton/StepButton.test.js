@@ -85,6 +85,39 @@ describe('<StepButton />', () => {
     expect(screen.getByRole('tab')).to.have.property('disabled', true);
   });
 
+  it('should skip disabled steps in the roving tablist path', async () => {
+    const { user } = render(
+      <Stepper nonLinear orientation="vertical">
+        <Step>
+          <StepButton>Step One</StepButton>
+        </Step>
+        <Step disabled>
+          <StepButton>Step Two</StepButton>
+        </Step>
+        <Step>
+          <StepButton>Step Three</StepButton>
+        </Step>
+      </Stepper>,
+    );
+
+    const stepOne = screen.getByRole('tab', { name: 'Step One' });
+    const stepTwo = screen.getByRole('tab', { name: 'Step Two' });
+    const stepThree = screen.getByRole('tab', { name: 'Step Three' });
+
+    expect(stepTwo).to.have.property('disabled', true);
+
+    await user.tab();
+    expect(stepOne).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(stepThree).toHaveFocus();
+    expect(stepTwo).not.toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(stepOne).toHaveFocus();
+    expect(stepTwo).not.toHaveFocus();
+  });
+
   describe('event handlers', () => {
     // only run in supported browsers
     it.skipIf(!supportsTouch())(

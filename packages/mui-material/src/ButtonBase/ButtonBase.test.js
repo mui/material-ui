@@ -955,6 +955,24 @@ describe('<ButtonBase />', () => {
     });
 
     // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('can suppress the focus-visible state', async function test() {
+      render(
+        // @ts-expect-error internal prop used by MenuItem
+        <ButtonBase suppressFocusVisible focusVisibleClassName="focusVisible">
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByText('Hello');
+
+      focusVisible(button);
+
+      expect(button).toHaveFocus();
+      expect(button).not.to.have.class(classes.focusVisible);
+      expect(button).not.to.match('.focusVisible');
+    });
+
+    // JSDOM doesn't support :focus-visible
     it.skipIf(isJsdom())('removes focus-visible if focus is re-targetted', function test() {
       /**
        * @type {string[]}
@@ -1500,7 +1518,6 @@ describe('<ButtonBase />', () => {
     });
 
     it('allows non-standard values', () => {
-      // @ts-expect-error `@types/react` only lists standard values
       render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');

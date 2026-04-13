@@ -72,7 +72,7 @@ export default function CustomizedMenus() {
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         variant="contained"
         disableElevation
         onClick={handleClick}

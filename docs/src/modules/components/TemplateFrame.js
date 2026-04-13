@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
-import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
+import { getDesignTokens, getThemedComponents } from '@mui/internal-core-docs/branding';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
@@ -21,10 +21,9 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import PaletteIcon from '@mui/icons-material/PaletteOutlined';
-import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
-import { pascalCase } from '@mui/docs/helpers';
+import { pascalCase } from '@mui/internal-core-docs/helpers';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: 'relative',

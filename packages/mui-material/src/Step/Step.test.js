@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Step, { stepClasses as classes } from '@mui/material/Step';
-import Stepper, { StepperContextProvider } from '@mui/material/Stepper';
+import Stepper, { StepperContext } from '@mui/material/Stepper';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import StepButton, { stepButtonClasses } from '@mui/material/StepButton';
 import describeConformance from '../../test/describeConformance';
@@ -9,16 +9,22 @@ import describeConformance from '../../test/describeConformance';
 describe('<Step />', () => {
   const { render } = createRenderer();
 
-  // StepButton needs to be rendered in a StepperContextProvider
+  // StepButton needs to be rendered in a StepperContext.Provider
   function renderInContext(node) {
     return render(
-      <StepperContextProvider
+      <StepperContext.Provider
         value={{
-          registerElementRef: () => {},
+          activeStep: 0,
+          alternativeLabel: false,
+          connector: null,
+          nonLinear: false,
+          orientation: 'horizontal',
+          totalSteps: 1,
+          isTabList: false,
         }}
       >
         {node}
-      </StepperContextProvider>,
+      </StepperContext.Provider>,
     );
   }
 

@@ -18,7 +18,7 @@ If you have multiple options appearing in a list,
 you can preserve space by using checkboxes instead of on/off switches.
 If you have a single option, avoid using a checkbox and use an on/off switch instead.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic checkboxes
 

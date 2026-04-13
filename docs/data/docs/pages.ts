@@ -1,5 +1,5 @@
-import type { MuiPage } from '@mui/docs/MuiPage';
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
+import { standardNavIcons } from '@mui/internal-core-docs/AppLayout';
 
 const pages: readonly MuiPage[] = [
   { pathname: 'https://mui.com/versions/' },

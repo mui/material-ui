@@ -1,9 +1,11 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, supportsTouch } from '@mui/internal-test-utils';
 import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
 import ButtonBase from '@mui/material/ButtonBase';
-import ListContext from '../List/ListContext';
+import ListItemText, { listItemTextClasses } from '@mui/material/ListItemText';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -13,22 +15,35 @@ describe('<MenuItem />', () => {
   describeConformance(<MenuItem />, () => ({
     classes,
     inheritComponent: ButtonBase,
-    render,
+    render: (node) => {
+      const { container, ...other } = render(<MenuList>{node}</MenuList>);
+
+      return { container: container.firstChild, ...other };
+    },
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
     muiName: 'MuiMenuItem',
     testVariantProps: { dense: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render a focusable menuitem', () => {
-    render(<MenuItem />);
+    render(
+      <MenuList variant="menu">
+        <MenuItem />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.property('tabIndex', -1);
   });
 
   it('has a ripple when clicked', async () => {
-    render(<MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />);
+    render(
+      <MenuList>
+        <MenuItem TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     await ripple.startTouch(menuitem);
@@ -37,7 +52,11 @@ describe('<MenuItem />', () => {
   });
 
   it('should render with the selected class but not aria-selected when `selected`', () => {
-    render(<MenuItem selected />);
+    render(
+      <MenuList>
+        <MenuItem selected />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);
@@ -45,7 +64,11 @@ describe('<MenuItem />', () => {
   });
 
   it('can have a role of option', () => {
-    render(<MenuItem role="option" aria-selected={false} />);
+    render(
+      <MenuList>
+        <MenuItem role="option" aria-selected={false} />
+      </MenuList>,
+    );
 
     expect(screen.queryByRole('option')).not.to.equal(null);
   });
@@ -60,7 +83,11 @@ describe('<MenuItem />', () => {
       it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
-        render(<MenuItem {...{ [handlerName]: handler }} />);
+        render(
+          <MenuList>
+            <MenuItem {...{ [handlerName]: handler }} />
+          </MenuList>,
+        );
 
         fireEvent[eventName](screen.getByRole('menuitem'));
 
@@ -77,12 +104,14 @@ describe('<MenuItem />', () => {
       const handleKeyUp = spy();
       const handleBlur = spy();
       render(
-        <MenuItem
-          onFocus={handleFocus}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          onBlur={handleBlur}
-        />,
+        <MenuList>
+          <MenuItem
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+            onBlur={handleBlur}
+          />
+        </MenuList>,
       );
       const menuitem = screen.getByRole('menuitem');
 
@@ -108,7 +137,11 @@ describe('<MenuItem />', () => {
     // only run in supported browsers
     it.skipIf(!supportsTouch())('should fire onTouchStart', function touchStartTest() {
       const handleTouchStart = spy();
-      render(<MenuItem onTouchStart={handleTouchStart} />);
+      render(
+        <MenuList>
+          <MenuItem onTouchStart={handleTouchStart} />
+        </MenuList>,
+      );
       const menuitem = screen.getByRole('menuitem');
 
       const touch = new Touch({ identifier: 0, target: menuitem, clientX: 0, clientY: 0 });
@@ -119,33 +152,53 @@ describe('<MenuItem />', () => {
   });
 
   it('can be disabled', () => {
-    render(<MenuItem disabled />);
+    render(
+      <MenuList>
+        <MenuItem disabled />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
   it('can be selected', () => {
-    render(<MenuItem selected />);
+    render(
+      <MenuList>
+        <MenuItem selected />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);
   });
 
   it('prop: disableGutters', () => {
-    const view = render(<MenuItem />);
+    const view = render(
+      <MenuList>
+        <MenuItem />
+      </MenuList>,
+    );
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.gutters);
 
-    view.rerender(<MenuItem disableGutters />);
+    view.rerender(
+      <MenuList>
+        <MenuItem disableGutters />
+      </MenuList>,
+    );
 
     expect(menuitem).not.to.have.class(classes.gutters);
   });
 
   describe('prop: nativeButton', () => {
     it('preserves role="menuitem" over pseudo-button role', () => {
-      render(<MenuItem />);
+      render(
+        <MenuList>
+          <MenuItem />
+        </MenuList>,
+      );
 
       const menuitem = screen.getByRole('menuitem');
       expect(menuitem).to.have.tagName('LI');
@@ -153,28 +206,28 @@ describe('<MenuItem />', () => {
     });
 
     it('preserves custom tabIndex over pseudo-button tabIndex', () => {
-      render(<MenuItem />);
+      render(
+        <MenuList variant="menu">
+          <MenuItem />
+        </MenuList>,
+      );
 
       const menuitem = screen.getByRole('menuitem');
       expect(menuitem).to.have.property('tabIndex', -1);
     });
   });
 
-  describe('context: dense', () => {
-    it('should forward the context', () => {
-      let context = null;
-      const { setProps } = render(
-        <MenuItem>
-          <ListContext.Consumer>
-            {(options) => {
-              context = options;
-            }}
-          </ListContext.Consumer>
-        </MenuItem>,
+  describe('prop: dense', () => {
+    it('applies dense styles to ListItemText children', () => {
+      render(
+        <MenuList>
+          <MenuItem dense>
+            <ListItemText primary="Dense item" />
+          </MenuItem>
+        </MenuList>,
       );
-      expect(context).to.have.property('dense', false);
-      setProps({ dense: true });
-      expect(context).to.have.property('dense', true);
+
+      expect(screen.getByText('Dense item').parentElement).to.have.class(listItemTextClasses.dense);
     });
   });
 });

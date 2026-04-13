@@ -1,8 +1,9 @@
 {
   "name": "@mui/system",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-system"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.2",
-    "@mui/private-theming": "workspace:*",
-    "@mui/styled-engine": "workspace:*",
+    "@mui/private-theming": "workspace:^",
+    "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1"

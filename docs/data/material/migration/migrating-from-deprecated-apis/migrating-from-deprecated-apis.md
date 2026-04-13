@@ -2647,7 +2647,7 @@ The StepContent's `TransitionProps` prop was deprecated in favor of `slotProps.t
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@next deprecations/speed-dial-props <path>
+npx @mui/codemod@latest deprecations/speed-dial-props <path>
 ```
 
 ### TransitionComponent

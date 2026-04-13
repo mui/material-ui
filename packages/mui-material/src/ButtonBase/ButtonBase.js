@@ -16,15 +16,16 @@ import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
+  const { disabled, focusVisible, focusVisibleClassName, suppressFocusVisible, classes } =
+    ownerState;
 
   const slots = {
-    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
+    root: ['root', disabled && 'disabled', focusVisible && !suppressFocusVisible && 'focusVisible'],
   };
 
   const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
 
-  if (focusVisible && focusVisibleClassName) {
+  if (focusVisible && !suppressFocusVisible && focusVisibleClassName) {
     composedClasses.root += ` ${focusVisibleClassName}`;
   }
 
@@ -89,6 +90,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     /* eslint-disable react/prop-types */
     // replaces internal handling in Chip, other components can opt-in individually to use this in the future
     focusableWhenDisabled,
+    // escape hatch to suppress the focusVisible state and callback
+    // used by anchored <Menu>s to to suppress focus visible styling when opened with a pointer
+    suppressFocusVisible = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,
     /* eslint-enable react/prop-types */
@@ -132,7 +136,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleRippleRef = useForkRef(ripple.ref, touchRippleRef);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
-  if (disabled && focusVisible) {
+  if ((disabled || suppressFocusVisible) && focusVisible) {
     setFocusVisible(false);
   }
 
@@ -234,7 +238,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       buttonRef.current = event.currentTarget;
     }
 
-    if (isFocusVisible(event.target)) {
+    if (!suppressFocusVisible && isFocusVisible(event.target)) {
       setFocusVisible(true);
 
       if (onFocusVisible) {
@@ -266,6 +270,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableRipple,
     disableTouchRipple,
     focusRipple,
+    suppressFocusVisible,
     tabIndex,
     focusVisible,
   };
@@ -486,9 +491,12 @@ ButtonBase.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * @ignore
+   * The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type)
+   * attribute applied to `button` and `a` elements.
+   * Ignored when rendering non-native buttons.
+   * @default 'button'
    */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  type: PropTypes.string,
 };
 
 export default ButtonBase;

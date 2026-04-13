@@ -380,6 +380,18 @@ describe('<Dialog />', () => {
       expect(label).to.have.text('Choose either one');
     });
 
+    it('should be described by another element', () => {
+      render(
+        <Dialog open aria-describedby="dialog-description">
+          <h1>Choose either one</h1>
+          <div id="dialog-description">Actually no</div>
+        </Dialog>,
+      );
+
+      const dialog = screen.getByRole('dialog');
+      expect(dialog).to.have.attr('aria-describedby', 'dialog-description');
+    });
+
     it('should add the aria-modal="true" by default', function test() {
       render(<Dialog open />);
 
@@ -392,6 +404,12 @@ describe('<Dialog />', () => {
 
       const dialog = screen.getByRole('dialog');
       expect(dialog).to.have.attr('aria-modal', 'false');
+    });
+
+    it('should override the role if provided', function test() {
+      render(<Dialog role="alertdialog" open />);
+
+      expect(screen.getByRole('alertdialog')).not.to.equal(null);
     });
   });
 

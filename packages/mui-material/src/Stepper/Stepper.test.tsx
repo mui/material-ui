@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
@@ -355,6 +356,96 @@ describe('<Stepper />', () => {
       expect(tabElements[0]).toHaveFocus();
       expect(tabElements[0]).to.have.attribute('tabIndex', '0');
       expect(tabElements[2]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should support Home and End keyboard navigation', async () => {
+      const { user } = render(
+        <Stepper nonLinear>
+          <Step>
+            <StepButton>one</StepButton>
+          </Step>
+          <Step>
+            <StepButton>two</StepButton>
+          </Step>
+          <Step>
+            <StepButton>three</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+
+      await user.keyboard('{End}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{Home}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[2]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should support vertical keyboard navigation with ArrowUp/ArrowDown', async () => {
+      const { user } = render(
+        <Stepper nonLinear orientation="vertical">
+          <Step>
+            <StepButton>one</StepButton>
+          </Step>
+          <Step disabled>
+            <StepButton>two</StepButton>
+          </Step>
+          <Step>
+            <StepButton>three</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowDown}');
+      expect(tabElements[2]).toHaveFocus();
+
+      await user.keyboard('{ArrowDown}');
+      expect(tabElements[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowUp}');
+      expect(tabElements[2]).toHaveFocus();
+    });
+
+    it('should reverse horizontal navigation in RTL mode', async () => {
+      const { user } = render(
+        <ThemeProvider theme={createTheme({ direction: 'rtl' })}>
+          <Stepper nonLinear>
+            <Step>
+              <StepButton>one</StepButton>
+            </Step>
+            <Step>
+              <StepButton>two</StepButton>
+            </Step>
+            <Step>
+              <StepButton>three</StepButton>
+            </Step>
+          </Stepper>
+        </ThemeProvider>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[1]).toHaveFocus();
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[0]).toHaveFocus();
     });
 
     it('should add tabindex="0" to the focused tab', async () => {
