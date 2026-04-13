@@ -518,6 +518,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/* https://v6.mui.com/base-ui/:splat 301
 #2026
 /joy-ui/* https://v7.mui.com/joy-ui/:splat 301
+/versions/ /material-ui/getting-started/versions/ 301
 
 # Proxies
 
