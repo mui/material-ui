@@ -1518,7 +1518,6 @@ describe('<ButtonBase />', () => {
     });
 
     it('allows non-standard values', () => {
-      // @ts-expect-error `@types/react` only lists standard values
       render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');

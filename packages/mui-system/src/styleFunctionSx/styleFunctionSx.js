@@ -126,7 +126,7 @@ function setThemeValue(css, prop, value, theme, config) {
 
     if (cssProperty === false) {
       if (mediaKey) {
-        css[mediaKey] = finalValue;
+        merge(css[mediaKey], finalValue);
       } else {
         merge(css, finalValue);
       }

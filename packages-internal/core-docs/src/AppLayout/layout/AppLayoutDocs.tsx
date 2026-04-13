@@ -9,7 +9,7 @@ import { AppLayoutDocsFooter } from './AppLayoutDocsFooter';
 import { AppLayoutHead as Head } from './AppLayoutHead';
 import { BackToTop } from '../components/BackToTop';
 import { convertProductIdToName } from '../../utils/convertProductIdToName';
-import getProductInfoFromUrl from '../../utils/getProductInfoFromUrl';
+import { getProductInfoFromUrl } from '../../utils/getProductInfoFromUrl';
 import { TOC_WIDTH, type TocItem, AppTableOfContents } from '../../TableOfContents';
 
 interface MainProps {
@@ -77,7 +77,7 @@ const StyledAppContainer = styled(AppContainer, {
         props: ({ disableToc, wideLayout }) => disableToc && !wideLayout,
         style: {
           // 105ch ≈ 930px
-          maxWidth: '105ch',
+          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
         },
       },
       {

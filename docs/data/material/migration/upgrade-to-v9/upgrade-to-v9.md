@@ -2,17 +2,30 @@
 
 <p class="description">This guide explains how to upgrade from Material UI v7 to v9.</p>
 
-## Start using the alpha release
+## Why you should upgrade to Material UI v9
 
-In the `package.json` file, change the package version from `latest` to `next`.
+### Improved accessibility and platform alignment
 
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
+Material UI v9 continues improving the accessibility and semantics of core components.
+This release includes updates to keyboard navigation, focus management, and DOM structure so components align more closely with web platform, accessibility expectations and modern assistive technology behavior.
 
-Using `next` ensures your project always uses the latest v9 pre-releases.
-Alternatively, you can pin it to a specific version, for example, `9.0.0-alpha.0`.
+### Quality-of-life improvements
+
+Material UI v9 also includes a number of quality-of-life improvements, including:
+
+- removal of deprecated APIs to reduce the API surface and make the docs easier to navigate
+- improved consistency across `slot` and `slotProps` APIs
+- better defaults and behaviors for modern browser environments
+
+If you're using any of these packages, you should also update them to compatible v9 versions:
+
+- `@mui/icons-material` to `9.0.0`
+- `@mui/system` to `9.0.0`
+- `@mui/lab` to the latest v9 beta release
+- `@mui/material-nextjs` to `9.0.0`
+- `@mui/styled-engine` to `9.0.0`
+- `@mui/styled-engine-sc` to `9.0.0`
+- `@mui/utils` to `9.0.0`
 
 ## Supported browsers and versions
 
@@ -30,11 +43,6 @@ The default bundle targets have changed in v9.
 
 Since v9 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v7 to v9 are described below.
-
-:::info
-This list is a work in progress.
-Expect updates as new breaking changes are introduced.
-:::
 
 ### Autocomplete
 
@@ -2252,7 +2260,7 @@ The following deprecated props have been removed from the `Typography` component
 
 ### System props
 
-Use the [system-props codemod](/material-ui/migration/migrating-from-deprecated-apis/#system-props) below to migrate the code as described in the following section:
+Use the [system-props codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#system-props) below to migrate the code as described in the following section:
 
 ```bash
 npx @mui/codemod@latest v9.0.0/system-props <path/to/folder>

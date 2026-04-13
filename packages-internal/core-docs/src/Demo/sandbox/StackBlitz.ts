@@ -1,4 +1,4 @@
-import addHiddenInput from '../../utils/addHiddenInput';
+import { addHiddenInput } from '../../utils/addHiddenInput';
 import type { SandboxConfig } from '../../DemoContext/DemoContext';
 import { SandboxDependencies } from './Dependencies';
 import { flattenRelativeImports } from './FlattenRelativeImports';

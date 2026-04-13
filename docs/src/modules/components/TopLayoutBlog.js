@@ -232,6 +232,7 @@ const Root = styled('div')(
         borderColor: (theme.vars || theme).palette.grey[200],
         borderRadius: 8,
         display: 'block',
+        objectFit: 'cover',
         margin: 'auto',
         marginBottom: 16,
       },

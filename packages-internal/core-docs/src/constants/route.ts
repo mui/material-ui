@@ -50,6 +50,8 @@ export const ROUTES = {
   treeViewOverview: '/x/react-tree-view/',
   // Scheduler doc pages
   schedulerOverview: '/x/react-scheduler/',
+  // Chat doc pages
+  chatOverview: '/x/react-chat/',
   // Toolpad pages
   toolpadLandingPage: '/toolpad/',
   toolpadStudioLandingPage: '/toolpad/studio/',

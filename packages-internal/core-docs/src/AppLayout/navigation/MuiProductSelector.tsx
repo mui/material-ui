@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
@@ -192,6 +193,13 @@ const advancedProducts = [
     description: 'Event calendar and timeline.',
     icon: <EventNoteRoundedIcon sx={iconStyles} />,
     href: ROUTES.schedulerOverview,
+  },
+  {
+    id: 'x-chat',
+    name: 'Chat',
+    description: 'AI-powered chat components.',
+    icon: <ForumRoundedIcon sx={iconStyles} />,
+    href: ROUTES.chatOverview,
   },
 ];
 

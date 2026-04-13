@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import getProductInfoFromUrl from './getProductInfoFromUrl';
+import { getProductInfoFromUrl } from './getProductInfoFromUrl';
 
 describe('getProductInfoFromUrl', () => {
   it('should handle Material UI', () => {
@@ -61,6 +61,13 @@ describe('getProductInfoFromUrl', () => {
     expect(getProductInfoFromUrl('/x/react-scheduler/components')).to.deep.equal({
       productCategoryId: 'x',
       productId: 'x-scheduler',
+    });
+  });
+
+  it('should handle MUI X Chat', () => {
+    expect(getProductInfoFromUrl('/x/react-chat/components')).to.deep.equal({
+      productCategoryId: 'x',
+      productId: 'x-chat',
     });
   });
 
