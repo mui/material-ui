@@ -1,6 +1,7 @@
 import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsContext';
+import { generateVersions } from '@mui/internal-docs-utils';
 import * as pageProps from 'docs/data/material/getting-started/versions/versions.md?muiMarkdown';
 
 export default function Page(props) {
@@ -12,68 +13,7 @@ export default function Page(props) {
   );
 }
 
-function formatVersion(version) {
-  return version
-    .replace('v', '')
-    .split('.')
-    .map((n) => +n + 1000)
-    .join('.');
-}
-
-async function getBranches() {
-  const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
-    headers: {
-      Authorization: process.env.GITHUB_AUTH,
-    },
-  });
-  const text = await result.text();
-
-  if (result.status !== 200) {
-    throw new Error(text);
-  }
-
-  return JSON.parse(text);
-}
-
 export async function getStaticProps() {
-  const regex = /^v\d+$/;
-  const branches = await getBranches();
-
-  /**
-   * @type {import('docs/pages/material-ui/getting-started/VersionsContext').VersionsContextValue}
-   */
-  const versions = [];
-  branches.forEach((branch) => {
-    if (regex.test(branch.name)) {
-      const version = branch.name;
-      versions.push({
-        version,
-        // Replace dot with dashes for Netlify branch subdomains
-        url: `https://${version.replace(/\./g, '-')}.mui.com`,
-      });
-    }
-  });
-  // Current version.
-  versions.push({
-    version: `v${process.env.LIB_VERSION}`,
-    url: 'https://mui.com',
-  });
-  // Legacy documentation.
-  versions.push({
-    version: 'v0',
-    url: 'https://v0.mui.com',
-  });
-  versions.sort((a, b) => formatVersion(b.version).localeCompare(formatVersion(a.version)));
-
-  if (
-    branches.find((branch) => branch.name === 'next') &&
-    !versions.find((version) => /beta|alpha/.test(version.version))
-  ) {
-    versions.unshift({
-      version: `v${Number(versions[0].version[1]) + 1} pre-release`,
-      url: 'https://next.mui.com',
-    });
-  }
-
-  return { props: { versions: uniqBy(versions, (item) => item.version) } };
+  const versions = await generateVersions();
+  return { props: { versions } };
 }
