@@ -1,4 +1,4 @@
-# Material UI + Tailwind CSS: reference
+# Material UI + Tailwind CSS: reference
 
 ## Layer order (v4)
 
@@ -13,7 +13,7 @@ Pages Router + GlobalStyles (first child of `AppCacheProvider`):
 <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
 ```
 
-## VS Code `settings.json` (IntelliSense for `slotProps`)
+## VS Code `settings.json` (IntelliSense for `slotProps`)
 
 ```json
 {
@@ -21,7 +21,7 @@ Pages Router + GlobalStyles (first child of `AppCacheProvider`):
 }
 ```
 
-From [Tailwind CSS v4 integrationâ€”Tailwind CSS IntelliSense for VS Code](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/#tailwind-css-intellisense-for-vs-code).
+From [Tailwind CSS v4 integrationâ€”Tailwind CSS IntelliSense for VS Code](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/#tailwind-css-intellisense-for-vs-code).
 
 ## v3 `tailwind.config.js` sketch
 
@@ -35,7 +35,7 @@ module.exports = {
 };
 ```
 
-See [Interoperabilityâ€”Tailwind CSS v3](https://mui.com/material-ui/integrations/interoperability/#tailwind-css-v3).
+See [Interoperabilityâ€”Tailwind CSS v3](https://mui.com/material-ui/integrations/interoperability/#tailwind-css-v3).
 
 ## Related skills
 

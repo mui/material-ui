@@ -1,4 +1,4 @@
-# Material UI styling: reference tables
+# Material UI styling: reference tables
 
 ## Global state class names
 
@@ -24,8 +24,8 @@ Source: [How to customize](https://mui.com/material-ui/customization/how-to-cust
 
 Injected classes follow: `[hash]-Mui[ComponentName]-[slot]`.
 
-For selectors, use the stable fragment `Mui[ComponentName]-[slot]` (e.g. `.MuiSlider-thumb`), not the full hashed class.
+For selectors, use the stable fragment `Mui[ComponentName]-[slot]` (for example `.MuiSlider-thumb`), not the full hashed class.
 
 ## Theme component keys
 
-Override via `createTheme({ components: { MuiButton: { ... } } })`. The key matches the component's internal name (e.g. `MuiButton`, `MuiTextField`). Check the component's Customization section in the docs for slot names and theme key.
+Override via `createTheme({ components: { MuiButton: { ... } } })`. The key matches the component's internal name (for example `MuiButton`, `MuiTextField`). Check the component's Customization section in the docs for slot names and theme key.
