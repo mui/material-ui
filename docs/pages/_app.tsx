@@ -256,7 +256,7 @@ export default function MyApp(
 }
 
 MyApp.getInitialProps = createGetInitialProps({
-  translationsContext: require.context('docs/translations', false, /\.\/translations.*\.json$/),
+  translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
 });
 
 export { reportWebVitals };
