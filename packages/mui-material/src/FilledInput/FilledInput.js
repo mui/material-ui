@@ -86,6 +86,11 @@ const FilledInputRoot = styled(InputBaseRoot, {
           ? theme.vars.palette.FilledInput.disabledBg
           : disabledBackground,
       },
+      '@media (forced-colors: active)': {
+        'input::placeholder': {
+          opacity: 1,
+        },
+      },
       variants: [
         {
           props: ({ ownerState }) => !ownerState.disableUnderline,
@@ -111,6 +116,9 @@ const FilledInputRoot = styled(InputBaseRoot, {
             [`&.${filledInputClasses.error}`]: {
               '&::before, &::after': {
                 borderBottomColor: (theme.vars || theme).palette.error.main,
+                '@media (forced-colors: active)': {
+                  borderBottomColor: 'mark',
+                },
               },
             },
             '&::before': {
@@ -137,6 +145,10 @@ const FilledInputRoot = styled(InputBaseRoot, {
             },
             [`&.${filledInputClasses.disabled}:before`]: {
               borderBottomStyle: 'dotted',
+              '@media (forced-colors: active)': {
+                borderBottomStyle: 'solid',
+                borderBottomColor: 'GrayText',
+              },
             },
           },
         },
@@ -191,6 +203,14 @@ const FilledInputRoot = styled(InputBaseRoot, {
           style: {
             paddingTop: 8,
             paddingBottom: 9,
+          },
+        },
+        {
+          props: { disabled: true },
+          style: {
+            '@media (forced-colors: active)': {
+              color: 'GrayText',
+            },
           },
         },
       ],
