@@ -1,6 +1,6 @@
 ---
 name: material-ui-styling
-description: Chooses the right Material UI styling approach (sx, styled, theme overrides, global CSS) from official MUI guidance. Use when styling @mui/material components, customizing themes, overriding slots, or comparing sx vs styled.
+description: Chooses the right Material UI styling approach (sx, styled, theme overrides, global CSS) from official MUI guidance. Use when styling @mui/material components, customizing themes, overriding slots, or comparing sx vs styled.
 license: MIT
 metadata:
   author: mui

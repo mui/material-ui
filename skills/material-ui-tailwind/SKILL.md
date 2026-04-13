@@ -1,6 +1,6 @@
 ---
 name: material-ui-tailwind
-description: Integrates Material UI with Tailwind CSS v4 using cascade layers (enableCssLayer, @layer order) and documents Tailwind v3 interoperability (preflight, important, injectFirst, portals). Use when combining MUI with Tailwind utilities, slotProps className, or theme token bridges.
+description: Integrates Material UI with Tailwind CSS v4 using cascade layers (enableCssLayer, @layer order) and documents Tailwind v3 interoperability (preflight, important, injectFirst, portals). Use when combining MUI with Tailwind utilities, slotProps className, or theme token bridges.
 license: MIT
 metadata:
   author: mui

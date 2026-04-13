@@ -1,6 +1,6 @@
 ---
 name: material-ui-nextjs
-description: Integrates Material UI with Next.js App and Pages routers using @mui/material-nextjs, Emotion cache providers, next/font, CSS layers with Tailwind/CSS Modules, Link component prop patterns, CSS theme variables SSR notes, and App Router useSearchParams + Suspense. Use when setting up or debugging MUI in a Next.js app.
+description: Integrates Material UI with Next.js App and Pages routers using @mui/material-nextjs, Emotion cache providers, next/font, CSS layers with Tailwind/CSS Modules, Link component prop patterns, CSS theme variables SSR notes, and App Router useSearchParams + Suspense. Use when setting up or debugging MUI in a Next.js app.
 license: MIT
 metadata:
   author: mui
