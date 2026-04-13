@@ -61,6 +61,9 @@ export const FormControlLabelRoot = styled('label', {
     [`& .${formControlLabelClasses.label}`]: {
       [`&.${formControlLabelClasses.disabled}`]: {
         color: (theme.vars || theme).palette.text.disabled,
+        '@media (forced-colors: active)': {
+          color: 'GrayText',
+        },
       },
     },
     variants: [
