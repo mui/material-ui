@@ -311,9 +311,6 @@ importers:
       '@mui/internal-core-docs':
         specifier: workspace:^
         version: link:../packages-internal/core-docs/build
-      '@mui/internal-docs-utils':
-        specifier: workspace:^
-        version: link:../packages-internal/docs-utils
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -537,6 +534,9 @@ importers:
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
         version: link:../packages-internal/api-docs-builder
+      '@mui/internal-docs-utils':
+        specifier: workspace:^
+        version: link:../packages-internal/docs-utils
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts

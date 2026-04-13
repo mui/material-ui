@@ -1,7 +1,6 @@
-import { uniqBy } from 'es-toolkit/array';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsContext';
-import { generateVersions } from '@mui/internal-docs-utils';
+import { generateVersions } from '@mui/internal-core-docs/utils';
 import * as pageProps from 'docs/data/material/getting-started/versions/versions.md?muiMarkdown';
 
 export default function Page(props) {

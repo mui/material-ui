@@ -3,7 +3,6 @@ import { EOL } from 'os';
 export * from './createTypeScriptProject';
 export { type ComponentClassDefinition } from './ComponentClassDefinition';
 export * from './getPropsFromComponentNode';
-export * from './generateVersions';
 
 export function getLineFeed(source: string): string {
   const match = source.match(/\r?\n/);

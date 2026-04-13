@@ -67,4 +67,4 @@ async function generateVersions(): Promise<Array<{ version: string; url: string 
   return uniqBy(versions, (item) => item.version);
 }
 
-export { generateVersions };
+export default generateVersions;

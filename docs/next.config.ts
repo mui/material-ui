@@ -98,9 +98,7 @@ export default withDocsInfra({
             'packages/mui-material/package.json',
           ),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
-
           '@mui/internal-core-docs': path.resolve(workspaceRoot, 'packages-internal/core-docs/src'),
-          '@mui/internal-docs-utils': path.resolve(workspaceRoot, 'packages-internal/docs-utils/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
             'packages/mui-icons-material/lib/index.mjs',
