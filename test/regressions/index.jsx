@@ -161,7 +161,7 @@ const importDemos = import.meta.glob(
     '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal', // No public components
     '!docs/data/premium-themes',
     '!docs/data/material/getting-started/versions/LatestVersions', //not a component
-    '!docs/data/material/getting-started/versions/ReleasedVersions' //not a component
+    '!docs/data/material/getting-started/versions/ReleasedVersions', //not a component
   ],
   {
     import: 'default',
