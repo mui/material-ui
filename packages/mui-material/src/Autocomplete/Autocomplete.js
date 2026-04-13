@@ -358,6 +358,10 @@ const AutocompleteListbox = styled('ul', {
       '&[aria-disabled="true"]': {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
+        '@media (forced-colors: active)': {
+          color: 'GrayText',
+          opacity: 1,
+        },
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
