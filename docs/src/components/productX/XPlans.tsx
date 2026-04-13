@@ -2,11 +2,11 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import ROUTES from 'docs/src/route';
-import { InfoCard } from '@mui/docs/InfoCard';
-import IconImage from '@mui/docs/IconImage';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { InfoCard } from '@mui/internal-core-docs/InfoCard';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const content = [

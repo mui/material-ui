@@ -1,8 +1,9 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "9.0.0-alpha.3",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
+  "license": "MIT",
   "keywords": [
     "react",
     "next",
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material-nextjs"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -30,14 +30,14 @@
     "attw": "attw --pack ./build --entrypoints \"v13-pagesRouter\" \"v16-appRouter\" \"v15-appRouter\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6"
+    "@babel/runtime": "^7.29.2"
   },
   "devDependencies": {
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
     "@types/react": "19.2.14",
-    "next": "15.5.12",
+    "next": "15.5.14",
     "react": "19.2.4"
   },
   "peerDependencies": {

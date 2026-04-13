@@ -1,5 +1,5 @@
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero';
@@ -7,9 +7,9 @@ import DesignKitValues from 'docs/src/components/productDesignKit/DesignKitValue
 import DesignKitDemo from 'docs/src/components/productDesignKit/DesignKitDemo';
 import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import MaterialEnd from 'docs/src/components/productMaterial/MaterialEnd';
-import { BrandingCssVarsProvider } from '@mui/docs/branding';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import References, { DESIGNKITS_CUSTOMERS } from 'docs/src/components/home/References';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 export default function DesignKits() {
   return (

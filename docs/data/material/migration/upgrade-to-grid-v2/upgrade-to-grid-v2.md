@@ -108,7 +108,7 @@ You can use the following codemod to update the size props:
 <codeblock storageKey="material-ui-version">
 
 ```bash v7
-npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+npx @mui/codemod@latest v7.0.0/grid-props <path/to/folder>
 ```
 
 ```bash v6

@@ -10,30 +10,16 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import focusWithVisible from '../utils/focusWithVisible';
 import useForkRef from '../utils/useForkRef';
+import useId from '../utils/useId';
+import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
+import { useMenuListContext } from '../MenuList/MenuListContext';
+import { useSelectFocusSource } from '../Select/utils';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
-import { useSelectFocusSource } from '../Select';
-
-/**
- * If autoFocus is an object, it will attempt to call `element.focus()` with the options argument.
- * If the browser doesn't support the options argument, it will fall back to a simple `element.focus()` call.
- */
-function focusWithVisible(element, focusSource) {
-  if (focusSource == null) {
-    element.focus();
-    return;
-  }
-
-  try {
-    element.focus({ focusVisible: focusSource === 'keyboard' });
-  } catch (error) {
-    // If the browser doesn't support the focus options argument, fall back to a simple focus call.
-    element.focus();
-  }
-}
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -183,7 +169,7 @@ const MenuItemRoot = styled(ButtonBase, {
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenuItem' });
   const {
-    autoFocus = false,
+    autoFocus: shouldAutoFocusOnMount = false,
     component = 'li',
     dense = false,
     divider = false,
@@ -204,10 +190,17 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     }),
     [context.dense, dense, disableGutters],
   );
+  const menuListContext = useMenuListContext();
+  const rovingItemId = useId();
+  // Escape hatch via ButtonBase for when an anchored <Menu> is opened with a pointer
+  // interaction on a trigger, the item should receive DOM focus but without focus visible
+  // styling. Current API does not allow a reliable `openInteractionType` for anchored menus.
+  const suppressFocusVisible = menuListContext.suppressInitialFocusVisible;
+  const itemsFocusableWhenDisabled = menuListContext.itemsFocusableWhenDisabled;
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
-    if (autoFocus) {
+    if (shouldAutoFocusOnMount) {
       if (menuItemRef.current) {
         focusWithVisible(menuItemRef.current, focusSource);
       } else if (process.env.NODE_ENV !== 'production') {
@@ -217,7 +210,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoFocus]);
+  }, [shouldAutoFocusOnMount]);
 
   const ownerState = {
     ...props,
@@ -228,11 +221,25 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const handleRef = useForkRef(menuItemRef, ref);
+  const rovingItemProps = useRovingTabIndexItem({
+    id: rovingItemId,
+    ref,
+    disabled: props.disabled,
+    focusableWhenDisabled: itemsFocusableWhenDisabled,
+    selected: props.selected,
+  });
+
+  const handleRef = useForkRef(menuItemRef, rovingItemProps.ref);
 
   let tabIndex;
-  if (!props.disabled) {
-    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1;
+  if (tabIndexProp !== undefined) {
+    tabIndex = tabIndexProp;
+  } else if (menuListContext.variant === 'selectedMenu') {
+    tabIndex = rovingItemProps.tabIndex;
+  } else if (!props.disabled || itemsFocusableWhenDisabled) {
+    // In `menu` variant, registration still drives arrow-key navigation even
+    // though each item keeps `tabIndex={-1}`.
+    tabIndex = -1;
   }
 
   return (
@@ -242,6 +249,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         role={role}
         tabIndex={tabIndex}
         component={component}
+        internalNativeButton={false}
+        focusableWhenDisabled={itemsFocusableWhenDisabled}
+        suppressFocusVisible={suppressFocusVisible}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         className={clsx(classes.root, className)}
         {...other}

@@ -15,6 +15,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
 }
 
+// #host-reference
 /**
  * This component makes the `theme` available down the React tree.
  * It should preferably be used at **the root of your component tree**.

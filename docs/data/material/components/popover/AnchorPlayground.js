@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 const inlineStyles = {
   anchorVertical: {

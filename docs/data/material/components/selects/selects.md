@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Select
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic select
 
@@ -37,17 +37,19 @@ It shares the same styles and many of the same props. Refer to the respective co
 Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
 :::
 
-### Filled and standard variants
+### Variants
 
 {{"demo": "SelectVariants.js"}}
 
+:::warning
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo). This is needed for the label floating animation to work correctly.
+:::
+
 ### Labels and helper text
 
-{{"demo": "SelectLabels.js"}}
+Select always needs an accessible name. This can come from an associated visible label, such as an `InputLabel` linked to the `Select` with `labelId` or from adding an `aria-label` prop to the input element props (`inputProps`). If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
 
-:::warning
-Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
-:::
+{{"demo": "SelectLabels.js"}}
 
 ### Auto width
 
@@ -140,67 +142,6 @@ While it's discouraged by the Material Design guidelines, you can use a select i
 Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
 {{"demo": "GroupedSelect.js"}}
-
-:::warning
-If you wish to wrap the ListSubheader in a custom component, you'll have to annotate it so Material UI can handle it properly when determining focusable elements.
-
-You have two options for solving this:
-Option 1: Define a static boolean field called `muiSkipListHighlight` on your component function, and set it to `true`:
-
-```tsx
-function MyListSubheader(props: ListSubheaderProps) {
-  return <ListSubheader {...props} />;
-}
-
-MyListSubheader.muiSkipListHighlight = true;
-export default MyListSubheader;
-
-// elsewhere:
-
-return (
-  <Select>
-    <MyListSubheader>Group 1</MyListSubheader>
-    <MenuItem value={1}>Option 1</MenuItem>
-    <MenuItem value={2}>Option 2</MenuItem>
-    <MyListSubheader>Group 2</MyListSubheader>
-    <MenuItem value={3}>Option 3</MenuItem>
-    <MenuItem value={4}>Option 4</MenuItem>
-    {/* ... */}
-  </Select>
-```
-
-Option 2: Place a `muiSkipListHighlight` prop on each instance of your component.
-The prop doesn't have to be forwarded to the ListSubheader, nor present in the underlying DOM element.
-It just has to be placed on a component that's used as a subheader.
-
-```tsx
-export default function MyListSubheader(
-  props: ListSubheaderProps & { muiSkipListHighlight: boolean },
-) {
-  const { muiSkipListHighlight, ...other } = props;
-  return <ListSubheader {...other} />;
-}
-
-// elsewhere:
-
-return (
-  <Select>
-    <MyListSubheader muiSkipListHighlight>Group 1</MyListSubheader>
-    <MenuItem value={1}>Option 1</MenuItem>
-    <MenuItem value={2}>Option 2</MenuItem>
-    <MyListSubheader muiSkipListHighlight>Group 2</MyListSubheader>
-    <MenuItem value={3}>Option 3</MenuItem>
-    <MenuItem value={4}>Option 4</MenuItem>
-    {/* ... */}
-  </Select>
-);
-```
-
-We recommend the first option as it doesn't require updating all the usage sites of the component.
-
-Keep in mind this is **only necessary** if you wrap the ListSubheader in a custom component.
-If you use the ListSubheader directly, **no additional code is required**.
-:::
 
 ## Accessibility
 

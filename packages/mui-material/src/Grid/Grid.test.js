@@ -19,7 +19,7 @@ describe('<Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 
   it('should not crash with theme scoping', () => {

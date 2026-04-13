@@ -81,9 +81,7 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     component = 'div',
     disableTypography = false,
     subheader: subheaderProp,
-    subheaderTypographyProps,
     title: titleProp,
-    titleTypographyProps,
     slots = {},
     slotProps = {},
     ...other
@@ -99,11 +97,7 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      title: titleTypographyProps,
-      subheader: subheaderTypographyProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   let title = titleProp;
@@ -220,7 +214,7 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     avatar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -245,12 +239,6 @@ CardHeader.propTypes /* remove-proptypes */ = {
    */
   subheader: PropTypes.node,
   /**
-   * These props will be forwarded to the subheader
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.subheader` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  subheaderTypographyProps: PropTypes.object,
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -262,12 +250,6 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   title: PropTypes.node,
-  /**
-   * These props will be forwarded to the title
-   * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  titleTypographyProps: PropTypes.object,
 };
 
 export default CardHeader;

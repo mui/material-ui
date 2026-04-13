@@ -330,6 +330,92 @@ describe('<MenuList> integration', () => {
     expect(menuitems[3]).to.have.property('tabIndex', -1);
   });
 
+  it('does not steal focus when conditional items are added after mount', async () => {
+    function ConditionalMenuList(props) {
+      const { showPrependedItem = false } = props;
+
+      return (
+        <MenuList>
+          {showPrependedItem ? <MenuItem>Prepended item</MenuItem> : null}
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+        </MenuList>
+      );
+    }
+
+    const { setProps, user } = render(<ConditionalMenuList showPrependedItem={false} />);
+
+    const initialItems = screen.getAllByRole('menuitem');
+    await user.click(initialItems[1]);
+
+    setProps({ showPrependedItem: true });
+
+    const updatedItems = screen.getAllByRole('menuitem');
+    expect(updatedItems[2]).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(updatedItems[1]).toHaveFocus();
+  });
+
+  it('supports keyboard navigation with wrapped MenuItem components', async () => {
+    const WrappedMenuItem = React.forwardRef(function WrappedMenuItem(props, ref) {
+      return <MenuItem ref={ref} {...props} />;
+    });
+
+    const { user } = render(
+      <MenuList autoFocusItem>
+        <WrappedMenuItem>Item 1</WrappedMenuItem>
+        <WrappedMenuItem>Item 2</WrappedMenuItem>
+        <WrappedMenuItem>Item 3</WrappedMenuItem>
+      </MenuList>,
+    );
+
+    const menuitems = screen.getAllByRole('menuitem');
+    expect(menuitems[0]).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(menuitems[1]).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(menuitems[0]).toHaveFocus();
+  });
+
+  it('handles removal of the focused item gracefully', async () => {
+    function ConditionalMenuList(props) {
+      const { showSecondItem = true } = props;
+
+      return (
+        <MenuList>
+          <MenuItem>Menu Item 1</MenuItem>
+          {showSecondItem ? <MenuItem>Menu Item 2</MenuItem> : null}
+          <MenuItem>Menu Item 3</MenuItem>
+        </MenuList>
+      );
+    }
+
+    const { setProps, user } = render(<ConditionalMenuList />);
+
+    const initialItems = screen.getAllByRole('menuitem');
+    await user.click(initialItems[1]);
+    expect(initialItems[1]).toHaveFocus();
+
+    setProps({ showSecondItem: false });
+
+    const menu = screen.getByRole('menu');
+    const updatedItems = screen.getAllByRole('menuitem');
+    expect(updatedItems).to.have.length(2);
+
+    act(() => {
+      menu.focus();
+    });
+
+    await user.keyboard('{ArrowDown}');
+    expect(updatedItems[0]).toHaveFocus();
+
+    await user.keyboard('{ArrowDown}');
+    expect(updatedItems[1]).toHaveFocus();
+  });
+
   describe('MenuList with disableListWrap', () => {
     it('should not wrap focus with ArrowUp from first', () => {
       render(
@@ -440,6 +526,61 @@ describe('<MenuList> integration', () => {
     fireEvent.keyDown(menu, { key: 'ArrowDown' });
     expect(menu).toHaveFocus();
     fireEvent.keyDown(menu, { key: 'End' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+  });
+
+  it('should not infinite loop on keyboard navigation when there are no children', () => {
+    render(<MenuList autoFocus />);
+
+    const menu = screen.getByRole('menu');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'ArrowUp' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'Home' });
+    expect(menu).toHaveFocus();
+    fireEvent.keyDown(menu, { key: 'End' });
+    expect(menu).toHaveFocus();
+  });
+
+  it('should not infinite loop on keyboard navigation when children are removed', () => {
+    function DynamicMenuList() {
+      const [items, setItems] = React.useState(['Item 1', 'Item 2']);
+
+      return (
+        <React.Fragment>
+          <button data-testid="clear" onClick={() => setItems([])}>
+            Clear
+          </button>
+          <MenuList autoFocus>
+            {items.map((item) => (
+              <MenuItem key={item}>{item}</MenuItem>
+            ))}
+          </MenuList>
+        </React.Fragment>
+      );
+    }
+
+    render(<DynamicMenuList />);
+
+    const menu = screen.getByRole('menu');
+    const menuitems = screen.getAllByRole('menuitem');
+
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
+    expect(menuitems[0]).toHaveFocus();
+
+    // Remove all children
+    fireEvent.click(screen.getByTestId('clear'));
+
+    act(() => {
+      menu.focus();
+    });
+
+    // Should not hang
+    fireEvent.keyDown(menu, { key: 'ArrowDown' });
     expect(menu).toHaveFocus();
     fireEvent.keyDown(menu, { key: 'ArrowUp' });
     expect(menu).toHaveFocus();

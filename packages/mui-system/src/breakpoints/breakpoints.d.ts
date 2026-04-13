@@ -1,8 +1,10 @@
 import { CSSObject } from '@mui/styled-engine';
 import { Breakpoints } from '../createBreakpoints/createBreakpoints';
-import type { Breakpoint } from '../createTheme';
+import type { Breakpoint, Theme } from '../createTheme';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
 import { StyleFunction } from '../style';
+
+export const DEFAULT_BREAKPOINTS: Breakpoints;
 
 export interface ResolveBreakpointValuesOptions<T> {
   values: ResponsiveStyleValue<T>;
@@ -15,11 +17,20 @@ export function resolveBreakpointValues<T>(
 
 export function mergeBreakpointsInOrder(breakpoints: Breakpoints, styles: CSSObject[]): CSSObject;
 
+export function iterateBreakpoints(
+  target: any,
+  theme: Theme,
+  propValue: any,
+  callback: (mediaKey: string | undefined, value: any, initialKey?: string) => any,
+): any;
+
 export function handleBreakpoints<Props>(
   props: Props,
   propValue: any,
   styleFromPropValue: (value: any, breakpoint?: Breakpoint) => any,
 ): any;
+
+export function hasBreakpoint(breakpoints: Breakpoints, value: any): boolean;
 
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 

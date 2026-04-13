@@ -1151,6 +1151,10 @@ function useAutocomplete(props) {
     if (!event.currentTarget.contains(event.target)) {
       return;
     }
+    // Don't interfere with interactions outside the input area (e.g. helper text)
+    if (anchorEl && !anchorEl.contains(event.target)) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
@@ -1160,6 +1164,10 @@ function useAutocomplete(props) {
   const handleClick = (event) => {
     // Prevent focusing the input if click is anywhere outside the Autocomplete
     if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
+    // Don't interfere with interactions outside the input area (e.g. helper text)
+    if (anchorEl && !anchorEl.contains(event.target)) {
       return;
     }
     inputRef.current.focus();

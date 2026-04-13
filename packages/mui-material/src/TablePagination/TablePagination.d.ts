@@ -7,7 +7,6 @@ import {
   TablePaginationActionsSlots,
 } from '../TablePaginationActions';
 import { TableCellProps } from '../TableCell';
-import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
 import { TablePaginationClasses } from './tablePaginationClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -161,13 +160,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   ActionsComponent?: React.ElementType<TablePaginationActionsProps> | undefined;
   /**
-   * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
-   *
-   * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.previousButton` instead.
-   */
-  backIconButtonProps?: Partial<IconButtonProps> | undefined;
-  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<TablePaginationClasses> | undefined;
@@ -212,13 +204,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   labelRowsPerPage?: React.ReactNode;
   /**
-   * Props applied to the next arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
-   *
-   * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.nextButton` instead.
-   */
-  nextIconButtonProps?: Partial<IconButtonProps> | undefined;
-  /**
    * Callback fired when the page is changed.
    *
    * @param {React.MouseEvent<HTMLButtonElement> | null} event The event source of the callback.
@@ -251,15 +236,6 @@ export interface TablePaginationOwnProps extends TablePaginationBaseProps {
    */
   rowsPerPageOptions?: ReadonlyArray<number | { value: number; label: string }> | undefined;
   /**
-   * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
-   *
-   * This prop is an alias for `slotProps.select` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.select` instead.
-   *
-   * @default {}
-   */
-  SelectProps?: Partial<SelectProps> | undefined;
-  /**
    * If `true`, show the first-page button.
    * @default false
    */
@@ -287,13 +263,13 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  *
  * Demos:
  *
- * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TablePagination API](https://next.mui.com/material-ui/api/table-pagination/)
- * - inherits [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
+ * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
+ * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>

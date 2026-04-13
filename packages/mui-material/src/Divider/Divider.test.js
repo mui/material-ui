@@ -15,7 +15,6 @@ describe('<Divider />', () => {
     refInstanceof: window.HTMLHRElement,
     testComponentPropWith: 'div',
     testVariantProps: { orientation: 'vertical', flexItem: true, textAlign: 'left' },
-    skip: ['componentsProp'],
   }));
 
   it('should set the absolute class', () => {
@@ -44,7 +43,8 @@ describe('<Divider />', () => {
     describe('prop: orientation', () => {
       it('should set the textVertical class', () => {
         const { container } = render(<Divider orientation="vertical">content</Divider>);
-        expect(container.querySelectorAll(`.${classes.withChildrenVertical}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.withChildren}`).length).to.equal(1);
+        expect(container.querySelectorAll(`.${classes.vertical}`).length).to.equal(1);
         expect(container.querySelectorAll(`.${classes.wrapperVertical}`).length).to.equal(1);
       });
     });

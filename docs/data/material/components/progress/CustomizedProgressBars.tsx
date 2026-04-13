@@ -51,6 +51,7 @@ function FacebookCircularProgress(props: CircularProgressProps) {
       })}
       size={40}
       thickness={4}
+      aria-label="Loading…"
       {...props}
     />
   );
@@ -68,7 +69,10 @@ function GradientCircularProgress() {
           </linearGradient>
         </defs>
       </svg>
-      <CircularProgress sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }} />
+      <CircularProgress
+        aria-label="Loading…"
+        sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }}
+      />
     </React.Fragment>
   );
 }
@@ -78,7 +82,11 @@ export default function CustomizedProgressBars() {
       <FacebookCircularProgress />
       <GradientCircularProgress />
       <br />
-      <BorderLinearProgress variant="determinate" value={50} />
+      <BorderLinearProgress
+        variant="determinate"
+        value={50}
+        aria-label="Export data"
+      />
     </Stack>
   );
 }

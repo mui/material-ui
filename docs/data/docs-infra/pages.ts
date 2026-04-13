@@ -1,4 +1,4 @@
-import type { MuiPage } from '@mui/docs/MuiPage';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
@@ -20,6 +20,11 @@ const pages: readonly MuiPage[] = [
       { pathname: '/experiments/docs/pro-feature', title: 'Pro feature', plan: 'pro' },
       { pathname: '/experiments/docs/data-grid-premium', title: 'API DataGridPremium' },
     ],
+  },
+  {
+    pathname: '/experiments/docs/layout',
+    title: 'Layout',
+    children: [{ pathname: '/experiments/docs/docs-layout', title: 'Docs layout' }],
   },
   {
     pathname: '/experiments/docs/main-parent',

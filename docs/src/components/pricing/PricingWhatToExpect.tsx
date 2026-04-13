@@ -9,9 +9,9 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import Section from 'docs/src/layouts/Section';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SectionHeadline from '@mui/docs/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 
 export default function PricingWhatToExpect() {
   return (

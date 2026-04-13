@@ -22,12 +22,7 @@ const useUtilityClasses = (ownerState) => {
   const { variant, color, severity, classes } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      `color${capitalize(color || severity)}`,
-      `${variant}${capitalize(color || severity)}`,
-      `${variant}`,
-    ],
+    root: ['root', `color${capitalize(color || severity)}`, `${variant}`],
     icon: ['icon'],
     message: ['message'],
     action: ['action'],
@@ -42,11 +37,7 @@ const AlertRoot = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.root,
-      styles[ownerState.variant],
-      styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
-    ];
+    return [styles.root, styles[ownerState.variant]];
   },
 })(
   memoTheme(({ theme }) => {

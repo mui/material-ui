@@ -18,7 +18,7 @@ Tables display information in a way that's easy to scan, so that users can look 
 - Navigation
 - Tools to query and manipulate data
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

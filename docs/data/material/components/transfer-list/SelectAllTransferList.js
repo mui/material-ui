@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 
 function not(a, b) {
   return a.filter((value) => !b.includes(value));
@@ -77,8 +78,8 @@ export default function SelectAllTransferList() {
               numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0
             }
             disabled={items.length === 0}
-            inputProps={{
-              'aria-label': 'all items selected',
+            slotProps={{
+              input: { 'aria-label': 'all items selected' },
             }}
           />
         }
@@ -111,8 +112,8 @@ export default function SelectAllTransferList() {
                   checked={checked.includes(value)}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{
-                    'aria-labelledby': labelId,
+                  slotProps={{
+                    input: { 'aria-labelledby': labelId },
                   }}
                 />
               </ListItemIcon>
@@ -131,30 +132,28 @@ export default function SelectAllTransferList() {
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
       <Grid>{customList('Choices', left)}</Grid>
-      <Grid>
-        <Grid container direction="column" sx={{ alignItems: 'center' }}>
-          <Button
-            sx={{ my: 0.5 }}
-            variant="outlined"
-            size="small"
-            onClick={handleCheckedRight}
-            disabled={leftChecked.length === 0}
-            aria-label="move selected right"
-          >
-            &gt;
-          </Button>
-          <Button
-            sx={{ my: 0.5 }}
-            variant="outlined"
-            size="small"
-            onClick={handleCheckedLeft}
-            disabled={rightChecked.length === 0}
-            aria-label="move selected left"
-          >
-            &lt;
-          </Button>
-        </Grid>
-      </Grid>
+      <Stack>
+        <Button
+          sx={{ my: 0.5 }}
+          variant="outlined"
+          size="small"
+          onClick={handleCheckedRight}
+          disabled={leftChecked.length === 0}
+          aria-label="move selected right"
+        >
+          &gt;
+        </Button>
+        <Button
+          sx={{ my: 0.5 }}
+          variant="outlined"
+          size="small"
+          onClick={handleCheckedLeft}
+          disabled={rightChecked.length === 0}
+          aria-label="move selected left"
+        >
+          &lt;
+        </Button>
+      </Stack>
       <Grid>{customList('Chosen', right)}</Grid>
     </Grid>
   );

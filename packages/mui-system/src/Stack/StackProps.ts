@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { ResponsiveStyleValue, SxProps } from '../styleFunctionSx';
-import { SystemProps } from '../Box';
 import { Theme } from '../createTheme';
 
 export interface StackBaseProps {
@@ -45,7 +44,7 @@ export interface StackTypeMap<
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme> | undefined;
-    } & SystemProps<Theme>;
+    };
   defaultComponent: DefaultComponent;
 }
 

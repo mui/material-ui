@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

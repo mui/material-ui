@@ -54,7 +54,7 @@ describe('<TextField />', () => {
           testWithElement: TestFormControl,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 
@@ -90,11 +90,16 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      render(<TextField variant="standard" multiline />);
-
-      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(
-        inputBaseClasses.inputMultiline,
+      render(
+        <TextField
+          variant="standard"
+          multiline
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
+        />,
       );
+
+      expect(screen.getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.multiline);
+      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.input);
     });
 
     it('should forward the fullWidth prop to Input', () => {
@@ -283,7 +288,62 @@ describe('<TextField />', () => {
       expect(screen.getByRole('combobox')).toHaveAccessibleName('Release:');
     });
 
-    it('creates an input[hidden] that has no accessible properties', () => {
+    it('renders the label as a <div> without htmlFor when select', () => {
+      render(
+        <TextField select label="Release" value="stable" variant="standard">
+          <MenuItem value="stable">Stable</MenuItem>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('DIV');
+      expect(labelElement).not.to.have.attribute('for');
+
+      const combobox = screen.getByRole('combobox');
+      expect(combobox).to.have.attribute('aria-labelledby');
+      expect(combobox.getAttribute('aria-labelledby')).to.include(labelElement.id);
+    });
+
+    it('renders the label as a <div> when native is set via slotProps', () => {
+      render(
+        <TextField
+          select
+          label="Release"
+          value="stable"
+          variant="standard"
+          slotProps={{ select: { native: false } }}
+        >
+          <MenuItem value="stable">Stable</MenuItem>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('DIV');
+      expect(labelElement).not.to.have.attribute('for');
+
+      const combobox = screen.getByRole('combobox');
+      expect(combobox.getAttribute('aria-labelledby')).to.include(labelElement.id);
+    });
+
+    it('renders the label as a <label> with htmlFor for native select via slotProps', () => {
+      render(
+        <TextField
+          select
+          label="Release"
+          value="stable"
+          variant="standard"
+          slotProps={{ select: { native: true } }}
+        >
+          <option value="stable">Stable</option>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('LABEL');
+      expect(labelElement).to.have.attribute('for');
+    });
+
+    it('creates an input[hidden] that has no accessible properties besides id', () => {
       const { container } = render(
         <TextField select label="Release: " value="stable" variant="standard">
           <MenuItem value="stable">Stable</MenuItem>
@@ -291,7 +351,7 @@ describe('<TextField />', () => {
       );
 
       const input = container.querySelector('input[aria-hidden]');
-      expect(input).not.to.have.attribute('id');
+      expect(input).to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });
 

@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState) => {
       orientation === 'vertical' && 'vertical',
       flexItem && 'flexItem',
       children && 'withChildren',
-      children && orientation === 'vertical' && 'withChildrenVertical',
       textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
       textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
     ],
@@ -42,7 +41,6 @@ const DividerRoot = styled('div', {
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.flexItem && styles.flexItem,
       ownerState.children && styles.withChildren,
-      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
       ownerState.textAlign === 'right' &&
         ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
@@ -259,14 +257,6 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     </DividerRoot>
   );
 });
-
-/**
- * The following flag is used to ensure that this component isn't tabbable i.e.
- * does not get highlight/focus inside of MUI List.
- */
-if (Divider) {
-  Divider.muiSkipListHighlight = true;
-}
 
 Divider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

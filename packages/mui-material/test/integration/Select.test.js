@@ -22,7 +22,7 @@ describe('<Select> integration', () => {
           <Select
             MenuProps={{
               transitionDuration: 0,
-              BackdropProps: { 'data-testid': 'select-backdrop' },
+              slotProps: { backdrop: { 'data-testid': 'select-backdrop' } },
             }}
             value={value}
             onChange={handleChange}

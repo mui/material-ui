@@ -1,15 +1,9 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import {
-  createRenderer,
-  screen,
-  fireEvent,
-  strictModeDoubleLoggingSuppressed,
-  reactMajor,
-  isJsdom,
-} from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor, isJsdom } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import { modalClasses } from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -71,7 +65,6 @@ describe('<Menu />', () => {
     skip: [
       'rootClass', // portal, can't determine the root
       'componentProp',
-      'componentsProp',
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
@@ -85,9 +78,11 @@ describe('<Menu />', () => {
           <Menu
             anchorEl={defaultAnchorEl}
             open
-            TransitionProps={{
-              onEnter: handleEnter,
-              onEntering: handleEntering,
+            slotProps={{
+              transition: {
+                onEnter: handleEnter,
+                onEntering: handleEntering,
+              },
             }}
           />,
         );
@@ -109,9 +104,11 @@ describe('<Menu />', () => {
 
         const { setProps } = render(
           <Menu
-            TransitionProps={{
-              onExit: handleExit,
-              onExiting: handleExiting,
+            slotProps={{
+              transition: {
+                onExit: handleExit,
+                onExiting: handleExiting,
+              },
             }}
             anchorEl={defaultAnchorEl}
             open
@@ -131,7 +128,9 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Paper', () => {
-    render(<Menu anchorEl={defaultAnchorEl} open PaperProps={{ 'data-testid': 'paper' }} />);
+    render(
+      <Menu anchorEl={defaultAnchorEl} open slotProps={{ paper: { 'data-testid': 'paper' } }} />,
+    );
 
     expect(screen.getByTestId('paper')).to.have.class(classes.paper);
   });
@@ -142,7 +141,7 @@ describe('<Menu />', () => {
         <Menu
           anchorEl={defaultAnchorEl}
           open
-          PaperProps={{ 'data-testid': 'paper' }}
+          slotProps={{ paper: { 'data-testid': 'paper' } }}
           PopoverClasses={{ paper: 'bar' }}
         />,
       );
@@ -164,7 +163,7 @@ describe('<Menu />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
+  describe('slotProps: paper', () => {
     it('should be passed to the paper component', () => {
       const customElevation = 12;
       const customClasses = { rounded: 'custom-rounded' };
@@ -173,10 +172,12 @@ describe('<Menu />', () => {
         <Menu
           anchorEl={defaultAnchorEl}
           open
-          PaperProps={{
-            'data-testid': 'paper',
-            elevation: customElevation,
-            classes: customClasses,
+          slotProps={{
+            paper: {
+              'data-testid': 'paper',
+              elevation: customElevation,
+              classes: customClasses,
+            },
           }}
         />,
       );
@@ -218,27 +219,23 @@ describe('<Menu />', () => {
   });
 
   it('should open during the initial mount', () => {
-    function MenuItem(props) {
-      const { autoFocus, children } = props;
-      return (
-        <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
-          {children}
-        </div>
-      );
+    function WrappedMenuItem(props) {
+      return <MenuItem {...props} />;
     }
+
     render(
       <Menu anchorEl={defaultAnchorEl} open>
-        <MenuItem>one</MenuItem>
+        <WrappedMenuItem>one</WrappedMenuItem>
       </Menu>,
     );
 
-    expect(screen.getByRole('menuitem')).to.have.attribute('data-autofocus', 'true');
+    expect(screen.getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
   it('should not focus list if autoFocus=false', () => {
     render(
       <Menu anchorEl={defaultAnchorEl} autoFocus={false} open>
-        <div tabIndex={-1} />
+        <MenuItem>one</MenuItem>
       </Menu>,
     );
 
@@ -272,56 +269,19 @@ describe('<Menu />', () => {
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  // TODO: remove in v7
-  describe('legacy TransitionProps', () => {
-    it('should call TransitionProps.onEntering', () => {
-      const onEnteringSpy = spy();
-      render(
-        <Menu anchorEl={defaultAnchorEl} open TransitionProps={{ onEntering: onEnteringSpy }} />,
-      );
-
-      expect(onEnteringSpy.callCount).to.equal(1);
-    });
-
-    it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
-      const onEnteringSpy = spy();
-      render(
-        <Menu
-          anchorEl={defaultAnchorEl}
-          disableAutoFocusItem
-          open
-          TransitionProps={{ onEntering: onEnteringSpy }}
-        />,
-      );
-
-      expect(onEnteringSpy.callCount).to.equal(1);
-    });
-  });
-
   it('should call onClose on tab', () => {
-    function MenuItem(props) {
-      const { autoFocus, children } = props;
-
-      const ref = React.useRef(null);
-      React.useEffect(() => {
-        if (autoFocus) {
-          ref.current.focus();
-        }
-      }, [autoFocus]);
-
-      return (
-        <div ref={ref} role="menuitem" tabIndex={-1}>
-          {children}
-        </div>
-      );
+    function WrappedMenuItem(props) {
+      return <MenuItem {...props} />;
     }
+
     const onCloseSpy = spy();
     render(
       <Menu anchorEl={defaultAnchorEl} open onClose={onCloseSpy}>
-        <MenuItem>hello</MenuItem>
+        <WrappedMenuItem>hello</WrappedMenuItem>
       </Menu>,
     );
 
+    expect(screen.getByRole('menuitem')).toHaveFocus();
     fireEvent.keyDown(screen.getByRole('menuitem'), { key: 'Tab' });
 
     expect(onCloseSpy.callCount).to.equal(1);
@@ -344,21 +304,17 @@ describe('<Menu />', () => {
     expect(screen.getAllByRole('menuitem')).to.have.length(1);
   });
 
-  describe('warnings', () => {
-    it('warns a Fragment is passed as a child', () => {
-      expect(() => {
-        render(
-          <Menu anchorEl={defaultAnchorEl} open={false}>
-            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-            <React.Fragment />
-          </Menu>,
-        );
-      }).toErrorDev([
-        "MUI: The Menu component doesn't accept a Fragment as a child.",
-        !strictModeDoubleLoggingSuppressed &&
-          "MUI: The Menu component doesn't accept a Fragment as a child.",
-      ]);
-    });
+  it('supports MenuItems wrapped in a Fragment', () => {
+    render(
+      <Menu anchorEl={defaultAnchorEl} open>
+        <React.Fragment>
+          <MenuItem>one</MenuItem>
+          <MenuItem>two</MenuItem>
+        </React.Fragment>
+      </Menu>,
+    );
+
+    expect(screen.getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
   describe('theme customization', () => {
@@ -382,9 +338,7 @@ describe('<Menu />', () => {
             <Menu
               anchorEl={defaultAnchorEl}
               open
-              PaperProps={{
-                'data-testid': 'paper',
-              }}
+              slotProps={{ paper: { 'data-testid': 'paper' } }}
             />
           </ThemeProvider>,
         );
@@ -415,9 +369,7 @@ describe('<Menu />', () => {
             <Menu
               anchorEl={defaultAnchorEl}
               open
-              PaperProps={{
-                'data-testid': 'paper',
-              }}
+              slotProps={{ paper: { 'data-testid': 'paper' } }}
             />
           </ThemeProvider>,
         );

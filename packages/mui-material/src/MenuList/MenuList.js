@@ -1,53 +1,71 @@
 'use client';
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import useRovingTabIndex from '../utils/useRovingTabIndex';
+import { isItemFocusable } from '@mui/utils/useRovingTabIndex';
 import ownerDocument from '../utils/ownerDocument';
-import List from '../List';
 import getActiveElement from '../utils/getActiveElement';
 import getScrollbarSize from '../utils/getScrollbarSize';
+import focusWithVisible from '../utils/focusWithVisible';
+import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import { ownerWindow } from '../utils';
+import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
+import ownerWindow from '../utils/ownerWindow';
+import List from '../List';
+import { useSelectFocusSource } from '../Select/utils';
+import { MenuListContext } from './MenuListContext';
 
-function textCriteriaMatches(nextFocus, textCriteria) {
+function getItemText(itemOrElement) {
+  const element = itemOrElement?.element ?? itemOrElement;
+
+  if (!element) {
+    return '';
+  }
+
+  if (itemOrElement?.textValue !== undefined) {
+    return itemOrElement.textValue;
+  }
+
+  let text = element.innerText;
+  if (text === undefined) {
+    // jsdom doesn't support innerText
+    text = element.textContent;
+  }
+
+  return text ?? '';
+}
+
+function textCriteriaMatches(itemOrElement, textCriteria) {
   if (textCriteria === undefined) {
     return true;
   }
-  let text = nextFocus.innerText;
-  if (text === undefined) {
-    // jsdom doesn't support innerText
-    text = nextFocus.textContent;
-  }
+
+  let text = getItemText(itemOrElement);
   text = text.trim().toLowerCase();
+
   if (text.length === 0) {
     return false;
   }
+
   if (textCriteria.repeating) {
     return text[0] === textCriteria.keys[0];
   }
+
   return text.startsWith(textCriteria.keys.join(''));
 }
 
-function shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable) {
-  if (!textCriteriaMatches(element, criteria)) {
+function isItemFocusableWithTextCriteria(item, criteria) {
+  if (!textCriteriaMatches(item, criteria)) {
     return false;
   }
 
-  return shouldFocus(element, disabledItemsFocusable);
+  return isItemFocusable(item);
 }
 
-function shouldFocus(element, disabledItemsFocusable) {
-  if (!element || !element.hasAttribute('tabindex')) {
-    return false;
-  }
-
-  if (disabledItemsFocusable) {
-    return true;
-  }
-
-  return !element.disabled && element.getAttribute('aria-disabled') !== 'true';
+// Menu auto-focus is not always keyboard-driven. On open we often move focus to the
+// active item programmatically so arrow-key navigation starts from the right place.
+function focusInitialItem(element, focusSource) {
+  focusWithVisible(element, focusSource);
 }
 
 /**
@@ -61,8 +79,8 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     // private
     // eslint-disable-next-line react/prop-types
     actions,
-    autoFocus = false,
-    autoFocusItem = false,
+    autoFocus: autoFocusList = false,
+    autoFocusItem: autoFocusActiveItem = false,
     children,
     className,
     disabledItemsFocusable = false,
@@ -72,6 +90,15 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     ...other
   } = props;
   const listRef = React.useRef(null);
+  const hasFocusedInitialTargetRef = React.useRef(false);
+  // Escape hatch for <Menu variant="menu"> (items have no selection state). When opened with
+  // mouse/pointer, the initial focused item should still receive DOM focus, but ButtonBase
+  // should suppress its focus-visible state for that one initial handoff.
+  const [suppressInitialFocusVisible, setSuppressInitialFocusVisible] = React.useState(false);
+  // Current anchored <Menu>s cannot receive a `openInteractionType` signal from a trigger
+  // the API only receives `open` and `anchorEl`. When <MenuList> is used in <Select>, the
+  // internal <SelectInput> is able to achieve this via `useSelectFocusSource`.
+  const focusSource = useSelectFocusSource();
   const textCriteriaRef = React.useRef({
     keys: [],
     repeating: true,
@@ -79,11 +106,84 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     lastTime: null,
   });
 
-  useEnhancedEffect(() => {
-    if (autoFocus) {
-      listRef.current.focus();
+  const getDefaultActiveItemId = React.useCallback(
+    (items) => {
+      if (variant === 'selectedMenu') {
+        return (
+          items.find((item) => item.selected && isItemFocusable(item))?.id ??
+          items.find((item) => isItemFocusable(item))?.id ??
+          null
+        );
+      }
+
+      return items.find((item) => isItemFocusable(item))?.id ?? null;
+    },
+    [variant],
+  );
+
+  const rovingContainer = useRovingTabIndexRoot({
+    activeItemId: undefined,
+    getDefaultActiveItemId,
+    orientation: 'vertical',
+    wrap: !disableListWrap,
+  });
+  const { activeItemId, focusNext, getActiveItem, getContainerProps, getItemMap } = rovingContainer;
+
+  const focusInitialTarget = useEventCallback((force = false) => {
+    // `force` is used by the imperative action when `Menu` asks `MenuList` to restore its
+    // initial focus target after the popover finishes entering, even if this list already
+    // completed its normal one-time initial-focus path on an earlier render.
+    if (!listRef.current || (!force && hasFocusedInitialTargetRef.current)) {
+      return null;
     }
-  }, [autoFocus]);
+
+    if (autoFocusActiveItem) {
+      const activeItem = getActiveItem();
+
+      if (activeItem?.element) {
+        const hasSelectedItem = Array.from(getItemMap().values()).some((item) => item.selected);
+        const shouldSuppressInitialFocusVisible =
+          variant === 'menu' && hasSelectedItem && !activeItem.selected && focusSource == null;
+
+        setSuppressInitialFocusVisible(shouldSuppressInitialFocusVisible);
+        focusInitialItem(activeItem.element, focusSource);
+        hasFocusedInitialTargetRef.current = true;
+        return activeItem.element;
+      }
+
+      if (!autoFocusList) {
+        return null;
+      }
+
+      // Keep the list container focusable while waiting for items to register,
+      // or when there is no focusable item to move to.
+      setSuppressInitialFocusVisible(false);
+      listRef.current.focus();
+      return listRef.current;
+    }
+
+    if (!autoFocusList) {
+      setSuppressInitialFocusVisible(false);
+      return null;
+    }
+
+    setSuppressInitialFocusVisible(false);
+    listRef.current.focus();
+    hasFocusedInitialTargetRef.current = true;
+    return listRef.current;
+  });
+
+  useEnhancedEffect(() => {
+    if (!autoFocusList && !autoFocusActiveItem) {
+      hasFocusedInitialTargetRef.current = false;
+      setSuppressInitialFocusVisible(false);
+      return undefined;
+    }
+
+    focusInitialTarget();
+
+    return undefined;
+  }, [activeItemId, autoFocusActiveItem, autoFocusList, focusInitialTarget]);
 
   React.useImperativeHandle(
     actions,
@@ -100,98 +200,39 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         }
         return listRef.current;
       },
+      focusInitialTarget: () => {
+        if (!listRef.current) {
+          return null;
+        }
+
+        const currentFocus = getActiveElement(ownerDocument(listRef.current));
+
+        if (currentFocus && listRef.current.contains(currentFocus)) {
+          return currentFocus;
+        }
+
+        return focusInitialTarget(true);
+      },
     }),
-    [],
+    [focusInitialTarget],
   );
 
-  /**
-   * the index of the item should receive focus
-   * in a `variant="selectedMenu"` it's the first `selected` item
-   * otherwise it's the very first item.
-   */
-  let activeItemIndex = -1;
-  // since we inject focus related props into children we have to do a lookahead
-  // to check if there is a `selected` item. We're looking for the last `selected`
-  // item and use the first valid item as a fallback
-  React.Children.forEach(children, (child, index) => {
-    if (!React.isValidElement(child)) {
-      if (activeItemIndex === index) {
-        activeItemIndex += 1;
-        if (activeItemIndex >= children.length) {
-          // there are no focusable items within the list.
-          activeItemIndex = -1;
-        }
-      }
-      return;
+  const rovingContainerProps = getContainerProps();
+  const handleRef = useForkRef(listRef, rovingContainerProps.ref, ref);
+  const menuListContextValue = React.useMemo(
+    () => ({
+      itemsFocusableWhenDisabled: disabledItemsFocusable,
+      suppressInitialFocusVisible,
+      variant,
+    }),
+    [disabledItemsFocusable, suppressInitialFocusVisible, variant],
+  );
+
+  const handleKeyDown = useEventCallback((event) => {
+    if (suppressInitialFocusVisible) {
+      setSuppressInitialFocusVisible(false);
     }
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Menu component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-      }
-    }
-
-    if (!child.props.disabled) {
-      if (variant === 'selectedMenu' && child.props.selected) {
-        activeItemIndex = index;
-      } else if (activeItemIndex === -1) {
-        activeItemIndex = index;
-      }
-    }
-
-    if (
-      activeItemIndex === index &&
-      (child.props.disabled || child.props.muiSkipListHighlight || child.type.muiSkipListHighlight)
-    ) {
-      activeItemIndex += 1;
-      if (activeItemIndex >= children.length) {
-        // there are no focusable items within the list.
-        activeItemIndex = -1;
-      }
-    }
-  });
-
-  const { focusNext, getContainerProps, getItemProps } = useRovingTabIndex({
-    focusableIndex: activeItemIndex,
-    orientation: 'vertical',
-    shouldWrap: !disableListWrap,
-    shouldFocus: (element) => shouldFocus(element, disabledItemsFocusable),
-  });
-  const rovingTabIndexContainerProps = getContainerProps();
-  const handleRef = useForkRef(listRef, rovingTabIndexContainerProps.ref, ref);
-
-  let focusableIndex = 0;
-  const items = React.Children.map(children, (child, index) => {
-    if (
-      !React.isValidElement(child) ||
-      child.props.muiSkipListHighlight ||
-      child.type.muiSkipListHighlight
-    ) {
-      return child;
-    }
-
-    const rovingTabIndexItemProps = getItemProps(focusableIndex, child.ref);
-    const newChildProps = { ref: rovingTabIndexItemProps.ref };
-
-    if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
-      newChildProps.tabIndex = rovingTabIndexItemProps.tabIndex;
-    }
-
-    if (index === activeItemIndex && autoFocusItem) {
-      newChildProps.autoFocus = true;
-    }
-
-    focusableIndex += 1;
-
-    return React.cloneElement(child, newChildProps);
-  });
-
-  const handleKeyDown = (event) => {
     const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
 
     if (isModifierKeyPressed && onKeyDown) {
@@ -200,7 +241,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       return;
     }
 
-    rovingTabIndexContainerProps.onKeyDown(event);
+    rovingContainerProps.onKeyDown(event);
 
     if (event.key.length === 1) {
       const criteria = textCriteriaRef.current;
@@ -228,9 +269,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (
         criteria.previousKeyMatched &&
         (keepFocusOnCurrent ||
-          focusNext((element) =>
-            shouldFocusWithTextCriteria(element, criteria, disabledItemsFocusable),
-          ) !== -1)
+          focusNext((item) => isItemFocusableWithTextCriteria(item, criteria)) != null)
       ) {
         event.preventDefault();
       } else {
@@ -241,7 +280,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     if (onKeyDown) {
       onKeyDown(event);
     }
-  };
+  });
 
   return (
     <List
@@ -249,11 +288,15 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       ref={handleRef}
       className={className}
       onKeyDown={handleKeyDown}
-      onFocus={rovingTabIndexContainerProps.onFocus}
+      onFocus={rovingContainerProps.onFocus}
       tabIndex={-1}
       {...other}
     >
-      {items}
+      <MenuListContext.Provider value={menuListContextValue}>
+        <RovingTabIndexContext.Provider value={rovingContainer}>
+          {children}
+        </RovingTabIndexContext.Provider>
+      </MenuListContext.Provider>
     </List>
   );
 });

@@ -93,11 +93,6 @@ export interface SwipeableDrawerProps
    */
   open?: boolean | undefined;
   /**
-   * The element is used to intercept the touch events on the edge.
-   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SwipeAreaProps?: object | undefined;
-  /**
    * The width of the left most (or right most) area in `px` that
    * the drawer can be swiped open from.
    * @default 20
@@ -109,12 +104,12 @@ export interface SwipeableDrawerProps
  *
  * Demos:
  *
- * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [SwipeableDrawer API](https://next.mui.com/material-ui/api/swipeable-drawer/)
- * - inherits [Drawer API](https://next.mui.com/material-ui/api/drawer/)
+ * - [SwipeableDrawer API](https://mui.com/material-ui/api/swipeable-drawer/)
+ * - inherits [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 

@@ -7,7 +7,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
-import capitalize from '../utils/capitalize';
 import Menu from '../Menu/Menu';
 import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
@@ -48,11 +47,7 @@ const SelectIcon = styled(StyledSelectIcon, {
   slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    return [
-      styles.icon,
-      ownerState.variant && styles[`icon${capitalize(ownerState.variant)}`],
-      ownerState.open && styles.iconOpen,
-    ];
+    return [styles.icon, ownerState.open && styles.iconOpen];
   },
 })({});
 
@@ -75,7 +70,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     select: ['select', variant, disabled && 'disabled', multiple && 'multiple', error && 'error'],
-    icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
+    icon: ['icon', open && 'iconOpen', disabled && 'disabled'],
     nativeInput: ['nativeInput'],
   };
 
@@ -504,21 +499,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const paperProps = {
-    ...MenuProps.PaperProps,
-    ...(typeof MenuProps.slotProps?.paper === 'function'
+  const menuPaperSlotProps =
+    typeof MenuProps.slotProps?.paper === 'function'
       ? MenuProps.slotProps.paper(ownerState)
-      : MenuProps.slotProps?.paper),
-  };
+      : MenuProps.slotProps?.paper;
 
-  const listProps = {
-    ...MenuProps.MenuListProps,
-    ...(typeof MenuProps.slotProps?.list === 'function'
+  const menuListSlotProps =
+    typeof MenuProps.slotProps?.list === 'function'
       ? MenuProps.slotProps.list(ownerState)
-      : MenuProps.slotProps?.list),
-  };
+      : MenuProps.slotProps?.list;
 
   const listboxId = useId();
+  const nativeInputId = useId();
 
   return (
     <React.Fragment>
@@ -569,6 +561,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         autoFocus={autoFocus}
         required={required}
         {...other}
+        id={other.id ?? nativeInputId}
         ownerState={ownerState}
       />
       <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
@@ -595,13 +588,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
               'aria-multiselectable': multiple ? 'true' : undefined,
               disableListWrap: true,
               id: listboxId,
-              ...listProps,
+              ...menuListSlotProps,
             },
             paper: {
-              ...paperProps,
+              ...menuPaperSlotProps,
               style: {
                 minWidth: menuMinWidth,
-                ...(paperProps != null ? paperProps.style : null),
+                ...menuPaperSlotProps?.style,
               },
             },
           }}
