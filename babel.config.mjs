@@ -31,6 +31,7 @@ export default function getBabelConfig(api) {
     '@mui/internal-core-docs': resolveAliasPath('./packages-internal/core-docs/src'),
     '@mui/icons-material': resolveAliasPath(`./packages/mui-icons-material/lib`),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
+    '@mui/internal-markdown/prism': resolveAliasPath('./packages-internal/markdown/prism.mjs'),
     '@mui/internal-markdown': resolveAliasPath('./packages-internal/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),

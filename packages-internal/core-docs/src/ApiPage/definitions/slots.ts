@@ -1,6 +1,6 @@
 import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 import type { BaseCssTOCParams, SlotDefinition } from './types';
-import type { TableOfContentsParams } from '../types';
+import type { TocItem } from '../types';
 
 export interface GetSlotsApiDefinitionsParams {
   componentSlots: ComponentApiContent['slots'];
@@ -31,7 +31,7 @@ export const getSlotsToc = ({
   hash,
 }: BaseCssTOCParams & {
   slots: SlotDefinition[];
-}): TableOfContentsParams[] =>
+}): TocItem[] =>
   !slots || slots.length === 0
     ? []
     : [

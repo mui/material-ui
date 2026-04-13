@@ -58,7 +58,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { getDesignTokens } from '@mui/internal-core-docs/branding';
 import { Link } from '@mui/internal-core-docs/Link';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 function Checkboxes() {
   const label = { slotProps: { input: { 'aria-label': 'Checkbox demo' } } };
