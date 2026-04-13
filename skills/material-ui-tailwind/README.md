@@ -1,16 +1,13 @@
-# Material UI + Tailwind CSS (agent skill)
+# Materialï¿½UI + Tailwindï¿½CSS (agent skill)
 
-Covers Tailwind CSS v4 with Material UI (cascade layers, `enableCssLayer`) and summarizes v3 patterns from the interoperability guide (preflight, `important`, `injectFirst`).
+Covers Tailwindï¿½CSS v4 with Materialï¿½UI (cascade layers, `enableCssLayer`) and summarizes v3 patterns from the interoperability guide (preflight, `important`, `injectFirst`).
 
 ## Files in this folder
 
 | File          | Purpose                                         |
 | :------------ | :---------------------------------------------- |
 | AGENTS.md     | Full agent/LLM document                         |
-| SKILL.md      | Cursor skill entry                              |
+| SKILL.md      | Entry point: frontmatter + index + pointer to AGENTS.md |
 | metadata.json | Version, abstract, references                   |
 | reference.md  | Layer line, IntelliSense JSON, v3 config sketch |
 
-## Cursor
-
-`.cursor/skills/material-ui-tailwind` should symlink to this directory.
