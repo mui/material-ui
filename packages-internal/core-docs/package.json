@@ -50,7 +50,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "next": "15.5.14"
+    "next": "15.5.15"
   },
   "peerDependencies": {
     "@docsearch/react": "catalog:docs",
