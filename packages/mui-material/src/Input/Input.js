@@ -59,11 +59,6 @@ const InputRoot = styled(InputBaseRoot, {
     }
     return {
       position: 'relative',
-      '@media (forced-colors: active)': {
-        'input::placeholder': {
-          opacity: 1,
-        },
-      },
       variants: [
         {
           props: ({ ownerState }) => ownerState.formControl,
@@ -157,7 +152,13 @@ const InputInput = styled(InputBaseInput, {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})({});
+})({
+  '@media (forced-colors: active)': {
+    '&::placeholder': {
+      opacity: 1,
+    },
+  },
+});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInput' });

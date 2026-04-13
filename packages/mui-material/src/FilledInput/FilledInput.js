@@ -86,11 +86,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
           ? theme.vars.palette.FilledInput.disabledBg
           : disabledBackground,
       },
-      '@media (forced-colors: active)': {
-        'input::placeholder': {
-          opacity: 1,
-        },
-      },
       variants: [
         {
           props: ({ ownerState }) => !ownerState.disableUnderline,
@@ -242,6 +237,11 @@ const FilledInputInput = styled(InputBaseInput, {
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
         })),
+    },
+    '@media (forced-colors: active)': {
+      '&::placeholder': {
+        opacity: 1,
+      },
     },
     variants: [
       {
