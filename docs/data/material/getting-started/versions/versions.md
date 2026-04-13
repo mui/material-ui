@@ -1,4 +1,4 @@
-# Material UI Versions
+# Material UI Versions
 
 <p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
 
@@ -18,7 +18,7 @@ You can use it to see what changes are coming and provide better feedback to con
 ## Versioning strategy
 
 Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly.
-Stability is essential for the ecosystem around Material UI to thrive.
+Stability is essential for the ecosystem around Material UI to thrive.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced predictably.
 
