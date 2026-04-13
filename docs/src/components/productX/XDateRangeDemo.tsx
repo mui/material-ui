@@ -127,7 +127,7 @@ export default function XDateRangeDemo() {
               '& > div > div > div > div': {
                 flexGrow: 1,
               },
-              '& .MuiPickersCalendarHeader-labelContainer': {
+              '& .MuiTypography-subtitle1': {
                 fontSize: '0.875rem',
               },
               '& .MuiDayCalendar-weekDayLabel': {

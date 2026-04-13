@@ -304,7 +304,7 @@ export default function XHero() {
                     overflow: 'auto',
                     backgroundColor: 'initial',
                   },
-                  '& .MuiPickersCalendarHeader-labelContainer': {
+                  '& .MuiTypography-subtitle1': {
                     fontSize: '0.875rem',
                   },
                   '& .MuiDayCalendar-weekDayLabel': {
