@@ -89,6 +89,9 @@ const CheckboxRoot = styled(SwitchBase, {
             },
             [`&.${checkboxClasses.disabled}`]: {
               color: (theme.vars || theme).palette.action.disabled,
+              '@media (forced-colors: active)': {
+                color: 'GrayText',
+              },
             },
           },
         })),
