@@ -46,6 +46,7 @@ function getDefaultHiringMessage() {
         // Fix me!
         href={ROUTES.careers}
         target="_blank"
+        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >
