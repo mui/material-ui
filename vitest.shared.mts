@@ -56,6 +56,7 @@ export const alias = {
     './packages-internal/scripts/typescript-to-proptypes/src',
   ),
   '@mui/internal-docs-utils': path.resolve(MONOREPO_ROOT, './packages-internal/docs-utils/src'),
+  '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib'),
   '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
   '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
   '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
@@ -143,6 +144,7 @@ export default async function create(
       alias,
     },
     optimizeDeps: {
+      include: ['@mui/internal-test-utils/setupVitest'],
       esbuildOptions: {
         plugins: [
           {
