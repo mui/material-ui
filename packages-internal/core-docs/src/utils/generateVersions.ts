@@ -24,6 +24,9 @@ async function getBranches(): Promise<Array<{ name: string }>> {
   return JSON.parse(text);
 }
 
+// TODO: Remove this once the next branch on material-ui-docs is removed
+const SHOW_NEXT_VERSION = false;
+
 async function generateVersions(): Promise<Array<{ version: string; url: string }>> {
   const regex = /^v\d+$/;
   const branches = await getBranches();
@@ -56,7 +59,8 @@ async function generateVersions(): Promise<Array<{ version: string; url: string 
 
   if (
     branches.find((branch) => branch.name === 'next') &&
-    !versions.find((version) => /beta|alpha/.test(version.version))
+    !versions.find((version) => /beta|alpha/.test(version.version)) &&
+    SHOW_NEXT_VERSION
   ) {
     versions.unshift({
       version: `v${Number(versions[0].version[1]) + 1} pre-release`,
