@@ -48,6 +48,9 @@ const RadioRoot = styled(SwitchBase, {
     color: (theme.vars || theme).palette.text.secondary,
     [`&.${radioClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
+      '@media (forced-colors: active)': {
+        color: 'GrayText',
+      },
     },
     variants: [
       {
