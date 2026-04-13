@@ -491,7 +491,9 @@ ButtonBase.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type) attribute.
+   * The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type)
+   * attribute applied to `button` and `a` elements.
+   * Ignored when rendering non-native buttons.
    * @default 'button'
    */
   type: PropTypes.string,
