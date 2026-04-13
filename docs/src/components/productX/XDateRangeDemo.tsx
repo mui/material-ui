@@ -18,10 +18,8 @@ import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import dayjs, { Dayjs } from 'dayjs';
 import Frame from 'docs/src/components/action/Frame';
 
-const startDate = dayjs();
-startDate.date(10);
-const endDate = dayjs();
-endDate.date(endDate.date() + 28);
+const startDate = dayjs().date(10);
+const endDate = dayjs().add(28, 'day');
 
 function CustomRangeShortcuts(props: PickersShortcutsProps<DateRange<Dayjs>>) {
   const { items, changeImportance = 'accept' } = props;

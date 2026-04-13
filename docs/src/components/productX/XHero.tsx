@@ -22,10 +22,8 @@ import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
 import dayjs from 'dayjs';
 
-const startDate = dayjs();
-startDate.date(10);
-const endDate = dayjs();
-endDate.date(endDate.date() + 28);
+const startDate = dayjs().date(10);
+const endDate = dayjs().add(28, 'day');
 
 const visibleFields = [
   'commodity',
