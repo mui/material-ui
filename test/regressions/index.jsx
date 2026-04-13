@@ -50,6 +50,7 @@ const importDemos = import.meta.glob(
     'docs/data/base/**/[A-Z]*/css/index.js',
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
     'docs/data/base/**/[A-Z]*/system/index.js',
+    'docs/src/components/productX/XDateRangeDemo.tsx',
     // ================== Exclusions ==================
     '!docs/data/experiments',
     '!docs/data/material/**/*NoSnap.*',
