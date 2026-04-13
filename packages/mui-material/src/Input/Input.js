@@ -71,6 +71,11 @@ const InputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
+            '@media (forced-colors: active)': {
+              'input::placeholder': {
+                opacity: 1,
+              },
+            },
             '&::after': {
               left: 0,
               bottom: 0,
@@ -92,6 +97,9 @@ const InputRoot = styled(InputBaseRoot, {
             [`&.${inputClasses.error}`]: {
               '&::before, &::after': {
                 borderBottomColor: (theme.vars || theme).palette.error.main,
+                '@media (forced-colors: active)': {
+                  borderBottomColor: 'mark',
+                },
               },
             },
             '&::before': {
@@ -115,6 +123,10 @@ const InputRoot = styled(InputBaseRoot, {
             },
             [`&.${inputClasses.disabled}:before`]: {
               borderBottomStyle: 'dotted',
+              '@media (forced-colors: active)': {
+                borderBottomStyle: 'solid',
+                borderBottomColor: 'GrayText',
+              },
             },
           },
         },
@@ -128,6 +140,14 @@ const InputRoot = styled(InputBaseRoot, {
               },
             },
           })),
+        {
+          props: { disabled: true },
+          style: {
+            '@media (forced-colors: active)': {
+              color: 'GrayText',
+            },
+          },
+        },
       ],
     };
   }),
