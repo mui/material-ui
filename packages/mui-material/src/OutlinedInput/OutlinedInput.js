@@ -79,9 +79,15 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
+              '@media (forced-colors: active)': {
+                borderColor: 'mark',
+              },
             },
             [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.action.disabled,
+              '@media (forced-colors: active)': {
+                borderColor: 'GrayText',
+              },
             },
           },
         },
@@ -150,6 +156,11 @@ const OutlinedInputInput = styled(InputBaseInput, {
           caretColor: '#fff',
         })),
     },
+    '@media (forced-colors: active)': {
+      '&::placeholder': {
+        opacity: 1,
+      },
+    },
     variants: [
       {
         props: {
@@ -175,6 +186,14 @@ const OutlinedInputInput = styled(InputBaseInput, {
         props: ({ ownerState }) => ownerState.endAdornment,
         style: {
           paddingRight: 0,
+        },
+      },
+      {
+        props: { disabled: true },
+        style: {
+          '@media (forced-colors: active)': {
+            color: 'GrayText',
+          },
         },
       },
     ],
