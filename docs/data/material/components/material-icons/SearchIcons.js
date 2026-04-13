@@ -666,7 +666,7 @@ export default function SearchIcons() {
         <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
-        open={Boolean(dialogSelectedIcon)}
+        open={Boolean(selectedIcon)}
         selectedIcon={dialogSelectedIcon}
         handleClose={handleClose}
       />
