@@ -1,4 +1,4 @@
-# Material UI agent skills
+# Material UI agent skills
 
 Packaged guidance for AI agents and humans. Each skill is a directory under `skills/` with this layout:
 
