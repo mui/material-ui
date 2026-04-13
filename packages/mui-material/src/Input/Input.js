@@ -59,6 +59,11 @@ const InputRoot = styled(InputBaseRoot, {
     }
     return {
       position: 'relative',
+      '@media (forced-colors: active)': {
+        'input::placeholder': {
+          opacity: 1,
+        },
+      },
       variants: [
         {
           props: ({ ownerState }) => ownerState.formControl,
@@ -71,11 +76,6 @@ const InputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => !ownerState.disableUnderline,
           style: {
-            '@media (forced-colors: active)': {
-              'input::placeholder': {
-                opacity: 1,
-              },
-            },
             '&::after': {
               left: 0,
               bottom: 0,
