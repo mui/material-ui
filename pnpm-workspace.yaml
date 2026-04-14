@@ -16,7 +16,7 @@ engineStrict: true
 
 catalogs:
   docs:
-    stylis: '4.2.0'
+    stylis: '4.3.6'
     '@base-ui/react': '^1.4.0'
     '@docsearch/react': '^3.9.0'
     '@emotion/cache': '^11.14.0'
