@@ -256,6 +256,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
     autoComplete,
     autoFocus,
     className,
@@ -544,6 +545,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           <Input
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
