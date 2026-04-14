@@ -712,7 +712,7 @@ importers:
         specifier: ^7.29.2
         version: 7.29.2
       '@base-ui/react':
-        specifier: catalog:docs
+        specifier: ^1
         version: 1.4.0(@date-fns/tz@1.4.1)(@types/react@19.2.14)(date-fns@2.30.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@docsearch/react':
         specifier: catalog:docs
