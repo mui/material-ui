@@ -193,6 +193,15 @@ describe('<LinearProgress />', () => {
       expect(progressbar).to.have.attribute('aria-valuemax', '10');
     });
 
+    it('should be able to use decimal min, max and value props', () => {
+      render(<LinearProgress variant="determinate" value={5.5} min={2.5} max={10.3} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5.5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '2.5');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10.3');
+    });
+
     it('min and max values should be used to calculate the width of the bar', () => {
       render(<LinearProgress variant="determinate" value={15} min={10} max={30} />);
       const progressbar = screen.getByRole('progressbar');

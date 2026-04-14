@@ -242,7 +242,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       range > 0 ? `${(((max - value) / range) * circumference).toFixed(3)}px` : '0px';
     rootStyle.transform = 'rotate(-90deg)';
 
-    rootProps['aria-valuenow'] = Math.round(value);
+    rootProps['aria-valuenow'] = value;
     rootProps['aria-valuemin'] = min;
     rootProps['aria-valuemax'] = max;
   }

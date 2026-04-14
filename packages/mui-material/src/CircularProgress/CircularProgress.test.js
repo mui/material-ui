@@ -203,6 +203,15 @@ describe('<CircularProgress />', () => {
       expect(screen.getByRole('progressbar')).to.have.attribute('aria-valuenow', '10');
     });
 
+    it('should be able to use decimal min, max and value props', () => {
+      render(<CircularProgress variant="determinate" value={5.5} min={2.5} max={10.3} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5.5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '2.5');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10.3');
+    });
+
     it('should fallback to 0px strokeDashoffset if max is less than min', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 

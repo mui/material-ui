@@ -407,7 +407,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       }
       inlineStyles.bar1.transform = range > 0 ? `translateX(${transform}%)` : undefined;
 
-      rootProps['aria-valuenow'] = Math.round(value);
+      rootProps['aria-valuenow'] = value;
       rootProps['aria-valuemin'] = min;
       rootProps['aria-valuemax'] = max;
     } else if (process.env.NODE_ENV !== 'production') {
