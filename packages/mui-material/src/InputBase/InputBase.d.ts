@@ -28,6 +28,7 @@ export interface InputBaseProps extends StandardProps<
   | 'onKeyUp'
 > {
   'aria-describedby'?: string | undefined;
+  'aria-label'?: string | undefined;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
