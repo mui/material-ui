@@ -228,18 +228,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
+  const handleRef = useForkRef(menuItemRef, ref);
   // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
   const { root, ...forwardedClasses } = classes;
-
-  const rovingItemProps = useRovingTabIndexItem({
-    id: rovingItemId,
-    ref,
-    disabled: props.disabled,
-    focusableWhenDisabled: itemsFocusableWhenDisabled,
-    selected: props.selected,
-  });
-
-  const handleRef = useForkRef(menuItemRef, rovingItemProps.ref);
 
   let tabIndex;
   if (!props.disabled) {
