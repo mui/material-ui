@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "code-infra build --flat",
+    "build": "code-infra build --flat --skip-babel-runtime-check",
     "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
