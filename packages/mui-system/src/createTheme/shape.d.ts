@@ -1,5 +1,5 @@
 export interface Shape {
-  borderRadius: number;
+  borderRadius: number | string;
 }
 
 export type ShapeOptions = Partial<Shape>;

@@ -66,7 +66,7 @@ const FabRoot = styled(ButtonBase, {
       boxShadow: (theme.vars || theme).shadows[12],
     },
     color: theme.vars
-      ? theme.vars.palette.text.primary
+      ? theme.vars.palette.grey[900]
       : theme.palette.getContrastText?.(theme.palette.grey[300]),
     backgroundColor: (theme.vars || theme).palette.grey[300],
     '&:hover': {
@@ -190,17 +190,21 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   return (
     <FabRoot
       className={clsx(classes.root, className)}
       component={component}
+      internalNativeButton
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ownerState={ownerState}
       ref={ref}
       {...other}
-      classes={classes}
+      classes={forwardedClasses}
     >
       {children}
     </FabRoot>

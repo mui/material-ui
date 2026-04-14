@@ -96,7 +96,7 @@ The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own
 | Urdu (Pakistan)         | ur-PK               | `urPK`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 You can [find the source](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 

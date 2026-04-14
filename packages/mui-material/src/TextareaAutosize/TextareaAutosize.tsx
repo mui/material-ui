@@ -1,12 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  unstable_debounce as debounce,
-  unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_ownerWindow as ownerWindow,
-} from '@mui/utils';
+import debounce from '@mui/utils/debounce';
+import useForkRef from '@mui/utils/useForkRef';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useEventCallback from '@mui/utils/useEventCallback';
+import ownerWindow from '@mui/utils/ownerWindow';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 function getStyleValue(value: string) {
@@ -52,11 +51,11 @@ function isEmpty(obj: TextareaStyles) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://next.mui.com/material-ui/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://next.mui.com/material-ui/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/material-ui/api/textarea-autosize/)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -129,6 +128,19 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     return { outerHeightStyle, overflowing };
   }, [maxRows, minRows, props.placeholder]);
 
+  const didHeightChange = useEventCallback(() => {
+    const textarea = textareaRef.current;
+    const textareaStyles = calculateTextareaStyles();
+
+    if (!textarea || !textareaStyles || isEmpty(textareaStyles)) {
+      return false;
+    }
+
+    const outerHeightStyle = textareaStyles.outerHeightStyle;
+
+    return heightRef.current != null && heightRef.current !== outerHeightStyle;
+  });
+
   const syncHeight = React.useCallback(() => {
     const textarea = textareaRef.current;
     const textareaStyles = calculateTextareaStyles();
@@ -148,7 +160,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const frameRef = React.useRef(-1);
 
   useEnhancedEffect(() => {
-    const debounceHandleResize = debounce(() => syncHeight());
+    const debouncedHandleResize = debounce(syncHeight);
     const textarea = textareaRef?.current;
 
     if (!textarea) {
@@ -157,34 +169,36 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     const containerWindow = ownerWindow(textarea);
 
-    containerWindow.addEventListener('resize', debounceHandleResize);
+    containerWindow.addEventListener('resize', debouncedHandleResize);
 
     let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        // avoid "ResizeObserver loop completed with undelivered notifications" error
-        // by temporarily unobserving the textarea element while manipulating the height
-        // and reobserving one frame later
-        resizeObserver.unobserve(textarea);
-        cancelAnimationFrame(frameRef.current);
-        syncHeight();
-        frameRef.current = requestAnimationFrame(() => {
-          resizeObserver.observe(textarea);
-        });
+        if (didHeightChange()) {
+          // avoid "ResizeObserver loop completed with undelivered notifications" error
+          // by temporarily unobserving the textarea element while manipulating the height
+          // and reobserving one frame later
+          resizeObserver.unobserve(textarea);
+          cancelAnimationFrame(frameRef.current);
+          syncHeight();
+          frameRef.current = requestAnimationFrame(() => {
+            resizeObserver.observe(textarea);
+          });
+        }
       });
       resizeObserver.observe(textarea);
     }
 
     return () => {
-      debounceHandleResize.clear();
+      debouncedHandleResize.clear();
       cancelAnimationFrame(frameRef.current);
-      containerWindow.removeEventListener('resize', debounceHandleResize);
+      containerWindow.removeEventListener('resize', debouncedHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
     };
-  }, [calculateTextareaStyles, syncHeight]);
+  }, [calculateTextareaStyles, syncHeight, didHeightChange]);
 
   useEnhancedEffect(() => {
     syncHeight();
@@ -193,6 +207,16 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!isControlled) {
       syncHeight();
+    }
+
+    const textarea = event.target;
+    const countOfCharacters = textarea.value.length;
+    const isLastCharacterNewLine = textarea.value.endsWith('\n');
+    const isEndOfTheLine = textarea.selectionStart === countOfCharacters;
+
+    // Set the cursor position to the very end of the text.
+    if (isLastCharacterNewLine && isEndOfTheLine) {
+      textarea.setSelectionRange(countOfCharacters, countOfCharacters);
     }
 
     if (onChange) {

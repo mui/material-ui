@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ListItemIconClasses } from './listItemIconClasses';
 
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -12,11 +13,11 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ListItemIconClasses>;
+  classes?: Partial<ListItemIconClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
@@ -24,10 +25,11 @@ export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HT
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Menubar](https://mui.com/material-ui/react-menubar/)
  *
  * API:
  *
- * - [ListItemIcon API](https://next.mui.com/material-ui/api/list-item-icon/)
+ * - [ListItemIcon API](https://mui.com/material-ui/api/list-item-icon/)
  */
 export default function ListItemIcon(props: ListItemIconProps): React.JSX.Element;

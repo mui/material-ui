@@ -8,6 +8,7 @@ export default function ContextMenu() {
 
   const handleContextMenu = (event) => {
     event.preventDefault();
+
     setContextMenu(
       contextMenu === null
         ? {
@@ -19,6 +20,16 @@ export default function ContextMenu() {
           // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
           null,
     );
+
+    // Prevent text selection lost after opening the context menu on Safari and Firefox
+    const selection = document.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+
+      setTimeout(() => {
+        selection.addRange(range);
+      });
+    }
   };
 
   const handleClose = () => {

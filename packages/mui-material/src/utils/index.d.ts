@@ -1,10 +1,11 @@
-export { unstable_ClassNameGenerator } from '@mui/utils';
+export { default as unstable_ClassNameGenerator } from '@mui/utils/ClassNameGenerator';
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';
 export { default as createSvgIcon } from './createSvgIcon';
 export { default as debounce } from './debounce';
 export { default as deprecatedPropType } from './deprecatedPropType';
 export { default as isMuiElement } from './isMuiElement';
+export { default as getActiveElement } from './getActiveElement';
 export { default as unstable_memoTheme } from './memoTheme';
 export { default as ownerDocument } from './ownerDocument';
 export { default as ownerWindow } from './ownerWindow';

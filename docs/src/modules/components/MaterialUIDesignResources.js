@@ -1,6 +1,5 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid2';
-import { InfoCard } from '@mui/docs/InfoCard';
+import Grid from '@mui/material/Grid';
+import { InfoCard } from '@mui/internal-core-docs/InfoCard';
 
 const content = [
   {

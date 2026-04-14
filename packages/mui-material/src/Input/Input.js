@@ -10,6 +10,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -51,7 +52,10 @@ const InputRoot = styled(InputBaseRoot, {
     const light = theme.palette.mode === 'light';
     let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
     if (theme.vars) {
-      bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
+      bottomLineColor = theme.alpha(
+        theme.vars.palette.common.onBackground,
+        theme.vars.opacity.inputUnderline,
+      );
     }
     return {
       position: 'relative',
@@ -59,7 +63,7 @@ const InputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.formControl,
           style: {
-            'label + &': {
+            [`label + &, .${inputLabelClasses.root} + &`]: {
               marginTop: 16,
             },
           },
@@ -94,7 +98,7 @@ const InputRoot = styled(InputBaseRoot, {
               borderBottom: `1px solid ${bottomLineColor}`,
               left: 0,
               bottom: 0,
-              content: '"\\00a0"',
+              content: '""',
               position: 'absolute',
               right: 0,
               transition: theme.transitions.create('border-bottom-color', {
@@ -139,8 +143,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline = false,
-    components = {},
-    componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -155,13 +157,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
 
-  const componentsProps =
-    (slotProps ?? componentsPropsProp)
-      ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
-      : inputComponentsProps;
+  const componentsProps = slotProps
+    ? deepmerge(slotProps, inputComponentsProps)
+    : inputComponentsProps;
 
-  const RootSlot = slots.root ?? components.Root ?? InputRoot;
-  const InputSlot = slots.input ?? components.Input ?? InputInput;
+  const RootSlot = slots.root ?? InputRoot;
+  const InputSlot = slots.input ?? InputInput;
 
   return (
     <InputBase
@@ -208,29 +209,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -269,7 +247,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   inputComponent: PropTypes.elementType,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps: PropTypes.object,
@@ -329,8 +307,6 @@ Input.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -339,8 +315,6 @@ Input.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */
@@ -361,7 +335,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type: PropTypes.string,

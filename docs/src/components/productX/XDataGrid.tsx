@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
@@ -9,20 +9,24 @@ import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
 import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
-import { Link } from '@mui/docs/Link';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
+import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import More from 'docs/src/components/action/More';
-import Frame from 'docs/src/components/action/Frame';
+import {
+  Item,
+  Group,
+  Highlighter,
+  More,
+  Frame,
+  AppearingInfoBox,
+} from '@mui/internal-core-docs/AppLayout';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-import { AppearingInfoBox } from 'docs/src/components/action/MoreInfoBox';
-import ROUTES from 'docs/src/route';
+
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
 
@@ -150,7 +154,6 @@ export default function XDataGrid() {
                 zIndex: 1,
                 height: 240,
                 borderRadius: '10px 10px 0 0',
-                borderColor: 'divider',
                 '& .MuiDataGrid-root': {
                   '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                   '& .MuiDataGrid-footerContainer': {

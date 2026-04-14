@@ -2,7 +2,7 @@
 productId: material-ui
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
-githubLabel: 'component: progress'
+githubLabel: 'scope: progress'
 materialDesign: https://m2.material.io/components/progress-indicators
 githubSource: packages/mui-material/src/LinearProgress
 ---
@@ -18,7 +18,7 @@ Progress indicators inform users about the status of ongoing processes, such as 
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Circular
 
@@ -37,6 +37,10 @@ The animations of the components rely on CSS as much as possible to work even be
 ### Circular determinate
 
 {{"demo": "CircularDeterminate.js"}}
+
+### Circular track
+
+{{"demo": "CircularEnableTrack.js"}}
 
 ### Interactive integration
 
@@ -82,8 +86,16 @@ const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 function Progress(props) {
   return (
     <React.Fragment>
-      <CircularProgress variant="determinate" value={normalise(props.value)} />
-      <LinearProgress variant="determinate" value={normalise(props.value)} />
+      <CircularProgress
+        variant="determinate"
+        value={normalise(props.value)}
+        aria-label="Upload photos"
+      />
+      <LinearProgress
+        variant="determinate"
+        value={normalise(props.value)}
+        aria-label="Upload photos"
+      />
     </React.Fragment>
   );
 }
@@ -104,6 +116,10 @@ Normally, no special feedback is necessary during delays of more than 0.1 but le
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 
 {{"demo": "DelayingAppearance.js"}}
+
+## Accessibility
+
+Progress bars must be given an accessible name by either setting `aria-labelledby` that points to the `id` of a visible text label, or using the `aria-label` attribute.
 
 ## Limitations
 

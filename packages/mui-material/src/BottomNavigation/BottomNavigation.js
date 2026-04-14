@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 const BottomNavigationRoot = styled('div', {
   name: 'MuiBottomNavigation',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',

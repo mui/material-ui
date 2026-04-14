@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Box
 
 <p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
@@ -37,24 +37,10 @@ The demo below replaces the `<div>` with a `<section>` element:
 
 ## Customization
 
-### With the sx prop
-
 Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Box instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
 The demo below shows how to apply colors from the theme using this prop:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
-
-### With MUI System props
-
-:::info
-System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
-
-```diff
-- <Box mt={2} />
-+ <Box sx={{ mt: 2 }} />
-```
-
-:::
 
 ## Anatomy
 

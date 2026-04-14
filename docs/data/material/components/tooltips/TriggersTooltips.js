@@ -18,25 +18,31 @@ export default function TriggersTooltips() {
   return (
     <div>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item>
-          <Tooltip disableFocusListener title="Add">
+        <Grid>
+          <Tooltip describeChild disableFocusListener title="Add">
             <Button>Hover or touch</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
-          <Tooltip disableHoverListener title="Add">
+        <Grid>
+          <Tooltip describeChild disableHoverListener title="Add">
             <Button>Focus or touch</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
-          <Tooltip disableFocusListener disableTouchListener title="Add">
+        <Grid>
+          <Tooltip
+            describeChild
+            disableFocusListener
+            disableTouchListener
+            title="Add"
+          >
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
+        <Grid>
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <div>
               <Tooltip
+                describeChild
                 onClose={handleTooltipClose}
                 open={open}
                 disableFocusListener

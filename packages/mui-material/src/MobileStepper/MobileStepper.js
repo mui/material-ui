@@ -69,7 +69,6 @@ const MobileStepperRoot = styled(Paper, {
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
-  overridesResolver: (props, styles) => styles.dots,
 })({
   variants: [
     {
@@ -120,7 +119,6 @@ const MobileStepperDot = styled('div', {
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
-  overridesResolver: (props, styles) => styles.progress,
 })({
   variants: [
     {
@@ -138,7 +136,6 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     activeStep = 0,
     backButton,
     className,
-    LinearProgressProps,
     nextButton,
     position = 'bottom',
     steps,
@@ -168,10 +165,7 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      progress: LinearProgressProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
@@ -271,11 +265,6 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * Props applied to the `LinearProgress` element.
-   * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  LinearProgressProps: PropTypes.object,
   /**
    * A next button element. For instance, it can be a `Button` or an `IconButton`.
    */

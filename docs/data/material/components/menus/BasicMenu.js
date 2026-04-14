@@ -19,7 +19,7 @@ export default function BasicMenu() {
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard
@@ -29,8 +29,10 @@ export default function BasicMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'basic-button',
+          },
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>

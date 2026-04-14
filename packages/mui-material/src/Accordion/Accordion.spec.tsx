@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Accordion from '@mui/material/Accordion';
+import { mergeSlotProps } from '@mui/material/utils';
+import Accordion, { AccordionProps } from '@mui/material/Accordion';
 
 function testOnChange() {
   function handleAccordionChange(event: React.SyntheticEvent, tabsValue: unknown) {}
@@ -56,3 +57,58 @@ const AccordionComponentTest = () => {
 <Accordion slotProps={{ heading: { component: 'h4' } }}>
   <div />
 </Accordion>;
+
+function Custom(props: AccordionProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Accordion
+      slotProps={{
+        ...slotProps,
+        transition: (ownerState) => {
+          const transitionProps =
+            typeof slotProps?.transition === 'function'
+              ? slotProps.transition(ownerState)
+              : slotProps?.transition;
+          return {
+            ...transitionProps,
+            onExited: (node) => {
+              transitionProps?.onExited?.(node);
+            },
+          };
+        },
+      }}
+      {...other}
+    >
+      test
+    </Accordion>
+  );
+}
+
+// slotProps.transition should reject unknown props
+<Accordion
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+>
+  <div />
+</Accordion>;
+
+function Custom2(props: AccordionProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Accordion
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
+    >
+      test
+    </Accordion>
+  );
+}

@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
+import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
-import isHostComponent from '../utils/isHostComponent';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -39,15 +39,7 @@ export const rootOverridesResolver = (props, styles) => {
 export const inputOverridesResolver = (props, styles) => {
   const { ownerState } = props;
 
-  return [
-    styles.input,
-    ownerState.size === 'small' && styles.inputSizeSmall,
-    ownerState.multiline && styles.inputMultiline,
-    ownerState.type === 'search' && styles.inputTypeSearch,
-    ownerState.startAdornment && styles.inputAdornedStart,
-    ownerState.endAdornment && styles.inputAdornedEnd,
-    ownerState.hiddenLabel && styles.inputHiddenLabel,
-  ];
+  return [styles.input, ownerState.type === 'search' && styles.inputTypeSearch];
 };
 
 const useUtilityClasses = (ownerState) => {
@@ -87,11 +79,6 @@ const useUtilityClasses = (ownerState) => {
       'input',
       disabled && 'disabled',
       type === 'search' && 'inputTypeSearch',
-      multiline && 'inputMultiline',
-      size === 'small' && 'inputSizeSmall',
-      hiddenLabel && 'inputHiddenLabel',
-      startAdornment && 'inputAdornedStart',
-      endAdornment && 'inputAdornedEnd',
       readOnly && 'readOnly',
     ],
   };
@@ -269,12 +256,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
     autoComplete,
     autoFocus,
     className,
     color,
-    components = {},
-    componentsProps = {},
     defaultValue,
     disabled,
     disableInjectingGlobalStyles,
@@ -522,11 +508,11 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = slots.root || components.Root || InputBaseRoot;
-  const rootProps = slotProps.root || componentsProps.root || {};
+  const Root = slots.root || InputBaseRoot;
+  const rootProps = slotProps.root || {};
 
-  const Input = slots.input || components.Input || InputBaseInput;
-  inputProps = { ...inputProps, ...(slotProps.input ?? componentsProps.input) };
+  const Input = slots.input || InputBaseInput;
+  inputProps = { ...inputProps, ...slotProps.input };
 
   return (
     <React.Fragment>
@@ -559,6 +545,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           <Input
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
@@ -615,6 +602,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   'aria-describedby': PropTypes.string,
   /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
+  /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
@@ -642,29 +633,6 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -705,7 +673,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    */
   inputComponent: elementTypeAcceptingRef,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps: PropTypes.object,
@@ -802,8 +770,6 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -812,8 +778,6 @@ InputBase.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */
@@ -834,7 +798,7 @@ InputBase.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type: PropTypes.string,

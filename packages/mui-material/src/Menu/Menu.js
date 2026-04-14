@@ -1,8 +1,6 @@
 'use client';
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { useRtl } from '@mui/system/RtlProvider';
@@ -13,6 +11,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
+import useSlot from '../utils/useSlot';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -40,13 +39,11 @@ const MenuRoot = styled(Popover, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tappable area outside of the simple menu with which to dismiss
@@ -59,7 +56,6 @@ export const MenuPaper = styled(PopoverPaper, {
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
-  overridesResolver: (props, styles) => styles.list,
 })({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
@@ -73,13 +69,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     children,
     className,
     disableAutoFocusItem = false,
-    MenuListProps = {},
     onClose,
     open,
-    PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
@@ -92,29 +85,26 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ...props,
     autoFocus,
     disableAutoFocusItem,
-    MenuListProps,
-    onEntering,
-    PaperProps,
     transitionDuration,
-    TransitionProps,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
+  const shouldManageInitialFocus = autoFocus && open; // `&& open` prevents a Menu with `keepMounted={true}` from accidentally stealing focus
+  const shouldAutoFocusActiveItem = shouldManageInitialFocus && !disableAutoFocusItem;
 
   const menuListActionsRef = React.useRef(null);
 
-  const handleEntering = (element, isAppearing) => {
+  const handleEntering = (element, _isAppearing) => {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, {
         direction: isRtl ? 'rtl' : 'ltr',
       });
-    }
 
-    if (onEntering) {
-      onEntering(element, isAppearing);
+      if (shouldManageInitialFocus) {
+        menuListActionsRef.current.focusInitialTarget?.();
+      }
     }
   };
 
@@ -128,42 +118,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     }
   };
 
-  /**
-   * the index of the item should receive focus
-   * in a `variant="selectedMenu"` it's the first `selected` item
-   * otherwise it's the very first item.
-   */
-  let activeItemIndex = -1;
-  // since we inject focus related props into children we have to do a lookahead
-  // to check if there is a `selected` item. We're looking for the last `selected`
-  // item and use the first valid item as a fallback
-  React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
-      return;
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Menu component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-      }
-    }
-
-    if (!child.props.disabled) {
-      if (variant === 'selectedMenu' && child.props.selected) {
-        activeItemIndex = index;
-      } else if (activeItemIndex === -1) {
-        activeItemIndex = index;
-      }
-    }
-  });
-
-  const PaperSlot = slots.paper ?? MenuPaper;
-  const paperExternalSlotProps = slotProps.paper ?? PaperProps;
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
 
   const rootSlotProps = useSlotProps({
     elementType: slots.root,
@@ -172,15 +130,42 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     className: [classes.root, className],
   });
 
-  const paperSlotProps = useSlotProps({
-    elementType: PaperSlot,
-    externalSlotProps: paperExternalSlotProps,
-    ownerState,
+  const [PaperSlot, paperSlotProps] = useSlot('paper', {
     className: classes.paper,
+    elementType: MenuPaper,
+    externalForwardedProps,
+    shouldForwardComponentProp: true,
+    ownerState,
   });
+
+  const [ListSlot, listSlotProps] = useSlot('list', {
+    className: classes.list,
+    elementType: MenuMenuList,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handleListKeyDown(event);
+        handlers.onKeyDown?.(event);
+      },
+    }),
+    ownerState,
+  });
+
+  const resolvedTransitionProps =
+    typeof slotProps.transition === 'function'
+      ? slotProps.transition(ownerState)
+      : slotProps.transition;
 
   return (
     <MenuRoot
+      // `disableAutoFocus={autoFocus}` is NOT a mistake
+      //   - `autoFocus` means `Menu` will control focus and move it into `MenuList` or an active `MenuItem`
+      //   - `disableAutoFocus` means disable `MenuRoot`s underlying `Popover`'s autoFocus handling
+      // This prevents `MenuList` and `Popover` from fighting each other to control focus.
+      // (This has nothing to do with DOM `autoFocus`)
+      disableAutoFocus={autoFocus}
       onClose={onClose}
       anchorOrigin={{
         vertical: 'bottom',
@@ -188,32 +173,42 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       slots={{
-        paper: PaperSlot,
         root: slots.root,
+        paper: PaperSlot,
+        backdrop: slots.backdrop,
+        transition: slots.transition,
       }}
       slotProps={{
         root: rootSlotProps,
         paper: paperSlotProps,
+        backdrop:
+          typeof slotProps.backdrop === 'function'
+            ? slotProps.backdrop(ownerState)
+            : slotProps.backdrop,
+        transition: {
+          ...resolvedTransitionProps,
+          onEntering: (...args) => {
+            handleEntering(...args);
+            resolvedTransitionProps?.onEntering?.(...args);
+          },
+        },
       }}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
-      TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
       ownerState={ownerState}
       {...other}
       classes={PopoverClasses}
     >
-      <MenuMenuList
-        onKeyDown={handleListKeyDown}
+      <ListSlot
         actions={menuListActionsRef}
-        autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
-        autoFocusItem={autoFocusItem}
+        autoFocus={shouldManageInitialFocus}
+        autoFocusItem={shouldAutoFocusActiveItem}
         variant={variant}
-        {...MenuListProps}
-        className={clsx(classes.list, MenuListProps.className)}
+        {...listSlotProps}
       >
         {children}
-      </MenuMenuList>
+      </ListSlot>
     </MenuRoot>
   );
 });
@@ -260,11 +255,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
-   * @default {}
-   */
-  MenuListProps: PropTypes.object,
-  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
@@ -276,10 +266,6 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * @ignore
-   */
-  PaperProps: PropTypes.object,
-  /**
    * `classes` prop applied to the [`Popover`](https://mui.com/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
@@ -289,6 +275,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -299,6 +286,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,
+    list: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
@@ -324,12 +312,6 @@ Menu.propTypes /* remove-proptypes */ = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @default {}
-   */
-  TransitionProps: PropTypes.object,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'

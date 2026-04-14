@@ -1,7 +1,7 @@
 import { BreakpointsOptions, ShapeOptions, SpacingOptions } from '@mui/system';
 import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { TypographyOptions } from './createTypography';
+import { TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
@@ -13,20 +13,23 @@ import { Theme } from './createTheme';
 export type Direction = 'ltr' | 'rtl';
 
 export interface DeprecatedThemeOptions {
-  shape?: ShapeOptions;
-  breakpoints?: BreakpointsOptions;
-  direction?: Direction;
-  mixins?: MixinsOptions;
-  overrides?: ComponentsOverrides;
-  palette?: PaletteOptions;
-  props?: ComponentsProps;
-  shadows?: Shadows;
-  spacing?: SpacingOptions;
-  transitions?: TransitionsOptions;
-  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  variants?: ComponentsVariants;
-  zIndex?: ZIndexOptions;
-  unstable_strictMode?: boolean;
+  shape?: ShapeOptions | undefined;
+  breakpoints?: BreakpointsOptions | undefined;
+  direction?: Direction | undefined;
+  mixins?: MixinsOptions | undefined;
+  overrides?: ComponentsOverrides | undefined;
+  palette?: PaletteOptions | undefined;
+  props?: ComponentsProps | undefined;
+  shadows?: Shadows | undefined;
+  spacing?: SpacingOptions | undefined;
+  transitions?: TransitionsOptions | undefined;
+  typography?:
+    | TypographyVariantsOptions
+    | ((palette: Palette) => TypographyVariantsOptions)
+    | undefined;
+  variants?: ComponentsVariants | undefined;
+  zIndex?: ZIndexOptions | undefined;
+  unstable_strictMode?: boolean | undefined;
 }
 
 /**

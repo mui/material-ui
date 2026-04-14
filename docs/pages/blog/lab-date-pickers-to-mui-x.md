@@ -89,7 +89,7 @@ npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
 
 ## Where is the Date and Time Picker documentation?
 
-You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
+You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/).
 
 ## What's next for the Date and Time Pickers?
 

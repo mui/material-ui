@@ -32,8 +32,8 @@ export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 export interface SerializedStyles {
   name: string;
   styles: string;
-  map?: string;
-  next?: SerializedStyles;
+  map?: string | undefined;
+  next?: SerializedStyles | undefined;
 }
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
@@ -59,19 +59,7 @@ export interface CSSOthersObjectForCSSObject {
 }
 
 // Omit variants as a key, because we have a special handling for it
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    Omit<CSSOthersObject, 'variants'> {}
-
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{
-    props: Props | ((props: Props) => boolean);
-    style:
-      | CSSObject
-      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
-  }>;
-}
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -106,8 +94,35 @@ export interface FunctionInterpolation<Props> {
 export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
-  | InterpolationPrimitive
-  | CSSObjectWithVariants<Props>
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSPropertiesWithMultiValues
+  | (CSSObject & {
+      variants?:
+        | Array<{
+            props:
+              | (Props extends { ownerState: infer O }
+                  ? Partial<Omit<Props, 'ownerState'> & O>
+                  : Partial<Props>)
+              | ((
+                  props: Props extends { ownerState: infer O }
+                    ? Props & O & { ownerState: O }
+                    : Props,
+                ) => boolean);
+            style:
+              | CSSObject
+              | ((
+                  args: Props extends { theme: any } ? { theme: Props['theme'] } : any,
+                ) => CSSObject);
+          }>
+        | undefined;
+    })
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 
@@ -115,9 +130,9 @@ export function shouldForwardProp(propName: PropertyKey): boolean;
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
-  label?: string;
+  label?: string | undefined;
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
-  target?: string;
+  target?: string | undefined;
 }
 
 /**
@@ -174,7 +189,7 @@ export interface CreateMUIStyled<
     Pick<PropsOf<C>, ForwardedProps> & MUIStyledCommonProps,
     {},
     {
-      ref?: React.Ref<InstanceType<C>>;
+      ref?: React.Ref<InstanceType<C>> | undefined;
     },
     Theme
   >;
@@ -186,7 +201,7 @@ export interface CreateMUIStyled<
     PropsOf<C> & MUIStyledCommonProps,
     {},
     {
-      ref?: React.Ref<InstanceType<C>>;
+      ref?: React.Ref<InstanceType<C>> | undefined;
     },
     Theme
   >;
@@ -206,8 +221,8 @@ export interface CreateMUIStyled<
 
   <
     Tag extends keyof React.JSX.IntrinsicElements,
-    ForwardedProps extends
-      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
+    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] =
+      keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
     options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &

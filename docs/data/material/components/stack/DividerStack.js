@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -9,7 +8,7 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   ...theme.applyStyles('dark', {
     backgroundColor: '#1A2027',
   }),

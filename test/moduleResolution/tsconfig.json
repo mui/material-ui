@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    // rely on workspace linking
+    "paths": {},
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "noEmit": true,
+    "noErrorTruncation": true,
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "types": []
+  },
+  "exclude": ["**/node_modules/"]
+}

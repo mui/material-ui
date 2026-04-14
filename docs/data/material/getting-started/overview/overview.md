@@ -13,7 +13,7 @@ Material UI is an open-source React component library that implements Google's 
 It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
 :::info
-Material UI v6 supports Material Design 2.
+Material UI supports Material Design 2.
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future design-related updates.
 :::
 
@@ -29,14 +29,6 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
 - **Trusted by thousands of organizations:** Material UI has the largest UI community in the React ecosystem.
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
   You can count on the community's support for years to come (for example [Stack Overflow](https://trends.stackoverflow.co/?tags=material-ui)).
-
-### Material UI vs. MUI Base
-
-Material UI and MUI Base feature many of the same UI components, but MUI Base comes without any default styles or styling solutions.
-
-Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/)).
-
-MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use MUI Base components and hooks for its foundational structure.
 
 ## Start now
 

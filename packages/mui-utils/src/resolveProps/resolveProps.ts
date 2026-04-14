@@ -1,17 +1,24 @@
+import clsx from 'clsx';
+
 /**
  * Add keys, values of `defaultProps` that does not exist in `props`
  * @param defaultProps
  * @param props
+ * @param mergeClassNameAndStyle If `true`, merges `className` and `style` props instead of overriding them.
+ *   When `false` (default), props override defaultProps. When `true`, `className` values are concatenated
+ *   and `style` objects are merged with props taking precedence.
  * @returns resolved props
  */
 export default function resolveProps<
   T extends {
-    components?: Record<string, unknown>;
-    componentsProps?: Record<string, unknown>;
-    slots?: Record<string, unknown>;
-    slotProps?: Record<string, unknown>;
+    components?: Record<string, unknown> | undefined;
+    componentsProps?: Record<string, unknown> | undefined;
+    slots?: Record<string, unknown> | undefined;
+    slotProps?: Record<string, unknown> | undefined;
+    className?: string | undefined;
+    style?: React.CSSProperties | undefined;
   } & Record<string, unknown>,
->(defaultProps: T, props: T) {
+>(defaultProps: T, props: T, mergeClassNameAndStyle: boolean = false) {
   const output = { ...props };
 
   for (const key in defaultProps) {
@@ -40,10 +47,18 @@ export default function resolveProps<
               (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
                 (defaultSlotProps as Record<string, any>)[slotPropName],
                 (slotProps as Record<string, any>)[slotPropName],
+                mergeClassNameAndStyle,
               );
             }
           }
         }
+      } else if (propName === 'className' && mergeClassNameAndStyle && props.className) {
+        output.className = clsx(defaultProps?.className, props?.className);
+      } else if (propName === 'style' && mergeClassNameAndStyle && props.style) {
+        output.style = {
+          ...defaultProps?.style,
+          ...props?.style,
+        };
       } else if (output[propName] === undefined) {
         output[propName] = defaultProps[propName];
       }

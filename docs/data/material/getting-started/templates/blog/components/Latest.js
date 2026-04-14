@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
@@ -223,7 +223,11 @@ export default function Latest() {
                   sx={{ fontSize: '1rem' }}
                 />
               </TitleTypography>
-              <StyledTypography variant="body2" color="text.secondary" gutterBottom>
+              <StyledTypography
+                variant="body2"
+                gutterBottom
+                sx={{ color: 'text.secondary' }}
+              >
                 {article.description}
               </StyledTypography>
 

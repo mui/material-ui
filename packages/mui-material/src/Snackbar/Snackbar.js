@@ -107,8 +107,6 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration = null,
     children,
     className,
-    ClickAwayListenerProps: ClickAwayListenerPropsProp,
-    ContentProps: ContentPropsProp,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -120,9 +118,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     resumeHideDuration,
     slots = {},
     slotProps = {},
-    TransitionComponent: TransitionComponentProp,
     transitionDuration = defaultTransitionDuration,
-    TransitionProps: { onEnter, onExited, ...TransitionPropsProp } = {},
     ...other
   } = props;
 
@@ -131,43 +127,18 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     disableWindowBlurListener,
-    TransitionComponent: TransitionComponentProp,
     transitionDuration,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
+  const { getRootProps, onClickAway } = useSnackbar(ownerState);
 
   const [exited, setExited] = React.useState(true);
 
-  const handleExited = (node) => {
-    setExited(true);
-
-    if (onExited) {
-      onExited(node);
-    }
-  };
-
-  const handleEnter = (node, isAppearing) => {
-    setExited(false);
-
-    if (onEnter) {
-      onEnter(node, isAppearing);
-    }
-  };
-
   const externalForwardedProps = {
-    slots: {
-      transition: TransitionComponentProp,
-      ...slots,
-    },
-    slotProps: {
-      content: ContentPropsProp,
-      clickAwayListener: ClickAwayListenerPropsProp,
-      transition: TransitionPropsProp,
-      ...slotProps,
-    },
+    slots,
+    slotProps,
   };
 
   const [Root, rootProps] = useSlot('root', {
@@ -188,7 +159,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
       externalForwardedProps,
       getSlotProps: (handlers) => ({
         onClickAway: (...params) => {
+          const event = params[0];
           handlers.onClickAway?.(...params);
+          if (event?.defaultMuiPrevented) {
+            return;
+          }
           onClickAway(...params);
         },
       }),
@@ -212,11 +187,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     getSlotProps: (handlers) => ({
       onEnter: (...params) => {
         handlers.onEnter?.(...params);
-        handleEnter(...params);
+        setExited(false);
       },
       onExited: (...params) => {
         handlers.onExited?.(...params);
-        handleExited(...params);
+        setExited(true);
       },
     }),
     additionalProps: {
@@ -287,16 +262,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * Props applied to the `ClickAwayListener` element.
-   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ClickAwayListenerProps: PropTypes.object,
-  /**
-   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
-   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  ContentProps: PropTypes.object,
-  /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
    */
@@ -354,24 +319,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    clickAwayListener: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element.isRequired,
-        disableReactTree: PropTypes.bool,
-        mouseEvent: PropTypes.oneOf([
-          'onClick',
-          'onMouseDown',
-          'onMouseUp',
-          'onPointerDown',
-          'onPointerUp',
-          false,
-        ]),
-        onClickAway: PropTypes.func,
-        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-      }),
-    ]),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -395,13 +344,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default Grow
-   */
-  TransitionComponent: PropTypes.elementType,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
@@ -417,13 +359,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default Snackbar;

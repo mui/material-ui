@@ -218,7 +218,7 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              renderTags={() => null}
+              renderValue={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => {
                 const { key, ...optionProps } = props;
@@ -279,8 +279,8 @@ export default function GitHubLabel() {
               getOptionLabel={(option) => option.name}
               renderInput={(params) => (
                 <StyledInput
-                  ref={params.InputProps.ref}
-                  inputProps={params.inputProps}
+                  ref={params.slotProps.input.ref}
+                  inputProps={params.slotProps.htmlInput}
                   autoFocus
                   placeholder="Filter labels"
                 />

@@ -25,7 +25,6 @@ const useUtilityClasses = (ownerState) => {
 const StepIconRoot = styled(SvgIcon, {
   name: 'MuiStepIcon',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     display: 'block',
@@ -33,10 +32,7 @@ const StepIconRoot = styled(SvgIcon, {
       duration: theme.transitions.duration.shortest,
     }),
     color: (theme.vars || theme).palette.text.disabled,
-    [`&.${stepIconClasses.completed}`]: {
-      color: (theme.vars || theme).palette.primary.main,
-    },
-    [`&.${stepIconClasses.active}`]: {
+    [`&.${stepIconClasses.completed}, &.${stepIconClasses.active}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
     [`&.${stepIconClasses.error}`]: {
@@ -48,7 +44,6 @@ const StepIconRoot = styled(SvgIcon, {
 const StepIconText = styled('text', {
   name: 'MuiStepIcon',
   slot: 'Text',
-  overridesResolver: (props, styles) => styles.text,
 })(
   memoTheme(({ theme }) => ({
     fill: (theme.vars || theme).palette.primary.contrastText,

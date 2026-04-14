@@ -9,7 +9,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useThemeSystem from '../useTheme';
-import { extendSxProp } from '../styleFunctionSx';
 import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
   generateGridStyles,
@@ -32,7 +31,6 @@ const defaultTheme = createTheme();
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiGrid',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 });
 
 function useThemePropsDefault<T extends {}>(props: T) {
@@ -45,10 +43,10 @@ function useThemePropsDefault<T extends {}>(props: T) {
 
 export default function createGrid(
   options: {
-    createStyledComponent?: typeof defaultCreateStyledComponent;
-    useThemeProps?: typeof useThemePropsDefault;
-    useTheme?: typeof useThemeSystem;
-    componentName?: string;
+    createStyledComponent?: typeof defaultCreateStyledComponent | undefined;
+    useThemeProps?: typeof useThemePropsDefault | undefined;
+    useTheme?: typeof useThemeSystem | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -120,8 +118,11 @@ export default function createGrid(
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
     const theme = useTheme();
-    const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
-    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
+    const themeProps = useThemeProps<
+      typeof inProps & { component?: React.ElementType | undefined }
+    >(inProps);
+    const props = themeProps as typeof themeProps & GridOwnerState;
+
     const {
       className,
       children,

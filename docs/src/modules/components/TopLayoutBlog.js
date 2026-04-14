@@ -1,24 +1,22 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
+import { MarkdownElement, RichMarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
 
 export const authors = {
   oliviertassinari: {
@@ -116,6 +114,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/16889233',
     github: 'DiegoAndai',
   },
+  alelthomas: {
+    name: 'Ale Thomas',
+    avatar: 'https://avatars.githubusercontent.com/u/93217218',
+    github: 'alelthomas',
+  },
   DavidCnoops: {
     name: 'David Cnoops',
     avatar: 'https://avatars.githubusercontent.com/u/28001064',
@@ -140,6 +143,31 @@ export const authors = {
     name: 'Romain Gregoire',
     avatar: 'https://avatars.githubusercontent.com/u/1423607',
     github: 'romgrk',
+  },
+  arminmeh: {
+    name: 'Armin Mehinović',
+    avatar: 'https://avatars.githubusercontent.com/u/4390250',
+    github: 'arminmeh',
+  },
+  janpot: {
+    name: 'Jan Potoms',
+    avatar: 'https://avatars.githubusercontent.com/u/2109932',
+    github: 'Janpot',
+  },
+  nadjakovacev: {
+    name: 'Nadja Kovacev',
+    avatar: 'https://avatars.githubusercontent.com/u/159806370',
+    github: 'nadjakovacev',
+  },
+  raffaellaluzi: {
+    name: 'Raffaella Luzi',
+    avatar: 'https://avatars.githubusercontent.com/u/136349774',
+    github: 'rluzists1',
+  },
+  bernardobelchior: {
+    name: 'Bernardo Belchior',
+    avatar: 'https://avatars.githubusercontent.com/u/12778398',
+    github: 'bernardobelchior',
   },
 };
 
@@ -204,6 +232,7 @@ const Root = styled('div')(
         borderColor: (theme.vars || theme).palette.grey[200],
         borderRadius: 8,
         display: 'block',
+        objectFit: 'cover',
         margin: 'auto',
         marginBottom: 16,
       },
@@ -302,7 +331,6 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const theme = useTheme();
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
@@ -402,7 +430,6 @@ export default function TopLayoutBlog(props) {
             sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'Back to blog'}
           </Link>
           {headers.title ? (
@@ -410,7 +437,7 @@ export default function TopLayoutBlog(props) {
               {/*
                 Depending on the timezone, the display date can change from one day to another.
                 e.g. Sunday vs. Monday
-                TODO: Move the date formating to the server.
+                TODO: Move the date formatting to the server.
               */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
@@ -464,8 +491,6 @@ export default function TopLayoutBlog(props) {
                 disableAd
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
-                theme={theme}
-                WrapperComponent={React.Fragment}
               />
             );
           })}

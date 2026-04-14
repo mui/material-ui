@@ -11,10 +11,6 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>. The prop defaults to the value (<code>&#39;primary&#39;</code>) inherited from the parent FormControl component."
     },
-    "components": { "description": "The components used for each slot inside." },
-    "componentsProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
@@ -37,7 +33,7 @@
       "requiresRef": true
     },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element."
     },
     "inputRef": { "description": "Pass a ref to the <code>input</code> element." },
     "margin": {
@@ -59,7 +55,10 @@
     "onChange": {
       "description": "Callback fired when the value is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        }
       }
     },
     "onInvalid": {
@@ -77,17 +76,15 @@
     "rows": { "description": "Number of rows to display when multiline option is set to true." },
     "size": { "description": "The size of the component." },
     "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future."
+      "description": "The extra props for the slot components. You can override the existing props or add new ones."
     },
-    "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
-    },
+    "slots": { "description": "The components used for each slot inside." },
     "startAdornment": { "description": "Start <code>InputAdornment</code> for this component." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "type": {
-      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>."
+      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types\">a valid HTML5 input type</a>."
     },
     "value": {
       "description": "The value of the <code>input</code> element, required for a controlled component."
@@ -140,36 +137,7 @@
       "conditions": "<code>hiddenLabel={true}</code>"
     },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
-    "inputAdornedEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
-    },
-    "inputAdornedStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>startAdornment</code> is provided"
-    },
-    "inputHiddenLabel": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>hiddenLabel={true}</code>"
-    },
-    "inputMultiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
-    },
-    "inputSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
-    "inputTypeSearch": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>type=\"search\"</code>"
-    },
+    "inputTypeSearch": { "description": "" },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

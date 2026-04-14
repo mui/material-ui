@@ -12,6 +12,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Popover',
     propName: 'BackdropComponent',
     slotName: 'backdrop',
@@ -19,6 +20,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Popover',
     propName: 'BackdropProps',
     slotName: 'backdrop',
@@ -26,6 +28,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Popover',
     propName: 'PaperProps',
     slotName: 'paper',
@@ -33,6 +36,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Popover',
     propName: 'TransitionComponent',
     slotName: 'transition',
@@ -40,6 +44,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Popover',
     propName: 'TransitionProps',
     slotName: 'transition',

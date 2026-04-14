@@ -62,19 +62,6 @@ async function writeNextWebpackFixture(context) {
 /**
  * @param {FixtureContext} context
  */
-async function writeCRAFixture(context) {
-  const { fixtureUrl, fixtureTemplateValues } = context;
-  const destinationUrl = new URL('./src/create-react-app.fixture.js', fixtureUrl);
-  const templateSource = await fs.readFile(new URL('create-react-app.template', fixtureUrl), {
-    encoding: 'utf8',
-  });
-
-  await writeFromTemplate(destinationUrl, templateSource, fixtureTemplateValues);
-}
-
-/**
- * @param {FixtureContext} context
- */
 async function writeSnowpackFixture(context) {
   const { fixtureUrl, fixtureTemplateValues } = context;
   const destinationUrl = new URL('./src/snowpack.fixture.js', fixtureUrl);
@@ -195,12 +182,6 @@ async function run(context) {
     case 'next-webpack5':
       await writeNextWebpackFixture({
         fixtureUrl: resolveFixtureUrl('next-webpack5'),
-        fixtureTemplateValues,
-      });
-      break;
-    case 'create-react-app':
-      await writeCRAFixture({
-        fixtureUrl: resolveFixtureUrl('create-react-app'),
         fixtureTemplateValues,
       });
       break;

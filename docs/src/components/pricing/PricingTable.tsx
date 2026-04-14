@@ -12,35 +12,13 @@ import { useRouter } from 'next/router';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
-import { Link } from '@mui/docs/Link';
-import IconImage from 'docs/src/components/icon/IconImage';
-import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
+import { Link } from '@mui/internal-core-docs/Link';
+import IconImage from '@mui/internal-core-docs/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
-
-const planInfo = {
-  community: {
-    iconName: 'pricing/x-plan-community',
-    title: 'Community',
-    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
-  },
-  pro: {
-    iconName: 'pricing/x-plan-pro',
-    title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
-  },
-  premium: {
-    iconName: 'pricing/x-plan-premium',
-    title: 'Premium',
-    description:
-      'The most advanced features for data-rich applications, as well as the highest priority for support.',
-  },
-} as const;
-
-const formatter = new Intl.NumberFormat('en-US');
-
-function formatCurrency(value: number) {
-  return `$${formatter.format(value)}`;
-}
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { MultiAppSwitchTable } from 'docs/src/components/pricing/MultiAppSwitch';
+import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
+import { PlanName, planInfo } from './PricingCards';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: any) {
@@ -60,11 +38,11 @@ function transitionTheme(theme: any) {
   };
 }
 
-export function PlanName({
+export function PlanNameTable({
   plan,
-  disableDescription = false,
+  disableDescription = true,
 }: {
-  plan: 'community' | 'pro' | 'premium';
+  plan: PlanName;
   disableDescription?: boolean;
 }) {
   const { title, iconName, description } = planInfo[plan];
@@ -102,134 +80,9 @@ export function PlanName({
   );
 }
 
-interface PlanPriceProps {
-  plan: 'community' | 'pro' | 'premium';
-}
-
-export function PlanPrice(props: PlanPriceProps) {
-  const { plan } = props;
-
-  const { licenseModel } = useLicenseModel();
-  const annual = licenseModel === 'annual';
-  const planPriceMinHeight = 24;
-
-  if (plan === 'community') {
-    return (
-      <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600', mt: 6 }}
-          >
-            $0
-          </Typography>
-        </Box>
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          Free forever!
-        </Typography>
-      </React.Fragment>
-    );
-  }
-
-  const monthlyDisplay = annual;
-
-  const priceUnit = monthlyDisplay ? '/ month / dev' : '/ dev';
-  const getPriceExplanation = (displayedValue: number) => {
-    if (!annual) {
-      return `$${displayedValue}/dev billed once.`;
-    }
-    return monthlyDisplay
-      ? `Billed annually at $${displayedValue}/dev.`
-      : `$${displayedValue}/dev/month billed annualy.`;
-  };
-
-  if (plan === 'pro') {
-    const monthlyValue = annual ? 15 : 15 * 3;
-    const annualValue = monthlyValue * 12;
-
-    const mainDisplayValue = monthlyDisplay ? monthlyValue : annualValue;
-    const priceExplanation = getPriceExplanation(monthlyDisplay ? annualValue : monthlyValue);
-
-    return (
-      <React.Fragment>
-        <LicenseModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(mainDisplayValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2,
-            mb: 2,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          {(annual || monthlyDisplay) && (
-            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-              {priceExplanation}
-            </Typography>
-          )}
-        </Box>
-      </React.Fragment>
-    );
-  }
-  // else Premium
-  const premiumMonthlyValue = annual ? 49 : 49 * 3;
-  const premiumAnnualValue = premiumMonthlyValue * 12;
-
-  const premiumDisplayedValue = monthlyDisplay ? premiumMonthlyValue : premiumAnnualValue;
-  const priceExplanation = getPriceExplanation(
-    monthlyDisplay ? premiumAnnualValue : premiumMonthlyValue,
-  );
-
-  return (
-    <React.Fragment>
-      <LicenseModelSwitch />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 4 }}>
-        <Box sx={{ width: 10 }} />
-        <Typography variant="h3" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-          {formatCurrency(premiumDisplayedValue)}
-        </Typography>
-        <Box sx={{ width: 5 }} />
-        <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-          {priceUnit}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 2,
-          mb: 2,
-          minHeight: planPriceMinHeight,
-        }}
-      >
-        {(annual || monthlyDisplay) && (
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            {priceExplanation}
-          </Typography>
-        )}
-      </Box>
-    </React.Fragment>
-  );
-}
-
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
+
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
@@ -263,9 +116,9 @@ function ColumnHead({
   tooltip,
   href,
 }: {
-  label: React.ReactNode;
+  label: React.ReactNode | string;
   metadata?: string;
-  tooltip?: string;
+  tooltip?: React.ReactNode | string;
   href?: string;
 }) {
   const text = (
@@ -403,7 +256,7 @@ function RowHead({
       sx={[
         {
           justifyContent: 'flex-start',
-          borderRadius: 1,
+          borderRadius: '12px 0 0 12px',
           p: 1,
           transition: 'none',
           typography: 'body2',
@@ -429,10 +282,10 @@ function RowHead({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
+      label="Base UI"
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui/react."
     />
   ),
   'MUI System': (
@@ -607,7 +460,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
   'charts/zoom-and-pan': <ColumnHead label="Zoom & Pan" href="/x/react-charts/zoom-and-pan/" />,
-  'charts/export': <ColumnHead label="Export" />,
+  'charts/export': <ColumnHead label="Export" href="/x/react-charts/export/" />,
   // charts - datagrid
   'charts/cell-with-charts': (
     <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
@@ -643,6 +496,128 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'tree-view/virtualization': <ColumnHead label="Virtualization" />,
 
+  // Scheduler
+  'scheduler/event-calendar': <ColumnHead label="Event Calendar" href="/x/react-scheduler/" />,
+  'scheduler/event-timeline': <ColumnHead label="Event Timeline" href="/x/react-scheduler/" />,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': (
+    <ColumnHead
+      label="Calendar views (day, week, month, agenda)"
+      href="/x/react-scheduler/event-calendar/views/"
+    />
+  ),
+  'scheduler/calendar-year-view': (
+    <ColumnHead label="Year view" href="/x/react-scheduler/event-calendar/views/#year-view" />
+  ),
+  'scheduler/calendar-drag-and-drop': (
+    <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-calendar/drag-interactions/" />
+  ),
+  'scheduler/calendar-resources': (
+    <ColumnHead label="Resource management" href="/x/react-scheduler/event-calendar/resources/" />
+  ),
+  'scheduler/calendar-timezone': (
+    <ColumnHead label="Timezone support" href="/x/react-scheduler/timezone/" />
+  ),
+  'scheduler/calendar-editing': (
+    <ColumnHead
+      label="Event editing, creation & deletion"
+      href="/x/react-scheduler/event-calendar/editing/"
+    />
+  ),
+  'scheduler/calendar-recurring-events': (
+    <ColumnHead label="Recurring events" href="/x/react-scheduler/recurring-events/" />
+  ),
+  'scheduler/calendar-lazy-loading': (
+    <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-calendar/lazy-loading/" />
+  ),
+  'scheduler/calendar-resource-view': (
+    <ColumnHead
+      label="Resource views"
+      href="/x/react-scheduler/event-calendar/views/#resource-views"
+    />
+  ),
+  'scheduler/calendar-constraints': (
+    <ColumnHead
+      label="Event constraints"
+      href="/x/react-scheduler/event-calendar/events/#event-constraints"
+    />
+  ),
+  'scheduler/calendar-copy-paste-events': (
+    <ColumnHead
+      label="Copy & paste events"
+      href="/x/react-scheduler/event-calendar/editing/#copy-paste-events"
+    />
+  ),
+  'scheduler/calendar-undo-redo': (
+    <ColumnHead label="Undo / Redo" href="/x/react-scheduler/event-calendar/editing/#undo-redo" />
+  ),
+  'scheduler/calendar-search-filtering': (
+    <ColumnHead label="Search & filtering" href="/x/react-scheduler/event-calendar/filtering/" />
+  ),
+  'scheduler/calendar-import-export': (
+    <ColumnHead label="Import & export" href="/x/react-scheduler/event-calendar/import-export/" />
+  ),
+  'scheduler/calendar-accessibility': <ColumnHead label="Accessibility & keyboard navigation" />,
+  'scheduler/calendar-localization': (
+    <ColumnHead label="Localization" href="/x/react-scheduler/event-calendar/localization/" />
+  ),
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': (
+    <ColumnHead label="Timeline views" href="/x/react-scheduler/event-timeline/views/" />
+  ),
+  'scheduler/timeline-drag-and-drop': (
+    <ColumnHead label="Drag & drop" href="/x/react-scheduler/event-timeline/drag-interactions/" />
+  ),
+  'scheduler/timeline-resources': (
+    <ColumnHead label="Resource management" href="/x/react-scheduler/event-timeline/resources/" />
+  ),
+  'scheduler/timeline-timezone': (
+    <ColumnHead label="Timezone support" href="/x/react-scheduler/timezone/" />
+  ),
+  'scheduler/timeline-editing': (
+    <ColumnHead
+      label="Event editing, creation & deletion"
+      href="/x/react-scheduler/event-timeline/editing/"
+    />
+  ),
+  'scheduler/timeline-recurring-events': (
+    <ColumnHead label="Recurring events" href="/x/react-scheduler/recurring-events/" />
+  ),
+  'scheduler/timeline-lazy-loading': (
+    <ColumnHead label="Lazy loading" href="/x/react-scheduler/event-timeline/lazy-loading/" />
+  ),
+  'scheduler/timeline-zooming': (
+    <ColumnHead label="Zoom in/out" href="/x/react-scheduler/event-timeline/views/#zoom-in-out" />
+  ),
+  'scheduler/timeline-virtualization': (
+    <ColumnHead label="Virtualization" href="/x/react-scheduler/event-timeline/virtualization/" />
+  ),
+  'scheduler/timeline-constraints': (
+    <ColumnHead
+      label="Event constraints"
+      href="/x/react-scheduler/event-timeline/events/#event-constraints"
+    />
+  ),
+  'scheduler/timeline-copy-paste-events': (
+    <ColumnHead
+      label="Copy & paste events"
+      href="/x/react-scheduler/event-timeline/editing/#copy-paste-events"
+    />
+  ),
+  'scheduler/timeline-undo-redo': (
+    <ColumnHead label="Undo / Redo" href="/x/react-scheduler/event-timeline/editing/#undo-redo" />
+  ),
+  'scheduler/timeline-search-filtering': (
+    <ColumnHead label="Search & filtering" href="/x/react-scheduler/event-timeline/filtering/" />
+  ),
+  'scheduler/timeline-import-export': (
+    <ColumnHead label="Import & export" href="/x/react-scheduler/event-timeline/import-export/" />
+  ),
+  'scheduler/timeline-accessibility': <ColumnHead label="Accessibility & keyboard navigation" />,
+  'scheduler/timeline-localization': (
+    <ColumnHead label="Localization" href="/x/react-scheduler/event-timeline/localization/" />
+  ),
+
   'mui-x-production': <ColumnHead label="Perpetual use in production" />,
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-development-perpetual': (
@@ -653,7 +628,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'core-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI Core',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI Core
+          </React.Fragment>
+        ),
         tooltip:
           'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
@@ -662,9 +642,37 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'x-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI X',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI X
+          </React.Fragment>
+        ),
         tooltip:
           'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
+      }}
+    />
+  ),
+  'priority-support': (
+    <ColumnHead
+      {...{
+        label: 'Priority Support',
+        tooltip: (
+          <React.Fragment>
+            The highest level of support with 1 business day response time, pre-screening and issue
+            escalation. More details in the{' '}
+            <Link
+              href="https://mui.com/legal/technical-support-sla/#priority-support"
+              target="_blank"
+              color="inherit"
+              underline="always"
+              rel="noopener"
+            >
+              Technical Support SLA
+            </Link>
+            .
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -684,7 +692,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'response-time': (
     <ColumnHead
-      {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response.' }}
+      {...{
+        label: 'Guaranteed response time',
+        tooltip: 'Maximum lead time for each response, only working days are counted.',
+      }}
     />
   ),
   'pre-screening': (
@@ -716,6 +727,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
       }}
     />
   ),
+  'customer-success': (
+    <ColumnHead
+      {...{
+        label: 'Customer Success Manager',
+        tooltip: 'A dedicated person to help you get the most out of MUI products.',
+      }}
+    />
+  ),
 };
 
 const yes = <IconImage name="pricing/yes" title="Included" />;
@@ -737,7 +756,7 @@ const toBeDefined = (
 
 const communityData: Record<string, React.ReactNode> = {
   // Core open-source libraries
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -797,8 +816,8 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': yes,
   'charts/heatmap': no,
-  'charts/treemap': pending,
-  'charts/radar': pending,
+  'charts/treemap': no,
+  'charts/radar': yes,
   'charts/funnel': no,
   'charts/sankey': no,
   'charts/gantt': no,
@@ -822,6 +841,43 @@ const communityData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': no,
   'tree-view/virtualization': no,
+  // Scheduler
+  'scheduler/event-calendar': yes,
+  'scheduler/event-timeline': no,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-editing': yes,
+  'scheduler/calendar-recurring-events': no,
+  'scheduler/calendar-lazy-loading': no,
+  'scheduler/calendar-resource-view': no,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search-filtering': no,
+  'scheduler/calendar-import-export': no,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': no,
+  'scheduler/timeline-drag-and-drop': no,
+  'scheduler/timeline-resources': no,
+  'scheduler/timeline-timezone': no,
+  'scheduler/timeline-editing': no,
+  'scheduler/timeline-recurring-events': no,
+  'scheduler/timeline-lazy-loading': no,
+  'scheduler/timeline-zooming': no,
+  'scheduler/timeline-virtualization': no,
+  'scheduler/timeline-constraints': no,
+  'scheduler/timeline-copy-paste-events': no,
+  'scheduler/timeline-undo-redo': no,
+  'scheduler/timeline-search-filtering': no,
+  'scheduler/timeline-import-export': no,
+  'scheduler/timeline-accessibility': no,
+  'scheduler/timeline-localization': no,
   // general
   'mui-x-production': yes,
   'mui-x-updates': yes,
@@ -830,6 +886,8 @@ const communityData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
+  'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
@@ -840,7 +898,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -902,10 +960,10 @@ const proData: Record<string, React.ReactNode> = {
   'charts/heatmap': yes,
   'charts/treemap': pending,
 
-  'charts/radar': pending,
-  'charts/funnel': pending,
-  'charts/sankey': pending,
-  'charts/gantt': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
+  'charts/sankey': yes,
+  'charts/gantt': no,
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
@@ -913,7 +971,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/zoom-and-pan': yes,
-  'charts/export': pending,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
@@ -926,6 +984,43 @@ const proData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
+  // Scheduler
+  'scheduler/event-calendar': no,
+  'scheduler/event-timeline': no,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': no,
+  'scheduler/calendar-year-view': no,
+  'scheduler/calendar-drag-and-drop': no,
+  'scheduler/calendar-resources': no,
+  'scheduler/calendar-timezone': no,
+  'scheduler/calendar-editing': no,
+  'scheduler/calendar-recurring-events': no,
+  'scheduler/calendar-lazy-loading': no,
+  'scheduler/calendar-resource-view': no,
+  'scheduler/calendar-constraints': no,
+  'scheduler/calendar-copy-paste-events': no,
+  'scheduler/calendar-undo-redo': no,
+  'scheduler/calendar-search-filtering': no,
+  'scheduler/calendar-import-export': no,
+  'scheduler/calendar-accessibility': no,
+  'scheduler/calendar-localization': no,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': no,
+  'scheduler/timeline-drag-and-drop': no,
+  'scheduler/timeline-resources': no,
+  'scheduler/timeline-timezone': no,
+  'scheduler/timeline-editing': no,
+  'scheduler/timeline-recurring-events': no,
+  'scheduler/timeline-lazy-loading': no,
+  'scheduler/timeline-zooming': no,
+  'scheduler/timeline-virtualization': no,
+  'scheduler/timeline-constraints': no,
+  'scheduler/timeline-copy-paste-events': no,
+  'scheduler/timeline-undo-redo': no,
+  'scheduler/timeline-search-filtering': no,
+  'scheduler/timeline-import-export': no,
+  'scheduler/timeline-accessibility': no,
+  'scheduler/timeline-localization': no,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
@@ -934,17 +1029,19 @@ const proData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
+  'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available from 10+ devs" />,
+  'security-questionnaire': <Info value="Available for orders of $12,000 and above" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -989,7 +1086,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -1005,9 +1102,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/gauge': yes,
   'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/radar': pending,
-  'charts/funnel': pending,
-  'charts/sankey': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
+  'charts/sankey': yes,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
   'charts/candlestick': toBeDefined,
@@ -1016,7 +1113,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/zoom-and-pan': yes,
-  'charts/export': pending,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
@@ -1029,32 +1126,201 @@ const premiumData: Record<string, React.ReactNode> = {
   'tree-view/inline-editing': yes,
   'tree-view/drag-to-reorder': yes,
   'tree-view/virtualization': pending,
+  // Scheduler
+  'scheduler/event-calendar': yes,
+  'scheduler/event-timeline': yes,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-editing': yes,
+  'scheduler/calendar-recurring-events': yes,
+  'scheduler/calendar-lazy-loading': yes,
+  'scheduler/calendar-resource-view': pending,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search-filtering': pending,
+  'scheduler/calendar-import-export': pending,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': yes,
+  'scheduler/timeline-drag-and-drop': yes,
+  'scheduler/timeline-resources': yes,
+  'scheduler/timeline-timezone': yes,
+  'scheduler/timeline-editing': yes,
+  'scheduler/timeline-recurring-events': yes,
+  'scheduler/timeline-lazy-loading': pending,
+  'scheduler/timeline-zooming': pending,
+  'scheduler/timeline-virtualization': pending,
+  'scheduler/timeline-constraints': pending,
+  'scheduler/timeline-copy-paste-events': pending,
+  'scheduler/timeline-undo-redo': pending,
+  'scheduler/timeline-search-filtering': pending,
+  'scheduler/timeline-import-export': pending,
+  'scheduler/timeline-accessibility': yes,
+  'scheduler/timeline-localization': yes,
   // general
   'mui-x-production': yes,
   'mui-x-development': <Info value="1 year" />,
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={pending} metadata="Priority add-on only" />,
+  'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
+  'multi-app': <MultiAppSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': (
-    <Info
-      value={pending}
-      metadata={
-        <React.Fragment>
-          Available later on
-          <br />
-          2 business days.
-          <br />1 business day (priority add-on only)
-        </React.Fragment>
-      }
-    />
-  ),
-  'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={pending} metadata="Priority add-on only" />,
-  'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'response-time': <InfoPrioritySupport value={yes} metadata="1 business day" value2={no} />,
+  'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
+  'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
+  'security-questionnaire': <Info value="Available for orders of $12,000 and above" />,
+  'customer-success': no,
+};
+
+const enterpriseData: Record<string, React.ReactNode> = {
+  // Core
+  'Base UI': yes,
+  'MUI System': yes,
+  'Material UI': yes,
+  'Joy UI': yes,
+  // MUI X
+  // data grid - columns
+  'data-grid/column-groups': yes,
+  'data-grid/column-spanning': yes,
+  'data-grid/column-resizing': yes,
+  'data-grid/column-autosizing': yes,
+  'data-grid/column-reorder': yes,
+  'data-grid/column-pinning': yes,
+  // data grid - rows
+  'data-grid/row-height': yes,
+  'data-grid/row-spanning': yes,
+  'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
+  'data-grid/row-selection': yes,
+  'data-grid/row-multiselection': yes,
+  'data-grid/row-cell-selection': yes,
+  // data grid - filter
+  'data-grid/filter-quick': yes,
+  'data-grid/filter-column': yes,
+  'data-grid/header-filters': yes,
+  'data-grid/filter-multicolumn': yes,
+  'data-grid/column-sorting': yes,
+  'data-grid/multi-column-sorting': yes,
+  'data-grid/pagination': yes,
+  'data-grid/pagination-large': yes,
+  // data grid - edit
+  'data-grid/edit-row': yes,
+  'data-grid/edit-cell': yes,
+  // data grid - export
+  'data-grid/file-csv': yes,
+  'data-grid/file-print': yes,
+  'data-grid/file-clipboard-copy': yes,
+  'data-grid/file-clipboard-paste': yes,
+  'data-grid/file-excel': yes,
+  'data-grid/customizable-components': yes,
+  'data-grid/virtualize-column': yes,
+  'data-grid/virtualize-row': yes,
+  'data-grid/tree-data': yes,
+  'data-grid/master-detail': yes,
+  'data-grid/grouping': yes,
+  'data-grid/aggregation': yes,
+  'data-grid/pivoting': yes,
+  'data-grid/accessibility': yes,
+  'data-grid/keyboard-nav': yes,
+  'data-grid/localization': yes,
+  'date-picker/simple': yes,
+  'date-picker/range': yes,
+
+  // charts - components
+  'charts/line': yes,
+  'charts/bar': yes,
+  'charts/scatter': yes,
+  'charts/pie': yes,
+  'charts/sparkline': yes,
+  'charts/gauge': yes,
+  'charts/heatmap': yes,
+  'charts/treemap': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
+  'charts/sankey': yes,
+  'charts/gantt': pending,
+  'charts/gantt-advanced': toBeDefined,
+  'charts/candlestick': toBeDefined,
+  'charts/large-dataset': toBeDefined,
+  // charts - features
+  'charts/legend': yes,
+  'charts/tooltip': yes,
+  'charts/zoom-and-pan': yes,
+  'charts/export': yes,
+  // charts - datagrid
+  'charts/cell-with-charts': yes,
+  'charts/filter-interaction': pending,
+  'charts/selection-interaction': pending,
+  // Tree View
+  'tree-view/simple-tree-view': yes,
+  'tree-view/rich-tree-view': yes,
+  'tree-view/selection': yes,
+  'tree-view/multi-selection': yes,
+  'tree-view/inline-editing': yes,
+  'tree-view/drag-to-reorder': yes,
+  'tree-view/virtualization': pending,
+  // Scheduler
+  'scheduler/event-calendar': yes,
+  'scheduler/event-timeline': yes,
+  // Scheduler - Event Calendar
+  'scheduler/calendar-views': yes,
+  'scheduler/calendar-year-view': pending,
+  'scheduler/calendar-drag-and-drop': yes,
+  'scheduler/calendar-resources': yes,
+  'scheduler/calendar-timezone': yes,
+  'scheduler/calendar-editing': yes,
+  'scheduler/calendar-recurring-events': yes,
+  'scheduler/calendar-lazy-loading': yes,
+  'scheduler/calendar-resource-view': pending,
+  'scheduler/calendar-constraints': pending,
+  'scheduler/calendar-copy-paste-events': pending,
+  'scheduler/calendar-undo-redo': pending,
+  'scheduler/calendar-search-filtering': pending,
+  'scheduler/calendar-import-export': pending,
+  'scheduler/calendar-accessibility': yes,
+  'scheduler/calendar-localization': yes,
+  // Scheduler - Event Timeline
+  'scheduler/timeline-views': yes,
+  'scheduler/timeline-drag-and-drop': yes,
+  'scheduler/timeline-resources': yes,
+  'scheduler/timeline-timezone': yes,
+  'scheduler/timeline-editing': yes,
+  'scheduler/timeline-recurring-events': yes,
+  'scheduler/timeline-lazy-loading': pending,
+  'scheduler/timeline-zooming': pending,
+  'scheduler/timeline-virtualization': pending,
+  'scheduler/timeline-constraints': pending,
+  'scheduler/timeline-copy-paste-events': pending,
+  'scheduler/timeline-undo-redo': pending,
+  'scheduler/timeline-search-filtering': pending,
+  'scheduler/timeline-import-export': pending,
+  'scheduler/timeline-accessibility': yes,
+  'scheduler/timeline-localization': yes,
+  // general
+  'mui-x-production': yes,
+  'mui-x-development': <Info value="1 year" />,
+  'mui-x-development-perpetual': <Info value="Perpetual" />,
+  'mui-x-updates': <Info value="1 year" />,
+  // Support
+  'core-support': yes,
+  'x-support': <Info value={yes} metadata="Priority over Premium" />,
+  'priority-support': <Info value="Included" />,
+  'customer-success': yes,
+  'tech-advisory': pending,
+  'support-duration': <Info value="1 year" />,
+  'response-time': <Info value={yes} metadata="1 business day" />,
+  'pre-screening': <Info value={yes} metadata="4 hours" />,
+  'issue-escalation': <Info value={yes} />,
+  'security-questionnaire': yes,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1148,15 +1414,15 @@ function StickyHead({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(4, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" sx={{ fontWeight: 'bold', px: 2, py: 1 }}>
           Plans
         </Typography>
-        {(['community', 'pro', 'premium'] as const).map((plan) => (
+        {(['community', 'pro', 'premium', 'enterprise'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanNameTable plan={plan} disableDescription />
           </Box>
         ))}
       </Container>
@@ -1189,6 +1455,7 @@ function renderMasterRow(key: string, gridSx: object, plans: Array<any>) {
           {id === 'community' && communityData[key]}
           {id === 'pro' && proData[key]}
           {id === 'premium' && premiumData[key]}
+          {id === 'enterprise' && enterpriseData[key]}
         </Cell>
       ))}
     </Box>
@@ -1202,49 +1469,6 @@ function PricingTableDevelopment(props: any) {
   return licenseModel === 'annual'
     ? renderRow('mui-x-development')
     : renderRow('mui-x-development-perpetual');
-}
-
-function PricingTableBuyPro() {
-  const { licenseModel } = useLicenseModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licenseModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-pro/'
-          : 'https://mui.com/store/items/mui-x-pro-perpetual/'
-      }
-      variant="contained"
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
-}
-
-function PricingTableBuyPremium() {
-  const { licenseModel } = useLicenseModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licenseModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-premium/'
-          : 'https://mui.com/store/items/mui-x-premium-perpetual/'
-      }
-      variant="contained"
-      fullWidth
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
 }
 
 const StyledCollapse = styled(Collapse, {
@@ -1265,31 +1489,40 @@ const StyledCollapse = styled(Collapse, {
 
 export default function PricingTable({
   columnHeaderHidden,
-  plans = ['community', 'pro', 'premium'],
+  plans = ['community', 'pro', 'premium', 'enterprise'],
   ...props
 }: BoxProps & {
   columnHeaderHidden?: boolean;
-  plans?: Array<'community' | 'pro' | 'premium'>;
+  plans?: Array<'community' | 'pro' | 'premium' | 'enterprise'>;
 }) {
   const router = useRouter();
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const [chartsCollapsed, setChartsCollapsed] = React.useState(false);
   const [treeViewCollapsed, setTreeViewCollapsed] = React.useState(false);
+  const [schedulerCollapsed, setSchedulerCollapsed] = React.useState(false);
 
   React.useEffect(() => {
     if (router.query['expand-path'] === 'all') {
       setDataGridCollapsed(true);
       setChartsCollapsed(true);
       setTreeViewCollapsed(true);
+      setSchedulerCollapsed(true);
     }
   }, [router.query]);
 
   const tableRef = React.useRef<HTMLDivElement>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '240px'
-    }, 1fr))`,
+    gridTemplateColumns: {
+      xs: `minmax(120px, 0.8fr) repeat(${plans.length}, minmax(160px, 1fr))`,
+      sm: `minmax(140px, 0.8fr) repeat(${plans.length}, minmax(180px, 1fr))`,
+      md: `minmax(140px, 0.7fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '160px'
+      }, 1fr))`,
+      lg: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '200px'
+      }, 1fr))`,
+    },
   };
   const nestedGridSx = {
     ...gridSx,
@@ -1320,13 +1553,19 @@ export default function PricingTable({
       sx={{ color: 'grey.600', opacity: treeViewCollapsed ? 0 : 1 }}
     />
   );
+  const schedulerUnfoldMore = (
+    <UnfoldMoreRounded
+      fontSize="small"
+      sx={{ color: 'grey.600', opacity: schedulerCollapsed ? 0 : 1 }}
+    />
+  );
 
   const renderRow = (key: string) => renderMasterRow(key, gridSx, plans);
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
     <ThemeProvider theme={transitionTheme}>
-      <Box ref={tableRef} {...props} sx={{ pt: 8, ...props.sx }}>
+      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', contain: 'paint', ...props.sx }}>
         <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
         {!columnHeaderHidden && (
           <Box sx={gridSx}>
@@ -1334,42 +1573,27 @@ export default function PricingTable({
               Plans
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName plan="community" />
-              <PlanPrice plan="community" />
-              <Button
-                component={Link}
-                noLinkStyle
-                href="/material-ui/getting-started/usage/"
-                variant="outlined"
-                fullWidth
-                endIcon={<KeyboardArrowRightRounded />}
-                sx={{ py: 1, mt: 'auto' }}
-              >
-                Get started
-              </Button>
+              <PlanNameTable plan="community" />
             </Box>
             <ColumnHeadHighlight>
-              <div>
-                <PlanName plan="pro" />
-                <PlanPrice plan="pro" />
-              </div>
-              <PricingTableBuyPro />
+              <PlanNameTable plan="pro" />
             </ColumnHeadHighlight>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName plan="premium" />
-              <PlanPrice plan="premium" />
-              <PricingTableBuyPremium />
+              <PlanNameTable plan="premium" />
             </Box>
+            <ColumnHeadHighlight>
+              <PlanNameTable plan="enterprise" />
+            </ColumnHeadHighlight>
           </Box>
         )}
         <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
           MUI Core (open-source)
         </RowHead>
+        {renderRow('Base UI')}
+        {divider}
         {renderRow('Material UI')}
         {divider}
         {renderRow('Joy UI')}
-        {divider}
-        {renderRow('MUI Base')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
@@ -1390,6 +1614,9 @@ export default function PricingTable({
             {dataGridUnfoldMore}
           </Cell>
           <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
             {dataGridUnfoldMore}
           </Cell>
           <Button
@@ -1543,6 +1770,9 @@ export default function PricingTable({
           <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
             {chartsUnfoldMore}
           </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
           <Button
             fullWidth
             onClick={() => setChartsCollapsed((bool) => !bool)}
@@ -1596,15 +1826,15 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/gauge')}
           {divider}
-          {renderNestedRow('charts/heatmap')}
-          {divider}
-          {renderNestedRow('charts/treemap')}
-          {divider}
           {renderNestedRow('charts/radar')}
+          {divider}
+          {renderNestedRow('charts/heatmap')}
           {divider}
           {renderNestedRow('charts/funnel')}
           {divider}
           {renderNestedRow('charts/sankey')}
+          {divider}
+          {renderNestedRow('charts/treemap')}
           {divider}
           {renderNestedRow('charts/gantt')}
           {divider}
@@ -1641,11 +1871,148 @@ export default function PricingTable({
           }}
         >
           <Cell />
+          <Cell sx={{ minHeight: 60 }}>{schedulerUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {schedulerUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {schedulerUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {schedulerUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setSchedulerCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{
+                  transform: schedulerCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
+                }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
+                '&:hover': {
+                  bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Scheduler
+          </Button>
+        </Box>
+        <StyledCollapse in={schedulerCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('scheduler/event-calendar')}
+          {divider}
+          {renderNestedRow('scheduler/event-timeline')}
+          {divider}
+          <RowCategory>Event Calendar features</RowCategory>
+          {renderNestedRow('scheduler/calendar-views')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-year-view')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-drag-and-drop')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-resources')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-timezone')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-editing')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-accessibility')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-localization')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-constraints')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-copy-paste-events')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-undo-redo')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-recurring-events')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-lazy-loading')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-resource-view')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-search-filtering')}
+          {divider}
+          {renderNestedRow('scheduler/calendar-import-export')}
+          {divider}
+          <RowCategory>Event Timeline features</RowCategory>
+          {renderNestedRow('scheduler/timeline-views')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-drag-and-drop')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-resources')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-recurring-events')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-timezone')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-editing')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-accessibility')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-localization')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-lazy-loading')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-zooming')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-virtualization')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-constraints')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-copy-paste-events')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-undo-redo')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-search-filtering')}
+          {divider}
+          {renderNestedRow('scheduler/timeline-import-export')}
+        </StyledCollapse>
+        {divider}
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
           <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
           <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
             {treeViewUnfoldMore}
           </Cell>
           <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
             {treeViewUnfoldMore}
           </Cell>
           <Button
@@ -1684,7 +2051,7 @@ export default function PricingTable({
                 }),
             ]}
           >
-            TreeView
+            Tree View
           </Button>
         </Box>
         <StyledCollapse in={treeViewCollapsed}>
@@ -1711,7 +2078,13 @@ export default function PricingTable({
         <PricingTableDevelopment renderRow={renderRow} />
         {divider}
         {renderRow('mui-x-updates')}
-        <RowHead>Support</RowHead>
+        <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
+          Support
+        </RowHead>
+        {renderRow('priority-support')}
+        {divider}
+        {renderRow('customer-success')}
+        {divider}
         {renderRow('core-support')}
         {divider}
         {renderRow('x-support')}

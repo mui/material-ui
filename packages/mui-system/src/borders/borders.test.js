@@ -23,4 +23,34 @@ describe('borders', () => {
       borderRadius: 0,
     });
   });
+
+  describe('theme shape as string', () => {
+    it('should work', () => {
+      const output = borders({
+        borderRadius: 2,
+        theme: {
+          shape: {
+            borderRadius: '4px',
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        borderRadius: 'calc(2 * 4px)',
+      });
+    });
+
+    it('should work with 0', () => {
+      const output = borders({
+        borderRadius: 0,
+        theme: {
+          shape: {
+            borderRadius: '4px',
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        borderRadius: 'calc(0 * 4px)',
+      });
+    });
+  });
 });

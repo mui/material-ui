@@ -3,9 +3,8 @@ productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase
 materialDesign: https://m2.material.io/components/buttons
-githubLabel: 'component: button'
+githubLabel: 'scope: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base-ui/react-button/
 githubSource: packages/mui-material/src/Button
 ---
 
@@ -20,7 +19,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 - Cards
 - Toolbars
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic button
 
@@ -151,6 +150,20 @@ The `loading` value should always be `null` or `boolean`. The pattern below is n
 ```
 
 :::
+
+## Rendering non-native buttons
+
+The `nativeButton` prop can be used to allow buttons to remain keyboard accessible when passing a React component to the [`component`](/material-ui/guides/composition/#passing-other-react-components) prop that renders a non-interactive element like a `<div>`.
+
+```jsx
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
+  return <div ref={ref} {...props} />;
+})
+
+<Button component={CustomButton} nativeButton={false}>
+  OK
+</Button>
+```
 
 ## Customization
 

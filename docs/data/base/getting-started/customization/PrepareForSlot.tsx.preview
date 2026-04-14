@@ -1,3 +1,0 @@
-<Button<typeof LinkSlot> href="/" slots={{ root: LinkSlot }} prefetch={false}>
-  Home
-</Button>

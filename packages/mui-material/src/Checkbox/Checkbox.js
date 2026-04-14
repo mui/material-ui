@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -60,9 +59,10 @@ const CheckboxRoot = styled(SwitchBase, {
         props: { color: 'default', disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              (theme.vars || theme).palette.action.hoverOpacity,
+            ),
           },
         },
       },
@@ -72,9 +72,10 @@ const CheckboxRoot = styled(SwitchBase, {
           props: { color, disableRipple: false },
           style: {
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.hoverOpacity,
+              ),
             },
           },
         })),
@@ -119,7 +120,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     icon: iconProp = defaultIcon,
     indeterminate = false,
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
-    inputProps,
     size = 'medium',
     disableRipple = false,
     className,
@@ -141,7 +141,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalInputProps = slotProps.input ?? inputProps;
+  const externalInputProps = slotProps.input;
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
@@ -171,6 +171,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             : externalInputProps,
           {
             'data-indeterminate': indeterminate,
+            'aria-checked': indeterminate ? 'mixed' : undefined,
           },
         ),
       },
@@ -248,11 +249,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
   /**
    * Callback fired when the state is changed.
    *

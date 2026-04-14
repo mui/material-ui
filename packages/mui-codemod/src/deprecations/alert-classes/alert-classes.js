@@ -11,7 +11,11 @@ export default function transformer(file, api, options) {
   classes.forEach(({ deprecatedClass, replacementSelector }) => {
     root
       .find(j.ImportDeclaration)
-      .filter((path) => path.node.source.value.match(/^@mui\/material\/Alert$/))
+      .filter((path) =>
+        path.node.source.value.match(
+          new RegExp(`^${options.packageName || '@mui/material'}(/Alert)?$`),
+        ),
+      )
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
           if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'alertClasses') {

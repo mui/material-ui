@@ -59,7 +59,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    componentsProps,
     max = 5,
     renderSurplus,
     slotProps = {},
@@ -108,18 +107,19 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing || -8;
+  let marginValue;
+
+  if (ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined) {
+    marginValue = SPACINGS[ownerState.spacing];
+  } else if (ownerState.spacing === 0) {
+    marginValue = 0;
+  } else {
+    marginValue = -ownerState.spacing || SPACINGS.medium;
+  }
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      surplus: slotProps.additionalAvatar ?? componentsProps?.additionalAvatar,
-      ...componentsProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const [SurplusSlot, surplusProps] = useSlot('surplus', {
@@ -140,7 +140,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       ref={ref}
       {...other}
       style={{
-        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined
         ...other.style,
       }}
     >
@@ -181,17 +181,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `slotProps` prop.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps: PropTypes.shape({
-    additionalAvatar: PropTypes.object,
-  }),
-  /**
    * Max avatars to show before +x.
    * @default 5
    */
@@ -218,7 +207,6 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    additionalAvatar: PropTypes.object,
     surplus: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -65,20 +64,6 @@ export default function Sizes() {
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={top100Films[13]}
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
-            return (
-              <Chip
-                key={key}
-                variant="outlined"
-                label={option.title}
-                size="small"
-                {...tagProps}
-              />
-            );
-          })
-        }
         renderInput={(params) => (
           <TextField
             {...params}
@@ -95,16 +80,16 @@ export default function Sizes() {
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
+        renderValue={(values, getItemProps) =>
+          values.map((option, index) => {
+            const { key, ...itemProps } = getItemProps({ index });
             return (
               <Chip
                 key={key}
                 variant="outlined"
                 label={option.title}
                 size="small"
-                {...tagProps}
+                {...itemProps}
               />
             );
           })

@@ -16,47 +16,29 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: React.ElementType;
-  /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
-   * The props used for each slot inside the Popper.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  componentsProps?: BasePopperProps['slotProps'];
+  component?: React.ElementType | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 /**
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/material-ui/react-autocomplete/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
- * - [Popper](https://next.mui.com/material-ui/react-popper/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Popper](https://mui.com/material-ui/react-popper/)
  *
  * API:
  *
- * - [Popper API](https://next.mui.com/material-ui/api/popper/)
+ * - [Popper API](https://mui.com/material-ui/api/popper/)
  */
 const Popper = React.forwardRef(function Popper(
   inProps: PopperProps,
@@ -71,8 +53,6 @@ const Popper = React.forwardRef(function Popper(
   const {
     anchorEl,
     component,
-    components,
-    componentsProps,
     container,
     disablePortal,
     keepMounted,
@@ -87,7 +67,6 @@ const Popper = React.forwardRef(function Popper(
     ...other
   } = props;
 
-  const RootComponent = slots?.root ?? components?.Root;
   const otherProps = {
     anchorEl,
     container,
@@ -105,8 +84,8 @@ const Popper = React.forwardRef(function Popper(
     <PopperRoot
       as={component}
       direction={isRtl ? 'rtl' : 'ltr'}
-      slots={{ root: RootComponent }}
-      slotProps={slotProps ?? componentsProps}
+      slots={slots}
+      slotProps={slotProps}
       {...otherProps}
       ref={ref}
     />
@@ -141,25 +120,6 @@ Popper.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Popper.
-   * Either a string to use a HTML element or a component.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Popper.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.

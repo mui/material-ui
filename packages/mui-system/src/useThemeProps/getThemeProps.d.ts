@@ -1,9 +1,5 @@
 export {};
 
-interface ThemeWithProps<Components> {
-  components?: { [K in keyof Components]: { defaultProps?: Partial<Components[K]> } };
-}
-
 type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   components: Record<Name, { defaultProps: infer Props }>;
 }
@@ -13,5 +9,5 @@ type ThemedProps<Theme, Name extends keyof any> = Theme extends {
 export default function getThemeProps<Theme, Props, Name extends keyof any>(params: {
   props: Props;
   name: Name;
-  theme?: Theme;
+  theme?: Theme | undefined;
 }): Props & ThemedProps<Theme, Name>;

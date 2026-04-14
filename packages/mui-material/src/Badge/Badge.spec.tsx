@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Badge from '@mui/material/Badge';
 
 function classesTest() {
@@ -11,3 +10,12 @@ function classesTest() {
 
 <Badge anchorOrigin={{ vertical: 'bottom' }} />;
 <Badge anchorOrigin={{ horizontal: 'left' }} />;
+<Badge
+  slotProps={{
+    badge: {
+      sx: {
+        color: 'red',
+      },
+    },
+  }}
+/>;

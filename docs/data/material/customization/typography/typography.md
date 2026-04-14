@@ -115,17 +115,21 @@ The `theme.typography.*` [variant](#variants) properties map directly to the gen
 You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
 
 ```js
-const theme = createTheme();
+const baseTheme = createTheme();
 
-theme.typography.h3 = {
-  fontSize: '1.2rem',
-  '@media (min-width:600px)': {
-    fontSize: '1.5rem',
+const theme = createTheme({
+  typography: {
+    h3: {
+      fontSize: '1.2rem',
+      '@media (min-width:600px)': {
+        fontSize: '1.5rem',
+      },
+      [baseTheme.breakpoints.up('md')]: {
+        fontSize: '2.4rem',
+      },
+    },
   },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '2.4rem',
-  },
-};
+});
 ```
 
 {{"demo": "CustomResponsiveFontSizes.js"}}

@@ -1,20 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, isJsdom } from '@mui/internal-test-utils';
 import Portal, { PortalProps } from '@mui/material/Portal';
 
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
 
-  describe('server-side', () => {
-    before(function beforeHook() {
-      // Only run the test on node.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  describe.skipIf(!isJsdom())('server-side', () => {
     it('render nothing on the server', () => {
       const { container } = renderToString(
         <Portal>
@@ -44,6 +37,7 @@ describe('<Portal />', () => {
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
+        { strict: reactMajor <= 18 },
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);
@@ -57,6 +51,7 @@ describe('<Portal />', () => {
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
+        { strict: reactMajor <= 18 },
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);

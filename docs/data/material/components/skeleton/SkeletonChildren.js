@@ -1,6 +1,5 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
@@ -57,10 +56,10 @@ SkeletonChildrenDemo.propTypes = {
 export default function SkeletonChildren() {
   return (
     <Grid container spacing={8}>
-      <Grid item xs>
+      <Grid size="grow">
         <SkeletonChildrenDemo loading />
       </Grid>
-      <Grid item xs>
+      <Grid size="grow">
         <SkeletonChildrenDemo />
       </Grid>
     </Grid>

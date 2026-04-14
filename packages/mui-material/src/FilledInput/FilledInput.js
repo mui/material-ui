@@ -116,12 +116,15 @@ const FilledInputRoot = styled(InputBaseRoot, {
             '&::before': {
               borderBottom: `1px solid ${
                 theme.vars
-                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
+                  ? theme.alpha(
+                      theme.vars.palette.common.onBackground,
+                      theme.vars.opacity.inputUnderline,
+                    )
                   : bottomLineColor
               }`,
               left: 0,
               bottom: 0,
-              content: '"\\00a0"',
+              content: '""',
               position: 'absolute',
               right: 0,
               transition: theme.transitions.create('border-bottom-color', {
@@ -205,28 +208,21 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingRight: 12,
     paddingBottom: 8,
     paddingLeft: 12,
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
+      }),
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        },
-      },
-    }),
+        })),
+    },
     variants: [
       {
         props: {
@@ -281,8 +277,6 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline = false,
-    components = {},
-    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
@@ -305,13 +299,12 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const classes = useUtilityClasses(props);
   const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
-  const componentsProps =
-    (slotProps ?? componentsPropsProp)
-      ? deepmerge(filledInputComponentsProps, slotProps ?? componentsPropsProp)
-      : filledInputComponentsProps;
+  const componentsProps = slotProps
+    ? deepmerge(filledInputComponentsProps, slotProps)
+    : filledInputComponentsProps;
 
-  const RootSlot = slots.root ?? components.Root ?? FilledInputRoot;
-  const InputSlot = slots.input ?? components.Input ?? FilledInputInput;
+  const RootSlot = slots.root ?? FilledInputRoot;
+  const InputSlot = slots.input ?? FilledInputInput;
 
   return (
     <InputBase
@@ -358,29 +351,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
-  }),
-  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -426,7 +396,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
    */
   inputComponent: PropTypes.elementType,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * @default {}
    */
   inputProps: PropTypes.object,
@@ -486,8 +456,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -496,8 +464,6 @@ FilledInput.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */
@@ -518,7 +484,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types).
    * @default 'text'
    */
   type: PropTypes.string,

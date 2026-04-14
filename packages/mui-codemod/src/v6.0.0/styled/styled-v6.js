@@ -33,7 +33,7 @@ export default function styledV6(file, api, options) {
       args = path.node.arguments;
     }
 
-    // 1. collecting styles that should be tranformed
+    // 1. collecting styles that should be transformed
     args.forEach((arg) => {
       if (
         arg.type === 'ArrowFunctionExpression' &&

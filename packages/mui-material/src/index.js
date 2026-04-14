@@ -152,15 +152,10 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
-
-export { default as Grid2 } from './Grid2';
-export * from './Grid2';
+export * from './Grid';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
-
-export { default as Hidden } from './Hidden';
-export * from './Hidden';
 
 export { default as Icon } from './Icon';
 export * from './Icon';
@@ -357,6 +352,9 @@ export * from './TableHead';
 export { default as TablePagination } from './TablePagination';
 export * from './TablePagination';
 
+export { default as TablePaginationActions } from './TablePaginationActions';
+export * from './TablePaginationActions';
+
 export { default as TableRow } from './TableRow';
 export * from './TableRow';
 
@@ -408,7 +406,7 @@ export { default as useAutocomplete } from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-export { unstable_composeClasses } from '@mui/utils';
+export { default as unstable_composeClasses } from '@mui/utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
@@ -418,3 +416,5 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 
 export * from './version';
+
+export { default as InitColorSchemeScript } from './InitColorSchemeScript';

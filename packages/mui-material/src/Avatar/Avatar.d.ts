@@ -5,24 +5,52 @@ import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { SvgIconProps } from '../SvgIcon';
 
 export interface AvatarSlots {
   /**
-   * The component that renders the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
+   * The component that renders the root slot.
+   * @default 'div'
    */
-  img: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
+  root: React.ElementType;
+  /**
+   * The component that renders the img slot.
+   * @default 'img'
+   */
+  img: React.ElementType;
+  /**
+   * The component that renders the fallback slot.
+   * @default Person icon
+   */
+  fallback: React.ElementType;
 }
 
 export interface AvatarPropsVariantOverrides {}
 
+export interface AvatarRootSlotPropsOverrides {}
+export interface AvatarImgSlotPropsOverrides {}
+export interface AvatarFallbackSlotPropsOverrides {}
+
 export type AvatarSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AvatarSlots,
   {
-    img: SlotProps<
-      React.ElementType<React.ImgHTMLAttributes<HTMLImageElement>>,
-      {},
+    /**
+     * Props forwarded to the root slot.
+     * By default, the available props are based on the div element.
+     */
+    root: SlotProps<'div', AvatarRootSlotPropsOverrides, AvatarOwnProps>;
+    /**
+     * Props forwarded to the img slot.
+     * By default, the available props are based on the img element.
+     */
+    img: SlotProps<'img', AvatarImgSlotPropsOverrides, AvatarOwnProps>;
+    /**
+     * Props forwarded to the fallback slot.
+     * By default, the available props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     */
+    fallback: SlotProps<
+      React.ElementType<SvgIconProps>,
+      AvatarFallbackSlotPropsOverrides,
       AvatarOwnProps
     >;
   }
@@ -33,7 +61,7 @@ export interface AvatarOwnProps {
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
    */
-  alt?: string;
+  alt?: string | undefined;
   /**
    * Used to render icon or text elements inside the Avatar if `src` is not set.
    * This can be an element, or just a string.
@@ -42,37 +70,31 @@ export interface AvatarOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AvatarClasses>;
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
-   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
-    sx?: SxProps<Theme>;
-  };
+  classes?: Partial<AvatarClasses> | undefined;
   /**
    * The `sizes` attribute for the `img` element.
    */
-  sizes?: string;
+  sizes?: string | undefined;
   /**
    * The `src` attribute for the `img` element.
    */
-  src?: string;
+  src?: string | undefined;
   /**
    * The `srcSet` attribute for the `img` element.
    * Use this attribute for responsive image display.
    */
-  srcSet?: string;
+  srcSet?: string | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The shape of the avatar.
    * @default 'circular'
    */
-  variant?: OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>;
+  variant?:
+    | OverridableStringUnion<'circular' | 'rounded' | 'square', AvatarPropsVariantOverrides>
+    | undefined;
 }
 
 export interface AvatarTypeMap<
@@ -87,11 +109,11 @@ export interface AvatarTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [Avatar API](https://next.mui.com/material-ui/api/avatar/)
+ * - [Avatar API](https://mui.com/material-ui/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
@@ -99,7 +121,7 @@ export type AvatarProps<
   RootComponent extends React.ElementType = AvatarTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<AvatarTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default Avatar;

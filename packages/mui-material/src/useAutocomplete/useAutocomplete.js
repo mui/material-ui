@@ -1,13 +1,20 @@
 'use client';
-/* eslint-disable no-constant-condition */
+
 import * as React from 'react';
-import {
-  unstable_setRef as setRef,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useControlled as useControlled,
-  unstable_useId as useId,
-  usePreviousProps,
-} from '@mui/utils';
+import setRef from '@mui/utils/setRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useControlled from '@mui/utils/useControlled';
+import useId from '@mui/utils/useId';
+import usePreviousProps from '@mui/utils/usePreviousProps';
+
+function areArraysSame({ array1, array2, parser = (value) => value }) {
+  return (
+    array1 &&
+    array2 &&
+    array1.length === array2.length &&
+    array1.every((prevOption, index) => parser(prevOption) === parser(array2[index]))
+  );
+}
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 function stripDiacritics(string) {
@@ -59,10 +66,12 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const defaultIsOptionEqualToValue = (option, value) => option === value;
+
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel) {
-  if (multiple || value == null) {
+function getInputValue(value, multiple, getOptionLabel, renderValue) {
+  if (multiple || value == null || renderValue) {
     return '';
   }
   const optionLabel = getOptionLabel(value);
@@ -99,7 +108,7 @@ function useAutocomplete(props) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    isOptionEqualToValue = (option, value) => option === value,
+    isOptionEqualToValue = defaultIsOptionEqualToValue,
     multiple = false,
     onChange,
     onClose,
@@ -110,6 +119,7 @@ function useAutocomplete(props) {
     openOnFocus = false,
     options,
     readOnly = false,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -139,16 +149,17 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const [focusedTag, setFocusedTag] = React.useState(-1);
+  const [focusedItem, setFocusedItem] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
   // Calculate the initial inputValue on mount only.
-  // Using useRef since defaultValue doesn't need to update inputValue dynamically.
+  // useRef ensures it doesn't update dynamically with defaultValue or value props.
   const initialInputValue = React.useRef(
-    getInputValue(defaultValue, multiple, getOptionLabel),
+    getInputValue(defaultValue ?? valueProp, multiple, getOptionLabel),
   ).current;
 
   const [value, setValueState] = useControlled({
@@ -167,13 +178,15 @@ function useAutocomplete(props) {
 
   const resetInputValue = React.useCallback(
     (event, newValue, reason) => {
-      // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
-      // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
+      // Retain the current `inputValue` when no new option is selected and `clearOnBlur` is false.
+      // In `multiple` mode, `newValue` is the next value array, so only length growth counts as a selection.
       const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
-      if (!isOptionSelected && !clearOnBlur) {
+      // A controlled single-value `freeSolo` reset to `null` should still clear the input.
+      const shouldClearOnReset = reason === 'reset' && freeSolo && !multiple && newValue === null;
+      if (!isOptionSelected && !clearOnBlur && !shouldClearOnReset) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel);
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderValue);
 
       if (inputValue === newInputValue) {
         return;
@@ -185,7 +198,17 @@ function useAutocomplete(props) {
         onInputChange(event, newInputValue, reason);
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
+    [
+      getOptionLabel,
+      inputValue,
+      multiple,
+      onInputChange,
+      setInputValueState,
+      clearOnBlur,
+      freeSolo,
+      value,
+      renderValue,
+    ],
   );
 
   const [open, setOpenState] = useControlled({
@@ -201,16 +224,42 @@ function useAutocomplete(props) {
     !multiple && value != null && inputValue === getOptionLabel(value);
 
   const popupOpen = open && !readOnly;
+  const selectedValues = React.useMemo(() => {
+    if (multiple) {
+      return value;
+    }
+
+    if (value != null) {
+      return [value];
+    }
+
+    return [];
+  }, [multiple, value]);
+  const selectedValuesSet = React.useMemo(() => {
+    // Fast path for the default strict equality comparator to avoid O(n^2) option checks.
+    if (isOptionEqualToValue !== defaultIsOptionEqualToValue || selectedValues.length === 0) {
+      return null;
+    }
+
+    return new Set(selectedValues);
+  }, [isOptionEqualToValue, selectedValues]);
+  const isOptionSelected = React.useCallback(
+    (option) => {
+      if (selectedValuesSet) {
+        return selectedValuesSet.has(option);
+      }
+
+      return selectedValues.some(
+        (value2) => value2 != null && isOptionEqualToValue(option, value2),
+      );
+    },
+    [isOptionEqualToValue, selectedValues, selectedValuesSet],
+  );
 
   const filteredOptions = popupOpen
     ? filterOptions(
         options.filter((option) => {
-          if (
-            filterSelectedOptions &&
-            (multiple ? value : [value]).some(
-              (value2) => value2 !== null && isOptionEqualToValue(option, value2),
-            )
-          ) {
+          if (filterSelectedOptions && isOptionSelected(option)) {
             return false;
           }
           return true;
@@ -247,21 +296,21 @@ function useAutocomplete(props) {
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
-  const focusTag = useEventCallback((tagToFocus) => {
-    if (tagToFocus === -1) {
+  const focusItem = useEventCallback((itemToFocus) => {
+    if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
+      anchorEl.querySelector(`[data-item-index="${itemToFocus}"]`).focus();
     }
   });
 
-  // Ensure the focusedTag is never inconsistent
+  // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
-    if (multiple && focusedTag > value.length - 1) {
-      setFocusedTag(-1);
-      focusTag(-1);
+    if (multiple && focusedItem > value.length - 1) {
+      setFocusedItem(-1);
+      focusItem(-1);
     }
-  }, [value, multiple, focusedTag, focusTag]);
+  }, [value, multiple, focusedItem, focusItem]);
 
   function validOptionIndex(index, direction) {
     if (!listboxRef.current || index < 0 || index >= filteredOptions.length) {
@@ -299,7 +348,7 @@ function useAutocomplete(props) {
     }
   }
 
-  const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
+  const setHighlightedIndex = useEventCallback(({ event, index, reason }) => {
     highlightedIndexRef.current = index;
 
     // does the index exist?
@@ -309,7 +358,7 @@ function useAutocomplete(props) {
       inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
-    if (onHighlightChange) {
+    if (onHighlightChange && ['mouse', 'keyboard', 'touch'].includes(reason)) {
       onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
     }
 
@@ -376,77 +425,81 @@ function useAutocomplete(props) {
     }
   });
 
-  const changeHighlightedIndex = useEventCallback(
-    ({ event, diff, direction = 'next', reason = 'auto' }) => {
-      if (!popupOpen) {
-        return;
+  const changeHighlightedIndex = useEventCallback(({ event, diff, direction = 'next', reason }) => {
+    if (!popupOpen) {
+      return;
+    }
+
+    const getNextIndex = () => {
+      const maxIndex = filteredOptions.length - 1;
+
+      if (diff === 'reset') {
+        return defaultHighlighted;
       }
 
-      const getNextIndex = () => {
-        const maxIndex = filteredOptions.length - 1;
+      if (diff === 'start') {
+        return 0;
+      }
 
-        if (diff === 'reset') {
-          return defaultHighlighted;
+      if (diff === 'end') {
+        return maxIndex;
+      }
+
+      const newIndex = highlightedIndexRef.current + diff;
+
+      if (newIndex < 0) {
+        if (newIndex === -1 && includeInputInList) {
+          return -1;
         }
 
-        if (diff === 'start') {
+        if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
           return 0;
         }
 
-        if (diff === 'end') {
+        return maxIndex;
+      }
+
+      if (newIndex > maxIndex) {
+        if (newIndex === maxIndex + 1 && includeInputInList) {
+          return -1;
+        }
+
+        if (disableListWrap || Math.abs(diff) > 1) {
           return maxIndex;
         }
 
-        const newIndex = highlightedIndexRef.current + diff;
+        return 0;
+      }
 
-        if (newIndex < 0) {
-          if (newIndex === -1 && includeInputInList) {
-            return -1;
-          }
+      return newIndex;
+    };
 
-          if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
-            return 0;
-          }
+    const nextIndex = validOptionIndex(getNextIndex(), direction);
+    setHighlightedIndex({ index: nextIndex, reason, event });
 
-          return maxIndex;
-        }
+    // Sync the content of the input with the highlighted option.
+    if (autoComplete && diff !== 'reset') {
+      if (nextIndex === -1) {
+        inputRef.current.value = inputValue;
+      } else {
+        const option = getOptionLabel(filteredOptions[nextIndex]);
+        inputRef.current.value = option;
 
-        if (newIndex > maxIndex) {
-          if (newIndex === maxIndex + 1 && includeInputInList) {
-            return -1;
-          }
-
-          if (disableListWrap || Math.abs(diff) > 1) {
-            return maxIndex;
-          }
-
-          return 0;
-        }
-
-        return newIndex;
-      };
-
-      const nextIndex = validOptionIndex(getNextIndex(), direction);
-      setHighlightedIndex({ index: nextIndex, reason, event });
-
-      // Sync the content of the input with the highlighted option.
-      if (autoComplete && diff !== 'reset') {
-        if (nextIndex === -1) {
-          inputRef.current.value = inputValue;
-        } else {
-          const option = getOptionLabel(filteredOptions[nextIndex]);
-          inputRef.current.value = option;
-
-          // The portion of the selected suggestion that has not been typed by the user,
-          // a completion string, appears inline after the input cursor in the textbox.
-          const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
-          if (index === 0 && inputValue.length > 0) {
-            inputRef.current.setSelectionRange(inputValue.length, option.length);
-          }
+        // The portion of the selected suggestion that has not been typed by the user,
+        // a completion string, appears inline after the input cursor in the textbox.
+        const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
+        if (index === 0 && inputValue.length > 0) {
+          inputRef.current.setSelectionRange(inputValue.length, option.length);
         }
       }
-    },
-  );
+    }
+  });
+
+  const filteredOptionsChanged = !areArraysSame({
+    array1: previousProps.filteredOptions,
+    array2: filteredOptions,
+    parser: getOptionLabel,
+  });
 
   const getPreviousHighlightedOptionIndex = () => {
     const isSameValue = (value1, value2) => {
@@ -457,8 +510,11 @@ function useAutocomplete(props) {
 
     if (
       highlightedIndexRef.current !== -1 &&
-      previousProps.filteredOptions &&
-      previousProps.filteredOptions.length !== filteredOptions.length &&
+      !areArraysSame({
+        array1: previousProps.filteredOptions,
+        array2: filteredOptions,
+        parser: getOptionLabel,
+      }) &&
       previousProps.inputValue === inputValue &&
       (multiple
         ? value.length === previousProps.value.length &&
@@ -541,7 +597,6 @@ function useAutocomplete(props) {
     // Don't sync the highlighted index with the value when multiple
     // eslint-disable-next-line react-hooks/exhaustive-deps
     multiple ? false : value,
-    filterSelectedOptions,
     changeHighlightedIndex,
     setHighlightedIndex,
     popupOpen,
@@ -589,8 +644,28 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    syncHighlightedIndex();
-  }, [syncHighlightedIndex]);
+    if (filteredOptionsChanged || (popupOpen && !disableCloseOnSelect)) {
+      syncHighlightedIndex();
+    }
+  }, [syncHighlightedIndex, filteredOptionsChanged, popupOpen, disableCloseOnSelect]);
+
+  // Listen for browser window blur to detect when the user switches tabs or windows.
+  // This helps prevent the popup from reopening automatically when the window regains focus.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const handleWindowBlur = () => {
+      windowLostFocus.current = true;
+    };
+
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
 
   const handleOpen = (event) => {
     if (open) {
@@ -681,7 +756,7 @@ function useAutocomplete(props) {
     }
   };
 
-  function validTagIndex(index, direction) {
+  function validItemIndex(index, direction) {
     if (index === -1) {
       return -1;
     }
@@ -697,7 +772,7 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      const option = anchorEl.querySelector(`[data-tag-index="${nextFocus}"]`);
+      const option = anchorEl.querySelector(`[data-item-index="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
@@ -713,7 +788,7 @@ function useAutocomplete(props) {
     }
   }
 
-  const handleFocusTag = (event, direction) => {
+  const handleFocusItem = (event, direction) => {
     if (!multiple) {
       return;
     }
@@ -722,32 +797,38 @@ function useAutocomplete(props) {
       handleClose(event, 'toggleInput');
     }
 
-    let nextTag = focusedTag;
+    let nextItem = focusedItem;
 
-    if (focusedTag === -1) {
-      if (inputValue === '' && direction === 'previous') {
-        nextTag = value.length - 1;
+    // When moving focus from the input to tags with ArrowLeft,
+    // always jump to the last tag (if any) from the input.
+    if (focusedItem === -1 && direction === 'previous') {
+      nextItem = value.length - 1;
+      // In freeSolo, clear any draft text so it doesn't "come back" later.
+      if (freeSolo && inputValue !== '') {
+        setInputValueState('');
+        if (onInputChange) {
+          onInputChange(event, '', 'reset');
+        }
       }
     } else {
-      nextTag += direction === 'next' ? 1 : -1;
+      nextItem += direction === 'next' ? 1 : -1;
 
-      if (nextTag < 0) {
-        nextTag = 0;
+      if (nextItem < 0) {
+        nextItem = 0;
       }
 
-      if (nextTag === value.length) {
-        nextTag = -1;
+      if (nextItem === value.length) {
+        nextItem = -1;
       }
     }
 
-    nextTag = validTagIndex(nextTag, direction);
+    nextItem = validItemIndex(nextItem, direction);
 
-    setFocusedTag(nextTag);
-    focusTag(nextTag);
+    setFocusedItem(nextItem);
+    focusItem(nextItem);
   };
 
   const handleClear = (event) => {
-    ignoreFocus.current = true;
     setInputValueState('');
 
     if (onInputChange) {
@@ -766,9 +847,9 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
-      setFocusedTag(-1);
-      focusTag(-1);
+    if (focusedItem !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+      setFocusedItem(-1);
+      focusItem(-1);
     }
 
     // Wait until IME is settled.
@@ -822,11 +903,42 @@ function useAutocomplete(props) {
           changeHighlightedIndex({ diff: -1, direction: 'previous', reason: 'keyboard', event });
           handleOpen(event);
           break;
-        case 'ArrowLeft':
-          handleFocusTag(event, 'previous');
+        case 'ArrowLeft': {
+          const input = inputRef.current;
+          // Only handle ArrowLeft when the caret is at the start of the input.
+          // Otherwise let the browser move the caret normally.
+          const caretAtStart = input && input.selectionStart === 0 && input.selectionEnd === 0;
+
+          if (!caretAtStart) {
+            // Let the browser handle normal cursor movement
+            return;
+          }
+
+          // Single-value rendering: move focus from input to the single tag.
+          if (!multiple && renderValue && value != null) {
+            // Moving from input to single tag; clear freeSolo draft text,
+            // so it doesn't reappear when we move back.
+            if (freeSolo && inputValue !== '') {
+              setInputValueState('');
+              if (onInputChange) {
+                onInputChange(event, '', 'reset');
+              }
+            }
+            setFocusedItem(0);
+            focusItem(0);
+          } else {
+            // Multi-value: delegate to tag navigation helper.
+            handleFocusItem(event, 'previous');
+          }
           break;
+        }
         case 'ArrowRight':
-          handleFocusTag(event, 'next');
+          if (!multiple && renderValue) {
+            setFocusedItem(-1);
+            focusItem(-1);
+          } else {
+            handleFocusItem(event, 'next');
+          }
           break;
         case 'Enter':
           if (highlightedIndexRef.current !== -1 && popupOpen) {
@@ -864,7 +976,10 @@ function useAutocomplete(props) {
             // Avoid the Modal to handle the event.
             event.stopPropagation();
             handleClose(event, 'escape');
-          } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
+          } else if (
+            clearOnEscape &&
+            (inputValue !== '' || (multiple && value.length > 0) || renderValue)
+          ) {
             // Avoid Opera to exit fullscreen mode.
             event.preventDefault();
             // Avoid the Modal to handle the event.
@@ -875,23 +990,37 @@ function useAutocomplete(props) {
         case 'Backspace':
           // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
-            const index = focusedTag === -1 ? value.length - 1 : focusedTag;
+            const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
           }
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            handleValue(event, null, 'removeOption', { option: value });
+          }
           break;
         case 'Delete':
           // Remove the value on the right of the "cursor"
-          if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
-            const index = focusedTag;
+          if (
+            multiple &&
+            !readOnly &&
+            inputValue === '' &&
+            value.length > 0 &&
+            focusedItem !== -1
+          ) {
+            const index = focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+          }
+          if (!multiple && renderValue && !readOnly && inputValue === '') {
+            // Single-value rendering: Delete on empty input removes
+            // the single rendered option, same "removeOption" reason as multiple.
+            handleValue(event, null, 'removeOption', { option: value });
           }
           break;
         default:
@@ -901,6 +1030,23 @@ function useAutocomplete(props) {
 
   const handleFocus = (event) => {
     setFocused(true);
+
+    // When focusing the input, ensure any previously focused item (chip)
+    // is cleared so the input receives the visible caret and the
+    // input-focused styling is applied.
+    if (focusedItem !== -1) {
+      setFocusedItem(-1);
+      // Ensure DOM focus lands on the input
+      focusItem(-1);
+    }
+
+    // If the window previously lost focus while the popup was open,
+    // ignore this focus event to prevent unintended reopening.
+    // Reset the flag so normal focus behavior resumes.
+    if (windowLostFocus.current) {
+      windowLostFocus.current = false;
+      return;
+    }
 
     if (openOnFocus && !ignoreFocus.current) {
       handleOpen(event);
@@ -942,7 +1088,9 @@ function useAutocomplete(props) {
     }
 
     if (newValue === '') {
-      if (!disableClearable && !multiple) {
+      // For normal single-select, clearing the input clears the value.
+      // For renderValue (chip-style single), only Backspace/Delete clear the value.
+      if (!disableClearable && !multiple && !renderValue) {
         handleValue(event, null, 'clear');
       }
     } else {
@@ -977,11 +1125,17 @@ function useAutocomplete(props) {
     isTouch.current = false;
   };
 
-  const handleTagDelete = (index) => (event) => {
+  const handleItemDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
     handleValue(event, newValue, 'removeOption', {
       option: value[index],
+    });
+  };
+
+  const handleSingleItemDelete = (event) => {
+    handleValue(event, null, 'removeOption', {
+      option: value,
     });
   };
 
@@ -999,6 +1153,10 @@ function useAutocomplete(props) {
     if (!event.currentTarget.contains(event.target)) {
       return;
     }
+    // Don't interfere with interactions outside the input area (e.g. helper text)
+    if (anchorEl && !anchorEl.contains(event.target)) {
+      return;
+    }
     if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
@@ -1008,6 +1166,10 @@ function useAutocomplete(props) {
   const handleClick = (event) => {
     // Prevent focusing the input if click is anywhere outside the Autocomplete
     if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
+    // Don't interfere with interactions outside the input area (e.g. helper text)
+    if (anchorEl && !anchorEl.contains(event.target)) {
       return;
     }
     inputRef.current.focus();
@@ -1024,7 +1186,12 @@ function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = (event) => {
-    if (!disabledProp && (inputValue === '' || !open)) {
+    if (
+      !disabledProp &&
+      (inputValue === '' || !open) &&
+      // Only handle event when the main button is pressed (left click).
+      event.button === 0
+    ) {
       handlePopupIndicator(event);
     }
   };
@@ -1073,7 +1240,6 @@ function useAutocomplete(props) {
 
   return {
     getRootProps: (other = {}) => ({
-      'aria-owns': listboxAvailable ? `${id}-listbox` : null,
       ...other,
       onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
@@ -1108,23 +1274,27 @@ function useAutocomplete(props) {
     getClearProps: () => ({
       tabIndex: -1,
       type: 'button',
-      onClick: handleClear,
+      onClick: (event) => {
+        ignoreFocus.current = true;
+        handleClear(event);
+      },
+    }),
+    getItemProps: ({ index = 0 } = {}) => ({
+      ...(multiple && { key: index }),
+      'data-item-index': index,
+      tabIndex: -1,
+      ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
     getPopupIndicatorProps: () => ({
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
     }),
-    getTagProps: ({ index }) => ({
-      key: index,
-      'data-tag-index': index,
-      tabIndex: -1,
-      ...(!readOnly && { onDelete: handleTagDelete(index) }),
-    }),
     getListboxProps: () => ({
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
+      'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
         // Prevent blur
@@ -1132,9 +1302,7 @@ function useAutocomplete(props) {
       },
     }),
     getOptionProps: ({ index, option }) => {
-      const selected = (multiple ? value : [value]).some(
-        (value2) => value2 != null && isOptionEqualToValue(option, value2),
-      );
+      const selected = isOptionSelected(option);
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
@@ -1156,10 +1324,10 @@ function useAutocomplete(props) {
     dirty,
     expanded: popupOpen && anchorEl,
     popupOpen,
-    focused: focused || focusedTag !== -1,
+    focused: focused || focusedItem !== -1,
     anchorEl,
     setAnchorEl,
-    focusedTag,
+    focusedItem,
     groupedOptions,
   };
 }

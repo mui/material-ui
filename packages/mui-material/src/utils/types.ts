@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/utils';
+import { SlotComponentProps } from '@mui/utils/types';
 import { Theme } from '../styles';
 
 export type {
@@ -7,11 +7,11 @@ export type {
   WithOptionalOwnerState,
   SlotComponentProps,
   SlotComponentPropsWithSlotState,
-} from '@mui/utils';
+} from '@mui/utils/types';
 
 export type SlotCommonProps = {
-  component?: React.ElementType;
-  sx?: SxProps<Theme>;
+  component?: React.ElementType | undefined;
+  sx?: SxProps<Theme> | undefined;
 };
 
 export type SlotProps<
@@ -30,12 +30,14 @@ export type CreateSlotsAndSlotProps<Slots, K extends Record<keyof Slots, any>> =
    * The components used for each slot inside.
    * @default {}
    */
-  slots?: Partial<Slots>;
+  slots?: Partial<Slots> | undefined;
   /**
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps?: {
-    [P in keyof K]?: K[P];
-  };
+  slotProps?:
+    | {
+        [P in keyof K]?: K[P];
+      }
+    | undefined;
 };

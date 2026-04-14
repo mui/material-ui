@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import ButtonBase from '../ButtonBase';
@@ -25,8 +24,6 @@ const overridesResolver = (props, styles) => {
     styles.root,
     styles[ownerState.variant],
     styles[`size${capitalize(ownerState.size)}`],
-    ownerState.variant === 'text' && styles[`text${capitalize(ownerState.color)}`],
-    ownerState.variant === 'outlined' && styles[`outlined${capitalize(ownerState.color)}`],
     ownerState.shape === 'rounded' && styles.rounded,
     ownerState.type === 'page' && styles.page,
     (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis,
@@ -45,7 +42,6 @@ const useUtilityClasses = (ownerState) => {
       variant,
       shape,
       color !== 'standard' && `color${capitalize(color)}`,
-      color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
       {
@@ -139,24 +135,20 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.selected}`]: {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:hover': {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${paginationItemClasses.focusVisible}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.action.selected,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+        backgroundColor: theme.alpha(
+          (theme.vars || theme).palette.action.selected,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+        ),
       },
       [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
@@ -195,7 +187,7 @@ const PaginationItemPage = styled(ButtonBase, {
         props: { variant: 'outlined' },
         style: {
           border: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,
@@ -248,33 +240,26 @@ const PaginationItemPage = styled(ButtonBase, {
           style: {
             [`&.${paginationItemClasses.selected}`]: {
               color: (theme.vars || theme).palette[color].main,
-              border: `1px solid ${
-                theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                  : alpha(theme.palette[color].main, 0.5)
-              }`,
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.activatedOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.activatedOpacity),
+              border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.activatedOpacity,
+              ),
               '&:hover': {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
                   backgroundColor: 'transparent',
                 },
               },
               [`&.${paginationItemClasses.focusVisible}`]: {
-                backgroundColor: theme.vars
-                  ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.activatedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-                  : alpha(
-                      theme.palette[color].main,
-                      theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-                    ),
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  `${(theme.vars || theme).palette.action.activatedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+                ),
               },
             },
           },
@@ -286,7 +271,6 @@ const PaginationItemPage = styled(ButtonBase, {
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })(
   memoTheme(({ theme }) => ({
     fontSize: theme.typography.pxToRem(20),
@@ -314,7 +298,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {},
     disabled = false,
     page,
     selected = false,
@@ -342,12 +325,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots: {
-      previous: slots.previous ?? components.previous,
-      next: slots.next ?? components.next,
-      first: slots.first ?? components.first,
-      last: slots.last ?? components.last,
-    },
+    slots,
     slotProps,
   };
 
@@ -411,6 +389,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
+      internalNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}
@@ -456,25 +435,15 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The current page number.
    */

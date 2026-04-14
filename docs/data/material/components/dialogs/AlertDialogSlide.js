@@ -29,10 +29,13 @@ export default function AlertDialogSlide() {
       </Button>
       <Dialog
         open={open}
-        TransitionComponent={Transition}
+        slots={{
+          transition: Transition,
+        }}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        role="alertdialog"
       >
         <DialogTitle>{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
@@ -42,7 +45,9 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Disagree
+          </Button>
           <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
       </Dialog>

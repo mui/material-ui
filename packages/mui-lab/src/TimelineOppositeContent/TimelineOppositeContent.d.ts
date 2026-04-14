@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
-import { InternalStandardProps as StandardProps, TypographyProps } from '@mui/material';
+import { TypographyProps } from '@mui/material/Typography';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { TimelineOppositeContentClasses } from './timelineOppositeContentClasses';
 
 export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
@@ -12,23 +13,23 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineOppositeContentClasses>;
+  classes?: Partial<TimelineOppositeContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**
  *
  * Demos:
  *
- * - [Timeline](https://next.mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineOppositeContent API](https://next.mui.com/material-ui/api/timeline-opposite-content/)
- * - inherits [Typography API](https://next.mui.com/material-ui/api/typography/)
+ * - [TimelineOppositeContent API](https://mui.com/material-ui/api/timeline-opposite-content/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const TimelineOppositeContent: ((
   props: TimelineOppositeContentProps,

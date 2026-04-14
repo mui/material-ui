@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Box from '@mui/material/Box';

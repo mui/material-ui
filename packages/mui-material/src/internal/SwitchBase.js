@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
@@ -23,7 +22,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase)({
+const SwitchBaseRoot = styled(ButtonBase, {
+  name: 'MuiSwitchBase',
+})({
   padding: 9,
   borderRadius: '50%',
   variants: [
@@ -60,7 +61,10 @@ const SwitchBaseRoot = styled(ButtonBase)({
   ],
 });
 
-const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
+const SwitchBaseInput = styled('input', {
+  name: 'MuiSwitchBase',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,
@@ -87,8 +91,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     edge = false,
     icon,
     id,
-    inputProps,
-    inputRef,
     name,
     onBlur,
     onChange,
@@ -102,6 +104,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     slotProps = {},
     ...other
   } = props;
+  const { nativeButton, ...buttonBaseProps } = other;
   const [checked, setCheckedState] = useControlled({
     controlled: checkedProp,
     default: Boolean(defaultChecked),
@@ -133,7 +136,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const handleInputChange = (event) => {
     // Workaround for https://github.com/facebook/react/issues/9023
-    if (event.nativeEvent.defaultPrevented) {
+    if (event.nativeEvent.defaultPrevented || readOnly) {
       return;
     }
 
@@ -169,10 +172,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      input: inputProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
@@ -183,7 +183,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     externalForwardedProps: {
       ...externalForwardedProps,
       component: 'span',
-      ...other,
+      ...buttonBaseProps,
     },
     getSlotProps: (handlers) => ({
       ...handlers,
@@ -200,14 +200,12 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     additionalProps: {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
-      disabled,
       role: undefined,
       tabIndex: null,
     },
   });
 
   const [InputSlot, inputSlotProps] = useSlot('input', {
-    ref: inputRef,
     elementType: SwitchBaseInput,
     className: classes.input,
     externalForwardedProps,
@@ -294,14 +292,6 @@ SwitchBase.propTypes = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
   /*
    * @ignore
    */

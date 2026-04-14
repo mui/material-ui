@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -22,7 +29,6 @@ describe('<InputBase />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
-    testLegacyComponentsProp: true,
     slots: {
       // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
@@ -41,6 +47,20 @@ describe('<InputBase />', () => {
     expect(input).to.have.attribute('type', 'text');
     expect(input).to.have.class(classes.input);
     expect(input).not.to.have.attribute('required');
+  });
+
+  it('should be aria-labelled and aria-describedby if props are provided', () => {
+    render(
+      <div>
+        <InputBase aria-label="label" aria-describedby="helper-text" />
+        <p id="helper-text">Helper text</p>
+      </div>,
+    );
+
+    const input = screen.getByRole('textbox');
+
+    expect(input).toHaveAccessibleName('label');
+    expect(input).toHaveAccessibleDescription('Helper text');
   });
 
   it('should add the right class when size is small', () => {
@@ -113,8 +133,8 @@ describe('<InputBase />', () => {
 
     it('fires the click event when the <input /> is disabled', () => {
       const handleClick = spy();
-      const { getByRole } = render(<InputBase disabled onClick={handleClick} />);
-      const input = getByRole('textbox');
+      render(<InputBase disabled onClick={handleClick} />);
+      const input = screen.getByRole('textbox');
       fireEvent.click(input);
       expect(handleClick.callCount).to.equal(1);
     });
@@ -122,8 +142,8 @@ describe('<InputBase />', () => {
 
   describe('prop: readonly', () => {
     it('should render a readonly <input />', () => {
-      const { getByRole } = render(<InputBase readOnly />);
-      const input = getByRole('textbox');
+      render(<InputBase readOnly />);
+      const input = screen.getByRole('textbox');
       expect(input).to.have.class(classes.input);
       expect(input).to.have.class(classes.readOnly);
       expect(input).to.have.property('readOnly');
@@ -136,7 +156,8 @@ describe('<InputBase />', () => {
     const handleBlur = spy();
     const handleKeyUp = spy();
     const handleKeyDown = spy();
-    const { getByRole } = render(
+
+    render(
       <InputBase
         onChange={handleChange}
         onFocus={handleFocus}
@@ -145,7 +166,8 @@ describe('<InputBase />', () => {
         onKeyDown={handleKeyDown}
       />,
     );
-    const input = getByRole('textbox');
+
+    const input = screen.getByRole('textbox');
 
     // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
 
@@ -171,8 +193,8 @@ describe('<InputBase />', () => {
 
   describe('controlled', () => {
     it('should considered [] as controlled', () => {
-      const { getByRole } = render(<InputBase value={[]} />);
-      const input = getByRole('textbox');
+      render(<InputBase value={[]} />);
+      const input = screen.getByRole('textbox');
 
       expect(input).to.have.property('value', '');
       fireEvent.change(input, { target: { value: 'do not work' } });
@@ -182,10 +204,9 @@ describe('<InputBase />', () => {
 
   describe('prop: inputComponent', () => {
     it('should accept any html component', () => {
-      const { getByTestId } = render(
-        <InputBase inputComponent="span" inputProps={{ 'data-testid': 'input-component' }} />,
-      );
-      expect(getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
+      render(<InputBase inputComponent="span" inputProps={{ 'data-testid': 'input-component' }} />);
+
+      expect(screen.getByTestId('input-component')).to.have.property('nodeName', 'SPAN');
     });
 
     it('should inject onBlur and onFocus', () => {
@@ -218,16 +239,17 @@ describe('<InputBase />', () => {
           return <span {...props}>filled: {String(filled)}</span>;
         }
 
-        const { getByRole, getByTestId } = render(
+        render(
           <FormControl>
             <FilledState data-testid="filled" />
             <InputBase inputComponent={MockedValue} />
           </FormControl>,
         );
-        expect(getByTestId('filled')).to.have.text('filled: false');
 
-        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
-        expect(getByTestId('filled')).to.have.text('filled: true');
+        expect(screen.getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 1 } });
+        expect(screen.getByTestId('filled')).to.have.text('filled: true');
       });
 
       it("can expose the input component's ref through the inputComponent prop", () => {
@@ -240,16 +262,17 @@ describe('<InputBase />', () => {
           return <span {...props}>filled: {String(filled)}</span>;
         }
 
-        const { getByRole, getByTestId } = render(
+        render(
           <FormControl>
             <FilledState data-testid="filled" />
             <InputBase inputComponent={FullTarget} />
           </FormControl>,
         );
-        expect(getByTestId('filled')).to.have.text('filled: false');
 
-        fireEvent.change(getByRole('textbox'), { target: { value: 1 } });
-        expect(getByTestId('filled')).to.have.text('filled: true');
+        expect(screen.getByTestId('filled')).to.have.text('filled: false');
+
+        fireEvent.change(screen.getByRole('textbox'), { target: { value: 1 } });
+        expect(screen.getByTestId('filled')).to.have.text('filled: true');
       });
     });
 
@@ -282,7 +305,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
 
@@ -297,25 +320,27 @@ describe('<InputBase />', () => {
 
   describe('with FormControl', () => {
     it('should have the formControl class', () => {
-      const { getByTestId } = render(
+      render(
         <FormControl>
           <InputBase data-testid="root" />
         </FormControl>,
       );
-      expect(getByTestId('root')).to.have.class(classes.formControl);
+
+      expect(screen.getByTestId('root')).to.have.class(classes.formControl);
     });
 
     describe('callbacks', () => {
       it('should fire the onClick prop', () => {
         const handleClick = spy();
         const handleFocus = spy();
-        const { getByTestId } = render(
+
+        render(
           <FormControl>
             <InputBase data-testid="root" onClick={handleClick} onFocus={handleFocus} />
           </FormControl>,
         );
 
-        fireEvent.click(getByTestId('root'));
+        fireEvent.click(screen.getByTestId('root'));
         expect(handleClick.callCount).to.equal(1);
         expect(handleFocus.callCount).to.equal(1);
       });
@@ -331,50 +356,53 @@ describe('<InputBase />', () => {
           );
         }
 
-        const { getByTestId, setProps } = render(<InputBaseInErrorForm />);
-        expect(getByTestId('root')).to.have.class(classes.error);
+        const { setProps } = render(<InputBaseInErrorForm />);
+        expect(screen.getByTestId('root')).to.have.class(classes.error);
 
         setProps({ error: false });
-        expect(getByTestId('root')).not.to.have.class(classes.error);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.error);
 
         setProps({ error: true });
-        expect(getByTestId('root')).to.have.class(classes.error);
+        expect(screen.getByTestId('root')).to.have.class(classes.error);
       });
     });
 
     describe('size', () => {
-      it('should have the inputSizeSmall class in a dense context', () => {
-        const { container } = render(
+      it('should have the sizeSmall class in a dense context', () => {
+        render(
           <FormControl size="small">
-            <InputBase />
+            <InputBase data-testid="root" />
           </FormControl>,
         );
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(screen.getByTestId('root')).to.have.class(classes.sizeSmall);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
 
       it('should be overridden by props', () => {
         function InputBaseInFormWithMargin(props) {
           return (
             <FormControl size="medium">
-              <InputBase {...props} />
+              <InputBase data-testid="root" {...props} />
             </FormControl>
           );
         }
-        const { container, setProps } = render(<InputBaseInFormWithMargin />);
-        expect(container.querySelector('input')).not.to.have.class(classes.inputSizeSmall);
+        const { setProps } = render(<InputBaseInFormWithMargin />);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.sizeSmall);
 
         setProps({ size: 'small' });
-        expect(container.querySelector('input')).to.have.class(classes.inputSizeSmall);
+        expect(screen.getByTestId('root')).to.have.class(classes.sizeSmall);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
 
-      it('has an inputHiddenLabel class to further reduce margin', () => {
-        const { getByRole } = render(
+      it('has a hiddenLabel class to further reduce margin', () => {
+        render(
           <FormControl hiddenLabel margin="dense">
-            <InputBase />
+            <InputBase data-testid="root" />
           </FormControl>,
         );
 
-        expect(getByRole('textbox')).to.have.class(classes.inputHiddenLabel);
+        expect(screen.getByTestId('root')).to.have.class(classes.hiddenLabel);
+        expect(screen.getByRole('textbox')).to.have.class(classes.input);
       });
     });
 
@@ -400,7 +428,8 @@ describe('<InputBase />', () => {
           return null;
         });
         const controlRef = React.createRef();
-        const { getByRole, getByTestId } = render(
+
+        render(
           <FormControl>
             <FormController ref={controlRef} />
             <InputBase data-testid="root" />
@@ -408,21 +437,21 @@ describe('<InputBase />', () => {
         );
 
         act(() => {
-          getByRole('textbox').focus();
+          screen.getByRole('textbox').focus();
         });
-        expect(getByTestId('root')).to.have.class(classes.focused);
+        expect(screen.getByTestId('root')).to.have.class(classes.focused);
 
         act(() => {
           controlRef.current.onBlur();
         });
 
-        expect(getByTestId('root')).not.to.have.class(classes.focused);
+        expect(screen.getByTestId('root')).not.to.have.class(classes.focused);
 
         act(() => {
           controlRef.current.onFocus();
         });
 
-        expect(getByTestId('root')).to.have.class(classes.focused);
+        expect(screen.getByTestId('root')).to.have.class(classes.focused);
       });
 
       it('propagates focused state', () => {
@@ -430,23 +459,25 @@ describe('<InputBase />', () => {
           const { focused } = useFormControl();
           return <label {...props}>focused: {String(focused)}</label>;
         }
-        const { getByRole, getByTestId } = render(
+
+        render(
           <FormControl>
             <FocusedStateLabel data-testid="label" htmlFor="input" />
             <InputBase id="input" />
           </FormControl>,
         );
-        expect(getByTestId('label')).to.have.text('focused: false');
+
+        expect(screen.getByTestId('label')).to.have.text('focused: false');
 
         act(() => {
-          getByRole('textbox').focus();
+          screen.getByRole('textbox').focus();
         });
-        expect(getByTestId('label')).to.have.text('focused: true');
+        expect(screen.getByTestId('label')).to.have.text('focused: true');
 
         act(() => {
-          getByRole('textbox').blur();
+          screen.getByRole('textbox').blur();
         });
-        expect(getByTestId('label')).to.have.text('focused: false');
+        expect(screen.getByTestId('label')).to.have.text('focused: false');
       });
     });
 
@@ -455,23 +486,25 @@ describe('<InputBase />', () => {
         const { filled } = useFormControl();
         return <label {...props}>filled: {String(filled)}</label>;
       }
-      const { getByRole, getByTestId } = render(
+
+      render(
         <FormControl>
           <FilledStateLabel data-testid="label" />
           <InputBase />
         </FormControl>,
       );
-      expect(getByTestId('label')).to.have.text('filled: false');
-      const textbox = getByRole('textbox');
+
+      expect(screen.getByTestId('label')).to.have.text('filled: false');
+      const textbox = screen.getByRole('textbox');
 
       fireEvent.change(textbox, { target: { value: 'material' } });
-      expect(getByTestId('label')).to.have.text('filled: true');
+      expect(screen.getByTestId('label')).to.have.text('filled: true');
 
       fireEvent.change(textbox, { target: { value: '0' } });
-      expect(getByTestId('label')).to.have.text('filled: true');
+      expect(screen.getByTestId('label')).to.have.text('filled: true');
 
       fireEvent.change(textbox, { target: { value: '' } });
-      expect(getByTestId('label')).to.have.text('filled: false');
+      expect(screen.getByTestId('label')).to.have.text('filled: false');
     });
 
     it('propagates filled state when controlled', () => {
@@ -487,17 +520,17 @@ describe('<InputBase />', () => {
           </FormControl>
         );
       }
-      const { getByTestId, setProps } = render(<ControlledInputBase value="" />);
-      expect(getByTestId('label')).to.have.text('filled: false');
+      const { setProps } = render(<ControlledInputBase value="" />);
+      expect(screen.getByTestId('label')).to.have.text('filled: false');
 
       setProps({ value: 'material' });
-      expect(getByTestId('label')).to.have.text('filled: true');
+      expect(screen.getByTestId('label')).to.have.text('filled: true');
 
       setProps({ value: 0 });
-      expect(getByTestId('label')).to.have.text('filled: true');
+      expect(screen.getByTestId('label')).to.have.text('filled: true');
 
       setProps({ value: '' });
-      expect(getByTestId('label')).to.have.text('filled: false');
+      expect(screen.getByTestId('label')).to.have.text('filled: false');
     });
 
     describe('registering input', () => {
@@ -507,7 +540,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
         expect(() => {
@@ -554,9 +587,9 @@ describe('<InputBase />', () => {
           );
         }
 
-        const { getByText } = render(<ToggleFormInputs />);
+        render(<ToggleFormInputs />);
         expect(() => {
-          fireEvent.click(getByText('toggle'));
+          fireEvent.click(screen.getByText('toggle'));
         }).not.toErrorDev();
       });
     });
@@ -610,10 +643,11 @@ describe('<InputBase />', () => {
         outputArguments = args;
       }
 
-      const { getByRole } = render(
+      render(
         <InputBase inputComponent={MyInputBase} inputProps={{ onChange: parentHandleChange }} />,
       );
-      const textbox = getByRole('textbox');
+
+      const textbox = screen.getByRole('textbox');
       fireEvent.change(textbox, { target: { value: INPUT_VALUE } });
 
       expect(outputArguments.length).to.equal(2);
@@ -624,7 +658,7 @@ describe('<InputBase />', () => {
 
   describe('prop: startAdornment, prop: endAdornment', () => {
     it('should render adornment before input', () => {
-      const { getByTestId } = render(
+      render(
         <InputBase
           startAdornment={
             <InputAdornment data-testid="adornment" position="start">
@@ -634,11 +668,11 @@ describe('<InputBase />', () => {
         />,
       );
 
-      expect(getByTestId('adornment')).not.to.equal(null);
+      expect(screen.getByTestId('adornment')).not.to.equal(null);
     });
 
     it('should render adornment after input', () => {
-      const { getByTestId } = render(
+      render(
         <InputBase
           endAdornment={
             <InputAdornment data-testid="adornment" position="end">
@@ -648,7 +682,7 @@ describe('<InputBase />', () => {
         />,
       );
 
-      expect(getByTestId('adornment')).not.to.equal(null);
+      expect(screen.getByTestId('adornment')).not.to.equal(null);
     });
 
     it('should allow a Select as an adornment', () => {
@@ -656,14 +690,16 @@ describe('<InputBase />', () => {
         <TextField
           value=""
           name="text"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Select value="" name="suffix" />
-              </InputAdornment>
-            ),
-          }}
           variant="standard"
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Select value="" name="suffix" />
+                </InputAdornment>
+              ),
+            },
+          }}
         />,
       );
     });
@@ -684,29 +720,31 @@ describe('<InputBase />', () => {
   });
 
   describe('prop: focused', () => {
-    it('should render correct border color with `ThemeProvider` imported from `@emotion/react`', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-      const theme = createTheme({
-        palette: {
-          primary: {
-            main: 'rgb(0, 191, 165)',
+    it.skipIf(isJsdom())(
+      'should render correct border color with `ThemeProvider` imported from `@emotion/react`',
+      function test() {
+        const theme = createTheme({
+          palette: {
+            primary: {
+              main: 'rgb(0, 191, 165)',
+            },
           },
-        },
-      });
-      const { getByRole } = render(
-        <ThemeProvider theme={theme}>
-          <TextField focused label="Your email" />
-        </ThemeProvider>,
-      );
-      const fieldset = getByRole('textbox').nextSibling;
-      expect(fieldset).toHaveComputedStyle({
-        borderTopColor: 'rgb(0, 191, 165)',
-        borderRightColor: 'rgb(0, 191, 165)',
-        borderBottomColor: 'rgb(0, 191, 165)',
-        borderLeftColor: 'rgb(0, 191, 165)',
-      });
-    });
+        });
+
+        render(
+          <ThemeProvider theme={theme}>
+            <TextField focused label="Your email" />
+          </ThemeProvider>,
+        );
+
+        const fieldset = screen.getByRole('textbox').nextSibling;
+        expect(fieldset).toHaveComputedStyle({
+          borderTopColor: 'rgb(0, 191, 165)',
+          borderRightColor: 'rgb(0, 191, 165)',
+          borderBottomColor: 'rgb(0, 191, 165)',
+          borderLeftColor: 'rgb(0, 191, 165)',
+        });
+      },
+    );
   });
 });

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@mui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import {
@@ -48,7 +47,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemIcon,
-  ListItemSecondaryAction,
   ListItemText,
   Menu,
   MenuItem,
@@ -96,7 +94,7 @@ function AppBarTest() {
         <IconButton color="inherit" aria-label="menu">
           <FakeIcon />
         </IconButton>
-        <Typography variant="h6" color="inherit">
+        <Typography variant="h6" sx={{ color: 'inherit' }}>
           Title
         </Typography>
         <Button color="inherit">Login</Button>
@@ -400,7 +398,6 @@ function DividerTest() {
   return (
     <div>
       <Divider />
-      <Divider light />
     </div>
   );
 }
@@ -533,18 +530,22 @@ function AccordionTest() {
 function GridTest() {
   return (
     <Grid component={Paper} container>
-      <Grid item xs={12}>
+      <Grid size={12}>...</Grid>
+      <Grid
+        size={{
+          sm: 12,
+        }}
+      >
         ...
       </Grid>
-      <Grid item sm={12}>
+      <Grid
+        size={{
+          xl: 'grow',
+        }}
+      >
         ...
       </Grid>
-      <Grid item xl>
-        ...
-      </Grid>
-      <Grid item style={{ color: 'red' }}>
-        ...
-      </Grid>
+      <Grid style={{ color: 'red' }}>...</Grid>
     </Grid>
   );
 }
@@ -564,19 +565,22 @@ function ListTest() {
   return (
     <List>
       {[0, 1, 2, 3].map((value) => (
-        <ListItemButton dense selected={false} key={value} onClick={(event) => log(event)}>
-          <Checkbox checked tabIndex={-1} disableRipple />
-          <ListItemText primary={`Line item ${value + 1}`} />
-          <ListItemSecondaryAction>
+        <ListItem
+          dense
+          key={value}
+          secondaryAction={
             <IconButton aria-label="comments">
               <FakeIcon />
             </IconButton>
-          </ListItemSecondaryAction>
-        </ListItemButton>
+          }
+        >
+          <ListItemButton selected={false} onClick={(event) => log(event)}>
+            <Checkbox checked tabIndex={-1} disableRipple />
+            <ListItemText primary={`Line item ${value + 1}`} />
+          </ListItemButton>
+        </ListItem>
       ))}
-      <ListItem ContainerComponent="div" ContainerProps={{ className: 'demo' }}>
-        an item
-      </ListItem>
+      <ListItem>an item</ListItem>
     </List>
   );
 }
@@ -764,12 +768,11 @@ function SnackbarTest() {
         open
         autoHideDuration={6000}
         onClose={(event) => log(event)}
-        ContentProps={
-          {
-            // 'aria-describedby': 'message-id',
-            // ^ will work once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/22582 is merged.
-          }
-        }
+        slotProps={{
+          content: {
+            'aria-describedby': 'message-id',
+          },
+        }}
         message={<span id="message-id">Note archived</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={(event) => log(event)}>
@@ -856,34 +859,6 @@ const StepperTest = () =>
     }
   };
 
-const TableTest = () => {
-  const styles = (theme: Theme) => {
-    const backgroundColor: string = theme.palette.secondary.light;
-    return createStyles({
-      paper: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        backgroundColor,
-        overflowX: 'auto',
-      },
-    });
-  };
-
-  let id = 0;
-  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-  }
-
-  const data = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
-};
-
 function TextFieldTest() {
   return (
     <div>
@@ -895,16 +870,23 @@ function TextFieldTest() {
         value="Alice"
         onChange={(event) => log({ name: event.currentTarget.value })}
       />
-      <TextField id="name" label="Name" value="Alice" InputProps={{ classes: { root: 'foo' } }} />
+      <TextField
+        id="name"
+        label="Name"
+        value="Alice"
+        slotProps={{ input: { classes: { root: 'foo' } } }}
+      />
       <TextField
         type="number"
-        inputProps={{
-          min: '0',
-          max: '10',
-          step: '1',
-          style: {
-            // just a long CSS property to test autocompletion
-            WebkitAnimationIterationCount: 0,
+        slotProps={{
+          htmlInput: {
+            min: '0',
+            max: '10',
+            step: '1',
+            style: {
+              // just a long CSS property to test autocompletion
+              WebkitAnimationIterationCount: 0,
+            },
           },
         }}
       />

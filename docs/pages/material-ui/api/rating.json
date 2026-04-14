@@ -13,10 +13,6 @@
     },
     "highlightSelectedOnly": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
-    "IconContainerComponent": {
-      "type": { "name": "elementType" },
-      "default": "function IconContainer(props) {\n  const { value, ...other } = props;\n  return <span {...other} />;\n}"
-    },
     "max": { "type": { "name": "number" }, "default": "5" },
     "name": { "type": { "name": "string" } },
     "onChange": {
@@ -42,6 +38,20 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ decimal?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ decimal?: elementType, icon?: elementType, label?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -56,13 +66,33 @@
     "import Rating from '@mui/material/Rating';",
     "import { Rating } from '@mui/material';"
   ],
-  "classes": [
+  "slots": [
     {
-      "key": "decimal",
-      "className": "MuiRating-decimal",
-      "description": "Styles applied to the icon wrapping elements when decimals are necessary.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component used for the root slot.",
+      "default": "'span'",
+      "class": "MuiRating-root"
     },
+    {
+      "name": "label",
+      "description": "The component used for the label slot.",
+      "default": "'label'",
+      "class": "MuiRating-label"
+    },
+    {
+      "name": "icon",
+      "description": "The component used for the icon slot.",
+      "default": "'span'",
+      "class": "MuiRating-icon"
+    },
+    {
+      "name": "decimal",
+      "description": "The component used for the decimal slot.",
+      "default": "'span'",
+      "class": "MuiRating-decimal"
+    }
+  ],
+  "classes": [
     {
       "key": "disabled",
       "className": "Mui-disabled",
@@ -74,12 +104,6 @@
       "className": "Mui-focusVisible",
       "description": "State class applied to the root element if keyboard focused.",
       "isGlobal": true
-    },
-    {
-      "key": "icon",
-      "className": "MuiRating-icon",
-      "description": "Styles applied to the icon wrapping elements.",
-      "isGlobal": false
     },
     {
       "key": "iconActive",
@@ -112,12 +136,6 @@
       "isGlobal": false
     },
     {
-      "key": "label",
-      "className": "MuiRating-label",
-      "description": "Styles applied to the label elements.",
-      "isGlobal": false
-    },
-    {
       "key": "labelEmptyValueActive",
       "className": "MuiRating-labelEmptyValueActive",
       "description": "Styles applied to the label of the \"no value\" input when it is active.",
@@ -128,12 +146,6 @@
       "className": "Mui-readOnly",
       "description": "Styles applied to the root element if `readOnly={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiRating-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeLarge",

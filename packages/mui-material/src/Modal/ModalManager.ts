@@ -1,11 +1,9 @@
-import {
-  unstable_ownerWindow as ownerWindow,
-  unstable_ownerDocument as ownerDocument,
-  unstable_getScrollbarSize as getScrollbarSize,
-} from '@mui/utils';
+import ownerWindow from '@mui/utils/ownerWindow';
+import ownerDocument from '@mui/utils/ownerDocument';
+import getScrollbarSize from '@mui/utils/getScrollbarSize';
 
 export interface ManagedModalProps {
-  disableScrollLock?: boolean;
+  disableScrollLock?: boolean | undefined;
 }
 
 // Is a vertical scrollbar displayed?
@@ -28,7 +26,7 @@ export function ariaHidden(element: Element, hide: boolean): void {
 }
 
 function getPaddingRight(element: Element): number {
-  return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
+  return parseFloat(ownerWindow(element).getComputedStyle(element).paddingRight) || 0;
 }
 
 function isAriaHiddenForbiddenOnElement(element: Element): boolean {

@@ -1,4 +1,4 @@
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Button from '@mui/material/Button';
 import * as React from 'react';
 

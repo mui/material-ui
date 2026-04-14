@@ -43,7 +43,6 @@ import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { GridProps } from '../Grid';
-import { Grid2Props } from '../Grid2';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { ImageListProps } from '../ImageList';
@@ -103,6 +102,7 @@ import { TableCellProps } from '../TableCell';
 import { TableContainerProps } from '../TableContainer';
 import { TableHeadProps } from '../TableHead';
 import { TablePaginationProps } from '../TablePagination';
+import { TablePaginationActionsProps } from '../TablePaginationActions';
 import { TableProps } from '../Table';
 import { TableRowProps } from '../TableRow';
 import { TableSortLabelProps } from '../TableSortLabel';
@@ -114,7 +114,6 @@ import { ToggleButtonProps } from '../ToggleButton';
 import { ToggleButtonGroupProps } from '../ToggleButtonGroup';
 import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
-import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
 import { PopperProps } from '../Popper';
 
@@ -168,7 +167,6 @@ export interface ComponentsPropsList {
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
   MuiGrid: GridProps;
-  MuiGrid2: Grid2Props;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
   MuiImageListItemBar: ImageListItemBarProps;
@@ -231,6 +229,7 @@ export interface ComponentsPropsList {
   MuiTableFooter: TableFooterProps;
   MuiTableHead: TableHeadProps;
   MuiTablePagination: TablePaginationProps;
+  MuiTablePaginationActions: TablePaginationActionsProps;
   MuiTableRow: TableRowProps;
   MuiTableSortLabel: TableSortLabelProps;
   MuiTabs: TabsProps;
@@ -239,7 +238,6 @@ export interface ComponentsPropsList {
   MuiToggleButtonGroup: ToggleButtonGroupProps;
   MuiToolbar: ToolbarProps;
   MuiTooltip: TooltipProps;
-  MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: UseMediaQueryOptions;
 }

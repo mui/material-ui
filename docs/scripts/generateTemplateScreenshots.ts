@@ -1,13 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { chromium } from 'playwright';
+import { chromium } from '@playwright/test';
 
 /**
  * README
  *
  * Usage:
  * - `pnpm template:screenshot` to generate all screenshots
- * - `pnpm template:screenshot material-ui` to generate all screenshots for Material-UI templates
+ * - `pnpm template:screenshot material-ui` to generate all screenshots for Material UI templates
  * - `pnpm template:screenshot order-dashboard` to generate screenshots for file named `order-dashboard.tsx`
  * - `pnpm template:screenshot material-ui dashboard` to generate screenshots for file named `dashboard.tsx` of Material UI templates
  *

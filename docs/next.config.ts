@@ -2,6 +2,7 @@
 import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
+import * as semver from 'semver';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
@@ -29,11 +30,11 @@ export default withDocsInfra({
   webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
-    if (process.env.DOCS_STATS_ENABLED) {
+    if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
       plugins.push(
         // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
         new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
+          analyzerMode: 'static',
           generateStatsFile: true,
           analyzerPort: options.isServer ? 8888 : 8889,
           reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
@@ -43,12 +44,13 @@ export default withDocsInfra({
       );
     }
 
-    // next includes node_modules in webpack externals. Some of those have dependencies
-    // on the aliases defined above. If a module is an external those aliases won't be used.
-    // We need tell webpack to not consider those packages as externals.
+    // If a module is an webpack "external" the webpack aliases configured are not used.
+    // Next.js includes node_modules in webpack externals, some of those have dependencies
+    // on the aliases we defined above.
+    // So we need tell webpack to not consider those packages as externals.
     if (
       options.isServer &&
-      // Next executes this twice on the server with React 18 (once per runtime).
+      // Next.js executes this twice on the server with React 18 (once per runtime).
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
@@ -60,15 +62,9 @@ export default withDocsInfra({
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
-            'notistack',
-            '@mui/x-data-grid',
-            '@mui/x-data-grid-pro',
-            '@mui/x-date-pickers',
-            '@mui/x-date-pickers-pro',
-            '@mui/x-data-grid-generator',
-            '@mui/x-charts',
-            '@mui/x-tree-view',
-            '@mui/x-license-pro',
+            'material-ui-popup-state',
+            // Assume any X dependencies depend on a package defined in this repository.
+            '@mui/x-',
             '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
@@ -97,28 +93,36 @@ export default withDocsInfra({
 
           // for 3rd party packages with dependencies in this repository
           '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
+          '@mui/material/package.json': path.resolve(
+            workspaceRoot,
+            'packages/mui-material/package.json',
+          ),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
 
-          '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
+          '@mui/internal-core-docs': path.resolve(workspaceRoot, 'packages-internal/core-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
-            'packages/mui-icons-material/lib/esm/index.js',
+            'packages/mui-icons-material/lib/index.mjs',
           ),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
-          '@mui/styles': path.resolve(workspaceRoot, 'packages/mui-styles/src'),
+          '@mui/system/package.json': path.resolve(
+            workspaceRoot,
+            'packages/mui-system/package.json',
+          ),
           '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
-          '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-          '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
+          '.mjs',
           '.tsx',
           // @ts-ignore
-          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+          ...config.resolve.extensions.filter(
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
+          ),
         ],
       },
       module: {
@@ -141,18 +145,9 @@ export default withDocsInfra({
                         {
                           productId: 'material-ui',
                           paths: [
-                            path.join(workspaceRoot, 'packages/mui-base/src'),
                             path.join(workspaceRoot, 'packages/mui-lab/src'),
                             path.join(workspaceRoot, 'packages/mui-material/src'),
                           ],
-                        },
-                        {
-                          productId: 'base-ui',
-                          paths: [path.join(workspaceRoot, 'packages/mui-base/src')],
-                        },
-                        {
-                          productId: 'joy-ui',
-                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
                         },
                       ],
                       env: {
@@ -188,15 +183,19 @@ export default withDocsInfra({
   env: {
     // docs-infra
     LIB_VERSION: pkg.version,
+    SEARCH_INDEX: `material-ui-v${semver.major(pkg.version)}`,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
-    GITHUB_AUTH: process.env.GITHUB_AUTH
-      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
-      : '',
+    GITHUB_AUTH: process.env.GITHUB_AUTH,
+    MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
+    MUI_CHAT_SCOPES: 'material-ui', // Use comma separated list of `productId` (see `_app.js`) to enable MUI Chat on demos
   },
+  // Ensure CSS from the Data Grid packages is included in the build:
+  // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
+  transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
@@ -256,15 +255,6 @@ export default withDocsInfra({
 
     return map;
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/base-ui/',
-        destination: 'https://base-ui.com',
-        permanent: true,
-      },
-    ];
-  },
   // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
@@ -278,6 +268,15 @@ export default withDocsInfra({
             // Make sure to include the trailing slash if `trailingSlash` option is set
             { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+        redirects: async () => {
+          return [
+            {
+              source: '/base-ui/',
+              destination: 'https://base-ui.com',
+              permanent: true,
+            },
           ];
         },
       }),

@@ -1,10 +1,9 @@
-import * as React from 'react';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import References, { ADVANCED_CUSTOMERS } from 'docs/src/components/home/References';
 import XHero from 'docs/src/components/productX/XHero';
 import XComponents from 'docs/src/components/productX/XComponents';
@@ -39,7 +38,7 @@ export default function X() {
         <XRoadmap />
         <Divider />
       </main>
-      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x" />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x-charts+or+mui-x-data-grid+or+mui-x-date-picker+or+mui-x-tree-view" />
     </BrandingCssVarsProvider>
   );
 }

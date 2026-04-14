@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -12,12 +12,11 @@ import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
-import AutoGraphRoundedIcon from '@mui/icons-material/AutoGraphRounded';
-import SpeedRounded from '@mui/icons-material/SpeedRounded';
+import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import { alpha } from '@mui/material/styles';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import Section from 'docs/src/layouts/Section';
 import GradientText from 'docs/src/components/typography/GradientText';
 
@@ -100,7 +99,7 @@ export default function XRoadmap() {
         }`,
       }}
     >
-      <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+      <Grid container spacing={2} sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid size={{ xs: 12, md: 5 }}>
           <SectionHeadline
             overline="Roadmap"
@@ -182,13 +181,6 @@ export default function XRoadmap() {
                     variant="body2"
                     sx={{ color: 'text.secondary', fontWeight: 'medium' }}
                   >
-                    Pivoting
-                  </Typography>
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
                     Charts integration
                   </Typography>
                   {bullet}
@@ -211,13 +203,6 @@ export default function XRoadmap() {
                   >
                     Virtualization
                   </Typography>
-                  {bullet}
-                  <Typography
-                    variant="body2"
-                    sx={{ color: 'text.secondary', fontWeight: 'medium' }}
-                  >
-                    Drag and Drop
-                  </Typography>
                 </React.Fragment>,
                 true,
               )}
@@ -235,16 +220,14 @@ export default function XRoadmap() {
               </Typography>
               {renderList(
                 <React.Fragment>
-                  <AutoGraphRoundedIcon sx={{ fontSize: 16 }} />
-                  Sparkline
                   <FormatSizeRoundedIcon sx={{ fontSize: 16 }} />
                   Rich Text Editor
                   <FileUploadRounded sx={{ fontSize: 16 }} />
                   Upload
                   <PendingActionsRounded sx={{ fontSize: 16 }} />
                   Scheduler
-                  <SpeedRounded sx={{ fontSize: 16 }} />
-                  Gauge
+                  <ViewTimelineIcon sx={{ fontSize: 16 }} />
+                  Gantt
                 </React.Fragment>,
               )}
             </Paper>

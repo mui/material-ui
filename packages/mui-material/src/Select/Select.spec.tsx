@@ -2,6 +2,7 @@ import * as React from 'react';
 import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { createTheme } from '@mui/material/styles';
+import { expectType } from '@mui/types';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(event: SelectChangeEvent<number>) {}
@@ -199,3 +200,25 @@ const AppSelect = <T extends string>(props: Props<T>) => {
 
 // test for applying Select's static muiName property type to wrapper components
 AppSelect.muiName = Select.muiName;
+
+<Select<'option1' | 'option2'>
+  value="option1"
+  onChange={(event) => {
+    expectType<'option1' | 'option2', typeof event.target.value>(event.target.value);
+  }}
+>
+  <MenuItem value="option1" />
+  {/* Whoops. The value in onChange won't be a string */}
+  <MenuItem value="option2" />
+</Select>;
+
+<Select<number | ''>
+  value={1}
+  onChange={(event) => {
+    expectType<number | '', typeof event.target.value>(event.target.value);
+  }}
+>
+  <MenuItem value={1} />
+  {/* Whoops. The value in onChange won't be a string */}
+  <MenuItem value={2} />
+</Select>;

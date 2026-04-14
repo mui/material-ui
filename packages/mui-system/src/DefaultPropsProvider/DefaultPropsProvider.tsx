@@ -29,11 +29,15 @@ DefaultPropsProvider.propTypes /* remove-proptypes */ = {
 
 function getThemeProps<
   Theme extends {
-    components?: Record<string, { defaultProps?: any; styleOverrides?: any; variants?: any }>;
+    components?:
+      | (Record<string, { defaultProps?: any; styleOverrides?: any; variants?: any }> & {
+          mergeClassNameAndStyle?: boolean | undefined;
+        })
+      | undefined;
   },
   Props,
   Name extends string,
->(params: { props: Props; name: Name; theme?: Theme }): Props {
+>(params: { props: Props; name: Name; theme?: Theme | undefined }): Props {
   const { theme, name, props } = params;
 
   if (!theme || !theme.components || !theme.components[name]) {
@@ -43,12 +47,12 @@ function getThemeProps<
 
   if (config.defaultProps) {
     // compatible with v5 signature
-    return resolveProps(config.defaultProps, props);
+    return resolveProps(config.defaultProps, props, theme.components.mergeClassNameAndStyle);
   }
 
   if (!config.styleOverrides && !config.variants) {
     // v6 signature, no property 'defaultProps'
-    return resolveProps(config as any, props);
+    return resolveProps(config as any, props, theme.components.mergeClassNameAndStyle);
   }
   return props;
 }

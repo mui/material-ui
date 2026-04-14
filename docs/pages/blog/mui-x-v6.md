@@ -21,7 +21,7 @@ tags: ['MUI X', 'Product']
   - [Cell selection](#cell-selection) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
   - [Use web workers to export data to excel files](#use-web-workers-to-export-data-to-excel-files) <a title="Premium plan" href="/x/introduction/licensing/#premium-plan"><span class="plan-premim"></span></a>
 - [Date and Time Pickers - feature highlights ✨](#date-and-time-pickers-features-highlights-✨)
-  - [Fields: the new default \<input\> for pickers](#fields-the-new-default-input-gt-for-pickers)
+  - [Fields: the new default \<input\> for pickers](#fields-the-new-default-input-for-pickers)
   - [Improved layout customization](#improved-layout-customization)
   - [Overhaul in the documentation](#overhaul-in-the-documentation)
   - [Removed clock view on desktop Time Pickers](#removed-clock-view-on-desktop-time-pickers)
@@ -151,7 +151,7 @@ See it in action:
 </video>
 </a>
 
-This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date) UIs provided by platforms like macOS and Windows on the web.
+This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date) UIs provided by platforms like macOS and Windows on the web.
 
 ### Birthday picker
 
@@ -239,10 +239,10 @@ End-users can more easily change the start and end dates.
 
 ## Installation and migration
 
-If this is your first try with MUI X, you can jump in the getting started section:
+If this is your first time using MUI X, you can jump in the getting started section:
 
-- [Data Grid](/x/react-data-grid/getting-started/)
-- [Date Pickers](/x/react-date-pickers/getting-started/)
+- [Data Grid](/x/react-data-grid/)
+- [Date Pickers](/x/react-date-pickers/)
 
 If you're coming from previous versions, we recommend you check our migration guide from MUI X v5 with the complete list of breaking changes:
 

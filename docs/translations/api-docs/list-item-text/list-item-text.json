@@ -10,13 +10,7 @@
       "description": "If <code>true</code>, the children are indented. This should be used if there is no left avatar or left icon."
     },
     "primary": { "description": "The main content element." },
-    "primaryTypographyProps": {
-      "description": "These props will be forwarded to the primary typography component (as long as disableTypography is not <code>true</code>)."
-    },
     "secondary": { "description": "The secondary content element." },
-    "secondaryTypographyProps": {
-      "description": "These props will be forwarded to the secondary typography component (as long as disableTypography is not <code>true</code>)."
-    },
     "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
@@ -38,11 +32,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Typography component",
       "conditions": "primary and secondary are set"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
   },
   "slotDescriptions": {
     "primary": "The component that renders the primary slot.",
+    "root": "The component that renders the root slot.",
     "secondary": "The component that renders the secondary slot."
   }
 }

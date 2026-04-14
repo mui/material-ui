@@ -48,13 +48,7 @@ describe('<TouchRipple />', () => {
     render,
     refInstanceof: Object,
     muiName: 'MuiTouchRipple',
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'refForwarding',
-      'themeStyleOverrides',
-      'themeVariants',
-    ],
+    skip: ['componentProp', 'refForwarding', 'themeStyleOverrides', 'themeVariants'],
   }));
 
   describe('prop: center', () => {
@@ -271,7 +265,9 @@ describe('<TouchRipple />', () => {
     it('should handle empty event.touches', () => {
       const { instance } = renderTouchRipple();
 
-      expect(() => instance.start({ type: 'touchstart', touches: [] })).not.toErrorDev();
+      expect(() =>
+        instance.start({ type: 'touchstart', touches: [], clientX: 0, clientY: 0 }),
+      ).not.toErrorDev();
     });
   });
 });
