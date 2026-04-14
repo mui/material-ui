@@ -734,9 +734,10 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      expect(
-        screen.getByText('Option 1', { selector: 'div[role="combobox"]' }),
-      ).not.to.have.attribute('aria-labelledby');
+      const combobox = screen.getByRole('combobox');
+
+      expect(combobox).not.to.have.attribute('aria-labelledby');
+      expect(combobox).to.have.text('Option 1');
     });
 
     it('will be labelled by an additional element if its id is provided in `labelId`', () => {
