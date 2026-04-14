@@ -40,7 +40,7 @@ CircularProgressWithLabel.propTypes = {
   /**
    * The value of the progress indicator for the determinate variant.
    * Value between `min` and `max`.
-   * @default 0
+   * @default minProp ?? 0
    */
   value: PropTypes.number.isRequired,
 };
