@@ -685,7 +685,7 @@ export function Demo(props: DemoProps) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <Tabs.Panel value={index} key={index}>
+                <Tabs.Panel value={index} key={index} tabIndex={-1}>
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
