@@ -4,8 +4,9 @@ import { Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import { TimelineConnectorClasses } from './timelineConnectorClasses';
 
-export interface TimelineConnectorProps
-  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>> {
+export interface TimelineConnectorProps extends StandardProps<
+  React.HTMLAttributes<HTMLSpanElement>
+> {
   /**
    * The content of the component.
    */
@@ -13,11 +14,11 @@ export interface TimelineConnectorProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineConnectorClasses>;
+  classes?: Partial<TimelineConnectorClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

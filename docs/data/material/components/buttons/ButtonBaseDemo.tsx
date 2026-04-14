@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -103,13 +102,17 @@ export default function ButtonBaseDemo() {
             <Typography
               component="span"
               variant="subtitle1"
-              color="inherit"
-              sx={(theme) => ({
-                position: 'relative',
-                p: 4,
-                pt: 2,
-                pb: `calc(${theme.spacing(1)} + 6px)`,
-              })}
+              sx={[
+                {
+                  color: 'inherit',
+                },
+                (theme) => ({
+                  position: 'relative',
+                  p: 4,
+                  pt: 2,
+                  pb: `calc(${theme.spacing(1)} + 6px)`,
+                }),
+              ]}
             >
               {image.title}
               <ImageMarked className="MuiImageMarked-root" />

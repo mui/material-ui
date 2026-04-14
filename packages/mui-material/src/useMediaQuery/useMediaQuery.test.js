@@ -247,11 +247,11 @@ describe('useMediaQuery', () => {
         );
       }
 
-      const { unmount } = render(<Test />);
+      const view = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
 
-      unmount();
+      view.unmount();
 
       render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');

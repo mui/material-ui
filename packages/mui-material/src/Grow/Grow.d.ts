@@ -7,7 +7,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * Set this to `false` to disable this behavior.
    * @default true
    */
-  appear?: boolean;
+  appear?: boolean | undefined;
   /**
    * A single child content element.
    */
@@ -16,12 +16,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
    */
-  easing?: TransitionProps['easing'];
+  easing?: TransitionProps['easing'] | undefined;
   /**
    * If `true`, the component will transition in.
    */
-  in?: boolean;
-  ref?: React.Ref<unknown>;
+  in?: boolean | undefined;
+  ref?: React.Ref<unknown> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -29,7 +29,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * Set to 'auto' to automatically calculate transition time based on height.
    * @default 'auto'
    */
-  timeout?: TransitionProps['timeout'] | 'auto';
+  timeout?: TransitionProps['timeout'] | 'auto' | undefined;
 }
 
 /**

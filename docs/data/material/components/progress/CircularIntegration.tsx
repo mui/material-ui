@@ -51,6 +51,7 @@ export default function CircularIntegration() {
         </Fab>
         {loading && (
           <CircularProgress
+            aria-label="Loading…"
             size={68}
             sx={{
               color: green[500],
@@ -73,6 +74,7 @@ export default function CircularIntegration() {
         </Button>
         {loading && (
           <CircularProgress
+            aria-label="Loading…"
             size={24}
             sx={{
               color: green[500],

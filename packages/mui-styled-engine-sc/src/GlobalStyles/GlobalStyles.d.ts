@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CSSObject, StyleFunction } from 'styled-components';
 
 export interface GlobalStylesProps<Theme extends object = {}> {
-  defaultTheme?: object;
+  defaultTheme?: object | undefined;
   styles: string | CSSObject | StyleFunction<Theme>;
 }
 

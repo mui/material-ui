@@ -19,6 +19,20 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'vertical'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, wrapper?: func<br>&#124;&nbsp;object, wrapperInner?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ root?: elementType, wrapper?: elementType, wrapperInner?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -39,6 +53,26 @@
     "import Collapse from '@mui/material/Collapse';",
     "import { Collapse } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiCollapse-root"
+    },
+    {
+      "name": "wrapper",
+      "description": "The component that renders the wrapper.",
+      "default": "'div'",
+      "class": "MuiCollapse-wrapper"
+    },
+    {
+      "name": "wrapperInner",
+      "description": "The component that renders the inner wrapper.",
+      "default": "'div'",
+      "class": "MuiCollapse-wrapperInner"
+    }
+  ],
   "classes": [
     {
       "key": "entered",
@@ -56,24 +90,6 @@
       "key": "horizontal",
       "className": "MuiCollapse-horizontal",
       "description": "State class applied to the root element if `orientation=\"horizontal\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiCollapse-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "wrapper",
-      "className": "MuiCollapse-wrapper",
-      "description": "Styles applied to the outer wrapper element.",
-      "isGlobal": false
-    },
-    {
-      "key": "wrapperInner",
-      "className": "MuiCollapse-wrapperInner",
-      "description": "Styles applied to the inner wrapper element.",
       "isGlobal": false
     }
   ],

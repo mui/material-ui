@@ -12,7 +12,7 @@ function CustomComponent() {
 
 describe('appendOwnerState', () => {
   describe('when the provided elementType is undefined', () => {
-    it('returns the provided existingProps without modification ', () => {
+    it('returns the provided existingProps without modification', () => {
       const existingProps = { className: 'foo' };
       const actual = appendOwnerState(undefined, existingProps, ownerState);
 
@@ -21,7 +21,7 @@ describe('appendOwnerState', () => {
   });
 
   describe('when a DOM element is provided as elementType', () => {
-    it('returns the provided existingProps without modification ', () => {
+    it('returns the provided existingProps without modification', () => {
       const existingProps = { className: 'foo' };
       const actual = appendOwnerState('div', existingProps, ownerState);
 

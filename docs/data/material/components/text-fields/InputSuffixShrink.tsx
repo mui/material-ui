@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import { filledInputClasses } from '@mui/material/FilledInput';
 import { inputBaseClasses } from '@mui/material/InputBase';

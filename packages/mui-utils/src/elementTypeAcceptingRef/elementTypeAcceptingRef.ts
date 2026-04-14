@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import chainPropTypes from '../chainPropTypes';
 
 function isClassComponent(elementType: Function) {
@@ -44,7 +45,12 @@ function elementTypeAcceptingRef(
     warningHint = 'Did you accidentally provide a plain function component instead?';
   }
 
+  if (propValue === React.Fragment) {
+    warningHint = 'Did you accidentally provide a React.Fragment instead?';
+  }
+
   if (warningHint !== undefined) {
+    // #host-reference
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
         `Expected an element type that can hold a ref. ${warningHint} ` +

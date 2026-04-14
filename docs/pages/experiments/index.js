@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { capitalize } from '@mui/material/utils';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -8,8 +7,8 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { Link } from '@mui/docs/Link';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+import { Link } from '@mui/internal-core-docs/Link';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 
 export default function Experiments({ experiments }) {
   const categories = {};
@@ -139,7 +138,7 @@ export default function Experiments({ experiments }) {
   );
 }
 
-Experiments.getInitialProps = () => {
+export async function getStaticProps() {
   const experiments = [];
   const req = require.context('./', true, /^\.\/.*(?<!index)\.(js|tsx)$/);
 
@@ -148,6 +147,8 @@ Experiments.getInitialProps = () => {
   });
 
   return {
-    experiments,
+    props: {
+      experiments,
+    },
   };
-};
+}

@@ -2,7 +2,7 @@
 productId: material-ui
 title: App Bar React component
 components: AppBar, Toolbar, Menu
-githubLabel: 'component: app bar'
+githubLabel: 'scope: app bar'
 materialDesign: https://m2.material.io/components/app-bars-top
 githubSource: packages/mui-material/src/AppBar
 ---
@@ -15,7 +15,7 @@ The top App bar provides content and actions related to the current screen. It's
 
 It can transform into a contextual action bar or be used as a navbar.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic App bar
 

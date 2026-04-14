@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Modal component
 components: Modal
-githubLabel: 'component: modal'
+githubLabel: 'scope: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 githubSource: packages/mui-material/src/Modal
 ---
@@ -21,7 +21,7 @@ The `Modal` offers important features:
   and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 :::info
 The term "modal" is sometimes used to mean "dialog", but this is a misnomer.

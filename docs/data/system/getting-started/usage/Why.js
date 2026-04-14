@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import Box from '@mui/system/Box';
 

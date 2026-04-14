@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
-githubLabel: 'component: drawer'
+githubLabel: 'scope: drawer'
 materialDesign: https://m2.material.io/components/navigation-drawer
 githubSource: packages/mui-material/src/Drawer
 ---
@@ -15,7 +15,7 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Temporary drawer
 

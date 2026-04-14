@@ -43,7 +43,8 @@ export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
  * theme function or nested) in `SystemCssProperties`.
  */
 export interface AllSystemCSSProperties
-  extends Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
+  extends
+    Omit<StandardCSSProperties, keyof OverwriteCSSProperties>,
     OverwriteCSSProperties,
     AliasesCSSProperties {}
 
@@ -76,7 +77,7 @@ export type SxProps<Theme extends object = {}> =
 
 export interface StyleFunctionSx {
   (props: object): CSSObject;
-  filterProps?: string[];
+  filterProps?: string[] | undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -24,8 +24,6 @@ const overridesResolver = (props, styles) => {
     styles.root,
     styles[ownerState.variant],
     styles[`size${capitalize(ownerState.size)}`],
-    ownerState.variant === 'text' && styles[`text${capitalize(ownerState.color)}`],
-    ownerState.variant === 'outlined' && styles[`outlined${capitalize(ownerState.color)}`],
     ownerState.shape === 'rounded' && styles.rounded,
     ownerState.type === 'page' && styles.page,
     (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis,
@@ -44,7 +42,6 @@ const useUtilityClasses = (ownerState) => {
       variant,
       shape,
       color !== 'standard' && `color${capitalize(color)}`,
-      color !== 'standard' && `${variant}${capitalize(color)}`,
       disabled && 'disabled',
       selected && 'selected',
       {
@@ -301,7 +298,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
     className,
     color = 'standard',
     component,
-    components = {},
     disabled = false,
     page,
     selected = false,
@@ -329,12 +325,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    slots: {
-      previous: slots.previous ?? components.previous,
-      next: slots.next ?? components.next,
-      first: slots.first ?? components.first,
-      last: slots.last ?? components.last,
-    },
+    slots,
     slotProps,
   };
 
@@ -398,6 +389,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
       ref={ref}
       ownerState={ownerState}
       component={component}
+      internalNativeButton
       disabled={disabled}
       className={clsx(classes.root, className)}
       {...other}
@@ -443,25 +435,15 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for each slot inside.
-   *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
-   *
-   * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
-  }),
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * Whether the custom component should render a native `<button>` element when
+   * rendering a React component with the `component` or `slots` prop.
+   */
+  nativeButton: PropTypes.bool,
   /**
    * The current page number.
    */

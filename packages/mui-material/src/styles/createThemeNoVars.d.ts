@@ -4,6 +4,7 @@ import {
   SxProps,
   CSSObject,
   SxConfig,
+  ApplyStyles,
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
@@ -12,7 +13,14 @@ import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+import {
+  CssVarsTheme,
+  CssVarsPalette,
+  ColorSystemOptions,
+  Shape,
+  ShapeOptions,
+  SupportedColorScheme,
+} from './createThemeFoundation';
 
 /**
  * To disable custom properties, use module augmentation
@@ -33,26 +41,32 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
-  palette?: PaletteOptions;
-  shadows?: Shadows;
-  transitions?: TransitionsOptions;
-  typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
-  zIndex?: ZIndexOptions;
-  unstable_strictMode?: boolean;
-  unstable_sxConfig?: SxConfig;
-  modularCssLayers?: boolean | string;
+  mixins?: MixinsOptions | undefined;
+  components?: Components<Omit<Theme, 'components'>> | undefined;
+  palette?: PaletteOptions | undefined;
+  shadows?: Shadows | undefined;
+  shape?: ShapeOptions | undefined;
+  transitions?: TransitionsOptions | undefined;
+  typography?:
+    | TypographyVariantsOptions
+    | ((palette: Palette) => TypographyVariantsOptions)
+    | undefined;
+  zIndex?: ZIndexOptions | undefined;
+  unstable_strictMode?: boolean | undefined;
+  unstable_sxConfig?: SxConfig | undefined;
+  modularCssLayers?: boolean | string | undefined;
 }
 
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
+  shape: Shape;
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
-  unstable_strictMode?: boolean;
+  unstable_strictMode?: boolean | undefined;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 // shut off automatic exporting for the `BaseTheme` above
@@ -61,7 +75,6 @@ export {};
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
   ? Pick<
       CssVarsTheme,
-      | 'applyStyles'
       | 'colorSchemes'
       | 'colorSchemeSelector'
       | 'rootSelector'
@@ -81,8 +94,8 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  cssVariables?: false;
-  components?: Components<BaseTheme>;
+  cssVariables?: false | undefined;
+  components?: Components<BaseTheme> | undefined;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
   alpha: (color: string, value: number | string) => string;

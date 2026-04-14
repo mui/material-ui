@@ -7,14 +7,34 @@ import {
   fireEvent,
   screen,
   simulatePointerDevice,
-  focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  isJsdom,
 } from '@mui/internal-test-utils';
-import { camelCase } from 'lodash/string';
+import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
+
+async function focusVisible(element) {
+  await act(async () => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  await act(async () => {
+    element.focus();
+  });
+}
+
+function focusVisibleSync(element) {
+  act(() => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  act(() => {
+    element.focus();
+  });
+}
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -48,7 +68,6 @@ describe('<Tooltip />', () => {
       refInstanceof: window.HTMLButtonElement,
       testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
       testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
-      testLegacyComponentsProp: true,
       slots: {
         popper: {
           expectedClassName: classes.popper,
@@ -63,7 +82,7 @@ describe('<Tooltip />', () => {
         },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 
@@ -273,7 +292,13 @@ describe('<Tooltip />', () => {
       }
 
       render(
-        <Tooltip title="Hello World" PopperComponent={PopperSpy} placement="top">
+        <Tooltip
+          title="Hello World"
+          placement="top"
+          slots={{
+            popper: PopperSpy,
+          }}
+        >
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -290,7 +315,9 @@ describe('<Tooltip />', () => {
       <Tooltip
         enterDelay={enterDelay}
         title="Hello World"
-        TransitionProps={{ timeout: transitionTimeout }}
+        slotProps={{
+          transition: { timeout: transitionTimeout },
+        }}
       >
         <button id="testChild" type="submit">
           Hello World
@@ -386,8 +413,10 @@ describe('<Tooltip />', () => {
         enterDelay={0}
         onClose={handleClose}
         open
-        TransitionProps={{ timeout: transitionTimeout }}
         title="Movie quote"
+        slotProps={{
+          transition: { timeout: transitionTimeout },
+        }}
       >
         <button />
       </Tooltip>,
@@ -395,7 +424,7 @@ describe('<Tooltip />', () => {
 
     fireEvent.keyDown(
       // We don't care about the target. Any Escape should dismiss the tooltip
-      // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
+      // eslint-disable-next-line mui/disallow-active-element-as-key-event-target
       document.activeElement,
       { key: 'Escape' },
     );
@@ -429,7 +458,9 @@ describe('<Tooltip />', () => {
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout },
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -475,12 +506,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('should handle autoFocus + onFocus forwarding', async function test() {
       const handleFocus = spy();
       function AutoFocus(props) {
         return (
@@ -508,16 +535,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: delay', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describe.skipIf(isJsdom())('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
-      const { queryByRole } = render(
+      render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
             Hello World
@@ -526,22 +546,24 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
-      expect(queryByRole('tooltip')).to.equal(null);
+      await focusVisible(screen.getByRole('button'));
+      expect(screen.queryByRole('tooltip')).to.equal(null);
 
       clock.tick(111);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       render(
         <Tooltip
           title="Hello World"
           enterDelay={111}
           enterNextDelay={30}
           leaveDelay={5}
-          TransitionProps={{ timeout: 6 }}
+          slotProps={{
+            transition: { timeout: 6 },
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -549,7 +571,8 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      focusVisible(children);
+
+      focusVisibleSync(children);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -557,21 +580,22 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      act(() => {
         document.activeElement.blur();
       });
+
       clock.tick(5);
+
       clock.tick(6);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      focusVisibleSync(children);
+
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
-        clock.tick(30);
-      });
+      clock.tick(30);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
@@ -585,17 +609,24 @@ describe('<Tooltip />', () => {
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
           title="tooltip"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout },
+          }}
         >
-          <button id="testChild" type="submit">
+          <button
+            id="testChild"
+            type="submit"
+            // Moving the button away from 0,0 to avoid interference with initial mouse position
+            style={{ margin: 1 }}
+          >
             Hello World
           </button>
         </Tooltip>,
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
-      clock.tick(enterDelay);
+      await focusVisible(screen.getByRole('button'));
+      await clock.tickAsync(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -605,8 +636,12 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await clock.tickAsync(leaveDelay);
+      await clock.tickAsync(transitionTimeout - 1);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+
+      await clock.tickAsync(2);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
@@ -636,37 +671,36 @@ describe('<Tooltip />', () => {
       });
     });
 
-    it(`should be transparent for the focus and blur event`, async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      `should be transparent for the focus and blur event`,
+      async function test() {
+        const handleBlur = spy();
+        const handleFocus = spy();
+        render(
+          <Tooltip title="Hello World">
+            <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
+              Hello World
+            </button>
+          </Tooltip>,
+        );
+        const button = screen.getByRole('button');
 
-      const handleBlur = spy();
-      const handleFocus = spy();
-      render(
-        <Tooltip title="Hello World">
-          <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      const button = screen.getByRole('button');
+        await act(async () => {
+          button.focus();
+        });
 
-      await act(async () => {
-        button.focus();
-      });
+        expect(handleBlur.callCount).to.equal(0);
+        expect(handleFocus.callCount).to.equal(1);
 
-      expect(handleBlur.callCount).to.equal(0);
-      expect(handleFocus.callCount).to.equal(1);
+        await act(async () => {
+          button.blur();
+        });
 
-      await act(async () => {
-        button.blur();
-      });
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(handleFocus.callCount).to.equal(1);
-    });
+        expect(handleBlur.callCount).to.equal(1);
+        expect(handleFocus.callCount).to.equal(1);
+      },
+    );
 
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
@@ -729,7 +763,9 @@ describe('<Tooltip />', () => {
           title="Hello World"
           enterDelay={100}
           leaveDelay={111}
-          TransitionProps={{ timeout: 10 }}
+          slotProps={{
+            transition: { timeout: 10 },
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -758,7 +794,9 @@ describe('<Tooltip />', () => {
           title="Hello World"
           enterDelay={100}
           leaveDelay={111}
-          TransitionProps={{ timeout: 10 }}
+          slotProps={{
+            transition: { timeout: 10 },
+          }}
         >
           <button id="testChild" type="submit">
             Hello World
@@ -782,10 +820,10 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: PopperProps', () => {
-    it('should pass PopperProps to Popper Component', () => {
+  describe('prop: slotProps.popper', () => {
+    it('should pass slotProps to Popper Component', () => {
       render(
-        <Tooltip title="Hello World" open PopperProps={{ 'data-testid': 'popper' }}>
+        <Tooltip title="Hello World" open slotProps={{ popper: { 'data-testid': 'popper' } }}>
           <button id="testChild" type="submit">
             Hello World
           </button>
@@ -794,78 +832,6 @@ describe('<Tooltip />', () => {
       expect(screen.getByTestId('popper')).not.to.equal(null);
     });
 
-    it('should merge popperOptions with arrow modifier', () => {
-      const popperRef = React.createRef();
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          arrow
-          PopperProps={{
-            popperRef,
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'arrow',
-                  options: {
-                    padding: 8,
-                  },
-                },
-              ],
-            },
-          }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-
-      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
-        (modifier) => modifier.name === 'arrow',
-      );
-
-      expect(appliedArrowModifier).not.to.equal(undefined);
-      expect(appliedArrowModifier.enabled).to.equal(true);
-      expect(appliedArrowModifier.options.padding).to.equal(8);
-    });
-
-    it('should merge popperOptions with custom modifier', () => {
-      const popperRef = React.createRef();
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          arrow
-          PopperProps={{
-            popperRef,
-            popperOptions: {
-              modifiers: [
-                {
-                  name: 'foo',
-                  enabled: true,
-                  phase: 'main',
-                  fn: () => {},
-                },
-              ],
-            },
-          }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-
-      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
-        (modifier) => modifier.name === 'foo',
-      );
-
-      expect(appliedComputeStylesModifier).not.to.equal(undefined);
-    });
-  });
-
-  describe('prop: slotProps.popper', () => {
     it('should merge popperOptions with arrow modifier', () => {
       const popperRef = React.createRef();
       render(
@@ -943,33 +909,28 @@ describe('<Tooltip />', () => {
 
   describe('prop forwarding', () => {
     it('should forward props to the child element', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" className="foo">
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.class('foo');
-      expect(getByText('H1')).to.have.class('bar');
+
+      expect(screen.getByText('H1')).to.have.class('foo');
+      expect(screen.getByText('H1')).to.have.class('bar');
     });
 
     it('should respect the props priority', () => {
-      const { getByText } = render(
+      render(
         <Tooltip title="Hello World" name="tooltip">
           <h1 name="heading">H1</h1>
         </Tooltip>,
       );
-      expect(getByText('H1')).to.have.attribute('name', 'heading');
+
+      expect(screen.getByText('H1')).to.have.attribute('name', 'heading');
     });
   });
 
-  describe('focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describe.skipIf(isJsdom())('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
@@ -991,7 +952,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
       render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
@@ -1002,7 +963,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
@@ -1018,7 +979,9 @@ describe('<Tooltip />', () => {
           onClose={() => eventLog.push('close')}
           open
           title="Some information"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout },
+          }}
         >
           <button onBlur={() => eventLog.push('blur')} />
         </Tooltip>,
@@ -1137,12 +1100,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should warn when children is a string', function test() {
-      if (reactMajor >= 19) {
-        // React 19 removed prop types support
-        this.skip();
-      }
-
+    // React 19 removed prop types support
+    it.skipIf(reactMajor >= 19)('should warn when children is a string', function test() {
       expect(() => {
         render(<Tooltip title="Hello World">Hello World</Tooltip>);
       }).toErrorDev('Invalid prop `children` of type `string` supplied');
@@ -1155,8 +1114,10 @@ describe('<Tooltip />', () => {
       <Tooltip
         title="Hello World"
         open
-        PopperProps={{
-          popperRef,
+        slotProps={{
+          popper: {
+            popperRef,
+          },
         }}
       >
         <button id="testChild" type="submit">
@@ -1167,22 +1128,6 @@ describe('<Tooltip />', () => {
     const firstPopperInstance = popperRef.current;
     forceUpdate();
     expect(firstPopperInstance).to.equal(popperRef.current);
-  });
-
-  describe('prop: PopperComponent', () => {
-    it('can render a different component', () => {
-      function CustomPopper() {
-        return <div data-testid="CustomPopper" />;
-      }
-      render(
-        <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomPopper')).toBeVisible();
-    });
   });
 
   describe('prop: followCursor', () => {
@@ -1196,7 +1141,9 @@ describe('<Tooltip />', () => {
           placement="bottom-end"
           open
           followCursor
-          PopperProps={{ 'data-testid': 'popper' }}
+          slotProps={{
+            popper: { 'data-testid': 'popper' },
+          }}
         >
           <button data-testid="target" type="submit">
             Hello World
@@ -1231,98 +1178,6 @@ describe('<Tooltip />', () => {
           transform: `translate3d(${x}px, ${y}px, 0px)`,
         });
       }
-    });
-  });
-
-  describe('prop: components', () => {
-    it('can render a different Popper component', () => {
-      function CustomPopper() {
-        return <div data-testid="CustomPopper" />;
-      }
-      render(
-        <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomPopper')).toBeVisible();
-    });
-
-    it('can render a different Tooltip component', () => {
-      const CustomTooltip = React.forwardRef((props, ref) => (
-        <div data-testid="CustomTooltip" ref={ref} />
-      ));
-      render(
-        <Tooltip title="Hello World" open components={{ Tooltip: CustomTooltip }}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomTooltip')).toBeVisible();
-    });
-
-    it('can render a different Arrow component', () => {
-      const CustomArrow = React.forwardRef((props, ref) => (
-        <div data-testid="CustomArrow" ref={ref} />
-      ));
-      render(
-        <Tooltip title="Hello World" open arrow components={{ Arrow: CustomArrow }}>
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomArrow')).toBeVisible();
-    });
-  });
-
-  describe('prop: componentsProps', () => {
-    it('can provide custom props for the inner Popper component', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          componentsProps={{ popper: { 'data-testid': 'CustomPopper' } }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomPopper')).toBeVisible();
-    });
-
-    it('can provide custom props for the inner Tooltip component', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          componentsProps={{ tooltip: { 'data-testid': 'CustomTooltip' } }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomTooltip')).toBeVisible();
-    });
-
-    it('can provide custom props for the inner Arrow component', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          arrow
-          componentsProps={{ arrow: { 'data-testid': 'CustomArrow' } }}
-        >
-          <button id="testChild" type="submit">
-            Hello World
-          </button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('CustomArrow')).toBeVisible();
     });
   });
 
@@ -1392,7 +1247,9 @@ describe('<Tooltip />', () => {
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout },
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -1427,13 +1284,15 @@ describe('<Tooltip />', () => {
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
       const transitionTimeout = 10;
-      const { unmount } = render(
+      const view = render(
         <Tooltip
           enterTouchDelay={enterTouchDelay}
           enterDelay={enterDelay}
           leaveTouchDelay={leaveTouchDelay}
           title="Hello World"
-          TransitionProps={{ timeout: transitionTimeout }}
+          slotProps={{
+            transition: { timeout: transitionTimeout },
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -1442,52 +1301,26 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
       fireEvent.touchStart(screen.getByRole('button'));
-      unmount();
+      view.unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
   });
 
   describe('className', () => {
-    it('should allow className from PopperProps', () => {
+    it('should allow className from slotProps.popper', () => {
       render(
         <Tooltip
           title="Hello World"
           open
-          PopperProps={{ 'data-testid': 'popper', className: 'my-class' }}
+          slotProps={{
+            popper: { 'data-testid': 'popper', className: 'my-class' },
+          }}
         >
           <button type="submit">Hello World</button>
         </Tooltip>,
       );
 
-      expect(screen.getByTestId('popper')).to.have.class('my-class');
-    });
-
-    it('should allow className from componentsProps.popper', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
-        >
-          <button type="submit">Hello World</button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('popper')).to.have.class('my-class');
-    });
-
-    it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
-      render(
-        <Tooltip
-          title="Hello World"
-          open
-          componentsProps={{ popper: { 'data-testid': 'popper', className: 'my-class' } }}
-          PopperProps={{ className: 'my-class-2' }}
-        >
-          <button type="submit">Hello World</button>
-        </Tooltip>,
-      );
-      expect(screen.getByTestId('popper')).to.have.class('my-class-2');
       expect(screen.getByTestId('popper')).to.have.class('my-class');
     });
   });

@@ -10,7 +10,7 @@
   },
   {
     "name": "Matt Brookes",
-    "title": "Co-founder, Head of Sales",
+    "title": "Co-founder, Sales",
     "location": "London, UK",
     "locationCountry": "gb",
     "about": "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️.",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Marija Najdova",
-    "title": "Engineering Manager — Core",
+    "title": "Engineering Manager",
     "location": "Skopje, North Macedonia",
     "locationCountry": "mk",
     "about": "I do karate 🥋 and read 📚. A lot!",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Danail Hadjiatanasov",
-    "title": "Engineering Manager — X",
+    "title": "Engineering Manager",
     "location": "Sofia, Bulgaria",
     "locationCountry": "bg",
     "about": "Boringly normal, geek deep down. I like 🚗 and 🏂.",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Jun Kunaporn",
-    "title": "Software Engineer — Core",
+    "title": "UI Engineer — Core",
     "location": "Bangkok, Thailand",
     "locationCountry": "th",
     "about": "UI Lover and ⛷ skiing newbie.",
@@ -70,15 +70,6 @@
     "github": "alexfauquette"
   },
   {
-    "name": "Bharat Kashyap",
-    "title": "Software Engineer — Toolpad",
-    "location": "New Delhi, India",
-    "locationCountry": "in",
-    "about": "Trains 🚅 , architecture 🏛️ , and psychology 🧠.",
-    "twitter": "bharattttttt",
-    "github": "bharatkashyap"
-  },
-  {
     "name": "Jan Potoms",
     "title": "Tech Lead — Core",
     "location": "Brussels, Belgium",
@@ -87,17 +78,8 @@
     "github": "Janpot"
   },
   {
-    "name": "Prakhar Gupta",
-    "title": "Product Operations — X",
-    "location": "New Delhi, India",
-    "locationCountry": "in",
-    "about": "Into sports and hiking!",
-    "twitter": "gprakhar123",
-    "github": "prakhargupta1"
-  },
-  {
     "name": "José Freitas",
-    "title": "Technical Product Manager — X",
+    "title": "Technical Product Manager",
     "location": "Augsburg, Germany",
     "locationCountry": "de",
     "about": "Art, fiction, and bar philosophy.",
@@ -118,16 +100,7 @@
     "title": "Head of Documentation",
     "location": "Washington state, US",
     "locationCountry": "us",
-    "about": "Musician and edible wild plant enthusiast 🌱.",
-    "github": "mapache-salvaje"
-  },
-  {
-    "name": "Pedro Ferreira",
-    "title": "Software Engineer — Toolpad",
-    "location": "Porto, Portugal",
-    "locationCountry": "pt",
-    "about": "Passionate about videogames and football.",
-    "github": "apedroferreira"
+    "about": "Musician and edible wild plant enthusiast 🌱."
   },
   {
     "name": "Lukas Tyla",
@@ -183,7 +156,7 @@
   },
   {
     "name": "Diego Andai",
-    "title": "Engineering Manager — Core",
+    "title": "UI Engineer — Core",
     "location": "Santiago, Chile",
     "locationCountry": "cl",
     "about": "I love tennis 🎾 and cats 🐈.",
@@ -216,15 +189,6 @@
     "github": "michelengelen"
   },
   {
-    "name": "Vadym Raksha",
-    "title": "Product Engineer — Store",
-    "location": "Prague, Czech Republic",
-    "locationCountry": "cz",
-    "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
-    "twitter": "vadym_raksha",
-    "github": "hasdfa"
-  },
-  {
     "name": "Greg Abaoag",
     "title": "Executive Assistant",
     "location": "Baguio, Philippines",
@@ -234,8 +198,17 @@
     "github": "zannager"
   },
   {
+    "name": "Vadym Raksha",
+    "title": "Software Engineer — Services",
+    "location": "Prague, Czechia",
+    "locationCountry": "cz",
+    "about": "Product experience geek 🛋, Mediterranean vibes 🍊.",
+    "twitter": "vadym_raksha",
+    "github": "hasdfa"
+  },
+  {
     "name": "Colm Tuite",
-    "title": "Product Manager — Core",
+    "title": "Director of Design Engineering",
     "location": "Dublin, Ireland",
     "locationCountry": "ie",
     "about": "Hi :). Designer / developer / entrepreneur.",
@@ -244,7 +217,7 @@
   },
   {
     "name": "Nadja Kovacev",
-    "title": "Talent & Culture Partner",
+    "title": "People Partner",
     "location": "Novi Sad, Serbia",
     "locationCountry": "rs",
     "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast.",
@@ -252,7 +225,7 @@
   },
   {
     "name": "James Nelson",
-    "title": "Software Engineer — Base UI",
+    "title": "UI Engineer — Base UI",
     "location": "Gold Coast, Australia",
     "locationCountry": "au",
     "about": "Enjoy creating open source libraries and reading about AI 🤖.",
@@ -294,15 +267,6 @@
     "github": "KenanYusuf"
   },
   {
-    "name": "Alejandra Thomas",
-    "title": "DevEx Lead",
-    "location": "New York, US",
-    "locationCountry": "us",
-    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛.",
-    "twitter": "pikacodes",
-    "github": "alelthomas"
-  },
-  {
     "name": "Armin Mehinović",
     "title": "Software Engineer — xGrid",
     "location": "Amsterdam, Netherlands",
@@ -336,5 +300,38 @@
     "about": "Community gardener, non-profit organizer, and nature enthusiast.",
     "twitter": "connordav_is",
     "github": "dav-is"
+  },
+  {
+    "name": "Luis Vasallo",
+    "title": "Account Executive — Sales",
+    "location": "Edinburgh, UK",
+    "locationCountry": "gb",
+    "about": "Loves drums 🥁, food 🍖 and books 📚.",
+    "github": "LuisHVasallo"
+  },
+  {
+    "name": "Miguel Follana Ugarte",
+    "title": "Technical Recruiter — People",
+    "location": "Alicante, Spain",
+    "locationCountry": "es",
+    "about": "Big fan of sports and learning! Definitely a lifelong generalist 🙃.",
+    "github": "MiguelFollana4"
+  },
+  {
+    "name": "Ana Estrada",
+    "title": "Software Engineer",
+    "location": "Madrid, Spain",
+    "locationCountry": "es",
+    "about": "Builder & software crafter by day; yoga 🧘🏻‍♀️, good food 🥘, video games 🎮 and cats 🐈‍⬛ by sunset.",
+    "github": "aemartos"
+  },
+  {
+    "name": "Silviu Alexandru Avram",
+    "title": "Software Engineer — Material UI",
+    "location": "București, Romania",
+    "locationCountry": "ro",
+    "about": "Coding, Traveling and Experimenting Hobbies.",
+    "twitter": "silviuaavram",
+    "github": "silviuaavram"
   }
 ]

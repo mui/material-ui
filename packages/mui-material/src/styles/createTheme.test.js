@@ -1,19 +1,22 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
 } from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
 const lightPalette = createPalette({ mode: 'light' });
 const darkPalette = createPalette({ mode: 'dark' });
+
+const isJSDOM = isJsdom();
 
 describe('createTheme', () => {
   const { render } = createRenderer();
@@ -170,7 +173,7 @@ describe('createTheme', () => {
   });
 
   describe('CSS variables', () => {
-    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided ', () => {
+    it('should have default light with media selector if no `palette` and colorSchemes.dark is provided', () => {
       const theme = createTheme({
         cssVariables: true,
         colorSchemes: { dark: true },
@@ -212,8 +215,8 @@ describe('createTheme', () => {
         cssVariables: true,
         colorSchemes: { dark: true },
       });
-      expect(theme.colorSchemes.light).to.not.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.light).not.to.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should not have light if default color scheme is set to dark', () => {
@@ -223,7 +226,7 @@ describe('createTheme', () => {
         defaultColorScheme: 'dark',
       });
       expect(theme.colorSchemes.light).to.equal(undefined);
-      expect(theme.colorSchemes.dark).to.not.equal(undefined);
+      expect(theme.colorSchemes.dark).not.to.equal(undefined);
     });
 
     it('should be able to customize tonal offset', () => {
@@ -475,32 +478,29 @@ describe('createTheme', () => {
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
 
-  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+  it.skipIf(isJSDOM)(
+    'should apply the correct borderRadius styles via sx prop if theme values are 0',
+    function test() {
+      const theme = createTheme({
+        shape: {
+          borderRadius: 0,
+        },
+      });
 
-    if (isJSDOM) {
-      this.skip();
-    }
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+        </ThemeProvider>,
+      );
 
-    const theme = createTheme({
-      shape: {
-        borderRadius: 0,
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
-      </ThemeProvider>,
-    );
-
-    expect(container.firstChild).toHaveComputedStyle({
-      borderTopLeftRadius: '0px',
-      borderBottomLeftRadius: '0px',
-      borderTopRightRadius: '0px',
-      borderBottomRightRadius: '0px',
-    });
-  });
+      expect(container.firstChild).toHaveComputedStyle({
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+        borderTopRightRadius: '0px',
+        borderBottomRightRadius: '0px',
+      });
+    },
+  );
 
   it('should apply dark styles when using applyStyles if mode="dark"', function test() {
     const darkTheme = createTheme({
@@ -783,5 +783,58 @@ describe('createTheme', () => {
         'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
       );
     });
+
+    it('should not warn about channel token if nativeColor is used and custom palette colors are provided', () => {
+      expect(() =>
+        createTheme({
+          cssVariables: { nativeColor: true },
+          palette: {
+            divider: 'var(--mui-palette-divider)',
+            background: {
+              default: 'var(--mui-palette-background-default)',
+              paper: 'var(--mui-palette-background-paper)',
+            },
+          },
+        }),
+      ).not.toWarnDev();
+    });
   });
+
+  // Skip WebKit and firefox because they have a slightly different value
+  it.skipIf(isJSDOM || !/chrome/.test(window.navigator.userAgent))(
+    'should build color-mix() on top of generated Material UI CSS variables',
+    () => {
+      function App() {
+        const theme = createTheme({
+          cssVariables: {
+            nativeColor: true,
+          },
+        });
+
+        return (
+          <ThemeProvider theme={theme}>
+            {/* This is just to replicate the global CSS file */}
+            <GlobalStyles
+              styles={{
+                ':root': {
+                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case global CSS file should be used.
+                  '--mui-palette-info-light': '#dfc21f !important',
+                },
+              }}
+            />
+
+            <Alert variant="standard" severity="info" data-testid="alert">
+              Alert
+            </Alert>
+          </ThemeProvider>
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByTestId('alert')).toHaveComputedStyle({
+        backgroundColor: 'oklch(0.981465 0.01628 97.7526)', // browser converts color-mix to oklch in window.getComputedStyle()
+      });
+    },
+  );
 });

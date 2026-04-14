@@ -22,7 +22,7 @@ $ npx @mui/envinfo
     @emotion/styled: ^11.0.0 => 11.0.0
     @mui/codemod:  5.0.0-alpha.17
     @mui/material:  5.0.0-alpha.18
-    @mui/docs:  5.0.0-alpha.1
+    @mui/internal-core-docs:  5.0.0-alpha.1
     @mui/envinfo:  2.0.0
     @mui/icons-material:  5.0.0-alpha.15
     @mui/lab:  5.0.0-alpha.18

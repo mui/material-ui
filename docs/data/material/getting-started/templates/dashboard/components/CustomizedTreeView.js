@@ -18,7 +18,6 @@ import {
 } from '@mui/x-tree-view/TreeItem';
 import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
 import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
-
 import { useTheme } from '@mui/material/styles';
 
 const ITEMS = [
@@ -144,6 +143,7 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props, ref) {
     <TreeItemProvider id={id} itemId={itemId}>
       <TreeItemRoot {...getRootProps(other)}>
         <TreeItemContent
+          status={status}
           {...getContentProps({
             className: clsx('content', {
               expanded: status.expanded,

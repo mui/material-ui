@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from 'styled-components';
 import styled from '..';
 import GlobalStyles from './GlobalStyles';
@@ -8,11 +7,7 @@ import GlobalStyles from './GlobalStyles';
 describe('GlobalStyles', () => {
   const { render } = createRenderer();
 
-  it('should add global styles', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should add global styles', function test() {
     const { container } = render(
       <div>
         <GlobalStyles styles={`span { color: rgb(0, 0, 255); }`} />
@@ -25,11 +20,7 @@ describe('GlobalStyles', () => {
     });
   });
 
-  it('should add global styles using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should add global styles using JS syntax', function test() {
     const { container } = render(
       <div>
         <GlobalStyles styles={{ span: { color: 'rgb(0, 0, 255)' } }} />
@@ -42,11 +33,7 @@ describe('GlobalStyles', () => {
     });
   });
 
-  it('should add global styles using function', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should add global styles using function', function test() {
     const { container } = render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
         <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
@@ -70,11 +57,7 @@ describe('GlobalStyles', () => {
     ).not.to.throw();
   });
 
-  it('should give precedence to styled()', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should give precedence to styled()', function test() {
     const Span = styled('span')`
       color: rgb(255, 0, 0);
     `;
@@ -91,11 +74,7 @@ describe('GlobalStyles', () => {
     });
   });
 
-  it('should give precedence to styled() using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should give precedence to styled() using JS syntax', function test() {
     const Span = styled('span')({
       color: 'rgb(255, 0, 0)',
     });

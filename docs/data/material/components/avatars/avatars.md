@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Avatar component
 components: Avatar, AvatarGroup, Badge
-githubLabel: 'component: avatar'
+githubLabel: 'scope: avatar'
 githubSource: packages/mui-material/src/Avatar
 ---
 
@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Avatar
 
 <p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Image avatars
 
