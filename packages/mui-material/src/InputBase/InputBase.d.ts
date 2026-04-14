@@ -26,6 +26,7 @@ export interface InputBaseProps extends StandardProps<
   | 'onInvalid'
   | 'onKeyDown'
   | 'onKeyUp'
+  | 'aria-label'
 > {
   'aria-describedby'?: string | undefined;
   'aria-label'?: string | undefined;
