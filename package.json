@@ -121,7 +121,6 @@
     "concurrently": "9.2.1",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
-    "danger": "13.0.7",
     "dotenv": "17.4.0",
     "es-toolkit": "1.45.1",
     "eslint": "10.1.0",
