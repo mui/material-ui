@@ -192,7 +192,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     size = 40,
     style,
     thickness = 3.6,
-    value = 0,
+    value = minProp ?? 0,
     variant = 'indeterminate',
     ...other
   } = props;

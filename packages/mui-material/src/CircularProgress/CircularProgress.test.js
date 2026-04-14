@@ -197,6 +197,12 @@ describe('<CircularProgress />', () => {
       expect(circle.style.strokeDashoffset).to.match(/95\.190?(px)?/gm);
     });
 
+    it('should fallback value to min if min is passed ', () => {
+      render(<CircularProgress variant="determinate" min={10} max={20} />);
+
+      expect(screen.getByRole('progressbar')).to.have.attribute('aria-valuenow', '10');
+    });
+
     it('should fallback to 0px strokeDashoffset if max is less than min', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
