@@ -72,6 +72,11 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
+interface PropTemplateDescriptor {
+  key: string;
+  description: string;
+}
+
 export default function generatePropDescription(
   prop: DescribeablePropDescriptor,
   propName: string,
@@ -80,7 +85,13 @@ export default function generatePropDescription(
   seeMore?: SeeMore;
   jsDocText: string;
   signature?: string;
-  signatureArgs?: { name: string; description: string }[];
+  generics?: { name: string; description: string }[];
+  signatureArgs?: {
+    name: string;
+    description: string;
+    argType?: string;
+    argTypeDescription?: string;
+  }[];
   signatureReturn?: { name: string; description: string };
   requiresRef?: boolean;
 } {
@@ -123,6 +134,16 @@ export default function generatePropDescription(
   let signature;
   let signatureArgs;
   let signatureReturn;
+  const generics = annotation.tags
+    .filter((tag) => tag.title === 'template')
+    .map((template) => {
+      const [key, description] = template.description?.split(/(?<=^\S+)\s/) || [];
+      if (!description) {
+        return null;
+      }
+      return { key, description };
+    })
+    .filter(Boolean) as PropTemplateDescriptor[];
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -158,7 +179,17 @@ export default function generatePropDescription(
 
     signatureArgs = parsedArgs
       .filter((tag) => tag.description && tag.name)
-      .map((tag) => ({ name: tag.name!, description: tag.description! }));
+      .map((tag) => {
+        const generic = generics.find(
+          (g) => tag.type?.type === 'NameExpression' && tag.type?.name === g.key,
+        );
+        return {
+          name: tag.name!,
+          description: tag.description!,
+          argType: generic?.key,
+          argTypeDescription: generic?.description,
+        };
+      });
 
     if (parsedReturns.description) {
       signatureReturn = { name: returnTypeName, description: parsedReturns.description };

@@ -82,7 +82,7 @@ function ColorSchemeControls() {
             borderRadius: (theme.vars || theme).shape.borderRadius,
             border: '1px solid',
             borderColor: theme.vars
-              ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
               : borderColor,
           };
         }}

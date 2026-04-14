@@ -18,7 +18,10 @@
     "getItemAriaLabel": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
-        "type": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
+        "type": {
+          "name": "type",
+          "description": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
+        }
       }
     },
     "labelDisplayedRows": {
@@ -33,13 +36,15 @@
     "onPageChange": {
       "description": "Callback fired when the page is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "page": "The page selected."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "page": { "name": "page", "description": "The page selected." }
       }
     },
     "onRowsPerPageChange": {
       "description": "Callback fired when the number of rows per page is changed.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "page": { "description": "The zero-based index of the current page." },
     "rowsPerPage": {

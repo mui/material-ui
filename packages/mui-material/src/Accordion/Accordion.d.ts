@@ -24,11 +24,17 @@ export interface AccordionSlots {
    * @default Collapse
    */
   transition: React.ElementType;
+  /**
+   * The component that renders the region.
+   * @default 'div'
+   */
+  region: React.ElementType;
 }
 
 export interface AccordionRootSlotPropsOverrides {}
 export interface AccordionHeadingSlotPropsOverrides {}
 export interface AccordionTransitionSlotPropsOverrides {}
+export interface AccordionRegionSlotPropsOverrides {}
 
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
@@ -56,6 +62,11 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
       TransitionProps & AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
+    /**
+     * Props forwarded to the region slot.
+     * By default, the available props are based on the div element.
+     */
+    region: SlotProps<'div', AccordionRegionSlotPropsOverrides, AccordionOwnerState>;
   }
 >;
 

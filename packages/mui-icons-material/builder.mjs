@@ -127,7 +127,7 @@ export function cleanPaths({ svgPath, data }) {
       { name: 'removeDimensions' },
       { name: 'removeElementsByAttr' },
       { name: 'removeStyleElement' },
-      { name: 'removeScriptElement' },
+      { name: 'removeScripts' },
       { name: 'removeEmptyContainers' },
     ],
   });

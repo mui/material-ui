@@ -34,12 +34,12 @@ export default function FormDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent sx={{ paddingBottom: 0 }}>
+        <DialogContent>
           <DialogContentText>
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id="subscription-form">
             <TextField
               autoFocus
               required
@@ -51,12 +51,14 @@ export default function FormDialog() {
               fullWidth
               variant="standard"
             />
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Subscribe</Button>
-            </DialogActions>
           </form>
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit" form="subscription-form">
+            Subscribe
+          </Button>
+        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -80,9 +79,7 @@ const DividerRoot = styled('div', {
           light: true,
         },
         style: {
-          borderColor: theme.vars
-            ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
-            : alpha(theme.palette.divider, 0.08),
+          borderColor: theme.alpha((theme.vars || theme).palette.divider, 0.08),
         },
       },
       {

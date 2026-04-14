@@ -358,24 +358,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
-    clickAwayListener: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        children: PropTypes.element.isRequired,
-        disableReactTree: PropTypes.bool,
-        mouseEvent: PropTypes.oneOf([
-          'onClick',
-          'onMouseDown',
-          'onMouseUp',
-          'onPointerDown',
-          'onPointerUp',
-          false,
-        ]),
-        onClickAway: PropTypes.func,
-        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-      }),
-    ]),
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
+    clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

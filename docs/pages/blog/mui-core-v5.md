@@ -120,7 +120,6 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
 1. We have made `styled()` the lowest level primitive to add styles.
    This API is already known by many.
 2. We have defined a common interface with concrete implementations:
-
    - `@mui/styled-engine`: implemented with Emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).

@@ -22,6 +22,12 @@ describe('<TablePaginationActions />', () => {
         }
         return 'previous';
       }}
+      count={100}
+      onPageChange={() => {}}
+      page={1}
+      rowsPerPage={10}
+      showFirstButton
+      showLastButton
     />,
     () => ({
       inheritComponent: 'div',

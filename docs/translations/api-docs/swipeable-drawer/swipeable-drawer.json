@@ -22,11 +22,15 @@
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "onOpen": {
       "description": "Callback fired when the component requests to be opened.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "slotProps": { "description": "The props used for each slot inside." },

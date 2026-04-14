@@ -85,6 +85,9 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
+  alpha: (color: string, value: number | string) => string;
+  lighten: (color: string, coefficient: number | string) => string;
+  darken: (color: string, coefficient: number | string) => string;
 }
 
 /**

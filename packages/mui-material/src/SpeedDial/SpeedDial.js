@@ -221,12 +221,20 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    *
    * @param dialActionIndex {number}
    * @param origButtonRef {React.RefObject?}
+   * @param fabSlotOrigButtonRef {React.RefObject?}
    */
-  const createHandleSpeedDialActionButtonRef = (dialActionIndex, origButtonRef) => {
+  const createHandleSpeedDialActionButtonRef = (
+    dialActionIndex,
+    origButtonRef,
+    fabSlotOrigButtonRef,
+  ) => {
     return (buttonRef) => {
       actions.current[dialActionIndex + 1] = buttonRef;
       if (origButtonRef) {
         origButtonRef(buttonRef);
+      }
+      if (fabSlotOrigButtonRef) {
+        fabSlotOrigButtonRef(buttonRef);
       }
     };
   };
@@ -368,17 +376,24 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
 
   const children = allItems.map((child, index) => {
     const {
-      FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
+      FabProps: { ref: origButtonRef } = {},
+      slotProps: childSlotProps = {},
       tooltipPlacement: tooltipPlacementProp,
     } = child.props;
+
+    const { fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {}, ...restOfSlotProps } =
+      childSlotProps;
 
     const tooltipPlacement =
       tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
 
     return React.cloneElement(child, {
-      FabProps: {
-        ...ChildFabProps,
-        ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      slotProps: {
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, origButtonRef, fabSlotOrigButtonRef),
+        },
+        ...restOfSlotProps,
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,

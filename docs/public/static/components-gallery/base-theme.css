@@ -108,14 +108,15 @@
 
   --shadow-elevation-1: 0px 1px 2px 0px hsla(0, 0, 0, 0.15);
   --shadow-elevation-2: 0px 2px 4px 0px hsla(var(--grey-700), 0.2);
-  --shadow-elevation-3: 0px 4px 16px -4px hsla(var(--grey-700), 0.2),
-    0px 1px 2px -1px hsla(var(--grey-700), 0.1);
+  --shadow-elevation-3:
+    0px 4px 16px -4px hsla(var(--grey-700), 0.2), 0px 1px 2px -1px hsla(var(--grey-700), 0.1);
   --shadow-elevation-4: 0px 8px 32px -4px hsla(0, 0, 0, 0.25), 0px 1px 2px -1px hsla(0, 0, 0, 0.15);
 
-  --shadow-interactive-button: 0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
+  --shadow-interactive-button:
+    0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
     0 2px 0.5px 0 hsla(var(--primary-400), 0.6) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
-  --shadow-outlined-button: 0 -2px 0.5px 0 hsla(var(--grey-100), 0.5) inset,
-    0 1px 0.5px 0 hsla(var(--grey-500), 0.2);
+  --shadow-outlined-button:
+    0 -2px 0.5px 0 hsla(var(--grey-100), 0.5) inset, 0 1px 0.5px 0 hsla(var(--grey-500), 0.2);
   --shadow-input: 0px 1px 2px hsla(var(--primary-300), 0.2);
   --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.05) inset;
   --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);
@@ -171,13 +172,14 @@
     --shadow-elevation-1: 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
     --shadow-elevation-2: 0px 2px 8px 0px hsla(0, 0, 0, 0.3), 0px 2px 4px -0.5px hsla(0, 0, 0, 0.4);
     --shadow-elevation-3: 0px 4px 8px 0px hsla(0, 0, 0, 0.32), 0px 8px 16px 0px hsla(0, 0, 0, 0.32);
-    --shadow-elevation-4: 0px 2px 24px 0px hsla(0, 0, 0, 0.32),
-      0px 16px 32px 0px hsla(0, 0, 0, 0.32);
+    --shadow-elevation-4:
+      0px 2px 24px 0px hsla(0, 0, 0, 0.32), 0px 16px 32px 0px hsla(0, 0, 0, 0.32);
 
-    --shadow-interactive-button: 0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
+    --shadow-interactive-button:
+      0 -2px 0.5px 0 hsla(var(--primary-700), 0.4) inset,
       0 2px 0.5px 0 hsla(var(--primary-400), 0.6) inset, 0 1px 0.5px 0 hsla(var(--primary-900), 0.3);
-    --shadow-outlined-button: 0 -2px 0.5px 0 hsla(0, 0%, 0%, 0.4) inset,
-      0 1px 0.5px 0 hsla(0, 0%, 0%, 0.9);
+    --shadow-outlined-button:
+      0 -2px 0.5px 0 hsla(0, 0%, 0%, 0.4) inset, 0 1px 0.5px 0 hsla(0, 0%, 0%, 0.9);
     --shadow-input: 0px 1.5px 0.5px 0px hsla(0, 0%, 0%, 0.9);
     --shadow-interactive-switch-track: 0px 1px 1px 0px hsla(0, 0, 0, 0.35) inset;
     --shadow-interactive-switch-thumb: 0px 1px 2px 0px hsla(0, 0, 0, 0.3);

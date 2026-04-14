@@ -61,11 +61,22 @@ export interface PropsTranslations {
   dataAttributesDescriptions?: { [key: string]: string };
 }
 
+export interface TypeDescription {
+  name: string;
+  description: string;
+  argType?: string;
+  argTypeDescription?: string;
+}
+
+export interface TypeDescriptions {
+  [t: string]: TypeDescription;
+}
+
 interface PropDescription {
   description: string;
   requiresRef?: boolean;
   deprecated?: string;
-  typeDescriptions?: { [t: string]: string };
+  typeDescriptions?: { [t: string]: TypeDescription };
   seeMoreText?: string;
 }
 

@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from '@mui/docs/i18n';
+import OpenMuiChat from 'docs/src/modules/components/OpenMuiChat';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
@@ -437,6 +438,12 @@ export default function DemoToolbar(props) {
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
+        <OpenMuiChat
+          data-ga-event-category="mui-chat"
+          data-ga-event-label={demo.gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+          demoData={demoData}
+        />
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (

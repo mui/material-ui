@@ -6,6 +6,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
+import ButtonBase from '@mui/material/ButtonBase';
 import RtlProvider from '@mui/system/RtlProvider';
 import describeConformance from '../../test/describeConformance';
 
@@ -14,7 +15,7 @@ describe('<PaginationItem />', () => {
 
   describeConformance(<PaginationItem />, () => ({
     classes,
-    inheritComponent: 'button',
+    inheritComponent: ButtonBase,
     render,
     muiName: 'MuiPaginationItem',
     refInstanceof: window.HTMLButtonElement,
