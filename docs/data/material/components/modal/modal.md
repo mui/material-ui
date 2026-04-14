@@ -45,7 +45,7 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 ## Nested modal
 
-Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged. 
+Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
 
 If you need to nest modals, consider using the `hideBackdrop` prop to help mitigate issues caused by multiple backdrops.
 
