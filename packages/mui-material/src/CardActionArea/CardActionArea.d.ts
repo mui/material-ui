@@ -29,30 +29,32 @@ export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<React.ElementType<ButtonBaseProps>, {}, CardActionAreaOwnerState>;
     /**
      * Props forwarded to the focusHighlight slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     focusHighlight: SlotProps<'span', {}, CardActionAreaOwnerState>;
   }
 >;
 
-export interface CardActionAreaOwnerState
-  extends Omit<CardActionAreaProps, 'slots' | 'slotProps'> {}
+export interface CardActionAreaOwnerState extends Omit<
+  CardActionAreaProps,
+  'slots' | 'slotProps'
+> {}
 
 export interface CardActionAreaOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<CardActionAreaClasses>;
-  focusVisibleClassName?: string;
+  classes?: Partial<CardActionAreaClasses> | undefined;
+  focusVisibleClassName?: string | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type CardActionAreaTypeMap<
@@ -82,7 +84,7 @@ export type CardActionAreaProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<CardActionAreaTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default CardActionArea;

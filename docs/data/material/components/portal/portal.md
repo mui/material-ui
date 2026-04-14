@@ -2,20 +2,20 @@
 productId: material-ui
 title: React Portal component
 components: Portal
-githubLabel: 'component: Portal'
+githubLabel: 'scope: portal'
 ---
 
 # Portal
 
 <p class="description">The Portal component lets you render its children into a DOM node that exists outside of the Portal's own DOM hierarchy.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).
 It gives you the functionality of `createPortal()` in a convenient component form.
-It's used internally by the [Modal](https://v6.mui.com/base-ui/react-modal/) and [Popper](https://v6.mui.com/base-ui/react-popper/) components.
+It's used internally by the [Modal](/material-ui/react-modal/) and [Popper](/material-ui/react-popper/) components.
 
 :::info
 According to [the React docs](https://react.dev/reference/react-dom/createPortal), portals are useful when "you need the child element to visually 'break out' of its container"—for instance, modals and tooltips, which need to exist outside of the normal flow of the document.

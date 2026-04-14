@@ -5,7 +5,6 @@ import createStack from './createStack';
  *
  * Demos:
  *
- * - [Stack (Joy UI)](https://mui.com/joy-ui/react-stack/)
  * - [Stack (Material UI)](https://mui.com/material-ui/react-stack/)
  * - [Stack (MUI System)](https://mui.com/system/react-stack/)
  *

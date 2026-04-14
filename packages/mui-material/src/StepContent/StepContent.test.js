@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -23,7 +22,7 @@ describe('<StepContent />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
     slots: {
       transition: {
         expectedClassName: classes.transition,
@@ -33,7 +32,7 @@ describe('<StepContent />', () => {
   }));
 
   it('renders children inside an Collapse component', () => {
-    const { container, getByText } = render(
+    const { container } = render(
       <Stepper orientation="vertical">
         <Step>
           <StepContent>
@@ -48,7 +47,7 @@ describe('<StepContent />', () => {
 
     expect(collapse).not.to.equal(null);
     expect(innerDiv).not.to.equal(null);
-    getByText('This is my content!');
+    screen.getByText('This is my content!');
   });
 
   describe('prop: transitionDuration', () => {
@@ -67,15 +66,15 @@ describe('<StepContent />', () => {
       expect(collapse).not.to.equal(null);
     });
 
-    it('should use custom TransitionComponent', () => {
-      function TransitionComponent() {
+    it('should use custom transition slot', () => {
+      function CustomTransition() {
         return <div data-testid="custom-transition" />;
       }
 
-      const { container, getByTestId } = render(
+      const { container } = render(
         <Stepper orientation="vertical">
           <Step>
-            <StepContent TransitionComponent={TransitionComponent}>
+            <StepContent slots={{ transition: CustomTransition }}>
               <div />
             </StepContent>
           </Step>
@@ -84,7 +83,7 @@ describe('<StepContent />', () => {
 
       const collapse = container.querySelector(`.${collapseClasses.container}`);
       expect(collapse).to.equal(null);
-      getByTestId('custom-transition');
+      screen.getByTestId('custom-transition');
     });
   });
 });

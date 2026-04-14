@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import { pink } from '@mui/material/colors';
 import Switch from '@mui/material/Switch';
@@ -15,7 +14,7 @@ const PinkSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const label = { inputProps: { 'aria-label': 'Color switch demo' } };
+const label = { slotProps: { input: { 'aria-label': 'Color switch demo' } } };
 
 export default function ColorSwitches() {
   return (

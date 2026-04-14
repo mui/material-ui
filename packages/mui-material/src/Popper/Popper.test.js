@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -10,16 +10,25 @@ import describeConformance from '../../test/describeConformance';
 describe('<Popper />', () => {
   let rtlTheme;
   const { clock, render } = createRenderer({ clock: 'fake' });
+
+  let defaultAnchorElm = null;
+
   const defaultProps = {
-    anchorEl: () => document.createElement('svg'),
+    anchorEl: () => defaultAnchorElm,
     children: <span>Hello World</span>,
     open: true,
   };
 
-  before(() => {
+  beforeAll(() => {
     rtlTheme = createTheme({
       direction: 'rtl',
     });
+    defaultAnchorElm = document.createElement('div');
+    document.body.appendChild(defaultAnchorElm);
+  });
+
+  afterAll(() => {
+    document.body.removeChild(defaultAnchorElm);
   });
 
   describeConformance(<Popper {...defaultProps} />, () => ({
@@ -27,13 +36,11 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLDivElement,
-    testLegacyComponentsProp: true,
     slots: {
       root: {},
     },
     skip: [
       'componentProp',
-      'componentsProp',
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
@@ -100,11 +107,8 @@ describe('<Popper />', () => {
       });
     });
 
-    it('should flip placement when edge is reached', async function test() {
-      // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
+    // JSDOM has no layout engine so PopperJS doesn't know that it should flip the placement.
+    it.skipIf(isJsdom())('should flip placement when edge is reached', async function test() {
       const popperRef = React.createRef();
       render(
         <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
@@ -123,19 +127,17 @@ describe('<Popper />', () => {
 
   describe('prop: open', () => {
     it('should open without any issue', () => {
-      const { queryByRole, getByRole, setProps } = render(
-        <Popper {...defaultProps} open={false} />,
-      );
-      expect(queryByRole('tooltip')).to.equal(null);
+      const { setProps } = render(<Popper {...defaultProps} open={false} />);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
       setProps({ open: true });
-      expect(getByRole('tooltip')).to.have.text('Hello World');
+      expect(screen.getByRole('tooltip')).to.have.text('Hello World');
     });
 
     it('should close without any issue', () => {
-      const { queryByRole, getByRole, setProps } = render(<Popper {...defaultProps} />);
-      expect(getByRole('tooltip')).to.have.text('Hello World');
+      const { setProps } = render(<Popper {...defaultProps} />);
+      expect(screen.getByRole('tooltip')).to.have.text('Hello World');
       setProps({ open: false });
-      expect(queryByRole('tooltip')).to.equal(null);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 
@@ -198,9 +200,9 @@ describe('<Popper />', () => {
           }
         }
 
-        const { getByRole } = render(<OpenClose />);
+        render(<OpenClose />);
         expect(document.querySelector('p')).to.equal(null);
-        fireEvent.click(getByRole('button'));
+        fireEvent.click(screen.getByRole('button'));
         expect(document.querySelector('p')).to.equal(null);
       });
     });
@@ -210,7 +212,7 @@ describe('<Popper />', () => {
     clock.withFakeTimers();
 
     it('should work', () => {
-      const { queryByRole, getByRole, setProps } = render(
+      const { setProps } = render(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -220,12 +222,12 @@ describe('<Popper />', () => {
         </Popper>,
       );
 
-      expect(getByRole('tooltip')).to.have.text('Hello World');
+      expect(screen.getByRole('tooltip')).to.have.text('Hello World');
 
       setProps({ anchorEl: null, open: false });
       clock.tick(0);
 
-      expect(queryByRole('tooltip')).to.equal(null);
+      expect(screen.queryByRole('tooltip')).to.equal(null);
     });
   });
 
@@ -246,20 +248,20 @@ describe('<Popper />', () => {
   describe('prop: disablePortal', () => {
     it('should work', () => {
       const popperRef = React.createRef();
-      const { getByRole } = render(
-        <Popper {...defaultProps} disablePortal popperRef={popperRef} />,
-      );
+
+      render(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
+
       // renders
-      expect(getByRole('tooltip')).not.to.equal(null);
+      expect(screen.getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(true);
     });
 
     it('sets preventOverflow altBoundary to false when disablePortal is false', () => {
       const popperRef = React.createRef();
-      const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
+      render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
-      expect(getByRole('tooltip')).not.to.equal(null);
+      expect(screen.getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(false);
     });
@@ -269,7 +271,7 @@ describe('<Popper />', () => {
     clock.withFakeTimers();
 
     it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
-      const { getByRole, setProps } = render(
+      const { setProps } = render(
         <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
           {({ TransitionProps }) => (
             <Grow {...TransitionProps}>
@@ -279,14 +281,14 @@ describe('<Popper />', () => {
         </Popper>,
       );
 
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(screen.getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
 
       setProps({ open: true });
       clock.tick(0);
 
       setProps({ open: false });
       clock.tick(0);
-      expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+      expect(screen.getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });
 

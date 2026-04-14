@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Card component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 materialDesign: https://m2.material.io/components/cards
 githubSource: packages/mui-material/src/Card
 ---
@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -28,17 +28,17 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', {}, StepLabelOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     label: SlotProps<'span', {}, StepLabelOwnerState>;
     /**
      * Props forwarded to the stepIcon slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     stepIcon: SlotProps<React.ElementType<StepIconProps>, {}, StepLabelOwnerState>;
   }
@@ -47,8 +47,7 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
 export interface StepLabelOwnerState extends StepLabelProps {}
 
 export interface StepLabelProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>,
-    StepLabelSlotsAndSlotProps {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>>, StepLabelSlotsAndSlotProps {
   /**
    * In most cases will simply be a string containing a title for the label.
    */
@@ -56,24 +55,12 @@ export interface StepLabelProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<StepLabelClasses>;
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps?: {
-    /**
-     * Props applied to the label element.
-     * @default {}
-     */
-    label?: React.HTMLProps<HTMLSpanElement>;
-  };
+  classes?: Partial<StepLabelClasses> | undefined;
   /**
    * If `true`, the step is marked as failed.
    * @default false
    */
-  error?: boolean;
+  error?: boolean | undefined;
   /**
    * Override the default label of the step icon.
    */
@@ -83,19 +70,9 @@ export interface StepLabelProps
    */
   optional?: React.ReactNode;
   /**
-   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconComponent?: React.ElementType<StepIconProps>;
-  /**
-   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconProps?: Partial<StepIconProps>;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;

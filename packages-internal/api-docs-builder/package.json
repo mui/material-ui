@@ -1,0 +1,43 @@
+{
+  "name": "@mui-internal/api-docs-builder",
+  "version": "1.0.0",
+  "private": "true",
+  "main": "./index.ts",
+  "scripts": {
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui-internal/api-docs-builder\"",
+    "typescript": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages-internal/api-docs-builder"
+  },
+  "dependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@babel/traverse": "^7.29.0",
+    "@babel/types": "^7.29.0",
+    "@mui/internal-docs-utils": "workspace:^",
+    "@mui/internal-markdown": "workspace:^",
+    "doctrine": "^3.0.0",
+    "es-toolkit": "^1.45.1",
+    "fast-glob": "^3.3.3",
+    "prettier": "^3.8.1",
+    "react-docgen": "^8.0.3",
+    "recast": "^0.23.11",
+    "remark": "^15.0.1",
+    "typescript": "^5.9.3",
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "7.20.5",
+    "@types/babel__traverse": "7.28.0",
+    "@types/chai": "5.2.3",
+    "@types/doctrine": "0.0.9",
+    "@types/mdast": "4.0.4",
+    "@types/node": "20.19.37",
+    "@types/sinon": "17.0.4",
+    "chai": "6.2.2",
+    "sinon": "21.0.3"
+  }
+}

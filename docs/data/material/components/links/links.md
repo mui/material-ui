@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 components: Link
-githubLabel: 'component: link'
+githubLabel: 'scope: link'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 githubSource: packages/mui-material/src/Link
 ---
@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Link
 
 <p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic links
 

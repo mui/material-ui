@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["react", "mocha", "node", "next"]
+    "types": ["react", "vitest/globals", "node", "next"]
   },
   "include": ["src/**/*"]
 }

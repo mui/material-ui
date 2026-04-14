@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
@@ -6,6 +5,7 @@ export default function TooltipMargin() {
   return (
     <Tooltip
       title="Add"
+      describeChild
       slotProps={{
         popper: {
           sx: {

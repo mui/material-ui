@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import CircularProgress, {
   circularProgressClasses,
@@ -29,40 +28,32 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 // Inspired by the former Facebook spinners.
 function FacebookCircularProgress(props: CircularProgressProps) {
   return (
-    <Box sx={{ position: 'relative' }}>
-      <CircularProgress
-        variant="determinate"
-        sx={(theme) => ({
-          color: theme.palette.grey[200],
+    <CircularProgress
+      variant="indeterminate"
+      disableShrink
+      enableTrackSlot
+      sx={(theme) => ({
+        color: '#1a90ff',
+        animationDuration: '550ms',
+        [`& .${circularProgressClasses.circle}`]: {
+          strokeLinecap: 'round',
+        },
+        [`& .${circularProgressClasses.track}`]: {
+          opacity: 1,
+          stroke: (theme.vars || theme).palette.grey[200],
           ...theme.applyStyles('dark', {
-            color: theme.palette.grey[800],
+            stroke: (theme.vars || theme).palette.grey[800],
           }),
-        })}
-        size={40}
-        thickness={4}
-        {...props}
-        value={100}
-      />
-      <CircularProgress
-        variant="indeterminate"
-        disableShrink
-        sx={(theme) => ({
-          color: '#1a90ff',
-          animationDuration: '550ms',
-          position: 'absolute',
-          left: 0,
-          [`& .${circularProgressClasses.circle}`]: {
-            strokeLinecap: 'round',
-          },
-          ...theme.applyStyles('dark', {
-            color: '#308fe8',
-          }),
-        })}
-        size={40}
-        thickness={4}
-        {...props}
-      />
-    </Box>
+        },
+        ...theme.applyStyles('dark', {
+          color: '#308fe8',
+        }),
+      })}
+      size={40}
+      thickness={4}
+      aria-label="Loading…"
+      {...props}
+    />
   );
 }
 
@@ -78,7 +69,10 @@ function GradientCircularProgress() {
           </linearGradient>
         </defs>
       </svg>
-      <CircularProgress sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }} />
+      <CircularProgress
+        aria-label="Loading…"
+        sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }}
+      />
     </React.Fragment>
   );
 }
@@ -88,7 +82,11 @@ export default function CustomizedProgressBars() {
       <FacebookCircularProgress />
       <GradientCircularProgress />
       <br />
-      <BorderLinearProgress variant="determinate" value={50} />
+      <BorderLinearProgress
+        variant="determinate"
+        value={50}
+        aria-label="Export data"
+      />
     </Stack>
   );
 }

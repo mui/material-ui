@@ -1,5 +1,13 @@
-import * as React from 'react';
 import Menu, { MenuProps } from '@mui/material/Menu';
+
+// slotProps.transition should reject unknown props
+<Menu
+  open
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+/>;
 
 <Menu
   open

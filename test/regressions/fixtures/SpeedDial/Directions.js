@@ -20,9 +20,13 @@ function SimpleSpeedDial(props) {
         <SpeedDialAction
           key={name}
           icon={<Avatar>{name}</Avatar>}
-          tooltipOpen
-          tooltipPlacement={tooltipPlacement[props.direction]}
-          tooltipTitle={'Tooltip'}
+          slotProps={{
+            tooltip: {
+              open: true,
+              placement: tooltipPlacement[props.direction],
+              title: 'Tooltip',
+            },
+          }}
         />
       ))}
     </SpeedDial>

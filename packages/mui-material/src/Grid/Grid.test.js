@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { createTheme, ThemeProvider, THEME_ID } from '@mui/material/styles';
@@ -20,7 +19,7 @@ describe('<Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    skip: ['componentsProp', 'classesRoot'],
+    skip: ['classesRoot'],
   }));
 
   it('should not crash with theme scoping', () => {
