@@ -69,7 +69,7 @@ export interface CircularProgressProps extends StandardProps<
   /**
    * The value of the progress indicator for the determinate variant.
    * Value between `min` and `max`.
-   * @default min ?? 0
+   * @default minProp ?? 0
    */
   value?: number | undefined;
   /**
