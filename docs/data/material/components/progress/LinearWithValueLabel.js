@@ -8,12 +8,7 @@ function LinearProgressWithLabelAndValue(props) {
   const progressId = React.useId();
   return (
     <div>
-      <Typography
-        id={progressId}
-        variant="body2"
-        color="text.secondary"
-        sx={{ mr: 1 }}
-      >
+      <Typography id={progressId} variant="body2" color="text.secondary">
         Uploading photos…
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
