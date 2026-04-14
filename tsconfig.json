@@ -41,7 +41,6 @@
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/icons-material": ["./packages/mui-icons-material/lib/index.mjs"],
       "@mui/icons-material/*": ["./packages/mui-icons-material/lib/*.mjs"],
-      "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],

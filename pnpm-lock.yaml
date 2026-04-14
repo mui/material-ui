@@ -94,7 +94,7 @@ importers:
         version: 0.0.4-canary.23(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(postcss@8.5.9)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:packages-internal/docs-utils
+        version: link:packages-internal/docs-utils/build
       '@mui/internal-netlify-cache':
         specifier: 0.0.3-canary.5
         version: 0.0.3-canary.5
@@ -518,7 +518,7 @@ importers:
         version: link:../packages-internal/api-docs-builder/build
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../packages-internal/docs-utils
+        version: link:../packages-internal/docs-utils/build
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts
@@ -608,7 +608,7 @@ importers:
         version: 7.29.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../docs-utils
+        version: link:../docs-utils/build
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -833,6 +833,7 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+    publishDirectory: build
 
   packages-internal/markdown:
     dependencies:
@@ -875,7 +876,7 @@ importers:
         version: 7.29.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../docs-utils
+        version: link:../docs-utils/build
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
