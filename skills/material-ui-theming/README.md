@@ -4,9 +4,9 @@ Theming and design tokens for Material�UI: `createTheme`, `ThemeProvider`, pal
 
 ## Files in this folder
 
-| File          | Purpose                                  |
-| :------------ | :--------------------------------------- |
-| AGENTS.md     | Full agent/LLM document                  |
-| SKILL.md      | Entry point and index                    |
-| metadata.json | Version, abstract, references            |
-| reference.md  | TypeScript augmentation snippets         |
+| File          | Purpose                          |
+| :------------ | :------------------------------- |
+| AGENTS.md     | Full agent/LLM document          |
+| SKILL.md      | Entry point and index            |
+| metadata.json | Version, abstract, references    |
+| reference.md  | TypeScript augmentation snippets |
