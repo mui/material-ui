@@ -147,6 +147,13 @@ describe('<Fab />', () => {
     expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<Fab classes={{ root: 'my-root-class' }}>Fab</Fab>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
+  });
+
   it('should render Icon children with right classes', () => {
     const childClassName = 'child-woof';
     const iconChild = <Icon data-testid="icon" className={childClassName} />;
