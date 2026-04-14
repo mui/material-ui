@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
+import { vi } from 'vitest';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal, { modalClasses } from '@mui/material/Modal';
@@ -490,6 +491,72 @@ describe('<Popover />', () => {
         top: `${top}px`,
         left: `${left}px`,
       });
+    });
+
+    it('should reposition on scroll in the anchor window when scroll lock is disabled', () => {
+      const iframe = document.createElement('iframe');
+      document.body.appendChild(iframe);
+
+      const iframeWindow = iframe.contentWindow;
+      const iframeDocument = iframe.contentDocument;
+      const anchorEl = iframeDocument.createElement('div');
+      iframeDocument.body.appendChild(anchorEl);
+
+      let anchorTop = 40;
+      stub(anchorEl, 'getBoundingClientRect').callsFake(() => ({
+        x: 0,
+        y: 0,
+        top: anchorTop,
+        left: 100,
+        bottom: anchorTop,
+        right: 100,
+        height: 0,
+        width: 0,
+      }));
+
+      let style;
+      let unmount = () => {};
+
+      try {
+        const view = render(
+          <Popover
+            anchorEl={anchorEl}
+            disableScrollLock
+            marginThreshold={null}
+            open
+            transitionDuration={0}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: FakePaper },
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+        unmount = view.unmount;
+
+        expect(style.top).to.equal('40px');
+
+        anchorTop = 80;
+        act(() => {
+          window.dispatchEvent(new Event('scroll'));
+        });
+
+        expect(style.top).to.equal('40px');
+
+        act(() => {
+          iframeWindow.dispatchEvent(new iframeWindow.Event('scroll'));
+        });
+
+        expect(style.top).to.equal('80px');
+      } finally {
+        unmount();
+        iframe.remove();
+      }
     });
   });
 
@@ -987,6 +1054,360 @@ describe('<Popover />', () => {
         expect(style.left).to.equal(`${valueOutsideWindow}px`);
         expect(style.transformOrigin).to.match(/0px 0px( 0px)?/);
       });
+    });
+  });
+
+  describe('visual viewport positioning', () => {
+    function createVisualViewport({
+      width = window.innerWidth,
+      height = window.innerHeight,
+      scale = 1,
+    } = {}) {
+      const listeners = new Map();
+
+      return {
+        width,
+        height,
+        scale,
+        addEventListener(type, listener) {
+          if (!listeners.has(type)) {
+            listeners.set(type, new Set());
+          }
+
+          listeners.get(type).add(listener);
+        },
+        removeEventListener(type, listener) {
+          listeners.get(type)?.delete(listener);
+        },
+        dispatchEvent(type) {
+          listeners.get(type)?.forEach((listener) => {
+            listener();
+          });
+        },
+      };
+    }
+
+    function withVisualViewport(visualViewport, callback) {
+      vi.stubGlobal('visualViewport', visualViewport);
+
+      try {
+        callback(visualViewport);
+      } finally {
+        vi.unstubAllGlobals();
+      }
+    }
+
+    // FakePaper with controllable size and offsetParent rect for jsdom.
+    function createVisualViewportFakePaper(containerRect = { top: 0, left: 0 }, size = {}) {
+      const { width = 0, height = 0 } = size;
+
+      return React.forwardRef(function VisualViewportFakePaper(props, ref) {
+        const handleMocks = (paperInstance) => {
+          if (paperInstance) {
+            Object.defineProperty(paperInstance, 'offsetWidth', { value: width });
+            Object.defineProperty(paperInstance, 'offsetHeight', { value: height });
+            Object.defineProperty(paperInstance, 'offsetParent', {
+              value: {
+                getBoundingClientRect: () => ({
+                  top: containerRect.top,
+                  left: containerRect.left,
+                  width: 0,
+                  height: 0,
+                  right: containerRect.left,
+                  bottom: containerRect.top,
+                }),
+              },
+              configurable: true,
+            });
+          }
+        };
+        const handleRef = useForkRef(ref, handleMocks);
+        return <div tabIndex={-1} ref={handleRef} style={{ width, height }} {...props} />;
+      });
+    }
+
+    it('should position relative to the offsetParent when zoomed', () => {
+      const ZoomedPaper = createVisualViewportFakePaper({ top: -200, left: -150 });
+      const mockedAnchor = document.createElement('div');
+      stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+        top: 50,
+        left: 100,
+      }));
+
+      let style;
+      render(
+        <Popover
+          anchorEl={mockedAnchor}
+          open
+          marginThreshold={null}
+          slotProps={{
+            transition: {
+              onEntering: (node) => {
+                style = node.style;
+              },
+            },
+            paper: { component: ZoomedPaper },
+          }}
+        >
+          <div />
+        </Popover>,
+      );
+
+      expect(style.top).to.equal('250px');
+      expect(style.left).to.equal('250px');
+    });
+
+    it('should not affect positioning when the container is at the viewport origin', () => {
+      // Baseline case: offsetParent at the viewport origin.
+      const NonZoomedPaper = createVisualViewportFakePaper({ top: 0, left: 0 });
+      const mockedAnchor = document.createElement('div');
+      stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+        top: 50,
+        left: 100,
+      }));
+
+      let style;
+      render(
+        <Popover
+          anchorEl={mockedAnchor}
+          open
+          marginThreshold={null}
+          slotProps={{
+            transition: {
+              onEntering: (node) => {
+                style = node.style;
+              },
+            },
+            paper: { component: NonZoomedPaper },
+          }}
+        >
+          <div />
+        </Popover>,
+      );
+
+      expect(style.top).to.equal('50px');
+      expect(style.left).to.equal('100px');
+    });
+
+    it('should ignore positive offsetParent rect values', () => {
+      withVisualViewport(createVisualViewport({ width: 400, height: 300, scale: 2 }), () => {
+        const PositiveRectPaper = createVisualViewportFakePaper({ top: 200, left: 150 });
+        const mockedAnchor = document.createElement('div');
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          top: 50,
+          left: 100,
+        }));
+
+        let style;
+        render(
+          <Popover
+            anchorEl={mockedAnchor}
+            open
+            marginThreshold={null}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: PositiveRectPaper },
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(style.top).to.equal('50px');
+        expect(style.left).to.equal('100px');
+      });
+    });
+
+    it('should keep layout viewport thresholds when pinch-zoomed', () => {
+      withVisualViewport(createVisualViewport({ width: 400, height: 300, scale: 2 }), () => {
+        const mockedAnchor = document.createElement('div');
+        stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+          top: 700,
+          left: 500,
+        }));
+
+        let style;
+        render(
+          <Popover
+            anchorEl={mockedAnchor}
+            open
+            marginThreshold={16}
+            slotProps={{
+              transition: {
+                onEntering: (node) => {
+                  style = node.style;
+                },
+              },
+              paper: { component: FakePaper },
+            }}
+          >
+            <div />
+          </Popover>,
+        );
+
+        expect(style.top).to.equal('700px');
+        expect(style.left).to.equal('500px');
+      });
+    });
+
+    it('should update positioning when visualViewport height changes at scale 1', () => {
+      withVisualViewport(
+        createVisualViewport({
+          width: window.innerWidth,
+          height: window.innerHeight,
+          scale: 1,
+        }),
+        (visualViewport) => {
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            top: 700,
+            left: 0,
+          }));
+
+          let element;
+          render(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              marginThreshold={16}
+              slotProps={{
+                transition: {
+                  onEntering: (node) => {
+                    element = node;
+                  },
+                },
+                paper: { component: FakePaper },
+              }}
+              transitionDuration={0}
+            >
+              <div />
+            </Popover>,
+          );
+
+          const beforeStyle = {
+            top: element.style.top,
+            left: element.style.left,
+            transformOrigin: element.style.transformOrigin,
+          };
+
+          visualViewport.height = 400;
+          act(() => {
+            visualViewport.dispatchEvent('resize');
+          });
+          clock.tick(166);
+
+          const afterStyle = {
+            top: element.style.top,
+            left: element.style.left,
+            transformOrigin: element.style.transformOrigin,
+          };
+
+          expect(beforeStyle).not.to.deep.equal(afterStyle);
+          expect(afterStyle.top).to.equal('384px');
+        },
+      );
+    });
+
+    it('should keep scroll lock enabled when pinch-zoomed', () => {
+      withVisualViewport(
+        createVisualViewport({
+          width: window.innerWidth,
+          height: window.innerHeight,
+          scale: 2,
+        }),
+        () => {
+          render(
+            <Popover anchorEl={defaultAnchorEl} open>
+              <div />
+            </Popover>,
+          );
+
+          expect(document.body.style.overflow).to.equal('hidden');
+        },
+      );
+    });
+
+    it('should reposition on visualViewport scroll when pinch-zoomed', () => {
+      withVisualViewport(
+        createVisualViewport({
+          width: window.innerWidth,
+          height: window.innerHeight,
+          scale: 2,
+        }),
+        (visualViewport) => {
+          const mockedAnchor = document.createElement('div');
+          let anchorTop = 50;
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            top: anchorTop,
+            left: 100,
+          }));
+
+          let style;
+          render(
+            <Popover
+              anchorEl={mockedAnchor}
+              open
+              marginThreshold={null}
+              transitionDuration={0}
+              slotProps={{
+                transition: {
+                  onEntering: (node) => {
+                    style = node.style;
+                  },
+                },
+                paper: { component: FakePaper },
+              }}
+            >
+              <div />
+            </Popover>,
+          );
+
+          anchorTop = 80;
+          act(() => {
+            visualViewport.dispatchEvent('scroll');
+          });
+          clock.tick(166);
+
+          expect(style.top).to.equal('80px');
+        },
+      );
+    });
+
+    it('should warn when the popover is taller than the smaller visual viewport', () => {
+      withVisualViewport(
+        createVisualViewport({ width: window.innerWidth, height: 600, scale: 1 }),
+        () => {
+          const WarningPaper = createVisualViewportFakePaper(
+            { top: -200, left: 0 },
+            { height: 700 },
+          );
+          const mockedAnchor = document.createElement('div');
+          stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
+            top: 5,
+            left: 0,
+          }));
+
+          expect(() => {
+            render(
+              <Popover
+                anchorEl={mockedAnchor}
+                open
+                marginThreshold={16}
+                slotProps={{
+                  paper: { component: WarningPaper },
+                }}
+                transitionDuration={0}
+              >
+                <div />
+              </Popover>,
+            );
+          }).toErrorDev('MUI: The popover component is too tall.');
+        },
+      );
     });
   });
 

@@ -59,6 +59,47 @@ function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+/**
+ * Resolves the browsing context for the anchor.
+ *
+ * Virtual anchors can expose a real DOM node through `contextElement`, which lets
+ * us attach listeners to the correct window without touching `document` during
+ * server rendering.
+ */
+function getAnchorWindow(anchorEl) {
+  const resolvedAnchorEl = resolveAnchorEl(anchorEl);
+
+  let anchorElement = null;
+
+  if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+    anchorElement = resolvedAnchorEl;
+  } else if (resolvedAnchorEl?.contextElement && resolvedAnchorEl.contextElement.nodeType === 1) {
+    anchorElement = resolvedAnchorEl.contextElement;
+  }
+
+  return anchorElement?.ownerDocument?.defaultView ?? null;
+}
+
+/**
+ * Converts the resolved anchor offset from viewport coordinates into the popover
+ * container's `offsetParent` coordinate space.
+ */
+function getAnchorOffsetRelativeToContainer(element, anchorOffset, elemTransformOrigin) {
+  // During pinch-zoom, some browsers report the fixed Modal root with a negative rect that
+  // tracks the visual viewport shift. Clamp positive values back to `0` so we preserve the
+  // default layout-viewport behavior and only compensate when the root is actually shifted.
+  const containerRect = element.offsetParent?.getBoundingClientRect();
+  const containerTop = Math.min(containerRect?.top ?? 0, 0);
+  const containerLeft = Math.min(containerRect?.left ?? 0, 0);
+
+  return {
+    top: anchorOffset.top - containerTop - elemTransformOrigin.vertical,
+    left: anchorOffset.left - containerLeft - elemTransformOrigin.horizontal,
+    containerTop,
+    containerLeft,
+  };
+}
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -122,6 +163,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   } = props;
 
   const paperRef = React.useRef();
+  const anchorWindow = getAnchorWindow(anchorEl);
 
   const ownerState = {
     ...props,
@@ -217,22 +259,50 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       // Get the offset of the anchoring element
       const anchorOffset = getAnchorOffset();
 
-      // Calculate element positioning
-      let top = anchorOffset.top - elemTransformOrigin.vertical;
-      let left = anchorOffset.left - elemTransformOrigin.horizontal;
+      const anchorOffsetRelativeToContainer = getAnchorOffsetRelativeToContainer(
+        element,
+        anchorOffset,
+        elemTransformOrigin,
+      );
+
+      // Calculate element positioning relative to the container.
+      let { top, left } = anchorOffsetRelativeToContainer;
       const bottom = top + elemRect.height;
       const right = left + elemRect.width;
 
-      // Use the parent window of the anchorEl if provided
+      // Use the parent window of the anchorEl if provided.
       const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
 
-      // Window thresholds taking required margin into account
-      const heightThreshold = containerWindow.innerHeight - marginThreshold;
-      const widthThreshold = containerWindow.innerWidth - marginThreshold;
+      // Pinch-zoom keeps anchor and modal coordinates in the layout viewport, so it should not
+      // change the margin clamping math. Only switch to the visual viewport when the visible area
+      // shrinks at the same page scale, for example when browser UI or a software keyboard opens.
+      const visualViewport = containerWindow.visualViewport;
+      const viewportMargin = marginThreshold ?? 0;
+      const useVisualViewport =
+        visualViewport != null &&
+        visualViewport.scale === 1 &&
+        (visualViewport.width < containerWindow.innerWidth ||
+          visualViewport.height < containerWindow.innerHeight);
+      const viewportWidth = useVisualViewport ? visualViewport.width : containerWindow.innerWidth;
+      const viewportHeight = useVisualViewport
+        ? visualViewport.height
+        : containerWindow.innerHeight;
+      const maxVisibleHeight = viewportHeight - viewportMargin;
+
+      // Convert the visible viewport edges into the same container-relative coordinates used by
+      // `top` and `left`, so all clamping math happens in one coordinate space.
+      const visibleTop = -anchorOffsetRelativeToContainer.containerTop;
+      const visibleLeft = -anchorOffsetRelativeToContainer.containerLeft;
+      const minVisibleTop = visibleTop + viewportMargin;
+      const minVisibleLeft = visibleLeft + viewportMargin;
+
+      // Maximum allowed position after applying the requested viewport margin.
+      const heightThreshold = visibleTop + viewportHeight - viewportMargin;
+      const widthThreshold = visibleLeft + viewportWidth - viewportMargin;
 
       // Check if the vertical axis needs shifting
-      if (marginThreshold != null && top < marginThreshold) {
-        const diff = top - marginThreshold;
+      if (marginThreshold != null && top < minVisibleTop) {
+        const diff = top - minVisibleTop;
 
         top -= diff;
 
@@ -246,12 +316,12 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       if (process.env.NODE_ENV !== 'production') {
-        if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
+        if (elemRect.height > maxVisibleHeight && elemRect.height && maxVisibleHeight) {
           console.error(
             [
               'MUI: The popover component is too tall.',
               `Some part of it can not be seen on the screen (${
-                elemRect.height - heightThreshold
+                elemRect.height - maxVisibleHeight
               }px).`,
               'Please consider adding a `max-height` to improve the user-experience.',
             ].join('\n'),
@@ -260,8 +330,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       }
 
       // Check if the horizontal axis needs shifting
-      if (marginThreshold != null && left < marginThreshold) {
-        const diff = left - marginThreshold;
+      if (marginThreshold != null && left < minVisibleLeft) {
+        const diff = left - minVisibleLeft;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
       } else if (right > widthThreshold) {
@@ -301,11 +371,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   }, [getPositioningStyle]);
 
   React.useEffect(() => {
+    const scrollWindow = anchorWindow ?? window;
+
     if (disableScrollLock) {
-      window.addEventListener('scroll', setPositioningStyles);
+      scrollWindow.addEventListener('scroll', setPositioningStyles);
     }
-    return () => window.removeEventListener('scroll', setPositioningStyles);
-  }, [anchorEl, disableScrollLock, setPositioningStyles]);
+    return () => scrollWindow.removeEventListener('scroll', setPositioningStyles);
+  }, [anchorWindow, disableScrollLock, setPositioningStyles]);
 
   const handleEntering = () => {
     setPositioningStyles();
@@ -343,13 +415,25 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       setPositioningStyles();
     });
 
-    const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
-    containerWindow.addEventListener('resize', handleResize);
+    const resizeWindow = anchorWindow ?? window;
+    resizeWindow.addEventListener('resize', handleResize);
+
+    // Reposition when the visual viewport changes, e.g. pinch-zoom or mobile keyboard.
+    const { visualViewport } = resizeWindow;
+    if (visualViewport) {
+      visualViewport.addEventListener('resize', handleResize);
+      visualViewport.addEventListener('scroll', handleResize);
+    }
+
     return () => {
       handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
+      resizeWindow.removeEventListener('resize', handleResize);
+      if (visualViewport) {
+        visualViewport.removeEventListener('resize', handleResize);
+        visualViewport.removeEventListener('scroll', handleResize);
+      }
     };
-  }, [anchorEl, open, setPositioningStyles]);
+  }, [anchorWindow, open, setPositioningStyles]);
 
   let transitionDuration = transitionDurationProp;
 

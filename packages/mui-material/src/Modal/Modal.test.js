@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { vi } from 'vitest';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, within, screen, isJsdom } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -11,6 +12,54 @@ import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
   const { clock, render } = createRenderer();
+
+  function createVisualViewport({ scale = 1, offsetLeft = 0, offsetTop = 0 } = {}) {
+    return {
+      scale,
+      offsetLeft,
+      offsetTop,
+    };
+  }
+
+  function withVisualViewport(visualViewport, callback) {
+    vi.stubGlobal('visualViewport', visualViewport);
+
+    try {
+      callback();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  }
+
+  function withScrollTopSpy(callback) {
+    const originalDescriptor = Object.getOwnPropertyDescriptor(
+      window.HTMLDivElement.prototype,
+      'scrollTop',
+    );
+    const setSpy = spy();
+    let scrollTopValue = 0;
+
+    Object.defineProperty(window.HTMLDivElement.prototype, 'scrollTop', {
+      configurable: true,
+      get() {
+        return scrollTopValue;
+      },
+      set(value) {
+        scrollTopValue = value;
+        setSpy(value);
+      },
+    });
+
+    try {
+      callback(setSpy);
+    } finally {
+      if (originalDescriptor) {
+        Object.defineProperty(window.HTMLDivElement.prototype, 'scrollTop', originalDescriptor);
+      } else {
+        delete window.HTMLDivElement.prototype.scrollTop;
+      }
+    }
+  }
 
   let savedBodyStyle;
 
@@ -115,6 +164,35 @@ describe('<Modal />', () => {
 
       expect(screen.getByTestId('child')).not.to.have.attribute('role');
       expect(screen.getByTestId('child')).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('resets the modal scroll position when the visual viewport is at the origin', () => {
+      withVisualViewport(createVisualViewport(), () => {
+        withScrollTopSpy((scrollTopSetSpy) => {
+          render(
+            <Modal open>
+              <div />
+            </Modal>,
+          );
+
+          expect(scrollTopSetSpy.callCount).to.equal(1);
+          expect(scrollTopSetSpy.firstCall.args[0]).to.equal(0);
+        });
+      });
+    });
+
+    it('does not reset the modal scroll position while the visual viewport is zoomed', () => {
+      withVisualViewport(createVisualViewport({ scale: 2, offsetLeft: 120, offsetTop: 80 }), () => {
+        withScrollTopSpy((scrollTopSetSpy) => {
+          render(
+            <Modal open>
+              <div />
+            </Modal>,
+          );
+
+          expect(scrollTopSetSpy.callCount).to.equal(0);
+        });
+      });
     });
   });
 

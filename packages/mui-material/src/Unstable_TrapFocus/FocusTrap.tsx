@@ -4,6 +4,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useForkRef from '@mui/utils/useForkRef';
 import ownerDocument from '@mui/utils/ownerDocument';
+import ownerWindow from '@mui/utils/ownerWindow';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
@@ -123,6 +124,21 @@ function defaultIsEnabled(): boolean {
   return true;
 }
 
+function focusWithoutScrolling(element: HTMLElement): void {
+  const visualViewport = ownerWindow(element).visualViewport;
+
+  if (visualViewport?.scale !== 1) {
+    try {
+      element.focus({ preventScroll: true });
+      return;
+    } catch {
+      // Ignore unsupported focus options and fall back to the default behavior.
+    }
+  }
+
+  element.focus();
+}
+
 /**
  * @ignore - internal component.
  */
@@ -190,7 +206,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       if (activated.current) {
-        focusTarget.focus();
+        focusWithoutScrolling(focusTarget);
       }
     }
 
@@ -294,14 +310,14 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
         if (typeof focusNext !== 'string' && typeof focusPrevious !== 'string') {
           if (isShiftTab) {
-            focusPrevious.focus();
+            focusWithoutScrolling(focusPrevious);
           } else {
-            focusNext.focus();
+            focusWithoutScrolling(focusNext);
           }
         }
         // no tabbable elements in the trap focus or the focus was outside of the focus trap
       } else {
-        rootElement.focus();
+        focusWithoutScrolling(rootElement);
       }
     };
 

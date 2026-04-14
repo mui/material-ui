@@ -96,6 +96,11 @@ export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 interface PopoverVirtualElement {
   getBoundingClientRect: () => DOMRect;
   nodeType: Node['ELEMENT_NODE'];
+  /**
+   * Optional real DOM element that defines the same browsing context as the
+   * virtual anchor. Used to resolve the correct owner window.
+   */
+  contextElement?: Element | undefined;
 }
 
 export interface PopoverProps

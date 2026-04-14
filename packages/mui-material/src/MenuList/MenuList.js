@@ -66,7 +66,22 @@ function isItemFocusableWithTextCriteria(item, criteria) {
 // Menu auto-focus is not always keyboard-driven. On open we often move focus to the
 // active item programmatically so arrow-key navigation starts from the right place.
 function focusInitialItem(element, focusSource) {
-  focusWithVisible(element, focusSource);
+  const visualViewport = ownerWindow(element).visualViewport;
+  const preventScroll = visualViewport != null && visualViewport.scale !== 1;
+
+  if (!preventScroll) {
+    focusWithVisible(element, focusSource);
+    return;
+  }
+
+  try {
+    element.focus({
+      preventScroll: true,
+      ...(focusSource != null && { focusVisible: focusSource === 'keyboard' }),
+    });
+  } catch (error) {
+    focusWithVisible(element, focusSource);
+  }
 }
 
 /**
