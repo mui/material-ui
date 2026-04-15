@@ -192,7 +192,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     size = 40,
     style,
     thickness = 3.6,
-    value = minProp ?? 0,
+    value = props.min ?? 0,
     variant = 'indeterminate',
     ...other
   } = props;
@@ -372,7 +372,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The value of the progress indicator for the determinate variant.
    * Value between `min` and `max`.
-   * @default minProp ?? 0
+   * @default props.min ?? 0
    */
   value: PropTypes.number,
   /**
