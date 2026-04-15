@@ -42,5 +42,16 @@ describe('@mui/codemod', () => {
       const expected = read('./test-cases/system-props-package-name.expected.js');
       expect(actual).to.equal(expected, 'The transformed version should be correct');
     });
+
+    it('does not transform similarly named packages', () => {
+      const actual = transform(
+        { source: read('./test-cases/system-props-package-name-similar.actual.js') },
+        { jscodeshift },
+        { packageName: '@acme/ui' },
+      );
+
+      const expected = read('./test-cases/system-props-package-name-similar.expected.js');
+      expect(actual).to.equal(expected, 'The transformed version should be correct');
+    });
   });
 });
