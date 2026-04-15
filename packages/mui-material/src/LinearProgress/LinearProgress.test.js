@@ -253,17 +253,17 @@ describe('<LinearProgress />', () => {
       expect(() => {
         render(<LinearProgress variant="determinate" value={-1} min={0} max={10} />);
       }).toErrorDev([
-        'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
+        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
+          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
       ]);
 
       expect(() => {
         render(<LinearProgress variant="determinate" value={11} min={0} max={10} />);
       }).toErrorDev([
-        'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
+        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
+          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
       ]);
     });
 
@@ -271,25 +271,25 @@ describe('<LinearProgress />', () => {
       expect(() => {
         render(<LinearProgress variant="buffer" value={5} valueBuffer={4} min={0} max={10} />);
       }).toErrorDev([
-        'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
+        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
+          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
       ]);
 
       expect(() => {
         render(<LinearProgress variant="buffer" value={5} valueBuffer={11} min={0} max={10} />);
       }).toErrorDev([
-        'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
+        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
+          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
       ]);
 
       expect(() => {
         render(<LinearProgress variant="buffer" value={5} valueBuffer={-1} min={0} max={10} />);
       }).toErrorDev([
-        'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
+        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
+          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
       ]);
     });
 
@@ -297,16 +297,16 @@ describe('<LinearProgress />', () => {
       expect(() => {
         render(<LinearProgress variant="determinate" value={5} min={10} max={0} />);
       }).toErrorDev([
-        'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
+        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
+          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
       ]);
       expect(() => {
         render(<LinearProgress variant="determinate" value={5} min={10} max={10} />);
       }).toErrorDev([
-        'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
+        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
         !strictModeDoubleLoggingSuppressed &&
-          'The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
+          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
       ]);
     });
 
