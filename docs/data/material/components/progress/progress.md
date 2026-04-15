@@ -24,6 +24,8 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Circular indeterminate
 
+The default version of CircularProgress renders an indeterminate spinner.
+
 {{"demo": "CircularIndeterminate.js"}}
 
 ### Circular color
@@ -36,6 +38,8 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Circular determinate
 
+To specify the loading progress of an operation, use the `determinate` value for the `variant` prop. To show the actual progress, use the `value` prop.
+
 {{"demo": "CircularDeterminate.js"}}
 
 ### Circular custom scale
@@ -46,13 +50,19 @@ By default, progress values are expected in the 0–100 range. You can customize
 
 ### Circular track
 
+To have the circular track always visible, pass the `enableTrackSlot` prop.
+
 {{"demo": "CircularEnableTrack.js"}}
 
 ### Interactive integration
 
+The following examples show how to integrate the CircularProgress with the Button and FAB components, creating loading states that can be triggered by user actions.
+
 {{"demo": "CircularIntegration.js"}}
 
 ### Circular with label
+
+The example shows how to integrate the visual progress value with the CircularProgress component.
 
 {{"demo": "CircularWithValueLabel.js"}}
 
@@ -60,9 +70,13 @@ By default, progress values are expected in the 0–100 range. You can customize
 
 ### Linear indeterminate
 
+LinearProgress shows an indeterminate progress bar by default.
+
 {{"demo": "LinearIndeterminate.js"}}
 
 ### Linear query
+
+To reverse the direction of the indeterminate animation, use the `query` value for the `variant` prop.
 
 {{"demo": "LinearQuery.js"}}
 
@@ -72,13 +86,19 @@ By default, progress values are expected in the 0–100 range. You can customize
 
 ### Linear determinate
 
+To show the progress on the loading bar, use the `determinate` value for the `variant` prop, along with the `value` prop.
+
 {{"demo": "LinearDeterminate.js"}}
 
 ### Linear buffer
 
+Use the `buffer` value for the `variant` prop to show a buffer progress alongside the actual progress value. The `valueBuffer` prop should be greater than the `value` prop.
+
 {{"demo": "LinearBuffer.js"}}
 
-### Linear with label and value label
+### Linear with label
+
+The progress `value` can also be displayed alongside the progress bar.
 
 {{"demo": "LinearWithValueLabel.js"}}
 
