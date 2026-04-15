@@ -24,7 +24,7 @@
       "additionalInfo": { "sx": true }
     },
     "thickness": { "type": { "name": "number" }, "default": "3.6" },
-    "value": { "type": { "name": "number" }, "default": "minProp ?? 0" },
+    "value": { "type": { "name": "number" }, "default": "props.min ?? 0" },
     "variant": {
       "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
       "default": "'indeterminate'"
