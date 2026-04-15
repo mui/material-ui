@@ -115,6 +115,9 @@ export const StyledSelectIcon = styled('svg', {
   color: (theme.vars || theme).palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
     color: (theme.vars || theme).palette.action.disabled,
+    '@media (forced-colors: active)': {
+      color: 'GrayText',
+    },
   },
   variants: [
     {
