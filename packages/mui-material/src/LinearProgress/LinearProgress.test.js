@@ -232,7 +232,7 @@ describe('<LinearProgress />', () => {
       render(<LinearProgress variant="determinate" value={5} min={10} max={0} />);
       const progressbar = screen.getByRole('progressbar');
 
-      expect(progressbar.children[0].style.transform).to.equal('');
+      expect(progressbar.children[0].style.transform).to.equal('translateX(-100%)');
 
       errorSpy.mockRestore();
     });
