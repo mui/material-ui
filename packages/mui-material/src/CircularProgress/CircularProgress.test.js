@@ -212,14 +212,14 @@ describe('<CircularProgress />', () => {
       expect(progressbar).to.have.attribute('aria-valuemax', '10.3');
     });
 
-    it('should fallback to 0px strokeDashoffset if max is less than min', () => {
+    it('should fallback to a full circumference strokeDashoffset (empty state) if max is less than min', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       const { container } = render(
         <CircularProgress variant="determinate" value={5} min={10} max={0} />,
       );
       const [circle] = container.querySelectorAll('svg circle');
-      expect(circle.style.strokeDashoffset).to.equal('0px');
+      expect(circle.style.strokeDashoffset).to.match(/126\.920?(px)?/gm);
 
       errorSpy.mockRestore();
     });

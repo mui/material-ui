@@ -239,7 +239,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     const range = max - min;
     circleStyle.strokeDasharray = circumference.toFixed(3);
     circleStyle.strokeDashoffset =
-      range > 0 ? `${(((max - value) / range) * circumference).toFixed(3)}px` : '0px';
+      range > 0
+        ? `${(((max - value) / range) * circumference).toFixed(3)}px`
+        : `${circumference.toFixed(3)}px`; // empty-state fallback when range is invalid
     rootStyle.transform = 'rotate(-90deg)';
 
     rootProps['aria-valuenow'] = value;

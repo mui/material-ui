@@ -405,7 +405,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar1.transform = range > 0 ? `translateX(${transform}%)` : undefined;
+      inlineStyles.bar1.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
 
       rootProps['aria-valuenow'] = value;
       rootProps['aria-valuemin'] = min;
@@ -432,7 +432,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : undefined;
+      inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a valueBuffer prop ' +

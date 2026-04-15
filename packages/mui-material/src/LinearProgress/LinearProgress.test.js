@@ -237,14 +237,14 @@ describe('<LinearProgress />', () => {
       errorSpy.mockRestore();
     });
 
-    it('should not add transform style to the buffer bar when min is equal or larger than max', () => {
+    it('should fallback to an empty state (translateX(-100%)) for the buffer bar when min is equal or larger than max', () => {
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       render(<LinearProgress variant="buffer" value={5} valueBuffer={5} min={10} max={0} />);
       const progressbar = screen.getByRole('progressbar');
 
-      expect(progressbar.children[1].style.transform).to.equal('');
-      expect(progressbar.children[2].style.transform).to.equal('');
+      expect(progressbar.children[1].style.transform).to.equal('translateX(-100%)');
+      expect(progressbar.children[2].style.transform).to.equal('translateX(-100%)');
 
       errorSpy.mockRestore();
     });
