@@ -256,6 +256,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
     autoComplete,
     autoFocus,
     className,
@@ -544,6 +545,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           <Input
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
@@ -599,6 +601,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   'aria-describedby': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

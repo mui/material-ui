@@ -14,7 +14,7 @@ import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import FormatSizeRoundedIcon from '@mui/icons-material/FormatSizeRounded';
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import { alpha } from '@mui/material/styles';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import { Link } from '@mui/internal-core-docs/Link';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import Section from 'docs/src/layouts/Section';

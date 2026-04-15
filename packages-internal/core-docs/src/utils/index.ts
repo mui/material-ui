@@ -1,1 +1,1 @@
-export { default as loadScript } from './loadScript';
+export { getProductInfoFromUrl } from './getProductInfoFromUrl';

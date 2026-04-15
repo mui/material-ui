@@ -1,4 +1,4 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import { standardNavIcons } from '@mui/internal-core-docs/AppLayout';
 import pagesApi from 'docs/data/material/pagesApi';
 import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 

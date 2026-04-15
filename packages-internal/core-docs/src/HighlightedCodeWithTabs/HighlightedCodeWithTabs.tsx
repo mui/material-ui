@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
-import { TabsList as TabsListBase } from '@mui/base/TabsList';
-import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
-import { Tab as TabBase } from '@mui/base/Tab';
+import { Tabs } from '@base-ui/react/tabs';
 import useLocalStorageState from '@mui/utils/useLocalStorageState';
 import { HighlightedCode } from '../HighlightedCode';
 
@@ -11,7 +8,7 @@ const PACKAGE_MANAGER_ORDER = new Map(
   ['npm', 'pnpm', 'yarn'].map((manager, index) => [manager, index]),
 );
 
-export const CodeTabList = styled(TabsListBase)<{
+export const CodeTabList = styled(Tabs.List)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>(({ theme }) => ({
   display: 'flex',
@@ -24,7 +21,7 @@ export const CodeTabList = styled(TabsListBase)<{
   }),
   variants: [
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         padding: theme.spacing(1.5, 1),
       },
@@ -36,7 +33,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         borderTop: 'none',
       },
@@ -48,7 +45,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         borderBottom: 'none',
       },
@@ -60,7 +57,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         borderTopLeftRadius: 0,
       },
@@ -72,7 +69,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         borderTopRightRadius: 0,
       },
@@ -84,7 +81,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         borderColor: (theme.vars || theme).palette.divider,
       },
@@ -96,7 +93,7 @@ export const CodeTabList = styled(TabsListBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         backgroundColor: alpha(theme.palette.grey[50], 0.2),
       },
@@ -110,7 +107,7 @@ export const CodeTabList = styled(TabsListBase)<{
   ],
 }));
 
-export const CodeTabPanel = styled(TabPanelBase)<{
+export const CodeTabPanel = styled(Tabs.Panel)<{
   ownerState: { mounted: boolean; contained?: boolean };
 }>({
   '& pre': {
@@ -120,7 +117,7 @@ export const CodeTabPanel = styled(TabPanelBase)<{
   },
   variants: [
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         marginTop: -1,
       },
@@ -132,7 +129,7 @@ export const CodeTabPanel = styled(TabPanelBase)<{
       },
     },
     {
-      props: ({ ownerState }) => ownerState?.contained,
+      props: ({ ownerState }) => !!ownerState?.contained,
       style: {
         '& pre': {
           marginTop: 0,
@@ -170,120 +167,120 @@ export const CodeTabPanel = styled(TabPanelBase)<{
   ],
 });
 
-export const CodeTab = styled(TabBase)<{ ownerState: { mounted: boolean; contained?: boolean } }>(
-  ({ theme }) => ({
-    variants: [
-      {
-        props: ({ ownerState }) => ownerState?.contained,
-        style: {
-          border: '1px solid transparent',
-          fontSize: theme.typography.pxToRem(13),
+export const CodeTab = styled(Tabs.Tab)<{
+  ownerState: { mounted: boolean; contained?: boolean };
+}>(({ theme }) => ({
+  variants: [
+    {
+      props: ({ ownerState }) => !!ownerState?.contained,
+      style: {
+        border: '1px solid transparent',
+        fontSize: theme.typography.pxToRem(13),
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        border: 'none',
+        fontSize: theme.typography.pxToRem(12),
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState?.contained,
+      style: {
+        color: (theme.vars || theme).palette.text.tertiary,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        color: (theme.vars || theme).palette.grey[500],
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState?.contained,
+      style: {
+        fontFamily: theme.typography.fontFamily,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        fontFamily: theme.typography.fontFamilyCode,
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState?.contained,
+      style: {
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+    },
+    {
+      props: ({ ownerState }) => !!ownerState?.contained,
+      style: {
+        transition: 'background, color, 100ms ease',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        transition: 'unset',
+      },
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained,
+      style: {
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
+          color: (theme.vars || theme).palette.grey[400],
         },
       },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          border: 'none',
-          fontSize: theme.typography.pxToRem(12),
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState?.contained,
-        style: {
-          color: (theme.vars || theme).palette.text.tertiary,
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          color: (theme.vars || theme).palette.grey[500],
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState?.contained,
-        style: {
-          fontFamily: theme.typography.fontFamily,
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          fontFamily: theme.typography.fontFamilyCode,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState?.contained,
-        style: {
-          fontWeight: theme.typography.fontWeightMedium,
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          fontWeight: theme.typography.fontWeightBold,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState?.contained,
-        style: {
-          transition: 'background, color, 100ms ease',
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          transition: 'unset',
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState?.contained,
-        style: {
-          '&:hover': {
-            backgroundColor: alpha(theme.palette.primaryDark[500], 0.5),
-            color: (theme.vars || theme).palette.grey[400],
+    },
+    {
+      props: ({ ownerState }) => !ownerState?.contained && ownerState.mounted,
+      style: {
+        '&[data-active]': {
+          color: '#FFF',
+          '&::after': {
+            content: "''",
+            position: 'absolute',
+            left: 0,
+            bottom: '-8px',
+            height: 2,
+            width: '100%',
+            backgroundColor: (theme.vars || theme).palette.primary.light,
           },
         },
       },
-      {
-        props: ({ ownerState }) => !ownerState?.contained && ownerState.mounted,
-        style: {
-          '&.base--selected': {
-            color: '#FFF',
-            '&::after': {
-              content: "''",
-              position: 'absolute',
-              left: 0,
-              bottom: '-8px',
-              height: 2,
-              width: '100%',
-              bgcolor: (theme.vars || theme).palette.primary.light,
-            },
-          },
-        },
-      },
-    ],
-    ...theme.unstable_sx({
-      flex: '0 0 auto',
-      height: 26,
-      p: '2px 8px',
-      bgcolor: 'transparent',
-      lineHeight: 1.2,
-      outline: 'none',
-      minWidth: 45,
-      cursor: 'pointer',
-      borderRadius: 99,
-      position: 'relative',
-      '&:hover': {
-        backgroundColor: (theme.vars || theme).palette.divider,
-      },
-      '&:focus-visible': {
-        outline: '3px solid',
-        outlineOffset: '1px',
-        outlineColor: (theme.vars || theme).palette.primary.light,
-      },
-    }),
+    },
+  ],
+  ...theme.unstable_sx({
+    flex: '0 0 auto',
+    height: 26,
+    p: '2px 8px',
+    bgcolor: 'transparent',
+    lineHeight: 1.2,
+    outline: 'none',
+    minWidth: 45,
+    cursor: 'pointer',
+    borderRadius: 99,
+    position: 'relative',
+    '&:hover': {
+      backgroundColor: (theme.vars || theme).palette.divider,
+    },
+    '&:focus-visible': {
+      outline: '3px solid',
+      outlineOffset: '1px',
+      outlineColor: (theme.vars || theme).palette.primary.light,
+    },
   }),
-);
+}));
 
 type TabsConfig = {
   code: string | ((tab: string) => string);
@@ -318,14 +315,14 @@ export function HighlightedCodeWithTabs(
     setMounted(true);
   }, []);
 
-  const handleChange: TabsOwnProps['onChange'] = (event, newValue) => {
-    setActiveTab(newValue as string);
+  const handleChange: NonNullable<Tabs.Root.Props['onValueChange']> = (value) => {
+    setActiveTab(value as string);
   };
 
   const ownerState = { mounted };
   return (
-    <Tabs selectionFollowsFocus value={defaultizedActiveTab} onChange={handleChange}>
-      <CodeTabList ownerState={ownerState}>
+    <Tabs.Root value={defaultizedActiveTab} onValueChange={handleChange}>
+      <CodeTabList ownerState={ownerState} activateOnFocus>
         {tabs.map(({ tab }) => (
           <CodeTab ownerState={ownerState} key={tab} value={tab}>
             {tab}
@@ -340,6 +337,6 @@ export function HighlightedCodeWithTabs(
           />
         </CodeTabPanel>
       ))}
-    </Tabs>
+    </Tabs.Root>
   );
 }

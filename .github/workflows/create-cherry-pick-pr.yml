@@ -12,7 +12,7 @@ permissions: {}
 jobs:
   create_pr:
     name: Create cherry-pick PR
-    uses: mui/mui-public/.github/workflows/prs_create-cherry-pick-pr.yml@0913e8254e8626b56e03ea048567da0273f0bd18
+    uses: mui/mui-public/.github/workflows/prs_create-cherry-pick-pr.yml@f709101a0ec2bf0f9de40196669863653bf0979f
     permissions:
       contents: write
       pull-requests: write

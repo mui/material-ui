@@ -1,1 +1,1 @@
-export { default } from './mapApiPageTranslations';
+export { mapApiPageTranslations } from './mapApiPageTranslations';

@@ -580,6 +580,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       </span>
     ) : null;
 
+  // Don't forward the 'root' classes to the ButtonBase, as they will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   return (
     <ButtonRoot
       ownerState={ownerState}
@@ -593,7 +596,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
-      classes={classes}
+      classes={forwardedClasses}
     >
       {startIcon}
       {loadingPosition !== 'end' && loader}
@@ -723,7 +726,7 @@ Button.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  type: PropTypes.oneOfType([PropTypes.oneOf(['button', 'reset', 'submit']), PropTypes.string]),
+  type: PropTypes.string,
   /**
    * The variant to use.
    * @default 'text'

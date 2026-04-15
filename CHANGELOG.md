@@ -469,7 +469,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [code-infra] Remove usage of NODE_ENV=test (#47692) @Janpot
 - [code-infra] Prepare eslint rule rename (#47702) @Janpot
 - [code-infra] Next.js 15.5.11 (security update) (#47697) @Janpot
-- [code-infra] Fix Tooltip tests flakyness (#47669) @Janpot
+- [code-infra] Fix Tooltip tests flakiness (#47669) @Janpot
 - [code-infra] Improve instructions for error messages (#47668) @Janpot
 - [code-infra] Add initial agent instructions (#47655) @Janpot
 - [code-infra] Update broken links checker (#47633) @Janpot
@@ -939,7 +939,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - Add `@base-ui-components/*` to env info (#46539) @Janpot
 - Remove dead property from routes (#46534) @oliviertassinari
 - Fix unpinned version regression (#46438) @oliviertassinari
-- [code-infra] Accomodate build requirements from mui-x (#46551) @brijeshb42
+- [code-infra] Accommodate build requirements from mui-x (#46551) @brijeshb42
 - [code-infra] Extend renovate preset from infra repo (#46483) @brijeshb42
 - [code-infra] Use flat ESLint config (#46258) @brijeshb42
 - [docs-infra] Remove comment saving in G-sheet option (#46617) @alexfauquette
@@ -1056,7 +1056,7 @@ A big thanks to the 15 contributors who made this release possible.
 - [Autocomplete] Prevent `renderValue` from being skipped when value is 0 (#46145) @LakshitAgarwal
 - [Autocomplete] Add note in JSDoc for non-TextField components in `renderInput` (#46141) @khllbnomrn
 - [Chip] Add slots and slotProps (#46098) @sai6855
-- [Menu] Remove depreacted `MenuListProps` from demos (#46144) @sai6855
+- [Menu] Remove deprecated `MenuListProps` from demos (#46144) @sai6855
 - [TablePaginationActions] Export TablePaginationActions as new component (#46149) @sai6855
 - [SnackbarContent] Fix `square` prop not working (#46196) @0210shivam
 - [SnackbarContent] Fix error when theme value is CSS variable (#46198) @0210shivam
@@ -1200,7 +1200,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Fix internal version duplication (#46051) @oliviertassinari
 - Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
 - Add security label to dependabot PRs (0a5c027) @oliviertassinari
-- Remove unecessary versions (#46034) @oliviertassinari
+- Remove unnecessary versions (#46034) @oliviertassinari
 - Remove redundant overrides resolver (#45970) @romgrk
 - Fix duplicate branch reference (#45915) @oliviertassinari
 - Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari

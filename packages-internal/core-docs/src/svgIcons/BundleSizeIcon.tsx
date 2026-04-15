@@ -1,6 +1,6 @@
 import { createSvgIcon } from '@mui/material/utils';
 
-export default createSvgIcon(
+export const BundleSizeIcon = createSvgIcon(
   <g fill="currentColor" fillRule="nonzero">
     <path
       d="M5.84 3c-.52 0-1 .25-1.3.67l-1.4 2.05c-.06.09-.1.19-.14.28h8V3H5.84zM20.86 5.72l-1.4-2.05c-.3-.42-.81-.67-1.33-.67H13v3h8c-.05-.1-.08-.2-.14-.28z"
