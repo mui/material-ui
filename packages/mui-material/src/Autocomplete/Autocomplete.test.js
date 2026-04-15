@@ -18,7 +18,9 @@ import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
+import Grow from '@mui/material/Grow';
 import InputAdornment from '@mui/material/InputAdornment';
+import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -3161,6 +3163,59 @@ describe('<Autocomplete />', () => {
 
       expect(view.container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
+
+    it('should not render the Popper when freeSolo and no options match', async () => {
+      const { user } = render(
+        <Autocomplete
+          freeSolo
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { 'data-testid': 'popper' } }}
+        />,
+      );
+      await user.type(screen.getByRole('combobox'), 'xyz');
+      expect(screen.queryByTestId('popper')).to.equal(null);
+    });
+
+    it('should render loading text in freeSolo even with no options', async () => {
+      const { user } = render(
+        <Autocomplete
+          freeSolo
+          loading
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      await user.type(screen.getByRole('combobox'), 'a');
+      expect(screen.getByText('Loading…')).not.to.equal(null);
+    });
+
+    it('should keep the Popper in the DOM when freeSolo, keepMounted, and no options match', async () => {
+      const { user } = render(
+        <Autocomplete
+          freeSolo
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true, 'data-testid': 'popper' } }}
+        />,
+      );
+      await user.type(screen.getByRole('combobox'), 'xyz');
+      // keepMounted keeps the Popper in the DOM but hidden
+      expect(screen.getByTestId('popper')).not.to.equal(null);
+    });
+
+    it('should respect keepMounted from callback-form slotProps.popper in freeSolo with no matches', async () => {
+      const { user } = render(
+        <Autocomplete
+          freeSolo
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: () => ({ keepMounted: true, 'data-testid': 'popper' }) }}
+        />,
+      );
+      await user.type(screen.getByRole('combobox'), 'xyz');
+      expect(screen.getByTestId('popper')).not.to.equal(null);
+    });
   });
 
   describe('prop: onChange', () => {
@@ -4467,4 +4522,160 @@ describe('<Autocomplete />', () => {
       expect(listbox).not.to.have.property('scrollTop', 0);
     },
   );
+
+  describe('exit transition', () => {
+    it.skipIf(isJsdom())(
+      'should preserve options in DOM during Popper exit transition',
+      async () => {
+        function TransitionPopper(props) {
+          const { children, open: popperOpen, ...other } = props;
+          return (
+            <Popper {...other} open={popperOpen} transition>
+              {({ TransitionProps }) => (
+                <Grow {...TransitionProps} timeout={200}>
+                  <div>{children}</div>
+                </Grow>
+              )}
+            </Popper>
+          );
+        }
+        TransitionPopper.propTypes = {
+          children: PropTypes.node,
+          open: PropTypes.bool,
+        };
+
+        const { user } = render(
+          <Autocomplete
+            options={['one', 'two', 'three']}
+            slots={{ popper: TransitionPopper }}
+            renderInput={(params) => <TextField {...params} />}
+          />,
+        );
+
+        // Open popup
+        await user.click(screen.getByRole('combobox'));
+        expect(screen.getAllByRole('option')).to.have.length(3);
+
+        // Close popup
+        await user.keyboard('{Escape}');
+
+        // Options should still be in DOM during transition
+        expect(screen.getAllByRole('option')).to.have.length(3);
+      },
+    );
+
+    it('should not show stale options from a prior session during exit', async () => {
+      const { user, rerender } = render(
+        <Autocomplete
+          freeSolo
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true } }}
+        />,
+      );
+
+      const input = screen.getByRole('combobox');
+
+      // Open popup and verify options
+      await user.click(input);
+      expect(screen.getAllByRole('option')).to.have.length(2);
+
+      // Close popup
+      await user.keyboard('{Escape}');
+
+      // Change to empty options and re-open
+      rerender(
+        <Autocomplete
+          freeSolo
+          options={[]}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true } }}
+        />,
+      );
+      await user.click(input);
+
+      // No options should be visible (not stale ones from prior session)
+      expect(screen.queryAllByRole('option')).to.have.length(0);
+
+      // Close again — should not flash stale options from the first session
+      await user.keyboard('{Escape}');
+      expect(screen.queryAllByRole('option')).to.have.length(0);
+    });
+
+    it('should disable pointer events on Popper when closing', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ popper: { keepMounted: true, 'data-testid': 'popper' } }}
+        />,
+      );
+
+      // Open popup
+      await user.click(screen.getByRole('combobox'));
+      expect(screen.getByTestId('popper').style.pointerEvents).to.equal('');
+
+      // Close popup
+      await user.keyboard('{Escape}');
+
+      // pointerEvents: none prevents stale clicks during exit animation
+      expect(screen.getByTestId('popper').style.pointerEvents).to.equal('none');
+    });
+  });
+
+  describe('Popper width', () => {
+    it('should observe anchor element for resize when popup is open', async () => {
+      const observeSpy = spy();
+      const MockResizeObserver = class {
+        observe() {
+          observeSpy();
+        }
+
+        disconnect() {}
+      };
+      const originalRO = window.ResizeObserver;
+      window.ResizeObserver = MockResizeObserver;
+
+      try {
+        const { user } = render(
+          <Autocomplete
+            options={['one', 'two']}
+            renderInput={(params) => <TextField {...params} />}
+            slotProps={{ popper: { 'data-testid': 'popper' } }}
+          />,
+        );
+
+        await user.click(screen.getByRole('combobox'));
+        expect(screen.getByTestId('popper')).not.to.equal(null);
+        expect(observeSpy.callCount).to.be.greaterThan(0);
+      } finally {
+        window.ResizeObserver = originalRO;
+      }
+    });
+
+    it('should disconnect ResizeObserver when popup closes', async () => {
+      const disconnectSpy = spy();
+      const MockResizeObserver = class {
+        observe() {}
+
+        disconnect() {
+          disconnectSpy();
+        }
+      };
+      const originalRO = window.ResizeObserver;
+      window.ResizeObserver = MockResizeObserver;
+
+      try {
+        const { user } = render(
+          <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
+        );
+
+        await user.click(screen.getByRole('combobox'));
+        await user.keyboard('{Escape}');
+        expect(disconnectSpy.callCount).to.be.greaterThan(0);
+      } finally {
+        window.ResizeObserver = originalRO;
+      }
+    });
+  });
 });
