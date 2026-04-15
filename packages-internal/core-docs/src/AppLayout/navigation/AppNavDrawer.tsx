@@ -440,8 +440,8 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
         <ToolbarDiv>
           <LogoWithCopyMenu
             logo={productIdentifier.logo}
-            logoSvgString={productIdentifier.logoSvg}
-            wordmarkSvgString={productIdentifier.wordmarkSvg}
+            logomarkSvgString={productIdentifier.logoSvg}
+            logotypeSvgString={productIdentifier.wordmarkSvg}
           />
           <ProductIdentifier
             name={productIdentifier.name}
