@@ -1,6 +1,6 @@
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
-export default function MarkdownIcon(props: SvgIconProps) {
+export function MarkdownIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <svg

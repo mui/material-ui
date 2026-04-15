@@ -1389,6 +1389,47 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([]);
     });
 
+    it('should not suppress focus events after clearing with Escape', async () => {
+      const handleOpen = spy();
+      const { user } = render(
+        <Autocomplete
+          clearOnEscape
+          openOnFocus
+          multiple
+          value={['one']}
+          options={['one', 'two']}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      // Opening on initial focus
+      expect(handleOpen.callCount).to.equal(1);
+
+      // Close the popup first so Escape takes the clear path
+      await user.keyboard('{Escape}');
+      // Popup was open, so first Escape closes it
+      handleOpen.resetHistory();
+
+      // Now Escape should clear (popup is closed, value is non-empty)
+      await user.keyboard('{Escape}');
+
+      // Focus is still on the input
+      expect(textbox).toHaveFocus();
+
+      // Blur and re-focus: onOpen should be called (ignoreFocus was NOT set)
+      act(() => {
+        textbox.blur();
+      });
+      act(() => {
+        textbox.focus();
+      });
+      expect(handleOpen.callCount).to.equal(1);
+    });
+
     it('should clear on escape if rendering single value', () => {
       const handleChange = spy();
       render(
@@ -1633,6 +1674,34 @@ describe('<Autocomplete />', () => {
 
       fireEvent.focus(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('should suppress focus events when clearing with the clear button', async () => {
+      const handleOpen = spy();
+      const { user } = render(
+        <Autocomplete
+          openOnFocus
+          value="one"
+          options={['one', 'two']}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      // Opening on initial focus
+      expect(handleOpen.callCount).to.equal(1);
+
+      // Close popup
+      await user.keyboard('{Escape}');
+      handleOpen.resetHistory();
+
+      // Click the clear button
+      const clearButton = screen.getByTitle('Clear');
+      await user.click(clearButton);
+
+      // onOpen should NOT be called because ignoreFocus is set
+      expect(handleOpen.callCount).to.equal(0);
     });
   });
 
@@ -2576,6 +2645,89 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: freeSolo', () => {
+    it('should reset input when controlled value changes to null', async () => {
+      function App() {
+        const [value, setValue] = React.useState('foo');
+        return (
+          <React.Fragment>
+            <Autocomplete
+              freeSolo
+              value={value}
+              options={['foo', 'bar']}
+              onChange={(event, newValue) => setValue(newValue)}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <button onClick={() => setValue(null)} type="button">
+              Reset
+            </button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<App />);
+      const textbox = screen.getByRole('combobox');
+      expect(textbox.value).to.equal('foo');
+
+      await user.click(screen.getByRole('button', { name: 'Reset' }));
+      expect(textbox.value).to.equal('');
+    });
+
+    it('should reset input when controlled value changes to null with clearOnBlur=false', async () => {
+      function App() {
+        const [value, setValue] = React.useState('foo');
+        return (
+          <React.Fragment>
+            <Autocomplete
+              freeSolo
+              clearOnBlur={false}
+              value={value}
+              options={['foo', 'bar']}
+              onChange={(event, newValue) => setValue(newValue)}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <button onClick={() => setValue(null)} type="button">
+              Reset
+            </button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<App />);
+      const textbox = screen.getByRole('combobox');
+      expect(textbox.value).to.equal('foo');
+
+      await user.click(screen.getByRole('button', { name: 'Reset' }));
+      expect(textbox.value).to.equal('');
+    });
+
+    it('should retain input when controlled multiple value changes with clearOnBlur=false', async () => {
+      function App() {
+        const [value, setValue] = React.useState(['one']);
+        return (
+          <React.Fragment>
+            <Autocomplete
+              multiple
+              freeSolo
+              clearOnBlur={false}
+              value={value}
+              options={['one', 'two']}
+              onChange={(event, newValue) => setValue(newValue)}
+              renderInput={(params) => <TextField {...params} />}
+            />
+            <button onClick={() => setValue([])} type="button">
+              Reset
+            </button>
+          </React.Fragment>
+        );
+      }
+      const { user } = render(<App />);
+      const textbox = screen.getByRole('combobox');
+
+      await user.type(textbox, 'abc');
+      expect(textbox.value).to.equal('abc');
+
+      await user.click(screen.getByRole('button', { name: 'Reset' }));
+      expect(textbox.value).to.equal('abc');
+    });
+
     it('pressing twice enter should not call onChange listener twice', () => {
       const handleChange = spy();
       const options = [{ name: 'foo' }];

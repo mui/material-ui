@@ -275,6 +275,7 @@ export default function createCssVarsProvider(options) {
             ? setMode
             : (newMode) => {
                 if (memoTheme.colorSchemeSelector === 'media') {
+                  // #host-reference
                   console.error(
                     [
                       'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).',

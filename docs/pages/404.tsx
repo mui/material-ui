@@ -1,9 +1,9 @@
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import NotFoundHero from 'docs/src/components/NotFoundHero';
 
 export default function Custom404() {

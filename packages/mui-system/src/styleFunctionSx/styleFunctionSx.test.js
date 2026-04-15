@@ -115,6 +115,83 @@ describe('styleFunctionSx', () => {
       });
     });
 
+    it('does not mutate theme.typography when using responsive typography shorthand (object syntax)', () => {
+      const body1Before = { ...theme.typography.body1 };
+
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: { sm: 'body1' }, width: { sm: '80%' }, mt: { sm: 4 } },
+      });
+
+      // Theme must not be mutated
+      expect(theme.typography.body1).to.deep.equal(body1Before);
+
+      // Output must contain both typography and sibling sx properties
+      expect(result).to.deep.equal({
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+          width: '80%',
+          marginTop: '40px',
+        },
+      });
+    });
+
+    it('does not mutate theme.typography when using responsive typography shorthand (array syntax)', () => {
+      const body2Before = { ...theme.typography.body2 };
+      const body1Before = { ...theme.typography.body1 };
+
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: ['body2', 'body1'], width: ['50%', '80%'] },
+      });
+
+      // Theme must not be mutated
+      expect(theme.typography.body2).to.deep.equal(body2Before);
+      expect(theme.typography.body1).to.deep.equal(body1Before);
+
+      // Output must contain both typography and sibling sx properties
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+          width: '50%',
+        },
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+          width: '80%',
+        },
+      });
+    });
+
+    it('preserves earlier responsive properties when typography shorthand targets the same breakpoint', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { color: { sm: 'red' }, typography: { sm: 'body1' } },
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:600px)': {
+          color: 'red',
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+      });
+    });
+
     it('allow values to be `null` or `undefined`', () => {
       const result = styleFunctionSx({
         theme,

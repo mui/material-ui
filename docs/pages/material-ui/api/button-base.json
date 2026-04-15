@@ -26,7 +26,8 @@
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
       }
-    }
+    },
+    "type": { "type": { "name": "string" }, "default": "'button'" }
   },
   "name": "ButtonBase",
   "imports": [

@@ -727,56 +727,34 @@ describe('<Select />', () => {
       });
     });
 
-    it('will fallback to its content for the accessible name when it has no name', () => {
-      render(<Select value="" />);
-
-      // TODO what is the accessible name actually?
-      expect(screen.getByRole('combobox')).not.to.have.attribute('aria-labelledby');
-    });
-
-    it('is labelled by itself when it has a name', () => {
-      render(<Select name="select" value="" />);
-
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-labelledby',
-        screen.getByRole('combobox').getAttribute('id'),
-      );
-    });
-
-    it('is labelled by itself when it has an id which is preferred over name', () => {
+    it('will be labelled by its visible value when it has no label', () => {
       render(
-        <React.Fragment>
-          <span id="select-1-label">Chose first option:</span>
-          <Select id="select-1" labelId="select-1-label" name="select" value="" />
-          <span id="select-2-label">Chose second option:</span>
-          <Select id="select-2" labelId="select-2-label" name="select" value="" />
-        </React.Fragment>,
+        <Select value="the value">
+          <MenuItem value="the value">Option 1</MenuItem>
+        </Select>,
       );
 
-      const triggers = screen.getAllByRole('combobox');
+      const combobox = screen.getByRole('combobox');
 
-      expect(triggers[0]).to.have.attribute(
-        'aria-labelledby',
-        `select-1-label ${triggers[0].getAttribute('id')}`,
-      );
-      expect(triggers[1]).to.have.attribute(
-        'aria-labelledby',
-        `select-2-label ${triggers[1].getAttribute('id')}`,
-      );
+      expect(combobox).not.to.have.attribute('aria-labelledby');
+      expect(combobox).to.have.text('Option 1');
     });
 
-    it('can be labelled by an additional element if its id is provided in `labelId`', () => {
+    it('will be labelled by an additional element if its id is provided in `labelId`', () => {
       render(
         <React.Fragment>
           <span id="select-label">Choose one:</span>
-          <Select labelId="select-label" name="select" value="" />
+          <Select value="the value" labelId="select-label">
+            <MenuItem value="the value">Option 1</MenuItem>
+          </Select>
         </React.Fragment>,
       );
 
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-labelledby',
-        `select-label ${screen.getByRole('combobox').getAttribute('id')}`,
-      );
+      const combobox = screen.getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-labelledby', 'select-label');
+      expect(combobox).toHaveAccessibleName('Choose one:');
+      expect(combobox).to.have.text('Option 1');
     });
 
     it('the list of options is not labelled by default', () => {

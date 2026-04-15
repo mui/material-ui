@@ -49,6 +49,20 @@ describe('<InputBase />', () => {
     expect(input).not.to.have.attribute('required');
   });
 
+  it('should be aria-labelled and aria-describedby if props are provided', () => {
+    render(
+      <div>
+        <InputBase aria-label="label" aria-describedby="helper-text" />
+        <p id="helper-text">Helper text</p>
+      </div>,
+    );
+
+    const input = screen.getByRole('textbox');
+
+    expect(input).toHaveAccessibleName('label');
+    expect(input).toHaveAccessibleDescription('Helper text');
+  });
+
   it('should add the right class when size is small', () => {
     const { container } = render(<InputBase size="small" />);
     expect(container.firstChild).to.have.class(classes.sizeSmall);
