@@ -9,7 +9,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
+import { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, contained, size, disabled, error, filled, focused, required } = ownerState;
@@ -51,13 +51,25 @@ const FormHelperTextRoot = styled('p', {
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
-    [`&.${formHelperTextClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.text.disabled,
-    },
-    [`&.${formHelperTextClasses.error}`]: {
-      color: (theme.vars || theme).palette.error.main,
-    },
     variants: [
+      {
+        props: { disabled: true },
+        style: {
+          color: (theme.vars || theme).palette.text.disabled,
+          '@media (forced-colors: active)': {
+            color: 'GrayText',
+          },
+        },
+      },
+      {
+        props: { error: true },
+        style: {
+          color: (theme.vars || theme).palette.error.main,
+          '@media (forced-colors: active)': {
+            color: 'mark',
+          },
+        },
+      },
       {
         props: {
           size: 'small',
