@@ -80,6 +80,7 @@ async function main() {
         // Blog posts use width="100%" / height="auto" on <video> elements,
         // and one <img> has dir="".
         'attribute-allowed-values': 'warn',
+      },
     },
     ignores: [
       {

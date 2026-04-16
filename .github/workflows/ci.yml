@@ -63,6 +63,8 @@ jobs:
       # - run: pnpm release:changelog
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check docs links
+        run: pnpm docs:link-check
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
         run: cat ./docs/.next/export-detail.json || true
