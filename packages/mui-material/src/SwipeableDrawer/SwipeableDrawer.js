@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
-import useForkRef from '../utils/useForkRef';
+import contains from '../utils/contains';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
+import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -366,7 +367,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       ownerWindow(nativeEvent.currentTarget),
     );
 
-    if (open && paperRef.current.contains(nativeEvent.target) && claimedSwipeInstance === null) {
+    if (open && contains(paperRef.current, nativeEvent.target) && claimedSwipeInstance === null) {
       const domTreeShapes = getDomTreeShapes(nativeEvent.target, paperRef.current);
       const hasNativeHandler = computeHasNativeHandler({
         domTreeShapes,
@@ -494,8 +495,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      (hideBackdrop || !backdropRef.current.contains(nativeEvent.target)) &&
-      !paperRef.current.contains(nativeEvent.target)
+      (hideBackdrop || !contains(backdropRef.current, nativeEvent.target)) &&
+      !contains(paperRef.current, nativeEvent.target)
     ) {
       return;
     }
@@ -524,7 +525,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         disableSwipeToOpen ||
         !(
           nativeEvent.target === swipeAreaRef.current ||
-          (paperRef.current?.contains(nativeEvent.target) &&
+          (contains(paperRef.current, nativeEvent.target) &&
             (typeof allowSwipeInChildren === 'function'
               ? allowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
               : allowSwipeInChildren))

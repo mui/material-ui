@@ -7,6 +7,7 @@ import ownerDocument from '@mui/utils/ownerDocument';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
 import { FocusTrapProps } from './FocusTrap.types';
 
@@ -165,7 +166,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     const doc = ownerDocument(rootRef.current);
     const activeElement = getActiveElement(doc);
 
-    if (!rootRef.current.contains(activeElement)) {
+    if (!contains(rootRef.current, activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
@@ -250,7 +251,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       // The focus is already inside
-      if (rootElement.contains(activeEl)) {
+      if (contains(rootElement, activeEl)) {
         return;
       }
 
