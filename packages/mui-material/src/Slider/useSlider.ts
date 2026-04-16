@@ -134,7 +134,7 @@ function focusThumb({
   activeIndex: number;
   setActive?: ((num: number) => void) | undefined;
 }) {
-  const doc = ownerDocument(sliderRef.current);
+  const activeElement = getActiveElement(ownerDocument(sliderRef.current));
   if (
     !contains(sliderRef.current, activeElement) ||
     Number(activeElement?.getAttribute('data-index')) !== activeIndex
