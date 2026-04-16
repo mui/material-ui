@@ -90,6 +90,9 @@ const MenuItemRoot = styled(ButtonBase, {
           `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
         ),
       },
+      '@media (forced-colors: active)': {
+        color: 'SelectedItem',
+      },
     },
     [`&.${menuItemClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
