@@ -174,10 +174,15 @@ export const SliderTrack = styled('span', {
       transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
         duration: theme.transitions.duration.shortest,
       }),
-      '@media (forced-colors: active)': {
-        borderColor: 'GrayText',
-      },
       variants: [
+        {
+          props: { disabled: true },
+          style: {
+            '@media (forced-colors: active)': {
+              borderColor: 'GrayText',
+            },
+          },
+        },
         {
           props: { size: 'small' },
           style: {
@@ -276,10 +281,15 @@ export const SliderThumb = styled('span', {
       },
     },
     border: '1px solid transparent',
-    '@media (forced-colors: active)': {
-      borderColor: 'GrayText',
-    },
     variants: [
+      {
+        props: { disabled: true },
+        style: {
+          '@media (forced-colors: active)': {
+            borderColor: 'GrayText',
+          },
+        },
+      },
       {
         props: { size: 'small' },
         style: {
