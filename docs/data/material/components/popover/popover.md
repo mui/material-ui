@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/Popover
 Things to know when using the `Popover` component:
 
 - The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
+- Unlike with the [`Popper`](/material-ui/react-popper/) component, scrolling is blocked, and click away is built-in.
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
