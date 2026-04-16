@@ -205,6 +205,16 @@ const SwitchTrack = styled('span', {
     opacity: theme.vars
       ? theme.vars.opacity.switchTrack
       : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+    variants: [
+      {
+        props: { disabled: true },
+        style: {
+          '@media (forced-colors: active)': {
+            borderColor: 'GrayText',
+          },
+        },
+      },
+    ],
   })),
 );
 
@@ -220,6 +230,16 @@ const SwitchThumb = styled('span', {
     width: 20,
     height: 20,
     borderRadius: '50%',
+    variants: [
+      {
+        props: { disabled: true },
+        style: {
+          '@media (forced-colors: active)': {
+            borderColor: 'GrayText',
+          },
+        },
+      },
+    ],
   })),
 );
 
