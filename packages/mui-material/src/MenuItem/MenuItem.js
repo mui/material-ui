@@ -91,7 +91,9 @@ const MenuItemRoot = styled(ButtonBase, {
         ),
       },
       '@media (forced-colors: active)': {
-        color: 'SelectedItem',
+        forcedColorAdjust: 'none',
+        color: 'HighlightText',
+        backgroundColor: 'Highlight',
       },
     },
     [`&.${menuItemClasses.selected}:hover`]: {
@@ -105,6 +107,9 @@ const MenuItemRoot = styled(ButtonBase, {
           (theme.vars || theme).palette.primary.main,
           (theme.vars || theme).palette.action.selectedOpacity,
         ),
+      },
+      '@media (forced-colors: active)': {
+        backgroundColor: 'Highlight',
       },
     },
     [`&.${menuItemClasses.focusVisible}`]: {

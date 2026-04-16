@@ -380,6 +380,9 @@ const AutocompleteListbox = styled('ul', {
           '@media (hover: none)': {
             backgroundColor: (theme.vars || theme).palette.action.selected,
           },
+          '@media (forced-colors: active)': {
+            backgroundColor: 'Highlight',
+          },
         },
         [`&.${autocompleteClasses.focusVisible}`]: {
           backgroundColor: theme.alpha(
@@ -388,7 +391,9 @@ const AutocompleteListbox = styled('ul', {
           ),
         },
         '@media (forced-colors: active)': {
-          color: 'SelectedItem',
+          forcedColorAdjust: 'none',
+          color: 'HighlightText',
+          backgroundColor: 'Highlight',
         },
       },
     },
