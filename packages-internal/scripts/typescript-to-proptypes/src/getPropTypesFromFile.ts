@@ -34,7 +34,6 @@ function getSymbolDocumentation({
 }: {
   symbol: ts.Symbol | undefined;
   project: TypeScriptProject;
-  parentType?: ts.Type;
 }): string | undefined {
   if (symbol === undefined) {
     return undefined;
@@ -42,22 +41,21 @@ function getSymbolDocumentation({
 
   const decl = symbol.getDeclarations();
   if (decl && decl.length > 0) {
-    // This behavior tries to replicate how TypeScript itself merges JSDoc comments
-    // It is a complex logic that changes based on the kind of declarations
+    // This behavior tries to replicate how TypeScript itself merges JSDoc comments.
+    // It is a complex logic that changes based on the kind of declarations.
     // There is an open issue for it in: https://github.com/microsoft/TypeScript/issues/30901
     //
-    // For intersection types (A & B), the symbol may have multiple declarations.
-    // We need to handle three cases:
-    // 1. Intersection (type C = A & B): merge JSDoc from all declarations (deduplicated)
-    // 2. Interface extends (interface Z extends X, Y): use the (only) declaration's JSDoc
-    // 3. Interface override (interface W extends X { prop }): use the override's JSDoc (which is the only declaration)
+    // The symbol may have multiple declarations in several scenarios:
+    // 1. Intersection (type C = A & B): one declaration per constituent type
+    // 2. Interface extends (interface Z extends X, Y): single declaration from the original interface
+    // 3. Interface override (interface W extends X { prop }): single declaration from the overriding interface
+    // 4. Declaration merging / module augmentation: one declaration per interface opening
     //
-    // Note: TypeScript gives us:
-    // - Multiple declarations for intersection types (one from each constituent type)
-    // - Single declaration for interface extends (from the original interface)
-    // - Single declaration for interface override (from the overriding interface)
-
-    // Get JSDoc comments paired with their declarations
+    // In all cases we use the last declaration that has JSDoc. This is consistent with
+    // squashPropTypeDefinitions and avoids duplicated descriptions when multiple
+    // declarations carry different JSDoc (e.g. module augmentation overriding
+    // the original, or intersection types where the last constituent's JSDoc
+    // is the most specific).
     const declarationsWithComments = decl
       .map((d) => {
         const jsDocNodes = ts.getJSDocCommentsAndTags(d).filter((node) => ts.isJSDoc(node));
@@ -67,19 +65,17 @@ function getSymbolDocumentation({
             : undefined;
         return { declaration: d, comment };
       })
-      .filter((item) => item.comment !== undefined);
+      .filter(
+        (item): item is { declaration: ts.Declaration; comment: string } =>
+          item.comment !== undefined,
+      );
 
     if (declarationsWithComments.length > 0) {
-      // If there's only one declaration with a comment, use it
-      // This handles both interface extends and interface override cases
-      if (declarationsWithComments.length === 1) {
-        return declarationsWithComments[0].comment;
-      }
-
-      // Multiple declarations with comments - this is the intersection case (type C = A & B)
-      // Merge JSDoc comments, deduplicating identical ones
-      const uniqueComments = [...new Set(declarationsWithComments.map((d) => d.comment))];
-      return uniqueComments.join('\n');
+      // Use the last declaration that has JSDoc. This handles:
+      // - Declaration merging / module augmentation: augmentation wins
+      // - Intersection types: last constituent wins (consistent with squashPropTypeDefinitions)
+      // - Interface extends / override: override wins (single declaration)
+      return declarationsWithComments[declarationsWithComments.length - 1].comment;
     }
   }
 
@@ -428,18 +424,16 @@ function checkSymbol({
   symbol,
   location,
   typeStack,
-  parentType,
 }: {
   project: PropTypesProject;
   symbol: ts.Symbol;
   location: ts.Node;
   typeStack: readonly number[];
-  parentType?: ts.Type;
 }): PropTypeDefinition {
   const declarations = symbol.getDeclarations();
   const declaration = declarations && declarations[0];
   const symbolFilenames = getSymbolFileNames(symbol);
-  const jsDoc = getSymbolDocumentation({ symbol, project, parentType });
+  const jsDoc = getSymbolDocumentation({ symbol, project });
 
   // TypeChecker keeps the name for
   // { a: React.ElementType, b: React.ReactElement | boolean }
@@ -619,7 +613,6 @@ function generatePropTypesFromNode(
         project: params.project,
         location: parsedComponent.location,
         typeStack: [(componentType as any).id],
-        parentType: componentType,
       }),
     );
 
