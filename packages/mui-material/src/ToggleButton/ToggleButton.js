@@ -73,6 +73,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
               (theme.vars || theme).palette.text.primary,
               (theme.vars || theme).palette.action.selectedOpacity,
             ),
+            '@media (forced-colors: active)': {
+              color: 'HighlightText',
+              backgroundColor: 'Highlight',
+              borderColor: 'Highlight',
+            },
             '&:hover': {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.text.primary,
@@ -84,6 +89,10 @@ const ToggleButtonRoot = styled(ButtonBase, {
                   (theme.vars || theme).palette.text.primary,
                   (theme.vars || theme).palette.action.selectedOpacity,
                 ),
+              },
+              '@media (forced-colors: active)': {
+                backgroundColor: 'Highlight',
+                borderColor: 'ButtonBorder',
               },
             },
           },
@@ -100,6 +109,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
                 (theme.vars || theme).palette[color].main,
                 (theme.vars || theme).palette.action.selectedOpacity,
               ),
+              '@media (forced-colors: active)': {
+                color: 'HighlightText',
+                backgroundColor: 'Highlight',
+                borderColor: 'Highlight',
+              },
               '&:hover': {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette[color].main,
@@ -111,6 +125,10 @@ const ToggleButtonRoot = styled(ButtonBase, {
                     (theme.vars || theme).palette[color].main,
                     (theme.vars || theme).palette.action.selectedOpacity,
                   ),
+                },
+                '@media (forced-colors: active)': {
+                  backgroundColor: 'Highlight',
+                  borderColor: 'ButtonBorder',
                 },
               },
             },
