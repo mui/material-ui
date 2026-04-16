@@ -178,7 +178,7 @@ describe('<Popper />', () => {
                 Switch to year view
               </button>
               <Popper
-                anchorEl={() => defaultAnchorElm}
+                anchorEl={defaultProps.anchorEl}
                 open
                 popperOptions={view === 'year' ? { placement: 'top' } : { placement: 'bottom' }}
               >
