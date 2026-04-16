@@ -387,6 +387,9 @@ const AutocompleteListbox = styled('ul', {
             `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
           ),
         },
+        '@media (forced-colors: active)': {
+          color: 'SelectedItem',
+        },
       },
     },
   })),
