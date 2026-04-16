@@ -27,8 +27,8 @@ export default function AppFrameBanner() {
     setMounted(true);
   }, []);
 
-  let message = '';
-  let href = '';
+  let message = '🚀 Material UI and MUI X v9 are out! Check out the announcement blogpost.';
+  let href = 'https://mui.com/blog/introducing-mui-v9/';
 
   if (showSurveyMessage) {
     message = `🚀 Influence MUI's 2026 roadmap! Take our latest Developer Survey`;
