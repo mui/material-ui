@@ -46,7 +46,40 @@ async function main() {
         // https://github.com/PrismJS/prism/issues/2516
         // https://gitlab.com/html-validate/html-validate/-/work_items/348
         'no-raw-characters': 'off',
-      },
+        // TODO: re-enable and fix violations (mostly <style>/<div> inside <span>/<div>).
+        'element-permitted-content': 'off',
+        // html-validate incorrectly requires `imagesizes` on `<link rel="preload"
+        // as="image" imagesrcset="... 2x, ... 3x">`. Per the HTML spec, `imagesizes`
+        // is only required when `imagesrcset` uses *width* descriptors; with density
+        // descriptors (2x, 3x) it must be omitted.
+        // Reported: https://gitlab.com/html-validate/html-validate/-/work_items/352
+        'element-required-attributes': 'off',
+        // TODO: re-enable after an a11y pass on demos. Many Slider/Radio/Switch
+        // demos on styling-focused pages render a native <input> without a label.
+        'input-missing-label': 'off',
+        // TODO: remaining violations are infra-level (same demo rendered
+        // multiple times gets duplicate anchor IDs, and the blog template
+        // has desktop + mobile search with the same id="search").
+        'no-dup-id': 'off',
+        // Portaled elements (Menu, Select, Autocomplete listbox) and Base UI
+        // components render aria-controls/aria-labelledby targets only after
+        // client hydration, so they're missing from the static HTML.
+        'no-missing-references': 'warn',
+        // Demos use Typography variant="h6" for visual styling (renders <h6>),
+        // some pages lack an <h1>, and typography demos intentionally show
+        // all heading variants. Not semantic heading issues.
+        'heading-level': 'warn',
+        // MUI's Collapse and TreeView components wrap <li> children in <div>
+        // elements, breaking the required <ul>/<ol> parentage.
+        'element-permitted-parent': 'warn',
+        // Some demos use aria-label on elements without an appropriate role
+        // (Avatar <div>, FormGroup <div>), and templates have similar issues.
+        'aria-label-misuse': 'warn',
+        // Emotion SSR can produce duplicate style/class attributes.
+        'no-dup-attr': 'warn',
+        // Blog posts use width="100%" / height="auto" on <video> elements,
+        // and one <img> has dir="".
+        'attribute-allowed-values': 'warn',
     },
     ignores: [
       {
