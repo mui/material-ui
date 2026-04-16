@@ -13,6 +13,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import useForkRef from '../utils/useForkRef';
 import { getDrawerUtilityClass } from './drawerClasses';
 import useSlot from '../utils/useSlot';
 import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
@@ -203,9 +204,16 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   // We use this state is order to skip the appear transition during the
   // initial mount of the component.
   const mounted = React.useRef(false);
+  const rootRef = React.useRef(null);
+  const handleRef = useForkRef(ref, rootRef);
+
   React.useEffect(() => {
     mounted.current = true;
   }, []);
+
+  // Resolve the container lazily so Slide reads the mounted modal root
+  // after refs are assigned, rather than the initial null ref during render.
+  const resolveSlideContainer = React.useCallback(() => rootRef.current, []);
 
   const anchorInvariant = getAnchor({ direction: isRtl ? 'rtl' : 'ltr' }, anchorProp);
   const anchor = anchorProp;
@@ -232,7 +240,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
-    ref,
+    ref: handleRef,
     elementType: DrawerRoot,
     className: clsx(classes.root, classes.modal, className),
     shouldForwardComponentProp: true,
@@ -243,6 +251,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       ...ModalProps,
     },
     additionalProps: {
+      closeAfterTransition: true,
       open,
       onClose,
       hideBackdrop,
@@ -275,7 +284,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   const [DockedSlot, dockedSlotProps] = useSlot('docked', {
     elementType: DrawerDockedRoot,
-    ref,
+    ref: handleRef,
     className: clsx(classes.root, classes.docked, className),
     ownerState,
     externalForwardedProps,
@@ -291,6 +300,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       direction: oppositeDirection[anchorInvariant],
       timeout: transitionDuration,
       appear: mounted.current,
+      ...(variant === 'temporary' &&
+        (slots.transition == null || slots.transition === Slide) && {
+          container: resolveSlideContainer,
+        }),
     },
   });
 
