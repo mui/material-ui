@@ -74,6 +74,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
               (theme.vars || theme).palette.action.selectedOpacity,
             ),
             '@media (forced-colors: active)': {
+              forcedColorAdjust: 'none',
               color: 'HighlightText',
               backgroundColor: 'Highlight',
               borderColor: 'Highlight',
@@ -91,6 +92,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
                 ),
               },
               '@media (forced-colors: active)': {
+                color: 'HighlightText',
                 backgroundColor: 'Highlight',
                 borderColor: 'ButtonBorder',
               },
@@ -110,6 +112,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
                 (theme.vars || theme).palette.action.selectedOpacity,
               ),
               '@media (forced-colors: active)': {
+                forcedColorAdjust: 'none',
                 color: 'HighlightText',
                 backgroundColor: 'Highlight',
                 borderColor: 'Highlight',
