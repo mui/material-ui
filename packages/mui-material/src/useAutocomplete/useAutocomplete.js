@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import contains from '@mui/utils/contains';
 import setRef from '@mui/utils/setRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import useControlled from '@mui/utils/useControlled';
@@ -64,7 +65,7 @@ const defaultFilterOptions = createFilterOptions();
 const pageSize = 5;
 
 const defaultIsActiveElementInListbox = (listboxRef) =>
-  listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
+  listboxRef.current !== null && contains(listboxRef.current.parentElement, document.activeElement);
 
 const defaultIsOptionEqualToValue = (option, value) => option === value;
 
@@ -1152,11 +1153,11 @@ function useAutocomplete(props) {
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = (event) => {
     // Prevent focusing the input if click is anywhere outside the Autocomplete
-    if (!event.currentTarget.contains(event.target)) {
+    if (!contains(event.currentTarget, event.target)) {
       return;
     }
     // Don't interfere with interactions outside the input area (e.g. helper text)
-    if (anchorEl && !anchorEl.contains(event.target)) {
+    if (anchorEl && !contains(anchorEl, event.target)) {
       return;
     }
     if (event.target.getAttribute('id') !== id) {
@@ -1167,11 +1168,11 @@ function useAutocomplete(props) {
   // Focus the input when interacting with the combobox
   const handleClick = (event) => {
     // Prevent focusing the input if click is anywhere outside the Autocomplete
-    if (!event.currentTarget.contains(event.target)) {
+    if (!contains(event.currentTarget, event.target)) {
       return;
     }
     // Don't interfere with interactions outside the input area (e.g. helper text)
-    if (anchorEl && !anchorEl.contains(event.target)) {
+    if (anchorEl && !contains(anchorEl, event.target)) {
       return;
     }
     inputRef.current.focus();

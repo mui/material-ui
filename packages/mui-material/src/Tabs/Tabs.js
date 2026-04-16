@@ -21,53 +21,11 @@ import ownerWindow from '../utils/ownerWindow';
 import getActiveElement from '../utils/getActiveElement';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
-
-const nextItem = (list, item) => {
-  if (list === item) {
-    return list.firstChild;
-  }
-  if (item && item.nextElementSibling) {
-    return item.nextElementSibling;
-  }
-  return list.firstChild;
-};
-
-const previousItem = (list, item) => {
-  if (list === item) {
-    return list.lastChild;
-  }
-  if (item && item.previousElementSibling) {
-    return item.previousElementSibling;
-  }
-  return list.lastChild;
-};
-
-const moveFocus = (list, currentFocus, traversalFunction) => {
-  let wrappedOnce = false;
-  let nextFocus = traversalFunction(list, currentFocus);
-
-  while (nextFocus) {
-    // Prevent infinite loop.
-    if (nextFocus === list.firstChild) {
-      if (wrappedOnce) {
-        return;
-      }
-      wrappedOnce = true;
-    }
-
-    // Same logic as useAutocomplete.js
-    const nextFocusDisabled =
-      nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
-
-    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
-      // Move to the next element.
-      nextFocus = traversalFunction(list, nextFocus);
-    } else {
-      nextFocus.focus();
-      return;
-    }
-  }
-};
+import contains from '../utils/contains';
+import getActiveElement from '../utils/getActiveElement';
+import ownerDocument from '../utils/ownerDocument';
+import useForkRef from '../utils/useForkRef';
+import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -899,6 +857,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ownerState,
     getSlotProps: (handlers) => ({
       ...handlers,
+      onBlur: (event) => {
+        if (!contains(event.currentTarget, event.relatedTarget)) {
+          setIsFocusWithinList(false);
+        }
+
+        handlers.onBlur?.(event);
+      },
       onKeyDown: (event) => {
         handleKeyDown(event);
         handlers.onKeyDown?.(event);

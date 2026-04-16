@@ -19,6 +19,8 @@ import {
 } from './useSlider.types';
 import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
+import contains from '../utils/contains';
+import getActiveElement from '../utils/getActiveElement';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -134,8 +136,8 @@ function focusThumb({
 }) {
   const doc = ownerDocument(sliderRef.current);
   if (
-    !sliderRef.current?.contains(doc.activeElement) ||
-    Number(doc?.activeElement?.getAttribute('data-index')) !== activeIndex
+    !contains(sliderRef.current, activeElement) ||
+    Number(activeElement?.getAttribute('data-index')) !== activeIndex
   ) {
     sliderRef.current?.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
   }
@@ -433,7 +435,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     };
 
   useEnhancedEffect(() => {
-    if (disabled && sliderRef.current!.contains(document.activeElement)) {
+    const activeElement = getActiveElement(ownerDocument(sliderRef.current));
+    if (disabled && contains(sliderRef.current, activeElement)) {
       // This is necessary because Firefox and Safari will keep focus
       // on a disabled element:
       // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js

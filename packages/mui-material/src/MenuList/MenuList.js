@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
+import { isItemFocusable } from '@mui/utils/useRovingTabIndex';
+import contains from '../utils/contains';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getActiveElement from '../utils/getActiveElement';
@@ -138,6 +140,19 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
         }
         return listRef.current;
+      },
+      focusInitialTarget: () => {
+        if (!listRef.current) {
+          return null;
+        }
+
+        const currentFocus = getActiveElement(ownerDocument(listRef.current));
+
+        if (currentFocus && contains(listRef.current, currentFocus)) {
+          return currentFocus;
+        }
+
+        return focusInitialTarget(true);
       },
     }),
     [],
