@@ -12,5 +12,5 @@ export function getFocusTarget(rootElement: HTMLElement | null | undefined): HTM
 
   return rootElement.hasAttribute(FOCUSABLE_ATTRIBUTE)
     ? rootElement
-    : (rootElement.querySelector(`[${FOCUSABLE_ATTRIBUTE}]`) as HTMLElement | null);
+    : rootElement.querySelector<HTMLElement>(`[${FOCUSABLE_ATTRIBUTE}]`);
 }
