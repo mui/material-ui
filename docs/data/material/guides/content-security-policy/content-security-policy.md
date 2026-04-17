@@ -22,7 +22,7 @@ CSP is optional. Material UI works without any CSP configuration. If your proje
 
 ## Static websites
 
-If you host your site statically (for example, GitHub Pages, S3, or any CDN-only setup), you cannot use nonces because there is no server to generate a unique value per request. In that case, `'unsafe-inline'` is the only option:
+If you host your site statically (for example, S3 or any CDN-only setup), you cannot use nonces because there is no server to generate a unique value per request. In that case, `'unsafe-inline'` is the only option:
 
 ```text
 Content-Security-Policy:
@@ -31,7 +31,7 @@ Content-Security-Policy:
   script-src 'self' 'unsafe-inline';
 ```
 
-## Dynamic websites
+## Server-Side Rendering (SSR)
 
 With a server, you can generate a unique nonce per request for tighter security. Material UI requires the following CSP directives:
 
