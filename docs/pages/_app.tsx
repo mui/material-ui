@@ -244,7 +244,11 @@ function useDemoDisplayName() {
 }
 
 export default function MyApp(
-  props: AppProps<{ userLanguage: string; translations: Translations; generatedVersions?: GeneratedVersion[] }>,
+  props: AppProps<{
+    userLanguage: string;
+    translations: Translations;
+    generatedVersions?: GeneratedVersion[];
+  }>,
 ) {
   const { Component, pageProps } = props;
   const generatedVersions = pageProps.generatedVersions ?? [];
