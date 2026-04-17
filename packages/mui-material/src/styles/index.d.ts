@@ -8,6 +8,10 @@ export {
   Theme,
   CssThemeVariables,
 } from './createTheme';
+export {
+  default as createHighContrastTheme,
+  HighContrastTokens,
+} from './createHighContrastTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';
