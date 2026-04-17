@@ -25,6 +25,10 @@ export default function useQueryParameterState(
 
   const [state, setState] = React.useState(urlValue || initialValue);
 
+  React.useEffect(() => {
+    setState(urlValue || initialValue);
+  }, [initialValue, urlValue]);
+
   const setUrlValue = React.useMemo(
     () =>
       debounce((newValue = '') => {
@@ -69,7 +73,7 @@ export default function useQueryParameterState(
     [setUrlValue],
   );
 
-  // Make sure to initialize the state when route params are only available client-side
+  // Make sure to initialize the state when route params are only available client-side.
   const isInitialized = React.useRef(false);
   React.useEffect(() => {
     if (isInitialized.current) {
