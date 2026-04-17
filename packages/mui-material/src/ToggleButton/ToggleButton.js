@@ -15,7 +15,6 @@ import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButton
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
-import { RovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, fullWidth, selected, disabled, size, color } = ownerState;
@@ -141,24 +140,6 @@ const ToggleButtonRoot = styled(ButtonBase, {
   })),
 );
 
-const RovingToggleButton = React.forwardRef(function RovingToggleButton(props, ref) {
-  // eslint-disable-next-line react/prop-types
-  const { children, disabled, selected, value, ...other } = props;
-
-  const rovingItemProps = useRovingTabIndexItem({
-    id: value,
-    ref,
-    disabled,
-    selected,
-  });
-
-  return (
-    <ToggleButtonRoot disabled={disabled} {...rovingItemProps} {...other}>
-      {children}
-    </ToggleButtonRoot>
-  );
-});
-
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const { value: contextValue, ...contextProps } = React.useContext(ToggleButtonGroupContext);
@@ -211,31 +192,20 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
 
   const positionClassName = toggleButtonGroupButtonContextPositionClassName || '';
 
-  const sharedProps = {
-    className: clsx(contextProps.className, classes.root, className, positionClassName),
-    internalNativeButton: true,
-    disabled,
-    focusRipple: !disableFocusRipple,
-    onClick: handleChange,
-    onChange,
-    value,
-    ownerState,
-    'aria-pressed': selected,
-    ...other,
-  };
-
-  const rovingContext = React.useContext(RovingTabIndexContext);
-
-  if (rovingContext) {
-    return (
-      <RovingToggleButton ref={ref} selected={selected} {...sharedProps}>
-        {children}
-      </RovingToggleButton>
-    );
-  }
-
   return (
-    <ToggleButtonRoot ref={ref} {...sharedProps}>
+    <ToggleButtonRoot
+      className={clsx(contextProps.className, classes.root, className, positionClassName)}
+      internalNativeButton
+      disabled={disabled}
+      focusRipple={!disableFocusRipple}
+      ref={ref}
+      onClick={handleChange}
+      onChange={onChange}
+      value={value}
+      ownerState={ownerState}
+      aria-pressed={selected}
+      {...other}
+    >
       {children}
     </ToggleButtonRoot>
   );

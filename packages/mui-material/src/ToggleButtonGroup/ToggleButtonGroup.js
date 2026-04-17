@@ -14,7 +14,6 @@ import toggleButtonGroupClasses, {
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
-import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -142,41 +141,6 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
   const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
 
-  // Extract event handlers from `other` so they are merged with the roving container
-  // handlers rather than being silently dropped or overriding them when `{...other}` is spread.
-  const {
-    onFocus: onFocusProp,
-    onBlur: onBlurProp,
-    onKeyDown: onKeyDownProp,
-    ...otherProps
-  } = other;
-
-  const [isFocusWithin, setIsFocusWithin] = React.useState(false);
-
-  const rovingContainer = useRovingTabIndexRoot({
-    activeItemId: exclusive && !isFocusWithin ? value : undefined,
-    orientation,
-  });
-  const rovingContainerProps = rovingContainer.getContainerProps(ref);
-
-  const handleFocus = (event) => {
-    setIsFocusWithin(true);
-    rovingContainerProps.onFocus(event);
-    onFocusProp?.(event);
-  };
-
-  const handleBlur = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setIsFocusWithin(false);
-    }
-    onBlurProp?.(event);
-  };
-
-  const handleKeyDown = (event) => {
-    rovingContainerProps.onKeyDown(event);
-    onKeyDownProp?.(event);
-  };
-
   const handleChange = React.useCallback(
     (event, buttonValue) => {
       if (!onChange) {
@@ -255,37 +219,32 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     <ToggleButtonGroupRoot
       role="group"
       className={clsx(classes.root, className)}
-      ref={rovingContainerProps.ref}
+      ref={ref}
       ownerState={ownerState}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      {...otherProps}
+      {...other}
     >
       <ToggleButtonGroupContext.Provider value={context}>
-        <RovingTabIndexContext.Provider value={rovingContainer}>
-          {validChildren.map((child, index) => {
-            if (process.env.NODE_ENV !== 'production') {
-              if (isFragment(child)) {
-                console.error(
-                  [
-                    "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
-                    'Consider providing an array instead.',
-                  ].join('\n'),
-                );
-              }
+        {validChildren.map((child, index) => {
+          if (process.env.NODE_ENV !== 'production') {
+            if (isFragment(child)) {
+              console.error(
+                [
+                  "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                  'Consider providing an array instead.',
+                ].join('\n'),
+              );
             }
+          }
 
-            return (
-              <ToggleButtonGroupButtonContext.Provider
-                key={index}
-                value={getButtonPositionClassName(index)}
-              >
-                {child}
-              </ToggleButtonGroupButtonContext.Provider>
-            );
-          })}
-        </RovingTabIndexContext.Provider>
+          return (
+            <ToggleButtonGroupButtonContext.Provider
+              key={index}
+              value={getButtonPositionClassName(index)}
+            >
+              {child}
+            </ToggleButtonGroupButtonContext.Provider>
+          );
+        })}
       </ToggleButtonGroupContext.Provider>
     </ToggleButtonGroupRoot>
   );
@@ -334,10 +293,6 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
    * Callback fired when the value changes.
    *
    * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
@@ -346,14 +301,6 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * is selected and `exclusive` is true the value is null; when false an empty array.
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
   /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'

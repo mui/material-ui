@@ -16,7 +16,6 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-import { RovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -494,23 +493,6 @@ const ButtonLoadingIconPlaceholder = styled('span', {
   height: '1em',
 });
 
-const RovingButton = React.forwardRef(function RovingButton(props, ref) {
-  // eslint-disable-next-line react/prop-types
-  const { children, disabled, rovingItemId, ...other } = props;
-
-  const rovingItemProps = useRovingTabIndexItem({
-    id: rovingItemId,
-    ref,
-    disabled,
-  });
-
-  return (
-    <ButtonRoot disabled={disabled} {...rovingItemProps} {...other}>
-      {children}
-    </ButtonRoot>
-  );
-});
-
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
@@ -601,44 +583,26 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   // Don't forward the 'root' classes to the ButtonBase, as they will get duplicated with the one passed to the className prop.
   const { root, ...forwardedClasses } = classes;
 
-  const rovingItemId = useId();
-  const rovingContext = React.useContext(RovingTabIndexContext);
-
-  const sharedProps = {
-    ownerState,
-    className: clsx(contextProps.className, classes.root, className, positionClassName),
-    component,
-    disabled: disabled || loading,
-    focusRipple: !disableFocusRipple,
-    focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
-    internalNativeButton: true,
-    type,
-    id: loading ? loadingId : idProp,
-    ...other,
-    classes: forwardedClasses,
-  };
-
-  const buttonContent = (
-    <React.Fragment>
+  return (
+    <ButtonRoot
+      ownerState={ownerState}
+      className={clsx(contextProps.className, classes.root, className, positionClassName)}
+      component={component}
+      disabled={disabled || loading}
+      focusRipple={!disableFocusRipple}
+      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+      ref={ref}
+      internalNativeButton
+      type={type}
+      id={loading ? loadingId : idProp}
+      {...other}
+      classes={forwardedClasses}
+    >
       {startIcon}
       {loadingPosition !== 'end' && loader}
       {children}
       {loadingPosition === 'end' && loader}
       {endIcon}
-    </React.Fragment>
-  );
-
-  if (rovingContext) {
-    return (
-      <RovingButton ref={ref} rovingItemId={rovingItemId} {...sharedProps}>
-        {buttonContent}
-      </RovingButton>
-    );
-  }
-
-  return (
-    <ButtonRoot ref={ref} {...sharedProps}>
-      {buttonContent}
     </ButtonRoot>
   );
 });
