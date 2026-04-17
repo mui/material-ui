@@ -9,8 +9,10 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import useId from '../utils/useId';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
+import { RovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
 export const overridesResolver = (props, styles) => {
@@ -142,6 +144,20 @@ const ListItemButtonRoot = styled(ButtonBase, {
   })),
 );
 
+const RovingListItemButton = React.forwardRef(function RovingListItemButton(props, ref) {
+  // eslint-disable-next-line react/prop-types
+  const { disabled, id, selected, ...other } = props;
+
+  const rovingItemProps = useRovingTabIndexItem({
+    id,
+    ref,
+    disabled,
+    selected,
+  });
+
+  return <ListItemButtonRoot disabled={disabled} {...rovingItemProps} {...other} />;
+});
+
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });
   const {
@@ -196,21 +212,40 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const { root, ...forwardedClasses } = classes;
 
   const handleRef = useForkRef(listItemRef, ref);
+  const rovingItemId = useId();
+  const rovingContext = React.useContext(RovingTabIndexContext);
+
+  const sharedProps = {
+    href: other.href || other.to,
+    // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
+    component: (other.href || other.to) && component === 'div' ? 'button' : component,
+    internalNativeButton: false,
+    focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
+    ownerState,
+    className: clsx(classes.root, className),
+    ...other,
+    classes: forwardedClasses,
+  };
+
+  if (rovingContext) {
+    return (
+      <ListContext.Provider value={childContext}>
+        <RovingListItemButton
+          ref={handleRef}
+          id={rovingItemId}
+          disabled={props.disabled}
+          selected={selected}
+          {...sharedProps}
+        >
+          {children}
+        </RovingListItemButton>
+      </ListContext.Provider>
+    );
+  }
 
   return (
     <ListContext.Provider value={childContext}>
-      <ListItemButtonRoot
-        ref={handleRef}
-        href={other.href || other.to}
-        // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
-        component={(other.href || other.to) && component === 'div' ? 'button' : component}
-        internalNativeButton={false}
-        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-        ownerState={ownerState}
-        className={clsx(classes.root, className)}
-        {...other}
-        classes={forwardedClasses}
-      >
+      <ListItemButtonRoot ref={handleRef} {...sharedProps}>
         {children}
       </ListItemButtonRoot>
     </ListContext.Provider>

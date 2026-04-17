@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
 
@@ -76,17 +77,24 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rovingContainer = useRovingTabIndexRoot({
+    orientation: 'vertical',
+  });
+  const rovingContainerProps = rovingContainer.getContainerProps(ref);
+
   return (
     <ListContext.Provider value={context}>
       <ListRoot
         as={component}
         className={clsx(classes.root, className)}
-        ref={ref}
         ownerState={ownerState}
+        {...rovingContainerProps}
         {...other}
       >
         {subheader}
-        {children}
+        <RovingTabIndexContext.Provider value={rovingContainer}>
+          {children}
+        </RovingTabIndexContext.Provider>
       </ListRoot>
     </ListContext.Provider>
   );

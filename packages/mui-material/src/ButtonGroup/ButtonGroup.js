@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
+import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -308,26 +309,47 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     return classes.middleButton;
   };
 
+  const rovingContainer = useRovingTabIndexRoot({
+    orientation,
+  });
+  const rovingContainerProps = rovingContainer.getContainerProps(ref);
+
+  const { onFocus: onFocusProp, onKeyDown: onKeyDownProp, ...otherProps } = other;
+
+  const handleFocus = (event) => {
+    rovingContainerProps.onFocus(event);
+    onFocusProp?.(event);
+  };
+
+  const handleKeyDown = (event) => {
+    rovingContainerProps.onKeyDown(event);
+    onKeyDownProp?.(event);
+  };
+
   return (
     <ButtonGroupRoot
       as={component}
       role="group"
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={rovingContainerProps.ref}
       ownerState={ownerState}
-      {...other}
+      onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
+      {...otherProps}
     >
       <ButtonGroupContext.Provider value={context}>
-        {validChildren.map((child, index) => {
-          return (
-            <ButtonGroupButtonContext.Provider
-              key={index}
-              value={getButtonPositionClassName(index)}
-            >
-              {child}
-            </ButtonGroupButtonContext.Provider>
-          );
-        })}
+        <RovingTabIndexContext.Provider value={rovingContainer}>
+          {validChildren.map((child, index) => {
+            return (
+              <ButtonGroupButtonContext.Provider
+                key={index}
+                value={getButtonPositionClassName(index)}
+              >
+                {child}
+              </ButtonGroupButtonContext.Provider>
+            );
+          })}
+        </RovingTabIndexContext.Provider>
       </ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
@@ -390,6 +412,14 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
   /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
