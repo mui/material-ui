@@ -14,8 +14,8 @@ import findActivePage from '@mui/internal-core-docs/findActivePage';
 import getProductInfoFromUrl from '@mui/internal-core-docs/getProductInfoFromUrl';
 import type { Translations } from '@mui/internal-core-docs/i18n';
 import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
-import materialPkgJson from '@mui/material/package.json';
-import systemPkgJson from '@mui/system/package.json';
+import { generateVersions } from '@mui/internal-core-docs/utils';
+import type { ProductVersion } from '@mui/internal-core-docs/PageContext';
 import { LicenseInfo } from '@mui/x-license';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -40,6 +40,63 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
 
+type GeneratedVersion = { version: string; url: string };
+
+// Module-level cache so generateVersions() is only called once per process
+// (once during static export, once per dev server start).
+let versionsCache: GeneratedVersion[] | null = null;
+
+function getVersionedProductPath(version: string, productId: string): string {
+  const versionNumber = parseInt(version.replace('v', ''), 10);
+  if (productId === 'material-ui') {
+    if (versionNumber >= 6) {
+      return '/material-ui/getting-started/';
+    }
+    if (versionNumber >= 4) {
+      return '/getting-started/installation/';
+    }
+  }
+  if (productId === 'system') {
+    if (versionNumber >= 5) {
+      return '/system/getting-started/';
+    }
+    if (versionNumber === 4) {
+      return '/system/basics/';
+    }
+  }
+  return '/';
+}
+
+function buildProductVersions(
+  generatedVersions: GeneratedVersion[],
+  productId: string,
+  languagePrefix: string,
+): ProductVersion[] {
+  const MIN_VERSION = 4;
+  const versions: ProductVersion[] = generatedVersions
+    .filter((v) => {
+      if (v.version.includes('pre-release')) {
+        return false;
+      }
+      const vNum = parseInt(v.version.replace('v', ''), 10);
+      return vNum >= MIN_VERSION;
+    })
+    .map((v) => {
+      if (v.url === 'https://mui.com') {
+        return { text: v.version, current: true };
+      }
+      const productPath = getVersionedProductPath(v.version, productId);
+      return { text: v.version, href: `${v.url}${languagePrefix}${productPath}` };
+    });
+
+  versions.push({
+    text: 'View all versions',
+    href: `https://mui.com${languagePrefix}/material-ui/getting-started/versions/`,
+  });
+
+  return versions;
+}
+
 /**
  * Generates root index template for Material UI demos.
  */
@@ -59,7 +116,10 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function useProductData(pageProps: DocsAppProps['pageProps']) {
+function useProductData(
+  pageProps: DocsAppProps['pageProps'],
+  generatedVersions: GeneratedVersion[],
+) {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
@@ -76,29 +136,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${materialPkgJson.version}`, current: true },
-          {
-            text: 'v7',
-            href: `https://v7.mui.com${languagePrefix}/material-ui/getting-started/`,
-          },
-          {
-            text: 'v6',
-            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
-          },
-          {
-            text: 'v5',
-            href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
-          },
-          {
-            text: 'v4',
-            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
-          },
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
+        versions: buildProductVersions(generatedVersions, 'material-ui', languagePrefix),
       };
     }
 
@@ -109,17 +147,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v7', href: `https://v7.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
+        versions: buildProductVersions(generatedVersions, 'system', languagePrefix),
       };
     }
 
@@ -131,13 +159,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${materialPkgJson.version}`, current: true },
-          {
-            text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
-          },
-        ],
+        versions: buildProductVersions(generatedVersions, 'material-ui', languagePrefix),
       };
     }
 
@@ -174,7 +196,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
     }
 
     return null;
-  }, [pageProps.userLanguage, productId]);
+  }, [pageProps.userLanguage, productId, generatedVersions]);
 
   return React.useMemo(() => {
     let pages: MuiPage[] = generalDocsPages as MuiPage[];
@@ -222,9 +244,10 @@ function useDemoDisplayName() {
 }
 
 export default function MyApp(
-  props: AppProps<{ userLanguage: string; translations: Translations }>,
+  props: AppProps<{ userLanguage: string; translations: Translations; generatedVersions?: GeneratedVersion[] }>,
 ) {
   const { Component, pageProps } = props;
+  const generatedVersions = pageProps.generatedVersions ?? [];
   const {
     activePage,
     activePageParents,
@@ -232,7 +255,7 @@ export default function MyApp(
     productIdentifier,
     productId,
     productCategoryId,
-  } = useProductData(pageProps);
+  } = useProductData(pageProps, generatedVersions);
   const demoDisplayName = useDemoDisplayName();
 
   return (
@@ -255,8 +278,29 @@ export default function MyApp(
   );
 }
 
-MyApp.getInitialProps = createGetInitialProps({
+const baseGetInitialProps = createGetInitialProps({
   translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
 });
+
+MyApp.getInitialProps = async (ctx: Parameters<typeof baseGetInitialProps>[0]) => {
+  if (!versionsCache) {
+    try {
+      versionsCache = await generateVersions();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to fetch versions from GitHub:', error);
+      versionsCache = [];
+    }
+  }
+
+  const result = await baseGetInitialProps(ctx);
+  return {
+    ...result,
+    pageProps: {
+      ...result.pageProps,
+      generatedVersions: versionsCache,
+    },
+  };
+};
 
 export { reportWebVitals };

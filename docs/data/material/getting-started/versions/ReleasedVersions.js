@@ -11,7 +11,7 @@ import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsCont
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui/material-ui/releases/tag/';
 
 function ReleasedVersions() {
-  const versions = React.useContext(VersionsContext);
+  const versions = React.useContext(VersionsContext) ?? [];
 
   return (
     <Box sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>

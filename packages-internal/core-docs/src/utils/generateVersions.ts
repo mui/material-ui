@@ -10,7 +10,7 @@ function formatVersion(version: string) {
 
 async function getBranches(): Promise<Array<{ name: string }>> {
   const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
-    // @ts-ignore
+    // @ts-ignore -- HeadersInit doesn't accept `undefined` but fetch ignores undefined header values
     headers: {
       Authorization: process.env.GITHUB_AUTH,
     },
@@ -23,9 +23,6 @@ async function getBranches(): Promise<Array<{ name: string }>> {
 
   return JSON.parse(text);
 }
-
-// TODO: Remove this once the next branch on material-ui-docs is removed
-const SHOW_NEXT_VERSION = false;
 
 async function generateVersions(): Promise<Array<{ version: string; url: string }>> {
   const regex = /^v\d+$/;
@@ -56,17 +53,6 @@ async function generateVersions(): Promise<Array<{ version: string; url: string 
     url: 'https://v0.mui.com',
   });
   versions.sort((a, b) => formatVersion(b.version).localeCompare(formatVersion(a.version)));
-
-  if (
-    branches.find((branch) => branch.name === 'next') &&
-    !versions.find((version) => /beta|alpha/.test(version.version)) &&
-    SHOW_NEXT_VERSION
-  ) {
-    versions.unshift({
-      version: `v${Number(versions[0].version[1]) + 1} pre-release`,
-      url: 'https://next.mui.com',
-    });
-  }
 
   return uniqBy(versions, (item) => item.version);
 }
