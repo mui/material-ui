@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Radio, { RadioProps } from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -65,12 +66,13 @@ function BpRadio(props: RadioProps) {
 }
 
 export default function CustomizedRadios() {
+  const id = React.useId();
   return (
     <FormControl>
-      <FormLabel id="demo-customized-radios">Gender</FormLabel>
+      <FormLabel id={`${id}-label`}>Gender</FormLabel>
       <RadioGroup
         defaultValue="female"
-        aria-labelledby="demo-customized-radios"
+        aria-labelledby={`${id}-label`}
         name="customized-radios"
       >
         <FormControlLabel value="female" control={<BpRadio />} label="Female" />

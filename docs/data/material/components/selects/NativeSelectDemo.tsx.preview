@@ -1,12 +1,12 @@
 <FormControl fullWidth>
-  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+  <InputLabel variant="standard" htmlFor={`${id}-select`}>
     Age
   </InputLabel>
   <NativeSelect
     defaultValue={30}
     inputProps={{
       name: 'age',
-      id: 'uncontrolled-native',
+      id: `${id}-select`,
     }}
   >
     <option value={10}>Ten</option>
