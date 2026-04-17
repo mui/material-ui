@@ -77,10 +77,22 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const { onFocus: onFocusProp, onKeyDown: onKeyDownProp, ...otherProps } = other;
+
   const rovingContainer = useRovingTabIndexRoot({
     orientation: 'vertical',
   });
   const rovingContainerProps = rovingContainer.getContainerProps(ref);
+
+  const handleFocus = (event) => {
+    rovingContainerProps.onFocus(event);
+    onFocusProp?.(event);
+  };
+
+  const handleKeyDown = (event) => {
+    rovingContainerProps.onKeyDown(event);
+    onKeyDownProp?.(event);
+  };
 
   return (
     <ListContext.Provider value={context}>
@@ -88,8 +100,10 @@ const List = React.forwardRef(function List(inProps, ref) {
         as={component}
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        {...rovingContainerProps}
-        {...other}
+        ref={rovingContainerProps.ref}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+        {...otherProps}
       >
         {subheader}
         <RovingTabIndexContext.Provider value={rovingContainer}>
