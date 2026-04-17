@@ -2,8 +2,9 @@
 
 <p class="description">Sync is a Figma plugin that generates Material UI themes directly from design to code.</p>
 
-:::warning
-This plugin is experimental.
+:::error
+Development on the Material UI Sync plugin was suspended in 2024.
+You should not expect updates on this project in the future.
 :::
 
 ## Introduction

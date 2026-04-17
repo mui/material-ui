@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NumberField as BaseNumberField } from '@base-ui-components/react/number-field';
+import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -54,6 +54,7 @@ export default function NumberField({
         id={id}
         render={(props, state) => (
           <OutlinedInput
+            aria-describedby={`${id}-helper-text`}
             label={label}
             inputRef={props.ref}
             value={state.inputValue}
@@ -105,7 +106,7 @@ export default function NumberField({
           />
         )}
       />
-      <FormHelperText sx={{ ml: 0, '&:empty': { mt: 0 } }}>
+      <FormHelperText id={`${id}-helper-text`} sx={{ ml: 0, '&:empty': { mt: 0 } }}>
         Enter value between 10 and 40
       </FormHelperText>
     </BaseNumberField.Root>

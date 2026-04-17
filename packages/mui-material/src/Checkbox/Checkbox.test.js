@@ -33,7 +33,7 @@ describe('<Checkbox />', () => {
         expectedClassName: classes.input,
       },
     },
-    skip: ['componentProp', 'componentsProp', 'rootClass'],
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should have the classes required for Checkbox', () => {
@@ -75,10 +75,39 @@ describe('<Checkbox />', () => {
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
+  describe('prop: readOnly', () => {
+    it('prevents interaction', async () => {
+      const changeSpy = spy();
+      const { user } = render(<Checkbox readOnly defaultChecked onChange={changeSpy} />);
+
+      const checkbox = screen.getByRole('checkbox');
+      expect(checkbox).to.have.attribute('readonly');
+      expect(checkbox).to.have.attribute('checked');
+      await user.click(checkbox);
+      expect(checkbox).to.have.attribute('checked');
+      expect(changeSpy.callCount).to.equal(0);
+    });
+  });
+
   describe('prop: indeterminate', () => {
     it('should render an indeterminate icon', () => {
       render(<Checkbox indeterminate />);
       expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
+    });
+
+    it('should set aria-checked to mixed', () => {
+      render(<Checkbox indeterminate />);
+      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
+    });
+
+    it('should set aria-checked to mixed even when checked', () => {
+      render(<Checkbox indeterminate checked />);
+      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
+    });
+
+    it('should not set aria-checked when not indeterminate', () => {
+      render(<Checkbox />);
+      expect(screen.getByRole('checkbox')).not.to.have.attribute('aria-checked');
     });
   });
 

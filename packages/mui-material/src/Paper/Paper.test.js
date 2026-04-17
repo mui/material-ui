@@ -22,7 +22,6 @@ describe('<Paper />', () => {
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'rounded' },
     testStateOverrides: { prop: 'elevation', value: 10, styleKey: 'elevation10' },
-    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {

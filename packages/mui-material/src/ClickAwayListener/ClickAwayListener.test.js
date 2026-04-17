@@ -2,13 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  act,
-  createRenderer,
-  fireEvent,
-  fireDiscreteEvent,
-  screen,
-} from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Portal from '@mui/material/Portal';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 
@@ -183,7 +177,7 @@ describe('<ClickAwayListener />', () => {
         }
         render(<Test />);
 
-        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+        fireEvent.click(screen.getByTestId('trigger'));
 
         expect(screen.getByTestId('child')).not.to.equal(null);
       });
@@ -247,12 +241,12 @@ describe('<ClickAwayListener />', () => {
       render(<ClickAwayListenerMouseDownPortal />);
       const mouseDownTarget = screen.getByTestId('trigger');
 
-      fireDiscreteEvent.mouseDown(mouseDownTarget);
+      fireEvent.mouseDown(mouseDownTarget);
       const mouseUpTarget = screen.getByTestId('interleaved-element');
       // https://w3c.github.io/uievents/#events-mouseevent-event-order
       const clickTarget = findNearestCommonAncestor(mouseDownTarget, mouseUpTarget);
-      fireDiscreteEvent.mouseUp(mouseUpTarget);
-      fireDiscreteEvent.click(clickTarget);
+      fireEvent.mouseUp(mouseUpTarget);
+      fireEvent.click(clickTarget);
 
       expect(onClickAway.callCount).to.equal(1);
     });

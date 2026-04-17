@@ -1,6 +1,6 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import { standardNavIcons } from '@mui/internal-core-docs/AppLayout';
 import pagesApi from 'docs/data/material/pagesApi';
-import { MuiPage } from 'docs/src/MuiPage';
+import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const pages: MuiPage[] = [
   {
@@ -97,6 +97,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-drawer' },
           { pathname: '/material-ui/react-link' },
           { pathname: '/material-ui/react-menu' },
+          { pathname: '/material-ui/react-menubar', newFeature: true },
           { pathname: '/material-ui/react-pagination' },
           { pathname: '/material-ui/react-speed-dial', title: 'Speed Dial' },
           { pathname: '/material-ui/react-stepper' },
@@ -110,7 +111,6 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
           { pathname: '/material-ui/react-grid' },
-          { pathname: '/material-ui/react-grid-legacy', deprecated: true, title: 'GridLegacy' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
         ],
@@ -310,12 +310,26 @@ const pages: MuiPage[] = [
         title: 'Migration from @material-ui/pickers',
       },
       {
+        pathname: '/material-ui/migration/v9',
+        subheader: 'Upgrade to v9',
+        children: [
+          {
+            pathname: '/material-ui/migration/upgrade-to-v9',
+            title: 'Upgrade to v9: getting started',
+          },
+        ],
+      },
+      {
         pathname: '/material-ui/migration/v7',
         subheader: 'Upgrade to v7',
         children: [
           {
             pathname: '/material-ui/migration/upgrade-to-v7',
             title: 'Upgrade to v7: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/v7/migrating-from-deprecated-apis',
+            title: 'Migrating from deprecated APIs',
           },
           {
             pathname: '/material-ui/migration/upgrade-to-native-color',
@@ -399,7 +413,7 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/design-resources/material-ui-sync',
         title: 'Figma Sync plugin',
-        unstable: true,
+        deprecated: true,
       },
     ],
   },

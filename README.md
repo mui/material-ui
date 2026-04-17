@@ -44,22 +44,13 @@ Get started in the [Material UI documentation](https://mui.com/material-ui/gett
 **Note:** `@next` points to pre-releases.
 Use `@latest` for the latest stable release.
 
-## Joy UI
-
-This repository also contains Joy UI, an experimental component library that implements our own in-house Joy Design.
-Joy UI is in beta and _development is currently on hold_.
-When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
-
-Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
-
-View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
-
 ## Sponsors
 
 ### Diamond 💎
 
 <p>
   <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
 Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -73,13 +64,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   &nbsp;
-  <a href="https://ref.wisprflow.ai/ZSPYrru?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">
-   <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/sponsors/wispr-square-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/sponsors/wispr-square-light.svg">
-      <img height="96" width="96" src="https://mui.com/static/sponsors/wispr-square-light.svg" alt="wisprflow" title="AI Dictation: from speech to clear, polished text." loading="lazy" />
-  </picture>
-  </a>
+  <a href="https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/288.png" alt="react-pdf-kit.dev" title="Powerful, Fast, Dev-Friendly React PDF Viewer." loading="lazy" /></a>
   &nbsp;
 </p>
 
@@ -97,8 +82,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">SocialWick</a>
   &nbsp;
  <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Follower24</a>
-  &nbsp;
-  <a href="https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Reputation Manage</a>
   &nbsp;
 </p>
 

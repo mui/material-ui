@@ -2,13 +2,13 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { HamburgerMenuIcon } from '@mui/internal-core-docs/svgIcons';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
   ({ theme }) => [
@@ -88,8 +88,8 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'MUI Base',
-    description: 'Unstyled React components and low-level hooks.',
+    name: 'Base UI',
+    description: 'Unstyled components for building accessible UIs.',
     href: ROUTES.baseDocs,
   },
   {
@@ -133,7 +133,7 @@ export default function HeaderNavDropdown() {
           }),
         }}
       >
-        <SvgHamburgerMenu />
+        <HamburgerMenuIcon />
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {

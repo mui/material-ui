@@ -16,10 +16,12 @@ export default function CustomizedTimeline() {
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
           align="right"
           variant="body2"
-          color="text.secondary"
+          sx={{
+            color: 'text.secondary',
+            m: 'auto 0',
+          }}
         >
           9:30 am
         </TimelineOppositeContent>
@@ -39,9 +41,11 @@ export default function CustomizedTimeline() {
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
           variant="body2"
-          color="text.secondary"
+          sx={{
+            color: 'text.secondary',
+            m: 'auto 0',
+          }}
         >
           10:00 am
         </TimelineOppositeContent>

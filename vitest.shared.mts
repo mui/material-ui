@@ -45,6 +45,28 @@ function getVitestEnvironment(fileName: string): 'browser' | 'node' {
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
+export const alias = {
+  '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
+  '@mui/internal-core-docs': path.resolve(MONOREPO_ROOT, './packages-internal/core-docs/src'),
+  '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib'),
+  '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
+  '@mui/styled-engine': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine/src'),
+  '@mui/styled-engine-sc': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine-sc/src'),
+  '@mui/styles': path.resolve(MONOREPO_ROOT, './packages/mui-styles/src'),
+  '@mui/system': path.resolve(MONOREPO_ROOT, './packages/mui-system/src'),
+  '@mui/private-theming': path.resolve(MONOREPO_ROOT, './packages/mui-private-theming/src'),
+  '@mui/utils': path.resolve(MONOREPO_ROOT, './packages/mui-utils/src'),
+  '@mui/types': path.resolve(MONOREPO_ROOT, './packages/mui-types/src'),
+  '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
+  '@mui/stylis-plugin-rtl': path.resolve(MONOREPO_ROOT, './packages/mui-stylis-plugin-rtl/src'),
+  '@mui/internal-docs-utils': path.resolve(MONOREPO_ROOT, './packages-internal/docs-utils/src'),
+  '@mui/internal-scripts/typescript-to-proptypes': path.resolve(
+    MONOREPO_ROOT,
+    './packages-internal/scripts/typescript-to-proptypes/src',
+  ),
+  docs: path.resolve(MONOREPO_ROOT, './docs'),
+};
+
 export interface CreateOptions {
   jsdom?: boolean;
   enableScrollbars?: boolean;
@@ -71,23 +93,19 @@ export default async function create(
   return defineProject({
     plugins: [react(), forceJsxForJsFiles()],
     define: {
-      'process.env.NODE_ENV': JSON.stringify('test'),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     },
     test: {
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
-      setupFiles: [
-        path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
-        ...(jsdom || testEnv === 'browser'
-          ? [
-              path.resolve(
-                MONOREPO_ROOT,
-                './packages-internal/test-utils/src/setupVitestBrowser.ts',
-              ),
-            ]
-          : []),
-      ],
+      disableConsoleIntercept: true,
+      setupFiles: [path.resolve(MONOREPO_ROOT, './test/setupVitest.ts')],
+      server: {
+        deps: {
+          inline: ['@mui/internal-test-utils'],
+        },
+      },
       environment: jsdom ? 'jsdom' : 'node',
 
       fakeTimers: {
@@ -113,38 +131,13 @@ export default async function create(
       },
       env: {
         VITEST: 'true',
+        NODE_ENV: 'development',
       },
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
-      alias: {
-        '@mui/internal-test-utils': path.resolve(
-          MONOREPO_ROOT,
-          './packages-internal/test-utils/src',
-        ),
-        '@mui/internal-docs-utils': path.resolve(
-          MONOREPO_ROOT,
-          './packages-internal/docs-utils/src',
-        ),
-        '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
-        '@mui/system': path.resolve(MONOREPO_ROOT, './packages/mui-system/src'),
-        '@mui/types': path.resolve(MONOREPO_ROOT, './packages/mui-types/src'),
-        '@mui/utils': path.resolve(MONOREPO_ROOT, './packages/mui-utils/src'),
-        '@mui/styled-engine': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine/src'),
-        '@mui/styled-engine-sc': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine-sc/src'),
-        '@mui/styles': path.resolve(MONOREPO_ROOT, './packages/mui-styles/src'),
-        '@mui/stylis-plugin-rtl': path.resolve(
-          MONOREPO_ROOT,
-          './packages/mui-stylis-plugin-rtl/src',
-        ),
-        '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib/esm'),
-        '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
-        '@mui/private-theming': path.resolve(MONOREPO_ROOT, './packages/mui-private-theming/src'),
-        '@mui/joy': path.resolve(MONOREPO_ROOT, './packages/mui-joy/src'),
-        '@mui/docs': path.resolve(MONOREPO_ROOT, './packages/mui-docs/src'),
-        '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
-        docs: path.resolve(MONOREPO_ROOT, './docs'),
-      },
+      extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
+      alias,
     },
     optimizeDeps: {
       esbuildOptions: {

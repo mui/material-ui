@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
@@ -17,7 +17,6 @@ describe('<FilledInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    testLegacyComponentsProp: true,
     slots: {
       // can't test with DOM element as Input places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
@@ -25,7 +24,6 @@ describe('<FilledInput />', () => {
     },
     skip: [
       'componentProp',
-      'componentsProp',
       'slotPropsCallback', // not supported yet
       'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
@@ -54,8 +52,8 @@ describe('<FilledInput />', () => {
     expect(document.querySelector('.error')).not.to.equal(null);
   });
 
-  it('should respects the componentsProps if passed', () => {
-    render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
+  it('should respect the slotProps if passed', () => {
+    render(<FilledInput slotProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
 
@@ -104,5 +102,10 @@ describe('<FilledInput />', () => {
     expect(root).to.have.class(classes.sizeSmall);
     expect(root).to.have.class(classes.adornedEnd);
     expect(root).to.have.class(classes.adornedStart);
+  });
+
+  it('should not forward the notched prop to the DOM', () => {
+    render(<FilledInput notched data-testid="root" />);
+    expect(screen.getByTestId('root')).not.to.have.attribute('notched');
   });
 });

@@ -5,7 +5,6 @@ import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
 import { DrawerClasses } from './drawerClasses';
@@ -85,7 +84,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
      */
     transition: SlotProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & DrawerTransitionSlotPropsOverrides,
       DrawerOwnerState
     >;
@@ -93,13 +92,14 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface DrawerProps
-  extends StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
+  extends
+    StandardProps<ModalProps, 'open' | 'children' | 'slots' | 'slotProps'>,
     DrawerSlotsAndSlotProps {
   /**
    * Side from which the drawer will appear.
    * @default 'left'
    */
-  anchor?: 'left' | 'top' | 'right' | 'bottom';
+  anchor?: 'left' | 'top' | 'right' | 'bottom' | undefined;
   /**
    * The content of the component.
    */
@@ -107,17 +107,17 @@ export interface DrawerProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DrawerClasses>;
+  classes?: Partial<DrawerClasses> | undefined;
   /**
    * The elevation of the drawer.
    * @default 16
    */
-  elevation?: number;
+  elevation?: number | undefined;
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
    * @default {}
    */
-  ModalProps?: Partial<ModalProps>;
+  ModalProps?: Partial<ModalProps> | undefined;
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -125,27 +125,16 @@ export interface DrawerProps
    * @param {object} event The event source of the callback.
    * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
-  onClose?: ModalProps['onClose'];
+  onClose?: ModalProps['onClose'] | undefined;
   /**
    * If `true`, the component is shown.
    * @default false
    */
-  open?: boolean;
-  /**
-   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
-   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  PaperProps?: Partial<PaperProps<React.ElementType>>;
-  /**
-   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SlideProps?: Partial<SlideProps>;
+  open?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -154,12 +143,12 @@ export interface DrawerProps
    *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
-  transitionDuration?: TransitionProps['timeout'];
+  transitionDuration?: TransitionProps['timeout'] | undefined;
   /**
    * The variant to use.
    * @default 'temporary'
    */
-  variant?: 'permanent' | 'persistent' | 'temporary';
+  variant?: 'permanent' | 'persistent' | 'temporary' | undefined;
 }
 
 // omit `slots` and `slotProps` to prevent recursion

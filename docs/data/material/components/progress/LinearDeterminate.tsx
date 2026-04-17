@@ -23,7 +23,11 @@ export default function LinearDeterminate() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgress variant="determinate" value={progress} />
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        aria-label="Export data"
+      />
     </Box>
   );
 }

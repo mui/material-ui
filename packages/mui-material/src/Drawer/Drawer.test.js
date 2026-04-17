@@ -58,7 +58,7 @@ describe('<Drawer />', () => {
           testWithElement: CustomTransition,
         },
       },
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 
@@ -79,7 +79,7 @@ describe('<Drawer />', () => {
           expectedClassName: classes.docked,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 
@@ -139,7 +139,7 @@ describe('<Drawer />', () => {
           <Drawer
             open={false}
             transitionDuration={transitionDuration}
-            SlideProps={{ onEntered: handleEntered }}
+            slotProps={{ transition: { onEntered: handleEntered } }}
           >
             <div />
           </Drawer>,
@@ -265,7 +265,7 @@ describe('<Drawer />', () => {
         <Drawer
           open={false}
           transitionDuration={transitionDuration}
-          SlideProps={{ onEntered: handleEntered }}
+          slotProps={{ transition: { onEntered: handleEntered } }}
           variant="persistent"
         >
           <div />
@@ -300,10 +300,10 @@ describe('<Drawer />', () => {
     });
   });
 
-  describe('prop: PaperProps', () => {
+  describe('prop: slotProps.paper', () => {
     it('should merge class names', () => {
       const { container } = render(
-        <Drawer PaperProps={{ className: 'my-class' }} variant="permanent">
+        <Drawer slotProps={{ paper: { className: 'my-class' } }} variant="permanent">
           <div />
         </Drawer>,
       );
@@ -328,7 +328,7 @@ describe('<Drawer />', () => {
       });
 
       const { setProps } = render(
-        <Drawer open TransitionComponent={MockedSlide}>
+        <Drawer open slots={{ transition: MockedSlide }}>
           <div />
         </Drawer>,
       );
@@ -367,7 +367,7 @@ describe('<Drawer />', () => {
       });
       const view = render(
         <ThemeProvider theme={theme}>
-          <Drawer open anchor="left" TransitionComponent={MockedSlide}>
+          <Drawer open anchor="left" slots={{ transition: MockedSlide }}>
             <div />
           </Drawer>
         </ThemeProvider>,
@@ -377,7 +377,7 @@ describe('<Drawer />', () => {
 
       view.rerender(
         <ThemeProvider theme={theme}>
-          <Drawer open anchor="right" TransitionComponent={MockedSlide}>
+          <Drawer open anchor="right" slots={{ transition: MockedSlide }}>
             <div />
           </Drawer>
         </ThemeProvider>,
@@ -449,5 +449,37 @@ describe('<Drawer />', () => {
       setProps({ anchor: 'bottom' });
       expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorBottom);
     });
+  });
+
+  ['permanent', 'persistent'].forEach((variant) => {
+    it.skipIf(isJsdom())(
+      `should not apply modal styles from theme styleOverrides for variant=${variant}`,
+      () => {
+        const theme = createTheme({
+          components: {
+            MuiDrawer: {
+              styleOverrides: {
+                modal: {
+                  backgroundColor: 'rgb(0, 0, 255)',
+                },
+              },
+            },
+          },
+        });
+
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Drawer variant={variant}>
+              <div />
+            </Drawer>
+          </ThemeProvider>,
+        );
+
+        const root = container.querySelector(`.${classes.root}`);
+        expect(root).not.toHaveComputedStyle({
+          backgroundColor: 'rgb(0, 0, 255)',
+        });
+      },
+    );
   });
 });

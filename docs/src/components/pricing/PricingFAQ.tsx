@@ -181,10 +181,10 @@ const faqData = [
     ),
   },
   {
-    summary: 'What is the validity of the priority support add-on?',
+    summary: 'What is the validity of the Priority Support add-on?',
     detail: (
       <React.Fragment>
-        The priority support add-on is valid for 1 year from the date of purchase. It is same for
+        The Priority Support add-on is valid for 1 year from the date of purchase. It is same for
         perpetual or annual license model.{' '}
         <Link
           target="_blank"

@@ -33,14 +33,12 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
-      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
-        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
       ],
@@ -212,11 +210,7 @@ describe('<Modal />', () => {
           }
         }
 
-        return (
-          <Modal onClose={handleClose} {...other}>
-            <div />
-          </Modal>
-        );
+        return <Modal onClose={handleClose} {...other} />;
       }
       const onClose = spy();
 
@@ -224,7 +218,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          BackdropProps={{ 'data-testid': 'backdrop' }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,
@@ -296,28 +290,31 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
-      const handleKeyDown = spy();
-      const onCloseSpy = spy();
+    it('should let the user disable escape key down triggering onClose', () => {
+      function ModalWithDisabledEscapeKeyDown(props) {
+        const { onClose, ...other } = props;
+        function handleClose(event, reason) {
+          if (reason !== 'escapeKeyDown') {
+            onClose(event, reason);
+          }
+        }
+
+        return <Modal onClose={handleClose} {...other} />;
+      }
+      const onClose = spy();
 
       render(
-        <div onKeyDown={handleKeyDown}>
-          <Modal open disableEscapeKeyDown onClose={onCloseSpy}>
-            <div data-testid="modal" tabIndex={-1} />
-          </Modal>
-        </div>,
+        <ModalWithDisabledEscapeKeyDown onClose={onClose} open>
+          <div data-testid="modal" />
+        </ModalWithDisabledEscapeKeyDown>,
       );
 
-      act(() => {
-        screen.getByTestId('modal').focus();
-      });
-
+      fireEvent.focus(screen.getByTestId('modal'));
       fireEvent.keyDown(screen.getByTestId('modal'), {
         key: 'Escape',
       });
 
-      expect(onCloseSpy).to.have.property('callCount', 0);
-      expect(handleKeyDown).to.have.property('callCount', 1);
+      expect(onClose).to.have.property('callCount', 0);
     });
 
     it('calls onKeyDown on the Modal', () => {
@@ -815,10 +812,13 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: BackdropProps', () => {
+  describe('prop: slotProps.backdrop', () => {
     it('should handle custom className', () => {
       render(
-        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+        <Modal
+          open
+          slotProps={{ backdrop: { className: 'custom-backdrop', 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );

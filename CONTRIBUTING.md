@@ -1,4 +1,4 @@
-# Contributing to Material UI, MUI System, Joy UI
+# Contributing to Material UI and MUI System
 
 If you're reading this, you're awesome!
 Thank you for being a part of the community and helping us make these projects great.
@@ -287,13 +287,13 @@ The following steps explain how to add a new demo to the docs using the Button c
 
 #### 1. Add a new component file to the directory
 
-Add the new file to the component's corresponding directory...
+Add the new file to the component's corresponding directory:
 
 ```bash
 docs/src/pages/components/buttons/
 ```
 
-...and give it a name: how about `SuperButtons.tsx`?
+and give it a name: how about `SuperButtons.tsx`?
 
 #### 2. Write the demo code
 

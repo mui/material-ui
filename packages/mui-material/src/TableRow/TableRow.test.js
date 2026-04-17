@@ -29,7 +29,6 @@ describe('<TableRow />', () => {
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLTableRowElement,
     testComponentPropWith: 'tr',
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

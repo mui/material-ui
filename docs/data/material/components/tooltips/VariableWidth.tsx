@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
 const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip describeChild {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
     maxWidth: 500,
@@ -11,7 +11,7 @@ const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 });
 
 const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip describeChild {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
     maxWidth: 'none',
@@ -27,7 +27,7 @@ Nullam eget est sed sem iaculis gravida eget vitae justo.
 export default function VariableWidth() {
   return (
     <div>
-      <Tooltip title={longText}>
+      <Tooltip describeChild title={longText}>
         <Button sx={{ m: 1 }}>Default Width [300px]</Button>
       </Tooltip>
       <CustomWidthTooltip title={longText}>

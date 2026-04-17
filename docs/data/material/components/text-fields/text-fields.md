@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/TextField
 
 Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic TextField
 

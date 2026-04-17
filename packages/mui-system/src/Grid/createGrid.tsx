@@ -9,7 +9,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useThemeSystem from '../useTheme';
-import { extendSxProp } from '../styleFunctionSx';
 import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
   generateGridStyles,
@@ -25,7 +24,6 @@ import {
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
-import deleteLegacyGridProps from './deleteLegacyGridProps';
 
 const defaultTheme = createTheme();
 
@@ -45,10 +43,10 @@ function useThemePropsDefault<T extends {}>(props: T) {
 
 export default function createGrid(
   options: {
-    createStyledComponent?: typeof defaultCreateStyledComponent;
-    useThemeProps?: typeof useThemePropsDefault;
-    useTheme?: typeof useThemeSystem;
-    componentName?: string;
+    createStyledComponent?: typeof defaultCreateStyledComponent | undefined;
+    useThemeProps?: typeof useThemePropsDefault | undefined;
+    useTheme?: typeof useThemeSystem | undefined;
+    componentName?: string | undefined;
   } = {},
 ) {
   const {
@@ -120,11 +118,10 @@ export default function createGrid(
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
     const theme = useTheme();
-    const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
-    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
-
-    // TODO v8: Remove when removing the legacy Grid component
-    deleteLegacyGridProps(props, theme.breakpoints);
+    const themeProps = useThemeProps<
+      typeof inProps & { component?: React.ElementType | undefined }
+    >(inProps);
+    const props = themeProps as typeof themeProps & GridOwnerState;
 
     const {
       className,

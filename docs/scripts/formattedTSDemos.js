@@ -9,7 +9,7 @@
  * List of demos or folders to ignore when transpiling.
  * Only ignore files that aren't used in the UI.
  */
-const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
+const ignoreList = ['/pages.ts'];
 
 const path = require('path');
 const fs = require('node:fs');

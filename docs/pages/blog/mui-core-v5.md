@@ -55,7 +55,7 @@ This release features some major highlights:
   - [Unstyled components and hooks](#unstyled-components-and-hooks)
   - [Second design system](#second-design-system)
   - [MUI X](#mui-x)
-  - [Design Kits](#design-kits-1)
+  - [Design Kits](#design-kits-2)
 - [Thank you](#thank-you)
 
 ## High-level goals for v5
@@ -498,13 +498,13 @@ To achieve this we have a twin licensing model.
 The `DataGrid` component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model.
 The `DataGridPro` on the other hand is available under a paid commercial license for the more advanced features.
 
-<a href="/x/react-data-grid/demo/">
+<a href="/x/react-data-grid/features/">
   <video autoplay muted loop playsinline width="800" height="501">
     <source src="/static/blog/mui-core-v5/data-grid.mp4" type="video/mp4" />
   </video>
 </a>
 
-<a href="/x/react-data-grid/demo/"><p class="blog-description">Check the Data Grid demo here.</p></a>
+<a href="/x/react-data-grid/features/"><p class="blog-description">Check the Data Grid demo here.</p></a>
 
 ### Date Picker
 
@@ -526,7 +526,7 @@ This release comes with eight new components!
 The development of the Grid was mostly put on hold for the last three years, blocked by the size of the statically generated CSS with JSS.
 The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following frequently requested changes:
 
-Support for [row & column](https://v5.mui.com/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
+Support for [row & column](https://v5.mui.com/material-ui/react-grid-legacy/#row-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />

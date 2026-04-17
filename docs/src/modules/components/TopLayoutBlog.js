@@ -7,17 +7,16 @@ import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
+import { MarkdownElement, RichMarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
 
 export const authors = {
   oliviertassinari: {
@@ -160,6 +159,16 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/159806370',
     github: 'nadjakovacev',
   },
+  raffaellaluzi: {
+    name: 'Raffaella Luzi',
+    avatar: 'https://avatars.githubusercontent.com/u/136349774',
+    github: 'rluzists1',
+  },
+  bernardobelchior: {
+    name: 'Bernardo Belchior',
+    avatar: 'https://avatars.githubusercontent.com/u/12778398',
+    github: 'bernardobelchior',
+  },
 };
 
 const classes = {
@@ -223,6 +232,7 @@ const Root = styled('div')(
         borderColor: (theme.vars || theme).palette.grey[200],
         borderRadius: 8,
         display: 'block',
+        objectFit: 'cover',
         margin: 'auto',
         marginBottom: 16,
       },

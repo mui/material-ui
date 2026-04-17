@@ -16,7 +16,7 @@ Some of the key features:
 - 📦 [1.1 kB gzipped](https://bundlephobia.com/package/@mui/material).
 - 🤖 It supports server-side rendering.
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Basic media query
 

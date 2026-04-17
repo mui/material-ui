@@ -1,4 +1,7 @@
 import type { Localization } from './utils/LocaleTextApi';
+import buildFormatNumber from './utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('ar-SD');
 
 export const arSD: Localization = {
   components: {
@@ -24,7 +27,7 @@ export const arSD: Localization = {
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
-          `${from}–${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+          `${formatNumber(from)}–${formatNumber(to)} من ${count !== -1 ? formatNumber(count) : ` أكثر من${formatNumber(to)}`}`,
       },
     },
     MuiRating: {
@@ -37,7 +40,7 @@ export const arSD: Localization = {
       defaultProps: {
         clearText: 'مسح',
         closeText: 'إغلاق',
-        loadingText: 'جار التحميل...',
+        loadingText: 'جار التحميل…',
         noOptionsText: 'لا يوجد خيارات',
         openText: 'فتح',
       },

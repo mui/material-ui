@@ -11,6 +11,7 @@
     "focusRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
+    "nativeButton": { "type": { "name": "bool" } },
     "onFocusVisible": { "type": { "name": "func" } },
     "sx": {
       "type": {
@@ -25,7 +26,8 @@
         "name": "union",
         "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
       }
-    }
+    },
+    "type": { "type": { "name": "string" }, "default": "'button'" }
   },
   "name": "ButtonBase",
   "imports": [

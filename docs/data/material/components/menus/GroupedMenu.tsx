@@ -25,7 +25,7 @@ export default function GroupedMenu() {
         id="basic-button"
         aria-controls={open ? 'grouped-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard

@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import contains from '@mui/utils/contains';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
@@ -40,12 +41,12 @@ export interface ClickAwayListenerProps {
    * This prop changes how portaled elements are handled.
    * @default false
    */
-  disableReactTree?: boolean;
+  disableReactTree?: boolean | undefined;
   /**
    * The mouse event to listen to. You can disable the listener by providing `false`.
    * @default 'onClick'
    */
-  mouseEvent?: ClickAwayMouseEventHandler | false;
+  mouseEvent?: ClickAwayMouseEventHandler | false | undefined;
   /**
    * Callback fired when a "click away" event is detected.
    */
@@ -54,7 +55,7 @@ export interface ClickAwayListenerProps {
    * The touch event to listen to. You can disable the listener by providing `false`.
    * @default 'onTouchEnd'
    */
-  touchEvent?: ClickAwayTouchEventHandler | false;
+  touchEvent?: ClickAwayTouchEventHandler | false | undefined;
 }
 
 /**
@@ -134,14 +135,8 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
       insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
-        !doc.documentElement.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        ) ||
-        nodeRef.current.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        );
+        !contains(doc.documentElement, event.target as Element) ||
+        contains(nodeRef.current, event.target as Element);
     }
 
     if (!insideDOM && (disableReactTree || !insideReactTree)) {
@@ -150,14 +145,16 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   });
 
   // Keep track of mouse/touch events that bubbled up through the portal.
-  const createHandleSynthetic = (handlerName: string) => (event: React.SyntheticEvent) => {
-    syntheticEventRef.current = true;
+  const createHandleSynthetic =
+    (handlerName: ClickAwayMouseEventHandler | ClickAwayTouchEventHandler) =>
+    (event: React.SyntheticEvent) => {
+      syntheticEventRef.current = true;
 
-    const childrenPropsHandler = children.props[handlerName];
-    if (childrenPropsHandler) {
-      childrenPropsHandler(event);
-    }
-  };
+      const childrenPropsHandler = children.props[handlerName];
+      if (childrenPropsHandler) {
+        childrenPropsHandler(event);
+      }
+    };
 
   const childrenProps: { ref: React.Ref<Element> } & Pick<
     React.DOMAttributes<Element>,

@@ -8,16 +8,20 @@ export interface InputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<InputClasses>;
+  classes?: Partial<InputClasses> | undefined;
   /**
    * If `true`, the `input` will not have an underline.
    * @default false
    */
-  disableUnderline?: boolean;
+  disableUnderline?: boolean | undefined;
+  /**
+   * @internal
+   */
+  notched?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

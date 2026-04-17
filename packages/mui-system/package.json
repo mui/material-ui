@@ -1,8 +1,9 @@
 {
   "name": "@mui/system",
-  "version": "7.3.5",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-system"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -24,38 +24,37 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
+    "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.29.2",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
-    "csstype": "^3.1.3",
+    "csstype": "^3.2.3",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/internal-test-utils": "workspace:^",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@mui/system": "workspace:*",
-    "@types/chai": "^5.2.3",
-    "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.2.7",
-    "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
-    "es-toolkit": "^1.39.10",
-    "fast-glob": "^3.3.3",
-    "react": "^19.2.0",
-    "sinon": "^21.0.0",
-    "styled-components": "^6.1.19"
+    "@types/chai": "5.2.3",
+    "@types/prop-types": "15.7.15",
+    "@types/react": "19.2.14",
+    "@types/sinon": "17.0.4",
+    "chai": "6.2.2",
+    "es-toolkit": "1.45.1",
+    "fast-glob": "3.3.3",
+    "react": "19.2.4",
+    "sinon": "21.0.3",
+    "styled-components": "6.3.12"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -84,6 +83,14 @@
   },
   "exports": {
     ".": "./src/index.js",
+    "./Box": "./src/Box/index.js",
+    "./Container": "./src/Container/index.js",
+    "./createBreakpoints": "./src/createBreakpoints/index.js",
+    "./createTheme": "./src/createTheme/index.js",
+    "./RtlProvider": "./src/RtlProvider/index.js",
+    "./styleFunctionSx": "./src/styleFunctionSx/index.js",
+    "./ThemeProvider": "./src/ThemeProvider/index.js",
+    "./useThemeProps": "./src/useThemeProps/index.js",
     "./*": "./src/*/index.ts"
   }
 }

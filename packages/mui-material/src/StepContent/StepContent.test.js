@@ -22,7 +22,7 @@ describe('<StepContent />', () => {
       );
       return { container: container.firstChild.firstChild, ...other };
     },
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
     slots: {
       transition: {
         expectedClassName: classes.transition,
@@ -66,15 +66,15 @@ describe('<StepContent />', () => {
       expect(collapse).not.to.equal(null);
     });
 
-    it('should use custom TransitionComponent', () => {
-      function TransitionComponent() {
+    it('should use custom transition slot', () => {
+      function CustomTransition() {
         return <div data-testid="custom-transition" />;
       }
 
       const { container } = render(
         <Stepper orientation="vertical">
           <Step>
-            <StepContent TransitionComponent={TransitionComponent}>
+            <StepContent slots={{ transition: CustomTransition }}>
               <div />
             </StepContent>
           </Step>

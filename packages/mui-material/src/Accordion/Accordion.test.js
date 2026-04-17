@@ -53,7 +53,6 @@ describe('<Accordion />', () => {
         testWithElement: 'div',
       },
     },
-    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render and not be controlled', () => {
@@ -80,7 +79,7 @@ describe('<Accordion />', () => {
 
   it('should be controlled', () => {
     const { container, setProps } = render(
-      <Accordion expanded TransitionComponent={NoTransition}>
+      <Accordion expanded slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
@@ -94,7 +93,7 @@ describe('<Accordion />', () => {
     const handleChange = spy();
 
     render(
-      <Accordion onChange={handleChange} TransitionComponent={NoTransition}>
+      <Accordion onChange={handleChange} slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
@@ -134,7 +133,7 @@ describe('<Accordion />', () => {
     expect(container.firstChild).to.have.class(classes.disabled);
   });
 
-  it('should handle the TransitionComponent prop', () => {
+  it('should handle the slots.transition prop', () => {
     function NoTransitionCollapse(props) {
       return props.in ? <div>{props.children}</div> : null;
     }
@@ -147,7 +146,7 @@ describe('<Accordion />', () => {
       return <div>Hello</div>;
     }
     const { setProps } = render(
-      <Accordion expanded TransitionComponent={NoTransitionCollapse}>
+      <Accordion expanded slots={{ transition: NoTransitionCollapse }}>
         <AccordionSummary />
         <CustomContent />
       </Accordion>,
@@ -221,7 +220,7 @@ describe('<Accordion />', () => {
 
   it('should warn when switching from controlled to uncontrolled', () => {
     const { setProps } = render(
-      <Accordion expanded TransitionComponent={NoTransition}>
+      <Accordion expanded slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
@@ -233,7 +232,7 @@ describe('<Accordion />', () => {
 
   it('should warn when switching between uncontrolled to controlled', () => {
     const { setProps } = render(
-      <Accordion TransitionComponent={NoTransition}>{minimalChildren}</Accordion>,
+      <Accordion slots={{ transition: NoTransition }}>{minimalChildren}</Accordion>,
     );
 
     expect(() => setProps({ expanded: true })).toErrorDev(
@@ -241,10 +240,10 @@ describe('<Accordion />', () => {
     );
   });
 
-  describe('prop: TransitionProps', () => {
+  describe('slotProps.transition', () => {
     it('should apply properties to the Transition component', () => {
       render(
-        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+        <Accordion slotProps={{ transition: { 'data-testid': 'transition-testid' } }}>
           {minimalChildren}
         </Accordion>,
       );

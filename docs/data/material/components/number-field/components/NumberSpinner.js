@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { NumberField as BaseNumberField } from '@base-ui-components/react/number-field';
+import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';

@@ -17,7 +17,7 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
@@ -71,6 +71,8 @@ This example is similar to the regular horizontal stepper, except steps are no l
 The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed`
 flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
+
+Actionable steps mean that they control the content update of a section. From an accessibility standpoint, this means that each `StepButton` requires an `aria-controls` attribute pointing at the content section element.
 
 {{"demo": "HorizontalNonLinearStepper.js"}}
 

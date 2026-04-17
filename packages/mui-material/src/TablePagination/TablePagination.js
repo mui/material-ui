@@ -17,6 +17,9 @@ import TablePaginationActions from '../TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import useSlot from '../utils/useSlot';
+import buildFormatNumber from '../locale/utils/buildFormatNumber';
+
+const formatNumber = buildFormatNumber('en-US');
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
@@ -114,7 +117,7 @@ const TablePaginationDisplayedRows = styled('p', {
 );
 
 function defaultLabelDisplayedRows({ from, to, count }) {
-  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+  return `${formatNumber(from)}–${formatNumber(to)} of ${count !== -1 ? formatNumber(count) : `more than ${formatNumber(to)}`}`;
 }
 
 function defaultGetAriaLabel(type) {
@@ -146,7 +149,6 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const props = useDefaultProps({ props: inProps, name: 'MuiTablePagination' });
   const {
     ActionsComponent = TablePaginationActions,
-    backIconButtonProps,
     colSpan: colSpanProp,
     component = TableCell,
     count,
@@ -154,13 +156,11 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
-    nextIconButtonProps,
     onPageChange,
     onRowsPerPageChange,
     page,
     rowsPerPage,
     rowsPerPageOptions = [10, 25, 50, 100],
-    SelectProps = {},
     showFirstButton = false,
     showLastButton = false,
     slotProps = {},
@@ -171,7 +171,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
-  const selectProps = slotProps?.select ?? SelectProps;
+  const selectProps =
+    typeof slotProps?.select === 'function'
+      ? slotProps.select(ownerState)
+      : (slotProps?.select ?? {});
 
   const MenuItemComponent = selectProps.native ? 'option' : TablePaginationMenuItem;
 
@@ -302,9 +305,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
         </DisplayedRows>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={backIconButtonProps}
           count={count}
-          nextIconButtonProps={nextIconButtonProps}
           onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
@@ -331,13 +332,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default TablePaginationActions
    */
   ActionsComponent: PropTypes.elementType,
-  /**
-   * Props applied to the back arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) component.
-   *
-   * This prop is an alias for `slotProps.actions.previousButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.previousButton` instead.
-   */
-  backIconButtonProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -380,7 +374,7 @@ TablePagination.propTypes /* remove-proptypes */ = {
    *
    * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }) {
-   *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
+   *   return `${formatNumber(from)}–${formatNumber(to)} of ${count !== -1 ? formatNumber(count) : `more than ${formatNumber(to)}`}`;
    * }
    */
   labelDisplayedRows: PropTypes.func,
@@ -391,13 +385,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,
-  /**
-   * Props applied to the next arrow [`IconButton`](https://mui.com/material-ui/api/icon-button/) element.
-   *
-   * This prop is an alias for `slotProps.actions.nextButton` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.actions.nextButton` instead.
-   */
-  nextIconButtonProps: PropTypes.object,
   /**
    * Callback fired when the page is changed.
    *
@@ -451,15 +438,6 @@ TablePagination.propTypes /* remove-proptypes */ = {
       }),
     ]).isRequired,
   ),
-  /**
-   * Props applied to the rows per page [`Select`](https://mui.com/material-ui/api/select/) element.
-   *
-   * This prop is an alias for `slotProps.select` and will be overridden by it if both are used.
-   * @deprecated Use `slotProps.select` instead.
-   *
-   * @default {}
-   */
-  SelectProps: PropTypes.object,
   /**
    * If `true`, show the first-page button.
    * @default false

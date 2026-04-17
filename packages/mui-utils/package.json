@@ -1,8 +1,9 @@
 {
   "name": "@mui/utils",
-  "version": "7.3.5",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-utils"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -24,33 +24,32 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
+    "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.4",
+    "@babel/runtime": "^7.29.2",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.0"
+    "react-is": "^19.2.4"
   },
   "devDependencies": {
-    "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@types/chai": "^5.2.3",
-    "@types/node": "^20.19.25",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "@types/react-is": "^19.2.0",
-    "@types/sinon": "^17.0.4",
-    "chai": "^6.0.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "sinon": "^21.0.0"
+    "@types/chai": "5.2.3",
+    "@types/node": "20.19.37",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/react-is": "19.2.0",
+    "@types/sinon": "17.0.4",
+    "chai": "6.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sinon": "21.0.3"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

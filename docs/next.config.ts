@@ -2,11 +2,12 @@
 import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
+import * as semver from 'semver';
+// @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
-import { Configuration } from 'webpack';
-import { findPages, NextJSPage } from './src/modules/utils/find';
+import { findPages } from './src/modules/utils/find';
 import { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
@@ -26,8 +27,7 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  webpack: (config: Configuration, options): Configuration => {
-    config.plugins ??= [];
+  webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
@@ -54,16 +54,11 @@ export default withDocsInfra({
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      if (!Array.isArray(config.externals)) {
-        throw new Error('Expected externals to be an array');
-      }
       const externals = config.externals.slice(0, -1);
       const nextExternals = config.externals.at(-1);
-      if (typeof nextExternals !== 'function') {
-        throw new Error('Expected externals to be a function');
-      }
 
       config.externals = [
+        // @ts-ignore
         (ctx, callback) => {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
@@ -71,7 +66,7 @@ export default withDocsInfra({
             // Assume any X dependencies depend on a package defined in this repository.
             '@mui/x-',
             '@toolpad/core',
-          ].some((dep) => request?.startsWith(dep));
+          ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -82,17 +77,10 @@ export default withDocsInfra({
       ];
     }
 
-    config.module ??= {};
-    config.module.rules ??= [];
+    // @ts-ignore
     config.module.rules.forEach((rule) => {
-      if (rule && typeof rule === 'object') {
-        rule.resourceQuery = { not: [/raw/] };
-      }
+      rule.resourceQuery = { not: [/raw/] };
     });
-
-    config.resolve ??= {};
-    config.resolve.alias ??= {};
-    config.resolve.extensions ??= [];
 
     return {
       ...config,
@@ -111,12 +99,12 @@ export default withDocsInfra({
           ),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
 
-          '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
+          '@mui/internal-core-docs': path.resolve(workspaceRoot, 'packages-internal/core-docs/src'),
           '@mui/icons-material$': path.resolve(
             workspaceRoot,
-            'packages/mui-icons-material/lib/esm/index.js',
+            'packages/mui-icons-material/lib/index.mjs',
           ),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
+          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
           '@mui/system/package.json': path.resolve(
@@ -127,12 +115,14 @@ export default withDocsInfra({
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-          '@mui/joy/package.json': path.resolve(workspaceRoot, 'packages/mui-joy/package.json'),
-          '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
+          '.mjs',
           '.tsx',
-          ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
+          // @ts-ignore
+          ...config.resolve.extensions.filter(
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
+          ),
         ],
       },
       module: {
@@ -158,10 +148,6 @@ export default withDocsInfra({
                             path.join(workspaceRoot, 'packages/mui-lab/src'),
                             path.join(workspaceRoot, 'packages/mui-material/src'),
                           ],
-                        },
-                        {
-                          productId: 'joy-ui',
-                          paths: [path.join(workspaceRoot, 'packages/mui-joy/src')],
                         },
                       ],
                       env: {
@@ -197,16 +183,15 @@ export default withDocsInfra({
   env: {
     // docs-infra
     LIB_VERSION: pkg.version,
+    SEARCH_INDEX: `material-ui-v${semver.major(pkg.version)}`,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
-    GITHUB_AUTH: process.env.GITHUB_AUTH
-      ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
-      : '',
+    GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
-    MUI_CHAT_SCOPES: process.env.DEPLOY_ENV === 'production' ? '' : 'material-ui', // Use comma separated list of `productId` (see `_app.js`) to enable MUI Chat on demos
+    MUI_CHAT_SCOPES: 'material-ui', // Use comma separated list of `productId` (see `_app.js`) to enable MUI Chat on demos
   },
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
@@ -214,13 +199,16 @@ export default withDocsInfra({
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
+  // @ts-ignore
   exportPathMap: () => {
     const pages = findPages();
-    const map: Record<string, { page: string; query: { userLanguage: string } }> = {};
+    const map = {};
 
-    function traverse(pages2: NextJSPage[], userLanguage: string) {
+    // @ts-ignore
+    function traverse(pages2, userLanguage) {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
+      // @ts-ignore
       pages2.forEach((page) => {
         // The experiments pages are only meant for experiments, they shouldn't leak to production.
         if (
@@ -237,6 +225,7 @@ export default withDocsInfra({
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
           // ii: /*/api-docs/* > /*/api/* (for new structure)
+          // @ts-ignore
           map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
             page: page.pathname,
             query: {
@@ -266,15 +255,6 @@ export default withDocsInfra({
 
     return map;
   },
-  redirects: async () => {
-    return [
-      {
-        source: '/base-ui/',
-        destination: 'https://base-ui.com',
-        permanent: true,
-      },
-    ];
-  },
   // Used to signal we run pnpm build
   ...(process.env.NODE_ENV === 'production'
     ? {
@@ -288,6 +268,15 @@ export default withDocsInfra({
             // Make sure to include the trailing slash if `trailingSlash` option is set
             { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
+          ];
+        },
+        redirects: async () => {
+          return [
+            {
+              source: '/base-ui/',
+              destination: 'https://base-ui.com',
+              permanent: true,
+            },
           ];
         },
       }),

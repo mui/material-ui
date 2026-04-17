@@ -8,28 +8,30 @@ components: Button, IconButton, InputLabel, FormControl, FormLabel, FormHelperTe
 
 <p class="description">A React component for capturing numeric input from users.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
-Number Field is _not_ a built-in `@mui/material` component—it's composed of a [Base UI Number Field](https://base-ui.com/react/components/number-field) and styled to align with Material UI specs.
+A number field is an input with increment and decrement buttons for capturing numeric input from users.
+
+Material UI does not include a number field component out of the box, but this page provides components composed with the [Base UI `NumberField`](https://base-ui.com/react/components/number-field) and styled to align with Material Design (MD2) specifications, so they can be used with Material UI.
 
 As such, you must install Base UI before proceeding.
 The examples that follow can then be copied and pasted directly into your app.
 Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
 
-<!-- #npm-tag-reference -->
+## Installation
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @base-ui-components/react
+npm install @base-ui/react
 ```
 
 ```bash pnpm
-pnpm add @base-ui-components/react
+pnpm add @base-ui/react
 ```
 
 ```bash yarn
-yarn add @base-ui-components/react
+yarn add @base-ui/react
 ```
 
 </codeblock>
@@ -43,7 +45,8 @@ yarn add @base-ui-components/react
 
 ## Outlined field
 
-The outlined field component uses [text-field composition](/material-ui/react-text-field/#components) with end adornments for the increment and decrement buttons.
+The outlined field uses the same building-block components as Material UI's outlined `TextField`—`FormControl`, `OutlinedInput`, `InputLabel`, and `FormHelperText`—with end adornments for the increment and decrement buttons.
+See [Text Field—Components](/material-ui/react-text-field/#components) for more details.
 
 {{"demo": "FieldDemo.js"}}
 
@@ -58,4 +61,4 @@ This is ideal for touch devices and narrow ranges of values.
 
 See the documentation below for a complete reference to all of the props.
 
-- [`<NumberField />`](https://base-ui.com/react/components/number-field#api-reference)
+- [`NumberField`](https://base-ui.com/react/components/number-field#api-reference)

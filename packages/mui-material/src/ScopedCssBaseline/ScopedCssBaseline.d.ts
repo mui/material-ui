@@ -12,17 +12,17 @@ export interface ScopedCssBaselineOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ScopedCssBaselineClasses>;
+  classes?: Partial<ScopedCssBaselineClasses> | undefined;
   /**
    * Enable `color-scheme` CSS property to use `theme.palette.mode`.
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    */
-  enableColorScheme?: boolean;
+  enableColorScheme?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface ScopedCssBaselineTypeMap<
@@ -48,7 +48,7 @@ export type ScopedCssBaselineProps<
   RootComponent extends React.ElementType = ScopedCssBaselineTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ScopedCssBaselineTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 /**

@@ -1,12 +1,14 @@
 import { expect } from 'chai';
-import { createRenderer, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import {
   alpha as systemAlpha,
   lighten as systemLighten,
   darken as systemDarken,
 } from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
@@ -781,5 +783,58 @@ describe('createTheme', () => {
         'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
       );
     });
+
+    it('should not warn about channel token if nativeColor is used and custom palette colors are provided', () => {
+      expect(() =>
+        createTheme({
+          cssVariables: { nativeColor: true },
+          palette: {
+            divider: 'var(--mui-palette-divider)',
+            background: {
+              default: 'var(--mui-palette-background-default)',
+              paper: 'var(--mui-palette-background-paper)',
+            },
+          },
+        }),
+      ).not.toWarnDev();
+    });
   });
+
+  // Skip WebKit and firefox because they have a slightly different value
+  it.skipIf(isJSDOM || !/chrome/.test(window.navigator.userAgent))(
+    'should build color-mix() on top of generated Material UI CSS variables',
+    () => {
+      function App() {
+        const theme = createTheme({
+          cssVariables: {
+            nativeColor: true,
+          },
+        });
+
+        return (
+          <ThemeProvider theme={theme}>
+            {/* This is just to replicate the global CSS file */}
+            <GlobalStyles
+              styles={{
+                ':root': {
+                  '--mui-palette-info-main': '#d3b613 !important', // !important is to take precedence over the default one. This is just for test, in real world case global CSS file should be used.
+                  '--mui-palette-info-light': '#dfc21f !important',
+                },
+              }}
+            />
+
+            <Alert variant="standard" severity="info" data-testid="alert">
+              Alert
+            </Alert>
+          </ThemeProvider>
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByTestId('alert')).toHaveComputedStyle({
+        backgroundColor: 'oklch(0.981465 0.01628 97.7526)', // browser converts color-mix to oklch in window.getComputedStyle()
+      });
+    },
+  );
 });

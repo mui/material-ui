@@ -9,12 +9,13 @@ permissions: {}
 jobs:
   mark-duplicate:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.issue.pull_request }}
     permissions:
       contents: read
       issues: write
     steps:
       - name: Mark duplicate
-        uses: actions-cool/issues-helper@9861779a695cf1898bd984c727f685f351cfc372 # v3.7.2
+        uses: actions-cool/issues-helper@200c78641dbf33838311e5a1e0c31bbdb92d7cf0 # v3.8.0
         with:
           actions: 'mark-duplicate'
           token: ${{ secrets.GITHUB_TOKEN }}

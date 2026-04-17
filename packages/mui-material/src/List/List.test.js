@@ -16,7 +16,6 @@ describe('<List />', () => {
     muiName: 'MuiList',
     refInstanceof: window.HTMLUListElement,
     testVariantProps: { disablePadding: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render with padding classes', () => {

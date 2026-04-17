@@ -27,7 +27,6 @@ describe('<FormControl />', () => {
     testComponentPropWith: 'fieldset',
     muiName: 'MuiFormControl',
     testVariantProps: { margin: 'dense' },
-    skip: ['componentsProp'],
   }));
 
   describe('initial state', () => {
