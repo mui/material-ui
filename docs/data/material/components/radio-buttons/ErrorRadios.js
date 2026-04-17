@@ -15,6 +15,7 @@ export default function ErrorRadios() {
   const handleRadioChange = (event) => {
     setValue(event.target.value);
     setError(false);
+    setHelperText('Choose wisely');
   };
 
   const handleSubmit = (event) => {
