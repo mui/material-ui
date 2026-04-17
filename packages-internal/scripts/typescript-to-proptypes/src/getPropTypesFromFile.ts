@@ -28,12 +28,108 @@ function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
   return new Set(declarations.map((declaration) => declaration.getSourceFile().fileName));
 }
 
+/**
+ * Flatten UnionType into array of stringified constituent types.
+ */
+function flattenUnionTypes(type: any): string[] {
+  if (type?.type === 'UnionType') {
+    return type.elements.flatMap(flattenUnionTypes);
+  }
+  const s = stringifyDoctrineType(type);
+  return s ? [s] : [];
+}
+
+/**
+ * Stringifies a doctrine JSDoc type AST node back to source form.
+ * Output is consumed by `flattenUnionTypes` as a counter input for
+ * `pickCoveringJSDoc` — exact form does not reach generated output, only
+ * its presence/count matters. Empty string signals "unhandled" and is
+ * filtered upstream.
+ *
+ * TODO: extend to cover remaining doctrine node kinds when encountered in
+ * real-world JSDoc. Unhandled kinds currently collapse to ''.
+ */
+function stringifyDoctrineType(type: any): string {
+  if (!type) {
+    return '';
+  }
+  switch (type.type) {
+    case 'NameExpression':
+      return type.name;
+    case 'UnionType':
+      return type.elements.map(stringifyDoctrineType).join(' | ');
+    case 'TypeApplication':
+      return `${stringifyDoctrineType(type.expression)}<${type.applications.map(stringifyDoctrineType).join(', ')}>`;
+    case 'OptionalType':
+      return `${stringifyDoctrineType(type.expression)}=`;
+    case 'NullableType':
+      return `?${stringifyDoctrineType(type.expression)}`;
+    case 'NonNullableType':
+      return `!${stringifyDoctrineType(type.expression)}`;
+    case 'RestType':
+      return `...${stringifyDoctrineType(type.expression)}`;
+    case 'ArrayType':
+      return `[${type.elements.map(stringifyDoctrineType).join(', ')}]`;
+    case 'AllLiteral':
+      return '*';
+    case 'NullLiteral':
+      return 'null';
+    case 'UndefinedLiteral':
+      return 'undefined';
+    case 'VoidLiteral':
+      return 'void';
+    default:
+      return '';
+  }
+}
+
+/**
+ * Pick the most-covering JSDoc comment among several declarations.
+ * "Most covering" = highest count of union-constituent types across all `@param`
+ * tags. Matches VS Code hover semantics which displays the richer overload.
+ * Ties fall back to the first (for declaration merging) or last (for intersection).
+ */
+function pickCoveringJSDoc(comments: string[], tieBreak: 'first' | 'last'): string {
+  if (comments.length === 0) {
+    return '';
+  }
+  if (comments.length === 1) {
+    return comments[0];
+  }
+  const parsed = comments.map((c) =>
+    doctrine.parse(
+      `/**\n${c
+        .split('\n')
+        .map((l) => ` * ${l}`)
+        .join('\n')}\n */`,
+      { unwrap: true },
+    ),
+  );
+  const paramTypeCount = (p: (typeof parsed)[number]) =>
+    p.tags
+      .filter((t) => t.title === 'param')
+      .reduce((sum, t) => sum + (t.type ? flattenUnionTypes(t.type).length : 0), 0);
+
+  let bestIndex = 0;
+  let bestCount = paramTypeCount(parsed[0]);
+  for (let i = 1; i < parsed.length; i += 1) {
+    const count = paramTypeCount(parsed[i]);
+    if (tieBreak === 'last' ? count >= bestCount : count > bestCount) {
+      bestIndex = i;
+      bestCount = count;
+    }
+  }
+  return comments[bestIndex];
+}
+
 function getSymbolDocumentation({
   symbol,
   project,
+  parentType,
 }: {
   symbol: ts.Symbol | undefined;
   project: TypeScriptProject;
+  parentType?: ts.Type;
 }): string | undefined {
   if (symbol === undefined) {
     return undefined;
@@ -45,37 +141,31 @@ function getSymbolDocumentation({
     // It is a complex logic that changes based on the kind of declarations.
     // There is an open issue for it in: https://github.com/microsoft/TypeScript/issues/30901
     //
-    // The symbol may have multiple declarations in several scenarios:
-    // 1. Intersection (type C = A & B): one declaration per constituent type
-    // 2. Interface extends (interface Z extends X, Y): single declaration from the original interface
-    // 3. Interface override (interface W extends X { prop }): single declaration from the overriding interface
-    // 4. Declaration merging / module augmentation: one declaration per interface opening
-    //
-    // In all cases we use the last declaration that has JSDoc. This is consistent with
-    // squashPropTypeDefinitions and avoids duplicated descriptions when multiple
-    // declarations carry different JSDoc (e.g. module augmentation overriding
-    // the original, or intersection types where the last constituent's JSDoc
-    // is the most specific).
-    const declarationsWithComments = decl
+    // Matches VS Code hover behavior:
+    // 1. Intersection (type C = A & B): append unique JSDoc from all constituents
+    // 2. Interface extends (interface Z extends X, Y): single declaration, use it
+    // 3. Interface override (interface W extends X { prop }): single declaration, use it
+    // 4. Declaration merging / module augmentation: first declaration that has JSDoc wins
+    const comments = decl
       .map((d) => {
         const jsDocNodes = ts.getJSDocCommentsAndTags(d).filter((node) => ts.isJSDoc(node));
-        const comment =
-          jsDocNodes.length > 0
-            ? doctrine.unwrapComment(jsDocNodes[0].getText()).trim()
-            : undefined;
-        return { declaration: d, comment };
+        return jsDocNodes.length > 0
+          ? doctrine.unwrapComment(jsDocNodes[0].getText()).trim()
+          : undefined;
       })
-      .filter(
-        (item): item is { declaration: ts.Declaration; comment: string } =>
-          item.comment !== undefined,
-      );
+      .filter((c): c is string => c !== undefined);
 
-    if (declarationsWithComments.length > 0) {
-      // Use the last declaration that has JSDoc. This handles:
-      // - Declaration merging / module augmentation: augmentation wins
-      // - Intersection types: last constituent wins (consistent with squashPropTypeDefinitions)
-      // - Interface extends / override: override wins (single declaration)
-      return declarationsWithComments[declarationsWithComments.length - 1].comment;
+    if (comments.length > 0) {
+      if (comments.length === 1) {
+        return comments[0];
+      }
+
+      // Pick the declaration with the most-covering JSDoc (richest @param
+      // signature), matching how VS Code hover shows overloaded signatures.
+      // For intersections, ties resolve to the last constituent (override semantics);
+      // for declaration merging / extends, ties resolve to the first.
+      const tieBreak = parentType && parentType.isIntersection() ? 'last' : 'first';
+      return pickCoveringJSDoc(comments, tieBreak);
     }
   }
 
@@ -424,16 +514,18 @@ function checkSymbol({
   symbol,
   location,
   typeStack,
+  parentType,
 }: {
   project: PropTypesProject;
   symbol: ts.Symbol;
   location: ts.Node;
   typeStack: readonly number[];
+  parentType?: ts.Type;
 }): PropTypeDefinition {
   const declarations = symbol.getDeclarations();
   const declaration = declarations && declarations[0];
   const symbolFilenames = getSymbolFileNames(symbol);
-  const jsDoc = getSymbolDocumentation({ symbol, project });
+  const jsDoc = getSymbolDocumentation({ symbol, project, parentType });
 
   // TypeChecker keeps the name for
   // { a: React.ElementType, b: React.ReactElement | boolean }
@@ -613,6 +705,7 @@ function generatePropTypesFromNode(
         project: params.project,
         location: parsedComponent.location,
         typeStack: [(componentType as any).id],
+        parentType: componentType,
       }),
     );
 
