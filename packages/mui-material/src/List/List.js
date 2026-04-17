@@ -149,6 +149,14 @@ List.propTypes /* remove-proptypes */ = {
    */
   disablePadding: PropTypes.bool,
   /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * The content of the subheader, normally `ListSubheader`.
    */
   subheader: PropTypes.node,
