@@ -131,6 +131,8 @@ export const SliderRail = styled('span', {
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
+  border: '1px solid transparent',
+  boxSizing: 'border-box',
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -271,6 +273,7 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
+    border: '1px solid transparent',
     variants: [
       {
         props: { size: 'small' },
