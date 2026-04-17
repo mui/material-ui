@@ -275,11 +275,12 @@ export default function createCssVarsProvider(options) {
             ? setMode
             : (newMode) => {
                 if (memoTheme.colorSchemeSelector === 'media') {
+                  // #host-reference
                   console.error(
                     [
                       'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).',
                       'To toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.',
-                      'To learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
+                      'To learn more, visit https://v7.mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
                     ].join('\n'),
                   );
                 }
