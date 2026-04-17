@@ -14,7 +14,6 @@ export default function ErrorRadios() {
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
-    setHelperText(' ');
     setError(false);
   };
 
