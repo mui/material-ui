@@ -11,7 +11,7 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import radioClasses from '../Radio/radioClasses';
 import sliderClasses from '../Slider/sliderClasses';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
-import createTheme from './createTheme';
+import { ThemeOptions } from './createTheme';
 
 export interface HighContrastTokens {
   /** Color for disabled elements. Default: `'GrayText'` */
@@ -44,7 +44,7 @@ const hcm = '@media (forced-colors: active)';
  * Creates a theme with styles for Windows High Contrast Mode (forced-colors).
  *
  * @param tokens - Override any of the default system color tokens.
- * @returns A MUI theme object to be merged with your own theme.
+ * @returns A `ThemeOptions` object to pass into `createTheme`.
  *
  * @example
  * // Use defaults
@@ -54,9 +54,9 @@ const hcm = '@media (forced-colors: active)';
  * // Override specific tokens
  * const theme = createTheme(createHighContrastTheme({ disabled: 'ButtonText' }));
  */
-export default function createHighContrastTheme(tokens?: HighContrastTokens) {
+export default function createHighContrastTheme(tokens?: HighContrastTokens): ThemeOptions {
   const hcTokens = { ...defaultHcTokens, ...tokens };
-  return createTheme({
+  return {
     components: {
       MuiAutocomplete: {
         styleOverrides: {
@@ -327,5 +327,5 @@ export default function createHighContrastTheme(tokens?: HighContrastTokens) {
         },
       },
     },
-  });
+  };
 }
