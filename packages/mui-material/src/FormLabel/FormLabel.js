@@ -62,16 +62,16 @@ export const FormLabelRoot = styled('label', {
       {
         props: {},
         style: {
-          [`&.${formLabelClasses.disabled}`]: {
-            color: (theme.vars || theme).palette.text.disabled,
-            '@media (forced-colors: active)': {
-              color: 'GrayText',
-            },
-          },
           [`&.${formLabelClasses.error}`]: {
             color: (theme.vars || theme).palette.error.main,
             '@media (forced-colors: active)': {
               color: 'mark',
+            },
+          },
+          [`&.${formLabelClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.text.disabled,
+            '@media (forced-colors: active)': {
+              color: 'GrayText',
             },
           },
         },
