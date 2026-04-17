@@ -8,7 +8,7 @@
       "description": "If <code>true</code>, the first option is automatically highlighted."
     },
     "autoSelect": {
-      "description": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using the <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option."
+      "description": "If <code>true</code>, the value is updated when the input loses focus under one of these conditions:<br>- An option highlighted via keyboard navigation or <code>autoHighlight</code> is selected.   Hover and touch highlights are ignored. - Otherwise, in <code>freeSolo</code> mode, the typed text becomes the value."
     },
     "blurOnSelect": {
       "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
