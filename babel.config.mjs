@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-// @ts-ignore
 import getBaseConfig from '@mui/internal-code-infra/babel-config';
 
 /**
