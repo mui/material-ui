@@ -3,7 +3,7 @@
   "version": "9.0.0",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
-  "license": "MIT",
+  "license": "MIT AND Apache-2.0",
   "main": "./src/index.js",
   "keywords": [
     "react",
