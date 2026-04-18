@@ -15,6 +15,7 @@ import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useSlot from '../utils/useSlot';
+import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 
 const DialogBackdrop = styled(Backdrop, {
   name: 'MuiDialog',
@@ -319,7 +320,16 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.paper, PaperProps.className),
+    className: classes.paper,
+    additionalProps: {
+      elevation: 24,
+      role,
+      'aria-describedby': ariaDescribedby,
+      'aria-labelledby': ariaLabelledby,
+      'aria-modal': ariaModal,
+      tabIndex: -1,
+      [FOCUSABLE_ATTRIBUTE]: '',
+    },
   });
 
   const [ContainerSlot, containerSlotProps] = useSlot('container', {
@@ -363,15 +373,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
         <ContainerSlot onMouseDown={handleMouseDown} {...containerSlotProps}>
-          <PaperSlot
-            as={PaperComponent}
-            elevation={24}
-            role={role}
-            aria-describedby={ariaDescribedby}
-            aria-labelledby={ariaLabelledby}
-            aria-modal={ariaModal}
-            {...paperSlotProps}
-          >
+          <PaperSlot as={PaperComponent} {...paperSlotProps}>
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </PaperSlot>
         </ContainerSlot>
