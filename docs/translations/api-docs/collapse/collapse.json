@@ -1,8 +1,12 @@
 {
-  "componentDescription": "The Collapse transition is used by the\n[Vertical Stepper](/material-ui/react-stepper/#vertical-stepper) StepContent component.\nIt uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.",
+  "componentDescription": "The Collapse transition is used by the\n[Vertical Stepper](/material-ui/react-stepper/#vertical-stepper) StepContent component.",
   "propDescriptions": {
     "addEndListener": {
-      "description": "Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided."
+      "description": "Add a custom transition end trigger. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
+      "typeDescriptions": {
+        "node": { "name": "node", "description": "The transitioning DOM node." },
+        "done": { "name": "done", "description": "Call to indicate the transition is finished." }
+      }
     },
     "children": { "description": "The content node to be collapsed." },
     "classes": { "description": "Override or extend the styles applied to the component." },

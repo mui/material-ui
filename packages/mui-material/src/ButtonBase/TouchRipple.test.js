@@ -29,6 +29,9 @@ describe('<TouchRipple />', () => {
 
     return {
       instance: touchRippleRef.current,
+      queryAllRipples() {
+        return container.querySelectorAll('.ripple');
+      },
       queryAllActiveRipples() {
         return container.querySelectorAll('.ripple-visible .child:not(.child-leaving)');
       },
@@ -117,6 +120,57 @@ describe('<TouchRipple />', () => {
 
     expect(queryAllActiveRipples()).to.have.lengthOf(0);
     expect(queryAllStoppingRipples()).to.have.lengthOf(3);
+  });
+
+  it('keeps exiting ripples in place when a new ripple starts', () => {
+    const { instance, queryAllRipples, queryAllActiveRipples, queryAllStoppingRipples } =
+      renderTouchRipple();
+
+    act(() => {
+      instance.start({ clientX: 1, clientY: 1 }, { fakeElement: true }, cb);
+      instance.start({ clientX: 2, clientY: 2 }, { fakeElement: true }, cb);
+    });
+
+    act(() => {
+      instance.stop({ type: 'mouseup' });
+    });
+
+    act(() => {
+      instance.start({ clientX: 3, clientY: 3 }, { fakeElement: true }, cb);
+    });
+
+    const ripples = queryAllRipples();
+
+    expect(ripples).to.have.lengthOf(3);
+    expect(queryAllActiveRipples()).to.have.lengthOf(2);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(1);
+    expect(ripples[0].querySelector('.child')).to.have.class('child-leaving');
+    expect(ripples[2].querySelector('.child')).not.to.have.class('child-leaving');
+  });
+
+  it('renders a new ripple before fully exiting groups', () => {
+    const { instance, queryAllRipples, queryAllActiveRipples, queryAllStoppingRipples } =
+      renderTouchRipple();
+
+    act(() => {
+      instance.start({ clientX: 1, clientY: 1 }, { fakeElement: true }, cb);
+    });
+
+    act(() => {
+      instance.stop({ type: 'mouseup' });
+    });
+
+    act(() => {
+      instance.start({ clientX: 2, clientY: 2 }, { fakeElement: true }, cb);
+    });
+
+    const ripples = queryAllRipples();
+
+    expect(ripples).to.have.lengthOf(2);
+    expect(queryAllActiveRipples()).to.have.lengthOf(1);
+    expect(queryAllStoppingRipples()).to.have.lengthOf(1);
+    expect(ripples[0].querySelector('.child')).not.to.have.class('child-leaving');
+    expect(ripples[1].querySelector('.child')).to.have.class('child-leaving');
   });
 
   describe('creating unique ripples', () => {

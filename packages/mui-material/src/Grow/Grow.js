@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useTimeout from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
-import { Transition } from 'react-transition-group';
+import Transition from '../Transition/Transition';
 import { useTheme } from '../zero-styled';
 import {
   normalizedTransitionCallback,
@@ -30,7 +30,6 @@ const hiddenStyles = { opacity: 0, transform: getScale(0.75), visibility: 'hidde
 /**
  * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
  * [Popover](/material-ui/react-popover/) components.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
@@ -154,7 +153,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       timer.start(autoTimeout.current || 0, next);
     }
     if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
@@ -201,9 +199,12 @@ Grow.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Allows for more fine grained transition end logic.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call to indicate the transition is finished.
    */
   addEndListener: PropTypes.func,
   /**

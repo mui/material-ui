@@ -1,9 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
+import Transition from '../Transition/Transition';
 import { useTheme } from '../zero-styled';
 import {
   normalizedTransitionCallback,
@@ -24,7 +24,6 @@ const hiddenStyles = { opacity: 0, visibility: 'hidden' };
 
 /**
  * The Fade transition is used by the [Modal](/material-ui/react-modal/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
   const theme = useTheme();
@@ -104,7 +103,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 
   const handleAddEndListener = (next) => {
     if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
@@ -151,9 +149,12 @@ Fade.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Allows for more fine grained transition end logic.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call to indicate the transition is finished.
    */
   addEndListener: PropTypes.func,
   /**

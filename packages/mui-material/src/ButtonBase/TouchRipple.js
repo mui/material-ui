@@ -1,16 +1,55 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
+import useOnMount from '@mui/utils/useOnMount';
 import useTimeout from '@mui/utils/useTimeout';
 import { keyframes, styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
+import useEventCallback from '../utils/useEventCallback';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
+
+/**
+ * Preserves TransitionGroup's sibling ordering: leaving ripples keep their
+ * relative position, while newly active ripples move ahead of fully exiting
+ * groups so the latest interaction remains topmost.
+ */
+function mergeRippleOrder(prevOrder, nextActiveKeys) {
+  const nextKeySet = new Set(nextActiveKeys);
+  const nextKeysPending = new Map();
+  let pendingKeys = [];
+
+  for (const prevKey of prevOrder) {
+    if (nextKeySet.has(prevKey)) {
+      if (pendingKeys.length > 0) {
+        nextKeysPending.set(prevKey, pendingKeys);
+        pendingKeys = [];
+      }
+    } else {
+      pendingKeys.push(prevKey);
+    }
+  }
+
+  const nextOrder = [];
+
+  for (const nextKey of nextActiveKeys) {
+    const pendingBefore = nextKeysPending.get(nextKey);
+
+    if (pendingBefore) {
+      nextOrder.push(...pendingBefore);
+    }
+
+    nextOrder.push(nextKey);
+  }
+
+  nextOrder.push(...pendingKeys);
+
+  return nextOrder;
+}
 
 const enterKeyframe = keyframes`
   0% {
@@ -122,9 +161,21 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
 
   const { center: centerProp = false, classes = {}, className, ...other } = props;
-  const [ripples, setRipples] = React.useState([]);
+  // Each ripple is stored as data rather than JSX. `exiting` drives the
+  // Ripple child's `in` prop; Ripple schedules its own onExited timeout
+  // which flushes the entry below from state.
+  const [rippleState, setRippleState] = React.useState({ items: [], order: [] });
+  const ripples = rippleState.items;
   const nextKey = React.useRef(0);
   const rippleCallback = React.useRef(null);
+  const mountedRef = React.useRef(false);
+
+  useOnMount(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  });
 
   React.useEffect(() => {
     if (rippleCallback.current) {
@@ -143,154 +194,174 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const startTimerCommit = React.useRef(null);
   const container = React.useRef(null);
 
-  const startCommit = React.useCallback(
-    (params) => {
-      const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
+  const handleExited = useEventCallback((key) => {
+    if (!mountedRef.current) {
+      return;
+    }
+    setRippleState((prevState) => {
+      const nextItems = prevState.items.filter((ripple) => ripple.key !== key);
+      const nextOrder = mergeRippleOrder(
+        prevState.order.filter((rippleKey) => rippleKey !== key),
+        nextItems.filter((ripple) => !ripple.exiting).map((ripple) => ripple.key),
+      );
 
-      setRipples((oldRipples) => [
-        ...oldRipples,
-        <TouchRippleRipple
-          key={nextKey.current}
-          classes={{
-            ripple: clsx(classes.ripple, touchRippleClasses.ripple),
-            rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
-            ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
-            child: clsx(classes.child, touchRippleClasses.child),
-            childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
-            childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
-          }}
-          timeout={DURATION}
-          pulsate={pulsate}
-          rippleX={rippleX}
-          rippleY={rippleY}
-          rippleSize={rippleSize}
-        />,
-      ]);
-      nextKey.current += 1;
-      rippleCallback.current = cb;
-    },
-    [classes],
-  );
+      return { items: nextItems, order: nextOrder };
+    });
+  });
 
-  const start = React.useCallback(
-    (event = {}, options = {}, cb = () => {}) => {
-      const {
-        pulsate = false,
-        center = centerProp || options.pulsate,
-        fakeElement = false, // For test purposes
-      } = options;
+  const startCommit = useEventCallback((params) => {
+    const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
+    const key = nextKey.current;
+    nextKey.current += 1;
 
-      if (event?.type === 'mousedown' && ignoringMouseDown.current) {
-        ignoringMouseDown.current = false;
-        return;
+    setRippleState((prevState) => {
+      const nextItems = [
+        ...prevState.items,
+        {
+          key,
+          pulsate,
+          rippleX,
+          rippleY,
+          rippleSize,
+          exiting: false,
+        },
+      ];
+
+      return {
+        items: nextItems,
+        order: mergeRippleOrder(
+          prevState.order,
+          nextItems.filter((ripple) => !ripple.exiting).map((ripple) => ripple.key),
+        ),
+      };
+    });
+    rippleCallback.current = cb;
+  });
+
+  const start = useEventCallback((event = {}, options = {}, cb = () => {}) => {
+    const {
+      pulsate = false,
+      center = centerProp || options.pulsate,
+      fakeElement = false, // For test purposes
+    } = options;
+
+    if (event?.type === 'mousedown' && ignoringMouseDown.current) {
+      ignoringMouseDown.current = false;
+      return;
+    }
+
+    if (event?.type === 'touchstart') {
+      ignoringMouseDown.current = true;
+    }
+
+    const element = fakeElement ? null : container.current;
+    const rect = element
+      ? element.getBoundingClientRect()
+      : {
+          width: 0,
+          height: 0,
+          left: 0,
+          top: 0,
+        };
+
+    // Get the size of the ripple
+    let rippleX;
+    let rippleY;
+    let rippleSize;
+
+    if (
+      center ||
+      event === undefined ||
+      (event.clientX === 0 && event.clientY === 0) ||
+      (!event.clientX && !event.touches)
+    ) {
+      rippleX = Math.round(rect.width / 2);
+      rippleY = Math.round(rect.height / 2);
+    } else {
+      const { clientX, clientY } =
+        event.touches && event.touches.length > 0 ? event.touches[0] : event;
+      rippleX = Math.round(clientX - rect.left);
+      rippleY = Math.round(clientY - rect.top);
+    }
+
+    if (center) {
+      rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
+
+      // For some reason the animation is broken on Mobile Chrome if the size is even.
+      if (rippleSize % 2 === 0) {
+        rippleSize += 1;
       }
+    } else {
+      const sizeX =
+        Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
+      const sizeY =
+        Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
+      rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
+    }
 
-      if (event?.type === 'touchstart') {
-        ignoringMouseDown.current = true;
-      }
-
-      const element = fakeElement ? null : container.current;
-      const rect = element
-        ? element.getBoundingClientRect()
-        : {
-            width: 0,
-            height: 0,
-            left: 0,
-            top: 0,
-          };
-
-      // Get the size of the ripple
-      let rippleX;
-      let rippleY;
-      let rippleSize;
-
-      if (
-        center ||
-        event === undefined ||
-        (event.clientX === 0 && event.clientY === 0) ||
-        (!event.clientX && !event.touches)
-      ) {
-        rippleX = Math.round(rect.width / 2);
-        rippleY = Math.round(rect.height / 2);
-      } else {
-        const { clientX, clientY } =
-          event.touches && event.touches.length > 0 ? event.touches[0] : event;
-        rippleX = Math.round(clientX - rect.left);
-        rippleY = Math.round(clientY - rect.top);
-      }
-
-      if (center) {
-        rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
-
-        // For some reason the animation is broken on Mobile Chrome if the size is even.
-        if (rippleSize % 2 === 0) {
-          rippleSize += 1;
-        }
-      } else {
-        const sizeX =
-          Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
-        const sizeY =
-          Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
-        rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
-      }
-
-      // Touch devices
-      if (event?.touches) {
-        // check that this isn't another touchstart due to multitouch
-        // otherwise we will only clear a single timer when unmounting while two
-        // are running
-        if (startTimerCommit.current === null) {
-          // Prepare the ripple effect.
-          startTimerCommit.current = () => {
-            startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
-          };
-          // Delay the execution of the ripple effect.
-          // We have to make a tradeoff with this delay value.
-          startTimer.start(DELAY_RIPPLE, () => {
-            if (startTimerCommit.current) {
-              startTimerCommit.current();
-              startTimerCommit.current = null;
-            }
-          });
-        }
-      } else {
-        startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
-      }
-    },
-    [centerProp, startCommit, startTimer],
-  );
-
-  const pulsate = React.useCallback(() => {
-    start({}, { pulsate: true });
-  }, [start]);
-
-  const stop = React.useCallback(
-    (event, cb) => {
-      startTimer.clear();
-
-      // The touch interaction occurs too quickly.
-      // We still want to show ripple effect.
-      if (event?.type === 'touchend' && startTimerCommit.current) {
-        startTimerCommit.current();
-        startTimerCommit.current = null;
-        startTimer.start(0, () => {
-          stop(event, cb);
+    // Touch devices
+    if (event?.touches) {
+      // check that this isn't another touchstart due to multitouch
+      // otherwise we will only clear a single timer when unmounting while two
+      // are running
+      if (startTimerCommit.current === null) {
+        // Prepare the ripple effect.
+        startTimerCommit.current = () => {
+          startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+        };
+        // Delay the execution of the ripple effect.
+        // We have to make a tradeoff with this delay value.
+        startTimer.start(DELAY_RIPPLE, () => {
+          if (startTimerCommit.current) {
+            startTimerCommit.current();
+            startTimerCommit.current = null;
+          }
         });
-        return;
+      }
+    } else {
+      startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+    }
+  });
+
+  const pulsate = useEventCallback(() => {
+    start({}, { pulsate: true });
+  });
+
+  const stop = useEventCallback((event, cb) => {
+    startTimer.clear();
+
+    // The touch interaction occurs too quickly.
+    // We still want to show ripple effect.
+    if (event?.type === 'touchend' && startTimerCommit.current) {
+      startTimerCommit.current();
+      startTimerCommit.current = null;
+      startTimer.start(0, () => {
+        stop(event, cb);
+      });
+      return;
+    }
+
+    startTimerCommit.current = null;
+
+    setRippleState((prevState) => {
+      const firstActiveIndex = prevState.items.findIndex((ripple) => !ripple.exiting);
+      if (firstActiveIndex === -1) {
+        return prevState;
       }
 
-      startTimerCommit.current = null;
+      const nextItems = prevState.items.slice();
+      nextItems[firstActiveIndex] = { ...nextItems[firstActiveIndex], exiting: true };
 
-      setRipples((oldRipples) => {
-        if (oldRipples.length > 0) {
-          return oldRipples.slice(1);
-        }
-        return oldRipples;
-      });
-      rippleCallback.current = cb;
-    },
-    [startTimer],
-  );
+      return {
+        items: nextItems,
+        order: mergeRippleOrder(
+          prevState.order,
+          nextItems.filter((ripple) => !ripple.exiting).map((ripple) => ripple.key),
+        ),
+      };
+    });
+    rippleCallback.current = cb;
+  });
 
   React.useImperativeHandle(
     ref,
@@ -302,15 +373,40 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     [pulsate, start, stop],
   );
 
+  const rippleByKey = new Map(ripples.map((ripple) => [ripple.key, ripple]));
+  const orderedRipples = rippleState.order
+    .map((rippleKey) => rippleByKey.get(rippleKey))
+    .filter(Boolean);
+
   return (
     <TouchRippleRoot
       className={clsx(touchRippleClasses.root, classes.root, className)}
       ref={container}
       {...other}
     >
-      <TransitionGroup component={null} exit>
-        {ripples}
-      </TransitionGroup>
+      {/* Match TransitionGroup's DOM ordering: exiting ripples keep their
+          relative position, while newly active ripples move ahead of
+          fully-exiting groups so the latest interaction stays topmost. */}
+      {orderedRipples.map((ripple) => (
+        <TouchRippleRipple
+          key={ripple.key}
+          classes={{
+            ripple: clsx(classes.ripple, touchRippleClasses.ripple),
+            rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
+            ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
+            child: clsx(classes.child, touchRippleClasses.child),
+            childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
+            childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
+          }}
+          timeout={DURATION}
+          pulsate={ripple.pulsate}
+          rippleX={ripple.rippleX}
+          rippleY={ripple.rippleY}
+          rippleSize={ripple.rippleSize}
+          in={!ripple.exiting}
+          onExited={() => handleExited(ripple.key)}
+        />
+      ))}
     </TouchRippleRoot>
   );
 });

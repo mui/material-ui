@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
-import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Transition from '../Transition/Transition';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Fade />', () => {

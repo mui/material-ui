@@ -41,7 +41,6 @@ function Ripple(props) {
   }
   React.useEffect(() => {
     if (!inProp && onExited != null) {
-      // react-transition-group#onExited
       const timeoutId = setTimeout(onExited, timeout);
       return () => {
         clearTimeout(timeoutId);
