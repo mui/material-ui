@@ -789,12 +789,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   autoHighlight: PropTypes.bool,
   /**
-   * If `true`, the selected option becomes the value of the input
-   * when the Autocomplete loses focus unless the user chooses
-   * a different option or changes the character string in the input.
+   * If `true`, the value is updated when the input loses focus under one of these conditions:
    *
-   * When using the `freeSolo` mode, the typed value will be the input value
-   * if the Autocomplete loses focus without highlighting an option.
+   * - An option highlighted via keyboard navigation or `autoHighlight` is selected.
+   *   Hover and touch highlights are ignored.
+   * - Otherwise, in `freeSolo` mode, the typed text becomes the value.
    * @default false
    */
   autoSelect: PropTypes.bool,

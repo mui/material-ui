@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isItemFocusable } from '@mui/utils/useRovingTabIndex';
+import contains from '../utils/contains';
 import ownerDocument from '../utils/ownerDocument';
 import getActiveElement from '../utils/getActiveElement';
 import getScrollbarSize from '../utils/getScrollbarSize';
@@ -207,7 +208,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 
         const currentFocus = getActiveElement(ownerDocument(listRef.current));
 
-        if (currentFocus && listRef.current.contains(currentFocus)) {
+        if (currentFocus && contains(listRef.current, currentFocus)) {
           return currentFocus;
         }
 
