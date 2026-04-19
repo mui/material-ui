@@ -42,8 +42,6 @@ export const ButtonBaseRoot = styled('button', {
   position: 'relative',
   boxSizing: 'border-box',
   WebkitTapHighlightColor: 'transparent',
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
   backgroundColor: 'transparent', // Reset default value
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
