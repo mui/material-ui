@@ -249,6 +249,9 @@ export const SliderThumb = styled('span', {
     transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      border: '1px solid transparent',
+    },
     '&::before': {
       position: 'absolute',
       content: '""',
@@ -273,7 +276,6 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
-    border: '1px solid transparent',
     variants: [
       {
         props: { size: 'small' },
