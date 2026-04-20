@@ -250,7 +250,7 @@ export const SliderThumb = styled('span', {
       duration: theme.transitions.duration.shortest,
     }),
     '@media (forced-colors: active)': {
-      border: '1px solid transparent',
+      border: '1px solid ButtonBorder',
     },
     '&::before': {
       position: 'absolute',
