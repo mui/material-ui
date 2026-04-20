@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import InputBase from '@mui/material/InputBase';
 import Input, { inputClasses as classes } from '@mui/material/Input';
 import describeConformance from '../../test/describeConformance';
@@ -43,5 +43,10 @@ describe('<Input />', () => {
       <Input data-test="test" multiline sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }} />,
     );
     expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  it('should not forward the notched prop to the DOM', () => {
+    render(<Input notched data-testid="root" />);
+    expect(screen.getByTestId('root')).not.to.have.attribute('notched');
   });
 });

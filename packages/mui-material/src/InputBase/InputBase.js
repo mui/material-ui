@@ -16,6 +16,8 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import ownerDocument from '../utils/ownerDocument';
+import getActiveElement from '../utils/getActiveElement';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
@@ -256,6 +258,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
     autoComplete,
     autoFocus,
     className,
@@ -374,6 +377,36 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       checkDirty({ value });
     }
   }, [value, checkDirty, isControlled]);
+
+  // Sync focused state when autoFocus is used in SSR.
+  // If the browser focused the element before hydration, the onFocus handler never
+  // fires. If it did not, React hydration does not call focus() for autoFocus.
+  useEnhancedEffect(() => {
+    if (!autoFocus) {
+      return;
+    }
+
+    const input = inputRef.current;
+    if (!input) {
+      return;
+    }
+
+    const doc = ownerDocument(input);
+    const activeElement = getActiveElement(doc);
+    const noElementFocused =
+      activeElement == null || activeElement === doc.body || activeElement === doc.documentElement;
+
+    if (input === activeElement) {
+      if (muiFormControl && muiFormControl.onFocus) {
+        muiFormControl.onFocus();
+      } else {
+        setFocused(true);
+      }
+    } else if (noElementFocused) {
+      input.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoFocus]);
 
   const handleFocus = (event) => {
     if (onFocus) {
@@ -544,6 +577,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           <Input
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
+            aria-label={ariaLabel}
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
@@ -599,6 +633,10 @@ InputBase.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   'aria-describedby': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

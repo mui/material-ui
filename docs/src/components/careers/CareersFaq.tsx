@@ -8,7 +8,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
-import { MarkdownElement } from '@mui/internal-core-docs/MarkdownElement';
+import { MarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
 import { createRender } from '@mui/internal-markdown';
 import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';

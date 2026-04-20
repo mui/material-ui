@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/internal-core-docs/Link';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const GOLDs = [
   {

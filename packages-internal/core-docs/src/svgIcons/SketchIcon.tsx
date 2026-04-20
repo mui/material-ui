@@ -1,6 +1,6 @@
 import { createSvgIcon } from '@mui/material/utils';
 
-export default createSvgIcon(
+export const SketchIcon = createSvgIcon(
   <g fillRule="nonzero" fill="none">
     <path fill="#FDB300" d="M5.24 2.7L12 2l6.76.7L24 9.48 12 23 0 9.49z" />
     <path fill="#EA6C00" d="M4.85 9l7.13 14L0 9zM19.1 9l-7.12 14L23.95 9z" />

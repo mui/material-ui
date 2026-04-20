@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/e9b7cbb09759d50b3a1c391f6df49c19cfc927bc/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/f709101a0ec2bf0f9de40196669863653bf0979f/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -453,54 +453,16 @@ jobs:
       - checkout
       - install-deps
       - run:
-          name: Prepare danger on PRs
-          command: pnpm danger ci
-          environment:
-            DANGER_COMMAND: prepareBundleSizeReport
-      - run:
           name: Build @mui packages
           command: pnpm release:build
-      - aws-cli/setup:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-          region: ${AWS_REGION_ARTIFACTS}
       # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
       - run:
           name: Create and upload a size snapshot
-          command: |
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
-            export AWS_REGION=$AWS_REGION_ARTIFACTS
-            pnpm size:snapshot --concurrency 6
-
-      # === LEGACY START ===
-      # remove once the UI can handle the new format
-      # persist size snapshot on S3
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                pattern: '.+'
-                value: '${CIRCLE_PULL_REQUEST}'
-          steps:
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      # === LEGACY END ===
-
-      # Keep the artifact storage as a CircleCI artifact
+          command: pnpm size:snapshot --concurrency 6
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-
-      - run:
-          name: Run danger on PRs
-          command: pnpm danger ci --fail-on-errors
-          environment:
-            DANGER_COMMAND: reportBundleSize
 workflows:
   version: 2
   pipeline:

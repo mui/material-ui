@@ -8,6 +8,8 @@
       },
       "default": "'primary'"
     },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
     "sx": {
       "type": {
         "name": "union",

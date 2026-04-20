@@ -15,6 +15,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 import useSlot from '../utils/useSlot';
+import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 import { mergeSlotProps } from '../utils';
 
 const overridesResolver = (props, styles) => {
@@ -266,6 +267,8 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       ...(variant === 'temporary' && {
         role: 'dialog',
         'aria-modal': 'true',
+        [FOCUSABLE_ATTRIBUTE]: '',
+        tabIndex: -1,
       }),
     },
   });

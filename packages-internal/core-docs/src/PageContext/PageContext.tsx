@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { Theme } from '@mui/material/styles';
 import type { SxProps } from '@mui/system';
 import type { MuiPage } from '../MuiPage';
-import type { MuiProductId } from '../getProductInfoFromUrl';
+import type { MuiProductId } from '../utils/getProductInfoFromUrl';
 
 export type RootSvgProps<P = unknown> = Omit<React.SVGProps<SVGSVGElement>, 'ref'> & {
   sx?: SxProps<Theme>;

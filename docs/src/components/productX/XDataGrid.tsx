@@ -14,15 +14,19 @@ import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import More from 'docs/src/components/action/More';
-import Frame from 'docs/src/components/action/Frame';
+import {
+  Item,
+  Group,
+  Highlighter,
+  More,
+  Frame,
+  AppearingInfoBox,
+} from '@mui/internal-core-docs/AppLayout';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
-import { AppearingInfoBox } from 'docs/src/components/action/MoreInfoBox';
-import ROUTES from 'docs/src/route';
+
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
 

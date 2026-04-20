@@ -55,7 +55,7 @@ describe('e2e', () => {
     const isServerRunning = await attemptGoto(page, `${BASE_URL}#no-dev`);
     if (!isServerRunning) {
       throw new Error(
-        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
+        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:dev\`?`,
       );
     }
   }, 20000);

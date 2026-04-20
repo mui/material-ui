@@ -8,7 +8,6 @@
     "@babel/runtime": "7.29.2",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
-    "@mui/base": "5.0.0-beta.70",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
@@ -24,7 +23,6 @@
     "docs": "workspace:^",
     "es-toolkit": "1.45.1",
     "fast-glob": "3.3.3",
-    "html-webpack-plugin": "5.6.6",
     "prop-types": "15.8.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -35,7 +33,6 @@
     "styled-components": "6.3.12",
     "stylis": "4.3.6",
     "webfontloader": "1.6.28",
-    "webpack": "5.105.4",
     "yargs": "17.7.2"
   },
   "dependencies": {

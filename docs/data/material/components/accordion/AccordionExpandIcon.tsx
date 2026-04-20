@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -6,13 +7,14 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export default function AccordionExpandIcon() {
+  const id = React.useId();
   return (
     <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ArrowDownwardIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
+          aria-controls={`${id}-panel1-content`}
+          id={`${id}-panel1-header`}
         >
           <Typography component="span">Accordion 1</Typography>
         </AccordionSummary>
@@ -26,8 +28,8 @@ export default function AccordionExpandIcon() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ArrowDropDownIcon />}
-          aria-controls="panel2-content"
-          id="panel2-header"
+          aria-controls={`${id}-panel2-content`}
+          id={`${id}-panel2-header`}
         >
           <Typography component="span">Accordion 2</Typography>
         </AccordionSummary>
