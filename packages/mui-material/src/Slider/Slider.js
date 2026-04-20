@@ -179,7 +179,9 @@ export const SliderTrack = styled('span', {
         {
           props: { size: 'small' },
           style: {
-            border: 'none',
+            '@media (forced-colors: none)': {
+              border: 'none',
+            },
           },
         },
         {
