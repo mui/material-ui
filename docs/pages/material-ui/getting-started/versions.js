@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import { MarkdownDocs } from '@mui/internal-core-docs/MarkdownDocs';
 import VersionsContext from 'docs/pages/material-ui/getting-started/VersionsContext';
 import * as pageProps from 'docs/data/material/getting-started/versions/versions.md?muiMarkdown';
 
