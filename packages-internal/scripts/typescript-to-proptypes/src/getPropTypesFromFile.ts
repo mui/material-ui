@@ -30,13 +30,34 @@ function getSymbolFileNames(symbol: ts.Symbol): Set<string> {
 
 /**
  * Flatten UnionType into array of stringified constituent types.
+ * Recurses through doctrine wrapper/container nodes so unions nested in
+ * OptionalType / NullableType / NonNullableType / RestType / TypeApplication /
+ * ArrayType are counted by their actual constituent leaves.
  */
 function flattenUnionTypes(type: any): string[] {
-  if (type?.type === 'UnionType') {
-    return type.elements.flatMap(flattenUnionTypes);
+  if (!type) {
+    return [];
   }
-  const s = stringifyDoctrineType(type);
-  return s ? [s] : [];
+  switch (type.type) {
+    case 'UnionType':
+      return type.elements.flatMap(flattenUnionTypes);
+    case 'OptionalType':
+    case 'NullableType':
+    case 'NonNullableType':
+    case 'RestType':
+      return flattenUnionTypes(type.expression);
+    case 'TypeApplication':
+      return [
+        ...flattenUnionTypes(type.expression),
+        ...type.applications.flatMap(flattenUnionTypes),
+      ];
+    case 'ArrayType':
+      return type.elements.flatMap(flattenUnionTypes);
+    default: {
+      const s = stringifyDoctrineType(type);
+      return s ? [s] : [];
+    }
+  }
 }
 
 /**
@@ -96,24 +117,31 @@ function pickCoveringJSDoc(comments: string[], tieBreak: 'first' | 'last'): stri
   if (comments.length === 1) {
     return comments[0];
   }
-  const parsed = comments.map((c) =>
-    doctrine.parse(
-      `/**\n${c
-        .split('\n')
-        .map((l) => ` * ${l}`)
-        .join('\n')}\n */`,
-      { unwrap: true },
-    ),
-  );
-  const paramTypeCount = (p: (typeof parsed)[number]) =>
-    p.tags
-      .filter((t) => t.title === 'param')
-      .reduce((sum, t) => sum + (t.type ? flattenUnionTypes(t.type).length : 0), 0);
+
+  const getParamTypeCount = (comment: string) => {
+    if (!/@param\b/.test(comment)) {
+      return 0;
+    }
+    try {
+      const parsed = doctrine.parse(
+        `/**\n${comment
+          .split('\n')
+          .map((l) => ` * ${l.trim()}`)
+          .join('\n')}\n */`,
+        { unwrap: true },
+      );
+      return parsed.tags
+        .filter((t) => t.title === 'param')
+        .reduce((sum, t) => sum + (t.type ? flattenUnionTypes(t.type).length : 0), 0);
+    } catch {
+      return 0;
+    }
+  };
 
   let bestIndex = 0;
-  let bestCount = paramTypeCount(parsed[0]);
-  for (let i = 1; i < parsed.length; i += 1) {
-    const count = paramTypeCount(parsed[i]);
+  let bestCount = getParamTypeCount(comments[0]);
+  for (let i = 1; i < comments.length; i += 1) {
+    const count = getParamTypeCount(comments[i]);
     if (tieBreak === 'last' ? count >= bestCount : count > bestCount) {
       bestIndex = i;
       bestCount = count;
@@ -141,11 +169,13 @@ function getSymbolDocumentation({
     // It is a complex logic that changes based on the kind of declarations.
     // There is an open issue for it in: https://github.com/microsoft/TypeScript/issues/30901
     //
-    // Matches VS Code hover behavior:
-    // 1. Intersection (type C = A & B): append unique JSDoc from all constituents
-    // 2. Interface extends (interface Z extends X, Y): single declaration, use it
-    // 3. Interface override (interface W extends X { prop }): single declaration, use it
-    // 4. Declaration merging / module augmentation: first declaration that has JSDoc wins
+    // Selection strategy (matches VS Code hover behavior):
+    // 1. Collect at most one JSDoc block per declaration.
+    // 2. If only one declaration contributes JSDoc, use it.
+    // 3. If multiple declarations contribute JSDoc, select the most-covering one
+    //    via `pickCoveringJSDoc` (richest matching signature).
+    // 4. Ties resolve to the last declaration for intersections, otherwise to the first
+    //    declaration (for example in declaration merging / module augmentation).
     const comments = decl
       .map((d) => {
         const jsDocNodes = ts.getJSDocCommentsAndTags(d).filter((node) => ts.isJSDoc(node));
