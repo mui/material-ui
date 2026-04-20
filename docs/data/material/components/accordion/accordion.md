@@ -132,30 +132,6 @@ The Accordion component then derives the necessary `aria-labelledby` and `id` fr
 </Accordion>
 ```
 
-## Troubleshooting
-
-### Accordion is unresponsive when using esm.sh or importmaps
-
-If you are loading Material UI directly from a CDN using [esm.sh](https://esm.sh/) or native [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), avoid using subpath imports for components that communicate with each other through React Context:
-
-```jsx
-// ❌ Breaks — each URL is a separate module bundle with its own copy of AccordionContext
-import Accordion from 'https://esm.sh/@mui/material/Accordion';
-import AccordionSummary from 'https://esm.sh/@mui/material/AccordionSummary';
-import AccordionDetails from 'https://esm.sh/@mui/material/AccordionDetails';
-```
-
-`Accordion` passes state to `AccordionSummary` via React Context. When each component is loaded from a different URL, they each get their own isolated copy of `AccordionContext`. The provider and consumer end up using different context objects, so the state never connects — leaving the Accordion frozen.
-
-Instead, import from the root package so all components share the same module instance:
-
-```jsx
-// ✅ Works — one bundle, one shared AccordionContext
-import { Accordion, AccordionSummary, AccordionDetails } from 'https://esm.sh/@mui/material';
-```
-
-This applies to any MUI component family where a parent passes context to its children: `Accordion`/`AccordionSummary`, `Select`/`MenuItem`, `RadioGroup`/`Radio`, and similar patterns.
-
 ## Anatomy
 
 The Accordion component consists of a root `<div>` that contains the Accordion Summary, Accordion Details, and optional Accordion Actions for action buttons.
