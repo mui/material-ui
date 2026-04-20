@@ -393,7 +393,7 @@ export default function AppNavDrawer(props: AppNavDrawerProps) {
       if (!versions?.length) {
         return null;
       }
-
+      console.log(versions);
       const currentVersion = versions.find((version) => version.current) || versions[0];
       return (
         <React.Fragment>

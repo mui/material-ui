@@ -14,8 +14,9 @@ import findActivePage from '@mui/internal-core-docs/findActivePage';
 import getProductInfoFromUrl from '@mui/internal-core-docs/getProductInfoFromUrl';
 import type { Translations } from '@mui/internal-core-docs/i18n';
 import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
-import { generateVersions } from '@mui/internal-core-docs/utils';
 import type { ProductVersion } from '@mui/internal-core-docs/PageContext';
+import materialPkgJson from '@mui/material/package.json';
+import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -40,11 +41,26 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
 
-type GeneratedVersion = { version: string; url: string };
+type VersionEntry = { version: string; url: string };
 
-// Module-level cache so generateVersions() is only called once per process
-// (once during static export, once per dev server start).
-let versionsCache: GeneratedVersion[] | null = null;
+async function fetchVersions(): Promise<VersionEntry[]> {
+  if (process.env.NODE_ENV !== 'production') {
+    return (await import('../versions.json')).default;
+  }
+  // #target-branch-reference
+  const response = await fetch(
+    'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json',
+  );
+  return response.json();
+}
+
+function useVersions(): VersionEntry[] {
+  const [versions, setVersions] = React.useState<VersionEntry[]>([]);
+  React.useEffect(() => {
+    fetchVersions().then(setVersions);
+  }, []);
+  return versions;
+}
 
 function getVersionedProductPath(version: string, productId: string): string {
   const versionNumber = parseInt(version.replace('v', ''), 10);
@@ -68,22 +84,25 @@ function getVersionedProductPath(version: string, productId: string): string {
 }
 
 function buildProductVersions(
-  generatedVersions: GeneratedVersion[],
+  fetchedVersions: VersionEntry[],
   productId: string,
+  currentVersion: string,
   languagePrefix: string,
 ): ProductVersion[] {
+  // Before the fetch resolves, show just the current version with no dropdown.
+  if (fetchedVersions.length === 0) {
+    return [{ text: currentVersion, current: true }];
+  }
+
   const MIN_VERSION = 4;
-  const versions: ProductVersion[] = generatedVersions
+  const versions: ProductVersion[] = fetchedVersions
     .filter((v) => {
-      if (v.version.includes('pre-release')) {
-        return false;
-      }
       const vNum = parseInt(v.version.replace('v', ''), 10);
       return vNum >= MIN_VERSION;
     })
     .map((v) => {
       if (v.url === 'https://mui.com') {
-        return { text: v.version, current: true };
+        return { text: currentVersion, current: true };
       }
       const productPath = getVersionedProductPath(v.version, productId);
       return { text: v.version, href: `${v.url}${languagePrefix}${productPath}` };
@@ -91,7 +110,7 @@ function buildProductVersions(
 
   versions.push({
     text: 'View all versions',
-    href: `https://mui.com${languagePrefix}/material-ui/getting-started/versions/`,
+    href: `/material-ui/getting-started/versions/`,
   });
 
   return versions;
@@ -116,15 +135,13 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function useProductData(
-  pageProps: DocsAppProps['pageProps'],
-  generatedVersions: GeneratedVersion[],
-) {
+function useProductData(pageProps: DocsAppProps['pageProps']) {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
   // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
+  const fetchedVersions = useVersions();
 
   const productIdentifier = React.useMemo(() => {
     const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
@@ -136,7 +153,12 @@ function useProductData(
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: buildProductVersions(generatedVersions, 'material-ui', languagePrefix),
+        versions: buildProductVersions(
+          fetchedVersions,
+          'material-ui',
+          `v${materialPkgJson.version}`,
+          languagePrefix,
+        ),
       };
     }
 
@@ -147,7 +169,12 @@ function useProductData(
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: buildProductVersions(generatedVersions, 'system', languagePrefix),
+        versions: buildProductVersions(
+          fetchedVersions,
+          'system',
+          `v${systemPkgJson.version}`,
+          languagePrefix,
+        ),
       };
     }
 
@@ -159,7 +186,12 @@ function useProductData(
         logo: SvgMuiLogomark,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: buildProductVersions(generatedVersions, 'material-ui', languagePrefix),
+        versions: buildProductVersions(
+          fetchedVersions,
+          'material-ui',
+          `v${materialPkgJson.version}`,
+          languagePrefix,
+        ),
       };
     }
 
@@ -196,7 +228,7 @@ function useProductData(
     }
 
     return null;
-  }, [pageProps.userLanguage, productId, generatedVersions]);
+  }, [pageProps.userLanguage, productId, fetchedVersions]);
 
   return React.useMemo(() => {
     let pages: MuiPage[] = generalDocsPages as MuiPage[];
@@ -244,14 +276,9 @@ function useDemoDisplayName() {
 }
 
 export default function MyApp(
-  props: AppProps<{
-    userLanguage: string;
-    translations: Translations;
-    generatedVersions?: GeneratedVersion[];
-  }>,
+  props: AppProps<{ userLanguage: string; translations: Translations }>,
 ) {
   const { Component, pageProps } = props;
-  const generatedVersions = pageProps.generatedVersions ?? [];
   const {
     activePage,
     activePageParents,
@@ -259,7 +286,7 @@ export default function MyApp(
     productIdentifier,
     productId,
     productCategoryId,
-  } = useProductData(pageProps, generatedVersions);
+  } = useProductData(pageProps);
   const demoDisplayName = useDemoDisplayName();
 
   return (
@@ -282,29 +309,8 @@ export default function MyApp(
   );
 }
 
-const baseGetInitialProps = createGetInitialProps({
+MyApp.getInitialProps = createGetInitialProps({
   translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
 });
-
-MyApp.getInitialProps = async (ctx: Parameters<typeof baseGetInitialProps>[0]) => {
-  if (!versionsCache) {
-    try {
-      versionsCache = await generateVersions();
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to fetch versions from GitHub:', error);
-      versionsCache = [];
-    }
-  }
-
-  const result = await baseGetInitialProps(ctx);
-  return {
-    ...result,
-    pageProps: {
-      ...result.pageProps,
-      generatedVersions: versionsCache,
-    },
-  };
-};
 
 export { reportWebVitals };
