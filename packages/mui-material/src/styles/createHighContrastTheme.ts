@@ -31,6 +31,8 @@ export interface HighContrastTokens {
   buttonBorder?: string | undefined;
   /** Text/icon color on buttons. Default: `'ButtonText'` */
   buttonText?: string | undefined;
+  /** Background color for the page/canvas. Default: `'Canvas'` */
+  canvas?: string | undefined;
 }
 
 // System color keywords used in forced-colors / high contrast mode.
@@ -43,6 +45,7 @@ const defaultHcTokens: Required<HighContrastTokens> = {
   activeText: 'HighlightText',
   buttonBorder: 'ButtonBorder',
   buttonText: 'ButtonText',
+  canvas: 'Canvas',
 };
 
 const HCM = '@media (forced-colors: active)';
@@ -200,6 +203,34 @@ export default function createHighContrastTheme(
                 color: hcTokens.disabled,
               },
             },
+          },
+        },
+      },
+      MuiLinearProgress: {
+        styleOverrides: {
+          root: {
+            [HCM]: {
+              forcedColorAdjust: 'none',
+              outline: `1px solid ${hcTokens.buttonBorder}`,
+              backgroundColor: hcTokens.canvas,
+            },
+          },
+          bar: {
+            [HCM]: {
+              backgroundColor: hcTokens.buttonText,
+            },
+          },
+          bar2: {
+            variants: [
+              {
+                props: { variant: 'buffer' },
+                style: {
+                  [HCM]: {
+                    backgroundColor: hcTokens.disabled,
+                  },
+                },
+              },
+            ],
           },
         },
       },
