@@ -5,6 +5,7 @@ import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
 import useForcedRerendering from '@mui/utils/useForcedRerendering';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -532,14 +533,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   // groupedOptions, but they are non-interactive while closing and reset on next open.
   const previousGroupedOptionsRef = React.useRef([]);
   const prevPopupOpenRef = React.useRef(false);
-  if (popupOpen && !prevPopupOpenRef.current) {
-    previousGroupedOptionsRef.current = [];
-  }
-  prevPopupOpenRef.current = popupOpen;
-  if (popupOpen && groupedOptions.length > 0) {
-    previousGroupedOptionsRef.current = groupedOptions;
-  }
   const renderedOptions = popupOpen ? groupedOptions : previousGroupedOptionsRef.current;
+
+  useEnhancedEffect(() => {
+    if (popupOpen && !prevPopupOpenRef.current) {
+      previousGroupedOptionsRef.current = [];
+    }
+    prevPopupOpenRef.current = popupOpen;
+    if (popupOpen && groupedOptions.length > 0) {
+      previousGroupedOptionsRef.current = groupedOptions;
+    }
+  }, [popupOpen, groupedOptions]);
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
