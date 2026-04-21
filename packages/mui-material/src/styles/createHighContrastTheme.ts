@@ -219,6 +219,13 @@ export default function createHighContrastTheme(
       MuiMenuItem: {
         styleOverrides: {
           root: {
+            [`&.${menuItemClasses.focusVisible}, &:hover`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
+              },
+            },
             [`&.${menuItemClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
@@ -226,9 +233,10 @@ export default function createHighContrastTheme(
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
-            [`&.${menuItemClasses.selected}:hover`]: {
+            [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}, &.${menuItemClasses.selected}:hover`]: {
               [HCM]: {
-                backgroundColor: hcTokens.selectedBackground,
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
               },
             },
           },
