@@ -618,16 +618,16 @@ function useAutocomplete(props) {
     if (valueItem != null) {
       const currentOption = filteredOptions[highlightedIndexRef.current];
 
-      // Keep the current highlighted index if possible
+      // Keep the current selected highlight while the popup stays open;
+      // on reopen, resync from the selected value.
       if (
         multiple &&
         currentOption &&
-        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
+        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1 &&
+        previousProps.filteredOptions?.length > 0
       ) {
-        if (previousProps.filteredOptions?.length > 0) {
-          setHighlightedIndexFromSync({ index: highlightedIndexRef.current });
-          return;
-        }
+        setHighlightedIndexFromSync({ index: highlightedIndexRef.current });
+        return;
       }
 
       const itemIndex = filteredOptions.findIndex((optionItem) =>
