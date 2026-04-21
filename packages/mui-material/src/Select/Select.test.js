@@ -1225,6 +1225,112 @@ describe('<Select />', () => {
     });
   });
 
+  // https://github.com/mui/material-ui/issues/27992
+  describe('closing transition', () => {
+    it('ignores clicks on menu items while the menu is fading out', async () => {
+      clock.restore();
+
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={10} onChange={onChange} MenuProps={{ transitionDuration: 1000 }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+
+      // Capture the element refs while the menu is open and accessible.
+      // Once the close is triggered, the modal is marked aria-hidden so role
+      // queries no longer return the items, but the DOM nodes stay mounted
+      // throughout the exit transition.
+      const twenty = screen.getByRole('option', { name: 'Twenty' });
+      const thirty = screen.getByRole('option', { name: 'Thirty' });
+
+      // First selection succeeds and begins the close transition.
+      await user.click(twenty);
+      expect(onChange.callCount).to.equal(1);
+
+      // A rapid follow-up click on another item must not register a new
+      // selection. user-event rejects the click because pointer-events are
+      // disabled on the menu during close; swallow that so the behavioral
+      // assertion below is what fails if the regression returns.
+      expect(getComputedStyle(thirty).pointerEvents).to.equal('none');
+      await user.click(thirty).catch(() => {});
+
+      expect(onChange.callCount).to.equal(1);
+    });
+
+    it.skipIf(isJsdom())(
+      'lets a rapid follow-up click hit the trigger while the menu is fading out',
+      async () => {
+        clock.restore();
+
+        const onChange = spy();
+        const { user } = render(
+          <Select defaultValue={10} onChange={onChange} MenuProps={{ transitionDuration: 1000 }}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>,
+        );
+
+        const combobox = screen.getByRole('combobox');
+
+        await user.click(combobox);
+        await user.click(screen.getByRole('option', { name: 'Twenty' }));
+        expect(onChange.callCount).to.equal(1);
+
+        const rect = combobox.getBoundingClientRect();
+        const hitTarget = document.elementFromPoint(
+          rect.left + rect.width / 2,
+          rect.top + rect.height / 2,
+        );
+
+        expect(hitTarget).not.to.equal(null);
+        expect(combobox.contains(hitTarget)).to.equal(true);
+
+        await user.click(hitTarget);
+
+        await waitFor(() => {
+          expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+        });
+        expect(onChange.callCount).to.equal(1);
+      },
+    );
+
+    it('re-enables interaction after the menu reopens', async () => {
+      clock.restore();
+
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={10} onChange={onChange} MenuProps={{ transitionDuration: 50 }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const combobox = screen.getByRole('combobox');
+
+      await user.click(combobox);
+      await user.click(screen.getByRole('option', { name: 'Twenty' }));
+
+      // Wait for the exit transition to finish so the menu fully unmounts.
+      await waitFor(() => {
+        expect(screen.queryByRole('listbox')).to.equal(null);
+      });
+
+      // Reopen and pick a different value; items must be interactive again.
+      await user.click(combobox);
+      await user.click(screen.getByRole('option', { name: 'Thirty' }));
+
+      expect(onChange.callCount).to.equal(2);
+      expect(onChange.lastCall.args[0].target.value).to.equal(30);
+    });
+  });
+
   describe('prop: SelectDisplayProps', () => {
     it('should apply additional props to trigger element', () => {
       render(
