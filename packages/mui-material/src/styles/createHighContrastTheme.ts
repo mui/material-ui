@@ -76,6 +76,13 @@ export default function createHighContrastTheme(
                   opacity: 1,
                 },
               },
+              [`&.${autocompleteClasses.focused}, &.${autocompleteClasses.focusVisible}`]: {
+                [HCM]: {
+                  forcedColorAdjust: 'none',
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
+              },
               '&[aria-selected="true"]': {
                 [HCM]: {
                   forcedColorAdjust: 'none',
@@ -84,7 +91,8 @@ export default function createHighContrastTheme(
                 },
                 [`&.${autocompleteClasses.focused}`]: {
                   [HCM]: {
-                    backgroundColor: hcTokens.selectedBackground,
+                    color: hcTokens.activeText,
+                    backgroundColor: hcTokens.activeBackground,
                   },
                 },
               },
