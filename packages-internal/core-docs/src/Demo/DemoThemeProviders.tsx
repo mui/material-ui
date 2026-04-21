@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { ThemeProvider, createTheme, useTheme, createHighContrastTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  useTheme,
+  createHighContrastTheme,
+} from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
 

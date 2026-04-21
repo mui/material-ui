@@ -230,12 +230,13 @@ export default function createHighContrastTheme(
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
-            [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}, &.${menuItemClasses.selected}:hover`]: {
-              [HCM]: {
-                color: hcTokens.activeText,
-                backgroundColor: hcTokens.activeBackground,
+            [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}, &.${menuItemClasses.selected}:hover`]:
+              {
+                [HCM]: {
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
               },
-            },
           },
         },
       },
