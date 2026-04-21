@@ -241,6 +241,15 @@ export default function createHighContrastTheme(
           },
         },
       },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            [HCM]: {
+              color: 'inherit',
+            },
+          },
+        },
+      },
       MuiListItemButton: {
         styleOverrides: {
           root: {
