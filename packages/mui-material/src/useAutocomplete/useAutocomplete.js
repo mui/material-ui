@@ -452,12 +452,11 @@ function useAutocomplete(props) {
     },
   );
 
-  const setHighlightedIndexFromSync = useEventCallback(({ index, preserveScroll = false }) => {
+  const setHighlightedIndexFromSync = useEventCallback(({ index }) => {
     highlightedIndexRef.current = index;
     syncHighlightedIndexToDOM({
       index,
       reason: highlightReasonRef.current,
-      preserveScroll,
     });
   });
 
