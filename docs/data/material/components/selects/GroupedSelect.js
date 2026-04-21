@@ -22,9 +22,7 @@ export default function GroupedSelect() {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="grouped-select-label" htmlFor="grouped-select">
-          Grouping
-        </InputLabel>
+        <InputLabel id="grouped-select-label">Grouping</InputLabel>
         <Select
           defaultValue=""
           id="grouped-select"
