@@ -328,6 +328,7 @@ export default function createHighContrastTheme(
               '&:hover': {
                 [HCM]: {
                   backgroundColor: hcTokens.activeBackground,
+                  borderColor: hcTokens.buttonBorder,
                 },
               },
             },
