@@ -10,7 +10,11 @@ import {
   reportWebVitals,
   type DocsAppProps,
 } from '@mui/internal-core-docs/DocsApp';
-import { DEFAULT_DOCS_CONFIG, type DocsConfig } from '@mui/internal-core-docs/DocsProvider';
+import {
+  DEFAULT_DOCS_CONFIG,
+  type DocsConfig,
+  VersionEntry,
+} from '@mui/internal-core-docs/DocsProvider';
 import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
 import findActivePage from '@mui/internal-core-docs/findActivePage';
 import { getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
@@ -43,23 +47,10 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
 
-type VersionEntry = { version: string; url: string };
-
-async function fetchVersions(): Promise<VersionEntry[]> {
-  if (process.env.NODE_ENV !== 'production') {
-    return (await import('../versions.json')).default;
-  }
-  // #target-branch-reference
-  const response = await fetch(
-    'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json',
-  );
-  return response.json();
-}
-
 function useVersions(): VersionEntry[] {
   const [versions, setVersions] = React.useState<VersionEntry[]>([]);
   React.useEffect(() => {
-    fetchVersions().then(setVersions);
+    docsConfig.fetchVersions?.().then(setVersions);
   }, []);
   return versions;
 }
@@ -268,6 +259,10 @@ const docsConfig: DocsConfig = {
   ...(process.env.NODE_ENV !== 'production' && {
     fetchNotifications: (): Promise<NotificationMessage[]> =>
       import('../notifications.json').then((mod) => mod.default),
+  }),
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchVersions: (): Promise<VersionEntry[]> =>
+      import('../versions.json').then((mod) => mod.default),
   }),
   hostUrl: process.env.PULL_REQUEST_ID
     ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
