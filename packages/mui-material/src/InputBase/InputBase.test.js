@@ -20,7 +20,7 @@ import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<InputBase />, () => ({
     classes,
@@ -479,6 +479,146 @@ describe('<InputBase />', () => {
         });
         expect(screen.getByTestId('label')).to.have.text('focused: false');
       });
+
+      it.skipIf(isJsdom())(
+        'should sync focused state when autoFocus is used with SSR (with FormControl)',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return (
+                <FormControl>
+                  <InputBase autoFocus data-testid="root" />
+                </FormControl>
+              );
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+            expect(input).to.have.attribute('autofocus');
+
+            // Simulate the browser focusing the element before hydration
+            act(() => {
+              input.focus();
+            });
+            expect(input).to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should sync focused state when autoFocus is used with SSR (standalone)',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return <InputBase autoFocus data-testid="root" />;
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+
+            // Simulate the browser focusing the element before hydration
+            act(() => {
+              input.focus();
+            });
+            expect(input).to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should focus and sync focused state when autoFocus is used with SSR',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return (
+                <FormControl>
+                  <InputBase autoFocus data-testid="root" />
+                </FormControl>
+              );
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+            expect(input).to.have.attribute('autofocus');
+            expect(input).not.to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(input).to.equal(document.activeElement);
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should not sync focused state when autoFocus is not set (regression guard)',
+        function test() {
+          function App() {
+            return (
+              <FormControl>
+                <InputBase data-testid="root" />
+              </FormControl>
+            );
+          }
+
+          const { hydrate } = renderToString(<App />);
+
+          const input = screen.getByRole('textbox');
+
+          // Manually focus the element before hydration (without autoFocus)
+          act(() => {
+            input.focus();
+          });
+          expect(input).to.equal(document.activeElement);
+
+          act(() => {
+            hydrate();
+          });
+
+          expect(screen.getByTestId('root')).not.to.have.class(classes.focused);
+        },
+      );
     });
 
     it('propagates filled state when uncontrolled', () => {

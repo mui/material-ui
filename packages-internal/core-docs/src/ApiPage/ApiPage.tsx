@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import type { ComponentApiContent, PropsTranslations } from '@mui/internal-api-docs-builder';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';

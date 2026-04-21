@@ -1,3 +1,4 @@
+import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -5,11 +6,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function GroupedSelect() {
+  const nativeId = React.useId();
+  const id = React.useId();
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
-        <Select native defaultValue="" id="grouped-native-select" label="Grouping">
+        <InputLabel htmlFor={`${nativeId}-select`}>Grouping</InputLabel>
+        <Select native defaultValue="" id={`${nativeId}-select`} label="Grouping">
           <option aria-label="None" value="" />
           <optgroup label="Category 1">
             <option value={1}>Option 1</option>
@@ -22,13 +25,13 @@ export default function GroupedSelect() {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="grouped-select-label">Grouping</InputLabel>
+        <InputLabel id={`${id}-label`}>Grouping</InputLabel>
         <Select
           defaultValue=""
-          id="grouped-select"
+          id={`${id}-select`}
           label="Grouping"
           SelectDisplayProps={{
-            'aria-labelledby': 'grouped-select-label',
+            'aria-labelledby': `${id}-label`,
           }}
         >
           <MenuItem value="">

@@ -146,6 +146,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
+    notched, // declare here to prevent spreading to DOM
     slotProps,
     slots = {},
     type = 'text',
@@ -278,6 +279,10 @@ Input.propTypes /* remove-proptypes */ = {
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
+  /**
+   * @internal
+   */
+  notched: PropTypes.bool,
   /**
    * Callback fired when the value is changed.
    *

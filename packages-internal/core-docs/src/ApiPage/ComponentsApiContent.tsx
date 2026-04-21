@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import type { ComponentApiContent, PropsTranslations } from '@mui/internal-api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import { useRouter } from 'next/router';
 import { Translate, useTranslate, useUserLanguage } from '../i18n';
