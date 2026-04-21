@@ -133,13 +133,6 @@ export default function createHighContrastTheme(
               },
             },
           },
-          input: {
-            [HCM]: {
-              '&::placeholder': {
-                opacity: 1,
-              },
-            },
-          },
         },
       },
       MuiFormControlLabel: {
@@ -207,6 +200,10 @@ export default function createHighContrastTheme(
               },
             },
           },
+        },
+      },
+      MuiInputBase: {
+        styleOverrides: {
           input: {
             [HCM]: {
               '&::placeholder': {
@@ -269,13 +266,6 @@ export default function createHighContrastTheme(
             [`&.${outlinedInputClasses.disabled}`]: {
               [HCM]: {
                 color: hcTokens.disabled,
-              },
-            },
-          },
-          input: {
-            [HCM]: {
-              '&::placeholder': {
-                opacity: 1,
               },
             },
           },
