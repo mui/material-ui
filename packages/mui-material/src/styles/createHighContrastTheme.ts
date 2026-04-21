@@ -331,6 +331,19 @@ export default function createHighContrastTheme(
           }),
         },
       },
+      MuiButtonBase: {
+        styleOverrides: {
+          root: {
+            // Restore the focus outline in HCM since the ripple is not visible.
+            // Also handle components where the focusable element is a hidden inner input (Checkbox, Radio, Switch).
+            [HCM]: {
+              '&:focus-visible, &:focus-within:has(input:focus-visible)': {
+                outline: `5px auto ${hcTokens.activeBackground}`,
+              },
+            },
+          },
+        },
+      },
       MuiToggleButton: {
         styleOverrides: {
           root: {
