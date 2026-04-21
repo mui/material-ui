@@ -38,7 +38,7 @@ const defaultHcTokens: Required<HighContrastTokens> = {
   buttonText: 'ButtonText',
 };
 
-const hcm = '@media (forced-colors: active)';
+const HCM = '@media (forced-colors: active)';
 
 /**
  * Creates a theme with styles for Windows High Contrast Mode (forced-colors).
@@ -64,19 +64,19 @@ export default function createHighContrastTheme(
         styleOverrides: {
           listbox: {
             '&[aria-disabled="true"]': {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
                 opacity: 1,
               },
             },
             '&[aria-selected="true"]': {
-              [hcm]: {
+              [HCM]: {
                 forcedColorAdjust: 'none',
                 color: hcTokens.selectedText,
                 backgroundColor: hcTokens.selectedBackground,
               },
               [`&.${autocompleteClasses.focused}`]: {
-                [hcm]: {
+                [HCM]: {
                   backgroundColor: hcTokens.selectedBackground,
                 },
               },
@@ -88,7 +88,7 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${checkboxClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -100,25 +100,25 @@ export default function createHighContrastTheme(
           root: {
             [`&.${filledInputClasses.error}`]: {
               '&::before, &::after': {
-                [hcm]: {
+                [HCM]: {
                   borderBottomColor: hcTokens.error,
                 },
               },
             },
             [`&.${filledInputClasses.disabled}:before`]: {
-              [hcm]: {
+              [HCM]: {
                 borderBottomStyle: 'solid',
                 borderBottomColor: hcTokens.disabled,
               },
             },
             [`&.${filledInputClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
           input: {
-            [hcm]: {
+            [HCM]: {
               '&::placeholder': {
                 opacity: 1,
               },
@@ -130,7 +130,7 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`& .${formControlLabelClasses.label}.${formControlLabelClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -141,12 +141,12 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${formHelperTextClasses.error}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.error,
               },
             },
             [`&.${formHelperTextClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -157,12 +157,12 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${formLabelClasses.error}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.error,
               },
             },
             [`&.${formLabelClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -174,25 +174,25 @@ export default function createHighContrastTheme(
           root: {
             [`&.${inputClasses.error}`]: {
               '&::before, &::after': {
-                [hcm]: {
+                [HCM]: {
                   borderBottomColor: hcTokens.error,
                 },
               },
             },
             [`&.${inputClasses.disabled}:before`]: {
-              [hcm]: {
+              [HCM]: {
                 borderBottomStyle: 'solid',
                 borderBottomColor: hcTokens.disabled,
               },
             },
             [`&.${inputClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
           input: {
-            [hcm]: {
+            [HCM]: {
               '&::placeholder': {
                 opacity: 1,
               },
@@ -204,14 +204,14 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${menuItemClasses.selected}`]: {
-              [hcm]: {
+              [HCM]: {
                 forcedColorAdjust: 'none',
                 color: hcTokens.selectedText,
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
             [`&.${menuItemClasses.selected}:hover`]: {
-              [hcm]: {
+              [HCM]: {
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
@@ -222,7 +222,7 @@ export default function createHighContrastTheme(
         styleOverrides: {
           icon: {
             [`&.${nativeSelectClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -233,23 +233,23 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.error,
               },
             },
             [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             },
             [`&.${outlinedInputClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
           input: {
-            [hcm]: {
+            [HCM]: {
               '&::placeholder': {
                 opacity: 1,
               },
@@ -261,7 +261,7 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${radioClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 color: hcTokens.disabled,
               },
             },
@@ -273,7 +273,7 @@ export default function createHighContrastTheme(
           // track doesn't receive the disabled class — use ownerState
           track: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
@@ -281,7 +281,7 @@ export default function createHighContrastTheme(
           // thumb receives the disabled class directly
           thumb: {
             [`&.${sliderClasses.disabled}`]: {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             },
@@ -293,14 +293,14 @@ export default function createHighContrastTheme(
           // track and thumb don't receive the disabled class — use ownerState
           track: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
           }),
           thumb: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
-              [hcm]: {
+              [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
@@ -311,14 +311,14 @@ export default function createHighContrastTheme(
         styleOverrides: {
           root: {
             [`&.${toggleButtonClasses.selected}`]: {
-              [hcm]: {
+              [HCM]: {
                 forcedColorAdjust: 'none',
                 color: hcTokens.selectedText,
                 backgroundColor: hcTokens.selectedBackground,
                 borderColor: hcTokens.selectedBackground,
               },
               '&:hover': {
-                [hcm]: {
+                [HCM]: {
                   color: hcTokens.selectedText,
                   backgroundColor: hcTokens.selectedBackground,
                   borderColor: hcTokens.buttonBorder,
