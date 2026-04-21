@@ -19,7 +19,9 @@ import Autocomplete, {
   createFilterOptions,
 } from '@mui/material/Autocomplete';
 import Grow from '@mui/material/Grow';
+import { iconButtonClasses } from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import { paperClasses } from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
