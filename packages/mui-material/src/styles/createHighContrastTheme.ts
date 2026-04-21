@@ -18,10 +18,14 @@ export interface HighContrastTokens {
   disabled?: string | undefined;
   /** Color for error states. Default: `'mark'` */
   error?: string | undefined;
-  /** Background color for selected items. Default: `'Highlight'` */
+  /** Background color for selected items. Default: `'SelectedItem'` */
   selectedBackground?: string | undefined;
-  /** Text color on selected items. Default: `'HighlightText'` */
+  /** Text color on selected items. Default: `'SelectedItemText'` */
   selectedText?: string | undefined;
+  /** Background color for active/toggled controls. Default: `'Highlight'` */
+  activeBackground?: string | undefined;
+  /** Text color on active/toggled controls. Default: `'HighlightText'` */
+  activeText?: string | undefined;
   /** Border color for interactive controls. Default: `'ButtonBorder'` */
   buttonBorder?: string | undefined;
   /** Text/icon color on buttons. Default: `'ButtonText'` */
@@ -32,8 +36,10 @@ export interface HighContrastTokens {
 const defaultHcTokens: Required<HighContrastTokens> = {
   disabled: 'GrayText',
   error: 'mark',
-  selectedBackground: 'Highlight',
-  selectedText: 'HighlightText',
+  selectedBackground: 'SelectedItem',
+  selectedText: 'SelectedItemText',
+  activeBackground: 'Highlight',
+  activeText: 'HighlightText',
   buttonBorder: 'ButtonBorder',
   buttonText: 'ButtonText',
 };
@@ -63,21 +69,23 @@ export default function createHighContrastTheme(
       MuiAutocomplete: {
         styleOverrides: {
           listbox: {
-            '&[aria-disabled="true"]': {
-              [HCM]: {
-                color: hcTokens.disabled,
-                opacity: 1,
-              },
-            },
-            '&[aria-selected="true"]': {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                color: hcTokens.selectedText,
-                backgroundColor: hcTokens.selectedBackground,
-              },
-              [`&.${autocompleteClasses.focused}`]: {
+            [`& .${autocompleteClasses.option}`]: {
+              '&[aria-disabled="true"]': {
                 [HCM]: {
+                  color: hcTokens.disabled,
+                  opacity: 1,
+                },
+              },
+              '&[aria-selected="true"]': {
+                [HCM]: {
+                  forcedColorAdjust: 'none',
+                  color: hcTokens.selectedText,
                   backgroundColor: hcTokens.selectedBackground,
+                },
+                [`&.${autocompleteClasses.focused}`]: {
+                  [HCM]: {
+                    backgroundColor: hcTokens.selectedBackground,
+                  },
                 },
               },
             },
@@ -313,15 +321,13 @@ export default function createHighContrastTheme(
             [`&.${toggleButtonClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
-                color: hcTokens.selectedText,
-                backgroundColor: hcTokens.selectedBackground,
-                borderColor: hcTokens.selectedBackground,
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
+                borderColor: hcTokens.activeBackground,
               },
               '&:hover': {
                 [HCM]: {
-                  color: hcTokens.selectedText,
-                  backgroundColor: hcTokens.selectedBackground,
-                  borderColor: hcTokens.buttonBorder,
+                  backgroundColor: hcTokens.activeBackground,
                 },
               },
             },
