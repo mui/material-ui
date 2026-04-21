@@ -131,8 +131,10 @@ export const SliderRail = styled('span', {
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
-  border: '1px solid transparent',
-  boxSizing: 'border-box',
+  '@media (forced-colors: active)': {
+    border: '1px solid transparent',
+    boxSizing: 'border-box',
+  },
   variants: [
     {
       props: { orientation: 'horizontal' },
