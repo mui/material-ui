@@ -5,6 +5,7 @@ import formControlLabelClasses from '../FormControlLabel/formControlLabelClasses
 import formHelperTextClasses from '../FormHelperText/formHelperTextClasses';
 import formLabelClasses from '../FormLabel/formLabelClasses';
 import inputClasses from '../Input/inputClasses';
+import listItemButtonClasses from '../ListItemButton/listItemButtonClasses';
 import menuItemClasses from '../MenuItem/menuItemClasses';
 import nativeSelectClasses from '../NativeSelect/nativeSelectClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
@@ -231,6 +232,33 @@ export default function createHighContrastTheme(
               },
             },
             [`&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}, &.${menuItemClasses.selected}:hover`]:
+              {
+                [HCM]: {
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
+              },
+          },
+        },
+      },
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            [`&.${listItemButtonClasses.focusVisible}, &:hover`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.activeText,
+                backgroundColor: hcTokens.activeBackground,
+              },
+            },
+            [`&.${listItemButtonClasses.selected}`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                color: hcTokens.selectedText,
+                backgroundColor: hcTokens.selectedBackground,
+              },
+            },
+            [`&.${listItemButtonClasses.selected}.${listItemButtonClasses.focusVisible}, &.${listItemButtonClasses.selected}:hover`]:
               {
                 [HCM]: {
                   color: hcTokens.activeText,
