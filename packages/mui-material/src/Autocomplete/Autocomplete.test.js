@@ -4086,6 +4086,208 @@ describe('<Autocomplete />', () => {
       const renderedOption = screen.getByTestId('optionLi');
       expect(renderedOption).to.have.text('Max');
     });
+
+    it('should defer renderOption until the custom listbox renders an option', () => {
+      const renderOption = spy((props, option) => <li {...props}>{option}</li>);
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+        const firstChild = Array.isArray(children) ? children[0] : children;
+
+        return (
+          <div ref={ref} {...other}>
+            {firstChild}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={Array.from({ length: 100 }, (_, index) => `option-${index}`)}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={renderOption}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect(renderOption.callCount).to.equal(strictModeDoubleLoggingSuppressed ? 1 : 2);
+      expect(screen.getAllByRole('option')).to.have.length(1);
+      expect(screen.getByRole('option')).to.have.text('option-0');
+    });
+
+    it('should pass virtualized row style through renderOption state', () => {
+      const optionStyles = [];
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+        const childItems = (Array.isArray(children) ? children : [children]).filter(Boolean);
+
+        return (
+          <div ref={ref} {...other}>
+            {childItems.map((child, index) => {
+              if (!React.isValidElement(child)) {
+                return child;
+              }
+
+              return React.createElement(child.type, {
+                key: child.key,
+                ...child.props,
+                style: {
+                  ...child.props.style,
+                  position: 'absolute',
+                  top: index * 10,
+                },
+              });
+            })}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={['option-0', 'option-1']}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option, state) => {
+            optionStyles.push(state.style?.top);
+            return (
+              <li {...props} data-testid={option}>
+                {option}
+              </li>
+            );
+          }}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect([...new Set(optionStyles)]).to.deep.equal([0, 10]);
+      const optionNode = screen.getByTestId('option-1');
+      expect(optionNode.style.position).to.equal('absolute');
+      expect(optionNode.style.top).to.equal('10px');
+    });
+
+    it('should support duplicate labels in virtualized mode when renderOption provides a unique key', () => {
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+
+        return (
+          <div ref={ref} {...other}>
+            {children}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={[
+            { id: '1', label: 'John' },
+            { id: '2', label: 'John' },
+          ]}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option) => (
+            <li {...props} key={option.id}>
+              {option.label}
+            </li>
+          )}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect(screen.getAllByRole('option')).to.have.length(2);
+    });
+
+    it('should generate unique fallback keys in virtualized mode when labels are duplicated', () => {
+      const keys = [];
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+
+        return (
+          <div ref={ref} {...other}>
+            {children}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={[{ label: 'John' }, { label: 'John' }]}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option) => {
+            keys.push(props.key);
+            return <li {...props}>{option.label}</li>;
+          }}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect([...new Set(keys)]).to.deep.equal(['John-0', 'John-1']);
+    });
+
+    it('should preserve falsy getOptionKey values in virtualized mode', () => {
+      const keys = [];
+      const VirtualizedListbox = React.forwardRef(function VirtualizedListbox(props, ref) {
+        const { children, ...other } = props;
+
+        return (
+          <div ref={ref} {...other}>
+            {children}
+          </div>
+        );
+      });
+
+      render(
+        <Autocomplete
+          disablePortal
+          open
+          options={[
+            { id: 0, label: 'John' },
+            { id: 1, label: 'John' },
+          ]}
+          getOptionLabel={(option) => option.label}
+          getOptionKey={(option) => option.id}
+          renderInput={(params) => <TextField {...params} />}
+          renderOption={(props, option) => {
+            keys.push(props.key);
+            return <li {...props}>{option.label}</li>;
+          }}
+          slotProps={{
+            listbox: {
+              component: VirtualizedListbox,
+              virtualized: true,
+            },
+          }}
+        />,
+      );
+
+      expect([...new Set(keys)]).to.deep.equal([0, 1]);
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36212

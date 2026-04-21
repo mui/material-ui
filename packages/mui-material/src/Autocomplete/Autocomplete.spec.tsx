@@ -67,6 +67,13 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
+// Tests presence of virtualized prop in listbox slot props
+<Autocomplete
+  options={['1', '2', '3']}
+  slotProps={{ listbox: { virtualized: true } }}
+  renderInput={() => null}
+/>;
+
 // Tests presence of onMouseDown prop in InputProps
 <Autocomplete
   options={['1', '2', '3']}
