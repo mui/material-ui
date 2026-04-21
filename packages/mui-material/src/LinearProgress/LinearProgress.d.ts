@@ -29,17 +29,27 @@ export interface LinearProgressProps extends StandardProps<
       >
     | undefined;
   /**
+   * The maximum value for the progress indicator for the determinate and buffer variants.
+   * @default 100
+   */
+  max?: number | undefined;
+  /**
+   * The minimum value for the progress indicator for the determinate and buffer variants.
+   * @default 0
+   */
+  min?: number | undefined;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between `min` and `max`.
    */
   value?: number | undefined;
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between `min` and `max`.
    */
   valueBuffer?: number | undefined;
   /**

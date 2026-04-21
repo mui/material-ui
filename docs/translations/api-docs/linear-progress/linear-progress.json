@@ -5,13 +5,21 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>."
     },
+    "max": {
+      "description": "The maximum value for the progress indicator for the determinate and buffer variants."
+    },
+    "min": {
+      "description": "The minimum value for the progress indicator for the determinate and buffer variants."
+    },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "value": {
-      "description": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100."
+      "description": "The value of the progress indicator for the determinate and buffer variants. Value between <code>min</code> and <code>max</code>."
     },
-    "valueBuffer": { "description": "The value for the buffer variant. Value between 0 and 100." },
+    "valueBuffer": {
+      "description": "The value for the buffer variant. Value between <code>min</code> and <code>max</code>."
+    },
     "variant": {
       "description": "The variant to use. Use indeterminate or query when there is no progress value."
     }

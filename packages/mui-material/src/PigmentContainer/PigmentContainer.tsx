@@ -101,7 +101,6 @@ const PigmentContainer = React.forwardRef(function PigmentContainer(
       fixed={fixed}
       maxWidth={maxWidth}
       {...(props as any)}
-      // @ts-ignore
       ref={ref}
     />
   );

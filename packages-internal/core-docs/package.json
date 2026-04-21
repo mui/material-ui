@@ -39,7 +39,7 @@
     "stylis": "catalog:docs"
   },
   "devDependencies": {
-    "@mui-internal/api-docs-builder": "workspace:*",
+    "@mui/internal-api-docs-builder": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",
@@ -50,14 +50,14 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "next": "15.5.14"
+    "next": "15.5.15"
   },
   "peerDependencies": {
     "@docsearch/react": "catalog:docs",
     "@emotion/cache": "catalog:docs",
     "@emotion/react": "catalog:docs",
     "@emotion/styled": "catalog:docs",
-    "@mui/base": "^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta",
+    "@base-ui/react": "catalog:docs",
     "@mui/icons-material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta",
     "@mui/material": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta",
     "@mui/material-nextjs": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta",

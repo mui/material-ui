@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import type { HookApiContent, HooksTranslations } from '@mui-internal/api-docs-builder';
+import type { HookApiContent, HooksTranslations } from '@mui/internal-api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import { Translate, useTranslate, useUserLanguage } from '../i18n';
 import { SectionTitle, SectionTitleProps } from '../SectionTitle';

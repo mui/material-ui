@@ -183,6 +183,7 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
 6. If demos changed: `pnpm docs:typescript:formatted`
+7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 

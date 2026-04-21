@@ -1,7 +1,7 @@
 <FormControl>
-  <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+  <FormLabel id={`${id}-label`}>Gender</FormLabel>
   <RadioGroup
-    aria-labelledby="demo-controlled-radio-buttons-group"
+    aria-labelledby={`${id}-label`}
     name="controlled-radio-buttons-group"
     value={value}
     onChange={handleChange}

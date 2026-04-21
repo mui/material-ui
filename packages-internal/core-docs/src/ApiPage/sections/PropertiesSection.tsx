@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { PropsTableItem, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { PropsTableItem, PropsTranslations } from '@mui/internal-api-docs-builder';
 import { useTranslate } from '../../i18n';
 import {
   ToggleDisplayOption,

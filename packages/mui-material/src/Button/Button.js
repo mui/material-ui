@@ -117,6 +117,17 @@ const ButtonRoot = styled(ButtonBase, {
       },
       variants: [
         {
+          props: ({ ownerState }) =>
+            ownerState.startIcon || (ownerState.loading && ownerState.loadingPosition === 'start'),
+          style: {
+            '&::before': {
+              content: '"\\200b"',
+              width: 0,
+              overflow: 'hidden',
+            },
+          },
+        },
+        {
           props: { variant: 'contained' },
           style: {
             color: `var(--variant-containedColor)`,
@@ -580,6 +591,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       </span>
     ) : null;
 
+  // Don't forward the 'root' classes to the ButtonBase, as they will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   return (
     <ButtonRoot
       ownerState={ownerState}
@@ -593,7 +607,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
-      classes={classes}
+      classes={forwardedClasses}
     >
       {startIcon}
       {loadingPosition !== 'end' && loader}

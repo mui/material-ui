@@ -120,6 +120,18 @@ describe('resolveProps', () => {
       });
     });
 
+    it('should apply default className when props.className is an empty string', () => {
+      expect(resolveProps({ className: 'default-class' }, { className: '' }, true)).to.deep.equal({
+        className: 'default-class',
+      });
+    });
+
+    it('should keep empty string className when there is no default', () => {
+      expect(resolveProps({}, { className: '' }, true)).to.deep.equal({
+        className: '',
+      });
+    });
+
     it('merge style props', () => {
       expect(
         resolveProps({ style: { color: 'red' } }, { style: { backgroundColor: 'blue' } }, true),

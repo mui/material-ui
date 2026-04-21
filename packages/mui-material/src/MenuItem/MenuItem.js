@@ -221,6 +221,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   const rovingItemProps = useRovingTabIndexItem({
     id: rovingItemId,
     ref,
@@ -256,7 +259,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         className={clsx(classes.root, className)}
         {...other}
         ownerState={ownerState}
-        classes={classes}
+        classes={forwardedClasses}
       />
     </ListContext.Provider>
   );

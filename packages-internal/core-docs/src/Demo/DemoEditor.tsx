@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SimpleCodeEditor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import { NoSsr } from '@mui/base/NoSsr';
+import NoSsr from '@mui/material/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';

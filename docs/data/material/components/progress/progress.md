@@ -24,6 +24,8 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Circular indeterminate
 
+The default version of CircularProgress renders an indeterminate spinner.
+
 {{"demo": "CircularIndeterminate.js"}}
 
 ### Circular color
@@ -36,17 +38,31 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Circular determinate
 
+To specify the loading progress of an operation, use the `determinate` value for the `variant` prop. To show the actual progress, use the `value` prop.
+
 {{"demo": "CircularDeterminate.js"}}
 
+### Circular custom scale
+
+By default, progress values are expected in the 0–100 range. You can customize this range by using the `min` and `max` props.
+
+{{"demo": "CircularCustomScale.js"}}
+
 ### Circular track
+
+To have the circular track always visible, pass the `enableTrackSlot` prop.
 
 {{"demo": "CircularEnableTrack.js"}}
 
 ### Interactive integration
 
+The following examples show how to integrate the CircularProgress with the Button and FAB components, creating loading states that can be triggered by user actions.
+
 {{"demo": "CircularIntegration.js"}}
 
 ### Circular with label
+
+The example shows how to integrate the visual progress value with the CircularProgress component.
 
 {{"demo": "CircularWithValueLabel.js"}}
 
@@ -54,7 +70,15 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Linear indeterminate
 
+LinearProgress shows an indeterminate progress bar by default.
+
 {{"demo": "LinearIndeterminate.js"}}
+
+### Linear query
+
+To reverse the direction of the indeterminate animation, use the `query` value for the `variant` prop.
+
+{{"demo": "LinearQuery.js"}}
 
 ### Linear color
 
@@ -62,44 +86,27 @@ The animations of the components rely on CSS as much as possible to work even be
 
 ### Linear determinate
 
+To show the progress on the loading bar, use the `determinate` value for the `variant` prop, along with the `value` prop.
+
 {{"demo": "LinearDeterminate.js"}}
 
 ### Linear buffer
+
+Use the `buffer` value for the `variant` prop to show a buffer progress alongside the actual progress value. The `valueBuffer` prop should be greater than the `value` prop.
 
 {{"demo": "LinearBuffer.js"}}
 
 ### Linear with label
 
+The progress `value` can also be displayed alongside the progress bar.
+
 {{"demo": "LinearWithValueLabel.js"}}
 
-## Non-standard ranges
+### Linear with custom value text
 
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+By default, the progress value is read by assistive technology as percentages. Use `aria-valuetext` when the progress value does not involve percentages.
 
-```jsx
-// MIN = Minimum expected value
-// MAX = Maximum expected value
-// Function to normalise the values (MIN / MAX could be integrated)
-const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
-
-// Example component that utilizes the `normalise` function at the point of render.
-function Progress(props) {
-  return (
-    <React.Fragment>
-      <CircularProgress
-        variant="determinate"
-        value={normalise(props.value)}
-        aria-label="Upload photos"
-      />
-      <LinearProgress
-        variant="determinate"
-        value={normalise(props.value)}
-        aria-label="Upload photos"
-      />
-    </React.Fragment>
-  );
-}
-```
+{{"demo": "LinearWithAriaValueText.js"}}
 
 ## Customization
 

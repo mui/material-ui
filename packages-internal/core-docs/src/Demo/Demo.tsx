@@ -2,8 +2,7 @@ import * as React from 'react';
 import copy from 'clipboard-copy';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { Tabs } from '@mui/base/Tabs';
-import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@base-ui/react/tabs';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import type { ButtonBaseActions } from '@mui/material/ButtonBase';
@@ -327,7 +326,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 
 const selectionOverride = (theme: any) => ({
   cursor: 'pointer',
-  '&.base--selected': {
+  '&[data-active]': {
     color: (theme.vars || theme).palette.primary[700],
     backgroundColor: (theme.vars || theme).palette.primary[50],
     borderColor: (theme.vars || theme).palette.primary[200],
@@ -558,11 +557,8 @@ export function Demo(props: DemoProps) {
   });
 
   const [activeTab, setActiveTab] = React.useState(0);
-  const handleTabChange = (
-    _event: React.SyntheticEvent | null,
-    newValue: string | number | null,
-  ) => {
-    setActiveTab(newValue as number);
+  const handleTabChange: NonNullable<Tabs.Root.Props['onValueChange']> = (value) => {
+    setActiveTab(value as number);
   };
   const ownerState = { mounted: true, contained: true };
 
@@ -670,7 +666,7 @@ export function Demo(props: DemoProps) {
               <DemoToolbarFallback />
             )}
           </DemoToolbarRoot>
-          <Tabs value={activeTab} onChange={handleTabChange}>
+          <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
             {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
               <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
@@ -689,7 +685,7 @@ export function Demo(props: DemoProps) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <TabPanel value={index} key={index}>
+                <Tabs.Panel value={index} key={index}>
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
@@ -749,10 +745,10 @@ export function Demo(props: DemoProps) {
                       <DemoEditorError>{debouncedError}</DemoEditorError>
                     </DemoEditor>
                   )}
-                </TabPanel>
+                </Tabs.Panel>
               ))}
             </Collapse>
-          </Tabs>
+          </Tabs.Root>
           {/* AI Suggestion Hero UI */}
           {demoOptions.aiSuggestion ? (
             <DemoAiSuggestionHero

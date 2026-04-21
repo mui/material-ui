@@ -73,6 +73,17 @@ describe('<MenuItem />', () => {
     expect(screen.queryByRole('option')).not.to.equal(null);
   });
 
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(
+      <MenuList>
+        <MenuItem classes={{ root: 'my-root-class' }}>Item</MenuItem>
+      </MenuList>,
+    );
+    const menuitem = screen.getByRole('menuitem');
+    const classList = menuitem.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
+  });
+
   describe('event callbacks', () => {
     /**
      * @type {Array<keyof typeof fireEvent>}

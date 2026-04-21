@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NProgress from 'nprogress';
-import { NoSsr } from '@mui/base/NoSsr';
+import NoSsr from '@mui/material/NoSsr';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { keyframes } from '@mui/material/styles';
 

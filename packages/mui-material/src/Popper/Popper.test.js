@@ -156,6 +156,58 @@ describe('<Popper />', () => {
 
       expect(popperRef.current.state.placement).to.equal('bottom');
     });
+
+    // Regression test for https://github.com/mui/mui-x/issues/21839
+    it.skipIf(isJsdom())(
+      'should keep the Popper positioned when popperOptions reference changes',
+      () => {
+        // Models a child (e.g. MUI X YearCalendar button) that auto-focuses on
+        // mount. Its layout effect runs after the Popper's cleanup (popper.destroy())
+        // but before the Popper's new effect (createPopper()), so it observes the
+        // intermediate DOM state between the two.
+        function AutoFocusButton() {
+          const buttonRef = React.useRef(null);
+          React.useLayoutEffect(() => {
+            const popper = document.querySelector('[role="tooltip"]');
+            expect(getComputedStyle(popper).position).to.not.equal('static');
+            buttonRef.current?.focus();
+          });
+          return <button ref={buttonRef}>Calendar button</button>;
+        }
+
+        // Simulates a date picker where switching views (day → year) both mounts
+        // a new auto-focusing child and changes the popperOptions reference.
+        function DatePickerLike() {
+          const [view, setView] = React.useState('day');
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setView('year')}>
+                Switch to year view
+              </button>
+              <Popper
+                anchorEl={() => defaultAnchorElm}
+                open
+                popperOptions={view === 'year' ? { placement: 'top' } : { placement: 'bottom' }}
+              >
+                {view === 'year' ? <AutoFocusButton /> : <span>Day view</span>}
+              </Popper>
+            </React.Fragment>
+          );
+        }
+
+        render(<DatePickerLike />);
+
+        // Note: using fireEvent instead of user.click() because this test file
+        // uses fake timers (clock: 'fake'), which causes user.click() to hang.
+        fireEvent.click(screen.getByRole('button', { name: 'Switch to year view' }));
+
+        // Guard: verify AutoFocusButton actually mounted and its effect ran,
+        // otherwise the expect inside the layout effect was silently skipped.
+        expect(document.activeElement).to.equal(
+          screen.getByRole('button', { name: 'Calendar button' }),
+        );
+      },
+    );
   });
 
   describe('prop: keepMounted', () => {
