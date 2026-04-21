@@ -21,7 +21,8 @@ async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
 export type VersionEntry = { version: string; url: string };
 
 // #target-branch-reference
-const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
+const VERSIONS_URL =
+  'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
 
 async function defaultFetchVersions(): Promise<VersionEntry[]> {
   const response = await fetch(VERSIONS_URL);
@@ -44,7 +45,7 @@ export const DEFAULT_DOCS_CONFIG: DocsConfig = {
   LANGUAGES_IN_PROGRESS,
   LANGUAGES_IGNORE_PAGES,
   fetchNotifications: defaultFetchNotifications,
-  getchVersions: defaultFetchVersions,
+  fetchVersions: defaultFetchVersions,
 };
 
 const DocsConfigContext = React.createContext<DocsConfig>(DEFAULT_DOCS_CONFIG);
