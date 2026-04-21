@@ -136,9 +136,9 @@ Pages Router and theme-wide patterns: see [Routing libraries—Next.js Pages Rou
 
 | Topic                            | Link                                                                                                   |
 | :------------------------------- | :----------------------------------------------------------------------------------------------------- |
-| Full integration guide           | [Next.js integration](https://mui.com/material-ui/integrations/nextjs.md)                                |
+| Full integration guide           | [Next.js integration](https://mui.com/material-ui/integrations/nextjs.md)                              |
 | Example (App Router, TypeScript) | [material-ui-nextjs-ts](https://github.com/mui/material-ui/tree/master/examples/material-ui-nextjs-ts) |
-| Routing + Link adapters          | [Routing libraries](https://mui.com/material-ui/integrations/routing.md)                                 |
+| Routing + Link adapters          | [Routing libraries](https://mui.com/material-ui/integrations/routing.md)                               |
 | RSC vs SSR (terminology)         | [React WG discussion](https://github.com/reactwg/server-components/discussions/4)                      |
 
 Import path cheat sheet: [reference.md](reference.md).
