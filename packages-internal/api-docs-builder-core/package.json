@@ -14,7 +14,7 @@
     "directory": "packages-internal/api-docs-builder-core"
   },
   "dependencies": {
-    "@mui-internal/api-docs-builder": "workspace:^",
+    "@mui/internal-api-docs-builder": "workspace:^",
     "@mui/internal-core-docs": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",

@@ -62,10 +62,13 @@ import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
-import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
+import {
+  ComponentInfo,
+  ProjectSettings,
+  findComponents,
+  findPagesMarkdown,
+} from '@mui/internal-api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
-import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
 // Determine the host based on environment variables
 let ORIGIN: string | undefined = 'https://mui.com';

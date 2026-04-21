@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "types": ["node", "vitest/globals"],
     "target": "ES2020",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "strict": true,
     "paths": {
       "@mui/internal-docs-utils": ["../docs-utils/src/index.ts"]

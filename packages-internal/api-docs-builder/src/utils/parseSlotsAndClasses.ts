@@ -4,7 +4,7 @@ import { renderMarkdown } from '../buildApi';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
 import { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
-import resolveExportSpecifier from './resolveExportSpecifier';
+import { resolveExportSpecifier } from './resolveExportSpecifier';
 import { ProjectSettings } from '../ProjectSettings';
 import { Slot } from '../types/utils.types';
 

@@ -39,7 +39,7 @@
     "stylis": "catalog:docs"
   },
   "devDependencies": {
-    "@mui-internal/api-docs-builder": "workspace:*",
+    "@mui/internal-api-docs-builder": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",

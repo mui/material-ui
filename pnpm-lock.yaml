@@ -83,12 +83,6 @@ importers:
       '@eslint/compat':
         specifier: 2.0.3
         version: 2.0.3(eslint@10.1.0(jiti@2.6.1))
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:^
-        version: link:packages-internal/api-docs-builder
-      '@mui-internal/api-docs-builder-core':
-        specifier: workspace:^
-        version: link:packages-internal/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
         specifier: 2.0.8-canary.25
         version: 2.0.8-canary.25(@babel/core@7.29.0)
@@ -100,7 +94,7 @@ importers:
         version: 0.0.4-canary.23(@next/eslint-plugin-next@15.5.14)(@types/node@20.19.37)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1))(postcss@8.5.9)(prettier@3.8.1)(stylelint@17.6.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:packages-internal/docs-utils
+        version: link:packages-internal/docs-utils/build
       '@mui/internal-netlify-cache':
         specifier: 0.0.3-canary.5
         version: 0.0.3-canary.5
@@ -519,12 +513,12 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.28.5
         version: 7.28.5(@babel/core@7.29.0)
-      '@mui-internal/api-docs-builder':
+      '@mui/internal-api-docs-builder':
         specifier: workspace:^
-        version: link:../packages-internal/api-docs-builder
+        version: link:../packages-internal/api-docs-builder/build
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../packages-internal/docs-utils
+        version: link:../packages-internal/docs-utils/build
       '@mui/internal-scripts':
         specifier: workspace:^
         version: link:../packages-internal/scripts
@@ -614,7 +608,7 @@ importers:
         version: 7.29.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../docs-utils
+        version: link:../docs-utils/build
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -673,12 +667,13 @@ importers:
       sinon:
         specifier: 21.0.3
         version: 21.0.3
+    publishDirectory: build
 
   packages-internal/api-docs-builder-core:
     dependencies:
-      '@mui-internal/api-docs-builder':
+      '@mui/internal-api-docs-builder':
         specifier: workspace:^
-        version: link:../api-docs-builder
+        version: link:../api-docs-builder/build
       '@mui/internal-core-docs':
         specifier: workspace:^
         version: link:../core-docs/build
@@ -792,12 +787,12 @@ importers:
         specifier: catalog:docs
         version: 4.2.0
     devDependencies:
-      '@mui-internal/api-docs-builder':
-        specifier: workspace:*
-        version: link:../api-docs-builder
       '@mui/icons-material':
         specifier: workspace:*
         version: link:../../packages/mui-icons-material/build
+      '@mui/internal-api-docs-builder':
+        specifier: workspace:*
+        version: link:../api-docs-builder/build
       '@mui/material':
         specifier: workspace:*
         version: link:../../packages/mui-material/build
@@ -838,6 +833,7 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+    publishDirectory: build
 
   packages-internal/markdown:
     dependencies:
@@ -880,7 +876,7 @@ importers:
         version: 7.29.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
-        version: link:../docs-utils
+        version: link:../docs-utils/build
       doctrine:
         specifier: ^3.0.0
         version: 3.0.0
