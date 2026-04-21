@@ -7,7 +7,7 @@ metadata:
   version: '1.0.0'
 ---
 
-# Material�UI and Tailwind�CSS
+# Material UI and Tailwind CSS
 
 Agent skill for MUI + Tailwind. SKILL.md is the entry; AGENTS.md is the full guide.
 
@@ -28,7 +28,7 @@ Agent skill for MUI + Tailwind. SKILL.md is the entry; AGENTS.md is the full gui
 | SPA          | `StyledEngineProvider` + `enableCssLayer`             |
 | Usage        | Root vs slot `className`                              |
 | `@theme`     | Full snippet on docs site; needs `cssVariables`       |
-| IntelliSense | VS�Code `classRegex`                                  |
+| IntelliSense | VS Code `classRegex`                                  |
 | v3           | preflight, `important`, `injectFirst`, portals        |
 
 ## Full guide

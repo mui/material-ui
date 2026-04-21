@@ -7,16 +7,16 @@ metadata:
   version: '1.0.0'
 ---
 
-# Material�UI and Next.js
+# Material UI and Next.js
 
-Agent skill for Next.js + Material�UI wiring (SSR/streaming, cache providers, fonts, layers, Link, App Router URL state). SKILL.md is the entry; AGENTS.md is the full guide.
+Agent skill for Next.js + Material UI wiring (SSR/streaming, cache providers, fonts, layers, Link, App Router URL state). SKILL.md is the entry; AGENTS.md is the full guide.
 
 ## When to apply
 
 - New App Router or Pages Router app using `@mui/material`
 - Styles missing, wrong order, or in `body` instead of `head`
 - `next/font` + `ThemeProvider` / `createTheme`
-- Tailwind or CSS�Modules + MUI (`enableCssLayer`)
+- Tailwind or CSS Modules + MUI (`enableCssLayer`)
 - `Button` + `component={Link}` or Next.js v16 client boundary errors
 - `useSearchParams` / URL-driven MUI views and Suspense boundaries
 

@@ -1,14 +1,14 @@
-# Material�UI theming and design tokens
+# Material UI theming and design tokens
 
 Version 1.0.0
 
-> Note: This document is for agents and LLMs implementing themes and design tokens with Material�UI. Grounded in `docs/data/material/customization/` (theming, palette, dark-mode, css-theme-variables, typography, spacing, shape).
+> Note: This document is for agents and LLMs implementing themes and design tokens with Material UI. Grounded in `docs/data/material/customization/` (theming, palette, dark-mode, css-theme-variables, typography, spacing, shape).
 
 ---
 
 ## Abstract
 
-A Material�UI theme is a single object of design tokens (palette, typography, spacing, shape, breakpoints, etc.) plus optional per-component defaults (`theme.components`). Apps typically call `createTheme` once (or in composed steps), pass the result to `ThemeProvider` near the root, and read values with `useTheme`, `sx`, or `styled`. For system-driven light/dark, prefer `colorSchemes` and related APIs over a static `palette.mode`-only setup when you need toggling, tab sync, and SSR-friendly behavior; enable `cssVariables` when you want `theme.vars`, fewer theme nests for dark regions, and clearer debugging via `--mui-*` CSS variables.
+A Material UI theme is a single object of design tokens (palette, typography, spacing, shape, breakpoints, etc.) plus optional per-component defaults (`theme.components`). Apps typically call `createTheme` once (or in composed steps), pass the result to `ThemeProvider` near the root, and read values with `useTheme`, `sx`, or `styled`. For system-driven light/dark, prefer `colorSchemes` and related APIs over a static `palette.mode`-only setup when you need toggling, tab sync, and SSR-friendly behavior; enable `cssVariables` when you want `theme.vars`, fewer theme nests for dark regions, and clearer debugging via `--mui-*` CSS variables.
 
 ---
 
@@ -29,7 +29,7 @@ A Material�UI theme is a single object of design tokens (palette, typography, 
 
 ## Core setup
 
-1. `import { createTheme, ThemeProvider } from '@mui/material/styles'` (Material�UI default theme).
+1. `import { createTheme, ThemeProvider } from '@mui/material/styles'` (Material UI default theme).
 2. Build a theme with `createTheme({ ... })`; wrap the app in `<ThemeProvider theme={theme}>` so descendants receive context.
 3. Use `<CssBaseline />` inside the provider when you want baseline element styles and correct dark background behavior (see [Dark mode](https://mui.com/material-ui/customization/dark-mode/)).
 

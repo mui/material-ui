@@ -7,7 +7,7 @@ metadata:
   version: '1.0.0'
 ---
 
-# Material�UI theming and design tokens
+# Material UI theming and design tokens
 
 Agent skill for theme creation, design tokens, light/dark, and CSS theme variables. SKILL.md is the entry; AGENTS.md is the full guide.
 

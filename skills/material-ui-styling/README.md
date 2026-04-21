@@ -1,6 +1,6 @@
-# Material�UI styling (agent skill)
+# Material UI styling (agent skill)
 
-Material�UI-specific guidance for which styling mechanism to use (`sx`, `styled()`, theme overrides, global CSS), aligned with the official docs in this monorepo.
+Material UI-specific guidance for which styling mechanism to use (`sx`, `styled()`, theme overrides, global CSS), aligned with the official docs in this monorepo.
 
 ## Files in this folder
 
