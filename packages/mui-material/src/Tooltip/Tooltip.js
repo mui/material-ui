@@ -60,7 +60,7 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState, open }) => !ownerState.disableInteractive || !open,
+        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
         },
