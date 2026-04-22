@@ -497,19 +497,24 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     if (isFocusVisible(event.target)) {
-      setChildIsFocusVisible(true);
-      handleMouseOver(event);
-
-      // Workaround for https://github.com/facebook/react/issues/9142
-      // If child gets disabled while tooltip is shown, React does not fire blur event.
-      // We rely on native 'blur' here.
-      const blurWhileDisabledListener = (blurEvent) => {
+      // Workaround for https://github.com/facebook/react/issues/9142.
+      // React does not fire blur when a focused element becomes disabled.
+      const handleNativeBlur = (blurEvent) => {
         if (blurEvent.target.disabled) {
           handleBlur(blurEvent);
         }
-        blurEvent.target.removeEventListener('blur', blurWhileDisabledListener);
+        blurEvent.target.removeEventListener('blur', handleNativeBlur);
       };
-      event.target.addEventListener('blur', blurWhileDisabledListener);
+
+      event.target.addEventListener('blur', handleNativeBlur);
+      setChildIsFocusVisible(true);
+      handleMouseOver(event);
+
+      // The browser may not dispatch native blur if user code disables the child
+      // synchronously during open-side effects.
+      if (event.target.disabled) {
+        handleBlur(event);
+      }
     }
   };
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
@@ -10,6 +11,7 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -967,6 +969,73 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
+    });
+
+    it('closes when the focused child becomes disabled', async () => {
+      clock.restore();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={0}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled} onClick={() => setDisabled(true)}>
+              Disable
+            </button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      await user.keyboard('{Enter}');
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+    });
+
+    it('closes when onOpen synchronously disables the focused child', async () => {
+      clock.restore();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={0}
+            onOpen={() => {
+              ReactDOM.flushSync(() => {
+                setDisabled(true);
+              });
+            }}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled}>Disable</button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
     });
 
     it('closes on blur', async () => {
