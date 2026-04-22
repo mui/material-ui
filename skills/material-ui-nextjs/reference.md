@@ -25,4 +25,4 @@ Pages Router also uses `@emotion/server` for the documented setup; App Router us
 </html>
 ```
 
-Order and `next/font` `className` on `html` follow [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs/#font-optimization).
+Order and `next/font` `className` on `html` follow [Next.js integration—Font optimization](https://mui.com/material-ui/integrations/nextjs.md#font-optimization).

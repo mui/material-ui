@@ -15,15 +15,15 @@ declare module '@mui/material/styles' {
 }
 ```
 
-Source pattern: [Theming—Custom variables](https://mui.com/material-ui/customization/theming/#custom-variables).
+Source pattern: [Theming—Custom variables](https://mui.com/material-ui/customization/theming.md#custom-variables).
 
 ## Extra `shape` keys (TypeScript)
 
-New shape properties require augmenting `Shape` and `ShapeOptions`. See [Shape—TypeScript](https://mui.com/material-ui/customization/shape/#typescript).
+New shape properties require augmenting `Shape` and `ShapeOptions`. See [Shape—TypeScript](https://mui.com/material-ui/customization/shape.md#typescript).
 
 ## `theme.vars` typings (CSS variables)
 
-Typings for `theme.vars` are not enabled by default. Follow [CSS theme variables—TypeScript](https://mui.com/material-ui/customization/css-theme-variables/usage/#typescript).
+Typings for `theme.vars` are not enabled by default. Follow [CSS theme variables—TypeScript](https://mui.com/material-ui/customization/css-theme-variables/usage.md#typescript).
 
 ## Fallback when rendering outside `ThemeProvider`
 
@@ -31,4 +31,4 @@ Typings for `theme.vars` are not enabled by default. Follow [CSS theme variables
 backgroundColor: (theme.vars || theme).palette.primary.main;
 ```
 
-Use when a component might run outside the provider. From [CSS theme variables—Usage](https://mui.com/material-ui/customization/css-theme-variables/usage/).
+Use when a component might run outside the provider. From [CSS theme variables—Usage](https://mui.com/material-ui/customization/css-theme-variables/usage.md).

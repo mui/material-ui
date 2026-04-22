@@ -31,7 +31,7 @@ A Material UI theme is a single object of design tokens (palette, typography, s
 
 1. `import { createTheme, ThemeProvider } from '@mui/material/styles'` (Material UI default theme).
 2. Build a theme with `createTheme({ ... })`; wrap the app in `<ThemeProvider theme={theme}>` so descendants receive context.
-3. Use `<CssBaseline />` inside the provider when you want baseline element styles and correct dark background behavior (see [Dark mode](https://mui.com/material-ui/customization/dark-mode/)).
+3. Use `<CssBaseline />` inside the provider when you want baseline element styles and correct dark background behavior (see [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)).
 
 Access in components: `useTheme()` from `@mui/material/styles`.
 
@@ -41,16 +41,16 @@ Access in components: `useTheme()` from `@mui/material/styles`.
 
 | Area          | Role                                                                                    | Doc                                                                              |
 | :------------ | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| `palette`     | Semantic colors (`primary`, `secondary`, `error`, …), text, background, divider, action | [Palette](https://mui.com/material-ui/customization/palette/)                    |
-| `typography`  | `fontFamily`, `fontSize`, variants (`h1` through `body2`, `button`, …)                  | [Typography](https://mui.com/material-ui/customization/typography/)              |
-| `spacing`     | `theme.spacing(n)` scale (default 8px per unit)                                         | [Spacing](https://mui.com/material-ui/customization/spacing/)                    |
-| `shape`       | `borderRadius` (default 4); optional extra radii need TypeScript augmentation           | [Shape](https://mui.com/material-ui/customization/shape/)                        |
-| `breakpoints` | Responsive keys for `sx` / media queries                                                | [Breakpoints](https://mui.com/material-ui/customization/breakpoints/)            |
-| `zIndex`      | Layering tokens                                                                         | [z-index](https://mui.com/material-ui/customization/z-index/)                    |
-| `transitions` | Duration / easing helpers                                                               | [Transitions](https://mui.com/material-ui/customization/transitions/)            |
-| `components`  | `defaultProps`, `styleOverrides`, `variants` per `Mui*` key                             | [Themed components](https://mui.com/material-ui/customization/theme-components/) |
+| `palette`     | Semantic colors (`primary`, `secondary`, `error`, …), text, background, divider, action | [Palette](https://mui.com/material-ui/customization/palette.md)                    |
+| `typography`  | `fontFamily`, `fontSize`, variants (`h1` through `body2`, `button`, …)                  | [Typography](https://mui.com/material-ui/customization/typography.md)              |
+| `spacing`     | `theme.spacing(n)` scale (default 8px per unit)                                         | [Spacing](https://mui.com/material-ui/customization/spacing.md)                    |
+| `shape`       | `borderRadius` (default 4); optional extra radii need TypeScript augmentation           | [Shape](https://mui.com/material-ui/customization/shape.md)                        |
+| `breakpoints` | Responsive keys for `sx` / media queries                                                | [Breakpoints](https://mui.com/material-ui/customization/breakpoints.md)            |
+| `zIndex`      | Layering tokens                                                                         | [z-index](https://mui.com/material-ui/customization/z-index.md)                    |
+| `transitions` | Duration / easing helpers                                                               | [Transitions](https://mui.com/material-ui/customization/transitions.md)            |
+| `components`  | `defaultProps`, `styleOverrides`, `variants` per `Mui*` key                             | [Themed components](https://mui.com/material-ui/customization/theme-components.md) |
 
-Full defaults: [Default theme explorer](https://mui.com/material-ui/customization/default-theme/).
+Full defaults: [Default theme explorer](https://mui.com/material-ui/customization/default-theme.md).
 
 ---
 
@@ -58,7 +58,7 @@ Full defaults: [Default theme explorer](https://mui.com/material-ui/customizatio
 
 - Each palette color is usually `main`, `light`, `dark`, `contrastText`. Supplying `main` alone is often enough; `createTheme` can derive the rest.
 - Use `@mui/material/colors` (for example `purple[500]`) for Material Design hues when building a palette.
-- `palette.mode: 'dark'` forces a dark palette for the whole theme; if you use a fully custom palette with dark mode, ensure values match the mode (see [Dark mode](https://mui.com/material-ui/customization/dark-mode/)).
+- `palette.mode: 'dark'` forces a dark palette for the whole theme; if you use a fully custom palette with dark mode, ensure values match the mode (see [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)).
 
 ---
 
@@ -67,43 +67,43 @@ Full defaults: [Default theme explorer](https://mui.com/material-ui/customizatio
 - `colorSchemes` (for example `colorSchemes: { dark: true }`) enables built-in behavior: system preference, tab sync, optional transition disable on scheme change, storage, etc. Docs recommend it over the older, narrower palette-only approach for those features.
 - If both `colorSchemes` and `palette` are set, `palette` takes precedence. Avoid accidental overrides.
 - `useColorScheme` reads/updates mode for toggling. `mode` can be `undefined` on the first render; handle that to avoid hydration mismatches.
-- `ThemeProvider` supports `storageManager`, `disableTransitionOnChange`, `noSsr`, etc., for color-scheme UX and SSR (see [Dark mode](https://mui.com/material-ui/customization/dark-mode/)).
+- `ThemeProvider` supports `storageManager`, `disableTransitionOnChange`, `noSsr`, etc., for color-scheme UX and SSR (see [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)).
 
 ---
 
 ## CSS theme variables (`cssVariables: true`)
 
-- Set `cssVariables: true` in `createTheme` so components use `var(--mui-...)` values. Prefer `theme.vars` in style callbacks when variables are enabled (mirrors palette/typography as CSS var references). See [Usage](https://mui.com/material-ui/customization/css-theme-variables/usage/).
+- Set `cssVariables: true` in `createTheme` so components use `var(--mui-...)` values. Prefer `theme.vars` in style callbacks when variables are enabled (mirrors palette/typography as CSS var references). See [Usage](https://mui.com/material-ui/customization/css-theme-variables/usage.md).
 - Do not pass a custom `vars` key into `createTheme`. That key is reserved and autogenerated for this feature.
-- For dark-specific styles with CSS variables, use `theme.applyStyles('dark', { ... })` rather than branching on `theme.palette.mode` in ways that cause flicker (see docs warning in [Usage](https://mui.com/material-ui/customization/css-theme-variables/usage/) and [Configuration](https://mui.com/material-ui/customization/css-theme-variables/configuration/)).
-- Trade-offs: larger HTML (both schemes' variables), possible FCP impact; benefits include less JavaScript work on scheme switch and better SSR dark experience. See [Overview](https://mui.com/material-ui/customization/css-theme-variables/overview/).
+- For dark-specific styles with CSS variables, use `theme.applyStyles('dark', { ... })` rather than branching on `theme.palette.mode` in ways that cause flicker (see docs warning in [Usage](https://mui.com/material-ui/customization/css-theme-variables/usage.md) and [Configuration](https://mui.com/material-ui/customization/css-theme-variables/configuration.md)).
+- Trade-offs: larger HTML (both schemes' variables), possible FCP impact; benefits include less JavaScript work on scheme switch and better SSR dark experience. See [Overview](https://mui.com/material-ui/customization/css-theme-variables/overview.md).
 - `CssVarsProvider` is superseded by `ThemeProvider` with the same capabilities. Use `ThemeProvider`.
 
 ---
 
 ## Typography and spacing
 
-- Typography uses `rem`; default root sizing is documented on [Typography](https://mui.com/material-ui/customization/typography/). Adjust `typography.fontSize` or per-variant sizes as needed; `responsiveFontSizes(theme)` can scale typography across breakpoints.
-- `theme.spacing(k)` follows the configured scale; `sx` spacing shorthands use the same system. Array-based `spacing` in the theme has limitations (negative / fractional / `'auto'`). Prefer a function if you need full expressiveness (see [Spacing](https://mui.com/material-ui/customization/spacing/)).
+- Typography uses `rem`; default root sizing is documented on [Typography](https://mui.com/material-ui/customization/typography.md). Adjust `typography.fontSize` or per-variant sizes as needed; `responsiveFontSizes(theme)` can scale typography across breakpoints.
+- `theme.spacing(k)` follows the configured scale; `sx` spacing shorthands use the same system. Array-based `spacing` in the theme has limitations (negative / fractional / `'auto'`). Prefer a function if you need full expressiveness (see [Spacing](https://mui.com/material-ui/customization/spacing.md)).
 
 ---
 
 ## Composing and merging themes
 
-- When one token should derive from another, build in steps: call `createTheme` with base options, then `createTheme(theme, { ... })` using the first result (see [Theming—Using theme options to define other options](https://mui.com/material-ui/customization/theming/#theme-composition-using-theme-options-to-define-other-options)).
-- Avoid relying on multiple arguments to `createTheme` for merging; only the first argument is formally processed. Deep-merge yourself (for example `deepmerge` from `@mui/utils`) and pass a single object for forward compatibility (see [Theming—createTheme(options, ...args)](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme)).
+- When one token should derive from another, build in steps: call `createTheme` with base options, then `createTheme(theme, { ... })` using the first result (see [Theming—Using theme options to define other options](https://mui.com/material-ui/customization/theming.md#theme-composition-using-theme-options-to-define-other-options)).
+- Avoid relying on multiple arguments to `createTheme` for merging; only the first argument is formally processed. Deep-merge yourself (for example `deepmerge` from `@mui/utils`) and pass a single object for forward compatibility (see [Theming—createTheme(options, ...args)](https://mui.com/material-ui/customization/theming.md#createtheme-options-args-theme)).
 
 ---
 
 ## Nesting `ThemeProvider`
 
-Inner provider overrides outer. Pass `theme={(outer) => createTheme({ ...outer, ... })}`-style functions only when intentionally extending the parent theme (see [Theming—Nesting the theme](https://mui.com/material-ui/customization/theming/#nesting-the-theme)).
+Inner provider overrides outer. Pass `theme={(outer) => createTheme({ ...outer, ... })}`-style functions only when intentionally extending the parent theme (see [Theming—Nesting the theme](https://mui.com/material-ui/customization/theming.md#nesting-the-theme)).
 
 ---
 
 ## Custom tokens (brand-specific design keys)
 
-Add keys on the theme (for example `status.danger`) inside `createTheme`, then augment TypeScript with `declare module '@mui/material/styles'` on `Theme` and `ThemeOptions` (see [Theming—Custom variables](https://mui.com/material-ui/customization/theming/#custom-variables)). For extra palette fields, follow [Palette customization](https://mui.com/material-ui/customization/palette/) patterns.
+Add keys on the theme (for example `status.danger`) inside `createTheme`, then augment TypeScript with `declare module '@mui/material/styles'` on `Theme` and `ThemeOptions` (see [Theming—Custom variables](https://mui.com/material-ui/customization/theming.md#custom-variables)). For extra palette fields, follow [Palette customization](https://mui.com/material-ui/customization/palette.md) patterns.
 
 Do not use `theme.vars` as a custom property name; it is private to CSS variables support.
 
@@ -113,10 +113,10 @@ Do not use `theme.vars` as a custom property name; it is private to CSS variable
 
 | Topic                          | Link                                                                                                         |
 | :----------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Theming overview & API         | [Theming](https://mui.com/material-ui/customization/theming/)                                                |
-| Dark mode & toggling           | [Dark mode](https://mui.com/material-ui/customization/dark-mode/)                                            |
-| CSS variables overview         | [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview/)               |
-| Color tool / brand hues        | [Color](https://mui.com/material-ui/customization/color/)                                                    |
-| TypeScript theme customization | [TypeScript—Customization of `Theme`](https://mui.com/material-ui/guides/typescript/#customization-of-theme) |
+| Theming overview & API         | [Theming](https://mui.com/material-ui/customization/theming.md)                                                |
+| Dark mode & toggling           | [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)                                            |
+| CSS variables overview         | [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md)               |
+| Color tool / brand hues        | [Color](https://mui.com/material-ui/customization/color.md)                                                    |
+| TypeScript theme customization | [TypeScript—Customization of `Theme`](https://mui.com/material-ui/guides/typescript.md#customization-of-theme) |
 
 TypeScript snippet templates: [reference.md](reference.md).

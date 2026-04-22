@@ -18,7 +18,7 @@ Use only in combination with a component or scoped selector (never alone).
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
-Source: [How to customize](https://mui.com/material-ui/customization/how-to-customize/) (`docs/data/material/customization/how-to-customize/how-to-customize.md`).
+Source: [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) (`docs/data/material/customization/how-to-customize/how-to-customize.md`).
 
 ## Slot class name pattern
 
