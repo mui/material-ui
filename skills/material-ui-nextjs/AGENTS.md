@@ -102,7 +102,7 @@ Details: [Next.js integration—Font optimization](https://mui.com/material-ui/i
 
 ## CSS theme variables and SSR
 
-Enable `cssVariables: true` in `createTheme` when using [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md). For SSR flicker and `InitColorSchemeScript`, follow [CSS theme variables—Preventing SSR flickering](https://mui.com/material-ui/customization/css-theme-variables/configuration.md#preventing-ssr-flickering) and [CSS theme variables overview—Advantages](https://mui.com/material-ui/customization/css-theme-variables/overview.md#advantages).
+Enable `cssVariables: true` in `createTheme` when using [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md). For SSR flicker and `InitColorSchemeScript`, follow [CSS theme variables—Preventing SSR flickering](https://mui.com/material-ui/customization/css-theme-variables/configuration.md#preventing-ssr-flickering) and [CSS theme variables overview—Advantages](https://mui.com/material-ui/customization/css-theme-variables/overview.md#advantages). Add `suppressHydrationWarning` to `<html>` when using `colorSchemes` — the color scheme attribute is written client-side on first render and will otherwise produce a React hydration mismatch.
 
 ---
 

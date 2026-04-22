@@ -42,6 +42,7 @@ Use when: changing one instance (or a small inline case) with access to the them
 
 - All Material UI components support `sx`.
 - Supports theme shortcuts (`palette`, `spacing`, breakpoints, etc.), pseudo-selectors, nested selectors, and responsive objects.
+- Array syntax: `sx={[base, condition && extra]}` merges styles conditionally — entries applied in order, falsy entries skipped. Prefer this over object spread for conditional `sx`.
 
 Nested parts (slots): target internal slots with global class fragments, for example `'& .MuiSlider-thumb'`. Discover the slot name in DevTools; the pattern is `Mui[Component]-[slot]`. Do not rely on the full hashed class string. Use only the stable `Mui*` fragment.
 
@@ -86,7 +87,7 @@ Dynamic styling: prefer CSS variables or conditional style objects in the style 
 Use when: default look of `Button`, `TextField`, etc. should change everywhere.
 
 - `defaultProps`: change defaults (for example `disableRipple` on `MuiButtonBase`).
-- `styleOverrides`: target slots (`root`, `input`, …) with plain CSS-in-JS objects; nested selectors allowed.
+- `styleOverrides`: target slots (`root`, `input`, …) with plain CSS-in-JS objects; nested selectors allowed. Use the callback form `root: ({ ownerState, theme }) => ({ ... })` to branch on the component's resolved props without extra class names.
 - `variants`: map props to extra styles (built-in props like `variant: 'outlined'` or custom values you document for your design system).
 
 Caveat: the theme is not tree-shakable. For heavy one-off customizations, a new component is often better than bloating the theme.

@@ -80,7 +80,19 @@ See [Tailwind CSS v4 integration—Usage](https://mui.com/material-ui/integrati
 
 ## Theme tokens in Tailwind (`@theme`)
 
-To reuse MUI theme variables (for example `--mui-palette-primary-main`, typography, breakpoints) as Tailwind tokens, copy the `@theme inline { ... }` block from the docs into your CSS. It is long and maintained on the doc page; do not hand-roll partial lists unless you know exactly which tokens you need.
+To reuse MUI theme variables as Tailwind tokens, map `--mui-*` CSS variables into Tailwind's `@theme`. Minimal example (extend as needed):
+
+```css
+@theme inline {
+  --color-primary: var(--mui-palette-primary-main);
+  --color-primary-light: var(--mui-palette-primary-light);
+  --color-primary-dark: var(--mui-palette-primary-dark);
+  --color-error: var(--mui-palette-error-main);
+  --color-text-primary: var(--mui-palette-text-primary);
+}
+```
+
+The full token list (palette, typography, breakpoints, shadows, …) is long and maintained on the doc page. Copy the complete `@theme inline { ... }` block from [Extend Material UI classes](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md#extend-material-ui-classes) when you need it all.
 
 See [Tailwind CSS v4 integration—Extend Material UI classes](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md#extend-material-ui-classes) and the linked [playground](https://play.tailwindcss.com/mh7Ym0mGff).
 
