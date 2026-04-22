@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 import Transition from '../Transition/Transition';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
   <div ref={ref} {...props} />
@@ -39,6 +40,29 @@ describe('<Collapse />', () => {
       wrapperInner: {
         expectedClassName: classes.wrapperInner,
         testWithElement: CustomWrapperInner,
+      },
+    },
+  }));
+
+  describeTransitionConformance('Collapse', () => ({
+    Component: Collapse,
+    render,
+    clock,
+    children: <div />,
+    propTimeout: {
+      enter: {
+        timeout: 556,
+        callback: 'onEntering',
+        assertStyle: (node) => {
+          expect(node.style.transitionDuration).to.equal('556ms');
+        },
+      },
+      exit: {
+        timeout: 446,
+        callback: 'onExiting',
+        assertStyle: (node) => {
+          expect(node.style.transitionDuration).to.equal('446ms');
+        },
       },
     },
   }));
@@ -225,43 +249,6 @@ describe('<Collapse />', () => {
       });
 
       expect(next.callCount).to.equal(1);
-    });
-
-    it('should create proper easeOut animation onEntering', () => {
-      const handleEntering = spy();
-
-      const { setProps } = render(
-        <Collapse
-          onEntering={handleEntering}
-          timeout={{
-            enter: 556,
-          }}
-        >
-          <div />
-        </Collapse>,
-      );
-
-      setProps({ in: true });
-      expect(handleEntering.args[0][0].style.transitionDuration).to.equal('556ms');
-    });
-
-    it('should create proper sharp animation onExiting', () => {
-      const handleExiting = spy();
-
-      const { setProps } = render(
-        <Collapse
-          {...defaultProps}
-          onExiting={handleExiting}
-          timeout={{
-            exit: 446,
-          }}
-        />,
-      );
-
-      setProps({
-        in: false,
-      });
-      expect(handleExiting.args[0][0].style.transitionDuration).to.equal('446ms');
     });
   });
 

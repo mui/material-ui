@@ -7,6 +7,7 @@ import Grow from '@mui/material/Grow';
 import Transition from '../Transition/Transition';
 import useForkRef from '../utils/useForkRef';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 describe('<Grow />', () => {
   const { clock, render } = createRenderer();
@@ -29,100 +30,44 @@ describe('<Grow />', () => {
     }),
   );
 
-  describe('calls the appropriate callbacks for each transition', () => {
-    clock.withFakeTimers();
-
-    it('calls the appropriate callbacks for each transition', () => {
-      const handleAddEndListener = spy();
-      const handleEnter = spy();
-      const handleEntering = spy();
-      const handleEntered = spy();
-      const handleExit = spy();
-      const handleExiting = spy();
-      const handleExited = spy();
-      const { container, setProps } = render(
-        <Grow
-          addEndListener={handleAddEndListener}
-          onEnter={handleEnter}
-          onEntering={handleEntering}
-          onEntered={handleEntered}
-          onExit={handleExit}
-          onExiting={handleExiting}
-          onExited={handleExited}
-        >
-          <div id="test" />
-        </Grow>,
-      );
-
-      const child = container.querySelector('#test');
-
-      setProps({ in: true });
-
-      expect(handleAddEndListener.callCount).to.equal(1);
-      expect(handleAddEndListener.args[0][0]).to.equal(child);
-      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
-
-      expect(handleEnter.callCount).to.equal(1);
-      expect(handleEnter.args[0][0]).to.equal(child);
-
-      expect(handleEnter.args[0][0].style.transition).to.match(
-        /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-      );
-
-      expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-
-      expect(handleEntered.callCount).to.equal(1);
-      expect(handleEntered.args[0][0]).to.equal(child);
-
-      setProps({ in: false });
-
-      expect(handleExit.callCount).to.equal(1);
-      expect(handleExit.args[0][0]).to.equal(child);
-
-      expect(handleExit.args[0][0].style.opacity).to.equal('0');
-      expect(handleExit.args[0][0].style.transform).to.equal(
-        'scale(0.75, 0.5625)',
-        'should have the exit scale',
-      );
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-
-      expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child);
-    });
-  });
+  describeTransitionConformance('Grow', () => ({
+    Component: Grow,
+    render,
+    clock,
+    lifecycle: {
+      addEndListener: true,
+      assertEnter: (node) => {
+        expect(node.style.transition).to.match(
+          /opacity (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?,( )?transform (0ms )?cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+        );
+      },
+      assertExit: (node) => {
+        expect(node.style.opacity).to.equal('0');
+        expect(node.style.transform).to.equal('scale(0.75, 0.5625)', 'should have the exit scale');
+      },
+    },
+    propTimeout: {
+      enter: {
+        timeout: 556,
+        callback: 'onEnter',
+        assertStyle: (node) => {
+          expect(node.style.transition).to.match(/556ms/);
+        },
+      },
+      exit: {
+        timeout: 446,
+        callback: 'onExit',
+        assertStyle: (node) => {
+          expect(node.style.transition).to.match(/446ms/);
+        },
+      },
+    },
+  }));
 
   describe('prop: timeout', () => {
-    const enterDuration = 556;
-    const leaveDuration = 446;
     clock.withFakeTimers();
 
     describe('onEnter', () => {
-      it('should create proper easeOut animation', () => {
-        const handleEnter = spy();
-        render(
-          <Grow
-            {...defaultProps}
-            timeout={{
-              enter: enterDuration,
-              exit: leaveDuration,
-            }}
-            onEnter={handleEnter}
-          />,
-        );
-
-        expect(handleEnter.args[0][0].style.transition).to.match(new RegExp(`${enterDuration}ms`));
-      });
-
       it('should delay based on height when timeout is auto', () => {
         const handleEntered = spy();
         const theme = createTheme({
@@ -250,26 +195,6 @@ describe('<Grow />', () => {
         clock.tick(timeout);
 
         expect(handleExited.callCount).to.equal(1);
-      });
-
-      it('should create proper sharp animation', () => {
-        const handleExit = spy();
-        const { setProps } = render(
-          <Grow
-            {...defaultProps}
-            timeout={{
-              enter: enterDuration,
-              exit: leaveDuration,
-            }}
-            onExit={handleExit}
-          />,
-        );
-
-        setProps({
-          in: false,
-        });
-
-        expect(handleExit.args[0][0].style.transition).to.match(new RegExp(`${leaveDuration}ms`));
       });
     });
   });
