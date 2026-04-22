@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MUIStyledCommonProps, SxProps } from '@mui/system';
+import { GrowProps } from '../Grow';
 import { PopperProps } from '../Popper';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
@@ -56,8 +57,8 @@ export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotProps<
-      React.JSXElementConstructor<TransitionProps>,
-      TransitionProps & TooltipTransitionSlotPropsOverrides,
+      React.JSXElementConstructor<GrowProps>,
+      Omit<GrowProps, 'children'> & TooltipTransitionSlotPropsOverrides,
       TooltipOwnerState
     >;
     /**

@@ -4,6 +4,7 @@ import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener'
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { SnackbarContentProps } from '../SnackbarContent';
+import { GrowProps } from '../Grow';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -69,8 +70,8 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the element is based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
-      React.JSXElementConstructor<TransitionProps>,
-      TransitionProps & SnackbarTransitionSlotPropsOverrides,
+      React.JSXElementConstructor<GrowProps>,
+      Omit<GrowProps, 'children'> & SnackbarTransitionSlotPropsOverrides,
       SnackbarOwnerState
     >;
   }

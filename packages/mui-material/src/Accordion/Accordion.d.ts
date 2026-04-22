@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
+import { CollapseProps } from '../Collapse';
 import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
@@ -58,8 +59,8 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
      */
     transition: SlotComponentProps<
-      React.JSXElementConstructor<TransitionProps>,
-      TransitionProps & AccordionTransitionSlotPropsOverrides,
+      React.JSXElementConstructor<CollapseProps>,
+      Omit<CollapseProps, 'children'> & AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
     /**
