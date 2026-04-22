@@ -8,8 +8,8 @@ import {
   getMuiName,
   parseFile,
   fixPathname,
-} from '@mui-internal/api-docs-builder/buildApiUtils';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
+  findPagesMarkdown,
+} from '@mui/internal-api-docs-builder';
 
 const migratedBaseComponents = [
   'Badge',

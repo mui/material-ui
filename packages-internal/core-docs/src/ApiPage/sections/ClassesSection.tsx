@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
+import { PropsTranslations, ComponentClassDefinition } from '@mui/internal-api-docs-builder';
 import { SectionTitle } from '../../SectionTitle';
 import { useTranslate } from '../../i18n';
 import type { ClassDefinition } from '../definitions/types';

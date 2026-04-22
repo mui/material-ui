@@ -39,7 +39,7 @@ function shouldAliasSymbol(symbol: ts.Symbol) {
  * Do not go to the root definition for TypeAlias (ie: `export type XXX = YYY`)
  * Because we usually want to keep the description and tags of the aliased symbol.
  */
-export default function resolveExportSpecifier(symbol: ts.Symbol, project: TypeScriptProject) {
+export function resolveExportSpecifier(symbol: ts.Symbol, project: TypeScriptProject) {
   let resolvedSymbol = symbol;
 
   while (shouldAliasSymbol(resolvedSymbol)) {

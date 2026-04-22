@@ -23,6 +23,8 @@ export default function Home() {
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
         card="/static/social-previews/home-preview.jpg"
       >
+        {/* Organization schema for Google Knowledge Panel and entity recognition.
+          https://developers.google.com/search/docs/appearance/structured-data/organization */}
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -32,11 +34,11 @@ export default function Home() {
               '@type': 'Organization',
               name: 'MUI',
               url: 'https://mui.com/',
-              logo: 'https://mui.com/static/logo.png',
+              logo: 'https://mui.com/static/favicon.svg',
               sameAs: [
-                'https://x.com/MUI_hq',
                 'https://github.com/mui/',
-                'https://opencollective.com/mui-org',
+                'https://x.com/MUI_hq',
+                'https://www.npmjs.com/package/@mui/material',
               ],
             }),
           }}

@@ -105,7 +105,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
     "@babel/preset-typescript": "7.28.5",
-    "@mui-internal/api-docs-builder": "workspace:^",
+    "@mui/internal-api-docs-builder": "workspace:^",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@playwright/test": "1.59.1",

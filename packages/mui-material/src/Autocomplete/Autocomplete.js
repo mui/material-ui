@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import integerPropType from '@mui/utils/integerPropType';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
+import useForcedRerendering from '@mui/utils/useForcedRerendering';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -498,6 +500,51 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
+  // Re-render when anchorEl resizes so the Popper width stays in sync.
+  // Width is always read synchronously from anchorEl.clientWidth during render
+  // (no stale cached value). The hook just triggers a re-render on resize.
+  const forceRenderOnResize = useForcedRerendering();
+
+  React.useEffect(() => {
+    if (!popupOpen || !anchorEl || typeof ResizeObserver === 'undefined') {
+      return undefined;
+    }
+
+    let lastWidth = anchorEl.clientWidth;
+
+    const observer = new ResizeObserver(() => {
+      const newWidth = anchorEl.clientWidth;
+      if (lastWidth !== newWidth) {
+        lastWidth = newWidth;
+        forceRenderOnResize();
+      }
+    });
+    observer.observe(anchorEl);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [popupOpen, anchorEl, forceRenderOnResize]);
+
+  // When popupOpen becomes false, useAutocomplete returns [] for groupedOptions.
+  // Transitioned Poppers can remain mounted for their exit animation, so keep rendering
+  // the last open-state options instead of flashing "No options" or an empty Paper.
+  // These options are stale because they no longer reflect the hook's current
+  // groupedOptions, but they are non-interactive while closing and reset on next open.
+  const previousGroupedOptionsRef = React.useRef([]);
+  const prevPopupOpenRef = React.useRef(false);
+  const renderedOptions = popupOpen ? groupedOptions : previousGroupedOptionsRef.current;
+
+  useEnhancedEffect(() => {
+    if (popupOpen && !prevPopupOpenRef.current) {
+      previousGroupedOptionsRef.current = [];
+    }
+    prevPopupOpenRef.current = popupOpen;
+    if (popupOpen && groupedOptions.length > 0) {
+      previousGroupedOptionsRef.current = groupedOptions;
+    }
+  }, [popupOpen, groupedOptions]);
+
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
@@ -564,12 +611,26 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.popper,
     additionalProps: {
       disablePortal,
-      style: { width: anchorEl ? anchorEl.clientWidth : null },
+      style: {
+        width: anchorEl ? anchorEl.clientWidth : null,
+        // Prevent interaction with stale cached options during exit transitions.
+        // The hook's filteredOptions is [] when popupOpen=false, so clicks on stale
+        // rendered options would pass undefined to selectNewValue.
+        pointerEvents: popupOpen ? undefined : 'none',
+      },
       role: 'presentation',
       anchorEl,
       open: popupOpen,
     },
   });
+
+  // Don't render the Popper when there's no content to show.
+  // In freeSolo mode, "No options" text is suppressed, so if there are also no
+  // matching options and loading is false, the Paper would be empty.
+  // Uses renderedOptions (not groupedOptions) so Popper stays during exit transitions.
+  // Respect keepMounted from resolved popperProps (handles both object and callback slotProps forms).
+  const hasPopupContent =
+    renderedOptions.length > 0 || loading || !freeSolo || popperProps.keepMounted === true;
 
   const [ClearIndicatorSlot, clearIndicatorProps] = useSlot('clearIndicator', {
     elementType: AutocompleteClearIndicator,
@@ -727,15 +788,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </RootSlot>
-      {anchorEl ? (
+      {anchorEl && hasPopupContent ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
-            {loading && groupedOptions.length === 0 ? (
+            {loading && renderedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
               </AutocompleteLoading>
             ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+            {renderedOptions.length === 0 && !freeSolo && !loading ? (
               <AutocompleteNoOptions
                 className={classes.noOptions}
                 ownerState={ownerState}
@@ -748,9 +809,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 {noOptionsText}
               </AutocompleteNoOptions>
             ) : null}
-            {groupedOptions.length > 0 ? (
+            {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
-                {groupedOptions.map((option, index) => {
+                {renderedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
                       key: option.key,
