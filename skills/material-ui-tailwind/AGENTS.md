@@ -92,7 +92,7 @@ To reuse MUI theme variables as Tailwind tokens, map `--mui-*` CSS variables int
 }
 ```
 
-The full token list (palette, typography, breakpoints, shadows, …) is long and maintained on the doc page. Copy the complete `@theme inline { ... }` block from [Extend Material UI classes](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md#extend-material-ui-classes) when you need it all.
+The full token list (palette, typography, breakpoints, shadows, …) is long and maintained on the doc page. Copy the complete `@theme inline { ... }` block from [Extend Material UI classes](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md#extend-material-ui-classes) when you need it all.
 
 See [Tailwind CSS v4 integration—Extend Material UI classes](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md#extend-material-ui-classes) and the linked [playground](https://play.tailwindcss.com/mh7Ym0mGff).
 
