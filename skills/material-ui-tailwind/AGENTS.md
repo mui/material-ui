@@ -120,8 +120,8 @@ v3: verify `important` selector matches root `id`, `preflight: false`, and `inje
 
 ## Further reading
 
-| Topic                     | Link                                                                                                                                      |
-| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| Topic                     | Link                                                                                                                                        |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | Tailwind CSS v4 + MUI     | [Tailwind CSS v4 integration](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4.md)                                       |
 | CSS layers (MUI concepts) | [CSS Layers](https://mui.com/material-ui/customization/css-layers.md)                                                                       |
 | Interior slots            | [Overriding component structure—Interior slots](https://mui.com/material-ui/customization/overriding-component-structure.md#interior-slots) |

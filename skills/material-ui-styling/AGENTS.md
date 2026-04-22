@@ -126,8 +126,8 @@ To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()â
 
 ## Further reading (repo / site)
 
-| Topic                   | Doc                                                                                         |
-| :---------------------- | :------------------------------------------------------------------------------------------ |
+| Topic                   | Doc                                                                                           |
+| :---------------------- | :-------------------------------------------------------------------------------------------- |
 | Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize.md)             |
 | `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop.md)                          |
 | `styled()` API          | [styled()](https://mui.com/system/styled.md)                                                  |

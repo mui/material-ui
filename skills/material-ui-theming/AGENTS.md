@@ -39,8 +39,8 @@ Access in components: `useTheme()` from `@mui/material/styles`.
 
 ## Where tokens live (design token map)
 
-| Area          | Role                                                                                    | Doc                                                                              |
-| :------------ | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| Area          | Role                                                                                    | Doc                                                                                |
+| :------------ | :-------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- |
 | `palette`     | Semantic colors (`primary`, `secondary`, `error`, …), text, background, divider, action | [Palette](https://mui.com/material-ui/customization/palette.md)                    |
 | `typography`  | `fontFamily`, `fontSize`, variants (`h1` through `body2`, `button`, …)                  | [Typography](https://mui.com/material-ui/customization/typography.md)              |
 | `spacing`     | `theme.spacing(n)` scale (default 8px per unit)                                         | [Spacing](https://mui.com/material-ui/customization/spacing.md)                    |
@@ -111,8 +111,8 @@ Do not use `theme.vars` as a custom property name; it is private to CSS variable
 
 ## Further reading
 
-| Topic                          | Link                                                                                                         |
-| :----------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| Topic                          | Link                                                                                                           |
+| :----------------------------- | :-------------------------------------------------------------------------------------------------------------- |
 | Theming overview & API         | [Theming](https://mui.com/material-ui/customization/theming.md)                                                |
 | Dark mode & toggling           | [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)                                            |
 | CSS variables overview         | [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md)               |
