@@ -58,6 +58,15 @@ const AccordionComponentTest = () => {
   <div />
 </Accordion>;
 
+// slotProps.transition should accept props from the default Collapse transition.
+<Accordion slotProps={{ transition: { collapsedSize: '8px', orientation: 'horizontal' } }}>
+  <div />
+</Accordion>;
+
+<Accordion slotProps={{ transition: { timeout: 'auto' } }}>
+  <div />
+</Accordion>;
+
 function Custom(props: AccordionProps) {
   const { slotProps, ...other } = props;
   return (

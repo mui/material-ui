@@ -39,6 +39,9 @@ import Menu, { MenuProps } from '@mui/material/Menu';
   }}
 />;
 
+// slotProps.transition should accept props from the default Grow transition.
+<Menu open slotProps={{ transition: { timeout: 'auto' } }} />;
+
 <Menu
   open
   slots={{

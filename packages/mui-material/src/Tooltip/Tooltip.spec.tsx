@@ -18,6 +18,11 @@ import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
   <button type="button">Hover or touch me</button>
 </Tooltip>;
 
+// slotProps.transition should accept props from the default Grow transition.
+<Tooltip title="Hello" slotProps={{ transition: { timeout: 'auto' } }}>
+  <button type="button">Hover or touch me</button>
+</Tooltip>;
+
 const SlotComponentRef = React.forwardRef<HTMLDivElement>((props, ref) => {
   return <div />;
 });

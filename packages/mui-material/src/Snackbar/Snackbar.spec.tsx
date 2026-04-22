@@ -45,6 +45,9 @@ import { expectType } from '@mui/types';
   }}
 />;
 
+// slotProps.transition should accept props from the default Grow transition.
+<Snackbar slotProps={{ transition: { timeout: 'auto' } }} />;
+
 function Custom(props: SnackbarProps) {
   const { slotProps, ...other } = props;
   return (
