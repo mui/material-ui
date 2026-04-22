@@ -112,7 +112,7 @@ Do not use `theme.vars` as a custom property name; it is private to CSS variable
 ## Further reading
 
 | Topic                          | Link                                                                                                           |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| :----------------------------- | :------------------------------------------------------------------------------------------------------------- |
 | Theming overview & API         | [Theming](https://mui.com/material-ui/customization/theming.md)                                                |
 | Dark mode & toggling           | [Dark mode](https://mui.com/material-ui/customization/dark-mode.md)                                            |
 | CSS variables overview         | [CSS theme variables](https://mui.com/material-ui/customization/css-theme-variables/overview.md)               |
