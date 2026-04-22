@@ -18,7 +18,7 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Menu />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   let defaultAnchorEl;
   beforeAll(() => {
@@ -264,6 +264,39 @@ describe('<Menu />', () => {
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    function Test(props) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={defaultAnchorEl}
+            open={props.open}
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            <MenuItem>one</MenuItem>
+          </Menu>
+        </ThemeProvider>
+      );
+    }
+
+    const { setProps } = render(<Test open={false} />);
+
+    setProps({ open: true });
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('menu')).not.to.equal(null);
   });
 
   it('should call onClose on tab', () => {

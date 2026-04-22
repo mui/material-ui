@@ -16,6 +16,9 @@
       "description": "An HTML element, or a function that returns one. It&#39;s used to set the container the Slide is transitioning from."
     },
     "direction": { "description": "Direction the child node will enter from." },
+    "disablePrefersReducedMotion": {
+      "description": "If <code>true</code>, the transition ignores <code>theme.transitions.reducedMotion</code> and keeps its normal timing."
+    },
     "easing": {
       "description": "The transition timing function. You may specify a single easing or a object containing enter and exit values."
     },

@@ -49,6 +49,7 @@ describe('<Collapse />', () => {
     render,
     clock,
     children: <div />,
+    getNode: (container) => container.firstChild,
     propTimeout: {
       enter: {
         timeout: 556,
@@ -64,6 +65,10 @@ describe('<Collapse />', () => {
           expect(node.style.transitionDuration).to.equal('446ms');
         },
       },
+    },
+    reducedMotion: {
+      testOptOut: true,
+      testNoDomPropLeak: true,
     },
   }));
 
@@ -248,6 +253,73 @@ describe('<Collapse />', () => {
         clock.tick(timeout);
       });
 
+      expect(next.callCount).to.equal(1);
+    });
+
+    it('completes auto duration on the next task when reduced motion is always', () => {
+      const getAutoHeightDuration = spy(() => 25);
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+          getAutoHeightDuration,
+        },
+      });
+      const next = spy();
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Collapse timeout="auto" onEntered={next} {...props}>
+              <div />
+            </Collapse>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps, container } = render(<Test />);
+      const collapse = container.firstChild;
+      stub(collapse.firstChild, 'clientHeight').get(() => 10);
+
+      setProps({ in: true });
+
+      expect(next.callCount).to.equal(0);
+      expect(collapse.style.height).to.equal('10px');
+      expect(getAutoHeightDuration.callCount).to.equal(0);
+      clock.tick(0);
+      expect(next.callCount).to.equal(1);
+      expect(collapse.style.height).to.equal('auto');
+    });
+
+    it('completes exit auto duration on the next task without calculating duration when reduced motion is always', () => {
+      const getAutoHeightDuration = spy(() => 25);
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+          getAutoHeightDuration,
+        },
+      });
+      const next = spy();
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Collapse timeout="auto" onExited={next} {...props}>
+              <div />
+            </Collapse>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps, container } = render(<Test in />);
+      const collapse = container.firstChild;
+      stub(collapse.firstChild, 'clientHeight').get(() => 10);
+
+      setProps({ in: false });
+
+      expect(next.callCount).to.equal(0);
+      expect(collapse.style.height).to.equal('0px');
+      expect(getAutoHeightDuration.callCount).to.equal(0);
+      clock.tick(0);
       expect(next.callCount).to.equal(1);
     });
   });

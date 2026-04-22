@@ -18,6 +18,10 @@ interface TransitionProps {
   delay: string | undefined;
 }
 
+const defaultReducedMotionStyles = {
+  transition: 'none',
+};
+
 interface TranslateOffset {
   offsetX: number;
   offsetY: number;
@@ -140,4 +144,29 @@ export function getTransitionProps(props: ComponentProps, options: Options): Tra
       (typeof easing === 'object' ? easing[options.mode] : easing),
     delay: style.transitionDelay,
   };
+}
+
+/**
+ * Returns CSS that disables component-owned transitions when reduced motion is active.
+ * Pass custom styles only when the default `transition: none` reset is not enough.
+ */
+export function getReducedMotionStyles<Styles extends object = typeof defaultReducedMotionStyles>(
+  theme: {
+    transitions?: { reducedMotion?: 'never' | 'system' | 'always' | undefined } | undefined;
+  },
+  styles?: Styles,
+): Styles | { '@media (prefers-reduced-motion: reduce)': Styles } | null {
+  const resolvedStyles = (styles ?? defaultReducedMotionStyles) as Styles;
+
+  if (theme.transitions?.reducedMotion === 'always') {
+    return resolvedStyles;
+  }
+
+  if (theme.transitions?.reducedMotion === 'system') {
+    return {
+      '@media (prefers-reduced-motion: reduce)': resolvedStyles,
+    };
+  }
+
+  return null;
 }

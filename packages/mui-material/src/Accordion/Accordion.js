@@ -10,6 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
+import { getReducedMotionStyles } from '../transitions/utils';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
@@ -51,10 +52,12 @@ const AccordionRoot = styled(Paper, {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
+    const reducedMotionStyles = getReducedMotionStyles(theme);
 
     return {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
+      ...reducedMotionStyles,
       overflowAnchor: 'none', // Keep the same scrolling position
       '&::before': {
         position: 'absolute',
@@ -66,6 +69,7 @@ const AccordionRoot = styled(Paper, {
         opacity: 1,
         backgroundColor: (theme.vars || theme).palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
+        ...reducedMotionStyles,
       },
       '&:first-of-type': {
         '&::before': {

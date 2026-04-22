@@ -44,6 +44,7 @@ function getAutoHeightDuration(height) {
 }
 
 export default function createTransitions(inputTransitions) {
+  const reducedMotion = inputTransitions.reducedMotion ?? 'never';
   const mergedEasing = {
     ...easing,
     ...inputTransitions.easing,
@@ -111,6 +112,7 @@ export default function createTransitions(inputTransitions) {
     getAutoHeightDuration,
     create,
     ...inputTransitions,
+    reducedMotion,
     easing: mergedEasing,
     duration: mergedDuration,
   };

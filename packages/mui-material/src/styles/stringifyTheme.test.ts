@@ -31,6 +31,7 @@ const theme = {
     "unit": "px"
   },
   "transitions": {
+    "reducedMotion": "never",
     "easing": {
       "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
@@ -70,6 +71,7 @@ export default theme;`);
         } as any,
       },
       transitions: {
+        reducedMotion: 'always',
         duration: {
           standard: 432,
         },
@@ -99,6 +101,7 @@ const theme = {
     "unit": "px"
   },
   "transitions": {
+    "reducedMotion": "always",
     "duration": {
       "standard": 432,
       "shortest": 150,

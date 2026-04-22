@@ -1015,6 +1015,33 @@ describe('<Popover />', () => {
       );
       expect(screen.getByTestId('transition')).not.to.have.attribute('data-timeout');
     });
+
+    it('opens on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Popover
+            anchorEl={defaultAnchorEl}
+            open
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            <div>Content</div>
+          </Popover>
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByText('Content')).not.to.equal(null);
+    });
   });
 
   it("should not throw if ownerState is used in slot's styleOverrides", () => {

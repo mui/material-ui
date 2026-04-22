@@ -18,6 +18,20 @@ describe('createTransitions', () => {
     expect(theme.transitions.create('color')).to.equal(`color 432ms ${easing.easeInOut} 0ms`);
   });
 
+  it('should default reducedMotion to never', () => {
+    expect(transitions.reducedMotion).to.equal('never');
+  });
+
+  it('should allow customizing reducedMotion', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'system',
+      },
+    });
+
+    expect(theme.transitions.reducedMotion).to.equal('system');
+  });
+
   describe('create() function', () => {
     describe('warnings', () => {
       it('should warn when first argument is of bad type', () => {

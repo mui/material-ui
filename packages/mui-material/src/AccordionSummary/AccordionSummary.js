@@ -8,6 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
+import { getReducedMotionStyles } from '../transitions/utils';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
@@ -34,6 +35,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
+    const reducedMotionStyles = getReducedMotionStyles(theme);
 
     return {
       display: 'flex',
@@ -41,6 +43,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       minHeight: 48,
       padding: theme.spacing(0, 2),
       transition: theme.transitions.create(['min-height', 'background-color'], transition),
+      ...reducedMotionStyles,
       [`&.${accordionSummaryClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
@@ -80,6 +83,7 @@ const AccordionSummaryContent = styled('span', {
           transition: theme.transitions.create(['margin'], {
             duration: theme.transitions.duration.shortest,
           }),
+          ...getReducedMotionStyles(theme),
           [`&.${accordionSummaryClasses.expanded}`]: {
             margin: '20px 0',
           },
@@ -93,17 +97,22 @@ const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
 })(
-  memoTheme(({ theme }) => ({
-    display: 'flex',
-    color: (theme.vars || theme).palette.action.active,
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    [`&.${accordionSummaryClasses.expanded}`]: {
-      transform: 'rotate(180deg)',
-    },
-  })),
+  memoTheme(({ theme }) => {
+    const reducedMotionStyles = getReducedMotionStyles(theme);
+
+    return {
+      display: 'flex',
+      color: (theme.vars || theme).palette.action.active,
+      transform: 'rotate(0deg)',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      ...reducedMotionStyles,
+      [`&.${accordionSummaryClasses.expanded}`]: {
+        transform: 'rotate(180deg)',
+      },
+    };
+  }),
 );
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import Collapse from '@mui/material/Collapse';
@@ -10,7 +10,8 @@ import Fade from '@mui/material/Fade';
 import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
 import Zoom from '@mui/material/Zoom';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionSummary, { accordionSummaryClasses } from '@mui/material/AccordionSummary';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
@@ -25,7 +26,7 @@ function NoTransition(props) {
 const CustomPaper = React.forwardRef(({ square, ...props }, ref) => <Paper ref={ref} {...props} />);
 
 describe('<Accordion />', () => {
-  const { render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
@@ -158,6 +159,122 @@ describe('<Accordion />', () => {
     // Hide the collapse
     setProps({ expanded: false });
     expect(screen.queryByText('Hello')).to.equal(null);
+  });
+
+  it('expands on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    function Test(props) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Accordion
+            expanded={props.expanded}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            <AccordionSummary>Summary</AccordionSummary>
+            <div>Hello</div>
+          </Accordion>
+        </ThemeProvider>
+      );
+    }
+
+    const { setProps } = render(<Test expanded={false} />);
+
+    setProps({ expanded: true });
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByText('Hello')).not.to.equal(null);
+  });
+
+  it('does not leak disablePrefersReducedMotion to the transition DOM node', () => {
+    const { container } = render(
+      <Accordion expanded slotProps={{ transition: { disablePrefersReducedMotion: true } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        <div>Hello</div>
+      </Accordion>,
+    );
+
+    expect(container.querySelector('[disablePrefersReducedMotion]')).to.equal(null);
+  });
+
+  it('allows transition slot props to opt out of reduced motion', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    function Test(props) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Accordion
+            expanded={props.expanded}
+            slotProps={{
+              transition: {
+                disablePrefersReducedMotion: true,
+                onEntered: handleEntered,
+                timeout: 250,
+              },
+            }}
+          >
+            <AccordionSummary>Summary</AccordionSummary>
+            <div>Hello</div>
+          </Accordion>
+        </ThemeProvider>
+      );
+    }
+
+    const { setProps } = render(<Test expanded={false} />);
+
+    setProps({ expanded: true });
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(0);
+
+    clock.tick(250);
+
+    expect(handleEntered.callCount).to.equal(1);
+  });
+
+  it.skipIf(isJsdom())('disables Accordion CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Accordion expanded>
+          <AccordionSummary expandIcon={<span>+</span>}>Summary</AccordionSummary>
+          <div>Hello</div>
+        </Accordion>
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(screen.getByRole('button')).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${accordionSummaryClasses.content}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(
+      container.querySelector(`.${accordionSummaryClasses.expandIconWrapper}`),
+    ).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
   });
 
   it('should handle the `square` prop', () => {

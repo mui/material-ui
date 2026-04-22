@@ -3,6 +3,15 @@ import { TransitionProps } from '../transitions/types';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   /**
+   * Add a custom transition end trigger.
+   * Allows for more fine grained transition end logic.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call to indicate the transition is finished.
+   */
+  addEndListener?: TransitionProps['addEndListener'] | undefined;
+  /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
    * @default true
@@ -12,6 +21,11 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    * A single child content element.
    */
   children: React.ReactElement<unknown, any>;
+  /**
+   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion?: boolean | undefined;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

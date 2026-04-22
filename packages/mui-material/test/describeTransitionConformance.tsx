@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { screen, isJsdom } from '@mui/internal-test-utils';
+import { screen, isJsdom, createDescribe } from '@mui/internal-test-utils';
+import type { Clock, MuiRenderResult } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 type TransitionCallbackName =
@@ -23,15 +24,12 @@ interface TransitionConformanceOptions {
    * The `render` helper returned by `createRenderer()`. These tests use its
    * `setProps` API to open and close the transition.
    */
-  render: (element: React.ReactElement) => any;
+  render: (element: React.ReactElement) => MuiRenderResult;
   /**
    * Fake timer controls returned by `createRenderer()`. Tests use them when a
    * timeout must finish before a lifecycle callback runs.
    */
-  clock: {
-    withFakeTimers: () => void;
-    tick: (ms: number) => void;
-  };
+  clock: Clock;
   /**
    * Props passed to every render. Use this for component-specific required
    * props, for example `direction` on `Slide`.
@@ -116,9 +114,38 @@ interface TransitionConformanceOptions {
       assertStyle: (node: HTMLElement) => void;
     };
   };
+  /**
+   * Enables shared reduced-motion behavior tests for public transition primitives.
+   * Keep component-specific auto-duration and measurement details in the component tests.
+   */
+  reducedMotion?: {
+    /**
+     * Enter timeout used by generated reduced-motion tests.
+     * Defaults to 250ms.
+     */
+    timeout?: number;
+    /**
+     * Optional assertion run after reduced motion zeroes component-owned timing.
+     * When provided, the helper also verifies completion remains next-task async.
+     */
+    assertReducedTiming?: (node: HTMLElement) => void;
+    /**
+     * Set to `true` for transitions that normally force reflow before entering.
+     * The helper verifies normal motion still reflows and reduced motion skips the reflow.
+     */
+    testReflow?: boolean;
+    /**
+     * Verifies `disablePrefersReducedMotion` restores authored timeout completion.
+     */
+    testOptOut?: boolean;
+    /**
+     * Verifies `disablePrefersReducedMotion` is consumed internally and not forwarded to the DOM.
+     */
+    testNoDomPropLeak?: boolean;
+  };
 }
 
-export default function describeTransitionConformance(
+function describeTransitionConformance(
   componentName: string,
   getOptions: () => TransitionConformanceOptions,
 ) {
@@ -132,6 +159,16 @@ export default function describeTransitionConformance(
       children = <div id="test" />,
       getNode = (container) => container.querySelector('#test'),
     } = options;
+
+    function getRequiredNode(container: HTMLElement) {
+      const node = getNode(container);
+      expect(node).not.to.equal(null);
+      if (node == null) {
+        throw new Error('Expected transition conformance test node.');
+      }
+
+      return node;
+    }
 
     const lifecycle = options.lifecycle;
 
@@ -158,8 +195,7 @@ export default function describeTransitionConformance(
           };
 
           const { container, setProps } = render(<Component {...props}>{children}</Component>);
-          const node = getNode(container);
-          expect(node).not.to.equal(null);
+          const node = getRequiredNode(container);
 
           setProps({ ...props, in: true });
 
@@ -284,5 +320,135 @@ export default function describeTransitionConformance(
         }
       });
     }
+
+    const reducedMotion = options.reducedMotion;
+
+    if (reducedMotion) {
+      describe('reduced motion', () => {
+        clock.withFakeTimers();
+
+        const timeout = reducedMotion.timeout ?? 250;
+        const theme = createTheme({
+          transitions: {
+            reducedMotion: 'always',
+          },
+        });
+
+        function ReducedMotionTest(props: Record<string, unknown>) {
+          return (
+            <ThemeProvider theme={theme}>
+              <Component {...defaultProps} {...props}>
+                {children}
+              </Component>
+            </ThemeProvider>
+          );
+        }
+
+        const assertReducedTiming = reducedMotion.assertReducedTiming;
+
+        if (assertReducedTiming) {
+          it('reduces timing to 0ms when the theme mode is always', () => {
+            const handleEntered = spy();
+            const { container, setProps } = render(
+              <ReducedMotionTest
+                in={false}
+                timeout={{ enter: timeout }}
+                onEntered={handleEntered}
+              />,
+            );
+            const node = getRequiredNode(container);
+
+            setProps({ in: true });
+
+            assertReducedTiming(node);
+            expect(handleEntered.callCount).to.equal(0);
+
+            clock.tick(0);
+
+            expect(handleEntered.callCount).to.equal(1);
+          });
+        }
+
+        if (reducedMotion.testReflow) {
+          it('reflows before entering when motion is enabled', () => {
+            const scrollTopGetter = spy(() => 0);
+
+            function Test(props: Record<string, unknown>) {
+              return (
+                <Component {...defaultProps} timeout={{ enter: timeout }} {...props}>
+                  {children}
+                </Component>
+              );
+            }
+
+            const { container, setProps } = render(<Test in={false} />);
+            const node = getRequiredNode(container);
+            Object.defineProperty(node, 'scrollTop', {
+              configurable: true,
+              get: scrollTopGetter,
+            });
+
+            setProps({ in: true });
+
+            expect(scrollTopGetter.callCount).to.equal(1);
+          });
+
+          it('skips reflow before entering when reduced motion is always', () => {
+            const scrollTopGetter = spy(() => 0);
+            const { container, setProps } = render(
+              <ReducedMotionTest in={false} timeout={{ enter: timeout }} />,
+            );
+            const node = getRequiredNode(container);
+            Object.defineProperty(node, 'scrollTop', {
+              configurable: true,
+              get: scrollTopGetter,
+            });
+
+            setProps({ in: true });
+
+            expect(scrollTopGetter.callCount).to.equal(0);
+          });
+        }
+
+        if (reducedMotion.testOptOut) {
+          it('disablePrefersReducedMotion restores normal timing', () => {
+            const handleEntered = spy();
+            const { setProps } = render(
+              <ReducedMotionTest
+                in={false}
+                timeout={{ enter: timeout }}
+                onEntered={handleEntered}
+                disablePrefersReducedMotion
+              />,
+            );
+
+            setProps({ in: true });
+
+            expect(handleEntered.callCount).to.equal(0);
+            clock.tick(0);
+            expect(handleEntered.callCount).to.equal(0);
+
+            clock.tick(timeout);
+
+            expect(handleEntered.callCount).to.equal(1);
+          });
+        }
+
+        if (reducedMotion.testNoDomPropLeak) {
+          it('does not forward disablePrefersReducedMotion to the DOM node', () => {
+            const { container } = render(
+              <Component {...defaultProps} in disablePrefersReducedMotion>
+                {children}
+              </Component>,
+            );
+            const node = getRequiredNode(container);
+
+            expect(node).not.to.have.attribute('disablePrefersReducedMotion');
+          });
+        }
+      });
+    }
   });
 }
+
+export default createDescribe('MUI transition API', describeTransitionConformance);

@@ -62,6 +62,14 @@ describe('<Grow />', () => {
         },
       },
     },
+    reducedMotion: {
+      assertReducedTiming: (node) => {
+        expect(node.style.transitionDuration || node.style.transition).to.match(/0(ms|s)/);
+      },
+      testReflow: true,
+      testOptOut: true,
+      testNoDomPropLeak: true,
+    },
   }));
 
   describe('prop: timeout', () => {
@@ -153,6 +161,48 @@ describe('<Grow />', () => {
 
         expect(handleEntered.callCount).to.equal(1);
       });
+
+      it('completes auto duration on the next task when reduced motion is always', () => {
+        const handleEntered = spy();
+        const getAutoHeightDuration = spy(() => 25);
+        const theme = createTheme({
+          transitions: {
+            reducedMotion: 'always',
+            getAutoHeightDuration,
+          },
+        });
+
+        const FakeDiv = React.forwardRef(function FakeDiv(props, ref) {
+          const divRef = React.useRef(null);
+          const handleRef = useForkRef(ref, divRef);
+
+          React.useEffect(() => {
+            Object.defineProperty(divRef.current, 'clientHeight', {
+              value: 10,
+            });
+          });
+
+          return <div ref={handleRef} {...props} />;
+        });
+
+        function Test(props) {
+          return (
+            <ThemeProvider theme={theme}>
+              <Grow timeout="auto" onEntered={handleEntered} {...props}>
+                <FakeDiv />
+              </Grow>
+            </ThemeProvider>
+          );
+        }
+
+        const { setProps } = render(<Test />);
+        setProps({ in: true });
+
+        expect(handleEntered.callCount).to.equal(0);
+        expect(getAutoHeightDuration.callCount).to.equal(0);
+        clock.tick(0);
+        expect(handleEntered.callCount).to.equal(1);
+      });
     });
 
     describe('onExit', () => {
@@ -194,6 +244,35 @@ describe('<Grow />', () => {
         expect(handleExited.callCount).to.equal(0);
         clock.tick(timeout);
 
+        expect(handleExited.callCount).to.equal(1);
+      });
+
+      it('completes auto duration on the next task without calculating duration when reduced motion is always', () => {
+        const handleExited = spy();
+        const getAutoHeightDuration = spy(() => 25);
+        const theme = createTheme({
+          transitions: {
+            reducedMotion: 'always',
+            getAutoHeightDuration,
+          },
+        });
+
+        function Test(props) {
+          return (
+            <ThemeProvider theme={theme}>
+              <Grow timeout="auto" onExited={handleExited} {...props}>
+                <div />
+              </Grow>
+            </ThemeProvider>
+          );
+        }
+
+        const { setProps } = render(<Test in appear={false} />);
+        setProps({ in: false });
+
+        expect(handleExited.callCount).to.equal(0);
+        expect(getAutoHeightDuration.callCount).to.equal(0);
+        clock.tick(0);
         expect(handleExited.callCount).to.equal(1);
       });
     });

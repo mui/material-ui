@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Backdrop />', () => {
@@ -49,6 +50,27 @@ describe('<Backdrop />', () => {
 
       clock.tick(1954);
 
+      expect(handleEntered.callCount).to.equal(1);
+    });
+
+    it('enters on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Backdrop open transitionDuration={1954} onEntered={handleEntered}>
+            <div />
+          </Backdrop>
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
       expect(handleEntered.callCount).to.equal(1);
     });
   });

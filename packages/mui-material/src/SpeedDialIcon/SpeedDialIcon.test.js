@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDialIcon, { speedDialIconClasses as classes } from '@mui/material/SpeedDialIcon';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDialIcon />', () => {
@@ -64,5 +65,26 @@ describe('<SpeedDialIcon />', () => {
     const { container } = render(<SpeedDialIcon openIcon={icon} open />);
     expect(container.firstChild.querySelector('span')).to.have.class(classes.openIcon);
     expect(container.firstChild.querySelector('span')).to.have.class(classes.openIconOpen);
+  });
+
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SpeedDialIcon open openIcon={icon} />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.icon}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.openIcon}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
   });
 });

@@ -28,6 +28,9 @@ const themeOptions = {
     },
   },
   ...designTokens,
+  transitions: {
+    reducedMotion: 'system' as const,
+  },
   typography: deepmerge(typography, {
     h1: {
       ':where([data-mui-color-scheme="dark"]) &': {

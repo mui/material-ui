@@ -6,6 +6,8 @@ export interface Easing {
 }
 export const easing: Easing;
 
+export type ReducedMotionMode = 'never' | 'system' | 'always';
+
 export interface Duration {
   shortest: number;
   shorter: number;
@@ -18,6 +20,7 @@ export interface Duration {
 export const duration: Duration;
 
 export interface TransitionsOptions {
+  reducedMotion?: ReducedMotionMode | undefined;
   easing?: Partial<Easing> | undefined;
   duration?: Partial<Duration> | undefined;
   create?:
@@ -46,6 +49,7 @@ export function create(
 export function getAutoHeightDuration(height: number): number;
 
 export interface Transitions {
+  reducedMotion: ReducedMotionMode;
   easing: Easing;
   duration: Duration;
   create: typeof create;

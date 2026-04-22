@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
 import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 const CustomButton = React.forwardRef(({ ownerState, ...props }, ref) => (
@@ -68,6 +69,34 @@ describe('<SpeedDialAction />', () => {
       <SpeedDialAction icon={<Icon>add</Icon>} slotProps={{ tooltip: { title: 'placeholder' } }} />,
     );
     expect(container.querySelector('button')).to.have.class(fabClasses.root);
+  });
+
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SpeedDialAction
+          delay={90}
+          icon={<Icon>add</Icon>}
+          open
+          slotProps={{ tooltip: { open: true, title: 'placeholder' } }}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector('button')).toHaveComputedStyle({
+      transitionDelay: '0s',
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveComputedStyle({
+      transitionDelay: '0s',
+      transitionDuration: '0s',
+    });
   });
 
   it('should have accessible name if slotProps.tooltip.open is true', () => {

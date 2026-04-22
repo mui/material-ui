@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
 import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
@@ -44,6 +44,19 @@ describe('<Fade />', () => {
           <div data-testid="child">Foo</div>
         </Fade>
       ),
+    },
+    reducedMotion: {
+      assertReducedTiming: (node) => {
+        if (isJsdom()) {
+          expect(node.style.transition).to.include('0ms');
+        } else {
+          expect(node.style.transitionDuration).to.equal('0ms');
+          expect(node.style.transitionDelay).to.equal('0ms');
+        }
+      },
+      testReflow: true,
+      testOptOut: true,
+      testNoDomPropLeak: true,
     },
   }));
 

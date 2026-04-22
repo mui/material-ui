@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getTranslateOffsets, normalizedTransitionCallback } from './utils';
+import { getReducedMotionStyles, getTranslateOffsets, normalizedTransitionCallback } from './utils';
 
 describe('getTranslateOffsets', () => {
   it('extracts matrix offsets', () => {
@@ -97,5 +97,33 @@ describe('normalizedTransitionCallback', () => {
 
     const handler = normalizedTransitionCallback(nodeRef, undefined);
     expect(() => handler()).not.to.throw();
+  });
+});
+
+describe('getReducedMotionStyles', () => {
+  const customStyles = { animation: 'none' };
+
+  it('returns null when reduced motion is off', () => {
+    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'never' } })).to.equal(null);
+  });
+
+  it('returns the default transition reset when reduced motion is always on', () => {
+    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'always' } })).to.deep.equal({
+      transition: 'none',
+    });
+  });
+
+  it('wraps the default transition reset in a reduce media query in system mode', () => {
+    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'system' } })).to.deep.equal({
+      '@media (prefers-reduced-motion: reduce)': {
+        transition: 'none',
+      },
+    });
+  });
+
+  it('accepts custom reduced-motion styles', () => {
+    expect(
+      getReducedMotionStyles({ transitions: { reducedMotion: 'always' } }, customStyles),
+    ).to.equal(customStyles);
   });
 });

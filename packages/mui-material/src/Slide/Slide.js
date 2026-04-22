@@ -10,6 +10,7 @@ import isLayoutSupported from '../utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
+import useReducedMotion from '../transitions/useReducedMotion';
 import {
   normalizedTransitionCallback,
   reflow,
@@ -120,6 +121,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     container: containerProp,
+    disablePrefersReducedMotion = false,
     direction = 'down',
     easing: easingProp = defaultEasing,
     in: inProp,
@@ -133,6 +135,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(
+    theme.transitions.reducedMotion,
+    disablePrefersReducedMotion,
+  );
 
   const childrenRef = React.useRef(null);
   const preserveInlineTransformRef = React.useRef(false);
@@ -140,7 +146,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEnter = normalizedTransitionCallback(childrenRef, (node, isAppearing) => {
     setTranslateValue(direction, node, containerProp);
-    reflow(node);
+    if (!reducedMotion.shouldReduceMotion) {
+      reflow(node);
+    }
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -154,8 +162,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'enter',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     node.style.transform = 'none';
     if (onEntering) {
@@ -173,8 +189,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'exit',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     const preserveInlineTransform = isGestureTranslate(node.style.transform);
     preserveInlineTransformRef.current = preserveInlineTransform;
@@ -252,6 +276,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       addEndListener={handleAddEndListener}
       appear={appear}
       in={inProp}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       timeout={timeout}
       {...other}
     >
@@ -304,6 +329,11 @@ Slide.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.

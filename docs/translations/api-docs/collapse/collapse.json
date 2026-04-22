@@ -17,6 +17,9 @@
       "description": "The component used for the root node. Either a string to use a HTML element or a component.",
       "requiresRef": true
     },
+    "disablePrefersReducedMotion": {
+      "description": "If <code>true</code>, the transition ignores <code>theme.transitions.reducedMotion</code> and keeps its normal timing."
+    },
     "easing": {
       "description": "The transition timing function. You may specify a single easing or a object containing enter and exit values."
     },

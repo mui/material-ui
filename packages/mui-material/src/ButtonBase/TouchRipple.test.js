@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 import describeConformance from '../../test/describeConformance';
 
@@ -12,9 +13,9 @@ describe('<TouchRipple />', () => {
   /**
    * @param {object} other Props to pass to TouchRipple.
    */
-  function renderTouchRipple(other) {
+  function renderTouchRipple(other, theme) {
     const touchRippleRef = React.createRef();
-    const { container, unmount } = render(
+    const touchRipple = (
       <TouchRipple
         ref={touchRippleRef}
         classes={{
@@ -24,7 +25,10 @@ describe('<TouchRipple />', () => {
           childLeaving: 'child-leaving',
         }}
         {...other}
-      />,
+      />
+    );
+    const { container, unmount } = render(
+      theme ? <ThemeProvider theme={theme}>{touchRipple}</ThemeProvider> : touchRipple,
     );
 
     return {
@@ -43,6 +47,36 @@ describe('<TouchRipple />', () => {
       },
       unmount,
     };
+  }
+
+  function collectCssRules(element) {
+    const classNames = Array.from(element.classList);
+    const cssRules = [];
+
+    function collectFromRules(rules) {
+      Array.from(rules).forEach((rule) => {
+        if ('cssRules' in rule) {
+          collectFromRules(rule.cssRules);
+        }
+
+        if (
+          'selectorText' in rule &&
+          classNames.some((className) => rule.selectorText.includes(`.${className}`))
+        ) {
+          cssRules.push(rule.cssText);
+        }
+      });
+    }
+
+    Array.from(document.styleSheets).forEach((styleSheet) => {
+      try {
+        collectFromRules(styleSheet.cssRules);
+      } catch (error) {
+        // Ignore style sheets that the browser does not expose to tests.
+      }
+    });
+
+    return cssRules.join('\n');
   }
 
   describeConformance(<TouchRipple />, () => ({
@@ -120,6 +154,21 @@ describe('<TouchRipple />', () => {
 
     expect(queryAllActiveRipples()).to.have.lengthOf(0);
     expect(queryAllStoppingRipples()).to.have.lengthOf(3);
+  });
+
+  it('omits animation declarations when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+    const { instance, queryRipple } = renderTouchRipple({}, theme);
+
+    act(() => {
+      instance.start({ clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
+    });
+
+    expect(collectCssRules(queryRipple())).not.to.include('animation-');
   });
 
   it('keeps exiting ripples in place when a new ripple starts', () => {

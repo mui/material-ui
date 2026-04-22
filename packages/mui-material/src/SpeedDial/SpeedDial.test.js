@@ -681,5 +681,52 @@ describe('<SpeedDial />', () => {
       const child = screen.getByTestId('speedDial').firstChild;
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
+
+    it('enters on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial
+            data-testid="speedDial"
+            {...defaultProps}
+            hidden={false}
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          />
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByTestId('speedDial')).not.to.equal(null);
+    });
+
+    it.skipIf(isJsdom())('disables actions CSS transition when reduced motion is always', () => {
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} open={false}>
+            <SpeedDialAction icon={icon} slotProps={{ tooltip: { title: 'action1' } }} />
+          </SpeedDial>
+        </ThemeProvider>,
+      );
+
+      expect(screen.getByRole('menu')).toHaveComputedStyle({
+        transitionDuration: '0s',
+        transitionDelay: '0s',
+      });
+    });
   });
 });

@@ -3,6 +3,15 @@ import { TransitionProps } from '../transitions/types';
 
 export interface SlideProps extends TransitionProps {
   /**
+   * Add a custom transition end trigger.
+   * Allows for more fine grained transition end logic.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call to indicate the transition is finished.
+   */
+  addEndListener?: TransitionProps['addEndListener'] | undefined;
+  /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
    * @default true
@@ -17,6 +26,11 @@ export interface SlideProps extends TransitionProps {
    * It's used to set the container the Slide is transitioning from.
    */
   container?: null | Element | ((element: Element) => Element) | undefined;
+  /**
+   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion?: boolean | undefined;
   /**
    * Direction the child node will enter from.
    * @default 'down'

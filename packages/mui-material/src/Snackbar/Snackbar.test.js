@@ -177,6 +177,36 @@ describe('<Snackbar />', () => {
     });
   });
 
+  describe('reduced motion', () => {
+    it('still opens through transition slot props when reduced motion is always', () => {
+      const handleEnter = spy();
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Snackbar
+              message="message"
+              slotProps={{ transition: { onEnter: handleEnter } }}
+              {...props}
+            />
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test open={false} />);
+
+      setProps({ open: true });
+
+      expect(handleEnter.callCount).to.be.greaterThan(0);
+      expect(screen.getByText('message')).not.to.equal(null);
+    });
+  });
+
   describe('prop: autoHideDuration', () => {
     it('should call onClose when the timer is done', () => {
       const handleClose = spy();
