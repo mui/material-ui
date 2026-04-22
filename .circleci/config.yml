@@ -38,8 +38,7 @@ default-job: &default-job
     node-version: '22.18'
 
 default-context: &default-context
-  context:
-    - org-global
+  context: []
 
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
