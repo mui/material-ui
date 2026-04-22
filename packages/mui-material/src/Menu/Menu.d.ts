@@ -73,7 +73,7 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType<TransitionProps>,
+      React.JSXElementConstructor<TransitionProps>,
       TransitionProps & MenuTransitionSlotPropsOverrides,
       MenuOwnerState
     >;

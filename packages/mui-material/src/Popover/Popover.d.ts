@@ -58,7 +58,7 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType<GrowProps>,
+      React.JSXElementConstructor<GrowProps>,
       Omit<GrowProps, 'children'> & PopoverTransitionSlotPropsOverrides,
       PopoverOwnerState
     >;

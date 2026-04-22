@@ -37,7 +37,7 @@ export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType<TransitionProps>,
+      React.JSXElementConstructor<TransitionProps>,
       TransitionProps & BackdropTransitionSlotPropsOverrides,
       BackdropOwnerState
     >;

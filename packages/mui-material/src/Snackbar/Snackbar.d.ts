@@ -69,7 +69,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the element is based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType<TransitionProps>,
+      React.JSXElementConstructor<TransitionProps>,
       TransitionProps & SnackbarTransitionSlotPropsOverrides,
       SnackbarOwnerState
     >;
