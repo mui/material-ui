@@ -119,7 +119,7 @@ export function DemoEditor(props: DemoEditorProps) {
       {...other}
     >
       <div className="MuiCode-root" {...handlers}>
-        <div className="scrollContainer">
+        <div className="scrollContainer" tabIndex={-1}>
           <NoSsr>
             <CodeCopyButton {...copyButtonProps} code={value} />
           </NoSsr>
