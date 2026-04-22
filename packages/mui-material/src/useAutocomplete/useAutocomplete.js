@@ -121,6 +121,7 @@ function useAutocomplete(props) {
     options,
     readOnly = false,
     renderValue,
+    resetHighlightOnMouseLeave = false,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -1224,6 +1225,24 @@ function useAutocomplete(props) {
     }
   };
 
+  const handleListboxMouseLeave = (event) => {
+    if (
+      !resetHighlightOnMouseLeave ||
+      highlightedIndexRef.current === -1 ||
+      highlightReasonRef.current !== 'mouse' ||
+      isTouchRef.current
+    ) {
+      return;
+    }
+
+    setHighlightedIndex({
+      event,
+      index: -1,
+      reason: 'mouse',
+      preserveScroll: true,
+    });
+  };
+
   const handleOptionTouchStart = (event) => {
     touchScrolledRef.current = false;
     setHighlightedIndex({
@@ -1421,6 +1440,7 @@ function useAutocomplete(props) {
           touchScrolledRef.current = true;
         }
       },
+      onMouseLeave: handleListboxMouseLeave,
     }),
     getOptionProps: ({ index, option }) => {
       const selected = isOptionSelected(option);

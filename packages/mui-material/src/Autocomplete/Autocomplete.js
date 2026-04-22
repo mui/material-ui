@@ -470,6 +470,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderValue,
+    resetHighlightOnMouseLeave = false,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     slots = {},
@@ -1201,6 +1202,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * @deprecated This behavior will be enabled by default in the next major version.
+   * @default false
+   */
+  resetHighlightOnMouseLeave: PropTypes.bool,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.

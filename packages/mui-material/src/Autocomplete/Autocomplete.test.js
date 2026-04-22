@@ -39,6 +39,12 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
+function getActiveDescendant(textbox) {
+  const activeDescendantId = textbox.getAttribute('aria-activedescendant');
+
+  return activeDescendantId ? document.getElementById(activeDescendantId) : null;
+}
+
 describe('<Autocomplete />', () => {
   const { render } = createRenderer();
 
@@ -439,6 +445,153 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(screen.getByRole('listbox'), '1');
       fireEvent.keyDown(textbox, { key: 'Enter' });
       checkHighlightIs(screen.getByRole('listbox'), '2');
+    });
+  });
+
+  describe('prop: resetHighlightOnMouseLeave', () => {
+    it('keeps the mouse-created highlight when the prop uses its default value', async () => {
+      const handleHighlightChange = spy();
+      const { user } = render(
+        <Autocomplete
+          onHighlightChange={handleHighlightChange}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+      expect(handleHighlightChange.callCount).to.equal(1);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal('two');
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
+    });
+
+    it('clears a mouse-created highlight when the mouse leaves the listbox', async () => {
+      const handleHighlightChange = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          onHighlightChange={handleHighlightChange}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+      expect(handleHighlightChange.callCount).to.equal(2);
+      expect(handleHighlightChange.firstCall.args[1]).to.equal('two');
+      expect(handleHighlightChange.firstCall.args[2]).to.equal('mouse');
+      expect(handleHighlightChange.lastCall.args[1]).to.equal(null);
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
+    });
+
+    it('keeps a keyboard-created highlight when the mouse leaves the listbox', async () => {
+      const handleHighlightChange = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          onHighlightChange={handleHighlightChange}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      await user.keyboard('{ArrowDown}');
+
+      const optionOne = screen.getByRole('option', { name: 'one' });
+      expect(getActiveDescendant(textbox)).to.equal(optionOne);
+
+      await user.pointer({ target: screen.getByRole('listbox') });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(optionOne);
+      expect(handleHighlightChange.callCount).to.equal(1);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal('one');
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
+    });
+
+    it('starts keyboard navigation from the first option after clearing a mouse-created highlight', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      await user.pointer({ target: screen.getByRole('option', { name: 'two' }) });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+
+      await user.keyboard('{ArrowDown}');
+
+      expect(getActiveDescendant(textbox)).to.equal(screen.getByRole('option', { name: 'one' }));
+    });
+
+    it('selects the typed free solo value on Enter after clearing a mouse-created highlight', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          freeSolo
+          onChange={handleChange}
+          options={['The Shawshank Redemption', 'The Godfather']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.type(textbox, 'The');
+      await user.pointer({ target: screen.getByRole('option', { name: 'The Godfather' }) });
+      await user.pointer({ target: textbox });
+      await user.keyboard('{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The');
+    });
+
+    it('preserves listbox scroll position when clearing a mouse-created highlight', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const listbox = screen.getByRole('listbox');
+      listbox.scrollTop = 50;
+
+      await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+      expect(listbox.scrollTop).to.equal(50);
     });
   });
 
