@@ -18,6 +18,7 @@ import DocsStyledEngineProvider from './StyledEngineProvider';
 import createEmotionCache from './createEmotionCache';
 import { loadDependencies } from './loadDependencies';
 import { registerServiceWorker } from './serviceWorker';
+import VersionsContext from './VersionsContext';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -157,24 +158,26 @@ function DocsApp(props: DocsAppProps) {
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
-        <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <DemoContext.Provider value={demoContextValue}>
-                  <ThemeWrapper>
-                    <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                      <AnalyticsProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                        <GoogleAnalytics />
-                      </AnalyticsProvider>
-                    </DocsStyledEngineProvider>
-                  </ThemeWrapper>
-                </DemoContext.Provider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
-        </CodeCopyProvider>
+        <VersionsContext.Provider value={pageProps.versions}>
+          <CodeCopyProvider>
+            <CodeStylingProvider>
+              <CodeVariantProvider>
+                <PageContext.Provider value={pageContextValue}>
+                  <DemoContext.Provider value={demoContextValue}>
+                    <ThemeWrapper>
+                      <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                        <AnalyticsProvider>
+                          {getLayout(<Component {...pageProps} />)}
+                          <GoogleAnalytics />
+                        </AnalyticsProvider>
+                      </DocsStyledEngineProvider>
+                    </ThemeWrapper>
+                  </DemoContext.Provider>
+                </PageContext.Provider>
+              </CodeVariantProvider>
+            </CodeStylingProvider>
+          </CodeCopyProvider>
+        </VersionsContext.Provider>
       </DocsProvider>
     </React.Fragment>
   );
