@@ -37,6 +37,7 @@ import {
   muiSvgWordmarkString,
 } from '@mui/internal-core-docs/svgIcons';
 
+import versionsJson from '../versions.json';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
@@ -46,6 +47,21 @@ export { fontClasses } from '@mui/internal-core-docs/nextFonts';
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
+
+const docsConfig: DocsConfig = {
+  ...DEFAULT_DOCS_CONFIG,
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchNotifications: (): Promise<NotificationMessage[]> =>
+      import('../notifications.json').then((mod) => mod.default),
+  }),
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchVersions: (): Promise<VersionEntry[]> =>
+      import('../versions.json').then((mod) => mod.default),
+  }),
+  hostUrl: process.env.PULL_REQUEST_ID
+    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+    : 'https://mui.com',
+};
 
 function useVersions(initialVersions: VersionEntry[]): VersionEntry[] {
   const [versions, setVersions] = React.useState<VersionEntry[]>(initialVersions);
@@ -254,21 +270,6 @@ const CSB_CONFIG: SandboxConfig = {
 
 const GA_AD_CONFIG: AdConfig = { GADisplayRatio: 0.1 };
 
-const docsConfig: DocsConfig = {
-  ...DEFAULT_DOCS_CONFIG,
-  ...(process.env.NODE_ENV !== 'production' && {
-    fetchNotifications: (): Promise<NotificationMessage[]> =>
-      import('../notifications.json').then((mod) => mod.default),
-  }),
-  ...(process.env.NODE_ENV !== 'production' && {
-    fetchVersions: (): Promise<VersionEntry[]> =>
-      import('../versions.json').then((mod) => mod.default),
-  }),
-  hostUrl: process.env.PULL_REQUEST_ID
-    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-    : 'https://mui.com',
-};
-
 function useDemoDisplayName() {
   const router = useRouter();
   const { productId } = React.useMemo(() => getProductInfoFromUrl(router.asPath), [router.asPath]);
@@ -284,7 +285,7 @@ function useDemoDisplayName() {
 }
 
 export default function MyApp(
-  props: AppProps<{ userLanguage: string; translations: Translations }>,
+  props: AppProps<{ userLanguage: string; translations: Translations; versions: VersionEntry[] }>,
 ) {
   const { Component, pageProps } = props;
   const {
@@ -319,7 +320,7 @@ export default function MyApp(
 
 MyApp.getInitialProps = createGetInitialProps({
   translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
-  versions: require('../versions.json'),
+  versions: versionsJson,
 });
 
 export { reportWebVitals };
