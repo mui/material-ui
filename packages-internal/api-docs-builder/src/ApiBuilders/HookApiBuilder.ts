@@ -403,7 +403,7 @@ const defaultGetHookImports = (name: string, filename: string) => {
   return [subpathImport, rootImport];
 };
 
-export default async function generateHookApi(
+export async function generateHookApi(
   hooksInfo: HookInfo,
   project: TypeScriptProject,
   projectSettings: ProjectSettings,

@@ -1,11 +1,10 @@
 {
-  "name": "@mui-internal/api-docs-builder",
+  "name": "@mui/internal-api-docs-builder",
   "version": "1.0.0",
-  "private": "true",
-  "main": "./index.ts",
   "scripts": {
-    "test": "pnpm --workspace-root test:unit --project \"*:@mui-internal/api-docs-builder\"",
-    "typescript": "tsc -p tsconfig.json"
+    "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
+    "typescript": "tsc -p tsconfig.json",
+    "build": "code-infra build --flat --skipBabelRuntimeCheck"
   },
   "repository": {
     "type": "git",
@@ -39,5 +38,15 @@
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "sinon": "21.0.3"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

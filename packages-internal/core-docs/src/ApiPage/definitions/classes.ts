@@ -1,4 +1,4 @@
-import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
+import type { PropsTranslations, ComponentApiContent } from '@mui/internal-api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import type { ClassDefinition, BaseCssTOCParams } from './types';
 import type { TocItem } from '../types';

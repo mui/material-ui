@@ -14,9 +14,9 @@ export default function ErrorRadios() {
   const [helperText, setHelperText] = React.useState('Choose wisely');
 
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
-    setHelperText(' ');
+    setValue(event.target.value);
     setError(false);
+    setHelperText('Choose wisely');
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

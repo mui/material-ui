@@ -36,9 +36,10 @@ export function Document({ canonicalAsServer, userLanguage, analytics, children 
           content={getMetaThemeColor('dark')}
           media="(prefers-color-scheme: dark)"
         />
-        <link rel="icon" href="/static/favicon.ico" />
-        {/* iOS Icon */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
+        {/* Based on https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs */}
+        <link rel="icon" href="/static/favicon.ico" sizes="32x32" />
+        <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
         {/* SEO */}
         <link
           rel="canonical"

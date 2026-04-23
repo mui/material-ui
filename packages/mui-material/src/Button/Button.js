@@ -117,6 +117,17 @@ const ButtonRoot = styled(ButtonBase, {
       },
       variants: [
         {
+          props: ({ ownerState }) =>
+            ownerState.startIcon || (ownerState.loading && ownerState.loadingPosition === 'start'),
+          style: {
+            '&::before': {
+              content: '"\\200b"',
+              width: 0,
+              overflow: 'hidden',
+            },
+          },
+        },
+        {
           props: { variant: 'contained' },
           style: {
             color: `var(--variant-containedColor)`,

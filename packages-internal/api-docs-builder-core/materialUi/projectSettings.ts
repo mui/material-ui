@@ -1,7 +1,6 @@
 import path from 'path';
 import { LANGUAGES } from '@mui/internal-core-docs/constants';
-import { ProjectSettings } from '@mui-internal/api-docs-builder';
-import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import { ProjectSettings, findApiPages } from '@mui/internal-api-docs-builder';
 import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
