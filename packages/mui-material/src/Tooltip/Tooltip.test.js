@@ -972,6 +972,7 @@ describe('<Tooltip />', () => {
 
     it('closes when the focused child becomes disabled', async () => {
       clock.restore();
+      const handleClose = spy();
 
       function TestCase() {
         const [disabled, setDisabled] = React.useState(false);
@@ -980,6 +981,7 @@ describe('<Tooltip />', () => {
           <Tooltip
             enterDelay={0}
             leaveDelay={0}
+            onClose={handleClose}
             title="Some information"
             slotProps={{ transition: { timeout: 0 } }}
           >
@@ -1003,6 +1005,7 @@ describe('<Tooltip />', () => {
       await waitFor(() => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
       });
+      expect(handleClose.callCount).to.equal(1);
     });
 
     it('closes on blur', async () => {
