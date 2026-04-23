@@ -1,3 +1,5 @@
 import { createRemarkConfig } from '@mui/internal-code-infra/remark';
 
-export default createRemarkConfig();
+export default createRemarkConfig({
+  disable: ['no-duplicate-headings'],
+});
