@@ -37,3 +37,8 @@ pnpm-lock.yaml
 docs/**/*-pt.md
 docs/**/*-zh.md
 __fixtures__
+
+# TODO: fix lint violations and remove these ignores
+/CHANGELOG.md
+/CHANGELOG.old.md
+/packages-internal/scripts/typescript-to-proptypes/CHANGELOG.old.md

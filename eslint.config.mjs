@@ -59,6 +59,7 @@ export default defineConfig(
     enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
     baseDirectory: dirname,
     materialUi: true,
+    markdown: true,
   }),
   {
     name: 'Material UI overrides',
