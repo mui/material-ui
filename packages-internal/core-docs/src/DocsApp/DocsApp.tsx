@@ -4,7 +4,7 @@ import type { AdConfig } from '../Ad';
 import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
-import type { DocsConfig } from '../DocsProvider';
+import type { DocsConfig, VersionEntry } from '../DocsProvider';
 import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
 import PageContext from '../PageContext';
@@ -39,6 +39,7 @@ export interface DocsAppProps {
   pageProps: {
     userLanguage: string;
     translations: Translations;
+    versions: VersionEntry[];
     [key: string]: unknown;
   };
   /**

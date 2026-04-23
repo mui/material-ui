@@ -47,8 +47,8 @@ LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
 
-function useVersions(): VersionEntry[] {
-  const [versions, setVersions] = React.useState<VersionEntry[]>([]);
+function useVersions(initialVersions: VersionEntry[]): VersionEntry[] {
+  const [versions, setVersions] = React.useState<VersionEntry[]>(initialVersions);
   React.useEffect(() => {
     docsConfig.fetchVersions?.().then(setVersions);
   }, []);
@@ -134,7 +134,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
   // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
-  const fetchedVersions = useVersions();
+  const fetchedVersions = useVersions(pageProps.versions);
 
   const productIdentifier = React.useMemo(() => {
     const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
@@ -319,6 +319,7 @@ export default function MyApp(
 
 MyApp.getInitialProps = createGetInitialProps({
   translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
+  versions: require('../versions.json'),
 });
 
 export { reportWebVitals };

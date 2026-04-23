@@ -21,8 +21,7 @@ async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
 export type VersionEntry = { version: string; url: string };
 
 // #target-branch-reference
-const VERSIONS_URL =
-  'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
+const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
 
 async function defaultFetchVersions(): Promise<VersionEntry[]> {
   const response = await fetch(VERSIONS_URL);
