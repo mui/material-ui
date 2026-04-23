@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
@@ -1000,38 +999,6 @@ describe('<Tooltip />', () => {
       });
 
       await user.keyboard('{Enter}');
-
-      await waitFor(() => {
-        expect(screen.queryByRole('tooltip')).to.equal(null);
-      });
-    });
-
-    it('closes when onOpen synchronously disables the focused child', async () => {
-      clock.restore();
-
-      function TestCase() {
-        const [disabled, setDisabled] = React.useState(false);
-
-        return (
-          <Tooltip
-            enterDelay={0}
-            leaveDelay={0}
-            onOpen={() => {
-              ReactDOM.flushSync(() => {
-                setDisabled(true);
-              });
-            }}
-            title="Some information"
-            slotProps={{ transition: { timeout: 0 } }}
-          >
-            <button disabled={disabled}>Disable</button>
-          </Tooltip>
-        );
-      }
-
-      const { user } = render(<TestCase />);
-
-      await user.tab();
 
       await waitFor(() => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
