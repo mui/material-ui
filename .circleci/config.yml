@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/f709101a0ec2bf0f9de40196669863653bf0979f/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/3feee347096f50b441cad3087743bd1c5aef8651/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
