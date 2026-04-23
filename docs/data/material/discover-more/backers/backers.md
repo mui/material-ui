@@ -14,7 +14,7 @@ Sponsorship increases the rate of bug fixes, documentation improvements, and fea
 
 _1/3 slots available_
 
-Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
+Diamond sponsors are those who've pledged $1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 
 ## Gold sponsors
 
@@ -30,6 +30,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
 List gold sponsors that regular sponsors could feel uncomfortable being listed next to.
 For example, it could be because the service breaks another service's Terms of service and hence is a moral minefield.
 -->
+
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instagram followers, likes, views, and comments.">Goread.io</a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instant delivery Instagram followers.">Buzzoid</a>
@@ -40,7 +41,7 @@ For example, it could be because the service breaks another service's Terms of s
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="follower24.de" href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Social media success.">Follower24</a>
 </p>
 
-Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
+Gold sponsors are those who've pledged $500/month or more to the MUI organization. [Tier benefits](#gold).
 
 ## Silver sponsors
 

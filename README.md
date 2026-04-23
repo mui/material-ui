@@ -1,5 +1,5 @@
 <!-- #host-reference -->
-<!-- markdownlint-disable-next-line -->
+
 <p align="center">
   <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
 </p>
@@ -53,7 +53,7 @@ Use `@latest` for the latest stable release.
   <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
-Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
+Diamond sponsors are those who have pledged $1,500/month or more to MUI.
 
 ### Gold 🏆
 
@@ -85,7 +85,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
 </p>
 
-Gold sponsors are those who have pledged \$500/month or more to MUI.
+Gold sponsors are those who have pledged $500/month or more to MUI.
 
 ### More backers
 
