@@ -18,7 +18,7 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Combo box
 
@@ -178,12 +178,6 @@ For advanced customization use cases, a headless `useAutocomplete()` hook is exp
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
 The Autocomplete component is built on this hook.
-
-```tsx
-import { useAutocomplete } from '@mui/base/useAutocomplete';
-```
-
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
 
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
@@ -420,9 +414,12 @@ In the event you want the avoid autofill, you can try the following:
   ```jsx
   <TextField
     {...params}
-    inputProps={{
-      ...params.inputProps,
-      autoComplete: 'new-password',
+    slotProps={{
+      ...params.slotProps,
+      htmlInput: {
+        ...params.slotProps.htmlInput,
+        autoComplete: 'new-password',
+      },
     }}
   />
   ```

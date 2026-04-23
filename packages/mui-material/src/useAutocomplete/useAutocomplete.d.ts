@@ -28,6 +28,10 @@ export function createFilterOptions<Value>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
+export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo extends true
+  ? Value | string
+  : Value;
+
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
   ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
@@ -66,12 +70,11 @@ export interface UseAutocompleteProps<
    */
   autoHighlight?: boolean | undefined;
   /**
-   * If `true`, the selected option becomes the value of the input
-   * when the Autocomplete loses focus unless the user chooses
-   * a different option or changes the character string in the input.
+   * If `true`, the value is updated when the input loses focus under one of these conditions:
    *
-   * When using the `freeSolo` mode, the typed value will be the input value
-   * if the Autocomplete loses focus without highlighting an option.
+   * - An option highlighted via keyboard navigation or `autoHighlight` is selected.
+   *   Hover and touch highlights are ignored.
+   * - Otherwise, in `freeSolo` mode, the typed text becomes the value.
    * @default false
    */
   autoSelect?: boolean | undefined;
@@ -175,12 +178,12 @@ export interface UseAutocompleteProps<
    *
    * If used in free solo mode, it must accept both the type of the options and a string.
    *
-   * @param {Value} option
+   * @param {Value|string} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
   getOptionLabel?:
-    | ((option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string)
+    | ((option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string)
     | undefined;
   /**
    * If provided, the options will be grouped under the returned string.
@@ -217,10 +220,12 @@ export interface UseAutocompleteProps<
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
    * @param {Value} option The option to test.
-   * @param {Value} value The value to test against.
+   * @param {Value|string} value The value to test against.
    * @returns {boolean}
    */
-  isOptionEqualToValue?: ((option: Value, value: Value) => boolean) | undefined;
+  isOptionEqualToValue?:
+    | ((option: Value, value: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => boolean)
+    | undefined;
   /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    * @default false
@@ -432,12 +437,6 @@ export interface UseAutocompleteReturnValue<
    */
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
-   * @deprecated Use `getItemProps` instead
-   *
-   * A tag props getter.
-   */
-  getTagProps: AutocompleteGetTagProps;
-  /**
    * Resolver for the listbox component's props.
    * @returns props that should be spread on the listbox component
    */
@@ -491,12 +490,6 @@ export interface UseAutocompleteReturnValue<
    * Index of the focused item for the component.
    */
   focusedItem: number;
-  /**
-   * @deprecated Use `focusedItem` instead
-   *
-   * Index of the focused tag for the component.
-   */
-  focusedTag: number;
   /**
    * The options to render.
    * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.

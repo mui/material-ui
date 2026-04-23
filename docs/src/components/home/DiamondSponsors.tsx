@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
@@ -13,6 +13,12 @@ const DIAMONDs = [
     name: 'Doit International',
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: '/static/sponsors/formengine-square.svg',
+    name: 'FormEngine Core',
+    description: 'Stop building forms with MUI manually! Try the smart way — use FormEngine Core.',
+    href: 'https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway',
   },
 ];
 

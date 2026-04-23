@@ -30,15 +30,15 @@ Run one of the following commands to install it and save it to your `package.jso
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@next
+npm install @mui/icons-material
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next
+pnpm add @mui/icons-material
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next
+yarn add @mui/icons-material
 ```
 
 </codeblock>

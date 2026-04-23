@@ -316,13 +316,6 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiFormLabel'] | undefined;
       }
     | undefined;
-  MuiGridLegacy?:
-    | {
-        defaultProps?: ComponentsProps['MuiGridLegacy'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiGridLegacy'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiGridLegacy'] | undefined;
-      }
-    | undefined;
   MuiGrid?:
     | {
         defaultProps?: ComponentsProps['MuiGrid'] | undefined;
@@ -822,13 +815,6 @@ export interface Components<Theme = unknown> {
         defaultProps?: ComponentsProps['MuiTooltip'] | undefined;
         styleOverrides?: ComponentsOverrides<Theme>['MuiTooltip'] | undefined;
         variants?: ComponentsVariants<Theme>['MuiTooltip'] | undefined;
-      }
-    | undefined;
-  MuiTouchRipple?:
-    | {
-        defaultProps?: ComponentsProps['MuiTouchRipple'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiTouchRipple'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiTouchRipple'] | undefined;
       }
     | undefined;
   MuiTypography?:

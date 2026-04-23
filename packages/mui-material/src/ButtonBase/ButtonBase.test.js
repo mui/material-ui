@@ -20,6 +20,8 @@ import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBa
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
+/** @typedef {import('./ButtonBase').ButtonBaseActions} ButtonBaseActions */
+
 describe('<ButtonBase />', () => {
   const { render } = createRenderer();
 
@@ -45,7 +47,6 @@ describe('<ButtonBase />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiButtonBase',
     testVariantProps: { disabled: true },
-    skip: ['componentsProp'],
   }));
 
   describe('root node', () => {
@@ -618,10 +619,11 @@ describe('<ButtonBase />', () => {
         left: 20,
         top: 20,
       }));
+
       await ripple.startTouch(screen.getByRole('button'), { clientX: 10, clientY: 10 });
-      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      const rippleRipple = /** @type {Element} */ (container.querySelector('.touch-ripple-ripple'));
       expect(rippleRipple).not.to.equal(null);
-      // @ts-ignore
+
       const rippleStyle = window.getComputedStyle(rippleRipple);
       expect(rippleStyle).to.have.property('height', '101px');
       expect(rippleStyle).to.have.property('width', '101px');
@@ -648,8 +650,8 @@ describe('<ButtonBase />', () => {
       await ripple.startTouch(screen.getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
-      // @ts-ignore
-      const rippleStyle = window.getComputedStyle(rippleRipple);
+
+      const rippleStyle = window.getComputedStyle(/** @type {Element} */ (rippleRipple));
       expect(rippleStyle).not.to.have.property('height', '101px');
       expect(rippleStyle).not.to.have.property('width', '101px');
     });
@@ -824,6 +826,57 @@ describe('<ButtonBase />', () => {
       setProps({ disabled: false });
       expect(button).not.to.have.attribute('aria-disabled');
     });
+
+    it('should not call key handlers on a disabled non-native button', async () => {
+      const onKeyDownSpy = spy();
+      const onKeyUpSpy = spy();
+
+      const { user } = render(
+        <ButtonBase component="span" disabled onKeyDown={onKeyDownSpy} onKeyUp={onKeyUpSpy}>
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByRole('button');
+
+      await act(async () => {
+        button.focus();
+      });
+
+      expect(button).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      await user.keyboard('{Space}');
+
+      expect(onKeyDownSpy.callCount).to.equal(0);
+      expect(onKeyUpSpy.callCount).to.equal(0);
+    });
+
+    it('should not propagate click events when Space is released on a disabled non-native button', async () => {
+      const parentClickSpy = spy();
+      const buttonClickSpy = spy();
+
+      const { user } = render(
+        <div onClick={parentClickSpy}>
+          <ButtonBase component="span" disabled onClick={buttonClickSpy}>
+            Hello
+          </ButtonBase>
+        </div>,
+      );
+
+      const button = screen.getByRole('button');
+
+      // We don't use `user.tab()` because normal tab focus won't land on a disabled
+      // ButtonBase, only programmatic focus can happen
+      await act(async () => {
+        button.focus();
+      });
+
+      await user.keyboard(' ');
+
+      expect(buttonClickSpy.callCount).to.equal(0);
+      expect(parentClickSpy.callCount).to.equal(0);
+    });
   });
 
   describe('prop: component', () => {
@@ -834,9 +887,33 @@ describe('<ButtonBase />', () => {
       const Link = React.forwardRef((props, ref) => (
         <div data-testid="link" ref={ref} {...props} />
       ));
-      render(<ButtonBase component={Link}>Hello</ButtonBase>);
+      render(
+        <ButtonBase component={Link} nativeButton={false}>
+          Hello
+        </ButtonBase>,
+      );
 
       expect(screen.getByTestId('link')).to.have.attribute('role', 'button');
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('treats custom components as native buttons for render-time props', () => {
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+      render(
+        <ButtonBase component={CustomButton} nativeButton disabled>
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByRole('button');
+
+      expect(button).to.have.property('nodeName', 'BUTTON');
+      expect(button).to.have.attribute('type', 'button');
+      expect(button).to.have.attribute('disabled');
+      expect(button).not.to.have.attribute('role');
+      expect(button).not.to.have.attribute('aria-disabled');
     });
   });
 
@@ -878,6 +955,24 @@ describe('<ButtonBase />', () => {
       focusVisible(button);
 
       expect(button).to.have.class(classes.focusVisible);
+    });
+
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())('can suppress the focus-visible state', async function test() {
+      render(
+        // @ts-expect-error internal prop used by MenuItem
+        <ButtonBase suppressFocusVisible focusVisibleClassName="focusVisible">
+          Hello
+        </ButtonBase>,
+      );
+
+      const button = screen.getByText('Hello');
+
+      focusVisible(button);
+
+      expect(button).toHaveFocus();
+      expect(button).not.to.have.class(classes.focusVisible);
+      expect(button).not.to.match('.focusVisible');
     });
 
     // JSDOM doesn't support :focus-visible
@@ -1182,6 +1277,41 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
+      it('should preserve native button keyboard behavior when a custom component renders a native button', async () => {
+        const onClickSpy = spy();
+        const onKeyDownSpy = spy();
+        const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        const MyButton = React.forwardRef(function MyButton(props, ref) {
+          return <button ref={ref} {...props} />;
+        });
+
+        const { user } = render(
+          // @ts-expect-error missing types in MyButton
+          <ButtonBase component={MyButton} onClick={onClickSpy} onKeyDown={onKeyDownSpy}>
+            Hello
+          </ButtonBase>,
+        );
+
+        await user.tab();
+
+        await user.keyboard('{Enter}');
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+
+        onClickSpy.resetHistory();
+        onKeyDownSpy.resetHistory();
+
+        await user.keyboard(' ');
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(1);
+        expect(onKeyDownSpy.firstCall.args[0]).to.have.property('defaultPrevented', false);
+        errorSpy.mockRestore();
+      });
+
       it('prevents default on Enter with an anchor and empty href', async () => {
         const onClickSpy = spy();
         const onKeyDownSpy = spy();
@@ -1244,6 +1374,36 @@ describe('<ButtonBase />', () => {
         expect(onKeyDown.callCount).to.equal(1);
         expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
       });
+
+      it('should ignore custom link components that render anchors with href', async () => {
+        const onClick = spy();
+        const onKeyDown = spy();
+        const CustomLink = React.forwardRef((props, ref) => (
+          // eslint-disable-next-line jsx-a11y/anchor-has-content
+          <a ref={ref} {...props} />
+        ));
+
+        render(
+          // @ts-expect-error missing types in CustomLink
+          <ButtonBase component={CustomLink} href="href" onClick={onClick} onKeyDown={onKeyDown}>
+            Hello
+          </ButtonBase>,
+        );
+
+        const button = screen.getByText('Hello');
+
+        await act(async () => {
+          button.focus();
+        });
+
+        fireEvent.keyDown(button, {
+          key: 'Enter',
+        });
+
+        expect(onClick.callCount).to.equal(0);
+        expect(onKeyDown.callCount).to.equal(1);
+        expect(onKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', false);
+      });
     });
   });
 
@@ -1260,12 +1420,12 @@ describe('<ButtonBase />', () => {
         </ButtonBase>,
       );
 
-      // @ts-ignore
-      expect(typeof buttonActionsRef.current.focusVisible).to.equal('function');
+      expect(
+        typeof (/** @type {ButtonBaseActions} */ (buttonActionsRef.current).focusVisible),
+      ).to.equal('function');
 
       await act(async () => {
-        // @ts-ignore
-        buttonActionsRef.current.focusVisible();
+        /** @type {ButtonBaseActions} */ (buttonActionsRef.current).focusVisible();
       });
 
       expect(screen.getByText('Hello')).toHaveFocus();
@@ -1274,8 +1434,53 @@ describe('<ButtonBase />', () => {
   });
 
   describe('warnings', () => {
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @returns {string[]}
+     */
+    function getWarningMessages(errorSpy) {
+      return errorSpy.mock.calls.map((call) =>
+        String(call[0]).replace(/\s+/g, ' ').trim().toLowerCase(),
+      );
+    }
+
+    /**
+     * @param {{ mock: { calls: unknown[][] } }} errorSpy
+     * @param {string[]} fragments
+     */
+    function expectWarningWithFragments(errorSpy, fragments) {
+      const messages = getWarningMessages(errorSpy);
+
+      expect(messages.length).to.be.greaterThanOrEqual(1);
+      expect(
+        messages.some((message) =>
+          fragments.every((fragment) => message.includes(fragment.toLowerCase())),
+        ),
+      ).to.equal(true);
+    }
+
     beforeEach(() => {
       PropTypes.resetWarningCache();
+    });
+
+    it('warns when nativeButton is omitted and a custom component renders a button', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+
+      render(<ButtonBase component={CustomButton}>Hello</ButtonBase>);
+
+      expectWarningWithFragments(errorSpy, ['nativebutton={true}', 'native <button>']);
+      errorSpy.mockRestore();
+    });
+
+    it('does not warn in link mode when nativeButton is omitted', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(<ButtonBase href="/test">Hello</ButtonBase>);
+
+      const messages = getWarningMessages(errorSpy);
+      expect(messages.some((message) => message.includes('nativebutton={false}'))).to.equal(false);
+      errorSpy.mockRestore();
     });
 
     // Only run the test on node. On the browser the thrown error is not caught
@@ -1316,7 +1521,6 @@ describe('<ButtonBase />', () => {
     });
 
     it('allows non-standard values', () => {
-      // @ts-expect-error `@types/react` only lists standard values
       render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');
@@ -1336,7 +1540,11 @@ describe('<ButtonBase />', () => {
        * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
        */
       const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
-      render(<ButtonBase component={CustomButton} type="reset" />);
+      render(
+        <ButtonBase component={CustomButton} nativeButton type="reset">
+          Hello
+        </ButtonBase>,
+      );
 
       expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
@@ -1364,6 +1572,27 @@ describe('<ButtonBase />', () => {
         const button = screen.getByRole('button');
 
         // Should not have type="button" when formAction is present
+        expect(button).not.to.have.attribute('type', 'button');
+        expect(button).to.have.attribute('formaction');
+        await user.click(button);
+        expect(formActionSpy.callCount).to.equal(1);
+      },
+    );
+
+    it.skipIf(isJsdom() || reactMajor < 19)(
+      'should not set default type when formAction is present on a custom native button',
+      async function test() {
+        const formActionSpy = spy();
+        const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
+        const buttonBase = (
+          // @ts-expect-error missing types in CustomButton
+          <ButtonBase component={CustomButton} nativeButton formAction={formActionSpy}>
+            Submit
+          </ButtonBase>
+        );
+        const { user } = render(<form>{buttonBase}</form>);
+        const button = screen.getByRole('button');
+
         expect(button).not.to.have.attribute('type', 'button');
         expect(button).to.have.attribute('formaction');
         await user.click(button);

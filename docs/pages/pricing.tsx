@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
+
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroPricing from 'docs/src/components/pricing/HeroPricing';
 import PricingTable from 'docs/src/components/pricing/PricingTable';
@@ -10,9 +10,9 @@ import PricingWhatToExpect from 'docs/src/components/pricing/PricingWhatToExpect
 import PricingFAQ from 'docs/src/components/pricing/PricingFAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
-import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySupportContext';
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+import { MultiAppProvider } from 'docs/src/components/pricing/MultiAppContext';
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 import PricingCards from 'docs/src/components/pricing/PricingCards';
 
@@ -29,7 +29,7 @@ export default function Pricing() {
       <main id="main-content">
         <HeroPricing />
         <LicenseModelProvider>
-          <PrioritySupportProvider>
+          <MultiAppProvider>
             <Container sx={{ display: { xs: 'none', md: 'block' } }}>
               <PricingCards />
             </Container>
@@ -42,7 +42,7 @@ export default function Pricing() {
             <Container sx={{ display: { xs: 'none', md: 'block' } }}>
               <PricingTable />
             </Container>
-          </PrioritySupportProvider>
+          </MultiAppProvider>
         </LicenseModelProvider>
         <PricingWhatToExpect />
         <Divider />

@@ -33,7 +33,7 @@ describe('<SvgIcon />', () => {
           {props.children}
         </svg>
       ),
-      skip: ['themeVariants', 'componentsProp'],
+      skip: ['themeVariants'],
     }),
   );
 

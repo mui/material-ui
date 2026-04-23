@@ -14,7 +14,7 @@ describe('<SnackbarContent />', () => {
     render,
     muiName: 'MuiSnackbarContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    skip: ['componentProp', 'themeVariants'],
   }));
 
   describe('prop: action', () => {

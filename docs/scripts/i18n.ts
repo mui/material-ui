@@ -1,26 +1,19 @@
 // @ts-check
 import path from 'path';
 import fs from 'node:fs/promises';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import { pageToTitle } from '@mui/internal-core-docs/helpers';
 import materialPages from 'docs/data/material/pages';
 import systemPages from 'docs/data/system/pages';
-import joyPages from 'docs/data/joy/pages';
-import { MuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-', '/toolpad'];
 
 async function run() {
   const translationsFilename = path.join(__dirname, '../translations/translations.json');
   const translationsFile = await fs.readFile(translationsFilename, 'utf8');
-  /**
-   * @type {{ pages: Record<String, string> }}
-   */
-  const output = JSON.parse(translationsFile);
+  const output = JSON.parse(translationsFile) as { pages: Record<string, string> };
   output.pages = {};
 
-  /**
-   * @param {readonly import('docs/src/MuiPage').MuiPage[]} pages
-   */
   const traverse = (pages: MuiPage[]) => {
     pages.forEach((page) => {
       if (
@@ -41,7 +34,7 @@ async function run() {
     });
   };
 
-  traverse([...systemPages, ...materialPages, ...joyPages]);
+  traverse([...systemPages, ...materialPages]);
 
   await fs.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }

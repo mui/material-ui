@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -63,11 +64,11 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Stack](https://next.mui.com/material-ui/react-stack/)
+ * - [Stack](https://mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [PigmentStack API](https://next.mui.com/material-ui/api/pigment-stack/)
+ * - [PigmentStack API](https://mui.com/material-ui/api/pigment-stack/)
  */
 const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
   const classes = useUtilityClasses();

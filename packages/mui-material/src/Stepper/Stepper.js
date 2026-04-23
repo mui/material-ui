@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
+import { useRtl } from '@mui/system/RtlProvider';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
+import StepButton from '../StepButton';
 
 const useUtilityClasses = (ownerState) => {
   const { orientation, nonLinear, alternativeLabel, classes } = ownerState;
@@ -19,7 +22,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getStepperUtilityClass, classes);
 };
 
-const StepperRoot = styled('div', {
+const StepperRoot = styled('ol', {
   name: 'MuiStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -33,6 +36,9 @@ const StepperRoot = styled('div', {
   },
 })({
   display: 'flex',
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -58,14 +64,43 @@ const StepperRoot = styled('div', {
 
 const defaultConnector = <StepConnector />;
 
+function RovingStepper(props) {
+  // eslint-disable-next-line react/prop-types
+  const { children, className, component, forwardedRef, isRtl, orientation, ownerState, ...other } =
+    props;
+
+  const rovingContainer = useRovingTabIndexRoot({
+    orientation,
+    isRtl,
+  });
+  const rovingContainerProps = rovingContainer.getContainerProps(forwardedRef);
+
+  return (
+    <RovingTabIndexContext.Provider value={rovingContainer}>
+      <StepperRoot
+        as={component}
+        ownerState={ownerState}
+        className={className}
+        role="tablist"
+        aria-orientation={orientation}
+        {...rovingContainerProps}
+        {...other}
+      >
+        {children}
+      </StepperRoot>
+    </RovingTabIndexContext.Provider>
+  );
+}
+
 const Stepper = React.forwardRef(function Stepper(inProps, ref) {
+  const isRtl = useRtl();
   const props = useDefaultProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
     alternativeLabel = false,
     children,
     className,
-    component = 'div',
+    component = 'ol',
     connector = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
@@ -83,29 +118,76 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
+  const totalSteps = childrenArray.length;
+  const isTabList = childrenArray.some((child) => {
+    if (!React.isValidElement(child)) {
+      return false;
+    }
+
+    if (child.type === StepButton) {
+      return true;
+    }
+
+    const grandChildren = child.props.children;
+
+    if (grandChildren) {
+      return React.Children.toArray(grandChildren).some(
+        (grandChild) => React.isValidElement(grandChild) && grandChild.type === StepButton,
+      );
+    }
+
+    return false;
+  });
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
-      last: index + 1 === childrenArray.length,
+      last: index + 1 === totalSteps,
       ...step.props,
     });
   });
+
   const contextValue = React.useMemo(
-    () => ({ activeStep, alternativeLabel, connector, nonLinear, orientation }),
-    [activeStep, alternativeLabel, connector, nonLinear, orientation],
+    () => ({
+      activeStep,
+      alternativeLabel,
+      connector,
+      nonLinear,
+      orientation,
+      totalSteps,
+      isTabList,
+    }),
+    [activeStep, alternativeLabel, connector, nonLinear, orientation, totalSteps, isTabList],
   );
+
+  if (!isTabList) {
+    return (
+      <StepperContext.Provider value={contextValue}>
+        <StepperRoot
+          as={component}
+          ownerState={ownerState}
+          className={clsx(classes.root, className)}
+          ref={ref}
+          {...other}
+        >
+          {steps}
+        </StepperRoot>
+      </StepperContext.Provider>
+    );
+  }
 
   return (
     <StepperContext.Provider value={contextValue}>
-      <StepperRoot
-        as={component}
-        ownerState={ownerState}
+      <RovingStepper
+        forwardedRef={ref}
+        isRtl={isRtl}
         className={clsx(classes.root, className)}
-        ref={ref}
+        component={component}
+        orientation={orientation}
+        ownerState={ownerState}
         {...other}
       >
         {steps}
-      </StepperRoot>
+      </RovingStepper>
     </StepperContext.Provider>
   );
 });

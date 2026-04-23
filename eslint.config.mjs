@@ -7,6 +7,7 @@ import {
   EXTENSION_TEST_FILE,
   EXTENSION_DTS,
 } from '@mui/internal-code-infra/eslint';
+import { fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
@@ -47,7 +48,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@pigment-css/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
+      '!@mui/internal-core-docs/**',
     ],
     message: OneLevelImportMessage,
   },
@@ -67,6 +68,9 @@ export default defineConfig(
         typescript: {
           project: ['tsconfig.json'],
         },
+      },
+      next: {
+        rootDir: 'docs',
       },
     },
     rules: {
@@ -115,8 +119,8 @@ export default defineConfig(
   {
     files: [
       `packages-internal/**/*${EXTENSION_TS}`,
-      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      `packages/api-docs-builder-core/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
+      `packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`,
     ],
     rules: {
       // Only applies to our public packages
@@ -202,11 +206,10 @@ export default defineConfig(
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '**/*.d.ts',
-      'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslintPluginConsistentName,
+      'consistent-default-export-name': fixupPluginRules(eslintPluginConsistentName),
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
@@ -224,10 +227,8 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
-      '**/mui-docs/**/*',
+      '**/mui-internal-core-docs/**/*',
     ],
     rules: {
       'mui/add-undef-to-optional': 'error',
@@ -238,10 +239,8 @@ export default defineConfig(
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
-      // deprecated library
-      '**/mui-joy/**/*',
       // used internally, not used on app router yet
-      '**/mui-docs/**/*',
+      '**/mui-internal-core-docs/**/*',
     ],
     rules: {
       'mui/disallow-react-api-in-server-components': 'error',
@@ -280,7 +279,19 @@ export default defineConfig(
   },
   {
     files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.spec.*', '**/*.test.*', '**/mui-lab/**'],
+    rules: {
+      'mui/require-dev-wrapper': [
+        'error',
+        {
+          functionNames: ['warnOnce', 'warn', 'checkSlot', 'isLayoutSupported'],
+        },
+      ],
+    },
+  },
+  {
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
+    ignores: ['**/*.d.ts', '**/*.spec.*'],
     rules: {
       'mui/material-ui-name-matches-component-name': 'error',
     },
@@ -300,20 +311,21 @@ export default defineConfig(
       'import/extensions': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder/.eslintrc.js
   {
     files: [
-      `packages/api-docs-builder/**/*${EXTENSION_TS}`,
-      // Allow named exports for locales: https://github.com/mui/material-ui/pull/46933
+      `packages-internal/api-docs-builder/**/*${EXTENSION_TS}`,
+      // Allow named exports for locales and mui-internal-core-docs: https://github.com/mui/material-ui/pull/46933
       `packages/mui-material/src/locale/*${EXTENSION_TS}`,
+      `packages-internal/core-docs/src/**/*${EXTENSION_TS}`,
     ],
     rules: {
       'import/prefer-default-export': 'off',
     },
   },
-  // Migrated config from packages/api-docs-builder-core/.eslintrc.js
+  // Migrated config from packages-internal/api-docs-builder-core/.eslintrc.js
   {
-    files: [`packages/api-docs-builder-core/**/*${EXTENSION_TS}`],
+    files: [`packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`],
     rules: {
       'import/no-default-export': 'error',
       'import/prefer-default-export': 'off',

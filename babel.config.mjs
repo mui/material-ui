@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-// @ts-ignore
 import getBaseConfig from '@mui/internal-code-infra/babel-config';
 
 /**
@@ -25,22 +24,19 @@ function resolveAliasPath(relativeToBabelConf) {
 /** @type {babel.ConfigFunction} */
 export default function getBabelConfig(api) {
   const baseConfig = getBaseConfig(api);
-  const useESModules = api.env(['regressions', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
-    '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
-    '@mui/icons-material': resolveAliasPath(
-      `./packages/mui-icons-material/lib${useESModules ? '/esm' : ''}`,
-    ),
+    '@mui/internal-core-docs': resolveAliasPath('./packages-internal/core-docs/src'),
+    '@mui/icons-material': resolveAliasPath(`./packages/mui-icons-material/lib`),
     '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
-    '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
+    '@mui/internal-markdown/prism': resolveAliasPath('./packages-internal/markdown/prism.mjs'),
+    '@mui/internal-markdown': resolveAliasPath('./packages-internal/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
-    '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
     docs: resolveAliasPath('./docs'),
     test: resolveAliasPath('./test'),
@@ -54,6 +50,7 @@ export default function getBabelConfig(api) {
         missingError: 'annotate',
         errorCodesPath,
         runtimeModule: '@mui/utils/formatMuiErrorMessage',
+        outExtension: process.env.MUI_OUT_FILE_EXTENSION ?? undefined,
       },
     ],
   ];

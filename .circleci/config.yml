@@ -1,8 +1,8 @@
 version: 2.1
 orbs:
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/3feee347096f50b441cad3087743bd1c5aef8651/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/5a397056f9e93982f8e275c0214fc882d8af3b1c/.circleci/orbs/code-infra.yml
 
 parameters:
   workflow:
@@ -79,7 +79,7 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
-          command: pnpm test:node --no-isolate --no-file-parallelism --coverage
+          command: pnpm test:node --no-isolate --no-file-parallelism
       - run:
           name: internal-scripts
           command: |
@@ -95,8 +95,6 @@ jobs:
             else
               echo "no changes"
             fi
-      - code-infra/upload-coverage:
-          key: '<< parameters.react-version >>-jsdom'
       - store_test_results:
           path: test-results
 
@@ -105,7 +103,10 @@ jobs:
     steps:
       - checkout
       - install-deps
-      - code-infra/run-linters
+      - code-infra/eslint
+      - code-infra/stylelint
+      - code-infra/markdownlint
+      - code-infra/valelint
   test_static:
     <<: *default-job
     steps:
@@ -214,14 +215,14 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
           react-version: << parameters.react-version >>
       - run:
           name: Tests chromium
-          command: pnpm test:browser --no-isolate --no-file-parallelism --coverage
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
           name: Tests webkit
           environment:
@@ -232,22 +233,13 @@ jobs:
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
-      - run:
-          name: Check coverage generated
-          command: |
-            if ! [[ -s coverage/lcov.info ]]
-            then
-              exit 1
-            fi
-      - code-infra/upload-coverage:
-          key: '<< parameters.react-version >>-browser'
       - store_test_results:
           path: test-results
   test_e2e:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
@@ -260,7 +252,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps
@@ -273,7 +265,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
@@ -290,6 +282,7 @@ jobs:
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
+          no_output_timeout: 20m
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
@@ -345,7 +338,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -361,7 +354,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -377,7 +370,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -393,7 +386,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -409,7 +402,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -424,7 +417,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.58.2-noble
+      - image: mcr.microsoft.com/playwright:v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -440,7 +433,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -460,54 +453,16 @@ jobs:
       - checkout
       - install-deps
       - run:
-          name: prepare danger on PRs
-          command: pnpm danger ci
-          environment:
-            DANGER_COMMAND: prepareBundleSizeReport
-      - run:
-          name: build @mui packages
+          name: Build @mui packages
           command: pnpm release:build
-      - aws-cli/setup:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-          region: ${AWS_REGION_ARTIFACTS}
       # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
       - run:
-          name: create and upload a size snapshot
-          command: |
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
-            export AWS_REGION=$AWS_REGION_ARTIFACTS
-            pnpm size:snapshot --concurrency 6
-
-      # === LEGACY START ===
-      # remove once the UI can handle the new format
-      # persist size snapshot on S3
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                pattern: '.+'
-                value: '${CIRCLE_PULL_REQUEST}'
-          steps:
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      # === LEGACY END ===
-
-      # Keep the artifact storage as a CircleCI artifact
+          name: Create and upload a size snapshot
+          command: pnpm size:snapshot --concurrency 6
       - store_artifacts:
-          name: persist size snapshot as pipeline artifact
+          name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-
-      - run:
-          name: Run danger on PRs
-          command: pnpm danger ci --fail-on-errors
-          environment:
-            DANGER_COMMAND: reportBundleSize
 workflows:
   version: 2
   pipeline:

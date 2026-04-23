@@ -76,7 +76,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
         expectedClassName: classes.indicator,
       },
     },
-    skip: ['componentsProp', 'themeVariants'],
+    skip: ['themeVariants'],
   }));
 
   it('can be named via `aria-label`', () => {
@@ -94,6 +94,102 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     );
 
     expect(screen.getByRole('tablist')).toHaveAccessibleName('complex name');
+  });
+
+  it('should not add tabindex to the tabs if the selected tab already has it', () => {
+    render(
+      <Tabs value={0}>
+        <Tab tabIndex={-1} />
+        <Tab tabIndex={0} />
+      </Tabs>,
+    );
+
+    const tabElements = screen.getAllByRole('tab');
+
+    expect(tabElements[0].tabIndex).to.equal(-1);
+    expect(tabElements[1].tabIndex).to.equal(0);
+  });
+
+  describe('keyboard navigation', () => {
+    it('should move focus to the next tab when pressing the right arrow key', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab disabled />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowLeft}');
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should preserve keyboard navigation for wrapped Tab children', async () => {
+      const WrappedTab = React.forwardRef(function WrappedTab(props, ref) {
+        return <Tab ref={ref} {...props} />;
+      });
+
+      const { user } = render(
+        <Tabs value={0}>
+          <WrappedTab />
+          <WrappedTab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      expect(tabElements[0]).toHaveFocus();
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+
+      await user.keyboard('{ArrowRight}');
+      expect(tabElements[1]).toHaveFocus();
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused tab', async () => {
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      fireEvent.focus(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
   });
 
   describe('warnings', () => {
@@ -139,7 +235,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const selector = `.${classes.flexContainer}.${classes.centered}`;
+      const selector = `.${classes.list}.${classes.centered}`;
       expect(container.querySelector(selector).nodeName).to.equal('DIV');
     });
   });
@@ -177,6 +273,31 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(screen.getAllByRole('tab').map((tab) => tab.tabIndex)).to.have.ordered.members([
         0, -1,
       ]);
+    });
+
+    it('keeps the focused tab in tab order when the selected value changes externally', async () => {
+      const { setProps, user } = render(
+        <Tabs value={0}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.tab();
+      await user.keyboard('{ArrowRight}{ArrowRight}');
+
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      setProps({ value: 1 });
+
+      expect(tabElements[2]).toHaveFocus();
+      expect(tabElements[2]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
     });
   });
 
@@ -589,13 +710,13 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtons}`)).to.have.lengthOf(2);
     });
 
-    it('should append className from TabScrollButtonProps', () => {
+    it('should append className from slotProps.scrollButtons', () => {
       const { container } = render(
         <Tabs
           value={0}
           variant="scrollable"
           scrollButtons
-          TabScrollButtonProps={{ className: 'foo' }}
+          slotProps={{ scrollButtons: { className: 'foo' } }}
         >
           <Tab />
           <Tab />
@@ -808,10 +929,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('prop: TabIndicatorProps', () => {
+  describe('slotProps: indicator', () => {
     it('should merge the style', () => {
       const { container } = render(
-        <Tabs value={0} TabIndicatorProps={{ style: { backgroundColor: 'green' } }}>
+        <Tabs value={0} slotProps={{ indicator: { style: { backgroundColor: 'green' } } }}>
           <Tab />
         </Tabs>,
       );
@@ -882,6 +1003,19 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       );
       const indicator = container.firstChild.querySelectorAll(`button > .${classes.indicator}`);
       expect(indicator).to.have.lengthOf(1);
+    });
+
+    it('renders the selected tab as tabbable server-side', () => {
+      const { container } = renderToString(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const tabElements = container.querySelectorAll('[role="tab"]');
+
+      expect(tabElements[0]).to.have.attribute('tabindex', '-1');
+      expect(tabElements[1]).to.have.attribute('tabindex', '0');
     });
   });
 

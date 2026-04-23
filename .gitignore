@@ -47,6 +47,7 @@ screenshots
 packed
 test-results
 .env
+.claude/worktrees
 
 # typescript
 *.tsbuildinfo

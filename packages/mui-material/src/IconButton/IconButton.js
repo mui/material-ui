@@ -115,13 +115,6 @@ const IconButtonRoot = styled(ButtonBase, {
           props: { color },
           style: {
             color: (theme.vars || theme).palette[color].main,
-          },
-        })),
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter()) // check all the used fields in the style below
-        .map(([color]) => ({
-          props: { color },
-          style: {
             '--IconButton-hoverBg': theme.alpha(
               (theme.vars || theme).palette[color].main,
               (theme.vars || theme).palette.action.hoverOpacity,
@@ -210,6 +203,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       id={loading ? loadingId : idProp}
       className={clsx(classes.root, className)}
       centerRipple
+      internalNativeButton
       focusRipple={!disableFocusRipple}
       disabled={disabled || loading}
       ref={ref}

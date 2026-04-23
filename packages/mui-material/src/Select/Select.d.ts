@@ -156,7 +156,7 @@ export interface BaseSelectProps<Value = unknown> extends StandardProps<
 
 export interface FilledSelectProps extends Omit<
   FilledInputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.
@@ -167,7 +167,7 @@ export interface FilledSelectProps extends Omit<
 
 export interface StandardSelectProps extends Omit<
   InputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.
@@ -178,7 +178,7 @@ export interface StandardSelectProps extends Omit<
 
 export interface OutlinedSelectProps extends Omit<
   OutlinedInputProps,
-  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder'
+  'value' | 'onChange' | 'id' | 'classes' | 'inputProps' | 'placeholder' | 'label'
 > {
   /**
    * The variant to use.
@@ -198,12 +198,12 @@ export type SelectProps<Value = unknown> =
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://next.mui.com/material-ui/api/select/)
- * - inherits [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
 declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;

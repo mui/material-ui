@@ -36,7 +36,6 @@ describe('<TableCell />', () => {
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',
-    skip: ['componentsProp'],
   }));
 
   describe('prop: padding', () => {

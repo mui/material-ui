@@ -570,7 +570,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'border',
         colorMix(
           safeLighten,
-          colorMix(safeAlpha, nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
           0.88,
         ),
       );
@@ -887,7 +887,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         'border',
         colorMix(
           safeDarken,
-          colorMix(safeAlpha, nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
+          safeAlpha(nativeColor ? getCssVar('palette-divider') : palette.divider, 1),
           0.68,
         ),
       );
@@ -898,23 +898,24 @@ export default function createThemeWithVars(options = {}, ...args) {
       );
     }
 
-    // MUI X - DataGrid needs this token.
-    setColorChannel(palette.background, 'default');
+    if (!nativeColor) {
+      setColorChannel(palette.background, 'default');
 
-    // added for consistency with the `background.default` token
-    setColorChannel(palette.background, 'paper');
+      // added for consistency with the `background.default` token
+      setColorChannel(palette.background, 'paper');
 
-    setColorChannel(palette.common, 'background');
-    setColorChannel(palette.common, 'onBackground');
+      setColorChannel(palette.common, 'background');
+      setColorChannel(palette.common, 'onBackground');
 
-    setColorChannel(palette, 'divider');
+      setColorChannel(palette, 'divider');
+    }
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
 
       // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
+      if (color !== 'tonalOffset' && !nativeColor && colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
           setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
@@ -984,6 +985,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       theme: this,
     });
   };
+  theme.internal_cache = {};
   theme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return theme;

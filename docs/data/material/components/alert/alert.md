@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Alert
 
 <p class="description">Alerts display brief messages for the user without interrupting their use of the app.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -29,7 +29,7 @@ This component is no longer documented in the [Material Design guidelines](https
 
 A key trait of the alert pattern is that [it should not interrupt the user's experience](https://www.w3.org/WAI/ARIA/apg/patterns/alert/) of the app.
 Alerts should not be confused with alert _dialogs_ ([ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)), which _are_ intended to interrupt the user to obtain a response.
-Use the Material UI [Dialog](/material-ui/react-dialog/) component if you need this behavior.
+Use the Material UI Dialog component (see the [alert dialog](/material-ui/react-dialog/#alerts) example) if you need this behavior.
 
 ## Basics
 
@@ -121,6 +121,7 @@ Here are some factors to consider to ensure that your Alert is accessible:
 - Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.
 - If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.
 - Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
+- By default, the Alert renders an element with the `role="alert"`, which is the same as using `aria-live="assertive"` and `aria-atomic="true"`. This assumes the message requires the user's immediate attention. Less urgent messages should use a less aggressive method, such as overriding the default role with a `role="status"`. Check this [alert role page](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role) for more information.
 - Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.

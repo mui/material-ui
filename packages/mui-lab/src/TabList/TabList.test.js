@@ -18,13 +18,7 @@ describe('<TabList />', () => {
      */
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-      'rootClass',
-    ],
+    skip: ['themeDefaultProps', 'themeStyleOverrides', 'themeVariants', 'rootClass'],
   }));
 
   // outside of TabContext pass every test in Tabs

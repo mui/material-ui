@@ -1,7 +1,7 @@
 'use client';
 import PropTypes from 'prop-types';
 import { createGrid } from '@mui/system/Grid';
-import { SxProps, SystemProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import requirePropFactory from '../utils/requirePropFactory';
 import { Theme, styled, Breakpoint } from '../styles';
@@ -10,7 +10,7 @@ import useTheme from '../styles/useTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type GridDirection = 'row' | 'row-reverse';
 
 export type GridSpacing = number | string;
 
@@ -42,8 +42,13 @@ export interface GridBaseProps {
    */
   container?: boolean | undefined;
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` instead.
+   *
    * @default 'row'
    */
   direction?: ResponsiveStyleValue<GridDirection> | undefined;
@@ -103,7 +108,7 @@ export interface GridBaseProps {
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined } & SystemProps<Theme>;
+  props: P & GridBaseProps & { sx?: SxProps<Theme> | undefined };
   defaultComponent: D;
 }
 
@@ -118,11 +123,11 @@ export type GridProps<
  *
  * Demos:
  *
- * - [Grid](https://next.mui.com/material-ui/react-grid/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://next.mui.com/material-ui/api/grid/)
+ * - [Grid API](https://mui.com/material-ui/api/grid/)
  */
 const Grid = createGrid({
   createStyledComponent: styled('div', {
@@ -173,13 +178,18 @@ Grid.propTypes /* remove-proptypes */ = {
    */
   container: PropTypes.bool,
   /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
+   * Defines the `flex-direction` style property for the container.
+   *
+   * ⚠️ Only `row` and `row-reverse` are supported. `column` and `column-reverse` are not supported,
+   * because the Grid component is designed to subdivide layouts into **columns**, not rows.
+   *
+   * For vertical layouts, use `Stack` instead.
+   *
    * @default 'row'
    */
   direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
-    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.oneOf(['row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['row-reverse', 'row'])),
     PropTypes.object,
   ]),
   /**

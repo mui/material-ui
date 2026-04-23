@@ -143,8 +143,8 @@ export default function ProductCategories() {
               <Typography
                 component="h3"
                 variant="h6"
-                color="inherit"
                 className="imageTitle"
+                sx={{ color: 'inherit' }}
               >
                 {image.title}
                 <div className="imageMarked" />

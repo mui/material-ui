@@ -16,7 +16,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -41,6 +41,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 ## Alerts
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
+
+Use `role="alertdialog"` to create an Alert Dialog. This provides assistive technologies the correct purpose of the Dialog.
 
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:

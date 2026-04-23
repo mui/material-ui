@@ -10,12 +10,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
-import SvgMuiLogotype from 'docs/src/icons/SvgMuiLogotype';
+import { MuiLogotypeIcon, StackOverflowIcon } from '@mui/internal-core-docs/svgIcons';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
-import ROUTES from 'docs/src/route';
-import DiscordIcon from 'docs/src/icons/DiscordIcon';
-import { Link } from '@mui/docs/Link';
-import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
 
 interface AppFooterProps {
   stackOverflowUrl?: string;
@@ -50,7 +48,7 @@ export default function AppFooter(props: AppFooterProps) {
       >
         <div>
           <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
-            <SvgMuiLogotype height={28} width={91} />
+            <MuiLogotypeIcon height={28} width={91} />
           </Link>
           <Typography variant="body2" gutterBottom sx={{ fontWeight: 'semiBold' }}>
             Keep up to date
@@ -227,16 +225,6 @@ export default function AppFooter(props: AppFooterProps) {
           >
             <YouTubeIcon fontSize="small" />
           </IconButton>
-          <IconButton
-            target="_blank"
-            rel="noopener"
-            href="https://mui.com/r/discord/"
-            aria-label="Discord"
-            title="Discord"
-            size="small"
-          >
-            <DiscordIcon fontSize="small" />
-          </IconButton>
           {stackOverflowUrl ? (
             <IconButton
               target="_blank"
@@ -246,7 +234,7 @@ export default function AppFooter(props: AppFooterProps) {
               title="Stack Overflow"
               size="small"
             >
-              <SvgStackOverflow fontSize="small" />
+              <StackOverflowIcon fontSize="small" />
             </IconButton>
           ) : null}
         </Stack>

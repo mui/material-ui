@@ -44,7 +44,6 @@ import { FormControlLabelClassKey } from '../FormControlLabel';
 import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
-import { GridLegacyClassKey } from '../GridLegacy';
 import { GridClassKey } from '../Grid';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
@@ -115,7 +114,6 @@ import { ToggleButtonClassKey } from '../ToggleButton';
 import { ToggleButtonGroupClassKey } from '../ToggleButtonGroup';
 import { ToolbarClassKey } from '../Toolbar';
 import { TooltipClassKey } from '../Tooltip';
-import { TouchRippleClassKey } from '../ButtonBase/TouchRipple';
 import { TypographyClassKey } from '../Typography';
 
 export type OverridesStyleRules<
@@ -190,7 +188,6 @@ export interface ComponentNameToClassKey {
   MuiFormGroup: FormGroupClassKey;
   MuiFormHelperText: FormHelperTextClassKey;
   MuiFormLabel: FormLabelClassKey;
-  MuiGridLegacy: GridLegacyClassKey;
   MuiGrid: GridClassKey;
   MuiIcon: IconClassKey;
   MuiIconButton: IconButtonClassKey;
@@ -262,6 +259,5 @@ export interface ComponentNameToClassKey {
   MuiToggleButtonGroup: ToggleButtonGroupClassKey;
   MuiToolbar: ToolbarClassKey;
   MuiTooltip: TooltipClassKey;
-  MuiTouchRipple: TouchRippleClassKey;
   MuiTypography: TypographyClassKey;
 }
