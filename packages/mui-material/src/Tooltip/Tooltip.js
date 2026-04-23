@@ -154,7 +154,7 @@ const TooltipTooltip = styled('div', {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
           position: 'relative',
-          margin: 0,
+          marginBlock: 0,
         },
       },
       {
