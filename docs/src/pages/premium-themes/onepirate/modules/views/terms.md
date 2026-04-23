@@ -1,10 +1,4 @@
-<!-- markdownlint-capture -->
-
-<!-- markdownlint-disable -->
-
 Last modified: October 7th, 2018.
-
-<!-- markdownlint-restore -->
 
 ## 1. Services
 
