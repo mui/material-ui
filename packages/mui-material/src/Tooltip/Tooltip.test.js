@@ -11,6 +11,7 @@ import {
   reactMajor,
   flushEffects,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
@@ -1091,6 +1092,44 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
+    });
+
+    it('closes when the focused child becomes disabled', async () => {
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={0}
+            onClose={handleClose}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled} onClick={() => setDisabled(true)}>
+              Disable
+            </button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      await user.keyboard('{Enter}');
+
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
     });
 
     it('closes on blur', async () => {

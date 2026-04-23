@@ -390,7 +390,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleBlur = (event) => {
     // Needed for https://github.com/mui/material-ui/issues/45373
     const target = event?.target ?? childNode;
-    if (!target || !isFocusVisible(target)) {
+    if (!target || target.disabled || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
 
       // InputBase can call onBlur() without an event when the input becomes disabled.
@@ -416,6 +416,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     if (isFocusVisible(event.target)) {
+      // Workaround for https://github.com/facebook/react/issues/9142.
+      // React does not fire blur when a focused element becomes disabled.
+      const handleNativeBlur = (blurEvent) => {
+        if (blurEvent.target.disabled) {
+          handleBlur(blurEvent);
+        }
+        blurEvent.target.removeEventListener('blur', handleNativeBlur);
+      };
+
+      event.target.addEventListener('blur', handleNativeBlur);
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
