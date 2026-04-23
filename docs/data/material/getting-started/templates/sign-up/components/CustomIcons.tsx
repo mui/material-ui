@@ -8,7 +8,6 @@ export function SitemarkIcon() {
         height={19}
         viewBox="0 0 86 19"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           fill="#B4C0D3"
@@ -59,7 +58,6 @@ export function FacebookIcon() {
         height="16"
         viewBox="0 0 16 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M6.68 15.92C2.88 15.24 0 11.96 0 8C0 3.6 3.6 0 8 0C12.4 0 16 3.6 16 8C16 11.96 13.12 15.24 9.32 15.92L8.88 15.56H7.12L6.68 15.92Z"
@@ -95,7 +93,6 @@ export function GoogleIcon() {
         height="16"
         viewBox="0 0 16 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M15.68 8.18182C15.68 7.61455 15.6291 7.06909 15.5345 6.54545H8V9.64364H12.3055C12.1164 10.64 11.5491 11.4836 10.6982 12.0509V14.0655H13.2945C14.8073 12.6691 15.68 10.6182 15.68 8.18182Z"

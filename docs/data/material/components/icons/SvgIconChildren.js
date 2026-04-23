@@ -5,7 +5,6 @@ export default function SvgIconChildren() {
     <SvgIcon>
       {/* credit: cog icon from https://heroicons.com */}
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}

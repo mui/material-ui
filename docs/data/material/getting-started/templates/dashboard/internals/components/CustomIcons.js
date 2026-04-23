@@ -8,7 +8,6 @@ export function SitemarkIcon() {
         height={19}
         viewBox="0 0 86 19"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           fill="#B4C0D3"
@@ -54,7 +53,7 @@ export function SitemarkIcon() {
 export function IndiaFlag() {
   return (
     <SvgIcon>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+      <svg width="24" height="24" fill="none">
         <g clipPath="url(#a)">
           <mask
             id="b"
@@ -120,7 +119,6 @@ export function UsaFlag() {
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_983_1725)">
           <path
@@ -196,7 +194,6 @@ export function BrazilFlag() {
         height="25"
         viewBox="0 0 24 25"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_983_1741)">
           <path
@@ -305,7 +302,6 @@ export function GlobeFlag() {
         height="25"
         viewBox="0 0 24 25"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_986_1789)">
           <circle cx="12" cy="12.5" r="12" fill="#007FFF" />
