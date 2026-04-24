@@ -52,7 +52,7 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 })(
-  memoTheme(({ theme, ownerState }) => ({
+  memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
     variants: [
       {
@@ -69,16 +69,21 @@ const CheckboxRoot = styled(SwitchBase, {
       ...Object.entries(theme.palette)
         .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
+          props: { color, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                (theme.vars || theme).palette.action.hoverOpacity,
+              ),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
           props: { color },
           style: {
-            ...(!ownerState.disableRipple && {
-              '&:hover': {
-                backgroundColor: theme.alpha(
-                  (theme.vars || theme).palette[color].main,
-                  (theme.vars || theme).palette.action.hoverOpacity,
-                ),
-              },
-            }),
             [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
               color: (theme.vars || theme).palette[color].main,
             },
