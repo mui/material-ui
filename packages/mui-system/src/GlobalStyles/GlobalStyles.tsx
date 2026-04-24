@@ -26,18 +26,6 @@ function wrapGlobalLayer(styles: any) {
   return styles;
 }
 
-function wrapGlobalLayer(styles: any) {
-  const serialized = serializeStyles(styles) as { styles?: string };
-  if (styles !== serialized && serialized.styles) {
-    if (!serialized.styles.match(/^@layer\s+[^{]*$/)) {
-      // If the styles are not already wrapped in a layer, wrap them in a global layer.
-      serialized.styles = `@layer global{${serialized.styles}}`;
-    }
-    return serialized;
-  }
-  return styles;
-}
-
 function GlobalStyles<Theme = SystemTheme>({
   styles,
   themeId,
