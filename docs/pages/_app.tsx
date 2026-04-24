@@ -8,7 +8,6 @@ import {
   createGetInitialProps,
   printConsoleBanner,
   reportWebVitals,
-  type DocsAppProps,
 } from '@mui/internal-core-docs/DocsApp';
 import { DEFAULT_DOCS_CONFIG, type DocsConfig } from '@mui/internal-core-docs/DocsProvider';
 import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
@@ -61,7 +60,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function useProductData(pageProps: DocsAppProps['pageProps']) {
+function useProductData() {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
@@ -243,7 +242,7 @@ export default function MyApp(
     productIdentifier,
     productId,
     productCategoryId,
-  } = useProductData(pageProps);
+  } = useProductData();
   const demoDisplayName = useDemoDisplayName();
 
   return (
