@@ -14,7 +14,7 @@ githubSource: packages/mui-material/src/Tabs
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

@@ -15,7 +15,7 @@ describe('<ListItemIcon />', () => {
       render,
       muiName: 'MuiListItemIcon',
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'componentsProp', 'themeVariants'],
+      skip: ['componentProp', 'themeVariants'],
     }),
   );
 });

@@ -50,6 +50,7 @@ function elementTypeAcceptingRef(
   }
 
   if (warningHint !== undefined) {
+    // #host-reference
     return new Error(
       `Invalid ${location} \`${safePropName}\` supplied to \`${componentName}\`. ` +
         `Expected an element type that can hold a ref. ${warningHint} ` +

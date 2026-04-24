@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 
 const components = [
   {

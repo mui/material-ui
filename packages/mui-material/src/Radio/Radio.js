@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
@@ -128,7 +127,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     disableRipple = false,
     slots = {},
     slotProps = {},
-    inputProps,
     ...other
   } = props;
 
@@ -168,7 +166,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
-  const externalInputProps = slotProps.input ?? inputProps;
+  const externalInputProps = slotProps.input;
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
@@ -261,16 +259,6 @@ Radio.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputRef: refType,
   /**
    * Name attribute of the `input` element.
    */

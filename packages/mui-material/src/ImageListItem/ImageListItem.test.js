@@ -16,7 +16,7 @@ describe('<ImageListItem />', () => {
     testComponentPropWith: 'div',
     muiName: 'MuiImageListItem',
     testVariantProps: { variant: 'masonry' },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   const itemData = {

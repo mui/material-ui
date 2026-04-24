@@ -71,7 +71,6 @@ This is a monorepo managed by Lerna with Nx for caching. Key packages:
 - `@mui/material` - Core Material UI components
 - `@mui/system` - Styling system (sx prop, styled, theme)
 - `@mui/lab` - Experimental components (new components go here first)
-- `@mui/joy` - Joy UI design system (beta, development on hold)
 - `@mui/icons-material` - Material Design icons
 - `@mui/utils` - Internal utilities
 - `@mui/styled-engine` - CSS-in-JS abstraction (Emotion by default)
@@ -171,6 +170,7 @@ import { Button } from '@mui/material'; // Avoid in packages
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
 6. If demos changed: `pnpm docs:typescript:formatted`
+7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 

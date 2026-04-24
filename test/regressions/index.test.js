@@ -114,6 +114,16 @@ async function main() {
         }
 
         const testcase = await renderFixture(route);
+
+        switch (route) {
+          case '/docs-components-table/ReactVirtualizedTable': {
+            await page.waitForSelector('[data-index="1"]');
+            break;
+          }
+          default:
+            break;
+        }
+
         await takeScreenshot({ testcase, route });
       });
     });
@@ -157,6 +167,36 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize3' });
         await page.click('[role="option"]');
         await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize4' });
+      });
+    });
+
+    describe('Switch', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-Switch/SimpleSwitch');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
+    describe('TextField', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-TextField/StandardTextField');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-TextField/StandardTextFieldForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
       });
     });
 

@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/ImageList
 
 Image lists represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Standard image list
 

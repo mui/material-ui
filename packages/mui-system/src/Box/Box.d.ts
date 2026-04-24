@@ -50,7 +50,7 @@ export type SystemProps<Theme extends object = {}> = {
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
 };
 
-export interface BoxOwnProps<Theme extends object = SystemTheme> extends SystemProps<Theme> {
+export interface BoxOwnProps<Theme extends object = SystemTheme> {
   children?: React.ReactNode;
   ref?: React.Ref<unknown> | undefined;
   /**
@@ -72,8 +72,8 @@ export interface BoxTypeMap<
  *
  * Demos:
  *
- * - [Box (Joy UI)](https://mui.com/joy-ui/react-box/)
  * - [Box (Material UI)](https://mui.com/material-ui/react-box/)
+ * - [Menubar (Material UI)](https://mui.com/material-ui/react-menubar/)
  * - [Box (MUI System)](https://mui.com/system/react-box/)
  *
  * API:

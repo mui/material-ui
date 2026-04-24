@@ -30,7 +30,7 @@ describe('<Radio />', () => {
         expectedClassName: switchBaseClasses.input,
       },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('styleSheet', () => {
@@ -141,8 +141,8 @@ describe('<Radio />', () => {
     );
   });
 
-  it('deprecated `inputProps` should work', () => {
-    render(<Radio inputProps={{ 'aria-label': 'A' }} />);
+  it('should pass slotProps.input to the input element', () => {
+    render(<Radio slotProps={{ input: { 'aria-label': 'A' } }} />);
 
     expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
   });

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -28,6 +29,12 @@ const BpIcon = styled('span')(({ theme }) => ({
     ...theme.applyStyles('dark', {
       background: 'rgba(57,75,89,.5)',
     }),
+    '@media (forced-colors: active)': {
+      outline: '1px solid GrayText',
+    },
+  },
+  '@media (forced-colors: active)': {
+    outline: '1px solid ButtonText',
   },
   ...theme.applyStyles('dark', {
     boxShadow: '0 0 0 1px rgb(16 22 26 / 40%)',
@@ -45,9 +52,20 @@ const BpCheckedIcon = styled(BpIcon)({
     height: 16,
     backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
+    '@media (forced-colors: active)': {
+      backgroundImage: 'none',
+      backgroundColor: 'ButtonText',
+      borderRadius: '50%',
+      width: 8,
+      height: 8,
+      margin: 4,
+    },
   },
   'input:hover ~ &': {
     backgroundColor: '#106ba3',
+  },
+  '@media (forced-colors: active)': {
+    outline: '2px solid ButtonText',
   },
 });
 
@@ -65,12 +83,13 @@ function BpRadio(props) {
 }
 
 export default function CustomizedRadios() {
+  const id = React.useId();
   return (
     <FormControl>
-      <FormLabel id="demo-customized-radios">Gender</FormLabel>
+      <FormLabel id={`${id}-label`}>Gender</FormLabel>
       <RadioGroup
         defaultValue="female"
-        aria-labelledby="demo-customized-radios"
+        aria-labelledby={`${id}-label`}
         name="customized-radios"
       >
         <FormControlLabel value="female" control={<BpRadio />} label="Female" />

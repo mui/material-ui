@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Snackbar
 
 <p class="description">Snackbars (also known as toasts) are used for brief notifications of processes that have been or will be performed.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -61,7 +61,7 @@ Make sure to [provide sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG2
 
 ### Transitions
 
-You can use the `TransitionComponent` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
+You can use the `slots.transition` prop to change the transition of the Snackbar from [Grow](/material-ui/transitions/#grow) (the default) to others such as [Slide](/material-ui/transitions/#slide).
 
 {{"demo": "TransitionsSnackbar.js"}}
 

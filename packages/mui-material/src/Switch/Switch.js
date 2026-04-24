@@ -3,7 +3,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -198,6 +197,10 @@ const SwitchTrack = styled('span', {
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      boxSizing: 'border-box',
+      border: '1px solid ButtonBorder',
+    },
     backgroundColor: theme.vars
       ? theme.vars.palette.common.onBackground
       : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
@@ -214,6 +217,8 @@ const SwitchThumb = styled('span', {
   memoTheme(({ theme }) => ({
     boxShadow: (theme.vars || theme).shadows[1],
     backgroundColor: 'currentColor',
+    boxSizing: 'border-box',
+    border: '1px solid transparent',
     width: 20,
     height: 20,
     borderRadius: '50%',
@@ -371,16 +376,6 @@ Switch.propTypes /* remove-proptypes */ = {
    * The id of the `input` element.
    */
   id: PropTypes.string,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *

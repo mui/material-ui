@@ -9,6 +9,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
+import { useRovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -24,7 +25,7 @@ const useUtilityClasses = (ownerState) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
-    icon: ['iconWrapper', 'icon'],
+    icon: ['icon'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
@@ -42,9 +43,6 @@ const TabRoot = styled(ButtonBase, {
       styles[`textColor${capitalize(ownerState.textColor)}`],
       ownerState.fullWidth && styles.fullWidth,
       ownerState.wrapped && styles.wrapped,
-      {
-        [`& .${tabClasses.iconWrapper}`]: styles.iconWrapper,
-      },
       {
         [`& .${tabClasses.icon}`]: styles.icon,
       },
@@ -213,6 +211,19 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     wrapped = false,
     ...other
   } = props;
+  const rovingContext = useRovingTabIndexContext();
+  const rovingItemProps = useRovingTabIndexItem({
+    id: value,
+    ref,
+    disabled,
+    selected,
+  });
+  // On the server, and on the first client render before registration effects run,
+  // the roving item map is still empty. In that window, fall back to `tabIndex={0}`
+  // for the selected tab so the rendered markup is immediately keyboard-accessible
+  // and hydration stays consistent until item registration takes over.
+  const shouldUseSelectedTabStopFallback = rovingContext.getItemMap().size === 0 && selected;
+  const tabIndex = shouldUseSelectedTabStopFallback ? 0 : rovingItemProps.tabIndex;
 
   const ownerState = {
     ...props,
@@ -256,16 +267,17 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   return (
     <TabRoot
+      internalNativeButton
       focusRipple={!disableFocusRipple}
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={rovingItemProps.ref}
       role="tab"
       aria-selected={selected}
       disabled={disabled}
       onClick={handleClick}
       onFocus={handleFocus}
+      tabIndex={tabIndex}
       ownerState={ownerState}
-      tabIndex={selected ? 0 : -1}
       {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (

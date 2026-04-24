@@ -70,12 +70,11 @@ export interface UseAutocompleteProps<
    */
   autoHighlight?: boolean | undefined;
   /**
-   * If `true`, the selected option becomes the value of the input
-   * when the Autocomplete loses focus unless the user chooses
-   * a different option or changes the character string in the input.
+   * If `true`, the value is updated when the input loses focus under one of these conditions:
    *
-   * When using the `freeSolo` mode, the typed value will be the input value
-   * if the Autocomplete loses focus without highlighting an option.
+   * - An option highlighted via keyboard navigation or `autoHighlight` is selected.
+   *   Hover and touch highlights are ignored.
+   * - Otherwise, in `freeSolo` mode, the typed text becomes the value.
    * @default false
    */
   autoSelect?: boolean | undefined;
@@ -438,12 +437,6 @@ export interface UseAutocompleteReturnValue<
    */
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
-   * @deprecated Use `getItemProps` instead
-   *
-   * A tag props getter.
-   */
-  getTagProps: AutocompleteGetTagProps;
-  /**
    * Resolver for the listbox component's props.
    * @returns props that should be spread on the listbox component
    */
@@ -497,12 +490,6 @@ export interface UseAutocompleteReturnValue<
    * Index of the focused item for the component.
    */
   focusedItem: number;
-  /**
-   * @deprecated Use `focusedItem` instead
-   *
-   * Index of the focused tag for the component.
-   */
-  focusedTag: number;
   /**
    * The options to render.
    * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.

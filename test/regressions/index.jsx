@@ -100,12 +100,11 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/drawers/SwipeableTemporaryDrawer', // Needs interaction
     '!docs/data/material/components/drawers/TemporaryDrawer', // Needs interaction
     '!docs/data/material/components/floating-action-button/FloatingActionButtonZoom', // Needs interaction
-    '!docs/data/material/components/grid-legacy/InteractiveGrid', // Redux isolation
-    '!docs/data/material/components/grid-legacy/SpacingGrid', // Needs interaction
     '!docs/data/material/components/image-list', // Image don't load
     '!docs/data/material/components/masonry/ImageMasonry', // Image don't load
     '!docs/data/material/components/masonry/Sequential', // Flaky
     '!docs/data/material/components/material-icons/SearchIcons',
+    '!docs/data/material/components/menubar/components', // Not demos
     '!docs/data/material/components/menus', // Need interaction
     '!docs/data/material/components/modal/BasicModal', // Needs interaction
     '!docs/data/material/components/modal/KeepMountedModal', // Needs interaction
@@ -160,13 +159,6 @@ const importDemos = import.meta.glob(
     '!docs/data/material/guides',
     '!docs/data/base/getting-started/quickstart/BaseButtonTailwind', // CodeSandbox
     '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal', // No public components
-    '!docs/data/joy/components/circular-progress/CircularProgressCountUp', // Flaky due to animation
-    '!docs/data/joy/components/divider/DividerChildPosition', // Needs interaction
-    '!docs/data/joy/components/linear-progress/LinearProgressCountUp', // Flaky due to animation
-    '!docs/data/joy/customization/theme-typography/TypographyThemeViewer', // No need for theme tokens
-    '!docs/data/joy/getting-started/templates/TemplateCollection', // No public components
-    '!docs/data/joy/**/*Variables.*',
-    '!docs/data/joy/**/*Usage.*',
     '!docs/data/premium-themes',
   ],
   {

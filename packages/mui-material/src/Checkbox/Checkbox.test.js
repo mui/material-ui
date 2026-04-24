@@ -33,7 +33,7 @@ describe('<Checkbox />', () => {
         expectedClassName: classes.input,
       },
     },
-    skip: ['componentProp', 'componentsProp', 'rootClass'],
+    skip: ['componentProp', 'rootClass'],
   }));
 
   it('should have the classes required for Checkbox', () => {
@@ -93,6 +93,21 @@ describe('<Checkbox />', () => {
     it('should render an indeterminate icon', () => {
       render(<Checkbox indeterminate />);
       expect(screen.getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
+    });
+
+    it('should set aria-checked to mixed', () => {
+      render(<Checkbox indeterminate />);
+      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
+    });
+
+    it('should set aria-checked to mixed even when checked', () => {
+      render(<Checkbox indeterminate checked />);
+      expect(screen.getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
+    });
+
+    it('should not set aria-checked when not indeterminate', () => {
+      render(<Checkbox />);
+      expect(screen.getByRole('checkbox')).not.to.have.attribute('aria-checked');
     });
   });
 

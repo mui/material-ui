@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Typography
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Roboto font
 
@@ -119,17 +119,14 @@ const theme = createTheme({
 });
 ```
 
-### System props
+### sx prop
 
-:::info
-System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Typography instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
+Below is an example of how to apply margin using this prop:
 
-```diff
-- <Typography mt={2} />
-+ <Typography sx={{ mt: 2 }} />
+```jsx
+<Typography sx={{ m: 2 }} />
 ```
-
-:::
 
 ## Accessibility
 

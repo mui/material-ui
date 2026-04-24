@@ -134,12 +134,24 @@ export function unstable_createUseMediaQuery(params: { themeId?: string | undefi
     // Most of the time, the match media logic isn't central to people tests.
     const supportMatchMedia =
       typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+    const fallbackMatchMedia = supportMatchMedia ? window.matchMedia : null;
     const {
       defaultMatches = false,
-      matchMedia = supportMatchMedia ? window.matchMedia : null,
+      matchMedia: customMatchMedia,
       ssrMatchMedia = null,
       noSsr = false,
     } = getThemeProps({ name: 'MuiUseMediaQuery', props: options, theme });
+    const matchMedia = React.useMemo(() => {
+      if (customMatchMedia !== undefined) {
+        return customMatchMedia;
+      }
+
+      if (fallbackMatchMedia === null) {
+        return null;
+      }
+
+      return fallbackMatchMedia.bind(window);
+    }, [customMatchMedia, fallbackMatchMedia]);
 
     if (process.env.NODE_ENV !== 'production') {
       if (typeof queryInput === 'function' && theme === null) {

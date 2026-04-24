@@ -41,6 +41,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function CustomizedSelects() {
+  const textboxId = React.useId();
+  const selectId = React.useId();
+  const nativeId = React.useId();
   const [age, setAge] = React.useState('');
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -48,14 +51,14 @@ export default function CustomizedSelects() {
   return (
     <div>
       <FormControl sx={{ m: 1 }} variant="standard">
-        <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
-        <BootstrapInput id="demo-customized-textbox" />
+        <InputLabel htmlFor={`${textboxId}-input`}>Age</InputLabel>
+        <BootstrapInput id={`${textboxId}-input`} />
       </FormControl>
       <FormControl sx={{ m: 1 }} variant="standard">
-        <InputLabel id="demo-customized-select-label">Age</InputLabel>
+        <InputLabel id={`${selectId}-label`}>Age</InputLabel>
         <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
+          labelId={`${selectId}-label`}
+          id={`${selectId}-select`}
           value={age}
           onChange={handleChange}
           input={<BootstrapInput />}
@@ -69,9 +72,9 @@ export default function CustomizedSelects() {
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1 }} variant="standard">
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+        <InputLabel htmlFor={`${nativeId}-select`}>Age</InputLabel>
         <NativeSelect
-          id="demo-customized-select-native"
+          id={`${nativeId}-select`}
           value={age}
           onChange={handleChange}
           input={<BootstrapInput />}

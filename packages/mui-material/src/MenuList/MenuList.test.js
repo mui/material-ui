@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { stub } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { spy, stub } from 'sinon';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
@@ -27,21 +27,26 @@ describe('<MenuList />', () => {
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-      'themeVariants',
-    ],
+    skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
+
+  it('should render a list with role menu and tabIndex -1', () => {
+    render(
+      <MenuList>
+        <MenuItem>one</MenuItem>
+        <MenuItem>two</MenuItem>
+      </MenuList>,
+    );
+
+    expect(screen.getByRole('menu')).to.have.attribute('tabIndex', '-1');
+  });
 
   describe('prop: children', () => {
     it('should support null children', () => {
       render(
         <MenuList>
-          <div role="menuitem">one</div>
-          <div role="menuitem">two</div>
+          <MenuItem>one</MenuItem>
+          <MenuItem>two</MenuItem>
           {null}
         </MenuList>,
       );
@@ -49,12 +54,49 @@ describe('<MenuList />', () => {
       expect(screen.getAllByRole('menuitem')).to.have.length(2);
     });
 
+    it('supports MenuItems wrapped in a Fragment', async () => {
+      const { user } = render(
+        <MenuList>
+          <React.Fragment>
+            <MenuItem>one</MenuItem>
+            <MenuItem>two</MenuItem>
+          </React.Fragment>
+        </MenuList>,
+      );
+
+      const itemElements = screen.getAllByRole('menuitem');
+
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+
+      await user.tab();
+      expect(itemElements[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowDown}');
+      expect(itemElements[1]).toHaveFocus();
+    });
+
     it('should not add tabIndex to presentation elements like Divider when all Menu Items are disabled', () => {
       render(
         <MenuList>
-          <MenuItem disabled>one</MenuItem>
+          <MenuItem>one</MenuItem>
           <Divider />
-          <MenuItem disabled>two</MenuItem>
+          <MenuItem>two</MenuItem>
+        </MenuList>,
+      );
+
+      expect(screen.getByRole('separator')).not.to.have.attribute('tabIndex');
+    });
+
+    it('should not add tabIndex to wrapped Divider components', () => {
+      const BaseDivider = React.forwardRef(function BaseDivider(props, ref) {
+        return <Divider ref={ref} {...props} />;
+      });
+
+      render(
+        <MenuList>
+          <MenuItem>one</MenuItem>
+          <BaseDivider />
+          <MenuItem>two</MenuItem>
         </MenuList>,
       );
 
@@ -149,6 +191,80 @@ describe('<MenuList />', () => {
       expect(list.style).to.have.property('paddingRight', '');
       expect(list.style).to.have.property('paddingLeft', '');
       expect(list.style).to.have.property('width', '10px');
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('does not focus the list container when autoFocusItem is true', () => {
+      const handleFocus = spy();
+
+      render(
+        <MenuList autoFocus autoFocusItem onFocus={handleFocus}>
+          <MenuItem>one</MenuItem>
+        </MenuList>,
+      );
+
+      const list = screen.getByRole('menu');
+      expect(screen.getByRole('menuitem')).toHaveFocus();
+      expect(handleFocus.args.some(([event]) => event.target === list)).to.equal(false);
+    });
+
+    it('should move focus to the next item when pressing the right arrow key', async () => {
+      const { user } = render(
+        <MenuList>
+          <MenuItem>one</MenuItem>
+          <Divider />
+          <MenuItem disabled>two</MenuItem>
+          <MenuItem>three</MenuItem>
+        </MenuList>,
+      );
+
+      const itemElements = screen.getAllByRole('menuitem');
+
+      await user.tab();
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowDown}');
+      expect(itemElements[2]).toHaveFocus();
+      expect(itemElements[2]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowDown}');
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowUp}');
+      expect(itemElements[2]).toHaveFocus();
+      expect(itemElements[2]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.keyboard('{ArrowUp}');
+      expect(itemElements[0]).toHaveFocus();
+      expect(itemElements[0]).to.have.attribute('tabIndex', '0');
+      expect(itemElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should add tabindex="0" to the focused item', async () => {
+      const { user } = render(
+        <MenuList>
+          <MenuItem>one</MenuItem>
+          <Divider />
+          <MenuItem>two</MenuItem>
+        </MenuList>,
+      );
+
+      const tabElements = screen.getAllByRole('menuitem');
+
+      fireEvent.focus(tabElements[1]);
+      expect(tabElements[1]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[0]).to.have.attribute('tabIndex', '-1');
+
+      await user.click(tabElements[0]);
+      expect(tabElements[0]).to.have.attribute('tabIndex', '0');
+      expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
     });
   });
 });

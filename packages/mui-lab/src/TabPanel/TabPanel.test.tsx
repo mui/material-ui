@@ -13,7 +13,7 @@ describe('<TabPanel />', () => {
     render: (node) => render(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiTabPanel',
-    skip: ['componentProp', 'componentsProp', 'themeDefaultProps', 'themeVariants'],
+    skip: ['componentProp', 'themeDefaultProps', 'themeVariants'],
   }));
 
   it('renders a [role="tabpanel"] and mounts children', () => {

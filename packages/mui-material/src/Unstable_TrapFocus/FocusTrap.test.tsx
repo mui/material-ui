@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
+import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 
 interface GenericProps {
   [index: string]: any;
@@ -108,6 +109,66 @@ describe('<FocusTrap />', () => {
         </div>
       </FocusTrap>,
     );
+    expect(screen.getByTestId('root')).toHaveFocus();
+  });
+
+  it('should focus a marked descendant instead of the root', () => {
+    render(
+      <FocusTrap open>
+        <div data-testid="root">
+          <div {...{ [FOCUSABLE_ATTRIBUTE]: '' }} tabIndex={-1} data-testid="focusable">
+            <button>Click me</button>
+          </div>
+        </div>
+      </FocusTrap>,
+    );
+    expect(screen.getByTestId('focusable')).toHaveFocus();
+  });
+
+  it('should prefer the marked descendant over unmarked descendants', () => {
+    render(
+      <FocusTrap open>
+        <div data-testid="root">
+          <div tabIndex={-1} data-testid="other">
+            <button>Other</button>
+          </div>
+          <div {...{ [FOCUSABLE_ATTRIBUTE]: '' }} tabIndex={-1} data-testid="focusable">
+            <button>Focusable</button>
+          </div>
+        </div>
+      </FocusTrap>,
+    );
+    expect(screen.getByTestId('focusable')).toHaveFocus();
+  });
+
+  it('should fall back to rootRef when no descendant is marked focusable', () => {
+    render(
+      <FocusTrap open>
+        <div tabIndex={-1} data-testid="root">
+          <button>Click me</button>
+        </div>
+      </FocusTrap>,
+    );
+    expect(screen.getByTestId('root')).toHaveFocus();
+  });
+
+  it('keeps focus trapped after the React 18 Strict Mode remount', async () => {
+    render(
+      <div>
+        <input data-testid="outside-input" />
+        <FocusTrap open>
+          <div tabIndex={-1} data-testid="root" />
+        </FocusTrap>
+      </div>,
+      { strict: reactMajor <= 18 },
+    );
+
+    expect(screen.getByTestId('root')).toHaveFocus();
+
+    await act(async () => {
+      screen.getByTestId('outside-input').focus();
+    });
+
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 

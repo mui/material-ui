@@ -15,7 +15,7 @@ describe('<SpeedDialIcon />', () => {
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSpeedDialIcon',
     testVariantProps: { icon },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render the Add icon by default', () => {

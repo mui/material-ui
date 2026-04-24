@@ -33,7 +33,7 @@ describe('<Select />', () => {
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
-    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
+    skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
@@ -201,7 +201,7 @@ describe('<Select />', () => {
 
     render(
       <Select
-        MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
+        MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
         onClose={handleClose}
         open
         value=""
@@ -679,51 +679,24 @@ describe('<Select />', () => {
     });
 
     describe('when the first child is a ListSubheader wrapped in a custom component', () => {
-      describe('with the `muiSkipListHighlight` static field', () => {
-        function WrappedListSubheader(props) {
-          return <ListSubheader {...props} />;
-        }
+      function WrappedListSubheader(props) {
+        return <ListSubheader {...props} />;
+      }
 
-        WrappedListSubheader.muiSkipListHighlight = true;
+      it('highlights the first selectable option below the header without extra skip markers', () => {
+        render(
+          <Select defaultValue="" open>
+            <WrappedListSubheader>Category 1</WrappedListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <WrappedListSubheader>Category 2</WrappedListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
 
-        it('highlights the first selectable option below the header', () => {
-          render(
-            <Select defaultValue="" open>
-              <WrappedListSubheader>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
-              <WrappedListSubheader>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
-            </Select>,
-          );
-
-          const expectedHighlightedOption = screen.getByText('Option 1');
-          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
-        });
-      });
-
-      describe('with the `muiSkipListHighlight` prop', () => {
-        function WrappedListSubheader(props) {
-          const { muiSkipListHighlight, ...other } = props;
-          return <ListSubheader {...other} />;
-        }
-
-        it('highlights the first selectable option below the header', () => {
-          render(
-            <Select defaultValue="" open>
-              <WrappedListSubheader muiSkipListHighlight>Category 1</WrappedListSubheader>
-              <MenuItem value={1}>Option 1</MenuItem>
-              <MenuItem value={2}>Option 2</MenuItem>
-              <WrappedListSubheader muiSkipListHighlight>Category 2</WrappedListSubheader>
-              <MenuItem value={3}>Option 3</MenuItem>
-              <MenuItem value={4}>Option 4</MenuItem>
-            </Select>,
-          );
-
-          const expectedHighlightedOption = screen.getByText('Option 1');
-          expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
-        });
+        const expectedHighlightedOption = screen.getByText('Option 1');
+        expect(expectedHighlightedOption).to.have.attribute('tabindex', '0');
       });
     });
 
@@ -754,56 +727,34 @@ describe('<Select />', () => {
       });
     });
 
-    it('will fallback to its content for the accessible name when it has no name', () => {
-      render(<Select value="" />);
-
-      // TODO what is the accessible name actually?
-      expect(screen.getByRole('combobox')).not.to.have.attribute('aria-labelledby');
-    });
-
-    it('is labelled by itself when it has a name', () => {
-      render(<Select name="select" value="" />);
-
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-labelledby',
-        screen.getByRole('combobox').getAttribute('id'),
-      );
-    });
-
-    it('is labelled by itself when it has an id which is preferred over name', () => {
+    it('will be labelled by its visible value when it has no label', () => {
       render(
-        <React.Fragment>
-          <span id="select-1-label">Chose first option:</span>
-          <Select id="select-1" labelId="select-1-label" name="select" value="" />
-          <span id="select-2-label">Chose second option:</span>
-          <Select id="select-2" labelId="select-2-label" name="select" value="" />
-        </React.Fragment>,
+        <Select value="the value">
+          <MenuItem value="the value">Option 1</MenuItem>
+        </Select>,
       );
 
-      const triggers = screen.getAllByRole('combobox');
+      const combobox = screen.getByRole('combobox');
 
-      expect(triggers[0]).to.have.attribute(
-        'aria-labelledby',
-        `select-1-label ${triggers[0].getAttribute('id')}`,
-      );
-      expect(triggers[1]).to.have.attribute(
-        'aria-labelledby',
-        `select-2-label ${triggers[1].getAttribute('id')}`,
-      );
+      expect(combobox).not.to.have.attribute('aria-labelledby');
+      expect(combobox).to.have.text('Option 1');
     });
 
-    it('can be labelled by an additional element if its id is provided in `labelId`', () => {
+    it('will be labelled by an additional element if its id is provided in `labelId`', () => {
       render(
         <React.Fragment>
           <span id="select-label">Choose one:</span>
-          <Select labelId="select-label" name="select" value="" />
+          <Select value="the value" labelId="select-label">
+            <MenuItem value="the value">Option 1</MenuItem>
+          </Select>
         </React.Fragment>,
       );
 
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-labelledby',
-        `select-label ${screen.getByRole('combobox').getAttribute('id')}`,
-      );
+      const combobox = screen.getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-labelledby', 'select-label');
+      expect(combobox).toHaveAccessibleName('Choose one:');
+      expect(combobox).to.have.text('Option 1');
     });
 
     it('the list of options is not labelled by default', () => {
@@ -863,7 +814,10 @@ describe('<Select />', () => {
       const onEntered = spy();
 
       render(
-        <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
+        <Select
+          MenuProps={{ slotProps: { transition: { onEntered } }, transitionDuration: 100 }}
+          value="10"
+        >
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
@@ -878,10 +832,12 @@ describe('<Select />', () => {
       expect(onEntered.callCount).to.equal(1);
     });
 
-    it('should be able to override PaperProps minWidth', () => {
+    it('should be able to override slotProps.paper minWidth', () => {
       render(
         <Select
-          MenuProps={{ PaperProps: { 'data-testid': 'paper', style: { minWidth: 12 } } }}
+          MenuProps={{
+            slotProps: { paper: { 'data-testid': 'paper', style: { minWidth: 12 } } },
+          }}
           open
           value="10"
         >
@@ -950,6 +906,30 @@ describe('<Select />', () => {
       const backdrop = screen.getByTestId('backdrop');
 
       expect(backdrop.style).to.have.property('backgroundColor', 'red');
+    });
+
+    // https://github.com/mui/material-ui/issues/34218
+    it('supports keyboard navigation after mouse opening when disablePortal is true', async function test() {
+      clock.restore();
+
+      const { user } = render(
+        <Select value="" MenuProps={{ disablePortal: true, transitionDuration: 0 }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+
+      const options = screen.getAllByRole('option', { hidden: true });
+      expect(options[0]).toHaveFocus();
+
+      await user.keyboard('{ArrowDown}');
+      expect(options[1]).toHaveFocus();
+
+      await user.keyboard('{ArrowUp}');
+      expect(options[0]).toHaveFocus();
     });
   });
 
@@ -1117,7 +1097,7 @@ describe('<Select />', () => {
   describe('prop: autoWidth', () => {
     it('should take the trigger parent element width into account by default', () => {
       const { container } = render(
-        <Select MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+        <Select MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
@@ -1131,7 +1111,7 @@ describe('<Select />', () => {
 
     it('should not take the trigger parent element width into account when autoWidth is true', () => {
       const { container } = render(
-        <Select autoWidth MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
+        <Select autoWidth MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
@@ -1536,7 +1516,7 @@ describe('<Select />', () => {
       <Select
         value={1}
         inputRef={(input) => {
-          if (input !== null) {
+          if (input != null) {
             input.focus();
           }
         }}
@@ -1834,21 +1814,18 @@ describe('<Select />', () => {
     expect(screen.getByRole('combobox')).not.toHaveFocus();
   });
 
-  it('outlined icon should be selected from below css selectors', () => {
+  it('outlined icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" />);
-    expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
   });
 
-  it('standard icon should be selected from below css selectors', () => {
+  it('standard icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" variant="standard" />);
-    expect(container.querySelector('.MuiSelect-iconStandard')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-standard ~ .MuiSelect-icon')).not.to.equal(null);
   });
 
-  it('filled icon should be selected from below css selectors', () => {
+  it('filled icon should be selectable with sibling selector', () => {
     const { container } = render(<Select value="" variant="filled" />);
-    expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
 

@@ -9,12 +9,6 @@
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       }
     },
-    "components": {
-      "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}",
-      "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
@@ -114,34 +108,6 @@
       "className": "MuiOutlinedInput-input",
       "description": "Styles applied to the input element.",
       "isGlobal": false
-    },
-    {
-      "key": "inputAdornedEnd",
-      "className": "MuiOutlinedInput-inputAdornedEnd",
-      "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
-      "key": "inputAdornedStart",
-      "className": "MuiOutlinedInput-inputAdornedStart",
-      "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
-      "key": "inputMultiline",
-      "className": "MuiOutlinedInput-inputMultiline",
-      "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false,
-      "isDeprecated": true
-    },
-    {
-      "key": "inputSizeSmall",
-      "className": "MuiOutlinedInput-inputSizeSmall",
-      "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
     },
     {
       "key": "inputTypeSearch",
