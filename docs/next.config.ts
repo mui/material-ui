@@ -107,7 +107,10 @@ export default withDocsInfra({
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
-          '@mui/styled-engine-noop': path.resolve(workspaceRoot, 'packages/mui-styled-engine-noop/src'),
+          '@mui/styled-engine-noop': path.resolve(
+            workspaceRoot,
+            'packages/mui-styled-engine-noop/src',
+          ),
           '@mui/system/package.json': path.resolve(
             workspaceRoot,
             'packages/mui-system/package.json',

@@ -14,7 +14,7 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import { getSliderUtilityClass } from './sliderClasses';
-import "./Slider.css";
+import './Slider.css';
 
 function Identity(x) {
   return x;
@@ -138,9 +138,7 @@ const useUtilityClasses = (ownerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    mark: [
-      'mark'
-    ],
+    mark: ['mark'],
     markActive: ['markActive'],
     markLabel: [
       'markLabel',

@@ -205,7 +205,7 @@
 
   .MuiSlider-thumb::before {
     position: absolute;
-    content: "";
+    content: '';
     border-radius: inherit;
     width: 100%;
     height: 100%;
@@ -214,7 +214,7 @@
 
   .MuiSlider-thumb::after {
     position: absolute;
-    content: "";
+    content: '';
     border-radius: 50%;
     width: 42px;
     height: 42px;
@@ -334,7 +334,7 @@
 
   .MuiSlider-valueLabel.MuiSlider-horizontal::before {
     position: absolute;
-    content: "";
+    content: '';
     width: 8px;
     height: 8px;
     transform: translate(-50%, 50%) rotate(45deg);
@@ -356,7 +356,7 @@
 
   .MuiSlider-valueLabel.MuiSlider-vertical::before {
     position: absolute;
-    content: "";
+    content: '';
     width: 8px;
     height: 8px;
     transform: translate(-50%, -50%) rotate(45deg);
