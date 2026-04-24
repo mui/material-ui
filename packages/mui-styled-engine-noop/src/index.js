@@ -1,10 +1,23 @@
 import * as React from 'react';
 
+const defaultShouldForwardProp = (prop) =>
+  prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+
 export default function styled(Tag, options) {
-  const Component = React.forwardRef((props, ref) => {
-    return <Tag {...props} ref={ref} />;
+  const { shouldForwardProp } = options || {};
+  const finalShouldForwardProp = shouldForwardProp || defaultShouldForwardProp;
+
+  const Component = React.forwardRef(function StyledComponent(props, ref) {
+    const { as: asProp, ...restProps } = props;
+    const FinalTag = asProp || Tag;
+
+    const forwardedProps = Object.fromEntries(
+      Object.entries(restProps).filter(([prop]) => finalShouldForwardProp(prop)),
+    );
+
+    return <FinalTag {...forwardedProps} ref={ref} />;
   });
-  // TODO: handle options
+
   return () => Component;
 }
 
