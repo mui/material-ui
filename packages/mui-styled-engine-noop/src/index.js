@@ -7,7 +7,19 @@ export default function styled(Tag, options) {
   const { shouldForwardProp } = options || {};
   const finalShouldForwardProp = shouldForwardProp || defaultShouldForwardProp;
 
+  let warnedAboutSx = false;
+
   const Component = React.forwardRef(function StyledComponent(props, ref) {
+    if (process.env.NODE_ENV !== 'production' && !warnedAboutSx && props.sx !== undefined) {
+      warnedAboutSx = true;
+      const componentName =
+        typeof Tag === 'string' ? `<${Tag}>` : Tag.displayName || Tag.name || 'a component';
+      console.error(
+        `MUI: The \`sx\` prop was used on ${componentName} but \`@mui/styled-engine-noop\` is active. ` +
+          'The `sx` prop will be ignored. Use Tailwind CSS classes via the `className` prop for styling instead.',
+      );
+    }
+
     const { as: asProp, ...restProps } = props;
     const FinalTag = asProp || Tag;
 
