@@ -90,26 +90,6 @@ const CollapseRoot = styled('div', {
   })),
 );
 
-const CollapseWrapper = styled('div', {
-  name: 'MuiCollapse',
-  slot: 'Wrapper',
-})({
-  // Hack to get children with a negative margin to not falsify the height computation.
-  display: 'flex',
-  width: '100%',
-  variants: [
-    {
-      props: {
-        orientation: 'horizontal',
-      },
-      style: {
-        width: 'auto',
-        height: '100%',
-      },
-    },
-  ],
-});
-
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
@@ -126,6 +106,14 @@ const CollapseWrapperInner = styled('div', {
       },
     },
   ],
+});
+
+const CollapseWrapper = styled(CollapseWrapperInner, {
+  name: 'MuiCollapse',
+  slot: 'Wrapper',
+})({
+  // Hack to get children with a negative margin to not falsify the height computation.
+  display: 'flex',
 });
 
 /**
