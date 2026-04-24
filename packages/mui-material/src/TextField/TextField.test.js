@@ -54,7 +54,7 @@ describe('<TextField />', () => {
           testWithElement: TestFormControl,
         },
       },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentProp'],
     }),
   );
 
@@ -90,11 +90,16 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      render(<TextField variant="standard" multiline />);
-
-      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(
-        inputBaseClasses.inputMultiline,
+      render(
+        <TextField
+          variant="standard"
+          multiline
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
+        />,
       );
+
+      expect(screen.getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.multiline);
+      expect(screen.getByRole('textbox', { hidden: false })).to.have.class(inputBaseClasses.input);
     });
 
     it('should forward the fullWidth prop to Input', () => {
@@ -102,7 +107,7 @@ describe('<TextField />', () => {
         <TextField
           variant="standard"
           fullWidth
-          InputProps={{ 'data-testid': 'mui-input-base-root' }}
+          slotProps={{ input: { 'data-testid': 'mui-input-base-root' } }}
         />,
       );
 
@@ -119,7 +124,11 @@ describe('<TextField />', () => {
 
     it('should apply the className to the label', () => {
       const { container } = render(
-        <TextField label="Foo bar" InputLabelProps={{ className: 'foo' }} variant="standard" />,
+        <TextField
+          label="Foo bar"
+          slotProps={{ inputLabel: { className: 'foo' } }}
+          variant="standard"
+        />,
       );
 
       expect(container.querySelector('label')).to.have.class('foo');
@@ -139,7 +148,7 @@ describe('<TextField />', () => {
       const { getDescriptionOf } = render(
         <TextField
           helperText="Foo bar"
-          FormHelperTextProps={{ className: 'foo' }}
+          slotProps={{ formHelperText: { className: 'foo' } }}
           variant="standard"
         />,
       );
@@ -151,7 +160,7 @@ describe('<TextField />', () => {
       render(
         <TextField
           helperText="Foo bar"
-          FormHelperTextProps={{ className: 'foo' }}
+          slotProps={{ formHelperText: { className: 'foo' } }}
           variant="standard"
         />,
       );
@@ -164,7 +173,7 @@ describe('<TextField />', () => {
     it('should set outline props', () => {
       const { container } = render(
         <TextField
-          InputProps={{ classes: { notchedOutline: 'notch' } }}
+          slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
           label={<div data-testid="label">label</div>}
           required
         />,
@@ -177,7 +186,9 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
+      const { container } = render(
+        <TextField slotProps={{ inputLabel: { shrink: true } }} classes={{}} />,
+      );
 
       expect(container.querySelector('fieldset')).to.have.class(
         outlinedInputClasses.notchedOutline,
@@ -186,7 +197,11 @@ describe('<TextField />', () => {
 
     it('should render `0` label properly', () => {
       const { container } = render(
-        <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
+        <TextField
+          slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
+          label={0}
+          required
+        />,
       );
 
       const notch = container.querySelector('.notch legend');
@@ -199,7 +214,10 @@ describe('<TextField />', () => {
         const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
         ['', undefined, null].forEach((prop) => {
           const { container: container1 } = render(
-            <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={prop} />,
+            <TextField
+              slotProps={{ input: { classes: { notchedOutline: 'notch' } } }}
+              label={prop}
+            />,
           );
           expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
         });
@@ -209,7 +227,9 @@ describe('<TextField />', () => {
 
   describe('prop: InputProps', () => {
     it('should apply additional props to the Input component', () => {
-      render(<TextField InputProps={{ 'data-testid': 'InputComponent' }} variant="standard" />);
+      render(
+        <TextField slotProps={{ input: { 'data-testid': 'InputComponent' } }} variant="standard" />,
+      );
 
       expect(screen.getByTestId('InputComponent')).not.to.equal(null);
     });
@@ -223,7 +243,7 @@ describe('<TextField />', () => {
       ];
 
       const { container } = render(
-        <TextField select SelectProps={{ native: true }} variant="standard">
+        <TextField select slotProps={{ select: { native: true } }} variant="standard">
           {currencies.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -242,7 +262,7 @@ describe('<TextField />', () => {
         <TextField
           label="Currency:"
           select
-          SelectProps={{ native: true }}
+          slotProps={{ select: { native: true } }}
           value="$"
           variant="standard"
         >
@@ -268,7 +288,62 @@ describe('<TextField />', () => {
       expect(screen.getByRole('combobox')).toHaveAccessibleName('Release:');
     });
 
-    it('creates an input[hidden] that has no accessible properties', () => {
+    it('renders the label as a <div> without htmlFor when select', () => {
+      render(
+        <TextField select label="Release" value="stable" variant="standard">
+          <MenuItem value="stable">Stable</MenuItem>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('DIV');
+      expect(labelElement).not.to.have.attribute('for');
+
+      const combobox = screen.getByRole('combobox');
+      expect(combobox).to.have.attribute('aria-labelledby');
+      expect(combobox.getAttribute('aria-labelledby')).to.include(labelElement.id);
+    });
+
+    it('renders the label as a <div> when native is set via slotProps', () => {
+      render(
+        <TextField
+          select
+          label="Release"
+          value="stable"
+          variant="standard"
+          slotProps={{ select: { native: false } }}
+        >
+          <MenuItem value="stable">Stable</MenuItem>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('DIV');
+      expect(labelElement).not.to.have.attribute('for');
+
+      const combobox = screen.getByRole('combobox');
+      expect(combobox.getAttribute('aria-labelledby')).to.include(labelElement.id);
+    });
+
+    it('renders the label as a <label> with htmlFor for native select via slotProps', () => {
+      render(
+        <TextField
+          select
+          label="Release"
+          value="stable"
+          variant="standard"
+          slotProps={{ select: { native: true } }}
+        >
+          <option value="stable">Stable</option>
+        </TextField>,
+      );
+
+      const labelElement = screen.getByText('Release');
+      expect(labelElement.tagName).to.equal('LABEL');
+      expect(labelElement).to.have.attribute('for');
+    });
+
+    it('creates an input[hidden] that has no accessible properties besides id', () => {
       const { container } = render(
         <TextField select label="Release: " value="stable" variant="standard">
           <MenuItem value="stable">Stable</MenuItem>
@@ -276,7 +351,7 @@ describe('<TextField />', () => {
       );
 
       const input = container.querySelector('input[aria-hidden]');
-      expect(input).not.to.have.attribute('id');
+      expect(input).to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
     });
 
@@ -311,7 +386,7 @@ describe('<TextField />', () => {
 
   describe('prop: inputProps', () => {
     it('should apply additional props to the input element', () => {
-      render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
+      render(<TextField slotProps={{ htmlInput: { 'data-testid': 'input-element' } }} />);
 
       expect(screen.getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
     });

@@ -11,7 +11,7 @@
     "rootDir": "./src",
     "types": ["react", "node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/**/*.test.ts*", "src/**/*.spec.ts*"],
   "references": [{ "path": "../mui-types/tsconfig.build.json" }]
 }

@@ -33,14 +33,12 @@ describe('<Modal />', () => {
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
-      testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
         backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
-        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
         'themeDefaultProps', // portal, can't determine the root
         'themeStyleOverrides', // portal, can't determine the root
       ],
@@ -220,7 +218,7 @@ describe('<Modal />', () => {
         <ModalWithDisabledBackdropClick
           onClose={onClose}
           open
-          BackdropProps={{ 'data-testid': 'backdrop' }}
+          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
         >
           <div />
         </ModalWithDisabledBackdropClick>,
@@ -814,10 +812,13 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('prop: BackdropProps', () => {
+  describe('prop: slotProps.backdrop', () => {
     it('should handle custom className', () => {
       render(
-        <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
+        <Modal
+          open
+          slotProps={{ backdrop: { className: 'custom-backdrop', 'data-testid': 'backdrop' } }}
+        >
           <div />
         </Modal>,
       );

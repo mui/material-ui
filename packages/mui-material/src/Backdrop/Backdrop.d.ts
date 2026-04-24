@@ -37,7 +37,7 @@ export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & BackdropTransitionSlotPropsOverrides,
       BackdropOwnerState
     >;
@@ -50,33 +50,6 @@ export interface BackdropOwnProps
    * The content of the component.
    */
   children?: React.ReactNode;
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components?:
-    | {
-        Root?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps?:
-    | {
-        root?:
-          | (React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides)
-          | undefined;
-      }
-    | undefined;
   /**
    * Override or extend the styles applied to the component.
    */
@@ -100,19 +73,6 @@ export interface BackdropOwnProps
    * You may specify a single timeout for all transitions, or individually with an object.
    */
   transitionDuration?: TransitionProps['timeout'] | undefined;
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionComponent?:
-    | React.JSXElementConstructor<
-        TransitionProps & {
-          children: React.ReactElement<unknown, any>;
-        }
-      >
-    | undefined;
 }
 
 export interface BackdropTypeMap<
@@ -123,7 +83,7 @@ export interface BackdropTypeMap<
   defaultComponent: RootComponent;
 }
 
-type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']>['root'];
+type BackdropRootProps = React.HTMLAttributes<HTMLDivElement> & BackdropComponentsPropsOverrides;
 
 export declare const BackdropRoot: React.FC<BackdropRootProps>;
 
@@ -131,12 +91,12 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  *
  * Demos:
  *
- * - [Backdrop](https://next.mui.com/material-ui/react-backdrop/)
+ * - [Backdrop](https://mui.com/material-ui/react-backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://next.mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://next.mui.com/material-ui/api/fade/)
+ * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
+ * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 

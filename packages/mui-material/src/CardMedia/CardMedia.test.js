@@ -16,7 +16,6 @@ describe('<CardMedia />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'foo' },
-    skip: ['componentsProp'],
   }));
 
   it('has the img role if `image` is defined', () => {

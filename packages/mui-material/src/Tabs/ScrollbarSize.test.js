@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {
@@ -12,6 +12,13 @@ describe('<ScrollbarSize />', () => {
       render(<ScrollbarSize onChange={onChange} />);
 
       expect(onChange.called).to.equal(true);
+    });
+
+    it('should not block pointer events', () => {
+      const onChange = spy();
+      render(<ScrollbarSize data-testid="scrollbar-size" onChange={onChange} />);
+
+      expect(screen.getByTestId('scrollbar-size').style.pointerEvents).to.equal('none');
     });
   });
 

@@ -13,7 +13,6 @@ describe('<ListSubheader />', () => {
     muiName: 'MuiListSubheader',
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { disableGutters: true },
-    skip: ['componentsProp'],
   }));
 
   it('should display primary color', () => {

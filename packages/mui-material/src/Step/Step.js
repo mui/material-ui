@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -20,7 +20,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getStepUtilityClass, classes);
 };
 
-const StepRoot = styled('div', {
+const StepRoot = styled('li', {
   name: 'MuiStep',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -58,7 +58,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     active: activeProp,
     children,
     className,
-    component = 'div',
+    component = 'li',
     completed: completedProp,
     disabled: disabledProp,
     expanded = false,
@@ -67,8 +67,8 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     ...other
   } = props;
 
-  const { activeStep, connector, alternativeLabel, orientation, nonLinear } =
-    React.useContext(StepperContext);
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear, isTabList } =
+    useStepperContext();
 
   let [active = false, completed = false, disabled = false] = [
     activeProp,
@@ -108,6 +108,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       ownerState={ownerState}
+      role={isTabList ? 'presentation' : undefined}
       {...other}
     >
       {connector && alternativeLabel && index !== 0 ? connector : null}

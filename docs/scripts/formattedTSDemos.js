@@ -9,7 +9,7 @@
  * List of demos or folders to ignore when transpiling.
  * Only ignore files that aren't used in the UI.
  */
-const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
+const ignoreList = ['/pages.ts'];
 
 const path = require('path');
 const fs = require('node:fs');
@@ -19,9 +19,7 @@ const {
   getPropTypesFromFile,
   injectPropTypesInFile,
 } = require('@mui/internal-scripts/typescript-to-proptypes');
-const {
-  createTypeScriptProjectBuilder,
-} = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
+const { createTypeScriptProjectBuilder } = require('@mui/internal-api-docs-builder');
 const { default: yargs } = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');

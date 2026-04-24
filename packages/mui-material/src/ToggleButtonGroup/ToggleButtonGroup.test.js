@@ -17,7 +17,7 @@ describe('<ToggleButtonGroup />', () => {
     render,
     muiName: 'MuiToggleButtonGroup',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
     testVariantProps: { size: 'small' },
     testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
   }));
@@ -36,7 +36,7 @@ describe('<ToggleButtonGroup />', () => {
     );
 
     expect(screen.getByRole('group')).to.have.class('MuiToggleButtonGroup-vertical');
-    expect(screen.getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
+    expect(screen.getByRole('button')).to.have.class('MuiToggleButtonGroup-grouped');
   });
 
   it('should have horizontal class', () => {

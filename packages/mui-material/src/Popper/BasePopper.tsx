@@ -203,8 +203,31 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
 
     handlePopperRefRef.current!(popper);
 
+    const popperElement = tooltipRef.current;
+
     return () => {
-      popper.destroy();
+      // popper.destroy() clears all inline positioning via the applyStyles
+      // modifier cleanup, which causes the element to jump to its static
+      // position. Snapshot and restore only the positioning properties so the
+      // element stays in place during the destroy/recreate gap (prevents scroll
+      // jumps when a child focuses between the two).
+      // https://github.com/mui/mui-x/issues/21839
+      if (popperElement) {
+        const { style } = popperElement;
+        const position = style.position;
+        const top = style.top;
+        const left = style.left;
+        const transform = style.transform;
+
+        popper.destroy();
+
+        style.position = position;
+        style.top = top;
+        style.left = left;
+        style.transform = transform;
+      } else {
+        popper.destroy();
+      }
       handlePopperRefRef.current!(null);
     };
   }, [resolvedAnchorElement, disablePortal, modifiers, open, popperOptions, rtlPlacement]);

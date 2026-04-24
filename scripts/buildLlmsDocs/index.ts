@@ -38,11 +38,11 @@
  *
  * ```bash
  * # Process all Material UI components
- * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts
+ * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts
  *
  * # Process specific components with non-component docs
  * pnpm tsx scripts/buildLlmsDocs/index.ts \
- *   --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts \
+ *   --projectSettings ./packages-internal/api-docs-builder-core/materialUi/projectSettings.ts \
  *   --nonComponentFolders system material/customization \
  *   --grep "Button|borders"
  * ```
@@ -62,10 +62,13 @@ import yargs, { ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
-import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
+import {
+  ComponentInfo,
+  ProjectSettings,
+  findComponents,
+  findPagesMarkdown,
+} from '@mui/internal-api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
-import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
-import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
 // Determine the host based on environment variables
 let ORIGIN: string | undefined = 'https://mui.com';

@@ -85,6 +85,9 @@ const BadgeBadge = styled('span', {
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -154,8 +157,6 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     className,
     classes: classesProp,
     component,
-    components = {},
-    componentsProps = {},
     children,
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
@@ -216,16 +217,9 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // support both `slots` and `components` for backward compatibility
   const externalForwardedProps = {
-    slots: {
-      root: slots?.root ?? components.Root,
-      badge: slots?.badge ?? components.Badge,
-    },
-    slotProps: {
-      root: slotProps?.root ?? componentsProps.root,
-      badge: slotProps?.badge ?? componentsProps.badge,
-    },
+    slots,
+    slotProps,
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
@@ -304,29 +298,6 @@ Badge.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Badge: PropTypes.elementType,
-    Root: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
   /**
    * If `true`, the badge is invisible.
    * @default false

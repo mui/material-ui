@@ -34,7 +34,7 @@ describe('<SwitchBase />', () => {
           expectedClassName: classes.input,
         },
       },
-      skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
+      skip: ['themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 
@@ -298,14 +298,14 @@ describe('<SwitchBase />', () => {
       expect(checkbox).to.have.property('checked', true);
     });
 
-    describe('prop: inputProps', () => {
+    describe('slotProps: input', () => {
       it('should be able to add aria', () => {
         render(
           <SwitchBase
             icon="unchecked"
             checkedIcon="checked"
             type="checkbox"
-            inputProps={{ 'aria-label': 'foo' }}
+            slotProps={{ input: { 'aria-label': 'foo' } }}
           />,
         );
 

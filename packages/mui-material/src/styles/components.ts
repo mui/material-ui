@@ -316,13 +316,6 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiFormLabel'] | undefined;
       }
     | undefined;
-  MuiGridLegacy?:
-    | {
-        defaultProps?: ComponentsProps['MuiGridLegacy'] | undefined;
-        styleOverrides?: ComponentsOverrides<Theme>['MuiGridLegacy'] | undefined;
-        variants?: ComponentsVariants<Theme>['MuiGridLegacy'] | undefined;
-      }
-    | undefined;
   MuiGrid?:
     | {
         defaultProps?: ComponentsProps['MuiGrid'] | undefined;

@@ -23,7 +23,6 @@ describe('<Backdrop />', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentsProp'],
   }));
 
   it('should render a backdrop div with content of nested children', () => {

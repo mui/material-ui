@@ -192,6 +192,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   const handleRef = useForkRef(listItemRef, ref);
 
   return (
@@ -201,11 +204,12 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         href={other.href || other.to}
         // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
         component={(other.href || other.to) && component === 'div' ? 'button' : component}
+        internalNativeButton={false}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
         {...other}
-        classes={classes}
+        classes={forwardedClasses}
       >
         {children}
       </ListItemButtonRoot>
@@ -230,8 +234,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * The content of the component if a `ListItemSecondaryAction` is used it must
-   * be the last child.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**

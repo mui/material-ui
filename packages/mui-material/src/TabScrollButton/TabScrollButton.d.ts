@@ -13,7 +13,7 @@ export interface TabScrollButtonOwnerState extends TabScrollButtonProps {
   isRtl: boolean;
 }
 
-export interface TabScrollButtonProps extends ButtonBaseProps {
+export interface TabScrollButtonProps extends Omit<ButtonBaseProps, 'nativeButton'> {
   /**
    * The content of the component.
    */
@@ -78,10 +78,10 @@ export interface TabScrollButtonProps extends ButtonBaseProps {
  *
  * Demos:
  *
- * - [Tabs](https://next.mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [TabScrollButton API](https://next.mui.com/material-ui/api/tab-scroll-button/)
+ * - [TabScrollButton API](https://mui.com/material-ui/api/tab-scroll-button/)
  */
 export default function TabScrollButton(props: TabScrollButtonProps): React.JSX.Element;

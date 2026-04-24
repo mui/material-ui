@@ -115,7 +115,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     icon: iconProp = defaultIcon,
     indeterminate = false,
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
-    inputProps,
     size = 'medium',
     disableRipple = false,
     className,
@@ -137,7 +136,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const externalInputProps = slotProps.input ?? inputProps;
+  const externalInputProps = slotProps.input;
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
@@ -167,6 +166,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             : externalInputProps,
           {
             'data-indeterminate': indeterminate,
+            'aria-checked': indeterminate ? 'mixed' : undefined,
           },
         ),
       },
@@ -244,11 +244,6 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default <IndeterminateCheckBoxIcon />
    */
   indeterminateIcon: PropTypes.node,
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  inputProps: PropTypes.object,
   /**
    * Callback fired when the state is changed.
    *

@@ -54,6 +54,7 @@ export default function NumberField({
         id={id}
         render={(props, state) => (
           <OutlinedInput
+            aria-describedby={`${id}-helper-text`}
             label={label}
             inputRef={props.ref}
             value={state.inputValue}
@@ -105,7 +106,7 @@ export default function NumberField({
           />
         )}
       />
-      <FormHelperText sx={{ ml: 0, '&:empty': { mt: 0 } }}>
+      <FormHelperText id={`${id}-helper-text`} sx={{ ml: 0, '&:empty': { mt: 0 } }}>
         Enter value between 10 and 40
       </FormHelperText>
     </BaseNumberField.Root>

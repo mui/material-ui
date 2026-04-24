@@ -1,15 +1,15 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.47",
+  "version": "2.0.48",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
+  "license": "MIT",
   "bin": "./src/envinfo.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-envinfo"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },

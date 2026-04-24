@@ -22,7 +22,6 @@ describe('<TableBody />', () => {
     refInstanceof: window.HTMLTableSectionElement,
     // can't test with custom `component` with `renderInTable`
     testComponentPropWith: 'tbody',
-    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {

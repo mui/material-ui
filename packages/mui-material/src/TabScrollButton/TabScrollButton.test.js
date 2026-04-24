@@ -21,7 +21,7 @@ describe('<TabScrollButton />', () => {
     muiName: 'MuiTabScrollButton',
     testVariantProps: { orientation: 'vertical' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render as a button with the root class', () => {

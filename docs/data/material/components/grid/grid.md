@@ -14,7 +14,7 @@ githubSource: packages/mui-material/src/Grid
 The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## How it works
 
