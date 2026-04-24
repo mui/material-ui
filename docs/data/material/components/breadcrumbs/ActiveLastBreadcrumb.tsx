@@ -23,9 +23,11 @@ export default function ActiveLastBreadcrumb() {
         </Link>
         <Link
           underline="hover"
-          color="text.primary"
           href="/material-ui/react-breadcrumbs/"
           aria-current="page"
+          sx={{
+            color: 'text.primary',
+          }}
         >
           Breadcrumbs
         </Link>

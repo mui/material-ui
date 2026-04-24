@@ -2,28 +2,35 @@
 const path = require('path');
 const gm = require('gm');
 
-const SIZES = [48, 96, 180, 192, 256, 384, 512];
-const INPUT_ICON = path.join(__dirname, '../public/static/logo.png');
-const OUTPUT_DIR = path.join(__dirname, '../public/static/icons');
-
 console.log('Generating Icons');
 
-const promises = SIZES.map(
-  (size) =>
-    new Promise((resolve, reject) => {
-      gm(INPUT_ICON)
-        .resize(size, size)
-        .write(path.join(OUTPUT_DIR, `${size}x${size}.png`), (err) => {
-          if (err) {
-            reject(err);
-            return;
-          }
+function resizeIcon(size, output) {
+  const INPUT_ICON = path.join(__dirname, '../public/static/logo.png');
 
-          resolve();
-          console.log(`Size ${size} created`);
-        });
-    }),
-);
+  return new Promise((resolve, reject) => {
+    gm(INPUT_ICON)
+      .resize(size, size)
+      .write(output, (err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve();
+        console.log(`${path.basename(output)} created`);
+      });
+  });
+}
+
+const promises = [
+  ...[48, 96, 180, 192, 256, 384, 512].map((size) =>
+    resizeIcon(
+      size,
+      path.join(path.join(__dirname, '../public/static/icons'), `${size}x${size}.png`),
+    ),
+  ),
+  resizeIcon(180, path.join(__dirname, '../public/static/apple-touch-icon.png')),
+];
 
 Promise.all(promises).catch((err) => {
   setTimeout(() => {

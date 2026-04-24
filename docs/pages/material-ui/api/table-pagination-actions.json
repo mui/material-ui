@@ -5,18 +5,8 @@
       "required": true,
       "signature": { "type": "function(type: string) => string", "describedArgs": ["type"] }
     },
-    "backIconButtonProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.previousButton</code> instead."
-    },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
-    "disabled": { "type": { "name": "bool" }, "default": "false" },
-    "nextIconButtonProps": {
-      "type": { "name": "object" },
-      "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.nextButton</code> instead."
-    }
+    "disabled": { "type": { "name": "bool" }, "default": "false" }
   },
   "name": "TablePaginationActions",
   "imports": [

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import DialogActions, { dialogActionsClasses as classes } from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { expect } from 'chai';
@@ -15,14 +14,10 @@ describe('<DialogActions />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiDialogActions',
     testVariantProps: { disableSpacing: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
-  it('should apply margin to all children but the first one', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply margin to all children but the first one', function test() {
     const { container } = render(
       <DialogActions>
         <Button data-testid="child-1">Agree</Button>

@@ -63,7 +63,8 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: ['root', variant, `color${capitalize(color)}`],
     svg: ['svg'],
-    circle: ['circle', `circle${capitalize(variant)}`, disableShrink && 'circleDisableShrink'],
+    track: ['track'],
+    circle: ['circle', disableShrink && 'circleDisableShrink'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
@@ -126,11 +127,7 @@ const CircularProgressCircle = styled('circle', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    return [
-      styles.circle,
-      styles[`circle${capitalize(ownerState.variant)}`],
-      ownerState.disableShrink && styles.circleDisableShrink,
-    ];
+    return [styles.circle, ownerState.disableShrink && styles.circleDisableShrink];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -158,11 +155,21 @@ const CircularProgressCircle = styled('circle', {
         props: ({ ownerState }) =>
           ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
         style: dashAnimation || {
-          // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
+          // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
           animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
         },
       },
     ],
+  })),
+);
+
+const CircularProgressTrack = styled('circle', {
+  name: 'MuiCircularProgress',
+  slot: 'Track',
+})(
+  memoTheme(({ theme }) => ({
+    stroke: 'currentColor',
+    opacity: (theme.vars || theme).palette.action.activatedOpacity,
   })),
 );
 
@@ -179,13 +186,27 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className,
     color = 'primary',
     disableShrink = false,
+    enableTrackSlot = false,
+    min: minProp,
+    max: maxProp,
     size = 40,
     style,
     thickness = 3.6,
-    value = 0,
+    value = props.min ?? 0,
     variant = 'indeterminate',
     ...other
   } = props;
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (variant === 'indeterminate' && (minProp !== undefined || maxProp !== undefined)) {
+      console.warn(
+        `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' variant. These props will have no effect.`,
+      );
+    }
+  }
+
+  const min = minProp ?? 0;
+  const max = maxProp ?? 100;
 
   const ownerState = {
     ...props,
@@ -195,6 +216,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     value,
     variant,
+    enableTrackSlot,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -205,10 +227,26 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
 
   if (variant === 'determinate') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (value < min || value > max || min >= max) {
+        console.error(
+          `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        );
+      }
+    }
+
+    const range = max - min;
     circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootProps['aria-valuenow'] = Math.round(value);
-    circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
+    circleStyle.strokeDashoffset =
+      range > 0
+        ? `${(((max - value) / range) * circumference).toFixed(3)}px`
+        : `${circumference.toFixed(3)}px`; // empty-state fallback when range is invalid
     rootStyle.transform = 'rotate(-90deg)';
+
+    rootProps['aria-valuenow'] = value;
+    rootProps['aria-valuemin'] = min;
+    rootProps['aria-valuemax'] = max;
   }
 
   return (
@@ -226,6 +264,18 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
         ownerState={ownerState}
         viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
       >
+        {enableTrackSlot ? (
+          <CircularProgressTrack
+            className={classes.track}
+            ownerState={ownerState}
+            cx={SIZE}
+            cy={SIZE}
+            r={(SIZE - thickness) / 2}
+            fill="none"
+            strokeWidth={thickness}
+            aria-hidden="true"
+          />
+        ) : null}
         <CircularProgressCircle
           className={classes.circle}
           style={circleStyle}
@@ -280,6 +330,22 @@ CircularProgress.propTypes /* remove-proptypes */ = {
     return null;
   }),
   /**
+   * If `true`, a track circle slot is mounted to show a subtle background for the progress.
+   * The `size` and `thickness` apply to the track slot to be consistent with the progress circle.
+   * @default false
+   */
+  enableTrackSlot: PropTypes.bool,
+  /**
+   * The maximum value for the progress indicator for the determinate variant.
+   * @default 100
+   */
+  max: PropTypes.number,
+  /**
+   * The minimum value for the progress indicator for the determinate variant.
+   * @default 0
+   */
+  min: PropTypes.number,
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, for example '3rem'.
@@ -305,8 +371,8 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   thickness: PropTypes.number,
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   * @default 0
+   * Value between `min` and `max`.
+   * @default props.min ?? 0
    */
   value: PropTypes.number,
   /**

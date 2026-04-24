@@ -12,11 +12,11 @@ export interface CardContentOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<CardContentClasses>;
+  classes?: Partial<CardContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export interface CardContentTypeMap<
@@ -42,7 +42,7 @@ export type CardContentProps<
   RootComponent extends React.ElementType = CardContentTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<CardContentTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default CardContent;

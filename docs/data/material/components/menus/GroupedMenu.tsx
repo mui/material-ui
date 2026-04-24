@@ -3,8 +3,16 @@ import Button from '@mui/material/Button';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+
+const StyledListHeader = styled(ListSubheader)({
+  backgroundImage: 'var(--Paper-overlay)',
+});
 
 export default function GroupedMenu() {
+  const id = React.useId();
+  const buttonId = `${id}-button`;
+  const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -17,29 +25,32 @@ export default function GroupedMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'grouped-menu' : undefined}
+        id={buttonId}
+        aria-controls={open ? menuId : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard
       </Button>
       <Menu
-        id="grouped-menu"
+        id={menuId}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         slotProps={{
           list: {
-            'aria-labelledby': 'basic-button',
+            'aria-labelledby': buttonId,
+            sx: {
+              py: 0,
+            },
           },
         }}
       >
-        <ListSubheader>Category 1</ListSubheader>
+        <StyledListHeader>Category 1</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 1</MenuItem>
         <MenuItem onClick={handleClose}>Option 2</MenuItem>
-        <ListSubheader>Category 2</ListSubheader>
+        <StyledListHeader>Category 2</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 3</MenuItem>
         <MenuItem onClick={handleClose}>Option 4</MenuItem>
       </Menu>

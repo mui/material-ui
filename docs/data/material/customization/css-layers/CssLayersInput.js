@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -6,7 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
   cssVariables: true,
 });
 

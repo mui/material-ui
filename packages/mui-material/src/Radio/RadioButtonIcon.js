@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';

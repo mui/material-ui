@@ -1,5 +1,4 @@
 'use client';
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
@@ -42,11 +41,12 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  */
 function BreadcrumbCollapsed(props) {
   const { slots = {}, slotProps = {}, ...otherProps } = props;
+  const { nativeButton, ...buttonBaseProps } = otherProps;
   const ownerState = props;
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
+      <BreadcrumbCollapsedButton focusRipple {...buttonBaseProps} ownerState={ownerState}>
         <BreadcrumbCollapsedIcon
           as={slots.CollapsedIcon}
           ownerState={ownerState}

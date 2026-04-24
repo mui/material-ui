@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Card, { cardClasses as classes } from '@mui/material/Card';
@@ -15,7 +14,6 @@ describe('<Card />', () => {
     muiName: 'MuiCard',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { raised: true },
-    skip: ['componentsProp'],
   }));
 
   it('when raised should render Paper with 8dp', () => {

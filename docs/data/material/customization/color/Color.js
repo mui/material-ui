@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import { styled, useTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';

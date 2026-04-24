@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Paper from '@mui/material/Paper';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
@@ -31,7 +31,7 @@ export default function SpacingGrid() {
         '&& pre': { margin: 0 },
       }}
     >
-      <Grid container justifyContent="center" spacing={spacing}>
+      <Grid container sx={{ justifyContent: 'center' }} spacing={spacing}>
         {[0, 1, 2].map((value) => (
           <Grid key={value}>
             <Paper

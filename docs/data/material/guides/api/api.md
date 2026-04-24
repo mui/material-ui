@@ -89,7 +89,6 @@ Nested components inside a component have:
 ### Prop naming
 
 - **Boolean**
-
   - The default value of a boolean prop should be `false`. This allows for better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
 
     ```jsx

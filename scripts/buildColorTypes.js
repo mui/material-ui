@@ -1,7 +1,8 @@
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import * as colors from '@mui/material/colors';
 
+// #host-reference
 // use netlify deploy preview if you want to test changes
 const HOST = 'https://mui.com/';
 
@@ -38,7 +39,7 @@ ${Object.entries(variants)
 export default ${name};
 `;
 
-  return fse.writeFile(typesFilename, typescript, { encoding: 'utf8' });
+  return fs.writeFile(typesFilename, typescript, { encoding: 'utf8' });
 }
 
 function buildColorPreviews(name, variants) {
@@ -52,11 +53,12 @@ function buildColorPreviews(name, variants) {
 <rect width="100%" height="100%" fill="${color}"/>
 </svg>`;
       const filename = path.resolve(nextPublicPath, getColorHref(name, variant));
-      await fse.writeFile(filename, svg, { encoding: 'utf8' });
+      await fs.writeFile(filename, svg, { encoding: 'utf8' });
     }),
   );
 }
 
+// #host-reference
 /**
  * The goal is to have a preview of the actual color and the color string in IntelliSense
  * We create for each color an svg that is filled with that color and reference

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { ThemeContext } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
@@ -18,38 +17,38 @@ describe('useLayerOrder', () => {
   });
 
   it('attach layer order', () => {
-    const theme = { experimental_modularCssLayers: true };
+    const theme = { modularCssLayers: true };
     render(<TestComponent theme={theme} />);
     expect(document.head.firstChild).not.to.equal(null);
     expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;',
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
     );
   });
 
   it('custom layer order string', () => {
-    const theme = { experimental_modularCssLayers: '@layer theme, base, mui, utilities;' };
+    const theme = { modularCssLayers: '@layer theme, base, mui, utilities;' };
     render(<TestComponent theme={theme} />);
     expect(document.head.firstChild?.textContent).to.contain(
-      '@layer theme, base, mui.global, mui.default, mui.theme, mui.custom, mui.sx, utilities;',
+      '@layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, utilities;',
     );
   });
 
   it('does not replace nested layer', () => {
-    const theme = { experimental_modularCssLayers: '@layer theme, base, mui.unknown, utilities;' };
+    const theme = { modularCssLayers: '@layer theme, base, mui.unknown, utilities;' };
     render(<TestComponent theme={theme} />);
     expect(document.head.firstChild?.textContent).to.contain(
       '@layer theme, base, mui.unknown, utilities;',
     );
   });
 
-  it('returns null if experimental_modularCssLayers is falsy', () => {
+  it('returns null if modularCssLayers is falsy', () => {
     render(<TestComponent theme={{}} />);
     expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
   });
 
   it('do nothing if upperTheme exists to avoid duplicate elements', () => {
     render(
-      <ThemeContext.Provider value={{ experimental_modularCssLayers: true }}>
+      <ThemeContext.Provider value={{ modularCssLayers: true }}>
         <TestComponent theme={{}} />
       </ThemeContext.Provider>,
     );

@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import FaceIcon from '@mui/icons-material/Face';
 import DoneIcon from '@mui/icons-material/Done';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 function ChipsPlayground() {
   const [state, setState] = React.useState({

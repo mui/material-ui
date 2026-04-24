@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
@@ -24,7 +24,6 @@ describe('<AccordionSummary />', () => {
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
-    skip: ['componentProp', 'componentsProp'],
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -46,13 +45,13 @@ describe('<AccordionSummary />', () => {
   });
 
   it('when disabled should have disabled class', () => {
-    const { getByRole } = render(
+    render(
       <Accordion disabled>
         <AccordionSummary />
       </Accordion>,
     );
 
-    expect(getByRole('button')).to.have.class(classes.disabled);
+    expect(screen.getByRole('button')).to.have.class(classes.disabled);
   });
 
   it('renders the content given in expandIcon prop inside the div.expandIconWrapper', () => {
@@ -63,13 +62,13 @@ describe('<AccordionSummary />', () => {
   });
 
   it('when expanded adds the expanded class to the button and .expandIconWrapper', () => {
-    const { container, getByRole } = render(
+    const { container } = render(
       <Accordion expanded>
         <AccordionSummary expandIcon="expand" />
       </Accordion>,
     );
 
-    const button = getByRole('button');
+    const button = screen.getByRole('button');
     expect(button).to.have.class(classes.expanded);
     expect(button).to.have.attribute('aria-expanded', 'true');
     expect(container.querySelector(`.${classes.expandIconWrapper}`)).to.have.class(
@@ -79,10 +78,10 @@ describe('<AccordionSummary />', () => {
 
   it('should fire onBlur when the button blurs', () => {
     const handleBlur = spy();
-    const { getByRole } = render(<AccordionSummary onBlur={handleBlur} />);
+    render(<AccordionSummary onBlur={handleBlur} />);
+    const button = screen.getByRole('button');
 
     act(() => {
-      const button = getByRole('button');
       button.focus();
       button.blur();
     });
@@ -92,45 +91,65 @@ describe('<AccordionSummary />', () => {
 
   it('should fire onClick callbacks', () => {
     const handleClick = spy();
-    const { getByRole } = render(<AccordionSummary onClick={handleClick} />);
+    render(<AccordionSummary onClick={handleClick} />);
 
-    getByRole('button').click();
+    screen.getByRole('button').click();
 
     expect(handleClick.callCount).to.equal(1);
   });
 
   it('fires onChange of the Accordion if clicked', () => {
     const handleChange = spy();
-    const { getByRole } = render(
+
+    render(
       <Accordion onChange={handleChange} expanded={false}>
         <AccordionSummary />
       </Accordion>,
     );
 
     act(() => {
-      getByRole('button').click();
+      screen.getByRole('button').click();
     });
 
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('calls onFocusVisible if focused visibly', function test() {
     const handleFocusVisible = spy();
-    const { getByRole } = render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
+    render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
     // simulate pointer device
     fireEvent.mouseDown(document.body);
 
     // this doesn't actually apply focus like in the browser. we need to move focus manually
     fireEvent.keyDown(document.body, { key: 'Tab' });
     act(() => {
-      getByRole('button').focus();
+      screen.getByRole('button').focus();
     });
 
     expect(handleFocusVisible.callCount).to.equal(1);
+  });
+
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} through useSlot to ButtonBase', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      render(
+        <Accordion>
+          <AccordionSummary component={CustomSpan} nativeButton={false} />
+        </Accordion>,
+      );
+
+      const summary = screen.getByRole('button');
+      expect(summary).to.have.tagName('SPAN');
+      expect(summary).to.have.attribute('aria-expanded', 'false');
+      expect(summary).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
+    });
   });
 });

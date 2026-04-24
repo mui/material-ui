@@ -111,7 +111,7 @@ The `light` and `dark` tokens are calculated using the `tonalOffset` value, to s
 A higher tonal offset value will make `light` tokens lighter, and `dark` tokens darker.
 
 :::warning
-This only applies when working with custom colors—it won't have any effect on the [default values](#default-values).
+This only applies when working with custom colors—it won't have any effect on the [default values](#default-colors).
 :::
 
 For example, the tonal offset default value `0.2` shifts the luminance by approximately two indexes, so if the `main` token is `blue[500]`, then the `light` token would be `blue[300]` and `dark` would be `blue[700]`.
@@ -148,6 +148,11 @@ const theme = createTheme({
 ```
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
+
+:::info
+The supported color formats are `hex`, `rgb`, and `hsl`.
+If you want to use other formats, such as `oklch`, you need to enable the [native color](/material-ui/customization/css-theme-variables/native-color/) feature.
+:::
 
 <!-- #target-branch-reference -->
 

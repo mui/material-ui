@@ -31,7 +31,6 @@ const synonyms = {
   Addchart:
     '+ analytics bars data diagram infographic measure metrics new plus statistics symbol tracking',
   AddCircle: '+ counter create new plus',
-  AddCircleOutline: '+ create new plus',
   AddComment: '+ bubble chat communicate feedback message new plus speech symbol',
   AddIcCall: '+ cell contact device hardware mobile new plus symbol telephone',
   AddLink: 'attach clip new plus symbol',
@@ -448,7 +447,6 @@ const synonyms = {
     'Android battery cell device electric energy hardware iOS instant lightning mobile phone tablet thunderbolt',
   Chat: 'bubble comment communicate feedback message speech talk text',
   ChatBubble: 'comment communicate feedback message speech talk text',
-  ChatBubbleOutline: 'comment communicate feedback message speech talk text',
   Check:
     'DISABLE_IOS checkmark complete confirm correct disable_ios done enter okay purchased select success tick yes',
   CheckBox:
@@ -457,8 +455,6 @@ const synonyms = {
     'button checkmark component control dashed deselected empty form selection square tick toggle ui',
   CheckCircle:
     'approve checkmark complete confirm done download finished ok select success tick upload validate verified yes',
-  CheckCircleOutline:
-    'approve checkmark complete done finished ok select success tick validate verified yes',
   Checklist:
     'alignment approve complete doc done editing editor format mark notes ok select spreadsheet text tick type validate verified writing yes',
   ChecklistRtl:
@@ -657,7 +653,6 @@ const synonyms = {
   Dehaze: 'adjust editing enhance image lines photography remove',
   Delete: 'bin garbage junk recycle remove trashcan',
   DeleteForever: 'all bin cancel clear exit garbage junk recycle remove trashcan',
-  DeleteOutline: 'bin can garbage remove trash',
   DeleteSweep: 'bin garbage junk recycle remove trashcan',
   DeliveryDining:
     'food meal restaurant scooter takeout transportation vehicle vespa',
@@ -757,8 +752,6 @@ const synonyms = {
   Done: 'DISABLE_IOS approve checkmark complete disable_ios finished ok select success tick validate verified yes',
   DoneAll:
     'approve checkmark complete finished layers multiple ok select stack success tick validate verified yes',
-  DoneOutline:
-    'all approve checkmark complete finished ok select success tick validate verified yes',
   DoNotDisturb: 'cancel close denied deny neutral remove silence slash stop',
   DoNotDisturbAlt: 'cancel close denied deny neutral remove silence slash stop',
   DoNotDisturbOff:
@@ -882,8 +875,6 @@ const synonyms = {
   Equalizer:
     'adjustment analytics chart data graph measure metrics music noise sound static statistics tracking volume',
   Error:
-    '! alert announcement attention caution circle danger exclamation feedback important mark notification problem symbol warning',
-  ErrorOutline:
     '! alert announcement attention caution circle danger exclamation feedback important mark notification problem symbol warning',
   Escalator: 'down staircase up',
   EscalatorWarning: 'body child human kid parent people person',
@@ -1277,8 +1268,6 @@ const synonyms = {
   Help: '? alert announcement assistance circle information mark punctuation question recent restore shape support symbol',
   HelpCenter:
     '? assistance information mark punctuation question recent restore support symbol',
-  HelpOutline:
-    '? alert announcement assistance circle information mark punctuation question recent restore shape support symbol',
   Hevc: 'alphabet character coding efficiency font high letters symbol text type video',
   Hexagon: 'shape sides six',
   HideImage: 'disabled enabled landscape mountains off on photography picture slash',
@@ -1574,7 +1563,6 @@ const synonyms = {
   Mail: 'email envelope inbox letters message send',
   MailLock:
     'email envelop letters locked message password privacy private protection safety secure security send',
-  MailOutline: 'email envelope letters message note post receive send write',
   Male: 'boy gender man social symbol',
   Man: 'boy gender male social symbol',
   Man2: 'boy gender male social symbol',
@@ -1655,7 +1643,6 @@ const synonyms = {
   Mode: 'compose create draft draw edit pencil write',
   ModeComment: 'bubble chat comment communicate feedback message mode speech',
   ModeEdit: 'compose create draft draw pencil write',
-  ModeEditOutline: 'compose create draft draw pencil write',
   ModeFanOff: 'air conditioner cool disabled enabled nest slash',
   ModelTraining:
     'arrow bulb idea inprogress light loading refresh renew restore reverse rotate',
@@ -1872,7 +1859,6 @@ const synonyms = {
   Pause: 'controls media music pending player status video wait',
   PauseCircle: 'controls media music video',
   PauseCircleFilled: 'controls media music pending status video wait',
-  PauseCircleOutline: 'controls media music pending status video wait',
   PausePresentation:
     'application desktop device pending screen share slides status wait website window www',
   Payment:
@@ -1887,8 +1873,6 @@ const synonyms = {
   People:
     'accounts committee community face family friends group humans network persons profiles social team users',
   PeopleAlt:
-    'accounts committee face family friends group humans network persons profiles social team users',
-  PeopleOutline:
     'accounts committee face family friends group humans network persons profiles social team users',
   Percent: 'math numbers symbol',
   PermCameraMic: 'image microphone min photography picture speaker',
@@ -1920,7 +1904,6 @@ const synonyms = {
   PersonalVideo:
     'Android cam chrome desktop device hardware iOS mac monitor television tv web window',
   PersonOff: 'account avatar disabled enabled face human people profile slash user',
-  PersonOutline: 'account avatar face human people profile user',
   PersonPin:
     'account avatar destination direction face gps human location maps people place profile stop user',
   PersonPinCircle:
@@ -1986,8 +1969,6 @@ const synonyms = {
     'chat cropped displays layout multitasking overlap photo pip position shape sizes talktrack',
   PieChart:
     'analytics bars data diagram infographic measure metrics statistics tracking',
-  PieChartOutline:
-    'analytics bars data diagram infographic measure metrics statistics tracking',
   Pin: '1 2 3 digit key login logout numbers password pattern security star symbol unlock',
   Pinch: 'arrows compress direction finger grasp hand navigation nip squeeze tweak',
   PinDrop: 'destination direction gps location maps navigation place stop',
@@ -2004,7 +1985,6 @@ const synonyms = {
   PlayCircle: 'arrow controls media music video',
   PlayCircleFilled: 'arrow controls media music start video',
   PlayCircleFilledWhite: 'start',
-  PlayCircleOutline: 'arrow controls media music start video',
   PlayDisabled: 'controls enabled media music off slash video',
   PlayForWork: 'arrow circle down google half',
   PlayLesson: 'audio bookmark digital ebook lesson multimedia play reading ribbon',
@@ -2128,8 +2108,6 @@ const synonyms = {
     'Android avatar device hardware human iOS identity mobile people person phone profile tablet user',
   Remove: 'can delete line minus negative substract subtract trash',
   RemoveCircle:
-    'allowed banned block can delete disable minus negative not substract trash',
-  RemoveCircleOutline:
     'allowed banned block can delete disable minus negative not substract trash',
   RemoveDone:
     'approve check complete disabled enabled finished mark multiple off ok select slash tick yes',
@@ -2550,7 +2528,6 @@ const synonyms = {
     'best bookmark favorite highlight outline ranking rate rating save toggle',
   StarHalf:
     '0.5 1/2 achievement bookmark favorite highlight important marked ranking rate rating reward saved shape special toggle',
-  StarOutline: 'bookmark favorite half highlight ranking rate rating save toggle',
   StarPurple500: 'best bookmark favorite highlight ranking rate rating save toggle',
   StarRate:
     'achievement bookmark favorite highlight important marked ranking rating reward saved shape special',
@@ -3030,7 +3007,6 @@ const synonyms = {
   WorkHistory:
     'arrow backwards baggage briefcase business clock job pending recent refresh renew reverse rotate schedule suitcase time turn updates',
   WorkOff: 'baggage briefcase business disabled enabled job on slash suitcase',
-  WorkOutline: 'baggage briefcase business job suitcase',
   WorkspacePremium:
     'certification degree ecommerce guarantee medal permit ribbon verification',
   Workspaces: 'circles collaboration dot filled group outline team',

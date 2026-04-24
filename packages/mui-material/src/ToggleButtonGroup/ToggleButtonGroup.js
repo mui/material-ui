@@ -8,7 +8,6 @@ import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import capitalize from '../utils/capitalize';
 import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
 } from './toggleButtonGroupClasses';
@@ -21,7 +20,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', orientation, fullWidth && 'fullWidth'],
-    grouped: ['grouped', `grouped${capitalize(orientation)}`, disabled && 'disabled'],
+    grouped: ['grouped', disabled && 'disabled'],
     firstButton: ['firstButton'],
     lastButton: ['lastButton'],
     middleButton: ['middleButton'],
@@ -38,10 +37,6 @@ const ToggleButtonGroupRoot = styled('div', {
 
     return [
       { [`& .${toggleButtonGroupClasses.grouped}`]: styles.grouped },
-      {
-        [`& .${toggleButtonGroupClasses.grouped}`]:
-          styles[`grouped${capitalize(ownerState.orientation)}`],
-      },
       {
         [`& .${toggleButtonGroupClasses.firstButton}`]: styles.firstButton,
       },

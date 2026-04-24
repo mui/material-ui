@@ -4,6 +4,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 export default function BasicMenu() {
+  const id = React.useId();
+  const buttonId = `${id}-button`;
+  const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -16,22 +19,22 @@ export default function BasicMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        id={buttonId}
+        aria-controls={open ? menuId : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard
       </Button>
       <Menu
-        id="basic-menu"
+        id={menuId}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         slotProps={{
           list: {
-            'aria-labelledby': 'basic-button',
+            'aria-labelledby': buttonId,
           },
         }}
       >

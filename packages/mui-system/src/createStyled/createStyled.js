@@ -2,6 +2,7 @@ import styledEngineStyled, {
   internal_mutateStyles as mutateStyles,
   internal_serializeStyles as serializeStyles,
 } from '@mui/styled-engine';
+import isObjectEmpty from '@mui/utils/isObjectEmpty';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -146,7 +147,9 @@ export default function createStyled(input = {}) {
     } = inputOptions;
 
     const layerName =
-      (componentName && componentName.startsWith('Mui')) || !!componentSlot ? 'default' : 'custom';
+      (componentName && componentName.startsWith('Mui')) || !!componentSlot
+        ? 'components'
+        : 'custom';
 
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
@@ -189,25 +192,21 @@ export default function createStyled(input = {}) {
       }
       if (typeof style === 'function') {
         return function styleFunctionProcessor(props) {
-          return processStyle(
-            props,
-            style,
-            props.theme.experimental_modularCssLayers ? layerName : undefined,
-          );
+          return processStyle(props, style, props.theme.modularCssLayers ? layerName : undefined);
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
         return function styleObjectProcessor(props) {
           if (!serialized.variants) {
-            return props.theme.experimental_modularCssLayers
+            return props.theme.modularCssLayers
               ? shallowLayer(serialized.style, layerName)
               : serialized.style;
           }
           return processStyle(
             props,
             serialized,
-            props.theme.experimental_modularCssLayers ? layerName : undefined,
+            props.theme.modularCssLayers ? layerName : undefined,
           );
         };
       }
@@ -239,7 +238,7 @@ export default function createStyled(input = {}) {
             resolvedStyleOverrides[slotKey] = processStyle(
               props,
               styleOverrides[slotKey],
-              props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+              props.theme.modularCssLayers ? 'theme' : undefined,
             );
           }
 
@@ -258,7 +257,7 @@ export default function createStyled(input = {}) {
             props,
             themeVariants,
             [],
-            props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+            props.theme.modularCssLayers ? 'theme' : undefined,
           );
         });
       }
@@ -330,14 +329,6 @@ function generateStyledLabel(componentName, componentSlot) {
   }
 
   return label;
-}
-
-function isObjectEmpty(object) {
-  // eslint-disable-next-line
-  for (const _ in object) {
-    return false;
-  }
-  return true;
 }
 
 // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40

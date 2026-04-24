@@ -196,6 +196,7 @@ export default function MusicPlayerSlider() {
           spacing={2}
           direction="row"
           sx={(theme) => ({
+            alignItems: 'center',
             mb: 1,
             px: 1,
             '& > svg': {
@@ -205,7 +206,6 @@ export default function MusicPlayerSlider() {
               }),
             },
           })}
-          alignItems="center"
         >
           <VolumeDownRounded />
           <Slider

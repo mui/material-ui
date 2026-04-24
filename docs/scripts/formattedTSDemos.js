@@ -9,20 +9,19 @@
  * List of demos or folders to ignore when transpiling.
  * Only ignore files that aren't used in the UI.
  */
-const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
+const ignoreList = ['/pages.ts'];
 
 const path = require('path');
-const fse = require('fs-extra');
+const fs = require('node:fs');
 const babel = require('@babel/core');
 const prettier = require('prettier');
 const {
   getPropTypesFromFile,
   injectPropTypesInFile,
 } = require('@mui/internal-scripts/typescript-to-proptypes');
-const {
-  createTypeScriptProjectBuilder,
-} = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
-const yargs = require('yargs');
+const { createTypeScriptProjectBuilder } = require('@mui/internal-api-docs-builder');
+const { default: yargs } = require('yargs');
+const { hideBin } = require('yargs/helpers');
 const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
 const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
@@ -42,9 +41,9 @@ async function getFiles(root) {
 
   try {
     await Promise.all(
-      (await fse.readdir(root)).map(async (name) => {
+      (await fs.promises.readdir(root)).map(async (name) => {
         const filePath = path.join(root, name);
-        const stat = await fse.stat(filePath);
+        const stat = await fs.promises.stat(filePath);
 
         if (
           stat.isDirectory() &&
@@ -82,7 +81,7 @@ const TranspileResult = {
 async function transpileFile(tsxPath, project) {
   const jsPath = tsxPath.replace(/\.tsx?$/, '.js');
   try {
-    const source = await fse.readFile(tsxPath, 'utf8');
+    const source = await fs.promises.readFile(tsxPath, 'utf8');
 
     const transformOptions = { ...babelConfig, filename: tsxPath };
     const enableJSXPreview =
@@ -117,7 +116,7 @@ async function transpileFile(tsxPath, project) {
     });
     const codeWithPropTypes = injectPropTypesInFile({ components: propTypesAST, target: code });
     const prettierConfig = await prettier.resolveConfig(jsPath, {
-      config: path.join(workspaceRoot, 'prettier.config.js'),
+      config: path.join(workspaceRoot, 'prettier.config.mjs'),
     });
     const prettierFormat = async (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
@@ -128,7 +127,7 @@ async function transpileFile(tsxPath, project) {
     const correctedLineEndings = fixLineEndings(source, formatted);
 
     // removed blank lines change potential formatting
-    await fse.writeFile(jsPath, await prettierFormat(correctedLineEndings));
+    await fs.promises.writeFile(jsPath, await prettierFormat(correctedLineEndings));
     return TranspileResult.Success;
   } catch (err) {
     console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
@@ -203,7 +202,7 @@ async function main(argv) {
   }
 
   tsxFiles.forEach((filePath) => {
-    fse.watchFile(filePath, { interval: 500 }, async () => {
+    fs.watchFile(filePath, { interval: 500 }, async () => {
       if ((await transpileFile(filePath, project, true)) === 0) {
         console.log('Success - %s', filePath);
       }
@@ -213,7 +212,7 @@ async function main(argv) {
   console.log('\nWatching for file changes...');
 }
 
-yargs
+yargs()
   .command({
     command: '$0',
     description: 'transpile TypeScript demos',
@@ -240,4 +239,4 @@ yargs
   .help()
   .strict(true)
   .version(false)
-  .parse();
+  .parse(hideBin(process.argv));

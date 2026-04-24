@@ -3,7 +3,6 @@ productId: material-ui
 title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
-unstyled: /base-ui/react-popper/
 githubSource: packages/mui-material/src/Popper
 ---
 
@@ -15,15 +14,15 @@ Some important features of the Popper component:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/docs/v2/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- Its child element is a [MUI Base Portal](https://v6.mui.com/base-ui/react-portal/) on the body of the document to avoid rendering problems.
+- Its child element is a [Portal](/material-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [Popover](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the Popper component.
-  If you need this behavior, you can use the [MUI Base Click-Away Listener](https://v6.mui.com/base-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
+  If you need this behavior, you can use the [Click-Away Listener](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Basic Popper
 
