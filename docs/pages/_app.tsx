@@ -69,8 +69,6 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
 
   const productIdentifier = React.useMemo(() => {
-    const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
-
     if (productId === 'material-ui') {
       return {
         metadata: '',
@@ -82,23 +80,23 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'v7',
-            href: `https://v7.mui.com${languagePrefix}/material-ui/getting-started/`,
+            href: `https://v7.mui.com/material-ui/getting-started/`,
           },
           {
             text: 'v6',
-            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
+            href: `https://v6.mui.com/material-ui/getting-started/`,
           },
           {
             text: 'v5',
-            href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
+            href: `https://v5.mui.com/getting-started/installation/`,
           },
           {
             text: 'v4',
-            href: `https://v4.mui.com${languagePrefix}/getting-started/installation/`,
+            href: `https://v4.mui.com/getting-started/installation/`,
           },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
@@ -113,13 +111,13 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v7', href: `https://v7.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
-          { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
+          { text: 'v7', href: `https://v7.mui.com/system/getting-started/` },
+          { text: 'v6', href: `https://v6.mui.com/system/getting-started/` },
+          { text: 'v5', href: `https://v5.mui.com/system/getting-started/` },
+          { text: 'v4', href: `https://v4.mui.com/system/basics/` },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
@@ -137,7 +135,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'View all versions',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
@@ -153,7 +151,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         versions: [
           {
             text: 'v0.0.0',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
@@ -169,14 +167,14 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         versions: [
           {
             text: 'v0.0.0',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
     }
 
     return null;
-  }, [pageProps.userLanguage, productId]);
+  }, [productId]);
 
   return React.useMemo(() => {
     let pages: MuiPage[] = generalDocsPages as MuiPage[];
