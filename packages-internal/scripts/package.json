@@ -48,7 +48,7 @@
     "@types/uuid": "10.0.0",
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
-    "prettier": "3.8.1",
+    "prettier": "3.8.3",
     "rimraf": "6.1.3"
   },
   "publishConfig": {
