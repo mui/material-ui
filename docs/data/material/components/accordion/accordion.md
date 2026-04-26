@@ -118,7 +118,7 @@ If you render the Accordion Details with a big component tree nested inside, or 
 
 ## Accessibility
 
-The Accordion component automatically generates the `id` and `aria-controls` attributes required by the [WAI-ARIA accordion pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+The Accordion component follows the [WAI-ARIA accordion pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
 
 ## Anatomy
 
