@@ -330,4 +330,78 @@ describe('<Accordion />', () => {
 
     expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
+
+  describe('auto-generated IDs for accessibility', () => {
+    it('should auto-generate id on summary and aria-controls on region', () => {
+      render(
+        <Accordion defaultExpanded>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div>Details</div>
+        </Accordion>,
+      );
+
+      const button = screen.getByRole('button');
+      const region = screen.getByRole('region');
+
+      expect(button).to.have.attribute('id');
+      expect(button).to.have.attribute('aria-controls');
+      expect(region).to.have.attribute('id');
+      expect(region).to.have.attribute('aria-labelledby');
+
+      expect(button.getAttribute('id')).to.equal(region.getAttribute('aria-labelledby'));
+      expect(button.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
+    });
+
+    it('should use user-provided id and aria-controls when given', () => {
+      render(
+        <Accordion defaultExpanded>
+          <AccordionSummary id="my-header" aria-controls="my-content">
+            Summary
+          </AccordionSummary>
+          <div>Details</div>
+        </Accordion>,
+      );
+
+      const button = screen.getByRole('button');
+      const region = screen.getByRole('region');
+
+      expect(button).to.have.attribute('id', 'my-header');
+      expect(button).to.have.attribute('aria-controls', 'my-content');
+      expect(region).to.have.attribute('id', 'my-content');
+      expect(region).to.have.attribute('aria-labelledby', 'my-header');
+    });
+
+    it('should generate unique IDs for each Accordion instance', () => {
+      render(
+        <div>
+          <Accordion>
+            <AccordionSummary>Summary 1</AccordionSummary>
+            <div>Details 1</div>
+          </Accordion>
+          <Accordion>
+            <AccordionSummary>Summary 2</AccordionSummary>
+            <div>Details 2</div>
+          </Accordion>
+        </div>,
+      );
+
+      const [summary1, summary2] = screen.getAllByRole('button');
+      expect(summary1.getAttribute('id')).not.to.equal(summary2.getAttribute('id'));
+      expect(summary1.getAttribute('aria-controls')).not.to.equal(
+        summary2.getAttribute('aria-controls'),
+      );
+    });
+
+    it('should keep region in DOM when closed with unmountOnExit so aria-controls remains valid', () => {
+      render(
+        <Accordion slotProps={{ transition: { unmountOnExit: true } }}>
+          <AccordionSummary>Summary</AccordionSummary>
+          <div>Details</div>
+        </Accordion>,
+      );
+
+      // Accordion is closed by default; region must still be present so aria-controls is not a dangling reference
+      expect(screen.queryByRole('region')).not.to.equal(null);
+    });
+  });
 });

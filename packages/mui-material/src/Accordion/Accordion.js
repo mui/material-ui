@@ -12,6 +12,7 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
+import useId from '../utils/useId';
 import useSlot from '../utils/useSlot';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 
@@ -171,10 +172,13 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     [expanded, onChange, setExpandedState],
   );
 
+  const summaryId = useId();
+  const regionId = useId();
+
   const [summary, ...children] = React.Children.toArray(childrenProp);
   const contextValue = React.useMemo(
-    () => ({ expanded, disabled, disableGutters, toggle: handleChange }),
-    [expanded, disabled, disableGutters, handleChange],
+    () => ({ expanded, disabled, disableGutters, toggle: handleChange, summaryId, regionId }),
+    [expanded, disabled, disableGutters, handleChange, summaryId, regionId],
   );
 
   const ownerState = {
@@ -222,8 +226,8 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
     className: classes.region,
     additionalProps: {
-      'aria-labelledby': summary.props.id,
-      id: summary.props['aria-controls'],
+      'aria-labelledby': summary.props.id ?? summaryId,
+      id: summary.props['aria-controls'] ?? regionId,
       role: 'region',
     },
   });
@@ -233,9 +237,11 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       </AccordionHeadingSlot>
-      <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
-        <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
-      </TransitionSlot>
+      <AccordionRegionSlot {...accordionRegionProps}>
+        <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
+          {children}
+        </TransitionSlot>
+      </AccordionRegionSlot>
     </RootSlot>
   );
 });

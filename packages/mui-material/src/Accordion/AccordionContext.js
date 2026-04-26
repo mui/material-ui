@@ -3,7 +3,7 @@ import * as React from 'react';
 
 /**
  * @ignore - internal component.
- * @type {React.Context<{} | {expanded: boolean, disabled: boolean, toggle: () => void}>}
+ * @type {React.Context<{} | {expanded: boolean, disabled: boolean, toggle: () => void, summaryId: string, regionId: string}>}
  */
 const AccordionContext = React.createContext({});
 

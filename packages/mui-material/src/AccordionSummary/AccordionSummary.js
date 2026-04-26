@@ -119,7 +119,14 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ...other
   } = props;
 
-  const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
+  const {
+    disabled = false,
+    disableGutters,
+    expanded,
+    toggle,
+    summaryId,
+    regionId,
+  } = React.useContext(AccordionContext);
   const handleChange = (event) => {
     if (toggle) {
       toggle(event);
@@ -158,6 +165,8 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       disableRipple: true,
       internalNativeButton: true,
       disabled,
+      id: summaryId,
+      'aria-controls': regionId,
       'aria-expanded': expanded,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
     },
