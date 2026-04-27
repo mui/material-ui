@@ -196,7 +196,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
     return () => {
       // restoreLastFocus()
-      if (!disableRestoreFocus && nodeToRestore.current) {
+      if (!disableRestoreFocus) {
         ignoreNextEnforceFocus.current = true;
         (nodeToRestore.current as HTMLElement).focus();
         nodeToRestore.current = null;
