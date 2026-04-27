@@ -19,6 +19,7 @@ import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
+import { CodeProvider } from '@mui/internal-docs-infra/CodeProvider';
 
 const TOC_WIDTH = 242;
 
@@ -167,7 +168,7 @@ export default function AppLayoutDocs(props) {
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
-            {children}
+            <CodeProvider>{children}</CodeProvider>
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
