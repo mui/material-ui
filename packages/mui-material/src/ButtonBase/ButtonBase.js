@@ -57,6 +57,9 @@ export const ButtonBaseRoot = styled('button', {
   textDecoration: 'none',
   // So we take precedent over the style of a native <a /> element.
   color: 'inherit',
+  // Pin font smoothing so background-color changes on hover don't trigger re-evaluation.
+  WebkitFontSmoothing: 'antialiased',
+  MozOsxFontSmoothing: 'grayscale',
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
