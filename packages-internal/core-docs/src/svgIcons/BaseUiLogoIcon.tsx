@@ -3,7 +3,6 @@ import { RootSvg, RootSvgProps } from './RootSvg';
 export function BaseUiLogoIcon(props: RootSvgProps) {
   return (
     <RootSvg
-      xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
       viewBox="0 0 24 32"

@@ -3,7 +3,6 @@ import { RootSvg, RootSvgProps } from './RootSvg';
 export function HamburgerMenuIcon(props: RootSvgProps) {
   return (
     <RootSvg
-      xmlns="http://www.w3.org/2000/svg"
       width={18}
       height={18}
       viewBox="0 0 16 16"
