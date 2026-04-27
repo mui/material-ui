@@ -122,6 +122,32 @@ const SpeedDialActionStaticTooltip = styled('span', {
           },
         },
       },
+      {
+        props: {
+          tooltipPlacement: 'bottom',
+        },
+        style: {
+          flexDirection: 'column',
+          [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            transformOrigin: '50% 0%',
+            top: '100%',
+            marginTop: 8,
+          },
+        },
+      },
+      {
+        props: {
+          tooltipPlacement: 'top',
+        },
+        style: {
+          flexDirection: 'column-reverse',
+          [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
+            transformOrigin: '50% 100%',
+            bottom: '100%',
+            marginBottom: 8,
+          },
+        },
+      },
     ],
   })),
 );
