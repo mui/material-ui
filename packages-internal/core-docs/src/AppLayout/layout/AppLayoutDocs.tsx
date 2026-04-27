@@ -2,15 +2,22 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { AdManager, AD_MARGIN_TOP, AD_HEIGHT, AD_HEIGHT_MOBILE, AD_MARGIN_BOTTOM } from '../../Ad';
-import { AppFrame } from './AppFrame';
-import { AppContainer } from './AppContainer';
-import { AppLayoutDocsFooter } from './AppLayoutDocsFooter';
-import { AppLayoutHead as Head } from './AppLayoutHead';
-import { BackToTop } from '../components/BackToTop';
-import { convertProductIdToName } from '../../utils/convertProductIdToName';
-import { getProductInfoFromUrl } from '../../utils/getProductInfoFromUrl';
-import { TOC_WIDTH, type TocItem, AppTableOfContents } from '../../TableOfContents';
+import {
+  AdManager,
+  AD_MARGIN_TOP,
+  AD_HEIGHT,
+  AD_HEIGHT_MOBILE,
+  AD_MARGIN_BOTTOM,
+} from '@mui/docs/Ad';
+import Head from 'docs/src/modules/components/Head';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import AppContainer from 'docs/src/modules/components/AppContainer';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+import BackToTop from 'docs/src/modules/components/BackToTop';
+import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
+import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
+import { CodeProvider } from '@mui/internal-docs-infra/CodeProvider';
 
 interface MainProps {
   disableToc: boolean;
@@ -212,13 +219,8 @@ export function AppLayoutDocs(props: AppLayoutDocsProps) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer
-            disableAd={disableAd}
-            hasTabs={hasTabs}
-            disableToc={disableToc}
-            wideLayout={wideLayout}
-          >
-            {children}
+          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
+            <CodeProvider>{children}</CodeProvider>
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} wideLayout={wideLayout} />}

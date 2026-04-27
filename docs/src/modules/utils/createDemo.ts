@@ -14,6 +14,7 @@ import DemoContent from '../components/DemoContent';
  */
 export const createDemo = createDemoFactory({
   DemoContent,
+  controlled: true,
 });
 
 /**
@@ -25,4 +26,5 @@ export const createDemo = createDemoFactory({
  */
 export const createDemoWithVariants = createDemoWithVariantsFactory({
   DemoContent,
+  controlled: true,
 });
