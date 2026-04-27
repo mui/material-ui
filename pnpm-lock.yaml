@@ -70,6 +70,9 @@ importers:
       '@mui/internal-code-infra':
         specifier: 0.0.3-canary.94
         version: 0.0.3-canary.94(@next/eslint-plugin-next@15.5.12)(@types/node@20.19.33)(@typescript-eslint/parser@8.54.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.39.2(jiti@2.6.1))(postcss@8.5.6)(prettier@3.8.1)(stylelint@17.3.0(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
+      '@mui/internal-docs-infra':
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@992f801
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@992f801(@types/react@19.2.14)(next@15.5.12(@babel/core@7.28.6)(@opentelemetry/api@1.8.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(prettier@3.8.1)(react@19.2.4)(typescript@5.9.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -237,13 +240,13 @@ importers:
         version: 7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       vitest:
         specifier: ^4.0.13
-        version: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+        version: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       vitest-fail-on-console:
         specifier: 0.10.1
         version: 0.10.1(@vitest/utils@4.0.15)(vite@7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13)
       webpack:
         specifier: 5.105.2
-        version: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+        version: 5.105.2(webpack-cli@6.0.1)
       webpack-cli:
         specifier: 6.0.1
         version: 6.0.1(webpack@5.105.2)
@@ -1627,7 +1630,7 @@ importers:
         version: 3.3.3
       html-webpack-plugin:
         specifier: 5.6.6
-        version: 5.6.6(webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2)))
+        version: 5.6.6(webpack@5.105.2(webpack-cli@6.0.1))
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -1660,7 +1663,7 @@ importers:
         version: 1.6.28
       webpack:
         specifier: 5.105.2
-        version: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+        version: 5.105.2(webpack-cli@6.0.1)
       yargs:
         specifier: 17.7.2
         version: 17.7.2
@@ -17418,7 +17421,7 @@ snapshots:
       '@vitest/mocker': 4.0.13(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(vite@7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))
       playwright: 1.58.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+      vitest: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - bufferutil
       - msw
@@ -17434,7 +17437,7 @@ snapshots:
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.0.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+      vitest: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       ws: 8.19.0
     transitivePeerDependencies:
       - bufferutil
@@ -17455,7 +17458,7 @@ snapshots:
       magicast: 0.5.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+      vitest: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
     optionalDependencies:
       '@vitest/browser': 4.0.13(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(vite@7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13)
     transitivePeerDependencies:
@@ -17468,7 +17471,7 @@ snapshots:
       eslint: 9.39.2(jiti@2.6.1)
     optionalDependencies:
       typescript: 5.9.3
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+      vitest: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -17606,19 +17609,19 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)':
+  '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)':
     dependencies:
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack@5.105.2)
 
-  '@webpack-cli/info@3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)':
+  '@webpack-cli/info@3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)':
     dependencies:
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack@5.105.2)
 
-  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)':
+  '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)':
     dependencies:
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack@5.105.2)
 
   '@wooorm/starry-night@3.9.0':
@@ -17993,7 +17996,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.6
       find-up: 5.0.0
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
 
   babel-merge@3.0.0(@babel/core@7.28.6):
     dependencies:
@@ -19374,7 +19377,7 @@ snapshots:
       lodash: 4.17.21
       resolve: 2.0.0-next.5
       semver: 5.7.2
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -20358,7 +20361,7 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  html-webpack-plugin@5.6.6(webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2))):
+  html-webpack-plugin@5.6.6(webpack@5.105.2(webpack-cli@6.0.1)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -20366,7 +20369,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.0
     optionalDependencies:
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
 
   htmlparser2@6.1.0:
     dependencies:
@@ -24360,14 +24363,14 @@ snapshots:
 
   temp-dir@1.0.0: {}
 
-  terser-webpack-plugin@5.3.16(webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2))):
+  terser-webpack-plugin@5.3.16(webpack@5.105.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       serialize-javascript: 6.0.2
       terser: 5.39.0
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
 
   terser@5.39.0:
     dependencies:
@@ -24874,9 +24877,9 @@ snapshots:
       '@vitest/utils': 4.0.15
       chalk: 5.6.2
       vite: 7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
-      vitest: 4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
+      vitest: 4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
 
-  vitest@4.0.13(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0):
+  vitest@4.0.13(@opentelemetry/api@1.8.0)(@types/debug@4.1.12)(@types/node@20.19.33)(@vitest/browser-playwright@4.0.13)(happy-dom@15.11.6)(jiti@2.6.1)(jsdom@26.1.0)(lightningcss@1.31.1)(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0):
     dependencies:
       '@vitest/expect': 4.0.13
       '@vitest/mocker': 4.0.13(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(vite@7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))
@@ -24899,6 +24902,7 @@ snapshots:
       vite: 7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
+      '@opentelemetry/api': 1.8.0
       '@types/debug': 4.1.12
       '@types/node': 20.19.33
       '@vitest/browser-playwright': 4.0.13(msw@2.7.3(@types/node@20.19.33)(typescript@5.9.3))(playwright@1.58.2)(vite@7.3.1(@types/node@20.19.33)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13)
@@ -24969,9 +24973,9 @@ snapshots:
   webpack-cli@6.0.1(webpack@5.105.2):
     dependencies:
       '@discoveryjs/json-ext': 0.6.3
-      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)
-      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)
-      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1(webpack@5.105.2))(webpack@5.105.2)
+      '@webpack-cli/configtest': 3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)
+      '@webpack-cli/info': 3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)
+      '@webpack-cli/serve': 3.0.1(webpack-cli@6.0.1)(webpack@5.105.2)
       colorette: 2.0.20
       commander: 12.1.0
       cross-spawn: 7.0.6
@@ -24980,7 +24984,7 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.105.2(webpack-cli@6.0.1(webpack@5.105.2))
+      webpack: 5.105.2(webpack-cli@6.0.1)
       webpack-merge: 6.0.1
 
   webpack-merge@6.0.1:
@@ -24991,7 +24995,7 @@ snapshots:
 
   webpack-sources@3.3.3: {}
 
-  webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2)):
+  webpack@5.105.2(webpack-cli@6.0.1):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -25015,7 +25019,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.16(webpack@5.105.2(webpack-cli@6.0.1(webpack@5.105.2)))
+      terser-webpack-plugin: 5.3.16(webpack@5.105.2)
       watchpack: 2.5.1
       webpack-sources: 3.3.3
     optionalDependencies:
