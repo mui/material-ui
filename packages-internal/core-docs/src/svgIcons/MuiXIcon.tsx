@@ -2,13 +2,7 @@ import { RootSvg, RootSvgProps } from './RootSvg';
 
 export function MuiXIcon(props: RootSvgProps) {
   return (
-    <RootSvg
-      width={16}
-      height={16}
-      viewBox="0 0 16 16"
-      fill="none"
-      {...props}
-    >
+    <RootSvg width={16} height={16} viewBox="0 0 16 16" fill="none" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

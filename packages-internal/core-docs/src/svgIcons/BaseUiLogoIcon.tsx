@@ -2,13 +2,7 @@ import { RootSvg, RootSvgProps } from './RootSvg';
 
 export function BaseUiLogoIcon(props: RootSvgProps) {
   return (
-    <RootSvg
-      width={24}
-      height={24}
-      viewBox="0 0 24 32"
-      fill="none"
-      {...props}
-    >
+    <RootSvg width={24} height={24} viewBox="0 0 24 32" fill="none" {...props}>
       <path
         d="M13.3806 8.99097C19.0272 9.33926 23.4996 14.0299 23.4998 19.7644C23.4998 25.5583 18.9351 30.2844 13.2058 30.5457V9.17652L13.2097 9.13355C13.2286 9.03885 13.3093 8.98682 13.3806 8.99097Z"
         fill="black"
