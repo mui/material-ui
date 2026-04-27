@@ -1,19 +1,228 @@
 import * as React from 'react';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
+import type { ExportConfig } from '@mui/internal-docs-infra/useDemo';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MDButton from '@mui/material/Button';
 import MDToggleButton from '@mui/material/ToggleButton';
 import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { alpha, styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
+import DemoContext from './DemoContext';
+import type { SandboxConfig } from './DemoContext';
 import useScrollAnchor from './useScrollAnchor';
 
 // Dark code-panel background used by the highlighted source viewer.
 const CODE_BG = 'hsl(210, 25%, 9%)';
+
+// ---------------------------------------------------------------------------
+// Sandbox export configuration — mirrors docs/src/modules/sandbox/Dependencies
+// so StackBlitz / CodeSandbox previews resolve packages the same way as the
+// existing Demo.js path.
+// ---------------------------------------------------------------------------
+
+// See docs/src/modules/sandbox/Dependencies.ts
+const PACKAGES_WITH_BUNDLED_TYPES = [
+  'date-fns',
+  '@emotion/react',
+  '@emotion/styled',
+  'dayjs',
+  'clsx',
+  '@react-spring/web',
+];
+const MUI_NPM_ORGS = ['@mui', '@base-ui', '@pigment-css', '@toolpad'];
+
+function isMuiPackage(name: string): boolean {
+  return MUI_NPM_ORGS.some((org) => name === org || name.startsWith(`${org}/`));
+}
+
+function getTypesPackageName(name: string): string {
+  // https://github.com/DefinitelyTyped/DefinitelyTyped#what-about-scoped-packages
+  const resolved = name.startsWith('@') ? name.slice(1).replace('/', '__') : name;
+  return `@types/${resolved}`;
+}
+
+/**
+ * Build the MUI version map, mirroring `getMuiPackageVersion` in
+ * docs/src/modules/sandbox/Dependencies.ts (including pkg.pr.new pinning when
+ * a commit ref is available for material-ui PR previews).
+ */
+function buildMuiVersions(commitRef?: string): Record<string, string> {
+  const muiPackageNames = [
+    'material',
+    'icons-material',
+    'lab',
+    'styled-engine',
+    'system',
+    'theming',
+    'classnames',
+    'base',
+    'utils',
+    'material-nextjs',
+    'joy',
+  ];
+
+  const useCommitRef =
+    commitRef !== undefined &&
+    process.env.SOURCE_CODE_REPO === 'https://github.com/mui/material-ui';
+
+  const versions: Record<string, string> = {};
+  for (const shortName of muiPackageNames) {
+    let fullName = `@mui/${shortName}`;
+    if (shortName === 'theming') {
+      fullName = '@mui/private-theming';
+    } else if (shortName === 'classnames') {
+      fullName = '@mui/private-classnames';
+    }
+
+    if (useCommitRef) {
+      versions[fullName] = `https://pkg.pr.new/mui/material-ui/@mui/${shortName}@${commitRef}`;
+    } else if (shortName === 'joy' || shortName === 'base') {
+      versions[fullName] = 'latest';
+    } else {
+      // #npm-tag-reference
+      versions[fullName] = 'next';
+    }
+  }
+  return versions;
+}
+
+interface SandboxResolvers {
+  versions: Record<string, string>;
+  resolveDependencies: NonNullable<ExportConfig['resolveDependencies']>;
+}
+
+/**
+ * Build dependency resolvers that mirror docs/src/modules/sandbox/Dependencies.ts
+ * for use with `useDemo`'s ExportConfig. The returned `resolveDependencies` is
+ * called per-imported-package by exportVariant; it injects MUI peer deps and
+ * `@types/*` packages the same way the existing demo system does.
+ *
+ * Note: @types/* are added to dependencies (rather than devDependencies) because
+ * ExportConfig has no per-package devDep resolver. This is functionally
+ * equivalent for StackBlitz/CodeSandbox install resolution.
+ */
+function buildSandboxResolvers(options: {
+  csbConfig?: SandboxConfig;
+  useTypescriptRef: React.RefObject<boolean>;
+  commitRef?: string;
+}): SandboxResolvers {
+  const { csbConfig, useTypescriptRef, commitRef } = options;
+
+  let versions: Record<string, string> = {
+    react: 'latest',
+    'react-dom': 'latest',
+    '@emotion/react': 'latest',
+    '@emotion/styled': 'latest',
+    ...buildMuiVersions(commitRef),
+  };
+
+  if (csbConfig?.getVersions) {
+    versions = csbConfig.getVersions(versions, { muiCommitRef: commitRef });
+  }
+
+  const resolveDependencies: NonNullable<ExportConfig['resolveDependencies']> = (packageName) => {
+    const result: Record<string, string> = {};
+    result[packageName] = versions[packageName] ?? 'latest';
+
+    // Peer dep auto-injection — see `includePeerDependencies` in
+    // docs/src/modules/sandbox/Dependencies.ts.
+    if (
+      packageName === '@mui/lab' ||
+      packageName === '@mui/icons-material' ||
+      packageName === '@mui/x-data-grid'
+    ) {
+      result['@mui/material'] = versions['@mui/material'] ?? 'latest';
+    }
+
+    // TS variant: pull in @types/* for non-bundled, non-MUI deps. Replicates
+    // `addTypeDeps` from docs/src/modules/sandbox/Dependencies.ts.
+    if (
+      useTypescriptRef.current &&
+      !PACKAGES_WITH_BUNDLED_TYPES.includes(packageName) &&
+      !isMuiPackage(packageName)
+    ) {
+      result[getTypesPackageName(packageName)] = 'latest';
+    }
+
+    if (csbConfig?.postProcessImport) {
+      const extra = csbConfig.postProcessImport(packageName);
+      if (extra) {
+        Object.assign(result, extra);
+      }
+    }
+
+    return result;
+  };
+
+  return { versions, resolveDependencies };
+}
+
+/**
+ * Build a rootIndexTemplate that mirrors `getRootIndex` from
+ * docs/src/modules/sandbox/CreateReactApp.ts. Substitutes the dynamic
+ * import string from exportVariant for the legacy `import Demo from './Demo'`.
+ */
+function buildRootIndexTemplate(
+  csbConfig: SandboxConfig | undefined,
+): ExportConfig['rootIndexTemplate'] | undefined {
+  if (!csbConfig?.getRootIndex) {
+    return undefined;
+  }
+  return ({ importString, useTypescript }) => {
+    const codeVariant = useTypescript ? 'TS' : 'JS';
+    const legacy = csbConfig.getRootIndex(codeVariant);
+    // Replace the legacy `import Demo from './Demo';` line with the dynamic
+    // entrypoint import emitted by exportVariant, then rename the rendered
+    // `<Demo />` element to `<App />` (the exportVariant default).
+    return legacy
+      .replace(/^import\s+Demo\s+from\s+['"]\.\/Demo['"];?\s*$/m, importString)
+      .replace(/<Demo\s*\/>/g, '<App />');
+  };
+}
+
+/**
+ * HTML template matching `getHtml` in docs/src/modules/sandbox/CreateReactApp.ts.
+ * Injects the Inter + Roboto + Material Icons fonts the existing demo system
+ * ships with, so sandboxes look identical to the legacy ones.
+ */
+const buildHtmlTemplate: ExportConfig['htmlTemplate'] = ({
+  language,
+  title,
+  entrypoint,
+  variant,
+}) => {
+  const raw = typeof variant?.source === 'string' ? variant.source : '';
+  const useTwoTone = raw.includes('material-icons-two-tone');
+  return `<!DOCTYPE html>
+<html lang="${language}">
+  <head>
+    <meta charset="utf-8" />
+    <title>${title}</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    />
+    <!-- Icons to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons${useTwoTone ? '+Two+Tone' : ''}"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    ${entrypoint ? `<script type="module" src="${entrypoint}"></script>` : ''}
+  </body>
+</html>`;
+};
 
 // ---------------------------------------------------------------------------
 // Styled components — ported from Demo.js, DemoToolbarRoot.ts, DemoToolbar.js
@@ -508,7 +717,81 @@ function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
 // ---------------------------------------------------------------------------
 
 export default function DemoContent(props: ContentProps<object>) {
-  const demo = useDemo(props);
+  const csbContext = React.useContext(DemoContext);
+  const csbConfig = csbContext?.csb;
+
+  // resolveDependencies needs to know whether we're exporting TS or JS, but
+  // selectedTransform is only known after useDemo(). A ref bridges this — it's
+  // read at click time (when openStackBlitz/openCodeSandbox fire), not at
+  // render time, so the circular dependency is harmless.
+  const useTypescriptRef = React.useRef(true);
+
+  const exportConfig = React.useMemo<ExportConfig>(() => {
+    const commitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
+    const { versions, resolveDependencies } = buildSandboxResolvers({
+      csbConfig,
+      useTypescriptRef,
+      commitRef,
+    });
+    const config: ExportConfig = {
+      versions,
+      resolveDependencies,
+      htmlTemplate: buildHtmlTemplate,
+      // Emotion is a peer dep always shipped with MUI demos (see
+      // `includePeerDependencies` in docs/src/modules/sandbox/Dependencies.ts).
+      // exportVariant only auto-seeds react/react-dom from `versions`, so add
+      // emotion explicitly here.
+      dependencies: {
+        '@emotion/react': versions['@emotion/react'] ?? 'latest',
+        '@emotion/styled': versions['@emotion/styled'] ?? 'latest',
+      },
+    };
+
+    // fallbackDependency: ensure the product's primary package is always
+    // present even when the demo doesn't import it directly. Match the version
+    // produced by buildSandboxResolvers so we don't override pinning.
+    if (csbConfig?.fallbackDependency) {
+      const { name } = csbConfig.fallbackDependency;
+      config.dependencies = {
+        ...config.dependencies,
+        [name]: versions[name] ?? csbConfig.fallbackDependency.version,
+      };
+    }
+
+    const rootIndexTemplate = buildRootIndexTemplate(csbConfig);
+    if (rootIndexTemplate) {
+      config.rootIndexTemplate = rootIndexTemplate;
+    }
+
+    return config;
+  }, [csbConfig]);
+
+  const demo = useDemo(props, {
+    export: exportConfig,
+    // CodeSandbox uses CRA, which needs a node-style tsconfig (not Vite's
+    // `moduleResolution: 'bundler'`). Mirror docs/src/modules/sandbox/
+    // CreateReactApp.ts `getTsconfig`.
+    exportCodeSandbox: {
+      tsconfigOptions: {
+        target: 'es5',
+        lib: ['dom', 'dom.iterable', 'esnext'],
+        allowJs: true,
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+        forceConsistentCasingInFileNames: true,
+        module: 'esnext',
+        moduleResolution: 'node',
+        jsx: 'react-jsx',
+        // Drop Vite-only options merged in by exportVariant defaults.
+        allowImportingTsExtensions: undefined,
+        useDefineForClassFields: undefined,
+        noUnusedLocals: undefined,
+        noUnusedParameters: undefined,
+      },
+    },
+  });
+  useTypescriptRef.current = demo.selectedTransform !== 'js';
+
   const t = useTranslate();
   // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
   // this expands all hidden context lines. Demos without emphasis frames render
@@ -585,6 +868,24 @@ export default function DemoContent(props: ContentProps<object>) {
 
           {/* Expand / collapse emphasis frames */}
           <ToolbarButton onClick={handleToggleFrames}>{showCodeLabel}</ToolbarButton>
+
+          {/* StackBlitz */}
+          <DemoTooltip title={t('stackblitz')} placement="bottom">
+            <IconButton onClick={demo.openStackBlitz} sx={{ borderRadius: 1 }}>
+              <SvgIcon viewBox="0 0 19 28">
+                <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+              </SvgIcon>
+            </IconButton>
+          </DemoTooltip>
+
+          {/* CodeSandbox */}
+          <DemoTooltip title={t('codesandbox')} placement="bottom">
+            <IconButton onClick={demo.openCodeSandbox} sx={{ borderRadius: 1 }}>
+              <SvgIcon viewBox="0 0 1024 1024">
+                <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+              </SvgIcon>
+            </IconButton>
+          </DemoTooltip>
 
           {/* Copy */}
           <DemoTooltip title={t('copySource')} placement="bottom">
