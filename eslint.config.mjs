@@ -13,7 +13,7 @@ import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-
 import * as path from 'node:path';
 import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
-import remarkConfig from './.remarkrc.mjs';
+import { lintJavascriptDemoFocus } from '@mui/internal-docs-infra/pipeline/lintJavascriptDemoFocus';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -196,6 +196,15 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+    },
+  },
+  {
+    files: ['docs/data/**/demos/**/*.tsx', 'docs/data/**/demos/**/*.jsx'],
+    plugins: {
+      'docs-infra': { rules: { 'require-demo-focus': lintJavascriptDemoFocus } },
+    },
+    rules: {
+      'docs-infra/require-demo-focus': ['error', { wrapReturn: true }],
     },
   },
   // Moved from docs/data/material/components/.eslintrc.js
