@@ -10,6 +10,7 @@ import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/Tog
 import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
 import DemoContext from './DemoContext';
@@ -821,12 +822,12 @@ export default function DemoContent(props: ContentProps<object>) {
   }, [anchorScroll, demo]);
 
   return (
-    <Root ref={demo.ref}>
+    <Root>
       {demo.slug && <AnchorLink id={demo.slug} />}
 
       {/* Component Preview */}
       <DemoPreview>
-        <InitialFocus tabIndex={-1} />
+        <InitialFocus ref={demo.focusRef} tabIndex={-1} />
         {demo.component}
       </DemoPreview>
 
@@ -891,6 +892,13 @@ export default function DemoContent(props: ContentProps<object>) {
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton onClick={demo.copy} sx={{ borderRadius: 1 }}>
               <ContentCopyRoundedIcon />
+            </IconButton>
+          </DemoTooltip>
+
+          {/* Reset focus */}
+          <DemoTooltip title={t('resetFocus')} placement="bottom">
+            <IconButton onClick={demo.resetFocus} sx={{ borderRadius: 1 }}>
+              <ResetFocusIcon />
             </IconButton>
           </DemoTooltip>
         </Box>
