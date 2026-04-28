@@ -82,7 +82,6 @@ export function ComponentsApiContent(props: ComponentsApiContentProps) {
   return components.map((key) => {
     const pageContent = pageContents[key];
     const {
-      cssComponent,
       forwardsRefTo,
       inheritance,
       name: componentName,
@@ -154,17 +153,6 @@ export function ComponentsApiContent(props: ComponentsApiContentProps) {
             layoutStorageKey={layoutStorageKey.props}
           />
           <br />
-          {cssComponent && (
-            <React.Fragment>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
-                }}
-              />
-              <br />
-              <br />
-            </React.Fragment>
-          )}
           <div
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}
