@@ -1,0 +1,232 @@
+/**
+ * @mui/tailwind — Tailwind CSS v4 integration for Material UI
+ *
+ * Usage in your global CSS file:
+ *
+ *   @layer theme, base, mui.default, components, utilities;
+ *   @import "tailwindcss";
+ *   @import "@mui/tailwind/v4.css";
+ *
+ * What you get:
+ * - MUI palette colors as Tailwind color utilities (`text-primary`, `bg-error/50`, …)
+ * - MUI typography tokens as font utilities (`font-h1`, `font-body2`, …)
+ * - MUI breakpoints aligned to Tailwind (`sm=600px`, `md=900px`, `lg=1200px`, `xl=1536px`)
+ * - MUI elevation shadows (`shadow-1` … `shadow-24`)
+ * - MUI border-radius token (`rounded-mui`)
+ * - MUI z-index scale (`z-drawer`, `z-modal`, …)
+ * - `mui-{state}:` and `mui-not-{state}:` variants for MUI component states
+ */
+
+/* ─── Breakpoints ────────────────────────────────────────────────────────────
+   Override Tailwind defaults so `sm:`, `md:`, `lg:`, `xl:` map to MUI's values.
+   `xs` is not defined — it maps to 0px, i.e., the default (no breakpoint).
+ ─────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --breakpoint-sm: 37.5rem; /* 600px */
+  --breakpoint-md: 56.25rem; /* 900px */
+  --breakpoint-lg: 75rem; /* 1200px */
+  --breakpoint-xl: 96rem; /* 1536px */
+  --breakpoint-2xl: 120rem; /* 1920px */
+}
+
+/* ─── Design tokens ──────────────────────────────────────────────────────────
+   `@theme inline` means Tailwind references these variables at the point of
+   use instead of inlining the values, so the tokens respond to MUI's runtime
+   theme (dark mode, custom palette) automatically.
+ ─────────────────────────────────────────────────────────────────────────── */
+@theme inline {
+  /* Semantic palette -------------------------------------------------------- */
+  --color-primary: var(--mui-palette-primary-main);
+  --color-primary-light: var(--mui-palette-primary-light);
+  --color-primary-dark: var(--mui-palette-primary-dark);
+  --color-primary-contrast: var(--mui-palette-primary-contrastText);
+
+  --color-secondary: var(--mui-palette-secondary-main);
+  --color-secondary-light: var(--mui-palette-secondary-light);
+  --color-secondary-dark: var(--mui-palette-secondary-dark);
+  --color-secondary-contrast: var(--mui-palette-secondary-contrastText);
+
+  --color-error: var(--mui-palette-error-main);
+  --color-error-light: var(--mui-palette-error-light);
+  --color-error-dark: var(--mui-palette-error-dark);
+  --color-error-contrast: var(--mui-palette-error-contrastText);
+
+  --color-warning: var(--mui-palette-warning-main);
+  --color-warning-light: var(--mui-palette-warning-light);
+  --color-warning-dark: var(--mui-palette-warning-dark);
+  --color-warning-contrast: var(--mui-palette-warning-contrastText);
+
+  --color-info: var(--mui-palette-info-main);
+  --color-info-light: var(--mui-palette-info-light);
+  --color-info-dark: var(--mui-palette-info-dark);
+  --color-info-contrast: var(--mui-palette-info-contrastText);
+
+  --color-success: var(--mui-palette-success-main);
+  --color-success-light: var(--mui-palette-success-light);
+  --color-success-dark: var(--mui-palette-success-dark);
+  --color-success-contrast: var(--mui-palette-success-contrastText);
+
+  /* Text -------------------------------------------------------------------- */
+  --color-text-primary: var(--mui-palette-text-primary);
+  --color-text-secondary: var(--mui-palette-text-secondary);
+  --color-text-disabled: var(--mui-palette-text-disabled);
+  --color-text-icon: var(--mui-palette-text-icon);
+
+  /* Surfaces ---------------------------------------------------------------- */
+  --color-background-default: var(--mui-palette-background-default);
+  --color-background-paper: var(--mui-palette-background-paper);
+  --color-divider: var(--mui-palette-divider);
+
+  /* Action states ----------------------------------------------------------- */
+  --color-action-active: var(--mui-palette-action-active);
+  --color-action-hover: var(--mui-palette-action-hover);
+  --color-action-selected: var(--mui-palette-action-selected);
+  --color-action-disabled: var(--mui-palette-action-disabled);
+  --color-action-disabled-bg: var(--mui-palette-action-disabledBackground);
+  --color-action-focus: var(--mui-palette-action-focus);
+
+  /* Grey scale -------------------------------------------------------------- */
+  --color-grey-50: var(--mui-palette-grey-50);
+  --color-grey-100: var(--mui-palette-grey-100);
+  --color-grey-200: var(--mui-palette-grey-200);
+  --color-grey-300: var(--mui-palette-grey-300);
+  --color-grey-400: var(--mui-palette-grey-400);
+  --color-grey-500: var(--mui-palette-grey-500);
+  --color-grey-600: var(--mui-palette-grey-600);
+  --color-grey-700: var(--mui-palette-grey-700);
+  --color-grey-800: var(--mui-palette-grey-800);
+  --color-grey-900: var(--mui-palette-grey-900);
+  --color-grey-A100: var(--mui-palette-grey-A100);
+  --color-grey-A200: var(--mui-palette-grey-A200);
+  --color-grey-A400: var(--mui-palette-grey-A400);
+  --color-grey-A700: var(--mui-palette-grey-A700);
+
+  /* Typography -------------------------------------------------------------- */
+  --font-h1: var(--mui-font-h1);
+  --font-h2: var(--mui-font-h2);
+  --font-h3: var(--mui-font-h3);
+  --font-h4: var(--mui-font-h4);
+  --font-h5: var(--mui-font-h5);
+  --font-h6: var(--mui-font-h6);
+  --font-subtitle1: var(--mui-font-subtitle1);
+  --font-subtitle2: var(--mui-font-subtitle2);
+  --font-body1: var(--mui-font-body1);
+  --font-body2: var(--mui-font-body2);
+  --font-button: var(--mui-font-button);
+  --font-caption: var(--mui-font-caption);
+  --font-overline: var(--mui-font-overline);
+
+  /* Letter spacing (typography-specific, not covered by Tailwind defaults) -- */
+  --tracking-h1: -0.01562em;
+  --tracking-h2: -0.00833em;
+  --tracking-h4: 0.00735em;
+  --tracking-h6: 0.0075em;
+  --tracking-subtitle1: 0.00938em;
+  --tracking-subtitle2: 0.00714em;
+  --tracking-body1: 0.00938em;
+  --tracking-body2: 0.01071em;
+  --tracking-button: 0.02857em;
+  --tracking-caption: 0.03333em;
+  --tracking-overline: 0.08333em;
+
+  /* Elevation shadows (0–24 Material Design levels) ------------------------- */
+  --shadow-0: var(--mui-shadows-0);
+  --shadow-1: var(--mui-shadows-1);
+  --shadow-2: var(--mui-shadows-2);
+  --shadow-3: var(--mui-shadows-3);
+  --shadow-4: var(--mui-shadows-4);
+  --shadow-5: var(--mui-shadows-5);
+  --shadow-6: var(--mui-shadows-6);
+  --shadow-7: var(--mui-shadows-7);
+  --shadow-8: var(--mui-shadows-8);
+  --shadow-9: var(--mui-shadows-9);
+  --shadow-10: var(--mui-shadows-10);
+  --shadow-11: var(--mui-shadows-11);
+  --shadow-12: var(--mui-shadows-12);
+  --shadow-13: var(--mui-shadows-13);
+  --shadow-14: var(--mui-shadows-14);
+  --shadow-15: var(--mui-shadows-15);
+  --shadow-16: var(--mui-shadows-16);
+  --shadow-17: var(--mui-shadows-17);
+  --shadow-18: var(--mui-shadows-18);
+  --shadow-19: var(--mui-shadows-19);
+  --shadow-20: var(--mui-shadows-20);
+  --shadow-21: var(--mui-shadows-21);
+  --shadow-22: var(--mui-shadows-22);
+  --shadow-23: var(--mui-shadows-23);
+  --shadow-24: var(--mui-shadows-24);
+
+  /* Shape ------------------------------------------------------------------- */
+  --radius-mui: calc(var(--mui-shape-borderRadius) * 1px);
+
+  /* Z-index scale ----------------------------------------------------------- */
+  --z-mobile-stepper: 1000;
+  --z-fab: 1050;
+  --z-speed-dial: 1050;
+  --z-app-bar: 1100;
+  --z-drawer: 1200;
+  --z-modal: 1300;
+  --z-snackbar: 1400;
+  --z-tooltip: 1500;
+
+  /* Opacity (action states) ------------------------------------------------- */
+  --opacity-hover: var(--mui-palette-action-hoverOpacity);
+  --opacity-selected: var(--mui-palette-action-selectedOpacity);
+  --opacity-disabled: var(--mui-palette-action-disabledOpacity);
+  --opacity-focus: var(--mui-palette-action-focusOpacity);
+  --opacity-activated: var(--mui-palette-action-activatedOpacity);
+}
+
+/* ─── Custom utilities ───────────────────────────────────────────────────────
+   These generate class names from the token namespaces above.
+   Example: `typography-h1`, `elevation-4`
+ ─────────────────────────────────────────────────────────────────────────── */
+@utility typography-* {
+  font: --value(--font-*);
+}
+
+@utility elevation-* {
+  box-shadow: --value(--shadow-*);
+}
+
+/* ─── State variants ─────────────────────────────────────────────────────────
+   `mui-{state}:` targets elements that have the corresponding Mui- class.
+   Use `mui-not-{state}:` to target elements that do NOT have that class.
+
+   Examples:
+     <Slider className="mui-disabled:opacity-50" />
+     <MenuItem className="mui-selected:bg-primary/10 mui-focused:bg-primary/5" />
+     <TextField slotProps={{ root: { className: 'mui-error:ring-2 mui-error:ring-error' } }} />
+ ─────────────────────────────────────────────────────────────────────────── */
+@custom-variant mui-active (&.Mui-active);
+@custom-variant mui-not-active (&:not(.Mui-active));
+
+@custom-variant mui-checked (&.Mui-checked);
+@custom-variant mui-not-checked (&:not(.Mui-checked));
+
+@custom-variant mui-completed (&.Mui-completed);
+@custom-variant mui-not-completed (&:not(.Mui-completed));
+
+@custom-variant mui-disabled (&.Mui-disabled);
+@custom-variant mui-not-disabled (&:not(.Mui-disabled));
+
+@custom-variant mui-error (&.Mui-error);
+@custom-variant mui-not-error (&:not(.Mui-error));
+
+@custom-variant mui-expanded (&.Mui-expanded);
+@custom-variant mui-not-expanded (&:not(.Mui-expanded));
+
+@custom-variant mui-focused (&.Mui-focused);
+@custom-variant mui-not-focused (&:not(.Mui-focused));
+
+@custom-variant mui-focus-visible (&.Mui-focusVisible);
+@custom-variant mui-not-focus-visible (&:not(.Mui-focusVisible));
+
+@custom-variant mui-readonly (&.Mui-readOnly);
+@custom-variant mui-not-readonly (&:not(.Mui-readOnly));
+
+@custom-variant mui-required (&.Mui-required);
+@custom-variant mui-not-required (&:not(.Mui-required));
+
+@custom-variant mui-selected (&.Mui-selected);
+@custom-variant mui-not-selected (&:not(.Mui-selected));

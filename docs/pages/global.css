@@ -1,3 +1,30 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 @config '../tailwind.config.mjs';
+
+/* ── @mui/tailwind: MUI state variants ─────────────────────────────────────
+   Enables `mui-{state}:` and `mui-not-{state}:` modifier classes.
+   Example: `mui-disabled:opacity-50 mui-selected:bg-indigo-600/10`
+   ────────────────────────────────────────────────────────────────────────── */
+@custom-variant mui-active (&.Mui-active);
+@custom-variant mui-not-active (&:not(.Mui-active));
+@custom-variant mui-checked (&.Mui-checked);
+@custom-variant mui-not-checked (&:not(.Mui-checked));
+@custom-variant mui-completed (&.Mui-completed);
+@custom-variant mui-not-completed (&:not(.Mui-completed));
+@custom-variant mui-disabled (&.Mui-disabled);
+@custom-variant mui-not-disabled (&:not(.Mui-disabled));
+@custom-variant mui-error (&.Mui-error);
+@custom-variant mui-not-error (&:not(.Mui-error));
+@custom-variant mui-expanded (&.Mui-expanded);
+@custom-variant mui-not-expanded (&:not(.Mui-expanded));
+@custom-variant mui-focused (&.Mui-focused);
+@custom-variant mui-not-focused (&:not(.Mui-focused));
+@custom-variant mui-focus-visible (&.Mui-focusVisible);
+@custom-variant mui-not-focus-visible (&:not(.Mui-focusVisible));
+@custom-variant mui-readonly (&.Mui-readOnly);
+@custom-variant mui-not-readonly (&:not(.Mui-readOnly));
+@custom-variant mui-required (&.Mui-required);
+@custom-variant mui-not-required (&:not(.Mui-required));
+@custom-variant mui-selected (&.Mui-selected);
+@custom-variant mui-not-selected (&:not(.Mui-selected));

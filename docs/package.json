@@ -33,6 +33,7 @@
     "@mui/internal-markdown": "workspace:^",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
+    "@mui/tailwind": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/styled-engine-noop": "workspace:^",
     "@mui/styled-engine-sc": "workspace:^",
