@@ -435,6 +435,23 @@ const CodeViewer = styled('div', {
     whiteSpace: 'pre',
   },
 
+  // Hide the selection highlight on the inter-line gap text nodes (the
+  // literal `\n` between `.line` spans). Those characters are real text
+  // positions in contentEditable, so when a user drags a selection across
+  // multiple lines the browser paints a `line-height: 0` highlight strip
+  // for each gap — visible as a thin horizontal bar between lines. Making
+  // the frame's `::selection` transparent removes the strip; the explicit
+  // `.line ::selection` rule re-enables the standard system highlight
+  // inside actual code lines.
+  '& pre > code > .frame[data-lined]::selection, & pre > code > .frame[data-lined] *::selection': {
+    background: 'transparent',
+  },
+  '& pre > code > .frame[data-lined] .line::selection, & pre > code > .frame[data-lined] .line *::selection':
+    {
+      background: 'Highlight',
+      color: 'HighlightText',
+    },
+
   // Highlighted frames get rounded corners and a subtle background.
   '& .frame[data-frame-type="highlighted"], & .frame[data-frame-type="highlighted-unfocused"]': {
     background: alpha(theme.palette.primary.main, 0.18),
@@ -811,7 +828,7 @@ export default function DemoContent(props: ContentProps<object>) {
     [demo],
   );
 
-  const showCodeLabel = demo.expanded ? t('hideSource') : t('showSource');
+  const showCodeLabel = demo.expanded ? t('hideFullSource') : t('showFullSource');
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;

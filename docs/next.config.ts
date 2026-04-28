@@ -173,7 +173,14 @@ export default withDocsInfra({
             test: /[/\\]demos[/\\][^/\\]+[/\\]index\.ts$/,
             use: [
               options.defaultLoaders.babel,
-              '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+              {
+                loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+                options: {
+                  // The CSS in DemoContent.tsx uses `data-frame-indent` to
+                  // shift highlighted/focus frames left when collapsed.
+                  emphasisOptions: { emitFrameIndent: true },
+                },
+              },
             ],
           },
           {

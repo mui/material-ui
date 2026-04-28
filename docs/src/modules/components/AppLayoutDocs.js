@@ -20,6 +20,13 @@ import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 import { CodeProvider } from '@mui/internal-docs-infra/CodeProvider';
+import { createEnhanceCodeEmphasis } from '@mui/internal-docs-infra/pipeline/enhanceCodeEmphasis';
+
+// Opt in to the `data-frame-indent` attribute that DemoContent's CSS uses
+// to shift highlighted/focus frames left when collapsed. This mirrors the
+// `emphasisOptions` configured for the build-time loader in next.config.ts
+// so runtime-highlighted source (e.g. on variant switch) behaves the same.
+const sourceEnhancers = [createEnhanceCodeEmphasis({ emitFrameIndent: true })];
 
 const TOC_WIDTH = 242;
 
@@ -168,7 +175,7 @@ export default function AppLayoutDocs(props) {
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
           <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
-            <CodeProvider>{children}</CodeProvider>
+            <CodeProvider sourceEnhancers={sourceEnhancers}>{children}</CodeProvider>
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} />}
