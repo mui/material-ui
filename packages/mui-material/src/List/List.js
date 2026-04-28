@@ -36,7 +36,6 @@ const ListRoot = styled('ul', {
   margin: 0,
   padding: 0,
   position: 'relative',
-  isolation: 'isolate',
   variants: [
     {
       props: ({ ownerState }) => !ownerState.disablePadding,
@@ -49,6 +48,7 @@ const ListRoot = styled('ul', {
       props: ({ ownerState }) => ownerState.subheader,
       style: {
         paddingTop: 0,
+        isolation: 'isolate',
       },
     },
   ],
