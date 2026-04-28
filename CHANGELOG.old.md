@@ -104,7 +104,7 @@ A big thanks to the 16 contributors who made this release possible.
 - Fix link to contributing guide (#47473) @oliviertassinari
 - Improve description of Accordion props (#47459) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [blog] Whats new since MUI X v8 [DX-51] (#47140) @joserodolfofreitas
 - [code-infra] Fix React@next CI job (#47493) @Janpot
@@ -168,7 +168,7 @@ A big thanks to the 22 contributors who made this release possible.
 - Add Number Field component page (#47165) @siriwatknp
 - Fix mcp schema change (#47171) @sai6855
 
-### Core
+### Internal
 
 - [code-infra] Add types for markdown loader (#47075) @Janpot
 - [code-infra] Build test utils with code-infra pipeline (#47405) @Janpot
@@ -233,7 +233,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [Transition] Fix horizontal scroll in SimpleFade demo in mobile screens (#47169) @sai6855
 - Replace deprecated `inputProps` with `slotProps.input` in checkbox demos (#47083) @CODEKRUNCH
 
-### Core
+### Internal
 
 - [code-infra] gitignore next-env.d.ts (#47167) @Janpot
 - [code-infra] Migrate versions page to getStaticProps (#47151) @Janpot
@@ -280,7 +280,7 @@ Small update to revert a change that broke the `<Tabs>` component. Also publishi
 
 - Sort package manager automatically (#46897) @Janpot
 
-### Core
+### Internal
 
 - Bring @mui/lab back to unstable version (#47012) @Janpot
 - Fix `ThemeOptions` and `createTheme*` cyclic dependency (#47007) @siriwatknp
@@ -310,7 +310,7 @@ A big thanks to the 14 contributors who made this release possible.
 - Fix typo in blog component MainContent (#46868) @jonyen
 - [Steppers] Replace TransitionProps with slotProps.transition (#46898) @sai6855
 
-### Core
+### Internal
 
 - [blog] Fix year in Punta Cana retreat post (#46943) @mapache-salvaje
 - [blog] Punta Cana retreat post (#46892) @mapache-salvaje
@@ -386,7 +386,7 @@ A big thanks to the 16 contributors who made this release possible.
 - [table] Remove outdated unstyled section (#46786) @mj12albert
 - [TextField] Add note about removal of `sizeMedium` class from InputLabel in v7 upgrade guide (#46693) @checcoux
 
-### Core
+### Internal
 
 - Update `cipher-base` transitive dependency (#46800) @Janpot
 - [charts] Marked Treemap chart as Pro (#46691) @prakhargupta1
@@ -498,7 +498,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [SpeedDial] Remove deprecated props from demos (#46485) @sai6855
 - [Switch] Use `slotProps.input` instead of deprecated `inputProps` for accessible controlled switch (#46625) @adiitxa
 
-### Core
+### Internal
 
 - Fix ESLint reference name (80d32a2) @oliviertassinari
 - Fix ESLint reference name (5fc166e) @oliviertassinari
@@ -576,7 +576,7 @@ A big thanks to the 17 contributors who made this release possible. Here are the
 - [TextField] Removed type="number" demos (#46314) @KirankumarAmbati
 - [examples] Add `material-ui-react-router-ts` example (#46406) @siriwatknp
 
-### Core
+### Internal
 
 - pnpm docs:sync-team (3641a0b) @oliviertassinari
 - Add cross-env to ESLint script (#46358) @ZeeshanTamboli
@@ -658,7 +658,7 @@ A big thanks to the 15 contributors who made this release possible.
 - Remove oudated scaffoldhub ad (#46090) @oliviertassinari
 - Show how to target global state classes with CSS Modules (#45992) @RubemMazzetto
 
-### Core
+### Internal
 
 - [code-infra] Add plugin to check for index file access (#46178) @Janpot
 - [code-infra] Bump ESLint to v9 (#46222) @brijeshb42
@@ -739,7 +739,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Fix markdown typo in templates.md (#45914) @scyzoryck
 - Add Next.js App Router guide for custom classnames (#45852) @siriwatknp
 
-### Core
+### Internal
 
 - [code-infra] Give a stable name to dev tool app (3889ded) @oliviertassinari
 - [code-infra] Normalize author package in org (8135638) @oliviertassinari
@@ -799,7 +799,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 - Added caching to `StyledEngineProvider` to improve performance for running tests with Jest (#45846) @siriwatknp
 
-### Core
+### Internal
 
 - [blog] Improve upvote video (0646444) @oliviertassinari
 - [code-infra] Remove webpack aliases (#45841) @Janpot
@@ -858,7 +858,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [code-infra] Fix icon-material type resolution under `moduleResolution: "node"` (#45704) @Janpot
 - Bring back individual icon dts (#45711) @Janpot
 
-### Core
+### Internal
 
 - Improve the release instructions (#45688) @mnajdova
 
@@ -912,7 +912,7 @@ _Mar 26, 2025_
 - [docs] Deprecate Toolpad Studio (#45613) @Janpot
 - [docs] Sync the mode from page to demos #45661 @siriwatknp
 
-### Core
+### Internal
 
 - [blog] v7 stable release (#45623) @DiegoAndai
 - [code-infra] Disable flaky masonry screenshot (#45678) @Janpot
@@ -944,7 +944,7 @@ A big thanks to the 4 contributors who made this release possible.
 - [Switch] Add slots and slotProps (#45595) @siriwatknp
 - [utils] Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
 
-### Core
+### Internal
 
 - [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
 - [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
@@ -1004,7 +1004,7 @@ This release contains bug fixes 🐛 and improvements to the new package layout 
 - [Backdrop] Fix component name in migration guide (#45506) @sai6855
 - [TextField] Add HTML input section to TextField page (#45439) @siriwatknp
 
-### Core
+### Internal
 
 - [code-infra] Convert a few docs modules to ts (#45548) @Janpot
 - [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
@@ -1042,7 +1042,7 @@ _Feb 27, 2025_
 
 A big thanks to the 2 contributors who made this release possible.
 
-### Core
+### Internal
 
 - [code-infra] Add package.json export (#45433) @Janpot
 - [blog] React 19 migration for MUI X (#45348) @arminmeh
@@ -1057,7 +1057,7 @@ _Feb 27, 2025_
 
 This release fixes incorrect build output from the previous release (`beta.0`).
 
-### Core
+### Internal
 
 - [code-infra] Fix build:types script omitting folders with a dot in their name (#45422) @Janpot
 - [release] Fix versions (#45420) @mj12albert
@@ -1094,7 +1094,7 @@ A big thanks to the 8 contributors who made this release possible.
 - Fix typo in slider docs (#45390) @sai6855
 - Fix Context Menu selection lost on Safari (#44903) @NooBat
 
-### Core
+### Internal
 
 - [code-infra] Fix types for @mui/styled-engine (#45413) @Janpot
 - [docs-infra] Fix theme toggle call (#45400) @siriwatknp
@@ -1129,7 +1129,7 @@ A big thanks to the 9 contributors who made this release possible.
 - Add migration guide for package layout changes (#45222) @Janpot
 - [icons] Fix typo in material-icons.md (#45334) @a-s-russo
 
-### Core
+### Internal
 
 - Disallow access to esm/modern barrel files (#45332) @Janpot
 - [code-infra] Update `elliptic` (#45311) @Janpot
@@ -1181,7 +1181,7 @@ A big thanks to the 11 contributors who made this release possible.
 - Mention Toolpad as experimental (#45273) @prakhargupta1
 - [joy-ui] Update "Set up providers" section of integration with Material UI (#45183) @mateuseap
 
-### Core
+### Internal
 
 - Update branch switch tags (#45198) @DiegoAndai
 - Fix double redirection to Base UI (#45146) @oliviertassinari
@@ -1221,7 +1221,7 @@ This is the first alpha release of Material UI v7 🎉.
 
 - Merge `sx` instead of override when using `mergeSlotProps` (#45062) @siriwatknp
 
-### Core
+### Internal
 
 - [code-infra] a few fixes uncovered during ESM updates (#45031) @Janpot
 - [code-infra] Remove rsc-builder (#45079) @Janpot
@@ -1254,7 +1254,7 @@ A big thanks to the 5 contributors who made this release possible.
 - [Slider] Fix arrow keys past the end for Slider with custom marks (#45050) @joshkel
 - [TextareaAutosize] Temporarily disconnect ResizeObserver to avoid loop error (#44540) @mj12albert
 
-### Core
+### Internal
 
 - [code-infra] a few fixes uncovered during ESM updates (@Janpot) (#45100) @Janpot
 - [code-infra] Remove rsc-builder (#45079) @Janpot
@@ -1302,7 +1302,7 @@ A big thanks to the 9 contributors who made this release possible.
 - Add @mui/base deprecation callout (#45030) @mj12albert
 - Update @mui/base deprecation message (#45064) @mj12albert
 
-### Core
+### Internal
 
 - [code-infra] Add "use client" directive to files with React APIs (#45036) @Janpot
 - [docs] 301 redirect `/base-ui` to `base-ui.com` (#45061) @mj12albert
@@ -1347,7 +1347,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Remove Adobe XD chips, links, and mentions (#44909) @samuelsycamore
 - [docs] Fix incorrect rendering in Typography docs (#44937) @iaziz11
 
-### Core
+### Internal
 
 - [core] Remove redundant screenshots (#44877) @oliviertassinari
 - [core] Remove Suspense and clock mocking from regressions and e2e tests (#44935) @DiegoAndai
@@ -1382,7 +1382,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [joy-ui] Fix Color mode button on Theme builder (#44864) @komkanit
 - Fix 301 redirections @oliviertassinari
 
-### Core
+### Internal
 
 - [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
 - [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
@@ -1425,7 +1425,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - [material-ui] Improve `theme.applyStyles()` docs (#44658) @DiegoAndai
 - [material-ui] Update MD callout (#43958) @aarongarciah
 
-### Core
+### Internal
 
 - Remove unnecessary conditional around `.muiName =` (#44071) @Janpot
 - [blog] Material UI: 2024 EOY updates blog post (#44722) @alelthomas
@@ -1460,7 +1460,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [material-ui][TextField] Add size default prop to api docs (#44714) @sai6855
 - [material-ui][TextField] Add suffix shrink demo (#44744) @siriwatknp
 
-### Core
+### Internal
 
 - [api-docs-builder] Preserve multiline prop descriptions with `rawDescriptions` option (#44737) @vladmoroz
 - Fix running mocha related scripts on Windows locally (#44664) @ChristopherJamesL
@@ -1491,7 +1491,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 
 - Add Toolpad Core template link (#44415) @bharatkashyap
 
-### Core
+### Internal
 
 - [docs-infra] Allow custom annotations (#44707) @vladmoroz
 - [Box] Fix `component` prop test (#44651) @DiegoAndai
@@ -1538,7 +1538,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
 - Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
 
-### Core
+### Internal
 
 - Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
 - Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
@@ -1585,7 +1585,7 @@ A big thanks to the 8 contributors who made this release possible.
 - Fix template page issues (#44466) @oliviertassinari
 - [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
 
-### Core
+### Internal
 
 - Remove TODO line in the changelog (#44484) @mnajdova
 - Polish image display (418e888) @oliviertassinari
@@ -1638,7 +1638,7 @@ A big thanks to the 10 contributors who made this release possible.
 - Bring back `*Component` and `*Props` codemods and deprecation messages (#44383) @DiegoAndai
 - [docs] Copyedit Templates page (#44461) @samuelsycamore
 
-### Core
+### Internal
 
 - Remove `stylis-plugin-rtl-sc` (#44447) @renovate[bot]
 - [test][Autocomplete] Make virtualize regression screenshots deterministic (#44425) @DiegoAndai
@@ -1685,7 +1685,7 @@ This release includes fixes as well as documentation improvements.
 - [material-ui][Rating] Add uncontrolled example to Basic Rating demo (#44386) @sai6855
 - [material-ui][TextField] Replace InputProps with slotProps.input in demo (#44288) @sai6855
 
-### Core
+### Internal
 
 - [blog] Follow media asset guidelines (#44374) @oliviertassinari
 - [code-infra] Changes for test util to work in `vitest` (#43625) @JCQuintas
@@ -1747,7 +1747,7 @@ A big thanks to the 13 contributors who made this release possible.
 - Use () when referencing functions (#44184) @oliviertassinari
 - Follow types description convention (#44187) @oliviertassinari
 
-### Core
+### Internal
 
 - Lock file maintenance (#43947)
 - Run @mui/icon-material src:icons (#44097) @oliviertassinari
@@ -1794,7 +1794,7 @@ A big thanks to the 9 contributors who made this release possible.
 - Link Toolpad from Core repo (#44111) @prakhargupta1
 - Remove HighlightedCode max-width (#43731) @Janpot
 
-### Core
+### Internal
 
 - [code-infra] Widen ESLint file patterns (#44148) @Janpot
 - [code-infra] Fix icon builder tests (#44143) @Janpot
@@ -1829,7 +1829,7 @@ A big thanks to the 9 contributors who made this release possible.
 - Fix small typo on Grid2 page (#44062) @zanivan
 - Clarify suggestions to use `@mui/styles` in v5 migration docs (#44049) @samuelsycamore
 
-### Core
+### Internal
 
 - [code-infra] Link to production app for bundle size (#44076) @oliviertassinari
 - [code-infra] Disable cron job for React 17 tests (#44065) @Janpot
@@ -1893,7 +1893,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [examples] Use CSS Variables (#43856) @Juneezee
 - [material-ui] Improved documentation for indeterminateIcon prop (#43791) @marctaylor01
 
-### Core
+### Internal
 
 - Fix typo in useLocalStorageState (#44024) @hieunguyenduc696
 - Amend changelog (#43968) @aarongarciah
@@ -1945,7 +1945,7 @@ A big thanks to the 13 contributors who made this release possible.
 - [Table] Stabilize random series in virtualized table demo (#43744) @Janpot
 - [system] Add migration guide link to `@mui/styles` pages (#43833) @samuelsycamore
 
-### Core
+### Internal
 
 - [code-infra] Fix flaky dashboard screenshot - take 2 (#43937) @Janpot
 - [code-infra] Replace all instances of `e` with `event` and add ESLint rule (#43866) @samuelsycamore
@@ -2012,7 +2012,7 @@ A big thanks to the 18 contributors who made this release possible.
 - Update release schedule table after v6 stable (#43726) @sahil-ag
 - Fix bundle size link regression @oliviertassinari
 
-### Core
+### Internal
 
 - [code-infra] Allow overriding all `options` of `useFakeTimers` function (#43729) @LukasTy
 - [core] Fix 301 link to Next.js and git diff @oliviertassinari
@@ -2086,7 +2086,7 @@ A big thanks to the 21 contributors who made this release possible. Here are the
 - [system] Fix link to createCssVarsProvider (#43661) @oliviertassinari
 - Add scrollbar to color picker demo (#43672) @sai6855
 
-### Core
+### Internal
 
 - [blog] Uniformalize version between projects @oliviertassinari
 - [blog] Fix page layout shift @oliviertassinari
@@ -2135,7 +2135,7 @@ A big thanks to the 11 contributors who made this release possible.
 - Update version support range (#43565) @oliviertassinari
 - Polish Material UI Sync plugin code format @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Update Material UI v6 blog post link to reflect correct section title (#43535) @Michael-Hutchinson
 - [blog] Makes the v5 name change clearer @oliviertassinari
@@ -2173,7 +2173,7 @@ A big thanks to the 12 contributors who made this release possible. It contains 
 - [material-ui] Add TemplateFrame to templates (#43406) @zanivan
 - [table] Make the data grid blend in (#43489) @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Update Toolpad Studio marketing page links in the blogs (#43407) @prakhargupta1
 - [blog] Add missing social card to the blog post (#43465) @siriwatknp
@@ -2223,7 +2223,7 @@ We are excited to announce the stable release of Material-UI v6 🎉, check out 
 - [material-ui] Clarify RTL language support in localization guide (#41784) @bahmanworld
 - [material-ui] Refine templates theme selector (#43396) @zanivan
 
-### Core
+### Internal
 
 - Prepare for v6 stable release (#43454) @siriwatknp
 - [blog] Polish Upcoming changes to MUI X pricing in 2024 (#43438) @oliviertassinari
@@ -2293,7 +2293,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [material-ui] Revamp `Composition` guide (#43266) @ZeeshanTamboli
 - [material-ui][Menu] Replace `PaperProps` with `slotProps.paper` in demos (#43354) @sai6855
 
-### Core
+### Internal
 
 - [code-infra] Change docs:start script to serve the exports folder (#43375) @Janpot
 - [core] Fix typescript-next CI workflow (#43394) @aarongarciah
@@ -2349,7 +2349,7 @@ A big thanks to the 18 contributors who made this release possible.
 - Update LTS to match format (#43212) @oliviertassinari
 - Fix Pigment CSS migration content (#43217) @siriwatknp
 
-### Core
+### Internal
 
 - [code-infra] Remove `userEvent` export from `@mui/internal-test-utils` (#43313) @LukasTy
 - [code-infra] Remove unnecessary alias (#43320) @Janpot
@@ -2455,7 +2455,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [blog] Announcing pricing changes Sep 2024 (#43061) @joserodolfofreitas
 - [material-ui][TextField] Remove mentions of `redux-form` from TextField documentation (#43176) @AbdurRahman2004
 
-### Core
+### Internal
 
 - [code-infra] Fix `@mui/internal-test-utils` `screen` export type (#43150) @LukasTy
 - [code-infra] Do not look for changes with previous commit when releasing a canary version (#43129) @michaldudak
@@ -2505,7 +2505,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [pigment-css] Fix syntax in migrating-to-pigment-css guide (#43107) @KevinVandy
 - Fix page description line break @oliviertassinari
 
-### Core
+### Internal
 
 - Fix event naming convention @oliviertassinari
 - [docs-infra] Move ads to the `@mui/docs` package (#42944) @alexfauquette
@@ -2553,7 +2553,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [material-ui] Add improvements to Dashboard template (#42445) @zanivan
 - [material-ui] Fix broken image links in blog template (#42956) @navedqb
 
-### Core
+### Internal
 
 - [code-infra] Add toolpad npm scope to envinfo (#41942) @Janpot
 - [code-infra] Fix pnpm lock file (#43030) @Janpot
@@ -2607,7 +2607,7 @@ A big thanks to the 6 contributors who made this release possible.
 - Fix 301 link @oliviertassinari
 - [material-ui] Add script to generate template screenshots (#42903) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Remove custom hooks from the `mui-name-matches-component-name` linting rule (#42773) @flaviendelangle
 - [core] Normalize rest / other to match the most common used @oliviertassinari
@@ -2651,7 +2651,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [LinearProgress] Fix buffer demo (#42858) @mbrookes
 - Adjust site to add Toolpad on the homepage (#38604) @bharatkashyap
 
-### Core
+### Internal
 
 - Fix imports in `Demo` component (#42857) @LukasTy
 - Use @mui/docs/HighlightedCodeWithTabs in markdown (#42841) @Janpot
@@ -2697,7 +2697,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [base-ui] Fix wrong description for `UseTabParameters.onChange` (#42749) @ohgree
 - Fix 301 MDN redirections @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Bump React to 18.3.1 (#42047) @renovate[bot]
 - [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
@@ -2742,7 +2742,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - Add first batch of v6 migration (#42242) @siriwatknp
 - Fix quotes on font-family dedeclaration in the Landing Page template theme (#42748) @joetats
 
-### Core
+### Internal
 
 - [code-infra] Refactor ESLint `import/no-cycle` rule (#42705) @LukasTy
 - [core] Target direct version for prerelease (#42768) @siriwatknp
@@ -2799,7 +2799,7 @@ A big thanks to the 17 contributors who made this release possible.
 - Recommend setting HTML attribute instead of DOM property for RTL (#42599) @aarongarciah
 - [material-ui][Select] Fix the `SelectAutoWidth` demo menu item value (#42648) @Danielkhakbaz
 
-### Core
+### Internal
 
 - [code-infra] Try disabling animations when taking screenshots (#42537) @Janpot
 - [code-infra] Fix benchmark package (#42553) @Janpot
@@ -2871,7 +2871,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [material-ui] Shorten useMediaQuery subheading (#42561) @aarongarciah
 - [material-ui] Add a Refine example project (#42461) @necatiozmen
 
-### Core
+### Internal
 
 - [core] Allow `for..of` loops (#42600) @michaldudak
 - [core] Add comment about Object.js @oliviertassinari
@@ -2924,7 +2924,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [material-ui] Update Figma design kit doc redirect link (#42448) @danilo-leal
 - [system] Add "dynamic values" section to sx prop page (#42239) @aarongarciah
 
-### Core
+### Internal
 
 - [docs-infra] Update the OG card image design (#42470) @danilo-leal
 - [docs-infra] Add small design polish (#42455) @danilo-leal
@@ -2977,7 +2977,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [material-ui][Tabs] Improve the Basic Tabs demo (#42374) @MatheusEli
 - [pigment-css] Polish redirection mention @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Add fixes and clean ups to the Blog page (#42311) @danilo-leal
 - [blog] Add the "Product" tag to the Pigment CSS post (#42365) @danilo-leal
@@ -3026,7 +3026,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs][material-ui] Add supported browsers section to migration guide (#42194) @DiegoAndai
 - [docs][material-ui][Pagination] Clarify pagination `page` prop API (#42220) @Mandar-Pandya
 
-### Core
+### Internal
 
 - [blog] Update blog post OG image (#42270) @danilo-leal
 - [blog] Update Pigment CSS post (#42266) @danilo-leal
@@ -3066,7 +3066,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [material-ui] Improve descriptions for deprecated props (#42221) @aarongarciah
 - [material-ui] Fix typo in composition docs (#42195) @aarongarciah
 
-### Core
+### Internal
 
 - [blog] Introducing Pigment CSS blog post (#42198) @samuelsycamore
 - [core] Remove confusing comment @oliviertassinari
@@ -3109,7 +3109,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [material-ui] Fix broken link (#42142) @aarongarciah
 - [material-ui][docs] Fix link on the Sync page (#42088) @danilo-leal
 
-### Core
+### Internal
 
 - [blog] Shorten title to fit @oliviertassinari
 - [blog] Update Sync post OG image (#42114) @danilo-leal
@@ -3149,7 +3149,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui][templates] Fix input props attributes in Landing Page template (#42013) @5-tom
 - [system] Update typo on the sx prop page (#42035) @bricker
 
-### Core
+### Internal
 
 - [docs-infra] Clean up branding theme file and improve font-face readibility (#42023) @danilo-leal
 - [docs-infra] Simplify docs demo (#42016) @oliviertassinari
@@ -3192,7 +3192,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - Fix 301 Toolpad links @oliviertassinari
 - Fix 301 image redirections @oliviertassinari
 
-### Core
+### Internal
 
 - pnpm docs:zipRules && vale sync @oliviertassinari
 - Remove @pigment-css/\* packages (#41965) @mnajdova
@@ -3265,7 +3265,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - Fix small SEO issues @oliviertassinari
 - [pigment-css] Fix README typos (#41870) @MohammadShehadeh
 
-### Core
+### Internal
 
 - Begin removing IE 11-related code (#41709) @iammminzzy
 - [blog] Add post to introduce the Connect plugin (#41763) @danilo-leal
@@ -3314,7 +3314,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui][docs] Fix Material 3 message typo (#41821) @aarongarciah
 - [material-ui][docs] Add stray design tweaks to free templates (#41696) @zanivan
 
-### Core
+### Internal
 
 - [core] Remove unused files (#41818) @mnajdova
 - [docs-infra] Fix analytics about inline ads (#41474) (#41819) @alexfauquette
@@ -3388,7 +3388,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [pigment-css] Add small edits on the README (#41646) @danilo-leal
 - [pigment-css] Edit the example app's README files (#41639) @danilo-leal
 
-### Core
+### Internal
 
 - [code-infra] Move BrandingProvider/brandingTheme/InfoCard to @mui/docs (#41206) @Janpot
 - [core] Automate cherry-pick of PRs from `next` -> `master` (#41741) @aarongarciah
@@ -3455,7 +3455,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [material-ui][Slider] Remove `valueLabelFormat` from restricted values demo so that the tooltip thumb label displays the same as the value text (#41567) @StylesTrip
 - [pigment-css] Update the RTL section on the readme (#41576) @danilo-leal
 
-### Core
+### Internal
 
 - [blog] Update the callout (#41645) @cherniavskii
 - [blog] Link to Romain's blog post in MUI X v7 announcement post (#41640) @cherniavskii
@@ -3497,7 +3497,7 @@ A big thanks to the 3 contributors who made this release possible.
 
 - [docs] Fix 301 @oliviertassinari
 
-### Core
+### Internal
 
 All contributors of this release in alphabetical order: @DiegoAndai, @oliviertassinari, @zanivan
 
@@ -3519,7 +3519,7 @@ A big thanks to the 5 contributors who made this release possible.
 - [material-ui] Replace deprecated `<ListItem button/>` with `ListItemButton` component in routing libraries list example (#43114) @aliharis99
 - [material-ui][Snackbar] Improve close `reason` type in demos (#43105) @sai6855
 
-### Core
+### Internal
 
 - [code-infra] Use the same CI names on master & next (#43064) @mnajdova
 
@@ -3590,7 +3590,7 @@ A big thanks to the 2 contributors who made this release possible.
 
 - [material] Remove dependency to @mui/base (@mnajdova) (#42917) @mnajdova
 
-### Core
+### Internal
 
 All contributors of this release in alphabetical order: @mnajdova, @oliviertassinari
 
@@ -3617,7 +3617,7 @@ A big thanks to the 4 contributors who made this release possible. Here are some
 - Fix typos (@omahs) (#42888) @omahs
 - Fix 301 @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Bump React to 18.3.1 (#42846) @aarongarciah
 - [core] Remove react-test-renderer (#42853) @aarongarciah
@@ -3651,7 +3651,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 
 - [docs] Fix 301 MDN redirections @oliviertassinari
 
-### Core
+### Internal
 
 - [mui-utils][test] Remove usages of deprecated react-dom APIs (@aarongarciah) (#42813) @aarongarciah
 
@@ -3678,7 +3678,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [material-ui][Autocomplete] Fix more React 18.3 key spread warnings in demos (#42766) @wbt
 - [material-ui] Fix sign in side image (#42708) @zanivan
 
-### Core
+### Internal
 
 - [core] Cherry pick pnpm updates (#42763) @DiegoAndai
 
@@ -3713,7 +3713,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [material-ui] Update Figma design kit doc redirect link (@danilo-leal) (#42456) @danilo-leal
 - [system] Add "dynamic values" section to sx prop page (@aarongarciah) (#42453) @aarongarciah
 
-### Core
+### Internal
 
 - [examples] Remove Pigment CSS examples (#42538) @sai6855
 
@@ -3743,7 +3743,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui][Tabs] Improve the Basic Tabs demo (@MatheusEli) (#42426) @github-actions[bot]
 - [pigment-css] Fix duplication of content (#42410) @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Add the "Product" tag to the Pigment CSS post (@danilo-leal) (#42366) @github-actions[bot]
 - [blog] Update blog post OG image (@danilo-leal) (#42306) @github-actions[bot]
@@ -3771,7 +3771,7 @@ A big thanks to the 5 contributors who made this release possible. Here are some
 
 - [docs] Fix 301 to Figma @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Introducing Pigment CSS blog post (#42198) (#42255) @samuelsycamore
 
@@ -3796,7 +3796,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Fix broken link (@aarongarciah) (#42143) @github-actions[bot]
 - [material-ui] Fix link on the Sync page (@danilo-leal) (#42089) @github-actions[bot]
 
-### Core
+### Internal
 
 - [blog] Shorten title to fit @oliviertassinari
 - [blog] Update Sync post OG image (@danilo-leal) (#42117) @github-actions[bot]
@@ -3840,7 +3840,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui][templates] Fix input props attributes in Landing Page template (@5-tom) (#42034) @github-actions[bot]
 - [system] Update typo on the sx prop page (@bricker) (#42078) @github-actions[bot]
 
-### Core
+### Internal
 
 - [blog] Add post to introduce the Connect plugin (@danilo-leal) (#41929) @DiegoAndai
 - [core] Automate cherry-pick of PRs from `next` -> `master` (#41742) @aarongarciah
@@ -3878,7 +3878,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Add notification for MUI X v7 blog post (#41587) (#41605) @cherniavskii
 - Update the versions dropdown to show v6 (#41557) @mnajdova
 
-### Core
+### Internal
 
 - [blog] Link to Romain's blog post in MUI X v7 announcement post (#41641) @cherniavskii
 - [blog] Blog post with MUI X v7.0.0 annoucement (#41563) (#41604) @cherniavskii
@@ -3921,7 +3921,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [pigment-css] Fixing location of the ExtendTheme type in the docs (#41499) @jherr
 - [material-ui][Progress] Add Circular progress gradient demo from Github comment (#40559) @DiegoAndai
 
-### Core
+### Internal
 
 - [blog] Bringing consistency to Material UI customization APIs (#41040) @DiegoAndai
 - [code-infra] Rename @mui-internal/docs-utils to @mui/internal-docs-utils (#41498) @michaldudak
@@ -4008,7 +4008,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - Fix v4 docs `<b>` appearing in notifications (#41390) @peterwangsc
 - Update GitHub project links (#41370) @danilo-leal
 
-### Core
+### Internal
 
 - [pigment] Make all Pigment CSS packages public (#41404) @brijeshb42
 - [pigment] Rename directories to match package names (#41453) @brijeshb42
@@ -4086,7 +4086,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [system] Tweak the Usage demos (#41242) @danilo-leal
 - [zero] Add a Why section on the README (#41284) @danilo-leal
 
-### Core
+### Internal
 
 - Revert "[utils] Port `useLocalStorageState` hook from Toolpad (#41096)" @oliviertassinari
 - [blog] Add post about how MUI uses Toolpad (#40172) @prakhargupta1
@@ -4176,7 +4176,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Fix MUI Treasury link @oliviertassinari
 - Migrate the last > quotes to ::: callouts @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Add new product tags and stray adjustments (#41193) @danilo-leal
 - [blog] Simplify `/base-ui-2024-plans/` page (#41171) @oliviertassinari
@@ -4253,7 +4253,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Fix missing GitHub label when opening new issue @oliviertassinari
 - [Stack] Update import statement for Stack component (#41032) @sai6855
 
-### Core
+### Internal
 
 - [blog] Add post about upcoming plans for Base UI (#40882) @danilo-leal
 - [core] Simplify CodeSandbox reproduction @oliviertassinari
@@ -4295,7 +4295,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 - [docs] Polish codemod git diff format @oliviertassinari
 - [material-ui][docs] Migrating from deprecated apis follow up (#40981) @DiegoAndai
 
-### Core
+### Internal
 
 - [code-infra] Move next config to ESM (#40869) @Janpot
 - [code-infra] Update prettier (#40772) @Janpot
@@ -4357,7 +4357,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - Fix outdated link @oliviertassinari
 - Fix URL and typo in CONTRIBUTING.md (#40899) @Smileek
 
-### Core
+### Internal
 
 - [blog] Optimize images for /blog/mui-x-v7-beta/ @oliviertassinari
 - [blog] Clarify barrel index tree-shaking @oliviertassinari
@@ -4436,7 +4436,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [Menu] Fix hydration mismatch error on Base UI's Menu docs (#40758) @michaldudak
 - [material-nextjs] Add theming and configuration content to the page (#40626) @siriwatknp
 
-### Core
+### Internal
 
 - [material-ui][test][Alert] Add action, icon, and iconMapping tests (#40682) @DiegoAndai
 - [blog] Lint duplicate h1 on the page (#40835) @oliviertassinari
@@ -4505,7 +4505,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Improve TabContext, TabList, and TabPanel documentation (#40587) @anle9650
 - [material-ui][Slider] Added custom mark labels demo (#40647) @DonikaV
 
-### Core
+### Internal
 
 - [core] Fix RXDB-logo Url (#40724) @mohamedsaiedd
 - [code-infra] Improve proptypes-generation (#40617) @alexfauquette
@@ -4596,7 +4596,7 @@ To adapt your code to the new pattern:
 - [material-ui][Snackbar] Remove unused `State` interface from Consecutive Snackbars demo (#40410)
   @zinoroman
 
-### Core
+### Internal
 
 - [blog] Fix 404 link to MUI Treasury @oliviertassinari
 - [code-infra] Add `run` command to deploy docs (#40513) @siriwatknp
@@ -4674,7 +4674,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - Fix 301 redirections @oliviertassinari
 - Right-to-left revision and addition to Joy UI (#39158) @danilo-leal
 
-### Core
+### Internal
 
 - [examples] Use material-nextjs integration package (#40199) @siriwatknp
 - [code-infra] Configure build dependencies in nx (#40482) @michaldudak
@@ -4741,7 +4741,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Fix Slider's customized iOS demo to use updated official colors (#39813) @Super-Kenil
 - [examples] Simplify Next.js example (#40318) @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Update open-graph cards for all posts (#40328) @danilo-leal
 - [blog] Correct git diff @oliviertassinari
@@ -4803,7 +4803,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [material-ui] Add an "All components" page (#40256) @danilo-leal
 - [material-ui][Tooltip] Add demo to show how to change distance between tooltip and its anchor (#40087) @anle9650
 
-### Core
+### Internal
 
 - [blog] Fix 301 redirection @oliviertassinari
 - [blog] Reduce max image size @oliviertassinari
@@ -4855,7 +4855,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Update the related projects page to list `mui-tiptap` for rich text (#40216) @sjdemartini
 - [material-ui] Fix typo in the Next.js integration page (#40209) @s8990
 
-### Core
+### Internal
 
 - [blog] Fix access to Notion without an account @oliviertassinari
 - [core] Update workflows and issue templates to reflect the updated label (#40197) @MBilalShafi
@@ -4914,7 +4914,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [joy-ui][templates] Remove outdated code (#40095) @zanivan
 - [material-ui][docs][Popper] Update Positioned Popper demo styles (#40170) @sai6855
 
-### Core
+### Internal
 
 - [blog] Add a Phuket retreat blog post (#40055) @mikailaread
 - [blog] Adjust the latest MUI X blog post (#40046) @danilo-leal
@@ -4947,7 +4947,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui][tabs] Refine scrollable tabs description (#40037) @zanivan
 - [system] Fix typo on the CSS theme variables page (#40040) @caweidmann
 
-### Core
+### Internal
 
 - [blog] Fix scrollbar on mobile (#40057) @oliviertassinari
 - [blog] Fix link to charts getting started page (#40043) @alexfauquette
@@ -5024,7 +5024,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - Restore Algolia results when searching for "Figma" (#39956) @oliviertassinari
 - Fix two tone icon dark mode color (#39868) @mnajdova
 
-### Core
+### Internal
 
 - Improve lerna's renovate package rules (#40029) @DiegoAndai
 - Downgrade lerna to 7.2.0 (#40026) @DiegoAndai
@@ -5134,7 +5134,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [material-ui] Remove numeric input workaround from TextField docs (#39629) @mj12albert
 - [material-ui] Add comment about code to be removed from Drawer demo (#39678) @samuelsycamore
 
-### Core
+### Internal
 
 - [docs-infra] Fix path bloat client-side (#39708) @oliviertassinari
 - [docs-infra] Render footer in SSR (#39710) @oliviertassinari
@@ -5202,7 +5202,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [examples] Upgrade Remix to v2 (#39229) @Nkzn
 - [examples][material-ui] Remove hardcoded `color="black"` from Next.js App Router layout (#39577) @samuelsycamore
 
-### Core
+### Internal
 
 - [core] Setup vale for enforcing style guides (#39633) @alexfauquette
 - [core] Remove unused use client (#38967) @oliviertassinari
@@ -5272,7 +5272,7 @@ A big thanks to the 17 contributors who made this release possible.
 - [l10n] Fix double space typo in ar-EG @oliviertassinari
 - [I10n] Additions to Icelandic (is-IS) locale (#39480) @hjalti-lifekeys
 
-### Core
+### Internal
 
 - [core] Replace a `useCallback` by `useRef` in useEventCallback (#39078) @romgrk
 - [docs-infra] Prevent docs crash (#39214) @alexfauquette
@@ -5339,7 +5339,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs][material-ui][Table] Bug in "Sorting & Selecting" demo (#39426) @codewithrabeeh
 - [docs][joy-ui][typography] Update docs after lineHeight changes (#39366) @zanivan
 
-### Core
+### Internal
 
 - [core] Fix multiple typos across the repo (#39422) @parikshitadhikari
 - [docs-infra] Add refinements to the API content design (#39425) @danilo-leal
@@ -5406,7 +5406,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [system] Add documentation on how to augment custom theme types for the `sx` prop callback (#39259) @3xp10it3r
 - [joy-ui][Input] Add debounce input demo (#39300) @sai6855
 
-### Core
+### Internal
 
 - [docs-infra] Improve the open diamond sponsor spot callout (#39332) @danilo-leal
 - [docs-infra] Fix CodeSandbox download issue (#39317) @ARJ2160
@@ -5482,7 +5482,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs][material-ui] Add small polish to the Templates page (#39224) @danilo-leal
 - [docs][material-ui] Small revision to the Icons page (#38840) @danilo-leal
 
-### Core
+### Internal
 
 - Add next lint config to ESLint (#39183) @Janpot
 - [core] Update ESLint rules (#39178) @romgrk
@@ -5543,7 +5543,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - Refine the Sign in template (#38942) @zanivan
 - Add `use-count-up` integration with the Circular Progress (#38952) @anon-phantom
 
-### Core
+### Internal
 
 - [blog] Add a company values blog post (#38802) @mikailaread
 - [core] Downgrade lerna to 7.2.0 (#39149) @michaldudak
@@ -5598,7 +5598,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - [docs][joy-ui] Revise the Overview page (#38842) @danilo-leal
 - [docs][material-ui][Pagination] Add `TablePagination` to the API components list (#38486) @MonstraG
 
-### Core
+### Internal
 
 - [core] Add more context about useEventCallback @oliviertassinari
 - [core] Allow deeper import of @mui/utils (#38806) @oliviertassinari
@@ -5696,7 +5696,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [examples] Add shortcut to open example in online IDE (#38572) @oliviertassinari
 - [examples][base-ui] Add Base UI + Vite + Tailwind CSS example in TypeScript (#37595) @dvkam
 
-### Core
+### Internal
 
 - [core] Remove package declaration from same package dependencies (#38951) @DiegoAndai
 - [core] Remove workspace dependencies from root package.json (#38940) @michaldudak
@@ -5783,7 +5783,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs][joy-ui] Polish the Stack page (#38623) @danilo-leal
 - [docs][material-ui] Adjust simple Slide demo (#38646) @rajgop1
 
-### Core
+### Internal
 
 - [core] Re-add nx and setup build caching (#38752) @brijeshb42
 - [core] Remove dead code seoTitle @oliviertassinari
@@ -5830,7 +5830,7 @@ A big thanks to the 11 contributors who made this release possible. This release
 - [docs][lab][LoadingButton] Improve `loading` prop documentation (#38625) @sai6855
 - [docs][material-ui] Format `key` prop JSDoc description in `Snackbar` component code correctly (#38603) @jaydenseric
 
-### Core
+### Internal
 
 - [core] Add use-client to custom icons (#38132) @mj12albert
 - [core] Remove unnecessary `@types/jsdom` (#38657) @renovate[bot]
@@ -5929,7 +5929,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [examples][joy-ui] Fix Joy UI example CLI (#38531) @oliviertassinari
 - [examples][joy-ui] Improve example when using Next Font (#38540) @mwskwong
 
-### Core
+### Internal
 
 - [changelog] Fix issues in highlight @oliviertassinari
 - [core] Remove redundant `@material-ui/` aliases from regression test webpack config (#38574) @ZeeshanTamboli
@@ -6006,7 +6006,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [examples] Add Joy UI + Vite.js + TypeScript example app (#37406) @nithins1
 
-### Core
+### Internal
 
 - [core] Consistent URL add leading / @oliviertassinari
 - [docs-infra] Fix rebase issue @oliviertassinari
@@ -6098,7 +6098,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [blog] Discord announcement blog (#38258) @richbustos
 - [blog] Fix 301 links to Toolpad @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix docs demo export function consistency (#38191) @oliviertassinari
 - [core] Fix the link-check script on Windows (#38276) @michaldudak
@@ -6189,7 +6189,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs][joy] Add TS demo for reusable component section in approaches page (#38210) @sai6855
 - [docs][joy] Add TS demo for theme typography new level customization (#38199) @sai6855
 
-### Core
+### Internal
 
 - [blog] Fix blog post slug Base UI (#38254) @oliviertassinari
 - [core] Use native Node's fetch instead of node-fetch package (#38263) @michaldudak
@@ -6241,7 +6241,7 @@ A big thanks to the 23 contributors who made this release possible.
 - [examples] Fix Joy UI Next.js App Router font loading (#38095) @IgnacioUtrilla
 - [examples] Fix material-next Font Usage with next/font (#38026) @onderonur
 
-### Core
+### Internal
 
 - [blog] Update Discord invite link in Toolpad beta announcement (#38143) @samuelsycamore
 - [blog] Update discord server link (#38131) @prakhargupta1
@@ -6309,7 +6309,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs][menu] Add Tailwind CSS & plain CSS demo on the Menu page (#37856) @mnajdova
 - [example] Update EmotionCacheProvider to work with GlobalStyles (#37962) @siriwatknp
 
-### Core
+### Internal
 
 - [blog] Add blog post about support for Next.js App Router (#37929) @samuelsycamore
 - [blog] Blog MUI X pro statement removed (#38015) @prakhargupta1
@@ -6393,7 +6393,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs-infra] Allows to use codeblock in the docs (#37643) @alexfauquette
 - [docs-infra][joy] Change Joy UI's playground variant selector (#37821) @danilo-leal
 
-### Core
+### Internal
 
 - [core] Prepend "use-client" directive + add docs and examples for using the library with Next.js App Router (#37656) @mj12albert
 - [core] Fix imports to React (#37863) @oliviertassinari
@@ -6457,7 +6457,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [docs] Rename product to productId (#37801) @siriwatknp
 - [docs][base] Add Tailwind CSS & plain CSS demo on the Slider page (#37736) @mnajdova
 
-### Core
+### Internal
 
 - [docs–infra] Prevent displaying multiple ads (#37696) @oliviertassinari
 - [blog] Fix mismatch between plan and link @oliviertassinari
@@ -6555,7 +6555,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
 - [examples] Next.js v13 App Router with Material UI (#37315) @smo043
 
-### Core
+### Internal
 
 - [core] Update to Node.js v18 for `test-dev` CI (#37604) @ZeeshanTamboli
 - [core] Add priority support issue template (#37671) @DanailH
@@ -6597,7 +6597,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs][joy] Add typography introduction demo component (#37553) @sernstberger
 - [docs][joy] Add a rental dashboard template (#37453) @sernstberger
 
-### Core
+### Internal
 
 - Move the React Community Engineer - X in Open Roles (#37552) @DanailH
 - [core] Update Node.js version to v18 on CircleCI, CodeSandbox, and Netlify (#37173) @ZeeshanTamboli
@@ -6642,7 +6642,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs] Fix "Language" page removal leftovers (#37408) @danilo-leal
 - [docs] Move contents of css-variables to sibling pages (#37411) @brijeshb42
 
-### Core
+### Internal
 
 - [core] Do not let Renovate handle `examples` packages updates (#37386) @ZeeshanTamboli
 
@@ -6691,7 +6691,7 @@ This release focuses primarily on 🐛 bug fixes and 📚 documentation improvem
 - [docs] Fix branding theme tabs and navigation bar regressions (#37362) @ZeeshanTamboli
 - [docs-infra] Throw on incorrect internal links (#37326) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Include scoped JSX namespace when resolving props (#37404) @LukasTy
 - [test][useMediaQuery] Change SSR test description (#37403) @zignis
@@ -6730,7 +6730,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [examples] Remove `@babel/plugin-proposal-class-properties` from Material-Express-SSR example (#37305) @ZeeshanTamboli
 - [Website] Add Brijesh to About page (#37318) @brijeshb42
 
-### Core
+### Internal
 
 - Revert "[core] Remove outdated babel proposal plugins (#36795)" (#37331) @michaldudak
 - [core] Move esmExternals to the shared next config (#37332) @michaldudak
@@ -6788,7 +6788,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs] Improve Base UI overview page (#37227) @mnajdova
 - [docs] Update Joy + Material guide (#36911) @cherniavskii
 
-### Core
+### Internal
 
 - [core] Remove `toEqualDateTime` chai matcher (#37073) @flaviendelangle
 - [core] Check dependency cycles inside packages directory only (#37223) @michaldudak
@@ -6847,7 +6847,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Improve Multiselect demo styling (#37120) @michaldudak
 - [Stack] Fix import description @oliviertassinari
 
-### Core
+### Internal
 
 - [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
 - [core] Add VS Code extensions recommendations (#37166) @michaldudak
@@ -6965,7 +6965,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [templates] Image not displayed in blog layout of React template. (#36991) @navedqb
 - [docs] Turn off job banner on docs (#36080) @joserodolfofreitas
 
-### Core
+### Internal
 
 - [core] Allow type alias as well in hooks API docs generation (#37034) @ZeeshanTamboli
 
@@ -7028,7 +7028,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs] Add info about passing ref to input element (#36913) @tomaskebrle
 - [docs][material] Tabs API section cleanup (#36942) @mnajdova
 
-### Core
+### Internal
 
 - [core] Fix CI failure on `master` (#37016) @hbjORbj
 - [typescript] Add the missing explicit component return types (#36924) @michaldudak
@@ -7101,7 +7101,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - [docs][Joy] `component`, `slots`, `slotProps` must be visible in Prop table in API docs (#36666) @hbjORbj
 - [docs][Select] Fix duplicate ID in small size Select demo (#36792) @sai6855
 
-### Core
+### Internal
 
 - [core] Use glob to find the test files in parseTest (#36305) @flaviendelangle
 - [core] Fix minor SEO issues @oliviertassinari
@@ -7149,7 +7149,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [examples] Fix `SliderUnstyled` slots `key` name (#36830) @sai6855
 - [Tabs] Improve useTab() API page (#36725) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Increase margin to scroll @oliviertassinari
 - [core] Replace MUI Base with Base UI (#36716) @mnajdova
@@ -7211,7 +7211,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs][material] Keep consistency in description of classes (#36631) @hbjORbj
 - [docs] Remove redundant files and fix regression (#36775) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [blog] Compress images @oliviertassinari
 - [core] Remove unused token (#36722) @oliviertassinari
@@ -7264,7 +7264,7 @@ A big thanks to the 10 contributors who made this release possible. We have one 
 - [docs] Improve API for theme default prop (#36490) @oliviertassinari
 - [docs][Table] Refactor `Sorting & Selecting` table demo (#33236) @IFaniry
 
-### Core
+### Internal
 
 - [core] Use Netlify function for feedback management (#36472) @alexfauquette
 
@@ -7326,7 +7326,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs] Remove `shouldSkipGeneratingVar` usage (#36581) @siriwatknp
 - [docs][material] Update Table's demo to show pointer cursor on clickable rows (#36546) @varunmulay22
 
-### Core
+### Internal
 
 - [core] Fix CI @oliviertassinari
 - [core] Fix blank line @oliviertassinari
@@ -7506,7 +7506,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs][joy] Build TS versions for Textarea component demos (#36371) @varunmulay22
 - [docs][joy] Build TS versions for Link component demos (#36366) @hbjORbj
 
-### Core
+### Internal
 
 - Revert "Bump rimraf to ^4.1.3" (#36420) @mnajdova
 - [core] Fix test utils types and external `buildApiUtils` usage issues (#36310) @LukasTy
@@ -7595,7 +7595,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [examples] Update curl link in `material-ui-nextjs-ts-v4-v5-migration` example README (#36321) @ZeeshanTamboli
 - [examples] Convert Next.js \_document class components to function components (#36109) @ossan-engineer
 
-### Core
+### Internal
 
 - [Rating] Add a comment in Rating component to use `readOnly` state class (#36357) @ZeeshanTamboli
 
@@ -7638,7 +7638,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs] Small color tweaks to the docs search bar (#36160) @danilo-leal
 - [docs][joy] Update class name prefixes in the `Anatomy` section (#36210) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [core] Migrate nprogress to emotion (#36181) @siriwatknp
 - [core] Enforce namespace import for ReactDOM (#36208) @mj12albert
@@ -7707,7 +7707,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [examples][vitejs] Load Roboto font (#35678) @oliv37
 
-### Core
+### Internal
 
 - [blog] Fix the look and feel of the media description (#36069) @oliviertassinari
 - [core] Add default preview url (#36118) @siriwatknp
@@ -7759,7 +7759,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Fix grammar typo (#36016) @alexownejazayeri
 - [docs][joy] Add JSDoc for the `AutocompleteProps` type (#36039) @ArthurPedroti
 
-### Core
+### Internal
 
 - [core] Make it easier to find who is importing specific files (#35896) @oliviertassinari
 - [core] Fix SEO redirections issues (#36041) @oliviertassinari
@@ -7842,7 +7842,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs][joy] Removed Badge info from Chip docs (#35955) @Vivek-Prajapatii
 - [docs][system] Fix border color of Boxes in demos of `Configure the sx prop` page in dark mode (#35961) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [core] Boolean props always have a default value of `false` in API docs (#35913) @hbjORbj
 - [core] Improve types for usePreviousProps (#35833) @sai6855
@@ -7910,7 +7910,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix typos in the docs of Joy UI (#35876) @HeVictor
 - [docs] Fix wording in `Color` page (#35873) @oliv37
 
-### Core
+### Internal
 
 - [core] Fix release changelog to handle commits with empty author field (#35921) @mnajdova
 - [core] Revert `docs-utilities` migration to TypeScript and fix type (#35881) @ZeeshanTamboli
@@ -7967,7 +7967,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs][joy] Fix grammar in `Typography` docs (#35796) @atrefonas
 - [examples] Remove `next-env.d.ts` from Next.js examples (#35772) @Juneezee
 
-### Core
+### Internal
 
 All contributors of this release in alphabetical order: @alexfauquette, @atrefonas, @fenghan34, @hbjORbj, @HeVictor, @Juneezee, @LukasTy, @mnajdova, @msoyka, @nnmax, @oliviertassinari, @pupudu, @sai6855, @samuelsycamore, @siriwatknp, @volhalink, @ZeeshanTamboli
 
@@ -8009,7 +8009,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs] Fix content wider than screen regression @oliviertassinari
 - [examples] Add `Vite.js with TypeScript` example (#35683) @miha53cevic
 
-### Core
+### Internal
 
 - [core] Close 2022 Developer Survey @oliviertassinari
 - [core] Fix the product license reference name (#35703) @oliviertassinari
@@ -8046,7 +8046,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [Joy][docs] Add documentation for `Input` component (#35482) @hbjORbj
 - [docs][joy] Improved readability on theme tokens page (#35639) @badalsaibo
 
-### Core
+### Internal
 
 - [core] Disable prefetch of footer links @oliviertassinari
 - [core] A few SEO fixes (#35672) @oliviertassinari
@@ -8111,7 +8111,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [docs][joy] Add documentation for `Stack` component (#35373) @hbjORbj
 - [docs][joy] Add documentation for `Grid` component (#35374) @hbjORbj
 
-### Core
+### Internal
 
 - [core] Shorthand notation to remove outline (#35623) @oliviertassinari
 - [core] Fix header link layout shift and clash (#35626) @oliviertassinari
@@ -8172,7 +8172,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix `unstable_sxConfig` typo (#35478) @siriwatknp
 - [docs] List component introduction example default code is missing ListItemContent component (#35492) @Miigaarino
 
-### Core
+### Internal
 
 - [test] Terminate BrowserStack after 5 minutes (#35454) @oliviertassinari
 - [test] Fix broken master branch (#35446) @oliviertassinari
@@ -8241,7 +8241,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Fix typo in FormControl API docs (#35449) @Spanishiwa
 - [docs] Update callouts design (#35390) @danilo-leal
 
-### Core
+### Internal
 
 - [core] Fix @mui/material package building (#35324) @timbset
 - [core] Fix leaking theme color override (#35444) @oliviertassinari
@@ -8310,7 +8310,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Update Base UI docs with latest style conventions (#35034) @samuelsycamore
 - [l10n] Improve Chinese (Taiwan) zh-TW locale (#35328) @happyincent
 
-### Core
+### Internal
 
 - [core] Use componentStyles.name over componentName (#35303) @oliviertassinari
 - [core] Fix warning leak in production (#35313) @oliviertassinari
@@ -8357,7 +8357,7 @@ A big thanks to the 13 contributors who made this release possible. This release
 - [examples] Fix Next.js errors (#35246) @oliviertassinari
 - [examples] Updated Remix examples with the lates changes using React 18 (#35092) @58bits
 
-### Core
+### Internal
 
 - [core] Remove unused pattern (#35165) @iamxukai
 - [core] Fix Base version in changelog (#35224) @siriwatknp
@@ -8415,7 +8415,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs] Host CodeSandbox on MUI org (#35110) @oliviertassinari
 - [docs] Uplift introduction demos & make consistent with Base (#34316) @danilo-leal
 
-### Core
+### Internal
 
 - [core] Convert icons scripts to ESM (#35101) @Janpot
 - [core] Group renovate GitHub Action dependency updates @oliviertassinari
@@ -8471,7 +8471,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Fix typo in changelog @oliviertassinari
 - [docs] Update Joy UI templates to use latest components (#35058) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Convert scripts to ES modules (#35036) @michaldudak
 - [core] Show the whole version to make blame easier @oliviertassinari
@@ -8530,7 +8530,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [examples] Next.js examples v13 - fonts (#34971) @PetroSilenius
 - [examples] Next.js examples v13 - links (#34970) @PetroSilenius
 
-### Core
+### Internal
 
 - [core] Remove default access to GitHub action scopes @oliviertassinari
 - [core] Fix Pinned-Dependencies @oliviertassinari
@@ -8585,7 +8585,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix inconsistent theme colors when applying custom colors in playground (#34866) @cherniavskii
 - [docs] Fix typo in bottom-navigation.md (#34884) @RoodyCode
 
-### Core
+### Internal
 
 - [core] Ignore compiled icons in CodeQL @oliviertassinari
 - [core] Add OSSF Scorecard action (#34854) @oliviertassinari
@@ -8676,7 +8676,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [docs] Fix JavaScript capitalization @oliviertassinari
 - [docs] Update new links to MD2 (#34848) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove dead files (#34850) @oliviertassinari
 - [core] Fix revert conflict @oliviertassinari
@@ -8738,7 +8738,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Basic link verification at PR level (#34588) @alexfauquette
 - [docs] Add a missing comma in the customization example (#34617) @AbayKinayat
 
-### Core
+### Internal
 
 - [core] Clean conditionals (#34772) @pedroprado010
 - [core] Temporary remove the authorization (#34796) @siriwatknp
@@ -8805,7 +8805,7 @@ A big thanks to the 7 contributors who made this release possible. Here are some
 - [docs] Fix codesandbox export with dayjs (#34619) @oliviertassinari
 - [docs] Explain the purpose of renderGroup prop (#34066) @michaldudak
 
-### Core
+### Internal
 
 - [core] Make useForkRef variadic (#27939) @michaldudak
 - [core] Speedup of yarn install in the CI (#34632) @oliviertassinari
@@ -8859,7 +8859,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Able to load doc components inside markdown files (#34243) @flaviendelangle
 - [docs] Use mouse pointer on esc button in the search modal (#34485) @minkyngkm
 
-### Core
+### Internal
 
 - [core] Update root package.json version (#34592) @mnajdova
 - [core] Remove useless comment in fixtures (#34581) @Garz4
@@ -8938,7 +8938,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Refine the use of MUI vs. Material UI (#34345) @oliviertassinari
 - [docs] Send feedback directly to a dedicated slack channel (#34196) @alexfauquette
 
-### Core
+### Internal
 
 - [core] Document some types in @mui/styled-engine-sc (#34413) @mnajdova
 - [core] Add yml support to prettier (#33980) @Janpot
@@ -9009,7 +9009,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 - [docs] Fix broken links (#34320) @alexfauquette
 - [docs] Add notification for Base UI announcement post (#34295) @samuelsycamore
 
-### Core
+### Internal
 
 - [core] Lock file maintenance (#34161) @renovate[bot]
 - [core] Issue template: move reproduction steps to the top (#34279) @Janpot
@@ -9054,7 +9054,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs] Improve link to the security policy (#34219) @oliviertassinari
 - [docs] Fix typo in Joy UI's `Usage` docs (#34200) @zillion504
 
-### Core
+### Internal
 
 - [test] Replace argos-cli with @argos-ci/core (#34178) @michaldudak
 - [core] Create a script to generate codeowners (#34175) @michaldudak
@@ -9100,7 +9100,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - [docs] Revise Joy UI "Overview" page copy (#34087) @samuelsycamore
 - [blog] Fix social cards (#34160) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Move renovate config to the repository root (#34180) @oliviertassinari
 - [core] Reinstate react/no-unused-prop-types ESLint rule (#34125) @Janpot
@@ -9159,7 +9159,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fixing Joy UI usage snippet (#34049) @JonathanAsbury-SPS
 - [docs] Fix missing JSX closing tag in Tooltip docs (#34064) @hoangph271
 
-### Core
+### Internal
 
 - [core] Offer alternative to `OverridableComponent` via module augmentation for better performance (#32735) @mnajdova
 - [core] Fix prop-type warning in regression tests (#34086) @oliviertassinari
@@ -9211,7 +9211,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - [docs] Fix typo in Joy UI's List Component docs (#33956) @Cerebro92
 - [docs] Fix typo in Joy UI's docs (#33938) @AjeetSingh2016
 
-### Core
+### Internal
 
 - Revert "[core] Replace `getInitialProps` with `getStaticProps`" (#33991) @mnajdova
 
@@ -9264,7 +9264,7 @@ A big thanks to the 18 contributors who made this release possible. This release
 - [docs] New Crowdin updates (#32213) @l10nbot
 - [examples] Fix broken path to favicon.ico (#33906) @mmostafavi
 
-### Core
+### Internal
 
 - [core] Add the download tracker package (#33899) @michaldudak
 - [core] Use proper external build id for Argos uploads (#33929) @cherniavskii
@@ -9325,7 +9325,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Add Grid version 2 docs (#33554) @siriwatknp
 - [examples] Fix `NextLinkComposedProps` type error (#33842) @adham618
 
-### Core
+### Internal
 
 - [blog] Add social card to Tenerife retreat post (#33764)
 - [blog] Fix blue outline bug (#33707) @oliviertassinari
@@ -9384,7 +9384,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
 - [docs][system] Throw an informative error when `theme.vars` is used in `createTheme()` and mention this in the theming docs (#33619) @hbjORbj
 
-### Core
+### Internal
 
 - [core] Replace `getInitialProps` with `getStaticProps` (#33684) @mnajdova
 - [core] Remove accidentally added files (#33636) @michaldudak
@@ -9448,7 +9448,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix link to Snackbar customization section in Alert docs (#33586) @ZeeshanTamboli
 - [docs] Fix `placement choices` typo in Tooltip docs (#33571) @MonstraG
 
-### Core
+### Internal
 
 - [core] Swallow ad blocker fetch fail (#33617) @oliviertassinari
 - [core] Fix dep security by resolving `thenify` to latest (#33612) @siriwatknp
@@ -9501,7 +9501,7 @@ A big thanks to the 17 contributors who made this release possible. This release
 - [examples] Change createEmotionCache to use `insertionPoint` (#32104) @ANTARES-KOR
 - [examples] Fix error in Next.js example with @mui/styles (#33456) @paustria
 
-### Core
+### Internal
 
 - [core] Cleanup experiments (#33547) @siriwatknp
 - [core] Update CHANGELOG to include pickers breaking change (#33486) @siriwatknp
@@ -9581,7 +9581,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [examples] Update Base UI with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
 - [examples] Add Base UI example (#33154) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Fix @mui/monorepo regression for the import of the docs infra (#33390) @Janpot
 - [core] Remove old babel resolve rule (#33432) @oliviertassinari
@@ -9694,7 +9694,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Badge component link in Base docs should be under Data Display section (#33249) @ZeeshanTamboli
 - [examples] Fix comment typo (#33256) @WinmezzZ
 
-### Core
+### Internal
 
 - [core] Remove dead code (#33243) @oliviertassinari
 
@@ -9754,7 +9754,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Add customization as a value proposition (#33014) @oliviertassinari
 - [examples] Add example using nextjs & @mui/styles as a starter for the migration to v5 (#33005) @mnajdova
 
-### Core
+### Internal
 
 - [core] Add CSS variables support for Material UI components (#32835) @siriwatknp
 - [core] Add name to workspace root package.json (#33226) @Janpot
@@ -9833,7 +9833,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Improvements for Radio Group Rating Docs (#32843) @Kai-W
 - [docs] Enable Joy pages (#33064) @siriwatknp
 
-### Core
+### Internal
 
 - yarn proptypes @oliviertassinari
 - [core] Update dependencies to fix security vulnerabilities (#33095) @michaldudak
@@ -9901,7 +9901,7 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Show product identifier on updated MUI X Introduction pages (#32966) @samuelsycamore
 - [docs] Throw on 301 links (#32939) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Improve icon synonyms (#32742) @oliviertassinari
 - [core] Prepare Next.js config for React 18 (#32963) @michaldudak
@@ -9959,7 +9959,7 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 - [docs] Document the `size` prop for InputLabel (#32936) @romelperez
 - [docs] Add note about transparent background on the outlined Alert variant (#32810) @aaarichter
 
-### Core
+### Internal
 
 - [core] Improve the incomplete issues workflow (#32878) @mnajdova
 - [core] Add CI check that the PR has label (#32886) @mnajdova
@@ -10027,7 +10027,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Update `useAutocomplete` demos to use `Mui-focused` class (#32757) @ZeeshanTamboli
 - [examples] Fix `NextLinkComposedProps` gives a TypeScript error (#32655) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [core] Upgrade MUI X dependency (#32824) @oliviertassinari
 - [typescript] Allow module augmentation for `Mixins` (#32798) @mnajdova
@@ -10093,7 +10093,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [examples] Update to use React 18's createRoot (#32506) @mnajdova
 - [l10n] Fix typos and translations on arSD and arEG locales (#31848) @shadigaafar
 
-### Core
+### Internal
 
 - [core] Enabled Renovate's lockfile maintenance (#32635) @michaldudak
 - [core] Extract `MuiPage` interface to separate file (#32715) @cherniavskii
@@ -10191,7 +10191,7 @@ Kudos to all contributors!
 - [Joy] Add Button page (#32576) @siriwatknp
 - [Joy] Add "Quick start" and "Tutorial" pages (#32383) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Security updates (#32636) @michaldudak
 - [core] Fix `docs:dev` not working after upgrading `next` to 12.1.0 (#32552) @cherniavskii
@@ -10258,7 +10258,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Fix grammar mistake in shadows.md (#32454) @HexM7
 - [docs] Improve unstyled button docs (#32429) @oliviertassinari
 
-### Core
+### Internal
 
 - [experiment] Add template for testing Material UI components with CSS variables (#32500) @siriwatknp
 
@@ -10312,7 +10312,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Add ability to display a plan icon next to a page link in nav bar (#32393) @flaviendelangle
 - [docs] Change label on `FormControlLabelPlacement` (#32322) @ainatenhi
 
-### Core
+### Internal
 
 - [core] `yarn prettier` write @oliviertassinari
 - [core] Fix changelog warning message (#32240) @praveen001
@@ -10369,7 +10369,7 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Update RTL guide (#32242) @michaldudak
 - [docs] Uniformize capitalization (#32238) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove unecessary div (#32237) @oliviertassinari
 - [core] Revert #32229 (#32262) @michaldudak
@@ -10411,7 +10411,7 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - [docs] Redirect to new urls (#32048) @siriwatknp
 - [docs] Update Learn page copy and resource list (#31989) @samuelsycamore
 
-### Core
+### Internal
 
 - [core] Fix misleading types range (#32236) @oliviertassinari
 - [core] Small polish on the product name (#32199) @oliviertassinari
@@ -10482,7 +10482,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Move SelectUnstyled docs to the Base space (#31816) @michaldudak
 - [docs] Create the TabsUnstyled docs (#32023) @michaldudak
 
-### Core
+### Internal
 
 - [core] Update peer deps to support React 18 (#32063) @eps1lon
 - [core] Fix running docs:api on Windows (#32091) @michaldudak
@@ -10578,7 +10578,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Portal] Copy Portal docs to the Base space (#31959) @michaldudak
 - Revert "[website] Remove X-Frame-Options" @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fixes error in changelog generator for item sorting/padding (#30088) @dimitropoulos
 - [core] Fix typo in issue template @oliviertassinari
@@ -10623,7 +10623,7 @@ A big thanks to the 7 contributors who made this release possible. This is a sma
 - [docs] Make LTS searchable (#31804) @oliviertassinari
 - [docs] Fix demo filename on zh markdown (#31790) @nnmax
 
-### Core
+### Internal
 
 - [core] Add tests for Avatar component (#31829) @hbjORbj
 
@@ -10683,7 +10683,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [docs] Add Algolia verification code to robot.txt (#31356) @siriwatknp
 - [examples] Ignore tsbuildinfo with Next.js (#31460) @B0und
 
-### Core
+### Internal
 
 - [core] Simplify anchor link (#31419) @oliviertassinari
 - [core] Revert unrelated changes in #31354 @oliviertassinari
@@ -10765,7 +10765,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [blog] Simplify the labels (#30921) @oliviertassinari
 - [l10n] Add Croatian (hr-HR) and Serbian (sr-RS) translation (#30906) @m14d3n
 
-### Core
+### Internal
 
 - [core] Fix running markdownlint on Windows (#31352) @michaldudak
 - [core] Fix the stylelint script on Windows (#31281) @mnajdova
@@ -10826,7 +10826,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Update interoperability.md broken tailwind links (#31182) @robertwt7
 - [docs] Add missing import into tss-react migration guide (#31162) @sviande
 
-### Core
+### Internal
 
 - [core] Add group for the @fortawesome dependencies (#31193) @mnajdova
 - [core] Update playwright docker to match the specified version (#31236) @siriwatknp
@@ -10871,7 +10871,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [l10n] Add it-IT translation for labelDisplayedRows (#31131) @frab90
 - [l10n] Add pl-PL translation for labelDisplayedRows (#31088) @ThomasTheHuman
 
-### Core
+### Internal
 
 - [core] Add jsx, html, css and prisma to prettier extensions (#31161) @Janpot
 - [core] Allow to run material-ui.com/store alongside mui.com/store (#31065) @oliviertassinari
@@ -10927,7 +10927,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
 - [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
 
-### Core
+### Internal
 
 - [benchmark] Add missing dependency (#30994) @michaldudak
 - [core] Bump date-io version (#31016) @michaldudak
@@ -10995,7 +10995,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Update Instructions for Google Maps Autocomplete (#30849) @kjschabra
 - [docs] Hotfix notification (#30862) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Batch small fixes (#30952) @oliviertassinari
 - [core] Rename the GitHub org (#30944) @oliviertassinari
@@ -11074,7 +11074,7 @@ A big thanks to the 22 contributors who made this release possible. Here are som
 - [docs] Small fixes on the jss-to-tss migration guide (#30734) @garronej
 - [examples] Add Vite.js example (#28241) @goncalovf
 
-### Core
+### Internal
 
 - [core] Clarify the label, to match with MUI X (#30831) @oliviertassinari
 - [core] Remove none code related instructions from git (#30843) @oliviertassinari
@@ -11106,7 +11106,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - [SliderUnstyled] Improve typings on some internal utils (#30614) @mnajdova
 
-### Core
+### Internal
 
 - [core] Batch small changes (#30690) @oliviertassinari
 - [core] Add new structure to ignore list crowdin (#30608) @siriwatknp
@@ -11195,7 +11195,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Update link to Doit sponsor (#30586) @oliviertassinari
 - [docs] Add products identifier and drawer (#30283) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Revert changes to peer dependencies (#30662) @oliviertassinari
 - [core] Renovate should not try to update node (#30659) @oliviertassinari
@@ -11275,7 +11275,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [i18n] improve viVN locale (#30426) @hckhanh
 - [l10n] Improve fiFI locale (#30442) @Certificate
 
-### Core
+### Internal
 
 - [core] Automatically close issues that are incomplete and inactive (#30459) @oliviertassinari
 - [core] Remove contrib tweet (#30455) @oliviertassinari
@@ -11329,7 +11329,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Support redirects from old urls to /material/\* (#30286) @siriwatknp
 - [examples] Fix CSS Modules integration (#30381) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Rename Material UI to MUI (#30338) @ZeeshanTamboli
 - [core] Fix warning in dev mode (#30368) @oliviertassinari
@@ -11381,7 +11381,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] General documentation polish (#29994) @danilo-leal
 - [examples] Fix typo in the remix example's README (#30289) @lemol
 
-### Core
+### Internal
 
 - [test] Reduce bundle size comparison memory consumption (#30195) @Janpot
 - [core] make snapshot comparison more resilient (#30183) @Janpot
@@ -11455,7 +11455,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
 - [survey] Remove survey promotion items (#30122) @danilo-leal
 
-### Core
+### Internal
 
 - [core] Fix link to Open Collective @oliviertassinari
 - [core] Update snapshots and s3 fallback (#30134) @Janpot
@@ -11539,7 +11539,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [Stack] Document system props in Stack API (#30069) @ThewBear
 - [survey] Add a banner and card for promoting the 2021 survey (#29950) @danilo-leal
 
-### Core
+### Internal
 
 - [core] Batch small changes (#30042) @oliviertassinari
 - [core] Transition to a new Stack Overflow tag (#29967) @oliviertassinari
@@ -11597,7 +11597,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 - [docs] Fix typo in notifications @mbrookes
 - [docs] Black Friday sale notification @mbrookes
 
-### Core
+### Internal
 
 - [core] Remove dead code (#29940) @oliviertassinari
 - [core] Move benchmark CI job from AZP to CircleCI (#29894) @eps1lon
@@ -11696,7 +11696,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Update the list of supported locales (#29831) @michaldudak
 - [docs] Update tooltip doc to better define touch action (#29717) @gnowland
 
-### Core
+### Internal
 
 - [test] Allow debugging with Chrome and VS Code inspector (#29777) @eps1lon
 - [test] Use renderer clock instead of custom useFakeTimers call (#29778) @eps1lon
@@ -11765,7 +11765,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] correct bundler configuration for using legacy Material UI build (#29146) @petermikitsh
 - [blog] Support many authors in markdown pages (#29633) @m4theushw
 
-### Core
+### Internal
 
 - [core] Add `experiments` index page (#29582) @siriwatknp
 - [core] Move s3 bucket ownership to mui-org (#29609) @eps1lon
@@ -11862,7 +11862,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
 - [docs] Update migration-v4 docs for wrong import path (#29042) @busches
 - [docs] Add GitHub icon change to "Migration from v4 to v5" guide (#29182) @dan-mba
 
-### Core
+### Internal
 
 - [core] Handle RecordType and FieldType in generatePropDescription.ts (#29467) @flaviendelangle
 - [core] Convert a named color to lowercase (#29465) @ainatenhi
@@ -11976,7 +11976,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [pricing] Add tooltip to pricing icon (#28959) @siriwatknp
 - [Team] Add Alexandre in the about page (#29289)
 
-### Core
+### Internal
 
 - [core] Order repro methods by preference (#29156) @eps1lon
 - [core] Remove unnecessary usages of `useEventCallback` (#28910) @NMinhNguyen
@@ -12039,7 +12039,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Fix color & density playground (#28803) @siriwatknp
 - [docs] Improve visibility of styled engine configuration section in installation guide (#28903) @Jareechang
 
-### Core
+### Internal
 
 - [core] Prevent yarn cache growing infinitely (#29040) @eps1lon
 - [core] Update browserslist (#29025) @eps1lon
@@ -12119,7 +12119,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Fix versions page (#28682) @mnajdova
 - [docs] Remove legacy team page (#28646) @mnajdova
 
-### Core
+### Internal
 
 - [core] Remove `--exact` from `release:version` (#28840) @siriwatknp
 - [core] Neglect framer from release flow (#28680) @siriwatknp
@@ -12174,7 +12174,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix wrong name for zIndex's property example in /system/ (#28541) @chetrit
 - [examples] Nextjs Link missing passHref #28588 (#28661) @Brlaney
 
-### Core
+### Internal
 
 - [core] Improve Renovate groups (#28642) @eps1lon
 - [core] Batch small changes (#28553) @oliviertassinari
@@ -12228,7 +12228,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Add notification for v5 @oliviertassinari
 - [docs] Fix typo (#28521) @valse
 
-### Core
+### Internal
 
 - [core] Fix release:changelog base branch (#28533) @mnajdova
 - [core] Remove code handling JSS components (#28421) @eps1lon
@@ -12303,7 +12303,7 @@ These are the changes done from the last release candidate version (5.0.0-rc.1):
 - [docs] Replace remaining unstyled package reference (#28351) @michaldudak
 - [docs] No import from react-router (#28329) @eps1lon
 
-### Core
+### Internal
 
 - [core] Replace Material UI with MUI (#28243) @mnajdova
 - [core] Prepare for v5 stable release (#28240) @mnajdova
@@ -12379,7 +12379,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Improve diamond sponsors in the navigation (#28090) @mnajdova
 - [docs] Remove unnecessary comma (#28072) @michaldudak
 
-### Core
+### Internal
 
 - [core] Misc bundle size tracking improvements (#28205) @eps1lon
 - [core] Ensure code preview is valid JavaScript (#28215) @eps1lon
@@ -12481,7 +12481,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Fix Performance typo (#27965) @tdmiller1
 - [docs] Add GridExportCSVOptions page to documentation pages (#27951) @flaviendelangle
 
-### Core
+### Internal
 
 - [eslint-plugin-material-ui] Only require translation of word characters and not API (#28043) @eps1lon
 - [core] Use lintable pattern for debounced callbacks (#27985) @eps1lon
@@ -12623,7 +12623,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - Revert "[examples] Update create-react-app examples with styled-components to use package aliases (#27591)" (#27917) @mnajdova
 - [I10n] Add Khmer (kh-KH) locale support (#27915) @teachhay
 
-### Core
+### Internal
 
 - [core] Fix various flip: false regressions (#27920) @mnajdova
 - [core] Fix typo in code comment (#27818) @hamidreza-nateghi
@@ -12690,7 +12690,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Improve virtualization demo (#27340) @vedadeepta
 - [examples] Include a follow-up on the example (#27620) @matiasherranz
 
-### Core
+### Internal
 
 - [core] Batch small changes (#27636) @oliviertassinari
 - [core] Change range strategy to bump (#27652) @oliviertassinari
@@ -12758,7 +12758,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
 - [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
 
-### Core
+### Internal
 
 - [core] rebaseWhen=auto does not seem to work (#27565) @oliviertassinari
 - [core] Improve instructions for the @material-ui/styles migration (#27466) @mnajdova
@@ -12855,7 +12855,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [examples] Create nextjs example using styled-components (#27088) @hboylan
 - [examples] Update gatsby example to use custom plugin (#27357) @mnajdova
 
-### Core
+### Internal
 
 - [core] Remove obsolete styles documentation (#27350) @eps1lon
 - [core] Fix GitHub language detection (#27298) @oliviertassinari
@@ -12959,7 +12959,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [examples] Remove `StyledEngineProvider` as JSS is not used (#27133) @mnajdova
 - [examples] Remove forgotten StyledEngineProvider (#27163) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Batch small changes (#26970) @oliviertassinari
 - [core] Configure Renovate (#27003) @renovate[bot]
@@ -13089,7 +13089,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] pre-fill issue when a demo crashes (#27034) @eps1lon
 - [docs] Move styled page under system (#26818)
 
-### Core
+### Internal
 
 - [core] Inline rollup-plugin-size-snapshot (#26986) @eps1lon
 - [core] Remove unused props clone (#26992) @oliviertassinari
@@ -13295,7 +13295,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [l10n] Add sinhalese (siLK) locale (#26875) @pavinduLakshan
 - [examples] Rename Next.js TypeScript theme from tsx to ts (#26862) @Izhaki
 
-### Core
+### Internal
 
 - [test] Fix Drawer test API @oliviertassinari
 - [test] Adjust expected useAutocomplete error messages for React 18 (#26858) @eps1lon
@@ -13416,7 +13416,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - [docs] Migrate paperbase premium template to emotion (#26658) @vicasas
 - [List] Fix demo to have correct semantic (#26742) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Monitore size of key system modules (#26712) @oliviertassinari
 - [core] Batch small changes (#26738) @oliviertassinari
@@ -13530,7 +13530,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] `Rating` `value` is nullable in `onChange` (#26542) @sakura90
 - [example] Remove the dependency on @material-ui/styles (#26567) @garfunkelvila
 
-### Core
+### Internal
 
 - [core] Ignore latest prettier run in git-blame @eps1lon
 - [core] Format @eps1lon
@@ -13682,7 +13682,7 @@ We are progressively moving all modules that are relevant to styling custom desi
 - [docs] Update system installation for v5 (#26481) @mnajdova
 - [template] Demo how to retreive form value (#26393) @akshitsuri
 
-### Core
+### Internal
 
 - [core] Batch small changes (#26434) @oliviertassinari
 - [core] Fix peer dependencies declaration with yarn v2 (#26433) @oliviertassinari
@@ -13847,7 +13847,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Improve react-admin coverage in the showcase (#26169) @fzaninotto
 - [docs] Fix Workbox that are causing infinite loading of site (#26193) @arpitBhalla
 
-### Core
+### Internal
 
 - [core] Skip sx prop in internal components (#26235) @mnajdova
 - [core] Remove `withStyles` dependencies from `@material-ui/core/styles` (#26277) @mnajdova
@@ -14189,7 +14189,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Document all the colors available (#26015) @anshuman9999
 - [docs] Avoid extracting classes twice (#25973) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Add test for behavior when picker variant changes (#26128) @eps1lon
 - [test] testing-library patterns for playwright tests (#25860) @eps1lon
@@ -14345,7 +14345,7 @@ This package is just re-released since version 5.1.7 had a breaking change.
 - [docs] Update minimum required TypeScript version (#25930) @eps1lon
 - [Table] Improve description of TablePagination.rowsPerPageOptions (#25982) @kevinlul
 
-### Core
+### Internal
 
 - [core] Fix wrong imports to '@material-ui/styles' (#25984) @mnajdova
 - [core] Ensure props spreading works as expected (#25939) @oliviertassinari
@@ -14490,7 +14490,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [l10n] zhTW refinement (#25786) @shakatoday
 - [Tabs] Add demo for routing with Tabs (#25827) @ahmed-28
 
-### Core
+### Internal
 
 - [core] Batch small changes (#25804) @oliviertassinari
 - [core] Document token permissions of release:changelog (#25732) @eps1lon
@@ -14563,7 +14563,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs] Add interoperability section for Portal (#25575) @mnajdova
 - [docs] Fix side nav scroll position (#25619) @misaka3
 
-### Core
+### Internal
 
 - [test] Use public api in lab (#25682) @vicasas
 - [test] Test types of .spec lab files (#25684) @eps1lon
@@ -14649,7 +14649,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Fix Stack divider demo (#25491) @oliviertassinari
 - [docs] Migrate Icons demos to emotion (#25412) @vicasas
 
-### Core
+### Internal
 
 - [core] Use latest TypeScript in typescript-to-proptypes (#25512) @eps1lon
 - [core] Update the codesandbox issue templates (#25501) @oliviertassinari
@@ -14771,7 +14771,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 - [docs] Migrate Container demos to emotion (#25220) @vicasas
 - [docs] Add GlobalStyles API (#25191) @eps1lon
 
-### Core
+### Internal
 
 - [benchmark] Set intended environment (#25402) @eps1lon
 - [core] Remove .propTypes when the props are empty (#25193) @eps1lon
@@ -14855,7 +14855,7 @@ The prop didn't solve any important problem better than any of its alternatives 
 - [docs] Remove CircleCI from backers (#24801) @mbrookes
 - [docs] Update the used testing libraries (#25144) @oliviertassinari
 
-### Core
+### Internal
 
 - [changelog] Better document breaking changes @oliviertassinari
 - [core] Modernize icons `builder:src` (#25137) @eps1lon
@@ -15006,7 +15006,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [docs] Add yarn install step, safer @oliviertassinari
 - [examples] Fix CodeSandbox link GitHub branch (#24996) @kevbarns
 
-### Core
+### Internal
 
 - [core] Prevent out-of-memory in test_types_next (#25079) @eps1lon
 - [core] Pin playwright image to known working version (#25080) @eps1lon
@@ -15200,7 +15200,7 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 - [docs] Fix formatting of `mask` prop description (#24842) @eps1lon
 - [docs] Add read synonym to drafts (#24854) @Lagicrus
 
-### Core
+### Internal
 
 - [core] Fix release:tag pushing to material-ui-docs (#24633) @eps1lon
 - [core] Fix `next` using stale pages (#24635) @eps1lon
@@ -15328,7 +15328,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [docs] Document default values of external props (#24417) @eps1lon
 - [docs] Update in-house ads (#24410) @mbrookes @ewldev
 
-### Core
+### Internal
 
 - [core] Skip downloading browser binaries in codesandbox/ci (#24628) @eps1lon
 - [core] Batch small changes (#24599) @oliviertassinari
@@ -15435,7 +15435,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Update right to left compatibility plugin version (#24370) @mnajdova
 - [docs] Widen example datetime-local picker so it's not clipped (#24324) @ramdog
 
-### Core
+### Internal
 
 - [core] Create issue labeled (#24283) @xrkffgg
 - [core] Fix ESLint @oliviertassinari
@@ -15496,7 +15496,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [docs] Fix iframe demos with emotion (#24232) @oliviertassinari
 - [docs] Sync translations (#24161) @l10nbot
 
-### Core
+### Internal
 
 - [test] More granular progress tracking of relative type imports (#24233) @eps1lon
 - [core] Add missing sx typings on the components migrated to emotion (#24208) @mnajdova
@@ -15569,7 +15569,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [blog] 2020 in review and beyond (#24130) @oliviertassinari
 - [docs] Improve naming and structure of the Customization and Guide pages (#24175) @mnajdova
 
-### Core
+### Internal
 
 - [core] Batch small changes (#24131) @oliviertassinari
 - [core] Fix overridesResolver on the core components and added tests (#24125) @mnajdova
@@ -15652,7 +15652,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Update customization/components and customization/global pages (#24016) @mnajdova
 - [docs] Update the CSS injection guide (#24020) @mnajdova
 
-### Core
+### Internal
 
 - [core] Batch small changes (#24038) @oliviertassinari
 - [core] Track size of /unstyled (#24021) @eps1lon
@@ -15768,7 +15768,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Sync translations (#23742, #23842) @l10nbot
 - [docs] Update Badge examples to use Box instead of makeStyles (#23927) @mnajdova
 
-### Core
+### Internal
 
 - [test] Add conformance tests for testing the `theme.components` options for the v5 components (#23896) @mnajdova
 - [test] Include type path mappings in language server (#23905) @eps1lon
@@ -15863,7 +15863,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs] Remove unused abstraction (#23724) @oliviertassinari
 - [docs] Sync translations (#23682) @l10nbot
 
-### Core
+### Internal
 
 - [benchmark] Improve printed results (#23729) @oliviertassinari
 - [benchmark] Test styleFunctionSx vs. @styled-system/css (#23702) @mnajdova
@@ -16031,7 +16031,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [docs] Replace emotion-server packages with @emotion/server (#23557) @numToStr
 - [docs] Sync translations (#23648) @l10nbot
 
-### Core
+### Internal
 
 - [core] Add support for TypeScript 4.1 (#23633) @eps1lon
 - [core] Batch small changes (#23554) @oliviertassinari
@@ -16136,7 +16136,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 - [docs] Update new components in the roadmap (#23507) @mbrookes
 - [docs] Update translations (#23501) @l10nbot
 
-### Core
+### Internal
 
 - [core] Batch small changes (#23422) @oliviertassinari
 - [core] Fix skipped ignore patterns (#23474) @eps1lon
@@ -16246,7 +16246,7 @@ A big thanks to the 20 contributors who made this release possible. Here are som
 - [docs] Update system pages to use sx prop instead of deprecated Box props (#23368) @mnajdova
 - [docs] Use present tense for bool prop descriptions (#23274) @mbrookes
 
-### Core
+### Internal
 
 - [utils] Add all @material-ui/core/utils to @material-ui/utils (#23264) @mnajdova
 - [core] Batch small changes (#23327) @oliviertassinari
@@ -16422,7 +16422,7 @@ Here are some highlights ✨:
 - [docs] Remove unused style selectors `extendedIcon` (#23160) @MatejKastak
 - [docs] Use Box sx prop on all Slider examples #23217 @mnajdova
 
-### Core
+### Internal
 
 - [benchmark] Add theme-ui and chakra-ui Box scenarios (#23180) @mnajdova
 - [benchmark] Create separate workspace (#23209) @eps1lon
@@ -16532,7 +16532,7 @@ Here are some highlights ✨:
 - [examples] Update gatsby-theme example to use @material-ui/\* next #23093 @mnajdova
 - [examples] Update nextjs example project to use @material-ui/\* next (#23094) @mnajdova
 
-### Core
+### Internal
 
 - [benchmark] Add browser benchmark (#22923) @mnajdova
 - [benchmark] Fix benchmark scripts & moved scenarios to correct benchmark project (#23058) @mnajdova
@@ -16741,7 +16741,7 @@ Here are some highlights ✨:
 - [docs] Update ToggleButton import (#22971) @mbrookes
 - [docs] Use demo name as codesandbox name (#22926) @eps1lon
 
-### Core
+### Internal
 
 - [benchmark] Add cross-env to fix window run issue (#22895) @mnajdova
 - [core] Batch small changes (#22746) @oliviertassinari
@@ -17004,7 +17004,7 @@ More documentation are coming.
 - [docs] Remove wrong migration instruction (#22710) @oliviertassinari
 - [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
 
-### Core
+### Internal
 
 - [core] Port createSpacing to TypeScript (#22720) @eps1lon
 - [core] Replace ChangeEvent<{}> with SyntheticEvent (#22716) @eps1lon
@@ -17137,7 +17137,7 @@ Here are some highlights ✨:
 - [docs] Fix typo, extra 'you' (#22560) @jedsmit
 - [docs] Option to disable ads (#22574) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove usage of deprecated event.keyCode (#22569) @oliviertassinari
 - [core] Remove references to other objects from created theme (#22523) @eps1lon
@@ -17189,7 +17189,7 @@ Here are some highlights ✨:
 - [docs] Improve styles basics.md section (#22440) @bxie
 - [docs] Include default values in IntelliSense (#22447) @eps1lon
 
-### Core
+### Internal
 
 - [core] Batch small changes (#22461) @oliviertassinari
 - [core] Fix useEventCallback type (#22448) @kodai3
@@ -17354,7 +17354,7 @@ const theme = createMuiTheme({
 - [docs] Add Backstage to showcase (#22428) @stefanalund
 - [docs] Update Fontsource installation instructions (#22431) @DecliningLotus
 
-### Core
+### Internal
 
 - [icons] Label them as vendored for GitHub (#22397) @oliviertassinari
 - [test] DialogContent with testing-library (#22356) @baterson
@@ -17488,7 +17488,7 @@ Here are some highlights ✨:
 - [docs] Migrate Dashboard template to TypeScript (#22280) @oliviertassinari
 - [docs] Fix minimizing-bundle-size.md (#22298) @Primajin
 
-### Core
+### Internal
 
 - [core] Batch small changes (#22183) @oliviertassinari
 - [core] Change children to be optional (#22134) @suliskh
@@ -17770,7 +17770,7 @@ Here are some highlights ✨:
 - [docs] Use `import * as React from 'react';` (#22058) @mbrookes
 - [docs] Use pickers v4 (#22023) @eps1lon
 
-### Core
+### Internal
 
 - [core] Allow running prettier from material-ui-x (#22071) @oliviertassinari
 - [core] Bump csstype to 3.0.0 (#22048) @eps1lon
@@ -17846,7 +17846,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [docs] Update gold sponsor to Text-Em-All (formerly Call-Em-All) (#21897) @jonmiller0
 - [docs] Update testing guide (#21863) @eps1lon
 
-### Core
+### Internal
 
 - [test] Enable more StrictMode tests (#21817) @eps1lon
 - [test] Lint internal typescript-to-proptypes fork (#21876) @eps1lon
@@ -17888,7 +17888,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [docs] Fix nav color (#21780) @mbrookes
 - [docs] Update advanced-de.md (#21786) @jasonericdavis
 
-### Core
+### Internal
 
 - [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
 - [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
@@ -17936,7 +17936,7 @@ A big thanks to the 14 contributors who made this release possible.
 - [docs] Remove `@document` directive from IntelliSense (#21688) @eps1lon
 - [docs] Track web-vitals (#21702) @eps1lon
 
-### Core
+### Internal
 
 - [test] Allow container + hydrate in render (#21747) @eps1lon
 - [test] Bump url-loader (#21689) @eps1lon
@@ -18007,7 +18007,7 @@ A big thanks to the 16 contributors who made this release possible.
 - [docs] Remove in-context translation code & files (#21633) @mbrookes
 - [example] Remove dead dependency from next-typescript (#21628) @StefanWerW
 
-### Core
+### Internal
 
 - [test] Add toWarnDev() and toErrorDev() matcher (#21581) @eps1lon
 
@@ -18191,7 +18191,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
 - [docs] Reword palette intention and fix format (#21477) @DDDDDanica
 - [docs] Update v4 migration guide (#21462) @eps1lon
 
-### Core
+### Internal
 
 - [typescript-to-proptypes] Integrate into monorepo @eps1lon
 - [test] Add type test CardHeader title component (#21590) @eps1lon
@@ -18232,7 +18232,7 @@ _Jul 27, 2021_
 - <!-- 4 --> [docs] Fix 404 link to ImageList @oliviertassinari
 - <!-- 3 --> [docs] Fix DataTable.tsx demo in v4 (#27196) @Siv-tspab
 
-### Core
+### Internal
 
 - <!-- 5 --> [core] Add release scripts (#27399) @eps1lon
 
@@ -18270,7 +18270,7 @@ _July 7, 2021_
 
 This release is released to fix the package.json generation in the previous release.
 
-### Core
+### Internal
 
 - [core] Fix generation of package.json file on Windows (#27160) @mnajdova
 
@@ -18325,7 +18325,7 @@ A big thanks to the 12 contributors who made this release possible. It includes 
 - [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
 - [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
 
-### Core
+### Internal
 
 - [test] Deprecate test-utils (#24099) @eps1lon
 
@@ -18359,7 +18359,7 @@ We fixed an issue related to some packages using incompatible versions of `@mate
 - <!-- 02 --> [docs] Add sorting section (#24637) @dtassone
 - <!-- 01 --> [docs] v4 is not under active development @oliviertassinari
 
-### Core
+### Internal
 
 - <!-- 17 --> remove job ad @oliviertassinari
 - <!-- 07 --> clearer header @oliviertassinari
@@ -18433,7 +18433,7 @@ This release fixes an important issue with Chrome 88. The usage of NaN as a CSS 
 - [docs] Update Divjoy URL (#24447) @mbrookes
 - [docs] Update in-house ads (#24410) @mbrookes
 
-### Core
+### Internal
 
 - [core] Batch small changes (#24224) @oliviertassinari
 
@@ -18544,7 +18544,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
 - [docs] configuring redirects for MUI X (#22632) @dtassone
 
-### Core
+### Internal
 
 - [core] Remove Alert codeowner @oliviertassinari
 - [core] Small changes (master) (#22022) @oliviertassinari
@@ -18611,7 +18611,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [docs] Sync translations (#21445) @oliviertassinari
 - [docs] Sync translations (#21535) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Batch small changes (#21419) @oliviertassinari
 - [core] Fix react next patch and prevent regression (#21482) @eps1lon
@@ -18695,7 +18695,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [docs] Update minimum TypeScript version to 3.2 (#21197) @NMinhNguyen
 - [docs] Use rem in responsive font sizes chart (#21373) @thewidgetsmith
 
-### Core
+### Internal
 
 - [test] Speed up slow TablePagination tests (#21374) @eps1lon
 - [test] Type-test event handlers on ListItem (#21298) @eps1lon
@@ -18750,7 +18750,7 @@ A big thanks to the 21 contributors who made this release possible.
 - [docs] Sync translations (#21275) @oliviertassinari
 - [docs] Track pixel ratio (#21209) @eps1lon
 
-### Core
+### Internal
 
 - [FocusTrap] Make an unstable version public (#21201) @dmtrKovalenko
 - [test] Track size of `@material-ui/utils` (#21240) @eps1lon
@@ -18835,7 +18835,7 @@ Here are some highlights ✨:
 - [docs] Sort ways to support MUI; clarify clsx (#21150) @dandv
 - [docs] Sync translations (#21155) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Add issue template for material design issues (#21120) @eps1lon
 - [core] Batch small changes (#20980) @oliviertassinari
@@ -18903,7 +18903,7 @@ Here are some highlights ✨:
 - [docs] Remove redirection to v0 (#17637) (#20902) @dellink
 - [docs] Sychronize translations (#20982) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Improve assertion mismatch messages (#20964) @eps1lon
 - [test] Migrate all Table components to testing-library (#20914) @marcosvega91
@@ -18975,7 +18975,7 @@ Here are some highlights ✨:
 - [docs] Use mathematical interval notation for breakpoints (#20843) @eps1lon
 - [examples] Add next.js SSG clarification comment (#20810) @sospedra
 
-### Core
+### Internal
 
 - [test] Migrate colorManipulator from assert to expect (#20792) @marcosvega91
 - [test] Migrate from assert to expect (#20799) @oliviertassinari
@@ -19063,7 +19063,7 @@ Here are some highlights ✨:
 - [docs] Sync translations (#20779) @oliviertassinari
 - [material-ui-docs] Fix missing/extraneous dependencies (#20771) @eps1lon
 
-### Core
+### Internal
 
 - [AppBar] Migrate to testing-library (#20693) @marcosvega91
 - [Avatar] Migrate to testing-library (#20697) @marcosvega91
@@ -19123,7 +19123,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Sync translations (#20498) @oliviertassinari
 - [docs] Use reactStrictMode over custom switch (#20522) @eps1lon
 
-### Core
+### Internal
 
 - [test] Add StrictMode compat layer test (#20547) @eps1lon
 - [test] Use method calls over property access expressions (#20545) @eps1lon
@@ -19207,7 +19207,7 @@ You can expect the following:
 - [docs] Fix various issues with heading structure (#20389) @eps1lon
 - [docs] Synchronize translations (#20405) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Introduce useId hook (#20407) @NMinhNguyen
 - [test] Fix broken tests in `react@next` (#20472) @eps1lon
@@ -19255,7 +19255,7 @@ A big thanks to the 20 contributors who made this release possible.
 - [docs] Sync translations (#20316) @oliviertassinari
 - [docs] Next.js: Remove unused config files (#20382) @HaNdTriX
 
-### Core
+### Internal
 
 - [core] Add TextField `focused` prop (#20276) @dmtrKovalenko
 - [core] Add missing test case for restricted-path-imports (#20350) @NMinhNguyen
@@ -19337,7 +19337,7 @@ Here are some highlights ✨:
 - [docs] Page size tracking fixes (#20199) @eps1lon
 - [docs] Sync translations (#20210) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Improve regression test suite debugging (#20194) @eps1lon
 - [ci] Retry mergeable state for 30 minutes (#20269) @eps1lon
@@ -19458,7 +19458,7 @@ Here are some highlights ✨:
 - [docs] Simplify drawer examples (#20040) @TommyJackson85
 - [examples] Fix typo in gatsby readme (#19998) @eps1lon
 
-### Core
+### Internal
 
 - [test] Match against messages not args on console methods (#20046) @eps1lon
 - [test] Resize screenshots with sharp (#19979) @oliviertassinari
@@ -19511,7 +19511,7 @@ Here are some highlights ✨:
 - [docs] Fix typo on supported-platforms.md (#19841) @vferdiansyah
 - [docs] Move store to a subfolder (#19822) @oliviertassinari
 
-### Core
+### Internal
 
 - [ci] Enable re-run of azure pipelines (#19823) @eps1lon
 - [ci] Fix heap out of memory in azure pipelines (#19825) @eps1lon
@@ -19562,7 +19562,7 @@ Here are some highlights ✨:
 - [docs] Sync translations.json @oliviertassinari
 - [docs] Update the translations (#19741) @mbrookes
 
-### Core
+### Internal
 
 - [core] Export ThemeOptions (#19789) @dbarabashdev
 - [core] Small fixes (#19803) @oliviertassinari
@@ -19602,7 +19602,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [docs] Update codemod documentation (#19661) @larsenwork
 - [docs] What's the lab about? (#19611) @jcafiero
 
-### Core
+### Internal
 
 - [core] Export TypographyVariant type (#19598) @aleccaputo
 - [core] Host normalize-scroll-left (#19638) @oliviertassinari
@@ -19651,7 +19651,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] The error style rule is a pseudo-class (#19555) @TommyJackson85
 - [docs] Update link to example for adding a new demo (#19590) @LorenzHenk
 
-### Core
+### Internal
 
 - [company] Polish the job post (#19593) @oliviertassinari
 - [core] Ignore `@date-ui/` updates (#19633) @eps1lon
@@ -19731,7 +19731,7 @@ Here are some highlights ✨:
 - [docs] Update the translations (#19514) @mbrookes
 - [docs] makeStyles doesn't have access to the component's name (#19474) @hesto2
 
-### Core
+### Internal
 
 - [test] Check exhaustive deps of useEnhancedEffect (#19417) @eps1lon
 - [test] Misc polish (#19425) @eps1lon
@@ -19832,7 +19832,7 @@ Here are some highlights ✨:
 - [docs] Use button in backdrop demo (#19282) @theswerd
 - [docs] Use reasonable unitless line-height for Box (#19260) @minikomi
 
-### Core
+### Internal
 
 - [test] Improve visual regression tests (#19175) @oliviertassinari
 - [core] Batch small changes (#19097) @oliviertassinari
@@ -19887,7 +19887,7 @@ Here are some highlights since 4.8.0 ✨:
 - [docs] Improve Next.js usage (#19075) @chrisweb
 - [docs] Improve theme.breakpoints description (#19065) @littleee
 
-### Core
+### Internal
 
 - [core] Fix missing type peer deps (#17211) @eps1lon
 
@@ -19941,7 +19941,7 @@ A big thanks to the 22 contributors who made this release possible.
 - [docs] Update showcase lists (#19039) @typekev
 - [docs] Fix url address in modules/watrerfall/Batcher.js (#18997) @hiteshkundal
 
-### Core
+### Internal
 
 - [core] Don't force a remote when listing prettier changes (#18794) @Janpot
 - [core] Bump handlebars from 4.1.2 to 4.5.3 (#18989) @dependabot-preview
@@ -19988,7 +19988,7 @@ A big thanks to the 24 contributors who made this release possible.
 - [docs] Fix grammar issues in Babel plugin unwrap-createstyles (#18856) @RDIL
 - [docs] Update the translations (#18865) @mbrookes
 
-### Core
+### Internal
 
 - [core] Batch small changes (#18961) @oliviertassinari
 
@@ -20050,7 +20050,7 @@ Here are some highlights ✨:
 - [docs] Revert hiding duplicate link (#18767) @mbrookes
 - [docs] Simplify MiniDrawer demo (#18814) @shc023
 
-### Core
+### Internal
 
 - [core] Fix @material-ui/lab homepage url (#18823) @francisrod01
 - [core] Batch small changes (#18780) @oliviertassinari
@@ -20090,7 +20090,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [docs] Update the translations (#18644) @mbrookes
 - [docs] `ssrMatchMedia` required for client rending as well (#18680) @moshest
 
-### Core
+### Internal
 
 - [core] Batch changes (#18629) @oliviertassinari
 
@@ -20142,7 +20142,7 @@ Here are some highlights ✨:
 - [docs] Include mention to Persian in localization.md (#18513) @uxitten
 - [docs] Update v3 migration guide for ExpansionPanel (#18612) @NMinhNguyen
 
-### Core
+### Internal
 
 - [test] Assert accessible name (#18609) @eps1lon
 - [test] Improve merging tests for createMuiTheme (#18543) @eedrah
@@ -20224,7 +20224,7 @@ Here are some highlights ✨:
 - [docs] Remove outdated showcase (#18364) @LorenzHenk
 - [docs] Update the translations (#18339) @mbrookes
 
-### Core
+### Internal
 
 - [GitHub] Fix fragment on link in PR template (#18370) @twgardner2
 - [Security] Bump https-proxy-agent from 2.2.2 to 2.2.4 (#18440) @dependabot-preview
@@ -20320,7 +20320,7 @@ index 757d66a97..a4f36edd5 100644
 - [docs] Replace alert with console.info (#18316) @eps1lon
 - [docs] Replace react-inspector with custom TreeView implementation (#17662) @eps1lon
 
-### Core
+### Internal
 
 - [core] Add funding entry to manifests (#18250) @eps1lon
 - [core] Remove nodemod (#18222) @oliviertassinari
@@ -20400,7 +20400,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 - [docs] Rename interface headCell to HeadCell (#18093) @EngMoathOmar
 - [docs] Update notification v4.5.2 @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Build all `@material-ui/*` packages for CodeSandbox CI (#18100) @eps1lon
 - [test] Fix tests failing on subsequent runs in watchmode (#18076) @eps1lon
@@ -20504,7 +20504,7 @@ Here are some highlights ✨:
 - [docs] Workaround next.js AMP support limitation (#18020) @fbnklmnvds
 - [docs] document use of theme.mixins.toolbar & <Toolbar /> when using Appbar variant fixed (#17878) @adeelibr
 
-### Core
+### Internal
 
 - [core] Batch small changes (#17910) @oliviertassinari
 - [core] Custom deepmerge implementation (#17982) @oliviertassinari
@@ -20605,7 +20605,7 @@ Here are some highlights ✨:
 - [docs] Update notification @oliviertassinari
 - [docs] Update useMediaQuery example to avoid confusion with print (#17642) @epeicher
 
-### Core
+### Internal
 
 - [ci] Fix size comparison sort order (#17800) @eps1lon
 - [core] Batch small changes (#17673) @oliviertassinari
@@ -20691,7 +20691,7 @@ Here are some highlights ✨:
 - [docs] Reword icons page (#17558) @croraf
 - [examples] Fix CRA start script (#17598) @lychyi
 
-### Core
+### Internal
 
 - [core] Fix missing peer dependency warning (#17632) @eps1lon
 - [core] Re-export all the styles modules from core (#17419) @merceyz
@@ -20766,7 +20766,7 @@ This is a stability release.
 - [docs] Use Suspense for lazy loading algolia (#17451) @eps1lon
 - [docs] Wrong URL for spacing in PT (#17502) @renatoagds
 
-### Core
+### Internal
 
 - [core] Prevent empty useEffect in production (#17420) @merceyz
 - [core] Replace warning with manual console.error (#17404) @eps1lon
@@ -20793,7 +20793,7 @@ This is a quick release after v4.4.1 to solve 3 regressions.
 - [docs] Add tubular-react to tables related projects (#17382) @geoperez
 - [docs] Fix color tool crash (#17380) @jsjain
 
-### Core
+### Internal
 
 - [core] Bump `@babel/*` deps (#17363) @eps1lon
 
@@ -20862,7 +20862,7 @@ Here are some highlights ✨:
 - [docs] Update translations (#17351) @mbrookes
 - [docs] Update translations.json (#17266) @mbrookes
 
-### Core
+### Internal
 
 - [core] Add ref type to every component (#17286) @eps1lon
 - [core] Fix typo contaniners -> containers (#17280) @charlax
@@ -20983,7 +20983,7 @@ Here are some highlights ✨:
 - [docs] Small changes (#17060) @oliviertassinari
 - [example] Remove unused MuiLink declaration (#16991) @colemars
 
-### Core
+### Internal
 
 - [core] Classes to hooks (#17061) @oliviertassinari
 - [core] Upgrade the dependencies (#16990) @oliviertassinari
@@ -21040,7 +21040,7 @@ Here are some highlights ✨:
 - [docs] Batch small changes (#16864) @oliviertassinari
 - [docs] Batch small changes (#16883) @oliviertassinari
 
-### Core
+### Internal
 
 - [benchmark] Fix not running (#16900) @ypresto
 - [ci] Ignore dependabot branches (#16893) @eps1lon
@@ -21279,7 +21279,7 @@ Here are some highlights ✨:
 - [examples] Update to support Next.js v9 (#16519) @Janpot
 - [blog] June 2019 Update (#16516) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix docs:typescript:check (#16607) @merceyz
 - [core] Fix incorrect usage of HtmlHTMLAttributes (#16579) @whitneyit
@@ -21363,7 +21363,7 @@ Here are some highlights ✨:
 - [docs] Use full text of the code of conduct (#16417) @mbrookes
 - [docs][tablecell] Fix padding and size property descriptions (#16378) @the-question
 
-### Core
+### Internal
 
 - [test] Simpler createClientRender (#16461) @eps1lon
 - [ci] Move TypeScript tests into separate job (#16405) @eps1lon
@@ -21471,7 +21471,7 @@ Here are some highlights ✨:
 - [example] Hooks are standards now, no need to mention it (#16288) @obedparla
 - [examples] Fix the styled-jsx integration of the Next.js examples (#16268) @lifeiscontent
 
-### Core
+### Internal
 
 - [types] Explicitly use react types (#16230) @kdy1
 - [test] Introduce @testing-library/react (#15732) @eps1lon
@@ -21536,7 +21536,7 @@ Here are some highlights ✨:
 - [docs] Remove `CSS to Material UI webpack Loader` (#16175) @sabrinaluo
 - [docs] import Omit Type from @material-ui/types (#16157) @aditya1906
 
-### Core
+### Internal
 
 - [core] Add TypeScript types for styled (#16133) @merceyz
 - [core] Fix withStyles not including props (#16134) @merceyz
@@ -21618,7 +21618,7 @@ Here are some highlights ✨:
 - [docs] Use immediate export in MenuAppBar.js (#16032) @aditya1906
 - [docs] Use immediate export when there is no HOC part 2 (#16038) @merceyz
 
-### Core
+### Internal
 
 - [core] Fix incorrect typings for hexToRgb (#16059) @whitneyit
 - [core] Fix type definition for theme.spacing (#16031) @merceyz
@@ -21698,7 +21698,7 @@ Here are some highlights ✨:
 - [docs] Fix syntax error in v3 migration guide (#16010) @zhuangya
 - [docs] Use immediate export when there is no HOC (#16005) @merceyz
 
-### Core
+### Internal
 
 - [core] Add dependency react>=16.3.0 requested by @emotion/core and react-js (#15982) @marco-silva0000
 - [core] Fix IE 11 crashes related to Object.assign (#15921) @eps1lon
@@ -21777,7 +21777,7 @@ Here are some highlights ✨:
 - [docs] Fix typo in README (#15817) @ammaristotle
 - [example] Update gatsby-plugin-material-ui dependency (#15810) @hupe1980
 
-### Core
+### Internal
 
 - [core] Add cross-env to docs:size-why (#15816) @merceyz
 - [core] Change the top package name so we get the number of dependents packages @oliviertassinari
@@ -21818,7 +21818,7 @@ Some statistics with v4 compared to the release of v1 one year ago:
 - [docs] Reference the article with it's full name in icon doc (#15796) @DDDDDanica
 - [docs] Revert the marked change (#15797) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Change cssutils responsiveProperty unit type (#15783) @eddiemonge
 
@@ -21898,7 +21898,7 @@ The release of v4 is imminent, stay tuned!
 - [docs] Core a11y improvements (#15748) @eps1lon
 - [docs] Fix some apostrophe in TypeScript doc (#15757) @DDDDDanica
 
-### Core
+### Internal
 
 - [test] Colocate shadow root test for focus visible with implementation (#15712) @eps1lon
 - [test] Extend StrictMode tests (#15714) @eps1lon
@@ -21951,7 +21951,7 @@ This is a stability release preparing v4.
 - [docs] Reorganize the structure (#15603) @mbrookes
 - [docs] Update the translations (#15653) @mbrookes
 
-### Core
+### Internal
 
 - [core] Drop partial chrome 41 support (#15630) @eps1lon
 - [core] Optimize clsx usage (#15589) @merceyz
@@ -22033,7 +22033,7 @@ Here are some highlights ✨:
 - [docs] Update Changelog (#15567) @oliviertassinari
 - [docs] Updated v3 Migration guide (#15518) @vkasraj
 
-### Core
+### Internal
 
 - [core] Add additional warnings when attaching ref to function elements (#15519) @eps1lon
 - [core] Add ref prop to transition components (#15520) @eps1lon
@@ -22163,7 +22163,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 - [example] Add preact-next example (#15401) @oliviertassinari
 - [example] Fix gatsby-next (#15406) @TheHolyWaffle
 
-### Core
+### Internal
 
 - [core] Fix the CI fail (#15428) @oliviertassinari
 - [ci] Fail when demos are only available in TypeScript (#15460) @eps1lon
@@ -22316,7 +22316,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - [docs] Improve the customization demos (#15368) @oliviertassinari
 - [docs] Use tsx syntax highlighting (#15385) @eps1lon
 
-### Core
+### Internal
 
 - [core] Allow docs:dev access over local network (#15259) @eps1lon
 - [core] Type ref for components (#15199) @eps1lon
@@ -22431,7 +22431,7 @@ Here are some highlights ✨:
 - [examples] Update all the examples + page layout examples (#15219) @nareshbhatia
 - [docs] Tidy up moved / deleted translations and update the Crowdin config (#15247) @mbrookes
 
-### Core
+### Internal
 
 - [test] Forward ref behavior (#15131) @eps1lon
 - [core] Use explicit HTML entity (#15132) @eps1lon
@@ -22512,7 +22512,7 @@ Here are some highlights ✨:
 - [docs] Add Snackbars TypeScript Demos (#15087) @sperry94
 - [docs] Add Tooltip TypeScript demos (#15061) @Dudrie
 
-### Core
+### Internal
 
 - [ToggleButtonGroup] Convert to function component (#15025) @joshwooding
 - [ToggleButton] Convert to function component (#14965) @joshwooding
@@ -22550,7 +22550,7 @@ This release fixes an important regression with TypeScript: https://github.com/m
 - [docs] Improve overrides.md wording (#14403) @i0
 - [docs] Grammar fix (#14960) @nateq314
 
-### Core
+### Internal
 
 N/A
 
@@ -22629,7 +22629,7 @@ Here are some highlights ✨:
 - [docs] Add note to docs README regarding translations (#15020) @mbrookes
 - [docs] Content's max width changed for large displays (#15014) @kenzhemir
 
-### Core
+### Internal
 
 - [core] Refactor a subset of components from classes to functions (#14854) @mbrookes
 - [benchmark] Use deterministic version tags (#14968) @eps1lon
@@ -22719,7 +22719,7 @@ Here are some highlights ✨:
 - [docs] Fix babel generator extra line (#14849) @VincentLanglet
 - [docs] Remove unnecessary findDOMNode usage (#14836) @eps1lon
 
-### Core
+### Internal
 
 - [core] Only import from top or 2nd level (#14888) @eps1lon
 - [test] Leaner ESLint config (#14901) @eps1lon
@@ -22818,7 +22818,7 @@ Here are some highlights ✨:
 - [docs] Prepare Google & Algolia i18n search + v3/v4 search (#14806) @oliviertassinari
 - [docs] Speed-up pull requests build (#14811) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Ignore the image load issue (#14723) @oliviertassinari
 - [icons] Fix builder failing on Windows (#14726) @joshwooding
@@ -22931,7 +22931,7 @@ Here are some highlights ✨:
 - [docs] Add simple list TypeScript demo (#14485) @eps1lon
 - [docs] Fix wrong source code URLs (#14716) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix webstorm autocompletion (#14599) @eps1lon
 - [ci] Use dangerJS to report bundle size changes (#14587) @eps1lon
@@ -23052,7 +23052,7 @@ Remove the first option argument of `withTheme()`. The first argument was a plac
 - [docs] Add sections about translation contributions (#14571) @eps1lon
 - [docs] Localize the table of contents (#14548) @mbrookes
 
-### Core
+### Internal
 
 - [core] Convert remaining classNames usage (#14506) @eps1lon
 - [core] Fix Prettier on next branch (#14524) @joshwooding
@@ -23250,7 +23250,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 - [docs] Generalize non-markdown I18n (#14413) @mbrookes
 - [docs] Fix the css-in-js styled section to match currying implementation (#14418) @gutofoletto
 
-### Core
+### Internal
 
 - [core] Use frozen-lockfile by default (#14433) @eps1lon
 - [utils] Add support for forwardRef components in getDisplayName (#14429) @eps1lon
@@ -23318,7 +23318,7 @@ Here are some highlights ✨:
 - [docs] Enable the i18n help messages (#14356) @oliviertassinari
 - [docs] Fix SW cache invalidation (242bff9) @oliviertassinari
 
-### Core
+### Internal
 
 - [README] Add all the products sponsoring open source (#14311) @oliviertassinari
 - [core] Disable CircleCI on l10n (#14314) @oliviertassinari
@@ -23397,7 +23397,7 @@ Here are some highlights ✨:
 - [docs] Better server-side rendering example (#14269) @unalterable
 - [docs] Add Misheneye to the showcase (#14262) @gdub01
 
-### Core
+### Internal
 
 - [core] Upgrade the dependencies (#14196) @oliviertassinari
 - [core] Remove keycode() (#14248) @oliviertassinari
@@ -23449,7 +23449,7 @@ Here are some highlights ✨:
 - [docs] Add notes about next branch (#14151) @eps1lon
 - [docs] Add Yakaz to homepage, backers & readme (#14180) @mbrookes
 
-### Core
+### Internal
 
 - [core] Remove unnecessary plugins in .eslintrc (#14161) @WebDeg-Brian
 - [core] Fix the CDN release (#14172) @oliviertassinari
@@ -23542,7 +23542,7 @@ Here are some highlights ✨:
 - [docs] Add Tidelift security link to README (#14108) @mbrookes
 - [docs] Showcase, reorder based on SimilarWeb Global Rank (#14106) @mbrookes
 
-### Core
+### Internal
 
 - [core] Fix multiline deprecatedPropType (#14049) @joshwooding
 - [core] Remove opinionated will-change usage (#14036) @joshwooding
@@ -23635,7 +23635,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 - [styles] Document withStyles defaultTheme option (#14029) @joshwooding
 - [docs] Update the CodeFund embed script (#14031) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix running docs:api on Windows and other minor spelling mistakes (#13989) @joshwooding
 - [core] Sanitize the benchmark (#14012) @oliviertassinari
@@ -23679,7 +23679,7 @@ Here are some highlights ✨:
 - [docs] Improve demos loading (#13959) @adeelibr
 - [docs] Improve the service-worker logic (#13987) @oliviertassinari
 
-### Core
+### Internal
 
 - [CDN] Fix the UMD build (#13928) @oliviertassinari
 - [ci] Exit with non-zero if argos cli failed (#13954) @eps1lon
@@ -23747,7 +23747,7 @@ you to add them up quickly in your head without having to worry about decimals.
 - [docs] Notify that we will do core/MuiThemeProvider -> styles/ThemeProvider (#13910) @Skn0tt
 - [docs] Improve the state override story (#13919) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] 100% remove the prop types (#13859) @oliviertassinari
 - [core] Prefix the errors with Material UI (#13892) @oliviertassinari
@@ -23810,7 +23810,7 @@ Here are some highlights ✨:
 - [docs] Add more details regarding installation of material-ui/styles (#13813) @wilcoschoneveld
 - [docs] Fix broken link anchor (#13862) @mvasin
 
-### Core
+### Internal
 
 - [typescript] Add test case for List type limitations (#13764) @eps1lon
 - [core] Remove unused lint directives (#13766) @eps1lon
@@ -23859,7 +23859,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 - [docs] Reduce the no-results rate on Algolia (#13741) @oliviertassinari
 - [docs] Fix concurrency with Frame demos (#13747) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Correct the link to the example test (#13709) @mdcanham
 - [styles] Fix tslint false negative with outdated local builds (#13750) @eps1lon
@@ -23963,7 +23963,7 @@ import Divider from '@material-ui/core/Divider';
 - [docs] Restructure the demo based on usage analytics (#13684) @oliviertassinari
 - [docs] Fix typo in URL (#13688) @Malvineous
 
-### Core
+### Internal
 
 - [core] Update dev dependencies (#13626) @oliviertassinari
 - [test] Fix codecov failing on merge commits (#13654) @eps1lon
@@ -24070,7 +24070,7 @@ _Powered by [JSS](https://github.com/cssinjs/jss)._
 - [docs] Misc fixes (#13555) @oliviertassinari
 - [docs] Add cookie for persistent colors (#13567) @mbrookes
 
-### Core
+### Internal
 
 - [test] Improve tests related to lists (#13517) @eps1lon
 - [core] Remove recompose/wrapDisplayName usage (#13525) @oliviertassinari
@@ -24132,7 +24132,7 @@ Here are some highlights ✨:
 - [docs] Add Typography example for MenuItem (#13500) @joshwooding
 - [docs] Reword flexbox limitation (#13508) @joshwooding
 
-### Core
+### Internal
 
 - [core] Ponyfill global (#13426) @TrySound
 - [core] Upgrade dev dependencies (#13429) @oliviertassinari
@@ -24179,7 +24179,7 @@ Here are some highlights ✨:
 - [docs] Update Workbox to v3.6.3 (#13392) @msiadak
 - [docs] Better i18n capability (#13410) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Update overrides type declarations (#13379) @eps1lon
 - [core] Misc of improvements (#13381) @oliviertassinari
@@ -24261,7 +24261,7 @@ Here are some highlights ✨:
 - [docs] Fix ad display (#13321) @oliviertassinari
 - [docs] New Crowdin translations (#13094) @mbrookes
 
-### Core
+### Internal
 
 - [core] Fix defaultFontFamily misspelled in createTypography (#13260) @TheBear44
 - [core] Misc of improvements (#13271) @oliviertassinari
@@ -24280,7 +24280,7 @@ This is a quick patch after important regressions.
 
 - [ButtonBase] Fix process is not defined (#13252) @eps1lon
 
-### Core
+### Internal
 
 - [core] Fix deprecated variant (#13254) @oliviertassinari
 - [core] Add a real life benchmark (#13244) @oliviertassinari
@@ -24340,7 +24340,7 @@ Here are some highlights ✨:
 - [docs] Fix API generation for i18n (#13237) @mbrookes
 - [docs] Keep SEO juice for the other pages (#13240) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Add visual regression test for SpeedDIal (#13140) @eps1lon
 - [test] Tidelift - skip checking nomnom & os-locale (#13157) @mbrookes
@@ -24428,7 +24428,7 @@ This change updates the variant wording to match the one used in the Material De
 - [docs] Fix 404 edit button of the versions page (#13127) @oliviertassinari
 - [docs] Add a translation badge to readme, and update URLs (#13128) @mbrookes
 
-### Core
+### Internal
 
 - [core] Add integrity hashes to yarn.lock (#13055) @eps1lon
 - [test] Fail if coverage can't be push (#13084) @eps1lon
@@ -24475,7 +24475,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Fix 3xx and 4xx HTTP statuses (#13046) @oliviertassinari
 - [docs] Fix issues spotted by ahrefs.com (#13047) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade the @types/jss dependency to 9.5.6 (#12982) @qvxqvx
 - [core] Upgrade the dev dependencies (#13016) @oliviertassinari
@@ -24528,7 +24528,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Fix Typo in PaymentForm.js (#12971) @n3n
 - [docs] Fix Typo in page-layout-examples (#12974) @n3n
 
-### Core
+### Internal
 
 - [typescript] Improve definitions with strictNullChecks disabled (#12895) @eps1lon
 - [typescript] Remove unused isMuiComponent definition (#12903) @eps1lon
@@ -24593,7 +24593,7 @@ Here are some highlights ✨:
 - [docs] Split test ad networks (#12878) @mbrookes
 - [docs] Customize LinearProgress color (#12883) @mbrn
 
-### Core
+### Internal
 
 - [typescript] Update createGenerateClassName.d.ts (#12824) @Qeneke
 - [github] Make issue templates version agnostic (#12839) @mbrookes
@@ -24632,7 +24632,7 @@ A big thanks to the 13 contributors who made this release possible!
 - [docs] Simpler AppBar search demos (#12806) @oliviertassinari
 - [docs] Document the shrink status input limitation (#12769) @racingrebel
 
-### Core
+### Internal
 
 - [test] Use yarn offline mirror (#12763) @eps1lon
 - [core] Small changes investigating issues (#12812) @oliviertassinari
@@ -24691,7 +24691,7 @@ Here are some highlights ✨:
 - [docs] Generate import examples in API docs (#12720) @jedwards1211
 - [docs] More transparency around the release strategy (#12752) @oliviertassinari
 
-### Core
+### Internal
 
 N/A
 
@@ -24728,7 +24728,7 @@ It's also a good opportunity to upgrade to the stable release of Babel 7.
 - [docs] Update notification link for release 3.0.0 (#12681) @lumatijev
 - [docs] Warn about using withRoot HOC more than one time per page (#12692) @oorestisime
 
-### Core
+### Internal
 
 - [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
 - [core] Upgrade the dependencies (#12693) @oliviertassinari
@@ -24794,7 +24794,7 @@ We use the same strategy for Chrome.
 - [docs] Autocomplete react-select dropdown overlay (#12664) @gerhat
 - [docs] Fix typo in usage.md (#12666) @DeveloperDavo
 
-### Core
+### Internal
 
 - [core] Better Windows support for the API generation (#12584) @adeelibr
 - [TypeScript] Update SnackbarContent type def to accept action prop as array (#12595) @cngraf
@@ -24862,7 +24862,7 @@ N/A
 - [docs] Improve TypeScript issue assistance (#12560) @eps1lon
 - [docs] Add notistack in the related projects (#12578) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript] Style typing improvements (#12492) @pelotom
 - [core] Should run the tests when needed (#12510) @oliviertassinari
@@ -24931,7 +24931,7 @@ N/A
 - [docs] Fix link to Twitter account (#12482) @patcito
 - [docs] Try CodeFund over Carbon (#12484) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript] Synced with PR #12373 (#12439) @franklixuefei
 - [core] Add hoverOpacity to TypeAction interface (#12455) @hassan-zaheer
@@ -24980,7 +24980,7 @@ N/A
 - [docs] Fix ChipPlayground generated code (#12401) @mbrookes
 - [docs] Add Tomahawk boilerplate to the related projects (#12393) @goemen
 
-### Core
+### Internal
 
 - [core] Upgrade the dependencies (#12409) @oliviertassinari
 
@@ -25046,7 +25046,7 @@ N/A
 - [docs] Document NoSsr (#12317) @oliviertassinari
 - [docs] Improve the docs to have matches (#12322) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade dev dependencies (#12323) @oliviertassinari
 
@@ -25122,7 +25122,7 @@ Here are some highlights ✨:
 - [docs] Document the CSS API (#12174) @mbrookes
 - [docs] An iteration on the SSR Troubleshooting section (#12229) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade dev dependencies (#12156) @oliviertassinari
 - [core] Add missing unwrap export to test-utils type definition (#12184) @kallebornemark
@@ -25196,7 +25196,7 @@ N/A
 - [docs] Add a comment that React 16.3.0 is a peer dependency (#12145) @chenop
 - [Table] Document the CSS API (#12147) @chenop
 
-### Core
+### Internal
 
 - [core] Upgrade the dev dependencies (#12049) @oliviertassinari
 - [core] Improve the prop-types of shape (#12098) @oliviertassinari
@@ -25249,7 +25249,7 @@ N/A
 - [docs] Small spelling fix (#12028) @danh293
 - [docs] Add a demo with Font Awesome (#12027) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript][createmuitheme] Fix typings & deepmerge shape (#11993) @franklixuefei
 - [core] Warn about Children.map & Fragment (#12021) @oliviertassinari
@@ -25295,7 +25295,7 @@ N/A
 - [docs] Better API wording (#11973) @oliviertassinari
 - [docs] In TypeScript doc, add missing `createStyles` to import (#11975) @Sylphony
 
-### Core
+### Internal
 
 - [typescript] Fix Typings for disableTouchRipple and allVariants (#11944) @franklixuefei
 - [core] Upgrade the dev dependencies (#11954) @oliviertassinari
@@ -25334,7 +25334,7 @@ N/A
 - [docs] Correct markdown example from svg icon (#11922) @GabrielDuarteM
 - [docs] TypeScript decorating reword (#11923) @swpease
 
-### Core
+### Internal
 
 N/A
 
@@ -25396,7 +25396,7 @@ N/A
 - [examples] Add Server Rendering implementation (#11880) @oliviertassinari
 - [docs] Update react-swipeable-views to fix a warning (#11890) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Misc (#11797) @oliviertassinari
 - [core] Better `component` prop types (#11863) @jedwards1211
@@ -25452,7 +25452,7 @@ N/A
 - [docs] Fix typo (#11787) @BenDiuguid
 - [docs] Better troubleshooting action for the hydration mismatch (#11792) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove parser specification to fix JSON issue (#11763) @ryanpcmcquen
 - [core] Throw if react >= 16.3.0 requirement isn't matched (#11779) @oliviertassinari
@@ -25511,7 +25511,7 @@ N/A
 - [docs] Update link to flow-typed definitions (#11674) @jessrosenfield
 - [docs] Minor grammitcal error (#11691) @NeuTrix
 
-### Core
+### Internal
 
 - [typescript] Depend directly on CSSType (#11608) @pelotom
 - [core] Upgrade dependencies (#11616) @oliviertassinari
@@ -25585,7 +25585,7 @@ N/A
 - [docs] Add react-admin to related projects (#11582) @fzaninotto
 - [docs] Update the showcase (#11578) @mbrookes
 
-### Core
+### Internal
 
 - [typescript] Make TypographyStyle assignable to CSSProperties, misc other typing fixes (#11456) @pelotom
 - [core] Cut the head of the snake 🐍 (#11477) @oliviertassinari
@@ -25650,7 +25650,7 @@ N/A
 - [docs] Remove react@15 message (#11399) @deltaskelta
 - [docs] Better netlify cache control (#11404) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Do not include polyfills in the ES modules build (#11358) @goto-bus-stop
 - [core] Workaround a Babel regression (#11398) @oliviertassinari
@@ -25779,7 +25779,7 @@ The text underline color customization change:
 - [docs] Move v1-beta to master (#11354) @oliviertassinari
 - [docs] Install with yarn (#11357) @Xakher
 
-### Core
+### Internal
 
 - [typescript] Add CreateMuiTheme props TypeScript definition (#11296) @abnersajr
 - [typescript] Fix color type in augmentColor function (#11302) @AiusDa
@@ -25811,7 +25811,7 @@ If you are using TypeScript, 2.8 or later is required.
 
 N/A
 
-### Core
+### Internal
 
 - [core] Add @babel/runtime as a dependency (#11298) @oliviertassinari
 
@@ -25841,7 +25841,7 @@ N/A
 - [docs] Improve the table examples' accessibility (#11256) @mbrookes
 - [docs] Add Pilcro to showcase apps (#11274) @hugowoodhead
 
-### Core
+### Internal
 
 - [typescript] Fix type definitions for Snackbar and CircularProgress (#11265) @franklixuefei
 - [core] Upgrade Babel 6 to Babel 7 (#10964) @oliviertassinari
@@ -25976,7 +25976,7 @@ The rename started with #11090. I should have taken the time to complete it in t
 - [docs] Document the theme.props feature (#11245) @oliviertassinari
 - [docs] Speedup a bit the homepage (#11248) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Fix the CI (#11187) @oliviertassinari
 - [core] Update dependencies (#11240) @oliviertassinari
@@ -26018,7 +26018,7 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 - [docs] Make sure next@6 is working (#11168) @oliviertassinari
 - [docs] Correct spelling error in FormDialog.js example (#11176) @weldon0405
 
-### Core
+### Internal
 
 - [core] Reduce the size of the npm package (#11144) @oliviertassinari
 - [typescript] allow pseudos on any theme mixins (#11145) @rosskevin
@@ -26070,7 +26070,7 @@ Here are some highlights ✨:
 - [docs] Fix broken link (#11042) @imrobinized
 - [CONTRIBUTING] Update the docs (#11078) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Better distinction between the private and public components (#11051) @oliviertassinari
 - [core] Upgrade dev dependencies (#11096) @oliviertassinari
@@ -26154,7 +26154,7 @@ const styles = {
 - [docs] Better private/public API description (#11024) @oliviertassinari
 - [Collapse] Fix typo in comment (#11035) @mknet
 
-### Core
+### Internal
 
 - [core] Add fallback to ownerWindow (#10978) @richardscarrott
 - [typescript] Remove unnecessary Partial<> for `style` prop (#10994) @franklixuefei
@@ -26214,7 +26214,7 @@ Here are some highlights ✨:
 - [docs] Fix npm urls (#10949) @sujeetkrjaiswal
 - [docs] Add "Do I have to use JSS?" to FAQ (#10954) @mbrookes
 
-### Core
+### Internal
 
 - [typescript] Upgrade React and JSS typings, which both make use of csstype now (#10903) @pelotom
 
@@ -26253,7 +26253,7 @@ Nothing has changed for people using React 15.x.
 - [docs] Much better navigation experience (#10859) @oliviertassinari
 - [examples] Demonstrate how to use the icons CDN (#10874) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove the addEventListener module (#10856) @oliviertassinari
 - [core] Upgrade the dependencies (#10853) @oliviertassinari
@@ -26352,7 +26352,7 @@ I have made a mistake in [#8108](https://github.com/mui/material-ui/pull/8108). 
 - [examples] Update Flow Example (#10799) @prastut
 - [docs] Material Dashboard Pro React (#10832) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade the dev dependencies (#10702) @oliviertassinari
 - [typings] Fix `mixins.gutter` signature (argument is optional) (#10814) @sebald
@@ -26415,7 +26415,7 @@ N/A
 - [docs] Handle optional params (#10685) @oliviertassinari
 - [docs] Customized tables (#10686) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript] Remove xxxClassName props from type declarations (#10644) @lukePeavey
 - [typescript] Add inline style prop to transition (#10650) @nmchaves
@@ -26491,7 +26491,7 @@ For instance, it's not about adding JavaScript polyfills.
 - [docs] Add Planalyze to Showcase (#10603) @dancastellon
 - [docs] Improve the htmlFontSize documentation (#10604) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix type definitions (#10553) @stefanorie
 - [core] Better overrides merge support (#10606) @oliviertassinari
@@ -26556,7 +26556,7 @@ The best way to recover from this breaking change is to check the warnings in th
 - [docs] Add a CDN example (#10514) @oliviertassinari
 - [docs] Fix SSR rendering in Gatsby example (#10536) @LegNeato
 
-### Core
+### Internal
 
 - [core] Prepare the async API (#10523) @oliviertassinari
 - [core] Upgrade the dev dependencies (#10456) @oliviertassinari
@@ -26621,7 +26621,7 @@ N/A
 - [docs] Description of how component will render (#10432) @oliviertassinari
 - [docs] Add CSSGrid comparison example (#10433) @caub
 
-### Core
+### Internal
 
 - [core] Upgrade some dependency to start looking into React 16.3 (#10338) @oliviertassinari
 - [core] Remove direct references to window/document objects (#10328) @ianschmitz
@@ -26715,7 +26715,7 @@ The Material Design specification says that selection controls elements should [
 - [docs] Expose the theme as a global object (#10326) @oliviertassinari
 - [docs] Add an example with Google Web Fonts (#10332) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix the es distribution (#10254) @NMinhNguyen
 - [typescript] Add missing exports in index.d.ts (#10295) @Andy4ward
@@ -26769,7 +26769,7 @@ N/A
 - [docs] Change negative to positive (#10211) @harvitronix
 - [docs] Add project to showcase (#10217) @klyburke
 
-### Core
+### Internal
 
 - [core] Upgrade Next.js (#10181) @oliviertassinari
 - [test] Remove the mockPortal workaround (#10208) @leMaik
@@ -26881,7 +26881,7 @@ Umbrella pull request for: #10084, #10086, #10088.
 - [docs] Add mui-downshift (#10156) @oliviertassinari
 - [docs] Demo codesandbox deps (#10158) @caub
 
-### Core
+### Internal
 
 - [core] Add the license in the release (#10102) @oliviertassinari
 - [test] Fix AppBar test assert messages (#10109) @cherniavskii
@@ -27039,7 +27039,7 @@ const theme = createMuiTheme({
 - [docs] Add Content Security Policy Guide (#10074) @dav-is
 - [docs] Add react-select example (#10070) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Two small fixes looking at #10005 (#10014) @oliviertassinari
 - [core] Use the official react-docgen package (#10054) @oliviertassinari
@@ -27135,7 +27135,7 @@ It's unclear if this change is making the implementation follow the specificatio
 - [docs] Using TypeScript & withStyles for class component w/union props (#9975) @nmchaves
 - [docs] Add notifications (#9974) @mbrookes
 
-### Core
+### Internal
 
 N/A
 
@@ -27168,7 +27168,7 @@ N/A
 - [docs] Additional corrections to palette code sample (#9883) @mbrookes
 - [docs] Update showcase.md (#9894) @gerges-beshay
 
-### Core
+### Internal
 
 - [core] Fix w3c validation errors (#9899) @sambhav-gore
 - [core] Make palette change non-breaking (#9889) @mbrookes
@@ -27297,7 +27297,7 @@ To style the root element in these components, a `className` prop can be passed,
 - [docs] Add paragraph on withStyles with multiple classes (#9851) @clentfort
 - [docs] Add new backers (#9863) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Remove contastDefaultColor (#9772) @mbrookes
 - [core] Revise theme contrastText approach, remove contrastDefaultColor (#9063) @mbrookes
@@ -27388,7 +27388,7 @@ Alternatively, you can use our preset to save bundle size.
 - [docs] Fix two small regressions (#9753) @oliviertassinari
 - [docs] Tidy up Tooltips demos (#9755) @mbrookes
 
-### Core
+### Internal
 
 - [core] Fix typo in size:overhead:why script (#9728) @cherniavskii
 - [core] Follow the React HOC convention (#9733) @oliviertassinari
@@ -27492,7 +27492,7 @@ The zIndex object has been updated to match the usage.
 - [docs] Add mui-datatables (#9667) @gregnb
 - [docs] Small tweaks (#9669) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Document the ImageMagick / GraphicsMagick dependency (#9608) @mbrookes
 - [typescript] re-declare `isMuiElement` and `isMuiComponent` as typeguard (#9630) @SSW-SCIENTIFIC
@@ -27552,7 +27552,7 @@ None, merry christmas 🎄.
 - [examples] Fix after the latest breaking changes (#9553) @Tuaniwan
 - [docs] Fix basic typos in copy text (#9591) @hathix
 
-### Core
+### Internal
 
 - [test] Report the potential svg-icon test error (#9559) @oliviertassinari
 - [.editorconfig] Add max_line_length (#9580) @mbrookes
@@ -27675,7 +27675,7 @@ There is no logic attached to the `optional` boolean property. So, we can reduce
 - [docs] Add Governance page (#9512) @oliviertassinari
 - [docs] Demo options as JSON (#9521) @oliviertassinari
 
-### Core
+### Internal
 
 - Add Governance Document (#9423) @hai-cea
 - [core] Upgrade to flow 61 (#9471) @rsolomon
@@ -27752,7 +27752,7 @@ Here are some highlights ✨:
 - [docs] Remove flow from the docs (#9434) @oliviertassinari
 - [examples] remove flow from the examples (#9446) @stormasm
 
-### Core
+### Internal
 
 - [test] Set codecov threshold to avoid spurious build failures (#9323) @pelotom
 - [test] Fix parse error in .codecov.yml (#9355) @pelotom
@@ -27837,7 +27837,7 @@ It was a breaking change and not needed.
 - [examples] rename organization to mui-org (#9273) @stormasm
 - [docs] Fix typo (#9288) @paulzmuda
 
-### Core
+### Internal
 
 - [test] Fix flaky popper.js test (#9168) @oliviertassinari
 - [typescript] Support TypeScript 2.6 and --strictFunctionTypes (#9124) @pelotom
@@ -27912,7 +27912,7 @@ In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
 - [docs] Fix AppSearch horizontal rhythm (#9107) @mbrookes
 - [docs] Fix misc typos, grammar and add minor clarifications (#9112) @mbrookes
 
-### Core
+### Internal
 
 - [typescript] Conform Typography definition with React CSSProperties (#9023) @dewey92
 - [Modal] 100% coverage for modalManager.js (#9022) @oliviertassinari
@@ -27987,7 +27987,7 @@ Here are some highlights ✨:
 - [docs] Use next tag for the npm version badge (#8989) @leMaik
 - [docs] Add a JssProvider and CSS injection order section (#8993) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade some dependencies (#8977) @oliviertassinari
 - [typescript] Add missing base props (#8931) @pelotom
@@ -28074,7 +28074,7 @@ Here are some highlights ✨:
 - [docs] Simpler IconMenu example (#8892) @oliviertassinari
 - [docs] Temporary fix for SSR issue with Portal (#8907) @oliviertassinari
 
-### Core
+### Internal
 
 - [flow] Add config lint (#8834) @rosskevin
 - [core] Upgrade the dependencies (#8852) @oliviertassinari
@@ -28137,7 +28137,7 @@ We enforce this behavior now.
 - [docs] Add FAQ inline-style vs withStyles() (#8758) @oliviertassinari
 - [docs] Add promising pickers lib (#8814) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Output ES code in /es (#8772) @NeoLegends
 - [core] Remove erroneous exports from styles/index.d.ts (#8805) @pelotom
@@ -28212,7 +28212,7 @@ For instance, we need to upgrade all our dev dependencies to _react@16_ first.
 - [docs] Improve SVG icons wordings (#8642) @oliviertassinari
 - [docs] Fix test page (#8650) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix more warnings with enzyme@3 and react@16 (#8641) @oliviertassinari
 - [core] Prepare upgrade toward enzyme v3 (#8670) @oliviertassinari
@@ -28294,7 +28294,7 @@ Here are some highlights ✨:
 - [Hidden] Add docs for initialWidth prop (#8585) @pcardune
 - [docs] Avoid SEO indexes duplication (#8592) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Upgrade to mocha@v4 (#8517) @oliviertassinari
 - [core] Upgrade dependencies (#8577) @oliviertassinari
@@ -28391,7 +28391,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [docs] Move docs to https://material-ui-next.com (#8495) @oliviertassinari
 - [docs] Take insertionPoint option into account (#8497) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Prepare enzyme v3 upgrade (#8429) @oliviertassinari
 - [core] Update react-transition-group for react@16 (#8468) @oliviertassinari
@@ -28520,7 +28520,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 - [docs] Changing type 'Alignement' to Alignment (#8335) @apearson
 - [changelog] Add info for withStyles BC (#8342) @sebald
 
-### Core
+### Internal
 
 - [flow] Remove class property props to reduce bundle size (#7884) @rosskevin
 - [flow] Update to flow 55 (#8305) @oliviertassinari
@@ -28587,7 +28587,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Simplify the carbon integration (#8244) @oliviertassinari
 - [docs] Add google analytics (#8247) @oliviertassinari
 
-### Core
+### Internal
 
 - [Tooltip] Add a visual regression test (#8228) @oliviertassinari
 
@@ -28661,7 +28661,7 @@ A big thanks to the 13 contributors who made this release possible.
 - [Snackbar] 6e3 -> 6000; better to be less clever and more clear (#8151) @davidcalhoun
 - [docs] Inverse expand icons on the NestedList demo (51f40016e29f5159a87cafae1092eb85416eb0d5) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Bump some dependencies (#8149) @oliviertassinari
 
@@ -28718,7 +28718,7 @@ N/A
 - [docs] Add carbon (#8118) @oliviertassinari
 - [docs] Makes the sections bolder (#8116) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Flow 0.54.0 updates (#8042) @rosskevin
 - [typescript] Add example for using withStyle/Theme together (#8078) @sebald
@@ -28751,7 +28751,7 @@ N/A
 - [example] Fix next.js CSS blink (cd0f883325b2b74515972d58f12868897fc34bf6) @oliviertassinari
 - [docs] Fix ROADMAP page issues (#8008) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript] Add test for Grid (#7991) @sebald
 
@@ -28857,7 +28857,7 @@ If you want to avoid the default browser required property handling, you can add
 - [docs] Better support IE 11 (#7939) @oliviertassinari
 - [docs] The style is injected at the bottom of the head (#7954) @oliviertassinari
 
-### Core
+### Internal
 
 - [typescript] Refactor typings to modules (#7874) @sebald
 - [flow] Upgrade to flow 0.53.1 (#7869) @rosskevin
@@ -28910,7 +28910,7 @@ Push #7741 initiative forward (use `value` and `onChange` as controlling propert
 - [docs] Add a ROADMAP page (#7840) @oliviertassinari
 - [docs] Some last improvement before the release (#7847) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Better usage of the CI 🚀 (#7833) @oliviertassinari
 - [core] Fix size-limit warning (#7822) @oliviertassinari
@@ -28979,7 +28979,7 @@ The primary motivation for this change is simplicity, it's also making our inter
 - [docs] Fix the installation instructions of the examples (#7733) @dawogfather
 - [docs] Fix Typo (#7736) @Merkyl999x
 
-### Core
+### Internal
 
 - [core] Flow type transitions Slide, Fade, Collapse (#7719) @rosskevin
 - [core] General maintenance (#7690) @oliviertassinari
@@ -29011,7 +29011,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [docs] Fix audit issues (#7595) @oliviertassinari
 - [docs] Show how to use the insertionPoint (#7611) @oliviertassinari
 
-### Core
+### Internal
 
 - [flow] Export type Props for composability (#7609) @rosskevin
 - [typescript] Add TypeScript typings (#7553) @sebald
@@ -29050,7 +29050,7 @@ styling update of the previous release.
 - [docs] Optional style sheet name (#7594) @oliviertassinari
 - [docs] Use flow weak on the demos as we can't expect users to have flow (cd25e63a214c37ed7945e31aa9b08f02baa17351) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Support react@16.0.0-beta.1 (#7561) @oliviertassinari
 - [core] Small fixes of the styling solution (#7572) @oliviertassinari
@@ -29116,7 +29116,7 @@ The `styleManager` is gone. The server-side rendering configuration changed, use
 - [docs] Add next.js example (#7510) @oliviertassnari
 - [docs] Selection control custom colors (#7516) @oliviertassnari
 
-### Core
+### Internal
 
 - [core] Ignore the package-lock.json file generated by npm (#7502) @Airblader
 
@@ -29172,7 +29172,7 @@ where we always use `value`/`onChange` for controlled components.
 - [docs] Better warning message for missing MuiThemeProvider (#7429) @oliviertassinari
 - [docs] Add @param everywhere (#7432) @oliviertassinari
 
-### Core
+### Internal
 
 - [flow] global dom element workaround (#7401) @rosskevin
 - [core] Add size-limit (#7422)
@@ -29212,7 +29212,7 @@ _Jul 4, 2017_
 - [docs] Improve the documentation regarding material.io/icons (#7323) @oliviertassinari
 - [docs] Fix MobileStepper API (#7299) @ng-hai
 
-### Core
+### Internal
 
 - [core] Reduce the bundle size (#7306) @oliviertassinari
 - [test] Should get coverage (#7272) @oliviertassinari
@@ -29249,7 +29249,7 @@ We do, we have extended the support of React to the 16.0.0-alpha.13 release (aka
 - [docs] Upgrade to webpack v3 (#7210) @oliviertassinari
 - [docs] More documentation on the typography (#7248) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Even faster CI build (#7230) @oliviertassinari
 - [styles] Export more functions (#7241) @oliviertassinari
@@ -29285,7 +29285,7 @@ The previous v1.0.0-alpha.18 release is corrupted.
 - [docs] Exposes the 3 Babel plugins available for minimising the bundle size (#) @oliviertassinari
 - [docs] Fix MATERIAL_UI_PORT not fully supported
 
-### Core
+### Internal
 
 - [core] Add missing flow import (#7180) @oliviertassinari
 
@@ -29314,7 +29314,7 @@ _Jun 19, 2017_
 
 - [docs] Document the Label wrappers (#7161) @oliviertassinari
 
-### Core
+### Internal
 
 - [MuiThemeProvider] Small ESLint fix (#7128) @Airblader
 - [core] Simplify the array logic (#7112) @oliviertassinari
@@ -29366,7 +29366,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [docs] Update usage.md "Hello World" :| (#7027) @dphrag
 - [docs] Add link to the temporary alpha docs (#7037) @peteratticusberg
 
-### Core
+### Internal
 
 - [eslint] Loosen no-unused-vars ESLint rule (#7064) @yuchi
 - [core] Various fixes (#7028) @oliviertassinari
@@ -29403,7 +29403,7 @@ Shout out to @kybarg for the update of the `TextField` in order to better follow
 - [docs] Fix TableRow persistent background when clicked (#7001) @sajal50
 - [docs] Add an example with a decorator (#7011) @uufish
 
-### Core
+### Internal
 
 - [npm] Fix react-scrollbar-size issue (#7009) @oliviertassinari
 - [transitions] Add test coverage for the transition validation functions (#6936) @Alex4S
@@ -29447,7 +29447,7 @@ you're going to have to change your strategy. Either use `innerRef` or `inputRef
 - [docs] Better support IE 11 (#6880) @oliviertassinari
 - [Tabs] Document that the index is required (#6935) @oliviertassinari
 
-### Core
+### Internal
 
 - [eslint] enforce import plugin rules (#6923) @rosskevin
 - [core] Change style API (#6892) @oliviertassinari
@@ -29479,7 +29479,7 @@ _May 14, 2017_
 - [docs] Fix link to material-ui-icons (#6825) @NiloCK
 - [docs] Add a direct link to GitHub (#6861) @oliviertassinari
 
-### Core
+### Internal
 
 - [coverage] Remove the flow plugins as they were not needed (#6816) @rosskevin
 - [ButtonBase] Add test coverage for instance.focus (#6827) @agamrafaeli
@@ -29524,7 +29524,7 @@ _May 8, 2017_
 - [docs] Start addressing documentation issues (#6758) @oliviertassinari
 - [docs] Hide the context implementation details (#6798) @oliviertassinari
 
-### Core
+### Internal
 
 - Expanding use of flow for propType, include flow types in package, add flow-typed (#6724) @rosskevin
 - [core] Fix flow propTypes generation issue (#6749) @oliviertassinari
@@ -29569,7 +29569,7 @@ A big thanks to the 11 contributors who are pushing the `next` branch forward.
 - [docs] Fix layout edit button (4b5fedf902704b5e3dd2dba63fc2263f11e975d0) @oliviertassinari
 - [docs] Fix IE 11 issue (6ad3354ec1a844d0f03bf890a5e73a7987179be7) @oliviertassinari
 
-### Core
+### Internal
 
 - [material-ui-icons] Modernize the package (#6688) @oliviertassinari
 - [core] Also take the demo into account for the regressions tests (#6669) @oliviertassinari
@@ -29597,7 +29597,7 @@ _Apr 14, 2017_
 - [package.json] Add test:unit:grep (#6586) @agamrafaeli
 - [docs] Fix build:docs command (#6606) @oliviertassinari
 
-### Core
+### Internal
 
 - [utils] Remove throttle (#6545) @agamrafaeli
 - [react] Upgrade to React@15.5.3 (#6543) @oliviertassinari
@@ -29694,7 +29694,7 @@ Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 - [docs] Display the current version (#6481) @oliviertassinari
 - [docs] Upgrade the dependencies (567a35ea3d2aa634a3072fb8b0151c9890551447) @oliviertassinari
 
-### Core
+### Internal
 
 - [test] Fix import paths for theme and MuiThemeProvider (#6493) @joefitzgerald
 - [test] Add argos-ci (#6391) @oliviertassinari
@@ -29723,7 +29723,7 @@ _Apr 1, 2017_
 - [docs] Link to the Collapse documentation (#6464) @JeremyIglehart
 - [docs] Fix api.md indentation (#6468) @solkaz
 
-### Core
+### Internal
 
 - [core] Upgrade the dev dependencies (#6435) @oliviertassinari
 - [test] Takes the Menu as an example in the test documentation (d13607581dc2bf6c86e88721c2d177b8b8b2d004) @oliviertassinari
@@ -29760,7 +29760,7 @@ We are now at 93.53%. That's pretty great.
 
 - [docs] Use material-ui-icons package (#6390) @mbrookes
 
-### Core
+### Internal
 
 - [SvgIcons] Update build (#6375) @mbrookes
 
@@ -29783,7 +29783,7 @@ _Mar 12, 2017_
 - [docs] Add a Color section (#6254) @Shahrukh-Zindani
 - [docs] Add information to typography (#6266) @Shahrukh-Zindani
 
-### Core
+### Internal
 
 - [test] Server-side render some element to be sure (#6328) @oliviertassinari
 - [npm] Add correct extension (#6241) @okvic77
@@ -29795,7 +29795,7 @@ _Mar 12, 2017_
 
 _Feb 26, 2017_
 
-### Core
+### Internal
 
 - [core] Fix component wrong propType (03f0fdc627951b5ddd3b28bd1a4cbdcee96f2a1c) @oliviertassinari
 
@@ -29803,7 +29803,7 @@ _Feb 26, 2017_
 
 _Feb 26, 2017_
 
-### Core
+### Internal
 
 - [core] Fix propTypes usage (9a220173a59e51108f7ee9d059a312f174113ac2) @oliviertassinari
 
@@ -29831,7 +29831,7 @@ _Feb 26, 2017_
 - [docs] Add an API section (#6239) @oliviertassinari
 - [docs] Normalize the container property (#6238) @oliviertassinari
 
-### Core
+### Internal
 
 - [core] Fix typos in styles/transitions pointed out in issue (#6175) @Shahrukh-Zindani
 - [core] Lightweight the build (#6152) @oliviertassinari
@@ -29858,7 +29858,7 @@ _Feb 12, 2017_
 - [docs] Add simple example in the Badge API (#6117) @stunaz
 - [docs] Add a Drawer section (#6113) @ArcanisCz
 
-### Core
+### Internal
 
 - [core] Simplify test suite and use vrtest for regressions (#6122) @nathanmarks
 - [core] Prefix stylesheet names to prevent collisions (#6110) @oliviertassinari
@@ -29932,7 +29932,7 @@ A A big thanks to the 20 contributors who are making this release possible.
 - [Tabs] Fix typo in initialSelectedIndex prop description (#5923) @neonray
 - [withWidth] Fix typo in the withWidth.spec.js (#5836) @frooeyzanny
 
-### Core
+### Internal
 
 - [test] Use simpler assert API (e017d365f45b07933e8b896f95d6d1455b666516) @oliviertassinari
 
@@ -29977,7 +29977,7 @@ You can preview a **very early** version of the `next` branch following [this li
 - [docs] Remove redundant words (#5778)
 - [docs] Add showcase item - Realty Advisors Elite (#5806)
 
-### Core
+### Internal
 
 - [core] Add support for webpack 2/Rollup tree shaking in `svg-icons` sub module (#5774)
 
@@ -30017,7 +30017,7 @@ This is another release improving the stability of `v0.16.x`.
 - [docs] Fix Linear Progress Prop Documentation (#5680)
 - [docs] Fix a scroll issue on (iOS) (a12dca847af6833dbf671e48c736047d6909ec53)
 
-### Core
+### Internal
 
 - [core] Apply 3 different fixes (#5695)
 
@@ -30079,7 +30079,7 @@ This is another release improving the stability of `v0.16.x` while we are workin
 - [ToolbarTitle] Take font family from base theme (#5434)
 - [Toggle] Fix label propTypes from `string` to `node` (#5474)
 
-### Core
+### Internal
 
 - [npm] Upgrade the dependencies (#5466, #5537)
 
@@ -30118,7 +30118,7 @@ This is a small release improving the stability of `v0.16.x`.
 - [TextField] Fix leaking appearance property on a div (#5412)
 - [withWidth] Fix the SSR reconciliation (#5405)
 
-### Core
+### Internal
 
 - [GitHub] Improve ISSUE_TEMPLATE to ask for a running snippet (#5388)
 - [npm] Upgrade the dependencies (#5404)
@@ -30151,7 +30151,7 @@ For more details, you can have a look a the [next milestone](https://github.com/
 
 - [Card] Fix unused property subtitleColor (#5314)
 
-### Core
+### Internal
 
 - [Core] Use lodash.merge/throttle for faster require() (#5308)
 
@@ -30195,7 +30195,7 @@ _Sep 24, 2016_
 - [docs] Explicit the prerequisites section to required knowledge (#5203)
 - [docs] Update the server-rendering section (#5206)
 
-### Core
+### Internal
 
 - [core] Add babel-runtime to the release (#5221)
 - [core] Use the ^15.0.0 as a dependency for React (#5207)
@@ -30260,7 +30260,7 @@ Examples:
 - [examples] Move to own repositories (#4475)
 - [showcase] Add some new projects (#4978, #5119)
 
-### Core
+### Internal
 
 - [Slider] Clean up the implementation (#5036)
 - [test] Reduce the noise when running the test suite (ea2538e)
@@ -30315,7 +30315,7 @@ v15.2.1 and v15.3.0 should be addressed in this version.
 - [Snackbar] Change the action's PropType to node (#4716)
 - [TextField] False should be a valid value (#4728)
 
-### Core
+### Internal
 
 - [dependencies] Update to the latest release version (#4669)
 - [eslint] Find new rules with ease (#4521)

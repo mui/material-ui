@@ -19,7 +19,7 @@ For more details, check out the [upgrade guide](https://mui.com/material-ui/migr
 - [transitions] Performance improvements & misc fixes (#48151) @mj12albert
 - Remove unnecessary overridesResolvers from styled components (#48204) @sai6855
 
-### Core
+### Internal
 
 - [code-infra] Setup workflow to publish internal packages (#47952) @brijeshb42
 - [core-docs] Add `x-scheduler` to `MuiProductId` type (#48185) @rita-codes
@@ -66,7 +66,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [docs-infra] Resolve some redirects (#48165) @Janpot
 - [docs-infra] Update v9 Search Index (#48028) @dav-is
 
-### Core
+### Internal
 
 - [code-infra] Discover exports for bundle size report (#48170) @Janpot
 - [internal] Fix use of ellipsis (#48096) @oliviertassinari
@@ -124,7 +124,7 @@ A big thanks to the 8 contributors who made this release possible.
 - Mention all breaking changes in changelog (#48091) @silviuaavram
 - Fix link to upgrade-to-v9 docs in release CHANGELOG (#48081) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - Update browserslistrc (#48085) @silviuaavram
 - [code-infra] Prevent major version updates of bundler/framework packages in bundling fixtures (#48062) @Copilot
@@ -278,7 +278,7 @@ Check out the [v9 upgrade guide](https://mui.com/material-ui/migration/upgrade-t
 - [docs-infra] Expose global theme object (#47964) @Janpot
 - [docs][system] Update `styled` API docs for easier understanding (#47957) @olivier-lxo
 
-### Core
+### Internal
 
 - [code-infra] Add pkg-pr-new as dev dependency (#47992) @Janpot
 - [code-infra] Remove CI coverage collection and upload to Codecov (#47930) @Janpot
@@ -318,7 +318,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 - [docs] Use direct palette vars in Tailwind v4 snippet (#47940) @Ahmad-Alaziz
 - [docs][menubar] Add Menubar component page (#47616) @siriwatknp
 
-### Core
+### Internal
 
 - [core] Fix the release prepare steps (#47951) @silviuaavram
 - [core] Remove Joy UI code and docs (#47939) @mnajdova
@@ -350,7 +350,7 @@ A big thanks to the 4 contributors who made this release possible.
 - Move shared components to @mui/docs package (#47672) @Janpot
 - Fix small typo in NumberField page (#47877) @arthur-plazanet
 
-### Core
+### Internal
 
 - [code-infra] Reduce paths for attw checks (#47896) @brijeshb42
 - [docs-infra] Run syncTeamMembers (#47900) @Janpot
@@ -393,7 +393,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 - [docs] Update pricing sankey as done (#47795) @alexfauquette
 - [docs][system] Update sizing docs to clarify `(0, 1]` behavior. (#47845) @matthias-ccri
 
-### Core
+### Internal
 
 - [blog] Blogpost for upcoming price changes for MUI X (#47748) @DanailH
 - [code-infra] Detect browser envs that don't support layout (#47813) @Janpot
@@ -425,7 +425,7 @@ A big thanks to the 3 contributors who made this release possible.
 - [docs] Make tooltips describe their visible text triggers (#47658) @silviuaavram
 - [docs][theme] Fix `nativeColor` docs (#47759) @ZeeshanTamboli
 
-### Core
+### Internal
 
 - [blog] A pattern for opt-in type-only breaking changes in minor versions (#47622) @bernardobelchior
 - [internal] Prepare libraries for first v9 alpha release (#47756) @silviuaavram
