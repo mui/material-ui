@@ -3,7 +3,7 @@
 :root {
   /* Core syntax colors (from prism-okaidia) */
   --color-prettylights-syntax-comment: #b2b2b2;
-  --color-prettylights-syntax-constant: #e6db74;
+  --color-prettylights-syntax-constant: #f8f8f2;
   --color-prettylights-syntax-constant-other-reference-link: #a6e22e;
   --color-prettylights-syntax-entity: #a6e22e;
   --color-prettylights-syntax-entity-name: #e6db74;
@@ -39,18 +39,21 @@
   --color-prettylights-syntax-meta-diff-range: #b78eff;
 
   /* Docs-infra extensions */
-  --color-docs-infra-syntax-nullish: #b2b2b2;
-  --color-docs-infra-syntax-other: #f8f8f2;
   --color-docs-infra-syntax-number: #b78eff;
   --color-docs-infra-syntax-boolean: #b78eff;
+  --color-docs-infra-syntax-nullish: #b2b2b2;
+  --color-docs-infra-syntax-attr-key: #a6e22e;
   --color-docs-infra-syntax-attr-value: #e6db74;
+  --color-docs-infra-syntax-attr-value-quote: #f8f8f2;
   --color-docs-infra-syntax-attr-equals: #f8f8f2;
-  --color-docs-infra-syntax-bracket-tag: #f8f8f2;
-  --color-docs-infra-syntax-bracket-curly: #f8f8f2;
-  --color-docs-infra-syntax-bracket-round: #f8f8f2;
-  --color-docs-infra-syntax-bracket-square: #f8f8f2;
-  --color-docs-infra-syntax-bracket-angle: #f8f8f2;
-  --color-docs-infra-syntax-bracket-quote: #f8f8f2;
+  --color-docs-infra-syntax-data-attr: #a6e22e;
+  --color-docs-infra-syntax-css-property: #fc929e;
+  --color-docs-infra-syntax-css-value: #f8f8f2;
+  --color-docs-infra-syntax-this: #66d9ef;
+  --color-docs-infra-syntax-builtin-type: #66d9ef;
+  --color-docs-infra-syntax-jsx: #e6db74;
+  --color-docs-infra-syntax-html-tag: #fc929e;
+  --color-docs-infra-syntax-jsx-tag: #fc929e;
 }
 
 .pl-c {
@@ -178,99 +181,64 @@
 
 /* Docs-infra extensions (.di-* classes) */
 
-/* Nullish values (null, undefined) */
+.di-num {
+  color: var(--color-docs-infra-syntax-number);
+}
+
+.di-bool {
+  color: var(--color-docs-infra-syntax-boolean);
+}
+
 .di-n {
   color: var(--color-docs-infra-syntax-nullish);
 }
 
-/* Default text color */
-.di-d {
-  color: #f8f8f2;
+.di-ak {
+  color: var(--color-docs-infra-syntax-attr-key);
 }
 
-/* Parameter highlighting */
-.di-p {
-  color: var(--color-prettylights-syntax-storage-modifier-import);
-}
-
-/* Misc/other markup styling */
-.di-o {
-  color: var(--color-docs-infra-syntax-other);
-}
-
-/* Number literals */
-.di-nu {
-  color: var(--color-docs-infra-syntax-number);
-}
-
-/* Boolean literals */
-.di-bo {
-  color: var(--color-docs-infra-syntax-boolean);
-}
-
-/* Attribute values */
 .di-av {
   color: var(--color-docs-infra-syntax-attr-value);
 }
 
-/* Attribute equals sign */
+.di-av .pl-pds {
+  color: var(--color-docs-infra-syntax-attr-value-quote);
+}
+
 .di-ae {
   color: var(--color-docs-infra-syntax-attr-equals);
 }
 
-/* Bracket types */
+.di-da {
+  color: var(--color-docs-infra-syntax-data-attr);
+}
+
+.di-cp {
+  color: var(--color-docs-infra-syntax-css-property);
+}
+
+.di-cv {
+  color: var(--color-docs-infra-syntax-css-value);
+}
+
+.di-this {
+  color: var(--color-docs-infra-syntax-this);
+}
+
 .di-bt {
-  color: var(--color-docs-infra-syntax-bracket-tag);
+  color: var(--color-docs-infra-syntax-builtin-type);
 }
 
-.di-bc {
-  color: var(--color-docs-infra-syntax-bracket-curly);
+.di-jsx {
+  color: var(--color-docs-infra-syntax-jsx);
 }
 
-.di-br {
-  color: var(--color-docs-infra-syntax-bracket-round);
+.di-ht {
+  color: var(--color-docs-infra-syntax-html-tag);
 }
 
-.di-bs {
-  color: var(--color-docs-infra-syntax-bracket-square);
-}
-
-.di-ba {
-  color: var(--color-docs-infra-syntax-bracket-angle);
-}
-
-.di-bq {
-  color: var(--color-docs-infra-syntax-bracket-quote);
-}
-
-/* Diff additions */
-.di-ins {
-  color: var(--color-prettylights-syntax-markup-inserted-text);
-  background-color: var(--color-prettylights-syntax-markup-inserted-bg);
-}
-
-/* Diff deletions */
-.di-del {
-  color: var(--color-prettylights-syntax-markup-deleted-text);
-  background-color: var(--color-prettylights-syntax-markup-deleted-bg);
-}
-
-/* Diff changes */
-.di-chg {
-  color: var(--color-prettylights-syntax-markup-changed-text);
-  background-color: var(--color-prettylights-syntax-markup-changed-bg);
-}
-
-/* Diff ignored/untracked */
-.di-ign {
-  color: var(--color-prettylights-syntax-markup-ignored-text);
-  background-color: var(--color-prettylights-syntax-markup-ignored-bg);
-}
-
-/* Diff range indicator */
-.di-rng {
-  font-weight: bold;
-  color: var(--color-prettylights-syntax-meta-diff-range);
+.di-jt {
+  color: var(--color-docs-infra-syntax-jsx-tag);
 }
 
 /* Line highlighting */
