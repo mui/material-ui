@@ -10,7 +10,7 @@
     "deploy": "git fetch upstream master && git push -f material-ui-docs FETCH_HEAD:latest",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
-    "create-playground": "cpy --cwd=scripts playground.template.tsx ../../pages/playground --rename=index.tsx",
+    "create-playground": "cpy --cwd=scripts playground.template.tsx ../pages/playground/ --rename=index.tsx",
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `pnpm docs:typescript'` instead && exit 1",
