@@ -1,5 +1,18 @@
 import { createRemarkConfig } from '@mui/internal-code-infra/remark';
 
 export default createRemarkConfig({
-  disable: ['no-duplicate-headings'],
+  overrides: [
+    {
+      files: '**/*.md',
+      rules: {
+        'no-duplicate-headings': false,
+      },
+    },
+    {
+      files: '.github/**/*.md',
+      rules: {
+        'mui-first-block-heading': false,
+      },
+    },
+  ],
 });

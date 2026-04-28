@@ -90,7 +90,7 @@
     "@eslint/compat": "2.0.3",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.26",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.76",
-    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@bf7e924",
+    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@eca88f3",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.5",
     "@mui/internal-scripts": "workspace:^",
