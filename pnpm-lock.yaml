@@ -3420,7 +3420,7 @@ packages:
     resolution: {integrity: sha512-uwQNGkhv0lf7ufxw6QXev77BW6pWbW+7uxYjU5+rfp4lBkFtMEgJCsarTM3Tn+i0lGx6+Ol2u88JdGXr0GDskA==}
 
   '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@56fef1cc85488b1eb32117151cf972c76f619373':
-    resolution: {integrity: sha512-v1Qa4A1RjIjjYB6bD3PWk3oP/7ZKAvUBpER8UbAc/SmsH349rVt3T+RCjC49OJRO8IbK86KD4wLk1p3AZ293LQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@56fef1cc85488b1eb32117151cf972c76f619373}
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@56fef1cc85488b1eb32117151cf972c76f619373}
     version: 1.0.2
     peerDependencies:
       '@babel/core': 7.29.0
@@ -3433,14 +3433,14 @@ packages:
       '@babel/core': 7.29.0
 
   '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@56fef1cc85488b1eb32117151cf972c76f619373':
-    resolution: {integrity: sha512-MziMY0dxtc5zleUHhd16joo3JaVNmqG4qVCFsce1WFXWWllXnxKhHrDaQ3/VxgpYPdCJTb7BRausox1GwHB3qw==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@56fef1cc85488b1eb32117151cf972c76f619373}
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@56fef1cc85488b1eb32117151cf972c76f619373}
     version: 2.0.6
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': 7.29.0
 
   '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@56fef1cc85488b1eb32117151cf972c76f619373':
-    resolution: {integrity: sha512-FVaRfVYRJAmU3ThP1VVZDhLhgGOu2LXZy+UYZjTNGdyuQVItMvQuc3ZahYN67VmyAPhDlUwt6HlyqAboztDr7A==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@56fef1cc85488b1eb32117151cf972c76f619373}
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@56fef1cc85488b1eb32117151cf972c76f619373}
     version: 2.0.5
     peerDependencies:
       '@babel/core': 7.29.0
@@ -3450,7 +3450,7 @@ packages:
     hasBin: true
 
   '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@56fef1c':
-    resolution: {integrity: sha512-z6+Ow4bLI82deQezlxAdTpCsKxCfhezbGH/7iba0eHL5LRVTvLv2LefHqQwt2uxHE8p+KIMXWUjdGP154xIUvQ==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@56fef1c}
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@56fef1c}
     version: 0.0.3
     hasBin: true
     peerDependencies:
@@ -13521,7 +13521,7 @@ snapshots:
       eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))
       eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-compat: 7.0.1(eslint@10.1.0(jiti@2.6.1))
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@10.1.0(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-mocha: 11.2.0(eslint@10.1.0(jiti@2.6.1))
       eslint-plugin-react: 7.37.5(eslint@10.1.0(jiti@2.6.1))
@@ -17206,7 +17206,7 @@ snapshots:
       tinyglobby: 0.2.15
       unrs-resolver: 1.9.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@10.1.0(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -17237,7 +17237,7 @@ snapshots:
       lodash: 4.18.1
       pkg-dir: 5.0.0
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@10.1.0(jiti@2.6.1)):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.57.1(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1)))(eslint@10.1.0(jiti@2.6.1)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9

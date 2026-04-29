@@ -1,12 +1,12 @@
 <JobCard
-  role="Frontend Developer"
+  jobTitle="Frontend Developer"
   team="Design Systems"
   status="Active"
   applicants={24}
   avatarColors={['#6366f1', '#8b5cf6', '#ec4899']}
 />
 <JobCard
-  role="Backend Engineer"
+  jobTitle="Backend Engineer"
   team="Platform"
   status="Pending"
   applicants={11}
