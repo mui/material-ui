@@ -323,21 +323,6 @@ export default defineConfig(
       'import/prefer-default-export': 'off',
     },
   },
-  {
-    // The compiled output of `@mui/internal-core-docs` is consumed downstream by bundlers
-    // (e.g. Vite 8 / Rolldown when MUI X builds its regression tests). Rolldown is stricter
-    // than Rollup and fails the build when a value-import references a name that has no
-    // runtime export — e.g. `import { Theme } from '@mui/material/styles'`, where `Theme`
-    // is a TypeScript type. Forcing the inline `type` modifier here erases such imports at
-    // compile time so they never reach downstream bundlers.
-    files: [`packages-internal/core-docs/src/**/*${EXTENSION_TS}`],
-    rules: {
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
-      ],
-    },
-  },
   // Migrated config from packages-internal/api-docs-builder-core/.eslintrc.js
   {
     files: [`packages-internal/api-docs-builder-core/**/*${EXTENSION_TS}`],
