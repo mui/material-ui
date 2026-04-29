@@ -17,13 +17,13 @@ export function internal_mutateStyles(
 ): void;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles<P>(styles: any): object;
+export function internal_serializeStyles(styles: any): object;
 
 export interface SerializedStyles {
   name: string;
   styles: string;
-  map?: string;
-  next?: SerializedStyles;
+  map?: string | undefined;
+  next?: SerializedStyles | undefined;
 }
 
 export type Keyframes = {
@@ -37,18 +37,18 @@ export function shouldForwardProp(propName: PropertyKey): boolean;
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {
-  label?: string;
+  label?: string | undefined;
   shouldForwardProp?(propName: PropertyKey): propName is ForwardedProps;
-  target?: string;
+  target?: string | undefined;
 }
 
 export interface CSSObject {}
 
 export type Interpolation = any;
 
-export interface CreateMUIStyled<A extends any, B extends any, C extends any> {
-  <C extends any, ForwardedProps extends any>(
-    component: C,
+export interface CreateMUIStyled<A, B, C> {
+  <ComponentType, ForwardedProps>(
+    component: ComponentType,
     options: object,
   ): React.ComponentType<ForwardedProps & A & B & C>;
 }

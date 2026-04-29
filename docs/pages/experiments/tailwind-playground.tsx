@@ -31,6 +31,9 @@ export default function TailwindPlayground() {
   const [selected, setSelected] = React.useState<string[]>(['React', 'TypeScript']);
   const [variant, setVariant] = React.useState<'rounded' | 'pill' | 'square'>('rounded');
 
+  const shapeClasses = { pill: 'rounded-full', square: 'rounded-none', rounded: 'rounded-lg' };
+  const shapeClass = shapeClasses[variant];
+
   function toggleTag(tag: string) {
     setSelected((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   }
@@ -44,7 +47,7 @@ export default function TailwindPlayground() {
         </Typography>
         <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-10">
           MUI components styled with Tailwind utilities via <code>className</code>. Uses{' '}
-          <code>mui-&#123;state&#125;:</code> variants and Tailwind's responsive modifiers — no{' '}
+          <code>mui-&#123;state&#125;:</code> variants and Tailwind&apos;s responsive modifiers — no{' '}
           <code>sx</code> prop needed.
         </p>
 
@@ -104,7 +107,7 @@ export default function TailwindPlayground() {
               className={`
                 inline-flex items-center justify-center px-5 py-2 text-sm font-medium
                 bg-indigo-600 text-white transition-all duration-200
-                ${variant === 'pill' ? 'rounded-full' : variant === 'square' ? 'rounded-none' : 'rounded-lg'}
+                ${shapeClass}
               `}
             >
               Preview: {variant}
@@ -166,7 +169,7 @@ export default function TailwindPlayground() {
                 "
               />
               <p className="text-xs text-neutral-400 dark:text-neutral-500">
-                <code>className="text-pink-500"</code> — track &amp; thumb use{' '}
+                <code>className=&quot;text-pink-500&quot;</code> — track &amp; thumb use{' '}
                 <code>currentColor</code>; hover/focus overridden manually until Slider.css is
                 updated — value: {pinkSliderValue}
               </p>

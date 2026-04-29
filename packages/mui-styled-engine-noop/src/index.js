@@ -1,4 +1,6 @@
+'use client';
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 const defaultShouldForwardProp = (prop) =>
   prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
@@ -30,6 +32,11 @@ export default function styled(Tag, options) {
     return <FinalTag {...forwardedProps} ref={ref} />;
   });
 
+  Component.propTypes = {
+    as: PropTypes.elementType,
+    sx: PropTypes.oneOfType([PropTypes.array, PropTypes.func, PropTypes.object]),
+  };
+
   return () => Component;
 }
 
@@ -44,10 +51,10 @@ export function css() {
 export const ThemeContext = React.createContext(null);
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_mutateStyles(tag, processor) {}
+export function internal_mutateStyles(_tag, _processor) {}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles(styles) {
+export function internal_serializeStyles(_styles) {
   return '';
 }
 

@@ -8,7 +8,7 @@ import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 
-function JobCard({ role, team, status, applicants, avatarColors }) {
+function JobCard({ jobTitle, team, status, applicants, avatarColors }) {
   const isActive = status === 'Active';
   return (
     <Card className="rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-none">
@@ -16,11 +16,11 @@ function JobCard({ role, team, status, applicants, avatarColors }) {
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-700 dark:text-indigo-300 font-semibold text-base">
-              {role[0]}
+              {jobTitle[0]}
             </div>
             <div>
               <p className="font-semibold text-neutral-900 dark:text-neutral-100 text-sm leading-tight">
-                {role}
+                {jobTitle}
               </p>
               <p className="text-xs text-neutral-500 dark:text-neutral-400">
                 {team}
@@ -78,7 +78,7 @@ function JobCard({ role, team, status, applicants, avatarColors }) {
 JobCard.propTypes = {
   applicants: PropTypes.number.isRequired,
   avatarColors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  role: PropTypes.string.isRequired,
+  jobTitle: PropTypes.string.isRequired,
   status: PropTypes.oneOf(['Active', 'Pending']).isRequired,
   team: PropTypes.string.isRequired,
 };
@@ -87,14 +87,14 @@ export default function TailwindCard() {
   return (
     <div className="grid grid-cols-1 gap-4 w-full max-w-sm sm:max-w-2xl sm:grid-cols-2">
       <JobCard
-        role="Frontend Developer"
+        jobTitle="Frontend Developer"
         team="Design Systems"
         status="Active"
         applicants={24}
         avatarColors={['#6366f1', '#8b5cf6', '#ec4899']}
       />
       <JobCard
-        role="Backend Engineer"
+        jobTitle="Backend Engineer"
         team="Platform"
         status="Pending"
         applicants={11}
