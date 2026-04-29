@@ -73,12 +73,6 @@ jobs:
         run: |
           VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
           echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
-      - name: Cache Vale binary
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
-        with:
-          path: node_modules/.cache/mui-vale
-          key: ${{ runner.os }}-mui-vale-${{ steps.vale-version.outputs.vale_version }}
       - uses: vale-cli/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         if: ${{ matrix.os == 'ubuntu-latest' }}
