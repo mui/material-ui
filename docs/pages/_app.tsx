@@ -53,7 +53,7 @@ const docsConfig: DocsConfig = {
    * The shape of these JSON files needs to be backward compatible.
    * They are used in past versions of the docs, and we don't want to break them by changing the structure.
    * If any change is needed, it should be made in a way that doesn't break the existing structure, or we should
-   * update older domains to subscribe to be compatible with the new structure.
+   * update older domains to be compatible with the new structure.
    */
   ...(process.env.NODE_ENV !== 'production' && {
     fetchNotifications: (): Promise<NotificationMessage[]> =>
