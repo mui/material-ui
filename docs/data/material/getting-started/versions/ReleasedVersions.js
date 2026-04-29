@@ -22,7 +22,11 @@ function ReleasedVersions() {
               <TableCell>
                 <Typography variant="body2">
                   {doc.version}
-                  {doc.version === `v${process.env.LIB_VERSION}` ? ' ✓' : ''}
+                  {doc.version.startsWith(
+                    `v${process.env.LIB_VERSION.split('.')[0]}`,
+                  )
+                    ? ' ✓'
+                    : ''}
                 </Typography>
               </TableCell>
               <TableCell>
@@ -31,11 +35,11 @@ function ReleasedVersions() {
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length >= 6 && !doc.version.includes('pre-release') ? (
+                {!doc.noReleaseNotes ? (
                   <Link
                     variant="body2"
                     rel="nofollow"
-                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
+                    href={`${GITHUB_RELEASE_BASE_URL}${doc.version}.0.0`}
                   >
                     Release notes
                   </Link>

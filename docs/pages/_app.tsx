@@ -56,7 +56,7 @@ const docsConfig: DocsConfig = {
   }),
   ...(process.env.NODE_ENV !== 'production' && {
     fetchVersions: (): Promise<VersionEntry[]> =>
-      import('../versions.json').then((mod) => mod.default),
+      import('../versions.json').then((mod) => mod.default.versions),
   }),
   hostUrl: process.env.PULL_REQUEST_ID
     ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
@@ -320,7 +320,7 @@ export default function MyApp(
 
 MyApp.getInitialProps = createGetInitialProps({
   translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
-  versions: versionsJson,
+  versions: versionsJson.versions,
 });
 
 export { reportWebVitals };

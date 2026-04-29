@@ -25,7 +25,8 @@ const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/master/d
 
 async function defaultFetchVersions(): Promise<VersionEntry[]> {
   const response = await fetch(VERSIONS_URL);
-  return response.json();
+  const data = await response.json();
+  return data.versions;
 }
 
 export interface DocsConfig {
