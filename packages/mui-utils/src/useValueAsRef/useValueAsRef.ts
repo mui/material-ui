@@ -11,16 +11,15 @@ interface ValueRef<T> {
 /**
  * Copied from `@base-ui/utils/useValueAsRef`.
  *
- * Untracks the provided value by turning it into a ref to remove its reactivity.
- *
- * Used to access the passed value inside effects without causing those effects to re-run when the
- * value changes.
+ * Stores the latest value in a stable ref. The ref updates after React commits,
+ * so effects and delayed callbacks can read the current value without depending
+ * on it and rerunning.
  */
 export default function useValueAsRef<T>(value: T) {
   const latest = useLazyRef(() => createValueRef(value)).current;
   latest.next = value;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- effect never changes; it reads latest.next.
   useEnhancedEffect(latest.effect);
 
   return latest;

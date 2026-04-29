@@ -10,7 +10,7 @@ describe('<TouchRipple />', () => {
   const { clock, render } = createRenderer();
 
   /**
-   * @param {object} other props to spread to TouchRipple
+   * @param {object} other Props to pass to TouchRipple.
    */
   function renderTouchRipple(other) {
     const touchRippleRef = React.createRef();
@@ -148,7 +148,7 @@ describe('<TouchRipple />', () => {
     expect(ripples[2].querySelector('.child')).not.to.have.class('child-leaving');
   });
 
-  it('renders a new ripple before fully exiting groups', () => {
+  it('renders a new ripple before the final group of exiting ripples', () => {
     const { instance, queryAllRipples, queryAllActiveRipples, queryAllStoppingRipples } =
       renderTouchRipple();
 
@@ -311,8 +311,7 @@ describe('<TouchRipple />', () => {
       instance.start({ type: 'touchstart', touches: [{}] }, () => {});
       unmount();
 
-      // expect this to run gracefully without
-      // "react state update on an unmounted component"
+      // Running delayed ripple work after unmount should not warn about setting state.
       clock.runAll();
     });
 

@@ -28,8 +28,7 @@ function isGestureTranslate(transform) {
   return typeof transform === 'string' && /^translate\(.+,\s*.+\)$/.test(transform);
 }
 
-// Translate the node so it can't be seen on the screen.
-// Later, we're going to translate the node back to its original location with `none`.
+// Move the node off-screen. Later we reset transform to `none` to slide it in.
 function getTranslateValue(direction, node, resolvedContainer, options = {}) {
   const { resetInlineTransform = true } = options;
   const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
@@ -38,9 +37,9 @@ function getTranslateValue(direction, node, resolvedContainer, options = {}) {
   let transform;
 
   if (resetInlineTransform) {
-    // Clear the inline transform and transition before reading layout and computed
-    // style so we compute from the element's natural position, not its previous
-    // off-screen translation.
+    // Read layout from the element's natural position, not from a previous
+    // off-screen transform. Clear transition too, or the browser may report an
+    // in-between animated value during exit.
     const previousTransform = node.style.transform;
     const previousTransition = node.style.transition;
     node.style.transition = '';
@@ -193,7 +192,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleExited = normalizedTransitionCallback(childrenRef, (node) => {
     preserveInlineTransformRef.current = false;
-    // No need for transitions when the component is hidden
+    // Hidden nodes stay off-screen without animating.
     node.style.transition = '';
 
     if (onExited) {
@@ -214,7 +213,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   }, [direction, containerProp]);
 
   React.useEffect(() => {
-    // Skip configuration where the position is screen size invariant.
+    // Skip resize listeners when the off-screen position does not depend on screen size.
     if (inProp || direction === 'down' || direction === 'right') {
       return undefined;
     }
@@ -235,8 +234,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   React.useEffect(() => {
     if (!inProp && !preserveInlineTransformRef.current) {
-      // We need to update the position of the drawer when the direction change and
-      // when it's hidden.
+      // While hidden, keep the child at the correct off-screen position if
+      // direction or container changes.
       updatePosition();
     }
   }, [inProp, updatePosition]);
@@ -256,7 +255,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {/* Do not pass ownerState to a DOM child. ownerState is only for Material UI styling,
+           and React would treat it as an invalid DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
         let childStyle;
         if (state === 'exited' && !inProp) {
@@ -287,11 +287,11 @@ Slide.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

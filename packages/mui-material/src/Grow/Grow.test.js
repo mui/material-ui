@@ -81,7 +81,7 @@ describe('<Grow />', () => {
           const handleRef = useForkRef(ref, divRef);
 
           React.useEffect(() => {
-            // For jsdom
+            // jsdom does not calculate layout, so provide the measured height.
             Object.defineProperty(divRef.current, 'clientHeight', {
               value: autoTransitionDuration,
             });

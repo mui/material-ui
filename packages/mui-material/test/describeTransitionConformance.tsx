@@ -14,48 +14,48 @@ type TransitionCallbackName =
 
 interface TransitionConformanceOptions {
   /**
-   * The transition component under test.
-   * It must accept the common transition props used by Material UI transitions,
-   * such as `in`, `timeout`, lifecycle callbacks, and `addEndListener`.
+   * The transition component to test. It should accept the shared transition
+   * props used by Material UI transition components: `in`, `timeout`, lifecycle
+   * callbacks, and optionally `addEndListener`.
    */
   Component: React.ElementType;
   /**
-   * The `render` helper returned by `createRenderer()`.
-   * The generated tests use the returned `setProps` API to drive enter/exit transitions.
+   * The `render` helper returned by `createRenderer()`. These tests use its
+   * `setProps` API to open and close the transition.
    */
   render: (element: React.ReactElement) => any;
   /**
-   * The fake-timer controls returned by `createRenderer()`.
-   * They are only used by generated tests that need transition lifecycle timers to complete.
+   * Fake timer controls returned by `createRenderer()`. Tests use them when a
+   * timeout must finish before a lifecycle callback runs.
    */
   clock: {
     withFakeTimers: () => void;
     tick: (ms: number) => void;
   };
   /**
-   * Props applied to every generated render for this component.
-   * Use this for required component-specific props, for example `direction` on `Slide`.
+   * Props passed to every render. Use this for component-specific required
+   * props, for example `direction` on `Slide`.
    */
   defaultProps?: Record<string, unknown>;
   /**
-   * Child element rendered inside the transition component.
-   * Defaults to `<div id="test" />`, which lets the helper assert callback node identity.
+   * Child rendered inside the transition. Defaults to `<div id="test" />` so
+   * the tests can check which DOM node lifecycle callbacks receive.
    */
   children?: React.ReactElement;
   /**
-   * Returns the DOM node expected to be passed to lifecycle callbacks.
-   * Override this when the component under test wraps its child or requires a custom test node.
+   * Returns the DOM node lifecycle callbacks should receive. Override this when
+   * the component wraps its child or uses a different animated node.
    */
   getNode?: (container: HTMLElement) => HTMLElement | null;
   /**
-   * Enables the shared lifecycle callback test.
-   * Component-specific assertions can inspect the callback node at each lifecycle phase
-   * without duplicating the callback ordering and node identity checks.
+   * Enables the shared lifecycle callback test. Component-specific assertions
+   * can inspect the callback node without duplicating the common callback order
+   * and node identity checks.
    */
   lifecycle?: {
     /**
-     * Set to `true` when the component supports `addEndListener`.
-     * The helper asserts that it receives the transition node and a `done` callback.
+     * Set to `true` when the component supports `addEndListener`. The test
+     * checks that it receives the animated node and a `done` callback.
      */
     addEndListener?: boolean;
     /**
@@ -76,30 +76,30 @@ interface TransitionConformanceOptions {
     assertExiting?: (node: HTMLElement) => void;
   };
   /**
-   * Enables real-browser computed-style tests for default and custom theme durations.
-   * `renderElement` must render an element with `data-testid="child"` as the animated node.
+   * Enables browser computed-style tests for default and custom theme
+   * durations. `renderElement` must render the animated node with
+   * `data-testid="child"`.
    */
   themeDuration?: {
     /**
-     * Renders the transition fixture used by theme-duration tests.
-     * The helper passes extra props here when checking prop-provided timeout values.
+     * Renders the transition fixture used by duration tests. The helper passes
+     * extra props here when checking timeout values from props.
      */
     renderElement: (props?: Record<string, unknown>) => React.ReactElement;
     /**
-     * Set to `true` when the component should also prove that `timeout={{ enter: 1 }}`
-     * overrides the theme duration in a real browser.
+     * Set to `true` when the component should also prove that
+     * `timeout={{ enter: 1 }}` overrides the theme duration in a browser.
      */
     testPropTimeout?: boolean;
   };
   /**
-   * Enables jsdom tests for timeout-provided inline styles.
-   * Use this for transition components that expose the configured enter or exit timeout
-   * through a lifecycle callback node.
+   * Enables jsdom tests for inline styles created from the `timeout` prop. Use
+   * this when the enter or exit timeout can be checked in a lifecycle callback.
    */
   propTimeout?: {
     /**
-     * Enter-transition timeout assertion.
-     * `callback` selects the lifecycle callback where the expected enter style is observable.
+     * Enter timeout assertion. `callback` selects where the expected enter
+     * style is available.
      */
     enter?: {
       timeout: number;
@@ -107,8 +107,8 @@ interface TransitionConformanceOptions {
       assertStyle: (node: HTMLElement) => void;
     };
     /**
-     * Exit-transition timeout assertion.
-     * `callback` selects the lifecycle callback where the expected exit style is observable.
+     * Exit timeout assertion. `callback` selects where the expected exit style
+     * is available.
      */
     exit?: {
       timeout: number;

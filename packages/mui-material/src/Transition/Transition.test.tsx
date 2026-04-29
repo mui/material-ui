@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import RtgTransitionGroupContext from 'react-transition-group/TransitionGroupContext';
+import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Transition from './Transition';
 
@@ -67,9 +67,9 @@ describe('<Transition />', () => {
       clock.withFakeTimers();
       const handlers = { onEnter: spy(), onEntering: spy(), onEntered: spy() };
       render(<TestHarness in appear timeout={100} handlers={handlers} />);
-      // After mount, the appear transition has already progressed to entering.
+      // The mount effect starts the appear transition immediately.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
-      // isAppearing is true on mount.
+      // Enter callbacks receive isAppearing=true during the first mount.
       expect(handlers.onEnter!.args[0][0]).to.equal(true);
     });
 
@@ -92,7 +92,7 @@ describe('<Transition />', () => {
   describe('transitions', () => {
     clock.withFakeTimers();
 
-    it('progresses exited → entering → entered on in=true', () => {
+    it('progresses from exited to entering to entered on in=true', () => {
       const handlers = { onEnter: spy(), onEntering: spy(), onEntered: spy() };
       const { setProps } = render(<TestHarness in={false} timeout={100} handlers={handlers} />);
       setProps({ in: true });
@@ -104,7 +104,7 @@ describe('<Transition />', () => {
       expect(handlers.onEntered!.callCount).to.be.greaterThanOrEqual(1);
     });
 
-    it('progresses entered → exiting → exited on in=false', () => {
+    it('progresses from entered to exiting to exited on in=false', () => {
       const handlers = { onExit: spy(), onExiting: spy(), onExited: spy() };
       const { setProps } = render(
         <TestHarness in appear={false} timeout={100} handlers={handlers} />,
@@ -125,7 +125,7 @@ describe('<Transition />', () => {
       );
       setProps({ in: true });
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
-      // onEnter / onEntering do NOT fire on the skip path; only onEntered.
+      // The skip path calls only the final entered callback.
       expect(handlers.onEnter!.callCount).to.equal(0);
       expect(handlers.onEntering!.callCount).to.equal(0);
       expect(handlers.onEntered!.callCount).to.equal(1);
@@ -232,11 +232,10 @@ describe('<Transition />', () => {
         />,
       );
       setProps({ in: true });
-      // Without the listener firing, the transition should not complete even
-      // as time advances.
+      // When timeout is null, the listener must call done before enter completes.
       clock.tick(10000);
       expect(onEntered.callCount).to.equal(0);
-      // Listener fires: completion runs.
+      // Calling done completes enter.
       expect(done).to.be.a('function');
       act(() => {
         done!();
@@ -280,7 +279,7 @@ describe('<Transition />', () => {
       expect(onEntered.callCount).to.equal(1);
     });
 
-    it('addEndListener and timeout race — first completion wins, second is no-op', () => {
+    it('addEndListener and timeout race: first completion wins, second is no-op', () => {
       const onEntered = spy();
       let done: (() => void) | null = null;
       const addEndListener = (_node: HTMLElement, next: () => void) => {
@@ -295,12 +294,12 @@ describe('<Transition />', () => {
         />,
       );
       setProps({ in: true });
-      // Listener fires before the timeout expires.
+      // Calling done before the timeout should complete enter once.
       act(() => {
         done!();
       });
       expect(onEntered.callCount).to.equal(1);
-      // Timeout also expires, but the cancellation token makes it a no-op.
+      // The later timeout should be ignored.
       clock.tick(200);
       expect(onEntered.callCount).to.equal(1);
     });
@@ -318,11 +317,11 @@ describe('<Transition />', () => {
       };
       const { setProps } = render(<TestHarness in={false} timeout={200} handlers={handlers} />);
       setProps({ in: true });
-      clock.tick(50); // still entering
+      clock.tick(50); // Enter is still running.
       setProps({ in: false });
-      // Enter's onEntered never fired.
+      // The cancelled enter must not call onEntered.
       expect(handlers.onEntered!.callCount).to.equal(0);
-      // Exit starts.
+      // Closing starts exit.
       expect(handlers.onExit!.callCount).to.equal(1);
       clock.tick(200);
       expect(handlers.onExited!.callCount).to.equal(1);
@@ -334,7 +333,7 @@ describe('<Transition />', () => {
         <TestHarness in appear={false} timeout={200} handlers={handlers} />,
       );
       setProps({ in: false });
-      clock.tick(50); // still exiting
+      clock.tick(50); // Exit is still running.
       setProps({ in: true });
       expect(handlers.onExited!.callCount).to.equal(0);
       expect(handlers.onEnter!.callCount).to.equal(1);
@@ -575,14 +574,13 @@ describe('<Transition />', () => {
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
       setProps({ in: false });
       clock.tick(100);
-      // Without unmountOnExit, stays in DOM at exited.
+      // Without unmountOnExit, the child stays mounted after exit.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exited');
     });
 
-    it('does NOT fire onExited during the unmounted→exited hop on first open', () => {
-      // Regression: the synthetic 'unmounted' → 'exited' render pass must
-      // not be mistaken for a real exit completion. Opening the component
-      // must only fire the enter lifecycle callbacks.
+    it('does not fire onExited during the setup render before the first open', () => {
+      // Opening from unmounted first renders the child as exited so refs exist.
+      // That setup render must not look like a completed exit.
       const handlers = {
         onEnter: spy(),
         onEntering: spy(),
@@ -609,11 +607,8 @@ describe('<Transition />', () => {
     clock.withFakeTimers();
 
     it('clears TransitionGroupContext for descendants so nested transitions see a null parent', () => {
-      // If the outer Transition leaked its parent's TransitionGroup context,
-      // a nested Transition under an already-mounted TransitionGroup would
-      // receive isAppearing=false on its own mount. This verifies the
-      // Provider reset: the nested transition's isAppearing matches its own
-      // mount state, not the outer group's.
+      // The outer transition may read a parent TransitionGroup context, but a
+      // nested transition should start from its own mount state.
       const mountedGroup = { isMounting: false };
       const nestedOnEnter = spy();
 
@@ -636,23 +631,22 @@ describe('<Transition />', () => {
       }
 
       render(
-        <RtgTransitionGroupContext.Provider value={mountedGroup}>
+        <TransitionGroupContext.Provider value={mountedGroup}>
           <NestedTree />
-        </RtgTransitionGroupContext.Provider>,
+        </TransitionGroupContext.Provider>,
       );
 
-      // Without the Provider reset, the nested Transition would see the
-      // outer mounted group and receive isAppearing=false. With the reset,
-      // it sees a null parent group and falls back to its own mount state.
+      // Clearing the context lets the nested transition receive
+      // isAppearing=true for its own first mount.
       expect(nestedOnEnter.callCount).to.be.greaterThanOrEqual(1);
       expect(nestedOnEnter.args[0][0]).to.equal(true);
     });
   });
 
-  describe('RTG TransitionGroupContext interop', () => {
+  describe('react-transition-group TransitionGroupContext interop', () => {
     clock.withFakeTimers();
 
-    // Stable references so the context value doesn't change across renders.
+    // Keep context objects stable across renders.
     const mountedGroup = { isMounting: false };
     const mountingGroup = { isMounting: true };
 
@@ -664,22 +658,22 @@ describe('<Transition />', () => {
       };
 
       function ChildWrapper({ shouldRender }: { shouldRender: boolean }) {
-        // Parent group is already mounted (isMounting=false).
+        // The parent group has already finished mounting.
         return (
-          <RtgTransitionGroupContext.Provider value={mountedGroup}>
+          <TransitionGroupContext.Provider value={mountedGroup}>
             {shouldRender ? (
               <TestHarness in appear={false} timeout={100} handlers={handlers} />
             ) : null}
-          </RtgTransitionGroupContext.Provider>
+          </TransitionGroupContext.Provider>
         );
       }
 
       const { setProps } = render(<ChildWrapper shouldRender={false} />);
       setProps({ shouldRender: true });
 
-      // Entered, not skipped — the context bridge re-enables the enter animation.
+      // A child added after group mount should still run enter.
       expect(handlers.onEnter!.callCount).to.be.greaterThanOrEqual(1);
-      // isAppearing must be false because the parent already mounted.
+      // But enter callbacks should receive isAppearing=false.
       expect(handlers.onEnter!.args[0][0]).to.equal(false);
 
       clock.tick(100);
@@ -691,9 +685,9 @@ describe('<Transition />', () => {
       const onEnter = spy();
       function Wrapper() {
         return (
-          <RtgTransitionGroupContext.Provider value={mountingGroup}>
+          <TransitionGroupContext.Provider value={mountingGroup}>
             <TestHarness in appear timeout={100} handlers={{ onEnter }} />
-          </RtgTransitionGroupContext.Provider>
+          </TransitionGroupContext.Provider>
         );
       }
       render(<Wrapper />);
@@ -703,9 +697,9 @@ describe('<Transition />', () => {
     it('child present at TransitionGroup mount does not enter when appear=false', () => {
       const handlers = { onEnter: spy(), onEntering: spy(), onEntered: spy() };
       render(
-        <RtgTransitionGroupContext.Provider value={mountingGroup}>
+        <TransitionGroupContext.Provider value={mountingGroup}>
           <TestHarness in appear={false} timeout={100} handlers={handlers} />
-        </RtgTransitionGroupContext.Provider>,
+        </TransitionGroupContext.Provider>,
       );
 
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
@@ -718,23 +712,23 @@ describe('<Transition />', () => {
       const handlers = { onEnter: spy(), onEntered: spy() };
       function ChildWrapper({ shouldRender }: { shouldRender: boolean }) {
         return (
-          <RtgTransitionGroupContext.Provider value={mountedGroup}>
+          <TransitionGroupContext.Provider value={mountedGroup}>
             {shouldRender ? (
               <TestHarness in appear={false} enter={false} timeout={100} handlers={handlers} />
             ) : null}
-          </RtgTransitionGroupContext.Provider>
+          </TransitionGroupContext.Provider>
         );
       }
       const { setProps } = render(<ChildWrapper shouldRender={false} />);
       setProps({ shouldRender: true });
-      // enter=false overrides the "re-enter on late mount" path.
+      // enter=false still skips the late-mount enter animation.
       expect(handlers.onEnter!.callCount).to.equal(0);
-      // Status jumps straight to entered.
+      // The child moves straight to entered.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
     });
   });
 
-  describe('RTG TransitionGroupContext user interactions', () => {
+  describe('react-transition-group TransitionGroupContext user interactions', () => {
     const mountedGroup = { isMounting: false };
 
     it('child added by user to an already-mounted TransitionGroup enters', async () => {
@@ -747,7 +741,7 @@ describe('<Transition />', () => {
       function ChildWrapper() {
         const [shouldRender, setShouldRender] = React.useState(false);
         return (
-          <RtgTransitionGroupContext.Provider value={mountedGroup}>
+          <TransitionGroupContext.Provider value={mountedGroup}>
             <button type="button" onClick={() => setShouldRender(true)}>
               add
             </button>
@@ -760,7 +754,7 @@ describe('<Transition />', () => {
                 handlers={handlers}
               />
             ) : null}
-          </RtgTransitionGroupContext.Provider>
+          </TransitionGroupContext.Provider>
         );
       }
 

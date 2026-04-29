@@ -56,7 +56,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const handleEntering = normalizedTransitionCallback(nodeRef, onEntering);
 
   const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+    reflow(node); // Force layout so the animation starts from the initial styles.
 
     const transitionProps = getTransitionProps(
       { style, timeout, easing },
@@ -120,7 +120,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {/* Do not pass ownerState to a DOM child. ownerState is only for Material UI styling,
+           and React would treat it as an invalid DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
         const childStyle = getTransitionChildStyle(
           state,
@@ -148,11 +149,11 @@ Zoom.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

@@ -63,11 +63,11 @@ Ripple.propTypes /* remove-proptypes */ = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   /**
-   * @ignore - injected from TransitionGroup
+   * @ignore - controlled by TouchRipple
    */
   in: PropTypes.bool,
   /**
-   * @ignore - injected from TransitionGroup
+   * @ignore - controlled by TouchRipple
    */
   onExited: PropTypes.func,
   /**
@@ -87,7 +87,7 @@ Ripple.propTypes /* remove-proptypes */ = {
    */
   rippleY: PropTypes.number,
   /**
-   * exit delay
+   * Exit delay.
    */
   timeout: PropTypes.number.isRequired,
 };

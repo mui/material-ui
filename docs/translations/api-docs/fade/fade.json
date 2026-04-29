@@ -2,10 +2,10 @@
   "componentDescription": "The Fade transition is used by the [Modal](/material-ui/react-modal/) component.",
   "propDescriptions": {
     "addEndListener": {
-      "description": "Add a custom transition end trigger. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.",
+      "description": "Add a custom transition end trigger. Use it when you need custom logic to decide when the transition has ended. Note: Timeouts are still used as a fallback if provided.",
       "typeDescriptions": {
         "node": { "name": "node", "description": "The transitioning DOM node." },
-        "done": { "name": "done", "description": "Call to indicate the transition is finished." }
+        "done": { "name": "done", "description": "Call this when the transition has finished." }
       }
     },
     "appear": {

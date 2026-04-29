@@ -4,8 +4,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useValueAsRef from '@mui/utils/useValueAsRef';
-// Read-only bridge for RTG's TransitionGroup interop. This imports only the
-// tiny context module, so full RTG Transition/TransitionGroup stay out of the bundle.
+// Material UI transitions must still work inside react-transition-group's TransitionGroup.
+// Import only its context module; do not import its Transition or TransitionGroup components.
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { reflow } from '../transitions/utils';
 
@@ -90,11 +90,12 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
 
   const parentGroup = React.useContext(TransitionGroupContext);
 
-  // RTG context bridge — two independent values:
-  //   shouldEnterOnMount: whether to run the enter animation on initial mount
-  //   isAppearing: value passed to enter callbacks (computed in performEnter)
-  // A child added to a running RTG TransitionGroup still enters, but its
-  // callbacks receive isAppearing=false because the parent already mounted.
+  // react-transition-group's TransitionGroup tells children whether the group
+  // is still mounting. Material UI needs two values from that:
+  // - shouldEnterOnMount: whether this child should run an enter animation now.
+  // - isAppearing: the value passed to enter callbacks.
+  // A child added after the group mounted still enters, but callbacks receive
+  // isAppearing=false because the parent group is no longer mounting.
   const shouldEnterOnMount = parentGroup && !parentGroup.isMounting ? enter : appear;
 
   const initialStatusRef = React.useRef<InternalStatus | null>(null);
@@ -117,16 +118,15 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   );
   const mountedRef = React.useRef(false);
   const nextCallbackRef = React.useRef<CancellableCallback | null>(null);
-  // Tracks the last status we fired lifecycle callbacks for — lets the
-  // status-reactive effect dedupe against StrictMode's double-invocation.
+  // Remember which status already fired lifecycle callbacks. React StrictMode
+  // can run effects twice in development; this prevents duplicate callbacks.
   const lastFiredStatusRef = React.useRef<InternalStatus>(status);
-  // Captured isAppearing for the currently-running enter transition. Saved
-  // synchronously in performEnter so the status-reactive effect can read the
-  // right value when it eventually fires onEntering/onEntered.
+  // Store the isAppearing value for the current enter transition. performEnter
+  // sets it before the status effect later calls onEntering/onEntered.
   const isAppearingRef = React.useRef(false);
 
-  // Keep latest prop callbacks accessible from long-lived closures (scheduled
-  // setTimeouts can fire well after props change).
+  // Transition end callbacks can run after props changed. Read props through
+  // this ref so delayed work uses the latest callbacks and timeout settings.
   const propsRef = useValueAsRef({
     timeout,
     addEndListener,
@@ -144,8 +144,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     parentGroup,
   });
 
-  // These helpers are effect dependencies. useCallback keeps their identity
-  // stable while propsRef gives them the latest props.
+  // Effects below depend on these helpers. Keep their identity stable; they read
+  // changing props through propsRef.
   const cancelPendingCallback = React.useCallback(() => {
     if (nextCallbackRef.current !== null) {
       nextCallbackRef.current.cancel();
@@ -181,10 +181,9 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         return;
       }
       if (listener) {
-        // RTG calls addEndListener(done) when nodeRef is used, but MUI still
-        // supports the direct consumer shape addEndListener(node, done). The
-        // arity check preserves both contracts without changing the wrappers in
-        // Fade/Grow/Slide/Zoom/Collapse.
+        // With nodeRef, react-transition-group calls addEndListener(done).
+        // Material UI has long supported addEndListener(node, done). Keep both call
+        // shapes so existing transition wrappers do not have to change.
         if (listener.length >= 2) {
           (listener as (node: HTMLElement, done: () => void) => void)(node, done);
         } else {
@@ -204,9 +203,9 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       const isAppearing = current.parentGroup ? current.parentGroup.isMounting : mounting;
       isAppearingRef.current = isAppearing;
 
-      // Skip animation on updates (not mount) when enter=false. Matches RTG:
-      // `(!mounting && !enter) || config.disabled`. onEnter does not fire in
-      // this branch — only the terminal onEntered (via the status effect).
+      // On updates, enter=false skips the enter animation. Move straight to
+      // entered; the status effect will call onEntered, but onEnter/onEntering
+      // must not fire.
       if (!mounting && !current.enter) {
         statusRef.current = 'entered';
         setStatus('entered');
@@ -240,8 +239,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         cancelPendingCallback();
         if (nextStatus === 'entering') {
           const current = propsRef.current;
-          // Forced reflow separates the mount-render from the entering-render
-          // so CSS transitions run on nodes that just became visible.
+          // If the node was just mounted, read layout before entering so the
+          // browser applies the starting styles before the animation begins.
           if (current.mountOnEnter || current.unmountOnExit) {
             const node = current.nodeRef.current;
             if (node) {
@@ -260,12 +259,10 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     [cancelPendingCallback, performEnter, performExit, propsRef],
   );
 
-  // Mount effect — useEnhancedEffect is required here because the initial
-  // appear transition can force reflow and must happen before paint. Kept
-  // re-runnable for StrictMode's double-mount: the cleanup cancels the
-  // pending callback, then the second mount replays the same enter from the
-  // same start state. The dependencies are stable callbacks, so this
-  // remains mount-only outside StrictMode.
+  // Runs on mount. useEnhancedEffect is needed because the initial appear
+  // transition may read layout before paint. In StrictMode development builds,
+  // React mounts, cleans up, and mounts again; cleanup cancels pending work and
+  // the second mount restarts the same transition.
   useEnhancedEffect(() => {
     mountedRef.current = true;
     if (appearPendingRef.current !== null) {
@@ -277,10 +274,11 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     };
   }, [cancelPendingCallback, updateStatus]);
 
-  // In-change / status-reconciliation effect — mirrors RTG's componentDidUpdate
-  // plus getDerivedStateFromProps. `status` is included because mountOnEnter
-  // needs the synthetic unmounted -> exited render before starting enter, and
-  // unmountOnExit needs the terminal exited -> unmounted step.
+  // Reconcile the rendered status after `in` or status changes:
+  // - opening from unmounted first renders the child as exited so refs exist.
+  // - unmountOnExit removes the child after the exited state commits.
+  // This matches react-transition-group's observable status steps without
+  // running work after unrelated commits.
   useEnhancedEffect(() => {
     if (!mountedRef.current) {
       return;
@@ -289,8 +287,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
 
     if (inProp) {
       if (current === 'unmounted') {
-        // RTG's getDerivedStateFromProps pre-step: render the node at 'exited'
-        // before starting the enter animation so onEnter gets a live nodeRef.
+        // Opening from unmounted needs one render with the child present so
+        // refs are attached before the enter animation starts.
         statusRef.current = 'exited';
         setStatus('exited');
       } else if (current !== 'entering' && current !== 'entered') {
@@ -304,14 +302,12 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     }
   }, [inProp, status, unmountOnExit, updateStatus]);
 
-  // Status-reactive lifecycle effect — fires the lifecycle callback for each
-  // committed status change. The lastFiredStatusRef guard dedupes StrictMode's
-  // double-invocation; callback freshness comes from propsRef.
+  // Fire lifecycle callbacks for committed status changes. The guard prevents
+  // duplicate callbacks in StrictMode; propsRef keeps delayed callbacks fresh.
   useEnhancedEffect(() => {
-    // Transitions into or out of 'unmounted' are synthetic setup hops
-    // (RTG does these in getDerivedStateFromProps). Sync the ref but do
-    // not fire any lifecycle callback — otherwise opening a component with
-    // mountOnEnter/unmountOnExit would emit onExited before the enter.
+    // `unmounted` is bookkeeping, not a real transition state. Do not fire
+    // callbacks when moving into or out of it; otherwise the first open with
+    // mountOnEnter/unmountOnExit would look like a completed exit.
     if (status === 'unmounted' || lastFiredStatusRef.current === 'unmounted') {
       lastFiredStatusRef.current = status;
       return;
@@ -349,9 +345,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     return null;
   }
 
-  // Clear the RTG TransitionGroupContext for descendants so nested MUI
-  // transitions don't inherit the outer group's mount state. Matches RTG's
-  // own `<TransitionGroupContext.Provider value={null}>` render wrapper.
+  // Nested Material UI transitions should not inherit this transition's parent group.
+  // A null context keeps an outer TransitionGroup from controlling them.
   return (
     <TransitionGroupContext.Provider value={null}>
       {children(status as RenderedTransitionStatus, childProps)}

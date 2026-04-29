@@ -96,8 +96,8 @@ describe('<Collapse />', () => {
     let nodeEnteringHeightStyle;
     let nodeExitHeightStyle;
 
-    /* We needs to create wrappers here because the node is passed by reference
-       and it's style is overwritten by the later stages */
+    /* Capture each height value immediately because the same DOM node is reused
+       and later lifecycle steps overwrite its inline style. */
     const handleEnter = spy();
     const handleEnterWrapper = (...args) => {
       handleEnter(...args);
@@ -197,7 +197,7 @@ describe('<Collapse />', () => {
       }
       const { setProps: setProps1, container: container1 } = render(<Test />);
       const collapse = container1.firstChild;
-      // Gets wrapper
+      // Stub the wrapper height used for auto duration.
       stub(collapse.firstChild, 'clientHeight').get(() => 10);
 
       setProps1({
@@ -272,7 +272,7 @@ describe('<Collapse />', () => {
     });
   });
 
-  // Test for https://github.com/mui/material-ui/issues/40653
+  // Regression test for https://github.com/mui/material-ui/issues/40653.
   it.skipIf(isJsdom())(
     'should render correctly when external ownerState prop is passed',
     function test() {
