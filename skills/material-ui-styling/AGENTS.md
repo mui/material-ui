@@ -121,7 +121,7 @@ To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()â
 ## Imports and consistency
 
 - In application code, prefer one-level imports from packages (for example `@mui/material/Button`) to avoid pulling the entire barrel.
-- `Box` / `Stack` / `Typography` / `Grid`: system layout props apply directly on these; other components use `sx` for system shortcuts, not arbitrary CSS prop shortcuts on the component itself.
+- Use `sx` for system layout shortcuts (`p`, `gap`, `mt`, etc.) on MUI components; use component props only for behavior documented by that component.
 
 ---
 
