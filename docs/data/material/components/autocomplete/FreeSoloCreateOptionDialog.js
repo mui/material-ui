@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filter = createFilterOptions();
@@ -72,7 +73,6 @@ export default function FreeSoloCreateOptionDialog() {
 
           return filtered;
         }}
-        id="free-solo-dialog-demo"
         options={top100Films}
         getOptionLabel={(option) => {
           // for example value selected with enter, right from the input
@@ -107,35 +107,33 @@ export default function FreeSoloCreateOptionDialog() {
             <DialogContentText>
               Did you miss any film in our list? Please, add it!
             </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              value={dialogValue.title}
-              onChange={(event) =>
-                setDialogValue({
-                  ...dialogValue,
-                  title: event.target.value,
-                })
-              }
-              label="title"
-              type="text"
-              variant="standard"
-            />
-            <TextField
-              margin="dense"
-              id="name"
-              value={dialogValue.year}
-              onChange={(event) =>
-                setDialogValue({
-                  ...dialogValue,
-                  year: event.target.value,
-                })
-              }
-              label="year"
-              type="number"
-              variant="standard"
-            />
+            <Stack spacing={2}>
+              <TextField
+                autoFocus
+                value={dialogValue.title}
+                onChange={(event) =>
+                  setDialogValue({
+                    ...dialogValue,
+                    title: event.target.value,
+                  })
+                }
+                label="title"
+                type="text"
+                variant="filled"
+              />
+              <TextField
+                value={dialogValue.year}
+                onChange={(event) =>
+                  setDialogValue({
+                    ...dialogValue,
+                    year: event.target.value,
+                  })
+                }
+                label="year"
+                type="number"
+                variant="filled"
+              />
+            </Stack>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>

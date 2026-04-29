@@ -10,7 +10,6 @@ export default function FixedTags() {
   return (
     <Autocomplete
       multiple
-      id="fixed-tags-demo"
       value={value}
       onChange={(event, newValue) => {
         setValue([

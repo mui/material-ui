@@ -231,7 +231,6 @@ CustomAutocomplete.propTypes = {
 export default function CustomizedHook() {
   return (
     <CustomAutocomplete
-      id="customized-hook-demo"
       defaultValue={[top100Films[1]]}
       options={top100Films}
       getOptionLabel={(option) => option.title}

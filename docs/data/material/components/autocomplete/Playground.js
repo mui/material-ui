@@ -14,145 +14,128 @@ export default function Playground() {
   const [value, setValue] = React.useState(null);
 
   return (
-    <Stack spacing={1} sx={{ width: 300 }}>
+    <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
         {...defaultProps}
-        id="disable-close-on-select"
         disableCloseOnSelect
         renderInput={(params) => (
-          <TextField {...params} label="disableCloseOnSelect" variant="standard" />
+          <TextField {...params} label="disableCloseOnSelect" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="clear-on-escape"
         clearOnEscape
         renderInput={(params) => (
-          <TextField {...params} label="clearOnEscape" variant="standard" />
+          <TextField {...params} label="clearOnEscape" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-clearable"
         disableClearable
         renderInput={(params) => (
-          <TextField {...params} label="disableClearable" variant="standard" />
+          <TextField {...params} label="disableClearable" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="include-input-in-list"
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="includeInputInList" variant="standard" />
+          <TextField {...params} label="includeInputInList" variant="filled" />
         )}
       />
       <Autocomplete
         {...flatProps}
-        id="flat-demo"
         renderInput={(params) => (
-          <TextField {...params} label="flat" variant="standard" />
+          <TextField {...params} label="flat" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="controlled-demo"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} label="controlled" variant="standard" />
+          <TextField {...params} label="controlled" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="auto-complete"
         autoComplete
         includeInputInList
         renderInput={(params) => (
-          <TextField {...params} label="autoComplete" variant="standard" />
+          <TextField {...params} label="autoComplete" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-list-wrap"
         disableListWrap
         renderInput={(params) => (
-          <TextField {...params} label="disableListWrap" variant="standard" />
+          <TextField {...params} label="disableListWrap" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="open-on-focus"
         openOnFocus
         renderInput={(params) => (
-          <TextField {...params} label="openOnFocus" variant="standard" />
+          <TextField {...params} label="openOnFocus" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="auto-highlight"
         autoHighlight
         renderInput={(params) => (
-          <TextField {...params} label="autoHighlight" variant="standard" />
+          <TextField {...params} label="autoHighlight" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="auto-select"
         autoSelect
         renderInput={(params) => (
-          <TextField {...params} label="autoSelect" variant="standard" />
+          <TextField {...params} label="autoSelect" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="disabled"
         disabled
         renderInput={(params) => (
-          <TextField {...params} label="disabled" variant="standard" />
+          <TextField {...params} label="disabled" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="disable-portal"
         disablePortal
         renderInput={(params) => (
-          <TextField {...params} label="disablePortal" variant="standard" />
+          <TextField {...params} label="disablePortal" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="blur-on-select"
         blurOnSelect
         renderInput={(params) => (
-          <TextField {...params} label="blurOnSelect" variant="standard" />
+          <TextField {...params} label="blurOnSelect" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="clear-on-blur"
         clearOnBlur
         renderInput={(params) => (
-          <TextField {...params} label="clearOnBlur" variant="standard" />
+          <TextField {...params} label="clearOnBlur" variant="filled" />
         )}
       />
       <Autocomplete
         {...defaultProps}
-        id="select-on-focus"
         selectOnFocus
         renderInput={(params) => (
-          <TextField {...params} label="selectOnFocus" variant="standard" />
+          <TextField {...params} label="selectOnFocus" variant="filled" />
         )}
       />
       <Autocomplete
         {...flatProps}
-        id="readOnly"
         readOnly
         defaultValue={flatProps.options[13]}
         renderInput={(params) => (
-          <TextField {...params} label="readOnly" variant="standard" />
+          <TextField {...params} label="readOnly" variant="filled" />
         )}
       />
     </Stack>

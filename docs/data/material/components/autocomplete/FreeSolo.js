@@ -6,7 +6,6 @@ export default function FreeSolo() {
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
-        id="free-solo-demo"
         freeSolo
         resetHighlightOnMouseLeave
         options={top100Films.map((option) => option.title)}
@@ -15,7 +14,6 @@ export default function FreeSolo() {
       <Autocomplete
         freeSolo
         resetHighlightOnMouseLeave
-        id="free-solo-2-demo"
         disableClearable
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (
@@ -33,7 +31,6 @@ export default function FreeSolo() {
         )}
       />
       <Autocomplete
-        id="free-solo-demo3"
         freeSolo
         resetHighlightOnMouseLeave
         options={top100Films}

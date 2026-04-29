@@ -73,10 +73,7 @@ const options = [
   { id: '2', email: 'bob@example.com' },
 ];
 
-<Autocomplete
-  options={options}
-  getOptionLabel={(option) => option.email}
-/>;
+<Autocomplete options={options} getOptionLabel={(option) => option.email} />;
 ```
 
 If two options share a label, use `getOptionKey` to give each one a unique key:

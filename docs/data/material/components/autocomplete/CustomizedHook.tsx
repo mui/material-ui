@@ -220,7 +220,6 @@ function CustomAutocomplete<Value>(
 export default function CustomizedHook() {
   return (
     <CustomAutocomplete<FilmOptionType>
-      id="customized-hook-demo"
       defaultValue={[top100Films[1]]}
       options={top100Films}
       getOptionLabel={(option) => option.title}

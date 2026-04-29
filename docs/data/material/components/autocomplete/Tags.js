@@ -8,22 +8,15 @@ export default function Tags() {
     <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
-        id="tags-standard"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Multiple values"
-            placeholder="Favorites"
-          />
+          <TextField {...params} label="Multiple values" placeholder="Favorites" />
         )}
       />
       <Autocomplete
         multiple
-        id="tags-outlined"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
@@ -38,7 +31,6 @@ export default function Tags() {
       />
       <Autocomplete
         multiple
-        id="tags-filled"
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
@@ -51,17 +43,11 @@ export default function Tags() {
           })
         }
         renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="freeSolo"
-            placeholder="Favorites"
-          />
+          <TextField {...params} label="freeSolo" placeholder="Favorites" />
         )}
       />
       <Autocomplete
         multiple
-        id="tags-readOnly"
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[12].title, top100Films[13].title]}
         readOnly

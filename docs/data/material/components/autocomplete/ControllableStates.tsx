@@ -15,14 +15,13 @@ export default function ControllableStates() {
       <br />
       <Autocomplete
         value={value}
-        onChange={(event: any, newValue: string | null) => {
+        onChange={(event, newValue) => {
           setValue(newValue);
         }}
         inputValue={inputValue}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
         }}
-        id="controllable-states-demo"
         options={options}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Controllable" />}

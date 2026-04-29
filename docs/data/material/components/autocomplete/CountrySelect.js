@@ -5,8 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 export default function CountrySelect() {
   return (
     <Autocomplete
-      id="country-select-demo"
-      sx={{ width: 300 }}
+      sx={{ width: 320 }}
       options={countries}
       autoHighlight
       getOptionLabel={(option) => option.label}
@@ -21,12 +20,15 @@ export default function CountrySelect() {
           >
             <img
               loading="lazy"
+              decoding="async"
               width="20"
-              srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-              src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+              src={`https://flagcdn.com/${option.code.toLowerCase()}.svg`}
               alt=""
             />
-            {option.label} ({option.code}) +{option.phone}
+            {option.label} ({option.code})
+            <Box component="span" sx={{ ml: 'auto' }}>
+              +{option.phone}
+            </Box>
           </Box>
         );
       }}

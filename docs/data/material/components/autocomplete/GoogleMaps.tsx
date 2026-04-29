@@ -213,7 +213,7 @@ export default function GoogleMaps() {
       resetHighlightOnMouseLeave
       value={value}
       noOptionsText="No locations"
-      onChange={(event: any, newValue: PlaceType | null) => {
+      onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
       }}

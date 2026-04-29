@@ -15,7 +15,6 @@ export default function CustomInputAutocomplete() {
             color: theme.palette.getContrastText(theme.palette.background.paper),
           },
         })}
-        id="custom-input-demo"
         options={options}
         renderInput={(params) => (
           <div ref={params.slotProps.input.ref}>

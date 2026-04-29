@@ -59,10 +59,9 @@ function MovieSelect() {
     <Autocomplete
       options={top100Films}
       getOptionLabel={(option: FilmOptionType) => `${option.title} (${option.year})`}
-      id="movie-customized-option-demo"
       disableCloseOnSelect
       renderInput={(params) => (
-        <TextField {...params} label="Choose a movie" variant="standard" />
+        <TextField {...params} label="Choose a movie" variant="filled" />
       )}
     />
   );
