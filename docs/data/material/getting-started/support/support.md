@@ -54,7 +54,7 @@ If you can't find your answer, [ask a new question](https://stackoverflow.com/qu
 
 :::success
 If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
-Visit the [Material UI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
+Visit the [Material UI Versions](https://mui.com/material-ui/getting-started/versions/) page to find the archived documentation that corresponds to your version.
 :::
 
 ## Technical support

@@ -1,3 +1,4 @@
+import { VersionEntry } from '../DocsProvider';
 import { mapTranslations } from '../i18n';
 import type { RequireContext } from '../i18n';
 
@@ -18,7 +19,10 @@ interface AppContext {
  *   e.g. `require.context('docs/translations', false, /\.\/translations.*\.json$/)`
  */
 
-export function createGetInitialProps(options: { translationsContext: RequireContext }) {
+export function createGetInitialProps(options: {
+  translationsContext: RequireContext;
+  versions: VersionEntry[];
+}) {
   async function getInitialPropsApp({ ctx, Component }: AppContext) {
     let pageProps: Record<string, unknown> = {};
 
@@ -32,6 +36,7 @@ export function createGetInitialProps(options: { translationsContext: RequireCon
       pageProps: {
         userLanguage: ctx.query.userLanguage || 'en',
         translations,
+        versions: options.versions,
         ...pageProps,
       },
     };

@@ -18,12 +18,24 @@ async function defaultFetchNotifications(): Promise<NotificationMessage[]> {
   return response.json();
 }
 
+export type VersionEntry = { version: string; url: string };
+
+// #target-branch-reference
+const VERSIONS_URL = 'https://raw.githubusercontent.com/mui/material-ui/master/docs/versions.json';
+
+async function defaultFetchVersions(): Promise<VersionEntry[]> {
+  const response = await fetch(VERSIONS_URL);
+  const data = await response.json();
+  return data.versions;
+}
+
 export interface DocsConfig {
   LANGUAGES: string[];
   LANGUAGES_SSR: string[];
   LANGUAGES_IN_PROGRESS: string[];
   LANGUAGES_IGNORE_PAGES: (pathname: string) => boolean;
   fetchNotifications?: () => Promise<NotificationMessage[]>;
+  fetchVersions?: () => Promise<VersionEntry[]>;
   hostUrl?: string;
 }
 
@@ -33,6 +45,7 @@ export const DEFAULT_DOCS_CONFIG: DocsConfig = {
   LANGUAGES_IN_PROGRESS,
   LANGUAGES_IGNORE_PAGES,
   fetchNotifications: defaultFetchNotifications,
+  fetchVersions: defaultFetchVersions,
 };
 
 const DocsConfigContext = React.createContext<DocsConfig>(DEFAULT_DOCS_CONFIG);
@@ -74,4 +87,9 @@ export function useDocsConfig() {
 export function useFetchNotifications(): () => Promise<NotificationMessage[]> {
   const config = useDocsConfig();
   return config.fetchNotifications ?? defaultFetchNotifications;
+}
+
+export function useFetchVersions(): () => Promise<VersionEntry[]> {
+  const config = useDocsConfig();
+  return config.fetchVersions ?? defaultFetchVersions;
 }

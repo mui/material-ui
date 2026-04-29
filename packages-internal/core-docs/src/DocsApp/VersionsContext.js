@@ -5,7 +5,7 @@ import * as React from 'react';
  */
 
 /**
- * @type {React.Context<VersionsContextValue}
+ * @type {React.Context<VersionsContextValue>}
  */
 const VersionsContext = React.createContext(null);
 

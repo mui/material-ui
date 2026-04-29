@@ -233,6 +233,12 @@ Before you can start using the Google Maps JavaScript API and Places API, you ne
 This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
 
+### Infinite loading
+
+This demo uses `@tanstack/react-query` to additively fetch new data onto existing `options` upon reaching the end of the current list. The list is virtualized using `@tanstack/react-virtual`.
+
+{{"demo": "InfiniteLoading.js"}}
+
 ## Single value rendering
 
 By default (when `multiple={false}`), the selected option is displayed as plain text inside the input.

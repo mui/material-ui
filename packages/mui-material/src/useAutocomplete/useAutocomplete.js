@@ -1138,7 +1138,7 @@ function useAutocomplete(props) {
   };
 
   const handleBlur = (event) => {
-    // Ignore the event when using the scrollbar with IE11
+    // Ignore the event when using the scrollbar with IE 11
     if (unstable_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
       return;
