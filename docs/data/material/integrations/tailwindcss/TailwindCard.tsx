@@ -15,7 +15,13 @@ interface JobCardProps {
   avatarColors: string[];
 }
 
-function JobCard({ jobTitle, team, status, applicants, avatarColors }: JobCardProps) {
+function JobCard({
+  jobTitle,
+  team,
+  status,
+  applicants,
+  avatarColors,
+}: JobCardProps) {
   const isActive = status === 'Active';
   return (
     <Card className="rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-none">

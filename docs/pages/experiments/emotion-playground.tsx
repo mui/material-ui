@@ -132,7 +132,7 @@ export default function EmotionPlayground() {
 
         {/* ── sx prop ────────────────────────────────────────────────────── */}
         <Section label="sx prop — theme-aware inline styles">
-          <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
+          <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: 'wrap' }}>
             <Button variant="contained">Primary</Button>
             <Button variant="contained" color="secondary">
               Secondary
@@ -219,7 +219,7 @@ export default function EmotionPlayground() {
 
         {/* ── Chip interactive ───────────────────────────────────────────── */}
         <Section label="Chips — toggled via sx color tokens">
-          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
             {['React', 'TypeScript', 'Emotion', 'MUI', 'styled()'].map((label) => {
               const active = chips.includes(label);
               return (
