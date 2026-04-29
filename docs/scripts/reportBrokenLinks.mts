@@ -75,11 +75,6 @@ async function main() {
         // Some demos use aria-label on elements without an appropriate role
         // (Avatar <div>, FormGroup <div>), and templates have similar issues.
         'aria-label-misuse': 'warn',
-        // Emotion SSR can produce duplicate style/class attributes.
-        'no-dup-attr': 'warn',
-        // Blog posts use width="100%" / height="auto" on <video> elements,
-        // and one <img> has dir="".
-        'attribute-allowed-values': 'warn',
       },
     },
     ignores: [
