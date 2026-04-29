@@ -34,10 +34,10 @@
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
     "@types/mdast": "4.0.4",
-    "@types/node": "20.19.37",
+    "@types/node": "20.19.39",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "sinon": "21.0.3"
+    "sinon": "21.1.2"
   },
   "exports": {
     ".": "./src/index.ts"

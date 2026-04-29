@@ -36,6 +36,298 @@ describe('<Select />', () => {
     skip: ['componentProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
+  describe('pointer interactions', () => {
+    beforeEach(() => {
+      clock.restore();
+    });
+
+    function sleep(duration) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+      });
+    }
+
+    function stubRect(element, rect) {
+      const { left, top, width, height } = rect;
+      stub(element, 'getBoundingClientRect').returns({
+        x: left,
+        y: top,
+        left,
+        top,
+        width,
+        height,
+        right: left + width,
+        bottom: top + height,
+        toJSON: () => {},
+      });
+    }
+
+    it('closes the menu when releasing the opening mouse gesture outside the trigger and menu', async () => {
+      const { user } = render(
+        <Select
+          defaultValue={10}
+          MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      stubRect(trigger, { left: 10, top: 10, width: 100, height: 40 });
+
+      await user.pointer({
+        keys: '[MouseLeft>]',
+        target: trigger,
+        coords: { clientX: 20, clientY: 20 },
+      });
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByTestId('backdrop'),
+        coords: { clientX: 200, clientY: 200 },
+      });
+
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('closes a controlled menu when releasing the opening mouse gesture outside the trigger and menu', async () => {
+      const onClose = spy();
+
+      function ControlledSelect() {
+        const [open, setOpen] = React.useState(false);
+
+        return (
+          <Select
+            open={open}
+            value={10}
+            onOpen={() => {
+              setOpen(true);
+            }}
+            onClose={(event) => {
+              onClose(event);
+              setOpen(false);
+            }}
+            MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+          </Select>
+        );
+      }
+
+      const { user } = render(<ControlledSelect />);
+      const trigger = screen.getByRole('combobox');
+      stubRect(trigger, { left: 10, top: 10, width: 100, height: 40 });
+
+      await user.pointer({
+        keys: '[MouseLeft>]',
+        target: trigger,
+        coords: { clientX: 20, clientY: 20 },
+      });
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByTestId('backdrop'),
+        coords: { clientX: 200, clientY: 200 },
+      });
+
+      expect(onClose.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('keeps the menu open when releasing the opening mouse gesture inside the trigger bounds', async () => {
+      const { user } = render(
+        <Select
+          defaultValue={10}
+          MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      stubRect(trigger, { left: 10, top: 10, width: 100, height: 40 });
+
+      await user.pointer({
+        keys: '[MouseLeft>]',
+        target: trigger,
+        coords: { clientX: 20, clientY: 20 },
+      });
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByTestId('backdrop'),
+        coords: { clientX: 20, clientY: 20 },
+      });
+
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('keeps the menu open when releasing the opening mouse gesture inside the menu paper', async () => {
+      const { user } = render(
+        <Select defaultValue={10} MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      await user.pointer({ keys: '[MouseLeft>]', target: screen.getByRole('combobox') });
+
+      await user.pointer({ keys: '[/MouseLeft]', target: screen.getByTestId('paper') });
+
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('does not select an option when the opening mouseup lands on it before the drag delay', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={10} onChange={onChange}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Twenty' }),
+      });
+
+      expect(trigger).to.have.text('Ten');
+      expect(onChange.callCount).to.equal(0);
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('does not close when the opening mouseup lands on the selected option before the drag delay', async () => {
+      const onClose = spy();
+      const { user } = render(
+        <Select defaultValue={10} onClose={onClose}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      await user.pointer({ keys: '[MouseLeft>]', target: screen.getByRole('combobox') });
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Ten' }),
+      });
+
+      expect(onClose.callCount).to.equal(0);
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('closes when the opening mouseup lands on the selected option after the selected-item delay', async () => {
+      const onClose = spy();
+      const { user } = render(
+        <Select defaultValue={10} onClose={onClose}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+
+      await act(async () => {
+        await sleep(450);
+      });
+
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Ten' }),
+      });
+
+      expect(onClose.callCount).to.equal(1);
+      expect(trigger).to.have.text('Ten');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('selects an option when dragging from the trigger and releasing after the drag delay', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={10} onChange={onChange}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+
+      await act(async () => {
+        await sleep(250);
+      });
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Twenty' }),
+      });
+
+      expect(trigger).to.have.text('Twenty');
+      expect(onChange.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('does not double-toggle a multiple select option on a regular click', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={[10]} multiple onChange={onChange}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20} disableRipple>
+            Twenty
+          </MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+
+      const option = screen.getByRole('option', { name: 'Twenty' });
+      await user.click(option);
+
+      expect(trigger).to.have.text('Ten, Twenty');
+      expect(onChange.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('toggles a multiple select option when dragging from the trigger and releasing after the drag delay', async () => {
+      const onChange = spy();
+      const { user } = render(
+        <Select defaultValue={[10]} multiple onChange={onChange}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+
+      await act(async () => {
+        await sleep(250);
+      });
+      await user.pointer({
+        keys: '[/MouseLeft]',
+        target: screen.getByRole('option', { name: 'Twenty' }),
+      });
+
+      expect(trigger).to.have.text('Ten, Twenty');
+      expect(onChange.callCount).to.equal(1);
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+  });
+
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
       render(

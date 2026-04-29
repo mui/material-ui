@@ -364,158 +364,178 @@ function useAutocomplete(props) {
     }
   }
 
-  const setHighlightedIndex = useEventCallback(({ event, index, reason }) => {
-    highlightedIndexRef.current = index;
-    highlightReasonRef.current = reason ?? null;
-
-    // does the index exist?
-    if (index === -1) {
-      inputRef.current.removeAttribute('aria-activedescendant');
-    } else {
-      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
-    }
-
-    if (onHighlightChange && ['mouse', 'keyboard', 'touch'].includes(reason)) {
-      onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
-    }
-
-    if (!listboxRef.current) {
-      return;
-    }
-
-    const prev = listboxRef.current.querySelector(
-      `[role="option"].${unstable_classNamePrefix}-focused`,
-    );
-    if (prev) {
-      prev.classList.remove(`${unstable_classNamePrefix}-focused`);
-      prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
-    }
-
-    let listboxNode = listboxRef.current;
-    if (listboxRef.current.getAttribute('role') !== 'listbox') {
-      listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
-    }
-
-    // "No results"
-    if (!listboxNode) {
-      return;
-    }
-
-    if (index === -1) {
-      listboxNode.scrollTop = 0;
-      return;
-    }
-
-    const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
-
-    if (!option) {
-      return;
-    }
-
-    option.classList.add(`${unstable_classNamePrefix}-focused`);
-    if (reason === 'keyboard') {
-      option.classList.add(`${unstable_classNamePrefix}-focusVisible`);
-    }
-
-    // Scroll active descendant into view.
-    // Logic copied from https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/combobox/examples/js/select-only.js
-    // In case of mouse clicks and touch (in mobile devices) we avoid scrolling the element and keep both behaviors same.
-    // Consider this API instead once it has a better browser support:
-    // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-    if (
-      listboxNode.scrollHeight > listboxNode.clientHeight &&
-      reason !== 'mouse' &&
-      reason !== 'touch'
-    ) {
-      const element = option;
-
-      const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
-      const elementBottom = element.offsetTop + element.offsetHeight;
-      if (elementBottom > scrollBottom) {
-        listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (
-        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
-        listboxNode.scrollTop
-      ) {
-        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+  const syncHighlightedIndexToDOM = useEventCallback(
+    ({ index, reason, preserveScroll = false }) => {
+      // does the index exist?
+      if (index === -1) {
+        inputRef.current.removeAttribute('aria-activedescendant');
+      } else {
+        inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
       }
-    }
+
+      if (!listboxRef.current) {
+        return;
+      }
+
+      const prev = listboxRef.current.querySelector(
+        `[role="option"].${unstable_classNamePrefix}-focused`,
+      );
+      if (prev) {
+        prev.classList.remove(`${unstable_classNamePrefix}-focused`);
+        prev.classList.remove(`${unstable_classNamePrefix}-focusVisible`);
+      }
+
+      let listboxNode = listboxRef.current;
+      if (listboxRef.current.getAttribute('role') !== 'listbox') {
+        listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+      }
+
+      // "No results"
+      if (!listboxNode) {
+        return;
+      }
+
+      if (index === -1) {
+        if (!preserveScroll) {
+          listboxNode.scrollTop = 0;
+        }
+        return;
+      }
+
+      const option = listboxRef.current.querySelector(`[data-option-index="${index}"]`);
+
+      if (!option) {
+        return;
+      }
+
+      option.classList.add(`${unstable_classNamePrefix}-focused`);
+      if (reason === 'keyboard') {
+        option.classList.add(`${unstable_classNamePrefix}-focusVisible`);
+      }
+
+      // Scroll active descendant into view.
+      // Logic copied from https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/combobox/examples/js/select-only.js
+      // In case of mouse clicks and touch (in mobile devices) we avoid scrolling the element and keep both behaviors same.
+      // Consider this API instead once it has a better browser support:
+      // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
+      if (
+        listboxNode.scrollHeight > listboxNode.clientHeight &&
+        reason !== 'mouse' &&
+        reason !== 'touch'
+      ) {
+        const element = option;
+
+        const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+        const elementBottom = element.offsetTop + element.offsetHeight;
+        if (elementBottom > scrollBottom) {
+          listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+        } else if (
+          element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+          listboxNode.scrollTop
+        ) {
+          listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
+        }
+      }
+    },
+  );
+
+  const setHighlightedIndex = useEventCallback(
+    ({ event, index, reason, preserveScroll = false }) => {
+      highlightedIndexRef.current = index;
+      highlightReasonRef.current = reason ?? null;
+
+      if (onHighlightChange && ['mouse', 'keyboard', 'touch'].includes(reason)) {
+        onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
+      }
+
+      syncHighlightedIndexToDOM({ index, reason, preserveScroll });
+    },
+  );
+
+  const setHighlightedIndexFromSync = useEventCallback(({ index }) => {
+    highlightedIndexRef.current = index;
+    syncHighlightedIndexToDOM({
+      index,
+      reason: highlightReasonRef.current,
+    });
   });
 
-  const changeHighlightedIndex = useEventCallback(({ event, diff, direction = 'next', reason }) => {
-    if (!popupOpen) {
-      return;
-    }
-
-    if (reason === 'keyboard') {
-      touchScrolledRef.current = false;
-      isTouchRef.current = false;
-    }
-
-    const getNextIndex = () => {
-      const maxIndex = filteredOptions.length - 1;
-
-      if (diff === 'reset') {
-        return defaultHighlighted;
+  const changeHighlightedIndex = useEventCallback(
+    ({ event, diff, direction = 'next', reason, preserveScroll }) => {
+      if (!popupOpen) {
+        return;
       }
 
-      if (diff === 'start') {
-        return 0;
+      if (reason === 'keyboard') {
+        touchScrolledRef.current = false;
+        isTouchRef.current = false;
       }
 
-      if (diff === 'end') {
-        return maxIndex;
-      }
+      const getNextIndex = () => {
+        const maxIndex = filteredOptions.length - 1;
 
-      const newIndex = highlightedIndexRef.current + diff;
-
-      if (newIndex < 0) {
-        if (newIndex === -1 && includeInputInList) {
-          return -1;
+        if (diff === 'reset') {
+          return defaultHighlighted;
         }
 
-        if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
+        if (diff === 'start') {
           return 0;
         }
 
-        return maxIndex;
-      }
-
-      if (newIndex > maxIndex) {
-        if (newIndex === maxIndex + 1 && includeInputInList) {
-          return -1;
-        }
-
-        if (disableListWrap || Math.abs(diff) > 1) {
+        if (diff === 'end') {
           return maxIndex;
         }
 
-        return 0;
-      }
+        const newIndex = highlightedIndexRef.current + diff;
 
-      return newIndex;
-    };
+        if (newIndex < 0) {
+          if (newIndex === -1 && includeInputInList) {
+            return -1;
+          }
 
-    const nextIndex = validOptionIndex(getNextIndex(), direction);
-    setHighlightedIndex({ index: nextIndex, reason, event });
+          if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
+            return 0;
+          }
 
-    // Sync the content of the input with the highlighted option.
-    if (autoComplete && diff !== 'reset') {
-      if (nextIndex === -1) {
-        inputRef.current.value = inputValue;
-      } else {
-        const option = getOptionLabel(filteredOptions[nextIndex]);
-        inputRef.current.value = option;
+          return maxIndex;
+        }
 
-        // The portion of the selected suggestion that has not been typed by the user,
-        // a completion string, appears inline after the input cursor in the textbox.
-        const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
-        if (index === 0 && inputValue.length > 0) {
-          inputRef.current.setSelectionRange(inputValue.length, option.length);
+        if (newIndex > maxIndex) {
+          if (newIndex === maxIndex + 1 && includeInputInList) {
+            return -1;
+          }
+
+          if (disableListWrap || Math.abs(diff) > 1) {
+            return maxIndex;
+          }
+
+          return 0;
+        }
+
+        return newIndex;
+      };
+
+      const nextIndex = validOptionIndex(getNextIndex(), direction);
+      setHighlightedIndex({ index: nextIndex, reason, event, preserveScroll });
+
+      // Sync the content of the input with the highlighted option.
+      if (autoComplete && diff !== 'reset') {
+        if (nextIndex === -1) {
+          inputRef.current.value = inputValue;
+        } else {
+          const option = getOptionLabel(filteredOptions[nextIndex]);
+          inputRef.current.value = option;
+
+          // The portion of the selected suggestion that has not been typed by the user,
+          // a completion string, appears inline after the input cursor in the textbox.
+          const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
+          if (index === 0 && inputValue.length > 0) {
+            inputRef.current.setSelectionRange(inputValue.length, option.length);
+          }
         }
       }
-    }
-  });
+    },
+  );
 
   const filteredOptionsChanged = !areArraysSame({
     array1: previousProps.filteredOptions,
@@ -563,11 +583,11 @@ function useAutocomplete(props) {
     // If it exists and the value and the inputValue haven't changed, just update its index, otherwise continue execution
     const previousHighlightedOptionIndex = getPreviousHighlightedOptionIndex();
     if (previousHighlightedOptionIndex !== -1) {
-      // Bypass setHighlightedIndex to preserve the existing highlightReasonRef.
+      // Keep the original highlight reason while re-syncing the DOM state.
       // The highlighted option still exists after the filteredOptions array changed
       // (e.g. async fetch returns new options while the user is mid-navigation),
       // so the original interaction reason (keyboard, mouse, etc.) still applies.
-      highlightedIndexRef.current = previousHighlightedOptionIndex;
+      setHighlightedIndexFromSync({ index: previousHighlightedOptionIndex });
       return;
     }
 
@@ -575,7 +595,17 @@ function useAutocomplete(props) {
 
     // The popup is empty, reset
     if (filteredOptions.length === 0 || valueItem == null) {
-      changeHighlightedIndex({ diff: 'reset' });
+      // Preserve scroll when new options are appended without changing the current filter.
+      const isAppendOnly =
+        filteredOptionsChanged &&
+        previousProps.inputValue === inputValue &&
+        previousProps.filteredOptions?.length > 0 &&
+        filteredOptions.length > previousProps.filteredOptions.length &&
+        previousProps.filteredOptions.every(
+          (option, index) => getOptionLabel(option) === getOptionLabel(filteredOptions[index]),
+        );
+
+      changeHighlightedIndex({ diff: 'reset', preserveScroll: isAppendOnly });
       return;
     }
 
@@ -587,12 +617,15 @@ function useAutocomplete(props) {
     if (valueItem != null) {
       const currentOption = filteredOptions[highlightedIndexRef.current];
 
-      // Keep the current highlighted index if possible
+      // Keep the current selected highlight while the popup stays open;
+      // on reopen, resync from the selected value.
       if (
         multiple &&
         currentOption &&
-        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1
+        value.findIndex((val) => isOptionEqualToValue(currentOption, val)) !== -1 &&
+        previousProps.filteredOptions?.length > 0
       ) {
+        setHighlightedIndexFromSync({ index: highlightedIndexRef.current });
         return;
       }
 
@@ -625,6 +658,7 @@ function useAutocomplete(props) {
     multiple ? false : value,
     changeHighlightedIndex,
     setHighlightedIndex,
+    setHighlightedIndexFromSync,
     popupOpen,
     inputValue,
     multiple,
@@ -1104,7 +1138,7 @@ function useAutocomplete(props) {
   };
 
   const handleBlur = (event) => {
-    // Ignore the event when using the scrollbar with IE11
+    // Ignore the event when using the scrollbar with IE 11
     if (unstable_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
       return;

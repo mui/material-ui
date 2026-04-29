@@ -47,7 +47,7 @@ export default function AppFooter(props: AppFooterProps) {
         }}
       >
         <div>
-          <Link prefetch={false} href="/" aria-label="Go to homepage" sx={{ mb: 2 }}>
+          <Link prefetch={false} href="/" aria-label="Go to the homepage" sx={{ mb: 2 }}>
             <MuiLogotypeIcon height={28} width={91} />
           </Link>
           <Typography variant="body2" gutterBottom sx={{ fontWeight: 'semiBold' }}>

@@ -443,6 +443,125 @@ describe('<Autocomplete />', () => {
   });
 
   describe('highlight synchronisation', () => {
+    // https://github.com/mui/material-ui/issues/48177
+    it('should restore the first selected option when reopening the popup with keyboard in multiple mode', async () => {
+      const { user } = render(
+        <Autocomplete
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.keyboard('{ArrowDown}');
+      let listbox = screen.getByRole('listbox');
+      checkHighlightIs(listbox, 'one');
+
+      await user.keyboard('{ArrowDown}');
+      checkHighlightIs(listbox, 'two');
+
+      await user.keyboard('{Escape}');
+      expect(screen.queryByRole('listbox')).to.equal(null);
+
+      await user.keyboard('{ArrowDown}');
+      listbox = screen.getByRole('listbox');
+
+      checkHighlightIs(listbox, 'one');
+      const focusedOption = listbox.querySelector(`.${classes.focused}`);
+      expect(focusedOption).not.to.equal(null);
+      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+    });
+
+    it('should restore the first selected option when reopening the popup with mouse in multiple mode', async () => {
+      const { user } = render(
+        <Autocomplete
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.click(textbox);
+      let listbox = screen.getByRole('listbox');
+      checkHighlightIs(listbox, 'one');
+
+      await user.keyboard('{ArrowDown}');
+      checkHighlightIs(listbox, 'two');
+
+      await user.keyboard('{Escape}');
+      expect(screen.queryByRole('listbox')).to.equal(null);
+
+      await user.click(textbox);
+      listbox = screen.getByRole('listbox');
+
+      checkHighlightIs(listbox, 'one');
+      const focusedOption = listbox.querySelector(`.${classes.focused}`);
+      expect(focusedOption).not.to.equal(null);
+      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+    });
+
+    it('should keep Enter aligned with the restored highlight when reopening the popup in multiple mode', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Autocomplete
+          multiple
+          defaultValue={['one', 'two']}
+          onChange={handleChange}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      await user.keyboard('{ArrowDown}');
+      await user.keyboard('{ArrowDown}');
+      await user.keyboard('{Escape}');
+      await user.keyboard('{ArrowDown}');
+
+      const listbox = screen.getByRole('listbox');
+      checkHighlightIs(listbox, 'one');
+
+      await user.keyboard('{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two']);
+      expect(handleChange.args[0][2]).to.equal('removeOption');
+      expect(handleChange.args[0][3]).to.deep.equal({ option: 'one' });
+    });
+
+    it('should keep aria-activedescendant in sync when the highlighted option moves to a new index', async () => {
+      const view = render(
+        <Autocomplete
+          open
+          options={[{ label: 'one' }, { label: 'two' }]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const { user } = view;
+      const textbox = screen.getByRole('combobox');
+      let listbox = screen.getByRole('listbox');
+
+      await user.keyboard('{ArrowDown}');
+      await user.keyboard('{ArrowDown}');
+
+      checkHighlightIs(listbox, 'two');
+      let focusedOption = listbox.querySelector(`.${classes.focused}`);
+      expect(focusedOption).not.to.equal(null);
+      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+
+      view.setProps({
+        options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
+      });
+
+      listbox = screen.getByRole('listbox');
+      checkHighlightIs(listbox, 'two');
+      focusedOption = listbox.querySelector(`.${classes.focused}`);
+      expect(focusedOption).not.to.equal(null);
+      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+    });
+
     it('should not update the highlight when multiple open and value change', () => {
       const view = render(
         <Autocomplete
@@ -4175,6 +4294,85 @@ describe('<Autocomplete />', () => {
       expect(listbox).to.have.property('scrollTop', 60);
     },
   );
+
+  // https://github.com/mui/material-ui/issues/40250
+  it('should preserve scrollTop when more options are added', () => {
+    function OptionsAutocomplete({ options }) {
+      return (
+        <Autocomplete
+          open
+          options={options}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+        />
+      );
+    }
+
+    const { rerender } = render(<OptionsAutocomplete options={['1', '2', '3', '4', '5']} />);
+    const listbox = screen.getByRole('listbox');
+
+    // Simulate user scroll
+    listbox.scrollTop = 50;
+
+    // Add more options
+    rerender(<OptionsAutocomplete options={['1', '2', '3', '4', '5', '6', '7', '8']} />);
+
+    // scrollTop should be preserved — not reset to 0
+    expect(listbox.scrollTop).to.equal(50);
+  });
+
+  it('should preserve scrollTop when filtered options grow without changing the input', async () => {
+    function OptionsAutocomplete({ options }) {
+      return (
+        <Autocomplete
+          open
+          options={options}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+        />
+      );
+    }
+
+    const { rerender, user } = render(
+      <OptionsAutocomplete options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']} />,
+    );
+    const textbox = screen.getByRole('combobox');
+    const listbox = screen.getByRole('listbox');
+
+    await user.type(textbox, 'aaa');
+
+    listbox.scrollTop = 50;
+
+    rerender(
+      <OptionsAutocomplete
+        options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6', 'aaa7', 'aaa8']}
+      />,
+    );
+
+    expect(listbox.scrollTop).to.equal(50);
+  });
+
+  it('should reset scrollTop when deleting input adds matching options', async () => {
+    const { user } = render(
+      <Autocomplete
+        open
+        options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+        slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+      />,
+    );
+    const textbox = screen.getByRole('combobox');
+    const listbox = screen.getByRole('listbox');
+
+    await user.type(textbox, 'aaaa');
+
+    listbox.scrollTop = 50;
+
+    // The filtered list grows, but because the input changed this is not append-only loading.
+    await user.keyboard('{Backspace}');
+
+    expect(listbox.scrollTop).to.equal(0);
+  });
 
   describe('prop: renderValue (single selection)', () => {
     it('should render only a single value, given that options are primitive values', () => {
