@@ -81,7 +81,7 @@ async function main() {
       {
         // The links checker uses standard github slugger to check if the anchor exists. But the MUI docs use
         // a custom slugger that sometimes generates different slugs.
-        // Ideally we makeit use the github slugegr so links are consistent whether in the html version or
+        // Ideally we make it use the github slugger so links are consistent whether in the html version or
         // a standard markdown renderer.
         path: '/material-ui/react-table.md',
         href: '#sorting-selecting',
