@@ -295,13 +295,10 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      expect(textbox).not.to.have.attribute('aria-activedescendant');
+      expect(getActiveDescendant(textbox)).to.equal(null);
 
       view.setProps({ options, loading: false });
-      expect(textbox).to.have.attribute(
-        'aria-activedescendant',
-        screen.getAllByRole('option')[0].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
     });
 
     it('should set the highlight on selected item when dropdown is expanded', () => {
@@ -624,7 +621,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'one');
       const focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should restore the first selected option when reopening the popup with mouse in multiple mode', async () => {
@@ -654,7 +651,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'one');
       const focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should keep Enter aligned with the restored highlight when reopening the popup in multiple mode', async () => {
@@ -702,7 +699,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
       let focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
 
       view.setProps({
         options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
@@ -712,7 +709,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
       focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should not update the highlight when multiple open and value change', () => {
@@ -1506,7 +1503,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[1].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[1]);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleSubmit.callCount).to.equal(0);
@@ -1515,7 +1512,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleSubmit.callCount).to.equal(0);
@@ -1613,9 +1610,7 @@ describe('<Autocomplete />', () => {
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
 
       // listbox is not only inaccessible but not in the DOM
       const listbox = screen.queryByRole('listbox', { hidden: true });
@@ -1644,9 +1639,7 @@ describe('<Autocomplete />', () => {
       const listbox = screen.getByRole('listbox');
       expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
 
       const options = screen.getAllByRole('option');
       expect(options).to.have.length(2);
@@ -1670,17 +1663,13 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       const options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
       view.setProps({ open: false });
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
     });
   });
 
@@ -1738,7 +1727,7 @@ describe('<Autocomplete />', () => {
 
         // first from focus
         expect(handleOpen.callCount).to.equal(2);
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
     });
 
@@ -1986,11 +1975,10 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-activedescendant',
-        screen.getAllByRole('option')[0].getAttribute('id'),
-      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
     });
 
     it('moves focus to the last option on ArrowUp', () => {
@@ -2002,12 +1990,11 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowUp' });
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
       const options = screen.getAllByRole('option');
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-activedescendant',
-        options[options.length - 1].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
     });
 
     it('should ignore keydown event until the IME is confirmed', function test() {
@@ -2142,10 +2129,7 @@ describe('<Autocomplete />', () => {
 
       const options = screen.getAllByRole('option');
       expect(textbox).toHaveFocus();
-      expect(textbox).to.have.attribute(
-        'aria-activedescendant',
-        options[options.length - 1].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
     });
 
     it('selects the first item if on the last item and pressing up by default', () => {
@@ -2162,7 +2146,7 @@ describe('<Autocomplete />', () => {
 
       const options = screen.getAllByRole('option');
       expect(textbox).toHaveFocus();
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
     });
 
     describe('prop: includeInputInList', () => {
@@ -2181,7 +2165,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
 
       it('considers the textbox the successor of the last option when pressing Down', () => {
@@ -2199,7 +2183,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
     });
 
@@ -2219,10 +2203,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          screen.getAllByRole('option')[0].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
       });
 
       it('focuses the last item when pressing Up when no option is active', () => {
@@ -2240,10 +2221,7 @@ describe('<Autocomplete />', () => {
 
         const options = screen.getAllByRole('option');
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          options[options.length - 1].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
       });
 
       it('keeps focus on the last item if focus is on the last item and pressing Down', () => {
@@ -2263,10 +2241,7 @@ describe('<Autocomplete />', () => {
 
         const options = screen.getAllByRole('option');
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          options[options.length - 1].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
       });
     });
   });
