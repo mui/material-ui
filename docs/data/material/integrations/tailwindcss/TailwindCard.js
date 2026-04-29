@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -73,6 +74,14 @@ function JobCard({ role, team, status, applicants, avatarColors }) {
     </Card>
   );
 }
+
+JobCard.propTypes = {
+  applicants: PropTypes.number.isRequired,
+  avatarColors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  role: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(['Active', 'Pending']).isRequired,
+  team: PropTypes.string.isRequired,
+};
 
 export default function TailwindCard() {
   return (

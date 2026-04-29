@@ -13,7 +13,7 @@ export default function TailwindDisabledState() {
         </p>
         <Stack spacing={2}>
           {/* Tailwind's `mui-disabled:` variant adds opacity only when the
-              component has the `Mui-disabled` class applied by MUI */}
+               component has the `Mui-disabled` class applied by MUI */}
           <Slider
             defaultValue={70}
             className="mui-disabled:opacity-40 mui-disabled:cursor-not-allowed"
