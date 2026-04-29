@@ -51,7 +51,7 @@ module.exports = {
 The `@mui/tailwind` plugin adds `mui-{state}:` modifier classes that target MUI component state classes (`Mui-disabled`, `Mui-selected`, `Mui-error`, etc.).
 
 | Variant              | Targets             |
-| -------------------- | ------------------- |
+| :------------------- | :------------------ |
 | `mui-disabled:`      | `.Mui-disabled`     |
 | `mui-selected:`      | `.Mui-selected`     |
 | `mui-error:`         | `.Mui-error`        |
