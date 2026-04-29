@@ -40,8 +40,8 @@
     "eslint:ci": "eslint . --report-unused-disable-directives --max-warnings 0",
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" \"docs/**/*.css\" --ignore-path .lintignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
-    "vale:fix": "pnpm code-infra vale sync && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm code-infra vale --filter='.Level==\"error\"' --auto-fix all",
-    "valelint": "pnpm code-infra vale sync && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm code-infra vale --filter='.Level==\"error\"'",
+    "vale:fix": "pnpm code-infra vale sync --vale-version $npm_package_config_valeVersion && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm code-infra vale --vale-version $npm_package_config_valeVersion --filter='.Level==\"error\"' --auto-fix all",
+    "valelint": "pnpm code-infra vale sync --vale-version $npm_package_config_valeVersion && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm code-infra vale --vale-version $npm_package_config_valeVersion --filter='.Level==\"error\"'",
     "prettier": "pretty-quick --ignore-path .lintignore --branch master",
     "prettier:all": "prettier --write . --ignore-path .lintignore",
     "size:snapshot": "pnpm -F ./test/bundle-size check",
@@ -145,6 +145,9 @@
     "vitest": "^4.0.13",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.0.0"
+  },
+  "config": {
+    "valeVersion": "3.14.1"
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {
