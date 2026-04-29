@@ -1,6 +1,6 @@
 import * as React from 'react';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
+import { alpha, styled, type SxProps, type Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';

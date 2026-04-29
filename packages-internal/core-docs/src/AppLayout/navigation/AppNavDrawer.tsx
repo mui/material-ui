@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha, ThemeProvider, Theme } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider, type Theme } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
