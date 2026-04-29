@@ -169,8 +169,8 @@ MUI System's unifying `sx` prop helps to maintain the separation of concerns be
 
 For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), and is distinct from the CSS `color` property.
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept MUI System properties as props for this reason.
-These components are designed to solve CSS problems—they are CSS component utilities.
+MUI components apply System properties through the `sx` prop.
+Component props stay focused on documented component behavior, which helps avoid conflicts with native and custom component props.
 
 ## Where to use MUI System
 

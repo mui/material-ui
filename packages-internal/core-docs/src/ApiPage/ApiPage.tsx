@@ -93,7 +93,6 @@ export function ApiPage(props: ApiPageProps) {
   const userLanguage = useUserLanguage();
 
   const {
-    cssComponent,
     demos,
     deprecated,
     filename,
@@ -261,17 +260,6 @@ export function ApiPage(props: ApiPageProps) {
             defaultLayout={defaultLayout}
             layoutStorageKey={layoutStorageKey.props}
           />
-          {cssComponent && (
-            <React.Fragment>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: t('api-docs.cssComponent').replace(/{{name}}/, pageContent.name),
-                }}
-              />
-              <br />
-              <br />
-            </React.Fragment>
-          )}
           <div
             className="MuiCallout-root MuiCallout-info"
             dangerouslySetInnerHTML={{ __html: refHint }}
