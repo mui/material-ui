@@ -179,11 +179,7 @@ function useProductData(pageProps: { versions: VersionEntry[] }) {
         logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: buildProductVersions(
-          fetchedVersions,
-          'system',
-          `v${systemPkgJson.version}`,
-        ),
+        versions: buildProductVersions(fetchedVersions, 'system', `v${systemPkgJson.version}`),
       };
     }
 
