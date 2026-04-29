@@ -64,7 +64,7 @@ export function LogoWithCopyMenu({
       <Box
         component={Link}
         href="/"
-        aria-label="Go to homepage"
+        aria-label="Go to the homepage"
         onContextMenu={handleContextMenu}
         sx={{
           mr: 1,

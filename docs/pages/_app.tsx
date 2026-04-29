@@ -8,7 +8,6 @@ import {
   createGetInitialProps,
   printConsoleBanner,
   reportWebVitals,
-  type DocsAppProps,
 } from '@mui/internal-core-docs/DocsApp';
 import {
   DEFAULT_DOCS_CONFIG,
@@ -102,7 +101,6 @@ function buildProductVersions(
   fetchedVersions: VersionEntry[],
   productId: string,
   currentVersion: string,
-  languagePrefix: string,
 ): ProductVersion[] {
   // Before the fetch resolves, show just the current version with no dropdown.
   if (fetchedVersions.length === 0) {
@@ -120,7 +118,7 @@ function buildProductVersions(
         return { text: currentVersion, current: true };
       }
       const productPath = getVersionedProductPath(v.version, productId);
-      return { text: v.version, href: `${v.url}${languagePrefix}${productPath}` };
+      return { text: v.version, href: `${v.url}${productPath}` };
     });
 
   versions.push({
@@ -150,7 +148,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function useProductData(pageProps: DocsAppProps['pageProps']) {
+function useProductData(pageProps: { versions: VersionEntry[] }) {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
@@ -159,8 +157,6 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
   const fetchedVersions = useVersions(pageProps.versions);
 
   const productIdentifier = React.useMemo(() => {
-    const languagePrefix = pageProps.userLanguage === 'en' ? '' : `/${pageProps.userLanguage}`;
-
     if (productId === 'material-ui') {
       return {
         metadata: '',
@@ -172,7 +168,6 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
           fetchedVersions,
           'material-ui',
           `v${materialPkgJson.version}`,
-          languagePrefix,
         ),
       };
     }
@@ -188,7 +183,6 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
           fetchedVersions,
           'system',
           `v${systemPkgJson.version}`,
-          languagePrefix,
         ),
       };
     }
@@ -205,7 +199,6 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
           fetchedVersions,
           'material-ui',
           `v${materialPkgJson.version}`,
-          languagePrefix,
         ),
       };
     }
@@ -220,7 +213,7 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         versions: [
           {
             text: 'v0.0.0',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
@@ -236,14 +229,14 @@ function useProductData(pageProps: DocsAppProps['pageProps']) {
         versions: [
           {
             text: 'v0.0.0',
-            href: `https://mui.com${languagePrefix}/versions/`,
+            href: `https://mui.com/versions/`,
           },
         ],
       };
     }
 
     return null;
-  }, [pageProps.userLanguage, productId, fetchedVersions]);
+  }, [productId, fetchedVersions]);
 
   return React.useMemo(() => {
     let pages: MuiPage[] = generalDocsPages as MuiPage[];
