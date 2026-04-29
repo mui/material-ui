@@ -16,7 +16,10 @@ import { AppLayoutDocs } from '../AppLayout';
 import { getPropertiesToc, getPropsApiDefinitions } from './definitions/properties';
 import { getClassesToc, getClassApiDefinitions } from './definitions/classes';
 import { getSlotsApiDefinitions, getSlotsToc } from './definitions/slots';
-import { type ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import {
+  type ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { SlotsSection } from './sections/SlotsSection';
 import { ClassesSection } from './sections/ClassesSection';

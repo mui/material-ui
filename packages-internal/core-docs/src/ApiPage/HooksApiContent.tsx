@@ -6,7 +6,10 @@ import { type Translate, useTranslate, useUserLanguage } from '../i18n';
 import { SectionTitle, type SectionTitleProps } from '../SectionTitle';
 import type { LayoutStorageKeys } from './types';
 import { getHookApiDefinitions } from './definitions/properties';
-import { type ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import {
+  type ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { HighlightedCode } from '../HighlightedCode';
 import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
