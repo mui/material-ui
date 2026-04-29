@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
-import Transition from '../Transition/Transition';
+import Transition from '../internal/Transition';
 import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 import describeConformance from '../../test/describeConformance';

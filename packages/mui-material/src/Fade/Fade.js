@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
-import Transition from '../Transition/Transition';
+import Transition from '../internal/Transition';
 import { useTheme } from '../zero-styled';
 import {
   normalizedTransitionCallback,
@@ -122,9 +122,9 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {/* Do not pass ownerState to a DOM child. ownerState is only for Material UI styling,
-           and React would treat it as an invalid DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        // Do not pass ownerState to a DOM child. ownerState is only for
+        // Material UI styling, and React would treat it as an invalid DOM attribute.
         const childStyle = getTransitionChildStyle(
           state,
           inProp,

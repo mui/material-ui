@@ -38,11 +38,7 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return (
-      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null ||
-      // Internal compatibility primitive used by public transition components.
-      filename.match(/\/Transition\/Transition\.tsx$/) !== null
-    );
+    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null;
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,

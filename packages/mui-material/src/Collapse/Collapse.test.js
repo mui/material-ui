@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
-import Transition from '../Transition/Transition';
+import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
 import describeTransitionConformance from '../../test/describeTransitionConformance';
 

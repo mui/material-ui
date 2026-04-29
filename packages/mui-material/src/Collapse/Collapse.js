@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import Transition from '../Transition/Transition';
+import Transition from '../internal/Transition';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';

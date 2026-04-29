@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
-import Transition from '../Transition/Transition';
+import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
 import describeTransitionConformance from '../../test/describeTransitionConformance';
 
