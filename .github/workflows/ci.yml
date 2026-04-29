@@ -29,6 +29,7 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     permissions:
       contents: read
+      pull-requests: write
     steps:
       - run: echo '${{ github.actor }}'
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -66,3 +67,27 @@ jobs:
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
         run: cat ./docs/.next/export-detail.json || true
+      - name: Extract Vale version
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        id: vale-version
+        run: |
+          VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
+          echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Cache Vale binary
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: node_modules/.cache/mui-vale
+          key: ${{ runner.os }}-mui-vale-${{ steps.vale-version.outputs.vale_version }}
+      - uses: vale-cli/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
+        continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          version: ${{ steps.vale-version.outputs.vale_version }}
+          # Errors should be more visible
+          fail_on_error: true
+          # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters
+          reporter: github-pr-check
+          # Required, set by GitHub actions automatically:
+          # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
+          token: ${{secrets.GITHUB_TOKEN}}

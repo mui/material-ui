@@ -168,6 +168,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/material-ui/api/modal/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li></ul>"
 }

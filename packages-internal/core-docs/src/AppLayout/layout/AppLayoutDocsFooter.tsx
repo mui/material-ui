@@ -436,7 +436,7 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           sx={{ alignItems: 'center' }}
         >
           <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
-            <Link href="https://mui.com/" aria-label="Go to homepage">
+            <Link href="https://mui.com/" aria-label="Go to the homepage">
               <MuiLogotypeIcon height={28} width={64} />
             </Link>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
