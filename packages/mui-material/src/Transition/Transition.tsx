@@ -4,9 +4,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useValueAsRef from '@mui/utils/useValueAsRef';
-// Read-only bridge for RTG's TransitionGroup interop. The 68-byte context
-// module has no heavy runtime — full RTG Transition/TransitionGroup stay out
-// of the bundle.
+// Read-only bridge for RTG's TransitionGroup interop. This imports only the
+// tiny context module, so full RTG Transition/TransitionGroup stay out of the bundle.
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { reflow } from '../transitions/utils';
 
@@ -145,14 +144,16 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     parentGroup,
   });
 
-  const cancelPendingCallback = () => {
+  // These helpers are effect dependencies. useCallback keeps their identity
+  // stable while propsRef gives them the latest props.
+  const cancelPendingCallback = React.useCallback(() => {
     if (nextCallbackRef.current !== null) {
       nextCallbackRef.current.cancel();
       nextCallbackRef.current = null;
     }
-  };
+  }, []);
 
-  const makeCallback = (handler: () => void): CancellableCallback => {
+  const makeCallback = React.useCallback((handler: () => void): CancellableCallback => {
     let active = true;
     const wrapped = (() => {
       if (active) {
@@ -166,54 +167,60 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     };
     nextCallbackRef.current = wrapped;
     return wrapped;
-  };
+  }, []);
 
-  const scheduleTransitionEnd = (timeoutValue: number | undefined, handler: () => void) => {
-    const done = makeCallback(handler);
-    const node = propsRef.current.nodeRef.current;
-    const listener = propsRef.current.addEndListener;
-    const noTimeoutOrListener = timeoutValue == null && !listener;
+  const scheduleTransitionEnd = React.useCallback(
+    (timeoutValue: number | undefined, handler: () => void) => {
+      const done = makeCallback(handler);
+      const node = propsRef.current.nodeRef.current;
+      const listener = propsRef.current.addEndListener;
+      const noTimeoutOrListener = timeoutValue == null && !listener;
 
-    if (!node || noTimeoutOrListener) {
-      setTimeout(done, 0);
-      return;
-    }
-    if (listener) {
-      // RTG calls addEndListener(done) when nodeRef is used, but MUI still
-      // supports the direct consumer shape addEndListener(node, done). The
-      // arity check preserves both contracts without changing the wrappers in
-      // Fade/Grow/Slide/Zoom/Collapse.
-      if (listener.length >= 2) {
-        (listener as (node: HTMLElement, done: () => void) => void)(node, done);
-      } else {
-        (listener as (done: () => void) => void)(done);
+      if (!node || noTimeoutOrListener) {
+        setTimeout(done, 0);
+        return;
       }
-    }
-    if (timeoutValue != null) {
-      setTimeout(done, timeoutValue);
-    }
-  };
+      if (listener) {
+        // RTG calls addEndListener(done) when nodeRef is used, but MUI still
+        // supports the direct consumer shape addEndListener(node, done). The
+        // arity check preserves both contracts without changing the wrappers in
+        // Fade/Grow/Slide/Zoom/Collapse.
+        if (listener.length >= 2) {
+          (listener as (node: HTMLElement, done: () => void) => void)(node, done);
+        } else {
+          (listener as (done: () => void) => void)(done);
+        }
+      }
+      if (timeoutValue != null) {
+        setTimeout(done, timeoutValue);
+      }
+    },
+    [makeCallback, propsRef],
+  );
 
-  const performEnter = (mounting: boolean) => {
-    const current = propsRef.current;
-    const isAppearing = current.parentGroup ? current.parentGroup.isMounting : mounting;
-    isAppearingRef.current = isAppearing;
+  const performEnter = React.useCallback(
+    (mounting: boolean) => {
+      const current = propsRef.current;
+      const isAppearing = current.parentGroup ? current.parentGroup.isMounting : mounting;
+      isAppearingRef.current = isAppearing;
 
-    // Skip animation on updates (not mount) when enter=false. Matches RTG:
-    // `(!mounting && !enter) || config.disabled`. onEnter does not fire in
-    // this branch — only the terminal onEntered (via the status effect).
-    if (!mounting && !current.enter) {
-      statusRef.current = 'entered';
-      setStatus('entered');
-      return;
-    }
+      // Skip animation on updates (not mount) when enter=false. Matches RTG:
+      // `(!mounting && !enter) || config.disabled`. onEnter does not fire in
+      // this branch — only the terminal onEntered (via the status effect).
+      if (!mounting && !current.enter) {
+        statusRef.current = 'entered';
+        setStatus('entered');
+        return;
+      }
 
-    current.onEnter?.(isAppearing);
-    statusRef.current = 'entering';
-    setStatus('entering');
-  };
+      current.onEnter?.(isAppearing);
+      statusRef.current = 'entering';
+      setStatus('entering');
+    },
+    [propsRef],
+  );
 
-  const performExit = () => {
+  const performExit = React.useCallback(() => {
     const current = propsRef.current;
 
     if (!current.exit) {
@@ -225,36 +232,40 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     current.onExit?.();
     statusRef.current = 'exiting';
     setStatus('exiting');
-  };
+  }, [propsRef]);
 
-  const updateStatus = (mounting: boolean, nextStatus: 'entering' | 'exiting' | null) => {
-    if (nextStatus !== null) {
-      cancelPendingCallback();
-      if (nextStatus === 'entering') {
-        const current = propsRef.current;
-        // Forced reflow separates the mount-render from the entering-render
-        // so CSS transitions run on nodes that just became visible.
-        if (current.mountOnEnter || current.unmountOnExit) {
-          const node = current.nodeRef.current;
-          if (node) {
-            reflow(node);
+  const updateStatus = React.useCallback(
+    (mounting: boolean, nextStatus: 'entering' | 'exiting' | null) => {
+      if (nextStatus !== null) {
+        cancelPendingCallback();
+        if (nextStatus === 'entering') {
+          const current = propsRef.current;
+          // Forced reflow separates the mount-render from the entering-render
+          // so CSS transitions run on nodes that just became visible.
+          if (current.mountOnEnter || current.unmountOnExit) {
+            const node = current.nodeRef.current;
+            if (node) {
+              reflow(node);
+            }
           }
+          performEnter(mounting);
+        } else {
+          performExit();
         }
-        performEnter(mounting);
-      } else {
-        performExit();
+      } else if (propsRef.current.unmountOnExit && statusRef.current === 'exited') {
+        statusRef.current = 'unmounted';
+        setStatus('unmounted');
       }
-    } else if (propsRef.current.unmountOnExit && statusRef.current === 'exited') {
-      statusRef.current = 'unmounted';
-      setStatus('unmounted');
-    }
-  };
+    },
+    [cancelPendingCallback, performEnter, performExit, propsRef],
+  );
 
   // Mount effect — useEnhancedEffect is required here because the initial
   // appear transition can force reflow and must happen before paint. Kept
   // re-runnable for StrictMode's double-mount: the cleanup cancels the
   // pending callback, then the second mount replays the same enter from the
-  // same start state.
+  // same start state. The dependencies are stable callbacks, so this
+  // remains mount-only outside StrictMode.
   useEnhancedEffect(() => {
     mountedRef.current = true;
     if (appearPendingRef.current !== null) {
@@ -264,13 +275,12 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       mountedRef.current = false;
       cancelPendingCallback();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cancelPendingCallback, updateStatus]);
 
   // In-change / status-reconciliation effect — mirrors RTG's componentDidUpdate
-  // plus getDerivedStateFromProps. Runs after every commit past the initial
-  // mount; drives the state machine based on current inProp + status.
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- intentionally runs after every commit; `statusRef`/`updateStatus` read via refs
+  // plus getDerivedStateFromProps. `status` is included because mountOnEnter
+  // needs the synthetic unmounted -> exited render before starting enter, and
+  // unmountOnExit needs the terminal exited -> unmounted step.
   useEnhancedEffect(() => {
     if (!mountedRef.current) {
       return;
@@ -288,16 +298,15 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       }
     } else if (current === 'entering' || current === 'entered') {
       updateStatus(false, 'exiting');
-    } else if (current === 'exited' && propsRef.current.unmountOnExit) {
+    } else if (current === 'exited' && unmountOnExit) {
       statusRef.current = 'unmounted';
       setStatus('unmounted');
     }
-  });
+  }, [inProp, status, unmountOnExit, updateStatus]);
 
   // Status-reactive lifecycle effect — fires the lifecycle callback for each
   // committed status change. The lastFiredStatusRef guard dedupes StrictMode's
-  // double-invocation so onEntering/onExiting/onEntered/onExited fire once
-  // per real status transition even though effects run twice.
+  // double-invocation; callback freshness comes from propsRef.
   useEnhancedEffect(() => {
     // Transitions into or out of 'unmounted' are synthetic setup hops
     // (RTG does these in getDerivedStateFromProps). Sync the ref but do
@@ -334,7 +343,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     } else if (status === 'exited') {
       current.onExited?.();
     }
-  });
+  }, [propsRef, scheduleTransitionEnd, status]);
 
   if (status === 'unmounted') {
     return null;

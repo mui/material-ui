@@ -504,6 +504,49 @@ describe('<Transition />', () => {
       });
       expect(handlers.onExited!.callCount).to.equal(1);
     });
+
+    it('unmounts when unmountOnExit is enabled after the user closes', async () => {
+      let done: (() => void) | null = null;
+      const addEndListener = (_node: HTMLElement, next: () => void) => {
+        done = next;
+      };
+
+      function ToggleHarness() {
+        const [open, setOpen] = React.useState(true);
+        const [unmountOnExit, setUnmountOnExit] = React.useState(false);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setOpen(false)}>
+              close
+            </button>
+            <button type="button" onClick={() => setUnmountOnExit(true)}>
+              enable unmount
+            </button>
+            <TestHarness
+              in={open}
+              appear={false}
+              unmountOnExit={unmountOnExit}
+              timeout={null}
+              addEndListener={addEndListener}
+            />
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ToggleHarness />);
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+
+      await user.click(screen.getByRole('button', { name: 'close' }));
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+
+      act(() => {
+        done!();
+      });
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exited');
+
+      await user.click(screen.getByRole('button', { name: 'enable unmount' }));
+      expect(screen.queryByTestId('target')).to.equal(null);
+    });
   });
 
   describe('unmount safety', () => {

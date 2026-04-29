@@ -13,8 +13,8 @@ interface ValueRef<T> {
  *
  * Untracks the provided value by turning it into a ref to remove its reactivity.
  *
- * Used to access the passed value inside `React.useEffect` without causing the effect to re-run
- * when the value changes.
+ * Used to access the passed value inside effects without causing those effects to re-run when the
+ * value changes.
  */
 export default function useValueAsRef<T>(value: T) {
   const latest = useLazyRef(() => createValueRef(value)).current;

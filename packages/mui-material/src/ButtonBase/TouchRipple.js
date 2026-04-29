@@ -15,8 +15,8 @@ export const DELAY_RIPPLE = 80;
 
 /**
  * Preserves TransitionGroup's sibling ordering: leaving ripples keep their
- * relative position, while newly active ripples move ahead of fully exiting
- * groups so the latest interaction remains topmost.
+ * relative position, while newly active ripples are inserted before any trailing
+ * group of fully exiting ripples.
  */
 function mergeRippleOrder(prevOrder, nextActiveKeys) {
   const nextKeySet = new Set(nextActiveKeys);
@@ -385,8 +385,8 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
       {...other}
     >
       {/* Match TransitionGroup's DOM ordering: exiting ripples keep their
-          relative position, while newly active ripples move ahead of
-          fully-exiting groups so the latest interaction stays topmost. */}
+          relative position, while newly active ripples are inserted before any
+          trailing group of fully exiting ripples. */}
       {orderedRipples.map((ripple) => (
         <TouchRippleRipple
           key={ripple.key}

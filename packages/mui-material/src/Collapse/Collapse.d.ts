@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { TransitionStatus } from 'react-transition-group';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
-import { TransitionProps } from '../transitions/types';
+import { TransitionProps, TransitionStatus } from '../transitions/types';
 import { CollapseClasses } from './collapseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
