@@ -2,7 +2,7 @@
   "name": "@mui/tailwind",
   "version": "10.0.0-alpha.0",
   "author": "MUI Team",
-  "description": "Tailwind CSS preset and plugin for Material UI.",
+  "description": "Tailwind CSS preset and plugin for Material UI.",
   "license": "MIT",
   "keywords": [
     "react",

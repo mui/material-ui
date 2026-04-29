@@ -1,6 +1,6 @@
 # Using the @mui/tailwind package
 
-<p class="description">The @mui/tailwind package provides a Tailwind CSS preset, plugin, and v4 CSS file that wire MUI's design tokens and component state classes into Tailwind.</p>
+<p class="description">The @mui/tailwind package provides a Tailwind CSS preset, plugin, and v4 CSS file that wire MUI's design tokens and component state classes into Tailwind.</p>
 
 ## Installation
 

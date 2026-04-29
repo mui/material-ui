@@ -42,7 +42,7 @@ const examples = [
     src: '/static/images/examples/remix.svg',
   },
   {
-    name: 'Tailwind CSS + Vite',
+    name: 'Tailwind CSS + Vite',
     label: 'View TypeScript',
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',

@@ -18,7 +18,7 @@ export default function styled(Tag, options) {
         typeof Tag === 'string' ? `<${Tag}>` : Tag.displayName || Tag.name || 'a component';
       console.error(
         `MUI: The \`sx\` prop was used on ${componentName} but \`@mui/styled-engine-noop\` is active. ` +
-          'The `sx` prop will be ignored. Use Tailwind CSS classes via the `className` prop for styling instead.',
+          'The `sx` prop will be ignored. Use Tailwind CSS classes via the `className` prop for styling instead.',
       );
     }
 
