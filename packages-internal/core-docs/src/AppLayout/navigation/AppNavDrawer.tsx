@@ -21,9 +21,9 @@ import { AppNavDrawerItem } from './AppNavDrawerItem';
 import { LogoWithCopyMenu } from '../components/LogoWithCopyMenu';
 import { MuiProductSelector } from './MuiProductSelector';
 import { pageToTitleI18n } from '../../helpers';
-import PageContext, { ProductVersion } from '../../PageContext';
+import PageContext, { type ProductVersion } from '../../PageContext';
 import { useTranslate } from '../../i18n';
-import { MuiPage } from '../../MuiPage';
+import { type MuiPage } from '../../MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: Theme) {

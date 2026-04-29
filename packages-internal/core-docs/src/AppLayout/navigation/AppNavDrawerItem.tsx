@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation, Link, type LinkProps } from '../../Link';
-import { MuiPageIcon } from '../../MuiPage';
+import { type MuiPageIcon } from '../../MuiPage';
 import { standardNavIcons } from '../icons/navIcons';
 
 interface ItemBaseProps {
