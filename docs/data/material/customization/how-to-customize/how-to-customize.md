@@ -14,6 +14,10 @@ Material UI provides several different ways to customize a component's styles. 
 1. [Global theme overrides](#3-global-theme-overrides)
 1. [Global CSS override](#4-global-css-override)
 
+:::success
+Use the [Material UI styling agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-styling) to give your AI coding assistant guidance on choosing between `sx`, `styled()`, theme overrides, and global CSS.
+:::
+
 ## 1. One-off customization
 
 To change the styles of _one single instance_ of a component, you can use one of the following options:
