@@ -178,6 +178,5 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-rating/\">Rating</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-rating/\">Rating</a></li></ul>"
 }

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { SxProps } from '@mui/system';
-import { styled, alpha, Theme } from '@mui/material/styles';
+import type { SxProps } from '@mui/system';
+import { styled, alpha, type Theme } from '@mui/material/styles';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
 

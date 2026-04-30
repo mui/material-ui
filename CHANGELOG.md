@@ -1,4 +1,4 @@
-# [Versions](https://mui.com/versions/)
+# [Versions](https://mui.com/material-ui/getting-started/versions/)
 
 ## 9.0.0
 

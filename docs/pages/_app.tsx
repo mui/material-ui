@@ -9,12 +9,17 @@ import {
   printConsoleBanner,
   reportWebVitals,
 } from '@mui/internal-core-docs/DocsApp';
-import { DEFAULT_DOCS_CONFIG, type DocsConfig } from '@mui/internal-core-docs/DocsProvider';
+import {
+  DEFAULT_DOCS_CONFIG,
+  type DocsConfig,
+  VersionEntry,
+} from '@mui/internal-core-docs/DocsProvider';
 import type { NotificationMessage } from '@mui/internal-core-docs/AppLayout';
 import findActivePage from '@mui/internal-core-docs/findActivePage';
 import { getProductInfoFromUrl } from '@mui/internal-core-docs/utils';
 import type { Translations } from '@mui/internal-core-docs/i18n';
 import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
+import type { ProductVersion } from '@mui/internal-core-docs/PageContext';
 import materialPkgJson from '@mui/material/package.json';
 import systemPkgJson from '@mui/system/package.json';
 import { LicenseInfo } from '@mui/x-license';
@@ -31,6 +36,7 @@ import {
   muiSvgWordmarkString,
 } from '@mui/internal-core-docs/svgIcons';
 
+import versionsJson from '../versions.json';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
@@ -40,6 +46,88 @@ export { fontClasses } from '@mui/internal-core-docs/nextFonts';
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
+
+const docsConfig: DocsConfig = {
+  ...DEFAULT_DOCS_CONFIG,
+  /**
+   * The shape of these JSON files needs to be backward compatible.
+   * They are used in past versions of the docs, and we don't want to break them by changing the structure.
+   * If any change is needed, it should be made in a way that doesn't break the existing structure, or we should
+   * update older domains to be compatible with the new structure.
+   */
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchNotifications: (): Promise<NotificationMessage[]> =>
+      import('../notifications.json').then((mod) => mod.default),
+  }),
+  ...(process.env.NODE_ENV !== 'production' && {
+    fetchVersions: (): Promise<VersionEntry[]> =>
+      import('../versions.json').then((mod) => mod.default.versions),
+  }),
+  hostUrl: process.env.PULL_REQUEST_ID
+    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+    : 'https://mui.com',
+};
+
+function useVersions(initialVersions: VersionEntry[]): VersionEntry[] {
+  const [versions, setVersions] = React.useState<VersionEntry[]>(initialVersions);
+  React.useEffect(() => {
+    docsConfig.fetchVersions?.().then(setVersions);
+  }, []);
+  return versions;
+}
+
+function getVersionedProductPath(version: string, productId: string): string {
+  const versionNumber = parseInt(version.replace('v', ''), 10);
+  if (productId === 'material-ui') {
+    if (versionNumber >= 6) {
+      return '/material-ui/getting-started/';
+    }
+    if (versionNumber >= 4) {
+      return '/getting-started/installation/';
+    }
+  }
+  if (productId === 'system') {
+    if (versionNumber >= 5) {
+      return '/system/getting-started/';
+    }
+    if (versionNumber === 4) {
+      return '/system/basics/';
+    }
+  }
+  return '/';
+}
+
+function buildProductVersions(
+  fetchedVersions: VersionEntry[],
+  productId: string,
+  currentVersion: string,
+): ProductVersion[] {
+  // Before the fetch resolves, show just the current version with no dropdown.
+  if (fetchedVersions.length === 0) {
+    return [{ text: currentVersion, current: true }];
+  }
+
+  const MIN_VERSION = 4;
+  const versions: ProductVersion[] = fetchedVersions
+    .filter((v) => {
+      const vNum = parseInt(v.version.replace('v', ''), 10);
+      return vNum >= MIN_VERSION;
+    })
+    .map((v) => {
+      if (v.url === 'https://mui.com') {
+        return { text: currentVersion, current: true };
+      }
+      const productPath = getVersionedProductPath(v.version, productId);
+      return { text: v.version, href: `${v.url}${productPath}` };
+    });
+
+  versions.push({
+    text: 'View all versions',
+    href: `/material-ui/getting-started/versions/`,
+  });
+
+  return versions;
+}
 
 /**
  * Generates root index template for Material UI demos.
@@ -60,12 +148,13 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 );`;
 }
 
-function useProductData() {
+function useProductData(pageProps: { versions: VersionEntry[] }) {
   const router = useRouter();
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
   // if not present
   const { productId, productCategoryId } = getProductInfoFromUrl(router.asPath);
+  const fetchedVersions = useVersions(pageProps.versions);
 
   const productIdentifier = React.useMemo(() => {
     if (productId === 'material-ui') {
@@ -75,29 +164,11 @@ function useProductData() {
         logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${materialPkgJson.version}`, current: true },
-          {
-            text: 'v7',
-            href: `https://v7.mui.com/material-ui/getting-started/`,
-          },
-          {
-            text: 'v6',
-            href: `https://v6.mui.com/material-ui/getting-started/`,
-          },
-          {
-            text: 'v5',
-            href: `https://v5.mui.com/getting-started/installation/`,
-          },
-          {
-            text: 'v4',
-            href: `https://v4.mui.com/getting-started/installation/`,
-          },
-          {
-            text: 'View all versions',
-            href: `https://mui.com/versions/`,
-          },
-        ],
+        versions: buildProductVersions(
+          fetchedVersions,
+          'material-ui',
+          `v${materialPkgJson.version}`,
+        ),
       };
     }
 
@@ -108,17 +179,7 @@ function useProductData() {
         logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v7', href: `https://v7.mui.com/system/getting-started/` },
-          { text: 'v6', href: `https://v6.mui.com/system/getting-started/` },
-          { text: 'v5', href: `https://v5.mui.com/system/getting-started/` },
-          { text: 'v4', href: `https://v4.mui.com/system/basics/` },
-          {
-            text: 'View all versions',
-            href: `https://mui.com/versions/`,
-          },
-        ],
+        versions: buildProductVersions(fetchedVersions, 'system', `v${systemPkgJson.version}`),
       };
     }
 
@@ -130,13 +191,11 @@ function useProductData() {
         logo: MuiLogomarkIcon,
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
-        versions: [
-          { text: `v${materialPkgJson.version}`, current: true },
-          {
-            text: 'View all versions',
-            href: `https://mui.com/versions/`,
-          },
-        ],
+        versions: buildProductVersions(
+          fetchedVersions,
+          'material-ui',
+          `v${materialPkgJson.version}`,
+        ),
       };
     }
 
@@ -173,7 +232,7 @@ function useProductData() {
     }
 
     return null;
-  }, [productId]);
+  }, [productId, fetchedVersions]);
 
   return React.useMemo(() => {
     let pages: MuiPage[] = generalDocsPages as MuiPage[];
@@ -206,17 +265,6 @@ const CSB_CONFIG: SandboxConfig = {
 
 const GA_AD_CONFIG: AdConfig = { GADisplayRatio: 0.1 };
 
-const docsConfig: DocsConfig = {
-  ...DEFAULT_DOCS_CONFIG,
-  ...(process.env.NODE_ENV !== 'production' && {
-    fetchNotifications: (): Promise<NotificationMessage[]> =>
-      import('../notifications.json').then((mod) => mod.default),
-  }),
-  hostUrl: process.env.PULL_REQUEST_ID
-    ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-    : 'https://mui.com',
-};
-
 function useDemoDisplayName() {
   const router = useRouter();
   const { productId } = React.useMemo(() => getProductInfoFromUrl(router.asPath), [router.asPath]);
@@ -232,7 +280,7 @@ function useDemoDisplayName() {
 }
 
 export default function MyApp(
-  props: AppProps<{ userLanguage: string; translations: Translations }>,
+  props: AppProps<{ userLanguage: string; translations: Translations; versions: VersionEntry[] }>,
 ) {
   const { Component, pageProps } = props;
   const {
@@ -242,7 +290,7 @@ export default function MyApp(
     productIdentifier,
     productId,
     productCategoryId,
-  } = useProductData();
+  } = useProductData(pageProps);
   const demoDisplayName = useDemoDisplayName();
 
   return (
@@ -266,7 +314,8 @@ export default function MyApp(
 }
 
 MyApp.getInitialProps = createGetInitialProps({
-  translationsContext: require.context('docs/translations', false, /\.\/translations.*\.json$/),
+  translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
+  versions: versionsJson.versions,
 });
 
 export { reportWebVitals };

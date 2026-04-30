@@ -120,9 +120,9 @@ Here are some factors to consider to ensure that your Alert is accessible:
 
 - Because alerts are not intended to interfere with the use of the app, your Alert component should _never_ affect the keyboard focus.
 - If an alert contains an action, that action must have a `tabindex` of `0` so it can be reached by keyboard-only users.
-- Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
+- Essential alerts should not disappear automatically—[timed interactions](https://www.w3.org/WAI/WCAG22/Understanding/no-timing.html) can make your app inaccessible to users who need extra time to understand or locate the alert.
 - By default, the Alert renders an element with the `role="alert"`, which is the same as using `aria-live="assertive"` and `aria-atomic="true"`. This assumes the message requires the user's immediate attention. Less urgent messages should use a less aggressive method, such as overriding the default role with a `role="status"`. Check this [alert role page](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alert_role) for more information.
-- Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html) of your app.
+- Alerts that occur too frequently can [inhibit the usability](https://www.w3.org/WAI/WCAG22/Understanding/interruptions.html) of your app.
 - Dynamically rendered alerts are announced by screen readers; alerts that are already present on the page when it loads are _not_ announced.
 - Color does not add meaning to the UI for users who require assistive technology. You must ensure that any information conveyed through color is also denoted in other ways, such as within the text of the alert itself, or with additional hidden text that's read by screen readers.
 
