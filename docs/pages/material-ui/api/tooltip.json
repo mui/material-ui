@@ -151,6 +151,5 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Tooltip/Tooltip.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-tooltip/\">Tooltip</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-tooltip/\">Tooltip</a></li></ul>"
 }

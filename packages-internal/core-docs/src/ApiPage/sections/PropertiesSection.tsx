@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { PropsTableItem, PropsTranslations } from '@mui/internal-api-docs-builder';
+import { type PropsTableItem, type PropsTranslations } from '@mui/internal-api-docs-builder';
 import { useTranslate } from '../../i18n';
 import {
   ToggleDisplayOption,
@@ -12,8 +12,8 @@ import { SectionTitle, type SectionTitleProps } from '../../SectionTitle';
 import PropertiesTable from '../table/PropertiesTable';
 import PropertiesList from '../list/PropertiesList';
 import { getPropsApiDefinitions } from '../definitions/properties';
-import { LayoutStorageKeys } from '../types';
-import { PropertyDefinition } from '../definitions';
+import { type LayoutStorageKeys } from '../types';
+import { type PropertyDefinition } from '../definitions';
 
 type PropertiesSectionProps = (
   | {
