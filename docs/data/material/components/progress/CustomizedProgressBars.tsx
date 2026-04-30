@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import CircularProgress, {
   circularProgressClasses,
-  CircularProgressProps,
+  type CircularProgressProps,
 } from '@mui/material/CircularProgress';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 

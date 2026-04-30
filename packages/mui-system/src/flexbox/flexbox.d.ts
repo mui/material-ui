@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { type PropsFor, type SimpleStyleFunction } from '../style';
 
 export const flexBasis: SimpleStyleFunction<'flexBasis'>;
 export const flexDirection: SimpleStyleFunction<'flexDirection'>;

@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@mui/types';
-import { Theme as SystemTheme } from '../createTheme';
+import type * as React from 'react';
+import { type OverridableComponent, type OverrideProps } from '@mui/types';
+import { type Theme as SystemTheme } from '../createTheme';
 import {
-  SxProps,
-  AllSystemCSSProperties,
-  ResponsiveStyleValue,
-  OverwriteCSSProperties,
-  AliasesCSSProperties,
+  type SxProps,
+  type AllSystemCSSProperties,
+  type ResponsiveStyleValue,
+  type OverwriteCSSProperties,
+  type AliasesCSSProperties,
 } from '../styleFunctionSx';
-import { PropsFor } from '../style';
-import { ComposedStyleFunction } from '../compose';
-import borders from '../borders';
-import display from '../display';
-import flexbox from '../flexbox';
-import grid from '../cssGrid';
-import palette from '../palette';
-import positions from '../positions';
-import shadows from '../shadows';
-import sizing from '../sizing';
-import spacing from '../spacing';
-import typography from '../typography';
+import { type PropsFor } from '../style';
+import { type ComposedStyleFunction } from '../compose';
+import type borders from '../borders';
+import type display from '../display';
+import type flexbox from '../flexbox';
+import type grid from '../cssGrid';
+import type palette from '../palette';
+import type positions from '../positions';
+import type shadows from '../shadows';
+import type sizing from '../sizing';
+import type spacing from '../spacing';
+import type typography from '../typography';
 
 export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
 

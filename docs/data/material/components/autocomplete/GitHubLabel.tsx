@@ -6,7 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
 import Autocomplete, {
-  AutocompleteCloseReason,
+  type AutocompleteCloseReason,
   autocompleteClasses,
 } from '@mui/material/Autocomplete';
 import ButtonBase from '@mui/material/ButtonBase';

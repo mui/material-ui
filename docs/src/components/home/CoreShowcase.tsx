@@ -3,7 +3,7 @@ import { ThemeProvider, createTheme, useTheme, alpha } from '@mui/material/style
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer, { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
-import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
+import PointerContainer, { type Data } from 'docs/src/components/home/ElementPointer';
 import { MoreInfoBox, MaterialVsCustomToggle } from '@mui/internal-core-docs/AppLayout';
 
 import FlashCode from 'docs/src/components/animation/FlashCode';

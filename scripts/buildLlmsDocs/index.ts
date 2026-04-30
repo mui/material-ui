@@ -58,13 +58,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { pathToFileURL } from 'node:url';
-import yargs, { ArgumentsCamelCase } from 'yargs';
+import yargs, { type ArgumentsCamelCase } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { kebabCase } from 'es-toolkit/string';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import {
-  ComponentInfo,
-  ProjectSettings,
+  type ComponentInfo,
+  type ProjectSettings,
   findComponents,
   findPagesMarkdown,
 } from '@mui/internal-api-docs-builder';

@@ -4,11 +4,11 @@ import useEventCallback from '@mui/utils/useEventCallback';
 import useTimeout from '@mui/utils/useTimeout';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
-  UseSnackbarParameters,
-  SnackbarCloseReason,
-  UseSnackbarReturnValue,
+  type UseSnackbarParameters,
+  type SnackbarCloseReason,
+  type UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import { EventHandlers } from '../utils/types';
+import { type EventHandlers } from '../utils/types';
 
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {

@@ -4,14 +4,14 @@ import {
   Head,
   Main,
   NextScript,
-  DocumentProps,
-  DocumentInitialProps,
-  DocumentContext,
+  type DocumentProps,
+  type DocumentInitialProps,
+  type DocumentContext,
 } from 'next/document';
-import { AppProps } from 'next/app';
+import { type AppProps } from 'next/app';
 import {
   DocumentHeadTags,
-  DocumentHeadTagsProps,
+  type DocumentHeadTagsProps,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';

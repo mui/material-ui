@@ -2,9 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Fade from '@mui/material/Fade';
-import Slide, { SlideProps } from '@mui/material/Slide';
-import Grow, { GrowProps } from '@mui/material/Grow';
-import { TransitionProps } from '@mui/material/transitions';
+import Slide, { type SlideProps } from '@mui/material/Slide';
+import Grow, { type GrowProps } from '@mui/material/Grow';
+import { type TransitionProps } from '@mui/material/transitions';
 
 function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="up" />;

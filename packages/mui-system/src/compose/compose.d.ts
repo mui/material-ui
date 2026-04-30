@@ -1,4 +1,4 @@
-import { StyleFunction } from '../style';
+import { type StyleFunction } from '../style';
 
 /**
  * given a list of StyleFunction return the intersection of the props each individual

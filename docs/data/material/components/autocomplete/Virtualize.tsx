@@ -7,9 +7,9 @@ import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
 import {
   List,
-  RowComponentProps,
+  type RowComponentProps,
   useListRef,
-  ListImperativeAPI,
+  type ListImperativeAPI,
 } from 'react-window';
 import Typography from '@mui/material/Typography';
 

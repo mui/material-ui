@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { TransitionStatus } from 'react-transition-group';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses } from './collapseClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type TransitionStatus } from 'react-transition-group';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type TransitionProps } from '../transitions/transition';
+import { type CollapseClasses } from './collapseClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export interface CollapseSlots {
   /**

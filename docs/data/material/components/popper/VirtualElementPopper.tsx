@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Popper, { PopperProps } from '@mui/material/Popper';
+import Popper, { type PopperProps } from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import Paper from '@mui/material/Paper';

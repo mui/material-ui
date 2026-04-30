@@ -1,7 +1,7 @@
 'use client';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
-import { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
+import { unstable_createCssVarsProvider as createCssVarsProvider, type SxProps } from '@mui/system';
+import { type SupportedColorScheme, type CssVarsTheme } from './createThemeWithVars';
 import createTheme from './createTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';

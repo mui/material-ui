@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import ClickAwayListener from '../ClickAwayListener';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { SnackbarContentProps } from '../SnackbarContent';
-import { TransitionProps } from '../transitions/transition';
-import { SnackbarClasses } from './snackbarClasses';
-import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import type ClickAwayListener from '../ClickAwayListener';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type SnackbarContentProps } from '../SnackbarContent';
+import { type TransitionProps } from '../transitions/transition';
+import { type SnackbarClasses } from './snackbarClasses';
+import { type CreateSlotsAndSlotProps, type SlotComponentProps, type SlotProps } from '../utils/types';
 
 export interface SnackbarSlots {
   /**

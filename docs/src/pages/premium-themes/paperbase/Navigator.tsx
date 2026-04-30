@@ -1,5 +1,5 @@
 import Divider from '@mui/material/Divider';
-import Drawer, { DrawerProps } from '@mui/material/Drawer';
+import Drawer, { type DrawerProps } from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';

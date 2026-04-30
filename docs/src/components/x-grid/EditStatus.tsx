@@ -1,11 +1,11 @@
 import {
-  GridRenderEditCellParams,
+  type GridRenderEditCellParams,
   useGridRootProps,
   useGridApiContext,
   GridEditModes,
 } from '@mui/x-data-grid';
-import Select, { SelectProps } from '@mui/material/Select';
-import { MenuProps } from '@mui/material/Menu';
+import Select, { type SelectProps } from '@mui/material/Select';
+import { type MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';

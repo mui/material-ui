@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/utils/types';
-import { BackdropProps } from '../Backdrop';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { PaperProps } from '../Paper';
-import { ModalProps } from '../Modal';
-import { TransitionProps } from '../transitions/transition';
-import { PopoverClasses } from './popoverClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type SlotComponentProps } from '@mui/utils/types';
+import { type BackdropProps } from '../Backdrop';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type PaperProps } from '../Paper';
+import { type ModalProps } from '../Modal';
+import { type TransitionProps } from '../transitions/transition';
+import { type PopoverClasses } from './popoverClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export interface PopoverSlots {
   /**

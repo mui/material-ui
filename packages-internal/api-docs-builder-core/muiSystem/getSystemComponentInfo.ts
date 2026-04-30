@@ -3,7 +3,7 @@ import path from 'path';
 import { kebabCase } from 'es-toolkit/string';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
 import {
-  ComponentInfo,
+  type ComponentInfo,
   extractPackageFile,
   getMuiName,
   parseFile,

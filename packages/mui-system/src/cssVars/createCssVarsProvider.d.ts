@@ -1,6 +1,6 @@
-import * as React from 'react';
-import InitColorSchemeScript from '../InitColorSchemeScript';
-import { Result } from './useCurrentColorScheme';
+import type * as React from 'react';
+import type InitColorSchemeScript from '../InitColorSchemeScript';
+import { type Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 
 export interface ColorSchemeContextValue<

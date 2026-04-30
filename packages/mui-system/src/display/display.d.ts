@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { type PropsFor, type SimpleStyleFunction } from '../style';
 
 declare const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'

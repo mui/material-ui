@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { type PropsFor, type SimpleStyleFunction } from '../style';
 
 export const border: SimpleStyleFunction<'border'>;
 export const borderTop: SimpleStyleFunction<'borderTop'>;

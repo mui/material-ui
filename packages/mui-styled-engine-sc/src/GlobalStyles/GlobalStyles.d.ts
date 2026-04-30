@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { CSSObject, StyleFunction } from 'styled-components';
+import type * as React from 'react';
+import { type CSSObject, type StyleFunction } from 'styled-components';
 
 export interface GlobalStylesProps<Theme extends object = {}> {
   defaultTheme?: object | undefined;

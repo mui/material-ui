@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { type PropsFor, type SimpleStyleFunction } from '../style';
 
 declare const positions: SimpleStyleFunction<
   'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'

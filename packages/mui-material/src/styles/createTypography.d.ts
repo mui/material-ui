@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { CSSProperties } from './createMixins';
-import { Palette } from './createPalette';
+import type * as React from 'react';
+import { type CSSProperties } from './createMixins';
+import { type Palette } from './createPalette';
 
 export type TypographyVariant =
   | 'h1'
