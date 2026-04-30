@@ -108,7 +108,22 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/textarea-autosize', // Superseded by a dedicated regression test
     '!docs/data/material/components/tooltips', // Needs interaction
     '!docs/data/material/components/transitions', // Needs interaction
-    '!docs/data/material/components/use-media-query', // Needs dynamic resize
+    '!docs/data/material/components/use-media-query', // Need to dynamically resize to test
+    '!docs/data/material/customization/breakpoints', // Need to dynamically resize to test
+    '!docs/data/material/customization/color', // Escape viewport
+    '!docs/data/material/customization/container-queries/ResizableDemo', // No public components
+    '!docs/data/material/customization/default-theme', // Redux isolation
+    '!docs/data/material/customization/density/DensityTool', // Redux isolation
+    '!docs/data/material/customization/right-to-left/RtlDemo',
+    '!docs/data/material/customization/transitions/TransitionHover', // Need interaction
+    '!docs/data/material/customization/typography/ResponsiveFontSizesChart',
+    '!docs/data/material/getting-started/supported-components/MaterialUIComponents', // No public components
+    '!docs/data/material/guides',
+    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind', // CodeSandbox
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal', // No public components
+    '!docs/data/premium-themes',
+    '!docs/data/material/getting-started/versions/LatestVersions', // not a component
+    '!docs/data/material/getting-started/versions/ReleasedVersions', // not a component
   ],
   {
     import: 'default',

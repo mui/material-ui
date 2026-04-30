@@ -34,14 +34,14 @@
     "docs:typescript:formatted": "tsx ./docs/scripts/formattedTSDemos",
     "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
-    "docs:zipRules": "cd docs && rm mui-vale.zip && zip -r mui-vale.zip mui-vale && cd ../ && pnpm vale sync",
     "extract-error-codes": "code-infra extract-error-codes --errorCodesPath docs/public/static/error-codes.json --skip @mui/core-downloads-tracker @mui/envinfo @mui/internal-core-docs @mui/codemod @mui/icons-material",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "eslint": "eslint . --cache --report-unused-disable-directives --max-warnings 0",
     "eslint:ci": "eslint . --report-unused-disable-directives --max-warnings 0",
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" \"docs/**/*.css\" --ignore-path .lintignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
-    "valelint": "pnpm dlx --package @vvago/vale vale sync && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm dlx --package @vvago/vale vale --filter='.Level==\"error\"'",
+    "vale:fix": "pnpm valelint --auto-fix all",
+    "valelint": "pnpm code-infra vale sync --vale-version $npm_package_config_valeVersion && git ls-files | grep -E \"\\.(md|mdx)$\" | xargs pnpm code-infra vale --vale-version $npm_package_config_valeVersion --filter='.Level==\"error\"'",
     "prettier": "pretty-quick --ignore-path .lintignore --branch master",
     "prettier:all": "prettier --write . --ignore-path .lintignore",
     "size:snapshot": "pnpm -F ./test/bundle-size check",
@@ -147,6 +147,9 @@
     "vitest": "^4.0.13",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.0.0"
+  },
+  "config": {
+    "valeVersion": "3.14.1"
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {

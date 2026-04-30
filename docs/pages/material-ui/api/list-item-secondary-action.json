@@ -36,6 +36,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>"
 }

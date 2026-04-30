@@ -126,7 +126,6 @@ export interface ComponentApiContent {
   filename: string;
   inheritance: null | { component: string; pathname: string };
   demos: string;
-  cssComponent: boolean;
   deprecated: true | undefined;
 }
 
