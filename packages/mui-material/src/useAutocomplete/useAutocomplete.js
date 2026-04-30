@@ -1425,22 +1425,40 @@ function useAutocomplete(props) {
       type: 'button',
       onClick: handlePopupIndicator,
     }),
-    getListboxProps: () => ({
+    getListboxProps: (other = {}) => ({
+      ...other,
       role: 'listbox',
       id: `${id}-listbox`,
       'aria-labelledby': `${id}-label`,
       'aria-multiselectable': multiple || undefined,
       ref: handleListboxRef,
       onMouseDown: (event) => {
+        other.onMouseDown?.(event);
+        if (event.defaultMuiPrevented) {
+          return;
+        }
+
         // Prevent blur
         event.preventDefault();
       },
-      onScroll: () => {
+      onScroll: (event) => {
+        other.onScroll?.(event);
+        if (event.defaultMuiPrevented) {
+          return;
+        }
+
         if (isTouchRef.current) {
           touchScrolledRef.current = true;
         }
       },
-      onMouseLeave: handleListboxMouseLeave,
+      onMouseLeave: (event) => {
+        other.onMouseLeave?.(event);
+        if (event.defaultMuiPrevented) {
+          return;
+        }
+
+        handleListboxMouseLeave(event);
+      },
     }),
     getOptionProps: ({ index, option }) => {
       const selected = isOptionSelected(option);

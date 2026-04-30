@@ -444,9 +444,10 @@ export interface UseAutocompleteReturnValue<
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
    * Resolver for the listbox component's props.
+   * @param externalProps props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getListboxProps: (externalProps?: any) => React.HTMLAttributes<HTMLUListElement>;
   /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete

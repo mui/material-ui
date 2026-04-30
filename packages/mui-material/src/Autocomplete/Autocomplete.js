@@ -551,7 +551,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
   const { onMouseDown: handleInputMouseDown } = getInputProps();
-  const { ref: listboxRef, ...otherListboxProps } = getListboxProps();
 
   const defaultGetOptionLabel = (option) => option.label ?? option;
   const getOptionLabel = getOptionLabelProp || defaultGetOptionLabel;
@@ -595,8 +594,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     externalForwardedProps,
     ownerState,
     className: classes.listbox,
-    additionalProps: otherListboxProps,
-    ref: listboxRef,
+    getSlotProps: getListboxProps,
   });
 
   const [PaperSlot, paperProps] = useSlot('paper', {

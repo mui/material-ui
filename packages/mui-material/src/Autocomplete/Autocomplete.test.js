@@ -494,6 +494,30 @@ describe('<Autocomplete />', () => {
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
+    it('clears the mouse-created highlight when slotProps.listbox.onMouseLeave is provided', async () => {
+      const handleListboxMouseLeave = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { onMouseLeave: handleListboxMouseLeave } }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(handleListboxMouseLeave.callCount).to.equal(1);
+      expect(getActiveDescendant(textbox)).to.equal(null);
+    });
+
     it('keeps a keyboard-created highlight when the mouse leaves the listbox', async () => {
       const handleHighlightChange = spy();
       const { user } = render(
