@@ -547,6 +547,9 @@ const useUtilityClasses = (ownerState) => {
 
 const Forward = ({ children }) => children;
 
+/**
+ * @internal Duplicated Slider component based on Emotion.
+ */
 const Slider = React.forwardRef(function Slider(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSlider' });
 

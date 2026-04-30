@@ -13,7 +13,7 @@ export type AppRouterCacheProviderProps = {
     | (Partial<OptionsOfCreateCache> & {
         /**
          * If `true`, the generated styles are wrapped within `@layer mui`.
-         * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
+         * This is useful if you want to override the Material UI's generated styles with different styling solution, like Tailwind CSS, plain CSS etc.
          */
         enableCssLayer?: boolean | undefined;
       })

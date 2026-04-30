@@ -32,6 +32,31 @@
       "nodeName": "the root element",
       "conditions": "<code>container={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." }
+    "direction-xs-column": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"column\"</code>"
+    },
+    "direction-xs-column-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"column-reverse\"</code>"
+    },
+    "direction-xs-row-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>direction=\"row-reverse\"</code>"
+    },
+    "root": { "description": "Styles applied to the root element." },
+    "wrap-xs-nowrap": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>wrap=\"nowrap\"</code>"
+    },
+    "wrap-xs-wrap-reverse": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>wrap=\"reverse\"</code>"
+    }
   }
 }
