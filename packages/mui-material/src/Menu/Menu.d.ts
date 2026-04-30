@@ -9,7 +9,11 @@ import { type ModalProps } from '../Modal';
 import { type BackdropProps } from '../Backdrop';
 import { type TransitionProps } from '../transitions/transition';
 import { type MenuClasses } from './menuClasses';
-import { type CreateSlotsAndSlotProps, type SlotComponentProps, type SlotProps } from '../utils/types';
+import {
+  type CreateSlotsAndSlotProps,
+  type SlotComponentProps,
+  type SlotProps,
+} from '../utils/types';
 
 export interface MenuRootSlotPropsOverrides {}
 

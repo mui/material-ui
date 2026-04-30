@@ -6,7 +6,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import List from '@mui/material/List';
-import ListItemButton, { type ListItemButtonProps } from '@mui/material/ListItemButton';
+import ListItemButton, {
+  type ListItemButtonProps,
+} from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader, { type ListSubheaderProps } from '@mui/material/ListSubheader';

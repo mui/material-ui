@@ -6,7 +6,11 @@ import { type InternalStandardProps as StandardProps } from '../internal';
 import { type SnackbarContentProps } from '../SnackbarContent';
 import { type TransitionProps } from '../transitions/transition';
 import { type SnackbarClasses } from './snackbarClasses';
-import { type CreateSlotsAndSlotProps, type SlotComponentProps, type SlotProps } from '../utils/types';
+import {
+  type CreateSlotsAndSlotProps,
+  type SlotComponentProps,
+  type SlotProps,
+} from '../utils/types';
 
 export interface SnackbarSlots {
   /**

@@ -11,7 +11,11 @@ import { computeApiDescription } from './ComponentApiBuilder';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import { type TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
-import { type HookApiContent, type HookReactApi, type ParsedProperty } from '../types/ApiBuilder.types';
+import {
+  type HookApiContent,
+  type HookReactApi,
+  type ParsedProperty,
+} from '../types/ApiBuilder.types';
 import { type HookInfo } from '../types/utils.types';
 import extractInfoFromType from '../utils/extractInfoFromType';
 

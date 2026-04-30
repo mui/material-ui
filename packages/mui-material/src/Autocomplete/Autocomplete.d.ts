@@ -7,7 +7,11 @@ import { type IconButtonProps } from '../IconButton';
 import { type ChipProps, type ChipTypeMap } from '../Chip';
 import { type PaperProps } from '../Paper';
 import { type PopperProps } from '../Popper';
-import {type UseAutocompleteProps, type AutocompleteFreeSoloValueMapping, type AutocompleteValueOrFreeSoloValueMapping} from '../useAutocomplete';
+import {
+  type UseAutocompleteProps,
+  type AutocompleteFreeSoloValueMapping,
+  type AutocompleteValueOrFreeSoloValueMapping,
+} from '../useAutocomplete';
 import type useAutocomplete from '../useAutocomplete';
 import {
   AutocompleteChangeDetails,
@@ -15,7 +19,7 @@ import {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   AutocompleteValue,
-  createFilterOptions
+  createFilterOptions,
 } from '../useAutocomplete';
 import { type AutocompleteClasses } from './autocompleteClasses';
 import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';

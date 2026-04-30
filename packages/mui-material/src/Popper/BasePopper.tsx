@@ -6,7 +6,14 @@ import useForkRef from '@mui/utils/useForkRef';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import refType from '@mui/utils/refType';
-import { createPopper, type Instance, type Modifier, type Placement, type State, type VirtualElement } from '@popperjs/core';
+import {
+  createPopper,
+  type Instance,
+  type Modifier,
+  type Placement,
+  type State,
+  type VirtualElement,
+} from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';

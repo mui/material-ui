@@ -1,6 +1,12 @@
 import type { Documentation } from 'react-docgen';
 import { type JSDocTagInfo } from 'typescript';
-import { type ComponentInfo, type Slot, type HookInfo, type SeeMore, type ApiItemDescription } from './utils.types';
+import {
+  type ComponentInfo,
+  type Slot,
+  type HookInfo,
+  type SeeMore,
+  type ApiItemDescription,
+} from './utils.types';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;

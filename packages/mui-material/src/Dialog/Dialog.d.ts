@@ -7,7 +7,11 @@ import { type PaperProps } from '../Paper';
 import { type ModalProps } from '../Modal';
 import { type TransitionProps } from '../transitions/transition';
 import { type DialogClasses } from './dialogClasses';
-import { type CreateSlotsAndSlotProps, type SlotComponentProps, type SlotProps } from '../utils/types';
+import {
+  type CreateSlotsAndSlotProps,
+  type SlotComponentProps,
+  type SlotProps,
+} from '../utils/types';
 
 export interface DialogSlots {
   /**

@@ -1,6 +1,10 @@
 import type * as React from 'react';
 import { type SxProps } from '@mui/system';
-import { type ButtonBaseProps, type ExtendButtonBase, type ExtendButtonBaseTypeMap } from '../ButtonBase';
+import {
+  type ButtonBaseProps,
+  type ExtendButtonBase,
+  type ExtendButtonBaseTypeMap,
+} from '../ButtonBase';
 import { type OverrideProps } from '../OverridableComponent';
 import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 import { type Theme } from '../styles';

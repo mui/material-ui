@@ -8,7 +8,10 @@ import CardContent from '@mui/material/CardContent';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
-import { useTreeItem, type UseTreeItemParameters } from '@mui/x-tree-view/useTreeItem';
+import {
+  useTreeItem,
+  type UseTreeItemParameters,
+} from '@mui/x-tree-view/useTreeItem';
 import {
   TreeItemContent,
   TreeItemIconContainer,

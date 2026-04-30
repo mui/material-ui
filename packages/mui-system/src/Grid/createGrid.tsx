@@ -23,7 +23,13 @@ import {
   generateDirectionClasses,
 } from './gridGenerator';
 import { type CreateMUIStyled } from '../createStyled';
-import { type GridTypeMap, type GridOwnerState, type GridProps, type GridOffset, type GridSize } from './GridProps';
+import {
+  type GridTypeMap,
+  type GridOwnerState,
+  type GridProps,
+  type GridOffset,
+  type GridSize,
+} from './GridProps';
 
 const defaultTheme = createTheme();
 

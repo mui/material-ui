@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Html, Head, Main, NextScript, type DocumentProps, type DocumentContext } from 'next/document';
+import {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  type DocumentProps,
+  type DocumentContext,
+} from 'next/document';
 import {
   DocumentHeadTags,
   type DocumentHeadTagsProps,

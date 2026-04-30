@@ -3,7 +3,7 @@ import {
   type CreateMUIStyled as CreateMUIStyledStyledEngine,
   type CSSInterpolation,
 } from '@mui/styled-engine';
-import {type SxProps} from '../styleFunctionSx';
+import { type SxProps } from '../styleFunctionSx';
 import type styleFunctionSx from '../styleFunctionSx';
 import { type Theme as DefaultTheme } from '../createTheme';
 

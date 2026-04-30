@@ -5,7 +5,11 @@ import { type TransitionProps } from '../transitions/transition';
 import { type Theme } from '../styles';
 import { type BackdropClasses } from './backdropClasses';
 import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
-import { type CreateSlotsAndSlotProps, type SlotComponentProps, type SlotProps } from '../utils/types';
+import {
+  type CreateSlotsAndSlotProps,
+  type SlotComponentProps,
+  type SlotProps,
+} from '../utils/types';
 
 export interface BackdropSlots {
   /**

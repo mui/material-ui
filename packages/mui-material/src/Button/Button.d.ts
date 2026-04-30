@@ -3,7 +3,11 @@ import { type DistributiveOmit, type OverridableStringUnion } from '@mui/types';
 import { type SxProps } from '@mui/system';
 import { type Theme } from '../styles';
 import { type ExtendButtonBase, type ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { type OverrideProps, type OverridableComponent, type OverridableTypeMap } from '../OverridableComponent';
+import {
+  type OverrideProps,
+  type OverridableComponent,
+  type OverridableTypeMap,
+} from '../OverridableComponent';
 import { type ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}

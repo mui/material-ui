@@ -1,7 +1,12 @@
 import TextField from '@mui/material/TextField';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider, type Theme, useTheme } from '@mui/material/styles';
+import {
+  createTheme,
+  ThemeProvider,
+  type Theme,
+  useTheme,
+} from '@mui/material/styles';
 
 const customTheme = (outerTheme: Theme) =>
   createTheme({
