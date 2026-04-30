@@ -54,7 +54,7 @@ If you can't find your answer, [ask a new question](https://stackoverflow.com/qu
 
 :::success
 If you're using an older version of Material UI, you may find answers on SO with links to content that no longer exists in the latest version of the documentation.
-Visit the [Material UI Versions](https://mui.com/versions/) page to find the archived documentation that corresponds to your version.
+Visit the [Material UI Versions](https://mui.com/material-ui/getting-started/versions/) page to find the archived documentation that corresponds to your version.
 :::
 
 ## Technical support
@@ -74,9 +74,9 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 | Material UI version | Release    | Supported                                                          |
 | ------------------: | :--------- | :----------------------------------------------------------------- |
-|              ^9.0.0 | March 2026 | 🚧 Pre release (Continuous support)                                |
-|              ^7.0.0 | 2025-03-26 | ✅ Stable major (Continuous support)                               |
-|              ^6.0.0 | 2024-08-26 | ⚠️ Long-term support (Support for security issues and regressions) |
+|              ^9.0.0 | 2026-04-08 | ✅ Stable major (Continuous support)                               |
+|              ^7.0.0 | 2025-03-26 | ⚠️ Long-term support (Support for security issues and regressions) |
+|              ^6.0.0 | 2024-08-26 | ❌                                                                 |
 |              ^5.0.0 | 2021-09-16 | ❌                                                                 |
 |              ^4.0.0 | 2019-06-23 | ❌                                                                 |
 |              ^3.0.0 | 2018-08-27 | ❌                                                                 |

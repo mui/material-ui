@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import ROUTES from 'docs/src/route';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 import { InfoCard } from '@mui/internal-core-docs/InfoCard';
 import IconImage from '@mui/internal-core-docs/IconImage';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';

@@ -37,17 +37,19 @@ It shares the same styles and many of the same props. Refer to the respective co
 Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
 :::
 
-### Filled and standard variants
+### Variants
 
 {{"demo": "SelectVariants.js"}}
 
+:::warning
+Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo). This is needed for the label floating animation to work correctly.
+:::
+
 ### Labels and helper text
 
-{{"demo": "SelectLabels.js"}}
+Select always needs an accessible name. This can come from an associated visible label, such as an `InputLabel` linked to the `Select` with `labelId` or from adding an `aria-label` prop to the input element props (`inputProps`). If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
 
-:::warning
-Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
-:::
+{{"demo": "SelectLabels.js"}}
 
 ### Auto width
 
@@ -84,7 +86,7 @@ Notice that the `"standard"` variant is easier to customize, since it does not w
 
 {{"demo": "CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/select-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/select).
 
 ## Multiple select
 

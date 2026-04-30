@@ -1,4 +1,4 @@
-import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
+import { standardNavIcons } from '@mui/internal-core-docs/AppLayout';
 import pagesApi from 'docs/data/material/pagesApi';
 import { MuiPage } from '@mui/internal-core-docs/MuiPage';
 
@@ -20,6 +20,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/supported-components' },
       { pathname: '/material-ui/getting-started/supported-platforms' },
       { pathname: '/material-ui/getting-started/support' },
+      { pathname: '/material-ui/getting-started/versions' },
     ],
   },
   {

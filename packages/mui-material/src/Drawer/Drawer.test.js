@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import { spy, stub } from 'sinon';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -155,6 +155,101 @@ describe('<Drawer />', () => {
       });
     });
 
+    describe('scroll lock', () => {
+      it('should keep the scroll locked until the exit transition completes by default', () => {
+        const transitionDuration = 123;
+        const { setProps } = render(
+          <Drawer open={false} transitionDuration={transitionDuration}>
+            <div />
+          </Drawer>,
+        );
+
+        expect(document.body.style.overflow).to.equal('');
+
+        setProps({ open: true });
+        clock.runToLast();
+
+        expect(document.body.style.overflow).to.equal('hidden');
+
+        setProps({ open: false });
+
+        expect(document.body.style.overflow).to.equal('hidden');
+
+        act(() => {
+          clock.runToLast();
+        });
+
+        expect(document.body.style.overflow).to.equal('');
+      });
+
+      it('should allow opting out of waiting for the exit transition before unlocking scroll', () => {
+        const transitionDuration = 123;
+        const { setProps } = render(
+          <Drawer open={false} transitionDuration={transitionDuration} closeAfterTransition={false}>
+            <div />
+          </Drawer>,
+        );
+
+        setProps({ open: true });
+        clock.runToLast();
+
+        expect(document.body.style.overflow).to.equal('hidden');
+
+        setProps({ open: false });
+
+        expect(document.body.style.overflow).to.equal('');
+      });
+    });
+
+    describe('transition container', () => {
+      it.skipIf(isJsdom())('should slide relative to the drawer root by default', function test() {
+        let nodeExitingTransformStyle;
+        const { setProps } = render(
+          <Drawer
+            open
+            anchor="right"
+            slotProps={{
+              transition: {
+                onExit: (node) => {
+                  nodeExitingTransformStyle = node.style.transform;
+                },
+              },
+            }}
+          >
+            <div />
+          </Drawer>,
+        );
+
+        const root = document.querySelector(`.${classes.root}`);
+        const paper = document.querySelector(`.${classes.paper}`);
+
+        const rootRectStub = stub(root, 'getBoundingClientRect').callsFake(() => ({
+          width: 1000,
+          height: 500,
+          left: 0,
+          right: 1000,
+          top: 0,
+          bottom: 500,
+        }));
+        const paperRectStub = stub(paper, 'getBoundingClientRect').callsFake(() => ({
+          width: 200,
+          height: 500,
+          left: 800,
+          right: 1000,
+          top: 0,
+          bottom: 500,
+        }));
+
+        try {
+          setProps({ open: false });
+          expect(nodeExitingTransformStyle).to.equal('translateX(200px)');
+        } finally {
+          rootRectStub.restore();
+          paperRectStub.restore();
+        }
+      });
+    });
+
     describe('accessibility', () => {
       it('should have role="dialog" and aria-modal="true" when variant is temporary', () => {
         render(
@@ -166,6 +261,29 @@ describe('<Drawer />', () => {
         const paper = document.querySelector(`.${classes.paper}`);
         expect(paper).to.have.attribute('role', 'dialog');
         expect(paper).to.have.attribute('aria-modal', 'true');
+      });
+
+      it('should focus the Paper element on open when variant is temporary', () => {
+        render(
+          <Drawer open variant="temporary">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).to.have.attribute('tabindex', '-1');
+        expect(paper).toHaveFocus();
+      });
+
+      it('should not have tabIndex on Paper when variant is permanent', () => {
+        render(
+          <Drawer variant="permanent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('tabindex');
       });
 
       it('should not have role="dialog" and aria-modal="true" when variant is permanent', () => {

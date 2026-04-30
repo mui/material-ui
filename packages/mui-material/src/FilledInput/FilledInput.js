@@ -208,28 +208,21 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingRight: 12,
     paddingBottom: 8,
     paddingLeft: 12,
-    ...(!theme.vars && {
-      '&:-webkit-autofill': {
+    '&:-webkit-autofill': {
+      ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
         WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
         caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-    }),
-    ...(theme.vars && {
-      '&:-webkit-autofill': {
-        borderTopLeftRadius: 'inherit',
-        borderTopRightRadius: 'inherit',
-      },
-      [theme.getColorSchemeSelector('dark')]: {
-        '&:-webkit-autofill': {
+      }),
+      borderTopLeftRadius: 'inherit',
+      borderTopRightRadius: 'inherit',
+      ...(theme.vars &&
+        theme.applyStyles('dark', {
           WebkitBoxShadow: '0 0 0 100px #266798 inset',
           WebkitTextFillColor: '#fff',
           caretColor: '#fff',
-        },
-      },
-    }),
+        })),
+    },
     variants: [
       {
         props: {
@@ -288,6 +281,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
+    notched, // declare here to prevent spreading to DOM
     slotProps,
     slots = {},
     type = 'text',
@@ -434,6 +428,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
+  /**
+   * @internal
+   */
+  notched: PropTypes.bool,
   /**
    * Callback fired when the value is changed.
    *

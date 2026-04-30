@@ -58,7 +58,7 @@ export interface UseSliderParameters {
    */
   onChange?: ((event: Event, value: number | number[], activeThumb: number) => void) | undefined;
   /**
-   * Callback function that is fired when the `mouseup` is triggered.
+   * Callback function that is fired when the pointer or touch interaction ends.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
@@ -115,7 +115,7 @@ export interface Mark {
 }
 
 export type UseSliderRootSlotOwnProps = {
-  onMouseDown: React.MouseEventHandler;
+  onPointerDown: React.HTMLAttributes<HTMLSpanElement>['onPointerDown'];
   ref: React.RefCallback<Element> | null;
 };
 

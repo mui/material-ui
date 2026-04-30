@@ -26,8 +26,10 @@ export interface InputBaseProps extends StandardProps<
   | 'onInvalid'
   | 'onKeyDown'
   | 'onKeyUp'
+  | 'aria-label'
 > {
   'aria-describedby'?: string | undefined;
+  'aria-label'?: string | undefined;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -240,10 +242,10 @@ export interface InputBaseComponentProps extends React.HTMLAttributes<
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://next.mui.com/material-ui/api/input-base/)
+ * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;

@@ -133,7 +133,6 @@ export const ListItemRoot = styled('div', {
 const StyledListItemSecondaryAction = styled(ListItemSecondaryAction, {
   name: 'MuiListItem',
   slot: 'secondaryAction',
-  overridesResolver: (props, styles) => styles.secondaryAction,
 })({});
 
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {

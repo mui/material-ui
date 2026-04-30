@@ -4,7 +4,7 @@
 /static/images/*
   Cache-Control: public, max-age=86400
 
-/favicon.ico
+/static/favicon.ico
   Content-Type: image/x-icon
 
 /performance/*

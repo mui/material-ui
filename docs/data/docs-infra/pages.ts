@@ -22,6 +22,11 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
+    pathname: '/experiments/docs/layout',
+    title: 'Layout',
+    children: [{ pathname: '/experiments/docs/docs-layout', title: 'Docs layout' }],
+  },
+  {
     pathname: '/experiments/docs/main-parent',
     title: 'Test: pages.js',
     children: [

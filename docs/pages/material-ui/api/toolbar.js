@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ApiPage from 'docs/src/modules/components/ApiPage';
-import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
+import { ApiPage } from '@mui/internal-core-docs/ApiPage';
+import { mapApiPageTranslations } from '@mui/internal-core-docs/mapApiPageTranslations';
 import jsonPageContent from './toolbar.json';
 
 export default function Page(props) {

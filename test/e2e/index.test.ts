@@ -55,7 +55,7 @@ describe('e2e', () => {
     const isServerRunning = await attemptGoto(page, `${BASE_URL}#no-dev`);
     if (!isServerRunning) {
       throw new Error(
-        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
+        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:dev\`?`,
       );
     }
   }, 20000);
@@ -276,6 +276,67 @@ describe('e2e', () => {
         el.classList.contains('Mui-focusVisible'),
       );
       expect(hasVisible).toEqual(true);
+    });
+
+    it('should not select an option while opening a flipped menu with a normal click', async () => {
+      await page.setViewportSize({ width: 800, height: 240 });
+      await renderFixture('Select/SelectPointerFlow');
+
+      const trigger = page.getByRole('combobox');
+      const box = await trigger.boundingBox();
+      expect(box).not.toEqual(null);
+
+      const x = box!.x + box!.width / 2;
+      const y = box!.y + box!.height / 2;
+
+      await page.mouse.move(x, y);
+      await page.mouse.down();
+      await page.waitForSelector('[role="listbox"]');
+
+      const optionAtPointer = await page.evaluate(
+        (point) =>
+          document.elementFromPoint(point.x, point.y)?.closest('[role="option"]')?.textContent,
+        { x, y },
+      );
+      expect(optionAtPointer).not.toEqual(null);
+
+      await page.mouse.up();
+
+      await expect(page.getByRole('listbox')).toBeVisible();
+      await expect(page.getByTestId('select-value')).toHaveText('10');
+
+      await page.keyboard.press('Escape');
+      await expect(page.getByRole('listbox')).toBeHidden();
+    });
+
+    it('should select an option when dragging from the trigger and releasing on the option', async () => {
+      await page.setViewportSize({ width: 800, height: 600 });
+      await renderFixture('Select/SelectPointerFlow');
+
+      const trigger = page.getByRole('combobox');
+      const triggerBox = await trigger.boundingBox();
+      expect(triggerBox).not.toEqual(null);
+
+      await page.mouse.move(
+        triggerBox!.x + triggerBox!.width / 2,
+        triggerBox!.y + triggerBox!.height / 2,
+      );
+      await page.mouse.down();
+      await page.waitForSelector('[role="listbox"]');
+      await page.waitForTimeout(250);
+
+      const option = page.getByRole('option', { name: '20', exact: true });
+      const optionBox = await option.boundingBox();
+      expect(optionBox).not.toEqual(null);
+
+      await page.mouse.move(
+        optionBox!.x + optionBox!.width / 2,
+        optionBox!.y + optionBox!.height / 2,
+      );
+      await page.mouse.up();
+
+      await expect(page.getByTestId('select-value')).toHaveText('20', { timeout: 1000 });
+      await expect(page.getByRole('listbox')).toBeHidden({ timeout: 1000 });
     });
   });
 });

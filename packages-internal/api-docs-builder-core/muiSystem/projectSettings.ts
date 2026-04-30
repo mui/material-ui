@@ -1,7 +1,6 @@
 import path from 'path';
-import { LANGUAGES } from 'docs/config';
-import { ProjectSettings } from '@mui-internal/api-docs-builder';
-import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
+import { LANGUAGES } from '@mui/internal-core-docs/constants';
+import { ProjectSettings, findApiPages } from '@mui/internal-api-docs-builder';
 import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getSystemComponentInfo } from './getSystemComponentInfo';
 

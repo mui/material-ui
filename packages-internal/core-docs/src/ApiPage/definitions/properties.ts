@@ -3,10 +3,10 @@ import type {
   PropsTranslations,
   HookApiContent,
   HooksTranslations,
-} from '@mui-internal/api-docs-builder';
+} from '@mui/internal-api-docs-builder';
 import { kebabCase } from 'es-toolkit/string';
 import type { BaseCssTOCParams, PropertyDefinition } from './types';
-import type { TableOfContentsParams } from '../types';
+import type { TocItem } from '../types';
 
 type GetPropertiesTocParams = BaseCssTOCParams &
   (
@@ -26,7 +26,7 @@ export const getPropertiesToc = ({
   themeDefaultProps,
   t,
   hash,
-}: GetPropertiesTocParams): TableOfContentsParams => {
+}: GetPropertiesTocParams): TocItem => {
   const resolvedProperties =
     properties ??
     Object.keys(componentProps).map((propName) => ({

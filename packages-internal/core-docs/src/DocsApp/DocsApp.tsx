@@ -4,8 +4,8 @@ import type { AdConfig } from '../Ad';
 import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
-import type { DocsConfig } from '../DocsProvider';
-import { DocsProvider } from '../DocsProvider';
+import type { DocsConfig, VersionEntry } from '../DocsProvider';
+import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
 import PageContext from '../PageContext';
 import { ThemeProvider } from '../ThemeContext';
@@ -18,6 +18,7 @@ import DocsStyledEngineProvider from './StyledEngineProvider';
 import createEmotionCache from './createEmotionCache';
 import { loadDependencies } from './loadDependencies';
 import { registerServiceWorker } from './serviceWorker';
+import VersionsContext from './VersionsContext';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,12 +40,13 @@ export interface DocsAppProps {
   pageProps: {
     userLanguage: string;
     translations: Translations;
+    versions: VersionEntry[];
     [key: string]: unknown;
   };
   /**
    * Docs configuration object (from docs/config.ts)
    */
-  docsConfig: DocsConfig;
+  docsConfig?: DocsConfig;
   /**
    * Path to the service worker file, e.g. '/sw.js'
    */
@@ -96,7 +98,7 @@ function DocsApp(props: DocsAppProps) {
     Component,
     emotionCache = clientSideEmotionCache,
     pageProps,
-    docsConfig,
+    docsConfig = DEFAULT_DOCS_CONFIG,
     serviceWorkerPath,
     activePage,
     activePageParents,
@@ -156,24 +158,26 @@ function DocsApp(props: DocsAppProps) {
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
-        <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <DemoContext.Provider value={demoContextValue}>
-                  <ThemeWrapper>
-                    <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                      <AnalyticsProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                        <GoogleAnalytics />
-                      </AnalyticsProvider>
-                    </DocsStyledEngineProvider>
-                  </ThemeWrapper>
-                </DemoContext.Provider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
-        </CodeCopyProvider>
+        <VersionsContext.Provider value={pageProps.versions}>
+          <CodeCopyProvider>
+            <CodeStylingProvider>
+              <CodeVariantProvider>
+                <PageContext.Provider value={pageContextValue}>
+                  <DemoContext.Provider value={demoContextValue}>
+                    <ThemeWrapper>
+                      <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                        <AnalyticsProvider>
+                          {getLayout(<Component {...pageProps} />)}
+                          <GoogleAnalytics />
+                        </AnalyticsProvider>
+                      </DocsStyledEngineProvider>
+                    </ThemeWrapper>
+                  </DemoContext.Provider>
+                </PageContext.Provider>
+              </CodeVariantProvider>
+            </CodeStylingProvider>
+          </CodeCopyProvider>
+        </VersionsContext.Provider>
       </DocsProvider>
     </React.Fragment>
   );

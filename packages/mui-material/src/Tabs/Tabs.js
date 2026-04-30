@@ -19,6 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerWindow from '../utils/ownerWindow';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
+import contains from '../utils/contains';
 import getActiveElement from '../utils/getActiveElement';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
@@ -818,7 +819,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     getSlotProps: (handlers) => ({
       ...handlers,
       onBlur: (event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) {
+        if (!contains(event.currentTarget, event.relatedTarget)) {
           setIsFocusWithinList(false);
         }
 

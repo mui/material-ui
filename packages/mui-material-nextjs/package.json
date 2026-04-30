@@ -1,8 +1,9 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "9.0.0-beta.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
+  "license": "MIT",
   "keywords": [
     "react",
     "next",
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material-nextjs"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -37,7 +37,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
     "@types/react": "19.2.14",
-    "next": "15.5.14",
+    "next": "15.5.15",
     "react": "19.2.4"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/c27d6c81557d1db10eaf70e0510d4f1289995454/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/12844f2b6b11babab17bd3d1f799359ea25d1db7/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -126,12 +126,6 @@ jobs:
           name: '`pnpm docs:api` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
-          name: Update the navigation translations
-          command: pnpm docs:i18n
-      - run:
-          name: '`pnpm docs:i18n` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: '`pnpm extract-error-codes` changes committed?'
           command: |
             pnpm extract-error-codes
@@ -215,7 +209,7 @@ jobs:
     resource_class: 'medium+'
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
@@ -239,7 +233,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
@@ -252,7 +246,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps
@@ -265,7 +259,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     steps:
       - checkout
       - install-deps:
@@ -338,7 +332,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -354,7 +348,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -370,7 +364,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -386,7 +380,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -402,7 +396,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -417,7 +411,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.58.2-noble
+      - image: mcr.microsoft.com/playwright:v1.59.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -433,7 +427,7 @@ jobs:
     <<: *default-job
     executor:
       name: code-infra/mui-node-browser
-      playwright-img-version: v1.58.2-noble
+      playwright-img-version: v1.59.1-noble
       environment:
         GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -453,54 +447,16 @@ jobs:
       - checkout
       - install-deps
       - run:
-          name: Prepare danger on PRs
-          command: pnpm danger ci
-          environment:
-            DANGER_COMMAND: prepareBundleSizeReport
-      - run:
           name: Build @mui packages
           command: pnpm release:build
-      - aws-cli/setup:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-          region: ${AWS_REGION_ARTIFACTS}
       # @TODO: Not using code-infra/upload-size-snapshot since it doesn't support setting concurrency yet
       - run:
           name: Create and upload a size snapshot
-          command: |
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
-            export AWS_REGION=$AWS_REGION_ARTIFACTS
-            pnpm size:snapshot --concurrency 6
-
-      # === LEGACY START ===
-      # remove once the UI can handle the new format
-      # persist size snapshot on S3
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                pattern: '.+'
-                value: '${CIRCLE_PULL_REQUEST}'
-          steps:
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      # === LEGACY END ===
-
-      # Keep the artifact storage as a CircleCI artifact
+          command: pnpm size:snapshot --concurrency 6
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-
-      - run:
-          name: Run danger on PRs
-          command: pnpm danger ci --fail-on-errors
-          environment:
-            DANGER_COMMAND: reportBundleSize
 workflows:
   version: 2
   pipeline:

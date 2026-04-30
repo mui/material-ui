@@ -8,6 +8,8 @@
       },
       "default": "'primary'"
     },
+    "max": { "type": { "name": "number" }, "default": "100" },
+    "min": { "type": { "name": "number" }, "default": "0" },
     "sx": {
       "type": {
         "name": "union",
@@ -104,6 +106,5 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/LinearProgress/LinearProgress.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>"
 }

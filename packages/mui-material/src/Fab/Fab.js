@@ -190,6 +190,9 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Don't forward the 'root' class to the ButtonBase, as it will get duplicated with the one passed to the className prop.
+  const { root, ...forwardedClasses } = classes;
+
   return (
     <FabRoot
       className={clsx(classes.root, className)}
@@ -201,7 +204,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       {...other}
-      classes={classes}
+      classes={forwardedClasses}
     >
       {children}
     </FabRoot>

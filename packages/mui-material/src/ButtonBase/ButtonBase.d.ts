@@ -90,6 +90,13 @@ export interface ButtonBaseOwnProps {
    * A ref that points to the `TouchRipple` element.
    */
   touchRippleRef?: React.Ref<TouchRippleActions> | undefined;
+  /**
+   * The HTML [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#type)
+   * attribute applied to `button` and `a` elements.
+   * Ignored when rendering non-native buttons.
+   * @default 'button'
+   */
+  type?: string | undefined;
 }
 
 export interface ButtonBaseTypeMap<
@@ -122,11 +129,11 @@ export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 

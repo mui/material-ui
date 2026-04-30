@@ -6,8 +6,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconImage from '@mui/internal-core-docs/IconImage';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
+import { Highlighter } from '@mui/internal-core-docs/AppLayout';
+import { MuiLogomarkIcon } from '@mui/internal-core-docs/svgIcons';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
@@ -90,7 +90,7 @@ export default function ProductsSwitcher(props: {
     <ProductItem
       name="Material UI"
       description="Foundational components for shipping features faster."
-      icon={<SvgMuiLogomark height={28} width={28} />}
+      icon={<MuiLogomarkIcon height={28} width={28} />}
     />,
     <ProductItem
       name="MUI X"

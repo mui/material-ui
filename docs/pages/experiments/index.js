@@ -52,15 +52,9 @@ export default function Experiments({ experiments }) {
               MUI <GradientText>Experiments</GradientText>
             </Typography>
             <Box sx={{ textAlign: 'left' }}>
-              <ul>
-                <Typography component="li">
-                  The files under <code>/experiments/*</code> are committed to git.
-                </Typography>
-                <Typography component="li">
-                  These URLs (start with <code>/experiments/*</code>) are not accessible in
-                  production.
-                </Typography>
-              </ul>
+              <Typography>
+                The files under <code>/experiments/*</code> are committed to git.
+              </Typography>
             </Box>
           </Box>
         </Container>

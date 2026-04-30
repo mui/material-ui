@@ -131,6 +131,10 @@ export const SliderRail = styled('span', {
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
+  '@media (forced-colors: active)': {
+    border: '1px solid transparent',
+    boxSizing: 'border-box',
+  },
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -177,7 +181,9 @@ export const SliderTrack = styled('span', {
         {
           props: { size: 'small' },
           style: {
-            border: 'none',
+            '@media (forced-colors: none)': {
+              border: 'none',
+            },
           },
         },
         {
@@ -247,6 +253,9 @@ export const SliderThumb = styled('span', {
     transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
     '&::before': {
       position: 'absolute',
       content: '""',
@@ -933,7 +942,7 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * Callback function that is fired when the `mouseup` is triggered.
+   * Callback function that is fired when the pointer or touch interaction ends.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {Value} value The new value.

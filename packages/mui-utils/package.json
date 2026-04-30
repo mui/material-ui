@@ -1,8 +1,9 @@
 {
   "name": "@mui/utils",
-  "version": "9.0.0-beta.1",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-utils"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -41,7 +41,7 @@
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.37",
+    "@types/node": "20.19.39",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/react-is": "19.2.0",
@@ -49,7 +49,7 @@
     "chai": "6.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sinon": "21.0.3"
+    "sinon": "21.1.2"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

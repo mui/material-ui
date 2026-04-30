@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
@@ -102,5 +102,10 @@ describe('<FilledInput />', () => {
     expect(root).to.have.class(classes.sizeSmall);
     expect(root).to.have.class(classes.adornedEnd);
     expect(root).to.have.class(classes.adornedStart);
+  });
+
+  it('should not forward the notched prop to the DOM', () => {
+    render(<FilledInput notched data-testid="root" />);
+    expect(screen.getByTestId('root')).not.to.have.attribute('notched');
   });
 });

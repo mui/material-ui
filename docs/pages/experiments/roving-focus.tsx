@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Head from 'docs/src/modules/components/Head';
+import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import { Link } from '@mui/internal-core-docs/Link';
 
 interface MenuItemNextLinkProps

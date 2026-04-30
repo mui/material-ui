@@ -145,6 +145,56 @@ describe('<Dialog />', () => {
     expect(screen.queryByRole('dialog')).to.equal(null);
   });
 
+  it('should focus the Paper element (role="dialog") on open', () => {
+    render(
+      <Dialog open transitionDuration={0}>
+        <p>Hello World</p>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveFocus();
+    expect(dialog.tagName).to.equal('DIV');
+    expect(dialog).to.have.attribute('tabindex', '-1');
+  });
+
+  it('should focus the Paper element (role="alertdialog") on open', () => {
+    render(
+      <Dialog open transitionDuration={0} role="alertdialog">
+        <p>Hello World</p>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByRole('alertdialog');
+    expect(dialog).toHaveFocus();
+    expect(dialog).to.have.attribute('tabindex', '-1');
+  });
+
+  it('should focus a custom PaperComponent on open', () => {
+    render(
+      <Dialog open transitionDuration={0} PaperComponent="span">
+        <p>Hello World</p>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveFocus();
+    expect(dialog.tagName).to.equal('SPAN');
+    expect(dialog).to.have.attribute('tabindex', '-1');
+  });
+
+  it('should respect slotProps.paper.tabIndex while still focusing the Paper', () => {
+    render(
+      <Dialog open transitionDuration={0} slotProps={{ paper: { tabIndex: 0 } }}>
+        <p>Hello World</p>
+      </Dialog>,
+    );
+
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveFocus();
+    expect(dialog).to.have.attribute('tabindex', '0');
+  });
+
   it('should not close until the IME is cancelled', () => {
     const onClose = spy();
 

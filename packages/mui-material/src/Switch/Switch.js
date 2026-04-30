@@ -197,6 +197,10 @@ const SwitchTrack = styled('span', {
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      boxSizing: 'border-box',
+      border: '1px solid ButtonBorder',
+    },
     backgroundColor: theme.vars
       ? theme.vars.palette.common.onBackground
       : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
@@ -213,6 +217,8 @@ const SwitchThumb = styled('span', {
   memoTheme(({ theme }) => ({
     boxShadow: (theme.vars || theme).shadows[1],
     backgroundColor: 'currentColor',
+    boxSizing: 'border-box',
+    border: '1px solid transparent',
     width: 20,
     height: 20,
     borderRadius: '50%',

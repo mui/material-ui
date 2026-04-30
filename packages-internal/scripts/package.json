@@ -1,8 +1,9 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
+  "license": "MIT",
   "exports": {
     "./typescript-to-proptypes": {
       "types": "./build/typescript-to-proptypes/index.d.ts",
@@ -18,7 +19,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages-internal/scripts"
   },
-  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf ./build",
     "build": "tsc -b tsconfig.json",
@@ -43,12 +43,12 @@
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
-    "@types/node": "20.19.37",
+    "@types/node": "20.19.39",
     "@types/react": "19.2.14",
     "@types/uuid": "10.0.0",
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
-    "prettier": "3.8.1",
+    "prettier": "3.8.3",
     "rimraf": "6.1.3"
   },
   "publishConfig": {

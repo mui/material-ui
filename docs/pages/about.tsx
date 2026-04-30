@@ -6,9 +6,9 @@ import OurValues from 'docs/src/components/about/OurValues';
 import Team from 'docs/src/components/about/Team';
 import HowToSupport from 'docs/src/components/about/HowToSupport';
 import AboutEnd from 'docs/src/components/about/AboutEnd';
-import Head from 'docs/src/modules/components/Head';
+
 import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
-import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import { AppHeaderBanner, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 export default function About() {
   return (

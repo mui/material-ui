@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
 
 export default function AccordionTransition() {
+  const id = React.useId();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpansion = () => {
@@ -47,8 +48,8 @@ export default function AccordionTransition() {
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
+          aria-controls={`${id}-panel1-content`}
+          id={`${id}-panel1-header`}
         >
           <Typography component="span">Custom transition using Fade</Typography>
         </AccordionSummary>
@@ -62,8 +63,8 @@ export default function AccordionTransition() {
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2-content"
-          id="panel2-header"
+          aria-controls={`${id}-panel2-content`}
+          id={`${id}-panel2-header`}
         >
           <Typography component="span">Default transition using Collapse</Typography>
         </AccordionSummary>

@@ -13,6 +13,18 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function InputAdornments() {
+  const outlinedStartId = React.useId();
+  const outlinedWeightId = React.useId();
+  const outlinedPasswordId = React.useId();
+  const outlinedAmountId = React.useId();
+  const filledStartId = React.useId();
+  const filledWeightId = React.useId();
+  const filledPasswordId = React.useId();
+  const filledAmountId = React.useId();
+  const standardStartId = React.useId();
+  const standardWeightId = React.useId();
+  const standardPasswordId = React.useId();
+  const standardAmountId = React.useId();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -30,7 +42,7 @@ export default function InputAdornments() {
       <div>
         <TextField
           label="With normal TextField"
-          id="outlined-start-adornment"
+          id={`${outlinedStartId}-input`}
           sx={{ m: 1, width: '25ch' }}
           slotProps={{
             input: {
@@ -40,19 +52,21 @@ export default function InputAdornments() {
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
           <OutlinedInput
-            id="outlined-adornment-weight"
+            id={`${outlinedWeightId}-input`}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-            aria-describedby="outlined-weight-helper-text"
+            aria-describedby={`${outlinedWeightId}-helper-text`}
             inputProps={{
               'aria-label': 'weight',
             }}
           />
-          <FormHelperText id="outlined-weight-helper-text">Weight</FormHelperText>
+          <FormHelperText id={`${outlinedWeightId}-helper-text`}>
+            Weight
+          </FormHelperText>
         </FormControl>
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor={`${outlinedPasswordId}-input`}>Password</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"
+            id={`${outlinedPasswordId}-input`}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -73,9 +87,9 @@ export default function InputAdornments() {
           />
         </FormControl>
         <FormControl fullWidth sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+          <InputLabel htmlFor={`${outlinedAmountId}-input`}>Amount</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-amount"
+            id={`${outlinedAmountId}-input`}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
           />
@@ -84,7 +98,7 @@ export default function InputAdornments() {
       <div>
         <TextField
           label="With normal TextField"
-          id="filled-start-adornment"
+          id={`${filledStartId}-input`}
           sx={{ m: 1, width: '25ch' }}
           slotProps={{
             input: {
@@ -95,19 +109,21 @@ export default function InputAdornments() {
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
           <FilledInput
-            id="filled-adornment-weight"
+            id={`${filledWeightId}-input`}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
+            aria-describedby={`${filledWeightId}-helper-text`}
             inputProps={{
               'aria-label': 'weight',
             }}
           />
-          <FormHelperText id="filled-weight-helper-text">Weight</FormHelperText>
+          <FormHelperText id={`${filledWeightId}-helper-text`}>
+            Weight
+          </FormHelperText>
         </FormControl>
         <FormControl sx={{ m: 1, width: '25ch' }} variant="filled">
-          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor={`${filledPasswordId}-input`}>Password</InputLabel>
           <FilledInput
-            id="filled-adornment-password"
+            id={`${filledPasswordId}-input`}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -127,9 +143,9 @@ export default function InputAdornments() {
           />
         </FormControl>
         <FormControl fullWidth sx={{ m: 1 }} variant="filled">
-          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+          <InputLabel htmlFor={`${filledAmountId}-input`}>Amount</InputLabel>
           <FilledInput
-            id="filled-adornment-amount"
+            id={`${filledAmountId}-input`}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
@@ -137,7 +153,7 @@ export default function InputAdornments() {
       <div>
         <TextField
           label="With normal TextField"
-          id="standard-start-adornment"
+          id={`${standardStartId}-input`}
           sx={{ m: 1, width: '25ch' }}
           slotProps={{
             input: {
@@ -148,19 +164,21 @@ export default function InputAdornments() {
         />
         <FormControl variant="standard" sx={{ m: 1, mt: 3, width: '25ch' }}>
           <Input
-            id="standard-adornment-weight"
+            id={`${standardWeightId}-input`}
             endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-            aria-describedby="standard-weight-helper-text"
+            aria-describedby={`${standardWeightId}-helper-text`}
             inputProps={{
               'aria-label': 'weight',
             }}
           />
-          <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
+          <FormHelperText id={`${standardWeightId}-helper-text`}>
+            Weight
+          </FormHelperText>
         </FormControl>
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor={`${standardPasswordId}-input`}>Password</InputLabel>
           <Input
-            id="standard-adornment-password"
+            id={`${standardPasswordId}-input`}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -179,9 +197,9 @@ export default function InputAdornments() {
           />
         </FormControl>
         <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+          <InputLabel htmlFor={`${standardAmountId}-input`}>Amount</InputLabel>
           <Input
-            id="standard-adornment-amount"
+            id={`${standardAmountId}-input`}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>

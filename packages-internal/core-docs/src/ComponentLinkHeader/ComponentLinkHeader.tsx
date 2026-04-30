@@ -5,13 +5,15 @@ import Tooltip from '@mui/material/Tooltip';
 import ChatRounded from '@mui/icons-material/ChatRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
-import { MarkdownHeaders } from '@mui/internal-markdown';
-import MarkdownIcon from '../svgIcons/MarkdownIcon';
-import SketchIcon from '../svgIcons/SketchIcon';
-import FigmaIcon from '../svgIcons/FigmaIcon';
-import BundleSizeIcon from '../svgIcons/BundleSizeIcon';
-import W3CIcon from '../svgIcons/W3CIcon';
-import MaterialDesignIcon from '../svgIcons/MaterialDesignIcon';
+import { type MarkdownHeaders } from '@mui/internal-markdown';
+import {
+  FigmaIcon,
+  BundleSizeIcon,
+  W3CIcon,
+  MaterialDesignIcon,
+  SketchIcon,
+  MarkdownIcon,
+} from '../svgIcons';
 import { useTranslate } from '../i18n';
 
 const Root = styled('ul')(({ theme }) => ({
@@ -36,7 +38,6 @@ const Root = styled('ul')(({ theme }) => ({
 const defaultPackageNames: Record<string, string | undefined> = {
   'material-ui': '@mui/material',
   'joy-ui': '@mui/joy',
-  'base-ui': '@mui/base',
   system: '@mui/system',
 };
 
