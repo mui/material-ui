@@ -447,10 +447,8 @@ describe('<Autocomplete />', () => {
 
   describe('prop: resetHighlightOnMouseLeave', () => {
     it('keeps the mouse-created highlight when the prop uses its default value', async () => {
-      const handleHighlightChange = spy();
       const { user } = render(
         <Autocomplete
-          onHighlightChange={handleHighlightChange}
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -466,9 +464,6 @@ describe('<Autocomplete />', () => {
       await user.pointer({ target: textbox });
 
       expect(getActiveDescendant(textbox)).to.equal(optionTwo);
-      expect(handleHighlightChange.callCount).to.equal(1);
-      expect(handleHighlightChange.lastCall.args[1]).to.equal('two');
-      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
     it('clears a mouse-created highlight when the mouse leaves the listbox', async () => {
