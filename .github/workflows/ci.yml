@@ -65,6 +65,7 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check docs links
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: pnpm docs:link-check
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
