@@ -6,23 +6,38 @@ import Typography from '@mui/material/Typography';
 import top100Films from './top100Films';
 
 export default function AutocompleteHint() {
-  const hint = React.useRef('');
   const [inputValue, setInputValue] = React.useState('');
+  const [hint, setHint] = React.useState('');
+
   return (
     <Autocomplete
       onKeyDown={(event) => {
-        if (event.key === 'Tab') {
-          if (hint.current) {
-            setInputValue(hint.current);
-            event.preventDefault();
-          }
+        if (event.key === 'Tab' && hint) {
+          setInputValue(hint);
+          setHint('');
+          event.preventDefault();
         }
       }}
       onClose={() => {
-        hint.current = '';
+        setHint('');
       }}
       onChange={(event, newValue) => {
-        setInputValue(newValue && newValue.label ? newValue.label : '');
+        setInputValue(newValue?.label ?? '');
+        setHint('');
+      }}
+      onInputChange={(event, newInputValue, reason) => {
+        setInputValue(newInputValue);
+
+        if (reason !== 'input') {
+          setHint('');
+          return;
+        }
+
+        const matchingOption = top100Films.find((option) =>
+          option.label.startsWith(newInputValue),
+        );
+
+        setHint(newInputValue && matchingOption ? matchingOption.label : '');
       }}
       disablePortal
       resetHighlightOnMouseLeave
@@ -33,35 +48,20 @@ export default function AutocompleteHint() {
         return (
           <Box sx={{ position: 'relative' }}>
             <Typography
+              aria-hidden="true"
               sx={{
                 position: 'absolute',
                 opacity: 0.5,
                 left: 14,
+                right: 61,
                 top: 16,
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
-                width: 'calc(100% - 75px)', // Adjust based on padding of TextField
               }}
             >
-              {hint.current}
+              {hint}
             </Typography>
-            <TextField
-              {...params}
-              onChange={(event) => {
-                const newValue = event.target.value;
-                setInputValue(newValue);
-                const matchingOption = top100Films.find((option) =>
-                  option.label.startsWith(newValue),
-                );
-
-                if (newValue && matchingOption) {
-                  hint.current = matchingOption.label;
-                } else {
-                  hint.current = '';
-                }
-              }}
-              label="Movie"
-            />
+            <TextField {...params} label="Movie" />
           </Box>
         );
       }}

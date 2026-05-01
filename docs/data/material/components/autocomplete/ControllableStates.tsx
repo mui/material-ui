@@ -2,15 +2,32 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const options = ['Option 1', 'Option 2'];
+interface ProgrammingLanguage {
+  id: string;
+  label: string;
+}
+
+const langs: ProgrammingLanguage[] = [
+  { id: 'js', label: 'JavaScript' },
+  { id: 'ts', label: 'TypeScript' },
+  { id: 'py', label: 'Python' },
+  { id: 'java', label: 'Java' },
+  { id: 'cpp', label: 'C++' },
+  { id: 'cs', label: 'C#' },
+  { id: 'php', label: 'PHP' },
+  { id: 'ruby', label: 'Ruby' },
+  { id: 'go', label: 'Go' },
+  { id: 'rust', label: 'Rust' },
+  { id: 'swift', label: 'Swift' },
+];
 
 export default function ControllableStates() {
-  const [value, setValue] = React.useState<string | null>(options[0]);
+  const [value, setValue] = React.useState<ProgrammingLanguage | null>(langs[0]);
   const [inputValue, setInputValue] = React.useState('');
 
   return (
     <div>
-      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
+      <div>{`value: ${value !== null ? `'${value.label}'` : 'null'}`}</div>
       <div>{`inputValue: '${inputValue}'`}</div>
       <br />
       <Autocomplete
@@ -22,9 +39,12 @@ export default function ControllableStates() {
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
         }}
-        options={options}
+        options={langs}
+        isOptionEqualToValue={(option, selectedValue) =>
+          option.id === selectedValue.id
+        }
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
+        renderInput={(params) => <TextField {...params} label="Languages" />}
       />
     </div>
   );

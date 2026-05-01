@@ -1,168 +1,26 @@
-import useAutocomplete from '@mui/material/useAutocomplete';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
+import useAutocomplete from '@mui/material/useAutocomplete';
 import { styled } from '@mui/material/styles';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 
-const Root = styled('div')(({ theme }) => ({
-  color: 'rgba(0,0,0,0.85)',
-  fontSize: '14px',
-  ...theme.applyStyles('dark', {
-    color: 'rgba(255,255,255,0.65)',
-  }),
-}));
+const langs = [
+  { id: 'js', value: 'JavaScript' },
+  { id: 'ts', value: 'TypeScript' },
+  { id: 'py', value: 'Python' },
+  { id: 'java', value: 'Java' },
+  { id: 'cpp', value: 'C++' },
+  { id: 'cs', value: 'C#' },
+  { id: 'php', value: 'PHP' },
+  { id: 'ruby', value: 'Ruby' },
+  { id: 'go', value: 'Go' },
+  { id: 'rust', value: 'Rust' },
+  { id: 'swift', value: 'Swift' },
+];
 
-const Label = styled('label')`
-  padding: 0 0 4px;
-  line-height: 1.5;
-  display: block;
-`;
+const defaultLangs = [langs[0]];
 
-const InputWrapper = styled('div')(({ theme }) => ({
-  width: '300px',
-  border: '1px solid #d9d9d9',
-  backgroundColor: '#fff',
-  borderRadius: '4px',
-  padding: '1px',
-  display: 'flex',
-  flexWrap: 'wrap',
-  ...theme.applyStyles('dark', {
-    borderColor: '#434343',
-    backgroundColor: '#141414',
-  }),
-  '&:hover': {
-    borderColor: '#40a9ff',
-    ...theme.applyStyles('dark', {
-      borderColor: '#177ddc',
-    }),
-  },
-  '&.focused': {
-    borderColor: '#40a9ff',
-    boxShadow: '0 0 0 2px rgb(24 144 255 / 0.2)',
-    ...theme.applyStyles('dark', {
-      borderColor: '#177ddc',
-    }),
-  },
-  '& input': {
-    backgroundColor: '#fff',
-    color: 'rgba(0,0,0,.85)',
-    height: '30px',
-    boxSizing: 'border-box',
-    padding: '4px 6px',
-    width: '0',
-    minWidth: '30px',
-    flexGrow: 1,
-    border: 0,
-    margin: 0,
-    outline: 0,
-    ...theme.applyStyles('dark', {
-      color: 'rgba(255,255,255,0.65)',
-      backgroundColor: '#141414',
-    }),
-  },
-}));
-
-function Item(props) {
-  const { label, onDelete, ...other } = props;
-  return (
-    <div {...other}>
-      <span>{label}</span>
-      <CloseIcon onClick={onDelete} />
-    </div>
-  );
-}
-
-Item.propTypes = {
-  label: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
-
-const StyledItem = styled(Item)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  height: '24px',
-  margin: '2px',
-  lineHeight: '22px',
-  backgroundColor: '#fafafa',
-  border: `1px solid #e8e8e8`,
-  borderRadius: '2px',
-  boxSizing: 'content-box',
-  padding: '0 4px 0 10px',
-  outline: 0,
-  overflow: 'hidden',
-  ...theme.applyStyles('dark', {
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderColor: '#303030',
-  }),
-  '&:focus': {
-    borderColor: '#40a9ff',
-    backgroundColor: '#e6f7ff',
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#003b57',
-      borderColor: '#177ddc',
-    }),
-  },
-  '& span': {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-  },
-  '& svg': {
-    fontSize: '12px',
-    cursor: 'pointer',
-    padding: '4px',
-  },
-}));
-
-const Listbox = styled('ul')(({ theme }) => ({
-  width: '300px',
-  margin: '2px 0 0',
-  padding: 0,
-  position: 'absolute',
-  listStyle: 'none',
-  backgroundColor: '#fff',
-  overflow: 'auto',
-  maxHeight: '250px',
-  borderRadius: '4px',
-  boxShadow: '0 2px 8px rgb(0 0 0 / 0.15)',
-  zIndex: 1,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#141414',
-  }),
-  '& li': {
-    padding: '5px 12px',
-    display: 'flex',
-    '& span': {
-      flexGrow: 1,
-    },
-    '& svg': {
-      color: 'transparent',
-    },
-  },
-  "& li[aria-selected='true']": {
-    backgroundColor: '#fafafa',
-    fontWeight: 600,
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#2b2b2b',
-    }),
-    '& svg': {
-      color: '#1890ff',
-    },
-  },
-  [`& li.${autocompleteClasses.focused}`]: {
-    backgroundColor: '#e6f7ff',
-    cursor: 'pointer',
-    ...theme.applyStyles('dark', {
-      backgroundColor: '#003b57',
-    }),
-    '& svg': {
-      color: 'currentColor',
-    },
-  },
-}));
-
-function CustomAutocomplete(props) {
+export default function CustomizedHook() {
   const {
     getRootProps,
     getInputLabelProps,
@@ -172,196 +30,389 @@ function CustomAutocomplete(props) {
     getOptionProps,
     groupedOptions,
     value,
-    focused,
+    focusedItem,
+    popupOpen,
     setAnchorEl,
   } = useAutocomplete({
+    id: 'customized-hook-demo',
     multiple: true,
-    ...props,
+    autoHighlight: true,
+    defaultValue: defaultLangs,
+    disableCloseOnSelect: true,
+    options: langs,
+    getOptionLabel: (option) => option.value,
+    isOptionEqualToValue: (option, selectedValue) => option.id === selectedValue.id,
   });
 
   return (
-    <Root>
-      <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>Customized hook</Label>
-        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option, index) => {
-            const { key, ...itemProps } = getItemProps({ index });
-            return (
-              <StyledItem
-                key={key}
-                {...itemProps}
-                label={props.getOptionLabel(option)}
-              />
-            );
-          })}
-          <input {...getInputProps()} />
-        </InputWrapper>
-      </div>
-      {groupedOptions.length > 0 ? (
+    <Root {...getRootProps()}>
+      <Label {...getInputLabelProps()}>Programming languages</Label>
+      <InputWrapper
+        ref={setAnchorEl}
+        className={value.length > 0 ? 'hasChips' : undefined}
+      >
+        {value.map((option, index) => {
+          const { key, ...itemProps } = getItemProps({ index });
+          return (
+            <StyledChip
+              key={key}
+              {...itemProps}
+              label={option.value}
+              highlighted={focusedItem === index}
+            />
+          );
+        })}
+        <input
+          {...getInputProps()}
+          placeholder={value.length > 0 ? '' : 'e.g. TypeScript'}
+        />
+      </InputWrapper>
+      {popupOpen ? (
         <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => {
-            const { key, ...optionProps } = getOptionProps({ option, index });
-            return (
-              <li key={key} {...optionProps}>
-                <span>{props.getOptionLabel(option)}</span>
-                <CheckIcon fontSize="small" />
-              </li>
-            );
-          })}
+          {groupedOptions.length === 0 ? (
+            <EmptyOption role="presentation">No languages found.</EmptyOption>
+          ) : (
+            groupedOptions.map((option, index) => {
+              const { key, ...optionProps } = getOptionProps({ option, index });
+              return (
+                <Option key={key} {...optionProps}>
+                  <CheckIcon />
+                  <span>{option.value}</span>
+                </Option>
+              );
+            })
+          )}
         </Listbox>
       ) : null}
     </Root>
   );
 }
 
-CustomAutocomplete.propTypes = {
-  /**
-   * Used to determine the string value for a given option.
-   * It's used to fill the input (and the list box options if `renderOption` is not provided).
-   *
-   * If used in free solo mode, it must accept both the type of the options and a string.
-   *
-   * @param {Value|string} option
-   * @returns {string}
-   * @default (option) => option.label ?? option
-   */
-  getOptionLabel: PropTypes.func,
+const tokens = {
+  light: {
+    foreground: 'oklch(0.145 0 0)',
+    foregroundRing: 'oklch(0.145 0 0 / 10%)',
+    popover: 'oklch(1 0 0)',
+    popoverForeground: 'oklch(0.145 0 0)',
+    muted: 'oklch(0.97 0 0)',
+    mutedForeground: 'oklch(0.556 0 0)',
+    accent: 'oklch(0.97 0 0)',
+    accentForeground: 'oklch(0.205 0 0)',
+    input: 'oklch(0.922 0 0)',
+    ring: 'oklch(0.708 0 0)',
+    focusRing: 'oklch(0.708 0 0 / 50%)',
+  },
+  dark: {
+    foreground: 'oklch(0.985 0 0)',
+    foregroundRing: 'oklch(0.985 0 0 / 10%)',
+    popover: 'oklch(0.205 0 0)',
+    popoverForeground: 'oklch(0.985 0 0)',
+    muted: 'oklch(0.269 0 0)',
+    mutedForeground: 'oklch(0.708 0 0)',
+    accent: 'oklch(0.269 0 0)',
+    accentForeground: 'oklch(0.985 0 0)',
+    input: 'oklch(1 0 0 / 15%)',
+    ring: 'oklch(0.556 0 0)',
+    focusRing: 'oklch(0.556 0 0 / 50%)',
+  },
 };
 
-export default function CustomizedHook() {
+const Root = styled('div')(({ theme }) => ({
+  width: '100%',
+  maxWidth: 320,
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8,
+  ...theme.applyStyles('dark', {
+    colorScheme: 'dark',
+  }),
+}));
+
+const Label = styled('label')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  fontSize: 14,
+  lineHeight: 1,
+  fontWeight: 500,
+  color: tokens.light.foreground,
+  userSelect: 'none',
+  ...theme.applyStyles('dark', {
+    color: tokens.dark.foreground,
+  }),
+}));
+
+const InputWrapper = styled('div')(({ theme }) => ({
+  boxSizing: 'border-box',
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  gap: 4,
+  width: '100%',
+  minHeight: 32,
+  paddingBlock: 4,
+  paddingInline: 10,
+  borderWidth: 1,
+  borderStyle: 'solid',
+  borderColor: tokens.light.input,
+  borderRadius: 10,
+  backgroundColor: 'transparent',
+  backgroundClip: 'padding-box',
+  color: tokens.light.foreground,
+  cursor: 'text',
+  fontSize: 14,
+  transition: 'border-color 150ms, box-shadow 150ms, background-color 150ms',
+  '&.hasChips': {
+    paddingInline: 4,
+  },
+  '&:focus-within': {
+    borderColor: tokens.light.ring,
+    boxShadow: `0 0 0 3px ${tokens.light.focusRing}`,
+  },
+  '& input': {
+    flex: 1,
+    boxSizing: 'border-box',
+    minWidth: 64,
+    height: 24,
+    margin: 0,
+    padding: 0,
+    border: 0,
+    backgroundColor: 'transparent',
+    color: tokens.light.foreground,
+    fontFamily: 'inherit',
+    fontSize: 14,
+    fontWeight: 400,
+    outline: 0,
+  },
+  '& input::placeholder': {
+    color: tokens.light.mutedForeground,
+  },
+  ...theme.applyStyles('dark', {
+    borderColor: tokens.dark.input,
+    backgroundColor: 'oklch(1 0 0 / 4.5%)',
+    '&:focus-within': {
+      borderColor: tokens.dark.ring,
+      boxShadow: `0 0 0 3px ${tokens.dark.focusRing}`,
+    },
+    '& input': {
+      color: tokens.dark.foreground,
+    },
+    '& input::placeholder': {
+      color: tokens.dark.mutedForeground,
+    },
+  }),
+}));
+
+function Chip(props) {
+  const { className, highlighted, label, onDelete, ...other } = props;
+
   return (
-    <CustomAutocomplete
-      defaultValue={[top100Films[1]]}
-      options={top100Films}
-      getOptionLabel={(option) => option.title}
-    />
+    <div
+      {...other}
+      className={[className, highlighted ? 'focused' : null]
+        .filter(Boolean)
+        .join(' ')}
+      aria-label={label}
+    >
+      {label}
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-label={`Remove ${label}`}
+        onClick={onDelete}
+      >
+        <XIcon />
+      </button>
+    </div>
   );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-  {
-    title: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
+Chip.propTypes = {
+  className: PropTypes.string,
+  highlighted: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
+
+const StyledChip = styled(Chip)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 4,
+  width: 'fit-content',
+  height: 21,
+  overflow: 'hidden',
+  paddingInline: 6,
+  borderRadius: 6,
+  backgroundColor: tokens.light.muted,
+  color: tokens.light.foreground,
+  fontSize: 12,
+  fontWeight: 500,
+  paddingRight: 0,
+  whiteSpace: 'nowrap',
+  outline: 0,
+  cursor: 'default',
+  userSelect: 'none',
+  '&.focused, &:focus-within': {
+    boxShadow: `0 0 0 2px ${tokens.light.focusRing}`,
   },
-  { title: 'The Good, the Bad and the Ugly', year: 1966 },
-  { title: 'Fight Club', year: 1999 },
-  {
-    title: 'The Lord of the Rings: The Fellowship of the Ring',
-    year: 2001,
+  '& button': {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 24,
+    height: 24,
+    marginLeft: -4,
+    padding: 0,
+    border: 0,
+    borderRadius: 8,
+    background: 'none',
+    color: 'inherit',
+    cursor: 'default',
+    opacity: 0.5,
+    transition: 'opacity 150ms, background-color 150ms',
   },
-  {
-    title: 'Star Wars: Episode V - The Empire Strikes Back',
-    year: 1980,
+  '@media (hover: hover)': {
+    '& button:hover': {
+      backgroundColor: tokens.light.muted,
+      opacity: 1,
+    },
   },
-  { title: 'Forrest Gump', year: 1994 },
-  { title: 'Inception', year: 2010 },
-  {
-    title: 'The Lord of the Rings: The Two Towers',
-    year: 2002,
+  '& svg': {
+    width: 16,
+    height: 16,
+    pointerEvents: 'none',
+    flexShrink: 0,
   },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: 'Goodfellas', year: 1990 },
-  { title: 'The Matrix', year: 1999 },
-  { title: 'Seven Samurai', year: 1954 },
-  {
-    title: 'Star Wars: Episode IV - A New Hope',
-    year: 1977,
+  ...theme.applyStyles('dark', {
+    backgroundColor: tokens.dark.muted,
+    color: tokens.dark.foreground,
+    '&.focused, &:focus-within': {
+      boxShadow: `0 0 0 2px ${tokens.dark.focusRing}`,
+    },
+    '@media (hover: hover)': {
+      '& button:hover': {
+        backgroundColor: 'oklch(0.269 0 0 / 50%)',
+      },
+    },
+  }),
+}));
+
+const Listbox = styled('ul')(({ theme }) => ({
+  boxSizing: 'border-box',
+  position: 'absolute',
+  top: 'calc(100% + 6px)',
+  left: 0,
+  zIndex: 50,
+  width: '100%',
+  maxWidth: '100vw',
+  maxHeight: 252,
+  margin: 0,
+  padding: 4,
+  overflowY: 'auto',
+  overscrollBehavior: 'contain',
+  scrollPaddingBlock: 4,
+  borderRadius: 10,
+  backgroundColor: tokens.light.popover,
+  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+  color: tokens.light.popoverForeground,
+  listStyle: 'none',
+  outline: `1px solid ${tokens.light.foregroundRing}`,
+  transformOrigin: 'var(--transform-origin)',
+  transitionDuration: '100ms',
+  ...theme.applyStyles('dark', {
+    backgroundColor: tokens.dark.popover,
+    color: tokens.dark.popoverForeground,
+    outlineColor: tokens.dark.foregroundRing,
+  }),
+}));
+
+const Option = styled('li')(({ theme }) => ({
+  boxSizing: 'border-box',
+  position: 'relative',
+  display: 'flex',
+  width: '100%',
+  alignItems: 'center',
+  gap: 8,
+  borderRadius: 8,
+  paddingBlock: 4,
+  paddingLeft: 6,
+  paddingRight: 32,
+  fontSize: 14,
+  lineHeight: '20px',
+  outline: 0,
+  cursor: 'default',
+  userSelect: 'none',
+  '& svg': {
+    position: 'absolute',
+    right: 8,
+    display: 'flex',
+    width: 16,
+    height: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+    flexShrink: 0,
+    visibility: 'hidden',
   },
-  { title: 'City of God', year: 2002 },
-  { title: 'Se7en', year: 1995 },
-  { title: 'The Silence of the Lambs', year: 1991 },
-  { title: "It's a Wonderful Life", year: 1946 },
-  { title: 'Life Is Beautiful', year: 1997 },
-  { title: 'The Usual Suspects', year: 1995 },
-  { title: 'Léon: The Professional', year: 1994 },
-  { title: 'Spirited Away', year: 2001 },
-  { title: 'Saving Private Ryan', year: 1998 },
-  { title: 'Once Upon a Time in the West', year: 1968 },
-  { title: 'American History X', year: 1998 },
-  { title: 'Interstellar', year: 2014 },
-  { title: 'Casablanca', year: 1942 },
-  { title: 'City Lights', year: 1931 },
-  { title: 'Psycho', year: 1960 },
-  { title: 'The Green Mile', year: 1999 },
-  { title: 'The Intouchables', year: 2011 },
-  { title: 'Modern Times', year: 1936 },
-  { title: 'Raiders of the Lost Ark', year: 1981 },
-  { title: 'Rear Window', year: 1954 },
-  { title: 'The Pianist', year: 2002 },
-  { title: 'The Departed', year: 2006 },
-  { title: 'Terminator 2: Judgment Day', year: 1991 },
-  { title: 'Back to the Future', year: 1985 },
-  { title: 'Whiplash', year: 2014 },
-  { title: 'Gladiator', year: 2000 },
-  { title: 'Memento', year: 2000 },
-  { title: 'The Prestige', year: 2006 },
-  { title: 'The Lion King', year: 1994 },
-  { title: 'Apocalypse Now', year: 1979 },
-  { title: 'Alien', year: 1979 },
-  { title: 'Sunset Boulevard', year: 1950 },
-  {
-    title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-    year: 1964,
+  "&[aria-selected='true']": {
+    '& svg': {
+      visibility: 'visible',
+    },
   },
-  { title: 'The Great Dictator', year: 1940 },
-  { title: 'Cinema Paradiso', year: 1988 },
-  { title: 'The Lives of Others', year: 2006 },
-  { title: 'Grave of the Fireflies', year: 1988 },
-  { title: 'Paths of Glory', year: 1957 },
-  { title: 'Django Unchained', year: 2012 },
-  { title: 'The Shining', year: 1980 },
-  { title: 'WALL·E', year: 2008 },
-  { title: 'American Beauty', year: 1999 },
-  { title: 'The Dark Knight Rises', year: 2012 },
-  { title: 'Princess Mononoke', year: 1997 },
-  { title: 'Aliens', year: 1986 },
-  { title: 'Oldboy', year: 2003 },
-  { title: 'Once Upon a Time in America', year: 1984 },
-  { title: 'Witness for the Prosecution', year: 1957 },
-  { title: 'Das Boot', year: 1981 },
-  { title: 'Citizen Kane', year: 1941 },
-  { title: 'North by Northwest', year: 1959 },
-  { title: 'Vertigo', year: 1958 },
-  {
-    title: 'Star Wars: Episode VI - Return of the Jedi',
-    year: 1983,
+  [`&.${autocompleteClasses.focused}`]: {
+    backgroundColor: tokens.light.accent,
+    color: tokens.light.accentForeground,
   },
-  { title: 'Reservoir Dogs', year: 1992 },
-  { title: 'Braveheart', year: 1995 },
-  { title: 'M', year: 1931 },
-  { title: 'Requiem for a Dream', year: 2000 },
-  { title: 'Amélie', year: 2001 },
-  { title: 'A Clockwork Orange', year: 1971 },
-  { title: 'Like Stars on Earth', year: 2007 },
-  { title: 'Taxi Driver', year: 1976 },
-  { title: 'Lawrence of Arabia', year: 1962 },
-  { title: 'Double Indemnity', year: 1944 },
-  {
-    title: 'Eternal Sunshine of the Spotless Mind',
-    year: 2004,
-  },
-  { title: 'Amadeus', year: 1984 },
-  { title: 'To Kill a Mockingbird', year: 1962 },
-  { title: 'Toy Story 3', year: 2010 },
-  { title: 'Logan', year: 2017 },
-  { title: 'Full Metal Jacket', year: 1987 },
-  { title: 'Dangal', year: 2016 },
-  { title: 'The Sting', year: 1973 },
-  { title: '2001: A Space Odyssey', year: 1968 },
-  { title: "Singin' in the Rain", year: 1952 },
-  { title: 'Toy Story', year: 1995 },
-  { title: 'Bicycle Thieves', year: 1948 },
-  { title: 'The Kid', year: 1921 },
-  { title: 'Inglourious Basterds', year: 2009 },
-  { title: 'Snatch', year: 2000 },
-  { title: '3 Idiots', year: 2009 },
-  { title: 'Monty Python and the Holy Grail', year: 1975 },
-];
+  ...theme.applyStyles('dark', {
+    [`&.${autocompleteClasses.focused}`]: {
+      backgroundColor: tokens.dark.accent,
+      color: tokens.dark.accentForeground,
+    },
+  }),
+}));
+
+const EmptyOption = styled('li')(({ theme }) => ({
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  paddingBlock: 8,
+  paddingInline: 0,
+  color: tokens.light.mutedForeground,
+  fontSize: 14,
+  lineHeight: '20px',
+  textAlign: 'center',
+  ...theme.applyStyles('dark', {
+    color: tokens.dark.mutedForeground,
+  }),
+}));
+
+function CheckIcon(props) {
+  return (
+    <svg fill="currentColor" width="10" height="10" viewBox="0 0 10 10" {...props}>
+      <path d="M9.1603 1.12218C9.50684 1.34873 9.60427 1.81354 9.37792 2.16038L5.13603 8.66012C5.01614 8.8438 4.82192 8.96576 4.60451 8.99384C4.3871 9.02194 4.1683 8.95335 4.00574 8.80615L1.24664 6.30769C0.939709 6.02975 0.916013 5.55541 1.19372 5.24822C1.47142 4.94102 1.94536 4.91731 2.2523 5.19524L4.36085 7.10461L8.12299 1.33999C8.34934 0.993152 8.81376 0.895638 9.1603 1.12218Z" />
+    </svg>
+  );
+}
+
+function XIcon(props) {
+  return (
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  );
+}

@@ -2,7 +2,6 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
 import {
@@ -16,12 +15,7 @@ import Typography from '@mui/material/Typography';
 const LISTBOX_PADDING = 8; // px
 
 type ItemData = Array<
-  | {
-      key: number;
-      group: string;
-      children: React.ReactNode;
-    }
-  | [React.ReactElement, string, number]
+  [React.HTMLAttributes<HTMLLIElement> & { key: React.Key }, string, number]
 >;
 
 function RowComponent({
@@ -36,14 +30,6 @@ function RowComponent({
     ...style,
     top: ((style.top as number) ?? 0) + LISTBOX_PADDING,
   };
-
-  if ('group' in dataSet) {
-    return (
-      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
-        {dataSet.group}
-      </ListSubheader>
-    );
-  }
 
   const { key, ...optionProps } = dataSet[0];
 
@@ -63,22 +49,17 @@ const ListboxComponent = React.forwardRef<
   }
 >(function ListboxComponent(props, ref) {
   const { children, internalListRef, onItemsBuilt, ...other } = props;
-  const itemData: ItemData = [];
-  const optionIndexMap = React.useMemo(() => new Map<string, number>(), []);
+  const itemData = children as ItemData;
 
-  (children as ItemData).forEach((item) => {
-    itemData.push(item);
-    if ('children' in item && Array.isArray(item.children)) {
-      itemData.push(...item.children);
-    }
-  });
+  const optionIndexMap = React.useMemo(() => {
+    const map = new Map<string, number>();
 
-  // Map option values to their indices in the flattened array
-  itemData.forEach((item, index) => {
-    if (Array.isArray(item) && item[1]) {
-      optionIndexMap.set(item[1], index);
-    }
-  });
+    itemData.forEach((item, index) => {
+      map.set(item[1], index);
+    });
+
+    return map;
+  }, [itemData]);
 
   React.useEffect(() => {
     if (onItemsBuilt) {
@@ -93,18 +74,11 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: ItemData[number]) => {
-    if (child.hasOwnProperty('group')) {
-      return 48;
-    }
-    return itemSize;
-  };
-
   const getHeight = () => {
     if (itemCount > 8) {
       return 8 * itemSize;
     }
-    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
+    return itemCount * itemSize;
   };
 
   // Separate className for List, other props for wrapper div (ARIA, handlers)
@@ -117,7 +91,7 @@ const ListboxComponent = React.forwardRef<
         listRef={internalListRef}
         key={itemCount}
         rowCount={itemCount}
-        rowHeight={(index) => getChildSize(itemData[index])}
+        rowHeight={itemSize}
         rowComponent={RowComponent}
         rowProps={{ itemData }}
         style={{
@@ -171,7 +145,7 @@ export default function Virtualize() {
 
   // Handle keyboard navigation by scrolling to highlighted option
   const handleHighlightChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     option: string | null,
   ) => {
     if (option && internalListRef.current) {
@@ -187,12 +161,10 @@ export default function Virtualize() {
       sx={{ width: 300 }}
       disableListWrap
       options={OPTIONS}
-      groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option, state) =>
         [props, option, state.index] as React.ReactNode
       }
-      renderGroup={(params) => params as any}
       onHighlightChange={handleHighlightChange}
       slots={{
         popper: StyledPopper,

@@ -21,25 +21,25 @@ Autocomplete supports three core interaction modes:
 
 ## Usage guidelines
 
-- **Combobox vs. free solo**: By default, the value must come from a fixed list of options. Set `freeSolo` when the input can be arbitrary text—for example, a search box. See [Combobox](#combobox) and [Free solo](#free-solo).
-- **Prefer `Select` for short, non-filterable lists**: If users don't need to filter, the [Select](/material-ui/react-select/) component is lighter and feels more familiar for short lists.
-- **Stable controlled values**: When you control `value`, keep the reference stable between renders to avoid unnecessary resets and selection mismatches. See [Controlled states](#controlled-states).
-- **Multiple values**: Set `multiple` to let users select more than one option. Selected items appear as removable chips. See [Multiple values](#multiple-values).
-- **Visible text label**: Provide a visible label via the `TextField` `label` prop. The component follows the [WAI-ARIA combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/), but a visible label still helps everyone—including screen reader users.
+- **Use it for filterable choices**: Autocomplete is best when users need typeahead to choose from a longer list. Use [Select](/material-ui/react-select/) instead for short lists that don't need filtering.
+- **Choose fixed list or free text**: By default, values must come from `options`. Use `freeSolo` only when arbitrary text is valid, such as in a search field.
+- **Keep controlled values stable**: When controlling `value`, preserve object and array references when their contents don't change. See [Controlled states](#controlled-states).
+- **Label the input**: Provide a visible `TextField` `label` when possible, or another accessible name if the label is hidden. This follows the [WAI-ARIA combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) and helps all users.
 
 ## Combobox
 
-The value must come from a fixed list of options.
+Use the basic combobox when users need to search a predefined list and pick one value.
 
 {{"demo": "ComboBox.js"}}
 
 ### Options structure
 
-By default, options can take either of these structures:
+By default, options can be strings or objects with a `label` string. You can add fields that model your data, such as a stable ID, timestamp, or grouping field. TypeScript infers the option type from the `options` prop, so callbacks like `onChange` are strongly typed.
 
 ```ts
 interface AutocompleteOption {
   label: string;
+  id?: string | number;
 }
 // or
 type AutocompleteOption = string;
@@ -65,7 +65,7 @@ When using object options, provide `isOptionEqualToValue` so the component can m
 />
 ```
 
-To use a different option structure, provide a `getOptionLabel` prop:
+To display a value other than `label`, use `getOptionLabel` to return a string representing each option:
 
 ```tsx
 const options = [
@@ -76,7 +76,7 @@ const options = [
 <Autocomplete options={options} getOptionLabel={(option) => option.email} />;
 ```
 
-If two options share a label, use `getOptionKey` to give each one a unique key:
+Autocomplete uses the label as the React key for each option by default. If two options share the same label, keep `getOptionLabel` for the display text and use `getOptionKey` to provide a stable key for each rendered option:
 
 ```tsx
 // Two contacts happen to share the same display name
@@ -96,7 +96,7 @@ Each example below demonstrates one feature.
 
 ### Country select
 
-Choose one of the 248 countries.
+Use `renderOption` to customize each option. This country picker renders a flag, country code, and calling code.
 
 {{"demo": "CountrySelect.js"}}
 
@@ -193,7 +193,7 @@ Or open a dialog when the user wants to add a new value.
 
 ## Multiple values
 
-Set `multiple={true}` to let users select more than one value. By default, selected values render as removable Material UI Chips; customize their rendering with `renderValue`.
+Set `multiple={true}` to let users select more than one value. By default, selected values render as removable Material UI Chips; customize their rendering with `renderValue`.
 
 - Spread the props from `getItemProps` onto each rendered item to preserve the component's built-in behavior.
 - If you replace the default Chip, destructure `onDelete` first; it's specific to `Chip`.
@@ -267,8 +267,10 @@ Uses `@tanstack/react-query` to fetch more options when the user scrolls to the 
 
 In the default single-selection mode (when `multiple={false}`), the selected option appears as plain text inside the input. Use `renderValue` to customize the display—for example, to add icons, badges, or formatted output.
 
-- Spread the props from `getItemProps` onto your rendered element to preserve the component's built-in behavior.
-- If you replace the default Chip, destructure `onDelete` first; it's specific to `Chip`.
+The `renderValue` callback receives two parameters:
+
+- `value`: the selected option to render inside the input.
+- `getItemProps`: returns props for the rendered item. Forward the DOM-safe props you need, such as `className`, `data-item-index`, and `tabIndex`; omit `onDelete` unless you render a Chip.
 
 {{"demo": "CustomSingleValueRendering.js"}}
 
@@ -336,13 +338,22 @@ Use the `size` prop to render a smaller input.
 
 ### Custom input
 
-Customize the rendered input with the `renderInput` prop. It receives a props object you need to forward, including `ref` and `inputProps`.
+Customize the rendered input with the `renderInput` prop. Forward the input ref and HTML input props to preserve the Autocomplete behavior.
 
 :::warning
 When using a custom input component, forward the ref to the underlying DOM element.
 :::
 
-{{"demo": "CustomInputAutocomplete.js"}}
+```tsx
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <div ref={params.slotProps.input.ref}>
+      <input type="text" {...params.slotProps.htmlInput} />
+    </div>
+  )}
+/>
+```
 
 ### Globally customized options
 
@@ -359,8 +370,6 @@ This keeps option styling consistent across the app while letting each instance 
 A reproduction of GitHub's label picker:
 
 {{"demo": "GitHubLabel.js"}}
-
-See [Customized hook](#customized-hook) for the same pattern using the `useAutocomplete` hook.
 
 ### Hint
 
@@ -392,21 +401,75 @@ Searches through a fixed list of 10,000 randomly generated options. The list is 
 
 ## `useAutocomplete`
 
-Use the `useAutocomplete` hook for full control over markup. It accepts the same options as `Autocomplete` minus the rendering props.
+Use the `useAutocomplete` hook when you need full control over markup. Import it from `@mui/material/useAutocomplete` ([4.6 kB gzipped](https://bundlephobia.com/package/@mui/material)); it accepts the same options as `Autocomplete`, minus the rendering props. The snippet shows the essential setup for a headless combobox.
 
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
+
+interface Option {
+  label: string;
+}
+
+interface MyAutocompleteProps {
+  id: string;
+  label: string;
+  options: readonly Option[];
+}
+
+function MyAutocomplete({ id, label, options }: MyAutocompleteProps) {
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    id,
+    options,
+  });
+
+  return (
+    <div>
+      <div {...getRootProps()}>
+        <label {...getInputLabelProps()}>{label}</label>
+        <input {...getInputProps()} />
+      </div>
+      {groupedOptions.length > 0 ? (
+        <ul {...getListboxProps()}>
+          {groupedOptions.map((option, index) => {
+            const { key, ...optionProps } = getOptionProps({ option, index });
+            return (
+              <li key={key} {...optionProps}>
+                {option.label}
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+export default function App() {
+  return <MyAutocomplete id="movie" label="Movie" options={movies} />;
+}
+
+interface Film extends Option {
+  year: number;
+}
+
+const movies: readonly Film[] = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+];
 ```
-
-- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
-
-{{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
 ### Customized hook
 
-{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
+This demo shows a fully customized multi-selection combobox built with `useAutocomplete`.
 
-See [Customization](#customization) for the same pattern using the `Autocomplete` component.
+{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
 
 ## Limitations
 
