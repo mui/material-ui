@@ -105,6 +105,7 @@ const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
 
   return (
     <StepConnectorRoot
+      ariaHidden={true}
       className={clsx(classes.root, className)}
       ref={ref}
       ownerState={ownerState}
