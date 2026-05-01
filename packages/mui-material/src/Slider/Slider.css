@@ -128,7 +128,7 @@
     border-radius: inherit;
     border: 1px solid currentColor;
     background-color: currentColor;
-    transition: all var(--mui-transition-duration-shortest);
+    transition: left var(--mui-transition-duration-shortest), width var(--mui-transition-duration-shortest), bottom var(--mui-transition-duration-shortest), height var(--mui-transition-duration-shortest);
   }
 
   .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorPrimary {
@@ -209,7 +209,7 @@
     border-radius: inherit;
     width: 100%;
     height: 100%;
-    box-shadow: var(--mui-shadow-2);
+    box-shadow: var(--mui-shadows-2);
   }
 
   .MuiSlider-thumb::after {
@@ -314,6 +314,9 @@
   .MuiSlider-valueLabel {
     z-index: 1;
     white-space: nowrap;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
     font-weight: 500;
     transition: transform var(--mui-transition-duration-shortest);
     position: absolute;
@@ -404,6 +407,7 @@
   .MuiSlider-markLabel {
     font-size: 0.875rem;
     line-height: 1.43;
+    letter-spacing: 0.01071em;
     color: var(--mui-palette-text-secondary);
     position: absolute;
     white-space: nowrap;
