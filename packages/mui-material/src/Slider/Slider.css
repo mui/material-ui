@@ -194,7 +194,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--mui-transition-duration-shortest);
+    transition: box-shadow var(--mui-transition-duration-shortest), left var(--mui-transition-duration-shortest), bottom var(--mui-transition-duration-shortest);
   }
 
   @media (forced-colors: active) {
