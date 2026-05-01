@@ -393,13 +393,13 @@ To override the default key handling, set `defaultMuiPrevented` to `true` on the
 />
 ```
 
-## Virtualization
+### Virtualization
 
 Searches through a fixed list of 10,000 randomly generated options. The list is virtualized with [react-window](https://github.com/bvaughn/react-window).
 
 {{"demo": "Virtualize.js"}}
 
-## `useAutocomplete`
+### `useAutocomplete`
 
 Use the `useAutocomplete` hook when you need full control over markup. Import it from `@mui/material/useAutocomplete` ([4.6 kB gzipped](https://bundlephobia.com/package/@mui/material)); it accepts the same options as `Autocomplete`, minus the rendering props. The snippet shows the essential setup for a headless combobox.
 
@@ -464,8 +464,6 @@ const movies: readonly Film[] = [
   { label: 'The Godfather', year: 1972 },
 ];
 ```
-
-### Customized hook
 
 This demo shows a fully customized multi-selection combobox built with `useAutocomplete`.
 
