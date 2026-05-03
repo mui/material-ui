@@ -38,7 +38,9 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null;
+    return (
+      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|SliderEmotion)/) !== null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,

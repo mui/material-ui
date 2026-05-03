@@ -1,0 +1,50 @@
+{
+  "name": "@mui/tailwind",
+  "version": "10.0.0-alpha.0",
+  "author": "MUI Team",
+  "description": "Tailwind CSS preset and plugin for Material UI.",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "mui",
+    "tailwind",
+    "tailwindcss",
+    "preset",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-tailwind"
+  },
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "exports": {
+    ".": "./src/preset.js",
+    "./preset": "./src/preset.js",
+    "./plugin": "./src/plugin.js",
+    "./v4.css": "./src/v4.css"
+  }
+}

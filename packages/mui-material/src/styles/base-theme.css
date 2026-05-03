@@ -1,0 +1,173 @@
+/**
+ * MUI Base Theme
+ *
+ * A minimal, non-opinionated set of CSS custom properties.
+ * Import this file for a clean starting point, then override
+ * any variable to match your brand.
+ *
+ * To add Material Design on top, also import material-theme.css.
+ */
+
+:root {
+  /* ─── Shape ─────────────────────────────────────────────────── */
+  --mui-shape-borderRadius: 4px;
+
+  /* ─── Motion ─────────────────────────────────────────────────── */
+  --mui-transition-duration-shortest: 150ms;
+  --mui-transition-duration-shorter: 200ms;
+  --mui-transition-duration-short: 250ms;
+  --mui-transition-duration-standard: 300ms;
+  --mui-transition-duration-complex: 375ms;
+  --mui-transition-duration-enteringScreen: 225ms;
+  --mui-transition-duration-leavingScreen: 195ms;
+
+  /* ─── Shadows (simple, single-layer) ────────────────────────── */
+  --mui-shadows-0: none;
+  --mui-shadows-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+  --mui-shadows-2: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-3: 0px 2px 6px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-4: 0px 4px 8px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-6: 0px 6px 12px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-8: 0px 8px 16px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-12: 0px 12px 24px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-16: 0px 16px 32px 0px rgba(0, 0, 0, 0.12);
+  --mui-shadows-24: 0px 24px 48px 0px rgba(0, 0, 0, 0.12);
+
+  /* ─── Z-Index ─────────────────────────────────────────────────── */
+  --mui-zIndex-mobileStepper: 1000;
+  --mui-zIndex-fab: 1050;
+  --mui-zIndex-speedDial: 1050;
+  --mui-zIndex-appBar: 1100;
+  --mui-zIndex-drawer: 1200;
+  --mui-zIndex-modal: 1300;
+  --mui-zIndex-snackbar: 1400;
+  --mui-zIndex-tooltip: 1500;
+
+  /* ─── Palette: Common ────────────────────────────────────────── */
+  --mui-palette-common-black: #000000;
+  --mui-palette-common-white: #ffffff;
+  --mui-palette-common-blackChannel: 0 0 0;
+  --mui-palette-common-whiteChannel: 255 255 255;
+
+  /* ─── Palette: Primary ───────────────────────────────────────── */
+  --mui-palette-primary-main: #2563eb;
+  --mui-palette-primary-light: #60a5fa;
+  --mui-palette-primary-dark: #1d4ed8;
+  --mui-palette-primary-contrastText: #ffffff;
+  --mui-palette-primary-mainChannel: 37 99 235;
+  --mui-palette-primary-lightChannel: 96 165 250;
+  --mui-palette-primary-darkChannel: 29 78 216;
+  --mui-palette-primary-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Secondary ─────────────────────────────────────── */
+  --mui-palette-secondary-main: #7c3aed;
+  --mui-palette-secondary-light: #a78bfa;
+  --mui-palette-secondary-dark: #5b21b6;
+  --mui-palette-secondary-contrastText: #ffffff;
+  --mui-palette-secondary-mainChannel: 124 58 237;
+  --mui-palette-secondary-lightChannel: 167 139 250;
+  --mui-palette-secondary-darkChannel: 91 33 182;
+  --mui-palette-secondary-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Error ─────────────────────────────────────────── */
+  --mui-palette-error-main: #dc2626;
+  --mui-palette-error-light: #f87171;
+  --mui-palette-error-dark: #b91c1c;
+  --mui-palette-error-contrastText: #ffffff;
+  --mui-palette-error-mainChannel: 220 38 38;
+  --mui-palette-error-lightChannel: 248 113 113;
+  --mui-palette-error-darkChannel: 185 28 28;
+  --mui-palette-error-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Warning ───────────────────────────────────────── */
+  --mui-palette-warning-main: #d97706;
+  --mui-palette-warning-light: #fbbf24;
+  --mui-palette-warning-dark: #b45309;
+  --mui-palette-warning-contrastText: #ffffff;
+  --mui-palette-warning-mainChannel: 217 119 6;
+  --mui-palette-warning-lightChannel: 251 191 36;
+  --mui-palette-warning-darkChannel: 180 83 9;
+  --mui-palette-warning-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Info ──────────────────────────────────────────── */
+  --mui-palette-info-main: #0284c7;
+  --mui-palette-info-light: #38bdf8;
+  --mui-palette-info-dark: #0369a1;
+  --mui-palette-info-contrastText: #ffffff;
+  --mui-palette-info-mainChannel: 2 132 199;
+  --mui-palette-info-lightChannel: 56 189 248;
+  --mui-palette-info-darkChannel: 3 105 161;
+  --mui-palette-info-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Success ───────────────────────────────────────── */
+  --mui-palette-success-main: #16a34a;
+  --mui-palette-success-light: #4ade80;
+  --mui-palette-success-dark: #15803d;
+  --mui-palette-success-contrastText: #ffffff;
+  --mui-palette-success-mainChannel: 22 163 74;
+  --mui-palette-success-lightChannel: 74 222 128;
+  --mui-palette-success-darkChannel: 21 128 61;
+  --mui-palette-success-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Grey ──────────────────────────────────────────── */
+  --mui-palette-grey-50: #f9fafb;
+  --mui-palette-grey-100: #f3f4f6;
+  --mui-palette-grey-200: #e5e7eb;
+  --mui-palette-grey-300: #d1d5db;
+  --mui-palette-grey-400: #9ca3af;
+  --mui-palette-grey-500: #6b7280;
+  --mui-palette-grey-600: #4b5563;
+  --mui-palette-grey-700: #374151;
+  --mui-palette-grey-800: #1f2937;
+  --mui-palette-grey-900: #111827;
+
+  /* ─── Palette: Text ──────────────────────────────────────────── */
+  --mui-palette-text-primary: #111827;
+  --mui-palette-text-secondary: #6b7280;
+  --mui-palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --mui-palette-text-primaryChannel: 17 24 39;
+  --mui-palette-text-secondaryChannel: 107 114 128;
+
+  /* ─── Palette: Background ────────────────────────────────────── */
+  --mui-palette-background-default: #f9fafb;
+  --mui-palette-background-paper: #ffffff;
+  --mui-palette-background-defaultChannel: 249 250 251;
+  --mui-palette-background-paperChannel: 255 255 255;
+
+  /* ─── Palette: Divider ───────────────────────────────────────── */
+  --mui-palette-divider: rgba(0, 0, 0, 0.12);
+  --mui-palette-dividerChannel: 0 0 0;
+
+  /* ─── Palette: Action ────────────────────────────────────────── */
+  --mui-palette-action-active: rgba(0, 0, 0, 0.54);
+  --mui-palette-action-hover: rgba(0, 0, 0, 0.04);
+  --mui-palette-action-hoverOpacity: 0.04;
+  --mui-palette-action-selected: rgba(0, 0, 0, 0.08);
+  --mui-palette-action-selectedOpacity: 0.08;
+  --mui-palette-action-disabled: rgba(0, 0, 0, 0.26);
+  --mui-palette-action-disabledBackground: rgba(0, 0, 0, 0.12);
+  --mui-palette-action-disabledOpacity: 0.38;
+  --mui-palette-action-focus: rgba(0, 0, 0, 0.12);
+  --mui-palette-action-focusOpacity: 0.12;
+  --mui-palette-action-activatedOpacity: 0.12;
+
+  /* ─── Palette: Slider (inverted track colors) ────────────────── */
+  --mui-palette-Slider-primaryTrack: #93c5fd;
+  --mui-palette-Slider-secondaryTrack: #c4b5fd;
+  --mui-palette-Slider-errorTrack: #fca5a5;
+  --mui-palette-Slider-warningTrack: #fcd34d;
+  --mui-palette-Slider-infoTrack: #7dd3fc;
+  --mui-palette-Slider-successTrack: #86efac;
+
+  /* ─── Slider knob defaults (non-opinionated) ─────────────────── */
+  --Slider-trackSize: 2px;
+  --Slider-trackSizeSmall: 1px;
+  --Slider-thumbSize: 16px;
+  --Slider-thumbSizeSmall: 10px;
+  --Slider-thumbColor: var(--mui-palette-background-paper, #ffffff);
+  --Slider-thumbBorderWidth: 2px;
+  --Slider-thumbElevation: none;
+  --Slider-railOpacity: 0.15;
+  --Slider-hoverShadowRadius: 4px;
+  --Slider-activeShadowRadius: 8px;
+}

@@ -1,0 +1,102 @@
+/**
+ * Slider Variants
+ *
+ * Ready-to-use Slider style presets, each built entirely from
+ * component-level CSS custom properties (no theme changes needed).
+ *
+ * Apply a variant by adding the class to the Slider's root element:
+ *   <Slider className="MuiSlider-pill" />
+ *
+ * These work on top of base-theme.css or material-theme.css.
+ */
+
+/* ─── Flat / Minimal ─────────────────────────────────────────────
+ * Hairline track, no elevation, sharp corners. Clean and modern.
+ * Great for dashboards and dense UIs.
+ */
+.MuiSlider-variantFlat {
+  --Slider-trackSize: 2px;
+  --Slider-trackSizeSmall: 1px;
+  --Slider-thumbSize: 14px;
+  --Slider-thumbSizeSmall: 10px;
+  --Slider-trackBorderRadius: 0px;
+  --Slider-railOpacity: 0.2;
+  --Slider-hoverShadowRadius: 6px;
+  --Slider-activeShadowRadius: 10px;
+  --Slider-valueLabelBorderRadius: 4px;
+}
+
+.MuiSlider-variantFlat .MuiSlider-thumb::before {
+  box-shadow: none;
+}
+
+/* ─── Pill ───────────────────────────────────────────────────────
+ * Thick, fully rounded track. Thumb sits just above the track.
+ * Modern, friendly, works well in settings panels.
+ */
+.MuiSlider-variantPill {
+  --Slider-trackSize: 8px;
+  --Slider-trackSizeSmall: 4px;
+  --Slider-thumbSize: 22px;
+  --Slider-thumbSizeSmall: 14px;
+  --Slider-trackBorderRadius: 9999px;
+  --Slider-railOpacity: 0.25;
+  --Slider-hoverShadowRadius: 10px;
+  --Slider-activeShadowRadius: 16px;
+  --Slider-valueLabelBorderRadius: 9999px;
+}
+
+/* ─── iOS ────────────────────────────────────────────────────────
+ * White thumb with drop shadow, no hover ring, colored fill.
+ * Familiar and accessible.
+ */
+.MuiSlider-variantIos {
+  --Slider-trackSize: 4px;
+  --Slider-thumbSize: 22px;
+  --Slider-trackBorderRadius: 9999px;
+  --Slider-railOpacity: 0.28;
+  --Slider-hoverShadowRadius: 0px;
+  --Slider-activeShadowRadius: 0px;
+  --Slider-valueLabelBorderRadius: 8px;
+}
+
+.MuiSlider-variantIos .MuiSlider-thumb {
+  --Slider-thumbColor: #ffffff;
+  --Slider-thumbElevation: 0px 2px 8px rgba(0, 0, 0, 0.28), 0px 0px 1px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Bold ───────────────────────────────────────────────────────
+ * Thick track, compact thumb. High contrast, confident look.
+ * Works well for media players and volume controls.
+ */
+.MuiSlider-variantBold {
+  --Slider-trackSize: 6px;
+  --Slider-trackSizeSmall: 3px;
+  --Slider-thumbSize: 16px;
+  --Slider-thumbSizeSmall: 10px;
+  --Slider-trackBorderRadius: 3px;
+  --Slider-railOpacity: 0.3;
+  --Slider-hoverShadowRadius: 8px;
+  --Slider-activeShadowRadius: 12px;
+  --Slider-valueLabelBorderRadius: 3px;
+}
+
+/* ─── Outlined ───────────────────────────────────────────────────
+ * Hollow thumb with a border. Minimal visual weight.
+ * Good for forms and subtle interactions.
+ */
+.MuiSlider-variantOutlined {
+  --Slider-trackSize: 3px;
+  --Slider-thumbSize: 18px;
+  --Slider-trackBorderRadius: 9999px;
+  --Slider-railOpacity: 0.2;
+  --Slider-hoverShadowRadius: 8px;
+  --Slider-activeShadowRadius: 12px;
+  --Slider-valueLabelBorderRadius: 4px;
+}
+
+.MuiSlider-variantOutlined .MuiSlider-thumb {
+  --Slider-thumbColor: var(--mui-palette-background-paper, #ffffff);
+  --Slider-thumbBorderWidth: 2px;
+  --Slider-thumbElevation: none;
+}

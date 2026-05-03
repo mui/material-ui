@@ -1,0 +1,137 @@
+/**
+ * MUI Material Design Theme
+ *
+ * Overrides the base theme variables with Material Design 2 values.
+ * Import base-theme.css first, then this file on top, or import
+ * this file alone (it is self-contained).
+ *
+ * Usage:
+ *   @import '@mui/material/styles/base-theme.css';
+ *   @import '@mui/material/styles/material-theme.css';
+ */
+
+@import './base-theme.css';
+
+:root {
+  /* ─── Shape (MD: 4px rounded corners) ───────────────────────── */
+  --mui-shape-borderRadius: 4px;
+
+  /* ─── Shadows (MD: 25-level elevation system) ───────────────── */
+  /* Source: https://github.com/material-components/material-components-web */
+  --mui-shadows-0: none;
+  --mui-shadows-1: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  --mui-shadows-2: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  --mui-shadows-3: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+  --mui-shadows-4: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  --mui-shadows-6: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+  --mui-shadows-8: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  --mui-shadows-12: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+  --mui-shadows-16: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+  --mui-shadows-24: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+
+  /* ─── Palette: Primary (MD: blue[700]) ───────────────────────── */
+  --mui-palette-primary-main: #1976d2;
+  --mui-palette-primary-light: #42a5f5;
+  --mui-palette-primary-dark: #1565c0;
+  --mui-palette-primary-contrastText: #ffffff;
+  --mui-palette-primary-mainChannel: 25 118 210;
+  --mui-palette-primary-lightChannel: 66 165 245;
+  --mui-palette-primary-darkChannel: 21 101 192;
+  --mui-palette-primary-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Secondary (MD: purple[500]) ───────────────────── */
+  --mui-palette-secondary-main: #9c27b0;
+  --mui-palette-secondary-light: #ba68c8;
+  --mui-palette-secondary-dark: #7b1fa2;
+  --mui-palette-secondary-contrastText: #ffffff;
+  --mui-palette-secondary-mainChannel: 156 39 176;
+  --mui-palette-secondary-lightChannel: 186 104 200;
+  --mui-palette-secondary-darkChannel: 123 31 162;
+  --mui-palette-secondary-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Error (MD: red[700]) ─────────────────────────── */
+  --mui-palette-error-main: #d32f2f;
+  --mui-palette-error-light: #ef5350;
+  --mui-palette-error-dark: #c62828;
+  --mui-palette-error-contrastText: #ffffff;
+  --mui-palette-error-mainChannel: 211 47 47;
+  --mui-palette-error-lightChannel: 239 83 80;
+  --mui-palette-error-darkChannel: 198 40 40;
+  --mui-palette-error-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Warning (MD: #ed6c02) ────────────────────────── */
+  --mui-palette-warning-main: #ed6c02;
+  --mui-palette-warning-light: #ff9800;
+  --mui-palette-warning-dark: #e65100;
+  --mui-palette-warning-contrastText: #ffffff;
+  --mui-palette-warning-mainChannel: 237 108 2;
+  --mui-palette-warning-lightChannel: 255 152 0;
+  --mui-palette-warning-darkChannel: 230 81 0;
+  --mui-palette-warning-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Info (MD: lightBlue[700]) ─────────────────────── */
+  --mui-palette-info-main: #0288d1;
+  --mui-palette-info-light: #03a9f4;
+  --mui-palette-info-dark: #01579b;
+  --mui-palette-info-contrastText: #ffffff;
+  --mui-palette-info-mainChannel: 2 136 209;
+  --mui-palette-info-lightChannel: 3 169 244;
+  --mui-palette-info-darkChannel: 1 87 155;
+  --mui-palette-info-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Success (MD: green[800]) ──────────────────────── */
+  --mui-palette-success-main: #2e7d32;
+  --mui-palette-success-light: #4caf50;
+  --mui-palette-success-dark: #1b5e20;
+  --mui-palette-success-contrastText: #ffffff;
+  --mui-palette-success-mainChannel: 46 125 50;
+  --mui-palette-success-lightChannel: 76 175 80;
+  --mui-palette-success-darkChannel: 27 94 32;
+  --mui-palette-success-contrastTextChannel: 255 255 255;
+
+  /* ─── Palette: Grey (MD grey scale) ─────────────────────────── */
+  --mui-palette-grey-50: #fafafa;
+  --mui-palette-grey-100: #f5f5f5;
+  --mui-palette-grey-200: #eeeeee;
+  --mui-palette-grey-300: #e0e0e0;
+  --mui-palette-grey-400: #bdbdbd;
+  --mui-palette-grey-500: #9e9e9e;
+  --mui-palette-grey-600: #757575;
+  --mui-palette-grey-700: #616161;
+  --mui-palette-grey-800: #424242;
+  --mui-palette-grey-900: #212121;
+
+  /* ─── Palette: Text (MD opacity-based) ───────────────────────── */
+  --mui-palette-text-primary: rgba(0, 0, 0, 0.87);
+  --mui-palette-text-secondary: rgba(0, 0, 0, 0.6);
+  --mui-palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --mui-palette-text-primaryChannel: 0 0 0;
+  --mui-palette-text-secondaryChannel: 0 0 0;
+
+  /* ─── Palette: Background ────────────────────────────────────── */
+  --mui-palette-background-default: #ffffff;
+  --mui-palette-background-paper: #ffffff;
+  --mui-palette-background-defaultChannel: 255 255 255;
+  --mui-palette-background-paperChannel: 255 255 255;
+
+  /* ─── Palette: Slider (MD: lightened primary/semantic colors) ── */
+  --mui-palette-Slider-primaryTrack: #90caf9;
+  --mui-palette-Slider-secondaryTrack: #ce93d8;
+  --mui-palette-Slider-errorTrack: #ef9a9a;
+  --mui-palette-Slider-warningTrack: #ffcc02;
+  --mui-palette-Slider-infoTrack: #81d4fa;
+  --mui-palette-Slider-successTrack: #a5d6a7;
+
+  /* ─── Slider: MD-specific knob overrides ─────────────────────── */
+  --Slider-trackBorderRadius: 12px;
+  --Slider-trackSize: 4px;
+  --Slider-trackSizeSmall: 2px;
+  --Slider-thumbSize: 20px;
+  --Slider-thumbSizeSmall: 12px;
+  --Slider-thumbColor: currentColor;
+  --Slider-thumbBorderWidth: 0px;
+  --Slider-thumbElevation: var(--mui-shadows-2);
+  --Slider-railOpacity: 0.38;
+  --Slider-hoverShadowRadius: 8px;
+  --Slider-activeShadowRadius: 14px;
+}

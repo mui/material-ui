@@ -4,6 +4,9 @@
 /** @type {import('stylelint').Config} */
 export default {
   extends: '@mui/internal-code-infra/stylelint',
+  rules: {
+    'at-rule-no-unknown': null,
+  },
   overrides: [
     {
       files: [
