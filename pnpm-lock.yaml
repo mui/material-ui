@@ -53,8 +53,8 @@ importers:
   .:
     dependencies:
       '@netlify/functions':
-        specifier: ^5.1.5
-        version: 5.1.5
+        specifier: ^5.2.0
+        version: 5.2.0
       '@slack/bolt':
         specifier: ^4.6.0
         version: 4.6.0(@types/express@5.0.0)
@@ -4090,8 +4090,8 @@ packages:
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
 
-  '@netlify/functions@5.1.5':
-    resolution: {integrity: sha512-mhTl6x3TWoRwNgz8HZ9zvSR9OHB/hDEA6VinBmWY5ubgycKNCerf6XyFaFnujH2Ygx3c32yg6QOOr1v9y8euug==}
+  '@netlify/functions@5.2.0':
+    resolution: {integrity: sha512-Pj93qeQd1tkQ5xm9gWJZmBf/1riLYqYHc0OzFukrJomrj82Ott53Rr/Q88H1ms5cF+P5QXRKWmA2JSxSybKfjA==}
     engines: {node: '>=18.0.0'}
 
   '@netlify/types@2.6.0':
@@ -14218,7 +14218,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@netlify/functions@5.1.5':
+  '@netlify/functions@5.2.0':
     dependencies:
       '@netlify/types': 2.6.0
 
