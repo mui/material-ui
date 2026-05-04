@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import deepmerge from '@mui/utils/deepmerge';
-import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
+import { ThemeProvider, createTheme, type PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';

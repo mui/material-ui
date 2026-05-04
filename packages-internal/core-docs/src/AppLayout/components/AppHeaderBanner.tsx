@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import { Link } from '../../Link';
 import { ROUTES, FEATURE_TOGGLE } from '../../constants';
 

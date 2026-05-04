@@ -1632,6 +1632,9 @@ importers:
 
   test/bundle-size:
     dependencies:
+      '@mui/internal-core-docs':
+        specifier: workspace:*
+        version: link:../../packages-internal/core-docs/build
       '@mui/lab':
         specifier: workspace:*
         version: link:../../packages/mui-lab/build
