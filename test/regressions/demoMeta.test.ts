@@ -40,9 +40,9 @@ describe('getConfig', () => {
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
     // `buttons` enrols only {BasicButtons,ColorButtons}.
-    expect(
-      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons'),
-    ).to.equal(undefined);
+    expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
+      undefined,
+    );
   });
 
   it('honours last-match-wins when multiple rules apply', () => {
