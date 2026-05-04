@@ -97,8 +97,7 @@ export default defineConfig(
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
 
-      // TODO: investigate and fix
-      'mui/no-guarded-throw': 'off',
+      'mui/no-guarded-throw': 'error',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
