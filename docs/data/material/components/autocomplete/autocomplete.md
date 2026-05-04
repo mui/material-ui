@@ -21,10 +21,9 @@ Autocomplete supports three core interaction modes:
 
 ## Usage guidelines
 
-- **Use it for filterable choices**: Autocomplete is best when users need typeahead to choose from a longer list. Use [Select](/material-ui/react-select/) instead for short lists that don't need filtering.
-- **Choose fixed list or free text**: By default, values must come from `options`. Use `freeSolo` only when arbitrary text is valid, such as in a search field.
-- **Keep controlled values stable**: When controlling `value`, preserve object and array references when their contents don't change. See [Controlled states](#controlled-states).
-- **Label the input**: Provide a visible `TextField` `label` when possible, or another accessible name if the label is hidden. This follows the [WAI-ARIA combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/) and helps all users.
+- **Use for filterable choices**: Autocomplete is best for lists that are too long to scan. Use [Select](/material-ui/react-select/) instead for short lists.
+- **Form controls must have an accessible name**: Use a visible `TextField` `label` when possible, or add `aria-label` if the label is hidden.
+- **Keep the popup option-only**: The listbox should only contain selectable options. Avoid buttons, links, or non-option controls such as "Select all" because they disrupt keyboard semantics and assistive technology behavior.
 
 ## Combobox
 
@@ -56,7 +55,7 @@ const options = [
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
-When using object options, provide `isOptionEqualToValue` so the component can match the current value to the right option. The default comparison uses strict equality (`===`), which only works when the value reference is the same as one of the options:
+When using object options, you must provide `isOptionEqualToValue` so the component can match the current value to the right option. The default comparison uses strict equality (`===`), which only works when the value reference is the same as one of the options:
 
 ```tsx
 <Autocomplete
@@ -85,7 +84,11 @@ const options = [
   { label: 'John Smith', id: 'usr_e9c3d521' },
 ];
 
-<Autocomplete options={options} getOptionKey={(option) => option.id} />;
+<Autocomplete
+  options={options}
+  getOptionLabel={(option) => option.label}
+  getOptionKey={(option) => option.id}
+/>;
 ```
 
 ### Playground
@@ -154,16 +157,17 @@ Group options with the `groupBy` prop. Sort the options by the same field you're
 
 Customize how groups render with the `renderGroup` prop. It receives an object with:
 
+- `key`—the React key to apply to the rendered group
 - `group`—the group name string
 - `children`—the list items in that group
 
-The demo below uses custom markup and overrides the default group styles.
+The demo below groups countries by continent and customizes the group rendering.
 
 {{"demo": "RenderGroup.js"}}
 
 ## Free solo
 
-Set `freeSolo` to `true` so the textbox accepts any value, not just options from the list.
+Use `freeSolo` when the input should accept values outside the provided options.
 
 ### Search input
 
@@ -172,7 +176,16 @@ Designed for **search inputs** with suggestions—for example, Google search or 
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-Free solo with non-string options can cause type mismatches. Whatever the user types becomes a string, even when the predefined options are objects.
+Free solo with non-string options can cause type mismatches. The typed value is always a string, so make sure your callbacks can handle both strings and option objects:
+
+```tsx
+<Autocomplete
+  freeSolo
+  options={options}
+  getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+/>
+```
+
 :::
 
 ### Creatable
@@ -379,6 +392,22 @@ Add a hint (ghost text suggestion) inside the input:
 
 ### Events
 
+Callbacks such as `onChange`, `onClose`, `onHighlightChange`, and `onInputChange` include a `reason` argument. Use it to distinguish user input from selection, clear, and other internal updates:
+
+- Selected value changes use `AutocompleteChangeReason`, covering selection, creation, removal, clear, and blur transitions.
+- Textbox changes use `AutocompleteInputChangeReason`, which separates user typing from resets, clears, blur, and option selection or removal.
+- Popup and highlight changes use `AutocompleteCloseReason` and `AutocompleteHighlightChangeReason` to describe why the popup closed or how the highlighted option moved.
+
+```jsx
+<Autocomplete
+  onInputChange={(_event, value, reason) => {
+    if (reason === 'input') {
+      setQuery(value);
+    }
+  }}
+/>
+```
+
 To override the default key handling, set `defaultMuiPrevented` to `true` on the event:
 
 ```jsx
@@ -501,6 +530,6 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Pr
 
 VoiceOver on iOS Safari has poor support for `aria-owns`. Work around it with the `disablePortal` prop.
 
-### ListboxComponent
+### Custom listbox component
 
 When you provide a custom `listbox` slot, set `role="listbox"` on the scroll container. This is what keyboard navigation looks for to scroll the highlighted item into view.

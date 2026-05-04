@@ -6,6 +6,7 @@ export default function LimitTags() {
   return (
     <Autocomplete
       multiple
+      disableCloseOnSelect
       limitTags={2}
       options={top100Films}
       defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}

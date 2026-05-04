@@ -20,7 +20,15 @@ function RowComponent({ index, itemData, style }) {
   const { key, ...optionProps } = dataSet[0];
 
   return (
-    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
+    <Typography
+      key={key}
+      component="li"
+      {...optionProps}
+      aria-posinset={dataSet[2] + 1}
+      aria-setsize={itemData.length}
+      noWrap
+      style={inlineStyle}
+    >
       {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );

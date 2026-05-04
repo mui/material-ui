@@ -12,6 +12,7 @@ export default function FixedTags() {
   return (
     <Autocomplete
       multiple
+      disableCloseOnSelect
       value={value}
       onChange={(event, newValue) => {
         setValue([

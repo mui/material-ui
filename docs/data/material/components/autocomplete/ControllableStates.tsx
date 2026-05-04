@@ -1,6 +1,8 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
 
 interface ProgrammingLanguage {
   id: string;
@@ -26,26 +28,43 @@ export default function ControllableStates() {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <div>
-      <div>{`value: ${value !== null ? `'${value.label}'` : 'null'}`}</div>
-      <div>{`inputValue: '${inputValue}'`}</div>
-      <br />
+    <Stack spacing={3} sx={{ width: 300 }}>
+      <Stack
+        spacing={0.5}
+        sx={{
+          typography: 'body1',
+          color: 'text.secondary',
+        }}
+      >
+        <div>
+          value:{' '}
+          <Box component="code" sx={{ color: 'text.primary' }}>
+            {value?.label ?? 'null'}
+          </Box>
+        </div>
+        <div>
+          inputValue:{' '}
+          <Box component="code" sx={{ color: 'text.primary' }}>
+            {`"${inputValue}"`}
+          </Box>
+        </div>
+      </Stack>
       <Autocomplete
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(_event, newValue) => {
           setValue(newValue);
         }}
         inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_event, newInputValue) => {
           setInputValue(newInputValue);
         }}
         options={langs}
         isOptionEqualToValue={(option, selectedValue) =>
           option.id === selectedValue.id
         }
-        sx={{ width: 300 }}
+        sx={{ width: 1 }}
         renderInput={(params) => <TextField {...params} label="Languages" />}
       />
-    </div>
+    </Stack>
   );
 }

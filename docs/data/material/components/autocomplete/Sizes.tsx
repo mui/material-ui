@@ -17,6 +17,7 @@ export default function Sizes() {
       />
       <Autocomplete
         multiple
+        disableCloseOnSelect
         size="small"
         options={top100Films}
         defaultValue={[top100Films[13]]}
@@ -39,6 +40,7 @@ export default function Sizes() {
       />
       <Autocomplete
         multiple
+        disableCloseOnSelect
         size="small"
         options={top100Films}
         defaultValue={[top100Films[13]]}

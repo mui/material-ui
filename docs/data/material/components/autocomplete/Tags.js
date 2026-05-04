@@ -11,6 +11,7 @@ export default function Tags() {
     <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
+        disableCloseOnSelect
         options={top100Films}
         defaultValue={[top100Films[13]]}
         renderInput={(params) => (
@@ -19,6 +20,7 @@ export default function Tags() {
       />
       <Autocomplete
         multiple
+        disableCloseOnSelect
         options={top100Films}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
@@ -32,6 +34,7 @@ export default function Tags() {
       />
       <Autocomplete
         multiple
+        disableCloseOnSelect
         options={filmTitles}
         defaultValue={[top100Films[13].label]}
         freeSolo
