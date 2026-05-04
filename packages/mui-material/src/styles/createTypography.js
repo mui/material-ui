@@ -27,6 +27,9 @@ export default function createTypography(palette, typography) {
     htmlFontSize = 16,
     // Apply the CSS properties to all the variants.
     allVariants,
+    // The letter spacing was tuned for Roboto. Set to true when using a custom
+    // fontFamily that is still Roboto (e.g. a CSS variable like var(--font-roboto)).
+    applyRobotoLetterSpacing = fontFamily === defaultFontFamily,
     pxToRem: pxToRem2,
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
@@ -51,9 +54,7 @@ export default function createTypography(palette, typography) {
     lineHeight,
     // The letter spacing was designed for the Roboto font-family. Using the same letter-spacing
     // across font-families can cause issues with the kerning.
-    ...(fontFamily === defaultFontFamily
-      ? { letterSpacing: `${round(letterSpacing / size)}em` }
-      : {}),
+    ...(applyRobotoLetterSpacing ? { letterSpacing: `${round(letterSpacing / size)}em` } : {}),
     ...casing,
     ...allVariants,
   });

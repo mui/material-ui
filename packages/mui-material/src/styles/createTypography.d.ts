@@ -29,6 +29,12 @@ export interface FontStyle {
 
 export interface FontStyleOptions extends Partial<FontStyle> {
   allVariants?: React.CSSProperties | undefined;
+  /**
+   * Apply the letter spacing values tuned for Roboto even when a custom `fontFamily` is set.
+   * Useful when the font is Roboto but referenced via a CSS variable (e.g. `var(--font-roboto)`).
+   * Defaults to `true` when `fontFamily` matches the default Roboto stack.
+   */
+  applyRobotoLetterSpacing?: boolean;
 }
 
 // TODO: which one should actually be allowed to be subject to module augmentation?

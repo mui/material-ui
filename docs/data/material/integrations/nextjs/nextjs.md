@@ -71,6 +71,7 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-started/fonts) with Material UI, create a new file with the `'use client';` directive.
 Then create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
+Set `applyRobotoLetterSpacing: true` to preserve the pre-tuned Roboto letter spacing, which is skipped by default when `fontFamily` doesn't match the default font stack string.
 
 ```js title="src/theme.ts"
 'use client';
@@ -79,6 +80,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   typography: {
     fontFamily: 'var(--font-roboto)',
+    applyRobotoLetterSpacing: true,
   },
 });
 
@@ -451,6 +453,7 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-s
 +const theme = createTheme({
 +  typography: {
 +    fontFamily: 'var(--font-roboto)',
++    applyRobotoLetterSpacing: true,
 +  },
 +});
 
