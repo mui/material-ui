@@ -239,6 +239,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     ownerState,
     className: classes.badge,
     additionalProps: {
+      'aria-hidden': true,
       style: {
         '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
         '--Badge-inset': `${top} ${right} ${bottom} ${left}`,

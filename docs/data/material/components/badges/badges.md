@@ -12,6 +12,20 @@ githubSource: packages/mui-material/src/Badge
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
+## Usage guidelines
+
+- **Use badges for supplemental status**: Badges work best for short counts or compact
+  states attached to another element, such as unread messages on an inbox button. Don't use
+  a badge as the only place where important status appears.
+- **Label the element that owns the badge**: Badge content is hidden from assistive
+  technologies by default because its meaning depends on the element it describes. Add a
+  descriptive status to the target element, for example `aria-label="show 4 unread messages"`.
+- **Give dot badges explicit meaning**: Dot badges don't include a count, so use them only
+  when the state is explained elsewhere. Add visible status text such as `Unread`, include
+  the state in the target's accessible label, or provide another clear state cue.
+
+{{"demo": "AccessibleBadges.js"}}
+
 ## Basic badge
 
 Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
@@ -64,10 +78,3 @@ You can use the `overlap` prop to place the badge relative to the corner of the 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
-
-## Accessibility
-
-You can't rely on the content of the badge to be announced correctly.
-You should provide a full description, for instance, with `aria-label`:
-
-{{"demo": "AccessibleBadges.js"}}
