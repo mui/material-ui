@@ -26,6 +26,12 @@ githubSource: packages/mui-material/src/Badge
 
 {{"demo": "BadgeIntro.js"}}
 
+The next demo applies the same pattern to a `ListItemButton` with a `Badge`: the visible
+count is included in the item's accessible name so it's announced in the context of the
+surrounding UI.
+
+{{"demo": "BadgeListItem.js"}}
+
 ## Badge content
 
 Use `badgeContent` to add a short count or label to the wrapped element.
