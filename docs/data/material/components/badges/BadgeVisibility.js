@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
@@ -9,35 +9,35 @@ import MailIcon from '@mui/icons-material/Mail';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+function unreadMessagesLabel(count) {
+  if (count === 0) {
+    return 'no unread messages';
+  }
+  return `${count} unread message${count === 1 ? '' : 's'}`;
+}
+
 export default function BadgeVisibility() {
   const [count, setCount] = React.useState(1);
   const [invisible, setInvisible] = React.useState(false);
 
   const handleBadgeVisibility = () => {
-    setInvisible(!invisible);
+    setInvisible((previousInvisible) => !previousInvisible);
   };
 
   return (
-    <Box
-      sx={{
-        color: 'action.active',
-        display: 'flex',
-        flexDirection: 'column',
-        '& > *': {
-          marginBottom: 2,
-        },
-        '& .MuiBadge-root': {
-          marginRight: 4,
-        },
-      }}
-    >
-      <div>
-        <Badge color="secondary" badgeContent={count}>
+    <Stack spacing={3} sx={{ color: 'action.active' }}>
+      <Stack direction="row" spacing={4} alignItems="center">
+        <Badge
+          color="secondary"
+          badgeContent={count}
+          role="img"
+          aria-label={unreadMessagesLabel(count)}
+        >
           <MailIcon />
         </Badge>
         <ButtonGroup>
           <Button
-            aria-label="reduce"
+            aria-label="decrease unread messages"
             onClick={() => {
               setCount(Math.max(count - 1, 0));
             }}
@@ -45,7 +45,7 @@ export default function BadgeVisibility() {
             <RemoveIcon fontSize="small" />
           </Button>
           <Button
-            aria-label="increase"
+            aria-label="increase unread messages"
             onClick={() => {
               setCount(count + 1);
             }}
@@ -53,17 +53,23 @@ export default function BadgeVisibility() {
             <AddIcon fontSize="small" />
           </Button>
         </ButtonGroup>
-      </div>
-      <div>
-        <Badge color="secondary" variant="dot" invisible={invisible}>
+      </Stack>
+      <Stack direction="row" spacing={4} alignItems="center">
+        <Badge
+          color="secondary"
+          variant="dot"
+          invisible={invisible}
+          role="img"
+          aria-label={invisible ? 'no unread messages' : 'unread messages'}
+        >
           <MailIcon />
         </Badge>
         <FormControlLabel
           sx={{ color: 'text.primary' }}
           control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
-          label="Show Badge"
+          label="Show unread status"
         />
-      </div>
-    </Box>
+      </Stack>
+    </Stack>
   );
 }

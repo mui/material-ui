@@ -1,3 +1,6 @@
 <Badge color="secondary" variant="dot">
   <MailIcon />
 </Badge>
+<Typography component="span" sx={{ color: 'text.primary' }}>
+  Unread messages
+</Typography>

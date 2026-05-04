@@ -11,7 +11,7 @@ const circle = (
 
 export default function BadgeOverlap() {
   return (
-    <Stack spacing={3} direction="row">
+    <Stack spacing={3} direction="row" aria-hidden>
       <Badge color="secondary" badgeContent=" ">
         {rectangle}
       </Badge>

@@ -5,10 +5,21 @@ import MailIcon from '@mui/icons-material/Mail';
 export default function ShowZeroBadge() {
   return (
     <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
-      <Badge color="secondary" badgeContent={0}>
+      <Badge
+        color="secondary"
+        badgeContent={0}
+        role="img"
+        aria-label="no unread messages"
+      >
         <MailIcon />
       </Badge>
-      <Badge color="secondary" badgeContent={0} showZero>
+      <Badge
+        color="secondary"
+        badgeContent={0}
+        showZero
+        role="img"
+        aria-label="0 unread messages"
+      >
         <MailIcon />
       </Badge>
     </Stack>
