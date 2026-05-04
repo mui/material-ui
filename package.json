@@ -125,7 +125,7 @@
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
     "globby": "16.2.0",
-    "jsdom": "26.1.0",
+    "jsdom": "29.1.1",
     "lerna": "9.0.7",
     "markdownlint-cli2": "0.22.1",
     "nx": "20.8.4",
