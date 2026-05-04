@@ -48,6 +48,9 @@ const ListRoot = styled('ul', {
       props: ({ ownerState }) => ownerState.subheader,
       style: {
         paddingTop: 0,
+        // prevent overlap with iOS overlay scrollbars
+        // https://github.com/mui/material-ui/issues/44569
+        isolation: 'isolate',
       },
     },
   ],
