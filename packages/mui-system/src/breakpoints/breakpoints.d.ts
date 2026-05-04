@@ -37,6 +37,6 @@ type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 /**
  * @returns An enhanced stylefunction that considers breakpoints
  */
-export default function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
+export default function breakpoints<Props, BreakpointsInput extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>,
-): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
+): StyleFunction<Partial<Record<BreakpointsInput, Props>> & Props>;

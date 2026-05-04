@@ -113,8 +113,8 @@ const accent = purple.A200; // #e040fb (alternative method)
 
 ### Accessibility
 
-[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
+[WCAG 2.2 Success Criterion 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) does recommend
 that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
-Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
+Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.2 Level AA compliance,
 you can increase your minimum contrast ratio as described in the
 [Theme customization](/material-ui/customization/palette/#accessibility) section.

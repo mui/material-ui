@@ -634,7 +634,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: filterSelectedOptions', () => {
-    it('when the last item is selected, highlights the new last item', () => {
+    it('clears the highlight when the highlighted selected option is filtered out', () => {
       render(
         <Autocomplete
           filterSelectedOptions

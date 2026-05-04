@@ -139,6 +139,8 @@ packages/mui-material/src/Button/
 - Use `createRenderer()` from `@mui/internal-test-utils`
 - Use Chai BDD-style assertions (`expect(x).to.equal(y)`)
 - Custom matchers: `toErrorDev()`, `toWarnDev()` for console assertions
+- Prefer testing components with full interactions using `user.*` methods. Avoid `fireEvent` and `setProps` if possible.
+- If tests require the browser because, for example, they require layout measurements, restrict it to the Chromium env by using `it.skipIf(isJsdom())` or `describe.skipIf(isJsdom())` (search other tests for example usage if unsure).
 
 ```js
 import { createRenderer } from '@mui/internal-test-utils';
@@ -146,9 +148,15 @@ import { createRenderer } from '@mui/internal-test-utils';
 describe('Button', () => {
   const { render } = createRenderer();
 
-  it('renders children', () => {
-    const { getByRole } = render(<Button>Hello</Button>);
-    expect(getByRole('button')).to.have.text('Hello');
+  it('renders children', async () => {
+    const handleClick = vi.fn();
+    const { getByRole, user } = render(<Button onClick={handleClick}>Hello</Button>);
+
+    const button = getByRole('button');
+    expect(button).to.have.text('Hello');
+
+    await user.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
 ```
@@ -187,9 +195,9 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 
 ## PR Title Format
 
-`[product-name][Component] Imperative description`
+`[component] Imperative description`
 
 Examples:
 
-- `[material-ui][Button] Add loading state`
+- `[button] Add loading state`
 - `[docs] Fix typo in Grid documentation`
