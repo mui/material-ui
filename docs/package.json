@@ -50,7 +50,7 @@
     "@mui/x-tree-view": "9.0.4",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.3",
-    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.4",
     "@tanstack/react-query": "^5.100.6",
     "@tanstack/react-virtual": "^3.13.24",
     "autosuggest-highlight": "^3.3.4",
@@ -131,7 +131,7 @@
     "cross-fetch": "4.1.0",
     "gm": "1.25.1",
     "prettier": "3.8.3",
-    "tailwindcss": "4.2.2",
+    "tailwindcss": "4.2.4",
     "yargs": "18.0.0"
   }
 }
