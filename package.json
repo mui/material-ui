@@ -79,7 +79,7 @@
   "dependencies": {
     "@netlify/functions": "^5.1.5",
     "@slack/bolt": "^4.6.0",
-    "@vitest/eslint-plugin": "^1.6.14",
+    "@vitest/eslint-plugin": "^1.6.16",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.1"
   },
@@ -88,7 +88,7 @@
     "@babel/core": "7.29.0",
     "@babel/node": "7.29.0",
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
-    "@eslint/compat": "2.0.3",
+    "@eslint/compat": "2.0.5",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.26",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.76",
     "@mui/internal-code-infra": "0.0.4-canary.29",
@@ -120,7 +120,7 @@
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
     "es-toolkit": "1.46.0",
-    "eslint": "10.1.0",
+    "eslint": "10.2.1",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
