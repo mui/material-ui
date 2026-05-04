@@ -26,7 +26,7 @@ export default function BadgeVisibility() {
 
   return (
     <Stack spacing={3} sx={{ color: 'action.active' }}>
-      <Stack direction="row" spacing={4} alignItems="center">
+      <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>
         <Badge
           color="secondary"
           badgeContent={count}
@@ -54,7 +54,7 @@ export default function BadgeVisibility() {
           </Button>
         </ButtonGroup>
       </Stack>
-      <Stack direction="row" spacing={4} alignItems="center">
+      <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>
         <Badge
           color="secondary"
           variant="dot"

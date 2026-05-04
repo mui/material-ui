@@ -8,8 +8,7 @@ export default function DotBadge() {
     <Stack
       spacing={2}
       direction="row"
-      alignItems="center"
-      sx={{ color: 'action.active' }}
+      sx={{ color: 'action.active', alignItems: 'center' }}
     >
       <Badge color="secondary" variant="dot">
         <MailIcon />
