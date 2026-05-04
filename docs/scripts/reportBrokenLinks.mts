@@ -89,7 +89,10 @@ async function main() {
     ],
   });
 
-  process.exit(issues.length);
+  const errorCount = issues.filter(
+    (issue) => issue.type !== 'html-validate' || issue.severity >= 2,
+  ).length;
+  process.exit(errorCount);
 }
 
 main();
