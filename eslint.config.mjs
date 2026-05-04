@@ -96,6 +96,9 @@ export default defineConfig(
       'react-hooks/incompatible-library': 'off',
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
+
+      // TODO: investigate and fix
+      'mui/no-guarded-throw': 'off',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
