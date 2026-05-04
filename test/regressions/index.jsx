@@ -46,13 +46,15 @@ Object.keys(importRegressionFixtures).forEach((path) => {
 // Also use some of the demos to avoid code duplication.
 //
 // Two exclusion layers:
-//   - Slug-level (whole slug has no tool consumer, or path can't be imported) lives here.
+//   - Slug-level (whole slug has no tool consumer, or path can't be imported) lives here,
+//     dropping the demo from the bundle entirely.
 //   - Per-demo (a specific demo inside an otherwise-enrolled slug is skipped by one tool
 //     or the other) lives in `demoMeta.ts`, so screenshot-specific reasons
 //     ("Redundant", "Flaky image loading") don't also drop a11y coverage.
 //
-// Enabling any slug below is a 2-line change: un-negate it here, add it to
-// `SLUG_A11Y` and/or let screenshots pick it up.
+// Enrolling a new component for a11y: un-negate the slug glob below if needed,
+// then add an `A11Y_RULES` entry in `demoMeta.ts`
+// (e.g. `{ test: 'docs/data/material/components/foo/{BasicFoo,FooVariants}', enabled: true }`).
 const importDemos = import.meta.glob(
   [
     'docs/data/**/[A-Z]*.js',

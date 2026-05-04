@@ -1,45 +1,62 @@
 import { describe, it } from 'vitest';
 import { expect } from 'chai';
-import { A11Y_RULES, SCREENSHOT_RULES, resolveA11y, shouldScreenshot } from './demoMeta';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
-describe('shouldScreenshot', () => {
-  it('returns true for non-component routes (regression fixtures)', () => {
-    expect(shouldScreenshot('/regression-Autocomplete/Virtualize')).to.equal(true);
+describe('parseRoute', () => {
+  it('returns null for non-component routes (regression fixtures)', () => {
+    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
   });
 
-  it('returns true by default for demos with no matching rule', () => {
-    expect(shouldScreenshot('/docs-components-accordion/BasicAccordion')).to.equal(true);
-  });
-
-  it('honours an opt-out rule', () => {
-    expect(shouldScreenshot('/docs-components-autocomplete/Asynchronous')).to.equal(false);
+  it('parses a docs-components route into path/slug/demo', () => {
+    expect(parseRoute('/docs-components-buttons/BasicButtons')).to.deep.equal({
+      path: 'docs/data/material/components/buttons/BasicButtons',
+      slug: 'buttons',
+      demo: 'BasicButtons',
+    });
   });
 });
 
-describe('resolveA11y', () => {
-  it('returns null for non-component routes', () => {
-    expect(resolveA11y('/regression-Rating/FocusVisibleRating')).to.equal(null);
+describe('getConfig', () => {
+  it('returns undefined when no rule matches', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/BasicAccordion'),
+    ).to.equal(undefined);
   });
 
-  it('returns null for slugs with no matching rule', () => {
-    expect(resolveA11y('/docs-components-accordion/BasicAccordion')).to.equal(null);
+  it('returns a screenshot opt-out rule for an excluded demo', () => {
+    expect(
+      getConfig(SCREENSHOT_RULES, 'docs/data/material/components/autocomplete/Asynchronous'),
+    ).to.deep.include({ enabled: false });
   });
 
-  it('returns null for demos outside a brace-glob enrolment', () => {
+  it('returns the a11y rule for a brace-glob enrolment', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/BasicButtons'),
+    ).to.deep.include({ enabled: true });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ColorButtons'),
+    ).to.deep.include({ enabled: true });
+  });
+
+  it('returns undefined for a demo outside a brace-glob enrolment', () => {
     // `buttons` enrols only {BasicButtons,ColorButtons}.
-    expect(resolveA11y('/docs-components-buttons/DisabledButtons')).to.equal(null);
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons'),
+    ).to.equal(undefined);
   });
 
-  it('returns config for a brace-glob enrolment', () => {
-    expect(resolveA11y('/docs-components-buttons/BasicButtons')).to.deep.equal({
-      slug: 'buttons',
-      demoName: 'BasicButtons',
-      skipAssertions: undefined,
+  it('honours last-match-wins when multiple rules apply', () => {
+    const rules = [
+      { test: 'docs/data/material/components/foo/*', enabled: true },
+      { test: 'docs/data/material/components/foo/Bar', enabled: false },
+    ];
+    expect(getConfig(rules, 'docs/data/material/components/foo/Bar')).to.deep.equal({
+      test: 'docs/data/material/components/foo/Bar',
+      enabled: false,
     });
-    expect(resolveA11y('/docs-components-buttons/ColorButtons')).to.deep.equal({
-      slug: 'buttons',
-      demoName: 'ColorButtons',
-      skipAssertions: undefined,
+    expect(getConfig(rules, 'docs/data/material/components/foo/Baz')).to.deep.equal({
+      test: 'docs/data/material/components/foo/*',
+      enabled: true,
     });
   });
 });

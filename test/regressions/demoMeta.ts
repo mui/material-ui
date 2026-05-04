@@ -106,26 +106,19 @@ export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
 ];
 
-/**
- * Walk a rule list back-to-front, return the last matching rule (or undefined).
- * Rules don't inherit from each other — every override must restate any field
- * it cares about.
- */
-function getConfig<T extends { test: string }>(
-  rules: ReadonlyArray<T>,
-  pathStr: string,
-): T | undefined {
-  for (let i = rules.length - 1; i >= 0; i -= 1) {
-    if (minimatch(pathStr, rules[i].test)) {
-      return rules[i];
-    }
-  }
-  return undefined;
+export interface ParsedRoute {
+  path: string;
+  slug: string;
+  demo: string;
 }
 
 const ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
 
-function parseRoute(route: string): { path: string; slug: string; demo: string } | null {
+/**
+ * Map a VRT route to its docs path + slug + demo, or `null` for non-component
+ * routes (regression fixtures).
+ */
+export function parseRoute(route: string): ParsedRoute | null {
   const match = route.match(ROUTE_REGEX);
   if (!match) {
     return null;
@@ -135,37 +128,19 @@ function parseRoute(route: string): { path: string; slug: string; demo: string }
 }
 
 /**
- * Decide whether to run the screenshot tool on a route. Non-component routes
- * (regression fixtures) default to enabled.
+ * Walk a rule list back-to-front, return the last matching rule (or undefined).
+ * Rules don't inherit from each other — every override must restate any field
+ * it cares about. Defaults (`enabled` on/off when no rule matches) live at
+ * the call site, not here.
  */
-export function shouldScreenshot(route: string): boolean {
-  const parsed = parseRoute(route);
-  if (!parsed) {
-    return true;
+export function getConfig<T extends { test: string }>(
+  rules: ReadonlyArray<T>,
+  pathStr: string,
+): T | undefined {
+  for (let i = rules.length - 1; i >= 0; i -= 1) {
+    if (minimatch(pathStr, rules[i].test)) {
+      return rules[i];
+    }
   }
-  return getConfig(SCREENSHOT_RULES, parsed.path)?.enabled ?? true;
-}
-
-/**
- * Resolve a VRT route to its a11y settings, or `null` if the route isn't a
- * component demo, isn't enrolled, or has been opted out.
- */
-export function resolveA11y(route: string): {
-  slug: string;
-  demoName: string;
-  skipAssertions?: string[];
-} | null {
-  const parsed = parseRoute(route);
-  if (!parsed) {
-    return null;
-  }
-  const config = getConfig(A11Y_RULES, parsed.path);
-  if (config?.enabled !== true) {
-    return null;
-  }
-  return {
-    slug: parsed.slug,
-    demoName: parsed.demo,
-    skipAssertions: config.skipAssertions,
-  };
+  return undefined;
 }

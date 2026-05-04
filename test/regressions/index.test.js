@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
-import { resolveA11y, shouldScreenshot } from './demoMeta';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -112,11 +112,12 @@ async function main() {
     });
 
     routes.forEach((route) => {
-      // `demoMeta.ts` owns the per-tool gates so the two tools can disagree:
-      // a demo with screenshot off can still run axe, and vice versa.
-      const runScreenshot = shouldScreenshot(route);
-      const a11y = resolveA11y(route);
-      if (!runScreenshot && !a11y) {
+      const parsed = parseRoute(route);
+      const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
+      const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
+      const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+      const runA11y = a11yRule?.enabled === true;
+      if (!runScreenshot && !runA11y) {
         return;
       }
 
@@ -140,7 +141,7 @@ async function main() {
         // Run axe before the screenshot (if any) so it observes the natural
         // DOM — Playwright's `animations: 'disabled'` injects inline
         // `!important` styles that otherwise perturb rule applicability.
-        if (a11y) {
+        if (runA11y) {
           // Inject axe fresh each run — page.addScriptTag can leak between navigations.
           await page.evaluate(axeSource);
           const results = await page.evaluate(
@@ -155,9 +156,9 @@ async function main() {
             { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
           );
           recordA11y(ctx, results, {
-            slug: a11y.slug,
-            demo: a11y.demoName,
-            skipAssertions: a11y.skipAssertions,
+            slug: parsed.slug,
+            demo: parsed.demo,
+            skipAssertions: a11yRule.skipAssertions,
           });
         }
 
