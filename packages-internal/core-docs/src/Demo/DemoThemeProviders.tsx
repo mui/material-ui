@@ -4,7 +4,7 @@ import {
   ThemeProvider,
   createTheme,
   useTheme,
-  createHighContrastTheme,
+  enhanceHighContrast,
 } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
@@ -37,19 +37,20 @@ export function DemoInstanceThemeProvider({
   const upperMode = upperTheme?.palette?.mode;
 
   const theme = React.useMemo(() => {
-    const resultTheme = createTheme(
-      {
-        cssVariables: {
-          colorSchemeSelector: 'data-mui-color-scheme',
+    const resultTheme = enhanceHighContrast(
+      createTheme(
+        {
+          cssVariables: {
+            colorSchemeSelector: 'data-mui-color-scheme',
+          },
+          colorSchemes: {
+            light: true,
+            dark: true,
+          },
+          direction: direction as 'ltr' | 'rtl',
         },
-        colorSchemes: {
-          light: true,
-          dark: true,
-        },
-        direction: direction as 'ltr' | 'rtl',
-      },
-      createHighContrastTheme(),
-      dense ? highDensity : {},
+        dense ? highDensity : {},
+      ),
     );
     if (upperMode) {
       Object.assign(resultTheme, resultTheme.colorSchemes[upperMode]);

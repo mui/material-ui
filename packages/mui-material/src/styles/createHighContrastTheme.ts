@@ -12,7 +12,7 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import radioClasses from '../Radio/radioClasses';
 import sliderClasses from '../Slider/sliderClasses';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
-import { ThemeOptions } from './createTheme';
+import { Theme } from './createTheme';
 
 export interface HighContrastTokens {
   /** Color for disabled elements. Default: `'GrayText'` */
@@ -51,28 +51,41 @@ const defaultHcTokens: Required<HighContrastTokens> = {
 const HCM = '@media (forced-colors: active)';
 
 /**
- * Creates a theme with styles for Windows High Contrast Mode (forced-colors).
+ * Enhances a theme with styles for Windows High Contrast Mode (forced-colors).
  *
+ * Follows the same signature as `responsiveFontSizes`: accepts a fully-created
+ * theme, merges in HCM component overrides using arrays so that Emotion emits
+ * each entry as a separate CSS rule and the browser cascade (rather than JS
+ * object merging) resolves specificity.
+ *
+ * @param themeInput - The theme to enhance.
  * @param tokens - Override any of the default system color tokens.
- * @returns A `ThemeOptions` object to pass into `createTheme`.
+ * @returns The enhanced theme (same type as the input).
  *
  * @example
  * // Use defaults
- * const theme = createTheme(createHighContrastTheme(), { palette: { ... } });
+ * const theme = enhanceHighContrast(createTheme({ palette: { ... } }));
  *
  * @example
  * // Override specific tokens
- * const theme = createTheme(createHighContrastTheme({ disabled: 'ButtonText' }));
+ * const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
  */
-export default function createHighContrastTheme(
+export default function enhanceHighContrast<T extends { components?: Theme['components'] | undefined }>(
+  themeInput: T,
   tokens?: HighContrastTokens,
-): Pick<ThemeOptions, 'components'> {
+): T {
   const hcTokens = { ...defaultHcTokens, ...tokens };
-  return {
-    components: {
-      MuiAutocomplete: {
-        styleOverrides: {
-          listbox: {
+  const theme = { ...themeInput };
+  const c = theme.components;
+  theme.components = {
+    ...c,
+    MuiAutocomplete: {
+      ...c?.MuiAutocomplete,
+      styleOverrides: {
+        ...c?.MuiAutocomplete?.styleOverrides,
+        listbox: [
+          c?.MuiAutocomplete?.styleOverrides?.listbox,
+          {
             [`& .${autocompleteClasses.option}`]: {
               '&[aria-disabled="true"]': {
                 [HCM]: {
@@ -102,22 +115,32 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiCheckbox: {
-        styleOverrides: {
-          root: {
+    },
+    MuiCheckbox: {
+      ...c?.MuiCheckbox,
+      styleOverrides: {
+        ...c?.MuiCheckbox?.styleOverrides,
+        root: [
+          c?.MuiCheckbox?.styleOverrides?.root,
+          {
             [`&.${checkboxClasses.disabled}`]: {
               [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
-        },
+        ],
       },
-      MuiFilledInput: {
-        styleOverrides: {
-          root: {
+    },
+    MuiFilledInput: {
+      ...c?.MuiFilledInput,
+      styleOverrides: {
+        ...c?.MuiFilledInput?.styleOverrides,
+        root: [
+          c?.MuiFilledInput?.styleOverrides?.root,
+          {
             [`&.${filledInputClasses.error}`]: {
               '&::before, &::after': {
                 [HCM]: {
@@ -137,22 +160,32 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiFormControlLabel: {
-        styleOverrides: {
-          root: {
+    },
+    MuiFormControlLabel: {
+      ...c?.MuiFormControlLabel,
+      styleOverrides: {
+        ...c?.MuiFormControlLabel?.styleOverrides,
+        root: [
+          c?.MuiFormControlLabel?.styleOverrides?.root,
+          {
             [`& .${formControlLabelClasses.label}.${formControlLabelClasses.disabled}`]: {
               [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
-        },
+        ],
       },
-      MuiFormHelperText: {
-        styleOverrides: {
-          root: {
+    },
+    MuiFormHelperText: {
+      ...c?.MuiFormHelperText,
+      styleOverrides: {
+        ...c?.MuiFormHelperText?.styleOverrides,
+        root: [
+          c?.MuiFormHelperText?.styleOverrides?.root,
+          {
             [`&.${formHelperTextClasses.error}`]: {
               [HCM]: {
                 color: hcTokens.error,
@@ -164,11 +197,16 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiFormLabel: {
-        styleOverrides: {
-          root: {
+    },
+    MuiFormLabel: {
+      ...c?.MuiFormLabel,
+      styleOverrides: {
+        ...c?.MuiFormLabel?.styleOverrides,
+        root: [
+          c?.MuiFormLabel?.styleOverrides?.root,
+          {
             [`&.${formLabelClasses.error}`]: {
               [HCM]: {
                 color: hcTokens.error,
@@ -180,11 +218,16 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiInput: {
-        styleOverrides: {
-          root: {
+    },
+    MuiInput: {
+      ...c?.MuiInput,
+      styleOverrides: {
+        ...c?.MuiInput?.styleOverrides,
+        root: [
+          c?.MuiInput?.styleOverrides?.root,
+          {
             [`&.${inputClasses.error}`]: {
               '&::before, &::after': {
                 [HCM]: {
@@ -204,23 +247,34 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiLinearProgress: {
-        styleOverrides: {
-          root: {
+    },
+    MuiLinearProgress: {
+      ...c?.MuiLinearProgress,
+      styleOverrides: {
+        ...c?.MuiLinearProgress?.styleOverrides,
+        root: [
+          c?.MuiLinearProgress?.styleOverrides?.root,
+          {
             [HCM]: {
               forcedColorAdjust: 'none',
               outline: `1px solid ${hcTokens.buttonBorder}`,
               backgroundColor: hcTokens.canvas,
             },
           },
-          bar: {
+        ],
+        bar: [
+          c?.MuiLinearProgress?.styleOverrides?.bar,
+          {
             [HCM]: {
               backgroundColor: hcTokens.buttonText,
             },
           },
-          bar2: {
+        ],
+        bar2: [
+          c?.MuiLinearProgress?.styleOverrides?.bar2,
+          {
             variants: [
               {
                 props: { variant: 'buffer' },
@@ -232,22 +286,32 @@ export default function createHighContrastTheme(
               },
             ],
           },
-        },
+        ],
       },
-      MuiInputBase: {
-        styleOverrides: {
-          input: {
+    },
+    MuiInputBase: {
+      ...c?.MuiInputBase,
+      styleOverrides: {
+        ...c?.MuiInputBase?.styleOverrides,
+        input: [
+          c?.MuiInputBase?.styleOverrides?.input,
+          {
             [HCM]: {
               '&::placeholder': {
                 opacity: 1,
               },
             },
           },
-        },
+        ],
       },
-      MuiMenuItem: {
-        styleOverrides: {
-          root: {
+    },
+    MuiMenuItem: {
+      ...c?.MuiMenuItem,
+      styleOverrides: {
+        ...c?.MuiMenuItem?.styleOverrides,
+        root: [
+          c?.MuiMenuItem?.styleOverrides?.root,
+          {
             [`&.${menuItemClasses.focusVisible}, &:hover`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
@@ -270,20 +334,30 @@ export default function createHighContrastTheme(
                 },
               },
           },
-        },
+        ],
       },
-      MuiListItemIcon: {
-        styleOverrides: {
-          root: {
+    },
+    MuiListItemIcon: {
+      ...c?.MuiListItemIcon,
+      styleOverrides: {
+        ...c?.MuiListItemIcon?.styleOverrides,
+        root: [
+          c?.MuiListItemIcon?.styleOverrides?.root,
+          {
             [HCM]: {
               color: 'inherit',
             },
           },
-        },
+        ],
       },
-      MuiListItemButton: {
-        styleOverrides: {
-          root: {
+    },
+    MuiListItemButton: {
+      ...c?.MuiListItemButton,
+      styleOverrides: {
+        ...c?.MuiListItemButton?.styleOverrides,
+        root: [
+          c?.MuiListItemButton?.styleOverrides?.root,
+          {
             [`&.${listItemButtonClasses.focusVisible}, &:hover`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
@@ -306,22 +380,32 @@ export default function createHighContrastTheme(
                 },
               },
           },
-        },
+        ],
       },
-      MuiNativeSelect: {
-        styleOverrides: {
-          icon: {
+    },
+    MuiNativeSelect: {
+      ...c?.MuiNativeSelect,
+      styleOverrides: {
+        ...c?.MuiNativeSelect?.styleOverrides,
+        icon: [
+          c?.MuiNativeSelect?.styleOverrides?.icon,
+          {
             [`&.${nativeSelectClasses.disabled}`]: {
               [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
-        },
+        ],
       },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
+    },
+    MuiOutlinedInput: {
+      ...c?.MuiOutlinedInput,
+      styleOverrides: {
+        ...c?.MuiOutlinedInput?.styleOverrides,
+        root: [
+          c?.MuiOutlinedInput?.styleOverrides?.root,
+          {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               [HCM]: {
                 borderColor: hcTokens.error,
@@ -338,61 +422,87 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiRadio: {
-        styleOverrides: {
-          root: {
+    },
+    MuiRadio: {
+      ...c?.MuiRadio,
+      styleOverrides: {
+        ...c?.MuiRadio?.styleOverrides,
+        root: [
+          c?.MuiRadio?.styleOverrides?.root,
+          {
             [`&.${radioClasses.disabled}`]: {
               [HCM]: {
                 color: hcTokens.disabled,
               },
             },
           },
-        },
+        ],
       },
-      MuiSlider: {
-        styleOverrides: {
-          // track doesn't receive the disabled class — use ownerState
-          track: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
+    },
+    MuiSlider: {
+      ...c?.MuiSlider,
+      styleOverrides: {
+        ...c?.MuiSlider?.styleOverrides,
+        // track doesn't receive the disabled class — use ownerState
+        track: [
+          c?.MuiSlider?.styleOverrides?.track,
+          ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
               [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
           }),
-          // thumb receives the disabled class directly
-          thumb: {
+        ],
+        // thumb receives the disabled class directly
+        thumb: [
+          c?.MuiSlider?.styleOverrides?.thumb,
+          {
             [`&.${sliderClasses.disabled}`]: {
               [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             },
           },
-        },
+        ],
       },
-      MuiSwitch: {
-        styleOverrides: {
-          // track and thumb don't receive the disabled class — use ownerState
-          track: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
+    },
+    MuiSwitch: {
+      ...c?.MuiSwitch,
+      styleOverrides: {
+        ...c?.MuiSwitch?.styleOverrides,
+        // track and thumb don't receive the disabled class — use ownerState
+        track: [
+          c?.MuiSwitch?.styleOverrides?.track,
+          ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
               [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
           }),
-          thumb: ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
+        ],
+        thumb: [
+          c?.MuiSwitch?.styleOverrides?.thumb,
+          ({ ownerState }: { ownerState: { disabled?: boolean | undefined } }) => ({
             ...(ownerState.disabled && {
               [HCM]: {
                 borderColor: hcTokens.disabled,
               },
             }),
           }),
-        },
+        ],
       },
-      MuiButtonBase: {
-        styleOverrides: {
-          root: {
+    },
+    MuiButtonBase: {
+      ...c?.MuiButtonBase,
+      styleOverrides: {
+        ...c?.MuiButtonBase?.styleOverrides,
+        root: [
+          c?.MuiButtonBase?.styleOverrides?.root,
+          {
             // Restore the focus outline in HCM since the ripple is not visible.
             // Also handle components where the focusable element is a hidden inner input (Checkbox, Radio, Switch).
             [HCM]: {
@@ -401,11 +511,16 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: {
+    },
+    MuiToggleButton: {
+      ...c?.MuiToggleButton,
+      styleOverrides: {
+        ...c?.MuiToggleButton?.styleOverrides,
+        root: [
+          c?.MuiToggleButton?.styleOverrides?.root,
+          {
             [`&.${toggleButtonClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
@@ -421,8 +536,9 @@ export default function createHighContrastTheme(
               },
             },
           },
-        },
+        ],
       },
     },
   };
+  return theme;
 }
