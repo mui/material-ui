@@ -98,24 +98,20 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // isAppearing=false because the parent group is no longer mounting.
   const shouldEnterOnMount = parentGroup && !parentGroup.isMounting ? enter : appear;
 
-  const initialStatusRef = React.useRef<InternalStatus | null>(null);
-  if (initialStatusRef.current === null) {
+  const [status, setStatus] = React.useState<InternalStatus>(() => {
     if (inProp) {
-      initialStatusRef.current = shouldEnterOnMount ? 'exited' : 'entered';
-    } else if (mountOnEnter || unmountOnExit) {
-      initialStatusRef.current = 'unmounted';
-    } else {
-      initialStatusRef.current = 'exited';
+      return shouldEnterOnMount ? 'exited' : 'entered';
     }
-  }
+    if (mountOnEnter || unmountOnExit) {
+      return 'unmounted';
+    }
+    return 'exited';
+  });
 
-  const [status, setStatus] = React.useState<InternalStatus>(initialStatusRef.current);
   const statusRef = React.useRef<InternalStatus>(status);
   statusRef.current = status;
 
-  const appearPendingRef = React.useRef(
-    inProp && shouldEnterOnMount ? ('entering' as const) : null,
-  );
+  const shouldAppearOnMountRef = React.useRef(inProp && shouldEnterOnMount);
   const mountedRef = React.useRef(false);
   const nextCallbackRef = React.useRef<CancellableCallback | null>(null);
   // Remember which status already fired lifecycle callbacks. React StrictMode
@@ -171,14 +167,41 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
 
   const scheduleTransitionEnd = React.useCallback(
     (timeoutValue: number | undefined, handler: () => void) => {
-      const done = makeCallback(handler);
+      let timeoutId: ReturnType<typeof setTimeout> | undefined;
+      const clearTimer = () => {
+        if (timeoutId !== undefined) {
+          clearTimeout(timeoutId);
+          timeoutId = undefined;
+        }
+      };
+      const done = makeCallback(() => {
+        clearTimer();
+        handler();
+      });
+      const cancelDone = done.cancel;
+      done.cancel = () => {
+        clearTimer();
+        cancelDone();
+      };
       const node = propsRef.current.nodeRef.current;
       const listener = propsRef.current.addEndListener;
       const noTimeoutOrListener = timeoutValue == null && !listener;
+      const scheduleTimer = (value: number) => {
+        timeoutId = setTimeout(done, value);
+      };
 
-      if (!node || noTimeoutOrListener) {
-        setTimeout(done, 0);
+      if (!node) {
+        // Match react-transition-group: if there is no DOM node, there is no
+        // transition to observe, so finish on the next tick.
+        scheduleTimer(0);
         return;
+      }
+      if (noTimeoutOrListener) {
+        scheduleTimer(0);
+        return;
+      }
+      if (timeoutValue != null) {
+        scheduleTimer(timeoutValue);
       }
       if (listener) {
         // With nodeRef, react-transition-group calls addEndListener(done).
@@ -189,9 +212,6 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         } else {
           (listener as (done: () => void) => void)(done);
         }
-      }
-      if (timeoutValue != null) {
-        setTimeout(done, timeoutValue);
       }
     },
     [makeCallback, propsRef],
@@ -234,26 +254,21 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   }, [propsRef]);
 
   const updateStatus = React.useCallback(
-    (mounting: boolean, nextStatus: 'entering' | 'exiting' | null) => {
-      if (nextStatus !== null) {
-        cancelPendingCallback();
-        if (nextStatus === 'entering') {
-          const current = propsRef.current;
-          // If the node was just mounted, read layout before entering so the
-          // browser applies the starting styles before the animation begins.
-          if (current.mountOnEnter || current.unmountOnExit) {
-            const node = current.nodeRef.current;
-            if (node) {
-              reflow(node);
-            }
+    (mounting: boolean, nextStatus: 'entering' | 'exiting') => {
+      cancelPendingCallback();
+      if (nextStatus === 'entering') {
+        const current = propsRef.current;
+        // If the node was just mounted, read layout before entering so the
+        // browser applies the starting styles before the animation begins.
+        if (current.mountOnEnter || current.unmountOnExit) {
+          const node = current.nodeRef.current;
+          if (node) {
+            reflow(node);
           }
-          performEnter(mounting);
-        } else {
-          performExit();
         }
-      } else if (propsRef.current.unmountOnExit && statusRef.current === 'exited') {
-        statusRef.current = 'unmounted';
-        setStatus('unmounted');
+        performEnter(mounting);
+      } else {
+        performExit();
       }
     },
     [cancelPendingCallback, performEnter, performExit, propsRef],
@@ -265,7 +280,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // the second mount restarts the same transition.
   useEnhancedEffect(() => {
     mountedRef.current = true;
-    if (appearPendingRef.current !== null) {
+    if (shouldAppearOnMountRef.current) {
+      shouldAppearOnMountRef.current = false;
       updateStatus(true, 'entering');
     }
     return () => {

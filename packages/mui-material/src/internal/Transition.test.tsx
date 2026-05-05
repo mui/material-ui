@@ -97,11 +97,11 @@ describe('<Transition />', () => {
       const { setProps } = render(<TestHarness in={false} timeout={100} handlers={handlers} />);
       setProps({ in: true });
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
-      expect(handlers.onEnter!.callCount).to.be.greaterThanOrEqual(1);
-      expect(handlers.onEntering!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEnter!.callCount).to.equal(1);
+      expect(handlers.onEntering!.callCount).to.equal(1);
       clock.tick(100);
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
-      expect(handlers.onEntered!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEntered!.callCount).to.equal(1);
     });
 
     it('progresses from entered to exiting to exited on in=false', () => {
@@ -279,29 +279,46 @@ describe('<Transition />', () => {
       expect(onEntered.callCount).to.equal(1);
     });
 
+    it('omitted timeout without addEndListener falls back to 0ms timer', () => {
+      const onEntered = spy();
+      const { setProps } = render(<TestHarness in={false} handlers={{ onEntered }} />);
+      setProps({ in: true });
+      expect(onEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(onEntered.callCount).to.equal(1);
+    });
+
     it('addEndListener and timeout race: first completion wins, second is no-op', () => {
       const onEntered = spy();
       let done: (() => void) | null = null;
+      const clearTimeoutSpy = spy(globalThis, 'clearTimeout');
       const addEndListener = (_node: HTMLElement, next: () => void) => {
         done = next;
       };
-      const { setProps } = render(
-        <TestHarness
-          in={false}
-          timeout={200}
-          addEndListener={addEndListener}
-          handlers={{ onEntered }}
-        />,
-      );
-      setProps({ in: true });
-      // Calling done before the timeout should complete enter once.
-      act(() => {
-        done!();
-      });
-      expect(onEntered.callCount).to.equal(1);
-      // The later timeout should be ignored.
-      clock.tick(200);
-      expect(onEntered.callCount).to.equal(1);
+      try {
+        const { setProps } = render(
+          <TestHarness
+            in={false}
+            timeout={200}
+            addEndListener={addEndListener}
+            handlers={{ onEntered }}
+          />,
+        );
+        setProps({ in: true });
+        // Calling done before the timeout should complete enter once and clear
+        // the fallback timer instead of leaving a later no-op callback queued.
+        const clearCountBeforeDone = clearTimeoutSpy.callCount;
+        act(() => {
+          done!();
+        });
+        expect(clearTimeoutSpy.callCount).to.equal(clearCountBeforeDone + 1);
+        expect(onEntered.callCount).to.equal(1);
+        // The later timeout should be ignored.
+        clock.tick(200);
+        expect(onEntered.callCount).to.equal(1);
+      } finally {
+        clearTimeoutSpy.restore();
+      }
     });
   });
 
@@ -597,7 +614,7 @@ describe('<Transition />', () => {
       expect(handlers.onExit!.callCount).to.equal(0);
       expect(handlers.onExiting!.callCount).to.equal(0);
       expect(handlers.onExited!.callCount).to.equal(0);
-      expect(handlers.onEnter!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEnter!.callCount).to.equal(1);
       expect(handlers.onEntering!.callCount).to.equal(1);
       expect(handlers.onEntered!.callCount).to.equal(1);
     });
@@ -638,7 +655,7 @@ describe('<Transition />', () => {
 
       // Clearing the context lets the nested transition receive
       // isAppearing=true for its own first mount.
-      expect(nestedOnEnter.callCount).to.be.greaterThanOrEqual(1);
+      expect(nestedOnEnter.callCount).to.equal(1);
       expect(nestedOnEnter.args[0][0]).to.equal(true);
     });
   });
@@ -672,12 +689,12 @@ describe('<Transition />', () => {
       setProps({ shouldRender: true });
 
       // A child added after group mount should still run enter.
-      expect(handlers.onEnter!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEnter!.callCount).to.equal(1);
       // But enter callbacks should receive isAppearing=false.
       expect(handlers.onEnter!.args[0][0]).to.equal(false);
 
       clock.tick(100);
-      expect(handlers.onEntered!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEntered!.callCount).to.equal(1);
       expect(handlers.onEntered!.args[0][0]).to.equal(false);
     });
 
@@ -762,7 +779,7 @@ describe('<Transition />', () => {
       await user.click(screen.getByRole('button', { name: 'add' }));
 
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
-      expect(handlers.onEnter!.callCount).to.be.greaterThanOrEqual(1);
+      expect(handlers.onEnter!.callCount).to.equal(1);
       expect(handlers.onEnter!.args[0][0]).to.equal(false);
 
       act(() => {
