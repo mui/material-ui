@@ -7,16 +7,19 @@ import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { Ad, AdGuest } from '../Ad';
 import type { TocItem, LayoutStorageKeys } from './types';
-import { Translate, useTranslate, useUserLanguage } from '../i18n';
+import { type Translate, useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCode } from '../HighlightedCode';
 import { BrandingProvider, BrandingCssVarsProvider } from '../branding';
-import { SectionTitle, SectionTitleProps } from '../SectionTitle';
+import { SectionTitle, type SectionTitleProps } from '../SectionTitle';
 import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import { AppLayoutDocs } from '../AppLayout';
 import { getPropertiesToc, getPropsApiDefinitions } from './definitions/properties';
 import { getClassesToc, getClassApiDefinitions } from './definitions/classes';
 import { getSlotsApiDefinitions, getSlotsToc } from './definitions/slots';
-import { ApiDisplayLayout, DEFAULT_API_LAYOUT_STORAGE_KEYS } from './sections/ToggleDisplayOption';
+import {
+  type ApiDisplayLayout,
+  DEFAULT_API_LAYOUT_STORAGE_KEYS,
+} from './sections/ToggleDisplayOption';
 import { PropertiesSection } from './sections/PropertiesSection';
 import { SlotsSection } from './sections/SlotsSection';
 import { ClassesSection } from './sections/ClassesSection';
