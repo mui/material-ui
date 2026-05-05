@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -246,6 +247,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalInputProps = slotProps.input;
 
   const externalForwardedProps = {
     slots,
@@ -302,13 +304,14 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
                 ? slotProps.switchBase(ownerState)
                 : slotProps.switchBase,
           }),
-          input: {
-            role: 'switch',
-          },
-          ...(slotProps.input && {
-            input:
-              typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
-          }),
+          input: mergeSlotProps(
+            typeof externalInputProps === 'function'
+              ? externalInputProps(ownerState)
+              : externalInputProps,
+            {
+              role: 'switch',
+            },
+          ),
         }}
       />
       <TrackSlot {...trackSlotProps} />

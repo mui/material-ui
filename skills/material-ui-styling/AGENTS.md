@@ -1,6 +1,8 @@
 # Material UI styling
 
-Version 1.0.0
+Version 1.0.0 (Material UI v9)
+
+> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
 

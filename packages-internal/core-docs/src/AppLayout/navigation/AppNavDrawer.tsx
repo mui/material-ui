@@ -481,13 +481,12 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (!productIdentifier) {
-      throw new Error('docs-infra: missing productIdentifier in PageContext');
-    }
-    if (!productIdentifier.versions) {
-      throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
-    }
+  if (!productIdentifier) {
+    throw new Error('docs-infra: missing productIdentifier in PageContext');
+  }
+
+  if (!productIdentifier.versions) {
+    throw new Error('docs-infra: missing productIdentifier.versions in PageContext');
   }
 
   return (
