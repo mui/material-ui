@@ -70,10 +70,9 @@ const HCM = '@media (forced-colors: active)';
  * // Override specific tokens
  * const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
  */
-export default function enhanceHighContrast<T extends { components?: Theme['components'] | undefined }>(
-  themeInput: T,
-  tokens?: HighContrastTokens,
-): T {
+export default function enhanceHighContrast<
+  T extends { components?: Theme['components'] | undefined },
+>(themeInput: T, tokens?: HighContrastTokens): T {
   const hcTokens = { ...defaultHcTokens, ...tokens };
   const theme = { ...themeInput };
   const c = theme.components;
