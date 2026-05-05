@@ -16,7 +16,7 @@ export interface ScreenshotRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
-  /** Playwright waits for this selector before snapshotting. */
+  /** Playwright waits for this selector after navigation, before axe + screenshot. */
   waitForSelector?: string;
 }
 
@@ -29,7 +29,8 @@ export interface A11yRule {
 }
 
 /**
- * Screenshots default to enabled. Add a rule with `enabled: false` to opt out.
+ * Screenshots default to enabled. Add a rule with `enabled: false` to opt
+ * out, or `waitForSelector` to gate axe + screenshot on a specific element.
  * Trailing comments preserve the prose used in the old glob so `git grep` on a
  * reason still finds every affected demo.
  */
@@ -93,6 +94,10 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   { test: 'docs/data/material/components/steppers/TextMobileStepper', enabled: false }, // Flaky image loading
   { test: 'docs/data/material/components/tabs/AccessibleTabs1', enabled: false }, // Needs interaction
   { test: 'docs/data/material/components/tabs/AccessibleTabs2', enabled: false }, // Needs interaction
+  {
+    test: 'docs/data/material/components/table/ReactVirtualizedTable',
+    waitForSelector: '[data-index="1"]',
+  }, // Wait for virtualized rows to render
 ];
 
 /**

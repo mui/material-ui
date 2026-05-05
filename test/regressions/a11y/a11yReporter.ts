@@ -1,10 +1,12 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import chalk from 'chalk';
-import type { Reporter, TestCase, TestModule, TestSuite } from 'vitest/node';
+import { globbySync } from 'globby';
+import type { Reporter, TestCase, TestModule, TestSuite, Vitest } from 'vitest/node';
 import type { A11yMeta } from './axe';
 
 const COMPONENTS_DIR = path.resolve(__dirname, '../../../docs/data/material/components');
+const VRT_MODULE_PATH = path.resolve(__dirname, '../index.test.js');
 
 interface DemoEntry {
   passedRules: string[];
@@ -32,6 +34,12 @@ function toEntry(meta: A11yMeta): DemoEntry {
 }
 
 export default class A11yReporter implements Reporter {
+  private filtered = false;
+
+  onInit(ctx: Vitest) {
+    this.filtered = ctx.config.testNamePattern != null;
+  }
+
   onTestRunEnd(testModules: ReadonlyArray<TestModule>) {
     const entries: A11yMeta[] = [];
     for (const mod of testModules) {
@@ -41,10 +49,6 @@ export default class A11yReporter implements Reporter {
           entries.push(meta);
         }
       }
-    }
-
-    if (entries.length === 0) {
-      return;
     }
 
     const bySlug = new Map<string, A11yMeta[]>();
@@ -68,6 +72,24 @@ export default class A11yReporter implements Reporter {
         path.join(slugDir, `${slug}.a11y.json`),
         `${JSON.stringify(file, null, 2)}\n`,
       );
+    }
+
+    // Only prune when this run is authoritative for the full enrolment set:
+    // VRT module must have actually executed, and no `-t` filter narrowed it.
+    // Anything else (unrelated unit tests, filtered slug subset) leaves
+    // untouched slugs' files alone since we have no signal about them.
+    const ranVrtSuite = testModules.some((m) => m.moduleId === VRT_MODULE_PATH);
+    if (ranVrtSuite && !this.filtered) {
+      for (const file of globbySync('*/*.a11y.json', { cwd: COMPONENTS_DIR, absolute: true })) {
+        const slug = path.basename(path.dirname(file));
+        if (!bySlug.has(slug)) {
+          fs.unlinkSync(file);
+        }
+      }
+    }
+
+    if (entries.length === 0) {
+      return;
     }
 
     const slugs = [...bySlug.keys()].sort();
