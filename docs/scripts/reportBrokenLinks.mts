@@ -39,44 +39,98 @@ async function main() {
       '[id^="demo-"] a[href^="#outlined-buttons"]',
       '[id^="demo-"] a[href^="#foo"]',
     ],
-    htmlValidate: {
-      extends: ['mui:recommended'],
-      rules: {
-        // Prism.js outputs raw ">" in syntax-highlighted code blocks.
-        // https://github.com/PrismJS/prism/issues/2516
-        // https://gitlab.com/html-validate/html-validate/-/work_items/348
-        'no-raw-characters': 'off',
-        // TODO: re-enable and fix violations (mostly <style>/<div> inside <span>/<div>).
-        'element-permitted-content': 'off',
-        // html-validate incorrectly requires `imagesizes` on `<link rel="preload"
-        // as="image" imagesrcset="... 2x, ... 3x">`. Per the HTML spec, `imagesizes`
-        // is only required when `imagesrcset` uses *width* descriptors; with density
-        // descriptors (2x, 3x) it must be omitted.
-        // Reported: https://gitlab.com/html-validate/html-validate/-/work_items/352
-        'element-required-attributes': 'off',
-        // TODO: re-enable after an a11y pass on demos. Many Slider/Radio/Switch
-        // demos on styling-focused pages render a native <input> without a label.
-        'input-missing-label': 'off',
-        // TODO: remaining violations are infra-level (same demo rendered
-        // multiple times gets duplicate anchor IDs, and the blog template
-        // has desktop + mobile search with the same id="search").
-        'no-dup-id': 'off',
-        // Portaled elements (Menu, Select, Autocomplete listbox) and Base UI
-        // components render aria-controls/aria-labelledby targets only after
-        // client hydration, so they're missing from the static HTML.
-        'no-missing-references': 'warn',
-        // Demos use Typography variant="h6" for visual styling (renders <h6>),
-        // some pages lack an <h1>, and typography demos intentionally show
-        // all heading variants. Not semantic heading issues.
-        'heading-level': 'warn',
-        // MUI's Collapse and TreeView components wrap <li> children in <div>
-        // elements, breaking the required <ul>/<ol> parentage.
-        'element-permitted-parent': 'warn',
-        // Some demos use aria-label on elements without an appropriate role
-        // (Avatar <div>, FormGroup <div>), and templates have similar issues.
-        'aria-label-misuse': 'warn',
+    htmlValidate: [
+      // Default — applies to every page.
+      {
+        config: {
+          rules: {
+            // Prism.js outputs raw ">" in syntax-highlighted code blocks.
+            // https://github.com/PrismJS/prism/issues/2516
+            // https://gitlab.com/html-validate/html-validate/-/work_items/348
+            'no-raw-characters': 'off',
+            // TODO: re-enable and fix violations (mostly <style>/<div> inside <span>/<div>).
+            'element-permitted-content': 'off',
+            // html-validate incorrectly requires `imagesizes` on `<link rel="preload"
+            // as="image" imagesrcset="... 2x, ... 3x">`. Per the HTML spec, `imagesizes`
+            // is only required when `imagesrcset` uses *width* descriptors; with density
+            // descriptors (2x, 3x) it must be omitted.
+            // Reported: https://gitlab.com/html-validate/html-validate/-/work_items/352
+            'element-required-attributes': 'off',
+            // TODO: re-enable after an a11y pass on demos. Many Slider/Radio/Switch
+            // demos on styling-focused pages render a native <input> without a label.
+            'input-missing-label': 'off',
+            // TODO: remaining violations are infra-level (same demo rendered
+            // multiple times gets duplicate anchor IDs, and the blog template
+            // has desktop + mobile search with the same id="search").
+            'no-dup-id': 'off',
+          },
+        },
       },
-    },
+      // Demos use Typography variant="h6" for visual styling (renders <h6>),
+      // some pages lack an <h1>, and typography demos intentionally show all
+      // heading variants. Blog/marketing templates also start at <h2>.
+      {
+        path: [
+          /^\/blog(\/|$|\?)/,
+          '/core',
+          '/material-ui',
+          '/careers',
+          '/about',
+          '/pricing',
+          '/material-ui/customization/typography',
+          '/material-ui/customization/css-theme-variables/native-color',
+          '/material-ui/react-typography',
+          '/material-ui/react-popper',
+          '/material-ui/getting-started/templates/checkout',
+          '/material-ui/getting-started/templates/marketing-page',
+          '/material-ui/getting-started/templates/blog',
+        ],
+        config: { rules: { 'heading-level': 'warn' } },
+      },
+      // MUI's Collapse and TreeView wrap <li> children in <div> elements,
+      // breaking the required <ul>/<ol> parentage.
+      {
+        path: [
+          '/system/getting-started/the-sx-prop',
+          '/material-ui/transitions',
+          '/material-ui/getting-started/templates/dashboard',
+        ],
+        config: { rules: { 'element-permitted-parent': 'warn' } },
+      },
+      // Some demos use aria-label/aria-labelledby on elements without an
+      // appropriate role (Avatar <div>, FormGroup <div>, Grid templates).
+      {
+        path: [
+          '/material-ui/react-app-bar',
+          '/material-ui/react-grid',
+          '/system/react-grid',
+          '/material-ui/react-checkbox',
+          '/material-ui/react-select',
+          '/material-ui/react-switch',
+          '/material-ui/react-divider',
+          '/material-ui/react-list',
+          '/material-ui/react-card',
+          '/material-ui/integrations/routing',
+          '/material-ui/getting-started/templates/marketing-page',
+          '/material-ui/getting-started/templates/blog',
+        ],
+        config: { rules: { 'aria-label-misuse': 'warn' } },
+      },
+      // Portaled elements (Menu, Select, Autocomplete listbox) and Base UI
+      // components render aria-controls/aria-labelledby targets only after
+      // client hydration, so they're missing from the static HTML.
+      {
+        path: [
+          '/material-ui/react-app-bar',
+          '/material-ui/react-number-field',
+          '/material-ui/customization/overriding-component-structure',
+          '/material-ui/react-dialog',
+          '/material-ui/react-menu',
+          '/material-ui/getting-started/templates/dashboard',
+        ],
+        config: { rules: { 'no-missing-references': 'warn' } },
+      },
+    ],
     ignores: [
       {
         // The links checker uses standard github slugger to check if the anchor exists. But the MUI docs use
