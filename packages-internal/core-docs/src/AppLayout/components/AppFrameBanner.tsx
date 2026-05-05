@@ -42,12 +42,10 @@ export function AppFrameBanner() {
     href = '/blog/introducing-mui-v9/';
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (message.length > 100) {
-      throw new Error(
-        `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
-      );
-    }
+  if (message.length > 100) {
+    throw new Error(
+      `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
+    );
   }
 
   if (message === '' || href === '') {
