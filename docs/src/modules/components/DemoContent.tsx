@@ -545,9 +545,12 @@ const CodeViewer = styled('div', {
     outline: 0,
   },
   // Overlay matches the legacy DemoEditor "Press Enter to start editing" hint.
+  // Hidden by default; revealed only while the wrapper has keyboard focus
+  // (`data-editable-armed` is added by `<Pre>` on keyboard focus and removed
+  // on blur or once the user presses Enter to engage editing).
   '& .editable-code-wrapper .editable-code-overlay': {
     position: 'absolute',
-    top: theme.spacing(1),
+    top: 0,
     left: '50%',
     transform: 'translateX(-50%)',
     padding: theme.spacing(0.2, 1, 0.5, 1),
@@ -557,26 +560,24 @@ const CodeViewer = styled('div', {
     color: '#FFF',
     borderRadius: 6,
     fontSize: theme.typography.pxToRem(13),
-    // Use `outline` (instead of `box-shadow`) for the focus ring so it paints
-    // purely outside the popup and never stacks under the popup's own
-    // background/border. Animate the popup slide/fade and the ring together.
+    // Animate the popup slide/fade together with its focus ring. `outline`
+    // (rather than `box-shadow`) is used so the ring paints purely outside
+    // the popup and never stacks under the popup's own background/border.
     transition: 'top 0.3s, opacity 0.3s, outline-color 0.3s, outline-width 0.3s',
     outlineStyle: 'solid',
-    outlineColor: alpha(theme.palette.primary[500], 0.8),
-    outlineWidth: 3,
+    outlineColor: alpha(theme.palette.primary[500], 0),
+    outlineWidth: 0,
     outlineOffset: 0,
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+    opacity: 0,
     pointerEvents: 'none',
     zIndex: 1,
   },
-  // Hide the overlay when the wrapper isn't armed. Animates `top`/`opacity`
-  // and collapses the focus ring to 0 so it grows in alongside the popup.
-  '& .editable-code-wrapper:not([data-editable-armed]) .editable-code-overlay': {
-    top: 0,
-    opacity: 0,
-    outlineColor: alpha(theme.palette.primary[500], 0),
-    outlineWidth: 0,
-    pointerEvents: 'none',
+  '& .editable-code-wrapper[data-editable-armed] .editable-code-overlay': {
+    top: theme.spacing(1),
+    opacity: 1,
+    outlineColor: alpha(theme.palette.primary[500], 0.8),
+    outlineWidth: 3,
   },
   '& .editable-code-wrapper .editable-code-overlay kbd': {
     padding: theme.spacing(0.2, 0.4),
