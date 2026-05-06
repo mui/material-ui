@@ -73,52 +73,40 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-started/fonts) with Material UI, create a new file with the `'use client';` directive.
-Then create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
-
-```js title="src/theme.ts"
-'use client';
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  typography: {
-    fontFamily: 'var(--font-roboto)',
-  },
-});
-
-export default theme;
-```
-
-Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
+To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-started/fonts) with Material UI, add the font's `className` to the `<html>` element in `src/app/layout.tsx`:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 +import { Roboto } from 'next/font/google';
-+import { ThemeProvider } from '@mui/material/styles';
-+import theme from '../theme';
 
 +const roboto = Roboto({
 +  weight: ['300', '400', '500', '700'],
 +  subsets: ['latin'],
 +  display: 'swap',
-+  variable: '--font-roboto',
 +});
 
  export default function RootLayout(props) {
    const { children } = props;
    return (
-+    <html lang="en" className={roboto.variable}>
++    <html lang="en" className={roboto.className}>
        <body>
           <AppRouterCacheProvider>
-+           <ThemeProvider theme={theme}>
-              {children}
-+           </ThemeProvider>
+              {props.children}
           </AppRouterCacheProvider>
        </body>
      </html>
    );
  }
 ```
+
+This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
+Next.js preloads and self-hosts the font at build time, so the browser uses it for any element that references `"Roboto"` — including Material UI components.
+
+:::warning
+Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
+Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
+A CSS variable bypasses this check and removes letter-spacing from all typography variants.
+:::
 
 To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
 
@@ -435,27 +423,19 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-started/fonts) with Material UI, open `pages/_app.tsx` and create a theme using `var(--font-roboto)` as a value for the `typography.fontFamily` field.
+To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-started/fonts) with Material UI, open `pages/_app.tsx` and add the font's `className` to the root element:
 
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
  import Head from 'next/head';
  import { AppProps } from 'next/app';
  import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
-+import { ThemeProvider, createTheme } from '@mui/material/styles';
 +import { Roboto } from 'next/font/google';
 
 +const roboto = Roboto({
 +  weight: ['300', '400', '500', '700'],
 +  subsets: ['latin'],
 +  display: 'swap',
-+  variable: '--font-roboto',
-+});
-
-+const theme = createTheme({
-+  typography: {
-+    fontFamily: 'var(--font-roboto)',
-+  },
 +});
 
  export default function MyApp(props: AppProps) {
@@ -463,15 +443,21 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-s
   return (
     <AppCacheProvider {...props}>
       <Head>...</Head>
-+     <ThemeProvider theme={theme}>
-+       <main className={roboto.variable}>
++     <main className={roboto.className}>
           <Component {...pageProps} />
-+       </main>
-+     </ThemeProvider>
++     </main>
     </AppCacheProvider>
   );
  }
 ```
+
+This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
+
+:::warning
+Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
+Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
+A CSS variable bypasses this check and removes letter-spacing from all typography variants.
+:::
 
 To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
 
