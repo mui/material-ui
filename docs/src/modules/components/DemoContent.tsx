@@ -10,6 +10,7 @@ import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/Tog
 import SvgIcon from '@mui/material/SvgIcon';
 import Tooltip from '@mui/material/Tooltip';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
@@ -916,6 +917,13 @@ export default function DemoContent(props: ContentProps<object>) {
           <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton onClick={demo.resetFocus} sx={{ borderRadius: 1 }}>
               <ResetFocusIcon />
+            </IconButton>
+          </DemoTooltip>
+
+          {/* Reset demo */}
+          <DemoTooltip title={t('resetDemo')} placement="bottom">
+            <IconButton onClick={demo.reset} sx={{ borderRadius: 1 }}>
+              <RefreshRoundedIcon />
             </IconButton>
           </DemoTooltip>
         </Box>
