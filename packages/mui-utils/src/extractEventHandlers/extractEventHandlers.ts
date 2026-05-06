@@ -13,11 +13,11 @@ function extractEventHandlers(object: Record<string, any> | undefined): EventHan
 
   const result: EventHandlers = {};
 
-  Object.keys(object)
-    .filter((prop) => prop.match(/^on[A-Z]/) && typeof object[prop] === 'function')
-    .forEach((prop) => {
+  for (const prop of Object.keys(object)) {
+    if (prop.match(/^on[A-Z]/) && typeof object[prop] === 'function') {
       result[prop] = object[prop];
-    });
+    }
+  }
 
   return result;
 }
