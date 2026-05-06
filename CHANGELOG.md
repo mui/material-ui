@@ -1,5 +1,40 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.11
+
+<!-- generated comparing v7.3.10..v7.x -->
+
+_May 6, 2026_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@7.3.11`
+
+- [autocomplete] Fix highlight sync and scroll preservation (#48350) @mj12albert
+- [autocomplete] Fix popper rendering issues (#48343) @mj12albert
+- [autocomplete] Improve highlight tracking and selection state (#48318) @mj12albert
+- [button] Fix `startIcon` alignment (#48339) @mj12albert
+- [button] Remove duplicated className entries (#48284) @silviuaavram
+- [checkbox] Set `aria-checked=mixed` when indeterminate (#48286) @mj12albert
+- [dialog][drawer][focus trap] Fix initial focus target (#48324) @mj12albert
+- [drawer] Fix transition jump (#48340) @mj12albert
+- [input] Fix layout shift with display: flex (#48359) @oliviertassinari
+- [inputs] Fix autofocus in SSR environment (#48307) @mj12albert
+- [popper] Persist positioning styles when popperOptions changes reference (#48302) @mj12albert
+- [switch] Fix incorrect `role` with `slotProps.input` (#48472) @mj12albert
+- [utils] Add shadow dom utils (#48309) @mj12albert
+
+### Docs
+
+- [docs] Update banner to announce v9 (#48299) @siriwatknp
+- [docs] Add v9 in the versions select in v7.mui.com (#48233) @alexfauquette
+
+### Core
+
+- [internal] Update some host-reference entries (#48225) @silviuaavram
+
+All contributors of this release in alphabetical order: @alexfauquette, @mj12albert, @oliviertassinari, @silviuaavram, @siriwatknp
+
 ## 7.3.10
 
 <!-- generated comparing v7.3.9..v7.x -->
