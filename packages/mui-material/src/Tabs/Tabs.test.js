@@ -937,11 +937,11 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       const elementCallbacks = new Map();
       const MockResizeObserver = class {
         constructor(callback) {
-          this._callback = callback;
+          this.resizeCallback = callback;
         }
 
         observe(el) {
-          elementCallbacks.set(el, this._callback);
+          elementCallbacks.set(el, this.resizeCallback);
         }
 
         disconnect() {}
