@@ -174,7 +174,7 @@ describe('<Divider />', () => {
       // presentation is the only valid aria role
       render(<Divider role="none" data-testid="divider" />);
       expect(screen.queryByRole('separator')).to.equal(null);
-      expect(screen.getByTestId('divider')).to.have.attribute('role', 'presentation');
+      expect(screen.getByTestId('divider')).to.have.attribute('role', 'none');
       expect(screen.getByTestId('divider')).not.to.have.attribute('aria-orientation');
     });
   });
