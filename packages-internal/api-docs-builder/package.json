@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-api-docs-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
     "typescript": "tsc -p tsconfig.json",

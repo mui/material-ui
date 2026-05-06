@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-core-docs",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "license": "MIT",
@@ -31,16 +31,16 @@
     "@babel/runtime": "^7.29.2",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
-    "lz-string": "^1.5.0",
     "clsx": "^2.1.1",
     "es-toolkit": "^1.46.1",
     "fg-loadcss": "^3.1.0",
+    "lz-string": "^1.5.0",
     "nprogress": "^0.2.0",
     "stylis": "catalog:docs"
   },
   "devDependencies": {
-    "@mui/internal-api-docs-builder": "workspace:*",
     "@mui/icons-material": "workspace:*",
+    "@mui/internal-api-docs-builder": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/chai": "5.2.3",
     "@types/fg-loadcss": "3.1.3",
