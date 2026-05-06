@@ -603,6 +603,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
 
     let resizeObserver;
+    let scrollerResizeObserver;
 
     /**
      * @type {MutationCallback}
@@ -630,6 +631,19 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       Array.from(tabListRef.current.children).forEach((child) => {
         resizeObserver.observe(child);
       });
+
+      // The scroller shrinks when scroll buttons appear and grows when they hide (auto mode).
+      // This can push the selected tab out of view without changing indicatorStyle, which is
+      // the normal trigger for scrollSelectedIntoView. Observing the scroller element ensures
+      // we re-scroll whenever its size changes (e.g. scroll buttons toggling in auto mode).
+      if (scrollable && scrollButtons !== false) {
+        scrollerResizeObserver = new ResizeObserver(() => {
+          if (tabsRef.current) {
+            scrollSelectedIntoView(false);
+          }
+        });
+        scrollerResizeObserver.observe(tabsRef.current);
+      }
     }
 
     if (typeof MutationObserver !== 'undefined') {
@@ -644,8 +658,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       win.removeEventListener('resize', handleResize);
       mutationObserver?.disconnect();
       resizeObserver?.disconnect();
+      scrollerResizeObserver?.disconnect();
     };
-  }, [updateIndicatorState, updateScrollButtonState]);
+  }, [updateIndicatorState, updateScrollButtonState, scrollable, scrollButtons, scrollSelectedIntoView]);
 
   /**
    * Toggle visibility of start and end scroll buttons
