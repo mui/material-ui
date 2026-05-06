@@ -13,6 +13,7 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled } from '@mui/material/styles';
+import { blueDark } from '@mui/docs/branding';
 import { useTranslate } from '@mui/docs/i18n';
 import DemoContext from './DemoContext';
 import type { SandboxConfig } from './DemoContext';
@@ -393,6 +394,13 @@ const CodeViewer = styled('div', {
     fontSize: '0.8125rem',
     lineHeight: '1.5',
   },
+  // When the editable `<pre>` is focused (after pressing Enter), use the
+  // brand-blue focus ring instead of the browser default (which is white in
+  // dark color schemes).
+  '& .editable-code-wrapper pre:focus, & .editable-code-wrapper pre:focus-visible': {
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.8)}`,
+    outlineOffset: 0,
+  },
 
   // Cap height only on non-collapsible blocks; collapsible blocks animate their
   // own height via frame transitions and need clean overflow handling.
@@ -534,33 +542,49 @@ const CodeViewer = styled('div', {
     borderRadius: 8,
   },
   '& .editable-code-wrapper:focus-visible': {
-    outline: `2px solid ${theme.palette.primary.main}`,
-    outlineOffset: -2,
+    outline: 0,
   },
+  // Overlay matches the legacy DemoEditor "Press Enter to start editing" hint.
   '& .editable-code-wrapper .editable-code-overlay': {
     position: 'absolute',
-    top: 8,
+    top: theme.spacing(1),
     left: '50%',
     transform: 'translateX(-50%)',
-    padding: '4px 10px',
+    padding: theme.spacing(0.2, 1, 0.5, 1),
+    border: '1px solid',
+    borderColor: blueDark[600],
+    backgroundColor: blueDark[700],
+    color: '#FFF',
     borderRadius: 6,
-    background: 'rgba(28, 24, 48, 0.92)',
-    color: '#fff',
-    fontSize: 12,
-    lineHeight: 1.4,
+    fontSize: theme.typography.pxToRem(13),
+    // Use `outline` (instead of `box-shadow`) for the focus ring so it paints
+    // purely outside the popup and never stacks under the popup's own
+    // background/border. Animate the popup slide/fade and the ring together.
+    transition: 'top 0.3s, opacity 0.3s, outline-color 0.3s, outline-width 0.3s',
+    outlineStyle: 'solid',
+    outlineColor: alpha(theme.palette.primary[500], 0.8),
+    outlineWidth: 3,
+    outlineOffset: 0,
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
     pointerEvents: 'none',
     zIndex: 1,
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+  },
+  // Hide the overlay when the wrapper isn't armed. Animates `top`/`opacity`
+  // and collapses the focus ring to 0 so it grows in alongside the popup.
+  '& .editable-code-wrapper:not([data-editable-armed]) .editable-code-overlay': {
+    top: 0,
+    opacity: 0,
+    outlineColor: alpha(theme.palette.primary[500], 0),
+    outlineWidth: 0,
+    pointerEvents: 'none',
   },
   '& .editable-code-wrapper .editable-code-overlay kbd': {
-    display: 'inline-block',
-    padding: '1px 6px',
-    margin: '0 2px',
-    border: '1px solid rgba(255, 255, 255, 0.35)',
-    borderRadius: 4,
-    fontFamily: 'inherit',
-    fontSize: 11,
-    background: 'rgba(255, 255, 255, 0.1)',
+    padding: theme.spacing(0.2, 0.4),
+    backgroundColor: blueDark[500],
+    fontSize: theme.typography.pxToRem(11),
+    borderRadius: 6,
+    border: '1px solid',
+    borderColor: blueDark[400],
   },
 
   // Truncated visible frame: only round top — bottom fades out via overlay.
