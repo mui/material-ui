@@ -18,7 +18,7 @@ The widget is useful for setting the value of a single-line textbox in one of tw
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Combo box
 
@@ -180,12 +180,6 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/useAutocomplete';
-```
-
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
-
-```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
@@ -238,6 +232,12 @@ Before you can start using the Google Maps JavaScript API and Places API, you ne
 
 This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
+
+### Infinite loading
+
+This demo uses `@tanstack/react-query` to additively fetch new data onto existing `options` upon reaching the end of the current list. The list is virtualized using `@tanstack/react-virtual`.
+
+{{"demo": "InfiniteLoading.js"}}
 
 ## Single value rendering
 
@@ -420,9 +420,12 @@ In the event you want the avoid autofill, you can try the following:
   ```jsx
   <TextField
     {...params}
-    inputProps={{
-      ...params.inputProps,
-      autoComplete: 'new-password',
+    slotProps={{
+      ...params.slotProps,
+      htmlInput: {
+        ...params.slotProps.htmlInput,
+        autoComplete: 'new-password',
+      },
     }}
   />
   ```

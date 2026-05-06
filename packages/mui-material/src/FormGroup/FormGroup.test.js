@@ -14,7 +14,7 @@ describe('<FormGroup />', () => {
     muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { row: true },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should render a div with a div child', () => {

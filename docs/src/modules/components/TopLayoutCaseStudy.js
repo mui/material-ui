@@ -5,16 +5,16 @@ import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
+
+import { BrandingCssVarsProvider } from '@mui/internal-core-docs/branding';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import AppContainer from 'docs/src/modules/components/AppContainer';
+import { AppContainer, AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import ROUTES from 'docs/src/route';
-import { Link } from '@mui/docs/Link';
+import { RichMarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
+import { pathnameToLanguage } from '@mui/internal-core-docs/helpers';
+import { ROUTES } from '@mui/internal-core-docs/constants';
+import { Link } from '@mui/internal-core-docs/Link';
 
 const classes = {
   back: 'TopLayoutCaseStudy-back',
@@ -168,15 +168,13 @@ export default function TopLayoutCaseStudy(props) {
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card = `/static/blog/${slug}/card.png`;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (headers.manualCard === undefined) {
-      throw new Error(
-        [
-          `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
-          `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
-        ].join('\n'),
-      );
-    }
+  if (headers.manualCard === undefined) {
+    throw new Error(
+      [
+        `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
+        `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
+      ].join('\n'),
+    );
   }
 
   return (

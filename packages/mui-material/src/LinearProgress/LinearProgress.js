@@ -90,23 +90,9 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, variant],
-    dashed: ['dashed', `dashedColor${capitalize(color)}`],
-    bar1: [
-      'bar',
-      'bar1',
-      `barColor${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
-      variant === 'determinate' && 'bar1Determinate',
-      variant === 'buffer' && 'bar1Buffer',
-    ],
-    bar2: [
-      'bar',
-      'bar2',
-      variant !== 'buffer' && `barColor${capitalize(color)}`,
-      variant === 'buffer' && `color${capitalize(color)}`,
-      (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
-      variant === 'buffer' && 'bar2Buffer',
-    ],
+    dashed: ['dashed'],
+    bar1: ['bar', 'bar1'],
+    bar2: ['bar', 'bar2', variant === 'buffer' && `color${capitalize(color)}`],
   };
 
   return composeClasses(slots, getLinearProgressUtilityClass, classes);
@@ -184,11 +170,6 @@ const LinearProgressRoot = styled('span', {
 const LinearProgressDashed = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Dashed',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [styles.dashed, styles[`dashedColor${capitalize(ownerState.color)}`]];
-  },
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
@@ -228,17 +209,7 @@ const LinearProgressBar1 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar1',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles.bar1,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar1Indeterminate,
-      ownerState.variant === 'determinate' && styles.bar1Determinate,
-      ownerState.variant === 'buffer' && styles.bar1Buffer,
-    ];
+    return [styles.bar, styles.bar1];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -305,16 +276,7 @@ const LinearProgressBar2 = styled('span', {
   name: 'MuiLinearProgress',
   slot: 'Bar2',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.bar,
-      styles.bar2,
-      styles[`barColor${capitalize(ownerState.color)}`],
-      (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
-        styles.bar2Indeterminate,
-      ownerState.variant === 'buffer' && styles.bar2Buffer,
-    ];
+    return [styles.bar, styles.bar2];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -395,6 +357,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   const {
     className,
     color = 'primary',
+    max: maxProp,
+    min: minProp,
     value,
     valueBuffer,
     variant = 'indeterminate',
@@ -406,6 +370,20 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     variant,
   };
 
+  if (process.env.NODE_ENV !== 'production') {
+    if (
+      ['indeterminate', 'query'].includes(variant) &&
+      (minProp !== undefined || maxProp !== undefined)
+    ) {
+      console.warn(
+        `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' or 'query' variant. These props will have no effect.`,
+      );
+    }
+  }
+
+  const min = minProp ?? 0;
+  const max = maxProp ?? 100;
+
   const classes = useUtilityClasses(ownerState);
   const isRtl = useRtl();
 
@@ -414,28 +392,47 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
-      rootProps['aria-valuenow'] = Math.round(value);
-      rootProps['aria-valuemin'] = 0;
-      rootProps['aria-valuemax'] = 100;
-      let transform = value - 100;
+      if (process.env.NODE_ENV !== 'production') {
+        if (value < min || value > max || min >= max) {
+          console.error(
+            `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+          );
+        }
+      }
+
+      const range = max - min;
+      let transform = ((value - min) / range) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar1.transform = `translateX(${transform}%)`;
+      inlineStyles.bar1.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
+
+      rootProps['aria-valuenow'] = value;
+      rootProps['aria-valuemin'] = min;
+      rootProps['aria-valuemax'] = max;
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a value prop ' +
-          'when using the determinate or buffer variant of LinearProgress .',
+          'when using the determinate or buffer variant of LinearProgress.',
       );
     }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      let transform = (valueBuffer || 0) - 100;
+      if (process.env.NODE_ENV !== 'production') {
+        if (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max) {
+          console.error(
+            `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
+          );
+        }
+      }
+
+      const range = max - min;
+      let transform = ((valueBuffer - min) / range) * 100 - 100;
       if (isRtl) {
         transform = -transform;
       }
-      inlineStyles.bar2.transform = `translateX(${transform}%)`;
+      inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
     } else if (process.env.NODE_ENV !== 'production') {
       console.error(
         'MUI: You need to provide a valueBuffer prop ' +
@@ -496,6 +493,16 @@ LinearProgress.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The maximum value for the progress indicator for the determinate and buffer variants.
+   * @default 100
+   */
+  max: PropTypes.number,
+  /**
+   * The minimum value for the progress indicator for the determinate and buffer variants.
+   * @default 0
+   */
+  min: PropTypes.number,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -505,12 +512,12 @@ LinearProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between `min` and `max`.
    */
   value: PropTypes.number,
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between `min` and `max`.
    */
   valueBuffer: PropTypes.number,
   /**

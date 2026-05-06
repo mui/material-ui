@@ -1,4 +1,4 @@
-import type { MuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from '@mui/internal-core-docs/MuiPage';
 import pagesApi from 'docs/data/system/pagesApi';
 
 const pages: readonly MuiPage[] = [

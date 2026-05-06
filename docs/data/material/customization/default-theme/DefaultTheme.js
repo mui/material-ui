@@ -4,11 +4,11 @@ import Divider from '@mui/material/Divider';
 import { createTheme, styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useTranslate } from '@mui/docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import ThemeViewer, {
   useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
-import { blue, grey } from '@mui/docs/branding';
+import { blue, grey } from '@mui/internal-core-docs/branding';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {

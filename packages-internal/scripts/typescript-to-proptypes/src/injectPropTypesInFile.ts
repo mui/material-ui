@@ -174,6 +174,7 @@ function createBabelPlugin({
   let alreadyImported = false;
   const originalPropTypesPaths = new Map<string, babel.NodePath>();
   const previousPropTypesSources = new Map<string, Map<string, string>>();
+  const previousPropTypesJsDocs = new Map<string, Map<string, string>>();
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
@@ -185,11 +186,14 @@ function createBabelPlugin({
 
     const previousPropTypesSource =
       previousPropTypesSources.get(nodeName) || new Map<string, string>();
+    const previousPropTypesJsDoc =
+      previousPropTypesJsDocs.get(nodeName) || new Map<string, string>();
 
     const source = generatePropTypes(props, {
       ...otherOptions,
       importedName: importName,
       previousPropTypesSource,
+      previousPropTypesJsDoc,
       reconcilePropTypes,
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
     });
@@ -269,6 +273,9 @@ function createBabelPlugin({
               const previousPropTypesSource = new Map<string, string>();
               previousPropTypesSources.set(componentName, previousPropTypesSource);
 
+              const previousPropTypesJsDoc = new Map<string, string>();
+              previousPropTypesJsDocs.set(componentName, previousPropTypesJsDoc);
+
               let maybeObjectExpression = node.expression.right;
               // Component.propTypes = {} as any;
               //                       ^^^^^^^^^ expression.right
@@ -286,14 +293,37 @@ function createBabelPlugin({
                 maybeObjectExpression.properties.forEach((property) => {
                   if (babelTypes.isObjectProperty(property)) {
                     const validatorSource = code.slice(property.value.start, property.value.end);
+
+                    let propName: string | undefined;
                     if (babelTypes.isIdentifier(property.key)) {
-                      previousPropTypesSource.set(property.key.name, validatorSource);
+                      propName = property.key.name;
                     } else if (babelTypes.isStringLiteral(property.key)) {
-                      previousPropTypesSource.set(property.key.value, validatorSource);
+                      propName = property.key.value;
                     } else {
                       console.warn(
                         `${state.filename}: Possibly missed original proTypes source. Can only determine names for 'Identifiers' and 'StringLiteral' but received '${property.key.type}'.`,
                       );
+                    }
+
+                    if (propName !== undefined) {
+                      previousPropTypesSource.set(propName, validatorSource);
+
+                      const leadingComments = property.leadingComments;
+                      if (leadingComments) {
+                        const jsDocComment = leadingComments.find(
+                          (c) => c.type === 'CommentBlock' && c.value.startsWith('*'),
+                        );
+                        if (
+                          jsDocComment &&
+                          jsDocComment.start != null &&
+                          jsDocComment.end != null
+                        ) {
+                          previousPropTypesJsDoc.set(
+                            propName,
+                            code.slice(jsDocComment.start, jsDocComment.end),
+                          );
+                        }
+                      }
                     }
                   }
                 });

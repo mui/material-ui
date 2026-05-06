@@ -8,7 +8,8 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
 import isMuiElement from '../utils/isMuiElement';
-import StepperContext from '../Stepper/StepperContext';
+import { useRovingTabIndexItem } from '../utils/useRovingTabIndex';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
 
@@ -55,12 +56,29 @@ const StepButtonRoot = styled(ButtonBase, {
   ],
 });
 
+const RovingStepButton = React.forwardRef(function RovingStepButton(props, ref) {
+  // eslint-disable-next-line react/prop-types
+  const { children, disabled, index, ...other } = props;
+
+  const rovingItemProps = useRovingTabIndexItem({
+    id: index,
+    ref,
+    disabled,
+  });
+
+  return (
+    <StepButtonRoot disabled={disabled} {...rovingItemProps} {...other}>
+      {children}
+    </StepButtonRoot>
+  );
+});
+
 const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStepButton' });
   const { children, className, icon, optional, ...other } = props;
 
-  const { disabled, active } = React.useContext(StepContext);
-  const { orientation } = React.useContext(StepperContext);
+  const { disabled, active, index } = React.useContext(StepContext);
+  const { orientation, totalSteps, isTabList } = useStepperContext();
 
   const ownerState = { ...props, orientation };
 
@@ -77,17 +95,30 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
     <StepLabel {...childProps}>{children}</StepLabel>
   );
 
+  const stepButtonProps = {
+    internalNativeButton: true,
+    focusRipple: true,
+    disabled,
+    TouchRippleProps: { className: classes.touchRipple },
+    className: clsx(classes.root, className),
+    ownerState,
+    'aria-selected': active,
+    'aria-posinset': index + 1,
+    'aria-setsize': totalSteps,
+    role: 'tab',
+    ...other,
+  };
+
+  if (isTabList) {
+    return (
+      <RovingStepButton {...stepButtonProps} index={index} ref={ref}>
+        {child}
+      </RovingStepButton>
+    );
+  }
+
   return (
-    <StepButtonRoot
-      focusRipple
-      disabled={disabled}
-      TouchRippleProps={{ className: classes.touchRipple }}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      aria-current={active ? 'step' : undefined}
-      {...other}
-    >
+    <StepButtonRoot ref={ref} tabIndex={active ? 0 : -1} {...stepButtonProps}>
       {child}
     </StepButtonRoot>
   );

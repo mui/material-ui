@@ -27,13 +27,7 @@ describe('<Slide />', () => {
       classes: {},
       inheritComponent: Transition,
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeDefaultProps',
-        'themeStyleOverrides',
-        'themeVariants',
-      ],
+      skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
 
@@ -289,7 +283,6 @@ describe('<Slide />', () => {
     const FakeDiv = React.forwardRef(({ rect, ...props }, ref) => {
       const stubBoundingClientRect = (element) => {
         if (element !== null) {
-          element.fakeTransform = 'none';
           try {
             stub(element, 'getBoundingClientRect').callsFake(() => {
               const r = {
@@ -445,6 +438,56 @@ describe('<Slide />', () => {
     });
 
     describe('handleExiting()', () => {
+      const draggedOffset = 170;
+      const elementTop = 200;
+
+      const TouchDraggedFakeDiv = React.forwardRef(function TouchDraggedFakeDiv(props, ref) {
+        const [translateY, setTranslateY] = React.useState(0);
+        const startYRef = React.useRef(null);
+        const stubbedElementRef = React.useRef(null);
+        const stubBoundingClientRect = React.useCallback((element) => {
+          if (element === null || stubbedElementRef.current === element) {
+            return;
+          }
+
+          stubbedElementRef.current = element;
+          stub(element, 'getBoundingClientRect').callsFake(() => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 800,
+            top: elementTop,
+            bottom: 500,
+          }));
+        }, []);
+        const handleRef = useForkRef(ref, stubBoundingClientRect);
+
+        return (
+          <div
+            data-testid="drag-target"
+            {...props}
+            ref={handleRef}
+            onPointerDown={(event) => {
+              startYRef.current = event.clientY;
+            }}
+            onPointerMove={(event) => {
+              if (startYRef.current !== null) {
+                setTranslateY(event.clientY - startYRef.current);
+              }
+            }}
+            onPointerUp={() => {
+              startYRef.current = null;
+            }}
+            style={{
+              width: 500,
+              height: 300,
+              background: 'red',
+              transform: `translate(0px, ${translateY}px)`,
+            }}
+          />
+        );
+      });
+
       it('should set element transform and transition in the `left` direction', () => {
         let nodeExitingTransformStyle;
         const { setProps } = render(
@@ -520,6 +563,40 @@ describe('<Slide />', () => {
 
         expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
+
+      it('should account for a touch-dragged position when exiting', async () => {
+        function Test() {
+          const [open, setOpen] = React.useState(true);
+
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setOpen(false)}>
+                Close
+              </button>
+              <Slide appear={false} direction="up" in={open}>
+                <TouchDraggedFakeDiv />
+              </Slide>
+            </React.Fragment>
+          );
+        }
+
+        const { user } = render(<Test />);
+        const dragTarget = screen.getByTestId('drag-target');
+
+        await user.pointer([
+          { keys: '[TouchA>]', target: dragTarget, coords: { clientY: 200 } },
+          { pointerName: 'TouchA', target: dragTarget, coords: { clientY: 370 } },
+          { keys: '[/TouchA]', target: dragTarget, coords: { clientY: 370 } },
+        ]);
+
+        expect(dragTarget.style.transform).to.equal(`translate(0px, ${draggedOffset}px)`);
+
+        await user.click(screen.getByRole('button', { name: 'Close' }));
+
+        expect(dragTarget.style.transform).to.equal(
+          `translateY(${globalThis.innerHeight + draggedOffset - elementTop}px)`,
+        );
+      });
     });
 
     describe('prop: container', () => {
@@ -593,21 +670,31 @@ describe('<Slide />', () => {
         expect(child.style.transform).not.to.equal(undefined);
       });
 
-      it('should take existing transform into account', () => {
-        const element = {
-          fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
-          getBoundingClientRect: () => ({
-            width: 500,
-            height: 300,
-            left: 300,
-            right: 800,
-            top: 1200,
-            bottom: 1500,
-          }),
-          style: {},
-        };
+      // getComputedStyle in a real browser resolves CSS transforms to matrix() format,
+      // which the component parses to account for existing offsets. jsdom does not resolve
+      // CSS values, so this test only runs in browser environments.
+      // The transform must come from a CSS rule (not inline style) because getTranslateValue
+      // clears inline transforms before reading computed style.
+      it.skipIf(isJsdom())('should take existing transform into account', function test() {
+        const styleEl = document.createElement('style');
+        styleEl.textContent = '#slide-test-transform { transform: matrix(1, 0, 0, 1, 0, 420); }';
+        document.head.appendChild(styleEl);
+        const element = document.createElement('div');
+        element.id = 'slide-test-transform';
+        document.body.appendChild(element);
+        stub(element, 'getBoundingClientRect').callsFake(() => ({
+          width: 500,
+          height: 300,
+          left: 300,
+          right: 800,
+          top: 1200,
+          bottom: 1500,
+        }));
         setTranslateValue('up', element);
         expect(element.style.transform).to.equal(`translateY(${globalThis.innerHeight - 780}px)`);
+
+        document.body.removeChild(element);
+        document.head.removeChild(styleEl);
       });
 
       it('should do nothing when visible', () => {

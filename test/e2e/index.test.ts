@@ -55,7 +55,7 @@ describe('e2e', () => {
     const isServerRunning = await attemptGoto(page, `${BASE_URL}#no-dev`);
     if (!isServerRunning) {
       throw new Error(
-        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
+        `Unable to navigate to ${BASE_URL} after multiple attempts. Did you forget to run \`pnpm test:e2e:dev\`?`,
       );
     }
   }, 20000);
@@ -182,28 +182,6 @@ describe('e2e', () => {
 
       expect(focusedOptionText).toEqual('four');
     });
-
-    it('[Joy Autocomplete] should highlight correct option when initial navigation through options starts from mouse move', async () => {
-      await renderFixture('Autocomplete/HoverJoyAutocomplete');
-
-      const combobox = (await page.getByRole('combobox'))!;
-      await combobox.click();
-
-      const firstOption = (await page.getByText('one'))!;
-
-      const dimensions = (await firstOption.boundingBox())!;
-
-      await page.mouse.move(dimensions.x + 10, dimensions.y + 10); // moves to 1st option
-      await page.keyboard.down('ArrowDown'); // moves to 2nd option
-      await page.keyboard.down('ArrowDown'); // moves to 3rd option
-      await page.keyboard.down('ArrowDown'); // moves to 4th option
-
-      const listbox = await page.getByRole('listbox');
-      const focusedOption = listbox.locator('.Mui-focused');
-      const focusedOptionText = await focusedOption.innerHTML();
-
-      expect(focusedOptionText).toEqual('four');
-    });
   });
 
   describe('<TextareaAutosize />', () => {
@@ -262,6 +240,103 @@ describe('e2e', () => {
       await page.getByRole('textbox').click({ position: { x: 10, y: 10 } });
       const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
       await errorSelector.waitFor();
+    });
+  });
+
+  describe('<Select />', () => {
+    it('should not show focus-visible on menu item when opened by mouse', async () => {
+      await renderFixture('Select/SelectFocusVisible');
+
+      const trigger = page.getByRole('combobox');
+      await trigger.click();
+
+      await page.waitForSelector('[role="listbox"]');
+
+      const selectedItem = page.locator('[role="option"][aria-selected="true"]');
+      await expect(selectedItem).toBeFocused();
+      const hasVisible = await selectedItem.evaluate((el) =>
+        el.classList.contains('Mui-focusVisible'),
+      );
+      expect(hasVisible).toEqual(false);
+    });
+
+    it('should show focus-visible on menu item when opened by keyboard', async () => {
+      await renderFixture('Select/SelectFocusVisible');
+
+      await page.keyboard.press('Tab');
+      const trigger = page.getByRole('combobox');
+      await expect(trigger).toBeFocused();
+
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('[role="listbox"]');
+
+      const selectedItem = page.locator('[role="option"][aria-selected="true"]');
+      await expect(selectedItem).toBeFocused();
+      const hasVisible = await selectedItem.evaluate((el) =>
+        el.classList.contains('Mui-focusVisible'),
+      );
+      expect(hasVisible).toEqual(true);
+    });
+
+    it('should not select an option while opening a flipped menu with a normal click', async () => {
+      await page.setViewportSize({ width: 800, height: 240 });
+      await renderFixture('Select/SelectPointerFlow');
+
+      const trigger = page.getByRole('combobox');
+      const box = await trigger.boundingBox();
+      expect(box).not.toEqual(null);
+
+      const x = box!.x + box!.width / 2;
+      const y = box!.y + box!.height / 2;
+
+      await page.mouse.move(x, y);
+      await page.mouse.down();
+      await page.waitForSelector('[role="listbox"]');
+
+      const optionAtPointer = await page.evaluate(
+        (point) =>
+          document.elementFromPoint(point.x, point.y)?.closest('[role="option"]')?.textContent,
+        { x, y },
+      );
+      expect(optionAtPointer).not.toEqual(null);
+
+      await page.mouse.up();
+
+      await expect(page.getByRole('listbox')).toBeVisible();
+      await expect(page.getByTestId('select-value')).toHaveText('10');
+
+      await page.keyboard.press('Escape');
+      await expect(page.getByRole('listbox')).toBeHidden();
+    });
+
+    it('should select an option when dragging from the trigger and releasing on the option', async () => {
+      await page.setViewportSize({ width: 800, height: 600 });
+      await renderFixture('Select/SelectPointerFlow');
+
+      const trigger = page.getByRole('combobox');
+      const triggerBox = await trigger.boundingBox();
+      expect(triggerBox).not.toEqual(null);
+
+      await page.mouse.move(
+        triggerBox!.x + triggerBox!.width / 2,
+        triggerBox!.y + triggerBox!.height / 2,
+      );
+      await page.mouse.down();
+      await page.waitForSelector('[role="listbox"]');
+      await page.waitForTimeout(250);
+
+      const option = page.getByRole('option', { name: '20', exact: true });
+      const optionBox = await option.boundingBox();
+      expect(optionBox).not.toEqual(null);
+
+      await page.mouse.move(
+        optionBox!.x + optionBox!.width / 2,
+        optionBox!.y + optionBox!.height / 2,
+      );
+      await page.mouse.up();
+
+      await expect(page.getByTestId('select-value')).toHaveText('20', { timeout: 1000 });
+      await expect(page.getByRole('listbox')).toBeHidden({ timeout: 1000 });
     });
   });
 });

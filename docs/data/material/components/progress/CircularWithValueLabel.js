@@ -7,7 +7,11 @@ import Box from '@mui/material/Box';
 function CircularProgressWithLabel(props) {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" {...props} />
+      <CircularProgress
+        variant="determinate"
+        aria-label="Upload photos"
+        {...props}
+      />
       <Box
         sx={{
           top: 0,
@@ -35,8 +39,8 @@ function CircularProgressWithLabel(props) {
 CircularProgressWithLabel.propTypes = {
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   * @default 0
+   * Value between `min` and `max`.
+   * @default props.min ?? 0
    */
   value: PropTypes.number.isRequired,
 };

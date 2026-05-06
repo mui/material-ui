@@ -1,8 +1,9 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
+  "license": "MIT",
   "keywords": [
     "react",
     "react-component",
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-styled-engine-sc"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -30,7 +30,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@types/hoist-non-react-statics": "^3.3.7",
     "csstype": "^3.2.3",
     "hoist-non-react-statics": "^3.3.2",
@@ -41,7 +41,7 @@
     "@types/react": "19.2.14",
     "chai": "6.2.2",
     "react": "19.2.4",
-    "styled-components": "6.3.11"
+    "styled-components": "6.4.1"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

@@ -11,7 +11,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component is a generic, theme-aware container with access to CSS utilities from MUI System.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Introduction
 
@@ -36,10 +36,9 @@ The demo below replaces the `<div>` with a `<section>` element:
 
 ## Customization
 
-### With MUI System props
+### With MUI System properties
 
-As a CSS utility component, the Box supports all [MUI System properties](/system/properties/).
-You can use them as props directly on the component.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to apply [MUI System properties](/system/properties/) and theme-aware CSS utilities to any Box instance.
 
 {{"demo": "BoxSystemProps.js", "defaultCodeOpen": true }}
 

@@ -44,7 +44,7 @@ export default function SimpleListMenu() {
           aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open}
           onClick={handleClickListItem}
         >
           <ListItemText

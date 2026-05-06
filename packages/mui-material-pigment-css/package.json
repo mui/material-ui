@@ -1,8 +1,9 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
+  "license": "MIT",
   "keywords": [
     "react",
     "mui",
@@ -15,7 +16,6 @@
     "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material-pigment-css"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
@@ -31,7 +31,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.6",
+    "@babel/runtime": "^7.29.2",
     "@mui/system": "workspace:*"
   },
   "devDependencies": {
@@ -53,7 +53,6 @@
       "generateAtomics": "@pigment-css/react/exports/generateAtomics",
       "css": "@pigment-css/react/exports/css",
       "createUseThemeProps": "@pigment-css/react/exports/createUseThemeProps",
-      "internal_createExtendSxProp": "@pigment-css/react/exports/internal_createExtendSxProp",
       "globalCss": "@pigment-css/react/exports/globalCss",
       "useTheme": "@pigment-css/react/exports/useTheme"
     }

@@ -21,7 +21,7 @@ describe('<StepLabel />', () => {
       label: { expectedClassName: classes.label },
       root: { expectedClassName: classes.root },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('label content', () => {
@@ -30,13 +30,11 @@ describe('<StepLabel />', () => {
       screen.getByText('Step One');
     });
 
-    it('renders <StepIcon> with props passed through StepIconProps', () => {
-      const stepIconProps = { error: true };
-
+    it('renders <StepIcon> with props passed through slotProps.stepIcon', () => {
       const { container } = render(
         <Stepper alternativeLabel>
           <Step active completed>
-            <StepLabel StepIconProps={stepIconProps}>Step One</StepLabel>
+            <StepLabel slotProps={{ stepIcon: { error: true } }}>Step One</StepLabel>
           </Step>
         </Stepper>,
       );
@@ -47,14 +45,14 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('prop: StepIconComponent', () => {
+  describe('slots: stepIcon', () => {
     it('should render', () => {
       function CustomizedIcon() {
         return <div data-testid="custom-icon" />;
       }
       const { container } = render(
         <Step active completed>
-          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+          <StepLabel slots={{ stepIcon: CustomizedIcon }}>Step One</StepLabel>
         </Step>,
       );
 
@@ -190,11 +188,11 @@ describe('<StepLabel />', () => {
     });
   });
 
-  describe('componentsProps: label', () => {
+  describe('slotProps: label', () => {
     it('spreads the props on the label element', () => {
       render(
         <StepLabel
-          componentsProps={{
+          slotProps={{
             label: {
               'data-testid': 'label',
               className: 'step-label-test',
@@ -216,7 +214,7 @@ describe('<StepLabel />', () => {
       }
       const { container } = render(
         <Step completed>
-          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+          <StepLabel slots={{ stepIcon: CustomizedIcon }}>Step One</StepLabel>
         </Step>,
       );
 
@@ -232,7 +230,7 @@ describe('<StepLabel />', () => {
       }
       const { container } = render(
         <Step active>
-          <StepLabel StepIconComponent={CustomizedIcon}>Step One</StepLabel>
+          <StepLabel slots={{ stepIcon: CustomizedIcon }}>Step One</StepLabel>
         </Step>,
       );
 

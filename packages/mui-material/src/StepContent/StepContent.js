@@ -7,7 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Collapse from '../Collapse';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
 import useSlot from '../utils/useSlot';
@@ -59,15 +59,13 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const {
     children,
     className,
-    TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
-    TransitionProps,
     slots = {},
     slotProps = {},
     ...other
   } = props;
 
-  const { orientation } = React.useContext(StepperContext);
+  const { orientation } = useStepperContext();
   const { active, last, expanded } = React.useContext(StepContext);
 
   const ownerState = { ...props, last };
@@ -81,13 +79,13 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
 
   let transitionDuration = transitionDurationProp;
 
-  if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+  if (transitionDurationProp === 'auto' && !(slots.transition ?? Collapse).muiSupportAuto) {
     transitionDuration = undefined;
   }
 
   const externalForwardedProps = {
     slots,
-    slotProps: { transition: TransitionProps, ...slotProps },
+    slotProps,
   };
 
   const [TransitionSlot, transitionProps] = useSlot('transition', {
@@ -109,9 +107,7 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <TransitionSlot as={TransitionComponent} {...transitionProps}>
-        {children}
-      </TransitionSlot>
+      <TransitionSlot {...transitionProps}>{children}</TransitionSlot>
     </StepContentRoot>
   );
 });
@@ -156,13 +152,6 @@ StepContent.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Collapse
-   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
-   */
-  TransitionComponent: PropTypes.elementType,
-  /**
    * Adjust the duration of the content expand transition.
    * Passed as a prop to the transition component.
    *
@@ -178,12 +167,6 @@ StepContent.propTypes /* remove-proptypes */ = {
       exit: PropTypes.number,
     }),
   ]),
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default StepContent;

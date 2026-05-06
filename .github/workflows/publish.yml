@@ -22,11 +22,39 @@ on:
         required: false
         type: string
         default: 'latest'
+      internal-packages:
+        description: 'Whether to publish only the internal packages'
+        required: false
+        type: boolean
+        default: false
 
 permissions: {}
 
 jobs:
+  publish-internal:
+    # Keeping it manual trigger only for now. Will update to also include ` || (github.event_name == 'push' && github.event.head_commit.author.name != 'renovate[bot]')` once we are ready to publish internal packages on push as well.
+    if: (github.event_name == 'workflow_dispatch' && inputs.internal-packages == true)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for pushing tags and creating releases
+      id-token: write # Required for provenance
+    environment:
+      name: npm-publish-internal
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event_name == 'push' && github.sha || inputs.sha }}
+          fetch-depth: 0 # Fetch full history for proper git operations
+      - name: Prepare for publishing
+        uses: mui/mui-public/.github/actions/publish-prepare@dd7db35e4c70c656b86a98cf9b4819e7a4105f48 # master
+      - name: Publish packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pnpm code-infra publish-canary --filter "./packages-internal/*"
   publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.internal-packages != true
     runs-on: ubuntu-latest
     permissions:
       contents: write # Required for pushing tags and creating releases
@@ -40,7 +68,7 @@ jobs:
           ref: ${{ inputs.sha }}
           fetch-depth: 0 # Fetch full history for proper git operations
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@f87c4b1b022bb383419be7979bcb05c4e343499b
+        uses: mui/mui-public/.github/actions/publish-prepare@dd7db35e4c70c656b86a98cf9b4819e7a4105f48 # master
       - name: Publish packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -57,4 +85,4 @@ jobs:
             ARGS="$ARGS --tag ${{ inputs.dist-tag }}"
           fi
 
-          pnpm code-infra publish --ci $ARGS
+          pnpm code-infra publish --ci $ARGS --filter "./packages/*"

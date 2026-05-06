@@ -26,8 +26,10 @@ export interface InputBaseProps extends StandardProps<
   | 'onInvalid'
   | 'onKeyDown'
   | 'onKeyUp'
+  | 'aria-label'
 > {
   'aria-describedby'?: string | undefined;
+  'aria-label'?: string | undefined;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -53,37 +55,6 @@ export interface InputBaseProps extends StandardProps<
         'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
         InputBasePropsColorOverrides
       >
-    | undefined;
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components?:
-    | {
-        Root?: React.ElementType | undefined;
-        Input?: React.ElementType | undefined;
-      }
-    | undefined;
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps?:
-    | {
-        root?:
-          | (React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides)
-          | undefined;
-        input?:
-          | (React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides)
-          | undefined;
-      }
     | undefined;
   /**
    * The default value. Use when the component is not controlled.
@@ -213,8 +184,6 @@ export interface InputBaseProps extends StandardProps<
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slotProps?:
@@ -231,8 +200,6 @@ export interface InputBaseProps extends StandardProps<
     | undefined;
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
    *
    * @default {}
    */
@@ -275,10 +242,10 @@ export interface InputBaseComponentProps extends React.HTMLAttributes<
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://next.mui.com/material-ui/api/input-base/)
+ * - [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;

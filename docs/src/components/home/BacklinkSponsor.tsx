@@ -1,4 +1,4 @@
-import { Link } from '@mui/docs/Link';
+import { Link } from '@mui/internal-core-docs/Link';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 
 export default function BacklinkSponsor(props: {

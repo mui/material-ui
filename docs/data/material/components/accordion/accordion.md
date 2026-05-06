@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Accordion
 
 <p class="description">The Accordion component lets users show and hide sections of related content on a page.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 

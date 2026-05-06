@@ -71,7 +71,6 @@ This is a monorepo managed by Lerna with Nx for caching. Key packages:
 - `@mui/material` - Core Material UI components
 - `@mui/system` - Styling system (sx prop, styled, theme)
 - `@mui/lab` - Experimental components (new components go here first)
-- `@mui/joy` - Joy UI design system (beta, development on hold)
 - `@mui/icons-material` - Material Design icons
 - `@mui/utils` - Internal utilities
 - `@mui/styled-engine` - CSS-in-JS abstraction (Emotion by default)
@@ -140,6 +139,8 @@ packages/mui-material/src/Button/
 - Use `createRenderer()` from `@mui/internal-test-utils`
 - Use Chai BDD-style assertions (`expect(x).to.equal(y)`)
 - Custom matchers: `toErrorDev()`, `toWarnDev()` for console assertions
+- Prefer testing components with full interactions using `user.*` methods. Avoid `fireEvent` and `setProps` if possible.
+- If tests require the browser because, for example, they require layout measurements, restrict it to the Chromium env by using `it.skipIf(isJsdom())` or `describe.skipIf(isJsdom())` (search other tests for example usage if unsure).
 
 ```js
 import { createRenderer } from '@mui/internal-test-utils';
@@ -147,9 +148,15 @@ import { createRenderer } from '@mui/internal-test-utils';
 describe('Button', () => {
   const { render } = createRenderer();
 
-  it('renders children', () => {
-    const { getByRole } = render(<Button>Hello</Button>);
-    expect(getByRole('button')).to.have.text('Hello');
+  it('renders children', async () => {
+    const handleClick = vi.fn();
+    const { getByRole, user } = render(<Button onClick={handleClick}>Hello</Button>);
+
+    const button = getByRole('button');
+    expect(button).to.have.text('Hello');
+
+    await user.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
 ```
@@ -163,6 +170,19 @@ import Button from '@mui/material/Button'; // Good
 import { Button } from '@mui/material'; // Avoid in packages
 ```
 
+## Agent Skills
+
+Packaged guidance for common integration topics lives under `skills/`. Each skill is a self-contained directory:
+
+| Skill                                                                  | Focus                                                       |
+| :--------------------------------------------------------------------- | :---------------------------------------------------------- |
+| [skills/material-ui-styling](./skills/material-ui-styling/AGENTS.md)   | `sx`, `styled()`, theme overrides, slots, global CSS        |
+| [skills/material-ui-theming](./skills/material-ui-theming/AGENTS.md)   | `createTheme`, design tokens, `colorSchemes`, CSS variables |
+| [skills/material-ui-nextjs](./skills/material-ui-nextjs/AGENTS.md)     | App/Pages Router, Emotion cache, `next/font`, `Link`, SSR   |
+| [skills/material-ui-tailwind](./skills/material-ui-tailwind/AGENTS.md) | Tailwind v4 `@layer`, `enableCssLayer`, v3 interop          |
+
+Read the relevant `AGENTS.md` when helping users with those topics.
+
 ## Pre-PR Checklist
 
 1. `pnpm prettier` - Format code
@@ -171,12 +191,13 @@ import { Button } from '@mui/material'; // Avoid in packages
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
 6. If demos changed: `pnpm docs:typescript:formatted`
+7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 
-`[product-name][Component] Imperative description`
+`[component] Imperative description`
 
 Examples:
 
-- `[material-ui][Button] Add loading state`
+- `[button] Add loading state`
 - `[docs] Fix typo in Grid documentation`

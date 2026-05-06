@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import StepContext from '../Step/StepContext';
 import StepIcon from '../StepIcon';
-import StepperContext from '../Stepper/StepperContext';
+import { useStepperContext } from '../Stepper/StepperContext';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -83,11 +83,7 @@ const StepLabelLabel = styled('span', {
     transition: theme.transitions.create('color', {
       duration: theme.transitions.duration.shortest,
     }),
-    [`&.${stepLabelClasses.active}`]: {
-      color: (theme.vars || theme).palette.text.primary,
-      fontWeight: 500,
-    },
-    [`&.${stepLabelClasses.completed}`]: {
+    [`&.${stepLabelClasses.active}, &.${stepLabelClasses.completed}`]: {
       color: (theme.vars || theme).palette.text.primary,
       fontWeight: 500,
     },
@@ -130,26 +126,17 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const {
     children,
     className,
-    componentsProps = {},
     error = false,
     icon: iconProp,
     optional,
     slots = {},
     slotProps = {},
-    StepIconComponent: StepIconComponentProp,
-    StepIconProps,
     ...other
   } = props;
 
-  const { alternativeLabel, orientation } = React.useContext(StepperContext);
+  const { alternativeLabel, orientation } = useStepperContext();
   const { active, disabled, completed, icon: iconContext } = React.useContext(StepContext);
   const icon = iconProp || iconContext;
-
-  let StepIconComponent = StepIconComponentProp;
-
-  if (icon && !StepIconComponent) {
-    StepIconComponent = StepIcon;
-  }
 
   const ownerState = {
     ...props,
@@ -165,11 +152,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      stepIcon: StepIconProps,
-      ...componentsProps,
-      ...slotProps,
-    },
+    slotProps,
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
@@ -190,7 +173,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   });
 
   const [StepIconSlot, stepIconProps] = useSlot('stepIcon', {
-    elementType: StepIconComponent,
+    elementType: icon ? StepIcon : undefined,
     externalForwardedProps,
     ownerState,
   });
@@ -238,14 +221,6 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The props used for each slot inside.
-   * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  componentsProps: PropTypes.shape({
-    label: PropTypes.object,
-  }),
-  /**
    * If `true`, the step is marked as failed.
    * @default false
    */
@@ -276,16 +251,6 @@ StepLabel.propTypes /* remove-proptypes */ = {
     root: PropTypes.elementType,
     stepIcon: PropTypes.elementType,
   }),
-  /**
-   * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconComponent: PropTypes.elementType,
-  /**
-   * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  StepIconProps: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

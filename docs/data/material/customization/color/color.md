@@ -72,6 +72,7 @@ If you are using the default primary and / or secondary shades then by providing
 ### Tools by the community
 
 - [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [MUI Theme Builder](https://petertyliu.github.io/mui-theme-builder/): A tool to generate, preview, and edit Material UI themes
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## 2014 Material Design color palettes
@@ -112,8 +113,8 @@ const accent = purple.A200; // #e040fb (alternative method)
 
 ### Accessibility
 
-[WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) does recommend
+[WCAG 2.2 Success Criterion 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) does recommend
 that you have a minimum of a 4.5:1 contrast ratio for the visual presentation of text and images of text.
-Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.1 AA compliance,
+Material UI currently only enforces a 3:1 contrast ratio. If you would like to meet WCAG 2.2 Level AA compliance,
 you can increase your minimum contrast ratio as described in the
 [Theme customization](/material-ui/customization/palette/#accessibility) section.

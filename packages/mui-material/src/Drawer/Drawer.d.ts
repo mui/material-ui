@@ -5,7 +5,6 @@ import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
 import { TransitionProps } from '../transitions/transition';
 import { DrawerClasses } from './drawerClasses';
@@ -85,7 +84,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the available props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
      */
     transition: SlotProps<
-      React.ElementType,
+      React.ElementType<TransitionProps>,
       TransitionProps & DrawerTransitionSlotPropsOverrides,
       DrawerOwnerState
     >;
@@ -133,17 +132,6 @@ export interface DrawerProps
    */
   open?: boolean | undefined;
   /**
-   * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
-   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  PaperProps?: Partial<PaperProps<React.ElementType>> | undefined;
-  /**
-   * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  SlideProps?: Partial<SlideProps> | undefined;
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;
@@ -167,15 +155,15 @@ export interface DrawerProps
 export interface DrawerOwnerState extends Omit<DrawerProps, 'slots' | 'slotProps'> {}
 
 /**
- * The props of the [Modal](https://next.mui.com/material-ui/api/modal/) component are available
+ * The props of the [Modal](https://mui.com/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  *
  * Demos:
  *
- * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [Drawer API](https://next.mui.com/material-ui/api/drawer/)
+ * - [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 export default function Drawer(props: DrawerProps): React.JSX.Element;

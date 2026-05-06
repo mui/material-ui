@@ -40,7 +40,6 @@ describe('<Switch />', () => {
     refInstanceof: window.HTMLSpanElement,
     skip: [
       'componentProp',
-      'componentsProp',
       'themeDefaultProps',
       'themeVariants',
       // Props are spread to the root's child but className is added to the root
@@ -77,6 +76,18 @@ describe('<Switch />', () => {
     render(<Switch />);
 
     expect(screen.getByRole('switch')).to.have.property('checked', false);
+  });
+
+  it('preserves `role="switch"` when input slotProps are provided as an object', () => {
+    render(<Switch slotProps={{ input: { 'aria-label': 'Dark mode' } }} />);
+
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
+  });
+
+  it('preserves `role="switch"` when input slotProps are provided as a function', () => {
+    render(<Switch slotProps={{ input: () => ({ 'aria-label': 'Dark mode' }) }} />);
+
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
   });
 
   it('renders a switch with the Checked state when checked', () => {

@@ -22,7 +22,7 @@ describe('<FormControlLabel />', () => {
     slots: {
       typography: { expectedClassName: classes.label },
     },
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   describe('prop: label', () => {
@@ -191,12 +191,12 @@ describe('<FormControlLabel />', () => {
     });
   });
 
-  describe('componentsProps: typography', () => {
+  describe('slotProps: typography', () => {
     it('should spread its contents to the typography element', () => {
       render(
         <FormControlLabel
           label="Pizza"
-          componentsProps={{
+          slotProps={{
             typography: {
               'data-testid': 'labelTypography',
               name: 'test',

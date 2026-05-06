@@ -13,7 +13,6 @@ import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 import useSlot from '../utils/useSlot';
-import { mergeSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -145,45 +144,21 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
-  const {
-    className,
-    delay = 0,
-    FabProps = {},
-    icon,
-    id,
-    open,
-    TooltipClasses,
-    tooltipOpen: tooltipOpenProp = false,
-    tooltipPlacement = 'left',
-    tooltipTitle,
-    slots = {},
-    slotProps = {},
-    ...other
-  } = props;
+  const { className, delay = 0, icon, id, open, slots = {}, slotProps = {}, ...other } = props;
+
+  const resolvedTooltipSlotProps =
+    typeof slotProps.tooltip === 'function' ? slotProps.tooltip(props) : (slotProps.tooltip ?? {});
+  const tooltipPlacement = resolvedTooltipSlotProps.placement ?? 'left';
 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
     slots,
-    slotProps: {
-      fab: FabProps,
-      ...slotProps,
-      tooltip: mergeSlotProps(
-        typeof slotProps.tooltip === 'function' ? slotProps.tooltip(ownerState) : slotProps.tooltip,
-        {
-          title: tooltipTitle,
-          open: tooltipOpenProp,
-          placement: tooltipPlacement,
-          classes: TooltipClasses,
-        },
-      ),
-    },
+    slotProps,
   };
 
-  const [tooltipOpen, setTooltipOpen] = React.useState(
-    externalForwardedProps.slotProps.tooltip?.open,
-  );
+  const [tooltipOpen, setTooltipOpen] = React.useState(resolvedTooltipSlotProps.open ?? false);
 
   const handleTooltipClose = () => {
     setTooltipOpen(false);
@@ -305,12 +280,6 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   delay: PropTypes.number,
   /**
-   * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
-   * @default {}
-   * @deprecated Use `slotProps.fab` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  FabProps: PropTypes.object,
-  /**
    * The icon to display in the SpeedDial Fab.
    */
   icon: PropTypes.node,
@@ -351,44 +320,6 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
-   * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TooltipClasses: PropTypes.object,
-  /**
-   * Make the tooltip always visible when the SpeedDial is open.
-   * @default false
-   * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  tooltipOpen: PropTypes.bool,
-  /**
-   * Placement of the tooltip.
-   * @default 'left'
-   * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  tooltipPlacement: PropTypes.oneOf([
-    'auto-end',
-    'auto-start',
-    'auto',
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top',
-  ]),
-  /**
-   * Label to display in the tooltip.
-   * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  tooltipTitle: PropTypes.node,
 };
 
 export default SpeedDialAction;

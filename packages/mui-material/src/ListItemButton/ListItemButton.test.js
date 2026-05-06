@@ -18,7 +18,6 @@ describe('<ListItemButton />', () => {
     testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',
     testVariantProps: { dense: true },
-    skip: ['componentsProp'],
   }));
 
   it('should render with gutters classes', () => {
@@ -34,6 +33,13 @@ describe('<ListItemButton />', () => {
   it('should disable the gutters', () => {
     render(<ListItemButton disableGutters />);
     expect(screen.getByRole('button')).not.to.have.class(classes.gutters);
+  });
+
+  it('does not pass classes.root to ButtonBase classes', () => {
+    render(<ListItemButton classes={{ root: 'my-root-class' }}>Item</ListItemButton>);
+    const button = screen.getByRole('button');
+    const classList = button.className.split(' ');
+    expect(classList.filter((c) => c === 'my-root-class')).to.have.length(1);
   });
 
   describe('context: dense', () => {
@@ -245,6 +251,17 @@ describe('<ListItemButton />', () => {
       expect(screen.getByTestId(customLinkId)).not.to.equal(null);
       expect(button).to.have.property('nodeName', 'A');
       expect(button).to.have.attribute('href', href);
+    });
+  });
+
+  describe('prop: nativeButton', () => {
+    it('uses link mode (not native-button) when href is present', () => {
+      render(<ListItemButton href="https://example.com" />);
+
+      const link = screen.getByRole('link');
+      expect(link).to.have.tagName('A');
+      expect(link).not.to.have.attribute('type', 'button');
+      expect(link).not.to.have.attribute('role', 'button');
     });
   });
 });

@@ -21,7 +21,6 @@ describe('<Breadcrumbs />', () => {
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
     testVariantProps: { separator: '=' },
-    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {

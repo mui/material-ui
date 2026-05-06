@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import useTimeout, { Timeout } from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
-import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import { styled, useTheme } from '../zero-styled';
@@ -61,15 +60,9 @@ const TooltipPopper = styled(Popper, {
     pointerEvents: 'none',
     variants: [
       {
-        props: ({ ownerState }) => !ownerState.disableInteractive,
+        props: ({ ownerState, open }) => open && !ownerState.disableInteractive,
         style: {
           pointerEvents: 'auto',
-        },
-      },
-      {
-        props: ({ open }) => !open,
-        style: {
-          pointerEvents: 'none',
         },
       },
       {
@@ -92,6 +85,8 @@ const TooltipPopper = styled(Popper, {
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
             height: '1em',
             width: '0.71em',
+            insetInlineStart: 0,
+            marginInlineStart: '-0.71em',
             '&::before': {
               transformOrigin: '100% 100%',
             },
@@ -99,45 +94,11 @@ const TooltipPopper = styled(Popper, {
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
             height: '1em',
             width: '0.71em',
+            insetInlineEnd: 0,
+            marginInlineEnd: '-0.71em',
             '&::before': {
               transformOrigin: '0 0',
             },
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            left: 0,
-            marginLeft: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            right: 0,
-            marginRight: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            right: 0,
-            marginRight: '-0.71em',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.arrow && !!ownerState.isRtl,
-        style: {
-          [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            left: 0,
-            marginLeft: '-0.71em',
           },
         },
       },
@@ -174,9 +135,11 @@ const TooltipTooltip = styled('div', {
     fontWeight: theme.typography.fontWeightMedium,
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
+      marginInlineEnd: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
       transformOrigin: 'left center',
+      marginInlineStart: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
       transformOrigin: 'center bottom',
@@ -191,7 +154,7 @@ const TooltipTooltip = styled('div', {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
           position: 'relative',
-          margin: 0,
+          marginBlock: 0,
         },
       },
       {
@@ -204,60 +167,17 @@ const TooltipTooltip = styled('div', {
         },
       },
       {
-        props: ({ ownerState }) => !ownerState.isRtl,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginRight: '14px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginLeft: '14px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !ownerState.isRtl && ownerState.touch,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginRight: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginLeft: '24px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !!ownerState.isRtl,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginLeft: '14px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginRight: '14px',
-          },
-        },
-      },
-      {
-        props: ({ ownerState }) => !!ownerState.isRtl && ownerState.touch,
-        style: {
-          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-            marginLeft: '24px',
-          },
-          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-            marginRight: '24px',
-          },
-        },
-      },
-      {
         props: ({ ownerState }) => ownerState.touch,
         style: {
+          [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+            marginInlineEnd: '24px',
+          },
+          [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+            marginInlineStart: '24px',
+          },
           [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
             marginBottom: '24px',
           },
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.touch,
-        style: {
           [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
             marginTop: '24px',
           },
@@ -308,15 +228,12 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
-// TODO v6: Remove PopperComponent, PopperProps, TransitionComponent and TransitionProps.
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children: childrenProp,
     classes: classesProp,
-    components = {},
-    componentsProps = {},
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
@@ -333,13 +250,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onOpen,
     open: openProp,
     placement = 'bottom',
-    PopperComponent: PopperComponentProp,
-    PopperProps = {},
     slotProps = {},
     slots = {},
     title,
-    TransitionComponent: TransitionComponentProp,
-    TransitionProps,
     ...other
   } = props;
 
@@ -347,7 +260,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const children = React.isValidElement(childrenProp) ? childrenProp : <span>{childrenProp}</span>;
 
   const theme = useTheme();
-  const isRtl = useRtl();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -478,7 +390,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleBlur = (event) => {
     // Needed for https://github.com/mui/material-ui/issues/45373
     const target = event?.target ?? childNode;
-    if (!target || !isFocusVisible(target)) {
+    if (!target || target.disabled || !isFocusVisible(target)) {
       setChildIsFocusVisible(false);
 
       // InputBase can call onBlur() without an event when the input becomes disabled.
@@ -504,6 +416,16 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     if (isFocusVisible(event.target)) {
+      // Workaround for https://github.com/facebook/react/issues/9142.
+      // React does not fire blur when a focused element becomes disabled.
+      const handleNativeBlur = (blurEvent) => {
+        if (blurEvent.target.disabled) {
+          handleBlur(blurEvent);
+        }
+        blurEvent.target.removeEventListener('blur', handleNativeBlur);
+      };
+
+      event.target.addEventListener('blur', handleNativeBlur);
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
@@ -666,11 +588,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const ownerState = {
     ...props,
-    isRtl,
     arrow,
     disableInteractive,
     placement,
-    PopperComponentProp,
     touch: ignoreNonTouchEvents.current,
   };
 
@@ -688,42 +608,24 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       },
     ];
 
-    if (PopperProps.popperOptions?.modifiers) {
-      tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
-    }
-
     if (resolvedPopperProps?.popperOptions?.modifiers) {
       tooltipModifiers = tooltipModifiers.concat(resolvedPopperProps.popperOptions.modifiers);
     }
 
     return {
-      ...PopperProps.popperOptions,
       ...resolvedPopperProps?.popperOptions,
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, PopperProps.popperOptions, resolvedPopperProps?.popperOptions]);
+  }, [arrowRef, resolvedPopperProps?.popperOptions]);
 
   const classes = useUtilityClasses(ownerState);
-  const resolvedTransitionProps =
-    typeof slotProps.transition === 'function'
-      ? slotProps.transition(ownerState)
-      : slotProps.transition;
   const externalForwardedProps = {
-    slots: {
-      popper: components.Popper,
-      transition: components.Transition ?? TransitionComponentProp,
-      tooltip: components.Tooltip,
-      arrow: components.Arrow,
-      ...slots,
-    },
+    slots,
     slotProps: {
-      arrow: slotProps.arrow ?? componentsProps.arrow,
-      popper: { ...PopperProps, ...(resolvedPopperProps ?? componentsProps.popper) }, // resolvedPopperProps can be spread because it's already an object
-      tooltip: slotProps.tooltip ?? componentsProps.tooltip,
-      transition: {
-        ...TransitionProps,
-        ...(resolvedTransitionProps ?? componentsProps.transition),
-      },
+      arrow: slotProps.arrow,
+      popper: resolvedPopperProps,
+      tooltip: slotProps.tooltip,
+      transition: slotProps.transition,
     },
   };
 
@@ -731,7 +633,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     elementType: TooltipPopper,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.popper, PopperProps?.className),
+    className: classes.popper,
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
@@ -759,7 +661,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
       <PopperSlot
-        as={PopperComponentProp ?? Popper}
+        as={Popper}
         placement={placement}
         anchorEl={
           followCursor
@@ -822,33 +724,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The components used for each slot inside.
-   *
-   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Arrow: PropTypes.elementType,
-    Popper: PropTypes.elementType,
-    Tooltip: PropTypes.elementType,
-    Transition: PropTypes.elementType,
-  }),
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   *
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    arrow: PropTypes.object,
-    popper: PropTypes.object,
-    tooltip: PropTypes.object,
-    transition: PropTypes.object,
-  }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -951,17 +826,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
     'top',
   ]),
   /**
-   * The component used for the popper.
-   * @deprecated use the `slots.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  PopperComponent: PropTypes.elementType,
-  /**
-   * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
-   * @deprecated use the `slotProps.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  PopperProps: PropTypes.object,
-  /**
    * The props used for each slot inside.
    * @default {}
    */
@@ -993,19 +857,6 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
   title: PropTypes.node,
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated use the `slots.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionComponent: PropTypes.elementType,
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   * @default {}
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default Tooltip;
