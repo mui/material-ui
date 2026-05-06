@@ -332,6 +332,7 @@ const AutocompleteListbox = styled('ul', {
     padding: '8px 0',
     maxHeight: '40vh',
     overflow: 'auto',
+    isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
     position: 'relative',
     [`& .${autocompleteClasses.option}`]: {
       minHeight: 48,

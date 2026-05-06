@@ -168,15 +168,13 @@ export default function TopLayoutCaseStudy(props) {
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card = `/static/blog/${slug}/card.png`;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (headers.manualCard === undefined) {
-      throw new Error(
-        [
-          `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
-          `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
-        ].join('\n'),
-      );
-    }
+  if (headers.manualCard === undefined) {
+    throw new Error(
+      [
+        `MUI: the "manualCard" markdown header for the blog post "${slug}" is missing.`,
+        `Set manualCard: true or manualCard: false header in docs/pages/blog/${slug}.md.`,
+      ].join('\n'),
+    );
   }
 
   return (

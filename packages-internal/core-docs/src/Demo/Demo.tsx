@@ -407,31 +407,29 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (demoOptions.hideToolbar === false) {
-      throw new Error(
-        [
-          '"hideToolbar": false is already the default.',
-          `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
-    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
-      throw new Error(
-        [
-          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
-          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
-    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
-      throw new Error(
-        [
-          '"hideToolbar": true, "disableAd": true combination is invalid.',
-          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
+  if (demoOptions.hideToolbar === false) {
+    throw new Error(
+      [
+        '"hideToolbar": false is already the default.',
+        `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
+  }
+  if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+    throw new Error(
+      [
+        '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
+  }
+  if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+    throw new Error(
+      [
+        '"hideToolbar": true, "disableAd": true combination is invalid.',
+        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
   }
 
   if (
