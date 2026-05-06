@@ -33,7 +33,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [inputs] Fix autofocus in SSR environment (#48290) @mj12albert
 - [List] Fix sticky subheader overlapping iOS scrollbar (#48375) @sandeshdamkondwar
 - [popper] Persist positioning styles when popperOptions changes reference (#48121) @mj12albert
-- [select] Stop using combobox element for labelling (#48251) @silviuaavram
+- [select] Stop using combobox element for labeling (#48251) @silviuaavram
 - [select] Support single-pointer-cycle selection and pointer cancellation (#48328) @mj12albert
 - [switch] Fix incorrect `role` with `slotProps.input` (#48469) @mj12albert
 - [tabs] Fix scrollable tabs blocking pointer events (#48166) @mj12albert
@@ -63,9 +63,9 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Add agent skills for styling, theming, Next.js, and Tailwind CSS integrations (#48187) @mapache-salvaje
 - [docs] Cleanup `@mui/base` (#48278) @mj12albert
 - [docs] Fix create-playground script (#48380) @imazizbohra
-- [docs] Fix date range calendar demo after MUI X v9 update (#48262) @LukasTy
+- [docs] Fix date range calendar demo after MUI X v9 update (#48262) @LukasTy
 - [docs] Fix icon search modal (#48255) @mj12albert
-- [docs] Fix Material UI and MUI system "Upgrade to v9" docs (#48245) @ZeeshanTamboli
+- [docs] Fix Material UI and MUI system "Upgrade to v9" docs (#48245) @ZeeshanTamboli
 - [docs] Fix Popover JSdoc (#48310) @nitzan-treg
 - [docs] Fix RTL toggle highlight in docs settings drawer (#48476) @sai6855
 - [docs] Fix typos (#48155) @ayushshukla1807
@@ -86,14 +86,14 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Update e2e test README and test error message (#48285) @ZeeshanTamboli
 - [docs] Update menu examples to always have aria-expanded (#48211) @silviuaavram
 - [docs] Update MUI Treasury links (#47760) @siriwatknp
-- [docs] Update MUI X dependencies to v9.0.0 (#48231) @siriwatknp
-- [docs] Update MUI X roadmap section (#48316) @siriwatknp
+- [docs] Update MUI X dependencies to v9.0.0 (#48231) @siriwatknp
+- [docs] Update MUI X roadmap section (#48316) @siriwatknp
 - [docs] Update WCAG links and version from 2.1 to 2.2 (#48379) @mj12albert
 - [docs] Use `React.useId()` for demo IDs (#48300) @Janpot
 
 ### Core
 
-- [blog] Introducing Material UI and MUI X v9 (#48157) @joserodolfofreitas
+- [blog] Introducing Material UI and MUI X v9 (#48157) @joserodolfofreitas
 - [code-infra] bundle size check internal core docs (#48390) @Janpot
 - [code-infra] Deduplicate vale script (#48385) @brijeshb42
 - [code-infra] Fix type shadowing (#48389) @Janpot
@@ -108,7 +108,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs-infra] Fix duplicate JSDoc in proptypes generation (#48304) @brijeshb42
 - [docs-infra] Fix duplicate JSDoc in proptypes generation for merged declarations (#48296) @brijeshb42
 - [docs-infra] Fix import of cjs react-simple-code-editor in esm (#48349) @brijeshb42
-- [docs-infra] Fix tab index on base ui tab (#48345) @brijeshb42
+- [docs-infra] Fix tab index on Base UI tab (#48345) @brijeshb42
 - [docs-infra] Migrate docs app container/frame components (#48182) @brijeshb42
 - [docs-infra] Migrate MarkdownDocs component to docs package (#48227) @brijeshb42
 - [docs-infra] Re-apply changes from previous revert (#48243) @brijeshb42
