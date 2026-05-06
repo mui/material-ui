@@ -40,7 +40,7 @@ This is not a role to optimize an existing marketing engine. It's a role to desi
 
 ### The mandate
 
-- Establish MUI X's positioning and messaging in the Enterprise market - and ensure Sales can articulate them in every deal.
+- Establish MUI X's positioning and messaging in the Enterprise market - and ensure Sales can articulate them in every deal.
 - Generate a qualified pipeline that accelerates Enterprise growth.
 - Build the marketing foundation - processes, playbooks, and infrastructure - that will scale with the business.
 
@@ -58,7 +58,7 @@ You'll own MUI's product marketing function end-to-end. There is no existing pla
 
 ### Positioning & messaging
 
-- Own and evolve MUI X's positioning and messaging, with a primary focus on the Enterprise market.
+- Own and evolve MUI X's positioning and messaging, with a primary focus on the Enterprise market.
 - Develop differentiated narratives that directly address the core buying conversation: MUI X vs. AG Grid, Bryntum, and the ever-present "we'll build it in-house" alternative.
 - Craft messaging for multiple buyer personas - the frontend engineers who evaluate, the tech leads who recommend, and the engineering managers, VPs, and CTOs who approve budgets.
 - Translate product capabilities (Data Grid, Charts, Date & Time Pickers, Tree View) into clear value narratives tied to productivity, time-to-market, and total cost of ownership.
@@ -109,7 +109,7 @@ You'll own MUI's product marketing function end-to-end. There is no existing pla
 - Familiarity with product-led growth (PLG) models - particularly the challenge of converting free or community users into commercial customers.
 - Hands-on familiarity with frontend development or React. You don't need to be an engineer, but you need to understand the audience you're speaking to.
 - Experience as the first or only PMM at a company.
-- Familiarity with marketing automation and CRM tools (e.g., HubSpot).
+- Familiarity with marketing automation and CRM tools (for example, HubSpot).
 
 ## Benefits and compensation
 
