@@ -1,4 +1,4 @@
-import { isEventHandler } from '@mui/utils';
+import isEventHandler from '@mui/utils/isEventHandler';
 import { EventHandlers } from '../types';
 
 /**

@@ -1,5 +1,5 @@
 import { SlotComponentProps } from '@mui/utils/types';
-import { isEventHandler } from '@mui/utils';
+import isEventHandler from '@mui/utils/isEventHandler';
 import clsx from 'clsx';
 
 export default function mergeSlotProps<
