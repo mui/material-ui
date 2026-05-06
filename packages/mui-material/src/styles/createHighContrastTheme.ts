@@ -102,7 +102,7 @@ export default function enhanceHighContrast<
               '&[aria-selected="true"]': {
                 [HCM]: {
                   forcedColorAdjust: 'none',
-                  color: hcTokens.selectedText,
+                  color: hcTokens.activeText,
                   backgroundColor: hcTokens.selectedBackground,
                 },
                 [`&.${autocompleteClasses.focused}`]: {
@@ -321,7 +321,7 @@ export default function enhanceHighContrast<
             [`&.${menuItemClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
-                color: hcTokens.selectedText,
+                color: hcTokens.activeText,
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
@@ -367,7 +367,7 @@ export default function enhanceHighContrast<
             [`&.${listItemButtonClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
-                color: hcTokens.selectedText,
+                color: hcTokens.activeText,
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
