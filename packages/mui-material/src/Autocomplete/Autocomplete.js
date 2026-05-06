@@ -801,7 +801,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               <AutocompleteNoOptions
                 className={classes.noOptions}
                 ownerState={ownerState}
-                role="presentation"
+                role="none"
                 onMouseDown={(event) => {
                   // Prevent input blur when interacting with the "no options" content
                   event.preventDefault();
