@@ -2,9 +2,7 @@ import {
   createDemoFactory,
   createDemoWithVariantsFactory,
 } from '@mui/internal-docs-infra/abstractCreateDemo';
-
-// eslint-disable-next-line import/extensions
-import DemoContent from '../components/DemoContent';
+import { DemoContent } from '../DemoContent';
 
 /**
  * Creates a demo component for displaying code examples with syntax highlighting.
