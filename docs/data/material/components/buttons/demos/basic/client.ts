@@ -1,5 +1,5 @@
 'use client';
 
-import { createDemoClient } from 'docs/src/modules/utils/createDemoClient';
+import { createDemoClient } from '@mui/internal-core-docs/utils';
 
 export default createDemoClient(import.meta.url);
