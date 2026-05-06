@@ -183,6 +183,7 @@ export function BrandingCssVarsProvider(props: {
   }, [direction]);
   return (
     <BrandingCssThemeProvider
+      direction={direction}
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
       <NextNProgressBar />
