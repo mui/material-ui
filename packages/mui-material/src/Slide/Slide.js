@@ -21,10 +21,8 @@ import { ownerWindow } from '../utils';
 const hiddenStyles = { visibility: 'hidden' };
 
 /**
- * Detects the two-axis inline transform that SwipeableDrawer writes while the
- * user drags. Slide's own hidden positions use translateX/translateY, so this
- * lets the exit path preserve only gesture state and keep resetting
- * Slide-managed transforms.
+ * Detects SwipeableDrawer's active-swipe `translate(x, y)` transform.
+ * Keep this in sync with SwipeableDrawer.setPosition.
  */
 function isGestureTranslate(transform) {
   return typeof transform === 'string' && /^translate\(.+,\s*.+\)$/.test(transform);
