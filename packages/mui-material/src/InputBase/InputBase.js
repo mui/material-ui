@@ -7,9 +7,8 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
-import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
-import useFormControl from '../FormControl/useFormControl';
+import { useFormControlState } from '../FormControl/useFormControl';
 import { styled, globalCss } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -328,7 +327,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   );
 
   const [focused, setFocused] = React.useState(false);
-  const muiFormControl = useFormControl();
+  const [fcs, muiFormControl] = useFormControlState({
+    props,
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -341,12 +343,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       return undefined;
     }, [muiFormControl]);
   }
-
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
-  });
 
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 

@@ -32,7 +32,7 @@ For example, in the element below, the `title` acts as an accessible description
 
 If you want the tooltip to act as an accessible description, you can pass the `describeChild` prop.
 You shouldn't use `describeChild` if the tooltip provides the only visual label.
-In that case, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+In that case, the child would have no accessible name and the tooltip would violate [WCAG 2.2 Success Criterion 2.5.3](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html).
 If the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop.
 Otherwise, you can use the default behavior and let the tooltip label the trigger.
 
@@ -139,9 +139,9 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Interactive
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)).
+Tooltips are interactive by default (to pass [WCAG 2.2 Success Criterion 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html)).
 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
-You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+You can disable this behavior (thus failing the success criterion which is required to reach Level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 

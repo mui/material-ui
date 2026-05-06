@@ -296,7 +296,7 @@ To learn how to add colors outside of `theme.palette`, see [Theming—Custom var
 
 ## Accessibility
 
-To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
+To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.2 Success Criterion 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
 
 ```js
 import { createTheme } from '@mui/material/styles';
