@@ -144,6 +144,62 @@ describe('mergeSlotProps', () => {
     });
   });
 
+  it('does not add a style prop when no style props are provided', () => {
+    const getSlotProps = () => ({
+      id: 'internal',
+    });
+
+    const merged = mergeSlotProps({
+      getSlotProps,
+      additionalProps: {
+        className: 'additional',
+      },
+      externalForwardedProps: {
+        role: 'button',
+      },
+      externalSlotProps: {
+        tabIndex: 0,
+      },
+    });
+
+    expect(merged.props).not.to.haveOwnProperty('style');
+  });
+
+  it('preserves an empty style prop when all provided style props are empty objects', () => {
+    const merged = mergeSlotProps({
+      additionalProps: {
+        style: {},
+      },
+      externalForwardedProps: {
+        style: {},
+      },
+      externalSlotProps: {
+        style: {},
+      },
+    });
+
+    expect(merged.props).to.haveOwnProperty('style');
+    expect(merged.props.style).to.deep.equal({});
+
+    const mergedWithGetSlotProps = mergeSlotProps({
+      getSlotProps: () => ({
+        style: {},
+      }),
+      additionalProps: {
+        style: {},
+      },
+      externalForwardedProps: {
+        style: {},
+      },
+      externalSlotProps: {
+        style: {},
+      },
+    });
+
+    expect(mergedWithGetSlotProps.props).to.haveOwnProperty('style');
+    expect(mergedWithGetSlotProps.props.style).to.deep.equal({});
+  });
+
   it('returns the ref returned from the getSlotProps function', () => {
     const ref = React.createRef();
     const getSlotProps = () => ({

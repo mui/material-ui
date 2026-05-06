@@ -26,4 +26,14 @@ describe('omitEventHandlers', () => {
     expect(result).to.not.haveOwnProperty('onClick');
     expect(result).to.not.haveOwnProperty('onKeyDown');
   });
+
+  it('returns an empty object if an empty object is provided', () => {
+    const result = omitEventHandlers({});
+    expect(result).to.deep.equal({});
+  });
+
+  it('returns an empty object if undefined is passed in', () => {
+    const result = omitEventHandlers(undefined);
+    expect(result).to.deep.equal({});
+  });
 });
