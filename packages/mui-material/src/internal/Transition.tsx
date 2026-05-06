@@ -191,6 +191,16 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       };
 
       if (!node) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(
+            [
+              'MUI: The transition child does not expose a DOM element.',
+              'Make sure the child accepts a ref and forwards it to the underlying DOM element.',
+              'The transition animation cannot be observed without a DOM element and will be skipped.',
+            ].join('\n'),
+          );
+        }
+
         // Match react-transition-group: if there is no DOM node, there is no
         // transition to observe, so finish on the next tick.
         scheduleTimer(0);

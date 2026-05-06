@@ -27,6 +27,7 @@ describe('<Transition />', () => {
     addEndListener?: ((done: () => void) => void) | ((node: HTMLElement, done: () => void) => void);
     mountOnEnter?: boolean;
     unmountOnExit?: boolean;
+    attachRef?: boolean;
     handlers?: TestHandlers;
   }) {
     const nodeRef = React.useRef<HTMLDivElement>(null);
@@ -49,7 +50,11 @@ describe('<Transition />', () => {
         onExited={props.handlers?.onExited}
       >
         {(status) => (
-          <div ref={nodeRef} data-testid="target" data-status={status}>
+          <div
+            ref={props.attachRef === false ? undefined : nodeRef}
+            data-testid="target"
+            data-status={status}
+          >
             content
           </div>
         )}
@@ -286,6 +291,17 @@ describe('<Transition />', () => {
       expect(onEntered.callCount).to.equal(0);
       clock.tick(0);
       expect(onEntered.callCount).to.equal(1);
+    });
+
+    it('warns in development when the transition child does not attach nodeRef', () => {
+      const { setProps } = render(
+        <TestHarness in={false} attachRef={false} timeout={100} handlers={{ onEntered: spy() }} />,
+      );
+
+      expect(() => {
+        setProps({ in: true });
+      }).toWarnDev('MUI: The transition child does not expose a DOM element.');
+      clock.tick(0);
     });
 
     it('addEndListener and timeout race: first completion wins, second is no-op', () => {
