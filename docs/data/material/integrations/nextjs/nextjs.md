@@ -73,7 +73,7 @@ Use the `options` prop to override the default [cache options](https://emotion.s
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-started/fonts) with Material UI, add the font's `className` to the `<html>` element in `src/app/layout.tsx`:
+To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-started/fonts) with Material UI, add the font's `className` to the `<html>` element in `src/app/layout.tsx`:
 
 ```diff title="app/layout.tsx"
  import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
@@ -99,12 +99,12 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/app/getting-sta
  }
 ```
 
-This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
-Next.js preloads and self-hosts the font at build time, so the browser uses it for any element that references `"Roboto"` — including Material UI components.
+This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
+Next.js preloads and self-hosts the font at build time, so the browser uses it for any element that references `"Roboto"` — including Material UI components.
 
 :::warning
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
-Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
+Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
 :::
 
@@ -423,7 +423,7 @@ If you are using TypeScript, add `DocumentHeadTagsProps` to the Document's props
 
 ### Font optimization
 
-To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-started/fonts) with Material UI, open `pages/_app.tsx` and add the font's `className` to the root element:
+To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-started/fonts) with Material UI, open `pages/_app.tsx` and add the font's `className` to the root element:
 
 ```diff title="pages/_app.tsx"
  import * as React from 'react';
@@ -451,11 +451,11 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/getting-s
  }
 ```
 
-This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
+This approach keeps the theme's default `fontFamily` unchanged, so Material UI's Roboto-tuned typography letter-spacing values are preserved.
 
 :::warning
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
-Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
+Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
 :::
 
