@@ -13,9 +13,9 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled } from '@mui/material/styles';
-import { blueDark } from '@mui/internal-core-docs/branding';
-import { useTranslate } from '@mui/internal-core-docs/i18n';
-import DemoContext, { type SandboxConfig } from '@mui/internal-core-docs/DemoContext';
+import { blueDark } from '../branding';
+import { useTranslate } from '../i18n';
+import DemoContext, { type SandboxConfig } from '../DemoContext';
 import useScrollAnchor from './useScrollAnchor';
 
 // Dark code-panel background used by the highlighted source viewer.
@@ -175,9 +175,10 @@ function buildRootIndexTemplate(
   if (!csbConfig?.getRootIndex) {
     return undefined;
   }
+  const { getRootIndex } = csbConfig;
   return ({ importString, useTypescript }) => {
     const codeVariant = useTypescript ? 'TS' : 'JS';
-    const legacy = csbConfig.getRootIndex(codeVariant);
+    const legacy = getRootIndex(codeVariant);
     // Replace the legacy `import Demo from './Demo';` line with the dynamic
     // entrypoint import emitted by exportVariant, then rename the rendered
     // `<Demo />` element to `<App />` (the exportVariant default).
