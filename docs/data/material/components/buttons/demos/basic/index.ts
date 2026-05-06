@@ -1,4 +1,4 @@
-import { createDemo } from 'docs/src/modules/utils/createDemo';
+import { createDemo } from '@mui/internal-core-docs/utils';
 import ClientProvider from './client';
 
 import BasicButtons from './BasicButtons';
