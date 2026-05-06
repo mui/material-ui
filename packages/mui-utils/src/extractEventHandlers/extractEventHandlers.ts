@@ -1,3 +1,4 @@
+import { isEventHandler } from '@mui/utils';
 import { EventHandlers } from '../types';
 
 /**
@@ -14,7 +15,7 @@ function extractEventHandlers(object: Record<string, any> | undefined): EventHan
   const result: EventHandlers = {};
 
   for (const prop of Object.keys(object)) {
-    if (prop.match(/^on[A-Z]/) && typeof object[prop] === 'function') {
+    if (isEventHandler(prop, object[prop])) {
       result[prop] = object[prop];
     }
   }
