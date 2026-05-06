@@ -13,10 +13,9 @@ import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
 import { alpha, styled } from '@mui/material/styles';
-import { blueDark } from '@mui/docs/branding';
-import { useTranslate } from '@mui/docs/i18n';
-import DemoContext from './DemoContext';
-import type { SandboxConfig } from './DemoContext';
+import { blueDark } from '@mui/internal-core-docs/branding';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
+import DemoContext, { type SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import useScrollAnchor from './useScrollAnchor';
 
 // Dark code-panel background used by the highlighted source viewer.
