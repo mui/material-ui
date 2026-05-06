@@ -660,7 +660,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       resizeObserver?.disconnect();
       scrollerResizeObserver?.disconnect();
     };
-  }, [updateIndicatorState, updateScrollButtonState, scrollable, scrollButtons, scrollSelectedIntoView]);
+  }, [
+    updateIndicatorState,
+    updateScrollButtonState,
+    scrollable,
+    scrollButtons,
+    scrollSelectedIntoView,
+  ]);
 
   /**
    * Toggle visibility of start and end scroll buttons
