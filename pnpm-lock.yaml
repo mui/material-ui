@@ -90,8 +90,8 @@ importers:
         specifier: 1.0.9-canary.78
         version: 1.0.9-canary.78(@types/node@20.19.39)(esbuild@0.27.2)(jiti@2.6.1)(rolldown@1.0.0-rc.17)(rollup@4.46.2)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.4-canary.42
-        version: 0.0.4-canary.42(@next/eslint-plugin-next@15.5.15)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.13)(prettier@3.8.3)(stylelint@17.9.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
+        specifier: 0.0.4-canary.43
+        version: 0.0.4-canary.43(@next/eslint-plugin-next@15.5.15)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.13)(prettier@3.8.3)(stylelint@17.9.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -3418,8 +3418,8 @@ packages:
     resolution: {integrity: sha512-gwkMQNLhRn/Cg+l7xkHUC4bIF+P8NPhAWsSd4LhwfY4wv8r6vfEQUTd8pnIhxJrMQ8iGykcXJVgod2LdApj05g==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.4-canary.42':
-    resolution: {integrity: sha512-5Uocpkl+0672bAKD96fRWzF+Fat50uEmb2LZt26nv/9ih7uYira7iTILlCXeXo5SZowT3hwmxTxK8AhuW9iPCw==}
+  '@mui/internal-code-infra@0.0.4-canary.43':
+    resolution: {integrity: sha512-zRM7BqJOZytmGo694iVtdkwVVej00g8+/XWIhDABsp/U7TsFT8SeJCrB3qDs2ciT2chzXuAhUx7rJ97+ks/SbQ==}
     hasBin: true
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -5415,6 +5415,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@unrs/resolver-binding-android-arm-eabi@1.9.2':
     resolution: {integrity: sha512-tS+lqTU3N0kkthU+rYp0spAYq15DU8ld9kXkaKg9sbQqJNF+WPMuNHZQGCgdxrUOEO0j22RKMwRVhF1HTl+X8A==}
@@ -13751,7 +13752,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.4-canary.42(@next/eslint-plugin-next@15.5.15)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.13)(prettier@3.8.3)(stylelint@17.9.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
+  '@mui/internal-code-infra@0.0.4-canary.43(@next/eslint-plugin-next@15.5.15)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.57.1(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.57.1(eslint@10.2.1(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.1(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.13)(prettier@3.8.3)(stylelint@17.9.1(typescript@5.9.3))(typescript@5.9.3)(vitest@4.0.13)':
     dependencies:
       '@argos-ci/core': 5.2.0
       '@babel/cli': 7.28.6(@babel/core@7.29.0)
