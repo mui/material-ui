@@ -31,7 +31,7 @@
     "@mui/base": "5.0.0-beta.70",
     "@mui/docs": "workspace:*",
     "@mui/icons-material": "workspace:*",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@d351bf2",
+    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@c0d9462",
     "@mui/internal-markdown": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/lab": "workspace:*",

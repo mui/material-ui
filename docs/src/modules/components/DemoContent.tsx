@@ -521,6 +521,48 @@ const CodeViewer = styled('div', {
     padding: '2px 4px',
   },
 
+  // ---- Editable code wrapper ----
+  // Focus-trap wrapper added by `<Pre>` when `setSource` is provided. The
+  // wrapper is the keyboard-only tab stop; pressing Enter focuses the inner
+  // `<pre>` and engages contentEditable Tab-indents-line behavior. Escape
+  // returns focus to the wrapper. The overlay is hidden via the [hidden]
+  // attribute when the wrapper isn't armed; only shown after keyboard focus
+  // arrives on the wrapper.
+  '& .editable-code-wrapper': {
+    position: 'relative',
+    display: 'block',
+    borderRadius: 8,
+  },
+  '& .editable-code-wrapper:focus-visible': {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: -2,
+  },
+  '& .editable-code-wrapper .editable-code-overlay': {
+    position: 'absolute',
+    top: 8,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    padding: '4px 10px',
+    borderRadius: 6,
+    background: 'rgba(28, 24, 48, 0.92)',
+    color: '#fff',
+    fontSize: 12,
+    lineHeight: 1.4,
+    pointerEvents: 'none',
+    zIndex: 1,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+  },
+  '& .editable-code-wrapper .editable-code-overlay kbd': {
+    display: 'inline-block',
+    padding: '1px 6px',
+    margin: '0 2px',
+    border: '1px solid rgba(255, 255, 255, 0.35)',
+    borderRadius: 4,
+    fontFamily: 'inherit',
+    fontSize: 11,
+    background: 'rgba(255, 255, 255, 0.1)',
+  },
+
   // Truncated visible frame: only round top — bottom fades out via overlay.
   '& .frame[data-frame-truncated="visible"]': {
     borderRadius: '8px 8px 0 0',
