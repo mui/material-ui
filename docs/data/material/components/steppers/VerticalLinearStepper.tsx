@@ -44,6 +44,36 @@ export default function VerticalLinearStepper() {
     setActiveStep(0);
   };
 
+  const previousActiveStepRef = React.useRef(activeStep);
+  const continueButtonRef = React.useRef<HTMLButtonElement>(null);
+  const backButtonRef = React.useRef<HTMLButtonElement>(null);
+  const resetButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    const previousActiveStep = previousActiveStepRef.current;
+
+    if (previousActiveStep < activeStep) {
+      if (activeStep === steps.length) {
+        // If the user has completed all steps and hits Finish, focus the Reset button.
+        resetButtonRef.current?.focus();
+      } else {
+        // Focus the "Continue" button if the user is going forward.
+        continueButtonRef.current?.focus();
+      }
+    } else {
+      if (activeStep === 0) {
+        // If the user has completed all steps and hits Reset, focus the Next button.
+        continueButtonRef.current?.focus();
+      } else {
+        // Focus the "Back" button if the user is going backward.
+        backButtonRef.current?.focus();
+      }
+    }
+
+    previousActiveStepRef.current = activeStep;
+  }, [activeStep]);
+
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
@@ -65,6 +95,7 @@ export default function VerticalLinearStepper() {
                   variant="contained"
                   onClick={handleNext}
                   sx={{ mt: 1, mr: 1 }}
+                  ref={continueButtonRef}
                 >
                   {index === steps.length - 1 ? 'Finish' : 'Continue'}
                 </Button>
@@ -72,6 +103,7 @@ export default function VerticalLinearStepper() {
                   disabled={index === 0}
                   onClick={handleBack}
                   sx={{ mt: 1, mr: 1 }}
+                  ref={backButtonRef}
                 >
                   Back
                 </Button>
@@ -83,7 +115,7 @@ export default function VerticalLinearStepper() {
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
           <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }} ref={resetButtonRef}>
             Reset
           </Button>
         </Paper>

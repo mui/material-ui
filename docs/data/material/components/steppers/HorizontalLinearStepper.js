@@ -54,6 +54,28 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
   };
 
+  const previousActiveStepRef = React.useRef(activeStep);
+  const resetButtonRef = React.useRef(null);
+  const nextButtonRef = React.useRef(null);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    const previousActiveStep = previousActiveStepRef.current;
+
+    if (activeStep === steps.length) {
+      // If the user has completed all steps and hits Finish, focus the Reset button.
+      resetButtonRef.current?.focus();
+    } else if (activeStep === 0 && previousActiveStep === steps.length) {
+      // If the user has completed all steps and hits Reset, focus the Next button.
+      nextButtonRef.current?.focus();
+    } else if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
+      // If the user hits Skip and the next step is not optional, focus the Next button.
+      nextButtonRef.current?.focus();
+    }
+
+    previousActiveStepRef.current = activeStep;
+  }, [activeStep]);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
@@ -82,7 +104,9 @@ export default function HorizontalLinearStepper() {
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset} ref={resetButtonRef}>
+              Reset
+            </Button>
           </Box>
         </React.Fragment>
       ) : (
@@ -103,7 +127,7 @@ export default function HorizontalLinearStepper() {
                 Skip
               </Button>
             )}
-            <Button onClick={handleNext}>
+            <Button onClick={handleNext} ref={nextButtonRef}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>
           </Box>

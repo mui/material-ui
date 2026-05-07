@@ -59,6 +59,31 @@ export default function HorizontalNonLinearStepper() {
     setCompleted({});
   };
 
+  const resetButtonRef = React.useRef(null);
+  const nextButtonRef = React.useRef(null);
+  const previousActiveStepRef = React.useRef(activeStep);
+
+  // Manage focus when the completed steps change.
+  React.useEffect(() => {
+    if (allStepsCompleted()) {
+      // If the user has completed all steps and hits Finish, focus the Reset button.
+      resetButtonRef.current?.focus();
+    } else if (Object.keys(completed).length === 0) {
+      // If the user has completed all steps and hits Reset, focus the Next button.
+      nextButtonRef.current?.focus();
+    }
+  }, [completed]);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    if (activeStep === 0 && previousActiveStepRef.current === 1) {
+      // If the user navigated to first step via Back button, focus the Next button.
+      nextButtonRef.current?.focus();
+    }
+
+    previousActiveStepRef.current = activeStep;
+  }, [activeStep]);
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper nonLinear activeStep={activeStep}>
@@ -82,7 +107,9 @@ export default function HorizontalNonLinearStepper() {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
+              <Button onClick={handleReset} ref={resetButtonRef}>
+                Reset
+              </Button>
             </Box>
           </React.Fragment>
         ) : (
@@ -100,7 +127,7 @@ export default function HorizontalNonLinearStepper() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleNext} sx={{ mr: 1 }}>
+              <Button onClick={handleNext} sx={{ mr: 1 }} ref={nextButtonRef}>
                 Next
               </Button>
               {activeStep !== steps.length &&
