@@ -12,28 +12,17 @@ export default function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
 
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
+  const totalSteps = steps.length;
+  const completedSteps = Object.keys(completed).length;
+  const isLastStep = activeStep === totalSteps - 1;
+  const allStepsCompleted = completedSteps === totalSteps;
 
   const handleNext = () => {
     const newActiveStep =
-      isLastStep() && !allStepsCompleted()
+      isLastStep && !allStepsCompleted
         ? // It's the last step, but not all steps have been completed,
           // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
+          steps.findIndex((_step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
   };
@@ -65,14 +54,14 @@ export default function HorizontalNonLinearStepper() {
 
   // Manage focus when the completed steps change.
   React.useEffect(() => {
-    if (allStepsCompleted()) {
+    if (allStepsCompleted) {
       // If the user has completed all steps and hits Finish, focus the Reset button.
       resetButtonRef.current?.focus();
     } else if (Object.keys(completed).length === 0) {
       // If the user has completed all steps and hits Reset, focus the Next button.
       nextButtonRef.current?.focus();
     }
-  }, [completed]);
+  }, [completed, allStepsCompleted]);
 
   // Manage focus when the active step changes.
   React.useEffect(() => {
@@ -100,7 +89,7 @@ export default function HorizontalNonLinearStepper() {
         ))}
       </Stepper>
       <div id="stepper-content">
-        {allStepsCompleted() ? (
+        {allStepsCompleted ? (
           <React.Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
               All steps completed - you&apos;re finished
@@ -137,9 +126,7 @@ export default function HorizontalNonLinearStepper() {
                   </Typography>
                 ) : (
                   <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
+                    {completedSteps === totalSteps - 1 ? 'Finish' : 'Complete Step'}
                   </Button>
                 ))}
             </Box>

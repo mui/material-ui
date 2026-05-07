@@ -49,17 +49,19 @@ export default function TextMobileStepper() {
   // Manage focus when the active step changes.
   React.useEffect(() => {
     const previousActiveStep = previousActiveStepRef.current;
+    previousActiveStepRef.current = activeStep;
 
     if (activeStep === 0 && previousActiveStep === 1) {
       // If the user is going back to the first step, focus the Next button.
       nextButtonRef.current?.focus();
-    } else if (activeStep === maxSteps - 1 && previousActiveStep === maxSteps - 2) {
+      return;
+    }
+
+    if (activeStep === maxSteps - 1 && previousActiveStep === maxSteps - 2) {
       // If the user is going to the last step, focus the Back button.
       backButtonRef.current?.focus();
     }
-
-    previousActiveStepRef.current = activeStep;
-  }, [activeStep]);
+  }, [activeStep, maxSteps]);
 
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>

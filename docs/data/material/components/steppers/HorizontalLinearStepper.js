@@ -61,19 +61,22 @@ export default function HorizontalLinearStepper() {
   // Manage focus when the active step changes.
   React.useEffect(() => {
     const previousActiveStep = previousActiveStepRef.current;
+    previousActiveStepRef.current = activeStep;
 
     if (activeStep === steps.length) {
       // If the user has completed all steps and hits Finish, focus the Reset button.
       resetButtonRef.current?.focus();
-    } else if (activeStep === 0 && previousActiveStep === steps.length) {
+      return;
+    }
+    if (activeStep === 0 && previousActiveStep === steps.length) {
       // If the user has completed all steps and hits Reset, focus the Next button.
       nextButtonRef.current?.focus();
-    } else if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
+      return;
+    }
+    if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
       // If the user hits Skip and the next step is not optional, focus the Next button.
       nextButtonRef.current?.focus();
     }
-
-    previousActiveStepRef.current = activeStep;
   }, [activeStep]);
 
   return (

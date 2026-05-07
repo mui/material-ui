@@ -52,6 +52,7 @@ export default function VerticalLinearStepper() {
   // Manage focus when the active step changes.
   React.useEffect(() => {
     const previousActiveStep = previousActiveStepRef.current;
+    previousActiveStepRef.current = activeStep;
 
     if (previousActiveStep < activeStep) {
       if (activeStep === steps.length) {
@@ -61,17 +62,15 @@ export default function VerticalLinearStepper() {
         // Focus the "Continue" button if the user is going forward.
         continueButtonRef.current?.focus();
       }
-    } else {
-      if (activeStep === 0) {
-        // If the user has completed all steps and hits Reset, focus the Next button.
-        continueButtonRef.current?.focus();
-      } else {
-        // Focus the "Back" button if the user is going backward.
-        backButtonRef.current?.focus();
-      }
+      return;
     }
-
-    previousActiveStepRef.current = activeStep;
+    if (activeStep === 0) {
+      // If the user has completed all steps and hits Reset, focus the Next button.
+      continueButtonRef.current?.focus();
+    } else {
+      // Focus the "Back" button if the user is going backward.
+      backButtonRef.current?.focus();
+    }
   }, [activeStep]);
 
   return (
@@ -99,14 +98,15 @@ export default function VerticalLinearStepper() {
                 >
                   {index === steps.length - 1 ? 'Finish' : 'Continue'}
                 </Button>
-                <Button
-                  disabled={index === 0}
-                  onClick={handleBack}
-                  sx={{ mt: 1, mr: 1 }}
-                  ref={backButtonRef}
-                >
-                  Back
-                </Button>
+                {index !== 0 && (
+                  <Button
+                    onClick={handleBack}
+                    sx={{ mt: 1, mr: 1 }}
+                    ref={backButtonRef}
+                  >
+                    Back
+                  </Button>
+                )}
               </Box>
             </StepContent>
           </Step>
