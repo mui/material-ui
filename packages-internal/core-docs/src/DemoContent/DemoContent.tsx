@@ -545,9 +545,13 @@ const CodeViewer = styled('div', {
     outline: 0,
   },
   // Overlay matches the legacy DemoEditor "Press Enter to start editing" hint.
-  // Hidden by default; revealed only while the wrapper has keyboard focus
-  // (`data-editable-armed` is added by `<Pre>` on keyboard focus and removed
-  // on blur or once the user presses Enter to engage editing).
+  // `<Pre>` ships the overlay with the `[hidden]` attribute by default and
+  // toggles `data-editable-prompt` on the wrapper while the prompt is shown.
+  // Override `[hidden]` so the overlay stays in layout, then animate the
+  // slide/fade + focus ring via `data-editable-prompt`.
+  '& .editable-code-wrapper .editable-code-overlay[hidden]': {
+    display: 'block',
+  },
   '& .editable-code-wrapper .editable-code-overlay': {
     position: 'absolute',
     top: 0,
@@ -563,18 +567,20 @@ const CodeViewer = styled('div', {
     // Animate the popup slide/fade together with its focus ring. `outline`
     // (rather than `box-shadow`) is used so the ring paints purely outside
     // the popup and never stacks under the popup's own background/border.
-    transition: 'top 0.3s, opacity 0.3s, outline-color 0.3s, outline-width 0.3s',
+    transition: 'top 0.3s, opacity 0.3s, visibility 0.3s, outline-color 0.3s, outline-width 0.3s',
     outlineStyle: 'solid',
     outlineColor: alpha(theme.palette.primary[500], 0),
     outlineWidth: 0,
     outlineOffset: 0,
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+    visibility: 'hidden',
     opacity: 0,
     pointerEvents: 'none',
     zIndex: 1,
   },
-  '& .editable-code-wrapper[data-editable-armed] .editable-code-overlay': {
+  '& .editable-code-wrapper[data-editable-prompt] .editable-code-overlay': {
     top: theme.spacing(1),
+    visibility: 'visible',
     opacity: 1,
     outlineColor: alpha(theme.palette.primary[500], 0.8),
     outlineWidth: 3,
