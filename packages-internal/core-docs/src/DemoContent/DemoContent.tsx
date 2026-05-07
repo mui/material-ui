@@ -394,6 +394,11 @@ const CodeViewer = styled('div', {
     fontSize: '0.8125rem',
     lineHeight: '1.5',
   },
+  // Hover ring on the editable `<pre>` — mirrors the legacy DemoEditor
+  // `.scrollContainer:hover` treatment.
+  '& .editable-code-wrapper pre:hover': {
+    boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
+  },
   // When the editable `<pre>` is focused (after pressing Enter), use the
   // brand-blue focus ring instead of the browser default (which is white in
   // dark color schemes).
