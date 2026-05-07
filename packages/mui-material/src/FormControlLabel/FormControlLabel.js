@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { useFormControl } from '../FormControl';
+import { useFormControlState } from '../FormControl/useFormControl';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -13,7 +13,6 @@ import capitalize from '../utils/capitalize';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
-import formControlState from '../FormControl/formControlState';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -129,7 +128,10 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     ...other
   } = props;
 
-  const muiFormControl = useFormControl();
+  const [fcs, muiFormControl] = useFormControlState({
+    props,
+    states: ['error'],
+  });
 
   const disabled = disabledProp ?? control.props.disabled ?? muiFormControl?.disabled;
   const required = requiredProp ?? control.props.required;
@@ -143,12 +145,6 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     if (typeof control.props[key] === 'undefined' && typeof props[key] !== 'undefined') {
       controlProps[key] = props[key];
     }
-  });
-
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['error'],
   });
 
   const ownerState = {

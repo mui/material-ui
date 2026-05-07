@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "@babel/types": "^7.29.0",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.45.1",
+    "es-toolkit": "^1.46.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
