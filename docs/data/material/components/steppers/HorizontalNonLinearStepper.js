@@ -51,13 +51,23 @@ export default function HorizontalNonLinearStepper() {
   const resetButtonRef = React.useRef(null);
   const nextButtonRef = React.useRef(null);
   const previousActiveStepRef = React.useRef(activeStep);
+  const previousCompletedRef = React.useRef(completed);
 
   // Manage focus when the completed steps change.
   React.useEffect(() => {
+    const previousCompleted = previousCompletedRef.current;
+    previousCompletedRef.current = completed;
+
     if (allStepsCompleted) {
       // If the user has completed all steps and hits Finish, focus the Reset button.
       resetButtonRef.current?.focus();
-    } else if (Object.keys(completed).length === 0) {
+      return;
+    }
+
+    if (
+      Object.keys(completed).length === 0 &&
+      Object.keys(previousCompleted).length !== 0
+    ) {
       // If the user has completed all steps and hits Reset, focus the Next button.
       nextButtonRef.current?.focus();
     }

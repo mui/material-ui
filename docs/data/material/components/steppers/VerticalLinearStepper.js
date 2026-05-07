@@ -54,11 +54,6 @@ export default function VerticalLinearStepper() {
     const previousActiveStep = previousActiveStepRef.current;
     previousActiveStepRef.current = activeStep;
 
-    // Skip the initial render.
-    if (previousActiveStep === activeStep) {
-      return;
-    }
-
     if (previousActiveStep < activeStep) {
       if (activeStep === steps.length) {
         // If the user has completed all steps and hits Finish, focus the Reset button.
