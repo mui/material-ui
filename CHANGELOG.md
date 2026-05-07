@@ -22,6 +22,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [checkbox] Set `aria-checked=mixed` when indeterminate (#48147) @mj12albert
 - [circularprogress][linearprogress] Improve accessibility (#48172) @silviuaavram
 - [dialog][drawer][focus trap] Fix initial focus target (#48280) @mj12albert
+- [drawer] Fix swipe close flicker (#48372) @mj12albert
 - [drawer] Fix transition jump (#48308) @mj12albert
 - [focus trap] Remove IE 11-specific focus safety check from FocusTrap cleanup (#48368) @ZeeshanTamboli
 - [form controls] Add internal `useFormControlState` hook (#48344) @mj12albert
