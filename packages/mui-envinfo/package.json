@@ -1,6 +1,6 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.48",
+  "version": "2.0.49",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
   "license": "MIT",
