@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
   /**
@@ -35,7 +35,6 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
 /**
  * The Grow transition is used by the [Tooltip](https://mui.com/material-ui/react-tooltip/) and
  * [Popover](https://mui.com/material-ui/react-popover/) components.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *

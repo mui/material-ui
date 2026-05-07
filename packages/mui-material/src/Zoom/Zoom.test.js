@@ -1,10 +1,9 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
-import { Transition } from 'react-transition-group';
+import { createRenderer } from '@mui/internal-test-utils';
 import Zoom from '@mui/material/Zoom';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 describe('<Zoom />', () => {
   const { clock, render } = createRenderer();
@@ -22,69 +21,32 @@ describe('<Zoom />', () => {
     }),
   );
 
-  describe('transition lifecycle', () => {
-    clock.withFakeTimers();
-
-    it('tests', () => {
-      const handleAddEndListener = spy();
-      const handleEnter = spy();
-      const handleEntering = spy();
-      const handleEntered = spy();
-      const handleExit = spy();
-      const handleExiting = spy();
-      const handleExited = spy();
-      const { container, setProps } = render(
-        <Zoom
-          addEndListener={handleAddEndListener}
-          onEnter={handleEnter}
-          onEntering={handleEntering}
-          onEntered={handleEntered}
-          onExit={handleExit}
-          onExiting={handleExiting}
-          onExited={handleExited}
-        >
-          <div id="test" />
-        </Zoom>,
-      );
-      const child = container.querySelector('#test');
-
-      setProps({ in: true });
-
-      expect(handleAddEndListener.callCount).to.equal(1);
-      expect(handleAddEndListener.args[0][0]).to.equal(child);
-      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
-
-      expect(handleEnter.callCount).to.equal(1);
-      expect(handleEnter.args[0][0]).to.equal(child);
-
-      expect(handleEnter.args[0][0].style.transition).to.match(
-        /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-      );
-
-      expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-      expect(handleEntered.callCount).to.equal(1);
-      expect(handleEntered.args[0][0]).to.equal(child);
-
-      setProps({ in: false });
-
-      expect(handleExit.callCount).to.equal(1);
-      expect(handleExit.args[0][0]).to.equal(child);
-
-      expect(handleExit.args[0][0].style.transition).to.match(
-        /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-      );
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-      expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child);
-    });
-  });
+  describeTransitionConformance('Zoom', () => ({
+    Component: Zoom,
+    render,
+    clock,
+    lifecycle: {
+      addEndListener: true,
+      assertEnter: (node) => {
+        expect(node.style.transition).to.match(
+          /transform 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+        );
+      },
+      assertExit: (node) => {
+        expect(node.style.transition).to.match(
+          /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+        );
+      },
+    },
+    themeDuration: {
+      testPropTimeout: true,
+      renderElement: (props) => (
+        <Zoom in appear {...props}>
+          <div data-testid="child">Foo</div>
+        </Zoom>
+      ),
+    },
+  }));
 
   describe('prop: appear', () => {
     it('should work when initially hidden: appear=true', () => {
@@ -110,56 +72,6 @@ describe('<Zoom />', () => {
 
       expect(element.style).to.have.property('transform', 'scale(0)');
       expect(element.style).to.have.property('visibility', 'hidden');
-    });
-  });
-
-  describe('prop: timeout', () => {
-    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-
-      render(
-        <Zoom in appear>
-          <div data-testid="child">Foo</div>
-        </Zoom>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it.skipIf(isJsdom())('should render the custom theme values', function test() {
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Zoom in appear>
-            <div data-testid="child">Foo</div>
-          </Zoom>
-        </ThemeProvider>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
-
-    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
-      render(
-        <Zoom in appear timeout={{ enter: 1 }}>
-          <div data-testid="child">Foo</div>
-        </Zoom>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

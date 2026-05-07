@@ -1,6 +1,6 @@
 {
   "name": "@mui/codemod",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "author": "MUI Team",
   "description": "Codemod scripts for Material UI.",
   "license": "MIT",

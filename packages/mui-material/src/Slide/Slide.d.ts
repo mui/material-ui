@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/types';
 
 export interface SlideProps extends TransitionProps {
   /**
@@ -49,7 +49,6 @@ export interface SlideProps extends TransitionProps {
 
 /**
  * The Slide transition is used by the [Drawer](https://mui.com/material-ui/react-drawer/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
