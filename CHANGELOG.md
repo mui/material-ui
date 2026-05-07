@@ -56,6 +56,7 @@ A big thanks to the 25 contributors who made this release possible.
 
 - [utils] Add shadow dom utils (#48256) @mj12albert
 - [utils] Fix `resolveProps` receiving empty string className (#48289) @SAY-5
+- [utils] Remove unnecessary `excludeKeys` from `extractEventHandlers` (#48481) @ZeeshanTamboli
 
 ### Docs
 
@@ -71,6 +72,7 @@ A big thanks to the 25 contributors who made this release possible.
 - [docs] Fix typos (#48155) @ayushshukla1807
 - [docs] Fix typos (#48270) @pavan-sh
 - [docs] Fix versions page (#48261) @mnajdova
+- [docs] Fix vision grammar (#48477) @pavan-sh
 - [docs] Improve accessibility for select examples (#48250) @silviuaavram
 - [docs] Improve CSP guide with required directives (#48258) @Janpot
 - [docs] Link to agent skills in relevant docs (#48387) @mapache-salvaje
