@@ -438,6 +438,56 @@ describe('<Slide />', () => {
     });
 
     describe('handleExiting()', () => {
+      const draggedOffset = 170;
+      const elementTop = 200;
+
+      const TouchDraggedFakeDiv = React.forwardRef(function TouchDraggedFakeDiv(props, ref) {
+        const [translateY, setTranslateY] = React.useState(0);
+        const startYRef = React.useRef(null);
+        const stubbedElementRef = React.useRef(null);
+        const stubBoundingClientRect = React.useCallback((element) => {
+          if (element === null || stubbedElementRef.current === element) {
+            return;
+          }
+
+          stubbedElementRef.current = element;
+          stub(element, 'getBoundingClientRect').callsFake(() => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 800,
+            top: elementTop,
+            bottom: 500,
+          }));
+        }, []);
+        const handleRef = useForkRef(ref, stubBoundingClientRect);
+
+        return (
+          <div
+            data-testid="drag-target"
+            {...props}
+            ref={handleRef}
+            onPointerDown={(event) => {
+              startYRef.current = event.clientY;
+            }}
+            onPointerMove={(event) => {
+              if (startYRef.current !== null) {
+                setTranslateY(event.clientY - startYRef.current);
+              }
+            }}
+            onPointerUp={() => {
+              startYRef.current = null;
+            }}
+            style={{
+              width: 500,
+              height: 300,
+              background: 'red',
+              transform: `translate(0px, ${translateY}px)`,
+            }}
+          />
+        );
+      });
+
       it('should set element transform and transition in the `left` direction', () => {
         let nodeExitingTransformStyle;
         const { setProps } = render(
@@ -512,6 +562,40 @@ describe('<Slide />', () => {
         setProps({ in: false });
 
         expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
+      });
+
+      it('should account for a touch-dragged position when exiting', async () => {
+        function Test() {
+          const [open, setOpen] = React.useState(true);
+
+          return (
+            <React.Fragment>
+              <button type="button" onClick={() => setOpen(false)}>
+                Close
+              </button>
+              <Slide appear={false} direction="up" in={open}>
+                <TouchDraggedFakeDiv />
+              </Slide>
+            </React.Fragment>
+          );
+        }
+
+        const { user } = render(<Test />);
+        const dragTarget = screen.getByTestId('drag-target');
+
+        await user.pointer([
+          { keys: '[TouchA>]', target: dragTarget, coords: { clientY: 200 } },
+          { pointerName: 'TouchA', target: dragTarget, coords: { clientY: 370 } },
+          { keys: '[/TouchA]', target: dragTarget, coords: { clientY: 370 } },
+        ]);
+
+        expect(dragTarget.style.transform).to.equal(`translate(0px, ${draggedOffset}px)`);
+
+        await user.click(screen.getByRole('button', { name: 'Close' }));
+
+        expect(dragTarget.style.transform).to.equal(
+          `translateY(${globalThis.innerHeight + draggedOffset - elementTop}px)`,
+        );
       });
     });
 
