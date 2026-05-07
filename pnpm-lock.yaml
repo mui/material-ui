@@ -275,15 +275,6 @@ importers:
       '@emotion/styled':
         specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
-      '@fortawesome/fontawesome-svg-core':
-        specifier: ^6.7.2
-        version: 6.7.2
-      '@fortawesome/free-solid-svg-icons':
-        specifier: ^6.7.2
-        version: 6.7.2
-      '@fortawesome/react-fontawesome':
-        specifier: ^0.2.6
-        version: 0.2.6(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.2.4)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build
@@ -740,10 +731,10 @@ importers:
         version: 7.3.8(stylis@4.2.0)
       '@mui/system':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
-        version: 9.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+        version: 9.0.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/utils':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
-        version: 9.0.0(@types/react@19.2.14)(react@19.2.4)
+        version: 9.0.1(@types/react@19.2.14)(react@19.2.4)
       '@types/stylis':
         specifier: ^4.2.7
         version: 4.2.7
@@ -2876,25 +2867,6 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@fortawesome/fontawesome-common-types@6.7.2':
-    resolution: {integrity: sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/fontawesome-svg-core@6.7.2':
-    resolution: {integrity: sha512-yxtOBWDrdi5DD5o1pmVdq3WMCvnobT0LU6R8RyyVXPvFRd2o79/0NCuQoCjNTeZz9EzA9xS3JxNWfv54RIHFEA==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/free-solid-svg-icons@6.7.2':
-    resolution: {integrity: sha512-GsBrnOzU8uj0LECDfD5zomZJIjrPhIlWU82AHwa2s40FKH+kcxQaBvBo3Z4TxyZHIyX8XTDxsyA33/Vx9eFuQA==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/react-fontawesome@0.2.6':
-    resolution: {integrity: sha512-mtBFIi1UsYQo7rYonYFkjgYKGoL8T+fEH6NGUpvuqtY3ytMsAoDaPo5rk25KuMtKDipY4bGYM/CkmCHA1N3FUg==}
-    deprecated: v0.2.x is no longer supported. Unless you are still using FontAwesome 5, please update to v3.1.1 or greater.
-    peerDependencies:
-      '@fortawesome/fontawesome-svg-core': ~1 || ~6 || ~7
-      react: ^16.3 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
   '@html-validate/stylish@5.2.0':
     resolution: {integrity: sha512-7lF57/RTs2tZi0FtgY7Y5CP73Y2GEPPMaJ9PeZKRRUOs7Bt7/Qlqt8kdsAbVMO7GrpuWtUfGvR11riSOryioow==}
     engines: {node: ^20.18 || ^22.16 || >= 24.0}
@@ -3521,8 +3493,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/private-theming@9.0.0':
-    resolution: {integrity: sha512-JtuZoaiCqwD6vjgYu6Xp3T7DZkrxJlgtDz5yESzhI34fEX5hHMh2VJUbuL9UOg8xrfIFMrq6dcYoH/7Zi4G0RA==}
+  '@mui/private-theming@9.0.1':
+    resolution: {integrity: sha512-pSIGq4Yw749KHEwlkYZWVERgHgwJELP6ODtBNUfV8V4oIb5H+h7IQDFXuk/b2oQccODK1enJAtiEzlgLZmq+8g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -3618,8 +3590,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/system@9.0.0':
-    resolution: {integrity: sha512-YnC5Zg6j04IxiLc/boAKs0464jfZlLFVa7mf5E8lF0XOtZVUvG6R6gJK50lgUYdaaLdyLfxF6xR7LaPuEpeT/g==}
+  '@mui/system@9.0.1':
+    resolution: {integrity: sha512-WvlioaLxk6ewUIOfh0StxUvOPDS1mCfzaulcudsL1brZNXuh0N9FMk7RpH7ImJKjEz412SEy/V/yvqmtxbqxCQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.5.0
@@ -13254,22 +13226,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@fortawesome/fontawesome-common-types@6.7.2': {}
-
-  '@fortawesome/fontawesome-svg-core@6.7.2':
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.7.2
-
-  '@fortawesome/free-solid-svg-icons@6.7.2':
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.7.2
-
-  '@fortawesome/react-fontawesome@0.2.6(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.2.4)':
-    dependencies:
-      '@fortawesome/fontawesome-svg-core': 6.7.2
-      prop-types: 15.8.1
-      react: 19.2.4
-
   '@html-validate/stylish@5.2.0': {}
 
   '@humanfs/core@0.19.1': {}
@@ -13939,9 +13895,9 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.29.2
       '@mui/core-downloads-tracker': 9.0.0
-      '@mui/system': 9.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+      '@mui/system': 9.0.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@mui/types': 9.0.0(@types/react@19.2.14)
-      '@mui/utils': 9.0.0(@types/react@19.2.14)(react@19.2.4)
+      '@mui/utils': 9.0.1(@types/react@19.2.14)(react@19.2.4)
       '@popperjs/core': 2.11.8
       '@types/react-transition-group': 4.4.12(@types/react@19.2.14)
       clsx: 2.1.1
@@ -13975,10 +13931,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.14
 
-  '@mui/private-theming@9.0.0(@types/react@19.2.14)(react@19.2.4)':
+  '@mui/private-theming@9.0.1(@types/react@19.2.14)(react@19.2.4)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@mui/utils': 9.0.0(@types/react@19.2.14)(react@19.2.4)
+      '@mui/utils': 9.0.1(@types/react@19.2.14)(react@19.2.4)
       prop-types: 15.8.1
       react: 19.2.4
     optionalDependencies:
@@ -14070,13 +14026,13 @@ snapshots:
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
       '@types/react': 19.2.14
 
-  '@mui/system@9.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)':
+  '@mui/system@9.0.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@mui/private-theming': 9.0.0(@types/react@19.2.14)(react@19.2.4)
+      '@mui/private-theming': 9.0.1(@types/react@19.2.14)(react@19.2.4)
       '@mui/styled-engine': 9.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
       '@mui/types': 9.0.0(@types/react@19.2.14)
-      '@mui/utils': 9.0.0(@types/react@19.2.14)(react@19.2.4)
+      '@mui/utils': 9.0.1(@types/react@19.2.14)(react@19.2.4)
       clsx: 2.1.1
       csstype: 3.2.3
       prop-types: 15.8.1
@@ -14166,7 +14122,6 @@ snapshots:
       react-is: 19.2.4
     optionalDependencies:
       '@types/react': 19.2.14
-    optional: true
 
   '@mui/x-charts-vendor@9.0.0':
     dependencies:

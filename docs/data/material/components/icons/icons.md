@@ -163,16 +163,6 @@ const PlusIcon = createSvgIcon(
 
 {{"demo": "CreateSvgIcon.js"}}
 
-### Font Awesome
-
-If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
-
-Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
-
-{{"demo": "FontAwesomeSvgIconDemo.js"}}
-
-FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
-
 ### Other libraries
 
 #### MDI
