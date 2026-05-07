@@ -20,9 +20,13 @@ import useAutocomplete, {
 } from '../useAutocomplete';
 import { AutocompleteClasses } from './autocompleteClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { FloatingPopupProps } from '../FloatingPopup';
 
 export interface AutocompletePaperSlotPropsOverrides {}
-export interface AutocompletePopperSlotPropsOverrides {}
+export interface AutocompletePopperSlotPropsOverrides extends Pick<
+  FloatingPopupProps,
+  'middleware' | 'strategy' | 'transform' | 'arrowPadding'
+> {}
 
 export {
   AutocompleteChangeDetails,
@@ -145,7 +149,7 @@ export interface AutocompleteSlots {
    * The component used to position the popup.
    * @default Popper
    */
-  popper: React.JSXElementConstructor<PopperProps & AutocompletePopperSlotPropsOverrides>;
+  popper: React.ElementType;
 }
 
 export type AutocompleteSlotsAndSlotProps<

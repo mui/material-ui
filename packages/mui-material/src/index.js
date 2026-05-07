@@ -136,6 +136,9 @@ export * from './Fade';
 export { default as FilledInput } from './FilledInput';
 export * from './FilledInput';
 
+export { default as FloatingPopup } from './FloatingPopup';
+export * from './FloatingPopup';
+
 export { default as FormControl } from './FormControl';
 export * from './FormControl';
 

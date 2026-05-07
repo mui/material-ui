@@ -1,0 +1,23 @@
+{
+  "props": {
+    "arrowRef": {
+      "type": {
+        "name": "union",
+        "description": "(props, propName) => {\n  if (props[propName] == null) {\n    return new Error(`Prop '${propName}' is required but wasn't specified`);\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n}<br>&#124;&nbsp;{ current?: (props, propName) => {\n  if (props[propName] == null) {\n    return null;\n  }\n  if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {\n    return new Error(`Expected prop '${propName}' to be of type Element`);\n  }\n  return null;\n} }"
+      }
+    }
+  },
+  "name": "FloatingPopup",
+  "imports": [
+    "import FloatingPopup from '@mui/material/FloatingPopup';",
+    "import { FloatingPopup } from '@mui/material';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiFloatingPopup",
+  "filename": "/packages/mui-material/src/FloatingPopup/FloatingPopup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/material-ui/react-tooltip/\">Tooltip</a></li></ul>",
+  "cssComponent": false
+}

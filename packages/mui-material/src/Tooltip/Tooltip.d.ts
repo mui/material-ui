@@ -5,9 +5,13 @@ import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { TransitionProps } from '../transitions/transition';
+import { FloatingPopupProps } from '../FloatingPopup';
 import { TooltipClasses } from './tooltipClasses';
 
-export interface TooltipPopperSlotPropsOverrides {}
+export interface TooltipPopperSlotPropsOverrides extends Pick<
+  FloatingPopupProps,
+  'middleware' | 'strategy' | 'transform' | 'arrowPadding'
+> {}
 
 export interface TooltipTransitionSlotPropsOverrides {}
 

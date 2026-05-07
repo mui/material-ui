@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.2",
+    "@floating-ui/react-dom": "^2.1.6",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -99,6 +100,7 @@
     "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
     "./darkScrollbar": "./src/darkScrollbar/index.ts",
     "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
+    "./FloatingPopup": "./src/FloatingPopup/index.ts",
     "./generateUtilityClass": "./src/generateUtilityClass/index.ts",
     "./generateUtilityClasses": "./src/generateUtilityClasses/index.ts",
     "./Grid": "./src/Grid/index.ts",

@@ -278,6 +278,9 @@ importers:
       '@emotion/styled':
         specifier: catalog:docs
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+      '@floating-ui/react-dom':
+        specifier: ^2.1.6
+        version: 2.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.7.2
         version: 6.7.2
@@ -1140,6 +1143,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.3.0
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)
+      '@floating-ui/react-dom':
+        specifier: ^2.1.6
+        version: 2.1.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@mui/core-downloads-tracker':
         specifier: workspace:^
         version: link:../mui-core-downloads-tracker

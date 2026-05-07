@@ -25,6 +25,7 @@
     "@emotion/react": "catalog:docs",
     "@emotion/server": "catalog:docs",
     "@emotion/styled": "catalog:docs",
+    "@floating-ui/react-dom": "^2.1.6",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.6",

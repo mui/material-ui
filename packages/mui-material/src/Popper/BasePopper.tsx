@@ -94,6 +94,10 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
     TransitionProps,
     // @ts-ignore internal logic
     ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. Select.
+    // @ts-ignore — Tooltip passes these for FloatingPopup compat; not used by BasePopper
+    arrowRef,
+    // @ts-ignore
+    arrowPadding,
     ...other
   } = props;
 

@@ -41,6 +41,7 @@ export default [
   { pathname: '/material-ui/api/fab' },
   { pathname: '/material-ui/api/fade' },
   { pathname: '/material-ui/api/filled-input' },
+  { pathname: '/material-ui/api/floating-popup' },
   { pathname: '/material-ui/api/form-control' },
   { pathname: '/material-ui/api/form-control-label' },
   { pathname: '/material-ui/api/form-group' },

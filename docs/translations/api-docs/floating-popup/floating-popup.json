@@ -1,0 +1,9 @@
+{
+  "componentDescription": "FloatingPopup — opt-in replacement for Popper.js-based positioning.\nUses @floating-ui/react-dom under the hood.\n\nDesigned to be used via `slots={{ popper: FloatingPopup }}` on\nAutocomplete and Tooltip.",
+  "propDescriptions": {
+    "arrowRef": {
+      "description": "The arrow element to position. Preferred: pass the element from <code>useState</code>. Also works: <code>RefObject</code> (resolved lazily via Derivable pattern + useLayoutEffect)."
+    }
+  },
+  "classDescriptions": {}
+}

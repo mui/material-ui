@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Autocomplete component
-components: TextField, Popper, Autocomplete
+components: Autocomplete, TextField, Popper, FloatingPopup
 githubLabel: 'scope: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 githubSource: packages/mui-material/src/Autocomplete
