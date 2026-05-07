@@ -30,7 +30,7 @@
     "@fortawesome/react-fontawesome": "^0.2.6",
     "@mui/icons-material": "workspace:^",
     "@mui/internal-core-docs": "workspace:^",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@777d768",
+    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@1355a67",
     "@mui/internal-markdown": "workspace:^",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
