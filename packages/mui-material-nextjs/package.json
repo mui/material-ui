@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "license": "MIT",
