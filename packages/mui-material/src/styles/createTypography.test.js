@@ -84,6 +84,36 @@ describe('createTypography', () => {
     });
   });
 
+  it('should apply fontFamily to custom typography variants', () => {
+    const typography = createTypography(palette, {
+      fontFamily: 'Times New Roman',
+      custom: {
+        color: '#FF0008',
+        textDecoration: 'underline',
+      },
+    });
+    expect(typography.custom.fontFamily).to.equal('Times New Roman');
+  });
+
+  it('should apply allVariants to custom typography variants', () => {
+    const typography = createTypography(palette, {
+      allVariants: { marginBottom: 8 },
+      myVariant: { fontSize: 14 },
+    });
+    expect(typography.myVariant.marginBottom).to.equal(8);
+  });
+
+  it('custom variant explicit fontFamily should override the global fontFamily', () => {
+    const typography = createTypography(palette, {
+      fontFamily: 'Times New Roman',
+      custom: {
+        fontFamily: 'Arial',
+        fontSize: 14,
+      },
+    });
+    expect(typography.custom.fontFamily).to.equal('Arial');
+  });
+
   describe('warnings', () => {
     it('logs an error if `fontSize` is not of type number', () => {
       expect(() => {
