@@ -15,6 +15,7 @@ export interface A11yMeta {
   collectedRules: string[];
   testedRules: Record<string, string[]>;
   violations: string[];
+  needsReview: string[];
 }
 
 function formatNode(node: AxeResults['violations'][number]['nodes'][number]): string {
@@ -87,7 +88,10 @@ export function recordA11y(
     }
   }
 
-  const violations = [...new Set([...results.violations, ...results.incomplete].map((v) => v.id))];
+  const violations = [...new Set(results.violations.map((v) => v.id))];
+  const needsReview = [...new Set(results.incomplete.map((v) => v.id))].filter(
+    (id) => !violations.includes(id),
+  );
 
   const meta: A11yMeta = {
     slug,
@@ -97,6 +101,7 @@ export function recordA11y(
       [...testedRules.entries()].map(([tag, ids]) => [tag, [...ids]]),
     ),
     violations,
+    needsReview,
   };
   (ctx.task.meta as { a11y?: A11yMeta }).a11y = meta;
 

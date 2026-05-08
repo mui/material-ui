@@ -2,7 +2,15 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import chalk from 'chalk';
 import { globbySync } from 'globby';
-import type { Reporter, TestCase, TestModule, TestSuite, Vitest } from 'vitest/node';
+import type {
+  Reporter,
+  TestCase,
+  TestModule,
+  TestRunEndReason,
+  TestSuite,
+  Vitest,
+} from 'vitest/node';
+import type { SerializedError } from 'vitest';
 import type { A11yMeta } from './axe';
 
 const COMPONENTS_DIR = path.resolve(__dirname, '../../../docs/data/material/components');
@@ -11,6 +19,7 @@ const VRT_MODULE_PATH = path.resolve(__dirname, '../index.test.js');
 interface DemoEntry {
   passedRules: string[];
   failedRules: string[];
+  needsReviewRules: string[];
   testedRules: Record<string, string[]>;
 }
 
@@ -26,9 +35,13 @@ function* walkTests(node: TestModule | TestSuite): Generator<TestCase, undefined
 
 function toEntry(meta: A11yMeta): DemoEntry {
   const violations = new Set(meta.violations);
+  const needsReview = new Set(meta.needsReview);
   return {
-    passedRules: meta.collectedRules.filter((r) => !violations.has(r)).sort(),
+    passedRules: meta.collectedRules
+      .filter((r) => !violations.has(r) && !needsReview.has(r))
+      .sort(),
     failedRules: [...meta.violations].sort(),
+    needsReviewRules: [...meta.needsReview].sort(),
     testedRules: meta.testedRules,
   };
 }
@@ -40,7 +53,11 @@ export default class A11yReporter implements Reporter {
     this.filtered = ctx.config.testNamePattern != null;
   }
 
-  onTestRunEnd(testModules: ReadonlyArray<TestModule>) {
+  onTestRunEnd(
+    testModules: ReadonlyArray<TestModule>,
+    _unhandledErrors: ReadonlyArray<SerializedError>,
+    reason: TestRunEndReason,
+  ) {
     const entries: A11yMeta[] = [];
     for (const mod of testModules) {
       for (const test of walkTests(mod)) {
@@ -75,11 +92,12 @@ export default class A11yReporter implements Reporter {
     }
 
     // Only prune when this run is authoritative for the full enrolment set:
-    // VRT module must have actually executed, and no `-t` filter narrowed it.
-    // Anything else (unrelated unit tests, filtered slug subset) leaves
-    // untouched slugs' files alone since we have no signal about them.
+    // VRT module must have actually executed, no `-t` filter narrowed it, and
+    // the run completed cleanly. A partial/failed run can omit slugs whose
+    // tests crashed before recording, so pruning then would delete tracked
+    // JSON for still-enrolled demos.
     const ranVrtSuite = testModules.some((m) => m.moduleId === VRT_MODULE_PATH);
-    if (ranVrtSuite && !this.filtered) {
+    if (ranVrtSuite && !this.filtered && reason === 'passed') {
       for (const file of globbySync('*/*.a11y.json', { cwd: COMPONENTS_DIR, absolute: true })) {
         const slug = path.basename(path.dirname(file));
         if (!bySlug.has(slug)) {
@@ -93,8 +111,12 @@ export default class A11yReporter implements Reporter {
     }
 
     const slugs = [...bySlug.keys()].sort();
-    const pass = slugs.filter((s) => bySlug.get(s)!.every((m) => m.violations.length === 0));
     const partial = slugs.filter((s) => bySlug.get(s)!.some((m) => m.violations.length > 0));
+    const needsReview = slugs.filter(
+      (s) =>
+        !partial.includes(s) && bySlug.get(s)!.some((m) => m.needsReview.length > 0),
+    );
+    const pass = slugs.filter((s) => !partial.includes(s) && !needsReview.includes(s));
     // eslint-disable-next-line no-console
     console.log(
       [
@@ -103,8 +125,9 @@ export default class A11yReporter implements Reporter {
           `a11y results (${entries.length} demos, ${slugs.length} slugs) -> ${path.relative(process.cwd(), COMPONENTS_DIR)}/{slug}/{slug}.a11y.json`,
         ),
         '',
-        `  ✅ Pass (${pass.length}):     ${pass.join(', ') || '—'}`,
-        `  ⚠️  Partial (${partial.length}):  ${partial.join(', ') || '—'}`,
+        `  ✅ Pass (${pass.length}):         ${pass.join(', ') || '—'}`,
+        `  ⚠️  Partial (${partial.length}):      ${partial.join(', ') || '—'}`,
+        `  🔍 Needs review (${needsReview.length}): ${needsReview.join(', ') || '—'}`,
         '',
       ].join('\n'),
     );
