@@ -121,7 +121,14 @@ async function main() {
         return;
       }
 
-      it(`${runScreenshot ? 'creates screenshots of' : 'runs a11y on'} ${route}`, async function test(ctx) {
+      // eslint-disable-next-line no-nested-ternary
+      const action = runScreenshot && runA11y
+        ? 'creates screenshots and runs a11y on'
+        : runScreenshot
+          ? 'creates screenshots of'
+          : 'runs a11y on';
+
+      it(`${action} ${route}`, async function test(ctx) {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
           this?.timeout?.(0);
