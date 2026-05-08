@@ -401,6 +401,31 @@ describe('<FocusTrap />', () => {
         expect(screen.getByRole('textbox')).toHaveFocus();
       });
 
+      it('should keep focus inside when children have positive tabIndex', async () => {
+        render(
+          <div>
+            <input data-testid="outside-input" />
+            <FocusTrap open disableAutoFocus>
+              <div tabIndex={-1} data-testid="root">
+                <input data-testid="positive-tab" tabIndex={2} />
+                <button type="button" data-testid="normal-tab" />
+              </div>
+            </FocusTrap>
+          </div>,
+        );
+
+        await act(async () => {
+          screen.getByTestId('positive-tab').focus();
+        });
+        expect(screen.getByTestId('positive-tab')).toHaveFocus();
+
+        // Attempting to move focus outside should be trapped
+        await act(async () => {
+          screen.getByTestId('outside-input').focus();
+        });
+        expect(screen.getByTestId('outside-input')).not.toHaveFocus();
+      });
+
       it('should trap once the focus moves inside', async () => {
         render(
           <div>
