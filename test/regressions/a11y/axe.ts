@@ -107,14 +107,18 @@ export function recordA11y(
     (v) => VISUAL_RULES.includes(v.id) && !skip.has(v.id),
   );
 
+  const failures: string[] = [];
   if (visualViolations.length > 0) {
-    expect.fail(
-      `[${slug}/${demo}] ${visualViolations.length} axe violation(s):\n\n${formatResults(visualViolations)}`,
+    failures.push(
+      `${visualViolations.length} axe violation(s):\n\n${formatResults(visualViolations)}`,
     );
   }
   if (visualIncomplete.length > 0) {
-    expect.fail(
-      `[${slug}/${demo}] ${visualIncomplete.length} axe incomplete (needs review):\n\n${formatResults(visualIncomplete)}`,
+    failures.push(
+      `${visualIncomplete.length} axe incomplete (needs review):\n\n${formatResults(visualIncomplete)}`,
     );
+  }
+  if (failures.length > 0) {
+    expect.fail(`[${slug}/${demo}] ${failures.join('\n\n')}`);
   }
 }
