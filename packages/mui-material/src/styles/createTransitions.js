@@ -28,6 +28,10 @@ export const duration = {
   leavingScreen: 195,
 };
 
+const defaultReducedMotionStyles = {
+  transition: 'none',
+};
+
 function formatMs(milliseconds) {
   return `${Math.round(milliseconds)}ms`;
 }
@@ -55,7 +59,7 @@ export default function createTransitions(inputTransitions) {
     ...inputTransitions.duration,
   };
 
-  const create = (props = ['all'], options = {}) => {
+  const createTransitionValue = (props = ['all'], options = {}) => {
     const {
       duration: durationOption = mergedDuration.standard,
       easing: easingOption = mergedEasing.easeInOut,
@@ -108,9 +112,39 @@ export default function createTransitions(inputTransitions) {
       .join(',');
   };
 
+  const create = inputTransitions.create ?? createTransitionValue;
+
+  const createStyles = (props = ['all'], options = {}) => {
+    const transition = create(props, options);
+
+    if (reducedMotion === 'always') {
+      return defaultReducedMotionStyles;
+    }
+
+    return {
+      transition,
+      ...getReducedMotionStyles(),
+    };
+  };
+
+  const getReducedMotionStyles = (styles = defaultReducedMotionStyles) => {
+    if (reducedMotion === 'always') {
+      return styles;
+    }
+
+    if (reducedMotion === 'system') {
+      return {
+        '@media (prefers-reduced-motion: reduce)': styles,
+      };
+    }
+
+    return {};
+  };
+
   return {
     getAutoHeightDuration,
     create,
+    createStyles,
     ...inputTransitions,
     reducedMotion,
     easing: mergedEasing,

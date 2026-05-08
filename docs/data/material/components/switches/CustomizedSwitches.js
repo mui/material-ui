@@ -145,7 +145,7 @@ const IOSSwitch = styled((props) => (
     borderRadius: 26 / 2,
     backgroundColor: '#E9E9EA',
     opacity: 1,
-    transition: theme.transitions.create(['background-color'], {
+    ...theme.transitions.createStyles(['background-color'], {
       duration: 500,
     }),
     ...theme.applyStyles('dark', {
@@ -186,7 +186,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 12,
     height: 12,
     borderRadius: 6,
-    transition: theme.transitions.create(['width'], {
+    ...theme.transitions.createStyles(['width'], {
       duration: 200,
     }),
   },

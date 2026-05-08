@@ -32,6 +32,42 @@ describe('createTransitions', () => {
     expect(theme.transitions.reducedMotion).to.equal('system');
   });
 
+  describe('createStyles() function', () => {
+    it('should return a transition style object when reducedMotion is never', () => {
+      expect(createTransitions({ reducedMotion: 'never' }).createStyles('color')).to.deep.equal({
+        transition: `color ${duration.standard}ms ${easing.easeInOut} 0ms`,
+      });
+    });
+
+    it('should return transition none when reducedMotion is always', () => {
+      expect(createTransitions({ reducedMotion: 'always' }).createStyles('color')).to.deep.equal({
+        transition: 'none',
+      });
+    });
+
+    it('should include a media query override when reducedMotion is system', () => {
+      expect(createTransitions({ reducedMotion: 'system' }).createStyles('color')).to.deep.equal({
+        transition: `color ${duration.standard}ms ${easing.easeInOut} 0ms`,
+        '@media (prefers-reduced-motion: reduce)': {
+          transition: 'none',
+        },
+      });
+    });
+
+    it('should use a custom create implementation when provided', () => {
+      const customCreate = (props) => `custom-${props}`;
+
+      expect(
+        createTransitions({ create: customCreate, reducedMotion: 'system' }).createStyles('color'),
+      ).to.deep.equal({
+        transition: 'custom-color',
+        '@media (prefers-reduced-motion: reduce)': {
+          transition: 'none',
+        },
+      });
+    });
+  });
+
   describe('create() function', () => {
     describe('warnings', () => {
       it('should warn when first argument is of bad type', () => {

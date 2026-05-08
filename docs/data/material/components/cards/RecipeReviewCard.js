@@ -20,7 +20,7 @@ const ExpandMore = styled((props) => {
   return <IconButton {...other} />;
 })(({ theme }) => ({
   marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
+  ...theme.transitions.createStyles('transform', {
     duration: theme.transitions.duration.shortest,
   }),
   variants: [

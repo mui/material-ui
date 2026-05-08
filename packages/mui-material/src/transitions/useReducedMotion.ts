@@ -16,16 +16,7 @@ interface TransitionTiming {
  * Subscribes to the OS reduced-motion media query only when the theme mode needs it.
  */
 function useReducedMotionMediaQuery(enabled: boolean): boolean {
-  const getMatches = React.useCallback(
-    () =>
-      enabled &&
-      typeof window !== 'undefined' &&
-      typeof window.matchMedia === 'function' &&
-      window.matchMedia(MEDIA_QUERY).matches,
-    [enabled],
-  );
-
-  const [matches, setMatches] = React.useState(getMatches);
+  const [matches, setMatches] = React.useState(false);
 
   useEnhancedEffect(() => {
     if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -37,6 +28,8 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean {
       setMatches(mediaQueryList.matches);
     };
 
+    // Keep the first client render aligned with the server snapshot and
+    // reconcile to the live OS preference immediately after hydration.
     update();
     mediaQueryList.addEventListener('change', update);
 

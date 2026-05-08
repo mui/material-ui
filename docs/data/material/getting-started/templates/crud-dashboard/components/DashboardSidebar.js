@@ -17,10 +17,7 @@ import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '../constants';
 import DashboardSidebarPageItem from './DashboardSidebarPageItem';
 import DashboardSidebarHeaderItem from './DashboardSidebarHeaderItem';
 import DashboardSidebarDividerItem from './DashboardSidebarDividerItem';
-import {
-  getDrawerSxTransitionMixin,
-  getDrawerWidthTransitionMixin,
-} from '../mixins';
+import { getDrawerSxTransitionMixin } from '../mixins';
 
 function DashboardSidebar({
   expanded = true,
@@ -104,19 +101,21 @@ function DashboardSidebar({
         <Box
           component="nav"
           aria-label={`${viewport.charAt(0).toUpperCase()}${viewport.slice(1)}`}
-          sx={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            overflow: 'auto',
-            scrollbarGutter: mini ? 'stable' : 'auto',
-            overflowX: 'hidden',
-            pt: !mini ? 0 : 2,
-            ...(hasDrawerTransitions
+          sx={[
+            {
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              overflow: 'auto',
+              scrollbarGutter: mini ? 'stable' : 'auto',
+              overflowX: 'hidden',
+              pt: !mini ? 0 : 2,
+            },
+            hasDrawerTransitions
               ? getDrawerSxTransitionMixin(isFullyExpanded, 'padding')
-              : {}),
-          }}
+              : null,
+          ]}
         >
           <List
             dense
@@ -186,21 +185,29 @@ function DashboardSidebar({
   );
 
   const getDrawerSharedSx = React.useCallback(
-    (isTemporary) => {
+    (isTemporary) => (theme) => {
       const drawerWidth = mini ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
+      const widthTransitionStyles = theme.transitions.createStyles('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: expanded
+          ? theme.transitions.duration.enteringScreen
+          : theme.transitions.duration.leavingScreen,
+      });
 
       return {
         displayPrint: 'none',
         width: drawerWidth,
         flexShrink: 0,
-        ...getDrawerWidthTransitionMixin(expanded),
+        ...widthTransitionStyles,
+        overflowX: 'hidden',
         ...(isTemporary ? { position: 'absolute' } : {}),
         [`& .MuiDrawer-paper`]: {
           position: 'absolute',
           width: drawerWidth,
           boxSizing: 'border-box',
           backgroundImage: 'none',
-          ...getDrawerWidthTransitionMixin(expanded),
+          ...widthTransitionStyles,
+          overflowX: 'hidden',
         },
       };
     },
@@ -233,36 +240,37 @@ function DashboardSidebar({
         ModalProps={{
           keepMounted: true, // Better open performance on mobile.
         }}
-        sx={{
-          display: {
-            xs: 'block',
-            sm: disableCollapsibleSidebar ? 'block' : 'none',
-            md: 'none',
+        sx={[
+          {
+            display: {
+              xs: 'block',
+              sm: disableCollapsibleSidebar ? 'block' : 'none',
+              md: 'none',
+            },
           },
-          ...getDrawerSharedSx(true),
-        }}
+          getDrawerSharedSx(true),
+        ]}
       >
         {getDrawerContent('phone')}
       </Drawer>
       <Drawer
         variant="permanent"
-        sx={{
-          display: {
-            xs: 'none',
-            sm: disableCollapsibleSidebar ? 'none' : 'block',
-            md: 'none',
+        sx={[
+          {
+            display: {
+              xs: 'none',
+              sm: disableCollapsibleSidebar ? 'none' : 'block',
+              md: 'none',
+            },
           },
-          ...getDrawerSharedSx(false),
-        }}
+          getDrawerSharedSx(false),
+        ]}
       >
         {getDrawerContent('tablet')}
       </Drawer>
       <Drawer
         variant="permanent"
-        sx={{
-          display: { xs: 'none', md: 'block' },
-          ...getDrawerSharedSx(false),
-        }}
+        sx={[{ display: { xs: 'none', md: 'block' } }, getDrawerSharedSx(false)]}
       >
         {getDrawerContent('desktop')}
       </Drawer>

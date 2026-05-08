@@ -70,16 +70,15 @@ export default function DashboardSidebarPageItem({
       transform: 'translateY(-50%) rotate(-90deg)',
     };
   } else if (!mini && fullyExpanded) {
-    nestedNavigationCollapseSx = {
+    nestedNavigationCollapseSx = (theme: Theme) => ({
       ml: 0.5,
       fontSize: 20,
       transform: `rotate(${expanded ? 0 : -90}deg)`,
-      transition: (theme: Theme) =>
-        theme.transitions.create('transform', {
-          easing: theme.transitions.easing.sharp,
-          duration: 100,
-        }),
-    };
+      ...theme.transitions.createStyles('transform', {
+        easing: theme.transitions.easing.sharp,
+        duration: 100,
+      }),
+    });
   }
 
   const hasExternalHref = href

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
 import type { ReducedMotionMode } from '../styles/createTransitions';
 import useReducedMotion from './useReducedMotion';
 
 describe('useReducedMotion', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
   let originalMatchMedia: typeof window.matchMedia;
   let addEventListenerCount = 0;
   let removeEventListenerCount = 0;
@@ -119,6 +119,30 @@ describe('useReducedMotion', () => {
     expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'true');
     expect(screen.getByTestId('result')).to.have.attribute('data-duration', '0');
     expect(screen.getByTestId('result')).to.have.attribute('data-delay', '0ms');
+  });
+
+  it('hydrates from an SSR-safe default in system mode', () => {
+    installMatchMedia(true);
+    const getRenderCountRef = React.createRef();
+
+    function TestWithCounter(props: {
+      mode: ReducedMotionMode;
+      disablePrefersReducedMotion?: boolean;
+    }) {
+      const reducedMotion = useReducedMotion(props.mode, props.disablePrefersReducedMotion);
+
+      return (
+        <RenderCounter ref={getRenderCountRef}>
+          <span data-testid="result" data-should-reduce={reducedMotion.shouldReduceMotion} />
+        </RenderCounter>
+      );
+    }
+
+    const { hydrate } = renderToString(<TestWithCounter mode="system" />);
+    hydrate();
+
+    expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'true');
+    expect(getRenderCountRef.current()).to.equal(2);
   });
 
   it('allows per-instance opt-out', () => {

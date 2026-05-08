@@ -25,7 +25,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
+    ...theme.transitions.createStyles('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -41,7 +41,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       {
         props: ({ open }) => open,
         style: {
-          transition: theme.transitions.create('margin', {
+          ...theme.transitions.createStyles('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
           }),
@@ -55,7 +55,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
+  ...theme.transitions.createStyles(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
@@ -64,7 +64,7 @@ const AppBar = styled(MuiAppBar, {
       props: ({ open }) => open,
       style: {
         width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['margin', 'width'], {
+        ...theme.transitions.createStyles(['margin', 'width'], {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen,
         }),

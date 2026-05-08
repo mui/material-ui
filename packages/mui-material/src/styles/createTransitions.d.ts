@@ -42,6 +42,18 @@ export function create(
   options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
 ): string;
 
+export interface TransitionStyles {
+  transition: string;
+  '@media (prefers-reduced-motion: reduce)'?: {
+    transition: string;
+  };
+}
+
+export function createStyles(
+  props: string | string[],
+  options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
+): TransitionStyles;
+
 /**
  * @internal
  * @param height
@@ -53,6 +65,7 @@ export interface Transitions {
   easing: Easing;
   duration: Duration;
   create: typeof create;
+  createStyles: typeof createStyles;
   getAutoHeightDuration: typeof getAutoHeightDuration;
 }
 
