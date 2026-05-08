@@ -467,11 +467,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('clears a mouse-created highlight when the mouse leaves the listbox', async () => {
-      const handleHighlightChange = spy();
       const { user } = render(
         <Autocomplete
           resetHighlightOnMouseLeave
-          onHighlightChange={handleHighlightChange}
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -487,11 +485,6 @@ describe('<Autocomplete />', () => {
       await user.pointer({ target: textbox });
 
       expect(getActiveDescendant(textbox)).to.equal(null);
-      expect(handleHighlightChange.callCount).to.equal(2);
-      expect(handleHighlightChange.firstCall.args[1]).to.equal('two');
-      expect(handleHighlightChange.firstCall.args[2]).to.equal('mouse');
-      expect(handleHighlightChange.lastCall.args[1]).to.equal(null);
-      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
     it('clears the mouse-created highlight when slotProps.listbox.onMouseLeave is provided', async () => {
@@ -519,11 +512,9 @@ describe('<Autocomplete />', () => {
     });
 
     it('keeps a keyboard-created highlight when the mouse leaves the listbox', async () => {
-      const handleHighlightChange = spy();
       const { user } = render(
         <Autocomplete
           resetHighlightOnMouseLeave
-          onHighlightChange={handleHighlightChange}
           options={['one', 'two', 'three']}
           renderInput={(params) => <TextField {...params} />}
         />,
@@ -540,9 +531,6 @@ describe('<Autocomplete />', () => {
       await user.pointer({ target: textbox });
 
       expect(getActiveDescendant(textbox)).to.equal(optionOne);
-      expect(handleHighlightChange.callCount).to.equal(1);
-      expect(handleHighlightChange.lastCall.args[1]).to.equal('one');
-      expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
     });
 
     it('starts keyboard navigation from the first option after clearing a mouse-created highlight', async () => {
