@@ -1,4 +1,4 @@
-export function getDrawerSxTransitionMixin(isExpanded, property) {
+export default function mixins(isExpanded, property) {
   return (theme) =>
     theme.transitions.createStyles(property, {
       easing: theme.transitions.easing.sharp,

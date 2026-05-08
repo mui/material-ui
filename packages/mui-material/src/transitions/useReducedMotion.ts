@@ -25,7 +25,13 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
     matches: enabled ? null : false,
   }));
 
-  const matches = queryState.enabled === enabled ? queryState.matches : enabled ? null : false;
+  let matches = queryState.matches;
+  if (queryState.enabled !== enabled) {
+    matches = null;
+    if (!enabled) {
+      matches = false;
+    }
+  }
 
   React.useEffect(() => {
     const setResolvedMatches = (nextMatches: boolean | null) => {

@@ -17,7 +17,7 @@ import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '../constants';
 import DashboardSidebarPageItem from './DashboardSidebarPageItem';
 import DashboardSidebarHeaderItem from './DashboardSidebarHeaderItem';
 import DashboardSidebarDividerItem from './DashboardSidebarDividerItem';
-import { getDrawerSxTransitionMixin } from '../mixins';
+import getDrawerSxTransitionMixin from '../mixins';
 
 function DashboardSidebar({
   expanded = true,
@@ -205,13 +205,13 @@ function DashboardSidebar({
   );
 
   const getDrawerSharedSx = React.useCallback(
-    (isTemporary) => (theme) => {
+    (isTemporary) => (drawerTheme) => {
       const drawerWidth = mini ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
-      const widthTransitionStyles = theme.transitions.createStyles('width', {
-        easing: theme.transitions.easing.sharp,
+      const widthTransitionStyles = drawerTheme.transitions.createStyles('width', {
+        easing: drawerTheme.transitions.easing.sharp,
         duration: expanded
-          ? theme.transitions.duration.enteringScreen
-          : theme.transitions.duration.leavingScreen,
+          ? drawerTheme.transitions.duration.enteringScreen
+          : drawerTheme.transitions.duration.leavingScreen,
       });
 
       return {

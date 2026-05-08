@@ -4,7 +4,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 import DashboardSidebarContext from '../context/DashboardSidebarContext';
 import { DRAWER_WIDTH } from '../constants';
-import { getDrawerSxTransitionMixin } from '../mixins';
+import getDrawerSxTransitionMixin from '../mixins';
 
 function DashboardSidebarHeaderItem({ children }) {
   const sidebarContext = React.useContext(DashboardSidebarContext);

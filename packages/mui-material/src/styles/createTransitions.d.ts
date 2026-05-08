@@ -44,9 +44,11 @@ export function create(
 
 export interface TransitionStyles {
   transition: string;
-  '@media (prefers-reduced-motion: reduce)'?: {
-    transition: string;
-  };
+  '@media (prefers-reduced-motion: reduce)'?:
+    | {
+        transition: string;
+      }
+    | undefined;
 }
 
 export function createStyles(

@@ -312,11 +312,11 @@ Slide.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Use it when you need custom logic to decide when the transition has ended.
+   * Allows for more fine grained transition end logic.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call this when the transition has finished.
+   * @param {Function} done Call to indicate the transition is finished.
    */
   addEndListener: PropTypes.func,
   /**
@@ -329,11 +329,6 @@ Slide.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
-  /**
-   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
-   * @default false
-   */
-  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.
@@ -384,6 +379,11 @@ Slide.propTypes /* remove-proptypes */ = {
    * @default 'down'
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
+  /**
+   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

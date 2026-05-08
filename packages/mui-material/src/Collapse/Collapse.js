@@ -378,11 +378,11 @@ Collapse.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Use it when you need custom logic to decide when the transition has ended.
+   * Allows for more fine grained transition end logic.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call this when the transition has finished.
+   * @param {Function} done Call to indicate the transition is finished.
    */
   addEndListener: PropTypes.func,
   /**
