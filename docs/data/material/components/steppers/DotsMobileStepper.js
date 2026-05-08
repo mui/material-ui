@@ -46,6 +46,11 @@ export default function DotsMobileStepper() {
       position="static"
       activeStep={activeStep}
       sx={{ maxWidth: 400, flexGrow: 1 }}
+      slotProps={{
+        progress: {
+          'aria-label': 'stepper dotted progress',
+        },
+      }}
       nextButton={
         <Button
           size="small"

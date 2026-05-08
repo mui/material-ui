@@ -43,6 +43,11 @@ export default function ProgressMobileStepper() {
       position="static"
       activeStep={activeStep}
       sx={{ maxWidth: 400, flexGrow: 1 }}
+      slotProps={{
+        progress: {
+          'aria-label': 'stepper linear progress',
+        },
+      }}
       nextButton={
         <Button
           size="small"
