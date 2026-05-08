@@ -99,6 +99,11 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 {{"demo": "VerticalLinearStepper.js"}}
 
+### Transition
+
+`StepContent` uses [Collapse](/material-ui/transitions/#collapse) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
 ### Performance
 
 The content of a step is unmounted when closed.

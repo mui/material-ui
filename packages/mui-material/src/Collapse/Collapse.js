@@ -2,10 +2,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
+import Transition from '../internal/Transition';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -94,7 +94,7 @@ const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
 })({
-  // Hack to get children with a negative margin to not falsify the height computation.
+  // Prevent children with negative margins from making the measured size too small.
   display: 'flex',
   width: '100%',
   variants: [
@@ -131,7 +131,6 @@ const CollapseWrapperInner = styled('div', {
 /**
  * The Collapse transition is used by the
  * [Vertical Stepper](/material-ui/react-stepper/#vertical-stepper) StepContent component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Collapse = React.forwardRef(function Collapse(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCollapse' });
@@ -184,7 +183,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
 
   const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
     if (wrapperRef.current && isHorizontal) {
-      // Set absolute position to get the size of collapsed content
+      // Temporarily remove horizontal content from normal layout so we can
+      // measure its natural width.
       wrapperRef.current.style.position = 'absolute';
     }
     node.style[size] = collapsedSize;
@@ -198,7 +198,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     const wrapperSize = getWrapperSize();
 
     if (wrapperRef.current && isHorizontal) {
-      // After the size is read reset the position back to default
+      // Restore normal layout after measuring the horizontal content.
       wrapperRef.current.style.position = '';
     }
 
@@ -254,8 +254,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     );
 
     if (timeout === 'auto') {
-      // TODO: rename getAutoHeightDuration to something more generic (width support)
-      // Actually it just calculates animation duration based on size
+      // getAutoHeightDuration also works for width; it calculates duration from size.
       const duration2 = theme.transitions.getAutoHeightDuration(wrapperSize);
       node.style.transitionDuration = `${duration2}ms`;
       autoTransitionDuration.current = duration2;
@@ -277,7 +276,6 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timer.start(autoTransitionDuration.current || 0, next);
     }
     if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
@@ -331,7 +329,7 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {/* Keep child props from replacing the ownerState used by Collapse slots. */}
       {(state, { ownerState: incomingOwnerState, ...restChildProps }) => {
         const stateOwnerState = { ...ownerState, state };
         return (
@@ -362,9 +360,12 @@ Collapse.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

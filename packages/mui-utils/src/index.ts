@@ -35,6 +35,7 @@ export { default as unstable_useTimeout, Timeout as unstable_Timeout } from './u
 export { default as unstable_useOnMount } from './useOnMount';
 export { default as unstable_useIsFocusVisible } from './useIsFocusVisible';
 export { default as unstable_useForcedRerendering } from './useForcedRerendering';
+export { default as unstable_useValueAsRef } from './useValueAsRef';
 export { default as unstable_isFocusVisible } from './isFocusVisible';
 export { default as unstable_getScrollbarSize } from './getScrollbarSize';
 export { default as usePreviousProps } from './usePreviousProps';
@@ -55,4 +56,5 @@ export { default as unstable_resolveComponentProps } from './resolveComponentPro
 export { default as unstable_extractEventHandlers } from './extractEventHandlers';
 export { default as unstable_getReactNodeRef } from './getReactNodeRef';
 export { default as unstable_getReactElementRef } from './getReactElementRef';
+export { default as isEventHandler } from './isEventHandler';
 export * from './types';

@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -90,8 +90,8 @@
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
     "@eslint/compat": "2.0.5",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.27",
-    "@mui/internal-bundle-size-checker": "1.0.9-canary.77",
-    "@mui/internal-code-infra": "0.0.4-canary.35",
+    "@mui/internal-bundle-size-checker": "1.0.9-canary.78",
+    "@mui/internal-code-infra": "0.0.4-canary.43",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.5",
     "@mui/internal-scripts": "workspace:^",
@@ -113,7 +113,6 @@
     "@vitest/browser-playwright": "^4.0.13",
     "@vitest/coverage-v8": "^4.0.13",
     "axe-core": "4.11.1",
-    "babel-plugin-istanbul": "7.0.1",
     "babel-plugin-module-resolver": "5.0.3",
     "chalk": "5.6.2",
     "concurrently": "9.2.1",
