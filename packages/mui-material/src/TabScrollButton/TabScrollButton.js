@@ -110,7 +110,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
         }),
       }}
     >
-      {direction === 'left' ? (
+      {(direction === 'left') !== isRtl ? (
         <StartButtonIcon {...startButtonIconProps} />
       ) : (
         <EndButtonIcon {...endButtonIconProps} />
