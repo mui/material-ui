@@ -152,6 +152,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^4.0.13
         version: 4.0.13(@vitest/browser@4.0.13(msw@2.7.3(@types/node@20.19.39)(typescript@5.9.3))(vite@7.3.1(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.8.0))(vitest@4.0.13))(vitest@4.0.13)
+      axe-core:
+        specifier: 4.11.1
+        version: 4.11.1
       babel-plugin-module-resolver:
         specifier: 5.0.3
         version: 5.0.3
