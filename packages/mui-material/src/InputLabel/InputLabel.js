@@ -90,7 +90,7 @@ const InputLabelRoot = styled(FormLabel, {
       {
         props: ({ ownerState }) => !ownerState.disableAnimation,
         style: {
-          transition: theme.transitions.create(['color', 'transform', 'max-width'], {
+          ...theme.transitions.createStyles(['color', 'transform', 'max-width'], {
             duration: theme.transitions.duration.shorter,
             easing: theme.transitions.easing.easeOut,
           }),

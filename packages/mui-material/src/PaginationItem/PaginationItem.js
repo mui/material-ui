@@ -122,7 +122,7 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
-    transition: theme.transitions.create(['color', 'background-color'], {
+    ...theme.transitions.createStyles(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {

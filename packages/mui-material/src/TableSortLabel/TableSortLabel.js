@@ -66,7 +66,7 @@ const TableSortLabelIcon = styled('span', {
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
-    transition: theme.transitions.create(['opacity', 'transform'], {
+    ...theme.transitions.createStyles(['opacity', 'transform'], {
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',

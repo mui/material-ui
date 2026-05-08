@@ -44,7 +44,7 @@ const PaperRoot = styled('div', {
   memoTheme(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.background.paper,
     color: (theme.vars || theme).palette.text.primary,
-    transition: theme.transitions.create('box-shadow'),
+    ...theme.transitions.createStyles('box-shadow'),
     variants: [
       {
         props: ({ ownerState }) => !ownerState.square,

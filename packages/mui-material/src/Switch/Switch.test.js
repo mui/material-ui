@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';
@@ -52,6 +53,27 @@ describe('<Switch />', () => {
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
       expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
+    });
+  });
+
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Switch />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.switchBase}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.track}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
     });
   });
 

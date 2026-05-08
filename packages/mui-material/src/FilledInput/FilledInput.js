@@ -67,7 +67,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create('background-color', {
+      ...theme.transitions.createStyles('background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
@@ -97,7 +97,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               position: 'absolute',
               right: 0,
               transform: 'scaleX(0)',
-              transition: theme.transitions.create('transform', {
+              ...theme.transitions.createStyles('transform', {
                 duration: theme.transitions.duration.shorter,
                 easing: theme.transitions.easing.easeOut,
               }),
@@ -127,7 +127,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               content: '""',
               position: 'absolute',
               right: 0,
-              transition: theme.transitions.create('border-bottom-color', {
+              ...theme.transitions.createStyles('border-bottom-color', {
                 duration: theme.transitions.duration.shorter,
               }),
               pointerEvents: 'none', // Transparent to the hover style.

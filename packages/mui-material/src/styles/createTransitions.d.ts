@@ -50,7 +50,7 @@ export interface TransitionStyles {
 }
 
 export function createStyles(
-  props: string | string[],
+  props?: string | string[],
   options?: Partial<{ duration: number | string; easing: string; delay: number | string }>,
 ): TransitionStyles;
 

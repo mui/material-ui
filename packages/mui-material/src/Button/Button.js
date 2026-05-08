@@ -103,7 +103,7 @@ const ButtonRoot = styled(ButtonBase, {
       padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create(
+      ...theme.transitions.createStyles(
         ['background-color', 'box-shadow', 'border-color', 'color'],
         {
           duration: theme.transitions.duration.short,
@@ -308,12 +308,9 @@ const ButtonRoot = styled(ButtonBase, {
             loadingPosition: 'center',
           },
           style: {
-            transition: theme.transitions.create(
-              ['background-color', 'box-shadow', 'border-color'],
-              {
-                duration: theme.transitions.duration.short,
-              },
-            ),
+            ...theme.transitions.createStyles(['background-color', 'box-shadow', 'border-color'], {
+              duration: theme.transitions.duration.short,
+            }),
             [`&.${buttonClasses.loading}`]: {
               color: 'transparent',
             },
@@ -352,7 +349,7 @@ const ButtonStartIcon = styled('span', {
     {
       props: { loadingPosition: 'start', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...theme.transitions.createStyles(['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
@@ -390,7 +387,7 @@ const ButtonEndIcon = styled('span', {
     {
       props: { loadingPosition: 'end', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...theme.transitions.createStyles(['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,

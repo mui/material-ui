@@ -88,7 +88,7 @@ const BadgeBadge = styled('span', {
     '@media (forced-colors: active)': {
       border: '1px solid ButtonBorder',
     },
-    transition: theme.transitions.create('transform', {
+    ...theme.transitions.createStyles('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -114,7 +114,7 @@ const BadgeBadge = styled('span', {
       {
         props: { invisible: true },
         style: {
-          transition: theme.transitions.create('transform', {
+          ...theme.transitions.createStyles('transform', {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.leavingScreen,
           }),

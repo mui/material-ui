@@ -38,7 +38,7 @@ const NotchedOutlineLegend = styled('legend', {
         style: {
           padding: 0,
           lineHeight: '11px', // sync with `height` in `legend` styles
-          transition: theme.transitions.create('width', {
+          ...theme.transitions.createStyles('width', {
             duration: 150,
             easing: theme.transitions.easing.easeOut,
           }),
@@ -53,7 +53,7 @@ const NotchedOutlineLegend = styled('legend', {
           fontSize: '0.75em',
           visibility: 'hidden',
           maxWidth: 0.01,
-          transition: theme.transitions.create('max-width', {
+          ...theme.transitions.createStyles('max-width', {
             duration: 50,
             easing: theme.transitions.easing.easeOut,
           }),
@@ -71,7 +71,7 @@ const NotchedOutlineLegend = styled('legend', {
         props: ({ ownerState }) => ownerState.withLabel && ownerState.notched,
         style: {
           maxWidth: '100%',
-          transition: theme.transitions.create('max-width', {
+          ...theme.transitions.createStyles('max-width', {
             duration: 100,
             easing: theme.transitions.easing.easeOut,
             delay: 50,

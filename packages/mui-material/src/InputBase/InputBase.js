@@ -147,7 +147,7 @@ export const InputBaseInput = styled('input', {
         : {
             opacity: light ? 0.42 : 0.5,
           }),
-      transition: theme.transitions.create('opacity', {
+      ...theme.transitions.createStyles('opacity', {
         duration: theme.transitions.duration.shorter,
       }),
     };

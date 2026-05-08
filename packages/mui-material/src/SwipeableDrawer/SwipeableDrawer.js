@@ -12,6 +12,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
+import useReducedMotion from '../transitions/useReducedMotion';
 import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
 import SwipeArea from './SwipeArea';
@@ -162,6 +163,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     slotProps = {},
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(theme.transitions.reducedMotion, false);
 
   const [maybeSwiping, setMaybeSwiping] = React.useState(false);
   const swipeInstance = React.useRef({
@@ -201,19 +203,26 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       let transition = '';
 
       if (mode) {
-        transition = theme.transitions.create(
-          'all',
-          getTransitionProps(
-            {
-              easing: undefined,
-              style: undefined,
-              timeout: transitionDuration,
-            },
-            {
-              mode,
-            },
-          ),
+        const transitionProps = getTransitionProps(
+          {
+            easing: undefined,
+            style: undefined,
+            timeout: transitionDuration,
+          },
+          {
+            mode,
+          },
         );
+        const transitionTiming = reducedMotion.getTransitionTiming({
+          duration: transitionProps.duration,
+          delay: transitionProps.delay,
+        });
+
+        transition = theme.transitions.create('all', {
+          ...transitionProps,
+          duration: transitionTiming.duration,
+          delay: transitionTiming.delay,
+        });
       }
 
       if (changeTransition) {
@@ -229,7 +238,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         }
       }
     },
-    [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],
+    [anchor, disableBackdropTransition, hideBackdrop, reducedMotion, theme, transitionDuration],
   );
 
   const handleBodyTouchEnd = useEventCallback((nativeEvent) => {

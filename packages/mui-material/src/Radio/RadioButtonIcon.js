@@ -28,7 +28,7 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
     left: 0,
     position: 'absolute',
     transform: 'scale(0)',
-    transition: theme.transitions.create('transform', {
+    ...theme.transitions.createStyles('transform', {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.shortest,
     }),
@@ -37,7 +37,7 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
         props: { checked: true },
         style: {
           transform: 'scale(1)',
-          transition: theme.transitions.create('transform', {
+          ...theme.transitions.createStyles('transform', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.shortest,
           }),

@@ -42,9 +42,15 @@ const SvgIconRoot = styled('svg', {
     height: '1em',
     display: 'inline-block',
     flexShrink: 0,
-    transition: theme.transitions?.create?.('fill', {
-      duration: (theme.vars ?? theme).transitions?.duration?.shorter,
-    }),
+    ...(theme.transitions?.createStyles
+      ? theme.transitions.createStyles('fill', {
+          duration: (theme.vars ?? theme).transitions?.duration?.shorter,
+        })
+      : {
+          transition: theme.transitions?.create?.('fill', {
+            duration: (theme.vars ?? theme).transitions?.duration?.shorter,
+          }),
+        }),
     variants: [
       {
         props: (props) => !props.hasSvgAsChild,

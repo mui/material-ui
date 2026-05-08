@@ -160,7 +160,7 @@ const RatingIcon = styled('span', {
   memoTheme(({ theme }) => ({
     // Fit wrapper to actual icon size.
     display: 'flex',
-    transition: theme.transitions.create('transform', {
+    ...theme.transitions.createStyles('transform', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.

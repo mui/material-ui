@@ -78,7 +78,7 @@ const ChipRoot = styled('div', {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
-      transition: theme.transitions.create(['background-color', 'box-shadow']),
+      ...theme.transitions.createStyles(['background-color', 'box-shadow']),
       // reset cursor explicitly in case ButtonBase is used
       cursor: 'unset',
       // We disable the focus ring for mouse, touch and keyboard users.

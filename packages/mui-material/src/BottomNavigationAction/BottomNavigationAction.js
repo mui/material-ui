@@ -34,7 +34,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => ({
-    transition: theme.transitions.create(['color', 'padding-top'], {
+    ...theme.transitions.createStyles(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
     padding: '0px 12px',
@@ -71,7 +71,10 @@ const BottomNavigationActionLabel = styled('span', {
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(12),
     opacity: 1,
-    transition: 'font-size 0.2s, opacity 0.2s',
+    ...theme.transitions.createStyles(['font-size', 'opacity'], {
+      duration: '0.2s',
+      easing: 'ease',
+    }),
     transitionDelay: '0.1s',
     [`&.${bottomNavigationActionClasses.selected}`]: {
       fontSize: theme.typography.pxToRem(14),

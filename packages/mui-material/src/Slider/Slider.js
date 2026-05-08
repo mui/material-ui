@@ -174,7 +174,7 @@ export const SliderTrack = styled('span', {
       borderRadius: 'inherit',
       border: '1px solid currentColor',
       backgroundColor: 'currentColor',
-      transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+      ...theme.transitions.createStyles(['left', 'width', 'bottom', 'height'], {
         duration: theme.transitions.duration.shortest,
       }),
       variants: [
@@ -250,7 +250,7 @@ export const SliderThumb = styled('span', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    ...theme.transitions.createStyles(['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
     '@media (forced-colors: active)': {
@@ -334,7 +334,7 @@ const SliderValueLabel = styled(BaseSliderValueLabel, {
     whiteSpace: 'nowrap',
     ...theme.typography.body2,
     fontWeight: 500,
-    transition: theme.transitions.create(['transform'], {
+    ...theme.transitions.createStyles(['transform'], {
       duration: theme.transitions.duration.shortest,
     }),
     position: 'absolute',

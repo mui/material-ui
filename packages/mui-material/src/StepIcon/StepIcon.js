@@ -28,7 +28,7 @@ const StepIconRoot = styled(SvgIcon, {
 })(
   memoTheme(({ theme }) => ({
     display: 'block',
-    transition: theme.transitions.create('color', {
+    ...theme.transitions.createStyles('color', {
       duration: theme.transitions.duration.shortest,
     }),
     color: (theme.vars || theme).palette.text.disabled,

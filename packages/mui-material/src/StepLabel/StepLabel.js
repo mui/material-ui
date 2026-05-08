@@ -89,7 +89,7 @@ const StepLabelLabel = styled('span', {
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
     display: 'block',
-    transition: theme.transitions.create('color', {
+    ...theme.transitions.createStyles('color', {
       duration: theme.transitions.duration.shortest,
     }),
     [`&.${stepLabelClasses.active}, &.${stepLabelClasses.completed}`]: {

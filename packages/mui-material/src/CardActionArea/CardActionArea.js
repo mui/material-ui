@@ -57,7 +57,7 @@ const CardActionAreaFocusHighlight = styled('span', {
     borderRadius: 'inherit',
     opacity: 0,
     backgroundColor: 'currentcolor',
-    transition: theme.transitions.create('opacity', {
+    ...theme.transitions.createStyles('opacity', {
       duration: theme.transitions.duration.short,
     }),
   })),

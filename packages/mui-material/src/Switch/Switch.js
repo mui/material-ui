@@ -115,7 +115,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     color: theme.vars
       ? theme.vars.palette.Switch.defaultColor
       : `${theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.grey[300]}`,
-    transition: theme.transitions.create(['left', 'transform'], {
+    ...theme.transitions.createStyles(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
     [`&.${switchClasses.checked}`]: {
@@ -195,7 +195,7 @@ const SwitchTrack = styled('span', {
     width: '100%',
     borderRadius: 14 / 2,
     zIndex: -1,
-    transition: theme.transitions.create(['opacity', 'background-color'], {
+    ...theme.transitions.createStyles(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
     '@media (forced-colors: active)': {

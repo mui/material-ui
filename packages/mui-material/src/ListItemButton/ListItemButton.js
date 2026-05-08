@@ -66,7 +66,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
-    transition: theme.transitions.create('background-color', {
+    ...theme.transitions.createStyles('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {

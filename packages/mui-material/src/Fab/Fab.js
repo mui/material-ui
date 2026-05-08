@@ -52,7 +52,7 @@ const FabRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
-    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+    ...theme.transitions.createStyles(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',

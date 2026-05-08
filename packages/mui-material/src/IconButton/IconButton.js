@@ -55,7 +55,7 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
-    transition: theme.transitions.create('background-color', {
+    ...theme.transitions.createStyles('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     variants: [

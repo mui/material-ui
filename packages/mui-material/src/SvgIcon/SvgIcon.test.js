@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SvgIcon />', () => {
@@ -42,6 +43,21 @@ describe('<SvgIcon />', () => {
 
     expect(screen.queryByTestId('test-path')).not.to.equal(null);
     expect(container.firstChild).to.have.attribute('aria-hidden', 'true');
+  });
+
+  it.skipIf(isJsdom())('disables the fill transition when reduced motion is always', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'always',
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SvgIcon>{path}</SvgIcon>
+      </ThemeProvider>,
+    );
+
+    expect(window.getComputedStyle(container.firstChild).transitionProperty).to.equal('none');
   });
 
   it('renders children of provided svg and merge the props', () => {
