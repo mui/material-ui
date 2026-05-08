@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarRadioItem",
+  "imports": [
+    "import MenuBarRadioItem from '@mui/lab/MenuBar';",
+    "import { MenuBarRadioItem } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarRadioItem",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarRadioItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

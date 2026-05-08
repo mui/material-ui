@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarPositioner",
+  "imports": [
+    "import MenuBarPositioner from '@mui/lab/MenuBar';",
+    "import { MenuBarPositioner } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarPositioner",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarPositioner.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

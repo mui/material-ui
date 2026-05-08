@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarTrigger",
+  "imports": [
+    "import MenuBarTrigger from '@mui/lab/MenuBar';",
+    "import { MenuBarTrigger } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarTrigger",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarTrigger.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarPopup",
+  "imports": [
+    "import MenuBarPopup from '@mui/lab/MenuBar';",
+    "import { MenuBarPopup } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarPopup",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarPopup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

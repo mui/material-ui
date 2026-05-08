@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: Menubar React component
-components: Box, Button, Divider, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Paper, Typography
+components: MenuBar, MenuBarMenu, MenuBarTrigger, MenuBarPortal, MenuBarPositioner, MenuBarPopup, MenuBarItem, MenuBarSeparator, MenuBarSubmenuRoot, MenuBarSubmenuTrigger, MenuBarCheckboxItem, MenuBarRadioGroup, MenuBarRadioItem, MenuBarGroup, MenuBarGroupLabel
 ---
 
 # Menubar
@@ -12,26 +12,23 @@ components: Box, Button, Divider, List, ListItemButton, ListItemIcon, ListItemTe
 
 The menu bar is a visually persistent menu similar to those found in desktop applications that provides a consistent set of frequently used commands.
 
-Material UI does not include a menu bar component out of the box, but this page provides components composed with the [Base UI `Menubar`](https://base-ui.com/react/components/menubar) and styled to align with Material Design (MD2) specifications, so they can be used with Material UI.
-
-As such, you must install Base UI before proceeding.
-The examples that follow can then be copied and pasted directly into your app.
-Note that Base UI is tree-shakeable, so the final bundle will only include the components used in your project.
+Material UI includes a `MenuBar` component in the `@mui/lab` package.
+It's built on top of the [Base UI `Menubar`](https://base-ui.com/react/components/menubar) and styled to align with Material Design specifications.
 
 <!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @base-ui/react
+npm install @mui/lab
 ```
 
 ```bash pnpm
-pnpm add @base-ui/react
+pnpm add @mui/lab
 ```
 
 ```bash yarn
-yarn add @base-ui/react
+yarn add @mui/lab
 ```
 
 </codeblock>

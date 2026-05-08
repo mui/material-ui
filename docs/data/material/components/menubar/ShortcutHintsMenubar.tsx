@@ -1,49 +1,49 @@
 import * as React from 'react';
 import {
-  Menubar,
-  MenuRoot,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
-  MenuItem,
-  MenuSeparator,
-} from './components/Menubar';
+  MenuBar,
+  MenuBarMenu,
+  MenuBarTrigger,
+  MenuBarPortal,
+  MenuBarPositioner,
+  MenuBarPopup,
+  MenuBarItem,
+  MenuBarSeparator,
+} from '@mui/lab/MenuBar';
 
 export default function ShortcutHintsMenubar() {
   return (
-    <Menubar>
-      <MenuRoot>
-        <MenuTrigger>File</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuItem hint="⌘N">New</MenuItem>
-              <MenuItem hint="⌘O">Open...</MenuItem>
-              <MenuItem hint="⌘S">Save</MenuItem>
-              <MenuItem hint="⇧⌘S">Save As...</MenuItem>
-              <MenuSeparator />
-              <MenuItem hint="⌘P">Print...</MenuItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
+    <MenuBar>
+      <MenuBarMenu>
+        <MenuBarTrigger>File</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarItem hint="⌘N">New</MenuBarItem>
+              <MenuBarItem hint="⌘O">Open...</MenuBarItem>
+              <MenuBarItem hint="⌘S">Save</MenuBarItem>
+              <MenuBarItem hint="⇧⌘S">Save As...</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarItem hint="⌘P">Print...</MenuBarItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
 
-      <MenuRoot>
-        <MenuTrigger>Edit</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuItem hint="⌘Z">Undo</MenuItem>
-              <MenuItem hint="⇧⌘Z">Redo</MenuItem>
-              <MenuSeparator />
-              <MenuItem hint="⌘X">Cut</MenuItem>
-              <MenuItem hint="⌘C">Copy</MenuItem>
-              <MenuItem hint="⌘V">Paste</MenuItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
-    </Menubar>
+      <MenuBarMenu>
+        <MenuBarTrigger>Edit</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarItem hint="⌘Z">Undo</MenuBarItem>
+              <MenuBarItem hint="⇧⌘Z">Redo</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarItem hint="⌘X">Cut</MenuBarItem>
+              <MenuBarItem hint="⌘C">Copy</MenuBarItem>
+              <MenuBarItem hint="⌘V">Paste</MenuBarItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
+    </MenuBar>
   );
 }

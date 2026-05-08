@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarSeparator",
+  "imports": [
+    "import MenuBarSeparator from '@mui/lab/MenuBar';",
+    "import { MenuBarSeparator } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarSeparator",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarSeparator.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

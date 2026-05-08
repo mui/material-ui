@@ -1,0 +1,13 @@
+{
+  "props": { "children": { "type": { "name": "node" } } },
+  "name": "MenuBarMenu",
+  "imports": [
+    "import MenuBarMenu from '@mui/lab/MenuBar';",
+    "import { MenuBarMenu } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarMenu",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarMenu.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

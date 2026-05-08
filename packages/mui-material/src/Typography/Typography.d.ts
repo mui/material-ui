@@ -108,7 +108,6 @@ export interface TypographyTypeMap<
  * Demos:
  *
  * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Menubar](https://mui.com/material-ui/react-menubar/)
  * - [Typography](https://mui.com/material-ui/react-typography/)
  *
  * API:

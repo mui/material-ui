@@ -1,61 +1,61 @@
 import * as React from 'react';
 import {
-  Menubar,
-  MenuRoot,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
-  MenuItem,
-  MenuSeparator,
-  MenuSubmenuRoot,
-  MenuSubmenuTrigger,
-} from './components/Menubar';
+  MenuBar,
+  MenuBarMenu,
+  MenuBarTrigger,
+  MenuBarPortal,
+  MenuBarPositioner,
+  MenuBarPopup,
+  MenuBarItem,
+  MenuBarSeparator,
+  MenuBarSubmenuRoot,
+  MenuBarSubmenuTrigger,
+} from '@mui/lab/MenuBar';
 
 export default function BasicMenubar() {
   return (
-    <Menubar>
-      <MenuRoot>
-        <MenuTrigger>File</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuItem>New</MenuItem>
-              <MenuItem>Open...</MenuItem>
-              <MenuItem>Save</MenuItem>
-              <MenuItem>Save as...</MenuItem>
-              <MenuSeparator />
-              <MenuSubmenuRoot>
-                <MenuSubmenuTrigger>Share</MenuSubmenuTrigger>
-                <MenuPortal>
-                  <MenuPositioner alignOffset={-4}>
-                    <MenuPopup>
-                      <MenuItem>Email link</MenuItem>
-                      <MenuItem>Copy link</MenuItem>
-                    </MenuPopup>
-                  </MenuPositioner>
-                </MenuPortal>
-              </MenuSubmenuRoot>
-              <MenuSeparator />
-              <MenuItem>Close</MenuItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
+    <MenuBar>
+      <MenuBarMenu>
+        <MenuBarTrigger>File</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarItem>New</MenuBarItem>
+              <MenuBarItem>Open...</MenuBarItem>
+              <MenuBarItem>Save</MenuBarItem>
+              <MenuBarItem>Save as...</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarSubmenuRoot>
+                <MenuBarSubmenuTrigger>Share</MenuBarSubmenuTrigger>
+                <MenuBarPortal>
+                  <MenuBarPositioner alignOffset={-4}>
+                    <MenuBarPopup>
+                      <MenuBarItem>Email link</MenuBarItem>
+                      <MenuBarItem>Copy link</MenuBarItem>
+                    </MenuBarPopup>
+                  </MenuBarPositioner>
+                </MenuBarPortal>
+              </MenuBarSubmenuRoot>
+              <MenuBarSeparator />
+              <MenuBarItem>Close</MenuBarItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
 
-      <MenuRoot>
-        <MenuTrigger>Help</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4}>
-            <MenuPopup>
-              <MenuItem>Documentation</MenuItem>
-              <MenuItem>Release notes</MenuItem>
-              <MenuSeparator />
-              <MenuItem>About</MenuItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
-    </Menubar>
+      <MenuBarMenu>
+        <MenuBarTrigger>Help</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4}>
+            <MenuBarPopup>
+              <MenuBarItem>Documentation</MenuBarItem>
+              <MenuBarItem>Release notes</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarItem>About</MenuBarItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
+    </MenuBar>
   );
 }

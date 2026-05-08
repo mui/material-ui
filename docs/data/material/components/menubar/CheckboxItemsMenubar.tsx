@@ -1,15 +1,15 @@
 import * as React from 'react';
 import {
-  Menubar,
-  MenuRoot,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
-  MenuItem,
-  MenuCheckboxItem,
-  MenuSeparator,
-} from './components/Menubar';
+  MenuBar,
+  MenuBarMenu,
+  MenuBarTrigger,
+  MenuBarPortal,
+  MenuBarPositioner,
+  MenuBarPopup,
+  MenuBarItem,
+  MenuBarCheckboxItem,
+  MenuBarSeparator,
+} from '@mui/lab/MenuBar';
 
 export default function CheckboxItemsMenubar() {
   const [showSidebar, setShowSidebar] = React.useState(true);
@@ -20,63 +20,63 @@ export default function CheckboxItemsMenubar() {
   const [messages, setMessages] = React.useState(false);
 
   return (
-    <Menubar>
-      <MenuRoot>
-        <MenuTrigger>View</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuCheckboxItem
+    <MenuBar>
+      <MenuBarMenu>
+        <MenuBarTrigger>View</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarCheckboxItem
                 checked={showSidebar}
                 onCheckedChange={setShowSidebar}
               >
                 Show Sidebar
-              </MenuCheckboxItem>
-              <MenuCheckboxItem
+              </MenuBarCheckboxItem>
+              <MenuBarCheckboxItem
                 checked={showToolbar}
                 onCheckedChange={setShowToolbar}
               >
                 Show Toolbar
-              </MenuCheckboxItem>
-              <MenuCheckboxItem
+              </MenuBarCheckboxItem>
+              <MenuBarCheckboxItem
                 checked={showStatusBar}
                 onCheckedChange={setShowStatusBar}
               >
                 Show Status Bar
-              </MenuCheckboxItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
+              </MenuBarCheckboxItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
 
-      <MenuRoot>
-        <MenuTrigger>Window</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuItem hint="⌘M">Minimize</MenuItem>
-              <MenuItem>Zoom</MenuItem>
-              <MenuItem hint="⌃⌥F">Fill</MenuItem>
-              <MenuItem hint="⌃⌥C">Center</MenuItem>
-              <MenuSeparator />
-              <MenuItem>Bring All to Front</MenuItem>
-              <MenuSeparator />
-              <MenuCheckboxItem
+      <MenuBarMenu>
+        <MenuBarTrigger>Window</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarItem hint="⌘M">Minimize</MenuBarItem>
+              <MenuBarItem>Zoom</MenuBarItem>
+              <MenuBarItem hint="⌃⌥F">Fill</MenuBarItem>
+              <MenuBarItem hint="⌃⌥C">Center</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarItem>Bring All to Front</MenuBarItem>
+              <MenuBarSeparator />
+              <MenuBarCheckboxItem
                 checked={googleTasks}
                 onCheckedChange={setGoogleTasks}
               >
                 Google Tasks - Tasks
-              </MenuCheckboxItem>
-              <MenuCheckboxItem checked={mail} onCheckedChange={setMail}>
+              </MenuBarCheckboxItem>
+              <MenuBarCheckboxItem checked={mail} onCheckedChange={setMail}>
                 Mail
-              </MenuCheckboxItem>
-              <MenuCheckboxItem checked={messages} onCheckedChange={setMessages}>
+              </MenuBarCheckboxItem>
+              <MenuBarCheckboxItem checked={messages} onCheckedChange={setMessages}>
                 Messages
-              </MenuCheckboxItem>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
-    </Menubar>
+              </MenuBarCheckboxItem>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
+    </MenuBar>
   );
 }

@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarCheckboxItem",
+  "imports": [
+    "import MenuBarCheckboxItem from '@mui/lab/MenuBar';",
+    "import { MenuBarCheckboxItem } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarCheckboxItem",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarCheckboxItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

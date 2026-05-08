@@ -1,0 +1,9 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": {
+      "description": "The content of the popover. This can be a regular React node or a render function that receives the <code>payload</code> of the active trigger."
+    }
+  },
+  "classDescriptions": {}
+}

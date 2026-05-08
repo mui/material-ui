@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarSubmenuRoot",
+  "imports": [
+    "import MenuBarSubmenuRoot from '@mui/lab/MenuBar';",
+    "import { MenuBarSubmenuRoot } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarSubmenuRoot",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarSubmenuRoot.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarRadioGroup",
+  "imports": [
+    "import MenuBarRadioGroup from '@mui/lab/MenuBar';",
+    "import { MenuBarRadioGroup } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarRadioGroup",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarRadioGroup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}

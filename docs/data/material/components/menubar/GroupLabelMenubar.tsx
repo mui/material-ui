@@ -15,110 +15,110 @@ import ContentCutIcon from '@mui/icons-material/ContentCut';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import {
-  Menubar,
-  MenuRoot,
-  MenuTrigger,
-  MenuPortal,
-  MenuPositioner,
-  MenuPopup,
-  MenuItem,
-  MenuSeparator,
-  MenuSubmenuRoot,
-  MenuSubmenuTrigger,
-  MenuGroup,
-  MenuGroupLabel,
-} from './components/Menubar';
+  MenuBar,
+  MenuBarMenu,
+  MenuBarTrigger,
+  MenuBarPortal,
+  MenuBarPositioner,
+  MenuBarPopup,
+  MenuBarItem,
+  MenuBarSeparator,
+  MenuBarSubmenuRoot,
+  MenuBarSubmenuTrigger,
+  MenuBarGroup,
+  MenuBarGroupLabel,
+} from '@mui/lab/MenuBar';
 
 export default function GroupLabelMenubar() {
   return (
-    <Menubar>
-      <MenuRoot>
-        <MenuTrigger>App</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4} alignOffset={-2}>
-            <MenuPopup>
-              <MenuGroup>
-                <MenuGroupLabel>General</MenuGroupLabel>
-                <MenuItem icon={<InfoIcon fontSize="small" />}>About</MenuItem>
-                <MenuItem icon={<SettingsIcon fontSize="small" />}>
+    <MenuBar>
+      <MenuBarMenu>
+        <MenuBarTrigger>App</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4} alignOffset={-2}>
+            <MenuBarPopup>
+              <MenuBarGroup>
+                <MenuBarGroupLabel>General</MenuBarGroupLabel>
+                <MenuBarItem icon={<InfoIcon fontSize="small" />}>About</MenuBarItem>
+                <MenuBarItem icon={<SettingsIcon fontSize="small" />}>
                   Settings...
-                </MenuItem>
-              </MenuGroup>
-              <MenuSeparator />
-              <MenuSubmenuRoot>
-                <MenuSubmenuTrigger icon={<BuildIcon fontSize="small" />}>
+                </MenuBarItem>
+              </MenuBarGroup>
+              <MenuBarSeparator />
+              <MenuBarSubmenuRoot>
+                <MenuBarSubmenuTrigger icon={<BuildIcon fontSize="small" />}>
                   Services
-                </MenuSubmenuTrigger>
-                <MenuPortal>
-                  <MenuPositioner alignOffset={-4}>
-                    <MenuPopup>
-                      <MenuGroup>
-                        <MenuGroupLabel>Development</MenuGroupLabel>
-                        <MenuItem icon={<MonitorHeartIcon fontSize="small" />}>
+                </MenuBarSubmenuTrigger>
+                <MenuBarPortal>
+                  <MenuBarPositioner alignOffset={-4}>
+                    <MenuBarPopup>
+                      <MenuBarGroup>
+                        <MenuBarGroupLabel>Development</MenuBarGroupLabel>
+                        <MenuBarItem icon={<MonitorHeartIcon fontSize="small" />}>
                           Activity Monitor
-                        </MenuItem>
-                        <MenuItem icon={<TimelineIcon fontSize="small" />}>
+                        </MenuBarItem>
+                        <MenuBarItem icon={<TimelineIcon fontSize="small" />}>
                           System Trace
-                        </MenuItem>
-                        <MenuItem icon={<InsertDriveFileIcon fontSize="small" />}>
+                        </MenuBarItem>
+                        <MenuBarItem icon={<InsertDriveFileIcon fontSize="small" />}>
                           File Activity
-                        </MenuItem>
-                      </MenuGroup>
-                      <MenuSeparator />
-                      <MenuGroup>
-                        <MenuGroupLabel>Shortcuts</MenuGroupLabel>
-                        <MenuItem icon={<ToggleOnIcon fontSize="small" />}>
+                        </MenuBarItem>
+                      </MenuBarGroup>
+                      <MenuBarSeparator />
+                      <MenuBarGroup>
+                        <MenuBarGroupLabel>Shortcuts</MenuBarGroupLabel>
+                        <MenuBarItem icon={<ToggleOnIcon fontSize="small" />}>
                           Toggle Gate
-                        </MenuItem>
-                        <MenuItem icon={<TuneIcon fontSize="small" />}>
+                        </MenuBarItem>
+                        <MenuBarItem icon={<TuneIcon fontSize="small" />}>
                           Services Settings...
-                        </MenuItem>
-                      </MenuGroup>
-                    </MenuPopup>
-                  </MenuPositioner>
-                </MenuPortal>
-              </MenuSubmenuRoot>
-              <MenuSeparator />
-              <MenuGroup>
-                <MenuGroupLabel>Window</MenuGroupLabel>
-                <MenuItem icon={<VisibilityOffIcon fontSize="small" />}>
+                        </MenuBarItem>
+                      </MenuBarGroup>
+                    </MenuBarPopup>
+                  </MenuBarPositioner>
+                </MenuBarPortal>
+              </MenuBarSubmenuRoot>
+              <MenuBarSeparator />
+              <MenuBarGroup>
+                <MenuBarGroupLabel>Window</MenuBarGroupLabel>
+                <MenuBarItem icon={<VisibilityOffIcon fontSize="small" />}>
                   Hide App
-                </MenuItem>
-                <MenuItem icon={<VisibilityOffIcon fontSize="small" />}>
+                </MenuBarItem>
+                <MenuBarItem icon={<VisibilityOffIcon fontSize="small" />}>
                   Hide Others
-                </MenuItem>
-                <MenuItem icon={<VisibilityIcon fontSize="small" />}>
+                </MenuBarItem>
+                <MenuBarItem icon={<VisibilityIcon fontSize="small" />}>
                   Show All
-                </MenuItem>
-              </MenuGroup>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
+                </MenuBarItem>
+              </MenuBarGroup>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
 
-      <MenuRoot>
-        <MenuTrigger>Edit</MenuTrigger>
-        <MenuPortal>
-          <MenuPositioner sideOffset={4}>
-            <MenuPopup>
-              <MenuGroup>
-                <MenuGroupLabel>History</MenuGroupLabel>
-                <MenuItem icon={<UndoIcon fontSize="small" />}>Undo</MenuItem>
-                <MenuItem icon={<RedoIcon fontSize="small" />}>Redo</MenuItem>
-              </MenuGroup>
-              <MenuSeparator />
-              <MenuGroup>
-                <MenuGroupLabel>Clipboard</MenuGroupLabel>
-                <MenuItem icon={<ContentCutIcon fontSize="small" />}>Cut</MenuItem>
-                <MenuItem icon={<ContentCopyIcon fontSize="small" />}>Copy</MenuItem>
-                <MenuItem icon={<ContentPasteIcon fontSize="small" />}>
+      <MenuBarMenu>
+        <MenuBarTrigger>Edit</MenuBarTrigger>
+        <MenuBarPortal>
+          <MenuBarPositioner sideOffset={4}>
+            <MenuBarPopup>
+              <MenuBarGroup>
+                <MenuBarGroupLabel>History</MenuBarGroupLabel>
+                <MenuBarItem icon={<UndoIcon fontSize="small" />}>Undo</MenuBarItem>
+                <MenuBarItem icon={<RedoIcon fontSize="small" />}>Redo</MenuBarItem>
+              </MenuBarGroup>
+              <MenuBarSeparator />
+              <MenuBarGroup>
+                <MenuBarGroupLabel>Clipboard</MenuBarGroupLabel>
+                <MenuBarItem icon={<ContentCutIcon fontSize="small" />}>Cut</MenuBarItem>
+                <MenuBarItem icon={<ContentCopyIcon fontSize="small" />}>Copy</MenuBarItem>
+                <MenuBarItem icon={<ContentPasteIcon fontSize="small" />}>
                   Paste
-                </MenuItem>
-              </MenuGroup>
-            </MenuPopup>
-          </MenuPositioner>
-        </MenuPortal>
-      </MenuRoot>
-    </Menubar>
+                </MenuBarItem>
+              </MenuBarGroup>
+            </MenuBarPopup>
+          </MenuBarPositioner>
+        </MenuBarPortal>
+      </MenuBarMenu>
+    </MenuBar>
   );
 }

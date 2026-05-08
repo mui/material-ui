@@ -1,0 +1,12 @@
+{
+  "componentDescription": "The menu bar is a visually persistent menu similar to those found in desktop applications\nthat provides a consistent set of frequently used commands.",
+  "propDescriptions": {
+    "className": {
+      "description": "CSS class applied to the element, or a function that returns a class based on the component&#39;s state."
+    },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
+  },
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+}

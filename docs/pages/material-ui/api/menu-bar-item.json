@@ -1,0 +1,13 @@
+{
+  "props": {},
+  "name": "MenuBarItem",
+  "imports": [
+    "import MenuBarItem from '@mui/lab/MenuBar';",
+    "import { MenuBarItem } from '@mui/lab';"
+  ],
+  "classes": [],
+  "muiName": "MuiMenuBarItem",
+  "filename": "/packages/mui-lab/src/MenuBar/MenuBarItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menubar/\">Menubar</a></li></ul>"
+}
