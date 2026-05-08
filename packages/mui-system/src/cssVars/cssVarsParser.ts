@@ -137,6 +137,16 @@ export default function cssVarsParser<T extends Record<string, any>>(
     theme,
     (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
+        if (typeof value === 'string' && value.includes('//')) {
+          // Stylis (the CSS preprocessor used by Emotion) treats `//` as a single-line comment,
+          // which corrupts the entire :root {} block when a URL value is serialized as a CSS variable.
+          if (process.env.NODE_ENV !== 'production') {
+            console.error(
+              `MUI: The theme key "${keys.join('.')}" value ("${value}") contains "//" which is treated as a comment by the CSS preprocessor and cannot be used as a CSS variable value. Use \`shouldSkipGeneratingVar\` to exclude this key from CSS variable generation.`,
+            );
+          }
+          return;
+        }
         if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
