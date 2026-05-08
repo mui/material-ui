@@ -313,6 +313,45 @@ The `contrastThreshold` parameter can produce counterproductive results.\
 Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
 :::
 
+### Windows High Contrast Mode
+
+To improve component visibility in Windows High Contrast Mode (also known as [Forced Colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)), use the `enhanceHighContrast` theme enhancer.
+It follows the same pattern as `responsiveFontSizes`: it accepts a fully-created theme and returns an enhanced version of it with `@media (forced-colors: active)` overrides applied to the affected components.
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+const theme = enhanceHighContrast(createTheme());
+```
+
+By default, it uses the [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) (`Highlight`, `HighlightText`, `ButtonBorder`, etc.).
+You can override individual tokens to match your brand or design requirements:
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+const theme = enhanceHighContrast(createTheme(), {
+  // Use ButtonText instead of GrayText for disabled elements.
+  disabled: 'ButtonText',
+  // Use a custom active background color.
+  activeBackground: 'Highlight',
+});
+```
+
+The following tokens are available:
+
+| Token | Default | Description |
+| :--- | :--- | :--- |
+| `disabled` | `GrayText` | Color for disabled elements |
+| `error` | `mark` | Color for error states |
+| `selectedBackground` | `SelectedItem` | Background color for selected items |
+| `selectedText` | `SelectedItemText` | Text color on selected items |
+| `activeBackground` | `Highlight` | Background color for active or toggled controls |
+| `activeText` | `HighlightText` | Text color on active or toggled controls |
+| `buttonBorder` | `ButtonBorder` | Border color for interactive controls |
+| `buttonText` | `ButtonText` | Text and icon color on buttons |
+| `canvas` | `Canvas` | Background color for the page or canvas |
+
 ## Picking colors
 
 Need inspiration? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
