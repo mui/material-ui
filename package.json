@@ -109,7 +109,7 @@
     "@types/node": "20.19.39",
     "@types/react": "19.2.14",
     "@types/yargs": "17.0.35",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^6.0.0",
     "@vitest/browser-playwright": "^4.0.13",
     "@vitest/coverage-v8": "^4.0.13",
     "babel-plugin-module-resolver": "5.0.3",
