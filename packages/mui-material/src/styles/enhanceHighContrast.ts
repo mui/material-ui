@@ -1,3 +1,4 @@
+import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import checkboxClasses from '../Checkbox/checkboxClasses';
 import filledInputClasses from '../FilledInput/filledInputClasses';
@@ -17,7 +18,7 @@ import { Theme } from './createTheme';
 export interface HighContrastTokens {
   /** Color for disabled elements. Default: `'GrayText'` */
   disabled?: string | undefined;
-  /** Color for error states. Default: `'mark'` */
+  /** Color for error states. Default: `'ActiveText'` */
   error?: string | undefined;
   /** Background color for selected items. Default: `'SelectedItem'` */
   selectedBackground?: string | undefined;
@@ -38,7 +39,7 @@ export interface HighContrastTokens {
 // System color keywords used in forced-colors / high contrast mode.
 const defaultHcTokens: Required<HighContrastTokens> = {
   disabled: 'GrayText',
-  error: 'mark',
+  error: 'ActiveText',
   selectedBackground: 'SelectedItem',
   selectedText: 'SelectedItemText',
   activeBackground: 'Highlight',
@@ -78,6 +79,22 @@ export default function enhanceHighContrast<
   const c = theme.components;
   theme.components = {
     ...c,
+    MuiAccordionSummary: {
+      ...c?.MuiAccordionSummary,
+      styleOverrides: {
+        ...c?.MuiAccordionSummary?.styleOverrides,
+        root: [
+          c?.MuiAccordionSummary?.styleOverrides?.root,
+          {
+            [`&.${accordionSummaryClasses.disabled}`]: {
+              [HCM]: {
+                opacity: 1,
+              },
+            },
+          },
+        ],
+      },
+    },
     MuiAutocomplete: {
       ...c?.MuiAutocomplete,
       styleOverrides: {
@@ -102,7 +119,7 @@ export default function enhanceHighContrast<
               '&[aria-selected="true"]': {
                 [HCM]: {
                   forcedColorAdjust: 'none',
-                  color: hcTokens.activeText,
+                  color: hcTokens.selectedText,
                   backgroundColor: hcTokens.selectedBackground,
                 },
                 [`&.${autocompleteClasses.focused}`]: {
@@ -311,17 +328,24 @@ export default function enhanceHighContrast<
         root: [
           c?.MuiMenuItem?.styleOverrides?.root,
           {
+            [`&.${menuItemClasses.disabled}`]: {
+              [HCM]: {
+                color: hcTokens.disabled,
+                opacity: 1,
+              },
+            },
             [`&.${menuItemClasses.focusVisible}, &:hover`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
                 color: hcTokens.activeText,
                 backgroundColor: hcTokens.activeBackground,
+                outline: 'none',
               },
             },
             [`&.${menuItemClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
+                color: hcTokens.selectedText,
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
@@ -367,7 +391,7 @@ export default function enhanceHighContrast<
             [`&.${listItemButtonClasses.selected}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
+                color: hcTokens.selectedText,
                 backgroundColor: hcTokens.selectedBackground,
               },
             },
@@ -508,6 +532,20 @@ export default function enhanceHighContrast<
               '&:focus-visible, &:focus-within:has(input:focus-visible)': {
                 outline: `5px auto ${hcTokens.activeBackground}`,
               },
+            },
+          },
+        ],
+      },
+    },
+    MuiTooltip: {
+      ...c?.MuiTooltip,
+      styleOverrides: {
+        ...c?.MuiTooltip?.styleOverrides,
+        tooltip: [
+          c?.MuiTooltip?.styleOverrides?.tooltip,
+          {
+            [HCM]: {
+              border: `1px solid ${hcTokens.buttonText}`,
             },
           },
         ],
