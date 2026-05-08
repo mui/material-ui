@@ -54,23 +54,27 @@ export default function VerticalLinearStepper() {
     const previousActiveStep = previousActiveStepRef.current;
     previousActiveStepRef.current = activeStep;
 
+    // If the user is going forward.
     if (previousActiveStep < activeStep) {
       if (activeStep === steps.length) {
-        // If the user has completed all steps and hits Finish, focus the Reset button.
+        // If the user has completed all steps and hits "Finish", focus the "Reset" button.
         resetButtonRef.current?.focus();
       } else {
-        // Focus the "Continue" button if the user is going forward.
+        // Focus the "Continue" button otherwise.
         continueButtonRef.current?.focus();
       }
       return;
     }
-    if (activeStep === 0 && previousActiveStep === steps.length) {
-      // If the user has completed all steps and hits Reset, focus the Continue button.
+    // Otherwise, the user is going back.
+
+    if (activeStep === 0) {
+      // If the user hit "Back" on the second step, or hit "Reset", focus the "Continue" button.
       continueButtonRef.current?.focus();
-    } else {
-      // Focus the "Back" button if the user is going backward.
-      backButtonRef.current?.focus();
+      return;
     }
+
+    // Focus the "Back" button otherwise.
+    backButtonRef.current?.focus();
   }, [activeStep]);
 
   return (

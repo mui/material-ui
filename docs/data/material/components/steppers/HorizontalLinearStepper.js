@@ -12,9 +12,9 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
 
-  const isStepOptional = (step) => {
+  const isStepOptional = React.useCallback((step) => {
     return step === 1;
-  };
+  }, []);
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -64,20 +64,20 @@ export default function HorizontalLinearStepper() {
     previousActiveStepRef.current = activeStep;
 
     if (activeStep === steps.length) {
-      // If the user has completed all steps and hits Finish, focus the Reset button.
+      // If the user has completed all steps and hits "Finish", focus the "Reset" button.
       resetButtonRef.current?.focus();
       return;
     }
     if (activeStep === 0 && previousActiveStep === steps.length) {
-      // If the user has completed all steps and hits Reset, focus the Next button.
+      // If the user has completed all steps and hits "Reset", focus the "Next" button.
       nextButtonRef.current?.focus();
       return;
     }
     if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
-      // If the user hits Skip and the next step is not optional, focus the Next button.
+      // If the user hits "Skip" and the next step is not optional, focus the "Next" button.
       nextButtonRef.current?.focus();
     }
-  }, [activeStep]);
+  }, [activeStep, isStepOptional]);
 
   return (
     <Box sx={{ width: '100%' }}>

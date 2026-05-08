@@ -52,13 +52,13 @@ export default function TextMobileStepper() {
     previousActiveStepRef.current = activeStep;
 
     if (activeStep === 0 && previousActiveStep === 1) {
-      // If the user is going back to the first step, focus the Next button.
+      // If the user is going back to the first step, focus the "Next" button.
       nextButtonRef.current?.focus();
       return;
     }
 
     if (activeStep === maxSteps - 1 && previousActiveStep === maxSteps - 2) {
-      // If the user is going to the last step, focus the Back button.
+      // If the user is going to the last step, focus the "Back" button.
       backButtonRef.current?.focus();
     }
   }, [activeStep, maxSteps]);
