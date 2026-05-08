@@ -113,8 +113,7 @@ export default class A11yReporter implements Reporter {
     const slugs = [...bySlug.keys()].sort();
     const partial = slugs.filter((s) => bySlug.get(s)!.some((m) => m.violations.length > 0));
     const needsReview = slugs.filter(
-      (s) =>
-        !partial.includes(s) && bySlug.get(s)!.some((m) => m.needsReview.length > 0),
+      (s) => !partial.includes(s) && bySlug.get(s)!.some((m) => m.needsReview.length > 0),
     );
     const pass = slugs.filter((s) => !partial.includes(s) && !needsReview.includes(s));
     // eslint-disable-next-line no-console
