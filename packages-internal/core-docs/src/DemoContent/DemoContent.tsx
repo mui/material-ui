@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
 import type { ExportConfig } from '@mui/internal-docs-infra/useDemo';
+import { useCodeWindow } from '@mui/internal-docs-infra/useCodeWindow';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MDButton from '@mui/material/Button';
@@ -16,7 +17,6 @@ import { alpha, styled } from '@mui/material/styles';
 import { blueDark } from '../branding';
 import { useTranslate } from '../i18n';
 import DemoContext, { type SandboxConfig } from '../DemoContext';
-import useScrollAnchor from './useScrollAnchor';
 
 // Dark code-panel background used by the highlighted source viewer.
 const CODE_BG = 'hsl(210, 25%, 9%)';
@@ -893,7 +893,7 @@ export default function DemoContent(props: ContentProps<object>) {
   // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
   // this expands all hidden context lines. Demos without emphasis frames render
   // identically in both states.
-  const { containerRef, anchorScroll } = useScrollAnchor();
+  const { containerRef, toggleRef, anchorScroll } = useCodeWindow<HTMLButtonElement>();
 
   const hasJsTransform = demo.availableTransforms.includes('js');
   const isJsSelected = demo.selectedTransform === 'js';
@@ -964,7 +964,9 @@ export default function DemoContent(props: ContentProps<object>) {
           )}
 
           {/* Expand / collapse emphasis frames */}
-          <ToolbarButton onClick={handleToggleFrames}>{showCodeLabel}</ToolbarButton>
+          <ToolbarButton ref={toggleRef} onClick={handleToggleFrames}>
+            {showCodeLabel}
+          </ToolbarButton>
 
           {/* StackBlitz */}
           <DemoTooltip title={t('stackblitz')} placement="bottom">
