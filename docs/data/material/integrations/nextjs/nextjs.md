@@ -106,9 +106,58 @@ Next.js preloads and self-hosts the font at build time, so the browser uses it f
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
 Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
+If you are using a custom font instead of Roboto, see [Custom font](#custom-font) below.
 :::
 
 To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
+
+### Custom font
+
+To use a custom font other than Roboto, load it as a CSS variable and set `typography.fontFamily` in the theme.
+Create a theme file with the `'use client'` directive:
+
+```ts title="src/theme.ts"
+'use client';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'var(--font-inter)',
+  },
+});
+
+export default theme;
+```
+
+Then in `app/layout.tsx`, load the font with a `variable` name and apply it to the `<html>` element:
+
+```diff title="app/layout.tsx"
+ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
++import { Inter } from 'next/font/google';
++import { ThemeProvider } from '@mui/material/styles';
++import theme from '../theme';
+
++const inter = Inter({
++  subsets: ['latin'],
++  display: 'swap',
++  variable: '--font-inter',
++});
+
+ export default function RootLayout(props) {
+   const { children } = props;
+   return (
++    <html lang="en" className={inter.variable}>
+       <body>
+          <AppRouterCacheProvider>
++           <ThemeProvider theme={theme}>
+              {children}
++           </ThemeProvider>
+          </AppRouterCacheProvider>
+       </body>
+     </html>
+   );
+ }
+```
 
 ### CSS theme variables
 
@@ -457,9 +506,50 @@ This approach keeps the theme's default `fontFamily` unchanged, so Material UI'
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
 Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
+If you are using a custom font instead of Roboto, see [Custom font](#custom-font-1) below.
 :::
 
 To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
+
+### Custom font
+
+To use a custom font other than Roboto, load it as a CSS variable and set `typography.fontFamily` in the theme.
+In `pages/_app.tsx`:
+
+```diff title="pages/_app.tsx"
+ import * as React from 'react';
+ import Head from 'next/head';
+ import { AppProps } from 'next/app';
+ import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
++import { ThemeProvider, createTheme } from '@mui/material/styles';
++import { Inter } from 'next/font/google';
+
++const inter = Inter({
++  subsets: ['latin'],
++  display: 'swap',
++  variable: '--font-inter',
++});
+
++const theme = createTheme({
++  typography: {
++    fontFamily: 'var(--font-inter)',
++  },
++});
+
+ export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
+  return (
+    <AppCacheProvider {...props}>
+      <Head>...</Head>
++     <ThemeProvider theme={theme}>
++       <main className={inter.variable}>
+          <Component {...pageProps} />
++       </main>
++     </ThemeProvider>
+    </AppCacheProvider>
+  );
+ }
+```
 
 ### CSS theme variables
 
