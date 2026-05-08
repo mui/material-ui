@@ -340,6 +340,35 @@ describe('<Transition />', () => {
         clearTimeoutSpy.restore();
       }
     });
+
+    it('clears the fallback timeout when addEndListener completes synchronously', () => {
+      const onEntered = spy();
+      const clearTimeoutSpy = spy(globalThis, 'clearTimeout');
+      const addEndListener = (_node: HTMLElement, next: () => void) => {
+        next();
+      };
+      try {
+        const { setProps } = render(
+          <TestHarness
+            in={false}
+            timeout={200}
+            addEndListener={addEndListener}
+            handlers={{ onEntered }}
+          />,
+        );
+
+        const clearCountBeforeEnter = clearTimeoutSpy.callCount;
+        setProps({ in: true });
+
+        expect(clearTimeoutSpy.callCount).to.equal(clearCountBeforeEnter + 1);
+        expect(onEntered.callCount).to.equal(1);
+
+        clock.tick(200);
+        expect(onEntered.callCount).to.equal(1);
+      } finally {
+        clearTimeoutSpy.restore();
+      }
+    });
   });
 
   describe('reduced motion completion', () => {
@@ -352,6 +381,37 @@ describe('<Transition />', () => {
       );
 
       setProps({ in: true });
+      expect(onEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(onEntered.callCount).to.equal(1);
+    });
+
+    it('keeps completion timing aligned when reduceMotion changes after enter starts', () => {
+      const onEntered = spy();
+
+      function Test() {
+        const [reduceMotion, setReduceMotion] = React.useState(true);
+        const onEnter = React.useMemo(
+          () =>
+            spy(() => {
+              setReduceMotion(false);
+            }),
+          [],
+        );
+
+        return (
+          <TestHarness
+            in
+            appear
+            timeout={200}
+            reduceMotion={reduceMotion}
+            handlers={{ onEnter, onEntered }}
+          />
+        );
+      }
+
+      render(<Test />);
+
       expect(onEntered.callCount).to.equal(0);
       clock.tick(0);
       expect(onEntered.callCount).to.equal(1);

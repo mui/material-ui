@@ -17,7 +17,7 @@ const CustomTooltip = React.forwardRef(({ onOpen, onClose, ownerState, ...props 
 ));
 
 describe('<SpeedDialAction />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render, renderToString } = createRenderer({ clock: 'fake' });
 
   describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} slotProps={{ tooltip: { title: 'placeholder' } }} />,
@@ -96,6 +96,54 @@ describe('<SpeedDialAction />', () => {
     expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveComputedStyle({
       transitionDelay: '0s',
       transitionDuration: '0s',
+    });
+  });
+
+  it('uses authored transition delay when reduced motion is never', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'never',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SpeedDialAction
+          delay={90}
+          icon={<Icon>add</Icon>}
+          open
+          slotProps={{ tooltip: { open: true, title: 'placeholder' } }}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector('button')).toHaveInlineStyle({ transitionDelay: '90ms' });
+    expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveInlineStyle({
+      transitionDelay: '90ms',
+    });
+  });
+
+  it('server-renders system mode with reduced transition delay before the media query resolves', () => {
+    const theme = createTheme({
+      transitions: {
+        reducedMotion: 'system',
+      },
+    });
+
+    const { container } = renderToString(
+      <ThemeProvider theme={theme}>
+        <SpeedDialAction
+          delay={90}
+          icon={<Icon>add</Icon>}
+          open
+          slotProps={{ tooltip: { open: true, title: 'placeholder' } }}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector('button')).toHaveInlineStyle({ transitionDelay: '0ms' });
+    expect(container.querySelector(`.${classes.staticTooltipLabel}`)).toHaveInlineStyle({
+      transitionDelay: '0ms',
     });
   });
 

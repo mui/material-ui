@@ -121,9 +121,44 @@ describe('useReducedMotion', () => {
     expect(screen.getByTestId('result')).to.have.attribute('data-delay', '0ms');
   });
 
+  it('server-renders system mode as reduced-motion safe before hydration', () => {
+    installMatchMedia(false);
+
+    const { container } = renderToString(<Test mode="system" />);
+    const result = container.querySelector('[data-testid="result"]');
+
+    expect(result).to.have.attribute('data-should-reduce', 'true');
+    expect(result).to.have.attribute('data-duration', '0');
+    expect(result).to.have.attribute('data-delay', '0ms');
+  });
+
+  it('treats newly enabled system mode as reduced-motion safe until the media query resolves', () => {
+    installMatchMedia(false);
+    const renderedValues: boolean[] = [];
+
+    function LoggingTest(props: {
+      mode: ReducedMotionMode;
+      disablePrefersReducedMotion?: boolean;
+    }) {
+      const reducedMotion = useReducedMotion(props.mode, props.disablePrefersReducedMotion);
+      renderedValues.push(reducedMotion.shouldReduceMotion);
+
+      return <span data-testid="result" data-should-reduce={reducedMotion.shouldReduceMotion} />;
+    }
+
+    const { setProps } = render(<LoggingTest mode="system" disablePrefersReducedMotion />);
+    expect(renderedValues[0]).to.equal(false);
+    renderedValues.length = 0;
+
+    setProps({ disablePrefersReducedMotion: false });
+
+    expect(renderedValues[0]).to.equal(true);
+    expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'false');
+  });
+
   it('hydrates from an SSR-safe default in system mode', () => {
     installMatchMedia(true);
-    const getRenderCountRef = React.createRef();
+    const getRenderCountRef = React.createRef<() => number>();
 
     function TestWithCounter(props: {
       mode: ReducedMotionMode;
@@ -142,7 +177,7 @@ describe('useReducedMotion', () => {
     hydrate();
 
     expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'true');
-    expect(getRenderCountRef.current()).to.equal(2);
+    expect(getRenderCountRef.current!()).to.equal(2);
   });
 
   it('allows per-instance opt-out', () => {

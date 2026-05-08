@@ -1,3 +1,5 @@
+import { defaultStyles, resolveReducedMotionStyles } from './reducedMotion';
+
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
 export const easing = {
@@ -26,10 +28,6 @@ export const duration = {
   enteringScreen: 225,
   // recommended when something is leaving screen
   leavingScreen: 195,
-};
-
-const defaultReducedMotionStyles = {
-  transition: 'none',
 };
 
 function formatMs(milliseconds) {
@@ -118,27 +116,12 @@ export default function createTransitions(inputTransitions) {
     const transition = create(props, options);
 
     if (reducedMotion === 'always') {
-      return defaultReducedMotionStyles;
+      return defaultStyles;
     }
 
-    return {
-      transition,
-      ...getReducedMotionStyles(),
-    };
-  };
+    const reducedMotionStyles = resolveReducedMotionStyles(reducedMotion, defaultStyles);
 
-  const getReducedMotionStyles = (styles = defaultReducedMotionStyles) => {
-    if (reducedMotion === 'always') {
-      return styles;
-    }
-
-    if (reducedMotion === 'system') {
-      return {
-        '@media (prefers-reduced-motion: reduce)': styles,
-      };
-    }
-
-    return {};
+    return reducedMotionStyles ? { transition, ...reducedMotionStyles } : { transition };
   };
 
   return {

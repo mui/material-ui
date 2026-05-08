@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import type { ReducedMotionMode } from '../styles/createTransitions';
 
 const MEDIA_QUERY = '(prefers-reduced-motion: reduce)';
@@ -12,24 +11,46 @@ interface TransitionTiming {
   delay: string | undefined;
 }
 
+interface MediaQueryState {
+  enabled: boolean;
+  matches: boolean | null;
+}
+
 /**
  * Subscribes to the OS reduced-motion media query only when the theme mode needs it.
  */
-function useReducedMotionMediaQuery(enabled: boolean): boolean {
-  const [matches, setMatches] = React.useState(false);
+function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
+  const [queryState, setQueryState] = React.useState<MediaQueryState>(() => ({
+    enabled,
+    matches: enabled ? null : false,
+  }));
 
-  useEnhancedEffect(() => {
+  const matches = queryState.enabled === enabled ? queryState.matches : enabled ? null : false;
+
+  React.useEffect(() => {
+    const setResolvedMatches = (nextMatches: boolean | null) => {
+      setQueryState((previousState) => {
+        if (previousState.enabled === enabled && previousState.matches === nextMatches) {
+          return previousState;
+        }
+
+        return {
+          enabled,
+          matches: nextMatches,
+        };
+      });
+    };
+
     if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      setResolvedMatches(false);
       return undefined;
     }
 
     const mediaQueryList = window.matchMedia(MEDIA_QUERY);
     const update = () => {
-      setMatches(mediaQueryList.matches);
+      setResolvedMatches(mediaQueryList.matches);
     };
 
-    // Keep the first client render aligned with the server snapshot and
-    // reconcile to the live OS preference immediately after hydration.
     update();
     mediaQueryList.addEventListener('change', update);
 
@@ -49,10 +70,12 @@ export default function useReducedMotion(
   mode: ReducedMotionMode,
   disablePrefersReducedMotion: boolean | undefined,
 ) {
-  const prefersReducedMotion = useReducedMotionMediaQuery(mode === 'system');
+  const prefersReducedMotion = useReducedMotionMediaQuery(
+    !disablePrefersReducedMotion && mode === 'system',
+  );
   const shouldReduceMotion =
     !disablePrefersReducedMotion &&
-    (mode === 'always' || (mode === 'system' && prefersReducedMotion));
+    (mode === 'always' || (mode === 'system' && prefersReducedMotion !== false));
 
   return {
     shouldReduceMotion,

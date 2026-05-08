@@ -1,4 +1,9 @@
 import * as React from 'react';
+import {
+  defaultStyles,
+  resolveReducedMotionStyles,
+  type ReducedMotionMode,
+} from '../styles/reducedMotion';
 
 export const reflow = (node: Element) => node.scrollTop;
 
@@ -17,10 +22,6 @@ interface TransitionProps {
   easing: string | undefined;
   delay: string | undefined;
 }
-
-const defaultReducedMotionStyles = {
-  transition: 'none',
-};
 
 interface TranslateOffset {
   offsetX: number;
@@ -150,23 +151,13 @@ export function getTransitionProps(props: ComponentProps, options: Options): Tra
  * Returns CSS that disables component-owned transitions when reduced motion is active.
  * Pass custom styles only when the default `transition: none` reset is not enough.
  */
-export function getReducedMotionStyles<Styles extends object = typeof defaultReducedMotionStyles>(
+export function getReducedMotionStyles<Styles extends object = typeof defaultStyles>(
   theme: {
-    transitions?: { reducedMotion?: 'never' | 'system' | 'always' | undefined } | undefined;
+    transitions?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
   },
   styles?: Styles,
 ): Styles | { '@media (prefers-reduced-motion: reduce)': Styles } | null {
-  const resolvedStyles = (styles ?? defaultReducedMotionStyles) as Styles;
+  const resolvedStyles = (styles ?? defaultStyles) as Styles;
 
-  if (theme.transitions?.reducedMotion === 'always') {
-    return resolvedStyles;
-  }
-
-  if (theme.transitions?.reducedMotion === 'system') {
-    return {
-      '@media (prefers-reduced-motion: reduce)': resolvedStyles,
-    };
-  }
-
-  return null;
+  return resolveReducedMotionStyles(theme.transitions?.reducedMotion, resolvedStyles);
 }

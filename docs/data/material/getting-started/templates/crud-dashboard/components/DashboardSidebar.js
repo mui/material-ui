@@ -33,37 +33,57 @@ function DashboardSidebar({
 
   const isOverSmViewport = useMediaQuery(theme.breakpoints.up('sm'));
   const isOverMdViewport = useMediaQuery(theme.breakpoints.up('md'));
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const shouldReduceDrawerMotion =
+    theme.transitions.reducedMotion === 'always' ||
+    (theme.transitions.reducedMotion === 'system' && prefersReducedMotion);
+  const drawerEnteringDuration = shouldReduceDrawerMotion
+    ? 0
+    : theme.transitions.duration.enteringScreen;
+  const drawerLeavingDuration = shouldReduceDrawerMotion
+    ? 0
+    : theme.transitions.duration.leavingScreen;
 
   const [isFullyExpanded, setIsFullyExpanded] = React.useState(expanded);
   const [isFullyCollapsed, setIsFullyCollapsed] = React.useState(!expanded);
 
   React.useEffect(() => {
     if (expanded) {
+      if (drawerEnteringDuration === 0) {
+        setIsFullyExpanded(true);
+        return undefined;
+      }
+
       const drawerWidthTransitionTimeout = setTimeout(() => {
         setIsFullyExpanded(true);
-      }, theme.transitions.duration.enteringScreen);
+      }, drawerEnteringDuration);
 
       return () => clearTimeout(drawerWidthTransitionTimeout);
     }
 
     setIsFullyExpanded(false);
 
-    return () => {};
-  }, [expanded, theme.transitions.duration.enteringScreen]);
+    return undefined;
+  }, [drawerEnteringDuration, expanded]);
 
   React.useEffect(() => {
     if (!expanded) {
+      if (drawerLeavingDuration === 0) {
+        setIsFullyCollapsed(true);
+        return undefined;
+      }
+
       const drawerWidthTransitionTimeout = setTimeout(() => {
         setIsFullyCollapsed(true);
-      }, theme.transitions.duration.leavingScreen);
+      }, drawerLeavingDuration);
 
       return () => clearTimeout(drawerWidthTransitionTimeout);
     }
 
     setIsFullyCollapsed(false);
 
-    return () => {};
-  }, [expanded, theme.transitions.duration.leavingScreen]);
+    return undefined;
+  }, [drawerLeavingDuration, expanded]);
 
   const mini = !disableCollapsibleSidebar && !expanded;
 

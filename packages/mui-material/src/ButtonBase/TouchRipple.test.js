@@ -156,19 +156,56 @@ describe('<TouchRipple />', () => {
     expect(queryAllStoppingRipples()).to.have.lengthOf(3);
   });
 
-  it('omits animation declarations when reduced motion is always', () => {
-    const theme = createTheme({
-      transitions: {
-        reducedMotion: 'always',
-      },
-    });
-    const { instance, queryRipple } = renderTouchRipple({}, theme);
+  describe('reduced motion', () => {
+    clock.withFakeTimers();
 
-    act(() => {
-      instance.start({ clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
+    it('omits animation declarations but keeps visible feedback when reduced motion is always', () => {
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+      const { instance, queryRipple } = renderTouchRipple({}, theme);
+
+      act(() => {
+        instance.start({ clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
+      });
+
+      const cssRules = collectCssRules(queryRipple());
+
+      expect(cssRules).not.to.include('animation-');
+      expect(cssRules).to.match(/opacity:\s*0\.3/);
+      expect(cssRules).to.match(/transform:\s*scale\(1\)/);
     });
 
-    expect(collectCssRules(queryRipple())).not.to.include('animation-');
+    it('removes stopped ripples after 0ms when reduced motion is always', () => {
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'always',
+        },
+      });
+      const { instance, queryAllRipples, queryAllActiveRipples, queryAllStoppingRipples } =
+        renderTouchRipple({}, theme);
+
+      act(() => {
+        instance.start({ clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
+      });
+
+      expect(queryAllActiveRipples()).to.have.lengthOf(1);
+
+      act(() => {
+        instance.stop({ type: 'mouseup' });
+      });
+
+      expect(queryAllActiveRipples()).to.have.lengthOf(0);
+      expect(queryAllStoppingRipples()).to.have.lengthOf(1);
+
+      act(() => {
+        clock.tick(0);
+      });
+
+      expect(queryAllRipples()).to.have.lengthOf(0);
+    });
   });
 
   it('keeps exiting ripples in place when a new ripple starts', () => {

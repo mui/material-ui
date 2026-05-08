@@ -1,6 +1,6 @@
-import { type Theme, type SxProps } from '@mui/material/styles';
+import { type Theme } from '@mui/material/styles';
 
-export function getDrawerSxTransitionMixin(isExpanded: boolean, property: string): SxProps<Theme> {
+export function getDrawerSxTransitionMixin(isExpanded: boolean, property: string) {
   return (theme: Theme) =>
     theme.transitions.createStyles(property, {
       easing: theme.transitions.easing.sharp,

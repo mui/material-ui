@@ -150,6 +150,9 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // Store the isAppearing value for the current enter transition. performEnter
   // sets it before the status effect later calls onEntering/onEntered.
   const isAppearingRef = React.useRef(false);
+  // Capture reduced motion at the start of each phase so prop updates do not
+  // change the completion timing for an active transition.
+  const transitionReduceMotionRef = React.useRef(reduceMotion);
 
   // Transition end callbacks can run after props changed. Read props through
   // this ref so delayed work uses the latest callbacks and timeout settings.
@@ -226,10 +229,11 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         timeout: propsRef.current.timeout,
         autoTimeout,
       });
+      const transitionReduceMotion = transitionReduceMotionRef.current;
       // Auto-duration consumers may skip measurement under reduced motion, but
       // still need a 0ms timeout when they provide addEndListener.
       const fallbackTimeout =
-        authoredTimeout ?? (propsRef.current.reduceMotion && hasAutoTimeout ? 0 : null);
+        authoredTimeout ?? (transitionReduceMotion && hasAutoTimeout ? 0 : null);
       const scheduleTimer = (value: number) => {
         timeoutId = setTimeout(done, value);
       };
@@ -251,6 +255,10 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         return;
       }
       if (listener) {
+        if (fallbackTimeout != null) {
+          scheduleTimer(transitionReduceMotion ? 0 : fallbackTimeout);
+        }
+
         // With nodeRef, react-transition-group calls addEndListener(done).
         // Material UI has long supported addEndListener(node, done). Keep both call
         // shapes so existing transition wrappers do not have to change.
@@ -260,14 +268,10 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
           (listener as (done: () => void) => void)(done);
         }
 
-        if (fallbackTimeout != null) {
-          scheduleTimer(propsRef.current.reduceMotion ? 0 : fallbackTimeout);
-        }
-
         return;
       }
 
-      scheduleTimer(propsRef.current.reduceMotion ? 0 : (authoredTimeout ?? 0));
+      scheduleTimer(transitionReduceMotion ? 0 : (authoredTimeout ?? 0));
     },
     [makeCallback, propsRef],
   );
@@ -287,6 +291,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         return;
       }
 
+      transitionReduceMotionRef.current = current.reduceMotion;
       current.onEnter?.(isAppearing);
       statusRef.current = 'entering';
       setStatus('entering');
@@ -303,6 +308,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       return;
     }
 
+    transitionReduceMotionRef.current = current.reduceMotion;
     current.onExit?.();
     statusRef.current = 'exiting';
     setStatus('exiting');

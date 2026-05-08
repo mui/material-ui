@@ -174,8 +174,13 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     setTooltipOpen(true);
   };
 
+  const transitionTiming = reducedMotion.getTransitionTiming({
+    duration: 0,
+    delay: `${delay}ms`,
+  });
+
   const transitionStyle = {
-    transitionDelay: reducedMotion.shouldReduceMotion ? '0ms' : `${delay}ms`,
+    transitionDelay: transitionTiming.delay,
   };
 
   const [FabSlot, fabSlotProps] = useSlot('fab', {

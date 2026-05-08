@@ -1,6 +1,8 @@
 import { expect } from 'chai';
-import { createRenderer, isJsdom } from '@mui/internal-test-utils';
+import { spy } from 'sinon';
+import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
 import describeTransitionConformance from '../../test/describeTransitionConformance';
@@ -85,6 +87,62 @@ describe('<Fade />', () => {
 
       expect(element).toHaveInlineStyle({ opacity: '0' });
       expect(element).toHaveInlineStyle({ visibility: 'hidden' });
+    });
+  });
+
+  describe('reduced motion: system', () => {
+    clock.withFakeTimers();
+
+    let originalMatchMedia;
+
+    beforeEach(() => {
+      originalMatchMedia = window.matchMedia;
+      window.matchMedia = () => ({
+        matches: false,
+        media: '(prefers-reduced-motion: reduce)',
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        addListener: () => {},
+        removeListener: () => {},
+        dispatchEvent: () => true,
+      });
+    });
+
+    afterEach(() => {
+      window.matchMedia = originalMatchMedia;
+    });
+
+    it('uses reduced timing for the initial appear transition before the media query resolves', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        transitions: {
+          reducedMotion: 'system',
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Fade in appear timeout={250} onEntered={handleEntered}>
+            <div>Foo</div>
+          </Fade>
+        </ThemeProvider>,
+      );
+
+      const element = container.querySelector('div');
+
+      if (isJsdom()) {
+        expect(element.style.transition).to.include('0ms');
+      } else {
+        expect(element.style.transitionDuration).to.equal('0ms');
+      }
+      expect(handleEntered.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(0);
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
     });
   });
 });
