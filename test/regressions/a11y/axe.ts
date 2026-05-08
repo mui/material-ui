@@ -9,13 +9,17 @@ export const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'
 /** Rules disabled globally — depend on page-level context, not component correctness. */
 export const GLOBAL_DISABLED_RULES = ['region', 'page-has-heading-one'];
 
+export type RuleStatus = 'pass' | 'fail' | 'incomplete';
+
+export interface RuleEntry {
+  status: RuleStatus;
+  tags: string[];
+}
+
 export interface A11yMeta {
   slug: string;
   demo: string;
-  collectedRules: string[];
-  testedRules: Record<string, string[]>;
-  violations: string[];
-  needsReview: string[];
+  rules: Record<string, RuleEntry>;
 }
 
 function formatNode(node: AxeResults['violations'][number]['nodes'][number]): string {
@@ -72,36 +76,26 @@ export function recordA11y(
   results: AxeResults,
   { slug, demo, skipAssertions = [] }: RecordA11yOptions,
 ): void {
-  const collectedRules = new Set<string>();
-  const testedRules = new Map<string, Set<string>>();
-  for (const list of [results.passes, results.violations, results.incomplete]) {
+  const rules: Record<string, RuleEntry> = {};
+  const buckets: ReadonlyArray<[AxeResults['passes'], RuleStatus]> = [
+    [results.passes, 'pass'],
+    [results.incomplete, 'incomplete'],
+    [results.violations, 'fail'],
+  ];
+  for (const [list, status] of buckets) {
     for (const rule of list) {
-      collectedRules.add(rule.id);
-      for (const tag of rule.tags) {
-        if (WCAG_TAGS.includes(tag)) {
-          if (!testedRules.has(tag)) {
-            testedRules.set(tag, new Set());
-          }
-          testedRules.get(tag)!.add(rule.id);
-        }
-      }
+      const tags = rule.tags.filter((t) => WCAG_TAGS.includes(t)).sort();
+      rules[rule.id] = { status, tags };
     }
   }
-
-  const violations = [...new Set(results.violations.map((v) => v.id))];
-  const needsReview = [...new Set(results.incomplete.map((v) => v.id))].filter(
-    (id) => !violations.includes(id),
+  const sortedRules = Object.fromEntries(
+    Object.entries(rules).sort(([a], [b]) => a.localeCompare(b)),
   );
 
   const meta: A11yMeta = {
     slug,
     demo,
-    collectedRules: [...collectedRules],
-    testedRules: Object.fromEntries(
-      [...testedRules.entries()].map(([tag, ids]) => [tag, [...ids]]),
-    ),
-    violations,
-    needsReview,
+    rules: sortedRules,
   };
   (ctx.task.meta as { a11y?: A11yMeta }).a11y = meta;
 

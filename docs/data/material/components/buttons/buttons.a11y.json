@@ -1,58 +1,82 @@
 {
   "BasicButtons": {
-    "passedRules": [
-      "aria-allowed-attr",
-      "aria-conditional-attr",
-      "aria-prohibited-attr",
-      "aria-valid-attr",
-      "aria-valid-attr-value",
-      "button-name",
-      "color-contrast",
-      "nested-interactive",
-      "target-size"
-    ],
-    "failedRules": [],
-    "needsReviewRules": [],
-    "testedRules": {
-      "wcag2a": [
-        "aria-allowed-attr",
-        "aria-conditional-attr",
-        "aria-prohibited-attr",
-        "aria-valid-attr-value",
-        "aria-valid-attr",
-        "button-name",
-        "nested-interactive"
-      ],
-      "wcag2aa": ["color-contrast"],
-      "wcag22aa": ["target-size"]
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "button-name": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
     }
   },
   "ColorButtons": {
-    "passedRules": [
-      "aria-allowed-attr",
-      "aria-conditional-attr",
-      "aria-prohibited-attr",
-      "aria-valid-attr",
-      "aria-valid-attr-value",
-      "button-name",
-      "color-contrast",
-      "nested-interactive",
-      "target-size"
-    ],
-    "failedRules": [],
-    "needsReviewRules": [],
-    "testedRules": {
-      "wcag2a": [
-        "aria-allowed-attr",
-        "aria-conditional-attr",
-        "aria-prohibited-attr",
-        "aria-valid-attr-value",
-        "aria-valid-attr",
-        "button-name",
-        "nested-interactive"
-      ],
-      "wcag2aa": ["color-contrast"],
-      "wcag22aa": ["target-size"]
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "button-name": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
     }
   }
 }

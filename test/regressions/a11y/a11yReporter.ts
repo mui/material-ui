@@ -17,10 +17,7 @@ const COMPONENTS_DIR = path.resolve(__dirname, '../../../docs/data/material/comp
 const VRT_MODULE_PATH = path.resolve(__dirname, '../index.test.js');
 
 interface DemoEntry {
-  passedRules: string[];
-  failedRules: string[];
-  needsReviewRules: string[];
-  testedRules: Record<string, string[]>;
+  rules: A11yMeta['rules'];
 }
 
 function* walkTests(node: TestModule | TestSuite): Generator<TestCase, undefined, void> {
@@ -33,17 +30,13 @@ function* walkTests(node: TestModule | TestSuite): Generator<TestCase, undefined
   }
 }
 
-function toEntry(meta: A11yMeta): DemoEntry {
-  const violations = new Set(meta.violations);
-  const needsReview = new Set(meta.needsReview);
-  return {
-    passedRules: meta.collectedRules
-      .filter((r) => !violations.has(r) && !needsReview.has(r))
-      .sort(),
-    failedRules: [...meta.violations].sort(),
-    needsReviewRules: [...meta.needsReview].sort(),
-    testedRules: meta.testedRules,
-  };
+function hasStatus(meta: A11yMeta, status: 'fail' | 'incomplete'): boolean {
+  for (const rule of Object.values(meta.rules)) {
+    if (rule.status === status) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export default class A11yReporter implements Reporter {
@@ -83,7 +76,7 @@ export default class A11yReporter implements Reporter {
       const sorted = [...metas].sort((a, b) => a.demo.localeCompare(b.demo));
       const file: Record<string, DemoEntry> = {};
       for (const meta of sorted) {
-        file[meta.demo] = toEntry(meta);
+        file[meta.demo] = { rules: meta.rules };
       }
       fs.writeFileSync(
         path.join(slugDir, `${slug}.a11y.json`),
@@ -111,9 +104,9 @@ export default class A11yReporter implements Reporter {
     }
 
     const slugs = [...bySlug.keys()].sort();
-    const partial = slugs.filter((s) => bySlug.get(s)!.some((m) => m.violations.length > 0));
+    const partial = slugs.filter((s) => bySlug.get(s)!.some((m) => hasStatus(m, 'fail')));
     const needsReview = slugs.filter(
-      (s) => !partial.includes(s) && bySlug.get(s)!.some((m) => m.needsReview.length > 0),
+      (s) => !partial.includes(s) && bySlug.get(s)!.some((m) => hasStatus(m, 'incomplete')),
     );
     const pass = slugs.filter((s) => !partial.includes(s) && !needsReview.includes(s));
     // eslint-disable-next-line no-console
