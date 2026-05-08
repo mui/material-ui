@@ -340,17 +340,17 @@ const theme = enhanceHighContrast(createTheme(), {
 
 The following tokens are available:
 
-| Token | Default | Description |
-| :--- | :--- | :--- |
-| `disabled` | `GrayText` | Color for disabled elements |
-| `error` | `mark` | Color for error states |
-| `selectedBackground` | `SelectedItem` | Background color for selected items |
-| `selectedText` | `SelectedItemText` | Text color on selected items |
-| `activeBackground` | `Highlight` | Background color for active or toggled controls |
-| `activeText` | `HighlightText` | Text color on active or toggled controls |
-| `buttonBorder` | `ButtonBorder` | Border color for interactive controls |
-| `buttonText` | `ButtonText` | Text and icon color on buttons |
-| `canvas` | `Canvas` | Background color for the page or canvas |
+| Token                | Default            | Description                                     |
+| :------------------- | :----------------- | :---------------------------------------------- |
+| `disabled`           | `GrayText`         | Color for disabled elements                     |
+| `error`              | `mark`             | Color for error states                          |
+| `selectedBackground` | `SelectedItem`     | Background color for selected items             |
+| `selectedText`       | `SelectedItemText` | Text color on selected items                    |
+| `activeBackground`   | `Highlight`        | Background color for active or toggled controls |
+| `activeText`         | `HighlightText`    | Text color on active or toggled controls        |
+| `buttonBorder`       | `ButtonBorder`     | Border color for interactive controls           |
+| `buttonText`         | `ButtonText`       | Text and icon color on buttons                  |
+| `canvas`             | `Canvas`           | Background color for the page or canvas         |
 
 ## Picking colors
 
