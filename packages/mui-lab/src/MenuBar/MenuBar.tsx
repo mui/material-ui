@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menubar as BaseMenubar } from '@base-ui/react/menubar';
+import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
 import composeClasses from '@mui/utils/composeClasses';
 import { getMenuBarUtilityClass } from './menuBarClasses';
@@ -44,18 +45,25 @@ const MenuBarRoot = styled('div', {
  *
  * - [MenuBar API](https://mui.com/material-ui/api/menu-bar/)
  */
-const MenuBar = React.forwardRef<HTMLDivElement, MenuBarProps>(
-  function MenuBar(inProps, ref) {
-    const props = useThemeProps({ props: inProps, name: 'MuiMenuBar' });
-    const { className, ...other } = props;
-    const ownerState = props;
-    const classes = useUtilityClasses(ownerState);
+const MenuBar = React.forwardRef<HTMLDivElement, MenuBarProps>(function MenuBar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMenuBar' });
+  const { className, ...other } = props;
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
-    return (
-      <BaseMenubar render={<MenuBarRoot ref={ref} className={className} {...other} />} {...other} />
-    );
-  },
-);
+  return (
+    <BaseMenubar
+      {...other}
+      render={(renderProps) => (
+        <MenuBarRoot
+          {...renderProps}
+          className={clsx(classes.root, className, renderProps.className)}
+          ref={ref}
+        />
+      )}
+    />
+  );
+});
 
 export default MenuBar;
 

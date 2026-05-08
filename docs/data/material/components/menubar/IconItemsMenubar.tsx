@@ -25,10 +25,14 @@ export default function IconItemsMenubar() {
           <MenuBarPositioner sideOffset={4} alignOffset={-2}>
             <MenuBarPopup>
               <MenuBarItem icon={<AddIcon fontSize="small" />}>New</MenuBarItem>
-              <MenuBarItem icon={<FolderOpenIcon fontSize="small" />}>Open...</MenuBarItem>
+              <MenuBarItem icon={<FolderOpenIcon fontSize="small" />}>
+                Open...
+              </MenuBarItem>
               <MenuBarItem icon={<SaveIcon fontSize="small" />}>Save</MenuBarItem>
               <MenuBarSeparator />
-              <MenuBarItem icon={<PrintIcon fontSize="small" />}>Print...</MenuBarItem>
+              <MenuBarItem icon={<PrintIcon fontSize="small" />}>
+                Print...
+              </MenuBarItem>
             </MenuBarPopup>
           </MenuBarPositioner>
         </MenuBarPortal>

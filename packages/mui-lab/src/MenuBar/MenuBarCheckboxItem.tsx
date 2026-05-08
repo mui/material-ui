@@ -25,21 +25,20 @@ const StyledHint = styled(Typography)(({ theme }) => ({
  *
  * - [MenuBarCheckboxItem API](https://mui.com/material-ui/api/menu-bar-checkbox-item/)
  */
-const MenuBarCheckboxItem = React.forwardRef<
-  HTMLDivElement,
-  MenuBarCheckboxItemProps
->(function MenuBarCheckboxItem(props, ref) {
-  const { hint, children, ...other } = props;
-  return (
-    <Menu.CheckboxItem ref={ref} render={<ListItemButton dense />} {...other}>
-      <ListItemIcon sx={{ minWidth: 32 }}>
-        <Menu.CheckboxItemIndicator render={<CheckIcon fontSize="small" />} />
-      </ListItemIcon>
-      <ListItemText>{children}</ListItemText>
-      {hint && <StyledHint>{hint}</StyledHint>}
-    </Menu.CheckboxItem>
-  );
-});
+const MenuBarCheckboxItem = React.forwardRef<HTMLDivElement, MenuBarCheckboxItemProps>(
+  function MenuBarCheckboxItem(props, ref) {
+    const { hint, children, ...other } = props;
+    return (
+      <Menu.CheckboxItem ref={ref} render={<ListItemButton dense />} {...other}>
+        <ListItemIcon sx={{ minWidth: 32 }}>
+          <Menu.CheckboxItemIndicator render={<CheckIcon fontSize="small" />} />
+        </ListItemIcon>
+        <ListItemText>{children}</ListItemText>
+        {hint && <StyledHint>{hint}</StyledHint>}
+      </Menu.CheckboxItem>
+    );
+  },
+);
 
 export default MenuBarCheckboxItem;
 

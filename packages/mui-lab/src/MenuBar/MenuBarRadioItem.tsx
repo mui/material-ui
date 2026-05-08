@@ -35,10 +35,7 @@ const MenuBarRadioItem = React.forwardRef<HTMLDivElement, MenuBarRadioItemProps>
           <RadioButtonUncheckedIcon fontSize="small" />
           <Menu.RadioItemIndicator
             render={
-              <RadioButtonCheckedIcon
-                fontSize="small"
-                sx={{ position: 'absolute', left: 0 }}
-              />
+              <RadioButtonCheckedIcon fontSize="small" sx={{ position: 'absolute', left: 0 }} />
             }
           />
         </ListItemIcon>

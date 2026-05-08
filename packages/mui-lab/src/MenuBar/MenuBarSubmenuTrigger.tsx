@@ -25,24 +25,19 @@ const StyledHint = styled(Typography)(({ theme }) => ({
  *
  * - [MenuBarSubmenuTrigger API](https://mui.com/material-ui/api/menu-bar-submenu-trigger/)
  */
-const MenuBarSubmenuTrigger = React.forwardRef<
-  HTMLDivElement,
-  MenuBarSubmenuTriggerProps
->(function MenuBarSubmenuTrigger(props, ref) {
-  const { sx, icon, hint, children, ...other } = props;
-  return (
-    <Menu.SubmenuTrigger
-      ref={ref}
-      render={<ListItemButton dense sx={sx} />}
-      {...other}
-    >
-      {icon && <ListItemIcon sx={{ minWidth: 32 }}>{icon}</ListItemIcon>}
-      <ListItemText>{children}</ListItemText>
-      {hint && <StyledHint>{hint}</StyledHint>}
-      <ChevronRightIcon fontSize="small" sx={{ mr: -1 }} />
-    </Menu.SubmenuTrigger>
-  );
-});
+const MenuBarSubmenuTrigger = React.forwardRef<HTMLDivElement, MenuBarSubmenuTriggerProps>(
+  function MenuBarSubmenuTrigger(props, ref) {
+    const { sx, icon, hint, children, ...other } = props;
+    return (
+      <Menu.SubmenuTrigger ref={ref} render={<ListItemButton dense sx={sx} />} {...other}>
+        {icon && <ListItemIcon sx={{ minWidth: 32 }}>{icon}</ListItemIcon>}
+        <ListItemText>{children}</ListItemText>
+        {hint && <StyledHint>{hint}</StyledHint>}
+        <ChevronRightIcon fontSize="small" sx={{ mr: -1 }} />
+      </Menu.SubmenuTrigger>
+    );
+  },
+);
 
 export default MenuBarSubmenuTrigger;
 

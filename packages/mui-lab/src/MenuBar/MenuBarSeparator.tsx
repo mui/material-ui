@@ -20,9 +20,7 @@ const MenuBarSeparator = React.forwardRef<HTMLDivElement, MenuBarSeparatorProps>
     return (
       <Menu.Separator
         ref={ref}
-        render={
-          <Divider sx={[{ my: 0.5 }, ...(Array.isArray(sx) ? sx : [sx])]} />
-        }
+        render={<Divider sx={[{ my: 0.5 }, ...(Array.isArray(sx) ? sx : [sx])]} />}
         {...other}
       />
     );

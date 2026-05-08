@@ -109,8 +109,12 @@ export default function GroupLabelMenubar() {
               <MenuBarSeparator />
               <MenuBarGroup>
                 <MenuBarGroupLabel>Clipboard</MenuBarGroupLabel>
-                <MenuBarItem icon={<ContentCutIcon fontSize="small" />}>Cut</MenuBarItem>
-                <MenuBarItem icon={<ContentCopyIcon fontSize="small" />}>Copy</MenuBarItem>
+                <MenuBarItem icon={<ContentCutIcon fontSize="small" />}>
+                  Cut
+                </MenuBarItem>
+                <MenuBarItem icon={<ContentCopyIcon fontSize="small" />}>
+                  Copy
+                </MenuBarItem>
                 <MenuBarItem icon={<ContentPasteIcon fontSize="small" />}>
                   Paste
                 </MenuBarItem>

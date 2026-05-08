@@ -2,17 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from '@base-ui/react/menu';
-import { styled } from '@mui/material/styles';
 import ListSubheader from '@mui/material/ListSubheader';
 import { MenuBarGroupLabelProps } from './MenuBar.types';
 
-const StyledSubheader = styled(ListSubheader)(({ theme }) => ({
-  position: 'initial',
-  paddingBlock: theme.spacing(1),
-  backgroundColor: 'transparent',
-  ...theme.typography.overline,
-  lineHeight: '1.5',
-}));
 /**
  *
  * Demos:
@@ -23,19 +15,32 @@ const StyledSubheader = styled(ListSubheader)(({ theme }) => ({
  *
  * - [MenuBarGroupLabel API](https://mui.com/material-ui/api/menu-bar-group-label/)
  */
-const MenuBarGroupLabel = React.forwardRef<
-  HTMLDivElement,
-  MenuBarGroupLabelProps
->(function MenuBarGroupLabel(props, ref) {
-  const { sx, ...other } = props;
-  return (
-    <Menu.GroupLabel
-      ref={ref}
-      render={<StyledSubheader sx={sx} component="div" />}
-      {...other}
-    />
-  );
-});
+const MenuBarGroupLabel = React.forwardRef<HTMLDivElement, MenuBarGroupLabelProps>(
+  function MenuBarGroupLabel(props, ref) {
+    const { sx, ...other } = props;
+    return (
+      <Menu.GroupLabel
+        ref={ref}
+        render={
+          <ListSubheader
+            component="div"
+            sx={[
+              {
+                position: 'initial',
+                paddingBlock: 1,
+                backgroundColor: 'transparent',
+                typography: 'overline',
+                lineHeight: '1.5',
+              },
+              ...(Array.isArray(sx) ? sx : [sx]),
+            ]}
+          />
+        }
+        {...other}
+      />
+    );
+  },
+);
 
 export default MenuBarGroupLabel;
 
