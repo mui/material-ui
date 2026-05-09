@@ -62,6 +62,16 @@ function isMouseEventInsideElement(event, element) {
   );
 }
 
+function getOptionText(node) {
+  if (node == null) return '';
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(getOptionText).join('');
+  if (React.isValidElement(node) && node.props.children) {
+    return getOptionText(node.props.children);
+  }
+  return '';
+}
+
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
   slot: 'Select',
@@ -183,6 +193,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const hasSelectedItemInListRef = React.useRef(false);
   const openingMouseUpListenerCleanupRef = React.useRef(null);
   const didPointerDownOnItemRef = React.useRef(false);
+  const typeaheadBufferRef = React.useRef('');
+  const typeaheadLastCharRef = React.useRef('');
+  const typeaheadCycleIndexRef = React.useRef(0);
+  const typeaheadResetTimerRef = React.useRef(null);
   const selectionRef = React.useRef({
     allowSelectedMouseUp: false,
     allowUnselectedMouseUp: false,
@@ -296,6 +310,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       displayRef.current.focus();
     }
   }, [autoFocus]);
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(typeaheadResetTimerRef.current);
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!labelId) {
@@ -500,6 +520,81 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.currentTarget.click();
   };
 
+  const handleTypeaheadKeyDown = (event) => {
+    if (open || multiple || readOnly || disabled) {
+      return;
+    }
+  
+    const char = event.key;
+    if (char.length !== 1) {
+      return;
+    }
+  
+    event.preventDefault();
+  
+    const lowerChar = char.toLowerCase();
+    clearTimeout(typeaheadResetTimerRef.current);
+  
+    // Build option list from children
+    const options = React.Children.toArray(children)
+      .filter(React.isValidElement)
+      .map((child) => ({
+        label: getOptionText(child.props.children).toLowerCase(),
+        value: child.props.value,
+        child,
+      }))
+      .filter((option) => option.label.length > 0);
+  
+    const isSameChar = lowerChar === typeaheadLastCharRef.current && typeaheadBufferRef.current.length === 1;
+  
+    if (isSameChar) {
+      // CYCLING MODE: same character pressed again → advance to next match
+      const charMatches = options.filter((option) => option.label.startsWith(lowerChar));
+      if (charMatches.length === 0) {
+        return;
+      }
+      typeaheadCycleIndexRef.current = (typeaheadCycleIndexRef.current + 1) % charMatches.length;
+      const match = charMatches[typeaheadCycleIndexRef.current];
+      if (match && match.value !== value) {
+        setValueState(match.value);
+        if (onChange) {
+          const nativeEvent = new Event('change', { bubbles: true });
+          Object.defineProperty(nativeEvent, 'target', {
+            writable: true,
+            value: { value: match.value, name },
+          });
+          onChange(nativeEvent, match.child);
+        }
+      }
+    } else {
+      // PREFIX MATCH MODE: accumulate characters and find first match
+      typeaheadBufferRef.current += lowerChar;
+      typeaheadLastCharRef.current = lowerChar;
+      const match = options.find((option) => option.label.startsWith(typeaheadBufferRef.current));
+      if (match) {
+        const charMatches = options.filter((option) => option.label.startsWith(lowerChar));
+        typeaheadCycleIndexRef.current = charMatches.indexOf(match);
+        if (match.value !== value) {
+          setValueState(match.value);
+          if (onChange) {
+            const nativeEvent = new Event('change', { bubbles: true });
+            Object.defineProperty(nativeEvent, 'target', {
+              writable: true,
+              value: { value: match.value, name },
+            });
+            onChange(nativeEvent, match.child);
+          }
+        }
+      }
+    }
+  
+    typeaheadResetTimerRef.current = setTimeout(() => {
+      typeaheadBufferRef.current = '';
+      typeaheadLastCharRef.current = '';
+      typeaheadCycleIndexRef.current = 0;
+    }, 500);
+  };
+
   const handleKeyDown = (event) => {
     if (!readOnly) {
       const validKeys = [
@@ -517,6 +612,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
       onKeyDown?.(event);
     }
+    handleTypeaheadKeyDown(event);
   };
 
   const handleBlur = (event) => {

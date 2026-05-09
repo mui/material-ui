@@ -2215,6 +2215,217 @@ describe('<Select />', () => {
     });
   });
 
+  describe('typeahead keyboard navigation', () => {
+    async function focusTrigger(trigger) {
+      await act(async () => {
+        trigger.focus();
+      });
+  
+      expect(trigger).toHaveFocus();
+    }
+  
+    it('selects an option by typing a single character', async () => {
+      render(
+        <Select defaultValue="" name="test-select">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="carrot">Carrot</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(trigger).to.have.text('Banana');
+    });
+  
+    it('matches using accumulated prefix characters', async () => {
+      render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="blueberry">Blueberry</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+      fireEvent.keyDown(trigger, { key: 'l' });
+  
+      expect(trigger).to.have.text('Blueberry');
+    });
+  
+    it('cycles through options when the same character is pressed repeatedly', async () => {
+      render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="apricot">Apricot</MenuItem>
+          <MenuItem value="avocado">Avocado</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'a' });
+      expect(trigger).to.have.text('Apple');
+  
+      fireEvent.keyDown(trigger, { key: 'a' });
+      expect(trigger).to.have.text('Apricot');
+  
+      fireEvent.keyDown(trigger, { key: 'a' });
+      expect(trigger).to.have.text('Avocado');
+  
+      fireEvent.keyDown(trigger, { key: 'a' });
+      expect(trigger).to.have.text('Apple');
+    });
+  
+    it('resets the typeahead buffer after timeout', async () => {
+      render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="blueberry">Blueberry</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      await act(async () => {
+        clock.tick(600);
+      });
+  
+      fireEvent.keyDown(trigger, { key: 'l' });
+  
+      // should stay on Banana because buffer reset
+      expect(trigger).to.have.text('Banana');
+    });
+  
+    it('calls onChange with correct target value during typeahead selection', async () => {
+      const onChange = spy();
+  
+      render(
+        <Select defaultValue="" name="food" onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.firstCall.args[0].target.value).to.equal('banana');
+      expect(onChange.firstCall.args[0].target.name).to.equal('food');
+    });
+  
+    it('does not trigger typeahead when select is open', async () => {
+      render(
+        <Select open value="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox', { hidden: true });
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(trigger).not.to.have.text('Banana');
+    });
+  
+    it('does not trigger typeahead for multiple select', async () => {
+      render(
+        <Select multiple defaultValue={[]}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(trigger).not.to.have.text('Banana');
+    });
+  
+    it('does not trigger typeahead when readOnly', async () => {
+      render(
+        <Select readOnly defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(trigger).not.to.have.text('Banana');
+    });
+  
+    it('supports nested children text in options', async () => {
+      render(
+        <Select defaultValue="">
+          <MenuItem value="apple">
+            <span>Apple</span>
+          </MenuItem>
+  
+          <MenuItem value="banana">
+            <div>
+              <span>Banana</span>
+            </div>
+          </MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'b' });
+  
+      expect(trigger).to.have.text('Banana');
+    });
+  
+    it('ignores non-character keys for typeahead', async () => {
+      render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+  
+      const trigger = screen.getByRole('combobox');
+  
+      await focusTrigger(trigger);
+  
+      fireEvent.keyDown(trigger, { key: 'Shift' });
+  
+      expect(trigger).not.to.have.text('Banana');
+    });
+  });
+
   it.skipIf(isJsdom())('updates menu minWidth when the trigger resizes while open', async () => {
     clock.restore();
 
