@@ -19,7 +19,7 @@
   },
   {
     "name": "Marija Najdova",
-    "title": "Engineering Manager",
+    "title": "Director of Engineering",
     "about": "I do karate 🥋 and read 📚. A lot!",
     "location": "Skopje, North Macedonia",
     "locationCountry": "mk",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Danail Hadjiatanasov",
-    "title": "Engineering Manager",
+    "title": "VP of Revenue",
     "about": "Boringly normal, geek deep down. I like 🚗 and 🏂.",
     "location": "Sofia, Bulgaria",
     "locationCountry": "bg",
@@ -111,7 +111,7 @@
     "name": "Lukas Tyla",
     "title": "Software Engineer — eXplore",
     "about": "Learning and experimenting 📚.",
-    "location": "Vilnius, Lithuania",
+    "location": "Panevėžys, Lithuania",
     "locationCountry": "lt",
     "github": "LukasTy",
     "twitter": null
