@@ -524,17 +524,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (open || multiple || readOnly || disabled) {
       return;
     }
-  
+
     const char = event.key;
     if (char.length !== 1) {
       return;
     }
-  
+
     event.preventDefault();
-  
+
     const lowerChar = char.toLowerCase();
     clearTimeout(typeaheadResetTimerRef.current);
-  
+
     // Build option list from children
     const options = React.Children.toArray(children)
       .filter(React.isValidElement)
@@ -544,9 +544,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         child,
       }))
       .filter((option) => option.label.length > 0);
-  
-    const isSameChar = lowerChar === typeaheadLastCharRef.current && typeaheadBufferRef.current.length === 1;
-  
+
+    const isSameChar =
+      lowerChar === typeaheadLastCharRef.current && typeaheadBufferRef.current.length === 1;
+
     if (isSameChar) {
       // CYCLING MODE: same character pressed again → advance to next match
       const charMatches = options.filter((option) => option.label.startsWith(lowerChar));
@@ -587,7 +588,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       }
     }
-  
+
     typeaheadResetTimerRef.current = setTimeout(() => {
       typeaheadBufferRef.current = '';
       typeaheadLastCharRef.current = '';
