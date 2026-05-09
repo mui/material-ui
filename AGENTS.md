@@ -169,7 +169,7 @@ Key files:
 
 - `test/regressions/demoMeta.ts` — `SCREENSHOT_RULES` and `A11Y_RULES` arrays, matched last-wins (no inheritance: overrides restate every field) against `docs/data/material/components/{slug}/{Demo}` (minimatch globs).
 - `test/regressions/a11y/axe.ts` — asserts `color-contrast` and `link-in-text-block` unless listed in `skipAssertions`.
-- `test/regressions/a11y/a11yReporter.ts` — writes one file per slug at `docs/data/material/components/{slug}/{slug}.a11y.json`, an object keyed by demo name.
+- `test/regressions/a11y/a11yReporter.ts` — writes one file per slug at `docs/data/material/components/{slug}/{slug}.a11y.json`. Each file is keyed by demo name, then by axe rule ID. Each rule records a `status` (`pass`, `fail`, or `incomplete`) and WCAG tags.
 
 Enroll a component (slug-wide, or narrow with brace-glob):
 
