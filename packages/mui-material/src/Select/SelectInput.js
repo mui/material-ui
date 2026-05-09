@@ -63,12 +63,22 @@ function isMouseEventInsideElement(event, element) {
 }
 
 function getOptionText(node) {
-  if (node == null) return '';
-  if (typeof node === 'string' || typeof node === 'number') return String(node);
-  if (Array.isArray(node)) return node.map(getOptionText).join('');
+  if (node == null) {
+    return '';
+  }
+
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(getOptionText).join('');
+  }
+
   if (React.isValidElement(node) && node.props.children) {
     return getOptionText(node.props.children);
   }
+
   return '';
 }
 
