@@ -513,7 +513,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /base-ui/ https://base-ui.com/ 301
 /material-ui/discover-more/design-kits/ /material-ui/discover-more/design-kits/ 301
 /material-ui/api/loading-button/ https://v5.mui.com/material-ui/api/loading-button/ 301
-/material-ui/getting-started/templates/landing-page/ https://mui.com/material-ui/getting-started/templates/marketing-page/ 301
+/material-ui/getting-started/templates/landing-page/ /material-ui/getting-started/templates/marketing-page/ 301
 # 2025
 /system/styles/basics/ https://v6.mui.com/system/styles/basics/ 301
 /system/styles/advanced/ https://v6.mui.com/system/styles/advanced/ 301
