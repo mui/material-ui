@@ -527,7 +527,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleTypeaheadKeyDown = (event) => {
-    if (open || multiple || readOnly || disabled) {
+    if (openRef.current || multiple || readOnly || disabled) {
       return;
     }
 
