@@ -203,10 +203,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const hasSelectedItemInListRef = React.useRef(false);
   const openingMouseUpListenerCleanupRef = React.useRef(null);
   const didPointerDownOnItemRef = React.useRef(false);
-  const typeaheadBufferRef = React.useRef('');
-  const typeaheadLastCharRef = React.useRef('');
-  const typeaheadCycleIndexRef = React.useRef(0);
-  const typeaheadResetTimerRef = React.useRef(null);
+  const textCriteriaRef = React.useRef({
+    keys: [],
+    repeating: true,
+    previousKeyMatched: true,
+    lastTime: null,
+  });
   const selectionRef = React.useRef({
     allowSelectedMouseUp: false,
     allowUnselectedMouseUp: false,
@@ -320,12 +322,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       displayRef.current.focus();
     }
   }, [autoFocus]);
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(typeaheadResetTimerRef.current);
-    };
-  }, []);
 
   React.useEffect(() => {
     if (!labelId) {
@@ -535,75 +531,84 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return;
     }
 
-    const char = event.key;
-    if (char.length !== 1) {
+    if (event.key.length !== 1) {
       return;
     }
 
-    event.preventDefault();
+    // Build selectable option list — skip disabled items and non-interactive
+    // subheaders (items without a value prop), consistent with open-popup behavior.
+    const selectableChildren = React.Children.toArray(children).filter(
+      (child) =>
+        React.isValidElement(child) && child.props.value !== undefined && !child.props.disabled,
+    );
 
-    const lowerChar = char.toLowerCase();
-    clearTimeout(typeaheadResetTimerRef.current);
-
-    // Build option list from children
-    const options = React.Children.toArray(children)
-      .filter(React.isValidElement)
-      .map((child) => ({
-        label: getOptionText(child.props.children).toLowerCase(),
+    console.log(
+      'Selectable candidates:',
+      selectableChildren.map((child) => ({
+        text: getOptionText(child.props.children),
         value: child.props.value,
-        child,
-      }))
-      .filter((option) => option.label.length > 0);
+        disabled: child.props.disabled,
+      })),
+    );
 
-    const isSameChar =
-      lowerChar === typeaheadLastCharRef.current && typeaheadBufferRef.current.length === 1;
+    const criteria = textCriteriaRef.current;
+    const lowerKey = event.key.toLowerCase();
+    const currTime = performance.now();
 
-    if (isSameChar) {
-      // CYCLING MODE: same character pressed again → advance to next match
-      const charMatches = options.filter((option) => option.label.startsWith(lowerChar));
-      if (charMatches.length === 0) {
-        return;
+    if (criteria.keys.length > 0) {
+      // Reset after 500ms of inactivity — mirrors MenuList reset threshold
+      if (currTime - criteria.lastTime > 500) {
+        criteria.keys = [];
+        criteria.repeating = true;
+        criteria.previousKeyMatched = true;
+      } else if (criteria.repeating && lowerKey !== criteria.keys[0]) {
+        criteria.repeating = false;
       }
-      typeaheadCycleIndexRef.current = (typeaheadCycleIndexRef.current + 1) % charMatches.length;
-      const match = charMatches[typeaheadCycleIndexRef.current];
-      if (match && match.value !== value) {
-        setValueState(match.value);
+    }
+
+    criteria.lastTime = currTime;
+    criteria.keys.push(lowerKey);
+
+    let match;
+    if (criteria.repeating) {
+      // Find all matches, then pick the NEXT one after the currently selected value
+      const charMatches = selectableChildren.filter((child) => {
+        const text = getOptionText(child.props.children).trim().toLowerCase();
+        return text.length > 0 && text[0] === criteria.keys[0];
+      });
+      const currentIndex = charMatches.findIndex((child) => child.props.value === value);
+      // If current value not in matches, start from 0, otherwise advance to next
+      const nextIndex = (currentIndex + 1) % charMatches.length;
+      match = charMatches[nextIndex];
+    } else {
+      // different characters typed — find first match
+      match = selectableChildren.find((child) => {
+        const text = getOptionText(child.props.children).trim().toLowerCase();
+        return text.length > 0 && text.startsWith(criteria.keys.join(''));
+      });
+    }
+
+    console.log('Matched item:', {
+      text: match ? getOptionText(match.props.children) : null,
+      value: match ? match.props.value : null,
+    });
+
+    if (criteria.previousKeyMatched && match) {
+      event.preventDefault();
+      if (match.props.value !== value) {
+        setValueState(match.props.value);
         if (onChange) {
           const nativeEvent = new Event('change', { bubbles: true });
           Object.defineProperty(nativeEvent, 'target', {
             writable: true,
-            value: { value: match.value, name },
+            value: { value: match.props.value, name },
           });
-          onChange(nativeEvent, match.child);
+          onChange(nativeEvent, match);
         }
       }
     } else {
-      // PREFIX MATCH MODE: accumulate characters and find first match
-      typeaheadBufferRef.current += lowerChar;
-      typeaheadLastCharRef.current = lowerChar;
-      const match = options.find((option) => option.label.startsWith(typeaheadBufferRef.current));
-      if (match) {
-        const charMatches = options.filter((option) => option.label.startsWith(lowerChar));
-        typeaheadCycleIndexRef.current = charMatches.indexOf(match);
-        if (match.value !== value) {
-          setValueState(match.value);
-          if (onChange) {
-            const nativeEvent = new Event('change', { bubbles: true });
-            Object.defineProperty(nativeEvent, 'target', {
-              writable: true,
-              value: { value: match.value, name },
-            });
-            onChange(nativeEvent, match.child);
-          }
-        }
-      }
+      criteria.previousKeyMatched = false;
     }
-
-    typeaheadResetTimerRef.current = setTimeout(() => {
-      typeaheadBufferRef.current = '';
-      typeaheadLastCharRef.current = '';
-      typeaheadCycleIndexRef.current = 0;
-    }, 500);
   };
 
   const handleKeyDown = (event) => {
