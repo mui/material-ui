@@ -119,7 +119,7 @@
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
     "es-toolkit": "1.46.0",
-    "eslint": "10.2.1",
+    "eslint": "10.3.0",
     "eslint-plugin-consistent-default-export-name": "0.0.15",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
