@@ -542,15 +542,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         React.isValidElement(child) && child.props.value !== undefined && !child.props.disabled,
     );
 
-    console.log(
-      'Selectable candidates:',
-      selectableChildren.map((child) => ({
-        text: getOptionText(child.props.children),
-        value: child.props.value,
-        disabled: child.props.disabled,
-      })),
-    );
-
     const criteria = textCriteriaRef.current;
     const lowerKey = event.key.toLowerCase();
     const currTime = performance.now();
@@ -587,11 +578,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         return text.length > 0 && text.startsWith(criteria.keys.join(''));
       });
     }
-
-    console.log('Matched item:', {
-      text: match ? getOptionText(match.props.children) : null,
-      value: match ? match.props.value : null,
-    });
 
     if (criteria.previousKeyMatched && match) {
       event.preventDefault();
