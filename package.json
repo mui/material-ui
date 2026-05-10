@@ -157,7 +157,7 @@
     "caniuse-lite": "^1.0.30001791",
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-env": "^7.29.5",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@babel/runtime": "^7.29.2",
