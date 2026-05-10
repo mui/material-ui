@@ -23,7 +23,10 @@ const warn = () => {
 
 type DatePickerComponent = (<TDate>(
   props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
-) => React.JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & {
+  propTypes?: any;
+  displayName?: string;
+};
 
 /**
  * @ignore - do not document.
@@ -34,6 +37,7 @@ const DatePicker = React.forwardRef(function DeprecatedDatePicker() {
   return null;
 }) as DatePickerComponent;
 
+DatePicker.displayName = 'DeprecatedDatePicker';
 export default DatePicker;
 
 export type DatePickerProps<TDate> = Record<any, any>;
