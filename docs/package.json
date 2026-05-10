@@ -48,7 +48,7 @@
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.3",
     "@tailwindcss/postcss": "^4.2.4",
-    "@tanstack/react-query": "^5.100.6",
+    "@tanstack/react-query": "^5.100.9",
     "@tanstack/react-virtual": "^3.13.24",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.3",
