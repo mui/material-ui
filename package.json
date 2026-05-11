@@ -98,7 +98,7 @@
     "@mui/internal-test-utils": "2.0.18-canary.22",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "15.5.15",
+    "@next/eslint-plugin-next": "15.5.16",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.30",
     "@playwright/test": "1.59.1",
@@ -150,16 +150,16 @@
   "config": {
     "valeVersion": "3.14.1"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.4",
   "engines": {
-    "pnpm": "10.33.2",
+    "pnpm": "10.33.4",
     "node": ">=22.18.0"
   },
   "resolutions": {
-    "caniuse-lite": "^1.0.30001791",
+    "caniuse-lite": "^1.0.30001792",
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
+    "@babel/preset-env": "^7.29.5",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@babel/runtime": "^7.29.2",

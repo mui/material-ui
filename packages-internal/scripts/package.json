@@ -39,7 +39,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@babel/register": "7.28.6",
+    "@babel/register": "7.29.3",
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
