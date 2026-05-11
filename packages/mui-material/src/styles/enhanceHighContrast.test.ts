@@ -25,9 +25,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiAccordionSummary overrides', () => {
     test('should set opacity: 1 on disabled AccordionSummary root in high contrast mode', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiAccordionSummary?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiAccordionSummary?.styleOverrides
+        ?.root as Array<StyleOverride>;
 
       expect(rootOverrides).to.be.an('array');
 
@@ -36,7 +35,6 @@ describe('enhanceHighContrast', () => {
         [HCM]: { opacity: 1 },
       });
     });
-
   });
 
   describe('MuiAutocomplete overrides', () => {
@@ -84,10 +82,7 @@ describe('enhanceHighContrast', () => {
         StyleOverride
       >;
       const optionStyles = hcmOverride[`& .${autocompleteClasses.option}`];
-      const selectedStyles = optionStyles['&[aria-selected="true"]'] as Record<
-        string,
-        unknown
-      >;
+      const selectedStyles = optionStyles['&[aria-selected="true"]'] as Record<string, unknown>;
 
       expect(selectedStyles[HCM]).to.deep.equal({
         forcedColorAdjust: 'none',
@@ -105,9 +100,9 @@ describe('enhanceHighContrast', () => {
         StyleOverride
       >;
       const optionStyles = hcmOverride[`& .${autocompleteClasses.option}`];
-      const selectedFocusedStyles = (
-        optionStyles['&[aria-selected="true"]'] as StyleOverride
-      )[`&.${autocompleteClasses.focused}`] as StyleOverride;
+      const selectedFocusedStyles = (optionStyles['&[aria-selected="true"]'] as StyleOverride)[
+        `&.${autocompleteClasses.focused}`
+      ] as StyleOverride;
 
       expect(selectedFocusedStyles[HCM]).to.deep.equal({
         color: 'HighlightText',
@@ -150,15 +145,13 @@ describe('enhanceHighContrast', () => {
         backgroundColor: 'ButtonFace',
       });
     });
-
   });
 
   describe('MuiCheckbox overrides', () => {
     test('should apply disabled color to disabled Checkbox root', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiCheckbox?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiCheckbox?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${checkboxClasses.disabled}`]).to.deep.equal({
@@ -168,9 +161,8 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom disabled token', () => {
       const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiCheckbox?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiCheckbox?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${checkboxClasses.disabled}`]).to.deep.equal({
@@ -182,13 +174,9 @@ describe('enhanceHighContrast', () => {
   describe('MuiFilledInput overrides', () => {
     test('should apply error borderBottomColor to error state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[`&.${filledInputClasses.error}`]).to.deep.equal({
         '&::before, &::after': { [HCM]: { borderBottomColor: 'ActiveText' } },
@@ -197,13 +185,9 @@ describe('enhanceHighContrast', () => {
 
     test('should apply disabled borderBottomStyle and color to disabled state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[`&.${filledInputClasses.disabled}:before`]).to.deep.equal({
         [HCM]: { borderBottomStyle: 'solid', borderBottomColor: 'GrayText' },
@@ -214,14 +198,13 @@ describe('enhanceHighContrast', () => {
     });
 
     test('should use custom error and disabled tokens', () => {
-      const theme = enhanceHighContrast(createTheme(), { error: 'LinkText', disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const theme = enhanceHighContrast(createTheme(), {
+        error: 'LinkText',
+        disabled: 'ButtonText',
+      });
+      const rootOverrides = theme.components?.MuiFilledInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[`&.${filledInputClasses.error}`]).to.deep.equal({
         '&::before, &::after': { [HCM]: { borderBottomColor: 'LinkText' } },
@@ -235,9 +218,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiFormControlLabel overrides', () => {
     test('should apply disabled color to disabled label', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFormControlLabel?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFormControlLabel?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const selector = `& .${formControlLabelClasses.label}.${formControlLabelClasses.disabled}`;
 
@@ -246,9 +228,8 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom disabled token', () => {
       const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiFormControlLabel?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFormControlLabel?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const selector = `& .${formControlLabelClasses.label}.${formControlLabelClasses.disabled}`;
 
@@ -259,9 +240,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiFormHelperText overrides', () => {
     test('should apply error color to error state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${formHelperTextClasses.error}`]).to.deep.equal({
@@ -271,9 +251,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply disabled color to disabled state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${formHelperTextClasses.disabled}`]).to.deep.equal({
@@ -282,10 +261,12 @@ describe('enhanceHighContrast', () => {
     });
 
     test('should use custom error and disabled tokens', () => {
-      const theme = enhanceHighContrast(createTheme(), { error: 'LinkText', disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const theme = enhanceHighContrast(createTheme(), {
+        error: 'LinkText',
+        disabled: 'ButtonText',
+      });
+      const rootOverrides = theme.components?.MuiFormHelperText?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${formHelperTextClasses.error}`]).to.deep.equal({
@@ -300,9 +281,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiFormLabel overrides', () => {
     test('should apply error and disabled colors', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiFormLabel?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiFormLabel?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${formLabelClasses.error}`]).to.deep.equal({
@@ -314,10 +294,12 @@ describe('enhanceHighContrast', () => {
     });
 
     test('should use custom error and disabled tokens', () => {
-      const theme = enhanceHighContrast(createTheme(), { error: 'LinkText', disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiFormLabel?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const theme = enhanceHighContrast(createTheme(), {
+        error: 'LinkText',
+        disabled: 'ButtonText',
+      });
+      const rootOverrides = theme.components?.MuiFormLabel?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${formLabelClasses.error}`]).to.deep.equal({
@@ -332,13 +314,9 @@ describe('enhanceHighContrast', () => {
   describe('MuiInput overrides', () => {
     test('should apply error borderBottomColor, disabled borderBottomStyle and color', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[`&.${inputClasses.error}`]).to.deep.equal({
         '&::before, &::after': { [HCM]: { borderBottomColor: 'ActiveText' } },
@@ -352,10 +330,12 @@ describe('enhanceHighContrast', () => {
     });
 
     test('should use custom error and disabled tokens', () => {
-      const theme = enhanceHighContrast(createTheme(), { error: 'LinkText', disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const theme = enhanceHighContrast(createTheme(), {
+        error: 'LinkText',
+        disabled: 'ButtonText',
+      });
+      const rootOverrides = theme.components?.MuiInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1] as StyleOverride;
 
       expect(hcmOverride[`&.${inputClasses.error}`]).to.deep.equal({
@@ -373,9 +353,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiInputBase overrides', () => {
     test('should set placeholder opacity: 1 in high contrast mode', () => {
       const theme = enhanceHighContrast(createTheme());
-      const inputOverrides = theme.components?.MuiInputBase?.styleOverrides?.input as Array<
-        StyleOverride
-      >;
+      const inputOverrides = theme.components?.MuiInputBase?.styleOverrides
+        ?.input as Array<StyleOverride>;
       const hcmOverride = inputOverrides[inputOverrides.length - 1];
 
       expect(hcmOverride[HCM]).to.deep.equal({ '&::placeholder': { opacity: 1 } });
@@ -385,9 +364,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiLinearProgress overrides', () => {
     test('should apply forcedColorAdjust, outline, and canvas background to root', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiLinearProgress?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[HCM]).to.deep.equal({
@@ -399,9 +377,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply buttonText color to bar', () => {
       const theme = enhanceHighContrast(createTheme());
-      const barOverrides = theme.components?.MuiLinearProgress?.styleOverrides?.bar as Array<
-        StyleOverride
-      >;
+      const barOverrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.bar as Array<StyleOverride>;
       const hcmOverride = barOverrides[barOverrides.length - 1];
 
       expect(hcmOverride[HCM]).to.deep.equal({ backgroundColor: 'ButtonText' });
@@ -409,9 +386,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply disabled color to buffer bar2 variant', () => {
       const theme = enhanceHighContrast(createTheme());
-      const bar2Overrides = theme.components?.MuiLinearProgress?.styleOverrides?.bar2 as Array<
-        StyleOverride
-      >;
+      const bar2Overrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.bar2 as Array<StyleOverride>;
       const hcmOverride = bar2Overrides[bar2Overrides.length - 1] as {
         variants: Array<{ props: StyleOverride; style: StyleOverride }>;
       };
@@ -429,28 +405,27 @@ describe('enhanceHighContrast', () => {
         buttonText: 'CanvasText',
         disabled: 'ButtonText',
       });
-      const rootOverrides = theme.components?.MuiLinearProgress?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.root as Array<StyleOverride>;
       expect((rootOverrides[rootOverrides.length - 1] as StyleOverride)[HCM]).to.deep.equal({
         forcedColorAdjust: 'none',
         outline: '1px solid Highlight',
         backgroundColor: 'ButtonFace',
       });
 
-      const barOverrides = theme.components?.MuiLinearProgress?.styleOverrides?.bar as Array<
-        StyleOverride
-      >;
+      const barOverrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.bar as Array<StyleOverride>;
       expect((barOverrides[barOverrides.length - 1] as StyleOverride)[HCM]).to.deep.equal({
         backgroundColor: 'CanvasText',
       });
 
-      const bar2Overrides = theme.components?.MuiLinearProgress?.styleOverrides?.bar2 as Array<
-        StyleOverride
-      >;
-      const bar2HcmOverride = (bar2Overrides[bar2Overrides.length - 1] as {
-        variants: Array<{ props: StyleOverride; style: StyleOverride }>;
-      }).variants[0].style;
+      const bar2Overrides = theme.components?.MuiLinearProgress?.styleOverrides
+        ?.bar2 as Array<StyleOverride>;
+      const bar2HcmOverride = (
+        bar2Overrides[bar2Overrides.length - 1] as {
+          variants: Array<{ props: StyleOverride; style: StyleOverride }>;
+        }
+      ).variants[0].style;
       expect(bar2HcmOverride).to.deep.equal({ [HCM]: { backgroundColor: 'ButtonText' } });
     });
   });
@@ -458,9 +433,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiListItemButton overrides', () => {
     test('should apply activeText and activeBackground to focusVisible/hover', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const focusedKey = `&.${listItemButtonClasses.focusVisible}, &:hover`;
 
@@ -475,9 +449,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply selectedText and selectedBackground to selected state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${listItemButtonClasses.selected}`]).to.deep.equal({
@@ -491,9 +464,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply activeText and activeBackground to selected+focusVisible/hover', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const selectedFocusedKey = `&.${listItemButtonClasses.selected}.${listItemButtonClasses.focusVisible}, &.${listItemButtonClasses.selected}:hover`;
 
@@ -509,9 +481,8 @@ describe('enhanceHighContrast', () => {
         selectedText: 'ButtonText',
         selectedBackground: 'ButtonFace',
       });
-      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiListItemButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${listItemButtonClasses.focusVisible}, &:hover`]).to.deep.equal({
@@ -530,9 +501,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiMenuItem overrides', () => {
     test('should apply disabled color and opacity: 1 to disabled state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${menuItemClasses.disabled}`]).to.deep.equal({
@@ -542,9 +512,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply activeText and activeBackground to focusVisible/hover', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const focusedKey = `&.${menuItemClasses.focusVisible}, &:hover`;
 
@@ -560,9 +529,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply selectedText and selectedBackground to selected state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${menuItemClasses.selected}`]).to.deep.equal({
@@ -576,9 +544,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply activeText and activeBackground to selected+focusVisible/hover', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
       const selectedFocusedKey = `&.${menuItemClasses.selected}.${menuItemClasses.focusVisible}, &.${menuItemClasses.selected}:hover`;
 
@@ -595,16 +562,20 @@ describe('enhanceHighContrast', () => {
         selectedText: 'ButtonText',
         selectedBackground: 'ButtonFace',
       });
-      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiMenuItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${menuItemClasses.disabled}`]).to.deep.equal({
         [HCM]: { color: 'ButtonText', opacity: 1 },
       });
       expect(hcmOverride[`&.${menuItemClasses.focusVisible}, &:hover`]).to.deep.equal({
-        [HCM]: { forcedColorAdjust: 'none', color: 'Canvas', backgroundColor: 'ButtonBorder', outline: 'none' },
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'Canvas',
+          backgroundColor: 'ButtonBorder',
+          outline: 'none',
+        },
       });
       expect(hcmOverride[`&.${menuItemClasses.selected}`]).to.deep.equal({
         [HCM]: { forcedColorAdjust: 'none', color: 'ButtonText', backgroundColor: 'ButtonFace' },
@@ -619,9 +590,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiNativeSelect overrides', () => {
     test('should apply disabled color to disabled icon', () => {
       const theme = enhanceHighContrast(createTheme());
-      const iconOverrides = theme.components?.MuiNativeSelect?.styleOverrides?.icon as Array<
-        StyleOverride
-      >;
+      const iconOverrides = theme.components?.MuiNativeSelect?.styleOverrides
+        ?.icon as Array<StyleOverride>;
       const hcmOverride = iconOverrides[iconOverrides.length - 1];
 
       expect(hcmOverride[`&.${nativeSelectClasses.disabled}`]).to.deep.equal({
@@ -631,9 +601,8 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom disabled token', () => {
       const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
-      const iconOverrides = theme.components?.MuiNativeSelect?.styleOverrides?.icon as Array<
-        StyleOverride
-      >;
+      const iconOverrides = theme.components?.MuiNativeSelect?.styleOverrides
+        ?.icon as Array<StyleOverride>;
       const hcmOverride = iconOverrides[iconOverrides.length - 1];
 
       expect(hcmOverride[`&.${nativeSelectClasses.disabled}`]).to.deep.equal({
@@ -645,13 +614,9 @@ describe('enhanceHighContrast', () => {
   describe('MuiOutlinedInput overrides', () => {
     test('should apply error borderColor to notchedOutline in error state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
       const errorKey = `&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`;
 
       expect(hcmOverride[errorKey]).to.deep.equal({ [HCM]: { borderColor: 'ActiveText' } });
@@ -659,13 +624,9 @@ describe('enhanceHighContrast', () => {
 
     test('should apply disabled borderColor to notchedOutline and disabled color in disabled state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
       const disabledOutlineKey = `&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`;
 
       expect(hcmOverride[disabledOutlineKey]).to.deep.equal({
@@ -677,16 +638,20 @@ describe('enhanceHighContrast', () => {
     });
 
     test('should use custom error and disabled tokens', () => {
-      const theme = enhanceHighContrast(createTheme(), { error: 'LinkText', disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const theme = enhanceHighContrast(createTheme(), {
+        error: 'LinkText',
+        disabled: 'ButtonText',
+      });
+      const rootOverrides = theme.components?.MuiOutlinedInput?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1] as StyleOverride;
       const errorKey = `&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`;
       const disabledOutlineKey = `&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`;
 
       expect(hcmOverride[errorKey]).to.deep.equal({ [HCM]: { borderColor: 'LinkText' } });
-      expect(hcmOverride[disabledOutlineKey]).to.deep.equal({ [HCM]: { borderColor: 'ButtonText' } });
+      expect(hcmOverride[disabledOutlineKey]).to.deep.equal({
+        [HCM]: { borderColor: 'ButtonText' },
+      });
       expect(hcmOverride[`&.${outlinedInputClasses.disabled}`]).to.deep.equal({
         [HCM]: { color: 'ButtonText' },
       });
@@ -696,9 +661,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiRadio overrides', () => {
     test('should apply disabled color to disabled Radio root', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiRadio?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiRadio?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${radioClasses.disabled}`]).to.deep.equal({
@@ -708,9 +672,8 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom disabled token', () => {
       const theme = enhanceHighContrast(createTheme(), { disabled: 'ButtonText' });
-      const rootOverrides = theme.components?.MuiRadio?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiRadio?.styleOverrides
+        ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
       expect(hcmOverride[`&.${radioClasses.disabled}`]).to.deep.equal({
@@ -735,9 +698,8 @@ describe('enhanceHighContrast', () => {
 
     test('should apply disabled borderColor to disabled Slider thumb', () => {
       const theme = enhanceHighContrast(createTheme());
-      const thumbOverrides = theme.components?.MuiSlider?.styleOverrides?.thumb as Array<
-        StyleOverride
-      >;
+      const thumbOverrides = theme.components?.MuiSlider?.styleOverrides
+        ?.thumb as Array<StyleOverride>;
       const hcmOverride = thumbOverrides[thumbOverrides.length - 1];
 
       expect(hcmOverride[`&.${sliderClasses.disabled}`]).to.deep.equal({
@@ -794,13 +756,9 @@ describe('enhanceHighContrast', () => {
   describe('MuiButtonBase overrides', () => {
     test('should restore focus outline in high contrast mode', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiButtonBase?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiButtonBase?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[HCM]).to.deep.equal({
         '&:focus-visible, &:focus-within:has(input:focus-visible)': {
@@ -811,13 +769,9 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom activeBackground token for the outline', () => {
       const theme = enhanceHighContrast(createTheme(), { activeBackground: 'ButtonBorder' });
-      const rootOverrides = theme.components?.MuiButtonBase?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiButtonBase?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
 
       expect(hcmOverride[HCM]).to.deep.equal({
         '&:focus-visible, &:focus-within:has(input:focus-visible)': {
@@ -830,9 +784,8 @@ describe('enhanceHighContrast', () => {
   describe('MuiTooltip overrides', () => {
     test('should apply buttonText border to tooltip', () => {
       const theme = enhanceHighContrast(createTheme());
-      const tooltipOverrides = theme.components?.MuiTooltip?.styleOverrides?.tooltip as Array<
-        StyleOverride
-      >;
+      const tooltipOverrides = theme.components?.MuiTooltip?.styleOverrides
+        ?.tooltip as Array<StyleOverride>;
       const hcmOverride = tooltipOverrides[tooltipOverrides.length - 1];
 
       expect(hcmOverride[HCM]).to.deep.equal({ border: '1px solid ButtonText' });
@@ -840,9 +793,8 @@ describe('enhanceHighContrast', () => {
 
     test('should use custom buttonText token', () => {
       const theme = enhanceHighContrast(createTheme(), { buttonText: 'CanvasText' });
-      const tooltipOverrides = theme.components?.MuiTooltip?.styleOverrides?.tooltip as Array<
-        StyleOverride
-      >;
+      const tooltipOverrides = theme.components?.MuiTooltip?.styleOverrides
+        ?.tooltip as Array<StyleOverride>;
       const hcmOverride = tooltipOverrides[tooltipOverrides.length - 1];
 
       expect(hcmOverride[HCM]).to.deep.equal({ border: '1px solid CanvasText' });
@@ -852,13 +804,9 @@ describe('enhanceHighContrast', () => {
   describe('MuiToggleButton overrides', () => {
     test('should apply activeText, activeBackground, and borderColor to selected state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
       const selectedStyles = hcmOverride[`&.${toggleButtonClasses.selected}`] as Record<
         string,
         unknown
@@ -874,13 +822,9 @@ describe('enhanceHighContrast', () => {
 
     test('should apply activeBackground and buttonBorder to selected+hover state', () => {
       const theme = enhanceHighContrast(createTheme());
-      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
       const selectedHoverStyles = (
         hcmOverride[`&.${toggleButtonClasses.selected}`] as StyleOverride
       )['&:hover'] as StyleOverride;
@@ -897,13 +841,9 @@ describe('enhanceHighContrast', () => {
         activeBackground: 'ButtonBorder',
         buttonBorder: 'Highlight',
       });
-      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides?.root as Array<
-        StyleOverride
-      >;
-      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<
-        string,
-        StyleOverride
-      >;
+      const rootOverrides = theme.components?.MuiToggleButton?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1] as Record<string, StyleOverride>;
       const selectedStyles = hcmOverride[`&.${toggleButtonClasses.selected}`] as Record<
         string,
         unknown
@@ -959,7 +899,9 @@ describe('enhanceHighContrast', () => {
           components: { [component]: { styleOverrides: { [slot]: existingOverride } } } as any,
         }),
       );
-      const overrides = (theme.components as any)[component].styleOverrides[slot] as Array<StyleOverride>;
+      const overrides = (theme.components as any)[component].styleOverrides[
+        slot
+      ] as Array<StyleOverride>;
 
       expect(overrides[0]).to.deep.equal(existingOverride);
     });
