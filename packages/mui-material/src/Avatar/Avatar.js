@@ -188,6 +188,12 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     slotProps,
   };
 
+  const [childImgError, setChildImgError] = React.useState(false);
+
+  React.useEffect(() => {
+    setChildImgError(false);
+  }, [childrenProp]);
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     className: clsx(classes.root, className),
@@ -220,8 +226,20 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     children = <ImgSlot {...imgSlotProps} />;
     // We only render valid children, non valid children are rendered with a fallback
     // We consider that invalid children are all falsy values, except 0, which is valid.
-  } else if (!!childrenProp || childrenProp === 0) {
-    children = childrenProp;
+  } else if ((!!childrenProp || childrenProp === 0) && !childImgError) {
+    // Intercept img children to continue the fallback chain if they error.
+    children =
+      React.Children.map(childrenProp, (child) => {
+        if (React.isValidElement(child) && child.type === 'img') {
+          return React.cloneElement(child, {
+            onError(event) {
+              child.props.onError?.(event);
+              setChildImgError(true);
+            },
+          });
+        }
+        return child;
+      }) ?? childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
