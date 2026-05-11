@@ -636,7 +636,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       // This can push the selected tab out of view without changing indicatorStyle, which is
       // the normal trigger for scrollSelectedIntoView. Observing the scroller element ensures
       // we re-scroll whenever its size changes (e.g. scroll buttons toggling in auto mode).
-      if (scrollable && scrollButtons !== false) {
+      if (scrollable && scrollButtons === 'auto') {
         scrollerResizeObserver = new ResizeObserver(() => {
           if (tabsRef.current) {
             scrollSelectedIntoView(false);
