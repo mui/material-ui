@@ -155,9 +155,11 @@ Three sections, in this order. Skip any section with zero entries.
 Rules:
 
 - Within each section, sort by count desc.
-- Use the most recent matching job's `URL` as the example link.
+- Render the example as a **clickable markdown link**: `[example](https://app.circleci.com/...)`. Never paste the bare URL — the brackets must be present so it renders as a link.
+- Use the most recent matching job's `URL` value (from the file header) as the link target.
 - Real issues are summarised on a single line with a total count — do not list each one.
 - If you couldn't fit a job under any marker, add a bucket "unclassified (manual inspection needed)" inside **Fixable flake**.
+- Cap the report at **10 flake buckets total** across **Fixable flake** + **External outage** combined, picking the largest by count. If you had to drop any, add one trailing line: `- <N> other long-tail flake (<P>%) — smaller patterns rolled up.`
 
 End with a one-line bottom line: should the user retry, dig in, or wait for the outage to clear.
 
