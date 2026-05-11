@@ -42,70 +42,8 @@
         "tags": ["wcag21aa"]
       },
       "color-contrast": {
-        "status": "incomplete",
-        "tags": ["wcag2aa"],
-        "instances": [
-          {
-            "variant": "filled",
-            "severity": "success",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "filled",
-            "severity": "info",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "filled",
-            "severity": "warning",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "filled",
-            "severity": "error",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "severity": "success",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "severity": "info",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "severity": "warning",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "severity": "error",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "standard",
-            "severity": "success",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "standard",
-            "severity": "info",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "standard",
-            "severity": "warning",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "standard",
-            "severity": "error",
-            "contrastRatio": 0
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2aa"]
       }
     }
   },

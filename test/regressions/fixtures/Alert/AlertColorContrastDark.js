@@ -6,7 +6,17 @@ import Alert from '@mui/material/Alert';
 const VARIANTS = ['filled', 'outlined', 'standard'];
 const SEVERITIES = ['success', 'info', 'warning', 'error'];
 
-const theme = createTheme({ palette: { mode: 'dark' } });
+// Alert extends Paper. In dark mode without CssVarsProvider, Paper sets
+// `--Paper-overlay` to a degenerate `linear-gradient(...)` for elevation
+// tint, which trips axe's color-contrast rule into `incomplete`
+// (messageKey: "bgGradient"). Suppress it here so the probe can measure
+// the actual fg/bg pair.
+const theme = createTheme({
+  palette: { mode: 'dark' },
+  components: {
+    MuiAlert: { styleOverrides: { root: { backgroundImage: 'none' } } },
+  },
+});
 
 export default function AlertColorContrastDark() {
   return (
