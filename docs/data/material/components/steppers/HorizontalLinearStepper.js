@@ -65,17 +65,17 @@ export default function HorizontalLinearStepper() {
 
     if (activeStep === steps.length) {
       // If the user has completed all steps and hits "Finish", focus the "Reset" button.
-      resetButtonRef.current?.focus();
+      resetButtonRef.current.focus();
       return;
     }
     if (activeStep === 0 && previousActiveStep === steps.length) {
       // If the user has completed all steps and hits "Reset", focus the "Next" button.
-      nextButtonRef.current?.focus();
+      nextButtonRef.current.focus();
       return;
     }
     if (isStepOptional(previousActiveStep) && !isStepOptional(activeStep)) {
       // If the user hits "Skip" and the next step is not optional, focus the "Next" button.
-      nextButtonRef.current?.focus();
+      nextButtonRef.current.focus();
     }
   }, [activeStep, isStepOptional]);
 

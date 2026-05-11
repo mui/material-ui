@@ -27,10 +27,10 @@ export default function ProgressMobileStepper() {
 
     if (activeStep === 0 && previousActiveStep === 1) {
       // If the user is going back to the first step, focus the "Next" button.
-      nextButtonRef.current?.focus();
+      nextButtonRef.current!.focus();
     } else if (activeStep === 5 && previousActiveStep === 4) {
       // If the user is going to the last step, focus the "Back" button.
-      backButtonRef.current?.focus();
+      backButtonRef.current!.focus();
     }
 
     previousActiveStepRef.current = activeStep;

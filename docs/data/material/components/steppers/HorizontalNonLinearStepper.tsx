@@ -62,7 +62,7 @@ export default function HorizontalNonLinearStepper() {
 
     if (allStepsCompleted) {
       // If the user has completed all steps and hits "Finish", focus the "Reset" button.
-      resetButtonRef.current?.focus();
+      resetButtonRef.current!.focus();
       return;
     }
 
@@ -71,7 +71,7 @@ export default function HorizontalNonLinearStepper() {
       Object.keys(previousCompleted).length !== 0
     ) {
       // If the user has completed all steps and hits "Reset", focus the "Next" button.
-      nextButtonRef.current?.focus();
+      nextButtonRef.current!.focus();
     }
   }, [completed, allStepsCompleted]);
 
@@ -79,7 +79,7 @@ export default function HorizontalNonLinearStepper() {
   React.useEffect(() => {
     if (activeStep === 0 && previousActiveStepRef.current === 1) {
       // If the user navigated to first step via "Back" button, focus the "Next" button.
-      nextButtonRef.current?.focus();
+      nextButtonRef.current!.focus();
     }
 
     previousActiveStepRef.current = activeStep;

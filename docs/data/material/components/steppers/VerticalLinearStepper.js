@@ -58,10 +58,10 @@ export default function VerticalLinearStepper() {
     if (previousActiveStep < activeStep) {
       if (activeStep === steps.length) {
         // If the user has completed all steps and hits "Finish", focus the "Reset" button.
-        resetButtonRef.current?.focus();
+        resetButtonRef.current.focus();
       } else {
         // Focus the "Continue" button otherwise.
-        continueButtonRef.current?.focus();
+        continueButtonRef.current.focus();
       }
       return;
     }
@@ -69,12 +69,12 @@ export default function VerticalLinearStepper() {
 
     if (activeStep === 0) {
       // If the user hit "Back" on the second step, or hit "Reset", focus the "Continue" button.
-      continueButtonRef.current?.focus();
+      continueButtonRef.current.focus();
       return;
     }
 
     // Focus the "Back" button otherwise.
-    backButtonRef.current?.focus();
+    backButtonRef.current.focus();
   }, [activeStep]);
 
   return (
