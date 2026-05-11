@@ -74,7 +74,17 @@ const HCM = '@media (forced-colors: active)';
 export default function enhanceHighContrast<
   T extends { components?: Theme['components'] | undefined },
 >(themeInput: T, tokens?: HighContrastTokens): T {
-  const hcTokens = { ...defaultHcTokens, ...tokens };
+  const hcTokens: Required<HighContrastTokens> = {
+    disabled: tokens?.disabled ?? defaultHcTokens.disabled,
+    error: tokens?.error ?? defaultHcTokens.error,
+    selectedBackground: tokens?.selectedBackground ?? defaultHcTokens.selectedBackground,
+    selectedText: tokens?.selectedText ?? defaultHcTokens.selectedText,
+    activeBackground: tokens?.activeBackground ?? defaultHcTokens.activeBackground,
+    activeText: tokens?.activeText ?? defaultHcTokens.activeText,
+    buttonBorder: tokens?.buttonBorder ?? defaultHcTokens.buttonBorder,
+    buttonText: tokens?.buttonText ?? defaultHcTokens.buttonText,
+    canvas: tokens?.canvas ?? defaultHcTokens.canvas,
+  };
   const theme = { ...themeInput };
   const c = theme.components;
   theme.components = {

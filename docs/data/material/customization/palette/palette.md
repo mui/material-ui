@@ -343,7 +343,7 @@ The following tokens are available:
 | Token                | Default            | Description                                     |
 | :------------------- | :----------------- | :---------------------------------------------- |
 | `disabled`           | `GrayText`         | Color for disabled elements                     |
-| `error`              | `mark`             | Color for error states                          |
+| `error`              | `ActiveText`       | Color for error states                          |
 | `selectedBackground` | `SelectedItem`     | Background color for selected items             |
 | `selectedText`       | `SelectedItemText` | Text color on selected items                    |
 | `activeBackground`   | `Highlight`        | Background color for active or toggled controls |
