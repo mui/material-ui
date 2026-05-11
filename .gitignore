@@ -49,6 +49,7 @@ test-results/
 .env
 .claude/settings.local.json
 .claude/worktrees/
+.claude/cache/
 
 # typescript
 *.tsbuildinfo
