@@ -70,6 +70,14 @@ const StepLabelRoot = styled('span', {
         padding: '8px 0',
       },
     },
+    {
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        [`&.${stepLabelClasses.alternativeLabel}`]: {
+          flexDirection: 'row-reverse',
+        },
+      },
+    },
   ],
 });
 
@@ -93,6 +101,16 @@ const StepLabelLabel = styled('span', {
     [`&.${stepLabelClasses.error}`]: {
       color: (theme.vars || theme).palette.error.main,
     },
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          [`&.${stepLabelClasses.alternativeLabel}`]: {
+            marginTop: 0,
+          },
+        },
+      },
+    ],
   })),
 );
 
@@ -106,6 +124,15 @@ const StepLabelIconContainer = styled('span', {
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     paddingRight: 0,
   },
+  variants: [
+    {
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        paddingRight: 0,
+        paddingLeft: 8,
+      },
+    },
+  ],
 });
 
 const StepLabelLabelContainer = styled('span', {
@@ -118,6 +145,16 @@ const StepLabelLabelContainer = styled('span', {
     [`&.${stepLabelClasses.alternativeLabel}`]: {
       textAlign: 'center',
     },
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          [`&.${stepLabelClasses.alternativeLabel}`]: {
+            textAlign: 'right',
+          },
+        },
+      },
+    ],
   })),
 );
 
