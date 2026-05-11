@@ -352,7 +352,7 @@ importers:
         version: 4.2.4
       '@tanstack/react-query':
         specifier: ^5.100.9
-        version: 5.100.9(react@19.2.5)
+        version: 5.100.9(react@19.2.6)
       '@tanstack/react-virtual':
         specifier: ^3.13.24
         version: 3.13.24(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -427,7 +427,7 @@ importers:
         version: 5.3.7(@mui/material@packages+mui-material+build)(@types/react@19.2.14)(react@19.2.6)
       next:
         specifier: ^15.5.16
-        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       notistack:
         specifier: 3.0.2
         version: 3.0.2(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -454,7 +454,7 @@ importers:
         version: 4.5.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-final-form:
         specifier: ^7.0.1
-        version: 7.0.1(final-form@5.0.1)(react@19.2.5)
+        version: 7.0.1(final-form@5.0.1)(react@19.2.6)
       react-imask:
         specifier: ^7.6.1
         version: 7.6.1(react@19.2.6)
@@ -469,7 +469,7 @@ importers:
         version: 5.4.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-router:
         specifier: ^7.15.0
-        version: 7.15.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -731,7 +731,7 @@ importers:
         version: link:../markdown
       '@mui/material-nextjs':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
-        version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.5))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
+        version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       '@mui/stylis-plugin-rtl':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 7.3.8(stylis@4.2.0)
@@ -822,7 +822,7 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       next:
         specifier: 15.5.16
-        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     publishDirectory: build
 
   packages-internal/docs-utils:
@@ -1206,7 +1206,7 @@ importers:
         version: 19.2.6(react@19.2.6)
       react-router:
         specifier: 7.15.0
-        version: 7.15.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       sinon:
         specifier: 21.1.2
         version: 21.1.2
@@ -1232,7 +1232,7 @@ importers:
         version: 19.2.14
       next:
         specifier: 15.5.16
-        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react:
         specifier: 19.2.6
         version: 19.2.6
@@ -1598,7 +1598,7 @@ importers:
         version: 19.2.6
       react-router:
         specifier: 7.15.0
-        version: 7.15.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-window:
         specifier: 2.2.7
         version: 2.2.7(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -13715,12 +13715,12 @@ snapshots:
       - vite
       - vitest
 
-  '@mui/material-nextjs@7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.5))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)':
+  '@mui/material-nextjs@7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/server@11.11.0(@emotion/css@11.13.4))(@types/react@19.2.14)(next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.5)
-      next: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      react: 19.2.5
+      '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.6)
+      next: 15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      react: 19.2.6
     optionalDependencies:
       '@emotion/cache': 11.14.0
       '@emotion/server': 11.11.0(@emotion/css@11.13.4)
@@ -15235,10 +15235,10 @@ snapshots:
 
   '@tanstack/query-core@5.100.9': {}
 
-  '@tanstack/react-query@5.100.9(react@19.2.5)':
+  '@tanstack/react-query@5.100.9(react@19.2.6)':
     dependencies:
       '@tanstack/query-core': 5.100.9
-      react: 19.2.5
+      react: 19.2.6
 
   '@tanstack/react-virtual@3.13.24(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
@@ -20064,7 +20064,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  next@15.5.16(@babel/core@7.29.0)(@opentelemetry/api@1.8.0)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@next/env': 15.5.16
       '@swc/helpers': 0.5.15
@@ -21063,11 +21063,11 @@ snapshots:
       react: 19.2.6
       warning: 4.0.3
 
-  react-final-form@7.0.1(final-form@5.0.1)(react@19.2.5):
+  react-final-form@7.0.1(final-form@5.0.1)(react@19.2.6):
     dependencies:
       '@babel/runtime': 7.29.2
       final-form: 5.0.1
-      react: 19.2.5
+      react: 19.2.6
 
   react-imask@7.6.1(react@19.2.6):
     dependencies:
@@ -21096,7 +21096,7 @@ snapshots:
 
   react-refresh@0.18.0: {}
 
-  react-router@7.15.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  react-router@7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       cookie: 1.1.1
       react: 19.2.6
