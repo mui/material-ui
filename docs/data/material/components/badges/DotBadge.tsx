@@ -1,21 +1,13 @@
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export default function DotBadge() {
   return (
-    <Stack
-      spacing={2}
-      direction="row"
-      sx={{ color: 'action.active', alignItems: 'center' }}
-    >
+    <IconButton aria-label="show new notifications">
       <Badge color="secondary" variant="dot">
-        <MailIcon />
+        <NotificationsIcon />
       </Badge>
-      <Typography component="span" sx={{ color: 'text.primary' }}>
-        Unread messages
-      </Typography>
-    </Stack>
+    </IconButton>
   );
 }

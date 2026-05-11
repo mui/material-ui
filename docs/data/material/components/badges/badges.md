@@ -14,19 +14,19 @@ githubSource: packages/mui-material/src/Badge
 
 ## Usage guidelines
 
-- **Use badges for supplemental status**: Badges work best for short counts or compact
-  states attached to another element, such as unread messages on an inbox button. Don't use
-  a badge as the only place where important status appears.
-- **Label the element that owns the badge**: Badge content is hidden from assistive
-  technologies by default because its meaning depends on the element it describes. Add a
-  descriptive status to the target element, for example `aria-label="show 4 unread messages"`.
-- **Give dot badges explicit meaning**: Dot badges don't include a count, so use them only
-  when the state is explained elsewhere. Add visible status text such as `Unread`, include
-  the state in the target's accessible label, or provide another clear state cue.
+- **Use badges for supplemental status**: Use badges for short counts or compact states
+  that update an existing control or item, such as unread messages on an inbox button. If
+  the status is important on its own, show it in the UI instead of relying only on the badge.
+- **Label the element that owns the badge**: A badge is a visual cue tied to another
+  element, so its meaning should be part of that element's accessible name. For example,
+  use `aria-label="Inbox, 4 unread messages"` instead of `aria-label="Inbox"` on the
+  target element.
+- **Use dot badges for simple states**: A dot badge does not show text or a number, so use
+  it only when the surrounding UI makes the state clear, such as `Online` or `Unread`.
 
 {{"demo": "BadgeIntro.js"}}
 
-The next demo applies the same pattern to a `ListItemButton` with a `Badge`: the visible
+This demo applies the same pattern to a `ListItemButton` with a `Badge`: the visible
 count is included in the item's accessible name so it's announced in the context of the
 surrounding UI.
 
