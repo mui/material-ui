@@ -9,6 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { getReducedMotionStyles } from '../transitions/utils';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -91,35 +92,51 @@ const CircularProgressRoot = styled('span', {
     ];
   },
 })(
-  memoTheme(({ theme }) => ({
-    display: 'inline-block',
-    variants: [
-      {
-        props: {
-          variant: 'determinate',
-        },
-        style: {
-          transition: theme.transitions.create('transform'),
-        },
-      },
-      {
-        props: {
-          variant: 'indeterminate',
-        },
-        style: rotateAnimation || {
-          animation: `${circularRotateKeyframe} 1.4s linear infinite`,
-        },
-      },
-      ...Object.entries(theme.palette)
-        .filter(createSimplePaletteValueFilter())
-        .map(([color]) => ({
-          props: { color },
-          style: {
-            color: (theme.vars || theme).palette[color].main,
+  memoTheme(({ theme }) => {
+    const reducedMotionAnimationStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+    });
+
+    return {
+      display: 'inline-block',
+      variants: [
+        {
+          props: {
+            variant: 'determinate',
           },
-        })),
-    ],
-  })),
+          style: {
+            ...theme.transitions.createStyles('transform'),
+          },
+        },
+        {
+          props: {
+            variant: 'indeterminate',
+          },
+          style: rotateAnimation || {
+            animation: `${circularRotateKeyframe} 1.4s linear infinite`,
+          },
+        },
+        ...(reducedMotionAnimationStyles
+          ? [
+              {
+                props: {
+                  variant: 'indeterminate',
+                },
+                style: reducedMotionAnimationStyles,
+              },
+            ]
+          : []),
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color },
+            style: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          })),
+      ],
+    };
+  }),
 );
 
 const CircularProgressSVG = styled('svg', {
@@ -138,37 +155,52 @@ const CircularProgressCircle = styled('circle', {
     return [styles.circle, ownerState.disableShrink && styles.circleDisableShrink];
   },
 })(
-  memoTheme(({ theme }) => ({
-    stroke: 'currentColor',
-    variants: [
-      {
-        props: {
-          variant: 'determinate',
+  memoTheme(({ theme }) => {
+    const reducedMotionAnimationStyles = getReducedMotionStyles(theme, {
+      animation: 'none',
+    });
+
+    return {
+      stroke: 'currentColor',
+      variants: [
+        {
+          props: {
+            variant: 'determinate',
+          },
+          style: {
+            ...theme.transitions.createStyles('stroke-dashoffset'),
+          },
         },
-        style: {
-          transition: theme.transitions.create('stroke-dashoffset'),
+        {
+          props: {
+            variant: 'indeterminate',
+          },
+          style: {
+            // Some default value that looks fine waiting for the animation to kicks in.
+            strokeDasharray: '80px, 200px',
+            strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
+          },
         },
-      },
-      {
-        props: {
-          variant: 'indeterminate',
+        {
+          props: ({ ownerState }) =>
+            ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+          style: dashAnimation || {
+            // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
+            animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
+          },
         },
-        style: {
-          // Some default value that looks fine waiting for the animation to kicks in.
-          strokeDasharray: '80px, 200px',
-          strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
-        style: dashAnimation || {
-          // At runtime for Pigment CSS, `dashAnimation` will be null and the generated keyframe will be used.
-          animation: `${circularDashKeyframe} 1.4s ease-in-out infinite`,
-        },
-      },
-    ],
-  })),
+        ...(reducedMotionAnimationStyles
+          ? [
+              {
+                props: ({ ownerState }) =>
+                  ownerState.variant === 'indeterminate' && !ownerState.disableShrink,
+                style: reducedMotionAnimationStyles,
+              },
+            ]
+          : []),
+      ],
+    };
+  }),
 );
 
 const CircularProgressTrack = styled('circle', {
