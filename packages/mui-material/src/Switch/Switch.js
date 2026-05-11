@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -193,12 +194,14 @@ const SwitchTrack = styled('span', {
     height: '100%',
     width: '100%',
     borderRadius: 14 / 2,
-    boxSizing: 'border-box',
-    border: '1px solid transparent',
     zIndex: -1,
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      boxSizing: 'border-box',
+      border: '1px solid ButtonBorder',
+    },
     backgroundColor: theme.vars
       ? theme.vars.palette.common.onBackground
       : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
@@ -244,6 +247,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+  const externalInputProps = slotProps.input;
 
   const externalForwardedProps = {
     slots,
@@ -300,13 +304,14 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
                 ? slotProps.switchBase(ownerState)
                 : slotProps.switchBase,
           }),
-          input: {
-            role: 'switch',
-          },
-          ...(slotProps.input && {
-            input:
-              typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
-          }),
+          input: mergeSlotProps(
+            typeof externalInputProps === 'function'
+              ? externalInputProps(ownerState)
+              : externalInputProps,
+            {
+              role: 'switch',
+            },
+          ),
         }}
       />
       <TrackSlot {...trackSlotProps} />

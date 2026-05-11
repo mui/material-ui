@@ -85,6 +85,9 @@ const BadgeBadge = styled('span', {
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,

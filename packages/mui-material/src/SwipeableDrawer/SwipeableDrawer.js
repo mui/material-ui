@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
+import contains from '../utils/contains';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
@@ -189,6 +190,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
+      // Slide preserves this active-swipe `translate(x, y)` transform on exit.
+      // Keep this in sync with isGestureTranslate in Slide.js.
       const transform = horizontalSwipe
         ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
         : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
@@ -360,7 +363,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       ownerWindow(nativeEvent.currentTarget),
     );
 
-    if (open && paperRef.current.contains(nativeEvent.target) && claimedSwipeInstance === null) {
+    if (open && contains(paperRef.current, nativeEvent.target) && claimedSwipeInstance === null) {
       const domTreeShapes = getDomTreeShapes(nativeEvent.target, paperRef.current);
       const hasNativeHandler = computeHasNativeHandler({
         domTreeShapes,
@@ -488,8 +491,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      (hideBackdrop || !backdropRef.current.contains(nativeEvent.target)) &&
-      !paperRef.current.contains(nativeEvent.target)
+      (hideBackdrop || !contains(backdropRef.current, nativeEvent.target)) &&
+      !contains(paperRef.current, nativeEvent.target)
     ) {
       return;
     }
@@ -518,7 +521,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         disableSwipeToOpen ||
         !(
           nativeEvent.target === swipeAreaRef.current ||
-          (paperRef.current?.contains(nativeEvent.target) &&
+          (contains(paperRef.current, nativeEvent.target) &&
             (typeof allowSwipeInChildren === 'function'
               ? allowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
               : allowSwipeInChildren))

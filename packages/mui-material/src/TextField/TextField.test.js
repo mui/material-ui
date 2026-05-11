@@ -410,9 +410,18 @@ describe('<TextField />', () => {
         );
       }
 
+      function fireAnimationStart(element, animationName) {
+        const event = new Event('animationstart', { bubbles: true });
+        Object.defineProperty(event, 'animationName', { value: animationName });
+        fireEvent(element, event);
+      }
+
       render(<AutoFillComponentTest />);
-      fireEvent.animationStart(screen.getByTestId('htmlInput'), { animationName: 'mui-auto-fill' });
+      fireAnimationStart(screen.getByTestId('htmlInput'), 'mui-auto-fill');
       expect(screen.getByTestId('label').getAttribute('data-shrink')).to.equal('true');
+
+      fireAnimationStart(screen.getByTestId('htmlInput'), 'mui-auto-fill-cancel');
+      expect(screen.getByTestId('label').getAttribute('data-shrink')).to.equal('false');
     });
   });
 });

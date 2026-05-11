@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "license": "MIT",
@@ -36,20 +36,20 @@
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.4"
+    "react-is": "^19.2.5"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.37",
+    "@types/node": "20.19.39",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/react-is": "19.2.0",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sinon": "21.0.3"
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "sinon": "21.1.2"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

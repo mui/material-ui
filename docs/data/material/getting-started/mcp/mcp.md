@@ -74,7 +74,7 @@ Search for `agent: add context server` in the Command Palette and add the follow
   "mui-mcp-server": {
     "command": {
       "path": "npx",
-      "args": ["-y", "@mui/mcp@latest"]
+      "args": ["-y", "@mui/mcp@latest"],
       "env": {}
     }
   }

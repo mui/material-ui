@@ -10,6 +10,9 @@ const StyledListHeader = styled(ListSubheader)({
 });
 
 export default function GroupedMenu() {
+  const id = React.useId();
+  const buttonId = `${id}-button`;
+  const menuId = `${id}-menu`;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,8 +25,8 @@ export default function GroupedMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'grouped-menu' : undefined}
+        id={buttonId}
+        aria-controls={open ? menuId : undefined}
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
@@ -31,13 +34,13 @@ export default function GroupedMenu() {
         Dashboard
       </Button>
       <Menu
-        id="grouped-menu"
+        id={menuId}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         slotProps={{
           list: {
-            'aria-labelledby': 'basic-button',
+            'aria-labelledby': buttonId,
             sx: {
               py: 0,
             },

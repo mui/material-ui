@@ -6,6 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectLabels() {
+  const id = React.useId();
+  const noLabelId = React.useId();
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -15,11 +17,11 @@ export default function SelectLabels() {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+        <InputLabel id={`${id}-label`}>Age</InputLabel>
         <Select
-          aria-describedby="demo-simple-select-helper-text"
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
+          aria-describedby={`${id}-helper-text`}
+          labelId={`${id}-label`}
+          id={id}
           value={age}
           label="Age"
           onChange={handleChange}
@@ -31,13 +33,13 @@ export default function SelectLabels() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-        <FormHelperText id="demo-simple-select-helper-text">
+        <FormHelperText id={`${id}-helper-text`}>
           Visible label and helper text
         </FormHelperText>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <Select
-          aria-describedby="demo-no-label-select-helper-text"
+          aria-describedby={`${noLabelId}-helper-text`}
           value={age}
           onChange={handleChange}
           displayEmpty
@@ -50,7 +52,7 @@ export default function SelectLabels() {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-        <FormHelperText id="demo-no-label-select-helper-text">
+        <FormHelperText id={`${noLabelId}-helper-text`}>
           aria-label and helper text
         </FormHelperText>
       </FormControl>

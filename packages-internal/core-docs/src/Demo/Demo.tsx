@@ -407,31 +407,29 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (demoOptions.hideToolbar === false) {
-      throw new Error(
-        [
-          '"hideToolbar": false is already the default.',
-          `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
-    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
-      throw new Error(
-        [
-          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
-          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
-    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
-      throw new Error(
-        [
-          '"hideToolbar": true, "disableAd": true combination is invalid.',
-          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-        ].join('\n'),
-      );
-    }
+  if (demoOptions.hideToolbar === false) {
+    throw new Error(
+      [
+        '"hideToolbar": false is already the default.',
+        `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
+  }
+  if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+    throw new Error(
+      [
+        '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
+  }
+  if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+    throw new Error(
+      [
+        '"hideToolbar": true, "disableAd": true combination is invalid.',
+        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+      ].join('\n'),
+    );
   }
 
   if (
@@ -596,6 +594,7 @@ export function Demo(props: DemoProps) {
       console.error('Code content not copied', error);
     }
   };
+  const willRenderTabList = demoData.relativeModules && openDemoSource && !editorCode.isPreview;
 
   return (
     <Root>
@@ -667,7 +666,7 @@ export function Demo(props: DemoProps) {
             )}
           </DemoToolbarRoot>
           <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
-            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
+            {willRenderTabList ? (
               <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
@@ -685,7 +684,12 @@ export function Demo(props: DemoProps) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <Tabs.Panel value={index} key={index}>
+                <Tabs.Panel
+                  role={willRenderTabList ? 'tabpanel' : undefined}
+                  value={index}
+                  key={index}
+                  tabIndex={-1}
+                >
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}

@@ -664,6 +664,94 @@ describe('<Button />', () => {
     expect(endIcon).not.to.have.class(classes.startIcon);
   });
 
+  it.skipIf(isJsdom())('aligns its text baseline when start-side icons are present', () => {
+    const baselineStyle = {
+      display: 'inline-block',
+      width: 0,
+      height: 0,
+      padding: 0,
+      margin: 0,
+      overflow: 'hidden',
+      verticalAlign: 'baseline',
+    };
+
+    function BaselineMarker(props) {
+      return <span {...props} style={baselineStyle} />;
+    }
+
+    function TestIcon() {
+      return (
+        <svg aria-hidden focusable="false" viewBox="0 0 24 24" style={{ display: 'block' }}>
+          <path d="M3 5h18v14H3z" />
+        </svg>
+      );
+    }
+
+    function renderRow(name, button) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: 16,
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: 14,
+            fontWeight: 500,
+            lineHeight: 1.75,
+          }}
+        >
+          <span>
+            Label
+            <BaselineMarker data-testid={`${name}-label-baseline`} />
+          </span>
+          {button}
+        </div>
+      );
+    }
+
+    function buttonText(name) {
+      return (
+        <span>
+          Button
+          <BaselineMarker data-testid={`${name}-button-baseline`} />
+        </span>
+      );
+    }
+
+    render(
+      <React.Fragment>
+        {renderRow('plain', <Button>{buttonText('plain')}</Button>)}
+        {renderRow(
+          'start-icon',
+          <Button startIcon={<TestIcon />}>{buttonText('start-icon')}</Button>,
+        )}
+        {renderRow('end-icon', <Button endIcon={<TestIcon />}>{buttonText('end-icon')}</Button>)}
+        {renderRow(
+          'loading-start',
+          <Button loading loadingPosition="start">
+            {buttonText('loading-start')}
+          </Button>,
+        )}
+      </React.Fragment>,
+    );
+
+    function expectBaselineAligned(name) {
+      const labelBaseline = screen
+        .getByTestId(`${name}-label-baseline`)
+        .getBoundingClientRect().top;
+      const buttonBaseline = screen
+        .getByTestId(`${name}-button-baseline`)
+        .getBoundingClientRect().top;
+
+      expect(Math.abs(buttonBaseline - labelBaseline), `${name} baseline offset`).to.be.lessThan(1);
+    }
+
+    expectBaselineAligned('plain');
+    expectBaselineAligned('start-icon');
+    expectBaselineAligned('end-icon');
+    expectBaselineAligned('loading-start');
+  });
+
   it('should have a ripple', async () => {
     render(<Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>);
 

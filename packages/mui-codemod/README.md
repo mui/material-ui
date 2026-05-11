@@ -2545,6 +2545,13 @@ Compared to the v6 codemod, the v9 version also handles:
 +<Link href="#" sx={{ color: "text.secondary" }} />
 ```
 
+You can also pass `--jsx` to specify JSX element names directly, bypassing import detection.
+This is useful for projects using auto-import plugins (for example `unplugin-auto-import`) where Material UI components are available without explicit import statements:
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path> -- --jsx=Box,Typography,Stack,Link,Grid,DialogContentText
+```
+
 ### v7.0.0
 
 #### `theme-color-functions`

@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/Popover
 Things to know when using the `Popover` component:
 
 - The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
+- `Popover` blocks scrolling and dismisses on click-away by default, unlike [`Popper`](/material-ui/react-popper/).
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
@@ -63,6 +63,11 @@ For more information on the virtual element's properties, see the following reso
 The usage of a virtual element for the Popover component requires the `nodeType` property.
 This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
 :::
+
+## Transitions
+
+Popover uses [Grow](/material-ui/transitions/#grow) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
 
 ## Supplementary projects
 

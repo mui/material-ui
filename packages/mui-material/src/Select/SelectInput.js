@@ -6,17 +6,61 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import useId from '@mui/utils/useId';
 import refType from '@mui/utils/refType';
+import useTimeout from '@mui/utils/useTimeout';
 import ownerDocument from '../utils/ownerDocument';
 import Menu from '../Menu/Menu';
 import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
 import { styled } from '../zero-styled';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
+import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
 import { SelectFocusSourceProvider } from './utils/SelectFocusSourceContext';
+
+const OPENING_MOUSE_UP_BOUNDARY_OFFSET = 2;
+// The initial mouseup may land on an item when the menu opens over the trigger.
+const SELECTED_MOUSE_UP_DELAY = 400;
+const UNSELECTED_MOUSE_UP_DELAY = 200;
+
+/**
+ * Returns true when a native mouse event should be treated as happening inside
+ * the element, even if a portal or backdrop retargeted the event away from it.
+ *
+ * Select uses this for the opening mouseup: when the menu opens over the
+ * trigger, the release can target the backdrop or portaled menu even though the
+ * pointer is still inside the trigger or menu bounds.
+ */
+function isMouseEventInsideElement(event, element) {
+  if (!element) {
+    return false;
+  }
+
+  const eventPath = event.composedPath();
+  if (eventPath.includes(element)) {
+    return true;
+  }
+
+  if (event.target?.nodeType && element.contains(event.target)) {
+    return true;
+  }
+
+  const rect = element.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) {
+    // Hidden or transition-mounted elements do not have useful bounds to hit-test.
+    return false;
+  }
+
+  return (
+    event.clientX >= rect.left - OPENING_MOUSE_UP_BOUNDARY_OFFSET &&
+    event.clientX <= rect.right + OPENING_MOUSE_UP_BOUNDARY_OFFSET &&
+    event.clientY >= rect.top - OPENING_MOUSE_UP_BOUNDARY_OFFSET &&
+    event.clientY <= rect.bottom + OPENING_MOUSE_UP_BOUNDARY_OFFSET
+  );
+}
 
 const SelectSelect = styled(StyledSelectSelect, {
   name: 'MuiSelect',
@@ -134,6 +178,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
+  const paperRef = React.useRef(null);
+  const openRef = React.useRef(false);
+  const hasSelectedItemInListRef = React.useRef(false);
+  const openingMouseUpListenerCleanupRef = React.useRef(null);
+  const didPointerDownOnItemRef = React.useRef(false);
+  const selectionRef = React.useRef({
+    allowSelectedMouseUp: false,
+    allowUnselectedMouseUp: false,
+  });
+  const selectedMouseUpTimer = useTimeout();
+  const unselectedMouseUpTimer = useTimeout();
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -163,6 +218,47 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   );
 
   const open = displayNode !== null && openState;
+
+  useEnhancedEffect(() => {
+    openRef.current = open;
+  }, [open]);
+
+  const clearSelectionTimers = React.useCallback(() => {
+    selectedMouseUpTimer.clear();
+    unselectedMouseUpTimer.clear();
+  }, [selectedMouseUpTimer, unselectedMouseUpTimer]);
+
+  const resetMouseUpSelection = React.useCallback(() => {
+    clearSelectionTimers();
+    didPointerDownOnItemRef.current = false;
+    selectionRef.current = {
+      allowSelectedMouseUp: false,
+      allowUnselectedMouseUp: false,
+    };
+  }, [clearSelectionTimers]);
+
+  const clearOpeningMouseUpListener = React.useCallback(() => {
+    if (openingMouseUpListenerCleanupRef.current) {
+      openingMouseUpListenerCleanupRef.current();
+      openingMouseUpListenerCleanupRef.current = null;
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) {
+      resetMouseUpSelection();
+      clearOpeningMouseUpListener();
+    }
+  }, [open, resetMouseUpSelection, clearOpeningMouseUpListener]);
+
+  // Keep unmount cleanup separate from the `open` effect. Effect cleanups also run
+  // before the next effect, which would clear the opening mouseup listener while opening.
+  React.useEffect(() => {
+    return () => {
+      resetMouseUpSelection();
+      clearOpeningMouseUpListener();
+    };
+  }, [resetMouseUpSelection, clearOpeningMouseUpListener]);
 
   React.useEffect(() => {
     if (!open || !anchorElement || autoWidth) {
@@ -220,7 +316,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (openParam, event) => {
+  const update = useEventCallback((openParam, event) => {
+    if (!openParam) {
+      resetMouseUpSelection();
+      clearOpeningMouseUpListener();
+    }
+
     if (openParam) {
       setOpenInteractionType(getOpenInteractionType(event));
 
@@ -236,8 +337,33 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (!isOpenControlled) {
+      openRef.current = openParam;
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
       setOpenState(openParam);
+    }
+  });
+
+  const scheduleMouseUpSelection = () => {
+    resetMouseUpSelection();
+
+    // When there is no selected item in the list, a mousedown
+    // on the trigger followed by a quick mouseup over the first option can accidentally select
+    // within 200ms. Delay unselected mouseup to match the safer 400ms window.
+    if (!hasSelectedItemInListRef.current) {
+      selectedMouseUpTimer.start(SELECTED_MOUSE_UP_DELAY, () => {
+        selectionRef.current.allowSelectedMouseUp = true;
+        selectionRef.current.allowUnselectedMouseUp = true;
+      });
+    } else {
+      // mousedown -> move to unselected item -> mouseup should not select within 200ms.
+      unselectedMouseUpTimer.start(UNSELECTED_MOUSE_UP_DELAY, () => {
+        selectionRef.current.allowUnselectedMouseUp = true;
+
+        // mousedown -> mouseup on selected item should not select within 400ms.
+        selectedMouseUpTimer.start(UNSELECTED_MOUSE_UP_DELAY, () => {
+          selectionRef.current.allowSelectedMouseUp = true;
+        });
+      });
     }
   };
 
@@ -250,6 +376,37 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // Hijack the default focus behavior.
     event.preventDefault();
     displayRef.current.focus();
+
+    const doc = ownerDocument(event.currentTarget);
+
+    scheduleMouseUpSelection();
+    clearOpeningMouseUpListener();
+
+    const handleMouseUp = (mouseEvent) => {
+      openingMouseUpListenerCleanupRef.current = null;
+
+      if (!displayRef.current) {
+        return;
+      }
+
+      if (
+        isMouseEventInsideElement(mouseEvent, displayRef.current) ||
+        isMouseEventInsideElement(mouseEvent, paperRef.current)
+      ) {
+        return;
+      }
+
+      if (!openRef.current && isOpenControlled) {
+        return;
+      }
+
+      update(false, mouseEvent);
+    };
+
+    doc.addEventListener('mouseup', handleMouseUp, { capture: true, once: true });
+    openingMouseUpListenerCleanupRef.current = () => {
+      doc.removeEventListener('mouseup', handleMouseUp, true);
+    };
 
     update(true, event);
   };
@@ -276,6 +433,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleItemClick = (child) => (event) => {
+    didPointerDownOnItemRef.current = false;
+
     let newValue;
 
     // We use the tabindex attribute to signal the available options.
@@ -321,6 +480,24 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (!multiple) {
       update(false, event);
     }
+  };
+
+  const handleItemMouseUp = (child, selected) => (event) => {
+    child.props.onMouseUp?.(event);
+
+    if (didPointerDownOnItemRef.current) {
+      didPointerDownOnItemRef.current = false;
+      return;
+    }
+
+    const disallowSelectedMouseUp = !selectionRef.current.allowSelectedMouseUp && selected;
+    const disallowUnselectedMouseUp = !selectionRef.current.allowUnselectedMouseUp && !selected;
+
+    if (disallowSelectedMouseUp || disallowUnselectedMouseUp) {
+      return;
+    }
+
+    event.currentTarget.click();
   };
 
   const handleKeyDown = (event) => {
@@ -411,7 +588,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
+      onMouseDown: (event) => {
+        didPointerDownOnItemRef.current = true;
+        child.props.onMouseDown?.(event);
+      },
+      onPointerDown: (event) => {
+        didPointerDownOnItemRef.current = true;
+        child.props.onPointerDown?.(event);
+      },
       onClick: handleItemClick(child),
+      onMouseUp: handleItemMouseUp(child, selected),
       onKeyUp: (event) => {
         if (event.key === ' ') {
           // otherwise our MenuItems dispatches a click event
@@ -430,6 +616,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
   });
+
+  // Keep the opening mouseup guard current without mutating refs during render.
+  useEnhancedEffect(() => {
+    hasSelectedItemInListRef.current = foundMatch;
+  }, [foundMatch]);
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -503,6 +694,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     typeof MenuProps.slotProps?.paper === 'function'
       ? MenuProps.slotProps.paper(ownerState)
       : MenuProps.slotProps?.paper;
+  const handlePaperRef = useForkRef(menuPaperSlotProps?.ref, paperRef);
 
   const menuListSlotProps =
     typeof MenuProps.slotProps?.list === 'function'
@@ -592,6 +784,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             },
             paper: {
               ...menuPaperSlotProps,
+              ref: handlePaperRef,
               style: {
                 minWidth: menuMinWidth,
                 ...menuPaperSlotProps?.style,

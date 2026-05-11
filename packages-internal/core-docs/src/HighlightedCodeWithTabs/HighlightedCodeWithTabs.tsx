@@ -330,7 +330,7 @@ export function HighlightedCodeWithTabs(
         ))}
       </CodeTabList>
       {tabs.map(({ tab, language, code }) => (
-        <CodeTabPanel ownerState={ownerState} key={tab} value={tab}>
+        <CodeTabPanel ownerState={ownerState} key={tab} value={tab} tabIndex={-1}>
           <HighlightedCode
             language={language || 'bash'}
             code={typeof code === 'function' ? code(tab) : code}
