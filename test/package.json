@@ -21,7 +21,7 @@
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "docs": "workspace:^",
-    "es-toolkit": "1.46.0",
+    "es-toolkit": "1.46.1",
     "fast-glob": "3.3.3",
     "prop-types": "15.8.1",
     "react": "19.2.5",
