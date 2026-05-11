@@ -153,9 +153,49 @@ async function main() {
               window.axe.configure({
                 rules: disabledRules.map((id) => ({ id, enabled: false })),
               });
-              return window.axe.run(element, {
+              const axeResults = await window.axe.run(element, {
                 runOnly: { type: 'tag', values: tags },
               });
+              // Walk each failing element's ancestor chain up to the fixture
+              // root, collecting `data-*` attrs (closest ancestor wins). Lets
+              // a fixture label a cell with a wrapping `<div data-variant=...>`
+              // even when the failing node is a deep descendant (e.g.
+              // Pagination's PaginationItem, TextField's input/label).
+              const collectAttrs = (target) => {
+                const sel = target.flat()[0];
+                if (typeof sel !== 'string') {
+                  return {};
+                }
+                const el = element.querySelector(sel) ?? document.querySelector(sel);
+                const data = {};
+                // Walk up to — but not into — the testcase root. The root
+                // carries TestViewer's own `data-testid` / `data-testpath`,
+                // which would otherwise leak into every instance.
+                let cur = el;
+                while (cur && cur !== element) {
+                  for (const attr of cur.attributes) {
+                    if (attr.name.startsWith('data-')) {
+                      const key = attr.name.slice(5);
+                      if (!(key in data)) {
+                        data[key] = attr.value;
+                      }
+                    }
+                  }
+                  cur = cur.parentElement;
+                }
+                return data;
+              };
+              for (const v of axeResults.violations) {
+                for (const n of v.nodes) {
+                  n.dataAttrs = collectAttrs(n.target);
+                }
+              }
+              for (const v of axeResults.incomplete) {
+                for (const n of v.nodes) {
+                  n.dataAttrs = collectAttrs(n.target);
+                }
+              }
+              return axeResults;
             },
             { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
           );

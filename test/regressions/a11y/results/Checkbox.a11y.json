@@ -1,0 +1,234 @@
+{
+  "CheckboxColorContrastDark": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "fail",
+        "tags": ["wcag2a"],
+        "instances": [
+          {
+            "indeterminate": "false",
+            "color": "default",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "primary",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "secondary",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "error",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "info",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "success",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "warning",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "default",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "primary",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "secondary",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "error",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "info",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "success",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "warning",
+            "checked": "true"
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "CheckboxColorContrastLight": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-hidden-focus": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "fail",
+        "tags": ["wcag2a"],
+        "instances": [
+          {
+            "indeterminate": "false",
+            "color": "default",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "primary",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "secondary",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "error",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "info",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "success",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "warning",
+            "checked": "false"
+          },
+          {
+            "indeterminate": "false",
+            "color": "default",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "primary",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "secondary",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "error",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "info",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "success",
+            "checked": "true"
+          },
+          {
+            "indeterminate": "false",
+            "color": "warning",
+            "checked": "true"
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  }
+}

@@ -108,13 +108,99 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
-  // ColorContrast regression matrices — variant × color in both modes,
-  // results land in `test/regressions/a11y/results/{Component}.a11y.json`
-  // with per-instance detail (variant + color + contrastRatio). Asserts
-  // skipped while we plan the WCAG AA token updates; once tokens are fixed,
-  // drop `skipAssertions` to flip these into hard regression gates.
+  // ColorContrast regression matrices — variant × color (or analogous
+  // prop axes) in both modes. Results land in
+  // `test/regressions/a11y/results/{Component}.a11y.json` with per-instance
+  // detail collected from each cell's `data-*` ancestors. Asserts skipped
+  // while we plan the WCAG AA token updates; once tokens are fixed, drop
+  // `skipAssertions` to flip these into hard regression gates.
+  {
+    test: 'test/regressions/fixtures/Alert/Alert{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Badge/Badge{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
   {
     test: 'test/regressions/fixtures/Button/Button{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/ButtonGroup/ButtonGroup{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Checkbox/Checkbox{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Chip/Chip{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/CircularProgress/CircularProgress{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Fab/Fab{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/IconButton/IconButton{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/LinearProgress/LinearProgress{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Link/Link{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Pagination/Pagination{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Radio/Radio{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Slider/Slider{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Switch/Switch{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/Tabs/Tabs{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/TextField/TextField{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
+  {
+    test: 'test/regressions/fixtures/ToggleButton/ToggleButton{ColorContrastLight,ColorContrastDark}',
     enabled: true,
     skipAssertions: ['color-contrast'],
   },

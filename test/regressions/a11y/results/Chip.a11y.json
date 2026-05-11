@@ -1,0 +1,87 @@
+{
+  "ChipColorContrastDark": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "variant": "filled",
+            "color": "error",
+            "contrastRatio": 3.68
+          }
+        ]
+      }
+    }
+  },
+  "ChipColorContrastLight": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "variant": "filled",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "filled",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          }
+        ]
+      }
+    }
+  }
+}

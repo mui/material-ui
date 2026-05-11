@@ -1,0 +1,222 @@
+{
+  "SwitchColorContrastDark": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "fail",
+        "tags": ["wcag2a"],
+        "instances": [
+          {
+            "color": "default",
+            "checked": "false"
+          },
+          {
+            "color": "primary",
+            "checked": "false"
+          },
+          {
+            "color": "secondary",
+            "checked": "false"
+          },
+          {
+            "color": "error",
+            "checked": "false"
+          },
+          {
+            "color": "info",
+            "checked": "false"
+          },
+          {
+            "color": "success",
+            "checked": "false"
+          },
+          {
+            "color": "warning",
+            "checked": "false"
+          },
+          {
+            "color": "default",
+            "checked": "true"
+          },
+          {
+            "color": "primary",
+            "checked": "true"
+          },
+          {
+            "color": "secondary",
+            "checked": "true"
+          },
+          {
+            "color": "error",
+            "checked": "true"
+          },
+          {
+            "color": "info",
+            "checked": "true"
+          },
+          {
+            "color": "success",
+            "checked": "true"
+          },
+          {
+            "color": "warning",
+            "checked": "true"
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "SwitchColorContrastLight": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "form-field-multiple-labels": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "label": {
+        "status": "fail",
+        "tags": ["wcag2a"],
+        "instances": [
+          {
+            "color": "default",
+            "checked": "false"
+          },
+          {
+            "color": "primary",
+            "checked": "false"
+          },
+          {
+            "color": "secondary",
+            "checked": "false"
+          },
+          {
+            "color": "error",
+            "checked": "false"
+          },
+          {
+            "color": "info",
+            "checked": "false"
+          },
+          {
+            "color": "success",
+            "checked": "false"
+          },
+          {
+            "color": "warning",
+            "checked": "false"
+          },
+          {
+            "color": "default",
+            "checked": "true"
+          },
+          {
+            "color": "primary",
+            "checked": "true"
+          },
+          {
+            "color": "secondary",
+            "checked": "true"
+          },
+          {
+            "color": "error",
+            "checked": "true"
+          },
+          {
+            "color": "info",
+            "checked": "true"
+          },
+          {
+            "color": "success",
+            "checked": "true"
+          },
+          {
+            "color": "warning",
+            "checked": "true"
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  }
+}

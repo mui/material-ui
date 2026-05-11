@@ -82,13 +82,17 @@ interface RecordA11yOptions {
   skipAssertions?: string[];
 }
 
-const DATA_ATTR_REGEX = /data-([a-z-]+)="([^"]*)"/g;
+/**
+ * The page-side script in `index.test.js` enriches each failing node with a
+ * `dataAttrs` map collected by walking up the DOM from the violation node.
+ * Anything outside that walk doesn't reach this code.
+ */
+type EnrichedNode = AxeResults['violations'][number]['nodes'][number] & {
+  dataAttrs?: Record<string, string>;
+};
 
-function extractInstance(node: AxeResults['violations'][number]['nodes'][number]): Instance {
-  const result: Instance = {};
-  for (const [, key, value] of node.html.matchAll(DATA_ATTR_REGEX)) {
-    result[key] = value;
-  }
+function extractInstance(node: EnrichedNode): Instance {
+  const result: Instance = { ...(node.dataAttrs ?? {}) };
   for (const check of [...node.any, ...node.all, ...node.none]) {
     if (!check.data || typeof check.data !== 'object') {
       continue;
