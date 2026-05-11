@@ -36,6 +36,22 @@ describe('<InputLabel />', () => {
     expect(container.firstChild).not.to.have.class(classes.animated);
   });
 
+  it('should wrap label text in a labelText element', () => {
+    const { container } = render(<InputLabel>Foo</InputLabel>);
+    const label = container.querySelector('label');
+    expect(label.firstChild).to.have.tagName('span');
+    expect(label.firstChild).to.have.text('Foo');
+  });
+
+  it('should keep the asterisk outside the labelText wrapper so it is not clipped by overflow', () => {
+    const { container } = render(<InputLabel required>Foo</InputLabel>);
+    const label = container.querySelector('label');
+    const labelText = label.firstChild;
+    const asterisk = label.lastChild;
+    expect(labelText).to.have.text('Foo');
+    expect(asterisk).to.have.class('MuiFormLabel-asterisk');
+  });
+
   it('should forward the asterisk class to AsteriskComponent when required', () => {
     const { container } = render(
       <InputLabel classes={{ asterisk: 'my-asterisk' }} required>
@@ -137,7 +153,7 @@ describe('<InputLabel />', () => {
           },
         });
 
-        render(
+        const { container } = render(
           <ThemeProvider theme={theme}>
             <FormControl focused>
               <InputLabel>Test Label</InputLabel>
@@ -145,7 +161,7 @@ describe('<InputLabel />', () => {
           </ThemeProvider>,
         );
 
-        const label = screen.getByText('Test Label');
+        const label = container.querySelector('label');
 
         expect(label).to.toHaveComputedStyle({
           mixBlendMode: 'darken',
@@ -158,7 +174,7 @@ describe('<InputLabel />', () => {
     it('classes.root should overwrite built-in styles.', () => {
       const text = 'The label';
 
-      render(
+      const { container } = render(
         <ClassNames>
           {({ css }) => (
             <FormControl>
@@ -168,7 +184,7 @@ describe('<InputLabel />', () => {
         </ClassNames>,
       );
 
-      const label = screen.getByText(text);
+      const label = container.querySelector('label');
 
       expect(getComputedStyle(label).position).to.equal('static');
     });
@@ -176,7 +192,7 @@ describe('<InputLabel />', () => {
     it('className should overwrite classes.root and built-in styles.', () => {
       const text = 'The label';
 
-      render(
+      const { container } = render(
         <ClassNames>
           {({ css }) => (
             <FormControl>
@@ -192,7 +208,7 @@ describe('<InputLabel />', () => {
         </ClassNames>,
       );
 
-      const label = screen.getByText(text);
+      const label = container.querySelector('label');
 
       expect(getComputedStyle(label).position).to.equal('static');
     });

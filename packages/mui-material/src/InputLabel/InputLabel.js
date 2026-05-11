@@ -53,12 +53,20 @@ const InputLabelRoot = styled(FormLabel, {
   },
 })(
   memoTheme(({ theme }) => ({
-    display: 'block',
+    display: 'flex',
+    alignItems: 'baseline',
     transformOrigin: 'top left',
     whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
     maxWidth: '100%',
+    [`& .${formLabelClasses.labelText}`]: {
+      flex: '1 1 auto',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      minWidth: 0,
+    },
+    [`& .${formLabelClasses.asterisk}`]: {
+      flexShrink: 0,
+    },
     variants: [
       {
         props: ({ ownerState }) => ownerState.formControl,

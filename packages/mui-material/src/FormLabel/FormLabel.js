@@ -24,6 +24,7 @@ const useUtilityClasses = (ownerState) => {
       required && 'required',
     ],
     asterisk: ['asterisk', error && 'error'],
+    labelText: ['labelText'],
   };
 
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
@@ -84,6 +85,11 @@ const AsteriskComponent = styled('span', {
   })),
 );
 
+const FormLabelText = styled('span', {
+  name: 'MuiFormLabel',
+  slot: 'LabelText',
+})({});
+
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });
   const {
@@ -125,7 +131,9 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {children}
+      <FormLabelText ownerState={ownerState} className={classes.labelText}>
+        {children}
+      </FormLabelText>
       {fcs.required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}

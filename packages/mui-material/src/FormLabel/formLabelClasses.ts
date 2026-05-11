@@ -18,6 +18,8 @@ export interface FormLabelClasses {
   required: string;
   /** Styles applied to the asterisk element. */
   asterisk: string;
+  /** Styles applied to the label text wrapper element. */
+  labelText: string;
 }
 
 export type FormLabelClassKey = keyof FormLabelClasses;
@@ -35,6 +37,7 @@ const formLabelClasses: FormLabelClasses = generateUtilityClasses('MuiFormLabel'
   'filled',
   'required',
   'asterisk',
+  'labelText',
 ]);
 
 export default formLabelClasses;
