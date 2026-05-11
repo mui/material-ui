@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 describe('parseRoute', () => {
-  it('returns null for non-component routes (regression fixtures)', () => {
-    expect(parseRoute('/regression-Rating/FocusVisibleRating')).to.equal(null);
+  it('returns null for unknown route shapes', () => {
+    expect(parseRoute('/unknown/path')).to.equal(null);
   });
 
   it('parses a docs-components route into path/slug/demo', () => {
@@ -12,6 +12,14 @@ describe('parseRoute', () => {
       path: 'docs/data/material/components/buttons/BasicButtons',
       slug: 'buttons',
       demo: 'BasicButtons',
+    });
+  });
+
+  it('parses a regression-fixture route into path/slug/demo', () => {
+    expect(parseRoute('/regression-Button/ButtonColorContrastLight')).to.deep.equal({
+      path: 'test/regressions/fixtures/Button/ButtonColorContrastLight',
+      slug: 'Button',
+      demo: 'ButtonColorContrastLight',
     });
   });
 });

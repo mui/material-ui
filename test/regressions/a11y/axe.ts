@@ -11,12 +11,29 @@ export const GLOBAL_DISABLED_RULES = ['region', 'page-has-heading-one'];
 
 export type RuleStatus = 'pass' | 'fail' | 'incomplete';
 
+/**
+ * One failing cell. Prop-axis keys (`variant`, `color`, etc.) are sourced
+ * from `data-*` attributes the fixture stamps on each cell, so this shape
+ * adapts to any component without code changes — Button has `variant` +
+ * `color`, Alert would have `severity` + `variant`, etc.
+ */
+export interface Instance {
+  contrastRatio?: number;
+  [prop: string]: string | number | undefined;
+}
+
 export interface RuleEntry {
   status: RuleStatus;
   tags: string[];
+  /** Populated for `fail` / `incomplete` statuses, one per offending DOM node. */
+  instances?: Instance[];
 }
 
+/** Which side of the suite produced the route — controls reporter output dir. */
+export type RouteKind = 'docs' | 'regression';
+
 export interface A11yMeta {
+  kind: RouteKind;
   slug: string;
   demo: string;
   rules: Record<string, RuleEntry>;
@@ -54,6 +71,7 @@ function formatResults(results: AxeResults['violations']) {
 }
 
 interface RecordA11yOptions {
+  kind: RouteKind;
   slug: string;
   demo: string;
   /**
@@ -62,6 +80,25 @@ interface RecordA11yOptions {
    * assertion is suppressed.
    */
   skipAssertions?: string[];
+}
+
+const DATA_ATTR_REGEX = /data-([a-z-]+)="([^"]*)"/g;
+
+function extractInstance(node: AxeResults['violations'][number]['nodes'][number]): Instance {
+  const result: Instance = {};
+  for (const [, key, value] of node.html.matchAll(DATA_ATTR_REGEX)) {
+    result[key] = value;
+  }
+  for (const check of [...node.any, ...node.all, ...node.none]) {
+    if (!check.data || typeof check.data !== 'object') {
+      continue;
+    }
+    const { contrastRatio } = check.data as { contrastRatio?: unknown };
+    if (typeof contrastRatio === 'number') {
+      result.contrastRatio = contrastRatio;
+    }
+  }
+  return result;
 }
 
 /**
@@ -74,7 +111,7 @@ interface RecordA11yOptions {
 export function recordA11y(
   ctx: TestContext,
   results: AxeResults,
-  { slug, demo, skipAssertions = [] }: RecordA11yOptions,
+  { kind, slug, demo, skipAssertions = [] }: RecordA11yOptions,
 ): void {
   const rules: Record<string, RuleEntry> = {};
   const buckets: ReadonlyArray<[AxeResults['passes'], RuleStatus]> = [
@@ -85,7 +122,11 @@ export function recordA11y(
   for (const [list, status] of buckets) {
     for (const rule of list) {
       const tags = rule.tags.filter((t) => WCAG_TAGS.includes(t)).sort();
-      rules[rule.id] = { status, tags };
+      const entry: RuleEntry = { status, tags };
+      if (status !== 'pass' && rule.nodes.length > 0) {
+        entry.instances = rule.nodes.map(extractInstance);
+      }
+      rules[rule.id] = entry;
     }
   }
   const sortedRules = Object.fromEntries(
@@ -93,6 +134,7 @@ export function recordA11y(
   );
 
   const meta: A11yMeta = {
+    kind,
     slug,
     demo,
     rules: sortedRules,

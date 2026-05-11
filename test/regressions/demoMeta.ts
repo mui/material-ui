@@ -2,8 +2,9 @@
  * Per-tool VRT configuration as two independent rule arrays — one for
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
- * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}`.
+ * rule must restate every field it cares about) against either
+ * `docs/data/material/components/{slug}/{Demo}` (docs demos) or
+ * `test/regressions/fixtures/{Component}/{Name}` (regression fixtures).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -13,7 +14,7 @@
 import { minimatch } from 'minimatch';
 
 export interface ScreenshotRule {
-  /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
+  /** Minimatch glob against the parsed route path. */
   test: string;
   enabled?: boolean;
   /** Playwright waits for this selector after navigation, before axe + screenshot. */
@@ -21,7 +22,7 @@ export interface ScreenshotRule {
 }
 
 export interface A11yRule {
-  /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
+  /** Minimatch glob against the parsed route path. */
   test: string;
   enabled?: boolean;
   /** Axe rule IDs recorded into results JSON but not asserted on. */
@@ -104,11 +105,19 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
  * later opt-out rules disable individual demos.
- *
- * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  // ColorContrast regression matrices — variant × color in both modes,
+  // results land in `test/regressions/a11y/results/{Component}.a11y.json`
+  // with per-instance detail (variant + color + contrastRatio). Asserts
+  // skipped while we plan the WCAG AA token updates; once tokens are fixed,
+  // drop `skipAssertions` to flip these into hard regression gates.
+  {
+    test: 'test/regressions/fixtures/Button/Button{ColorContrastLight,ColorContrastDark}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {
@@ -117,19 +126,26 @@ export interface ParsedRoute {
   demo: string;
 }
 
-const ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const PATH_PREFIXES: Record<string, string> = {
+  'docs-components': 'docs/data/material/components',
+  regression: 'test/regressions/fixtures',
+};
+
+const ROUTE_REGEX = /^\/(docs-components|regression)-([^/]+)\/(.+)$/;
 
 /**
- * Map a VRT route to its docs path + slug + demo, or `null` for non-component
- * routes (regression fixtures).
+ * Map a VRT route to its source path + slug + demo, or `null` if the route
+ * matches no known shape. Docs demos resolve to `docs/data/...`; regression
+ * fixtures to `test/regressions/fixtures/...` — a single rule list can
+ * target either.
  */
 export function parseRoute(route: string): ParsedRoute | null {
   const match = route.match(ROUTE_REGEX);
   if (!match) {
     return null;
   }
-  const [, slug, demo] = match;
-  return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  const [, prefix, slug, demo] = match;
+  return { path: `${PATH_PREFIXES[prefix]}/${slug}/${demo}`, slug, demo };
 }
 
 /**

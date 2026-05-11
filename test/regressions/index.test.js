@@ -160,6 +160,7 @@ async function main() {
             { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
           );
           recordA11y(ctx, results, {
+            kind: route.startsWith('/regression-') ? 'regression' : 'docs',
             slug: parsed.slug,
             demo: parsed.demo,
             skipAssertions: a11yRule.skipAssertions,
