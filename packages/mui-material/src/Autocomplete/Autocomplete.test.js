@@ -8,6 +8,7 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   isJsdom,
+  waitFor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Box from '@mui/system/Box';
@@ -4007,6 +4008,99 @@ describe('<Autocomplete />', () => {
       const popperRoot = screen.getByTestId('popperRoot');
       expect(popperRoot.style.display).to.equal('none');
     });
+  });
+
+  describe('Popper placement', () => {
+    const placementOptions = ['zz', ...Array.from({ length: 30 }, (_, index) => `option ${index}`)];
+
+    function PositionedAutocomplete({ top = 'calc(100vh - 160px)' }) {
+      return (
+        <div style={{ position: 'fixed', top, left: 16, width: 300 }}>
+          <Autocomplete
+            options={placementOptions}
+            renderInput={(params) => <TextField {...params} />}
+            slotProps={{ popper: { 'data-testid': 'popper' } }}
+          />
+        </div>
+      );
+    }
+
+    function expectPopperPlacement(expectedSide) {
+      expect(screen.getByTestId('popper').getAttribute('data-popper-placement')).to.match(
+        new RegExp(`^${expectedSide}`),
+      );
+    }
+
+    it.skipIf(isJsdom())(
+      'should keep the popup on the rendered side while filtering if that side still fits',
+      async function test() {
+        const { setProps, user } = render(<PositionedAutocomplete />);
+        const textbox = screen.getByRole('combobox');
+
+        await user.click(textbox);
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+
+        await user.keyboard('zz');
+
+        expect(screen.getByRole('option', { name: 'zz' })).not.to.equal(null);
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+
+        await user.keyboard('{Escape}');
+        await waitFor(() => {
+          expect(screen.queryByTestId('popper')).to.equal(null);
+        });
+
+        setProps({ top: 320 });
+        await user.keyboard('{ArrowDown}');
+        await waitFor(() => {
+          expectPopperPlacement('bottom');
+        });
+      },
+    );
+
+    it.skipIf(isJsdom())(
+      'should flip from the sticky side when it overflows and reset between popup sessions',
+      async function test() {
+        const { setProps, user } = render(<PositionedAutocomplete />);
+        const textbox = screen.getByRole('combobox');
+
+        await user.click(textbox);
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+
+        await user.keyboard('zz');
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+
+        setProps({ top: 120 });
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+
+        await user.keyboard('{Backspace}{Backspace}');
+        await waitFor(() => {
+          expectPopperPlacement('bottom');
+        });
+
+        await user.keyboard('{Escape}');
+        await waitFor(() => {
+          expect(screen.queryByTestId('popper')).to.equal(null);
+        });
+
+        setProps({ top: 'calc(100vh - 160px)' });
+        await user.keyboard('{ArrowDown}');
+
+        await waitFor(() => {
+          expectPopperPlacement('top');
+        });
+      },
+    );
   });
 
   describe('prop: readOnly', () => {
