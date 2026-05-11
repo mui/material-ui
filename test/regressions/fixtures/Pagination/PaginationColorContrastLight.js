@@ -14,7 +14,7 @@ export default function PaginationColorContrastLight() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={2}>
           {VARIANTS.map((variant) => (
-            <Stack key={variant} direction="row" spacing={2} flexWrap="wrap">
+            <Stack key={variant} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-variant={variant} data-color={color}>
                   <Pagination count={3} page={2} variant={variant} color={color} />

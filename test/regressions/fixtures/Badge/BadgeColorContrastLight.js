@@ -12,7 +12,7 @@ export default function BadgeColorContrastLight() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
-        <Stack direction="row" spacing={3} flexWrap="wrap">
+        <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap' }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color} style={{ padding: 8 }}>
               <Badge badgeContent={4} color={color}>

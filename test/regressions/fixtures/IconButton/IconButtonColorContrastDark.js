@@ -12,7 +12,7 @@ export default function IconButtonColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
-        <Stack direction="row" spacing={1} flexWrap="wrap">
+        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color}>
               <IconButton color={color} aria-label={`${color} delete`}>

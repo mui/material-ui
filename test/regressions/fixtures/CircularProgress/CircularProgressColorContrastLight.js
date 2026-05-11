@@ -11,7 +11,7 @@ export default function CircularProgressColorContrastLight() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
-        <Stack direction="row" spacing={2} flexWrap="wrap">
+        <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color}>
               <CircularProgress

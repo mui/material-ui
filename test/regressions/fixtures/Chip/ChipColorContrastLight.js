@@ -14,7 +14,7 @@ export default function ChipColorContrastLight() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={1}>
           {VARIANTS.map((variant) => (
-            <Stack key={variant} direction="row" spacing={1} flexWrap="wrap">
+            <Stack key={variant} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-variant={variant} data-color={color}>
                   <Chip variant={variant} color={color} label={`${color} ${variant}`} />

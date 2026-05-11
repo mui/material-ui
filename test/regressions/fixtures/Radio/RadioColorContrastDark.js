@@ -14,7 +14,7 @@ export default function RadioColorContrastDark() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={1}>
           {CHECKED.map((checked) => (
-            <Stack key={String(checked)} direction="row" spacing={1} flexWrap="wrap">
+            <Stack key={String(checked)} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-color={color} data-checked={String(checked)}>
                   <Radio

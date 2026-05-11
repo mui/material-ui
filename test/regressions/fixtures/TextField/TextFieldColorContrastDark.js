@@ -14,7 +14,7 @@ export default function TextFieldColorContrastDark() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={2}>
           {VARIANTS.map((variant) => (
-            <Stack key={variant} direction="row" spacing={2} flexWrap="wrap">
+            <Stack key={variant} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-variant={variant} data-color={color}>
                   <TextField

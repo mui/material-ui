@@ -15,7 +15,7 @@ export default function TabsColorContrastDark() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={2}>
           {TEXT_COLORS.map((textColor) => (
-            <Stack key={textColor} direction="row" spacing={2} flexWrap="wrap">
+            <Stack key={textColor} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {INDICATOR_COLORS.map((indicatorColor) => (
                 <div
                   key={indicatorColor}

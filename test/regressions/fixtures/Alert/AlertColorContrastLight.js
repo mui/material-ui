@@ -14,7 +14,7 @@ export default function AlertColorContrastLight() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={1}>
           {VARIANTS.map((variant) => (
-            <Stack key={variant} direction="row" spacing={1} flexWrap="wrap">
+            <Stack key={variant} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {SEVERITIES.map((severity) => (
                 <div key={severity} data-variant={variant} data-severity={severity}>
                   <Alert variant={variant} severity={severity}>

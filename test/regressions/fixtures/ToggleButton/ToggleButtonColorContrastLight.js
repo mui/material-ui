@@ -14,7 +14,7 @@ export default function ToggleButtonColorContrastLight() {
       <Box sx={{ bgcolor: 'background.default', p: 2 }}>
         <Stack spacing={1}>
           {SELECTED.map((selected) => (
-            <Stack key={String(selected)} direction="row" spacing={1} flexWrap="wrap">
+            <Stack key={String(selected)} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-color={color} data-selected={String(selected)}>
                   <ToggleButton value={color} color={color} selected={selected} onChange={() => {}}>
