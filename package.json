@@ -130,7 +130,7 @@
     "markdownlint-cli2": "0.22.1",
     "minimatch": "10.2.4",
     "nx": "20.8.4",
-    "pkg-pr-new": "0.0.70",
+    "pkg-pr-new": "0.0.71",
     "playwright": "1.59.1",
     "prettier": "3.8.3",
     "pretty-quick": "4.2.2",
