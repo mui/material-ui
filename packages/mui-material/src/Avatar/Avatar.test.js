@@ -256,32 +256,29 @@ describe('<Avatar />', () => {
   });
 
   describe('child img fallback', () => {
-    it('should show fallback when child img fails to load', async () => {
+    it('should show fallback when child img fails to load', () => {
       const { container } = render(
         <Avatar>
           <img src="/broken.png" alt="broken" />
         </Avatar>,
       );
       const avatar = container.firstChild;
-      const img = avatar.querySelector('img');
-      fireEvent.error(img);
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      fireEvent.error(avatar.querySelector('img'));
       expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
     });
 
-    it('should call the original onError when child img fails', async () => {
+    it('should call the original onError when child img fails', () => {
       const onError = spy();
       const { container } = render(
         <Avatar>
           <img src="/broken.png" onError={onError} alt="broken" />
         </Avatar>,
       );
-      const img = container.querySelector('img');
-      fireEvent.error(img);
+      fireEvent.error(container.querySelector('img'));
       expect(onError.callCount).to.equal(1);
     });
 
-    it('should reset child img error state when children changes', async () => {
+    it('should reset child img error state when children changes', () => {
       const { container, rerender } = render(
         <Avatar>
           <img src="/broken.png" alt="broken" />
@@ -289,7 +286,6 @@ describe('<Avatar />', () => {
       );
       const avatar = container.firstChild;
       fireEvent.error(avatar.querySelector('img'));
-      await new Promise((resolve) => setTimeout(resolve, 0));
 
       rerender(<Avatar>OT</Avatar>);
       expect(avatar.firstChild).to.text('OT');
