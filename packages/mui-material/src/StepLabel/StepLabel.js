@@ -56,9 +56,6 @@ const StepLabelRoot = styled('span', {
 })({
   display: 'flex',
   alignItems: 'center',
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    flexDirection: 'column',
-  },
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
@@ -71,11 +68,15 @@ const StepLabelRoot = styled('span', {
       },
     },
     {
+      props: { alternativeLabel: true },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
       props: { orientation: 'vertical', alternativeLabel: true },
       style: {
-        [`&.${stepLabelClasses.alternativeLabel}`]: {
-          flexDirection: 'row-reverse',
-        },
+        flexDirection: 'row-reverse',
       },
     },
   ],
