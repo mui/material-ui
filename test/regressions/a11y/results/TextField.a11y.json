@@ -26,40 +26,8 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "incomplete",
-        "tags": ["wcag2aa"],
-        "instances": [
-          {
-            "variant": "outlined",
-            "color": "primary",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "secondary",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "error",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "info",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "success",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "warning",
-            "contrastRatio": 0
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2aa"]
       },
       "duplicate-id-aria": {
         "status": "pass",
@@ -106,40 +74,8 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "incomplete",
-        "tags": ["wcag2aa"],
-        "instances": [
-          {
-            "variant": "outlined",
-            "color": "primary",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "secondary",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "error",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "info",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "success",
-            "contrastRatio": 0
-          },
-          {
-            "variant": "outlined",
-            "color": "warning",
-            "contrastRatio": 0
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2aa"]
       },
       "duplicate-id-aria": {
         "status": "pass",

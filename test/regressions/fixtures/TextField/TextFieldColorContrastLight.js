@@ -17,12 +17,23 @@ export default function TextFieldColorContrastLight() {
             <Stack key={variant} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-variant={variant} data-color={color}>
+                  {/* `slotProps.inputLabel.shrink` forces the label to stay
+                      *above* the input (not floating over it), so axe
+                      doesn't see label/input bgOverlap. For outlined, we
+                      also hide the notched fieldset since it overlaps the
+                      input bounds — the contrast pair (input text vs page
+                      bg) is what we want to measure, the border isn't. */}
                   <TextField
                     variant={variant}
                     color={color}
                     label={`${color} ${variant}`}
                     defaultValue="Sample"
-                    helperText={`${color} helper`}
+                    slotProps={{
+                      inputLabel: { shrink: true },
+                      input: {
+                        sx: { '& .MuiOutlinedInput-notchedOutline': { display: 'none' } },
+                      },
+                    }}
                   />
                 </div>
               ))}

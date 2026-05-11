@@ -15,8 +15,11 @@ export default function BadgeColorContrastDark() {
         <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap' }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color} style={{ padding: 8 }}>
-              <Badge badgeContent={4} color={color}>
-                <MailIcon color="action" />
+              {/* See sibling Light fixture for why MailIcon is wrapped in a Box. */}
+              <Badge badgeContent="new alert" color={color}>
+                <Box sx={{ width: 140, height: 32, display: 'inline-flex', alignItems: 'center' }}>
+                  <MailIcon color="action" />
+                </Box>
               </Badge>
             </div>
           ))}

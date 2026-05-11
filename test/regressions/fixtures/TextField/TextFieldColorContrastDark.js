@@ -17,12 +17,19 @@ export default function TextFieldColorContrastDark() {
             <Stack key={variant} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-variant={variant} data-color={color}>
+                  {/* See sibling Light fixture for why the label uses
+                      `shrink` and the notched fieldset is hidden. */}
                   <TextField
                     variant={variant}
                     color={color}
                     label={`${color} ${variant}`}
                     defaultValue="Sample"
-                    helperText={`${color} helper`}
+                    slotProps={{
+                      inputLabel: { shrink: true },
+                      input: {
+                        sx: { '& .MuiOutlinedInput-notchedOutline': { display: 'none' } },
+                      },
+                    }}
                   />
                 </div>
               ))}

@@ -82,7 +82,7 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "incomplete",
+        "status": "fail",
         "tags": ["wcag2aa"],
         "instances": [
           {

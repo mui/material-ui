@@ -30,7 +30,7 @@
         "tags": ["wcag21aa"]
       },
       "color-contrast": {
-        "status": "incomplete",
+        "status": "fail",
         "tags": ["wcag2aa"],
         "instances": [
           {
@@ -76,7 +76,7 @@
         "tags": ["wcag21aa"]
       },
       "color-contrast": {
-        "status": "incomplete",
+        "status": "fail",
         "tags": ["wcag2aa"],
         "instances": [
           {
