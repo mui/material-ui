@@ -48,6 +48,12 @@ const StepperRoot = styled('ol', {
       },
     },
     {
+      props: { orientation: 'horizontal', alternativeLabel: false },
+      style: {
+        gap: 8,
+      },
+    },
+    {
       props: { orientation: 'vertical' },
       style: {
         flexDirection: 'column',

@@ -50,7 +50,7 @@
     "@types/react": "19.2.14",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "es-toolkit": "1.46.0",
+    "es-toolkit": "1.46.1",
     "fast-glob": "3.3.3",
     "react": "19.2.5",
     "sinon": "21.1.2",
