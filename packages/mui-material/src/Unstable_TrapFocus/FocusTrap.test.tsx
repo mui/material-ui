@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
 import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
@@ -401,7 +401,7 @@ describe('<FocusTrap />', () => {
         expect(screen.getByRole('textbox')).toHaveFocus();
       });
 
-      it('should keep focus inside when children have positive tabIndex', async () => {
+      it('should keep focus inside when Tab is pressed from a positive-tabIndex element', async () => {
         render(
           <div>
             <input data-testid="outside-input" />
@@ -419,11 +419,13 @@ describe('<FocusTrap />', () => {
         });
         expect(screen.getByTestId('positive-tab')).toHaveFocus();
 
-        // Attempting to move focus outside should be trapped
+        // Without the fix, forward Tab from a positive-tabIndex element jumps to
+        // the first tabIndex=0 element in document order — which is outside-input (outside the trap).
+        // The fix intercepts the Tab keydown and redirects to the next tabbable inside the trap.
         await act(async () => {
-          screen.getByTestId('outside-input').focus();
+          fireEvent.keyDown(screen.getByTestId('positive-tab'), { key: 'Tab', bubbles: true });
         });
-        expect(screen.getByTestId('outside-input')).not.toHaveFocus();
+        expect(screen.getByTestId('normal-tab')).toHaveFocus();
       });
 
       it('should trap once the focus moves inside', async () => {

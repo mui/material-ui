@@ -233,6 +233,32 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         if (sentinelEnd.current) {
           sentinelEnd.current.focus();
         }
+        return;
+      }
+
+      // Forward Tab from a positive-tabIndex element inside the trap.
+      // After all positive-tabIndex elements, the browser's natural next focus target
+      // is tabIndex=0 elements in document order — which may be outside the trap.
+      // Intercept and redirect to the correct next element inside the trap.
+      if (
+        !nativeEvent.shiftKey &&
+        rootRef.current !== null &&
+        contains(rootRef.current, activeElement) &&
+        (activeElement as HTMLElement).tabIndex > 0
+      ) {
+        const tabbable = getTabbable(rootRef.current);
+        const currentIndex = tabbable.indexOf(activeElement as HTMLElement);
+        if (currentIndex !== -1) {
+          nativeEvent.preventDefault();
+          const nextEl = tabbable[currentIndex + 1];
+          if (nextEl) {
+            nextEl.focus();
+          } else {
+            // Last tabbable element — loop back via sentinelEnd
+            ignoreNextEnforceFocus.current = true;
+            sentinelEnd.current?.focus();
+          }
+        }
       }
     };
 
