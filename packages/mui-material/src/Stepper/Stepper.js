@@ -219,7 +219,7 @@ Stepper.propTypes /* remove-proptypes */ = {
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
    * If set to 'true' and orientation is vertical,
-   * then the step label will be positioned to the right of the icon.
+   * it reverses the position of the label and content.
    * @default false
    */
   alternativeLabel: PropTypes.bool,
