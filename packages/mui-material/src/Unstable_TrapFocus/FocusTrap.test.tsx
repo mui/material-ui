@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
+import getActiveElement from '../utils/getActiveElement';
 import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 
 interface GenericProps {
@@ -112,6 +113,51 @@ describe('<FocusTrap />', () => {
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 
+  it('does not trap shadow DOM focusables back to the root', async () => {
+    const ShadowContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+      function ShadowContent(props, ref) {
+        const hostRef = React.useRef<HTMLDivElement>(null);
+
+        React.useLayoutEffect(() => {
+          const host = hostRef.current!;
+          const shadowRoot = host.shadowRoot ?? host.attachShadow({ mode: 'open' });
+          const shadowButton = document.createElement('button');
+
+          shadowRoot.replaceChildren(shadowButton);
+        }, []);
+
+        return (
+          <div {...props} ref={ref} tabIndex={-1} data-testid="root">
+            <div data-testid="shadow-host" ref={hostRef} />
+          </div>
+        );
+      },
+    );
+
+    const { user } = render(
+      <FocusTrap open>
+        <ShadowContent />
+      </FocusTrap>,
+    );
+
+    const host = screen.getByTestId('shadow-host');
+    const root = screen.getByTestId('root');
+    const shadowButton = host.shadowRoot!.querySelector('button')!;
+
+    expect(root).toHaveFocus();
+
+    await act(async () => {
+      (shadowButton as HTMLButtonElement).focus();
+    });
+
+    expect(getActiveElement(document)).to.equal(shadowButton);
+
+    await user.keyboard('{Tab}');
+    // `user.keyboard('{Tab}')` doesn't emulate native shadow DOM tab order, but
+    // it still verifies FocusTrap doesn't force focus back to the root.
+    expect(root).not.toHaveFocus();
+  });
+
   it('should focus a marked descendant instead of the root', () => {
     render(
       <FocusTrap open>
@@ -123,6 +169,30 @@ describe('<FocusTrap />', () => {
       </FocusTrap>,
     );
     expect(screen.getByTestId('focusable')).toHaveFocus();
+  });
+
+  it('should use positive tabIndex order from a marked descendant', async () => {
+    const { user } = render(
+      <FocusTrap open>
+        <div data-testid="root">
+          <div {...{ [FOCUSABLE_ATTRIBUTE]: '' }} tabIndex={-1} data-testid="focusable">
+            <button type="button" data-testid="normal-tab">
+              Normal
+            </button>
+            <button type="button" tabIndex={1} data-testid="indexed-tab">
+              Indexed
+            </button>
+          </div>
+        </div>
+      </FocusTrap>,
+    );
+
+    const focusable = screen.getByTestId('focusable');
+    expect(focusable).toHaveFocus();
+
+    await user.tab();
+
+    expect(screen.getByTestId('indexed-tab')).toHaveFocus();
   });
 
   it('should prefer the marked descendant over unmarked descendants', () => {
