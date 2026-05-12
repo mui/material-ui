@@ -44,16 +44,27 @@ Object.keys(importRegressionFixtures).forEach((path) => {
 }, []);
 
 // Also use some of the demos to avoid code duplication.
+//
+// Two exclusion layers:
+//   - Slug-level (whole slug has no tool consumer, or path can't be imported) lives here,
+//     dropping the demo from the bundle entirely.
+//   - Per-demo (a specific demo inside an otherwise-enrolled slug is skipped by one tool
+//     or the other) lives in `demoMeta.ts`, so screenshot-specific reasons
+//     ("Redundant", "Flaky image loading") don't also drop a11y coverage.
+//
+// Enrolling a new component for a11y: un-negate the slug glob below if needed,
+// then add an `A11Y_RULES` entry in `demoMeta.ts`
+// (e.g. `{ test: 'docs/data/material/components/foo/{BasicFoo,FooVariants}', enabled: true }`).
 const importDemos = import.meta.glob(
   [
     'docs/data/**/[A-Z]*.js',
     'docs/data/base/**/[A-Z]*/css/index.js',
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
     'docs/data/base/**/[A-Z]*/system/index.js',
-    // ================== Exclusions ==================
+    // ================== Structural — cannot be imported safely ==================
     '!docs/data/experiments',
     '!docs/data/material/**/*NoSnap.*',
-    // Template
+    // Templates — not demos
     '!docs/data/material/getting-started/templates/blog/components',
     '!docs/data/material/getting-started/templates/checkout/components',
     '!docs/data/material/getting-started/templates/crud-dashboard/components',
@@ -69,80 +80,33 @@ const importDemos = import.meta.glob(
     '!docs/data/material/getting-started/templates/sign-in/components',
     '!docs/data/material/getting-started/templates/sign-in-side/components',
     '!docs/data/material/getting-started/templates/sign-up/components',
-    // Marketing Page Theme Customizations
-    '!docs/data/material/components/alert/TransitionAlerts', // Needs interaction
-    '!docs/data/material/components/app-bar/BackToTop', // Needs interaction
-    '!docs/data/material/components/app-bar/ElevateAppBar', // Needs interaction
-    '!docs/data/material/components/app-bar/HideAppBar', // Needs interaction
-    '!docs/data/material/components/app-bar/MenuAppBar', // Redundant
-    '!docs/data/material/components/autocomplete/Asynchronous', // Redundant
-    '!docs/data/material/components/autocomplete/CheckboxesTags', // Redundant
-    '!docs/data/material/components/autocomplete/CountrySelect', // Redundant
-    '!docs/data/material/components/autocomplete/DisabledOptions', // Redundant
-    '!docs/data/material/components/autocomplete/Filter', // Redundant
-    '!docs/data/material/components/autocomplete/FreeSolo', // Redundant
-    '!docs/data/material/components/autocomplete/GoogleMaps', // Redundant
-    '!docs/data/material/components/autocomplete/Grouped', // Redundant
-    '!docs/data/material/components/autocomplete/Highlights', // Redundant
-    '!docs/data/material/components/autocomplete/Playground', // Redundant
-    '!docs/data/material/components/autocomplete/UseAutocomplete', // Redundant
-    '!docs/data/material/components/autocomplete/Virtualize', // Redundant
-    '!docs/data/material/components/backdrop/SimpleBackdrop', // Needs interaction
-    '!docs/data/material/components/badges/BadgeAlignment', // Redux isolation
-    '!docs/data/material/components/badges/BadgeVisibility', // Needs interaction
-    '!docs/data/material/components/bottom-navigation/FixedBottomNavigation', // Redundant
-    '!docs/data/material/components/breadcrumbs/ActiveLastBreadcrumb', // Redundant
-    '!docs/data/material/components/chips/ChipsPlayground', // Redux isolation
+    // Customization demos — not component pages
+    '!docs/data/material/customization/breakpoints',
+    '!docs/data/material/customization/color',
+    '!docs/data/material/customization/container-queries/ResizableDemo',
+    '!docs/data/material/customization/default-theme',
+    '!docs/data/material/customization/density/DensityTool',
+    '!docs/data/material/customization/right-to-left/RtlDemo',
+    '!docs/data/material/customization/transitions/TransitionHover',
+    '!docs/data/material/customization/typography/ResponsiveFontSizesChart',
+    // Other non-demo subtrees
+    '!docs/data/material/components/menubar/components', // Source subdir, not demos
+    '!docs/data/material/getting-started/supported-components/MaterialUIComponents',
+    '!docs/data/material/guides',
+    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind',
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal',
+    '!docs/data/premium-themes',
+    // ================== Slug-level — no tool consumer ==================
+    '!docs/data/material/components/backdrop', // Needs interaction
     '!docs/data/material/components/click-away-listener', // Needs interaction
     '!docs/data/material/components/container', // Can't see the impact
     '!docs/data/material/components/dialogs', // Needs interaction
-    '!docs/data/material/components/drawers/SwipeableEdgeDrawer', // Needs interaction
-    '!docs/data/material/components/drawers/SwipeableTemporaryDrawer', // Needs interaction
-    '!docs/data/material/components/drawers/TemporaryDrawer', // Needs interaction
-    '!docs/data/material/components/floating-action-button/FloatingActionButtonZoom', // Needs interaction
-    '!docs/data/material/components/image-list', // Image don't load
-    '!docs/data/material/components/masonry/ImageMasonry', // Image don't load
-    '!docs/data/material/components/masonry/Sequential', // Flaky
-    '!docs/data/material/components/material-icons/SearchIcons',
-    '!docs/data/material/components/menubar/components', // Not demos
-    '!docs/data/material/components/menus', // Need interaction
-    '!docs/data/material/components/modal/BasicModal', // Needs interaction
-    '!docs/data/material/components/modal/KeepMountedModal', // Needs interaction
-    '!docs/data/material/components/modal/SpringModal', // Needs interaction
-    '!docs/data/material/components/modal/TransitionsModal', // Needs interaction
-    '!docs/data/material/components/no-ssr/FrameDeferring', // Needs interaction
-    '!docs/data/material/components/popover/AnchorPlayground', // Redux isolation
-    '!docs/data/material/components/popover/BasicPopover', // Needs interaction
-    '!docs/data/material/components/popover/PopoverPopupState', // Needs interaction
-    '!docs/data/material/components/popper/PopperPopupState', // Needs interaction
-    '!docs/data/material/components/popper/PositionedPopper', // Needs interaction
-    '!docs/data/material/components/popper/ScrollPlayground', // Redux isolation
-    '!docs/data/material/components/popper/SimplePopper', // Needs interaction
-    '!docs/data/material/components/popper/SpringPopper', // Needs interaction
-    '!docs/data/material/components/popper/TransitionsPopper', // Needs interaction
-    '!docs/data/material/components/popper/VirtualElementPopper', // Needs interaction
+    '!docs/data/material/components/image-list', // Images don't load
+    '!docs/data/material/components/material-icons/SearchIcons', // Heavy icon grid
+    '!docs/data/material/components/menus', // Needs interaction
+    '!docs/data/material/components/popper', // Needs interaction
     '!docs/data/material/components/progress', // Flaky
-    '!docs/data/material/components/selects/ControlledOpenSelect', // Needs interaction
-    '!docs/data/material/components/selects/DialogSelect', // Needs interaction
-    '!docs/data/material/components/selects/GroupedSelect', // Needs interaction
-    '!docs/data/material/components/skeleton/Animations', // Animation disabled
-    '!docs/data/material/components/skeleton/Facebook', // Flaky image loading
-    '!docs/data/material/components/skeleton/SkeletonChildren', // flaky image loading
-    '!docs/data/material/components/skeleton/YouTube', // Flaky image loading
-    '!docs/data/material/components/snackbars/ConsecutiveSnackbars', // Needs interaction
-    '!docs/data/material/components/snackbars/CustomizedSnackbars', // Redundant
-    '!docs/data/material/components/snackbars/DirectionSnackbar', // Needs interaction
-    '!docs/data/material/components/snackbars/FabIntegrationSnackbar', // Needs interaction
-    '!docs/data/material/components/snackbars/IntegrationNotistack', // Needs interaction
-    '!docs/data/material/components/snackbars/PositionedSnackbar', // Needs interaction
-    '!docs/data/material/components/snackbars/SimpleSnackbar', // Needs interaction
-    '!docs/data/material/components/snackbars/TransitionsSnackbar', // Needs interaction
     '!docs/data/material/components/speed-dial', // Needs interaction
-    '!docs/data/material/components/stack/InteractiveStack', // Redundant
-    '!docs/data/material/components/steppers/HorizontalNonLinearStepper', // Redundant
-    '!docs/data/material/components/steppers/TextMobileStepper', // Flaky image loading
-    '!docs/data/material/components/tabs/AccessibleTabs1', // Need interaction
-    '!docs/data/material/components/tabs/AccessibleTabs2', // Need interaction
     '!docs/data/material/components/textarea-autosize', // Superseded by a dedicated regression test
     '!docs/data/material/components/tooltips', // Needs interaction
     '!docs/data/material/components/transitions', // Needs interaction
