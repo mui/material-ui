@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.2",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@a57681c",
+    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@52dc6db",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
