@@ -109,10 +109,10 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
   // ColorContrast regression matrices — one fixture per component+mode in
-  // `test/regressions/fixtures/ColorContrast/`, each rendering a variant ×
-  // color (or analogous prop axes) grid. Results land in
-  // `test/regressions/a11y/results/ColorContrast.a11y.json`, keyed by
-  // `{Component}{Light|Dark}`, with per-instance detail collected from each
+  // `test/regressions/fixtures/ColorContrast/{Component}{Light,Dark}.js`,
+  // each rendering a variant × color (or analogous prop axes) grid. Results
+  // land per component in `test/regressions/a11y/results/{Component}.a11y.json`
+  // keyed by `Light` / `Dark`, with per-instance detail collected from each
   // cell's `data-*` ancestors. Asserts skipped while we plan the WCAG AA
   // token updates; drop `skipAssertions` to flip these into hard gates.
   {

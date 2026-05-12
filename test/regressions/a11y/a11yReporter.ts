@@ -31,38 +31,47 @@ function* walkTests(node: TestModule | TestSuite): Generator<TestCase, undefined
   }
 }
 
-function hasStatus(meta: A11yMeta, status: 'fail' | 'incomplete'): boolean {
-  for (const rule of Object.values(meta.rules)) {
-    if (rule.status === status) {
-      return true;
-    }
-  }
-  return false;
+function hasStatus(metas: ReadonlyArray<A11yMeta>, status: 'fail' | 'incomplete'): boolean {
+  return metas.some((meta) => Object.values(meta.rules).some((rule) => rule.status === status));
 }
 
+// Regression a11y fixtures live in `fixtures/ColorContrast/{Component}{Light|Dark}.js`,
+// so the demo name encodes both the component (output file) and the mode
+// (entry key within that file). Fixtures that don't follow the suffix
+// convention fall back to a single self-named file/entry.
+const REGRESSION_DEMO_RE = /^(.*?)(Light|Dark)$/;
+
 interface OutputTarget {
-  /** Output dir for `{slug}.a11y.json` files. */
+  /** Root dir holding the result files. */
   dir: string;
-  /** Where the file path lives for a given slug (docs co-locates inside slug subdir). */
-  file: (slug: string) => string;
-  /** Glob (relative to `dir`) used to discover stale files for pruning. */
+  /** Group key for a recorded meta — also the output file's identity. */
+  bucketOf: (meta: A11yMeta) => string;
+  /** Key for this meta's entry inside its file. */
+  entryKeyOf: (meta: A11yMeta) => string;
+  /** Absolute path of the output file for a bucket. */
+  fileFor: (bucket: string) => string;
+  /** Glob (relative to `dir`) for discovering existing result files. */
   pruneGlob: string;
-  /** Extract the slug name from an absolute file path discovered via `pruneGlob`. */
-  pruneSlug: (file: string) => string;
+  /** Map a discovered file path back to its bucket id. */
+  pruneBucketOf: (absPath: string) => string;
 }
 
 const TARGETS: Record<RouteKind, OutputTarget> = {
   docs: {
     dir: DOCS_COMPONENTS_DIR,
-    file: (slug) => path.join(DOCS_COMPONENTS_DIR, slug, `${slug}.a11y.json`),
+    bucketOf: (meta) => meta.slug,
+    entryKeyOf: (meta) => meta.demo,
+    fileFor: (slug) => path.join(DOCS_COMPONENTS_DIR, slug, `${slug}.a11y.json`),
     pruneGlob: '*/*.a11y.json',
-    pruneSlug: (file) => path.basename(path.dirname(file)),
+    pruneBucketOf: (file) => path.basename(path.dirname(file)),
   },
   regression: {
     dir: REGRESSION_RESULTS_DIR,
-    file: (slug) => path.join(REGRESSION_RESULTS_DIR, `${slug}.a11y.json`),
+    bucketOf: (meta) => meta.demo.match(REGRESSION_DEMO_RE)?.[1] ?? meta.demo,
+    entryKeyOf: (meta) => meta.demo.match(REGRESSION_DEMO_RE)?.[2] ?? meta.demo,
+    fileFor: (component) => path.join(REGRESSION_RESULTS_DIR, `${component}.a11y.json`),
     pruneGlob: '*.a11y.json',
-    pruneSlug: (file) => path.basename(file, '.a11y.json'),
+    pruneBucketOf: (file) => path.basename(file, '.a11y.json'),
   },
 };
 
@@ -78,6 +87,7 @@ export default class A11yReporter implements Reporter {
     _unhandledErrors: ReadonlyArray<SerializedError>,
     reason: TestRunEndReason,
   ) {
+    // bucket id -> recorded metas, kept separate per kind
     const byKind: Record<RouteKind, Map<string, A11yMeta[]>> = {
       docs: new Map(),
       regression: new Map(),
@@ -88,26 +98,24 @@ export default class A11yReporter implements Reporter {
         if (!meta) {
           continue;
         }
-        const bucket = byKind[meta.kind];
-        const list = bucket.get(meta.slug) ?? [];
+        const bucket = TARGETS[meta.kind].bucketOf(meta);
+        const list = byKind[meta.kind].get(bucket) ?? [];
         list.push(meta);
-        bucket.set(meta.slug, list);
+        byKind[meta.kind].set(bucket, list);
       }
     }
 
     for (const kind of Object.keys(TARGETS) as RouteKind[]) {
-      const bySlug = byKind[kind];
-      if (bySlug.size === 0) {
-        continue;
-      }
       const target = TARGETS[kind];
-      for (const [slug, metas] of bySlug) {
-        const outFile = target.file(slug);
+      for (const [bucket, metas] of byKind[kind]) {
+        const outFile = target.fileFor(bucket);
         fs.mkdirSync(path.dirname(outFile), { recursive: true });
-        const sorted = [...metas].sort((a, b) => a.demo.localeCompare(b.demo));
+        const sorted = [...metas].sort((a, b) =>
+          target.entryKeyOf(a).localeCompare(target.entryKeyOf(b)),
+        );
         const file: Record<string, DemoEntry> = {};
         for (const meta of sorted) {
-          file[meta.demo] = { rules: meta.rules };
+          file[target.entryKeyOf(meta)] = { rules: meta.rules };
         }
         fs.writeFileSync(outFile, `${JSON.stringify(file, null, 2)}\n`);
       }
@@ -115,7 +123,7 @@ export default class A11yReporter implements Reporter {
 
     // Only prune when this run is authoritative for the full enrolment set:
     // VRT module must have actually executed, no `-t` filter narrowed it, and
-    // the run completed cleanly. A partial/failed run can omit slugs whose
+    // the run completed cleanly. A partial/failed run can omit buckets whose
     // tests crashed before recording, so pruning then would delete tracked
     // JSON for still-enrolled demos.
     const ranVrtSuite = testModules.some((m) => m.moduleId === VRT_MODULE_PATH);
@@ -127,7 +135,7 @@ export default class A11yReporter implements Reporter {
         }
         const seen = byKind[kind];
         for (const file of globbySync(target.pruneGlob, { cwd: target.dir, absolute: true })) {
-          if (!seen.has(target.pruneSlug(file))) {
+          if (!seen.has(target.pruneBucketOf(file))) {
             fs.unlinkSync(file);
           }
         }
@@ -135,28 +143,28 @@ export default class A11yReporter implements Reporter {
     }
 
     for (const kind of Object.keys(TARGETS) as RouteKind[]) {
-      const bySlug = byKind[kind];
-      if (bySlug.size === 0) {
+      const buckets = byKind[kind];
+      if (buckets.size === 0) {
         continue;
       }
-      const slugs = [...bySlug.keys()].sort();
-      const partial = slugs.filter((s) => bySlug.get(s)!.some((m) => hasStatus(m, 'fail')));
-      const needsReview = slugs.filter(
-        (s) => !partial.includes(s) && bySlug.get(s)!.some((m) => hasStatus(m, 'incomplete')),
+      const names = [...buckets.keys()].sort();
+      const partial = names.filter((n) => hasStatus(buckets.get(n)!, 'fail'));
+      const needsReview = names.filter(
+        (n) => !partial.includes(n) && hasStatus(buckets.get(n)!, 'incomplete'),
       );
-      const pass = slugs.filter((s) => !partial.includes(s) && !needsReview.includes(s));
-      const totalDemos = [...bySlug.values()].reduce((n, ms) => n + ms.length, 0);
+      const pass = names.filter((n) => !partial.includes(n) && !needsReview.includes(n));
+      const totalDemos = [...buckets.values()].reduce((n, ms) => n + ms.length, 0);
       const target = TARGETS[kind];
       const dirLabel =
         kind === 'docs'
           ? `${path.relative(process.cwd(), target.dir)}/{slug}/{slug}.a11y.json`
-          : `${path.relative(process.cwd(), target.dir)}/{slug}.a11y.json`;
+          : `${path.relative(process.cwd(), target.dir)}/{component}.a11y.json`;
       // eslint-disable-next-line no-console
       console.log(
         [
           '',
           chalk.bold(
-            `a11y ${kind} results (${totalDemos} demos, ${slugs.length} slugs) -> ${dirLabel}`,
+            `a11y ${kind} results (${totalDemos} demos, ${names.length} components) -> ${dirLabel}`,
           ),
           '',
           `  ✅ Pass (${pass.length}):         ${pass.join(', ') || '—'}`,

@@ -1,0 +1,215 @@
+{
+  "Dark": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "button-name": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "variant": "contained",
+            "color": "error",
+            "contrastRatio": 3.68
+          },
+          {
+            "variant": "contained",
+            "color": "error",
+            "contrastRatio": 3.68
+          },
+          {
+            "variant": "contained",
+            "color": "error",
+            "contrastRatio": 3.68
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  },
+  "Light": {
+    "rules": {
+      "aria-allowed-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-conditional-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-deprecated-role": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-prohibited-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-required-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-roles": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "aria-valid-attr-value": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "button-name": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "variant": "text",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "text",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "text",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "text",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "text",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "text",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "outlined",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "outlined",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "contained",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "contained",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
+            "variant": "contained",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "warning",
+            "contrastRatio": 3.11
+          }
+        ]
+      },
+      "nested-interactive": {
+        "status": "pass",
+        "tags": ["wcag2a"]
+      },
+      "target-size": {
+        "status": "pass",
+        "tags": ["wcag22aa"]
+      }
+    }
+  }
+}
