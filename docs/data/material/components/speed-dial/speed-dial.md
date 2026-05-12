@@ -20,24 +20,24 @@ If more than six actions are needed, something other than a FAB should be used t
 
 The floating action button can display related actions.
 
-{{"demo": "BasicSpeedDial.js"}}
+{{"component": "../data/material/components/speed-dial/demos/basic/index.ts"}}
 
 ## Playground
 
-{{"demo": "PlaygroundSpeedDial.js"}}
+{{"component": "../data/material/components/speed-dial/demos/playground/index.ts"}}
 
 ## Controlled speed dial
 
 The open state of the component can be controlled with the `open`/`onOpen`/`onClose` props.
 
-{{"demo": "ControlledOpenSpeedDial.js"}}
+{{"component": "../data/material/components/speed-dial/demos/controlled-open/index.ts"}}
 
 ## Custom close icon
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props
 of the `SpeedDialIcon` component.
 
-{{"demo": "OpenIconSpeedDial.js"}}
+{{"component": "../data/material/components/speed-dial/demos/open-icon/index.ts"}}
 
 ## Persistent action tooltips
 
@@ -52,7 +52,7 @@ Compound placements like `top-start` are centered like `top`.
 In horizontal speed dials, each action is as wide as its label so that the labels don't overlap.
 The actions keep that space while the speed dial is closed.
 
-{{"demo": "SpeedDialTooltipOpen.js"}}
+{{"component": "../data/material/components/speed-dial/demos/tooltip-open/index.ts"}}
 
 ## Transitions
 

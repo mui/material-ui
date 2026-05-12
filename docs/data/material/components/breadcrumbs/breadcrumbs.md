@@ -15,44 +15,44 @@ githubSource: packages/mui-material/src/Breadcrumbs
 
 ## Basic breadcrumbs
 
-{{"demo": "BasicBreadcrumbs.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/basic/index.ts"}}
 
 ## Active last breadcrumb
 
 Keep the last breadcrumb interactive.
 
-{{"demo": "ActiveLastBreadcrumb.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/active-last/index.ts"}}
 
 ## Custom separator
 
 In the following examples, we are using two string separators and an SVG icon.
 
-{{"demo": "CustomSeparator.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/custom-separator/index.ts"}}
 
 ## Breadcrumbs with icons
 
-{{"demo": "IconBreadcrumbs.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/icon/index.ts"}}
 
 ## Collapsed breadcrumbs
 
-{{"demo": "CollapsedBreadcrumbs.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/collapsed/index.ts"}}
 
 ## Condensed with menu
 
 As an alternative, consider adding a Menu component to display the condensed links in a dropdown list:
 
-{{"demo": "CondensedWithMenu.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/condensed-with-menu/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedBreadcrumbs.js"}}
+{{"component": "../data/material/components/breadcrumbs/demos/customized/index.ts"}}
 
 ## Integration with react-router
 
-{{"demo": "RouterBreadcrumbs.js", "bg": true}}
+{{"component": "../data/material/components/breadcrumbs/demos/router/index.ts", "bg": true}}
 
 ## Accessibility
 
