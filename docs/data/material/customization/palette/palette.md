@@ -313,9 +313,9 @@ The `contrastThreshold` parameter can produce counterproductive results.\
 Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
 :::
 
-### Windows High Contrast Mode
+### Windows High Contrast mode
 
-To improve component visibility in Windows High Contrast Mode (also known as [Forced Colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)), use the `enhanceHighContrast` theme enhancer.
+To improve component visibility in Windows High Contrast mode (also known as [Forced Colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)), use the `enhanceHighContrast` theme enhancer.
 It follows the same pattern as `responsiveFontSizes`: it accepts a fully-created theme and returns an enhanced version of it with `@media (forced-colors: active)` overrides applied to the affected components.
 
 ```js
