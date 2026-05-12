@@ -17,7 +17,7 @@ permissions: {}
 jobs:
   continuous-releases:
     name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@dd7db35e4c70c656b86a98cf9b4819e7a4105f48 # master
+    uses: mui/mui-public/.github/workflows/ci-base.yml@fb2e995849648cc3f6e43ed4ad10b7bad0750d7c # master
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
@@ -37,7 +37,7 @@ jobs:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@8912a9102ac27614460f54aedde9e1e7f9aec20d # v6.0.5
+        uses: pnpm/action-setup@91ab88e2619ed1f46221f0ba42d1492c02baf788 # v6.0.6
       - name: Use Node.js
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
