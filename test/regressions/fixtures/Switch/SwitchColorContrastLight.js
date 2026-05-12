@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const COLORS = ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'];
 const CHECKED = [false, true];
@@ -17,11 +18,12 @@ export default function SwitchColorContrastLight() {
             <Stack key={String(checked)} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {COLORS.map((color) => (
                 <div key={color} data-color={color} data-checked={String(checked)}>
-                  <Switch
-                    color={color}
-                    checked={checked}
-                    onChange={() => {}}
-                    inputProps={{ 'aria-label': `${color} ${checked ? 'on' : 'off'}` }}
+                  {/* FormControlLabel wraps a real <label> around the input —
+                      satisfies axe's `label` rule (a bare `aria-label` via
+                      `inputProps` is dropped in v9). */}
+                  <FormControlLabel
+                    label={`${color} ${checked ? 'on' : 'off'}`}
+                    control={<Switch color={color} checked={checked} onChange={() => {}} />}
                   />
                 </div>
               ))}

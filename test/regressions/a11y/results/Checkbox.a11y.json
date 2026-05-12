@@ -25,85 +25,89 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "color": "default",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "primary",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "secondary",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "error",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "info",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "success",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "warning",
+            "checked": "false",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "default",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "primary",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "secondary",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "error",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "info",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "success",
+            "checked": "true",
+            "contrastRatio": 1.12
+          },
+          {
+            "color": "warning",
+            "checked": "true",
+            "contrastRatio": 1.12
+          }
+        ]
+      },
       "form-field-multiple-labels": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
       "label": {
-        "status": "fail",
-        "tags": ["wcag2a"],
-        "instances": [
-          {
-            "indeterminate": "false",
-            "color": "default",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "primary",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "secondary",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "error",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "info",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "success",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "warning",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "default",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "primary",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "secondary",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "error",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "info",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "success",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "warning",
-            "checked": "true"
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2a"]
       },
       "nested-interactive": {
         "status": "pass",
@@ -141,85 +145,17 @@
         "status": "pass",
         "tags": ["wcag2a"]
       },
+      "color-contrast": {
+        "status": "pass",
+        "tags": ["wcag2aa"]
+      },
       "form-field-multiple-labels": {
         "status": "pass",
         "tags": ["wcag2a"]
       },
       "label": {
-        "status": "fail",
-        "tags": ["wcag2a"],
-        "instances": [
-          {
-            "indeterminate": "false",
-            "color": "default",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "primary",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "secondary",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "error",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "info",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "success",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "warning",
-            "checked": "false"
-          },
-          {
-            "indeterminate": "false",
-            "color": "default",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "primary",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "secondary",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "error",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "info",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "success",
-            "checked": "true"
-          },
-          {
-            "indeterminate": "false",
-            "color": "warning",
-            "checked": "true"
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2a"]
       },
       "nested-interactive": {
         "status": "pass",
