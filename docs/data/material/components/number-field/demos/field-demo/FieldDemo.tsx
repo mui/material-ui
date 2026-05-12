@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import NumberField from "./NumberField";
+import NumberField from './NumberField';
 
 export default function FieldDemo() {
   return (
