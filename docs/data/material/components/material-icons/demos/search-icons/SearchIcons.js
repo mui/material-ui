@@ -49,7 +49,7 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 // import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
-import synonyms from "./synonyms";
+import synonyms from './synonyms';
 
 // const mui = {
 //   ExitToApp,
