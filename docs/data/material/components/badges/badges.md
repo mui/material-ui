@@ -36,19 +36,48 @@ surrounding UI.
 
 Use `badgeContent` to add a short count or label to the wrapped element.
 
-{{"demo": "SimpleBadge.js"}}
+{{"component": "../data/material/components/badges/demos/simple/index.ts"}}
 
 ### Dot badge
 
-Use `variant="dot"` for a compact status indicator without a count.
+Use `color` prop to apply theme palette to component.
 
-{{"demo": "DotBadge.js"}}
+{{"component": "../data/material/components/badges/demos/color/index.ts"}}
+
+## Customization
+
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
+
+{{"component": "../data/material/components/badges/demos/customized/index.ts"}}
+
+## Badge visibility
+
+The visibility of badges can be controlled using the `invisible` prop.
+
+{{"component": "../data/material/components/badges/demos/visibility/index.ts"}}
+
+The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
+
+{{"component": "../data/material/components/badges/demos/show-zero/index.ts"}}
+
+## Maximum value
+
+You can use the `max` prop to cap the value of the badge content.
+
+{{"component": "../data/material/components/badges/demos/max/index.ts"}}
+
+## Dot badge
+
+The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+
+{{"component": "../data/material/components/badges/demos/dot/index.ts"}}
 
 ### Visibility
 
 Control badge visibility with the `invisible` prop.
 
-{{"demo": "BadgeVisibility.js"}}
+{{"component": "../data/material/components/badges/demos/overlap/index.ts"}}
 
 The badge hides automatically when `badgeContent` is zero. Override this with the `showZero`
 prop when zero is meaningful to the interface.
@@ -73,17 +102,10 @@ Use the `color` prop to apply theme palette colors to the badge.
 
 Use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"demo": "BadgeAlignment.js", "hideToolbar": true}}
+{{"component": "../data/material/components/badges/demos/alignment/index.ts", "hideToolbar": true}}
 
 ### Badge overlap
 
 Use the `overlap` prop when the wrapped element is circular.
 
-{{"demo": "BadgeOverlap.js"}}
-
-### Custom styles
-
-Use theme style overrides, the `sx` prop, or `styled()` to customize the badge.
-Learn more in the [customization guide](/material-ui/customization/how-to-customize/).
-
-{{"demo": "CustomizedBadges.js"}}
+{{"component": "../data/material/components/badges/demos/accessible/index.ts"}}

@@ -23,7 +23,7 @@ not shown in context.
 
 The `Chip` component supports outlined and filled styling.
 
-{{"demo": "BasicChips.js"}}
+{{"component": "../data/material/components/chips/demos/basic/index.ts"}}
 
 ## Chip actions
 
@@ -34,23 +34,23 @@ You can use the following actions.
 
 ### Clickable
 
-{{"demo": "ClickableChips.js"}}
+{{"component": "../data/material/components/chips/demos/clickable/index.ts"}}
 
 ### Deletable
 
-{{"demo": "DeletableChips.js"}}
+{{"component": "../data/material/components/chips/demos/deletable/index.ts"}}
 
 ### Clickable and deletable
 
-{{"demo": "ClickableAndDeletableChips.js"}}
+{{"component": "../data/material/components/chips/demos/clickable-and-deletable/index.ts"}}
 
 ### Clickable link
 
-{{"demo": "ClickableLinkChips.js"}}
+{{"component": "../data/material/components/chips/demos/clickable-link/index.ts"}}
 
 ### Custom delete icon
 
-{{"demo": "CustomDeleteIconChips.js"}}
+{{"component": "../data/material/components/chips/demos/custom-delete-icon/index.ts"}}
 
 ## Chip adornments
 
@@ -60,30 +60,30 @@ Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
 
 ### Avatar chip
 
-{{"demo": "AvatarChips.js"}}
+{{"component": "../data/material/components/chips/demos/avatar/index.ts"}}
 
 ### Icon chip
 
-{{"demo": "IconChips.js"}}
+{{"component": "../data/material/components/chips/demos/icon/index.ts"}}
 
 ## Color chip
 
 You can use the `color` prop to define a color from theme palette.
 
-{{"demo": "ColorChips.js"}}
+{{"component": "../data/material/components/chips/demos/color/index.ts"}}
 
 ## Sizes chip
 
 You can use the `size` prop to define a small Chip.
 
-{{"demo": "SizesChips.js"}}
+{{"component": "../data/material/components/chips/demos/sizes/index.ts"}}
 
 ## Multiline chip
 
 By default, Chips displays labels only in a single line.
 To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
 
-{{"demo": "MultilineChips.js"}}
+{{"component": "../data/material/components/chips/demos/multiline/index.ts"}}
 
 ## Chip array
 
@@ -92,11 +92,11 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"demo": "ChipsArray.js"}}
+{{"component": "../data/material/components/chips/demos/array/index.ts"}}
 
 ## Chip playground
 
-{{"demo": "ChipsPlayground.js", "hideToolbar": true}}
+{{"component": "../data/material/components/chips/demos/playground/index.ts", "hideToolbar": true}}
 
 ## Accessibility
 

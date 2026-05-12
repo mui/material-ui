@@ -8,13 +8,13 @@ There are two main components available to perform navigations.
 The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest.
 It renders a native `<a>` element and applies the `href` as an attribute.
 
-{{"demo": "LinkDemo.js"}}
+{{"component": "../data/material/integrations/routing/demos/link-demo/index.ts"}}
 
 You can also make a button perform navigation actions.
 If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode.
 For instance, with a `Button` component:
 
-{{"demo": "ButtonDemo.js"}}
+{{"component": "../data/material/integrations/routing/demos/button-demo/index.ts"}}
 
 ## Global theme Link
 
@@ -52,7 +52,7 @@ const theme = createTheme({
 });
 ```
 
-{{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/integrations/routing/demos/link-router-with-theme/index.ts", "defaultCodeOpen": false}}
 
 :::warning
 This approach has limitations with TypeScript.
@@ -72,11 +72,11 @@ You can apply the same strategy with all the components: BottomNavigation, Card,
 
 ### Link
 
-{{"demo": "LinkRouter.js"}}
+{{"component": "../data/material/integrations/routing/demos/link-router/index.ts"}}
 
 ### Button
 
-{{"demo": "ButtonRouter.js"}}
+{{"component": "../data/material/integrations/routing/demos/button-router/index.ts"}}
 
 **Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element.
 This can create issues when rendering a link.
@@ -91,11 +91,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Tabs
 
-{{"demo": "TabsRouter.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/integrations/routing/demos/tabs-router/index.ts", "defaultCodeOpen": false}}
 
 ### List
 
-{{"demo": "ListRouter.js"}}
+{{"component": "../data/material/integrations/routing/demos/list-router/index.ts"}}
 
 ## More examples
 
