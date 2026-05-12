@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
-import ResizableDemo from "../ResizableDemo";
+import ResizableDemo from '../ResizableDemo';
 
 const DynamicCard = styled(Card)(({ theme }) => ({
   display: 'flex',
