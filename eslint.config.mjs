@@ -363,8 +363,8 @@ export default defineConfig(
   {
     files: ['docs/src/pages/premium-themes/onepirate/modules/form/RFTextField.js'],
     rules: {
-      // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment
-      // if added.
+      // Preserve the file's import ordering and any inline eslint-disable comments
+      // that older tooling used to reshape.
       'import/order': 'off',
     },
   },

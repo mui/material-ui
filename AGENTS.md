@@ -58,11 +58,7 @@ pnpm proptypes && pnpm docs:api
 
 ### Docs demos
 
-Always author the TypeScript version of the demos. To generate the JavaScript variant, run:
-
-```bash
-pnpm docs:typescript:formatted
-```
+Demos are authored as TypeScript only. The JavaScript variant shown in the docs is generated on the fly at build/runtime and is not committed as a separate file.
 
 ## Architecture
 
@@ -230,8 +226,7 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 3. `pnpm typescript` - Pass type checking
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
-6. If demos changed: `pnpm docs:typescript:formatted`
-7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
+6. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 
