@@ -14,9 +14,9 @@ export default function BoxSystemProps() {
         border: '2px solid grey',
       }}
     >
-    {/* @focus-start */}
+      {/* @focus-start */}
       This Box uses MUI System properties through the sx prop.
-    {/* @focus-end */}
+      {/* @focus-end */}
     </Box>
   );
 }
