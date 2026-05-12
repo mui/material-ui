@@ -1,5 +1,5 @@
-import type { Movie } from "./movies";
-import movies from "./movies";
+import type { Movie } from './movies';
+import movies from './movies';
 
 const PAGE_SIZE = 20;
 const FETCH_DELAY_MS = 400;
