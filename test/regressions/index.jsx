@@ -57,7 +57,7 @@ Object.keys(importRegressionFixtures).forEach((path) => {
 // (e.g. `{ test: 'docs/data/material/components/foo/{BasicFoo,FooVariants}', enabled: true }`).
 const importDemos = import.meta.glob(
   [
-    'docs/data/**/[A-Z]*.js',
+    'docs/data/**/[A-Z]*.{js,tsx}',
     'docs/data/base/**/[A-Z]*/css/index.js',
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
     'docs/data/base/**/[A-Z]*/system/index.js',
@@ -137,13 +137,23 @@ const demoFixtures = [];
 Object.keys(importDemos).forEach((path) => {
   const [name, ...suiteArray] = path
     .replace('../../docs/data/', '')
-    .replace('.js', '')
+    .replace(/\.(tsx?|jsx?)$/, '')
     .split('/')
     .reverse();
-  const suite = `docs-${suiteArray
-    .reverse()
-    .join('-')
-    .replace(/^material-/, '')}`;
+  // Drop the `demos/<slug>` infix introduced by the docs-infra demo layout so
+  // the suite slug stays stable: `<comp>/demos/<slug>/<Name>` -> `<comp>/<Name>`.
+  // After reverse + destructure, the original `demos/<slug>` pair shows up as
+  // adjacent entries `<slug>, demos` in `suiteArray`.
+  const segments = suiteArray.reverse();
+  const cleaned = [];
+  for (let i = 0; i < segments.length; i += 1) {
+    if (segments[i] === 'demos') {
+      i += 1; // also skip the slug that follows
+      continue;
+    }
+    cleaned.push(segments[i]);
+  }
+  const suite = `docs-${cleaned.join('-').replace(/^material-/, '')}`;
 
   demoFixtures.push({
     path,
