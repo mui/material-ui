@@ -23,7 +23,7 @@ Some of the key features:
 You should provide a media query to the first argument of the hook.
 The media query string can be any valid CSS media query, for example [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
-{{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
+{{"component": "../data/material/components/use-media-query/demos/simple-media-query/index.ts", "defaultCodeOpen": true}}
 
 :::warning
 Using the query `'print'` to modify a document for printing is not supported, as changes made in re-rendering may not be accurately reflected.
@@ -47,7 +47,7 @@ function MyComponent() {
 }
 ```
 
-{{"demo": "ThemeHelper.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/components/use-media-query/demos/theme-helper/index.ts", "defaultCodeOpen": false}}
 
 Alternatively, you can use a callback function, accepting the theme as a first argument:
 
@@ -67,7 +67,7 @@ function MyComponent() {
 
 You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
 
-{{"demo": "JavaScriptMedia.js", "defaultCodeOpen": true}}
+{{"component": "../data/material/components/use-media-query/demos/java-script-media/index.ts", "defaultCodeOpen": true}}
 
 ## Testing
 
@@ -188,7 +188,7 @@ function handleRender(req, res) {
 }
 ```
 
-{{"demo": "ServerSide.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/components/use-media-query/demos/server-side/index.ts", "defaultCodeOpen": false}}
 
 Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
@@ -197,7 +197,7 @@ Make sure you provide the same custom match media implementation to the client-s
 The `withWidth()` higher-order component injects the screen width of the page.
 You can reproduce the same behavior with a `useWidth` hook:
 
-{{"demo": "UseWidth.js"}}
+{{"component": "../data/material/components/use-media-query/demos/use-width/index.ts"}}
 
 ## API
 
