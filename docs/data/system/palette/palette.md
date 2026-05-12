@@ -4,7 +4,7 @@
 
 ## Color
 
-{{"demo": "Color.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/palette/demos/color/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ color: 'primary.main' }}>…
@@ -20,7 +20,7 @@
 
 ## Background color
 
-{{"demo": "BackgroundColor.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/palette/demos/background-color/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }}>…
