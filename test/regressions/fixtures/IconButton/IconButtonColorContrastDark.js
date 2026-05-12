@@ -11,7 +11,7 @@ const theme = createTheme({ palette: { mode: 'dark' } });
 export default function IconButtonColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', p: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', p: 2 }}>
         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color}>

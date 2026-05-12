@@ -10,7 +10,7 @@ const theme = createTheme({ palette: { mode: 'dark' } });
 export default function LinearProgressColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', p: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', p: 2 }}>
         <Stack spacing={2} sx={{ maxWidth: 320 }}>
           {COLORS.map((color) => (
             <div key={color} data-color={color}>

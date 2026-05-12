@@ -12,7 +12,7 @@ const theme = createTheme({ palette: { mode: 'dark' } });
 export default function RadioColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', p: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', p: 2 }}>
         <Stack spacing={1}>
           {CHECKED.map((checked) => (
             <Stack key={String(checked)} direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>

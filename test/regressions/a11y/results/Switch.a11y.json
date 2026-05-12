@@ -34,80 +34,8 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "fail",
-        "tags": ["wcag2aa"],
-        "instances": [
-          {
-            "color": "default",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "primary",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "secondary",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "error",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "info",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "success",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "warning",
-            "checked": "false",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "default",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "primary",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "secondary",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "error",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "info",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "success",
-            "checked": "true",
-            "contrastRatio": 1.12
-          },
-          {
-            "color": "warning",
-            "checked": "true",
-            "contrastRatio": 1.12
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2aa"]
       },
       "form-field-multiple-labels": {
         "status": "pass",

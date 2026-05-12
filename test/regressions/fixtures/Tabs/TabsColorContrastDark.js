@@ -12,7 +12,7 @@ const theme = createTheme({ palette: { mode: 'dark' } });
 export default function TabsColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', p: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', p: 2 }}>
         <Stack spacing={2}>
           {TEXT_COLORS.map((textColor) => (
             <Stack key={textColor} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>

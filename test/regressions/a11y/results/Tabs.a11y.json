@@ -50,30 +50,8 @@
         "tags": ["wcag2a"]
       },
       "color-contrast": {
-        "status": "fail",
-        "tags": ["wcag2aa"],
-        "instances": [
-          {
-            "textcolor": "inherit",
-            "indicatorcolor": "primary",
-            "contrastRatio": 1.07
-          },
-          {
-            "textcolor": "inherit",
-            "indicatorcolor": "primary",
-            "contrastRatio": 1.12
-          },
-          {
-            "textcolor": "inherit",
-            "indicatorcolor": "secondary",
-            "contrastRatio": 1.07
-          },
-          {
-            "textcolor": "inherit",
-            "indicatorcolor": "secondary",
-            "contrastRatio": 1.12
-          }
-        ]
+        "status": "pass",
+        "tags": ["wcag2aa"]
       },
       "nested-interactive": {
         "status": "pass",

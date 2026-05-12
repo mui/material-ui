@@ -42,11 +42,6 @@
         "tags": ["wcag2aa"],
         "instances": [
           {
-            "variant": "text",
-            "color": "warning",
-            "contrastRatio": 1.94
-          },
-          {
             "variant": "contained",
             "color": "error",
             "contrastRatio": 3.68
@@ -161,6 +156,26 @@
             "contrastRatio": 3.85
           },
           {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "outlined",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "info",
+            "contrastRatio": 3.85
+          },
+          {
             "variant": "contained",
             "color": "info",
             "contrastRatio": 3.85
@@ -172,8 +187,18 @@
           },
           {
             "variant": "contained",
-            "color": "info",
-            "contrastRatio": 3.85
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "warning",
+            "contrastRatio": 3.11
+          },
+          {
+            "variant": "contained",
+            "color": "warning",
+            "contrastRatio": 3.11
           }
         ]
       },

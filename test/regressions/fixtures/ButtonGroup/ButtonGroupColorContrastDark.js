@@ -12,7 +12,7 @@ const theme = createTheme({ palette: { mode: 'dark' } });
 export default function ButtonGroupColorContrastDark() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: 'background.default', p: 2 }}>
+      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', p: 2 }}>
         <Stack spacing={2}>
           {VARIANTS.map((variant) => (
             <Stack key={variant} direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>

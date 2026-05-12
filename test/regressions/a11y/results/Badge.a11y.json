@@ -34,10 +34,6 @@
         "tags": ["wcag2aa"],
         "instances": [
           {
-            "color": "default",
-            "contrastRatio": 1.12
-          },
-          {
             "color": "error",
             "contrastRatio": 3.68
           }
