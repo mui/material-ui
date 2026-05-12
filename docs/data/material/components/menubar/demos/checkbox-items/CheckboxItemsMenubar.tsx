@@ -9,7 +9,7 @@ import {
   MenuItem,
   MenuCheckboxItem,
   MenuSeparator,
-} from "../Menubar";
+} from '../Menubar';
 
 export default function CheckboxItemsMenubar() {
   // @focus-start @padding 1

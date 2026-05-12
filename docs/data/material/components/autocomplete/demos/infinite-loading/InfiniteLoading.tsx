@@ -11,8 +11,8 @@ import { useEventCallback, useForkRef } from '@mui/material/utils';
 import useTimeout from '@mui/utils/useTimeout';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import type { Virtualizer } from '@tanstack/react-virtual';
-import { fetchMovies, getMovieLabel, normalizeMovieQuery } from "./server";
-import type { Movie } from "./movies";
+import { fetchMovies, getMovieLabel, normalizeMovieQuery } from './server';
+import type { Movie } from './movies';
 
 const ITEM_HEIGHT_PX = 36;
 const MAX_LISTBOX_HEIGHT_PX = 8 * ITEM_HEIGHT_PX;
