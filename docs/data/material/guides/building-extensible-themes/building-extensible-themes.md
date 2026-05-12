@@ -138,4 +138,4 @@ Doing so will introduce performance overhead on the first render of the applicat
 
 ## Full example
 
-{{"demo": "ExtensibleThemes.js", "defaultCodeOpen": true}}
+{{"component": "../data/material/guides/building-extensible-themes/demos/extensible-themes/index.ts", "defaultCodeOpen": true}}

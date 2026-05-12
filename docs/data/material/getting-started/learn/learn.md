@@ -7,7 +7,7 @@
 The following demo shows a basic Material UI app that features a `<Button>` component.
 Try changing the `variant` on the [Button](/material-ui/react-button/) to `outlined` to see how the style changes:
 
-{{"demo": "../usage/ButtonUsage.js", "defaultCodeOpen": true}}
+{{"component": "../data/material/getting-started/usage/demos/button/index.ts", "defaultCodeOpen": true}}
 
 ## Example projects
 

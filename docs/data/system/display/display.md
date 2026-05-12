@@ -6,7 +6,7 @@
 
 ### Inline
 
-{{"demo": "Inline.js", "defaultCodeOpen": false, "bg": true}}
+{{"component": "../data/system/display/demos/inline/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box component="div" sx={{ display: 'inline' }}>inline</Box>
@@ -15,7 +15,7 @@
 
 ### Block
 
-{{"demo": "Block.js", "defaultCodeOpen": false, "bg": true}}
+{{"component": "../data/system/display/demos/block/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box component="span" sx={{ display: 'block' }}>block</Box>
@@ -40,7 +40,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 | Visible only on lg | `sx={{ display: { xs: 'none', lg: 'block', xl: 'none' } }}`  |
 | Visible only on xl | `sx={{ display: { xs: 'none', xl: 'block' } }}`              |
 
-{{"demo": "Hiding.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/hiding/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ display: { xs: 'block', md: 'none' }}}>
@@ -53,7 +53,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ## Display in print
 
-{{"demo": "Print.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/print/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ display: 'block', displayPrint: 'none' }}>
@@ -66,7 +66,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ## Overflow
 
-{{"demo": "Overflow.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/overflow/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" sx={{ overflow: 'hidden' }}>
@@ -79,7 +79,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ## Text overflow
 
-{{"demo": "TextOverflow.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/text-overflow/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" sx={{ textOverflow: 'clip' }}>
@@ -92,7 +92,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ## Visibility
 
-{{"demo": "Visibility.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/visibility/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" sx={{ visibility: 'visible' }}>
@@ -105,7 +105,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 
 ## White space
 
-{{"demo": "WhiteSpace.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/display/demos/white-space/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" sx={{ whiteSpace: 'nowrap' }}>

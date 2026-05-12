@@ -49,4 +49,4 @@ Google offers [Material Symbols](https://fonts.google.com/icons?icon.set=Materia
 Browse through the icons below to find the one you need.
 The search field supports synonyms—for example, try searching for "hamburger" or "logout."
 
-{{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
+{{"component": "../data/material/components/material-icons/demos/search-icons/index.ts", "hideToolbar": true, "bg": true}}
