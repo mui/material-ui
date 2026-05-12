@@ -162,7 +162,6 @@ The following statements must be true:
 - The code is linted. If the code was changed, run `pnpm eslint`.
 - The code is type-safe. If TypeScript sources or declarations were changed, run `pnpm typescript` to confirm that the check passes.
 - The API docs are up to date. If API was changed, run `pnpm proptypes && pnpm docs:api`.
-- The demos are up to date. If demos were changed, run `pnpm docs:typescript:formatted`. See [about writing demos](#2-write-the-demo-code).
 - The pull request title follows the pattern `[product-name][Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 Don't worry if you miss a step—the Continuous Integration will run a thorough set of tests on your commits, and the maintainers of the project can assist you if you run into problems.
@@ -301,11 +300,7 @@ and give it a name: how about `SuperButtons.tsx`?
 #### 2. Write the demo code
 
 We use TypeScript to document our components.
-We prefer demos written in TypeScript (using the `.tsx` file format).
-
-After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.
-
-If you're not familiar with TypeScript, you can write the demo in JavaScript, and a core contributor may help you migrate it to TypeScript.
+Demos are authored as TypeScript (using the `.tsx` file format). The JavaScript variant shown in the docs is generated on the fly at build/runtime—no separate `.js` file needs to be committed.
 
 #### 3. Edit the page's Markdown file
 
