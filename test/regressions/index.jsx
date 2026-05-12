@@ -67,11 +67,13 @@ const importDemos = import.meta.glob(
     '!docs/data/experiments',
     '!docs/data/material/**/*NoSnap.*',
     // Customization demos — not component pages
+    '!docs/data/material/customization/breakpoints/demos/**',
+    '!docs/data/material/customization/color/demos/**',
     '!docs/data/material/customization/container-queries/demos/resizable/**',
-    '!docs/data/material/customization/color/demos/tool/**',
-    '!docs/data/material/customization/density/demos/density-tool/**',
-    '!docs/data/material/customization/right-to-left/demos/**',
-    '!docs/data/material/customization/transitions/demos/transition-hover/**',
+    '!docs/data/material/customization/default-theme/demos/**',
+    '!docs/data/material/customization/density/demos/**',
+    '!docs/data/material/customization/right-to-left/demos/rtl-demo/**',
+    '!docs/data/material/customization/transitions/demos/**',
     '!docs/data/material/customization/typography/demos/responsive-font-sizes-chart/**',
     // Other non-demo subtrees
     '!docs/data/material/getting-started/supported-components/demos/**',
