@@ -9,11 +9,13 @@ export default function FreeSolo() {
       <Autocomplete
         id="free-solo-demo"
         freeSolo
+        resetHighlightOnMouseLeave
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => <TextField {...params} label="freeSolo" />}
       />
       <Autocomplete
         freeSolo
+        resetHighlightOnMouseLeave
         id="free-solo-2-demo"
         disableClearable
         options={top100Films.map((option) => option.title)}
@@ -34,6 +36,7 @@ export default function FreeSolo() {
       <Autocomplete
         id="free-solo-demo3"
         freeSolo
+        resetHighlightOnMouseLeave
         options={top100Films}
         renderInput={(params) => (
           <TextField {...params} label="freeSolo (handle string values)" />

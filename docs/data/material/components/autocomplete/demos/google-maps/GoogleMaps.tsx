@@ -211,6 +211,7 @@ export default function GoogleMaps() {
       autoComplete
       includeInputInList
       filterSelectedOptions
+      resetHighlightOnMouseLeave
       value={value}
       noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {

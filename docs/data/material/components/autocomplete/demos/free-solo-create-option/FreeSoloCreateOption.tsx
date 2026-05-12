@@ -67,6 +67,7 @@ export default function FreeSoloCreateOption() {
       }}
       sx={{ width: 300 }}
       freeSolo
+      resetHighlightOnMouseLeave
       renderInput={(params) => (
         <TextField {...params} label="Free solo with text demo" />
       )}
