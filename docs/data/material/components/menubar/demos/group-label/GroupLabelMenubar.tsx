@@ -27,7 +27,7 @@ import {
   MenuSubmenuTrigger,
   MenuGroup,
   MenuGroupLabel,
-} from "../Menubar";
+} from '../Menubar';
 
 export default function GroupLabelMenubar() {
   return (

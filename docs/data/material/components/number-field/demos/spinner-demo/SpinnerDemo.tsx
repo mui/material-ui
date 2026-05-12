@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import NumberSpinner from "./NumberSpinner";
+import NumberSpinner from './NumberSpinner';
 
 export default function SpinnerDemo() {
   return (
