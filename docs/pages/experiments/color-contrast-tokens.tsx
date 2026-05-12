@@ -658,7 +658,7 @@ function tokensFromSearch(search: string): Tokens | null {
 }
 
 export default function ColorContrastTokens() {
-  const [tokens, setTokens] = React.useState<Tokens>(PROPOSED);
+  const [tokens, setTokens] = React.useState<Tokens>(DEFAULTS);
   const [snack, setSnack] = React.useState('');
   const initedRef = React.useRef(false);
   const rootRef = React.useRef<HTMLDivElement>(null);
