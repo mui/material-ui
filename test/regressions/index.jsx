@@ -68,6 +68,7 @@ const importDemos = import.meta.glob(
     '!docs/data/material/**/*NoSnap.*',
     // Customization demos — not component pages
     '!docs/data/material/customization/container-queries/demos/resizable/**',
+    '!docs/data/material/customization/color/demos/tool/**',
     '!docs/data/material/customization/density/demos/density-tool/**',
     '!docs/data/material/customization/right-to-left/demos/**',
     '!docs/data/material/customization/transitions/demos/transition-hover/**',
