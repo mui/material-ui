@@ -26,7 +26,7 @@ Some important features of the Popper component:
 
 ## Basic Popper
 
-{{"demo": "SimplePopper.js"}}
+{{"component": "../data/material/components/popper/demos/simple/index.ts"}}
 
 ## Transitions
 
@@ -40,19 +40,19 @@ This component should respect the following conditions:
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"demo": "TransitionsPopper.js"}}
+{{"component": "../data/material/components/popper/demos/transitions/index.ts"}}
 
 Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
-{{"demo": "SpringPopper.js"}}
+{{"component": "../data/material/components/popper/demos/spring/index.ts"}}
 
 ## Positioned popper
 
-{{"demo": "PositionedPopper.js"}}
+{{"component": "../data/material/components/popper/demos/positioned/index.ts"}}
 
 ## Scroll playground
 
-{{"demo": "ScrollPlayground.js", "hideToolbar": true, "bg": true}}
+{{"component": "../data/material/components/popper/demos/scroll-playground/index.ts", "hideToolbar": true, "bg": true}}
 
 ## Virtual element
 
@@ -61,7 +61,7 @@ You need to create an object shaped like the [`VirtualElement`](https://popper.j
 
 Highlight part of the text to see the popper:
 
-{{"demo": "VirtualElementPopper.js"}}
+{{"component": "../data/material/components/popper/demos/virtual-element/index.ts"}}
 
 ## Supplementary projects
 
@@ -74,4 +74,4 @@ For more advanced use cases you might be able to take advantage of:
 
 The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
-{{"demo": "PopperPopupState.js"}}
+{{"component": "../data/material/components/popper/demos/popup-state/index.ts"}}

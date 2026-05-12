@@ -16,58 +16,58 @@ githubSource: packages/mui-material/src/Badge
 
 Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
 
-{{"demo": "SimpleBadge.js"}}
+{{"component": "../data/material/components/badges/demos/simple/index.ts"}}
 
 ## Color
 
 Use `color` prop to apply theme palette to component.
 
-{{"demo": "ColorBadge.js"}}
+{{"component": "../data/material/components/badges/demos/color/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedBadges.js"}}
+{{"component": "../data/material/components/badges/demos/customized/index.ts"}}
 
 ## Badge visibility
 
 The visibility of badges can be controlled using the `invisible` prop.
 
-{{"demo": "BadgeVisibility.js"}}
+{{"component": "../data/material/components/badges/demos/visibility/index.ts"}}
 
 The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
 
-{{"demo": "ShowZeroBadge.js"}}
+{{"component": "../data/material/components/badges/demos/show-zero/index.ts"}}
 
 ## Maximum value
 
 You can use the `max` prop to cap the value of the badge content.
 
-{{"demo": "BadgeMax.js"}}
+{{"component": "../data/material/components/badges/demos/max/index.ts"}}
 
 ## Dot badge
 
 The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
-{{"demo": "DotBadge.js"}}
+{{"component": "../data/material/components/badges/demos/dot/index.ts"}}
 
 ## Badge overlap
 
 You can use the `overlap` prop to place the badge relative to the corner of the wrapped element.
 
-{{"demo": "BadgeOverlap.js"}}
+{{"component": "../data/material/components/badges/demos/overlap/index.ts"}}
 
 ## Badge alignment
 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"demo": "BadgeAlignment.js", "hideToolbar": true}}
+{{"component": "../data/material/components/badges/demos/alignment/index.ts", "hideToolbar": true}}
 
 ## Accessibility
 
 You can't rely on the content of the badge to be announced correctly.
 You should provide a full description, for instance, with `aria-label`:
 
-{{"demo": "AccessibleBadges.js"}}
+{{"component": "../data/material/components/badges/demos/accessible/index.ts"}}

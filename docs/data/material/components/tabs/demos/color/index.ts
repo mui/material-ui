@@ -1,0 +1,5 @@
+import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
+
+import ColorTabs from './ColorTabs';
+
+export default createDemo(import.meta.url, ColorTabs);

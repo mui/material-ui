@@ -4,7 +4,7 @@
 
 ## Variant
 
-{{"demo": "Variant.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/variant/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ typography: 'subtitle2' }}>… // theme.typography.subtitle2
@@ -14,7 +14,7 @@
 
 ## Text alignment
 
-{{"demo": "TextAlignment.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/text-alignment/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textAlign: 'left' }}>…
@@ -24,7 +24,7 @@
 
 ## Text transformation
 
-{{"demo": "TextTransform.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/text-transform/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textTransform: 'capitalize' }}>…
@@ -34,7 +34,7 @@
 
 ## Font weight
 
-{{"demo": "FontWeight.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/font-weight/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }}>… // theme.typography.fontWeightLight
@@ -46,7 +46,7 @@
 
 ## Font size
 
-{{"demo": "FontSize.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/font-size/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontSize: 'default' }}>…  // theme.typography.fontSize
@@ -56,7 +56,7 @@
 
 ## Font style
 
-{{"demo": "FontStyle.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/font-style/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontStyle: 'normal' }}>…
@@ -66,7 +66,7 @@
 
 ## Font family
 
-{{"demo": "FontFamily.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/font-family/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontFamily: 'default' }}>…
@@ -75,7 +75,7 @@
 
 ## Letter spacing
 
-{{"demo": "LetterSpacing.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/letter-spacing/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ letterSpacing: 6 }}>…
@@ -84,7 +84,7 @@
 
 ## Line height
 
-{{"demo": "LineHeight.js", "defaultCodeOpen": false}}
+{{"component": "../data/system/typography/demos/line-height/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ lineHeight: 'normal' }}>…

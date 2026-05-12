@@ -43,21 +43,21 @@ The component supports 4 shape variants:
 - `text` (default): represents a single line of text (you can adjust the height via font size).
 - `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
-{{"demo": "Variants.js"}}
+{{"component": "../data/material/components/skeleton/demos/variants/index.ts"}}
 
 ## Animations
 
 By default, the skeleton pulsates, but you can change the animation to a wave or disable it entirely.
 
-{{"demo": "Animations.js"}}
+{{"component": "../data/material/components/skeleton/demos/animations/index.ts"}}
 
 ### Pulsate example
 
-{{"demo": "YouTube.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/components/skeleton/demos/you-tube/index.ts", "defaultCodeOpen": false}}
 
 ### Wave example
 
-{{"demo": "Facebook.js", "defaultCodeOpen": false, "bg": true}}
+{{"component": "../data/material/components/skeleton/demos/facebook/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ## Inferring dimensions
 
@@ -69,7 +69,7 @@ It works well when it comes to typography as its height is set using `em` units.
 <Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
-{{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/components/skeleton/demos/typography/index.ts", "defaultCodeOpen": false}}
 
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will
@@ -85,14 +85,14 @@ loading ? (
 );
 ```
 
-{{"demo": "SkeletonChildren.js", "defaultCodeOpen": false}}
+{{"component": "../data/material/components/skeleton/demos/children/index.ts", "defaultCodeOpen": false}}
 
 ## Color
 
 The color of the component can be customized by changing its `background-color` CSS property.
 This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
-{{"demo": "SkeletonColor.js", "bg": "inline"}}
+{{"component": "../data/material/components/skeleton/demos/color/index.ts", "bg": "inline"}}
 
 ## Accessibility
 

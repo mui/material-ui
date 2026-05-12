@@ -30,19 +30,19 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 You should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below.
 
-{{"demo": "BasicMenu.js"}}
+{{"component": "../data/material/components/menus/demos/basic/index.ts"}}
 
 ## Icon menu
 
 In desktop viewport, padding is increased to give more space to the menu.
 
-{{"demo": "IconMenu.js", "bg": true}}
+{{"component": "../data/material/components/menus/demos/icon/index.ts", "bg": true}}
 
 ## Dense menu
 
 For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
 
-{{"demo": "DenseMenu.js", "bg": true}}
+{{"component": "../data/material/components/menus/demos/dense/index.ts", "bg": true}}
 
 ## Selected menu
 
@@ -50,14 +50,14 @@ If used for item selection, when opened, simple menus places the initial focus o
 The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
-{{"demo": "SimpleListMenu.js"}}
+{{"component": "../data/material/components/menus/demos/simple-list/index.ts"}}
 
 ## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.
 For instance, you can display the menu on top of the anchor:
 
-{{"demo": "PositionedMenu.js"}}
+{{"component": "../data/material/components/menus/demos/positioned/index.ts"}}
 
 ## Composition with Menu List
 
@@ -67,20 +67,20 @@ But you might want to use a different positioning strategy, or prefer not to blo
 The Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.
 See the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:
 
-{{"demo": "MenuListComposition.js", "bg": true}}
+{{"component": "../data/material/components/menus/demos/list-composition/index.ts", "bg": true}}
 
 ## Account menu
 
 `Menu` content can be mixed with other components like `Avatar`.
 
-{{"demo": "AccountMenu.js"}}
+{{"component": "../data/material/components/menus/demos/account/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedMenus.js"}}
+{{"component": "../data/material/components/menus/demos/customized/index.ts"}}
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
@@ -91,32 +91,32 @@ You can use the same list composition features with the `MenuItem` component:
 
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
-{{"demo": "LongMenu.js"}}
+{{"component": "../data/material/components/menus/demos/long/index.ts"}}
 
 ## Limitations
 
 There is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
 You can use the `Typography` component with `noWrap` to workaround this issue:
 
-{{"demo": "TypographyMenu.js", "bg": true}}
+{{"component": "../data/material/components/menus/demos/typography/index.ts", "bg": true}}
 
 ## Change transition
 
 Use `slots.transition` and `slotProps.transition` to use a different transition.
 
-{{"demo": "FadeMenu.js"}}
+{{"component": "../data/material/components/menus/demos/fade/index.ts"}}
 
 ## Context menu
 
 Here is an example of a context menu. (Right click to open.)
 
-{{"demo": "ContextMenu.js"}}
+{{"component": "../data/material/components/menus/demos/context/index.ts"}}
 
 ## Grouped Menu
 
 Display categories with the `ListSubheader` component.
 
-{{"demo": "GroupedMenu.js"}}
+{{"component": "../data/material/components/menus/demos/grouped/index.ts"}}
 
 ## Supplementary projects
 
@@ -129,4 +129,4 @@ For more advanced use cases you might be able to take advantage of:
 
 The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
-{{"demo": "MenuPopupState.js"}}
+{{"component": "../data/material/components/menus/demos/popup-state/index.ts"}}

@@ -25,29 +25,29 @@ In this example, text justification toggle buttons present options for left, cen
 
 **Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
 
-{{"demo": "ToggleButtons.js"}}
+{{"component": "../data/material/components/toggle-button/demos/toggle-buttons/index.ts"}}
 
 ## Multiple selection
 
 Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
-{{"demo": "ToggleButtonsMultiple.js"}}
+{{"component": "../data/material/components/toggle-button/demos/multiple/index.ts"}}
 
 ## Size
 
 For larger or smaller buttons, use the `size` prop.
 
-{{"demo": "ToggleButtonSizes.js"}}
+{{"component": "../data/material/components/toggle-button/demos/sizes/index.ts"}}
 
 ## Color
 
-{{"demo": "ColorToggleButton.js"}}
+{{"component": "../data/material/components/toggle-button/demos/color/index.ts"}}
 
 ## Vertical buttons
 
 The buttons can be stacked vertically with the `orientation` prop set to "vertical".
 
-{{"demo": "VerticalToggleButtons.js"}}
+{{"component": "../data/material/components/toggle-button/demos/vertical/index.ts"}}
 
 ## Enforce value set
 
@@ -67,18 +67,18 @@ const handleDevices = (event, newDevices) => {
 };
 ```
 
-{{"demo": "ToggleButtonNotEmpty.js"}}
+{{"component": "../data/material/components/toggle-button/demos/not-empty/index.ts"}}
 
 ## Standalone toggle button
 
-{{"demo": "StandaloneToggleButton.js"}}
+{{"component": "../data/material/components/toggle-button/demos/standalone/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"demo": "CustomizedDividers.js", "bg": true}}
+{{"component": "../data/material/components/toggle-button/demos/customized-dividers/index.ts", "bg": true}}
 
 ### Spacing
 
@@ -86,11 +86,11 @@ The demos below show how to adjust spacing between toggle buttons in horizontal 
 
 #### Horizontal Spacing
 
-{{"demo": "HorizontalSpacingToggleButton.js"}}
+{{"component": "../data/material/components/toggle-button/demos/horizontal-spacing/index.ts"}}
 
 #### Vertical Spacing
 
-{{"demo": "VerticalSpacingToggleButton.js"}}
+{{"component": "../data/material/components/toggle-button/demos/vertical-spacing/index.ts"}}
 
 ## Accessibility
 
