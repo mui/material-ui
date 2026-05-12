@@ -58,7 +58,7 @@ export default function VerticalLinearAlternativeLabelStepper() {
             >
               {step.label}
             </StepLabel>
-            <StepContent>
+            <StepContent sx={{ textAlign: 'right' }}>
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <Button

@@ -65,7 +65,7 @@ const StepRoot = styled('li', {
       },
     },
     {
-      props: { alternativeLabel: true },
+      props: { orientation: 'horizontal', alternativeLabel: true },
       style: {
         flex: 1,
         position: 'relative',

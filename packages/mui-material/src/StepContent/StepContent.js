@@ -52,7 +52,6 @@ const StepContentRoot = styled('div', {
           marginRight: 12, // half icon
           paddingLeft: 8,
           paddingRight: 8 + 12, // margin + half icon
-          textAlign: 'right',
           borderLeft: 'none',
           borderRight: theme.vars
             ? `1px solid ${theme.vars.palette.StepContent.border}`
