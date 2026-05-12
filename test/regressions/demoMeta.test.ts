@@ -16,10 +16,10 @@ describe('parseRoute', () => {
   });
 
   it('parses a regression-fixture route into path/slug/demo', () => {
-    expect(parseRoute('/regression-Button/ButtonColorContrastLight')).to.deep.equal({
-      path: 'test/regressions/fixtures/Button/ButtonColorContrastLight',
-      slug: 'Button',
-      demo: 'ButtonColorContrastLight',
+    expect(parseRoute('/regression-ColorContrast/ButtonLight')).to.deep.equal({
+      path: 'test/regressions/fixtures/ColorContrast/ButtonLight',
+      slug: 'ColorContrast',
+      demo: 'ButtonLight',
     });
   });
 });
