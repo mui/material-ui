@@ -922,7 +922,7 @@ export default function DemoContent(props: ContentProps<object>) {
       {demo.slug && <AnchorLink id={demo.slug} />}
 
       {/* Component Preview */}
-      <DemoPreview>
+      <DemoPreview className="demo-preview">
         <InitialFocus ref={demo.focusRef} tabIndex={-1} />
         {demo.component}
       </DemoPreview>
