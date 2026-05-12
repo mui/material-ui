@@ -52,8 +52,12 @@
   --color-docs-infra-syntax-this: #66d9ef;
   --color-docs-infra-syntax-builtin-type: #66d9ef;
   --color-docs-infra-syntax-jsx: #e6db74;
+  --color-docs-infra-syntax-jsx-variable: #fc929e;
   --color-docs-infra-syntax-html-tag: #fc929e;
   --color-docs-infra-syntax-jsx-tag: #fc929e;
+  --color-docs-infra-syntax-property-string: #fc929e;
+  --color-docs-infra-syntax-object-property: #f8f8f2;
+  --color-docs-infra-syntax-punctuation: #f8f8f2;
 }
 
 .pl-c {
@@ -229,8 +233,16 @@
   color: var(--color-docs-infra-syntax-builtin-type);
 }
 
+.di-op {
+  color: var(--color-docs-infra-syntax-object-property);
+}
+
 .di-jsx {
   color: var(--color-docs-infra-syntax-jsx);
+}
+
+.di-jv {
+  color: var(--color-docs-infra-syntax-jsx-variable);
 }
 
 .di-ht {
@@ -239,6 +251,19 @@
 
 .di-jt {
   color: var(--color-docs-infra-syntax-jsx-tag);
+}
+
+.di-ps {
+  color: var(--color-docs-infra-syntax-property-string);
+}
+
+.di-jv .pl-pds,
+.di-ps .pl-pds {
+  color: inherit;
+}
+
+.di-pu {
+  color: var(--color-docs-infra-syntax-punctuation);
 }
 
 /* Line highlighting */
