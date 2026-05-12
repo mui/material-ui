@@ -27,6 +27,13 @@ export interface A11yRule {
   enabled?: boolean;
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
+  /**
+   * Restrict the axe run to these rule IDs (`runOnly: { type: 'rule' }`).
+   * When omitted the run uses the WCAG tag set. Use it for matrices that only
+   * care about one rule (e.g. the ColorContrast fixtures) so the results JSON
+   * stays focused.
+   */
+  runOnly?: string[];
 }
 
 /**
@@ -118,6 +125,7 @@ export const A11Y_RULES: A11yRule[] = [
   {
     test: 'test/regressions/fixtures/ColorContrast/*',
     enabled: true,
+    runOnly: ['color-contrast'],
     skipAssertions: ['color-contrast'],
   },
 ];

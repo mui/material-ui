@@ -1,30 +1,6 @@
 {
   "Dark": {
     "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
       "color-contrast": {
         "status": "fail",
         "tags": ["wcag2aa"],
@@ -35,43 +11,11 @@
             "contrastRatio": 4.32
           }
         ]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
       }
     }
   },
   "Light": {
     "rules": {
-      "aria-allowed-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-conditional-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-prohibited-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "aria-valid-attr-value": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "button-name": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
       "color-contrast": {
         "status": "fail",
         "tags": ["wcag2aa"],
@@ -97,14 +41,6 @@
             "contrastRatio": 2.85
           }
         ]
-      },
-      "nested-interactive": {
-        "status": "pass",
-        "tags": ["wcag2a"]
-      },
-      "target-size": {
-        "status": "pass",
-        "tags": ["wcag22aa"]
       }
     }
   }

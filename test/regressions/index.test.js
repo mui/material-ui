@@ -149,12 +149,14 @@ async function main() {
           // Inject axe fresh each run — page.addScriptTag can leak between navigations.
           await page.evaluate(axeSource);
           const results = await page.evaluate(
-            async ({ element, disabledRules, tags }) => {
+            async ({ element, disabledRules, tags, ruleIds }) => {
               window.axe.configure({
                 rules: disabledRules.map((id) => ({ id, enabled: false })),
               });
               const axeResults = await window.axe.run(element, {
-                runOnly: { type: 'tag', values: tags },
+                runOnly: ruleIds
+                  ? { type: 'rule', values: ruleIds }
+                  : { type: 'tag', values: tags },
               });
               // Walk each failing element's ancestor chain up to the fixture
               // root, collecting `data-*` attrs (closest ancestor wins). Lets
@@ -197,7 +199,12 @@ async function main() {
               }
               return axeResults;
             },
-            { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
+            {
+              element: testcase,
+              disabledRules: GLOBAL_DISABLED_RULES,
+              tags: WCAG_TAGS,
+              ruleIds: a11yRule?.runOnly ?? null,
+            },
           );
           recordA11y(ctx, results, {
             kind: route.startsWith('/regression-') ? 'regression' : 'docs',
