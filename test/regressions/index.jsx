@@ -91,6 +91,8 @@ const importDemos = import.meta.glob(
     '!docs/data/material/customization/typography/ResponsiveFontSizesChart',
     // Other non-demo subtrees
     '!docs/data/material/components/menubar/components', // Source subdir, not demos
+    '!docs/data/material/components/menubar/demos/Menubar.*', // Shared component used by demos, not a demo
+    '!docs/data/material/customization/container-queries/demos/ResizableDemo.*', // No public components
     '!docs/data/material/getting-started/supported-components/MaterialUIComponents',
     '!docs/data/material/guides',
     '!docs/data/base/getting-started/quickstart/BaseButtonTailwind',
