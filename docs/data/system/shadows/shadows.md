@@ -7,7 +7,7 @@
 The helpers allow you to control relative depth, or distance, between two surfaces along the z-axis.
 By default, there are 25 elevation levels.
 
-{{"demo": "ShadowsDemo.js", "defaultCodeOpen": false, "bg": true}}
+{{"component": "../data/system/shadows/demos/demo/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ boxShadow: 0 }}>…
