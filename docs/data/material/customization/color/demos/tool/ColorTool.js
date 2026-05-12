@@ -13,7 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
 import { resetDocsColor, setDocsColors } from '@mui/internal-core-docs/branding';
-import ColorDemo from "./ColorDemo";
+import ColorDemo from './ColorDemo';
 
 const defaults = {
   primary: '#2196f3',

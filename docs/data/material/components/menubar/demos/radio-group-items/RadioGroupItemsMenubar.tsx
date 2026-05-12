@@ -11,7 +11,7 @@ import {
   MenuSeparator,
   MenuSubmenuRoot,
   MenuSubmenuTrigger,
-} from "../Menubar";
+} from '../Menubar';
 
 export default function RadioGroupItemsMenubar() {
   // @focus-start @padding 1
