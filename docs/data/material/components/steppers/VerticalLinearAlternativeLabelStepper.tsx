@@ -29,7 +29,7 @@ const steps = [
   },
 ];
 
-export default function VerticalLinearStepper() {
+export default function VerticalLinearAlternativeLabelStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -44,42 +44,9 @@ export default function VerticalLinearStepper() {
     setActiveStep(0);
   };
 
-  const previousActiveStepRef = React.useRef(activeStep);
-  const continueButtonRef = React.useRef(null);
-  const backButtonRef = React.useRef(null);
-  const resetButtonRef = React.useRef(null);
-
-  // Manage focus when the active step changes.
-  React.useEffect(() => {
-    const previousActiveStep = previousActiveStepRef.current;
-    previousActiveStepRef.current = activeStep;
-
-    // If the user is going forward.
-    if (previousActiveStep < activeStep) {
-      if (activeStep === steps.length) {
-        // If the user has completed all steps and hits "Finish", focus the "Reset" button.
-        resetButtonRef.current.focus();
-      } else {
-        // Focus the "Continue" button otherwise.
-        continueButtonRef.current.focus();
-      }
-      return;
-    }
-    // Otherwise, the user is going back.
-
-    if (activeStep === 0) {
-      // If the user hit "Back" on the second step, or hit "Reset", focus the "Continue" button.
-      continueButtonRef.current.focus();
-      return;
-    }
-
-    // Focus the "Back" button otherwise.
-    backButtonRef.current.focus();
-  }, [activeStep]);
-
   return (
     <Box sx={{ maxWidth: 400 }}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+      <Stepper activeStep={activeStep} orientation="vertical" alternativeLabel>
         {steps.map((step, index) => (
           <Step key={step.label}>
             <StepLabel
@@ -91,26 +58,23 @@ export default function VerticalLinearStepper() {
             >
               {step.label}
             </StepLabel>
-            <StepContent>
+            <StepContent sx={{ textAlign: 'right' }}>
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <Button
                   variant="contained"
                   onClick={handleNext}
                   sx={{ mt: 1, mr: 1 }}
-                  ref={continueButtonRef}
                 >
                   {index === steps.length - 1 ? 'Finish' : 'Continue'}
                 </Button>
-                {index !== 0 && (
-                  <Button
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                    ref={backButtonRef}
-                  >
-                    Back
-                  </Button>
-                )}
+                <Button
+                  disabled={index === 0}
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  Back
+                </Button>
               </Box>
             </StepContent>
           </Step>
@@ -119,7 +83,7 @@ export default function VerticalLinearStepper() {
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
           <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }} ref={resetButtonRef}>
+          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             Reset
           </Button>
         </Paper>

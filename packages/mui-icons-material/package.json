@@ -55,7 +55,7 @@
     "es-toolkit": "1.46.1",
     "fast-glob": "3.3.3",
     "mustache": "4.2.0",
-    "react": "19.2.5",
+    "react": "19.2.6",
     "rimraf": "6.1.3",
     "shx": "0.4.0",
     "svgo": "4.0.1",

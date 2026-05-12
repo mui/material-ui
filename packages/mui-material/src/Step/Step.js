@@ -58,7 +58,14 @@ const StepRoot = styled('li', {
       },
     },
     {
-      props: { alternativeLabel: true },
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: { orientation: 'horizontal', alternativeLabel: true },
       style: {
         flex: 1,
         position: 'relative',
