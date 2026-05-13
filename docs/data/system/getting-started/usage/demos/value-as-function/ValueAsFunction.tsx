@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 
 export default function ValueAsFunction() {
   return (
