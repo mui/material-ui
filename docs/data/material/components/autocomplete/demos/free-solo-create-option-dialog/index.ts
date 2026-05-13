@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import FreeSoloCreateOptionDialog from './FreeSoloCreateOptionDialog';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, FreeSoloCreateOptionDialog);
+export default createDemo(import.meta.url, FreeSoloCreateOptionDialog, { ClientProvider });
