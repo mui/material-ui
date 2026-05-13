@@ -112,7 +112,7 @@ const importDemos = import.meta.glob(
 const demoFixtures = [];
 Object.keys(importDemos).forEach((path) => {
   const [name, ...suiteArray] = path
-    .replace('../../docs/data/', '')
+    .replace(/^.*?docs\/data\//, '')
     .replace(/\.(tsx?|jsx?)$/, '')
     .split('/')
     .reverse();
