@@ -2595,6 +2595,26 @@ describe('<Autocomplete />', () => {
   });
 
   describe('click input', () => {
+    it('should preserve Autocomplete input props when TextField htmlInput slot props are provided', () => {
+      expect(() => {
+        render(
+          <Autocomplete
+            options={['one', 'two']}
+            renderInput={(params) => (
+              <TextField {...params} slotProps={{ htmlInput: { maxLength: 4 } }} />
+            )}
+          />,
+        );
+      }).not.toErrorDev();
+
+      const textbox = screen.getByRole('combobox');
+      expect(textbox).to.have.property('maxLength', 4);
+
+      fireEvent.mouseDown(textbox);
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+      expect(screen.getAllByRole('option')).to.have.length(2);
+    });
+
     it('when `openOnFocus` toggles if empty', () => {
       render(
         <Autocomplete
