@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import CustomizedProgressBars from './CustomizedProgressBars';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, CustomizedProgressBars);
+export default createDemo(import.meta.url, CustomizedProgressBars, { ClientProvider });
