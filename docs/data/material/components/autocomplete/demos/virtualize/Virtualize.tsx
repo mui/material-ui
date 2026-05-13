@@ -5,12 +5,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import {
-  List,
-  RowComponentProps,
-  useListRef,
-  ListImperativeAPI,
-} from 'react-window';
+import { List, useListRef } from 'react-window';
+import type { RowComponentProps, ListImperativeAPI } from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px

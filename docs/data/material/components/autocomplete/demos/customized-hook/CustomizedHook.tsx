@@ -1,4 +1,5 @@
-import useAutocomplete, {
+import useAutocomplete from '@mui/material/useAutocomplete';
+import type {
   AutocompleteGetItemProps,
   UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';

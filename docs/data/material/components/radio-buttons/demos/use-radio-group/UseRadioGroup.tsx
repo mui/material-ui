@@ -1,8 +1,7 @@
 import { styled } from '@mui/material/styles';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import FormControlLabel, {
-  FormControlLabelProps,
-} from '@mui/material/FormControlLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import type { FormControlLabelProps } from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 
 interface StyledFormControlLabelProps extends FormControlLabelProps {
