@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import FadeMenu from './FadeMenu';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, FadeMenu);
+export default createDemo(import.meta.url, FadeMenu, { ClientProvider });
