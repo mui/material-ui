@@ -349,13 +349,34 @@ Use the `size` prop to render a smaller input.
 
 {{"demo": "Sizes.js"}}
 
+### HTML input attributes
+
+When setting native input attributes on `TextField`—for example `maxLength`—merge them with `params.slotProps.htmlInput` instead of replacing the whole slot object.
+Autocomplete passes its input ref and event handlers through that object, and dropping them can break focus, keyboard, and selection behavior.
+
+```tsx
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      slotProps={{
+        ...params.slotProps,
+        htmlInput: {
+          ...params.slotProps.htmlInput,
+          maxLength: 20,
+          spellCheck: false,
+        },
+      }}
+    />
+  )}
+/>
+```
+
 ### Custom input
 
-Customize the rendered input with the `renderInput` prop. Forward the input ref and HTML input props to preserve the Autocomplete behavior.
-
-:::warning
-When using a custom input component, forward the ref to the underlying DOM element.
-:::
+Customize the rendered input with the `renderInput` prop.
+If you don't use `TextField`, attach `params.slotProps.input.ref` to the element that wraps the native input, and spread `params.slotProps.htmlInput` on the native input.
 
 ```tsx
 <Autocomplete

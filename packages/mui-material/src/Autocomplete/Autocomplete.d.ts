@@ -324,11 +324,30 @@ export interface AutocompleteProps<
    * Render the input.
    *
    * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
-   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
-   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   * that forwards `params.slotProps.input.ref` to the input wrapper and spreads `params.slotProps.htmlInput`
+   * on the native input. This preserves focus management, keyboard navigation, and ARIA attributes.
    *
    * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
    * leading to runtime errors or unexpected behavior.
+   *
+   * @example
+   *
+   * ```tsx
+   * <Autocomplete
+   *   renderInput={(params) => (
+   *     <TextField
+   *       {...params}
+   *       slotProps={{
+   *         ...params.slotProps,
+   *         htmlInput: {
+   *           ...params.slotProps.htmlInput,
+   *           maxLength: 20,
+   *         },
+   *       }}
+   *     />
+   *   )}
+   * />
+   * ```
    *
    * @param {object} params
    * @returns {ReactNode}
