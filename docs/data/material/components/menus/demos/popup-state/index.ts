@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import MenuPopupState from './MenuPopupState';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, MenuPopupState);
+export default createDemo(import.meta.url, MenuPopupState, { ClientProvider });

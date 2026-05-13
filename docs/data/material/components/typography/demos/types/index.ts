@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import Types from './Types';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, Types);
+export default createDemo(import.meta.url, Types, { ClientProvider });
