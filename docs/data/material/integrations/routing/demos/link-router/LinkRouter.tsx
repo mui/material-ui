@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-  MemoryRouter,
-  StaticRouter,
-} from 'react-router';
+import { Link as RouterLink, MemoryRouter, StaticRouter } from 'react-router';
+import type { LinkProps as RouterLinkProps } from 'react-router';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
