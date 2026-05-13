@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import CheckboxesGroup from './CheckboxesGroup';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, CheckboxesGroup);
+export default createDemo(import.meta.url, CheckboxesGroup, { ClientProvider });
