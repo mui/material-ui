@@ -59,6 +59,8 @@ const importDemos = import.meta.glob(
   [
     // Migrated docs-infra demos: `<area>/demos/<slug>/<Name>.{js,tsx}`.
     'docs/data/**/demos/*/[A-Z]*.{js,tsx}',
+    // Templates: flat `templates/<name>/<Name>.{js,tsx}` layout (not yet migrated).
+    'docs/data/material/getting-started/templates/*/[A-Z]*.{js,tsx}',
     // Legacy Base UI variants (not yet migrated to the docs-infra demo layout).
     'docs/data/base/**/[A-Z]*/css/index.js',
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
@@ -66,6 +68,9 @@ const importDemos = import.meta.glob(
     // ================== Structural — cannot be imported safely ==================
     '!docs/data/experiments',
     '!docs/data/material/**/*NoSnap.*',
+    // Templates that aren't standalone demos
+    '!docs/data/material/getting-started/templates/marketing-page/**',
+    '!docs/data/material/getting-started/templates/shared-theme/**',
     // Customization demos — not component pages
     '!docs/data/material/customization/breakpoints/demos/**',
     '!docs/data/material/customization/color/demos/**',
