@@ -2,7 +2,8 @@ import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { List, RowComponentProps } from 'react-window';
+import { List } from 'react-window';
+import type { RowComponentProps } from 'react-window';
 
 function renderRow(props: RowComponentProps) {
   const { index, style } = props;

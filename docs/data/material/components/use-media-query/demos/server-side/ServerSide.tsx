@@ -1,5 +1,6 @@
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider, Theme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
