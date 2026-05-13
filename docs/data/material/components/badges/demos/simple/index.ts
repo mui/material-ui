@@ -1,5 +1,6 @@
 import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
 
 import SimpleBadge from './SimpleBadge';
+import ClientProvider from './client';
 
-export default createDemo(import.meta.url, SimpleBadge);
+export default createDemo(import.meta.url, SimpleBadge, { ClientProvider });
