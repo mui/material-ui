@@ -302,6 +302,10 @@
     transform: translate(-50%, -50%);
   }
 
+  [dir='rtl'] .MuiSlider-thumb.MuiSlider-horizontal {
+    transform: translate(50%, -50%);
+  }
+
   .MuiSlider-thumb.MuiSlider-vertical {
     inset-inline-start: 50%;
     transform: translate(-50%, 50%);
@@ -394,6 +398,10 @@
     transform: translate(-1px, -50%);
   }
 
+  [dir='rtl'] .MuiSlider-mark.MuiSlider-horizontal {
+    transform: translate(1px, -50%);
+  }
+
   .MuiSlider-mark.MuiSlider-vertical {
     inset-inline-start: 50%;
     transform: translate(-50%, 1px);
@@ -416,6 +424,10 @@
   .MuiSlider-markLabel.MuiSlider-horizontal {
     inset-block-start: 30px;
     transform: translateX(-50%);
+  }
+
+  [dir='rtl'] .MuiSlider-markLabel.MuiSlider-horizontal {
+    transform: translateX(50%);
   }
 
   @media (pointer: coarse) {
