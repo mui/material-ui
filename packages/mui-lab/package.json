@@ -50,7 +50,7 @@
     "chai": "6.2.2",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "sinon": "21.1.2"
+    "sinon": "22.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
