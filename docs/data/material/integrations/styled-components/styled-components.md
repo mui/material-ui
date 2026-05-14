@@ -93,7 +93,7 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 ```
 
 :::info
-**Versions compatibility**: Use the same major version of `@mui/styled-engine-sc` as your Material UI packages—for example, `@mui/styled-engine-sc@9.x` with `@mui/material@9.x`.
+**Versions compatibility**: Use the same major version of `@mui/styled-engine-sc` as your Material UI packages—for example, `@mui/styled-engine-sc@9.x` with `@mui/material@9.x`.
 
-The installed `styled-components` version only needs to satisfy the peer dependency of `@mui/styled-engine-sc`. For Material UI v7 and v9, this is `styled-components@^6.0.0`.
+The installed `styled-components` version only needs to satisfy the peer dependency of `@mui/styled-engine-sc`. For Material UI v7 and v9, this is `styled-components@^6.0.0`.
 :::
