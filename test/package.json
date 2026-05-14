@@ -29,7 +29,7 @@
     "react-is": "19.2.6",
     "react-router": "7.15.0",
     "react-window": "2.2.7",
-    "sinon": "21.1.2",
+    "sinon": "22.0.0",
     "styled-components": "6.4.1",
     "stylis": "4.4.0",
     "webfontloader": "1.6.28",
