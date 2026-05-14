@@ -321,7 +321,7 @@ describe('<TextField />', () => {
     it('should merge deprecated props with their matching slot props', () => {
       const handleInputMouseDown = spy();
       const handleSlotInputMouseDown = spy();
-      const { container, unmount } = render(
+      const { container } = render(
         <TextField
           label="Name"
           helperText="Helper"
@@ -403,9 +403,9 @@ describe('<TextField />', () => {
       expect(helperTextElement).to.have.class('slot-helper-text');
       expect(helperTextElement).to.have.attribute('data-deprecated-helper-text', 'true');
       expect(helperTextElement).to.have.attribute('data-slot-helper-text', 'true');
+    });
 
-      unmount();
-
+    it('should merge deprecated SelectProps with slotProps.select', () => {
       const { container: selectContainer } = render(
         <TextField
           select
