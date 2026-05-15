@@ -1,0 +1,82 @@
+{
+  "Dark": {
+    "rules": {
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "usage": "initials",
+            "variant": "circular",
+            "contrastRatio": 4.06
+          },
+          {
+            "usage": "initials",
+            "variant": "rounded",
+            "contrastRatio": 4.06
+          },
+          {
+            "usage": "initials",
+            "variant": "square",
+            "contrastRatio": 4.06
+          },
+          {
+            "usage": "surplus",
+            "variant": "circular",
+            "contrastRatio": 4.06
+          },
+          {
+            "usage": "surplus",
+            "variant": "rounded",
+            "contrastRatio": 4.06
+          },
+          {
+            "usage": "surplus",
+            "variant": "square",
+            "contrastRatio": 4.06
+          }
+        ]
+      }
+    }
+  },
+  "Light": {
+    "rules": {
+      "color-contrast": {
+        "status": "fail",
+        "tags": ["wcag2aa"],
+        "instances": [
+          {
+            "usage": "initials",
+            "variant": "circular",
+            "contrastRatio": 1.87
+          },
+          {
+            "usage": "initials",
+            "variant": "rounded",
+            "contrastRatio": 1.87
+          },
+          {
+            "usage": "initials",
+            "variant": "square",
+            "contrastRatio": 1.87
+          },
+          {
+            "usage": "surplus",
+            "variant": "circular",
+            "contrastRatio": 1.87
+          },
+          {
+            "usage": "surplus",
+            "variant": "rounded",
+            "contrastRatio": 1.87
+          },
+          {
+            "usage": "surplus",
+            "variant": "square",
+            "contrastRatio": 1.87
+          }
+        ]
+      }
+    }
+  }
+}
