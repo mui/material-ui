@@ -239,10 +239,7 @@ const PaginationItemPage = styled(ButtonBase, {
           props: { variant: 'outlined', color },
           style: {
             [`&.${paginationItemClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].dark,
-              ...theme.applyStyles('dark', {
-                color: (theme.vars || theme).palette[color].light,
-              }),
+              color: (theme.vars || theme).palette[color].main,
               border: `1px solid ${theme.alpha((theme.vars || theme).palette[color].main, 0.5)}`,
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette[color].main,

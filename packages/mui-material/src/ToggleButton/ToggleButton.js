@@ -95,10 +95,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
           props: { color },
           style: {
             [`&.${toggleButtonClasses.selected}`]: {
-              color: (theme.vars || theme).palette[color].dark,
-              ...theme.applyStyles('dark', {
-                color: (theme.vars || theme).palette[color].light,
-              }),
+              color: (theme.vars || theme).palette[color].main,
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette[color].main,
                 (theme.vars || theme).palette.action.selectedOpacity,
