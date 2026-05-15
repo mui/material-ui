@@ -1,25 +1,38 @@
 'use client';
 import * as React from 'react';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
+import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 
 // ---------- Themes ----------------------------------------------------------
+// Each theme defines a light and dark color scheme so the page can be inspected
+// in both modes. `cssVariables: true` opts into the CSS variables runtime so
+// `bgcolor: 'background.default'` and friends switch via CSS rather than
+// re-rendering with a different palette.
 
 const themes = {
   violet: createTheme({
-    palette: { primary: { main: '#7c3aed' }, secondary: { main: '#db2777' } },
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#7c3aed' }, secondary: { main: '#db2777' } } },
+      dark: { palette: { primary: { main: '#a78bfa' }, secondary: { main: '#f472b6' } } },
+    },
     shape: { borderRadius: 12 },
   }),
   teal: createTheme({
-    palette: { primary: { main: '#0d9488' }, secondary: { main: '#f59e0b' } },
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#0d9488' }, secondary: { main: '#f59e0b' } } },
+      dark: { palette: { primary: { main: '#2dd4bf' }, secondary: { main: '#fbbf24' } } },
+    },
     shape: { borderRadius: 4 },
     components: {
       MuiButton: {
@@ -28,7 +41,11 @@ const themes = {
     },
   }),
   blue: createTheme({
-    palette: { primary: { main: '#1d4ed8' }, secondary: { main: '#dc2626' } },
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#1d4ed8' }, secondary: { main: '#dc2626' } } },
+      dark: { palette: { primary: { main: '#60a5fa' }, secondary: { main: '#f87171' } } },
+    },
     shape: { borderRadius: 8 },
     components: {
       MuiButton: { defaultProps: { disableElevation: true } },
@@ -78,10 +95,25 @@ function Section({ label, children }: { label: string; children: React.ReactNode
   );
 }
 
+// ---------- useMounted guard (avoid SSR hydration mismatch) ----------------
+
+function useMounted() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+  return mounted;
+}
+
 // ---------- Page ------------------------------------------------------------
 
-export default function EmotionPlayground() {
-  const [themeKey, setThemeKey] = React.useState<ThemeKey>('violet');
+function Page({
+  themeKey,
+  setThemeKey,
+}: {
+  themeKey: ThemeKey;
+  setThemeKey: (key: ThemeKey) => void;
+}) {
+  const { mode, setMode } = useColorScheme();
+  const mounted = useMounted();
   const [sliderValue, setSliderValue] = React.useState<number>(40);
   const [chips, setChips] = React.useState(['React', 'TypeScript']);
 
@@ -90,16 +122,15 @@ export default function EmotionPlayground() {
   }
 
   return (
-    <ThemeProvider theme={themes[themeKey]}>
-      <Box
-        sx={{
-          p: { xs: 3, md: 5 },
-          maxWidth: 760,
-          mx: 'auto',
-          minHeight: '100vh',
-          bgcolor: 'background.default',
-        }}
-      >
+    <Box
+      sx={{
+        p: { xs: 3, md: 5 },
+        maxWidth: 760,
+        mx: 'auto',
+        minHeight: '100vh',
+        bgcolor: 'background.default',
+      }}
+    >
         {/* Header */}
         <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.5 }}>
           Emotion playground
@@ -111,18 +142,28 @@ export default function EmotionPlayground() {
 
         {/* ── Theme switcher ─────────────────────────────────────────────── */}
         <Section label="Live theme">
-          <ToggleButtonGroup
-            value={themeKey}
-            exclusive
-            onChange={(_, v) => v && setThemeKey(v as ThemeKey)}
-            size="small"
-          >
-            {(Object.keys(themes) as ThemeKey[]).map((key) => (
-              <ToggleButton key={key} value={key} sx={{ textTransform: 'capitalize', px: 2 }}>
-                {key}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
+          <Stack direction="row" spacing={3} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
+            <ToggleButtonGroup
+              value={themeKey}
+              exclusive
+              onChange={(_, v) => v && setThemeKey(v as ThemeKey)}
+              size="small"
+            >
+              {(Object.keys(themes) as ThemeKey[]).map((key) => (
+                <ToggleButton key={key} value={key} sx={{ textTransform: 'capitalize', px: 2 }}>
+                  {key}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+              <Typography variant="body2">Light</Typography>
+              <Switch
+                checked={mounted ? mode === 'dark' : false}
+                onChange={(event) => setMode(event.target.checked ? 'dark' : 'light')}
+              />
+              <Typography variant="body2">Dark</Typography>
+            </Stack>
+          </Stack>
           <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.disabled' }}>
             {themeKey === 'teal' && 'This theme overrides MuiButton — uppercase + wide tracking.'}
             {themeKey === 'blue' && 'This theme sets disableElevation on all Buttons by default.'}
@@ -244,6 +285,14 @@ export default function EmotionPlayground() {
           </Typography>
         </Section>
       </Box>
+  );
+}
+
+export default function EmotionPlayground() {
+  const [themeKey, setThemeKey] = React.useState<ThemeKey>('violet');
+  return (
+    <ThemeProvider theme={themes[themeKey]}>
+      <Page themeKey={themeKey} setThemeKey={setThemeKey} />
     </ThemeProvider>
   );
 }

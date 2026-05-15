@@ -2,6 +2,10 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @config '../tailwind.config.mjs';
 
+/* Make Tailwind's `dark:` variant follow MUI's `colorSchemeSelector: 'data'`
+   so JS toggles via `useColorScheme()` flip Tailwind utilities too. */
+@custom-variant dark (&:where([data-mui-color-scheme='dark'], [data-mui-color-scheme='dark'] *));
+
 /* ── @mui/tailwind: MUI state variants ─────────────────────────────────────
    Enables `mui-{state}:` and `mui-not-{state}:` modifier classes.
    Example: `mui-disabled:opacity-50 mui-selected:bg-indigo-600/10`

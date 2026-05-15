@@ -1,10 +1,11 @@
 'use client';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
+import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
@@ -26,9 +27,31 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 // ---------- Page ------------------------------------------------------------
 
 const theme = createTheme({
-  cssVariables: true,
+  cssVariables: { colorSchemeSelector: 'data' },
   colorSchemes: { light: true, dark: true },
 });
+
+// useMounted avoids SSR hydration mismatch on the Switch's checked prop
+function useMounted() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+  return mounted;
+}
+
+function DarkModeToggle() {
+  const { mode, setMode } = useColorScheme();
+  const mounted = useMounted();
+  return (
+    <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+      <Typography variant="body2">Light</Typography>
+      <Switch
+        checked={mounted ? mode === 'dark' : false}
+        onChange={(event) => setMode(event.target.checked ? 'dark' : 'light')}
+      />
+      <Typography variant="body2">Dark</Typography>
+    </Stack>
+  );
+}
 
 export default function TailwindPlayground() {
   const [sliderValue, setSliderValue] = React.useState<number>(40);
@@ -47,9 +70,12 @@ export default function TailwindPlayground() {
     <ThemeProvider theme={theme}>
       <div className="p-6 md:p-10 max-w-3xl mx-auto min-h-screen">
           {/* Header */}
-          <Typography variant="h4" className="font-bold mb-1">
-            Tailwind playground
-          </Typography>
+          <Stack direction="row" spacing={2} sx={{ alignItems: 'flex-start', justifyContent: 'space-between', mb: 1 }}>
+            <Typography variant="h4" className="font-bold">
+              Tailwind playground
+            </Typography>
+            <DarkModeToggle />
+          </Stack>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-10">
             MUI components styled with Tailwind utilities via <code>className</code>. Uses{' '}
             <code>mui-&#123;state&#125;:</code> variants and Tailwind&apos;s responsive modifiers —
