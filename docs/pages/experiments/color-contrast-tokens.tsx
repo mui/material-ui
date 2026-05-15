@@ -3,6 +3,8 @@ import * as React from 'react';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,12 +14,12 @@ import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
+import PaginationItem, { paginationItemClasses } from '@mui/material/PaginationItem';
 import Paper from '@mui/material/Paper';
 import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -41,6 +43,13 @@ type Tokens = {
   'error.dark.contrastText': string;
   'primary.light.main': string;
   'primary.light.contrastText': string;
+  // Avatar `colorDefault` bg + text — applied via components.MuiAvatar
+  // styleOverrides since createTheme (no vars) inlines grey[400]/grey[600]
+  // directly. `''` text = leave Avatar's built-in `background.default`.
+  'avatar.light.main': string;
+  'avatar.light.contrastText': string;
+  'avatar.dark.main': string;
+  'avatar.dark.contrastText': string;
   contrastThreshold: number;
 };
 
@@ -55,18 +64,26 @@ const DEFAULTS: Tokens = {
   'error.dark.contrastText': '',
   'primary.light.main': '#1976d2', // blue[700]
   'primary.light.contrastText': '',
+  'avatar.light.main': '#bdbdbd', // grey[400]
+  'avatar.light.contrastText': '',
+  'avatar.dark.main': '#757575', // grey[600]
+  'avatar.dark.contrastText': '',
   contrastThreshold: 3,
 };
 
 // Proposal pre-fill: darken info one shade (it fails with white *and* black
 // text, so the token itself must move). contrastText stays `auto` everywhere —
 // flip warning/error to `black` via the knobs to see the no-colour-change fix.
+// Avatar bg keeps its grey[400]/grey[600] default; only the inherited text
+// colour flips to `text.primary` to clear 4.5:1 in both modes (#44179).
 const PROPOSED: Tokens = {
   ...DEFAULTS,
   'info.light.main': '#0277bd', // lightBlue[800]
+  'avatar.light.contrastText': 'text.primary',
+  'avatar.dark.contrastText': 'text.primary',
 };
 
-type Intent = 'primary' | 'info' | 'warning' | 'error';
+type Intent = 'primary' | 'info' | 'warning' | 'error' | 'avatar';
 type Mode = 'light' | 'dark';
 
 function mainKeyOf(intent: Intent, mode: Mode) {
@@ -77,6 +94,10 @@ function contrastKeyOf(intent: Intent, mode: Mode) {
 }
 
 function applyIntent(palette: any, intent: Intent, mode: Mode, tokens: Tokens) {
+  if (intent === 'avatar') {
+    // Avatar isn't a palette intent — handled separately via components.
+    return;
+  }
   const mainKey = mainKeyOf(intent, mode);
   if (!(mainKey in DEFAULTS)) {
     return;
@@ -96,6 +117,101 @@ function applyIntent(palette: any, intent: Intent, mode: Mode, tokens: Tokens) {
   palette[intent] = override;
 }
 
+function resolveColorAlias(theme: Theme, value: string): string {
+  if (!value.includes('.')) {
+    return value;
+  }
+  let cur: any = theme.palette;
+  for (const part of value.split('.')) {
+    cur = cur?.[part];
+    if (cur == null) {
+      return value;
+    }
+  }
+  return typeof cur === 'string' ? cur : value;
+}
+
+// Source-equivalent change for #44179: in Avatar.js's `colorDefault: true`
+// variant, swap
+//   color: (theme.vars || theme).palette.background.default
+// for
+//   color: (theme.vars || theme).palette.text.primary
+// — same shade in both modes, ~10:1 light / ~4.6:1 dark, no token move.
+// Always-on in the proposed theme; the `avatar.{mode}.contrastText` knob can
+// override it (white/black) for further exploration.
+function avatarOverride(mode: Mode, tokens: Tokens) {
+  const main = tokens[mainKeyOf('avatar', mode)] as string;
+  const text = tokens[contrastKeyOf('avatar', mode)] as string;
+  const mainChanged = Boolean(main) && main !== (DEFAULTS[mainKeyOf('avatar', mode)] as string);
+  return {
+    styleOverrides: {
+      root: ({
+        theme: t,
+        ownerState,
+      }: {
+        theme: Theme;
+        ownerState: { colorDefault?: boolean };
+      }) => {
+        if (!ownerState.colorDefault) {
+          return {};
+        }
+        const style: Record<string, string> = {
+          color: text ? resolveColorAlias(t, text) : (t.vars || t).palette.text.primary,
+        };
+        if (mainChanged) {
+          style.backgroundColor = main;
+        }
+        return style;
+      },
+    },
+  };
+}
+
+// Selected-state colour fix for ToggleButton + outlined PaginationItem,
+// hoisted into the proposed theme so reviewers see the patch as a component
+// override rather than a source diff. Drops the failing `palette[c].main` text
+// (4.0–4.4:1 on its own .main tint) for `.dark` in light mode and `.light` in
+// dark mode, both ≥ 4.5:1.
+const SELECTED_INTENTS = ['primary', 'secondary', 'info', 'warning', 'error', 'success'] as const;
+
+function selectedColorFor(theme: Theme, color: string | undefined): string | null {
+  if (!color || color === 'standard' || !SELECTED_INTENTS.includes(color as any)) {
+    return null;
+  }
+  const entry = (theme.palette as any)[color];
+  if (!entry?.dark || !entry?.light) {
+    return null;
+  }
+  return theme.palette.mode === 'dark' ? entry.light : entry.dark;
+}
+
+const TOGGLE_BUTTON_PROPOSAL = {
+  styleOverrides: {
+    root: ({ theme: t, ownerState }: { theme: Theme; ownerState: { color?: string } }) => {
+      const c = selectedColorFor(t, ownerState.color);
+      return c ? { [`&.${toggleButtonClasses.selected}`]: { color: c } } : {};
+    },
+  },
+};
+
+const PAGINATION_ITEM_PROPOSAL = {
+  styleOverrides: {
+    root: ({
+      theme: t,
+      ownerState,
+    }: {
+      theme: Theme;
+      ownerState: { variant?: string; color?: string };
+    }) => {
+      if (ownerState.variant !== 'outlined') {
+        return {};
+      }
+      const c = selectedColorFor(t, ownerState.color);
+      return c ? { [`&.${paginationItemClasses.selected}`]: { color: c } } : {};
+    },
+  },
+};
+
 // AppBar/Alert extend Paper; in dark mode Paper paints a degenerate
 // linear-gradient elevation overlay that trips axe's `bgGradient` guard, so
 // suppress it. No-op in light mode. Matches the regression fixtures.
@@ -108,7 +224,13 @@ function makeProposedTheme(mode: Mode, tokens: Tokens): Theme {
   const palette: any = { mode, contrastThreshold: tokens.contrastThreshold };
   const intents: Intent[] = mode === 'light' ? ['primary', 'info', 'warning', 'error'] : ['error'];
   intents.forEach((intent) => applyIntent(palette, intent, mode, tokens));
-  return createTheme({ palette, components: BASE_COMPONENTS });
+  const components: Record<string, any> = {
+    ...BASE_COMPONENTS,
+    MuiToggleButton: TOGGLE_BUTTON_PROPOSAL,
+    MuiPaginationItem: PAGINATION_ITEM_PROPOSAL,
+    MuiAvatar: avatarOverride(mode, tokens),
+  };
+  return createTheme({ palette, components });
 }
 
 const CURRENT_THEMES: Record<Mode, Theme> = {
@@ -190,7 +312,9 @@ function colorCases(colorKey: 'info' | 'warning' | 'error', include?: string[]):
   return keys.map((label) => ({ label, node: all[label] }));
 }
 
-function toggleCase(color: Intent): Case {
+type ColorIntent = Exclude<Intent, 'avatar'>;
+
+function toggleCase(color: ColorIntent): Case {
   return {
     label: 'ToggleButton · selected',
     node: (
@@ -200,6 +324,22 @@ function toggleCase(color: Intent): Case {
     ),
   };
 }
+
+const avatarCases: Case[] = [
+  { label: 'Avatar · initials', node: <Avatar>OP</Avatar> },
+  {
+    label: 'AvatarGroup · +n surplus',
+    node: (
+      <AvatarGroup max={3}>
+        <Avatar>A</Avatar>
+        <Avatar>B</Avatar>
+        <Avatar>C</Avatar>
+        <Avatar>D</Avatar>
+        <Avatar>E</Avatar>
+      </AvatarGroup>
+    ),
+  },
+];
 
 const paginationCase: Case = {
   label: 'Pagination · outlined',
@@ -239,7 +379,7 @@ const SECTIONS: TokenSectionDef[] = [
     controls: 'full',
     title: 'info — light mode',
     summary:
-      'lightBlue[700] (#0288d1) is 3.85:1 on white — fails as a fill (white text on it), as text on a white page, and as ToggleButton-selected text on an info.main tint. White and black text are both below 4.5:1, so the token must move; one shade darker (lightBlue[800] #0277bd) clears the lot.',
+      'lightBlue[700] (#0288d1) is 3.85:1 on white — fails as a fill (white text on it) and as text on a white page. White and black text are both below 4.5:1 on it, so the token must move; one shade darker (lightBlue[800] #0277bd) clears the lot. ToggleButton-selected `info.main` text is fixed in the proposed component override (drops to `info.dark`), independent of this token tweak.',
     cases: [...colorCases('info'), toggleCase('info')],
   },
   {
@@ -249,7 +389,7 @@ const SECTIONS: TokenSectionDef[] = [
     controls: 'full',
     title: 'warning — light mode',
     summary:
-      'White text on #ed6c02 is 3.1:1 — flipping contrastText to black (~6.7:1) fixes every fill case with no colour change. The cases that paint the orange AS text — Link, Typography, outlined Button/Chip, ToggleButton selected — stay below 4.5:1; only a darker token (or a component change) fixes those.',
+      'White text on #ed6c02 is 3.1:1 — flipping contrastText to black (~6.7:1) fixes every fill case with no colour change. The cases that paint the orange AS text — Link, Typography, outlined Button/Chip — stay below 4.5:1; only a darker token (or a component change) fixes those. ToggleButton-selected uses `warning.dark` in the proposed override.',
     cases: [...colorCases('warning'), toggleCase('warning')],
   },
   {
@@ -259,7 +399,7 @@ const SECTIONS: TokenSectionDef[] = [
     controls: 'main',
     title: 'error — light mode',
     summary:
-      'red[700] (#c62828) is fine as a fill in light mode. The one failure is ToggleButton selected — error.main text on a translucent error.main tint, 4.40:1 — which only a darker error.main lifts.',
+      'red[700] (#c62828) is fine as a fill in light mode. The one failure is ToggleButton selected — `error.main` text on a translucent `error.main` tint, 4.40:1 — fixed in the proposed component override by switching to `error.dark`.',
     cases: [toggleCase('error')],
   },
   {
@@ -269,7 +409,7 @@ const SECTIONS: TokenSectionDef[] = [
     controls: 'full',
     title: 'error — dark mode',
     summary:
-      'red[500] (#f44336) with white text is 3.68:1 — flipping contrastText to black (~6:1) fixes the fill cases with no colour change. ToggleButton selected (4.32:1) uses error.main as text on an error.main tint, so it needs a darker token instead.',
+      'red[500] (#f44336) with white text is 3.68:1 — flipping contrastText to black (~6:1) fixes the fill cases with no colour change. ToggleButton selected (4.32:1) uses `error.main` as text on an `error.main` tint; the proposed component override switches it to `error.light` for ≥ 4.5:1.',
     cases: [
       ...colorCases('error', [
         'AppBar',
@@ -289,8 +429,28 @@ const SECTIONS: TokenSectionDef[] = [
     controls: 'main',
     title: 'primary — light mode',
     summary:
-      'blue[700] (#1976d2) is fine as a fill. ToggleButton selected (primary.main text on a primary.main tint, 4.14:1) and Pagination outlined (the selected page-item border + label, 3.94:1) fail — a darker primary.main lifts both.',
+      'blue[700] (#1976d2) is fine as a fill. ToggleButton selected (`primary.main` text on a `primary.main` tint, 4.14:1) and Pagination outlined (the selected page-item border + label, 3.94:1) both fail — fixed in the proposed component override by switching the selected text to `primary.dark` (light mode) / `primary.light` (dark mode); no token change needed.',
     cases: [toggleCase('primary'), paginationCase],
+  },
+  {
+    id: 'avatar-light',
+    intent: 'avatar',
+    mode: 'light',
+    controls: 'full',
+    title: 'avatar — light mode (#44179)',
+    summary:
+      'Avatar `colorDefault` paints white text on grey[400] (#bdbdbd) — 1.87:1, well below 4.5:1. Hits the initials Avatar and the AvatarGroup `+n` surplus. The proposal keeps the bg and flips the inherited text colour to `text.primary` (≈ rgba(0, 0, 0, 0.87)) — ~10:1, no token-shade change.',
+    cases: avatarCases,
+  },
+  {
+    id: 'avatar-dark',
+    intent: 'avatar',
+    mode: 'dark',
+    controls: 'full',
+    title: 'avatar — dark mode (#44179)',
+    summary:
+      'Avatar `colorDefault` in dark mode is dark text on grey[600] (#757575) — 4.06:1, still below 4.5:1. Same fix as light: switch the inherited text to `text.primary` (white in dark mode) → 4.6:1, bg untouched.',
+    cases: avatarCases,
   },
 ];
 
@@ -446,6 +606,7 @@ const CONTRAST_TEXT_OPTIONS = [
   { value: '', label: 'auto' },
   { value: '#fff', label: 'white' },
   { value: 'rgba(0, 0, 0, 0.87)', label: 'black' },
+  { value: 'text.primary', label: 'text.primary' },
 ];
 
 function TokenControls(props: {
@@ -604,6 +765,10 @@ const TOKEN_KEYS: (keyof Tokens)[] = [
   'error.dark.contrastText',
   'primary.light.main',
   'primary.light.contrastText',
+  'avatar.light.main',
+  'avatar.light.contrastText',
+  'avatar.dark.main',
+  'avatar.dark.contrastText',
   'contrastThreshold',
 ];
 
@@ -618,6 +783,10 @@ const DIFF_LABELS: Record<string, string> = {
   'error.dark.contrastText': 'getDefaultError(dark).contrastText',
   'primary.light.main': 'getDefaultPrimary(light).main',
   'primary.light.contrastText': 'getDefaultPrimary(light).contrastText',
+  'avatar.light.main': 'MuiAvatar colorDefault backgroundColor (light)',
+  'avatar.light.contrastText': 'MuiAvatar colorDefault color (light)',
+  'avatar.dark.main': 'MuiAvatar colorDefault backgroundColor (dark)',
+  'avatar.dark.contrastText': 'MuiAvatar colorDefault color (dark)',
   contrastThreshold: 'createTheme palette.contrastThreshold',
 };
 
@@ -729,8 +898,13 @@ export default function ColorContrastTokens() {
                 ), grouped by the palette token at fault, shown current vs. proposed side by side.
                 The badges are computed live by <code>axe-core</code> in this browser — the same
                 engine the regression uses — so a green badge here means it would pass. Edit the
-                token knobs to explore; the URL keeps your values so you can share the link. This
-                page is a proposal — nothing in <code>createPalette.js</code> changes until a PR.
+                token knobs to explore; the URL keeps your values so you can share the link. The
+                proposed theme also bakes in two component-level fixes — ToggleButton-selected and
+                outlined PaginationItem-selected swap from <code>palette[c].main</code> to{' '}
+                <code>.dark</code> (light mode) / <code>.light</code> (dark mode), and Avatar{' '}
+                <code>colorDefault</code> flips its inherited text to <code>text.primary</code>{' '}
+                (#44179) — so the proposed panels reflect the full PR, not just token tweaks.
+                Nothing in <code>createPalette.js</code> or component source changes until a PR.
               </Typography>
             </div>
 
