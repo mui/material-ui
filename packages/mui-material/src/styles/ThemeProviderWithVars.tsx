@@ -6,6 +6,7 @@ import createTheme from './createTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
+import CssVarsInjector from './CssVarsInjector';
 
 const {
   CssVarsProvider: InternalCssVarsProvider,
@@ -33,6 +34,7 @@ const {
 
     return newTheme;
   },
+  CssVarsInjector,
 });
 
 let warnedOnce = false;

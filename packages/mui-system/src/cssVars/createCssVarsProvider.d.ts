@@ -155,6 +155,12 @@ export default function createCssVarsProvider<
      * variants from those tokens.
      */
     resolveTheme?: ((theme: any) => any) | undefined; // the type is any because it depends on the design system.
+    /**
+     * A React component that injects the CSS variables `<style>` tag.
+     * When provided, replaces the default `GlobalStyles`-based injection.
+     * Must accept `{ theme: { generateStyleSheets: () => Array<Record<string, any>> }, nonce?: string }`.
+     */
+    CssVarsInjector?: React.ComponentType<{ theme: any; nonce?: string | undefined }> | null | undefined;
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 
