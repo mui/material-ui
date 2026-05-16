@@ -506,7 +506,7 @@ This approach keeps the theme's default `fontFamily` unchanged, so Material UI'
 Avoid setting `typography.fontFamily` to `var(--font-roboto)` in the theme.
 Material UI applies Roboto-specific letter-spacing only when `fontFamily` exactly matches the default font stack.
 A CSS variable bypasses this check and removes letter-spacing from all typography variants.
-If you are using a custom font instead of Roboto, see [Custom font](#custom-font-1) below.
+If you are using a custom font instead of Roboto, see [Custom font](#custom-font) below.
 :::
 
 To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
