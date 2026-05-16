@@ -39,6 +39,12 @@ function checkHighlightIs(listbox, expected) {
   }
 }
 
+function getActiveDescendant(textbox) {
+  const activeDescendantId = textbox.getAttribute('aria-activedescendant');
+
+  return activeDescendantId ? document.getElementById(activeDescendantId) : null;
+}
+
 describe('<Autocomplete />', () => {
   const { render } = createRenderer();
 
@@ -289,13 +295,10 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      expect(textbox).not.to.have.attribute('aria-activedescendant');
+      expect(getActiveDescendant(textbox)).to.equal(null);
 
       view.setProps({ options, loading: false });
-      expect(textbox).to.have.attribute(
-        'aria-activedescendant',
-        screen.getAllByRole('option')[0].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
     });
 
     it('should set the highlight on selected item when dropdown is expanded', () => {
@@ -442,6 +445,160 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: resetHighlightOnMouseLeave', () => {
+    it('keeps the mouse-created highlight when the prop uses its default value', async () => {
+      const { user } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+    });
+
+    it('clears a mouse-created highlight when the mouse leaves the listbox', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+    });
+
+    it('clears the mouse-created highlight when slotProps.listbox.onMouseLeave is provided', async () => {
+      const handleListboxMouseLeave = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { onMouseLeave: handleListboxMouseLeave } }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const optionTwo = screen.getByRole('option', { name: 'two' });
+
+      await user.pointer({ target: optionTwo });
+      expect(getActiveDescendant(textbox)).to.equal(optionTwo);
+
+      await user.pointer({ target: textbox });
+
+      expect(handleListboxMouseLeave.callCount).to.equal(1);
+      expect(getActiveDescendant(textbox)).to.equal(null);
+    });
+
+    it('keeps a keyboard-created highlight when the mouse leaves the listbox', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      await user.keyboard('{ArrowDown}');
+
+      const optionOne = screen.getByRole('option', { name: 'one' });
+      expect(getActiveDescendant(textbox)).to.equal(optionOne);
+
+      await user.pointer({ target: screen.getByRole('listbox') });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(optionOne);
+    });
+
+    it('starts keyboard navigation from the first option after clearing a mouse-created highlight', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      await user.pointer({ target: screen.getByRole('option', { name: 'two' }) });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+
+      await user.keyboard('{ArrowDown}');
+
+      expect(getActiveDescendant(textbox)).to.equal(screen.getByRole('option', { name: 'one' }));
+    });
+
+    it('selects the typed free solo value on Enter after clearing a mouse-created highlight', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          freeSolo
+          onChange={handleChange}
+          options={['The Shawshank Redemption', 'The Godfather']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.type(textbox, 'The');
+      await user.pointer({ target: screen.getByRole('option', { name: 'The Godfather' }) });
+      await user.pointer({ target: textbox });
+      await user.keyboard('{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The');
+    });
+
+    it('preserves listbox scroll position when clearing a mouse-created highlight', async () => {
+      const { user } = render(
+        <Autocomplete
+          resetHighlightOnMouseLeave
+          options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
+          renderInput={(params) => <TextField {...params} />}
+          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      await user.click(textbox);
+      const listbox = screen.getByRole('listbox');
+      listbox.scrollTop = 50;
+
+      await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
+      await user.pointer({ target: textbox });
+
+      expect(getActiveDescendant(textbox)).to.equal(null);
+      expect(listbox.scrollTop).to.equal(50);
+    });
+  });
+
   describe('highlight synchronisation', () => {
     // https://github.com/mui/material-ui/issues/48177
     it('should restore the first selected option when reopening the popup with keyboard in multiple mode', async () => {
@@ -471,7 +628,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'one');
       const focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should restore the first selected option when reopening the popup with mouse in multiple mode', async () => {
@@ -501,7 +658,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'one');
       const focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should keep Enter aligned with the restored highlight when reopening the popup in multiple mode', async () => {
@@ -549,7 +706,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
       let focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
 
       view.setProps({
         options: [{ label: 'zero' }, { label: 'one' }, { label: 'two' }, { label: 'three' }],
@@ -559,7 +716,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(listbox, 'two');
       focusedOption = listbox.querySelector(`.${classes.focused}`);
       expect(focusedOption).not.to.equal(null);
-      expect(textbox).to.have.attribute('aria-activedescendant', focusedOption.getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(focusedOption);
     });
 
     it('should not update the highlight when multiple open and value change', () => {
@@ -1353,7 +1510,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[1].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[1]);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleSubmit.callCount).to.equal(0);
@@ -1362,7 +1519,7 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
 
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleSubmit.callCount).to.equal(0);
@@ -1460,9 +1617,7 @@ describe('<Autocomplete />', () => {
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
       expect(textbox).to.have.attribute('aria-autocomplete', 'list');
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
 
       // listbox is not only inaccessible but not in the DOM
       const listbox = screen.queryByRole('listbox', { hidden: true });
@@ -1491,9 +1646,7 @@ describe('<Autocomplete />', () => {
       const listbox = screen.getByRole('listbox');
       expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
 
       const options = screen.getAllByRole('option');
       expect(options).to.have.length(2);
@@ -1517,17 +1670,13 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
       const options = screen.getAllByRole('option');
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
       view.setProps({ open: false });
-      expect(textbox, 'no option is focused when opened').not.to.have.attribute(
-        'aria-activedescendant',
-      );
+      expect(getActiveDescendant(textbox), 'no option is focused when opened').to.equal(null);
     });
   });
 
@@ -1585,7 +1734,7 @@ describe('<Autocomplete />', () => {
 
         // first from focus
         expect(handleOpen.callCount).to.equal(2);
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
     });
 
@@ -1833,11 +1982,10 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-activedescendant',
-        screen.getAllByRole('option')[0].getAttribute('id'),
-      );
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
     });
 
     it('moves focus to the last option on ArrowUp', () => {
@@ -1849,12 +1997,11 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowUp' });
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowUp' });
       const options = screen.getAllByRole('option');
-      expect(screen.getByRole('combobox')).to.have.attribute(
-        'aria-activedescendant',
-        options[options.length - 1].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
     });
 
     it('should ignore keydown event until the IME is confirmed', function test() {
@@ -1989,10 +2136,7 @@ describe('<Autocomplete />', () => {
 
       const options = screen.getAllByRole('option');
       expect(textbox).toHaveFocus();
-      expect(textbox).to.have.attribute(
-        'aria-activedescendant',
-        options[options.length - 1].getAttribute('id'),
-      );
+      expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
     });
 
     it('selects the first item if on the last item and pressing up by default', () => {
@@ -2009,7 +2153,7 @@ describe('<Autocomplete />', () => {
 
       const options = screen.getAllByRole('option');
       expect(textbox).toHaveFocus();
-      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      expect(getActiveDescendant(textbox)).to.equal(options[0]);
     });
 
     describe('prop: includeInputInList', () => {
@@ -2028,7 +2172,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
 
       it('considers the textbox the successor of the last option when pressing Down', () => {
@@ -2046,7 +2190,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).not.to.have.attribute('aria-activedescendant');
+        expect(getActiveDescendant(textbox)).to.equal(null);
       });
     });
 
@@ -2066,10 +2210,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
 
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          screen.getAllByRole('option')[0].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(screen.getAllByRole('option')[0]);
       });
 
       it('focuses the last item when pressing Up when no option is active', () => {
@@ -2087,10 +2228,7 @@ describe('<Autocomplete />', () => {
 
         const options = screen.getAllByRole('option');
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          options[options.length - 1].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
       });
 
       it('keeps focus on the last item if focus is on the last item and pressing Down', () => {
@@ -2110,10 +2248,7 @@ describe('<Autocomplete />', () => {
 
         const options = screen.getAllByRole('option');
         expect(textbox).toHaveFocus();
-        expect(textbox).to.have.attribute(
-          'aria-activedescendant',
-          options[options.length - 1].getAttribute('id'),
-        );
+        expect(getActiveDescendant(textbox)).to.equal(options[options.length - 1]);
       });
     });
   });

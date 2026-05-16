@@ -305,6 +305,12 @@ export interface UseAutocompleteProps<
    */
   readOnly?: boolean | undefined;
   /**
+   * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * @deprecated This behavior will be enabled by default in the next major version.
+   * @default false
+   */
+  resetHighlightOnMouseLeave?: boolean | undefined;
+  /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
@@ -438,9 +444,10 @@ export interface UseAutocompleteReturnValue<
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
    * Resolver for the listbox component's props.
+   * @param externalProps props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getListboxProps: (externalProps?: any) => React.HTMLAttributes<HTMLUListElement>;
   /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete

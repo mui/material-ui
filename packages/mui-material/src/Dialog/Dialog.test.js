@@ -156,6 +156,9 @@ describe('<Dialog />', () => {
     expect(dialog).toHaveFocus();
     expect(dialog.tagName).to.equal('DIV');
     expect(dialog).to.have.attribute('tabindex', '-1');
+    if (!isJsdom()) {
+      expect(dialog).toHaveComputedStyle({ outlineWidth: '0px' });
+    }
   });
 
   it('should focus the Paper element (role="alertdialog") on open', () => {

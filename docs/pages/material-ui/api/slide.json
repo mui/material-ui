@@ -1,7 +1,13 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
-    "addEndListener": { "type": { "name": "func" } },
+    "addEndListener": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(node: HTMLElement, done: Function) => void",
+        "describedArgs": ["node", "done"]
+      }
+    },
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "container": {
       "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" }
