@@ -171,7 +171,7 @@ If you're not wrapping a Material UI component that inherits from `ButtonBase`,
 
 ## Transitions
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "TransitionsTooltips.js"}}
 

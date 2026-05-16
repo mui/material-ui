@@ -1,10 +1,9 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
-import { Transition } from 'react-transition-group';
+import { createRenderer } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 describe('<Fade />', () => {
   const { clock, render } = createRenderer();
@@ -22,65 +21,31 @@ describe('<Fade />', () => {
     skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
-  describe('transition lifecycle', () => {
-    clock.withFakeTimers();
-
-    it('calls the appropriate callbacks for each transition', () => {
-      const handleEnter = spy();
-      const handleEntering = spy();
-      const handleEntered = spy();
-      const handleExit = spy();
-      const handleExiting = spy();
-      const handleExited = spy();
-
-      const { container, setProps } = render(
-        <Fade
-          onEnter={handleEnter}
-          onEntering={handleEntering}
-          onEntered={handleEntered}
-          onExit={handleExit}
-          onExiting={handleExiting}
-          onExited={handleExited}
-        >
-          <div id="test" />
-        </Fade>,
-      );
-      const child = container.querySelector('#test');
-
-      setProps({ in: true });
-
-      expect(handleEnter.callCount).to.equal(1);
-      expect(handleEnter.args[0][0]).to.equal(child);
-      expect(handleEnter.args[0][0].style.transition).to.match(
-        /opacity 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-      );
-
-      expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-
-      expect(handleEntered.callCount).to.equal(1);
-      expect(handleEntered.args[0][0]).to.equal(child);
-
-      setProps({ in: false });
-
-      expect(handleExit.callCount).to.equal(1);
-      expect(handleExit.args[0][0]).to.equal(child);
-
-      expect(handleExit.args[0][0].style.transition).to.match(
-        /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
-      );
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-
-      expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child);
-    });
-  });
+  describeTransitionConformance('Fade', () => ({
+    Component: Fade,
+    render,
+    clock,
+    lifecycle: {
+      assertEnter: (node) => {
+        expect(node.style.transition).to.match(
+          /opacity 225ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+        );
+      },
+      assertExit: (node) => {
+        expect(node.style.transition).to.match(
+          /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
+        );
+      },
+    },
+    themeDuration: {
+      testPropTimeout: true,
+      renderElement: (props) => (
+        <Fade in appear {...props}>
+          <div data-testid="child">Foo</div>
+        </Fade>
+      ),
+    },
+  }));
 
   describe('prop: appear', () => {
     it('should work when initially hidden, appear=true', () => {
@@ -107,56 +72,6 @@ describe('<Fade />', () => {
 
       expect(element).toHaveInlineStyle({ opacity: '0' });
       expect(element).toHaveInlineStyle({ visibility: 'hidden' });
-    });
-  });
-
-  describe('prop: timeout', () => {
-    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-
-      render(
-        <Fade in appear>
-          <div data-testid="child">Foo</div>
-        </Fade>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it.skipIf(isJsdom())('should render the custom theme values', function test() {
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Fade in appear>
-            <div data-testid="child">Foo</div>
-          </Fade>
-        </ThemeProvider>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
-
-    it.skipIf(isJsdom())('should render the values provided via prop', function test() {
-      render(
-        <Fade in appear timeout={{ enter: 1 }}>
-          <div data-testid="child">Foo</div>
-        </Fade>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

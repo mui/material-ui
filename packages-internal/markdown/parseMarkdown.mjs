@@ -264,20 +264,14 @@ const noSEOadvantage = [
   'https://m2.material.io/',
   'https://m3.material.io/',
   'https://material.io/',
-  'https://getbootstrap.com/',
-  'https://icons.getbootstrap.com/',
+  'https://themes.getbootstrap.com/',
   'https://pictogrammers.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-  'https://react-spectrum.adobe.com/',
-  'https://headlessui.com/',
-  'https://refine.dev/',
-  'https://scaffoldhub.io/',
   'https://marmelab.com/',
-  'https://framesxdesign.com/',
 ];
 
 /**
