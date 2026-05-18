@@ -33,8 +33,6 @@ import {
 import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
-const cssComponents = new Set(['Box', 'Grid', 'Typography', 'Stack']);
-
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
@@ -353,7 +351,6 @@ const generateApiPage = async (
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.demoPageTitle}</a></li>`)
       .join('\n')}</ul>`,
-    cssComponent: cssComponents.has(reactApi.name),
     deprecated: reactApi.deprecated,
   };
 

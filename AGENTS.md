@@ -139,6 +139,8 @@ packages/mui-material/src/Button/
 - Use `createRenderer()` from `@mui/internal-test-utils`
 - Use Chai BDD-style assertions (`expect(x).to.equal(y)`)
 - Custom matchers: `toErrorDev()`, `toWarnDev()` for console assertions
+- Prefer testing components with full interactions using `user.*` methods. Avoid `fireEvent` and `setProps` if possible.
+- If tests require the browser because, for example, they require layout measurements, restrict it to the Chromium env by using `it.skipIf(isJsdom())` or `describe.skipIf(isJsdom())` (search other tests for example usage if unsure).
 
 ```js
 import { createRenderer } from '@mui/internal-test-utils';
@@ -146,12 +148,58 @@ import { createRenderer } from '@mui/internal-test-utils';
 describe('Button', () => {
   const { render } = createRenderer();
 
-  it('renders children', () => {
-    const { getByRole } = render(<Button>Hello</Button>);
-    expect(getByRole('button')).to.have.text('Hello');
+  it('renders children', async () => {
+    const handleClick = vi.fn();
+    const { getByRole, user } = render(<Button onClick={handleClick}>Hello</Button>);
+
+    const button = getByRole('button');
+    expect(button).to.have.text('Hello');
+
+    await user.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
 ```
+
+### Accessibility Testing
+
+axe-core runs inside the visual-regression Playwright loop (`test/regressions/index.test.js`) — no separate browser session. Screenshots and a11y are independent: a demo can opt out of one and still run the other.
+
+Key files:
+
+- `test/regressions/demoMeta.ts` — `SCREENSHOT_RULES` and `A11Y_RULES` arrays, matched last-wins (no inheritance: overrides restate every field) against `docs/data/material/components/{slug}/{Demo}` (minimatch globs).
+- `test/regressions/a11y/axe.ts` — asserts `color-contrast` and `link-in-text-block` unless listed in `skipAssertions`.
+- `test/regressions/a11y/a11yReporter.ts` — writes one file per slug at `docs/data/material/components/{slug}/{slug}.a11y.json`. Each file is keyed by demo name, then by axe rule ID. Each rule records a `status` (`pass`, `fail`, or `incomplete`) and WCAG tags.
+
+Enroll a component (slug-wide, or narrow with brace-glob):
+
+```ts
+// test/regressions/demoMeta.ts
+{ test: 'docs/data/material/components/alert/*', enabled: true, skipAssertions: ['color-contrast'] },
+{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+```
+
+Override a specific demo: append a per-demo rule _after_ the slug-wide rule (last-match-wins; the override must restate every field it wants):
+
+```ts
+{ test: 'docs/data/material/components/popover/AnchorPlayground', enabled: false }, // Redux isolation
+```
+
+Run `pnpm test:regressions` to refresh the `*.a11y.json` files. CI fails if any are stale.
+
+For local iteration, scope the run with vitest's `-t` test-name filter (matched against the `it()` strings, which contain the route). Non-matching tests are skipped — their bodies don't execute, so the browser never navigates to those routes.
+
+```bash
+# in one terminal
+pnpm test:regressions:server
+
+# in another — note no `--`, pnpm forwards args directly
+pnpm test:regressions:run -t '/docs-components-buttons/'              # one slug
+pnpm test:regressions:run -t '/docs-components-buttons/BasicButtons$' # one demo
+pnpm test:regressions:run -t '/docs-components-(buttons|chips)/'      # multiple slugs
+```
+
+Filtered runs only refresh the matched slugs' `*.a11y.json`. Run the unfiltered `pnpm test:regressions` before pushing.
 
 ### Imports
 
@@ -187,9 +235,9 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 
 ## PR Title Format
 
-`[product-name][Component] Imperative description`
+`[component] Imperative description`
 
 Examples:
 
-- `[material-ui][Button] Add loading state`
+- `[button] Add loading state`
 - `[docs] Fix typo in Grid documentation`

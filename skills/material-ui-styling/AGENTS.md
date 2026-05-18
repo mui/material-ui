@@ -1,6 +1,8 @@
 # Material UI styling
 
-Version 1.0.0
+Version 1.0.0 (Material UI v9)
+
+> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
 
@@ -121,7 +123,7 @@ To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()�
 ## Imports and consistency
 
 - In application code, prefer one-level imports from packages (for example `@mui/material/Button`) to avoid pulling the entire barrel.
-- `Box` / `Stack` / `Typography` / `Grid`: system layout props apply directly on these; other components use `sx` for system shortcuts, not arbitrary CSS prop shortcuts on the component itself.
+- Use `sx` for system layout shortcuts (`p`, `gap`, `mt`, etc.) on MUI components; use component props only for behavior documented by that component.
 
 ---
 

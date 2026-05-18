@@ -8,6 +8,10 @@ Themes let you apply a consistent tone to your app. It allows you to **customize
 
 To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on `createTheme`, palette, color schemes, CSS variables, and TypeScript augmentation.
+:::
+
 ## Theme provider
 
 Material UI components adhere to the library's default theme out of the box.

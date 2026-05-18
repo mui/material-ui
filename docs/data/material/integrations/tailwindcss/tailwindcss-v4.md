@@ -11,6 +11,10 @@ There are two steps to integrate Tailwind CSS v4 with Material UI:
 
 The instructions below detail how to achieve this using common React frameworks.
 
+:::success
+Use the [Material UI + Tailwind CSS agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-tailwind) to give your AI coding assistant full context on this integration, including CSS layer ordering, `enableCssLayer`, and Tailwind class overrides.
+:::
+
 ### Next.js App Router
 
 To integrate Tailwind CSS v4 with Material UI in a Next.js App Router project, start by configuring Material UI with Next.js in the [App Router integration guide](/material-ui/integrations/nextjs/#app-router).

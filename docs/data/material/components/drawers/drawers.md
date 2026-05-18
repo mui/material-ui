@@ -84,6 +84,11 @@ You can change this default behavior with the `ModalProps` prop, but you may enc
 />
 ```
 
+### Transition
+
+Temporary drawers use [Slide](/material-ui/transitions/#slide) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
 ## Responsive drawer
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.

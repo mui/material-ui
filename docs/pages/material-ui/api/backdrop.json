@@ -47,7 +47,7 @@
     },
     {
       "name": "transition",
-      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.",
       "default": "Fade",
       "class": null
     }
@@ -66,6 +66,5 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Backdrop/Backdrop.js",
   "inheritance": { "component": "Fade", "pathname": "/material-ui/api/fade/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-backdrop/\">Backdrop</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-backdrop/\">Backdrop</a></li></ul>"
 }

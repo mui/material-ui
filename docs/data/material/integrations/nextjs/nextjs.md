@@ -2,6 +2,10 @@
 
 <p class="description">Learn how to use Material UI with Next.js.</p>
 
+:::success
+Use the [Material UI + Next.js agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-nextjs) to give your AI coding assistant full context on this integration, including App Router, SSR cache providers, `next/font`, and CSS layers.
+:::
+
 ## App Router
 
 This section walks through the Material UI integration with the Next.js [App Router](https://nextjs.org/docs/app), an evolution of the [Pages Router](#pages-router), and, currently, the recommended way of building new Next.js applications starting from version 13.

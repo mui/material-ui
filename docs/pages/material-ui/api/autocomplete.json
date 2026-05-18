@@ -149,6 +149,12 @@
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
+    "resetHighlightOnMouseLeave": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "This behavior will be enabled by default in the next major version."
+    },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": {
@@ -350,6 +356,5 @@
   "muiName": "MuiAutocomplete",
   "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-autocomplete/\">Autocomplete</a></li></ul>"
 }
