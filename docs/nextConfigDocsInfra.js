@@ -75,7 +75,6 @@ function withDocsInfra(nextConfig) {
     },
     experimental: {
       scrollRestoration: true,
-      workerThreads: false,
       ...(process.env.CI
         ? {
             cpus: process.env.NEXT_PARALLELISM

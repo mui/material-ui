@@ -168,6 +168,7 @@ export default withDocsInfra({
                   // shift highlighted/focus frames left when collapsed.
                   emphasisOptions: { emitFrameIndent: true },
                   requireClient: '@mui/internal-core-docs/utils/createDemoClient',
+                  transformTypescriptToJavascript: true,
                 },
               },
             ],
