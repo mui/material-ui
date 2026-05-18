@@ -39,7 +39,9 @@ export const projectSettings: ProjectSettings = {
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
     return (
-      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|SliderEmotion)/) !== null
+      filename.match(
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|SliderEmotion|CssVarsInjector)/,
+      ) !== null
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
