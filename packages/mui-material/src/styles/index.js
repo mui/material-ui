@@ -53,5 +53,5 @@ export { default as private_createTypography } from './createTypography';
 export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
 
-export { default as styleSheetsToString } from '@mui/system/cssVars/styleSheetsToString';
+export { styleSheetsToString } from '@mui/system';
 export { default as CssVarsInjector } from './CssVarsInjector';
