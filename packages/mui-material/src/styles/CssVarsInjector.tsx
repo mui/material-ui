@@ -2,14 +2,17 @@ import { styleSheetsToString } from '@mui/system';
 import * as React from 'react';
 
 interface CssVarsInjectorProps {
-  theme: { generateStyleSheets: () => Array<Record<string, any>> };
+  theme: { generateStyleSheets?: (() => Array<Record<string, any>>) | undefined };
   nonce?: string | undefined;
 }
 
 const STYLE_ID = 'mui-css-vars';
 
 export default function CssVarsInjector({ theme, nonce }: CssVarsInjectorProps) {
-  const css = React.useMemo(() => styleSheetsToString(theme.generateStyleSheets()), [theme]);
+  const css = React.useMemo(
+    () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),
+    [theme],
+  );
 
   // Client: insert/update the <style> tag directly in <head> before any paint.
   // useInsertionEffect is the earliest possible hook — it runs synchronously
