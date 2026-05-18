@@ -306,6 +306,7 @@ export interface UseAutocompleteProps<
   readOnly?: boolean | undefined;
   /**
    * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * This behavior will be enabled by default in the next major version.
    * @default false
    */
   resetHighlightOnMouseLeave?: boolean | undefined;
