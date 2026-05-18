@@ -2,13 +2,27 @@ import { styleSheetsToString } from '@mui/system';
 import * as React from 'react';
 
 interface CssVarsInjectorProps {
-  theme: { generateStyleSheets?: (() => Array<Record<string, any>>) | undefined };
+  theme: {
+    generateStyleSheets?: (() => Array<Record<string, any>>) | undefined;
+    cssVarPrefix?: string | undefined;
+  };
   nonce?: string | undefined;
+  /**
+   * The document to inject the `<style>` tag into. Defaults to `document`.
+   * `CssVarsProvider` forwards its `documentNode` prop, so the iframe case
+   * works correctly when the provider is rendered inside an iframe.
+   */
+  documentNode?: Document | undefined;
 }
 
-const STYLE_ID = 'mui-css-vars';
+const DEFAULT_STYLE_ID = 'mui-css-vars';
 
-export default function CssVarsInjector({ theme, nonce }: CssVarsInjectorProps) {
+function getStyleId(cssVarPrefix: string | undefined) {
+  return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
+}
+
+export default function CssVarsInjector({ theme, nonce, documentNode }: CssVarsInjectorProps) {
+  const styleId = getStyleId(theme.cssVarPrefix);
   const css = React.useMemo(
     () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),
     [theme],
@@ -20,10 +34,14 @@ export default function CssVarsInjector({ theme, nonce }: CssVarsInjectorProps) 
   // component layout or paint. Returning null from render keeps the React tree
   // clean (no <style> node inside #__next).
   React.useInsertionEffect(() => {
-    let style = document.getElementById(STYLE_ID) as HTMLStyleElement | null;
+    const doc = documentNode ?? (typeof document === 'undefined' ? null : document);
+    if (!doc) {
+      return;
+    }
+    let style = doc.getElementById(styleId) as HTMLStyleElement | null;
     if (!style) {
-      style = document.createElement('style');
-      style.id = STYLE_ID;
+      style = doc.createElement('style');
+      style.id = styleId;
       if (nonce) {
         style.setAttribute('nonce', nonce);
       }
@@ -31,13 +49,13 @@ export default function CssVarsInjector({ theme, nonce }: CssVarsInjectorProps) 
     // SSR rendered the <style> tag inside the React tree (e.g. inside #__next
     // for Next.js Pages Router). Move it to <head> so it cascades correctly
     // and won't be removed if the React tree unmounts.
-    if (style.parentNode !== document.head) {
-      document.head.insertBefore(style, document.head.firstChild);
+    if (style.parentNode !== doc.head) {
+      doc.head.insertBefore(style, doc.head.firstChild);
     }
     if (style.textContent !== css) {
       style.textContent = css;
     }
-  }, [css, nonce]);
+  }, [css, nonce, documentNode, styleId]);
 
   // Server: render the <style> tag into the HTML stream so CSS vars are
   // available before any JS executes (prevents FOUC). On the client this
@@ -45,7 +63,7 @@ export default function CssVarsInjector({ theme, nonce }: CssVarsInjectorProps) 
   if (typeof window === 'undefined') {
     return (
       <style
-        id={STYLE_ID}
+        id={styleId}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: css }}
         {...(nonce ? { nonce } : {})}

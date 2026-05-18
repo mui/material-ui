@@ -3,18 +3,24 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import CssVarsInjector from './CssVarsInjector';
 
-const makeTheme = (sheets: Array<Record<string, any>> = []) => ({
+const makeTheme = (sheets: Array<Record<string, any>> = [], cssVarPrefix?: string) => ({
   generateStyleSheets: () => sheets,
+  cssVarPrefix,
 });
 
-const STYLE_ID = 'mui-css-vars';
+const DEFAULT_STYLE_ID = 'mui-css-vars';
+const STYLE_ID = DEFAULT_STYLE_ID;
+
+function getStyleId(cssVarPrefix?: string) {
+  return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
+}
 
 describe('CssVarsInjector', () => {
   const { render } = createRenderer();
 
   afterEach(() => {
-    // Clean up any injected <style> tag between tests
-    document.getElementById(STYLE_ID)?.remove();
+    // Clean up any injected <style> tags between tests
+    document.querySelectorAll('[id$="-css-vars"]').forEach((el) => el.remove());
   });
 
   it('injects a <style> tag into <head> on mount', () => {
@@ -95,5 +101,47 @@ describe('CssVarsInjector', () => {
     const style = document.getElementById(STYLE_ID);
     expect(style).not.to.equal(null);
     expect(style!.textContent).to.equal('');
+  });
+
+  it('handles a theme without generateStyleSheets without error', () => {
+    render(<CssVarsInjector theme={{}} />);
+
+    const style = document.getElementById(STYLE_ID);
+    expect(style).not.to.equal(null);
+    expect(style!.textContent).to.equal('');
+  });
+
+  it('uses a per-prefix style ID to avoid collisions between multiple demos', () => {
+    const themeA = makeTheme([{ ':root': { '--a-spacing': '8px' } }], 'a');
+    const themeB = makeTheme([{ ':root': { '--b-spacing': '16px' } }], 'b');
+
+    render(<CssVarsInjector theme={themeA} />);
+    render(<CssVarsInjector theme={themeB} />);
+
+    const styleA = document.getElementById(getStyleId('a'))!;
+    const styleB = document.getElementById(getStyleId('b'))!;
+    expect(styleA).not.to.equal(null);
+    expect(styleB).not.to.equal(null);
+    expect(styleA.textContent).to.include('--a-spacing: 8px');
+    expect(styleB.textContent).to.include('--b-spacing: 16px');
+    // Neither should have overwritten the other
+    expect(styleA.textContent).not.to.include('--b-spacing');
+    expect(styleB.textContent).not.to.include('--a-spacing');
+  });
+
+  it('injects into the provided documentNode (iframe scenario)', () => {
+    const iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+    const iframeDoc = iframe.contentDocument!;
+
+    const theme = makeTheme([{ ':root': { '--mui-spacing': '8px' } }]);
+    render(<CssVarsInjector theme={theme} documentNode={iframeDoc} />);
+
+    expect(iframeDoc.getElementById(STYLE_ID)).not.to.equal(null);
+    expect(iframeDoc.getElementById(STYLE_ID)!.parentNode).to.equal(iframeDoc.head);
+    // Top-level document must not have it
+    expect(document.getElementById(STYLE_ID)).to.equal(null);
+
+    document.body.removeChild(iframe);
   });
 });

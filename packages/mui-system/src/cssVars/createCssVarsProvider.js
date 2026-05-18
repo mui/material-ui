@@ -315,7 +315,9 @@ export default function createCssVarsProvider(options) {
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
           {children}
         </ThemeProvider>
-        {shouldGenerateStyleSheet && CssVarsInjector && <CssVarsInjector theme={memoTheme} />}
+        {shouldGenerateStyleSheet && CssVarsInjector && (
+          <CssVarsInjector theme={memoTheme} documentNode={documentNode} />
+        )}
       </React.Fragment>
     );
 
