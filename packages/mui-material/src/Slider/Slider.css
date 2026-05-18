@@ -128,7 +128,11 @@
     border-radius: inherit;
     border: 1px solid currentColor;
     background-color: currentColor;
-    transition: left var(--mui-transition-duration-shortest), width var(--mui-transition-duration-shortest), bottom var(--mui-transition-duration-shortest), height var(--mui-transition-duration-shortest);
+    transition:
+      left var(--mui-transition-duration-shortest),
+      width var(--mui-transition-duration-shortest),
+      bottom var(--mui-transition-duration-shortest),
+      height var(--mui-transition-duration-shortest);
   }
 
   .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorPrimary {
@@ -194,7 +198,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: box-shadow var(--mui-transition-duration-shortest), left var(--mui-transition-duration-shortest), bottom var(--mui-transition-duration-shortest);
+    transition:
+      box-shadow var(--mui-transition-duration-shortest),
+      left var(--mui-transition-duration-shortest),
+      bottom var(--mui-transition-duration-shortest);
   }
 
   @media (forced-colors: active) {

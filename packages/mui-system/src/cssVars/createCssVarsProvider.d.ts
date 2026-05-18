@@ -160,7 +160,10 @@ export default function createCssVarsProvider<
      * When provided, replaces the default `GlobalStyles`-based injection.
      * Must accept `{ theme: { generateStyleSheets: () => Array<Record<string, any>> }, nonce?: string }`.
      */
-    CssVarsInjector?: React.ComponentType<{ theme: any; nonce?: string | undefined }> | null | undefined;
+    CssVarsInjector?:
+      | React.ComponentType<{ theme: any; nonce?: string | undefined }>
+      | null
+      | undefined;
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 
