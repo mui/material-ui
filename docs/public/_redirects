@@ -511,14 +511,19 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/experimental-api/css-theme-variables/usage/ /material-ui/customization/css-theme-variables/usage/ 301
 /material-ui/experimental-api/css-theme-variables/customization/ /material-ui/customization/css-theme-variables/configuration/ 301
 /base-ui/ https://base-ui.com/ 301
-#2025
+/material-ui/discover-more/design-kits/ /material-ui/discover-more/design-kits/ 301
+/material-ui/api/loading-button/ https://v5.mui.com/material-ui/api/loading-button/ 301
+/material-ui/getting-started/templates/landing-page/ /material-ui/getting-started/templates/marketing-page/ 301
+# 2025
 /system/styles/basics/ https://v6.mui.com/system/styles/basics/ 301
 /system/styles/advanced/ https://v6.mui.com/system/styles/advanced/ 301
 /system/styles/api/ https://v6.mui.com/system/styles/api/ 301
 /base-ui/* https://v6.mui.com/base-ui/:splat 301
-#2026
+/material-ui/react-grid2/ https://v6.mui.com/material-ui/react-grid2/ 301
+# 2026
 /joy-ui/* https://v7.mui.com/joy-ui/:splat 301
 /versions/ /material-ui/getting-started/versions/ 301
+/material-ui/react-grid-legacy/ https://v7.mui.com/material-ui/react-grid-legacy/ 301
 
 # Proxies
 
