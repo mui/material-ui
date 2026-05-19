@@ -174,13 +174,13 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
+    focusableWhenDisabled = false,
     size = 'medium',
     id: idProp,
     loading = null,
     loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
-
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
@@ -209,6 +209,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
+      focusableWhenDisabled={focusableWhenDisabled === true}
       ownerState={ownerState}
     >
       {typeof loading === 'boolean' && (
@@ -302,6 +303,12 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * If `true`, allows a disabled component to retain keyboard and programmatic focusability while preventing activation.
+   * Disabled links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */

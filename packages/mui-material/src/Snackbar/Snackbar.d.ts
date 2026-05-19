@@ -83,6 +83,10 @@ export interface SnackbarOrigin {
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
+export type SnackbarCloseEvent = (React.SyntheticEvent<any> | Event) & {
+  defaultMuiPrevented?: (boolean) | undefined;
+};
+
 export interface SnackbarProps
   extends
     Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
@@ -140,9 +144,7 @@ export interface SnackbarProps
    * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
-  onClose?:
-    | ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void)
-    | undefined;
+  onClose?: ((event: SnackbarCloseEvent, reason: SnackbarCloseReason) => void) | undefined;
   /**
    * If `true`, the component is shown.
    */

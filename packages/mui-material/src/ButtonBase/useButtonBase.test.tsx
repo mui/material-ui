@@ -402,6 +402,24 @@ describe('useButtonBase', () => {
         expect(el.getAttribute('tabindex')).toBe('-1');
       });
 
+      it('does not return aria-disabled when focusableWhenDisabled is true but disabled is false', () => {
+        render(
+          <React.Fragment>
+            <NativeButton id="native" focusableWhenDisabled />
+            <NonNativeButton id="non-native" focusableWhenDisabled />
+          </React.Fragment>,
+        );
+
+        const nativeButton = screen.getByTestId('native');
+        expect(nativeButton.getAttribute('aria-disabled')).toBeNull();
+        expect((nativeButton as HTMLButtonElement).disabled).toBe(false);
+        expect(nativeButton.getAttribute('tabindex')).toBe('0');
+
+        const nonNativeButton = screen.getByTestId('non-native');
+        expect(nonNativeButton.getAttribute('aria-disabled')).toBeNull();
+        expect(nonNativeButton.getAttribute('tabindex')).toBe('0');
+      });
+
       it('does not default type when hasFormAction is true', () => {
         render(<NativeButton hasFormAction />);
 

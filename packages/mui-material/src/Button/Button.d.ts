@@ -53,6 +53,12 @@ export interface ButtonOwnProps {
    */
   endIcon?: React.ReactNode;
   /**
+   * If `true`, allows a disabled component to retain keyboard and programmatic focusability while preventing activation.
+   * Disabled links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean | undefined;
+  /**
    * If `true`, the button will take up the full width of its container.
    * @default false
    */
