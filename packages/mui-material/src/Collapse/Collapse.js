@@ -15,6 +15,8 @@ import { useForkRef } from '../utils';
 import useSlot from '../utils/useSlot';
 import { getCollapseUtilityClass } from './collapseClasses';
 
+const EMPTY_OBJECT = {};
+
 const useUtilityClasses = (ownerState) => {
   const { orientation, classes } = ownerState;
 
@@ -150,8 +152,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
     onExited,
     onExiting,
     orientation = 'vertical',
-    slots = {},
-    slotProps = {},
+    slots = EMPTY_OBJECT,
+    slotProps = EMPTY_OBJECT,
     style,
     timeout = duration.standard,
     // eslint-disable-next-line react/prop-types
@@ -378,11 +380,11 @@ Collapse.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

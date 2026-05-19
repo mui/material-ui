@@ -189,4 +189,33 @@ describe('useReducedMotion', () => {
     expect(screen.getByTestId('result')).to.have.attribute('data-duration', '250');
     expect(screen.getByTestId('result')).to.have.attribute('data-delay', '20ms');
   });
+
+  it('keeps the returned object stable while the resolved reduced-motion state is unchanged', () => {
+    installMatchMedia(false);
+    const values: Array<ReturnType<typeof useReducedMotion>> = [];
+
+    function LoggingTest(props: {
+      mode: ReducedMotionMode;
+      disablePrefersReducedMotion?: boolean;
+    }) {
+      const reducedMotion = useReducedMotion(props.mode, props.disablePrefersReducedMotion);
+      values.push(reducedMotion);
+
+      return <span data-testid="result" data-should-reduce={reducedMotion.shouldReduceMotion} />;
+    }
+
+    const { setProps } = render(<LoggingTest mode="never" />);
+    const firstValue = values[values.length - 1];
+
+    setProps({ mode: 'never' });
+    const stableValue = values[values.length - 1];
+
+    expect(stableValue).to.equal(firstValue);
+
+    setProps({ mode: 'always' });
+    const changedValue = values[values.length - 1];
+
+    expect(changedValue).not.to.equal(stableValue);
+    expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'true');
+  });
 });

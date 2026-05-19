@@ -145,6 +145,8 @@ interface TransitionConformanceOptions {
   };
 }
 
+const EMPTY_OBJECT = {};
+
 function describeTransitionConformance(
   componentName: string,
   getOptions: () => TransitionConformanceOptions,
@@ -155,7 +157,7 @@ function describeTransitionConformance(
       Component,
       render,
       clock,
-      defaultProps = {},
+      defaultProps = EMPTY_OBJECT,
       children = <div id="test" />,
       getNode = (container) => container.querySelector('#test'),
     } = options;

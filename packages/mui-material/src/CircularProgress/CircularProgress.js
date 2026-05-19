@@ -176,7 +176,7 @@ const CircularProgressCircle = styled('circle', {
             variant: 'indeterminate',
           },
           style: {
-            // Some default value that looks fine waiting for the animation to kicks in.
+            // Some default value that looks fine while waiting for the animation to kick in.
             strokeDasharray: '80px, 200px',
             strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
           },

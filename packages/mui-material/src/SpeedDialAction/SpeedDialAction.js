@@ -86,10 +86,9 @@ const SpeedDialActionStaticTooltip = styled('span', {
     display: 'flex',
     alignItems: 'center',
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-      transition: theme.transitions.create(['transform', 'opacity'], {
+      ...theme.transitions.createStyles(['transform', 'opacity'], {
         duration: theme.transitions.duration.shorter,
       }),
-      ...getReducedMotionStyles(theme),
       opacity: 1,
     },
     variants: [

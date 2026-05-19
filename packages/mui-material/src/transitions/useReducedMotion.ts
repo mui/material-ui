@@ -83,17 +83,20 @@ export default function useReducedMotion(
     !disablePrefersReducedMotion &&
     (mode === 'always' || (mode === 'system' && prefersReducedMotion !== false));
 
-  return {
-    shouldReduceMotion,
-    getTransitionTiming(timing: TransitionTiming): TransitionTiming {
-      if (!shouldReduceMotion) {
-        return timing;
-      }
+  return React.useMemo(
+    () => ({
+      shouldReduceMotion,
+      getTransitionTiming(timing: TransitionTiming): TransitionTiming {
+        if (!shouldReduceMotion) {
+          return timing;
+        }
 
-      return {
-        duration: REDUCED_MOTION_DURATION,
-        delay: REDUCED_MOTION_DELAY,
-      };
-    },
-  };
+        return {
+          duration: REDUCED_MOTION_DURATION,
+          delay: REDUCED_MOTION_DELAY,
+        };
+      },
+    }),
+    [shouldReduceMotion],
+  );
 }

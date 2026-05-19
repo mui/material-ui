@@ -7,7 +7,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import AddIcon from '../internal/svg-icons/Add';
-import { getReducedMotionStyles } from '../transitions/utils';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -42,22 +41,18 @@ const SpeedDialIconRoot = styled('span', {
   },
 })(
   memoTheme(({ theme }) => {
-    const reducedMotionStyles = getReducedMotionStyles(theme);
-
     return {
       height: 24,
       [`& .${speedDialIconClasses.icon}`]: {
-        transition: theme.transitions.create(['transform', 'opacity'], {
+        ...theme.transitions.createStyles(['transform', 'opacity'], {
           duration: theme.transitions.duration.short,
         }),
-        ...reducedMotionStyles,
       },
       [`& .${speedDialIconClasses.openIcon}`]: {
         position: 'absolute',
-        transition: theme.transitions.create(['transform', 'opacity'], {
+        ...theme.transitions.createStyles(['transform', 'opacity'], {
           duration: theme.transitions.duration.short,
         }),
-        ...reducedMotionStyles,
         opacity: 0,
         transform: 'rotate(-45deg)',
       },

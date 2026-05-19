@@ -63,7 +63,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
     if (!reducedMotion.shouldReduceMotion) {
-      reflow(node); // So the animation always start from the start.
+      reflow(node); // Force layout so the animation starts from the initial styles.
     }
 
     const transitionProps = getTransitionProps(
@@ -174,11 +174,11 @@ Zoom.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

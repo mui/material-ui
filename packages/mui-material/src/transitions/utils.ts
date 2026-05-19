@@ -29,6 +29,7 @@ interface TranslateOffset {
 }
 
 const DEFAULT_TRANSLATE_OFFSET = { offsetX: 0, offsetY: 0 };
+const EMPTY_STYLE: React.CSSProperties = {};
 
 const transformOffsetIndexes: Record<string, readonly [number | null, number | null]> = {
   matrix: [4, 5],
@@ -134,7 +135,7 @@ export function getTransitionChildStyle(
 }
 
 export function getTransitionProps(props: ComponentProps, options: Options): TransitionProps {
-  const { timeout, easing, style = {} } = props;
+  const { timeout, easing, style = EMPTY_STYLE } = props;
 
   return {
     duration:

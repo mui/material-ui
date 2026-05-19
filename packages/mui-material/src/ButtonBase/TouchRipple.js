@@ -153,6 +153,10 @@ const pulsateKeyframe = keyframes`
 `;
 
 function getAnimationStyles(theme) {
+  if (theme.transitions.reducedMotion === 'always') {
+    return null;
+  }
+
   const styles = css`
     &.${touchRippleClasses.rippleVisible} {
       animation-name: ${enterKeyframe};
@@ -178,10 +182,6 @@ function getAnimationStyles(theme) {
       animation-delay: 200ms;
     }
   `;
-
-  if (theme.transitions.reducedMotion === 'always') {
-    return null;
-  }
 
   if (theme.transitions.reducedMotion === 'system') {
     return css`

@@ -1,4 +1,7 @@
-import { defaultStyles, resolveReducedMotionStyles } from './reducedMotion';
+import { defaultStyles } from './reducedMotion';
+
+const DEFAULT_TRANSITION_PROPS = ['all'];
+const EMPTY_OPTIONS = {};
 
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
@@ -57,7 +60,7 @@ export default function createTransitions(inputTransitions) {
     ...inputTransitions.duration,
   };
 
-  const createTransitionValue = (props = ['all'], options = {}) => {
+  const createTransitionValue = (props = DEFAULT_TRANSITION_PROPS, options = EMPTY_OPTIONS) => {
     const {
       duration: durationOption = mergedDuration.standard,
       easing: easingOption = mergedEasing.easeInOut,
@@ -112,16 +115,21 @@ export default function createTransitions(inputTransitions) {
 
   const create = inputTransitions.create ?? createTransitionValue;
 
-  const createStyles = (props = ['all'], options = {}) => {
+  const createStyles = (props = DEFAULT_TRANSITION_PROPS, options = EMPTY_OPTIONS) => {
     const transition = create(props, options);
 
     if (reducedMotion === 'always') {
       return defaultStyles;
     }
 
-    const reducedMotionStyles = resolveReducedMotionStyles(reducedMotion, defaultStyles);
+    if (reducedMotion === 'system') {
+      return {
+        transition,
+        '@media (prefers-reduced-motion: reduce)': defaultStyles,
+      };
+    }
 
-    return reducedMotionStyles ? { transition, ...reducedMotionStyles } : { transition };
+    return { transition };
   };
 
   return {

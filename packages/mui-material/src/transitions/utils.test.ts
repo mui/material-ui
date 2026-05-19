@@ -125,5 +125,10 @@ describe('getReducedMotionStyles', () => {
     expect(
       getReducedMotionStyles({ transitions: { reducedMotion: 'always' } }, customStyles),
     ).to.equal(customStyles);
+    expect(
+      getReducedMotionStyles({ transitions: { reducedMotion: 'system' } }, customStyles),
+    ).to.deep.equal({
+      '@media (prefers-reduced-motion: reduce)': customStyles,
+    });
   });
 });

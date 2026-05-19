@@ -20,6 +20,7 @@ import {
 import { ownerWindow } from '../utils';
 
 const hiddenStyles = { visibility: 'hidden' };
+const DEFAULT_TRANSLATE_OPTIONS = {};
 
 /**
  * Detects SwipeableDrawer's active-swipe `translate(x, y)` transform.
@@ -30,7 +31,12 @@ function isGestureTranslate(transform) {
 }
 
 // Move the node off-screen. Later we reset transform to `none` to slide it in.
-function getTranslateValue(direction, node, resolvedContainer, options = {}) {
+function getTranslateValue(
+  direction,
+  node,
+  resolvedContainer,
+  options = DEFAULT_TRANSLATE_OPTIONS,
+) {
   const { resetInlineTransform = true } = options;
   const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
@@ -312,11 +318,11 @@ Slide.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

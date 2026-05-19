@@ -4,11 +4,11 @@ import { TransitionProps } from '../transitions/types';
 export interface ZoomProps extends TransitionProps {
   /**
    * Add a custom transition end trigger.
-   * Allows for more fine grained transition end logic.
+   * Use it when you need custom logic to decide when the transition has ended.
    * Note: Timeouts are still used as a fallback if provided.
    *
    * @param {HTMLElement} node The transitioning DOM node.
-   * @param {Function} done Call to indicate the transition is finished.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener?: TransitionProps['addEndListener'] | undefined;
   /**
