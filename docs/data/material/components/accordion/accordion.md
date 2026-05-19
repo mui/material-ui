@@ -14,28 +14,46 @@ githubSource: packages/mui-material/src/Accordion
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
-## Introduction
-
-The Material UI Accordion component includes several complementary utility components to handle various use cases:
-
-- Accordion: the wrapper for grouping related components.
-- Accordion Summary: the wrapper for the Accordion header, which expands or collapses the content when clicked.
-- Accordion Details: the wrapper for the Accordion content.
-- Accordion Actions: an optional wrapper that groups a set of buttons.
-
-{{"demo": "AccordionUsage.js", "bg": true}}
-
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
-## Basics
+{{"demo": "AccordionUsage.js", "bg": true}}
 
-```jsx
+## Anatomy
+
+The Accordion components form a header and panel:
+
+- `Accordion`: groups `AccordionSummary` and `AccordionDetails`. Renders a `<div>` element.
+- `AccordionSummary`: a trigger that expands or collapses the panel. Renders an `h3` containing a `<button>` element.
+- `AccordionDetails`: contains the panel content. Renders a `<div>` element.
+- `AccordionActions`: groups actions for the panel. Renders a `<div>` element.
+
+```jsx title="Anatomy"
 import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import Button from '@mui/material/Button';
+
+<Accordion>
+  <AccordionSummary>Accordion summary</AccordionSummary>
+  <AccordionDetails>Accordion details</AccordionDetails>
+  <AccordionActions>
+    <Button>Cancel</Button>
+    <Button>Save</Button>
+  </AccordionActions>
+</Accordion>;
 ```
+
+## Usage guidelines
+
+- **Make summaries descriptive**: The summary is the accordion header button, so it should clearly identify the content that expands.
+- **Keep the heading hierarchy logical**: Accordion uses an `h3` by default. Change it with `slotProps.heading.component` when your page structure requires a different level.
+- **Use the documented structure**: Place `AccordionSummary` before `AccordionDetails` so the summary button and panel region are wired automatically.
+- **Limit expanded regions**: Each panel is a `region` landmark. If many panels can be open at once, consider allowing only one expanded panel at a time.
+
+## Basics
 
 ### Expand icon
 
@@ -50,19 +68,15 @@ Use the `defaultExpanded` prop on the Accordion component to have it opened by d
 
 {{"demo": "AccordionExpandDefault.js", "bg": true}}
 
-### Transition
-
-Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
-
-{{"demo": "AccordionTransition.js", "bg": true}}
-
 ### Disabled item
 
 Use the `disabled` prop on the Accordion component to disable interaction and focus.
 
 {{"demo": "DisabledAccordion.js", "bg": true}}
 
-### Controlled Accordion
+## Expansion behavior
+
+### Controlled accordion
 
 The Accordion component can be controlled or uncontrolled.
 
@@ -76,8 +90,6 @@ The Accordion component can be controlled or uncontrolled.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-## Customization
-
 ### Only one expanded at a time
 
 Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
@@ -85,27 +97,13 @@ The demo below also shows a bit of visual customization.
 
 {{"demo": "CustomizedAccordions.js", "bg": true}}
 
-### Changing heading level
+### Transition
 
-By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
+Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
 
-```jsx
-<Accordion slotProps={{ heading: { component: 'h4' } }}>
-  <AccordionSummary
-    expandIcon={<ExpandMoreIcon />}
-    aria-controls="panel1-content"
-    id="panel1-header"
-  >
-    Accordion
-  </AccordionSummary>
-  <AccordionDetails>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-    lacus ex, sit amet blandit leo lobortis eget.
-  </AccordionDetails>
-</Accordion>
-```
+{{"demo": "AccordionTransition.js", "bg": true}}
 
-## Performance
+### Unmounting collapsed content
 
 The Accordion content is mounted by default even if it's not expanded.
 This default behavior has server-side rendering and SEO in mind.
@@ -116,37 +114,35 @@ If you render the Accordion Details with a big component tree nested inside, or 
 <Accordion slotProps={{ transition: { unmountOnExit: true } }} />
 ```
 
-## Accessibility
+## Customization
 
-The [WAI-ARIA guidelines for accordions](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/) recommend setting an `id` and `aria-controls`, which in this case would apply to the Accordion Summary component.
-The Accordion component then derives the necessary `aria-labelledby` and `id` from its content.
+### Heading level
+
+By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
 
 ```jsx
-<Accordion>
-  <AccordionSummary id="panel-header" aria-controls="panel-content">
-    Header
-  </AccordionSummary>
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary expandIcon={<ExpandMoreIcon />}>Accordion</AccordionSummary>
   <AccordionDetails>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+    lacus ex, sit amet blandit leo lobortis eget.
   </AccordionDetails>
 </Accordion>
 ```
 
-## Anatomy
+### Actions
 
-The Accordion component consists of a root `<div>` that contains the Accordion Summary, Accordion Details, and optional Accordion Actions for action buttons.
+Use the `AccordionActions` component to group buttons related to the panel content.
 
 ```jsx
-<div class="MuiAccordion-root">
-  <h3 class="MuiAccordion-heading">
-    <button class="MuiButtonBase-root MuiAccordionSummary-root" aria-expanded="">
-      <!-- Accordion summary goes here -->
-    </button>
-  </h3>
-  <div class="MuiAccordion-region" role="region">
-    <div class="MuiAccordionDetails-root">
-      <!-- Accordion content goes here -->
-    </div>
-  </div>
-</div>
+<Accordion>
+  <AccordionSummary>Accordion</AccordionSummary>
+  <AccordionDetails>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </AccordionDetails>
+  <AccordionActions>
+    <Button>Cancel</Button>
+    <Button>Save</Button>
+  </AccordionActions>
+</Accordion>
 ```
