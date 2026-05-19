@@ -138,3 +138,5 @@ export { default as Stack } from './Stack';
 export * from './Stack';
 
 export * from './version';
+
+export { default as styleSheetsToString } from './cssVars/styleSheetsToString';

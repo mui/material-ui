@@ -98,7 +98,7 @@ A big thanks to the 16 contributors who made this release possible.
 - Fix incorrect indentation in migration guide (#47571) @sai6855
 - Enable MUI chat on Material UI demos (#46837) @siriwatknp
 - Add docs and website banner for Dev survey'25 (#47521) @prakhargupta1
-- Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
+- Update Tailwind CSS v4 + Next.js Pages Router docs (#47546) @atharva3333
 - Add warning callout to Sync plugin doc (#47511) @mapache-salvaje
 - Update typo in TailwindCSS v4 integration with Next.js docs (#47512) @TimKraemer
 - Fix link to contributing guide (#47473) @oliviertassinari
@@ -3738,7 +3738,7 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 - Link to pnpm installation docs (#42420) @aarongarciah
 - Remove LocalMonero (@oliviertassinari) (#42315) @github-actions[bot]
-- [material-ui] Fix typo in style interoperability with Tailwind CSS docs (@ZeeshanTamboli) (#42312) @github-actions[bot]
+- [material-ui] Fix typo in style interoperability with Tailwind CSS docs (@ZeeshanTamboli) (#42312) @github-actions[bot]
 - [material-ui][Pagination] Clarify pagination `page` prop API (@Mandar-Pandya) (#42265) @github-actions[bot]
 - [material-ui][Tabs] Improve the Basic Tabs demo (@MatheusEli) (#42426) @github-actions[bot]
 - [pigment-css] Fix duplication of content (#42410) @oliviertassinari

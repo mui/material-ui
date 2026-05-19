@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import ThemeProvider from '../ThemeProvider';
@@ -29,6 +28,7 @@ export default function createCssVarsProvider(options) {
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     defaultColorScheme,
     resolveTheme,
+    CssVarsInjector = null,
   } = options;
 
   const defaultContext = {
@@ -315,8 +315,8 @@ export default function createCssVarsProvider(options) {
         <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
           {children}
         </ThemeProvider>
-        {shouldGenerateStyleSheet && (
-          <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
+        {shouldGenerateStyleSheet && CssVarsInjector && (
+          <CssVarsInjector theme={memoTheme} documentNode={documentNode} />
         )}
       </React.Fragment>
     );

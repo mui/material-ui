@@ -80,3 +80,5 @@ export * from './Grid';
 
 export { default as Stack } from './Stack/Stack';
 export * from './Stack';
+
+export { default as styleSheetsToString } from './cssVars/styleSheetsToString';
