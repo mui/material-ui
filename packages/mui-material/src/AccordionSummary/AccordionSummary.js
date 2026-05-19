@@ -7,11 +7,14 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
-import AccordionContext from '../Accordion/AccordionContext';
+import { useAccordionContext } from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
 import useSlot from '../utils/useSlot';
+import mergeSlotProps from '../utils/mergeSlotProps';
+
+const EMPTY = {};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -119,7 +122,15 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     ...other
   } = props;
 
-  const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
+  const accordionContext = useAccordionContext();
+  const {
+    disabled = false,
+    disableGutters,
+    expanded,
+    toggle,
+    summaryId,
+    ariaControls,
+  } = accordionContext ?? {};
   const handleChange = (event) => {
     if (toggle) {
       toggle(event);
@@ -138,9 +149,23 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootSlotPropsWithRelationship = mergeSlotProps(
+    {
+      id: summaryId,
+      'aria-controls': ariaControls,
+    },
+    slotProps?.root ?? EMPTY,
+  );
+
   const externalForwardedProps = {
     slots,
-    slotProps,
+    slotProps:
+      accordionContext === undefined
+        ? slotProps
+        : {
+            ...slotProps,
+            root: rootSlotPropsWithRelationship,
+          },
   };
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
