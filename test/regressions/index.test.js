@@ -2,8 +2,11 @@ import * as url from 'url';
 import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
+import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
 
 async function main() {
   const baseUrl = 'http://localhost:5001';
@@ -52,6 +55,8 @@ async function main() {
     return links.map((link) => link.href);
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
+
+  const axeSource = await fs.readFile(AXE_SCRIPT, 'utf8');
 
   /**
    * @param {string} route
@@ -107,7 +112,25 @@ async function main() {
     });
 
     routes.forEach((route) => {
-      it(`creates screenshots of ${route}`, async function test() {
+      const parsed = parseRoute(route);
+      const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
+      const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
+      const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+      const runA11y = a11yRule?.enabled === true;
+      if (!runScreenshot && !runA11y) {
+        return;
+      }
+
+      let action;
+      if (runA11y && runScreenshot) {
+        action = 'creates screenshots and runs a11y on';
+      } else if (runA11y) {
+        action = 'runs a11y on';
+      } else {
+        action = 'creates screenshots of';
+      }
+
+      it(`${action} ${route}`, async function test(ctx) {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
           this?.timeout?.(0);
@@ -115,16 +138,37 @@ async function main() {
 
         const testcase = await renderFixture(route);
 
-        switch (route) {
-          case '/docs-components-table/ReactVirtualizedTable': {
-            await page.waitForSelector('[data-index="1"]');
-            break;
-          }
-          default:
-            break;
+        if (screenshotRule?.waitForSelector) {
+          await page.waitForSelector(screenshotRule.waitForSelector);
         }
 
-        await takeScreenshot({ testcase, route });
+        // Run axe before the screenshot (if any) so it observes the natural
+        // DOM — Playwright's `animations: 'disabled'` injects inline
+        // `!important` styles that otherwise perturb rule applicability.
+        if (runA11y) {
+          // Inject axe fresh each run — page.addScriptTag can leak between navigations.
+          await page.evaluate(axeSource);
+          const results = await page.evaluate(
+            async ({ element, disabledRules, tags }) => {
+              window.axe.configure({
+                rules: disabledRules.map((id) => ({ id, enabled: false })),
+              });
+              return window.axe.run(element, {
+                runOnly: { type: 'tag', values: tags },
+              });
+            },
+            { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
+          );
+          recordA11y(ctx, results, {
+            slug: parsed.slug,
+            demo: parsed.demo,
+            skipAssertions: a11yRule.skipAssertions,
+          });
+        }
+
+        if (runScreenshot) {
+          await takeScreenshot({ testcase, route });
+        }
       });
     });
 

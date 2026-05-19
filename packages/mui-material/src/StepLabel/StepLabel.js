@@ -56,9 +56,6 @@ const StepLabelRoot = styled('span', {
 })({
   display: 'flex',
   alignItems: 'center',
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    flexDirection: 'column',
-  },
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
@@ -68,6 +65,18 @@ const StepLabelRoot = styled('span', {
       style: {
         textAlign: 'left',
         padding: '8px 0',
+      },
+    },
+    {
+      props: { alternativeLabel: true },
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        flexDirection: 'row-reverse',
       },
     },
   ],
@@ -93,6 +102,16 @@ const StepLabelLabel = styled('span', {
     [`&.${stepLabelClasses.error}`]: {
       color: (theme.vars || theme).palette.error.main,
     },
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          [`&.${stepLabelClasses.alternativeLabel}`]: {
+            marginTop: 0,
+          },
+        },
+      },
+    ],
   })),
 );
 
@@ -106,6 +125,15 @@ const StepLabelIconContainer = styled('span', {
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     paddingRight: 0,
   },
+  variants: [
+    {
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        paddingRight: 0,
+        paddingLeft: 8,
+      },
+    },
+  ],
 });
 
 const StepLabelLabelContainer = styled('span', {
@@ -118,6 +146,16 @@ const StepLabelLabelContainer = styled('span', {
     [`&.${stepLabelClasses.alternativeLabel}`]: {
       textAlign: 'center',
     },
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          [`&.${stepLabelClasses.alternativeLabel}`]: {
+            textAlign: 'right',
+          },
+        },
+      },
+    ],
   })),
 );
 

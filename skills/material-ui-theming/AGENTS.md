@@ -1,6 +1,8 @@
 # Material UI theming and design tokens
 
-Version 1.0.0
+Version 1.0.0 (Material UI v9)
+
+> **Version notice:** This skill targets Material UI v9 (`>=9.0.0 <10.0.0`). If you are using a different major version, verify the API details before following this guidance.
 
 > Note: This document is for agents and LLMs implementing themes and design tokens with Material UI. Grounded in `docs/data/material/customization/` (theming, palette, dark-mode, css-theme-variables, typography, spacing, shape).
 

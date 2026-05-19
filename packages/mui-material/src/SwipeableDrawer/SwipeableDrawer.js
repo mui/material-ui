@@ -190,6 +190,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
+      // Slide preserves this active-swipe `translate(x, y)` transform on exit.
+      // Keep this in sync with isGestureTranslate in Slide.js.
       const transform = horizontalSwipe
         ? `translate(${rtlTranslateMultiplier * translate}px, 0)`
         : `translate(0, ${rtlTranslateMultiplier * translate}px)`;
