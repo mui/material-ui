@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "9.0.0-beta.2",
+  "version": "9.0.0-beta.3",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "license": "MIT",
@@ -48,9 +48,9 @@
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sinon": "21.1.2"
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sinon": "22.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "license": "MIT",
@@ -37,8 +37,8 @@
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
     "@types/react": "19.2.14",
-    "next": "15.5.15",
-    "react": "19.2.4"
+    "next": "15.5.16",
+    "react": "19.2.6"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",

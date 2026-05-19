@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
-import { Transition } from 'react-transition-group';
+import { act, createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Slide from '@mui/material/Slide';
+import Transition from '../internal/Transition';
 import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 describe('<Slide />', () => {
   const { clock, render } = createRenderer();
@@ -31,6 +32,48 @@ describe('<Slide />', () => {
     }),
   );
 
+  describeTransitionConformance('Slide', () => ({
+    Component: Slide,
+    render,
+    clock,
+    defaultProps: {
+      direction: 'down',
+    },
+    lifecycle: {
+      addEndListener: true,
+      assertEntering: (node) => {
+        expect(node.style.transform).to.match(/none/);
+      },
+    },
+    themeDuration: {
+      renderElement: (props) => (
+        <Slide in appear {...props}>
+          <div data-testid="child">Foo</div>
+        </Slide>
+      ),
+    },
+    propTimeout: {
+      enter: {
+        timeout: 556,
+        callback: 'onEntering',
+        assertStyle: (node) => {
+          expect(node.style.transition).to.match(
+            /transform 556ms cubic-bezier\(0(.0)?, 0, 0.2, 1\)( 0ms)?/,
+          );
+        },
+      },
+      exit: {
+        timeout: 446,
+        callback: 'onExit',
+        assertStyle: (node) => {
+          expect(node.style.transition).to.match(
+            /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
+          );
+        },
+      },
+    },
+  }));
+
   it('should not override children styles', () => {
     const { container } = render(
       <Slide
@@ -47,144 +90,6 @@ describe('<Slide />', () => {
     expect(slide.style).to.have.property('backgroundColor', 'yellow');
     expect(slide.style).to.have.property('color', 'blue');
     expect(slide.style).to.have.property('visibility', '');
-  });
-
-  describe('transition lifecycle', () => {
-    clock.withFakeTimers();
-
-    it('tests', () => {
-      const handleAddEndListener = spy();
-      const handleEnter = spy();
-      const handleEntering = spy();
-      const handleEntered = spy();
-      const handleExit = spy();
-      const handleExiting = spy();
-      const handleExited = spy();
-
-      let child;
-      const { setProps } = render(
-        <Slide
-          addEndListener={handleAddEndListener}
-          onEnter={handleEnter}
-          onEntering={handleEntering}
-          onEntered={handleEntered}
-          onExit={handleExit}
-          onExiting={handleExiting}
-          onExited={handleExited}
-        >
-          <div
-            ref={(ref) => {
-              child = ref;
-            }}
-          />
-        </Slide>,
-      );
-
-      setProps({ in: true });
-
-      expect(handleAddEndListener.callCount).to.equal(1);
-      expect(handleAddEndListener.args[0][0]).to.equal(child);
-      expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
-
-      expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child);
-
-      expect(handleEntering.args[0][0].style.transform).to.match(/none/);
-
-      expect(handleEntering.callCount).to.equal(1);
-      expect(handleEntering.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-      expect(handleEntered.callCount).to.equal(1);
-
-      setProps({ in: false });
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      expect(handleExiting.callCount).to.equal(1);
-      expect(handleExiting.args[0][0]).to.equal(child);
-
-      clock.tick(1000);
-      expect(handleExited.callCount).to.equal(1);
-      expect(handleExited.args[0][0]).to.equal(child);
-    });
-  });
-
-  describe('prop: timeout', () => {
-    it('should create proper enter animation onEntering', () => {
-      const handleEntering = spy();
-
-      render(
-        <Slide
-          {...defaultProps}
-          timeout={{
-            enter: 556,
-          }}
-          onEntering={handleEntering}
-        />,
-      );
-
-      expect(handleEntering.args[0][0].style.transition).to.match(
-        /transform 556ms cubic-bezier\(0(.0)?, 0, 0.2, 1\)( 0ms)?/,
-      );
-    });
-
-    it('should create proper exit animation', () => {
-      const handleExit = spy();
-      const { setProps } = render(
-        <Slide
-          {...defaultProps}
-          timeout={{
-            exit: 446,
-          }}
-          onExit={handleExit}
-        />,
-      );
-
-      setProps({ in: false });
-
-      expect(handleExit.args[0][0].style.transition).to.match(
-        /transform 446ms cubic-bezier\(0.4, 0, 0.6, 1\)( 0ms)?/,
-      );
-    });
-
-    it.skipIf(isJsdom())('should render the default theme values by default', function test() {
-      const theme = createTheme();
-      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
-
-      render(
-        <Slide in appear>
-          <div data-testid="child">Foo</div>
-        </Slide>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({
-        transitionDuration: `${enteringScreenDurationInSeconds}s`,
-      });
-    });
-
-    it.skipIf(isJsdom())('should render the custom theme values', function test() {
-      const theme = createTheme({
-        transitions: {
-          duration: {
-            enteringScreen: 1,
-          },
-        },
-      });
-
-      render(
-        <ThemeProvider theme={theme}>
-          <Slide in appear>
-            <div data-testid="child">Foo</div>
-          </Slide>
-        </ThemeProvider>,
-      );
-
-      const child = screen.getByTestId('child');
-      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
-    });
   });
 
   describe('prop: easing', () => {
@@ -297,7 +202,7 @@ describe('<Slide />', () => {
               return r;
             });
           } catch (error) {
-            // already stubbed
+            // The test may render this element more than once.
           }
         }
       };
@@ -600,7 +505,7 @@ describe('<Slide />', () => {
     });
 
     describe('prop: container', () => {
-      // Need layout
+      // This test needs real layout measurements.
       it.skipIf(isJsdom())(
         'should set element transform and transition in the `up` direction',
         async function test() {
@@ -670,11 +575,10 @@ describe('<Slide />', () => {
         expect(child.style.transform).not.to.equal(undefined);
       });
 
-      // getComputedStyle in a real browser resolves CSS transforms to matrix() format,
-      // which the component parses to account for existing offsets. jsdom does not resolve
-      // CSS values, so this test only runs in browser environments.
-      // The transform must come from a CSS rule (not inline style) because getTranslateValue
-      // clears inline transforms before reading computed style.
+      // Browsers resolve CSS transforms from stylesheets to matrix() values,
+      // which Slide parses to include existing offsets. jsdom does not resolve
+      // CSS values. The transform must come from a CSS rule, not inline style,
+      // because Slide clears inline transforms before reading computed style.
       it.skipIf(isJsdom())('should take existing transform into account', function test() {
         const styleEl = document.createElement('style');
         styleEl.textContent = '#slide-test-transform { transform: matrix(1, 0, 0, 1, 0, 420); }';

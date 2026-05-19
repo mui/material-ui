@@ -102,7 +102,7 @@ You can use the `Typography` component with `noWrap` to workaround this issue:
 
 ## Change transition
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "FadeMenu.js"}}
 

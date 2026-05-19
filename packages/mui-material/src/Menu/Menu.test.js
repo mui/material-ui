@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent, reactMajor, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
@@ -87,10 +87,7 @@ describe('<Menu />', () => {
           />,
         );
 
-        expect(handleEnter.callCount).to.equal(
-          // onEnter is called on mount which is run twice with Strict Effects
-          reactMajor >= 18 ? 2 : 1,
-        );
+        expect(handleEnter.callCount).to.equal(1);
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);
         expect(handleEntering.args[0].length).to.equal(2);

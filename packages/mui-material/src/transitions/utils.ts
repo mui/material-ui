@@ -100,7 +100,7 @@ export function normalizedTransitionCallback(
   return (maybeIsAppearing) => {
     if (callback) {
       const node = nodeRef.current!;
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
+      // Enter callbacks receive isAppearing; exit callbacks do not.
       if (maybeIsAppearing === undefined) {
         callback(node);
       } else {
@@ -109,12 +109,11 @@ export function normalizedTransitionCallback(
     }
   };
 }
-
 type TransitionState = 'entering' | 'entered' | 'exiting' | 'exited';
 
 /**
- * Computes the child style for a transition component, reusing existing
- * references when possible to preserve referential equality for React.memo.
+ * Return the child style for a transition. Reuse predefined style objects when
+ * no custom styles are present so memoized children see the same object.
  */
 export function getTransitionChildStyle(
   state: TransitionState,
