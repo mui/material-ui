@@ -38,6 +38,7 @@ export default function Tags() {
         options={filmTitles}
         defaultValue={[top100Films[13].label]}
         freeSolo
+        resetHighlightOnMouseLeave
         renderValue={(value: readonly string[], getItemProps) =>
           value.map((option: string, index: number) => {
             const { key, ...itemProps } = getItemProps({ index });
