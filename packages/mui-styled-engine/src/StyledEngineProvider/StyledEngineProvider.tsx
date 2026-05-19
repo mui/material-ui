@@ -5,13 +5,24 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { StyleSheet } from '@emotion/sheet';
 
+export interface StyledEngineProviderProps {
+  children?: React.ReactNode;
+  enableCssLayer?: boolean | undefined;
+  injectFirst?: boolean | undefined;
+}
+
 // To fix [Jest performance](https://github.com/mui/material-ui/issues/45638).
 const cacheMap = new Map();
 
 // Need to add a private variable to test the generated CSS from Emotion, this is the simplest way to do it.
 // We can't test the CSS from `style` tag easily because the `speedy: true` (produce empty text content) is enabled by Emotion.
 // Even if we disable it, JSDOM needs extra configuration to be able to parse `@layer` CSS.
-export const TEST_INTERNALS_DO_NOT_USE = {
+/**
+ * @internal
+ */
+export const TEST_INTERNALS_DO_NOT_USE: {
+  insert?: ((rule: string, options?: unknown) => unknown) | undefined;
+} = {
   /**
    * to intercept the generated CSS before inserting to the style tag, so that we can check the generated CSS.
    *
@@ -27,7 +38,7 @@ export const TEST_INTERNALS_DO_NOT_USE = {
 
 // We might be able to remove this when this issue is fixed:
 // https://github.com/emotion-js/emotion/issues/2790
-const createEmotionCache = (options, CustomSheet) => {
+const createEmotionCache = (options: any, CustomSheet: any) => {
   const cache = createCache(options);
 
   // Do the same as https://github.com/emotion-js/emotion/blob/main/packages/cache/src/index.js#L238-L245
@@ -43,7 +54,7 @@ const createEmotionCache = (options, CustomSheet) => {
   return cache;
 };
 
-let insertionPoint;
+let insertionPoint: any;
 if (typeof document === 'object') {
   // Use `insertionPoint` over `prepend`(deprecated) because it can be controlled for GlobalStyles injection order
   // For more information, see https://github.com/mui/material-ui/issues/44597
@@ -59,7 +70,7 @@ if (typeof document === 'object') {
   }
 }
 
-function getCache(injectFirst, enableCssLayer) {
+function getCache(injectFirst?: boolean, enableCssLayer?: boolean) {
   if (injectFirst || enableCssLayer) {
     /**
      * This is for client-side apps only.
@@ -67,14 +78,14 @@ function getCache(injectFirst, enableCssLayer) {
      * This is because the [sheet](https://github.com/emotion-js/emotion/blob/main/packages/react/src/global.js#L94-L99) does not consume the options.
      */
     class MyStyleSheet extends StyleSheet {
-      insert(rule, options) {
+      insert(rule: string, options?: unknown): unknown {
         if (TEST_INTERNALS_DO_NOT_USE.insert) {
           return TEST_INTERNALS_DO_NOT_USE.insert(rule, options);
         }
         if (this.key && this.key.endsWith('global')) {
           this.before = insertionPoint;
         }
-        return super.insert(rule, options);
+        return (super.insert as (rule: string, options?: unknown) => unknown)(rule, options);
       }
     }
     const emotionCache = createEmotionCache(
@@ -86,12 +97,12 @@ function getCache(injectFirst, enableCssLayer) {
     );
     if (enableCssLayer) {
       const prevInsert = emotionCache.insert;
-      emotionCache.insert = (...args) => {
+      (emotionCache as any).insert = (...args: any[]) => {
         if (!args[1].styles.match(/^@layer\s+[^{]*$/)) {
           // avoid nested @layer
           args[1].styles = `@layer mui {${args[1].styles}}`;
         }
-        return prevInsert(...args);
+        return (prevInsert as (...insertArgs: any[]) => unknown)(...args);
       };
     }
     return emotionCache;
@@ -99,7 +110,7 @@ function getCache(injectFirst, enableCssLayer) {
   return undefined;
 }
 
-export default function StyledEngineProvider(props) {
+export default function StyledEngineProvider(props: StyledEngineProviderProps): React.JSX.Element {
   const { injectFirst, enableCssLayer, children } = props;
   const cache = React.useMemo(() => {
     const cacheKey = `${injectFirst}-${enableCssLayer}`;
@@ -110,10 +121,12 @@ export default function StyledEngineProvider(props) {
     cacheMap.set(cacheKey, fresh);
     return fresh;
   }, [injectFirst, enableCssLayer]);
-  return cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
+  return (
+    cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children
+  ) as React.JSX.Element;
 }
 
-StyledEngineProvider.propTypes = {
+(StyledEngineProvider as any).propTypes /* remove-proptypes */ = {
   /**
    * Your component tree.
    */
