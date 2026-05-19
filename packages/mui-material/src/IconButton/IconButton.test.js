@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { createRenderer, reactMajor, screen, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
@@ -7,6 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
+import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -96,6 +98,67 @@ describe('<IconButton />', () => {
       expect(button).to.have.property('disabled', true);
       expect(button).to.have.class(classes.disabled);
     });
+
+    it('allows disabled buttons to remain focusable without activation', async () => {
+      const onClick = spy();
+      const onParentClick = spy();
+
+      const { user } = render(
+        <div onClick={onParentClick}>
+          <IconButton disabled focusableWhenDisabled onClick={onClick}>
+            book
+          </IconButton>
+        </div>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled', 'true');
+      expect(button).to.have.property('tabIndex', 0);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'auto' });
+
+      await user.tab();
+      expect(button).toHaveFocus();
+
+      await user.keyboard('{Enter}');
+      await user.keyboard(' ');
+      await user.click(button);
+
+      expect(onClick.callCount).to.equal(0);
+      expect(onParentClick.callCount).to.equal(0);
+    });
+
+    it('allows Tooltip to open from hover and focus on disabled focusable buttons', async () => {
+      const { user } = render(
+        <Tooltip title="Disabled action" enterDelay={0} leaveDelay={0}>
+          <IconButton disabled focusableWhenDisabled>
+            book
+          </IconButton>
+        </Tooltip>,
+      );
+      const button = screen.getByRole('button');
+
+      await user.hover(button);
+      expect(await screen.findByRole('tooltip')).to.have.text('Disabled action');
+
+      await user.unhover(button);
+      await user.tab();
+      expect(button).toHaveFocus();
+      expect(await screen.findByRole('tooltip')).to.have.text('Disabled action');
+    });
+
+    it('keeps disabled links non-focusable and pointer-inert', () => {
+      render(
+        <IconButton disabled focusableWhenDisabled href="https://example.com">
+          book
+        </IconButton>,
+      );
+      const button = screen.getByRole('link');
+
+      expect(button).to.have.attribute('aria-disabled', 'true');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).toHaveComputedStyle({ pointerEvents: 'none' });
+    });
   });
 
   describe('prop: color', () => {
@@ -182,6 +245,76 @@ describe('<IconButton />', () => {
       render(<IconButton disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
+    });
+
+    it('can retain focus while loading when focusableWhenDisabled', async () => {
+      const { rerender, user } = render(<IconButton focusableWhenDisabled>book</IconButton>);
+      const button = screen.getByRole('button');
+
+      await user.tab();
+      expect(button).toHaveFocus();
+
+      rerender(
+        <IconButton loading focusableWhenDisabled>
+          book
+        </IconButton>,
+      );
+
+      const loadingButton = screen.getByRole('button');
+      expect(loadingButton).toHaveFocus();
+      expect(loadingButton).to.have.property('disabled', false);
+      expect(loadingButton).to.have.attribute('aria-disabled', 'true');
+    });
+
+    [
+      {
+        label: 'disabled focusableWhenDisabled',
+        props: { disabled: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'loading',
+        props: { loading: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'disabled loading',
+        props: { disabled: true, loading: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'disabled loading={false}',
+        props: { disabled: true, loading: false, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'default loading={null}',
+        props: { disabled: true, loading: null, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+    ].forEach(({ label, props, nativeDisabled, ariaDisabled, tabIndex }) => {
+      it(`resolves focusable disabled state for ${label}`, () => {
+        render(<IconButton {...props}>book</IconButton>);
+
+        const button = screen.getByRole('button');
+        expect(button).to.have.property('disabled', nativeDisabled);
+        expect(button).to.have.property('tabIndex', tabIndex);
+        if (ariaDisabled) {
+          expect(button).to.have.attribute('aria-disabled', 'true');
+        } else {
+          expect(button).not.to.have.attribute('aria-disabled');
+        }
+      });
     });
 
     it('renders a progressbar that is labelled by the button', () => {

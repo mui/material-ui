@@ -175,7 +175,7 @@ const ButtonRoot = styled(ButtonBase, {
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
               '@media (hover: hover)': {
-                '&:hover': {
+                [`&:hover:not(.${buttonClasses.disabled})`]: {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
                   '--variant-textBg': theme.alpha(
                     (theme.vars || theme).palette[color].main,
@@ -201,7 +201,7 @@ const ButtonRoot = styled(ButtonBase, {
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
             '@media (hover: hover)': {
-              '&:hover': {
+              [`&:hover:not(.${buttonClasses.disabled})`]: {
                 '--variant-containedBg': theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
@@ -509,6 +509,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disableElevation = false,
     disableFocusRipple = false,
     endIcon: endIconProp,
+    focusableWhenDisabled = false,
     focusVisibleClassName,
     fullWidth = false,
     id: idProp,
@@ -521,7 +522,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'text',
     ...other
   } = props;
-
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
@@ -597,6 +597,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
+      focusableWhenDisabled={focusableWhenDisabled === true}
       classes={forwardedClasses}
     >
       {startIcon}
@@ -667,6 +668,12 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
+  /**
+   * If `true`, allows a disabled component to retain keyboard and programmatic focusability while preventing activation.
+   * Disabled links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */
