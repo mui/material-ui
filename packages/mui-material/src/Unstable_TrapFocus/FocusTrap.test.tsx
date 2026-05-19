@@ -436,8 +436,8 @@ describe('<FocusTrap />', () => {
 
     it('loops backward when Shift+Tab enters a lazy shadow-root trap from the document', async () => {
       const shadowHost = document.createElement('div');
-      const outsideAfter = document.createElement('button');
-      outsideAfter.textContent = 'after';
+      const outsideAfter = document.createElement('input');
+      outsideAfter.setAttribute('aria-label', 'after');
       document.body.appendChild(shadowHost);
       document.body.appendChild(outsideAfter);
       const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
@@ -457,10 +457,11 @@ describe('<FocusTrap />', () => {
           { container: shadowContainer },
         ));
 
-        const { user } = await setupBrowser();
+        const { page, user } = await setupBrowser();
         const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
 
-        await user.click(outsideAfter);
+        // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
+        await user.fill(page.getByRole('textbox', { name: 'after' }), 'focused');
         expect(document.activeElement).to.equal(outsideAfter);
 
         await user.tab({ shift: true });
@@ -477,8 +478,8 @@ describe('<FocusTrap />', () => {
       document.body.appendChild(frame);
       const frameDocument = frame.contentDocument!;
       const shadowHost = frameDocument.createElement('div');
-      const outsideAfter = frameDocument.createElement('button');
-      outsideAfter.textContent = 'after';
+      const outsideAfter = frameDocument.createElement('input');
+      outsideAfter.setAttribute('aria-label', 'after');
       frameDocument.body.appendChild(shadowHost);
       frameDocument.body.appendChild(outsideAfter);
       const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
@@ -505,7 +506,7 @@ describe('<FocusTrap />', () => {
         // Click through a frame locator; passing the iframe-owned DOM element
         // directly to `user.click()` does not focus it.
         // eslint-disable-next-line testing-library/prefer-screen-queries -- `frameLocator` is a Vitest Browser locator, not a render result.
-        await user.click(frameLocator.getByRole('button', { name: 'after' }));
+        await user.fill(frameLocator.getByRole('textbox', { name: 'after' }), 'focused');
         expect(frameDocument.activeElement).to.equal(outsideAfter);
 
         await user.tab({ shift: true });
