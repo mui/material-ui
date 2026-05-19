@@ -18,9 +18,9 @@ githubSource: packages/mui-material/src/Accordion
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
 
-{{"demo": "AccordionUsage.js", "bg": true}}
-
 ## Anatomy
+
+{{"demo": "AccordionUsage.js", "bg": true}}
 
 The Accordion components form a header and panel:
 
@@ -37,8 +37,11 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
 
 <Accordion>
-  <AccordionSummary>Accordion summary</AccordionSummary>
-  <AccordionDetails>Accordion details</AccordionDetails>
+  <AccordionSummary>Delivery options</AccordionSummary>
+  <AccordionDetails>
+    Choose standard shipping, scheduled delivery, or pickup based on what is
+    available for your order.
+  </AccordionDetails>
   <AccordionActions>
     <Button>Cancel</Button>
     <Button>Save</Button>
@@ -49,9 +52,7 @@ import Button from '@mui/material/Button';
 ## Usage guidelines
 
 - **Make summaries descriptive**: The summary is the accordion header button, so it should clearly identify the content that expands.
-- **Keep the heading hierarchy logical**: Accordion uses an `h3` by default. Change it with `slotProps.heading.component` when your page structure requires a different level.
-- **Use the documented structure**: Place `AccordionSummary` before `AccordionDetails` so the summary button and panel region are wired automatically.
-- **Limit expanded regions**: Each panel is a `region` landmark. If many panels can be open at once, consider allowing only one expanded panel at a time.
+- **Avoid nested controls**: `AccordionSummary` renders a button, so don't put buttons, links, or other interactive elements inside it. Place those controls in `AccordionDetails` or `AccordionActions` instead.
 
 ## Basics
 
@@ -68,13 +69,44 @@ Use the `defaultExpanded` prop on the Accordion component to have it opened by d
 
 {{"demo": "AccordionExpandDefault.js", "bg": true}}
 
+### Actions
+
+Use the `AccordionActions` component to group buttons related to the panel content.
+
+```jsx
+<Accordion>
+  <AccordionSummary>Notification preferences</AccordionSummary>
+  <AccordionDetails>
+    Choose which account alerts are sent by email, SMS, or push notification.
+  </AccordionDetails>
+  <AccordionActions>
+    <Button>Cancel</Button>
+    <Button>Save</Button>
+  </AccordionActions>
+</Accordion>
+```
+
 ### Disabled item
 
 Use the `disabled` prop on the Accordion component to disable interaction and focus.
 
 {{"demo": "DisabledAccordion.js", "bg": true}}
 
-## Expansion behavior
+## Customization
+
+### Heading level
+
+By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
+
+```jsx
+<Accordion slotProps={{ heading: { component: 'h4' } }}>
+  <AccordionSummary>Shipping methods</AccordionSummary>
+  <AccordionDetails>
+    Choose how quickly your order should arrive and whether you want delivery updates
+    by email or SMS.
+  </AccordionDetails>
+</Accordion>
+```
 
 ### Controlled accordion
 
@@ -112,37 +144,4 @@ If you render the Accordion Details with a big component tree nested inside, or 
 
 ```jsx
 <Accordion slotProps={{ transition: { unmountOnExit: true } }} />
-```
-
-## Customization
-
-### Heading level
-
-By default, the Accordion uses an `h3` element for the heading. You can change the heading element using the `slotProps.heading.component` prop to ensure the correct heading hierarchy in your document.
-
-```jsx
-<Accordion slotProps={{ heading: { component: 'h4' } }}>
-  <AccordionSummary expandIcon={<ExpandMoreIcon />}>Accordion</AccordionSummary>
-  <AccordionDetails>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-    lacus ex, sit amet blandit leo lobortis eget.
-  </AccordionDetails>
-</Accordion>
-```
-
-### Actions
-
-Use the `AccordionActions` component to group buttons related to the panel content.
-
-```jsx
-<Accordion>
-  <AccordionSummary>Accordion</AccordionSummary>
-  <AccordionDetails>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  </AccordionDetails>
-  <AccordionActions>
-    <Button>Cancel</Button>
-    <Button>Save</Button>
-  </AccordionActions>
-</Accordion>
 ```
