@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
 import getActiveElement from '../utils/getActiveElement';
@@ -134,7 +134,7 @@ describe('<FocusTrap />', () => {
       },
     );
 
-    const { user } = render(
+    render(
       <FocusTrap open>
         <ShadowContent />
       </FocusTrap>,
@@ -152,9 +152,9 @@ describe('<FocusTrap />', () => {
 
     expect(getActiveElement(document)).to.equal(shadowButton);
 
-    await user.keyboard('{Tab}');
-    // `user.keyboard('{Tab}')` doesn't emulate native shadow DOM tab order, but
-    // it still verifies FocusTrap doesn't force focus back to the root.
+    // user.tab() simulates focus movement; keyDown tests whether FocusTrap
+    // cancels Tab. fireEvent returns true when the event was not canceled.
+    expect(fireEvent.keyDown(host, { key: 'Tab' })).to.equal(true);
     expect(root).not.toHaveFocus();
   });
 
@@ -172,7 +172,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should use positive tabIndex order from a marked descendant', async () => {
-    const { user } = render(
+    render(
       <FocusTrap open>
         <div data-testid="root">
           <div {...{ [FOCUSABLE_ATTRIBUTE]: '' }} tabIndex={-1} data-testid="focusable">
@@ -190,7 +190,9 @@ describe('<FocusTrap />', () => {
     const focusable = screen.getByTestId('focusable');
     expect(focusable).toHaveFocus();
 
-    await user.tab();
+    // user.tab() simulates focus movement; keyDown tests whether FocusTrap
+    // cancels Tab. fireEvent returns false when the event was canceled.
+    expect(fireEvent.keyDown(focusable, { key: 'Tab' })).to.equal(false);
 
     expect(screen.getByTestId('indexed-tab')).toHaveFocus();
   });
