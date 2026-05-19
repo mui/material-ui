@@ -103,8 +103,6 @@ export default defineConfig(
       'react-hooks/incompatible-library': 'off',
       'react-hooks/static-components': 'off',
       'react-hooks/purity': 'off',
-
-      'mui/no-guarded-throw': 'error',
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
