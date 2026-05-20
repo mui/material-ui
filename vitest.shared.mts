@@ -140,7 +140,7 @@ export default async function create(
       // Cap worker count on CI to keep memory pressure predictable now that
       // file parallelism is enabled for browser tests.
       ...(process.env.CI && {
-        maxWorkers: 2,
+        maxWorkers: 1,
       }),
     },
     resolve: {
