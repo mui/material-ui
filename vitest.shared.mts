@@ -137,6 +137,11 @@ export default async function create(
         VITEST: 'true',
         NODE_ENV: 'development',
       },
+      // Cap worker count on CI to keep memory pressure predictable now that
+      // file parallelism is enabled for browser tests.
+      ...(process.env.CI && {
+        maxWorkers: 2,
+      }),
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
