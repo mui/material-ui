@@ -142,7 +142,7 @@ export default async function create(
       // RAM-hungry. Two is conservative for an xlarge runner; raise later if
       // we see headroom.
       ...(process.env.CI && {
-        maxWorkers: 2,
+        maxWorkers: 3,
       }),
     },
     resolve: {
