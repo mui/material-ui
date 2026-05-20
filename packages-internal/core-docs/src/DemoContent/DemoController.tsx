@@ -5,8 +5,9 @@ import { useRunner } from 'react-runner';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
 import type { ControlledCode } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeExternals } from '@mui/internal-docs-infra/CodeExternalsContext';
+import { DemoErrorProvider, useDemoErrorReporter } from './DemoErrorContext';
 
-function Runner({ code }: { code: string }) {
+function Runner({ code, variantKey }: { code: string; variantKey: string }) {
   const externalsContext = useCodeExternals();
   const scope = React.useMemo(() => {
     let externals = externalsContext?.externals;
@@ -18,12 +19,24 @@ function Runner({ code }: { code: string }) {
   }, [externalsContext]);
 
   const { element, error } = useRunner({ code, scope });
+  const reportError = useDemoErrorReporter(variantKey);
 
-  if (error) {
-    return <div>{error}</div>;
+  // Keep showing the last successfully-rendered element so the preview area
+  // doesn't blank out while the user is typing an intermediate broken state.
+  const lastGoodRef = React.useRef<React.ReactNode>(null);
+  if (!error && element) {
+    lastGoodRef.current = element;
   }
 
-  return element;
+  const message = error ? String(error) : null;
+  React.useEffect(() => {
+    reportError(message);
+    return () => {
+      reportError(null);
+    };
+  }, [reportError, message]);
+
+  return error ? lastGoodRef.current : element;
 }
 
 function DemoController({ children }: { children: React.ReactNode }) {
@@ -39,7 +52,7 @@ function DemoController({ children }: { children: React.ReactNode }) {
                 return acc;
               }
 
-              acc[cur] = <Runner code={source} />;
+              acc[cur] = <Runner code={source} variantKey={cur} />;
               return acc;
             },
             {} as Record<string, React.ReactNode>,
@@ -54,7 +67,11 @@ function DemoController({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <CodeControllerContext.Provider value={contextValue}>{children}</CodeControllerContext.Provider>
+    <DemoErrorProvider>
+      <CodeControllerContext.Provider value={contextValue}>
+        {children}
+      </CodeControllerContext.Provider>
+    </DemoErrorProvider>
   );
 }
 
