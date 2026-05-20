@@ -1,4 +1,4 @@
-import scStyled from 'styled-components';
+import { styled as scStyled } from 'styled-components';
 
 export default function styled(tag, options) {
   let stylesFactory;
