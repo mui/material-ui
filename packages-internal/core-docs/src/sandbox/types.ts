@@ -1,4 +1,4 @@
-import type { MuiProductId } from '../../utils/getProductInfoFromUrl';
+import type { MuiProductId } from '../utils/getProductInfoFromUrl';
 
 export type CodeVariant = 'TS' | 'JS';
 
