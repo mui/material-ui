@@ -129,6 +129,7 @@ function Page({
         mx: 'auto',
         minHeight: '100vh',
         bgcolor: 'background.default',
+        color: 'text.primary',
       }}
     >
       {/* Header */}
