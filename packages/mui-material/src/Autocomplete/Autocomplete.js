@@ -1202,7 +1202,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   renderValue: PropTypes.func,
   /**
    * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
-   * @deprecated This behavior will be enabled by default in the next major version.
+   * This behavior will be enabled by default in the next major version.
    * @default false
    */
   resetHighlightOnMouseLeave: PropTypes.bool,

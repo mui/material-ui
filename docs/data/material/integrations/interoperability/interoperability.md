@@ -18,7 +18,7 @@ There are examples for the following styling solutions:
 
 Nothing fancy, just plain CSS.
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true, "anchorId": null}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/plain-css-fdue7)
 
@@ -95,7 +95,7 @@ In Material UI, all child elements have an increased specificity of 2: `.parent
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true, "anchorId": null}}
 
 ```css title="PlainCssSliderDeep1.css"
 .slider {
@@ -236,7 +236,7 @@ In Material UI, all child elements have an increased specificity of 2: `.parent
 
 The following example overrides the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true, "anchorId": null}}
 
 ```css title="GlobalCssSliderDeep.css"
 .MuiSlider-root {
@@ -401,7 +401,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true, "anchorId": null}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/css-modules-nuyg8)
 
@@ -760,7 +760,7 @@ If styles aren't applying correctly:
 
 Now it's all set up and you can start using Tailwind CSS on the Material UI components!
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components/index.ts", "hideToolbar": true, "anchorId": null}}
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/github-ndkshy?file=pages%2Findex.tsx)
 
@@ -784,7 +784,7 @@ If you attempt to style the Slider, for example, you'll likely want to customize
 
 This example showcases how to override the Slider's `thumb` style.
 
-{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true}}
+{{"component": "../data/material/integrations/interoperability/demos/styled-components-deep/index.ts", "hideToolbar": true, "anchorId": null}}
 
 ```jsx title="SliderThumbOverrides.tsx"
 import * as React from 'react';

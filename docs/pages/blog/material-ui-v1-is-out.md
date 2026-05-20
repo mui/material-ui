@@ -18,7 +18,7 @@ We are so excited about this release, as it's setting a new course for the proje
 
 ✨✨✨ See the **[1.0.0 Release Note](https://github.com/mui/material-ui/releases/tag/v1.0.0)** on GitHub. ✨✨✨
 
-<iframe src="https://codesandbox.io/embed/4j7m47vlm4" style="width: 100%; height: 300px; border: 0"></iframe>
+<iframe src="https://codesandbox.io/embed/4j7m47vlm4" title="Material UI v1 button demo on CodeSandbox" style="width: 100%; height: 300px; border: 0"></iframe>
 
 <p class="blog-description">One button</p>
 

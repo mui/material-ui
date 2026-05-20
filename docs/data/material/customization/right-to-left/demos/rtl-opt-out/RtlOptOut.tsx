@@ -41,7 +41,7 @@ export default function RtlOptOut() {
         label="Toggle RTL"
       />
       <CacheProvider value={rtl ? rtlCache : ltrCache}>
-        <Box sx={{ flexGrow: 1, mx: 2 }} dir={rtl ? 'rtl' : ''}>
+        <Box sx={{ flexGrow: 1, mx: 2 }} dir={rtl ? 'rtl' : undefined}>
           <Normal>RTL normal behavior</Normal>
           <Noflip>RTL noflip</Noflip>
         </Box>

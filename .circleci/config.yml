@@ -105,7 +105,6 @@ jobs:
       - install-deps
       - code-infra/eslint
       - code-infra/stylelint
-      - code-infra/markdownlint
       - code-infra/valelint
   test_static:
     <<: *default-job

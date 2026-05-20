@@ -93,8 +93,6 @@ Every error message must:
 
 Format:
 
-<!-- markdownlint-disable MD038 -->
-
 - Prefix with `MUI: `
 - Use string concatenation for readability
 - Include a documentation link when applicable (`https://mui.com/r/...`)
