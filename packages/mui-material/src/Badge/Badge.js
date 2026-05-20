@@ -121,22 +121,16 @@ const BadgeBadge = styled('span', {
         },
       },
       {
-        style: ({ ownerState }) => {
-          const { vertical, horizontal } = ownerState.anchorOrigin;
-          const offset = ownerState.overlap === 'circular' ? '14%' : 0;
-          return {
-            '--Badge-translateX': horizontal === 'right' ? '50%' : '-50%',
-            '--Badge-translateY': vertical === 'top' ? '-50%' : '50%',
-            top: vertical === 'top' ? offset : 'initial',
-            bottom: vertical === 'bottom' ? offset : 'initial',
-            right: horizontal === 'right' ? offset : 'initial',
-            left: horizontal === 'left' ? offset : 'initial',
-            transform: 'scale(1) translate(var(--Badge-translateX), var(--Badge-translateY))',
-            transformOrigin: `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
-            [`&.${badgeClasses.invisible}`]: {
-              transform: 'scale(0) translate(var(--Badge-translateX), var(--Badge-translateY))',
-            },
-          };
+        style: {
+          top: 'var(--Badge-top)',
+          bottom: 'var(--Badge-bottom)',
+          right: 'var(--Badge-right)',
+          left: 'var(--Badge-left)',
+          transform: 'scale(1) translate(var(--Badge-translateX), var(--Badge-translateY))',
+          transformOrigin: 'var(--Badge-transformOriginX) var(--Badge-transformOriginY)',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(var(--Badge-translateX), var(--Badge-translateY))',
+          },
         },
       },
     ],
@@ -236,11 +230,25 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     },
   });
 
+  const { vertical, horizontal } = anchorOrigin;
+  const offset = overlap === 'circular' ? '14%' : 0;
   const [BadgeSlot, badgeProps] = useSlot('badge', {
     elementType: BadgeBadge,
     externalForwardedProps,
     ownerState,
     className: classes.badge,
+    additionalProps: {
+      style: {
+        '--Badge-translateX': horizontal === 'right' ? '50%' : '-50%',
+        '--Badge-translateY': vertical === 'top' ? '-50%' : '50%',
+        '--Badge-top': vertical === 'top' ? offset : 'auto',
+        '--Badge-bottom': vertical === 'bottom' ? offset : 'auto',
+        '--Badge-right': horizontal === 'right' ? offset : 'auto',
+        '--Badge-left': horizontal === 'left' ? offset : 'auto',
+        '--Badge-transformOriginX': horizontal === 'right' ? '100%' : '0%',
+        '--Badge-transformOriginY': vertical === 'top' ? '0%' : '100%',
+      },
+    },
   });
 
   return (
