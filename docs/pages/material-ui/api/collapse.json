@@ -1,6 +1,12 @@
 {
   "props": {
-    "addEndListener": { "type": { "name": "func" } },
+    "addEndListener": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(node: HTMLElement, done: Function) => void",
+        "describedArgs": ["node", "done"]
+      }
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "collapsedSize": {

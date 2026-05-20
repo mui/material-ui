@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
-import useFormControl from '../FormControl/useFormControl';
-import formControlState from '../FormControl/formControlState';
+import { useFormControlState } from '../FormControl/useFormControl';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -197,10 +196,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const muiFormControl = useFormControl();
-  const fcs = formControlState({
+  const [fcs, muiFormControl] = useFormControlState({
     props,
-    muiFormControl,
     states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 

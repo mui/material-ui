@@ -2,10 +2,11 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
-import { Transition } from 'react-transition-group';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
+import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
+import describeTransitionConformance from '../../test/describeTransitionConformance';
 
 const CustomCollapse = React.forwardRef(({ ownerState, ...props }, ref) => (
   <div ref={ref} {...props} />
@@ -43,6 +44,29 @@ describe('<Collapse />', () => {
     },
   }));
 
+  describeTransitionConformance('Collapse', () => ({
+    Component: Collapse,
+    render,
+    clock,
+    children: <div />,
+    propTimeout: {
+      enter: {
+        timeout: 556,
+        callback: 'onEntering',
+        assertStyle: (node) => {
+          expect(node.style.transitionDuration).to.equal('556ms');
+        },
+      },
+      exit: {
+        timeout: 446,
+        callback: 'onExiting',
+        assertStyle: (node) => {
+          expect(node.style.transitionDuration).to.equal('446ms');
+        },
+      },
+    },
+  }));
+
   it('should render a container around the wrapper', () => {
     const { container } = render(
       <Collapse {...defaultProps} classes={{ root: 'woofCollapse1' }} />,
@@ -72,8 +96,8 @@ describe('<Collapse />', () => {
     let nodeEnteringHeightStyle;
     let nodeExitHeightStyle;
 
-    /* We needs to create wrappers here because the node is passed by reference
-       and it's style is overwritten by the later stages */
+    /* Capture each height value immediately because the same DOM node is reused
+       and later lifecycle steps overwrite its inline style. */
     const handleEnter = spy();
     const handleEnterWrapper = (...args) => {
       handleEnter(...args);
@@ -173,7 +197,7 @@ describe('<Collapse />', () => {
       }
       const { setProps: setProps1, container: container1 } = render(<Test />);
       const collapse = container1.firstChild;
-      // Gets wrapper
+      // Stub the wrapper height used for auto duration.
       stub(collapse.firstChild, 'clientHeight').get(() => 10);
 
       setProps1({
@@ -226,43 +250,6 @@ describe('<Collapse />', () => {
 
       expect(next.callCount).to.equal(1);
     });
-
-    it('should create proper easeOut animation onEntering', () => {
-      const handleEntering = spy();
-
-      const { setProps } = render(
-        <Collapse
-          onEntering={handleEntering}
-          timeout={{
-            enter: 556,
-          }}
-        >
-          <div />
-        </Collapse>,
-      );
-
-      setProps({ in: true });
-      expect(handleEntering.args[0][0].style.transitionDuration).to.equal('556ms');
-    });
-
-    it('should create proper sharp animation onExiting', () => {
-      const handleExiting = spy();
-
-      const { setProps } = render(
-        <Collapse
-          {...defaultProps}
-          onExiting={handleExiting}
-          timeout={{
-            exit: 446,
-          }}
-        />,
-      );
-
-      setProps({
-        in: false,
-      });
-      expect(handleExiting.args[0][0].style.transitionDuration).to.equal('446ms');
-    });
   });
 
   describe('prop: collapsedSize', () => {
@@ -285,7 +272,7 @@ describe('<Collapse />', () => {
     });
   });
 
-  // Test for https://github.com/mui/material-ui/issues/40653
+  // Regression test for https://github.com/mui/material-ui/issues/40653.
   it.skipIf(isJsdom())(
     'should render correctly when external ownerState prop is passed',
     function test() {
