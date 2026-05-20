@@ -17,23 +17,29 @@ import {
   STATUS_OPTIONS,
 } from '@mui/x-data-grid-generator/services/static-data';
 import { DataGrid, gridStringOrNumberComparator } from '@mui/x-data-grid';
-import { renderAvatar } from '../../../data/experiments/renderers/renderAvatar';
-import { renderEmail } from '../../../data/experiments/renderers/renderEmail';
-import { renderEditRating, renderRating } from '../../../data/experiments/renderers/renderRating';
+import { renderAvatar } from '../../../../../data/experiments/renderers/renderAvatar';
+import { renderEmail } from '../../../../../data/experiments/renderers/renderEmail';
+import {
+  renderEditRating,
+  renderRating,
+} from '../../../../../data/experiments/renderers/renderRating';
 import {
   renderCountry,
   renderEditCountry,
-} from '../../../data/experiments/renderers/renderCountry';
-import { renderSparkline } from '../../../data/experiments/renderers/renderSparkline';
+} from '../../../../../data/experiments/renderers/renderCountry';
+import { renderSparkline } from '../../../../../data/experiments/renderers/renderSparkline';
 import {
   renderEditProgress,
   renderProgress,
-} from '../../../data/experiments/renderers/renderProgress';
-import { renderEditStatus, renderStatus } from '../../../data/experiments/renderers/renderStatus';
+} from '../../../../../data/experiments/renderers/renderProgress';
+import {
+  renderEditStatus,
+  renderStatus,
+} from '../../../../../data/experiments/renderers/renderStatus';
 import {
   renderEditIncoterm,
   renderIncoterm,
-} from '../../../data/experiments/renderers/renderIncoterm';
+} from '../../../../../data/experiments/renderers/renderIncoterm';
 
 const columns = [
   {
@@ -154,7 +160,7 @@ const rows = Array.from({ length: 10 }, (_, index) => ({
   incoTerm: randomIncoterm(),
 }));
 
-export default function CustomColumnFullExample() {
+export default function DemoMultiTabs() {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid rows={rows} columns={columns} />
