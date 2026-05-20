@@ -8,7 +8,7 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 
 ### Additive
 
-{{"component": "../data/system/borders/demos/additive/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/additive/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ border: 1 }}>…
@@ -20,7 +20,7 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 
 ### Subtractive
 
-{{"component": "../data/system/borders/demos/subtractive/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/subtractive/index.ts", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box sx={{ border: 0 }}>…
@@ -32,7 +32,7 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 
 ## Border color
 
-{{"component": "../data/system/borders/demos/color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/color/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ borderColor: 'primary.main' }}>…
@@ -44,7 +44,7 @@ Use border utilities to add or remove an element's borders. Choose from all bord
 
 ## Border-radius
 
-{{"component": "../data/system/borders/demos/radius/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/radius/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ borderRadius: '50%' }}>…

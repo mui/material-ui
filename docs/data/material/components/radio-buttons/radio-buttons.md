@@ -23,54 +23,54 @@ Radio buttons should have the most commonly used option selected by default.
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
-{{"component": "../data/material/components/radio-buttons/demos/group/index.ts"}}
+{{"component": "file://./demos/group/index.ts"}}
 
 ### Direction
 
 To lay out the buttons horizontally, set the `row` prop:
 
-{{"component": "../data/material/components/radio-buttons/demos/row-group/index.ts"}}
+{{"component": "file://./demos/row-group/index.ts"}}
 
 ### Controlled
 
 You can control the radio with the `value` and `onChange` props:
 
-{{"component": "../data/material/components/radio-buttons/demos/controlled-group/index.ts"}}
+{{"component": "file://./demos/controlled-group/index.ts"}}
 
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.
 
-{{"component": "../data/material/components/radio-buttons/demos/radio-buttons/index.ts"}}
+{{"component": "file://./demos/radio-buttons/index.ts"}}
 
 ## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
 
-{{"component": "../data/material/components/radio-buttons/demos/size/index.ts"}}
+{{"component": "file://./demos/size/index.ts"}}
 
 ## Color
 
-{{"component": "../data/material/components/radio-buttons/demos/color/index.ts"}}
+{{"component": "file://./demos/color/index.ts"}}
 
 ## Label placement
 
 You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
 
-{{"component": "../data/material/components/radio-buttons/demos/form-control-label-placement/index.ts"}}
+{{"component": "file://./demos/form-control-label-placement/index.ts"}}
 
 ## Show error
 
 In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
 
-{{"component": "../data/material/components/radio-buttons/demos/error-radios/index.ts"}}
+{{"component": "file://./demos/error-radios/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/radio-buttons/demos/customized-radios/index.ts"}}
+{{"component": "file://./demos/customized-radios/index.ts"}}
 
 ## `useRadioGroup`
 
@@ -94,7 +94,7 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 
 #### Example
 
-{{"component": "../data/material/components/radio-buttons/demos/use-radio-group/index.ts"}}
+{{"component": "file://./demos/use-radio-group/index.ts"}}
 
 ## When to use
 

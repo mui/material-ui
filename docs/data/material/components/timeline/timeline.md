@@ -20,48 +20,48 @@ This component is not documented in the [Material Design guidelines](https://m2.
 
 A basic timeline showing list of events.
 
-{{"component": "../data/material/components/timeline/demos/basic/index.ts"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 ## Left-positioned timeline
 
 The main content of the timeline can be positioned on the left side relative to the time axis.
 
-{{"component": "../data/material/components/timeline/demos/left-positioned/index.ts"}}
+{{"component": "file://./demos/left-positioned/index.ts"}}
 
 ## Alternating timeline
 
 The timeline can display the events on alternating sides.
 
-{{"component": "../data/material/components/timeline/demos/alternate/index.ts"}}
+{{"component": "file://./demos/alternate/index.ts"}}
 
 ## Reverse Alternating timeline
 
 The timeline can display the events on alternating sides in reverse order.
 
-{{"component": "../data/material/components/timeline/demos/alternate-reverse/index.ts"}}
+{{"component": "file://./demos/alternate-reverse/index.ts"}}
 
 ## Color
 
 The `TimelineDot` can appear in different colors from theme palette.
 
-{{"component": "../data/material/components/timeline/demos/colors/index.ts"}}
+{{"component": "file://./demos/colors/index.ts"}}
 
 ## Outlined
 
-{{"component": "../data/material/components/timeline/demos/outlined/index.ts"}}
+{{"component": "file://./demos/outlined/index.ts"}}
 
 ## Opposite content
 
 The timeline can display content on opposite sides.
 
-{{"component": "../data/material/components/timeline/demos/opposite-content/index.ts"}}
+{{"component": "file://./demos/opposite-content/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/timeline/demos/customized/index.ts"}}
+{{"component": "file://./demos/customized/index.ts"}}
 
 ## Alignment
 
@@ -75,12 +75,12 @@ The demos below show how to adjust the relative width of the left and right side
 
 ### Left-aligned
 
-{{"component": "../data/material/components/timeline/demos/left-aligned/index.ts"}}
+{{"component": "file://./demos/left-aligned/index.ts"}}
 
 ### Right-aligned
 
-{{"component": "../data/material/components/timeline/demos/right-aligned/index.ts"}}
+{{"component": "file://./demos/right-aligned/index.ts"}}
 
 ### Left-aligned with no opposite content
 
-{{"component": "../data/material/components/timeline/demos/no-opposite-content/index.ts"}}
+{{"component": "file://./demos/no-opposite-content/index.ts"}}
