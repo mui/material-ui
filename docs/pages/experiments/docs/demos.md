@@ -16,45 +16,45 @@ The supported options (for example, `bg`, `hideToolbar`, `isolated`, `iframe`, â
 "Standard" refers to when no background is explicitly defined.
 So, it renders the "outlined" background variant.
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts"}}
+{{"component": "file://./demos/in-docs/index.ts"}}
 
 ## "bg": "outlined"
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "outlined"}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "outlined"}}
 
 ## "bg": "inline"
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "inline"}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "inline"}}
 
 ## "bg": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": true}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": true}}
 
 ## "bg": gradient
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "gradient"}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "gradient"}}
 
 ## "bg": "playground"
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "playground"}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "playground"}}
 
 ## "hideToolbar": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs-not-editable/index.ts", "hideToolbar": true}}
+{{"component": "file://./demos/in-docs-not-editable/index.ts", "hideToolbar": true}}
 
 ## "hideToolbar": true, "bg": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs-not-editable/index.ts", "hideToolbar": true, "bg": true}}
+{{"component": "file://./demos/in-docs-not-editable/index.ts", "hideToolbar": true, "bg": true}}
 
 ## "hideToolbar": true, "bg": "inline"
 
-{{"component": "../pages/experiments/docs/demos/in-docs-not-editable/index.ts", "hideToolbar": true, "bg": "inline"}}
+{{"component": "file://./demos/in-docs-not-editable/index.ts", "hideToolbar": true, "bg": "inline"}}
 
 ## Multiple Tabs demo
 
 Demos that export more than one file (for example, a main component plus extracted helpers) render a tab bar above the code viewer so each file can be inspected independently.
 
-{{"component": "../pages/experiments/docs/demos/multi-tabs/index.ts", "bg": "inline" }}
+{{"component": "file://./demos/multi-tabs/index.ts", "bg": "inline" }}
 
 ## Isolated demo
 
@@ -89,7 +89,7 @@ export default function DemoIsolated(props) {
 
 ### Mode toggle with CSS variables
 
-{{"component": "../pages/experiments/docs/demos/mode-toggle/index.ts", "isolated": true, "bg": "inline" }}
+{{"component": "file://./demos/mode-toggle/index.ts", "isolated": true, "bg": "inline" }}
 
 ```js title="DemoModeToggle.js"
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
@@ -125,7 +125,7 @@ The demo with `isolated` will always set to `system` mode when refresh the page.
 
 Provide custom palettes to light and/or dark color schemes.
 
-{{"component": "../pages/experiments/docs/demos/mode-toggle-custom-theme/index.ts", "isolated": true, "bg": "inline" }}
+{{"component": "file://./demos/mode-toggle-custom-theme/index.ts", "isolated": true, "bg": "inline" }}
 
 ```js title="DemoModeToggleCustomTheme.js"
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
@@ -161,37 +161,37 @@ export default function DemoModeToggleCustomTheme(props) {
 
 `isolated: true` can be used with iframe demos. The difference is that the node to attach the color scheme selector will be the `html` of the iframe instead of the demo container.
 
-{{"component": "../pages/experiments/docs/demos/mode-toggle-iframe/index.ts", "bg": "inline", "defaultCodeOpen": false, "iframe": true, "isolated": true }}
+{{"component": "file://./demos/mode-toggle-iframe/index.ts", "bg": "inline", "defaultCodeOpen": false, "iframe": true, "isolated": true }}
 
 ## Sizing
 
 ### "maxWidth": number
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "inline", "maxWidth": 320}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "inline", "maxWidth": 320}}
 
 ### "height": number
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "bg": "inline", "height": 240}}
+{{"component": "file://./demos/in-docs/index.ts", "bg": "inline", "height": 240}}
 
 ## Toolbar variants
 
 ### "hideEditButton": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "hideEditButton": true}}
+{{"component": "file://./demos/in-docs/index.ts", "hideEditButton": true}}
 
 ### "defaultCodeOpen": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/in-docs/index.ts", "defaultCodeOpen": true}}
 
 ### "disableLiveEdit": true
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "disableLiveEdit": true}}
+{{"component": "file://./demos/in-docs/index.ts", "disableLiveEdit": true}}
 
 ### "aiSuggestion": string
 
 When set, renders a "Customize with AI" hero with the provided prompt.
 
-{{"component": "../pages/experiments/docs/demos/in-docs/index.ts", "aiSuggestion": "Make this Alert more prominent"}}
+{{"component": "file://./demos/in-docs/index.ts", "aiSuggestion": "Make this Alert more prominent"}}
 
 ## Other options
 
