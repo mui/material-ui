@@ -260,6 +260,7 @@ jobs:
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
+    resource_class: large
     steps:
       - checkout
       - install-deps:
