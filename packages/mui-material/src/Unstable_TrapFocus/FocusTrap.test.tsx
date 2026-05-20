@@ -32,11 +32,11 @@ interface GenericProps {
  * don't load Vitest Browser's ambient matcher types.
  */
 async function setupBrowser() {
-  const { page, userEvent } = await import('vitest/browser' as string);
+  const { page, userEvent: user } = await import('vitest/browser' as string);
 
   return {
     page,
-    user: userEvent.setup(),
+    user,
   };
 }
 
@@ -460,6 +460,8 @@ describe('<FocusTrap />', () => {
         const { page, user } = await setupBrowser();
         const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
 
+        // In Firefox, filling through a provider locator is the reliable way
+        // to move focus to this dynamically appended input before pressing Shift+Tab.
         // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
         await user.fill(page.getByRole('textbox', { name: 'after' }), 'focused');
         expect(document.activeElement).to.equal(outsideAfter);
@@ -476,6 +478,8 @@ describe('<FocusTrap />', () => {
     it('loops backward when Shift+Tab enters a shadow-root trap from an iframe document', async () => {
       const frame = document.createElement('iframe');
       frame.setAttribute('data-testid', 'focus-trap-shadow-root-iframe');
+      // Firefox in the full no-isolate browser run needs the iframe to load
+      // a real same-origin document before Vitest Browser can query inside it reliably.
       frame.srcdoc = '<!doctype html><html><body></body></html>';
       const frameLoaded = new Promise<void>((resolve) => {
         frame.addEventListener('load', () => resolve(), { once: true });
@@ -506,12 +510,15 @@ describe('<FocusTrap />', () => {
         ));
 
         const { page, user } = await setupBrowser();
+        // Use a unique page locator instead of `page.elementLocator(frame)`.
+        // Vitest Browser serializes element locators for iframes to a broad `iframe`
+        // selector, which can bind to a stale iframe in the full no-isolate Firefox run.
         // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
         const frameLocator = page.frameLocator(page.getByTestId('focus-trap-shadow-root-iframe'));
         const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
 
-        // Fill through a frame locator; passing the iframe-owned DOM element
-        // directly to `user.fill()` does not focus it.
+        // Passing the iframe-owned DOM element directly to `user.fill()` does
+        // not focus it reliably in Firefox.
         // eslint-disable-next-line testing-library/prefer-screen-queries -- `frameLocator` is a Vitest Browser locator, not a render result.
         await user.fill(frameLocator.getByLabelText('after'), 'focused');
         expect(frameDocument.activeElement).to.equal(outsideAfter);
