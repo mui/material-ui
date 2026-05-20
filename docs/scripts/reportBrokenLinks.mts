@@ -40,7 +40,9 @@ async function main() {
       '[id^="demo-"] a[href^="#foo"]',
     ],
     htmlValidate: [
-      // Default — applies to every page.
+      // Default — applies to every page. `mui:recommended` is applied once
+      // at the root level by the crawler, so each entry here is a pure rule
+      // patch layered on top; later matching entries win on conflicting keys.
       {
         config: {
           rules: {
