@@ -41,7 +41,7 @@ See Material Design's [Color System](https://m2.material.io/design/color/the-col
 
 You can explore the default palette values using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.palette), or by opening the dev tools console on this page (`window.theme.palette`).
 
-{{"component": "../data/material/customization/palette/demos/intentions/index.ts", "bg": "inline", "hideToolbar": true}}
+{{"component": "file://./demos/intentions/index.ts", "bg": "inline", "hideToolbar": true}}
 
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary palette color,
 and the un-prefixed shades for the other palette colors.
@@ -66,7 +66,7 @@ This can be achieved by either using a color object or by providing the colors d
 
 The most direct way to customize a palette color is to import and apply one or more [color objects](/material-ui/customization/color/#2014-material-design-color-palettes), as shown below:
 
-{{"component": "../data/material/customization/palette/demos/using-color-object/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/using-color-object/index.ts", "defaultCodeOpen": true}}
 
 #### Providing the colors directly
 
@@ -94,7 +94,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "../data/material/customization/palette/demos/manually-provide-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/manually-provide-color/index.ts", "defaultCodeOpen": false}}
 
 ### Contrast threshold
 
@@ -103,7 +103,7 @@ The `contrastText` token is calculated using the `contrastThreshold` value, to m
 A higher contrast threshold value increases the point at which a background color is considered light, and thus given a dark `contrastText`.
 Note that the contrast threshold follows a non-linear curve, and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
 
-{{"component": "../data/material/customization/palette/demos/contrast-threshold/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/contrast-threshold/index.ts", "defaultCodeOpen": false}}
 
 ### Tonal offset
 
@@ -118,7 +118,7 @@ For example, the tonal offset default value `0.2` shifts the luminance by approx
 
 The tonal offset value can be either a number between 0 and 1 (which would apply to both `light` and `dark` tokens) or an object with `light` and `dark` keys specified:
 
-{{"component": "../data/material/customization/palette/demos/tonal-offset/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/tonal-offset/index.ts", "defaultCodeOpen": false}}
 
 ## Custom colors
 
@@ -147,7 +147,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "../data/material/customization/palette/demos/manually-provide-custom-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/manually-provide-custom-color/index.ts", "defaultCodeOpen": false}}
 
 :::info
 The supported color formats are `hex`, `rgb`, and `hsl`.
@@ -177,7 +177,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "../data/material/customization/palette/demos/using-styles-utils/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/using-styles-utils/index.ts", "defaultCodeOpen": false}}
 
 ### Generate tokens using augmentColor utility
 
@@ -205,7 +205,7 @@ theme = createTheme(theme, {
 });
 ```
 
-{{"component": "../data/material/customization/palette/demos/using-augment-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/using-augment-color/index.ts", "defaultCodeOpen": false}}
 
 The [contrast threshold](#contrast-threshold) and [tonal offset](#tonal-offset) values will apply for the colors defined using this utility.
 
@@ -270,7 +270,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "../data/material/customization/palette/demos/adding-color-tokens/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/adding-color-tokens/index.ts", "defaultCodeOpen": false}}
 
 ### TypeScript
 
