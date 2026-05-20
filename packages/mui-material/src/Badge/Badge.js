@@ -122,11 +122,11 @@ const BadgeBadge = styled('span', {
       },
       {
         style: {
-          inset: 'var(--_inset)',
-          transform: 'scale(1) translate(var(--_translate))',
-          transformOrigin: 'var(--_origin)',
+          inset: 'var(--Badge-inset)',
+          transform: 'scale(1) translate(var(--Badge-translate))',
+          transformOrigin: 'var(--Badge-origin)',
           [`&.${badgeClasses.invisible}`]: {
-            transform: 'scale(0) translate(var(--_translate))',
+            transform: 'scale(0) translate(var(--Badge-translate))',
           },
         },
       },
@@ -240,9 +240,9 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     className: classes.badge,
     additionalProps: {
       style: {
-        '--_translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
-        '--_inset': `${top} ${right} ${bottom} ${left}`,
-        '--_origin': `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
+        '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
+        '--Badge-inset': `${top} ${right} ${bottom} ${left}`,
+        '--Badge-origin': `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
       },
     },
   });
