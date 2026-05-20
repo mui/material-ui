@@ -606,8 +606,39 @@ workflows:
           react-version: ^18.0.0
           name: test_e2e-react@18
 
-  # This workflow is identical to react-18, but scheduled
-  react-18-cron:
+  # This workflow can be triggered manually on the PR
+  react-next:
+    when:
+      equal: [react-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+
+  typescript-next:
+    when:
+      equal: [typescript-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
+
+  # Combined nightly canary runs. react@18 runs on all listed branches; the
+  # react@next and typescript@next jobs skip v5.x via per-job branch filters.
+  nightly-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -635,76 +666,37 @@ workflows:
           <<: *default-context
           react-version: ^18.0.0
           name: test_e2e-react@18
-
-  # This workflow can be triggered manually on the PR
-  react-next:
-    when:
-      equal: [react-next, << pipeline.parameters.workflow >>]
-    jobs:
       - test_unit:
           <<: *default-context
           react-version: next
           name: test_unit-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_browser:
           <<: *default-context
           react-version: next
           name: test_browser-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_regressions:
           <<: *default-context
           react-version: next
           name: test_regressions-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_e2e:
           <<: *default-context
           react-version: next
           name: test_e2e-react@next
-  # This workflow is identical to react-next, but scheduled
-  react-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_unit:
-          <<: *default-context
-          react-version: next
-          name: test_unit-react@next
-      - test_browser:
-          <<: *default-context
-          react-version: next
-          name: test_browser-react@next
-      - test_regressions:
-          <<: *default-context
-          react-version: next
-          name: test_regressions-react@next
-      - test_e2e:
-          <<: *default-context
-          react-version: next
-          name: test_e2e-react@next
-
-  typescript-next:
-    when:
-      equal: [typescript-next, << pipeline.parameters.workflow >>]
-    jobs:
+              ignore: v5.x
       - test_types_next:
           <<: *default-context
           typescript-version: next
-
-  typescript-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_types_next:
-          <<: *default-context
-          typescript-version: next
+              ignore: v5.x
