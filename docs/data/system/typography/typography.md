@@ -4,7 +4,7 @@
 
 ## Variant
 
-{{"component": "../data/system/typography/demos/variant/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/variant/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ typography: 'subtitle2' }}>… // theme.typography.subtitle2
@@ -14,7 +14,7 @@
 
 ## Text alignment
 
-{{"component": "../data/system/typography/demos/text-alignment/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/text-alignment/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textAlign: 'left' }}>…
@@ -24,7 +24,7 @@
 
 ## Text transformation
 
-{{"component": "../data/system/typography/demos/text-transform/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/text-transform/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textTransform: 'capitalize' }}>…
@@ -34,7 +34,7 @@
 
 ## Font weight
 
-{{"component": "../data/system/typography/demos/font-weight/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/font-weight/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }}>… // theme.typography.fontWeightLight
@@ -46,7 +46,7 @@
 
 ## Font size
 
-{{"component": "../data/system/typography/demos/font-size/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/font-size/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontSize: 'default' }}>…  // theme.typography.fontSize
@@ -56,7 +56,7 @@
 
 ## Font style
 
-{{"component": "../data/system/typography/demos/font-style/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/font-style/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontStyle: 'normal' }}>…
@@ -66,7 +66,7 @@
 
 ## Font family
 
-{{"component": "../data/system/typography/demos/font-family/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/font-family/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontFamily: 'default' }}>…
@@ -75,7 +75,7 @@
 
 ## Letter spacing
 
-{{"component": "../data/system/typography/demos/letter-spacing/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/letter-spacing/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ letterSpacing: 6 }}>…
@@ -84,7 +84,7 @@
 
 ## Line height
 
-{{"component": "../data/system/typography/demos/line-height/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/line-height/index.ts", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ lineHeight: 'normal' }}>…
