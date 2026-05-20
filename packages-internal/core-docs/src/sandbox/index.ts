@@ -5,4 +5,3 @@ export * as CreateReactApp from './CreateReactApp';
 export { SandboxDependencies } from './Dependencies';
 export * as codeSandbox from './CodeSandbox';
 export * as stackBlitz from './StackBlitz';
-export { createMuiChat } from './MuiChat';

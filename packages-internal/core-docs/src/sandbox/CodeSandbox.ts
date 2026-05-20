@@ -1,6 +1,6 @@
 import LZString from 'lz-string';
-import { addHiddenInput } from '../../utils/addHiddenInput';
-import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import { addHiddenInput } from '../utils/addHiddenInput';
+import type { SandboxConfig } from '../DemoContext/DemoContext';
 import { SandboxDependencies } from './Dependencies';
 import * as CRA from './CreateReactApp';
 import { getFileExtension } from './FileExtension';
