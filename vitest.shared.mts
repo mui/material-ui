@@ -128,9 +128,13 @@ export default async function create(
           width: 1024,
           height: 896,
         },
+        // Sequence browser instances via groupOrder: only one browser is alive
+        // at a time, so they can't compete for the OS window focus (especially
+        // Firefox, which drops synthetic focus when another browser steals it).
+        // File parallelism still applies within each browser via maxWorkers.
         instances: (process.env.VITEST_BROWSERS || 'chromium')
           .split(',')
-          .map((browser) => ({ browser }) as BrowserInstanceOption),
+          .map((browser, index) => ({ browser, groupOrder: index }) as BrowserInstanceOption),
         screenshotFailures: false,
       },
       env: {
