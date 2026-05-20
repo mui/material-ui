@@ -352,14 +352,14 @@ export default createDemo(import.meta.url, SuperButtons, { ClientProvider });
 
 #### 4. Reference the demo from Markdown
 
-The Markdown file in the component's respective folder—in this case, `buttons.md`—is the source of content for the document. The `component` field is a path relative to `docs/src/`:
+The Markdown file in the component's respective folder—in this case, `buttons.md`—is the source of content for the document. The `component` field is a `file://` URL relative to the Markdown file:
 
 ```diff
 +### Super buttons
 +
 +To create a super button for a specific use case, add the `super` prop:
 +
-+{{"component": "../data/material/components/buttons/demos/super/index.ts"}}
++{{"component": "file://./demos/super/index.ts"}}
 ```
 
 Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in [`packages-internal/core-docs/src/DemoContent/DemoContent.tsx`](packages-internal/core-docs/src/DemoContent/DemoContent.tsx). See the [demo variants experiment page](docs/pages/experiments/docs/demos.md) for live examples.

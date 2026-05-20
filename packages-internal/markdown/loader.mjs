@@ -660,9 +660,25 @@ export default async function demoLoader() {
   );
 
   componentNames.forEach((componentName) => {
-    const moduleID = componentName.startsWith('@mui/internal-core-docs/')
-      ? componentName
-      : path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+    let moduleID;
+    if (componentName.startsWith('@mui/internal-core-docs/')) {
+      // Bare package import (e.g. legacy `MarkdownDocs` reference).
+      moduleID = componentName;
+    } else if (componentName.startsWith('file://')) {
+      // `file://./...` / `file://../...` resolves relative to the markdown file.
+      // This is the preferred form: paths colocated with the .md page.
+      const relative = componentName.slice('file://'.length);
+      if (!relative.startsWith('./') && !relative.startsWith('../')) {
+        throw new Error(
+          `Unsupported "component" URL: "${componentName}". ` +
+            `Only relative file URLs are supported (e.g. "file://./demos/foo/index.ts").`,
+        );
+      }
+      moduleID = path.join(this.context, relative).replace(/\\/g, '/');
+    } else {
+      // Legacy form: resolved from `docs/src/`.
+      moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+    }
 
     components[moduleID] = componentName;
     componentModuleIDs.add(moduleID);

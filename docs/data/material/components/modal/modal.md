@@ -39,7 +39,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 ## Basic modal
 
-{{"component": "../data/material/components/modal/demos/basic/index.ts"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
@@ -47,7 +47,7 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 Modals can be nested, for example a select within a dialog, but stacking of more than two modals, or any two modals with a backdrop is discouraged.
 
-{{"component": "../data/material/components/modal/demos/nested/index.ts"}}
+{{"component": "file://./demos/nested/index.ts"}}
 
 ## Transitions
 
@@ -62,11 +62,11 @@ This component should respect the following conditions:
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"component": "../data/material/components/modal/demos/transitions/index.ts"}}
+{{"component": "file://./demos/transitions/index.ts"}}
 
 Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
-{{"component": "../data/material/components/modal/demos/spring/index.ts"}}
+{{"component": "file://./demos/spring/index.ts"}}
 
 ## Performance
 
@@ -78,7 +78,7 @@ it might be a good idea to change this default behavior by enabling the `keepMou
 <Modal keepMounted />
 ```
 
-{{"component": "../data/material/components/modal/demos/keep-mounted/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/keep-mounted/index.ts", "defaultCodeOpen": false}}
 
 As with any performance optimization, this is not a silver bullet.
 Be sure to identify bottlenecks first, and then try out these optimization strategies.
@@ -88,7 +88,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
-{{"component": "../data/material/components/modal/demos/server/index.ts"}}
+{{"component": "file://./demos/server/index.ts"}}
 
 ## Limitations
 

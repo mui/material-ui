@@ -38,7 +38,7 @@ Tables are implemented using a collection of related components:
 
 A simple example with no frills.
 
-{{"component": "../data/material/components/table/demos/basic/index.ts", "bg": true}}
+{{"component": "file://./demos/basic/index.ts", "bg": true}}
 
 ## Data table
 
@@ -48,13 +48,13 @@ This constraint makes building rich data tables challenging.
 The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
-{{"component": "../data/material/components/table/demos/data/index.ts", "bg": true}}
+{{"component": "file://./demos/data/index.ts", "bg": true}}
 
 ## Dense table
 
 A simple example of a dense table with no frills.
 
-{{"component": "../data/material/components/table/demos/dense/index.ts", "bg": true}}
+{{"component": "file://./demos/dense/index.ts", "bg": true}}
 
 ## Sorting & selecting
 
@@ -62,14 +62,14 @@ This example demonstrates the use of `Checkbox` and clickable rows for selection
 
 The Table has been given a fixed width to demonstrate horizontal scrolling. In order to prevent the pagination controls from scrolling, the TablePagination component is used outside of the Table. (The ['Custom Table Pagination Action' example](#custom-pagination-actions) below shows the pagination within the TableFooter.)
 
-{{"component": "../data/material/components/table/demos/enhanced/index.ts", "bg": true}}
+{{"component": "file://./demos/enhanced/index.ts", "bg": true}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/table/demos/customized/index.ts", "bg": true}}
+{{"component": "file://./demos/customized/index.ts", "bg": true}}
 
 ### Custom pagination options
 
@@ -92,14 +92,14 @@ You should either provide an array of:
 
 The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
-{{"component": "../data/material/components/table/demos/custom-pagination-actions/index.ts", "bg": true}}
+{{"component": "file://./demos/custom-pagination-actions/index.ts", "bg": true}}
 
 ## Sticky header
 
 Here is an example of a table with scrollable rows and fixed column headers.
 It leverages the `stickyHeader` prop.
 
-{{"component": "../data/material/components/table/demos/sticky-head/index.ts", "bg": true}}
+{{"component": "file://./demos/sticky-head/index.ts", "bg": true}}
 
 ## Column grouping
 
@@ -112,20 +112,20 @@ You can group column headers by rendering multiple table rows inside a table hea
 </TableHead>
 ```
 
-{{"component": "../data/material/components/table/demos/column-grouping/index.ts", "bg": true}}
+{{"component": "file://./demos/column-grouping/index.ts", "bg": true}}
 
 ## Collapsible table
 
 An example of a table with expandable rows, revealing more information.
 It utilizes the [`Collapse`](/material-ui/api/collapse/) component.
 
-{{"component": "../data/material/components/table/demos/collapsible/index.ts", "bg": true}}
+{{"component": "file://./demos/collapsible/index.ts", "bg": true}}
 
 ## Spanning table
 
 A simple example with spanning rows & columns.
 
-{{"component": "../data/material/components/table/demos/spanning/index.ts", "bg": true}}
+{{"component": "file://./demos/spanning/index.ts", "bg": true}}
 
 ## Virtualized table
 
@@ -133,7 +133,7 @@ In the following example, we demonstrate how to use [react-virtuoso](https://git
 It renders 200 rows and can easily handle more.
 Virtualization helps with performance issues.
 
-{{"component": "../data/material/components/table/demos/react-virtualized/index.ts", "bg": true}}
+{{"component": "file://./demos/react-virtualized/index.ts", "bg": true}}
 
 ## Accessibility
 
@@ -143,4 +143,4 @@ Virtualization helps with performance issues.
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
-{{"component": "../data/material/components/table/demos/accessible/index.ts", "bg": true}}
+{{"component": "file://./demos/accessible/index.ts", "bg": true}}

@@ -16,7 +16,7 @@ githubSource: packages/mui-material/src/Link
 
 The Link component is built on top of the [Typography](/material-ui/api/typography/) component, meaning that you can use its props.
 
-{{"component": "../data/material/components/links/demos/links/index.ts"}}
+{{"component": "file://./demos/links/index.ts"}}
 
 However, the Link component has some different default props than the Typography component:
 
@@ -27,7 +27,7 @@ However, the Link component has some different default props than the Typography
 
 The `underline` prop can be used to set the underline behavior. The default is `always`.
 
-{{"component": "../data/material/components/links/demos/underline/index.ts"}}
+{{"component": "file://./demos/underline/index.ts"}}
 
 ## Security
 
@@ -54,7 +54,7 @@ Here is a [more detailed guide](/material-ui/integrations/routing/#link).
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
   The demo below illustrates how to properly link with a `<button>`:
 
-{{"component": "../data/material/components/links/demos/button/index.ts"}}
+{{"component": "file://./demos/button/index.ts"}}
 
 ### Keyboard accessibility
 
