@@ -9,7 +9,7 @@ Demos are powered by [`@mui/internal-docs-infra`](https://mui-internal.netlify.a
 - [`abstractCreateDemo({ DemoContent })`](https://mui-internal.netlify.app/docs-infra/factories/abstract-create-demo/) — factory used to build `createDemo`
 - [`loadPrecomputedCodeHighlighter`](https://mui-internal.netlify.app/docs-infra/pipeline/load-precomputed-code-highlighter/) — webpack loader
 
-The supported options (e.g. `bg`, `hideToolbar`, `isolated`, `iframe`, …) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`.
+The supported options (for example, `bg`, `hideToolbar`, `isolated`, `iframe`, …) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`.
 
 ## Standard demo
 
@@ -52,7 +52,7 @@ So, it renders the "outlined" background variant.
 
 ## Multiple Tabs demo
 
-Demos that export more than one file (e.g. a main component plus extracted helpers) render a tab bar above the code viewer so each file can be inspected independently.
+Demos that export more than one file (for example, a main component plus extracted helpers) render a tab bar above the code viewer so each file can be inspected independently.
 
 {{"component": "../pages/experiments/docs/demos/multi-tabs/index.ts", "bg": "inline" }}
 
@@ -197,10 +197,10 @@ When set, renders a "Customize with AI" hero with the provided prompt.
 
 These options don't have a visual variant worth showcasing, but they are supported:
 
-| Option | Type | Purpose |
-| :--- | :--- | :--- |
-| `disableAd` | `boolean` | Suppresses the inline Carbon ad even when ads are enabled globally. |
-| `anchorId` | `string \| null` | Overrides the anchor `id` used for deep-links. `null` disables anchors entirely. |
+| Option      | Type             | Purpose                                                                          |
+| :---------- | :--------------- | :------------------------------------------------------------------------------- |
+| `disableAd` | `boolean`        | Suppresses the inline Carbon ad even when ads are enabled globally.              |
+| `anchorId`  | `string \| null` | Overrides the anchor `id` used for deep-links. `null` disables anchors entirely. |
 
 ## Validation rules
 
