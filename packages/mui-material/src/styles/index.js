@@ -55,3 +55,4 @@ export { default as private_excludeVariablesFromRoot } from './excludeVariablesF
 
 export { styleSheetsToString } from '@mui/system';
 export { default as CssVarsInjector } from './CssVarsInjector';
+export { default as CssThemeProvider } from './CssThemeProvider';

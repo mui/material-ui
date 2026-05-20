@@ -40,7 +40,7 @@ export const projectSettings: ProjectSettings = {
   skipComponent(filename: string) {
     return (
       filename.match(
-        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|SliderEmotion|CssVarsInjector)/,
+        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|SliderEmotion|CssVarsInjector|CssThemeProvider)/,
       ) !== null
     );
   },

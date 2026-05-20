@@ -171,3 +171,5 @@ export { default as private_createTypography } from './createTypography';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
 
 export { default as CssVarsInjector } from './CssVarsInjector';
+export { default as CssThemeProvider } from './CssThemeProvider';
+export type { CssThemeProviderProps } from './CssThemeProvider';
