@@ -132,7 +132,7 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: 'large'
     steps:
       - checkout
       - install-deps
