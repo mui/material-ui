@@ -240,7 +240,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     className: classes.badge,
     additionalProps: {
       style: {
-        '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'} ${vertical === 'top' ? '-50%' : '50%'}`,
+        '--Badge-translate': `${horizontal === 'right' ? '50%' : '-50%'}, ${vertical === 'top' ? '-50%' : '50%'}`,
         '--Badge-inset': `${top} ${right} ${bottom} ${left}`,
         '--Badge-origin': `${horizontal === 'right' ? '100%' : '0%'} ${vertical === 'top' ? '0%' : '100%'}`,
       },
