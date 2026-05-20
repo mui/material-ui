@@ -176,7 +176,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: 'large'
+    resource_class: 'xlarge'
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
@@ -198,7 +198,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: 'large'
+    resource_class: 'xlarge'
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
