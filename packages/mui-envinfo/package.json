@@ -3,7 +3,7 @@
   "version": "2.0.46",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
-  "bin": "./envinfo.js",
+  "bin": "./src/envinfo.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
