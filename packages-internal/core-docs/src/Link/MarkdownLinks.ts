@@ -81,8 +81,7 @@ function handleMouseOver(event: MouseEvent) {
   // want to force navigation since this is only a prefetch
   Promise.resolve(prefetchPromise).catch((err) => {
     if (process.env.NODE_ENV !== 'production') {
-      // rethrow to show invalid URL errors
-      throw err;
+      console.error('Error prefetching page:', err);
     }
   });
 }

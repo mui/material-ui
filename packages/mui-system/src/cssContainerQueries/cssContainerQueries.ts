@@ -74,6 +74,8 @@ export function getContainerQuery(theme: CssContainerQueries, shorthand: string)
   const matches = shorthand.match(/^@([^/]+)?\/?(.+)?$/);
   if (!matches) {
     if (process.env.NODE_ENV !== 'production') {
+      // TODO: avoid throwing during React render only in development.
+      // eslint-disable-next-line mui/no-guarded-throw
       throw /* minify-error */ new Error(
         `MUI: The provided shorthand ${`(${shorthand})`} is invalid. The format should be \`@<breakpoint | number>\` or \`@<breakpoint | number>/<container>\`.\n` +
           'For example, `@sm` or `@600` or `@40rem/sidebar`.',

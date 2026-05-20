@@ -1,22 +1,18 @@
-import type * as React from 'react';
-import { type SxProps, type Breakpoint } from '@mui/system';
-import { type Theme } from '../styles';
-import { type InternalStandardProps as StandardProps } from '../internal';
-import { type BackdropProps } from '../Backdrop';
-import { type PaperProps } from '../Paper';
-import { type ModalProps } from '../Modal';
-import { type TransitionProps } from '../transitions/transition';
-import { type DialogClasses } from './dialogClasses';
-import {
-  type CreateSlotsAndSlotProps,
-  type SlotComponentProps,
-  type SlotProps,
-} from '../utils/types';
+import * as React from 'react';
+import { SxProps, Breakpoint } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { BackdropProps } from '../Backdrop';
+import { PaperProps } from '../Paper';
+import { ModalProps } from '../Modal';
+import { TransitionProps } from '../transitions/types';
+import { DialogClasses } from './dialogClasses';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface DialogSlots {
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Collapse
    */
   transition?: React.ElementType | undefined;

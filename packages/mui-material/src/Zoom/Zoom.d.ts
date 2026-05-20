@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import { type TransitionProps } from '../transitions/transition';
+import * as React from 'react';
+import { TransitionProps } from '../transitions/types';
 
 export interface ZoomProps extends TransitionProps {
   /**
@@ -36,7 +36,6 @@ export interface ZoomProps extends TransitionProps {
 /**
  * The Zoom transition can be used for the floating variant of the
  * [Button](https://mui.com/material-ui/react-floating-action-button/#animation) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *

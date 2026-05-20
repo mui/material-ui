@@ -1,15 +1,11 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type Theme } from '../styles';
-import { type TransitionProps } from '../transitions/transition';
-import { type AccordionClasses } from './accordionClasses';
-import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
-import { type ExtendPaperTypeMap, type PaperProps } from '../Paper/Paper';
-import {
-  type CreateSlotsAndSlotProps,
-  type SlotComponentProps,
-  type SlotProps,
-} from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { TransitionProps } from '../transitions/types';
+import { AccordionClasses } from './accordionClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ExtendPaperTypeMap, PaperProps } from '../Paper/Paper';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface AccordionSlots {
   /**
@@ -24,7 +20,7 @@ export interface AccordionSlots {
   heading: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Collapse
    */
   transition: React.ElementType;

@@ -1,15 +1,11 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type FadeProps } from '../Fade';
-import { type TransitionProps } from '../transitions/transition';
-import { type Theme } from '../styles';
-import { type BackdropClasses } from './backdropClasses';
-import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
-import {
-  type CreateSlotsAndSlotProps,
-  type SlotComponentProps,
-  type SlotProps,
-} from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { FadeProps } from '../Fade';
+import { TransitionProps } from '../transitions/types';
+import { Theme } from '../styles';
+import { BackdropClasses } from './backdropClasses';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
   /**
@@ -19,7 +15,7 @@ export interface BackdropSlots {
   root: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Fade
    */
   transition: React.ElementType;

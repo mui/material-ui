@@ -117,17 +117,6 @@ const ButtonRoot = styled(ButtonBase, {
       },
       variants: [
         {
-          props: ({ ownerState }) =>
-            ownerState.startIcon || (ownerState.loading && ownerState.loadingPosition === 'start'),
-          style: {
-            '&::before': {
-              content: '"\\200b"',
-              width: 0,
-              overflow: 'hidden',
-            },
-          },
-        },
-        {
           props: { variant: 'contained' },
           style: {
             color: `var(--variant-containedColor)`,
@@ -345,8 +334,14 @@ const ButtonStartIcon = styled('span', {
   },
 })(({ theme }) => ({
   display: 'inherit',
+  alignItems: 'center',
   marginRight: 8,
   marginLeft: -4,
+  '&::before': {
+    content: '"\\200b"',
+    width: 0,
+    overflow: 'hidden',
+  },
   variants: [
     {
       props: { size: 'small' },

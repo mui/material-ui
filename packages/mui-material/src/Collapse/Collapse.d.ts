@@ -1,11 +1,10 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type TransitionStatus } from 'react-transition-group';
-import { type Theme } from '../styles';
-import { type InternalStandardProps as StandardProps } from '../internal';
-import { type TransitionProps } from '../transitions/transition';
-import { type CollapseClasses } from './collapseClasses';
-import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { TransitionProps, TransitionStatus } from '../transitions/types';
+import { CollapseClasses } from './collapseClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface CollapseSlots {
   /**
@@ -96,7 +95,6 @@ export interface CollapseOwnerState extends CollapseProps {
 /**
  * The Collapse transition is used by the
  * [Vertical Stepper](https://mui.com/material-ui/react-stepper/#vertical-stepper) StepContent component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *

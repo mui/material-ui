@@ -1,16 +1,16 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type Theme } from '../styles';
-import { type InternalStandardProps as StandardProps } from '../internal';
-import { type CollapseProps } from '../Collapse';
-import { type TransitionProps } from '../transitions/transition';
-import { type StepContentClasses } from './stepContentClasses';
-import { type CreateSlotsAndSlotProps, type SlotComponentProps } from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { CollapseProps } from '../Collapse';
+import { TransitionProps } from '../transitions/types';
+import { StepContentClasses } from './stepContentClasses';
+import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export interface StepContentSlots {
   /**
    * The component that renders the transition slot.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Collapse
    */
   transition?:

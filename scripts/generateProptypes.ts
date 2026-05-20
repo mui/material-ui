@@ -6,8 +6,8 @@ import glob from 'fast-glob';
 import { flatten } from 'es-toolkit/array';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import type {
-  LiteralType,
+import {
+  type LiteralType,
   getPropTypesFromFile,
   injectPropTypesInFile,
   type InjectPropTypesInFileOptions,

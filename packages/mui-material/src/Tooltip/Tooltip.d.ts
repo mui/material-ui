@@ -1,11 +1,11 @@
-import type * as React from 'react';
-import { type SxProps } from '@mui/system';
-import { type PopperProps } from '../Popper';
-import { type Theme } from '../styles';
-import { type InternalStandardProps as StandardProps } from '../internal';
-import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
-import { type TransitionProps } from '../transitions/transition';
-import { type TooltipClasses } from './tooltipClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { PopperProps } from '../Popper';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { TransitionProps } from '../transitions/types';
+import { TooltipClasses } from './tooltipClasses';
 
 export interface TooltipPopperSlotPropsOverrides {}
 
@@ -23,7 +23,7 @@ export interface TooltipSlots {
   popper: React.ElementType;
   /**
    * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transition-slots) to learn more about the requirements for this component.
    * @default Grow
    */
   transition: React.ElementType;

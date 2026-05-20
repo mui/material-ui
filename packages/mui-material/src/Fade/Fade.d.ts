@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import { type TransitionProps } from '../transitions/transition';
+import * as React from 'react';
+import { TransitionProps } from '../transitions/types';
 
 export interface FadeProps extends Omit<TransitionProps, 'children'> {
   /**
@@ -35,7 +35,6 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
 
 /**
  * The Fade transition is used by the [Modal](https://mui.com/material-ui/react-modal/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *

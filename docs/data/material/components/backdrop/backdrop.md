@@ -21,3 +21,8 @@ The demo below shows a basic Backdrop with a Circular Progress component in the 
 After clicking **Show Backdrop**, you can click anywhere on the page to close it.
 
 {{"demo": "SimpleBackdrop.js"}}
+
+## Transitions
+
+Backdrop uses [Fade](/material-ui/transitions/#fade) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
