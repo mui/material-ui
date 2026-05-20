@@ -6,7 +6,7 @@
 
 This guide outlines the three steps necessary to change the direction of text-based components in Material UI to support RTL languages, as shown in the demo below:
 
-{{"component": "../data/material/customization/right-to-left/demos/rtl-demo/index.ts"}}
+{{"component": "file://./demos/rtl-demo/index.ts"}}
 
 ### 1. Set the HTML direction
 
@@ -127,4 +127,4 @@ const LeftToRightTextInRtlApp = styled('div')`
 `;
 ```
 
-{{"component": "../data/material/customization/right-to-left/demos/rtl-opt-out/index.ts"}}
+{{"component": "file://./demos/rtl-opt-out/index.ts"}}
