@@ -137,9 +137,10 @@ export default async function create(
         VITEST: 'true',
         NODE_ENV: 'development',
       },
-      // Cap worker count on CI: each worker spawns its own browser process,
-      // and Firefox in particular is RAM-hungry. Two matches what we observed
-      // working stably on the previous medium+ runner.
+      // Cap worker count on CI: with file parallelism enabled each worker can
+      // have several pages in flight at once, and Firefox in particular is
+      // RAM-hungry. Two is conservative for an xlarge runner; raise later if
+      // we see headroom.
       ...(process.env.CI && {
         maxWorkers: 2,
       }),

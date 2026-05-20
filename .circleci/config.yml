@@ -193,7 +193,7 @@ jobs:
           name: Tests browsers
           environment:
             VITEST_BROWSERS: 'chromium,webkit,firefox'
-          command: pnpm test:browser --no-isolate --no-file-parallelism
+          command: pnpm test:browser --no-isolate
       - store_test_results:
           path: test-results
   test_browser:
@@ -210,7 +210,7 @@ jobs:
           name: Tests browsers
           environment:
             VITEST_BROWSERS: 'chromium,webkit,firefox'
-          command: pnpm test:browser --no-isolate --no-file-parallelism
+          command: pnpm test:browser --no-isolate
       - store_test_results:
           path: test-results
   test_e2e:

@@ -9,6 +9,16 @@ import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
 import describeConformance from '../../test/describeConformance';
 
+// Firefox-only skip helper for the focus-stealing test below. In background
+// Firefox pages (the case for every page but one when vitest runs multiple
+// browser pages in parallel) the transition "focus inside iframe → focus
+// parent-doc element" silently drops to <body> instead of transferring. The
+// test sets up exactly that transition. Chromium and WebKit aren't affected.
+const isFirefox =
+  typeof navigator !== 'undefined' &&
+  !navigator.userAgent.includes('jsdom') &&
+  navigator.userAgent.toLowerCase().includes('firefox');
+
 describe('<Modal />', () => {
   const { clock, render } = createRenderer();
 
@@ -479,7 +489,7 @@ describe('<Modal />', () => {
 
       // TODO: Unclear why this fails. Not important
       // since a browser test gives us more confidence anyway
-      it.skipIf(isJsdom())('does not steal focus from other frames', function test() {
+      it.skipIf(isJsdom() || isFirefox)('does not steal focus from other frames', function test() {
         const FrameContext = React.createContext(document);
         // by default Modal will use the document where the module! was initialized
         // which is usually the top document

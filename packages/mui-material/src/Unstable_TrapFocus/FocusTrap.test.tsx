@@ -10,6 +10,18 @@ interface GenericProps {
   [index: string]: any;
 }
 
+// Several tests below rely on `FocusTrap.contain()` reacting to a focus move
+// outside the trap. `contain()` correctly bails on `!doc.hasFocus()`, and when
+// multiple vitest browser pages run in parallel (file parallelism, multiple
+// workers) only one Firefox page has OS-level focus at a time, so the other
+// pages' tester iframes report `hasFocus() === false` and the trap doesn't
+// re-engage. Chromium and WebKit don't share the behaviour. Skipping these
+// specific assertions in Firefox keeps coverage in the other two browsers.
+const isFirefox =
+  typeof navigator !== 'undefined' &&
+  !navigator.userAgent.includes('jsdom') &&
+  navigator.userAgent.toLowerCase().includes('firefox');
+
 describe('<FocusTrap />', () => {
   const { clock, render } = createRenderer();
 
@@ -26,7 +38,7 @@ describe('<FocusTrap />', () => {
     document.body.removeChild(initialFocus!);
   });
 
-  it('should return focus to the root', async () => {
+  it.skipIf(isFirefox)('should return focus to the root', async () => {
     render(
       <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
@@ -152,7 +164,7 @@ describe('<FocusTrap />', () => {
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 
-  it('keeps focus trapped after the React 18 Strict Mode remount', async () => {
+  it.skipIf(isFirefox)('keeps focus trapped after the React 18 Strict Mode remount', async () => {
     render(
       <div>
         <input data-testid="outside-input" />
@@ -267,7 +279,7 @@ describe('<FocusTrap />', () => {
     expect(eventLog).to.deep.equal([]);
   });
 
-  it('does not focus if isEnabled returns false', async () => {
+  it.skipIf(isFirefox)('does not focus if isEnabled returns false', async () => {
     function Test(props: GenericProps) {
       return (
         <div>
@@ -351,7 +363,7 @@ describe('<FocusTrap />', () => {
   describe('interval', () => {
     clock.withFakeTimers();
 
-    it('contains the focus if the active element is removed', async () => {
+    it.skipIf(isFirefox)('contains the focus if the active element is removed', async () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <FocusTrap open>
@@ -401,7 +413,7 @@ describe('<FocusTrap />', () => {
         expect(screen.getByRole('textbox')).toHaveFocus();
       });
 
-      it('should trap once the focus moves inside', async () => {
+      it.skipIf(isFirefox)('should trap once the focus moves inside', async () => {
         render(
           <div>
             <input data-testid="outside-input" />
