@@ -4,13 +4,14 @@ import Button, { type ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import PageContext from '../PageContext';
-import { useDemoContext } from '../DemoContext';
-import { createMuiChat } from './sandbox/MuiChat';
-import type { DemoData } from './sandbox/types';
 
-export interface OpenInMUIChatButtonProps extends ButtonProps {
-  demoData: DemoData;
+export interface OpenInMUIChatButtonProps extends Omit<ButtonProps, 'onClick'> {
+  /**
+   * Async handler that performs the MUI Chat API call. Typically wired to
+   * `useDemo()`'s `openMuiChat`. When `undefined`, the button renders nothing
+   * (env vars missing / scope not enabled).
+   */
+  openMuiChat?: () => Promise<void>;
 }
 
 const rainbow = keyframes`
@@ -90,31 +91,25 @@ const RainbowButton = styled(Button)(({ theme }) => ({
 }));
 
 export const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
-  function OpenInMUIChatButton({ demoData, ...props }, ref) {
-    const { productId } = React.useContext(PageContext);
-    const { csb } = useDemoContext();
+  function OpenInMUIChatButton({ openMuiChat, ...props }, ref) {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<Error | null>(null);
-    const baseUrl = process.env.MUI_CHAT_API_BASE_URL;
-    const scopes = process.env.MUI_CHAT_SCOPES;
+
+    if (!openMuiChat) {
+      return null;
+    }
 
     const handleClick = async () => {
       setLoading(true);
       setError(null);
-
       try {
-        await createMuiChat(demoData, csb).openSandbox();
-      } catch (err: any) {
-        setError(err as Error);
+        await openMuiChat();
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
       } finally {
         setLoading(false);
       }
     };
-
-    // If the base URL is not set, we can't render the button
-    if (!baseUrl || !scopes || !scopes.split(',').includes(productId)) {
-      return null;
-    }
 
     return (
       <React.Fragment>

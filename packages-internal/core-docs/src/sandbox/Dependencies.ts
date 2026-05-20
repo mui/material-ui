@@ -1,5 +1,5 @@
-import { CODE_VARIANTS } from '../../constants/constants';
-import type { SandboxConfig } from '../../DemoContext/DemoContext';
+import { CODE_VARIANTS } from '../constants/constants';
+import type { SandboxConfig } from '../DemoContext/DemoContext';
 import { type DemoData } from './types';
 
 const packagesWithBundledTypes = [

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
+import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
@@ -63,4 +64,65 @@ export function DemoInstanceThemeProvider({
     /* - a function will skip the CSS vars generation logic */
     <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
   );
+}
+
+// Props injected via `cloneElement` into an isolated demo so its own
+// `CssVarsProvider` attaches to the per-demo container instead of `<html>`.
+interface IsolatedDemoProps {
+  children: React.ReactElement;
+  cssVarPrefix: string;
+  colorSchemeNode: Element | null;
+}
+
+function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode }: IsolatedDemoProps) {
+  return React.cloneElement(children, {
+    cssVarPrefix,
+    colorSchemeNode,
+    colorSchemeSelector: 'class',
+    disableNestedContext: true,
+    storageManager: null,
+  } as Partial<unknown> & React.Attributes);
+}
+
+/**
+ * Wraps a demo's rendered component with the appropriate theme context.
+ *
+ * - When `isolated` is false (default), wraps in `DemoInstanceThemeProvider`
+ *   so the demo sees a fresh Material UI theme rather than inheriting the
+ *   page's branding theme.
+ * - When `isolated` is true, wraps in `SystemThemeProvider` that exposes only
+ *   `direction` and `vars` from the upper theme — cutting MUI / Joy UI theme
+ *   inheritance so the demo can own its `ThemeProvider`. The demo element is
+ *   then cloned with `cssVarPrefix` / `colorSchemeNode` / etc. for its own
+ *   `CssVarsProvider`.
+ */
+export function DemoComponentTheme({
+  children,
+  isolated,
+  name,
+}: {
+  children: React.ReactNode;
+  isolated?: boolean;
+  name: string;
+}) {
+  const [colorSchemeNode, setColorSchemeNode] = React.useState<HTMLDivElement | null>(null);
+
+  if (isolated && React.isValidElement(children)) {
+    return (
+      <SystemThemeProvider
+        theme={(upperTheme: { direction?: 'ltr' | 'rtl'; vars?: Record<string, unknown> }) => ({
+          direction: upperTheme.direction, // required for internal ThemeProvider
+          vars: upperTheme.vars, // required for styling the wrapper
+        })}
+      >
+        <div ref={setColorSchemeNode}>
+          <IsolatedDemo cssVarPrefix={name} colorSchemeNode={colorSchemeNode}>
+            {children as React.ReactElement}
+          </IsolatedDemo>
+        </div>
+      </SystemThemeProvider>
+    );
+  }
+
+  return <DemoInstanceThemeProvider runtimeTheme={undefined}>{children}</DemoInstanceThemeProvider>;
 }

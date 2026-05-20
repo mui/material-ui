@@ -2,7 +2,7 @@ import {
   createDemoFactory,
   createDemoWithVariantsFactory,
 } from '@mui/internal-docs-infra/abstractCreateDemo';
-import { DemoContent } from '../DemoContent';
+import { DemoContent, DemoContentLoading } from '../DemoContent';
 
 /**
  * Creates a demo component for displaying code examples with syntax highlighting.
@@ -12,6 +12,7 @@ import { DemoContent } from '../DemoContent';
  */
 export const createDemo = createDemoFactory({
   DemoContent,
+  DemoContentLoading,
   controlled: true,
 });
 
@@ -24,5 +25,6 @@ export const createDemo = createDemoFactory({
  */
 export const createDemoWithVariants = createDemoWithVariantsFactory({
   DemoContent,
+  DemoContentLoading,
   controlled: true,
 });
