@@ -6,22 +6,41 @@ Here are a few guidelines that will help you along the way.
 
 ## Summary
 
-- [Code of conduct](#code-of-conduct)
-- [A large spectrum of contributions](#a-large-spectrum-of-contributions)
-- [Your first pull request](#your-first-pull-request)
-- [Sending a pull request](#sending-a-pull-request)
-  - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
-  - [Trying changes on the playground](#trying-changes-on-the-playground)
-  - [How to increase the chances of being accepted](#how-to-increase-the-chances-of-being-accepted)
-  - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
-  - [Updating the component API documentation](#updating-the-component-api-documentation)
-  - [Coding style](#coding-style)
-- [Contributing to the documentation](#contributing-to-the-documentation)
-  - [How to find docs issues to work on](#how-to-find-docs-issues-to-work-on)
-  - [How to add a new demo to the docs](#how-to-add-a-new-demo-to-the-docs)
-- [How can I use a change that hasn't been released yet?](#how-can-i-use-a-change-that-hasnt-been-released-yet)
-- [Roadmap](#roadmap)
-- [License](#license)
+- [Contributing to Material UI and MUI System](#contributing-to-materialui-and-muisystem)
+  - [Summary](#summary)
+  - [Code of conduct](#code-of-conduct)
+  - [A large spectrum of contributions](#a-large-spectrum-of-contributions)
+  - [Your first pull request](#your-first-pull-request)
+  - [Sending a pull request](#sending-a-pull-request)
+    - [Trying changes on the documentation site](#trying-changes-on-the-documentation-site)
+    - [Trying changes on the playground](#trying-changes-on-the-playground)
+    - [How to increase the chances of being accepted](#how-to-increase-the-chances-of-being-accepted)
+    - [CI checks and how to fix them](#ci-checks-and-how-to-fix-them)
+      - [Continuous Releases](#continuous-releases)
+      - [ci/circleci: checkout](#cicircleci-checkout)
+      - [ci/circleci: test\_static](#cicircleci-test_static)
+      - [ci/circleci: test\_unit-1](#cicircleci-test_unit-1)
+      - [ci/circleci: test\_browser](#cicircleci-test_browser)
+      - [ci/circleci: test\_regressions](#cicircleci-test_regressions)
+      - [ci/circleci: test\_types](#cicircleci-test_types)
+      - [ci/circleci: test\_bundle\_size\_monitor](#cicircleci-test_bundle_size_monitor)
+      - [argos](#argos)
+      - [deploy/netlify](#deploynetlify)
+      - [codecov/project](#codecovproject)
+      - [Misc](#misc)
+    - [Updating the component API documentation](#updating-the-component-api-documentation)
+    - [Coding style](#coding-style)
+  - [Contributing to the documentation](#contributing-to-the-documentation)
+    - [How to find docs issues to work on](#how-to-find-docs-issues-to-work-on)
+    - [How to add a new demo to the docs](#how-to-add-a-new-demo-to-the-docs)
+      - [1. Create the demo folder](#1-create-the-demo-folder)
+      - [2. Write the demo code](#2-write-the-demo-code)
+      - [3. Add `client.ts` and `index.ts`](#3-add-clientts-and-indexts)
+      - [4. Reference the demo from Markdown](#4-reference-the-demo-from-markdown)
+      - [5. Submit your PR](#5-submit-your-pr)
+  - [How can I use a change that hasn't been released yet?](#how-can-i-use-a-change-that-hasnt-been-released-yet)
+  - [Roadmap](#roadmap)
+  - [License](#license)
 
 ## Code of conduct
 
@@ -285,43 +304,69 @@ Or [follow this link directly to the results of that search](https://github.com/
 
 ### How to add a new demo to the docs
 
-The following steps explain how to add a new demo to the docs using the Button component as an example:
+Demos are powered by [`@mui/internal-docs-infra`](https://mui-internal.netlify.app/docs-infra/). The following steps explain how to add a new demo using the Button component as an example.
 
-#### 1. Add a new component file to the directory
+#### 1. Create the demo folder
 
-Add the new file to the component's corresponding directory:
+Each demo lives in its own kebab-cased folder next to the component's markdown page:
 
 ```bash
-docs/src/pages/components/buttons/
+docs/data/material/components/buttons/demos/super/
 ```
-
-and give it a name: how about `SuperButtons.tsx`?
 
 #### 2. Write the demo code
 
-We use TypeScript to document our components.
-Demos are authored as TypeScript (using the `.tsx` file format). The JavaScript variant shown in the docs is generated on the fly at build/runtime—no separate `.js` file needs to be committed.
+Demos are authored as TypeScript (`.tsx`). The JavaScript variant shown in the docs is generated on the fly at build/runtime—no separate `.js` file needs to be committed.
 
-#### 3. Edit the page's Markdown file
+```tsx
+// docs/data/material/components/buttons/demos/super/SuperButtons.tsx
+import * as React from 'react';
+import Button from '@mui/material/Button';
 
-The Markdown file in the component's respective folder—in this case, `/buttons/buttons.md`—is the source of content for the document.
-Any changes you make there will be reflected on the website.
+export default function SuperButtons() {
+  return <Button>Super</Button>;
+}
+```
 
-Add a header and a brief description of the demo and its use case, along with the `"demo"` code snippet to inject it into the page:
+Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
+
+#### 3. Add `client.ts` and `index.ts`
+
+```ts
+// docs/data/material/components/buttons/demos/super/client.ts
+'use client';
+
+import { createDemoClient } from '@mui/internal-core-docs/utils/createDemoClient';
+
+export default createDemoClient(import.meta.url);
+```
+
+```ts
+// docs/data/material/components/buttons/demos/super/index.ts
+import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
+import ClientProvider from './client';
+import SuperButtons from './SuperButtons';
+
+export default createDemo(import.meta.url, SuperButtons, { ClientProvider });
+```
+
+#### 4. Reference the demo from Markdown
+
+The Markdown file in the component's respective folder—in this case, `buttons.md`—is the source of content for the document. The `component` field is a path relative to `docs/src/`:
 
 ```diff
 +### Super buttons
 +
 +To create a super button for a specific use case, add the `super` prop:
 +
-+{{"demo": "pages/components/buttons/SuperButtons.js"}}
++{{"component": "../data/material/components/buttons/demos/super/index.ts"}}
 ```
 
-#### 4. Submit your PR
+Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in [`packages-internal/core-docs/src/DemoContent/DemoContent.tsx`](packages-internal/core-docs/src/DemoContent/DemoContent.tsx). See the [demo variants experiment page](docs/pages/experiments/docs/demos.md) for live examples.
+
+#### 5. Submit your PR
 
 Now you're ready to [open a PR](#sending-a-pull-request) to add your new demo to the docs.
-
-Check out [this Toggle Button demo PR](https://github.com/mui/material-ui/pull/19582/files) for an example of what your new and edited files should look like when opening your own demo PR.
 
 ## How can I use a change that hasn't been released yet?
 
