@@ -58,7 +58,38 @@ pnpm proptypes && pnpm docs:api
 
 ### Docs demos
 
-Demos are authored as TypeScript only. The JavaScript variant shown in the docs is generated on the fly at build/runtime and is not committed as a separate file.
+Demos live next to their page under `docs/data/<product>/components/<component>/demos/<demo-name>/`. Each demo folder contains three files:
+
+- `<ComponentName>.tsx` — the demo source, authored as TypeScript (`.tsx`). The JavaScript variant shown in the docs is generated on the fly at build/runtime and is not committed.
+- `client.ts` — marks the demo's client boundary:
+
+  ```ts
+  'use client';
+
+  import { createDemoClient } from '@mui/internal-core-docs/utils/createDemoClient';
+
+  export default createDemoClient(import.meta.url);
+  ```
+
+- `index.ts` — wires the demo into the docs pipeline:
+
+  ```ts
+  import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
+  import ClientProvider from './client';
+  import BasicButtons from './BasicButtons';
+
+  export default createDemo(import.meta.url, BasicButtons, { ClientProvider });
+  ```
+
+Reference the demo from the page's markdown via the `component` field (path resolved from `docs/src/`):
+
+```md
+{{"component": "../data/material/components/buttons/demos/basic/index.ts"}}
+```
+
+Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
+
+The demo infrastructure itself is documented at <https://mui-internal.netlify.app/docs-infra/>.
 
 ## Architecture
 
