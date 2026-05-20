@@ -190,18 +190,10 @@ jobs:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
       - run:
-          name: Tests chromium
-          command: pnpm test:browser --no-isolate
-      - run:
-          name: Tests webkit
+          name: Tests browsers
           environment:
-            VITEST_BROWSERS: 'webkit'
-          command: pnpm test:browser --no-isolate
-      - run:
-          name: Tests firefox
-          environment:
-            VITEST_BROWSERS: 'firefox'
-          command: pnpm test:browser --no-isolate
+            VITEST_BROWSERS: 'chromium,webkit,firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
   test_browser:
@@ -215,18 +207,10 @@ jobs:
       - install-deps:
           react-version: << parameters.react-version >>
       - run:
-          name: Tests chromium
-          command: pnpm test:browser --no-isolate
-      - run:
-          name: Tests webkit
+          name: Tests browsers
           environment:
-            VITEST_BROWSERS: 'webkit'
-          command: pnpm test:browser --no-isolate
-      - run:
-          name: Tests firefox
-          environment:
-            VITEST_BROWSERS: 'firefox'
-          command: pnpm test:browser --no-isolate
+            VITEST_BROWSERS: 'chromium,webkit,firefox'
+          command: pnpm test:browser --no-isolate --no-file-parallelism
       - store_test_results:
           path: test-results
   test_e2e:
