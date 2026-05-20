@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/3feee347096f50b441cad3087743bd1c5aef8651/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/fb2e995849648cc3f6e43ed4ad10b7bad0750d7c/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -105,7 +105,6 @@ jobs:
       - install-deps
       - code-infra/eslint
       - code-infra/stylelint
-      - code-infra/markdownlint
       - code-infra/valelint
   test_static:
     <<: *default-job
@@ -124,12 +123,6 @@ jobs:
           command: pnpm docs:api
       - run:
           name: '`pnpm docs:api` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Update the navigation translations
-          command: pnpm docs:i18n
-      - run:
-          name: '`pnpm docs:i18n` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: '`pnpm extract-error-codes` changes committed?'
@@ -273,6 +266,9 @@ jobs:
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
+      - run:
+          name: A11y results committed?
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Build packages for fixtures
           command: pnpm release:build

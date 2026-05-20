@@ -407,7 +407,8 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
@@ -596,6 +597,7 @@ export function Demo(props: DemoProps) {
       console.error('Code content not copied', error);
     }
   };
+  const willRenderTabList = demoData.relativeModules && openDemoSource && !editorCode.isPreview;
 
   return (
     <Root>
@@ -667,7 +669,7 @@ export function Demo(props: DemoProps) {
             )}
           </DemoToolbarRoot>
           <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
-            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
+            {willRenderTabList ? (
               <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
@@ -685,7 +687,12 @@ export function Demo(props: DemoProps) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <Tabs.Panel value={index} key={index}>
+                <Tabs.Panel
+                  role={willRenderTabList ? 'tabpanel' : undefined}
+                  value={index}
+                  key={index}
+                  tabIndex={-1}
+                >
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}

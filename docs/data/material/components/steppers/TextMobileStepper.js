@@ -42,6 +42,27 @@ export default function TextMobileStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const nextButtonRef = React.useRef(null);
+  const backButtonRef = React.useRef(null);
+  const previousActiveStepRef = React.useRef(activeStep);
+
+  // Manage focus when the active step changes.
+  React.useEffect(() => {
+    const previousActiveStep = previousActiveStepRef.current;
+    previousActiveStepRef.current = activeStep;
+
+    if (activeStep === 0 && previousActiveStep === 1) {
+      // If the user is going back to the first step, focus the "Next" button.
+      nextButtonRef.current.focus();
+      return;
+    }
+
+    if (activeStep === maxSteps - 1 && previousActiveStep === maxSteps - 2) {
+      // If the user is going to the last step, focus the "Back" button.
+      backButtonRef.current.focus();
+    }
+  }, [activeStep, maxSteps]);
+
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
       <Paper
@@ -70,6 +91,7 @@ export default function TextMobileStepper() {
             size="small"
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
+            ref={nextButtonRef}
           >
             Next
             {theme.direction === 'rtl' ? (
@@ -80,7 +102,12 @@ export default function TextMobileStepper() {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button
+            size="small"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+            ref={backButtonRef}
+          >
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (

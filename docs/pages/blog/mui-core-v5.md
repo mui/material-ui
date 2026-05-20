@@ -597,7 +597,7 @@ We have moved six components from the lab to the main component package, after o
 
 The lab hosts the incubator components that are not yet ready to move to the core.
 The main difference between the lab and the core is how the components are versioned.
-Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower cadence](https://mui.com/versions/#release-frequency).
+Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower cadence](https://mui.com/material-ui/getting-started/versions/#release-frequency).
 
 The following components are now available in the lab:
 

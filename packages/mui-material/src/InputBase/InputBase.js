@@ -7,9 +7,8 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import isHostComponent from '@mui/utils/isHostComponent';
 import TextareaAutosize from '../TextareaAutosize';
-import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
-import useFormControl from '../FormControl/useFormControl';
+import { useFormControlState } from '../FormControl/useFormControl';
 import { styled, globalCss } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -20,6 +19,9 @@ import ownerDocument from '../utils/ownerDocument';
 import getActiveElement from '../utils/getActiveElement';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+
+const MUI_AUTO_FILL = 'mui-auto-fill';
+const MUI_AUTO_FILL_CANCEL = 'mui-auto-fill-cancel';
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -206,11 +208,11 @@ export const InputBaseInput = styled('input', {
         {
           props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
           style: {
-            animationName: 'mui-auto-fill-cancel',
+            animationName: MUI_AUTO_FILL_CANCEL,
             animationDuration: '10ms',
             '&:-webkit-autofill': {
               animationDuration: '5000s',
-              animationName: 'mui-auto-fill',
+              animationName: MUI_AUTO_FILL,
             },
           },
         },
@@ -245,8 +247,10 @@ export const InputBaseInput = styled('input', {
 );
 
 const InputGlobalStyles = globalCss({
-  '@keyframes mui-auto-fill': { from: { display: 'block' } },
-  '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+  // Keep keyframes non-empty for Emotion production builds. Animation properties are ignored
+  // inside keyframes, avoiding the visible display animation triggered by Chrome 117+.
+  [`@keyframes ${MUI_AUTO_FILL}`]: { from: { animationName: MUI_AUTO_FILL } },
+  [`@keyframes ${MUI_AUTO_FILL_CANCEL}`]: { from: { animationName: MUI_AUTO_FILL_CANCEL } },
 });
 
 /**
@@ -323,7 +327,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   );
 
   const [focused, setFocused] = React.useState(false);
-  const muiFormControl = useFormControl();
+  const [fcs, muiFormControl] = useFormControlState({
+    props,
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -336,12 +343,6 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       return undefined;
     }, [muiFormControl]);
   }
-
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
-  });
 
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
@@ -513,7 +514,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const handleAutoFill = (event) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(event.animationName === 'mui-auto-fill-cancel' ? inputRef.current : { value: 'x' });
+    checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
   };
 
   React.useEffect(() => {

@@ -9,6 +9,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  flushEffects,
   isJsdom,
   waitFor,
 } from '@mui/internal-test-utils';
@@ -35,6 +36,51 @@ function focusVisibleSync(element) {
   act(() => {
     element.focus();
   });
+}
+
+const fixedRightPlacementPopperProps = {
+  popperOptions: {
+    modifiers: [
+      { name: 'flip', enabled: false },
+      { name: 'preventOverflow', enabled: false },
+    ],
+  },
+};
+
+function getTooltipParts() {
+  const popper = screen.getByRole('tooltip');
+  const tooltip = popper.querySelector(`.${classes.tooltip}`);
+  const arrow = popper.querySelector(`.${classes.arrow}`);
+
+  expect(tooltip).not.to.equal(null);
+  expect(arrow).not.to.equal(null);
+
+  return { popper, tooltip, arrow };
+}
+
+function hasInjectedStyle(declaration) {
+  const normalizedStyles = (document.head.textContent ?? '').replace(/\s+/g, '');
+
+  return normalizedStyles.includes(declaration.replace(/\s+/g, ''));
+}
+
+function expectArrowOnInlineEnd(tooltip, arrow) {
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const arrowRect = arrow.getBoundingClientRect();
+  const tooltipCenterX = (tooltipRect.left + tooltipRect.right) / 2;
+  const arrowCenterX = (arrowRect.left + arrowRect.right) / 2;
+
+  expect(arrowCenterX).to.be.greaterThan(tooltipCenterX);
+}
+
+function expectRtlRightPlacementStyles() {
+  const { popper, tooltip, arrow } = getTooltipParts();
+
+  expect(popper).to.have.attribute('data-popper-placement', 'right');
+  expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
+  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
+  expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
+  expectArrowOnInlineEnd(tooltip, arrow);
 }
 
 describe('<Tooltip />', () => {
@@ -906,6 +952,84 @@ describe('<Tooltip />', () => {
 
       expect(appliedComputeStylesModifier).not.to.equal(undefined);
     });
+
+    it.skipIf(isJsdom())('uses RTL side offsets when html dir is rtl', async () => {
+      const previousDir = document.documentElement.getAttribute('dir');
+
+      document.documentElement.setAttribute('dir', 'rtl');
+
+      try {
+        render(
+          <div style={{ margin: '5em' }}>
+            <Tooltip
+              arrow
+              open
+              placement="right"
+              title="Tooltip content"
+              slotProps={{
+                popper: {
+                  ...fixedRightPlacementPopperProps,
+                },
+              }}
+            >
+              <button type="submit">Anchor</button>
+            </Tooltip>
+          </div>,
+        );
+
+        await flushEffects();
+        expectRtlRightPlacementStyles();
+      } finally {
+        if (previousDir === null) {
+          document.documentElement.removeAttribute('dir');
+        } else {
+          document.documentElement.setAttribute('dir', previousDir);
+        }
+      }
+    });
+
+    it.skipIf(isJsdom())(
+      'uses RTL side offsets when the popper portal container is inside an rtl subtree',
+      async () => {
+        const previousDir = document.documentElement.getAttribute('dir');
+
+        document.documentElement.removeAttribute('dir');
+
+        function Test() {
+          const rtlContainerRef = React.useRef(null);
+
+          return (
+            <div data-testid="rtl-root" dir="rtl" ref={rtlContainerRef} style={{ margin: '5em' }}>
+              <Tooltip
+                arrow
+                open
+                placement="right"
+                title="Tooltip content"
+                slotProps={{
+                  popper: {
+                    container: () => rtlContainerRef.current,
+                    ...fixedRightPlacementPopperProps,
+                  },
+                }}
+              >
+                <button type="submit">Anchor</button>
+              </Tooltip>
+            </div>
+          );
+        }
+
+        try {
+          render(<Test />);
+
+          await flushEffects();
+          expectRtlRightPlacementStyles();
+        } finally {
+          if (previousDir !== null) {
+            document.documentElement.setAttribute('dir', previousDir);
+          }
+        }
+      },
+    );
   });
 
   describe('prop forwarding', () => {

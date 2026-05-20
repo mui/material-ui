@@ -8,7 +8,6 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
 import { findPages } from './src/modules/utils/find';
-import { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
@@ -16,12 +15,6 @@ const require = createRequire(import.meta.url);
 const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
-
-const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD || '') && process.env.NETLIFY === 'true';
-const vercelDeploy = Boolean(process.env.VERCEL);
-const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
-// For crowdin PRs we want to build all locales for testing.
-const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
@@ -139,8 +132,8 @@ export default withDocsInfra({
                     loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
                       workspaceRoot,
-                      ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
-                      languagesInProgress: LANGUAGES_IN_PROGRESS,
+                      ignoreLanguagePages: () => false,
+                      languagesInProgress: [],
                       packages: [
                         {
                           productId: 'material-ui',
@@ -187,7 +180,6 @@ export default withDocsInfra({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
-    BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
@@ -205,9 +197,7 @@ export default withDocsInfra({
     const map = {};
 
     // @ts-ignore
-    function traverse(pages2, userLanguage) {
-      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
-
+    function traverse(pages2) {
       // @ts-ignore
       pages2.forEach((page) => {
         // The experiments pages are only meant for experiments, they shouldn't leak to production.
@@ -217,41 +207,22 @@ export default withDocsInfra({
         ) {
           return;
         }
-        // The blog is not translated
-        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
-          return;
-        }
         if (!page.children) {
           // map api-docs to api
           // i: /api-docs/* > /api/* (old structure)
           // ii: /*/api-docs/* > /*/api/* (for new structure)
           // @ts-ignore
-          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
+          map[page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')] = {
             page: page.pathname,
-            query: {
-              userLanguage,
-            },
           };
           return;
         }
 
-        traverse(page.children, userLanguage);
+        traverse(page.children);
       });
     }
 
-    // We want to speed-up the build of pull requests.
-    // For this, consider only English language on deploy previews, except for crowdin PRs.
-    if (buildOnlyEnglishLocale) {
-      // eslint-disable-next-line no-console
-      console.log('Considering only English for SSR');
-      traverse(pages, 'en');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Considering various locales for SSR');
-      LANGUAGES_SSR.forEach((userLanguage) => {
-        traverse(pages, userLanguage);
-      });
-    }
+    traverse(pages);
 
     return map;
   },
@@ -264,7 +235,6 @@ export default withDocsInfra({
         // rewrites has no effect when run `next export` for production
         rewrites: async () => {
           return [
-            { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
             // Make sure to include the trailing slash if `trailingSlash` option is set
             { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
             { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },

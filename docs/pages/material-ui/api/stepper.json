@@ -62,6 +62,5 @@
   "forwardsRefTo": "HTMLOListElement",
   "filename": "/packages/mui-material/src/Stepper/Stepper.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>"
 }
