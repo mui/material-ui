@@ -529,8 +529,7 @@ async function processMarkdown(mdPath, plan) {
       continue;
     }
     const folder = folderTokens.get(componentName);
-    const relFromDocsData = path.relative(ROOT, dir).split(path.sep).join('/');
-    const newPath = `../data/${relFromDocsData}/demos/${folder}/index.ts`;
+    const newPath = `file://./demos/${folder}/index.ts`;
     const replacement = `{{"component": "${newPath}"${tail}}}`;
     newMd += src.slice(cursor, m.index);
     newMd += replacement;

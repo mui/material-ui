@@ -81,10 +81,10 @@ Demos live next to their page under `docs/data/<product>/components/<component>/
   export default createDemo(import.meta.url, BasicButtons, { ClientProvider });
   ```
 
-Reference the demo from the page's markdown via the `component` field (path resolved from `docs/src/`):
+Reference the demo from the page's markdown via the `component` field. Use a `file://` URL with a path relative to the markdown file:
 
 ```md
-{{"component": "../data/material/components/buttons/demos/basic/index.ts"}}
+{{"component": "file://./demos/basic/index.ts"}}
 ```
 
 Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.

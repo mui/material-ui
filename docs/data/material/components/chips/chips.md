@@ -23,7 +23,7 @@ not shown in context.
 
 The `Chip` component supports outlined and filled styling.
 
-{{"component": "../data/material/components/chips/demos/basic/index.ts"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 ## Chip actions
 
@@ -34,23 +34,23 @@ You can use the following actions.
 
 ### Clickable
 
-{{"component": "../data/material/components/chips/demos/clickable/index.ts"}}
+{{"component": "file://./demos/clickable/index.ts"}}
 
 ### Deletable
 
-{{"component": "../data/material/components/chips/demos/deletable/index.ts"}}
+{{"component": "file://./demos/deletable/index.ts"}}
 
 ### Clickable and deletable
 
-{{"component": "../data/material/components/chips/demos/clickable-and-deletable/index.ts"}}
+{{"component": "file://./demos/clickable-and-deletable/index.ts"}}
 
 ### Clickable link
 
-{{"component": "../data/material/components/chips/demos/clickable-link/index.ts"}}
+{{"component": "file://./demos/clickable-link/index.ts"}}
 
 ### Custom delete icon
 
-{{"component": "../data/material/components/chips/demos/custom-delete-icon/index.ts"}}
+{{"component": "file://./demos/custom-delete-icon/index.ts"}}
 
 ## Chip adornments
 
@@ -60,30 +60,30 @@ Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
 
 ### Avatar chip
 
-{{"component": "../data/material/components/chips/demos/avatar/index.ts"}}
+{{"component": "file://./demos/avatar/index.ts"}}
 
 ### Icon chip
 
-{{"component": "../data/material/components/chips/demos/icon/index.ts"}}
+{{"component": "file://./demos/icon/index.ts"}}
 
 ## Color chip
 
 You can use the `color` prop to define a color from theme palette.
 
-{{"component": "../data/material/components/chips/demos/color/index.ts"}}
+{{"component": "file://./demos/color/index.ts"}}
 
 ## Sizes chip
 
 You can use the `size` prop to define a small Chip.
 
-{{"component": "../data/material/components/chips/demos/sizes/index.ts"}}
+{{"component": "file://./demos/sizes/index.ts"}}
 
 ## Multiline chip
 
 By default, Chips displays labels only in a single line.
 To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
 
-{{"component": "../data/material/components/chips/demos/multiline/index.ts"}}
+{{"component": "file://./demos/multiline/index.ts"}}
 
 ## Chip array
 
@@ -92,11 +92,11 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"component": "../data/material/components/chips/demos/array/index.ts"}}
+{{"component": "file://./demos/array/index.ts"}}
 
 ## Chip playground
 
-{{"component": "../data/material/components/chips/demos/playground/index.ts", "hideToolbar": true}}
+{{"component": "file://./demos/playground/index.ts", "hideToolbar": true}}
 
 ## Accessibility
 

@@ -116,4 +116,4 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "../data/material/customization/density/demos/tool/index.ts", "hideToolbar": true}}
+{{"component": "file://./demos/tool/index.ts", "hideToolbar": true}}
