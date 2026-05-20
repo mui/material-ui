@@ -475,7 +475,13 @@ describe('<FocusTrap />', () => {
 
     it('loops backward when Shift+Tab enters a shadow-root trap from an iframe document', async () => {
       const frame = document.createElement('iframe');
+      frame.setAttribute('data-testid', 'focus-trap-shadow-root-iframe');
+      frame.srcdoc = '<!doctype html><html><body></body></html>';
+      const frameLoaded = new Promise<void>((resolve) => {
+        frame.addEventListener('load', () => resolve(), { once: true });
+      });
       document.body.appendChild(frame);
+      await frameLoaded;
       const frameDocument = frame.contentDocument!;
       const shadowHost = frameDocument.createElement('div');
       const outsideAfter = frameDocument.createElement('input');
@@ -500,13 +506,14 @@ describe('<FocusTrap />', () => {
         ));
 
         const { page, user } = await setupBrowser();
-        const frameLocator = page.frameLocator(page.elementLocator(frame));
+        // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
+        const frameLocator = page.frameLocator(page.getByTestId('focus-trap-shadow-root-iframe'));
         const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
 
-        // Click through a frame locator; passing the iframe-owned DOM element
-        // directly to `user.click()` does not focus it.
+        // Fill through a frame locator; passing the iframe-owned DOM element
+        // directly to `user.fill()` does not focus it.
         // eslint-disable-next-line testing-library/prefer-screen-queries -- `frameLocator` is a Vitest Browser locator, not a render result.
-        await user.fill(frameLocator.getByRole('textbox', { name: 'after' }), 'focused');
+        await user.fill(frameLocator.getByLabelText('after'), 'focused');
         expect(frameDocument.activeElement).to.equal(outsideAfter);
 
         await user.tab({ shift: true });
