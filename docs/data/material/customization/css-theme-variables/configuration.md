@@ -308,7 +308,7 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 <ThemeProvider disableTransitionOnChange />
 ```
 
-{{"component": "../data/material/customization/css-theme-variables/demos/disable-transition-on-change/index.ts"}}
+{{"component": "file://./demos/disable-transition-on-change/index.ts"}}
 
 ## Force theme recalculation between modes
 

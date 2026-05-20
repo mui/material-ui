@@ -25,29 +25,29 @@ In this example, text justification toggle buttons present options for left, cen
 
 **Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
 
-{{"component": "../data/material/components/toggle-button/demos/toggle-buttons/index.ts"}}
+{{"component": "file://./demos/toggle-buttons/index.ts"}}
 
 ## Multiple selection
 
 Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
-{{"component": "../data/material/components/toggle-button/demos/multiple/index.ts"}}
+{{"component": "file://./demos/multiple/index.ts"}}
 
 ## Size
 
 For larger or smaller buttons, use the `size` prop.
 
-{{"component": "../data/material/components/toggle-button/demos/sizes/index.ts"}}
+{{"component": "file://./demos/sizes/index.ts"}}
 
 ## Color
 
-{{"component": "../data/material/components/toggle-button/demos/color/index.ts"}}
+{{"component": "file://./demos/color/index.ts"}}
 
 ## Vertical buttons
 
 The buttons can be stacked vertically with the `orientation` prop set to "vertical".
 
-{{"component": "../data/material/components/toggle-button/demos/vertical/index.ts"}}
+{{"component": "file://./demos/vertical/index.ts"}}
 
 ## Enforce value set
 
@@ -67,18 +67,18 @@ const handleDevices = (event, newDevices) => {
 };
 ```
 
-{{"component": "../data/material/components/toggle-button/demos/not-empty/index.ts"}}
+{{"component": "file://./demos/not-empty/index.ts"}}
 
 ## Standalone toggle button
 
-{{"component": "../data/material/components/toggle-button/demos/standalone/index.ts"}}
+{{"component": "file://./demos/standalone/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/toggle-button/demos/customized-dividers/index.ts", "bg": true}}
+{{"component": "file://./demos/customized-dividers/index.ts", "bg": true}}
 
 ### Spacing
 
@@ -86,11 +86,11 @@ The demos below show how to adjust spacing between toggle buttons in horizontal 
 
 #### Horizontal Spacing
 
-{{"component": "../data/material/components/toggle-button/demos/horizontal-spacing/index.ts"}}
+{{"component": "file://./demos/horizontal-spacing/index.ts"}}
 
 #### Vertical Spacing
 
-{{"component": "../data/material/components/toggle-button/demos/vertical-spacing/index.ts"}}
+{{"component": "file://./demos/vertical-spacing/index.ts"}}
 
 ## Accessibility
 
