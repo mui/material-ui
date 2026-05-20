@@ -47,37 +47,37 @@ yarn add @base-ui/react
 
 The basic menubar component displays a row of menu triggers with dropdowns containing menu items.
 
-{{"component": "../data/material/components/menubar/demos/basic/index.ts"}}
+{{"component": "file://./demos/basic/index.ts"}}
 
 ## Shortcut hints
 
 Display keyboard shortcuts alongside menu items using the `hint` prop.
 
-{{"component": "../data/material/components/menubar/demos/shortcut-hints/index.ts"}}
+{{"component": "file://./demos/shortcut-hints/index.ts"}}
 
 ## Checkbox items
 
 For toggle options that can be independently enabled or disabled.
 
-{{"component": "../data/material/components/menubar/demos/checkbox-items/index.ts"}}
+{{"component": "file://./demos/checkbox-items/index.ts"}}
 
 ## Radio group items
 
 For mutually exclusive options where only one can be selected at a time.
 
-{{"component": "../data/material/components/menubar/demos/radio-group-items/index.ts"}}
+{{"component": "file://./demos/radio-group-items/index.ts"}}
 
 ## Icon menu items
 
 Add icons to menu items using the `icon` prop for faster visual recognition.
 
-{{"component": "../data/material/components/menubar/demos/icon-items/index.ts"}}
+{{"component": "file://./demos/icon-items/index.ts"}}
 
 ## Group labels
 
 Organize menu items into logical sections with labeled groups.
 
-{{"component": "../data/material/components/menubar/demos/group-label/index.ts"}}
+{{"component": "file://./demos/group-label/index.ts"}}
 
 ## Base UI API
 
