@@ -48,14 +48,14 @@ yarn add @base-ui/react
 The outlined field uses the same building-block components as Material UI's outlined `TextField`—`FormControl`, `OutlinedInput`, `InputLabel`, and `FormHelperText`—with end adornments for the increment and decrement buttons.
 See [Text Field—Components](/material-ui/react-text-field/#components) for more details.
 
-{{"component": "../data/material/components/number-field/demos/field-demo/index.ts"}}
+{{"component": "file://./demos/field-demo/index.ts"}}
 
 ## Spinner field
 
 For the spinner field component, the increment and decrement buttons are placed next to the outlined input.
 This is ideal for touch devices and narrow ranges of values.
 
-{{"component": "../data/material/components/number-field/demos/spinner-demo/index.ts"}}
+{{"component": "file://./demos/spinner-demo/index.ts"}}
 
 ## Base UI API
 

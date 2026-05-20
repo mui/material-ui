@@ -20,51 +20,51 @@ Sliders reflect a range of values along a bar, from which users may select a sin
 
 Continuous sliders allow users to select a value along a subjective range.
 
-{{"component": "../data/material/components/slider/demos/continuous/index.ts"}}
+{{"component": "file://./demos/continuous/index.ts"}}
 
 ## Sizes
 
 For smaller slider, use the prop `size="small"`.
 
-{{"component": "../data/material/components/slider/demos/sizes/index.ts"}}
+{{"component": "file://./demos/sizes/index.ts"}}
 
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator.
 You can generate a mark for each step with `marks={true}`.
 
-{{"component": "../data/material/components/slider/demos/discrete/index.ts"}}
+{{"component": "file://./demos/discrete/index.ts"}}
 
 ### Small steps
 
 You can change the default step increment.
 Make sure to adjust the `shiftStep` prop (the granularity with which the slider can step when using Page Up/Down or Shift + Arrow Up/Down) to a value divisible by the `step`.
 
-{{"component": "../data/material/components/slider/demos/discrete-steps/index.ts"}}
+{{"component": "file://./demos/discrete-steps/index.ts"}}
 
 ### Custom marks
 
 You can have custom marks by providing a rich array to the `marks` prop.
 
-{{"component": "../data/material/components/slider/demos/discrete-marks/index.ts"}}
+{{"component": "file://./demos/discrete-marks/index.ts"}}
 
 ### Restricted values
 
 You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
 
-{{"component": "../data/material/components/slider/demos/discrete-values/index.ts"}}
+{{"component": "file://./demos/discrete-values/index.ts"}}
 
 ### Label always visible
 
 You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
-{{"component": "../data/material/components/slider/demos/discrete-label/index.ts"}}
+{{"component": "file://./demos/discrete-label/index.ts"}}
 
 ## Range slider
 
 The slider can be used to set the start and end of a range by supplying an array of values to the `value` prop.
 
-{{"component": "../data/material/components/slider/demos/range/index.ts"}}
+{{"component": "file://./demos/range/index.ts"}}
 
 ### Minimum distance
 
@@ -72,34 +72,34 @@ You can enforce a minimum distance between values in the `onChange` event handle
 By default, when you move the pointer over a thumb while dragging another thumb, the active thumb will swap to the hovered thumb. You can disable this behavior with the `disableSwap` prop.
 If you want the range to shift when reaching minimum distance, you can utilize the `activeThumb` parameter in `onChange`.
 
-{{"component": "../data/material/components/slider/demos/minimum-distance/index.ts"}}
+{{"component": "file://./demos/minimum-distance/index.ts"}}
 
 ## Slider with input field
 
 In this example, an input allows a discrete value to be set.
 
-{{"component": "../data/material/components/slider/demos/input/index.ts"}}
+{{"component": "file://./demos/input/index.ts"}}
 
 ## Color
 
-{{"component": "../data/material/components/slider/demos/color/index.ts"}}
+{{"component": "file://./demos/color/index.ts"}}
 
 ## Customization
 
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/slider/demos/customized/index.ts"}}
+{{"component": "file://./demos/customized/index.ts"}}
 
 ### Music player
 
-{{"component": "../data/material/components/slider/demos/music-player/index.ts", "bg": "inline"}}
+{{"component": "file://./demos/music-player/index.ts", "bg": "inline"}}
 
 ## Vertical sliders
 
 Set the `orientation` prop to `"vertical"` to create vertical sliders. The thumb will track vertical movement instead of horizontal movement.
 
-{{"component": "../data/material/components/slider/demos/vertical/index.ts"}}
+{{"component": "file://./demos/vertical/index.ts"}}
 
 :::warning
 Chrome versions below 124 implement `aria-orientation` incorrectly for vertical sliders and expose them as `'horizontal'` in the accessibility tree. ([Chromium issue #40736841](https://issues.chromium.org/issues/40736841))
@@ -118,7 +118,7 @@ The `-webkit-appearance: slider-vertical` CSS property can be used to correct th
 
 You can customize your slider by adding and repositioning marks for minimum and maximum values.
 
-{{"component": "../data/material/components/slider/demos/custom-marks/index.ts"}}
+{{"component": "file://./demos/custom-marks/index.ts"}}
 
 ## Track
 
@@ -128,13 +128,13 @@ The track shows the range available for user selection.
 
 The track can be turned off with `track={false}`.
 
-{{"component": "../data/material/components/slider/demos/track-false/index.ts"}}
+{{"component": "file://./demos/track-false/index.ts"}}
 
 ### Inverted track
 
 The track can be inverted with `track="inverted"`.
 
-{{"component": "../data/material/components/slider/demos/track-inverted/index.ts"}}
+{{"component": "file://./demos/track-inverted/index.ts"}}
 
 ## Non-linear scale
 
@@ -143,7 +143,7 @@ You can use the `scale` prop to represent the `value` on a different scale.
 In the following demo, the value _x_ represents the value _2^x_.
 Increasing _x_ by one increases the represented value by factor _2_.
 
-{{"component": "../data/material/components/slider/demos/non-linear/index.ts"}}
+{{"component": "file://./demos/non-linear/index.ts"}}
 
 ## Accessibility
 

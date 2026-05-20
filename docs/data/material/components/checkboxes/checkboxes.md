@@ -22,33 +22,33 @@ If you have a single option, avoid using a checkbox and use an on/off switch ins
 
 ## Basic checkboxes
 
-{{"component": "../data/material/components/checkboxes/demos/checkboxes/index.ts"}}
+{{"component": "file://./demos/checkboxes/index.ts"}}
 
 ## Label
 
 You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
 
-{{"component": "../data/material/components/checkboxes/demos/labels/index.ts"}}
+{{"component": "file://./demos/labels/index.ts"}}
 
 ## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
 
-{{"component": "../data/material/components/checkboxes/demos/size/index.ts"}}
+{{"component": "file://./demos/size/index.ts"}}
 
 ## Color
 
-{{"component": "../data/material/components/checkboxes/demos/color/index.ts"}}
+{{"component": "file://./demos/color/index.ts"}}
 
 ## Icon
 
-{{"component": "../data/material/components/checkboxes/demos/icon/index.ts"}}
+{{"component": "file://./demos/icon/index.ts"}}
 
 ## Controlled
 
 You can control the checkbox with the `checked` and `onChange` props:
 
-{{"component": "../data/material/components/checkboxes/demos/controlled/index.ts"}}
+{{"component": "file://./demos/controlled/index.ts"}}
 
 ## Indeterminate
 
@@ -58,7 +58,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 
 You can change the indeterminate icon using the `indeterminateIcon` prop.
 
-{{"component": "../data/material/components/checkboxes/demos/indeterminate/index.ts"}}
+{{"component": "file://./demos/indeterminate/index.ts"}}
 
 :::warning
 When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
@@ -69,20 +69,20 @@ It has no accessibility or UX implications.
 
 `FormGroup` is a helpful wrapper used to group selection control components.
 
-{{"component": "../data/material/components/checkboxes/demos/group/index.ts"}}
+{{"component": "file://./demos/group/index.ts"}}
 
 ## Label placement
 
 You can change the placement of the label:
 
-{{"component": "../data/material/components/checkboxes/demos/form-control-label-position/index.ts"}}
+{{"component": "file://./demos/form-control-label-position/index.ts"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "../data/material/components/checkboxes/demos/customized/index.ts"}}
+{{"component": "file://./demos/customized/index.ts"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/checkbox).
 
