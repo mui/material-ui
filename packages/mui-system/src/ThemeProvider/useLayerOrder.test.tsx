@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ThemeContext } from '@mui/styled-engine';
+import { ThemeProvider } from '@mui/private-theming';
 import { createRenderer } from '@mui/internal-test-utils';
 import useLayerOrder from './useLayerOrder';
 
@@ -48,9 +48,9 @@ describe('useLayerOrder', () => {
 
   it('do nothing if upperTheme exists to avoid duplicate elements', () => {
     render(
-      <ThemeContext.Provider value={{ modularCssLayers: true }}>
+      <ThemeProvider theme={{ modularCssLayers: true }}>
         <TestComponent theme={{}} />
-      </ThemeContext.Provider>,
+      </ThemeProvider>,
     );
     expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
   });
