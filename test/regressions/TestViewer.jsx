@@ -11,34 +11,14 @@ function TestViewer(props) {
   // React doesn't have any such guarantee outside of `act()` so we're approximating it.
   const [ready, setReady] = React.useState(false);
   React.useEffect(() => {
-    let raf1 = 0;
-    let raf2 = 0;
-
-    // Wait for two animation frames after fonts settle so the browser
-    // completes a full layout/paint cycle. Components that measure their
-    // own DOM on mount (e.g. MUI Collapse running getBoundingClientRect
-    // in a useLayoutEffect) need this extra frame to reach their final
-    // height; otherwise screenshots can capture a 1px transient state.
-    function markReadyAfterFrames() {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
-      raf1 = requestAnimationFrame(() => {
-        raf2 = requestAnimationFrame(() => {
-          setReady(true);
-        });
-      });
-    }
-
     function handleFontsEvent(event) {
       if (event.type === 'loading') {
-        cancelAnimationFrame(raf1);
-        cancelAnimationFrame(raf2);
         setReady(false);
       } else if (event.type === 'loadingdone') {
         // Don't know if there could be multiple loaded events after we started loading multiple times.
         // So make sure we're only ready if fonts are actually ready.
         if (document.fonts.status === 'loaded') {
-          markReadyAfterFrames();
+          setReady(true);
         }
       }
     }
@@ -49,12 +29,10 @@ function TestViewer(props) {
     // In case the child triggered font fetching we're not ready yet.
     // The fonts event handler will mark the test as ready on `loadingdone`
     if (document.fonts.status === 'loaded') {
-      markReadyAfterFrames();
+      setReady(true);
     }
 
     return () => {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
       document.fonts.removeEventListener('loading', handleFontsEvent);
       document.fonts.removeEventListener('loadingdone', handleFontsEvent);
     };
