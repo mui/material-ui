@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import type { DefaultTheme } from '@mui/system';
-import { ThemeProvider as PrivateThemeProvider } from '@mui/private-theming';
 import RtlProvider from '@mui/system/RtlProvider';
 import DefaultPropsProvider from '@mui/system/DefaultPropsProvider';
 import CssVarsInjector from './CssVarsInjector';
@@ -92,13 +91,12 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
   const rtl = resolved.direction === 'rtl';
 
   return (
-    <PrivateThemeProvider theme={themeInput as any}>
-      <RtlProvider value={rtl}>
-        <DefaultPropsProvider value={resolved.components}>
-          <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
-          {children}
-        </DefaultPropsProvider>
-      </RtlProvider>
-    </PrivateThemeProvider>
+    // TOTO: Maybe export RTLProvide separately.
+    <RtlProvider value={rtl}>
+      <DefaultPropsProvider value={resolved.components}>
+        <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
+        {children}
+      </DefaultPropsProvider>
+    </RtlProvider>
   );
 }

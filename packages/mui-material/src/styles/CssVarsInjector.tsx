@@ -21,6 +21,7 @@ function getStyleId(cssVarPrefix: string | undefined) {
   return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
 }
 
+// ToDo: default dark, switch to dark then refresh, nested providers with different modes.
 export default function CssVarsInjector({ theme, nonce, documentNode }: CssVarsInjectorProps) {
   const styleId = getStyleId(theme.cssVarPrefix);
   const css = React.useMemo(

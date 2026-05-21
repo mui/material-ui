@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { CssThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
@@ -67,8 +67,10 @@ export default function TailwindPlayground() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="p-6 md:p-10 max-w-3xl mx-auto min-h-screen">
+    // ToDo: why don't we get the ease-in and duration variables are not generated.
+    // ToDo: make dark mode work.
+    <CssThemeProvider theme={theme}>
+      <div className="p-6 md:p-10 max-w-3xl mx-auto min-h-screen bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
         {/* Header */}
         <Stack
           direction="row"
@@ -277,6 +279,6 @@ export default function TailwindPlayground() {
           </div>
         </Section>
       </div>
-    </ThemeProvider>
+    </CssThemeProvider>
   );
 }

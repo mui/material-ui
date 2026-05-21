@@ -1,11 +1,6 @@
 'use client';
 import * as React from 'react';
-import {
-  createTheme,
-  CssThemeProvider,
-  useTheme,
-  type Theme,
-} from '@mui/material/styles';
+import { createTheme, CssThemeProvider, useTheme, type Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
