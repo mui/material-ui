@@ -71,9 +71,12 @@ function getMatchingOptionIndex(options, search, startIndex = 0) {
   return -1;
 }
 
+function canCycleRepeatedCharacter(options, key) {
+  return !options.some((option) => option.label[0] === key && option.label[1] === key);
+}
+
 function getTypeaheadOptions(childrenArray, value) {
   const options = [];
-  let canCycleRepeatedCharacter = true;
   let selectedIndex = -1;
 
   for (let index = 0; index < childrenArray.length; index += 1) {
@@ -90,10 +93,6 @@ function getTypeaheadOptions(childrenArray, value) {
       continue;
     }
 
-    if (label[0] === label[1]) {
-      canCycleRepeatedCharacter = false;
-    }
-
     if (selectedIndex === -1 && areEqualValues(value, child.props.value)) {
       selectedIndex = options.length;
     }
@@ -106,7 +105,6 @@ function getTypeaheadOptions(childrenArray, value) {
   }
 
   return {
-    canCycleRepeatedCharacter,
     options,
     selectedIndex,
   };
@@ -632,11 +630,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     const isNewSession = state.buffer === '';
-    const {
-      canCycleRepeatedCharacter,
-      options: searchableOptions,
-      selectedIndex,
-    } = getTypeaheadOptions(childrenArray, value);
+    const { options: searchableOptions, selectedIndex } = getTypeaheadOptions(childrenArray, value);
 
     if (searchableOptions.length === 0) {
       if (event.key !== SPACE) {
@@ -652,7 +646,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     const key = event.key.toLowerCase();
 
-    if (state.buffer === key && canCycleRepeatedCharacter) {
+    if (state.buffer === key && canCycleRepeatedCharacter(searchableOptions, key)) {
       state.buffer = '';
       state.previousSearchIndex = state.matchedIndex;
     }

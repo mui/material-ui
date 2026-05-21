@@ -483,7 +483,7 @@ describe('<Select />', () => {
     async function focusTrigger(user, testId) {
       const trigger = testId ? screen.getByTestId(testId) : screen.getByRole('combobox');
 
-      for (let attempts = 0; document.activeElement !== trigger && attempts < 10; attempts += 1) {
+      if (document.activeElement !== trigger) {
         await user.tab();
       }
 
@@ -492,8 +492,10 @@ describe('<Select />', () => {
     }
 
     it('selects a matching option without opening the popup', async () => {
+      const onChange = vi.fn();
+
       const { user } = render(
-        <Select defaultValue="">
+        <Select defaultValue="" onChange={onChange}>
           <MenuItem value="apple">Apple</MenuItem>
           <MenuItem value="banana">Banana</MenuItem>
           <MenuItem value="cherry">Cherry</MenuItem>
@@ -504,6 +506,7 @@ describe('<Select />', () => {
       await user.keyboard('c');
 
       expect(trigger).to.have.text('Cherry');
+      expect(onChange.mock.calls.length).to.equal(1);
       expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
     });
 
@@ -535,8 +538,10 @@ describe('<Select />', () => {
     });
 
     it('starts from the first matching option when no value is selected', async () => {
+      const onChange = vi.fn();
+
       const { user } = render(
-        <Select defaultValue="">
+        <Select defaultValue="" onChange={onChange}>
           <MenuItem value="banana">Banana</MenuItem>
           <MenuItem value="apple">Apple</MenuItem>
           <MenuItem value="apricot">Apricot</MenuItem>
@@ -547,6 +552,7 @@ describe('<Select />', () => {
       await user.keyboard('a');
 
       expect(trigger).to.have.text('Apple');
+      expect(onChange.mock.calls.length).to.equal(1);
       expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
     });
 
@@ -620,13 +626,16 @@ describe('<Select />', () => {
       const { user } = render(<ControlledSelect />);
 
       await user.click(screen.getByRole('button', { name: 'Reset' }));
-      await focusTrigger(user);
+      await user.tab({ shift: true });
+      expect(screen.getByRole('combobox')).toHaveFocus();
 
       await user.keyboard('a');
       expect(screen.getByRole('combobox')).to.have.text('Apple');
 
       await user.click(screen.getByRole('button', { name: 'Select car' }));
-      await focusTrigger(user);
+      await user.tab({ shift: true });
+      await user.tab({ shift: true });
+      expect(screen.getByRole('combobox')).toHaveFocus();
 
       await user.keyboard('c');
       expect(screen.getByRole('combobox')).to.have.text('Cat');
@@ -720,6 +729,23 @@ describe('<Select />', () => {
       expect(trigger).to.have.text('Aaron');
     });
 
+    it('cycles repeated characters for unrelated repeated-start labels', async () => {
+      const { user } = render(
+        <Select defaultValue="banana">
+          <MenuItem value="aaron">Aaron</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="bobcat">Bobcat</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('b');
+      expect(screen.getByRole('combobox')).to.have.text('Bobcat');
+
+      await user.keyboard('b');
+      expect(screen.getByRole('combobox')).to.have.text('Banana');
+    });
+
     it('clears the buffer after a non-Space no-match', async () => {
       const { user } = render(
         <Select defaultValue="">
@@ -771,7 +797,8 @@ describe('<Select />', () => {
       await user.tab();
       expect(screen.getByRole('button', { name: 'Outside' })).toHaveFocus();
 
-      await focusTrigger(user);
+      await user.tab({ shift: true });
+      expect(screen.getByRole('combobox')).toHaveFocus();
       await user.keyboard('a');
 
       expect(trigger).to.have.text('Apple');
