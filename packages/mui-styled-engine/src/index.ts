@@ -15,8 +15,10 @@ import { type PropsOf } from '@emotion/react';
 // shadow Emotion's and are not re-exported here.
 export type { CreateStyled, StyledComponent, StyledOptions, StyledTags } from '@emotion/styled';
 
-function styled(tag: any, options?: any) {
-  const stylesFactory = emStyled(tag, options);
+function styled(tag: React.ElementType, options?: StyledOptions<any>) {
+  // Emotion's `styled` overloads each expect a specific tag/component shape;
+  // none accept the broadened `React.ElementType` union, so cast the passthrough.
+  const stylesFactory = emStyled(tag as any, options);
 
   if (process.env.NODE_ENV !== 'production') {
     return (...styles: any[]) => {
