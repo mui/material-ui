@@ -78,8 +78,9 @@ const theme = createTheme({
 ```
 
 When enabled, Material UI transition components preserve lifecycle callbacks and mount/unmount
-behavior, but complete with zero visual duration when reduced motion is active. Completion remains
-asynchronous, so `onEntered` and `onExited` still fire on the next task.
+behavior. When reduced motion is active, entering content appears in its final state and exiting
+content disappears without the normal animation. Components still run the same callbacks, so code
+that waits for `onEntered` or `onExited` continues to work.
 
 Use `disablePrefersReducedMotion` only when a specific transition should intentionally keep its
 normal motion:

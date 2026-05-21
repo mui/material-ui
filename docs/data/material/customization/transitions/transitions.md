@@ -84,6 +84,36 @@ Use the <code>theme.transitions.createStyles()</code> helper when you are author
 
 `duration`: The calculated duration based on the height.
 
+## Reduced motion
+
+Configure reduced-motion behavior with `theme.transitions.reducedMotion`.
+
+```js
+const theme = createTheme({
+  transitions: {
+    reducedMotion: 'system',
+  },
+});
+```
+
+The supported values are:
+
+- `never` (default): keep normal transition behavior.
+- `system`: reduce motion only when the user's operating system requests it with `prefers-reduced-motion: reduce`.
+- `always`: reduce motion for every user, regardless of the operating system setting.
+
+This setting is used by Material UI transition components, such as Collapse, Fade, Grow, Slide, and Zoom.
+It is also used by CSS transition styles created with `theme.transitions.createStyles()`.
+Use `createStyles()` when authoring style objects so the transition and its reduced-motion override are emitted together.
+
+When a specific transition component should keep its normal motion while the theme uses `system` or `always`, set `disablePrefersReducedMotion` on that transition component.
+
+```jsx
+<Fade in disablePrefersReducedMotion>
+  <div />
+</Fade>
+```
+
 ## Durations
 
 You can change some or all of the duration values, or provide your own (for use in the `create()` helper). This example shows all the default values (in milliseconds), but you only need to provide the keys you wish to change or add.
