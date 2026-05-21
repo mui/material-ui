@@ -41,6 +41,16 @@ export interface CircularProgressProps extends StandardProps<
    */
   enableTrackSlot?: boolean | undefined;
   /**
+   * The maximum value for the progress indicator for the determinate variant.
+   * @default 100
+   */
+  max?: number | undefined;
+  /**
+   * The minimum value for the progress indicator for the determinate variant.
+   * @default 0
+   */
+  min?: number | undefined;
+  /**
    * The size of the component.
    * If using a number, the pixel unit is assumed.
    * If using a string, you need to provide the CSS unit, for example '3rem'.
@@ -58,8 +68,8 @@ export interface CircularProgressProps extends StandardProps<
   thickness?: number | undefined;
   /**
    * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   * @default 0
+   * Value between `min` and `max`.
+   * @default props.min ?? 0
    */
   value?: number | undefined;
   /**

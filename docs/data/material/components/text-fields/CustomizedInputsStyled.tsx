@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Box from '@mui/material/Box';
@@ -118,6 +119,10 @@ const ValidationTextField = styled(TextField)({
 });
 
 export default function CustomizedInputsStyled() {
+  const bootstrapId = React.useId();
+  const redditId = React.useId();
+  const cssId = React.useId();
+  const validationId = React.useId();
   return (
     <Box
       component="form"
@@ -125,25 +130,25 @@ export default function CustomizedInputsStyled() {
       sx={{ display: 'grid', gridTemplateColumns: { sm: '1fr 1fr' }, gap: 2 }}
     >
       <FormControl variant="standard">
-        <InputLabel shrink htmlFor="bootstrap-input">
+        <InputLabel shrink htmlFor={`${bootstrapId}-input`}>
           Bootstrap
         </InputLabel>
-        <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" />
+        <BootstrapInput defaultValue="react-bootstrap" id={`${bootstrapId}-input`} />
       </FormControl>
       <RedditTextField
         label="Reddit"
         defaultValue="react-reddit"
-        id="reddit-input"
+        id={`${redditId}-input`}
         variant="filled"
         style={{ marginTop: 11 }}
       />
-      <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
+      <CssTextField label="Custom CSS" id={`${cssId}-input`} />
       <ValidationTextField
         label="CSS validation style"
         required
         variant="outlined"
         defaultValue="Success"
-        id="validation-outlined-input"
+        id={`${validationId}-input`}
       />
     </Box>
   );

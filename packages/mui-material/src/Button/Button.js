@@ -334,8 +334,14 @@ const ButtonStartIcon = styled('span', {
   },
 })(({ theme }) => ({
   display: 'inherit',
+  alignItems: 'center',
   marginRight: 8,
   marginLeft: -4,
+  '&::before': {
+    content: '"\\200b"',
+    width: 0,
+    overflow: 'hidden',
+  },
   variants: [
     {
       props: { size: 'small' },

@@ -131,6 +131,10 @@ export const SliderRail = styled('span', {
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
+  '@media (forced-colors: active)': {
+    border: '1px solid transparent',
+    boxSizing: 'border-box',
+  },
   variants: [
     {
       props: { orientation: 'horizontal' },
@@ -177,7 +181,9 @@ export const SliderTrack = styled('span', {
         {
           props: { size: 'small' },
           style: {
-            border: 'none',
+            '@media (forced-colors: none)': {
+              border: 'none',
+            },
           },
         },
         {
@@ -247,6 +253,9 @@ export const SliderThumb = styled('span', {
     transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '@media (forced-colors: active)': {
+      border: '1px solid ButtonBorder',
+    },
     '&::before': {
       position: 'absolute',
       content: '""',

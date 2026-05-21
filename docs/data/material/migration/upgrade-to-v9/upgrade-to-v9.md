@@ -2266,6 +2266,14 @@ Use the [system-props codemod](https://github.com/mui/material-ui/blob/master/pa
 npx @mui/codemod@latest v9.0.0/system-props <path/to/folder>
 ```
 
+Use `--jsx` to specify extra JSX tags to migrate, bypassing import detection:
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path/to/folder> -- --jsx=Box,Typography,Stack,Link,Grid,DialogContentText
+```
+
+This is useful if your project uses auto-import plugins (for example `unplugin-auto-import`) where Material UI components are available without explicit import statements.
+
 The deprecated system props have been removed from the following components:
 
 - `Box`

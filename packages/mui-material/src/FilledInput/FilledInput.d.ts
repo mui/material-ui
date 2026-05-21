@@ -22,6 +22,10 @@ export interface FilledInputProps extends StandardProps<InputBaseProps> {
    */
   disableUnderline?: boolean | undefined;
   /**
+   * @internal
+   */
+  notched?: boolean | undefined;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme> | undefined;

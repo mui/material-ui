@@ -30,7 +30,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     colorSchemeSelector: selector,
     enableContrastVars,
   } = parserConfig;
-  // @ts-ignore - ignore components do not exist
+  // @ts-expect-error - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
   const {
     vars: rootVars,

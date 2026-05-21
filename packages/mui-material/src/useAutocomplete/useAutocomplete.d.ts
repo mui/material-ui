@@ -70,12 +70,11 @@ export interface UseAutocompleteProps<
    */
   autoHighlight?: boolean | undefined;
   /**
-   * If `true`, the selected option becomes the value of the input
-   * when the Autocomplete loses focus unless the user chooses
-   * a different option or changes the character string in the input.
+   * If `true`, the value is updated when the input loses focus under one of these conditions:
    *
-   * When using the `freeSolo` mode, the typed value will be the input value
-   * if the Autocomplete loses focus without highlighting an option.
+   * - An option highlighted via keyboard navigation or `autoHighlight` is selected.
+   *   Hover and touch highlights are ignored.
+   * - Otherwise, in `freeSolo` mode, the typed text becomes the value.
    * @default false
    */
   autoSelect?: boolean | undefined;
@@ -306,6 +305,12 @@ export interface UseAutocompleteProps<
    */
   readOnly?: boolean | undefined;
   /**
+   * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * This behavior will be enabled by default in the next major version.
+   * @default false
+   */
+  resetHighlightOnMouseLeave?: boolean | undefined;
+  /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
@@ -439,9 +444,10 @@ export interface UseAutocompleteReturnValue<
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
    * Resolver for the listbox component's props.
+   * @param externalProps props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getListboxProps: (externalProps?: any) => React.HTMLAttributes<HTMLUListElement>;
   /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete

@@ -9,6 +9,10 @@ You can implement them to improve Material UI's theming and customization exper
 If this is your first time encountering CSS variables, you should check out [the MDN Web Docs on CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties) before continuing here.
 :::
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on CSS theme variables, `theme.vars`, and SSR flicker prevention.
+:::
+
 ## Introduction
 
 CSS theme variables replace raw values in Material UI components for a better developer experience because, in the browser dev tool, you will see which theme token is used as a value.

@@ -142,6 +142,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
 - `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
+- `resetHighlightOnMouseLeave` to clear mouse-created highlights when the pointer leaves the popup.
 - A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "FreeSoloCreateOption.js"}}
@@ -178,12 +179,6 @@ For advanced customization use cases, a headless `useAutocomplete()` hook is exp
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
 The Autocomplete component is built on this hook.
-
-```tsx
-import { useAutocomplete } from '@mui/base/useAutocomplete';
-```
-
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
 
 ```tsx
 import useAutocomplete from '@mui/material/useAutocomplete';
@@ -238,6 +233,12 @@ Before you can start using the Google Maps JavaScript API and Places API, you ne
 
 This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
+
+### Infinite loading
+
+This demo uses `@tanstack/react-query` to additively fetch new data onto existing `options` upon reaching the end of the current list. The list is virtualized using `@tanstack/react-virtual`.
+
+{{"demo": "InfiniteLoading.js"}}
 
 ## Single value rendering
 

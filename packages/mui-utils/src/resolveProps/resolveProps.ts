@@ -52,7 +52,11 @@ export default function resolveProps<
             }
           }
         }
-      } else if (propName === 'className' && mergeClassNameAndStyle && props.className) {
+      } else if (
+        propName === 'className' &&
+        mergeClassNameAndStyle &&
+        props.className !== undefined
+      ) {
         output.className = clsx(defaultProps?.className, props?.className);
       } else if (propName === 'style' && mergeClassNameAndStyle && props.style) {
         output.style = {

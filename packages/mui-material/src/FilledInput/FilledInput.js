@@ -281,6 +281,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
+    notched, // declare here to prevent spreading to DOM
     slotProps,
     slots = {},
     type = 'text',
@@ -427,6 +428,10 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
+  /**
+   * @internal
+   */
+  notched: PropTypes.bool,
   /**
    * Callback fired when the value is changed.
    *

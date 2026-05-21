@@ -2,8 +2,7 @@ import * as React from 'react';
 import copy from 'clipboard-copy';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { Tabs } from '@mui/base/Tabs';
-import { TabPanel } from '@mui/base/TabPanel';
+import { Tabs } from '@base-ui/react/tabs';
 import { unstable_useId as useId } from '@mui/utils';
 import IconButton from '@mui/material/IconButton';
 import type { ButtonBaseActions } from '@mui/material/ButtonBase';
@@ -327,7 +326,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 
 const selectionOverride = (theme: any) => ({
   cursor: 'pointer',
-  '&.base--selected': {
+  '&[data-active]': {
     color: (theme.vars || theme).palette.primary[700],
     backgroundColor: (theme.vars || theme).palette.primary[50],
     borderColor: (theme.vars || theme).palette.primary[200],
@@ -394,6 +393,7 @@ export interface DemoProps {
     disableLiveEdit?: boolean;
     aiSuggestion?: string;
     hideEditButton?: boolean;
+    anchorId?: string | null;
   };
   disableAd: boolean;
   githubLocation: string;
@@ -408,7 +408,8 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (demoOptions.hideToolbar === false) {
       throw new Error(
         [
@@ -468,6 +469,8 @@ export function Demo(props: DemoProps) {
   );
 
   const demoName = getDemoName(demoData.githubLocation);
+  const anchorIdOption = demoOptions.anchorId;
+  const anchorName = anchorIdOption === undefined ? demoName : anchorIdOption;
   const demoSandboxedStyle = React.useMemo(
     () => ({
       maxWidth: demoOptions.maxWidth,
@@ -492,10 +495,13 @@ export function Demo(props: DemoProps) {
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
-    if (navigatedDemoName && demoName === navigatedDemoName) {
+    if (
+      navigatedDemoName &&
+      (demoName === navigatedDemoName || (anchorName !== null && anchorName === navigatedDemoName))
+    ) {
       setCodeOpen(true);
     }
-  }, [demoName]);
+  }, [demoName, anchorName]);
 
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -558,11 +564,8 @@ export function Demo(props: DemoProps) {
   });
 
   const [activeTab, setActiveTab] = React.useState(0);
-  const handleTabChange = (
-    _event: React.SyntheticEvent | null,
-    newValue: string | number | null,
-  ) => {
-    setActiveTab(newValue as number);
+  const handleTabChange: NonNullable<Tabs.Root.Props['onValueChange']> = (value) => {
+    setActiveTab(value as number);
   };
   const ownerState = { mounted: true, contained: true };
 
@@ -600,10 +603,11 @@ export function Demo(props: DemoProps) {
       console.error('Code content not copied', error);
     }
   };
+  const willRenderTabList = demoData.relativeModules && openDemoSource && !editorCode.isPreview;
 
   return (
     <Root>
-      <AnchorLink id={demoName} />
+      {anchorName !== null && <AnchorLink id={anchorName} />}
       <DemoRoot
         hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
@@ -625,18 +629,19 @@ export function Demo(props: DemoProps) {
       </DemoRoot>
       {demoOptions.hideToolbar ? null : (
         <React.Fragment>
-          {Object.keys(stylingSolutionMapping).map((key) => (
-            <React.Fragment key={key}>
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.js`}
-              />
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.tsx`}
-              />
-            </React.Fragment>
-          ))}
-          <AnchorLink id={`${demoName}.js`} />
-          <AnchorLink id={`${demoName}.tsx`} />
+          {anchorName !== null &&
+            Object.keys(stylingSolutionMapping).map((key) => (
+              <React.Fragment key={key}>
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.js`}
+                />
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.tsx`}
+                />
+              </React.Fragment>
+            ))}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.js`} />}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.tsx`} />}
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
             {DemoToolbar ? (
               <NoSsr fallback={<DemoToolbarFallback />}>
@@ -670,8 +675,8 @@ export function Demo(props: DemoProps) {
               <DemoToolbarFallback />
             )}
           </DemoToolbarRoot>
-          <Tabs value={activeTab} onChange={handleTabChange}>
-            {demoData.relativeModules && openDemoSource && !editorCode.isPreview ? (
+          <Tabs.Root value={activeTab} onValueChange={handleTabChange}>
+            {willRenderTabList ? (
               <CodeTabList ownerState={ownerState}>
                 {tabs.map((tab, index) => (
                   <CodeTab
@@ -689,7 +694,12 @@ export function Demo(props: DemoProps) {
               {/* A limitation from https://github.com/nihgwu/react-runner,
                 we can't inject the `window` of the iframe so we need a disableLiveEdit option. */}
               {tabs.map((tab, index) => (
-                <TabPanel value={index} key={index}>
+                <Tabs.Panel
+                  role={willRenderTabList ? 'tabpanel' : undefined}
+                  value={index}
+                  key={index}
+                  tabIndex={-1}
+                >
                   {demoOptions.disableLiveEdit || index > 0 ? (
                     <DemoCodeViewer
                       key={index}
@@ -749,10 +759,10 @@ export function Demo(props: DemoProps) {
                       <DemoEditorError>{debouncedError}</DemoEditorError>
                     </DemoEditor>
                   )}
-                </TabPanel>
+                </Tabs.Panel>
               ))}
             </Collapse>
-          </Tabs>
+          </Tabs.Root>
           {/* AI Suggestion Hero UI */}
           {demoOptions.aiSuggestion ? (
             <DemoAiSuggestionHero

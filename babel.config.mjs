@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url';
 import * as path from 'node:path';
-// @ts-ignore
 import getBaseConfig from '@mui/internal-code-infra/babel-config';
 
 /**
@@ -72,18 +71,6 @@ export default function getBabelConfig(api) {
       },
     ],
     env: {
-      coverage: {
-        plugins: [
-          'babel-plugin-istanbul',
-          [
-            'babel-plugin-module-resolver',
-            {
-              root: ['./'],
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
       development: {
         plugins: [
           [

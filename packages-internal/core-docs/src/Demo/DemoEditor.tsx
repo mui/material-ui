@@ -1,7 +1,8 @@
 import * as React from 'react';
-import SimpleCodeEditor from 'react-simple-code-editor';
+import SimpleCodeEditorImport from 'react-simple-code-editor';
+
 import Box from '@mui/material/Box';
-import { NoSsr } from '@mui/base/NoSsr';
+import NoSsr from '@mui/material/NoSsr';
 import { styled, alpha, useTheme } from '@mui/material/styles';
 import { visuallyHidden } from '@mui/utils';
 import prism from '@mui/internal-markdown/prism';
@@ -9,6 +10,13 @@ import { MarkdownElement } from '../MarkdownDocs/MarkdownElement';
 import { CodeCopyButton, useCodeCopy } from '../CodeCopy';
 import { useTranslate } from '../i18n';
 import { blueDark } from '../branding';
+
+// `react-simple-code-editor` is CJS-only. In Node ESM, the default import
+// resolves to the whole `module.exports` object, putting the component on
+// `.default`. Bundlers with synthetic-default give the component directly.
+// Fallback covers both.
+const SimpleCodeEditor = ((SimpleCodeEditorImport as any).default ??
+  SimpleCodeEditorImport) as typeof SimpleCodeEditorImport;
 
 const StyledMarkdownElement = styled(MarkdownElement)(({ theme }) => [
   {
@@ -111,7 +119,7 @@ export function DemoEditor(props: DemoEditorProps) {
       {...other}
     >
       <div className="MuiCode-root" {...handlers}>
-        <div className="scrollContainer">
+        <div className="scrollContainer" tabIndex={-1}>
           <NoSsr>
             <CodeCopyButton {...copyButtonProps} code={value} />
           </NoSsr>

@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import contains from '@mui/utils/contains';
 import ownerDocument from '@mui/utils/ownerDocument';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
@@ -110,7 +111,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
     const doc = ownerDocument(nodeRef.current);
 
-    // 1. IE11 support, which trigger the handleClickAway even after the unbind
+    // 1. IE 11 support, which trigger the handleClickAway even after the unbind
     // 2. The child might render null.
     // 3. Behave like a blur listener.
     if (
@@ -134,14 +135,8 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
       insideDOM = event.composedPath().includes(nodeRef.current);
     } else {
       insideDOM =
-        !doc.documentElement.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        ) ||
-        nodeRef.current.contains(
-          // @ts-expect-error returns `false` as intended when not dispatched from a Node
-          event.target,
-        );
+        !contains(doc.documentElement, event.target as Element) ||
+        contains(nodeRef.current, event.target as Element);
     }
 
     if (!insideDOM && (disableReactTree || !insideReactTree)) {

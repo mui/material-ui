@@ -1,4 +1,4 @@
-import Alert, { AlertProps } from '@mui/material/Alert';
+import Alert, { type AlertProps } from '@mui/material/Alert';
 
 export type DemoEditorErrorProps = AlertProps;
 

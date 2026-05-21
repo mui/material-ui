@@ -20,7 +20,7 @@ import { createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
-  const { render } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   describeConformance(<InputBase />, () => ({
     classes,
@@ -479,6 +479,146 @@ describe('<InputBase />', () => {
         });
         expect(screen.getByTestId('label')).to.have.text('focused: false');
       });
+
+      it.skipIf(isJsdom())(
+        'should sync focused state when autoFocus is used with SSR (with FormControl)',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return (
+                <FormControl>
+                  <InputBase autoFocus data-testid="root" />
+                </FormControl>
+              );
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+            expect(input).to.have.attribute('autofocus');
+
+            // Simulate the browser focusing the element before hydration
+            act(() => {
+              input.focus();
+            });
+            expect(input).to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should sync focused state when autoFocus is used with SSR (standalone)',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return <InputBase autoFocus data-testid="root" />;
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+
+            // Simulate the browser focusing the element before hydration
+            act(() => {
+              input.focus();
+            });
+            expect(input).to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should focus and sync focused state when autoFocus is used with SSR',
+        function test() {
+          let input;
+
+          try {
+            function App() {
+              return (
+                <FormControl>
+                  <InputBase autoFocus data-testid="root" />
+                </FormControl>
+              );
+            }
+
+            const { hydrate } = renderToString(<App />);
+
+            input = screen.getByRole('textbox');
+            expect(input).to.have.attribute('autofocus');
+            expect(input).not.to.equal(document.activeElement);
+
+            act(() => {
+              hydrate();
+            });
+
+            expect(input).to.equal(document.activeElement);
+            expect(screen.getByTestId('root')).to.have.class(classes.focused);
+          } finally {
+            if (input === document.activeElement) {
+              act(() => {
+                input.blur();
+              });
+            }
+          }
+        },
+      );
+
+      it.skipIf(isJsdom())(
+        'should not sync focused state when autoFocus is not set (regression guard)',
+        function test() {
+          function App() {
+            return (
+              <FormControl>
+                <InputBase data-testid="root" />
+              </FormControl>
+            );
+          }
+
+          const { hydrate } = renderToString(<App />);
+
+          const input = screen.getByRole('textbox');
+
+          // Manually focus the element before hydration (without autoFocus)
+          act(() => {
+            input.focus();
+          });
+          expect(input).to.equal(document.activeElement);
+
+          act(() => {
+            hydrate();
+          });
+
+          expect(screen.getByTestId('root')).not.to.have.class(classes.focused);
+        },
+      );
     });
 
     it('propagates filled state when uncontrolled', () => {
@@ -617,6 +757,66 @@ describe('<InputBase />', () => {
       expect(input).to.have.class('foo');
       expect(matches).to.have.length(1);
     });
+  });
+
+  describe('autofill', () => {
+    it.skipIf(isJsdom())(
+      'does not animate display during autofill detection',
+      async function test() {
+        render(<InputBase inputProps={{ className: 'autofill-layout-test' }} />);
+
+        // Simulate an input styled as flex, then start MUI's autofill-cancel animation manually.
+        const style = document.createElement('style');
+        style.textContent = `
+        .${classes.input}.autofill-layout-test {
+          animation-duration: 1000s;
+          animation-name: none;
+          display: flex;
+        }
+
+        .${classes.input}.autofill-layout-test.autofill-layout-test--animated {
+          animation-name: mui-auto-fill-cancel;
+        }
+      `;
+        document.head.appendChild(style);
+
+        try {
+          // Confirm the real MUI keyframes are present and no longer animate display.
+          const keyframesRules = Array.from(document.styleSheets).flatMap((sheet) =>
+            Array.from(sheet.cssRules).filter((rule) => rule.type === CSSRule.KEYFRAMES_RULE),
+          );
+          const autofillRule = keyframesRules.find((rule) => rule.name === 'mui-auto-fill');
+          const autofillCancelRule = keyframesRules.find(
+            (rule) => rule.name === 'mui-auto-fill-cancel',
+          );
+
+          expect(autofillRule).not.to.equal(undefined);
+          expect(autofillCancelRule).not.to.equal(undefined);
+          expect(autofillRule.cssText).not.to.include('display');
+          expect(autofillCancelRule.cssText).not.to.include('display');
+
+          const input = screen.getByRole('textbox');
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+
+          // Starting the animation must not let its first keyframe override display.
+          input.classList.add('autofill-layout-test--animated');
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+
+          // Check one frame later too, when Chrome's visible layout jump used to happen.
+          await act(async () => {
+            await new Promise((resolve) => {
+              requestAnimationFrame(resolve);
+            });
+          });
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+        } finally {
+          document.head.removeChild(style);
+        }
+      },
+    );
   });
 
   describe('prop: inputComponent with prop: inputProps', () => {

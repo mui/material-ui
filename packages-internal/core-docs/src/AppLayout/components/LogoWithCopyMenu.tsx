@@ -1,6 +1,6 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import { Portal } from '@mui/base/Portal';
+import Portal from '@mui/material/Portal';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import Menu from '@mui/material/Menu';
@@ -18,15 +18,15 @@ import {
 
 interface LogoWithCopyMenuProps {
   logo?: React.ComponentType<RootSvgProps>;
-  logoSvgString?: string;
-  wordmarkSvgString?: string;
+  logomarkSvgString?: string;
+  logotypeSvgString?: string;
   marginLeft?: boolean;
 }
 
 export function LogoWithCopyMenu({
   logo: LogoSvg = MuiLogomarkIcon,
-  logoSvgString = muiSvgLogoString,
-  wordmarkSvgString = muiSvgWordmarkString,
+  logomarkSvgString = muiSvgLogoString,
+  logotypeSvgString = muiSvgWordmarkString,
   marginLeft,
 }: LogoWithCopyMenuProps) {
   const [contextMenu, setContextMenu] = React.useState<{
@@ -64,7 +64,7 @@ export function LogoWithCopyMenu({
       <Box
         component={Link}
         href="/"
-        aria-label="Go to homepage"
+        aria-label="Go to the homepage"
         onContextMenu={handleContextMenu}
         sx={{
           mr: 1,
@@ -97,13 +97,13 @@ export function LogoWithCopyMenu({
           },
         })}
       >
-        <MenuItem onClick={() => handleCopy(logoSvgString)}>
+        <MenuItem onClick={() => handleCopy(logomarkSvgString)}>
           <LogoSvg height={16} width={18} />
-          Copy logo as SVG
+          Copy logomark as SVG
         </MenuItem>
-        <MenuItem onClick={() => handleCopy(wordmarkSvgString)}>
+        <MenuItem onClick={() => handleCopy(logotypeSvgString)}>
           <TextFieldsRoundedIcon sx={{ fontSize: '18px' }} />
-          Copy wordmark as SVG
+          Copy logotype as SVG
         </MenuItem>
       </Menu>
       <Portal container={() => document.body}>

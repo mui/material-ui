@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  strictModeDoubleLoggingSuppressed,
+  screen,
+} from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
@@ -168,6 +172,97 @@ describe('<CircularProgress />', () => {
       const [trackEl] = container.querySelectorAll('svg circle');
       expect(trackEl.style.strokeDasharray).to.equal('');
       expect(trackEl.style.strokeDashoffset).to.equal('');
+    });
+  });
+
+  describe('prop: min & max', () => {
+    it('should be able to use custom min and max values', () => {
+      render(<CircularProgress variant="determinate" value={5} min={0} max={10} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '0');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10');
+    });
+
+    it('min and max values should be used to calculate the circumference of the circle', () => {
+      const { container } = render(
+        <CircularProgress variant="determinate" value={15} min={10} max={30} />,
+      );
+      const [circle] = container.querySelectorAll('svg circle');
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.nested.property('style.transform', 'rotate(-90deg)');
+      expect(circle.style.strokeDasharray).to.match(/126\.920?(px)?/gm);
+      expect(circle.style.strokeDashoffset).to.match(/95\.190?(px)?/gm);
+    });
+
+    it('should fallback value to min if min is passed', () => {
+      render(<CircularProgress variant="determinate" min={10} max={20} />);
+
+      expect(screen.getByRole('progressbar')).to.have.attribute('aria-valuenow', '10');
+    });
+
+    it('should be able to use decimal min, max and value props', () => {
+      render(<CircularProgress variant="determinate" value={5.5} min={2.5} max={10.3} />);
+      const progressbar = screen.getByRole('progressbar');
+
+      expect(progressbar).to.have.attribute('aria-valuenow', '5.5');
+      expect(progressbar).to.have.attribute('aria-valuemin', '2.5');
+      expect(progressbar).to.have.attribute('aria-valuemax', '10.3');
+    });
+
+    it('should fallback to a full circumference strokeDashoffset (empty state) if max is less than min', () => {
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      const { container } = render(
+        <CircularProgress variant="determinate" value={5} min={10} max={0} />,
+      );
+      const [circle] = container.querySelectorAll('svg circle');
+      expect(circle.style.strokeDashoffset).to.match(/126\.920?(px)?/gm);
+
+      errorSpy.mockRestore();
+    });
+
+    it('should error if min, max, and value props are invalid', () => {
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={5} min={10} max={0} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
+      ]);
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={15} min={10} max={10} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=15.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=15.',
+      ]);
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={5} min={10} max={20} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=5.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=5.',
+      ]);
+      expect(() => {
+        render(<CircularProgress variant="determinate" value={25} min={10} max={20} />);
+      }).toErrorDev([
+        'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=25.',
+        !strictModeDoubleLoggingSuppressed &&
+          'MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=10, max=20, value=25.',
+      ]);
+    });
+
+    it('should warn if min and max props are provided with an indeterminate variant', () => {
+      expect(() => {
+        render(<CircularProgress variant="indeterminate" min={0} max={10} />);
+      }).toWarnDev([
+        "MUI: You have provided the `min` or `max` props with an 'indeterminate' variant. These props will have no effect.",
+        !strictModeDoubleLoggingSuppressed &&
+          "MUI: You have provided the `min` or `max` props with an 'indeterminate' variant. These props will have no effect.",
+      ]);
     });
   });
 });
