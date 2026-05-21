@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import ListSubheader, { listSubheaderClasses as classes } from '@mui/material/ListSubheader';
@@ -14,7 +13,6 @@ describe('<ListSubheader />', () => {
     muiName: 'MuiListSubheader',
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { disableGutters: true },
-    skip: ['componentsProp'],
   }));
 
   it('should display primary color', () => {

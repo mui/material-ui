@@ -85,6 +85,7 @@ Please, try it out for yourself in the live demo below.
 
 <iframe
   src="https://codesandbox.io/embed/date-field-demo-pb87v0?fontsize=12&hidenavigation=1&module=%2F"
+  title="Date Field demo on CodeSandbox"
   style="width:100%; height:200px; border:0; border-radius: 4px; overflow:hidden;"
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
@@ -111,7 +112,6 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 - **Default render input**\
   You don't need to provide the usual `TextField` on `renderInput` anymore unless you need it customized.
   In which case you can do it by:
-
   1. Customizing through props via `field` and `input` slots ([codebox example](https://codesandbox.io/p/sandbox/customizing-fields-with-props-o66r1c?file=/demo.tsx)).
   2. Build a new field component using the Field's headless API (documentation coming soon).
   3. Use an entirely [custom text field](https://next.mui.com/x/react-date-pickers/date-picker/#custom-input-component) to suit your use case.

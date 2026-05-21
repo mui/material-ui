@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import Skeleton, { skeletonClasses as classes } from '@mui/material/Skeleton';
 import describeConformance from '../../test/describeConformance';
@@ -14,7 +13,6 @@ describe('<Skeleton />', () => {
     refInstanceof: window.HTMLSpanElement,
     muiName: 'MuiSkeleton',
     testVariantProps: { variant: 'circular', animation: 'wave' },
-    skip: ['componentsProp'],
   }));
 
   it('should render', () => {

@@ -133,6 +133,11 @@ const AccordionHeading = styled('h3', {
   all: 'unset',
 });
 
+const AccordionRegion = styled('div', {
+  name: 'MuiAccordion',
+  slot: 'Region',
+})({});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
@@ -143,11 +148,8 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     disableGutters = false,
     expanded: expandedProp,
     onChange,
-    square = false,
     slots = {},
     slotProps = {},
-    TransitionComponent: TransitionComponentProp,
-    TransitionProps: TransitionPropsProp,
     ...other
   } = props;
 
@@ -177,7 +179,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const ownerState = {
     ...props,
-    square,
     disabled,
     disableGutters,
     expanded,
@@ -185,12 +186,9 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-  const backwardCompatibleSlotProps = { transition: TransitionPropsProp, ...slotProps };
-
   const externalForwardedProps = {
-    slots: backwardCompatibleSlots,
-    slotProps: backwardCompatibleSlotProps,
+    slots,
+    slotProps,
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
@@ -203,9 +201,6 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     shouldForwardComponentProp: true,
     ownerState,
     ref,
-    additionalProps: {
-      square,
-    },
   });
 
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
@@ -221,20 +216,25 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
+  const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
+    elementType: AccordionRegion,
+    externalForwardedProps,
+    ownerState,
+    className: classes.region,
+    additionalProps: {
+      'aria-labelledby': summary.props.id,
+      id: summary.props['aria-controls'],
+      role: 'region',
+    },
+  });
+
   return (
     <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
-        <div
-          aria-labelledby={summary.props.id}
-          id={summary.props['aria-controls']}
-          role="region"
-          className={classes.region}
-        >
-          {children}
-        </div>
+        <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
       </TransitionSlot>
     </RootSlot>
   );
@@ -282,12 +282,12 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, it removes the margin between two expanded accordion items and the increase of height.
+   * If `true`, it removes the margin between two expanded accordion items and prevents the increased height when expanded.
    * @default false
    */
   disableGutters: PropTypes.bool,
   /**
-   * If `true`, expands the accordion, otherwise collapse it.
+   * If `true`, expands the accordion, otherwise collapses it.
    * Setting this prop enables control over the accordion.
    */
   expanded: PropTypes.bool,
@@ -304,6 +304,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    region: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -313,14 +314,10 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     heading: PropTypes.elementType,
+    region: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
-  /**
-   * If `true`, rounded corners are disabled.
-   * @default false
-   */
-  square: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -329,18 +326,6 @@ Accordion.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionComponent: PropTypes.elementType,
-  /**
-   * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
-  TransitionProps: PropTypes.object,
 };
 
 export default Accordion;

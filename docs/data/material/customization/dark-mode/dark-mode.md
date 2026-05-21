@@ -2,6 +2,10 @@
 
 <p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on dark mode, color schemes, and SSR behavior.
+:::
+
 ## Dark mode only
 
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme()` helper:
@@ -55,7 +59,7 @@ Learn more about palette structure in the [Palette documentation](/material-ui/c
 
 ## System preference
 
-Some users sets a preference for light or dark mode through their operation system—either systemwide, or for individual user agents.
+Some users set a preference for light or dark mode through their operating system—either systemwide, or for individual user agents.
 The following sections explain how to apply these preferences to an app's theme.
 
 ### Built-in support
@@ -96,7 +100,7 @@ To test the system preference feature, follow the guide on [emulating the CSS me
 
 ### Accessing media prefers-color-scheme
 
-You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
+You can make use of this preference with the [`useMediaQuery`](/material-ui/react-use-media-query/) hook and the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme) media query.
 
 The following demo shows how to check the user's preference in their OS or browser settings:
 

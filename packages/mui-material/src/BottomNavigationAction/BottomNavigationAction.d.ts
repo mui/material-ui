@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { CreateSlotsAndSlotProps, SlotProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import {
   ButtonBaseProps,
   ButtonBaseTypeMap,
@@ -28,12 +29,12 @@ export type BottomNavigationActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the ButtonBase element.
+     * By default, the available props are based on the ButtonBase element.
      */
     root: SlotProps<React.ElementType<ButtonBaseProps>, {}, BottomNavigationActionOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     label: SlotProps<'span', {}, BottomNavigationActionOwnerState>;
   }
@@ -48,7 +49,7 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<BottomNavigationActionClasses>;
+  classes?: Partial<BottomNavigationActionClasses> | undefined;
   /**
    * The icon to display.
    */
@@ -64,11 +65,11 @@ export interface BottomNavigationActionOwnProps extends BottomNavigationActionSl
    *
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
-  showLabel?: boolean;
+  showLabel?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
@@ -102,10 +103,12 @@ export type BottomNavigationActionProps<
   RootComponent extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
-export interface BottomNavigationActionOwnerState
-  extends Omit<BottomNavigationActionProps, 'slots' | 'slotProps'> {}
+export interface BottomNavigationActionOwnerState extends Omit<
+  BottomNavigationActionProps,
+  'slots' | 'slotProps'
+> {}
 
 export default BottomNavigationAction;

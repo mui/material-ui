@@ -31,7 +31,13 @@ export default function FabIntegrationSnackbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" component="div">
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                color: 'inherit',
+              }}
+            >
               App bar
             </Typography>
           </Toolbar>

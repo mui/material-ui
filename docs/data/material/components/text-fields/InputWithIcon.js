@@ -8,14 +8,17 @@ import TextField from '@mui/material/TextField';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export default function InputWithIcon() {
+  const adornmentId = React.useId();
+  const textFieldId = React.useId();
+  const sxId = React.useId();
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
-        <InputLabel htmlFor="input-with-icon-adornment">
+        <InputLabel htmlFor={`${adornmentId}-input`}>
           With a start adornment
         </InputLabel>
         <Input
-          id="input-with-icon-adornment"
+          id={`${adornmentId}-input`}
           startAdornment={
             <InputAdornment position="start">
               <AccountCircle />
@@ -24,7 +27,7 @@ export default function InputWithIcon() {
         />
       </FormControl>
       <TextField
-        id="input-with-icon-textfield"
+        id={`${textFieldId}-input`}
         label="TextField"
         slotProps={{
           input: {
@@ -39,7 +42,7 @@ export default function InputWithIcon() {
       />
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-        <TextField id="input-with-sx" label="With sx" variant="standard" />
+        <TextField id={`${sxId}-input`} label="With sx" variant="standard" />
       </Box>
     </Box>
   );

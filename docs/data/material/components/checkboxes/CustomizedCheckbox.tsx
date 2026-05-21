@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Checkbox, { CheckboxProps } from '@mui/material/Checkbox';
 
@@ -60,7 +59,7 @@ function BpCheckbox(props: CheckboxProps) {
       color="default"
       checkedIcon={<BpCheckedIcon />}
       icon={<BpIcon />}
-      inputProps={{ 'aria-label': 'Checkbox demo' }}
+      slotProps={{ input: { 'aria-label': 'Checkbox demo' } }}
       {...props}
     />
   );

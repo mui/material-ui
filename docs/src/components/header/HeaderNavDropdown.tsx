@@ -2,14 +2,13 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import Chip from '@mui/material/Chip';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { HamburgerMenuIcon } from '@mui/internal-core-docs/svgIcons';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
   ({ theme }) => [
@@ -75,12 +74,6 @@ const PRODUCTS = [
     description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
-  {
-    name: 'Toolpad',
-    description: 'Components and tools for dashboards and internal apps.',
-    href: ROUTES.productToolpad,
-    chip: 'Beta',
-  },
 ];
 
 const DOCS = [
@@ -95,8 +88,8 @@ const DOCS = [
     href: ROUTES.joyDocs,
   },
   {
-    name: 'MUI Base',
-    description: 'Unstyled React components and low-level hooks.',
+    name: 'Base UI',
+    description: 'Unstyled components for building accessible UIs.',
     href: ROUTES.baseDocs,
   },
   {
@@ -108,12 +101,6 @@ const DOCS = [
     name: 'MUI X',
     description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
-  },
-  {
-    name: 'Toolpad',
-    description: 'Components and tools for dashboards and internal apps.',
-    href: ROUTES.toolpadCoreDocs,
-    chip: 'Beta',
   },
 ];
 
@@ -146,7 +133,7 @@ export default function HeaderNavDropdown() {
           }),
         }}
       >
-        <SvgHamburgerMenu />
+        <HamburgerMenuIcon />
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {
@@ -223,24 +210,6 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
-                              <Chip
-                                size="small"
-                                label={item.chip}
-                                color="primary"
-                                variant="outlined"
-                                sx={{
-                                  fontSize: '.625rem',
-                                  fontWeight: 'semiBold',
-                                  textTransform: 'uppercase',
-                                  letterSpacing: '.04rem',
-                                  height: '16px',
-                                  '& .MuiChip-label': {
-                                    px: '4px',
-                                  },
-                                }}
-                              />
-                            ) : null}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
@@ -284,24 +253,6 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
-                              <Chip
-                                size="small"
-                                label={item.chip}
-                                color="primary"
-                                variant="outlined"
-                                sx={{
-                                  fontSize: '.625rem',
-                                  fontWeight: 'semiBold',
-                                  textTransform: 'uppercase',
-                                  letterSpacing: '.04rem',
-                                  height: '16px',
-                                  '& .MuiChip-label': {
-                                    px: '4px',
-                                  },
-                                }}
-                              />
-                            ) : null}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}

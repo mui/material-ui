@@ -19,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
     focusVisible: ['focusVisible'],
-    content: ['content', expanded && 'expanded', !disableGutters && 'contentGutters'],
+    content: ['content', expanded && 'expanded'],
     expandIconWrapper: ['expandIconWrapper', expanded && 'expanded'],
   };
 
@@ -156,6 +156,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     additionalProps: {
       focusRipple: false,
       disableRipple: true,
+      internalNativeButton: true,
       disabled,
       'aria-expanded': expanded,
       focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),

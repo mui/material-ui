@@ -1,25 +1,29 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
+import Transition from '../internal/Transition';
 import { useTheme } from '../zero-styled';
-import { reflow, getTransitionProps } from '../transitions/utils';
+import {
+  normalizedTransitionCallback,
+  reflow,
+  getTransitionProps,
+  getTransitionChildStyle,
+} from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
 const styles = {
-  entering: {
-    opacity: 1,
-  },
-  entered: {
-    opacity: 1,
-  },
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 },
 };
+
+const hiddenStyles = { opacity: 0, visibility: 'hidden' };
 
 /**
  * The Fade transition is used by the [Modal](/material-ui/react-modal/) component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
   const theme = useTheme();
@@ -42,32 +46,16 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     onExiting,
     style,
     timeout = defaultTimeout,
-    // eslint-disable-next-line react/prop-types
-    TransitionComponent = Transition,
     ...other
   } = props;
 
-  const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
-  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
-    if (callback) {
-      const node = nodeRef.current;
+  const handleEntering = normalizedTransitionCallback(nodeRef, onEntering);
 
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (maybeIsAppearing === undefined) {
-        callback(node);
-      } else {
-        callback(node, maybeIsAppearing);
-      }
-    }
-  };
-
-  const handleEntering = normalizedTransitionCallback(onEntering);
-
-  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+  const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
+    reflow(node); // Force layout so the animation starts from the initial styles.
 
     const transitionProps = getTransitionProps(
       { style, timeout, easing },
@@ -76,7 +64,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       },
     );
 
-    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (onEnter) {
@@ -84,11 +71,11 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     }
   });
 
-  const handleEntered = normalizedTransitionCallback(onEntered);
+  const handleEntered = normalizedTransitionCallback(nodeRef, onEntered);
 
-  const handleExiting = normalizedTransitionCallback(onExiting);
+  const handleExiting = normalizedTransitionCallback(nodeRef, onExiting);
 
-  const handleExit = normalizedTransitionCallback((node) => {
+  const handleExit = normalizedTransitionCallback(nodeRef, (node) => {
     const transitionProps = getTransitionProps(
       { style, timeout, easing },
       {
@@ -96,7 +83,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       },
     );
 
-    node.style.webkitTransition = theme.transitions.create('opacity', transitionProps);
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (onExit) {
@@ -104,20 +90,28 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     }
   });
 
-  const handleExited = normalizedTransitionCallback(onExited);
+  const handleExited = normalizedTransitionCallback(nodeRef, (node) => {
+    // Clear transition CSS after exit so fixed elements like Backdrop do not
+    // keep a compositor layer alive and cause idle CPU usage. handleEnter sets
+    // it again on next open.
+    node.style.transition = '';
+
+    if (onExited) {
+      onExited(node);
+    }
+  });
 
   const handleAddEndListener = (next) => {
     if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
 
   return (
-    <TransitionComponent
+    <Transition
       appear={appear}
       in={inProp}
-      nodeRef={enableStrictModeCompat ? nodeRef : undefined}
+      nodeRef={nodeRef}
       onEnter={handleEnter}
       onEntered={handleEntered}
       onEntering={handleEntering}
@@ -128,21 +122,25 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        // Do not pass ownerState to a DOM child. ownerState is only for
+        // Material UI styling, and React would treat it as an invalid DOM attribute.
+        const childStyle = getTransitionChildStyle(
+          state,
+          inProp,
+          styles,
+          hiddenStyles,
+          style,
+          children.props.style,
+        );
+
         return React.cloneElement(children, {
-          style: {
-            opacity: 0,
-            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-            ...styles[state],
-            ...style,
-            ...children.props.style,
-          },
+          style: childStyle,
           ref: handleRef,
           ...restChildProps,
         });
       }}
-    </TransitionComponent>
+    </Transition>
   );
 });
 
@@ -152,9 +150,12 @@ Fade.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

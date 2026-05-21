@@ -48,8 +48,11 @@ describe('<Accordion />', () => {
         expectedClassName: classes.root,
         testWithElement: CustomPaper,
       },
+      region: {
+        expectedClassName: classes.region,
+        testWithElement: 'div',
+      },
     },
-    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render and not be controlled', () => {
@@ -63,19 +66,20 @@ describe('<Accordion />', () => {
   });
 
   it('should render the summary and collapse elements', () => {
-    const { getByRole, getByText } = render(
+    render(
       <Accordion>
         <AccordionSummary>Summary</AccordionSummary>
         <div id="panel-content">Hello</div>
       </Accordion>,
     );
-    expect(getByText('Summary')).toBeVisible();
-    expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
+
+    expect(screen.getByText('Summary')).toBeVisible();
+    expect(screen.getByRole('button')).to.have.attribute('aria-expanded', 'false');
   });
 
   it('should be controlled', () => {
     const { container, setProps } = render(
-      <Accordion expanded TransitionComponent={NoTransition}>
+      <Accordion expanded slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
@@ -87,36 +91,40 @@ describe('<Accordion />', () => {
 
   it('should call onChange when clicking the summary element', () => {
     const handleChange = spy();
-    const { getByText } = render(
-      <Accordion onChange={handleChange} TransitionComponent={NoTransition}>
+
+    render(
+      <Accordion onChange={handleChange} slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
   });
 
   it('when controlled should call the onChange', () => {
     const handleChange = spy();
-    const { getByText } = render(
+
+    render(
       <Accordion onChange={handleChange} expanded>
         {minimalChildren}
       </Accordion>,
     );
-    fireEvent.click(getByText('Header'));
+
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.equal(false);
   });
 
   it('when undefined onChange and controlled should not call the onChange', () => {
     const handleChange = spy();
-    const { setProps, getByText } = render(
+    const { setProps } = render(
       <Accordion onChange={handleChange} expanded>
         {minimalChildren}
       </Accordion>,
     );
     setProps({ onChange: undefined });
-    fireEvent.click(getByText('Header'));
+    fireEvent.click(screen.getByText('Header'));
     expect(handleChange.callCount).to.equal(0);
   });
 
@@ -125,7 +133,7 @@ describe('<Accordion />', () => {
     expect(container.firstChild).to.have.class(classes.disabled);
   });
 
-  it('should handle the TransitionComponent prop', () => {
+  it('should handle the slots.transition prop', () => {
     function NoTransitionCollapse(props) {
       return props.in ? <div>{props.children}</div> : null;
     }
@@ -137,19 +145,19 @@ describe('<Accordion />', () => {
     function CustomContent() {
       return <div>Hello</div>;
     }
-    const { queryByText, getByText, setProps } = render(
-      <Accordion expanded TransitionComponent={NoTransitionCollapse}>
+    const { setProps } = render(
+      <Accordion expanded slots={{ transition: NoTransitionCollapse }}>
         <AccordionSummary />
         <CustomContent />
       </Accordion>,
     );
 
     // Collapse is initially shown
-    expect(getByText('Hello')).toBeVisible();
+    expect(screen.getByText('Hello')).toBeVisible();
 
     // Hide the collapse
     setProps({ expanded: false });
-    expect(queryByText('Hello')).to.equal(null);
+    expect(screen.queryByText('Hello')).to.equal(null);
   });
 
   it('should handle the `square` prop', () => {
@@ -168,13 +176,8 @@ describe('<Accordion />', () => {
   });
 
   describe('prop: children', () => {
-    describe('first child', () => {
-      beforeEach(function beforeEachCallback() {
-        if (reactMajor >= 19) {
-          // React 19 removed prop types support
-          this.skip();
-        }
-
+    describe.skipIf(reactMajor >= 19)('first child', () => {
+      beforeEach(() => {
         PropTypes.resetWarningCache();
       });
 
@@ -216,20 +219,20 @@ describe('<Accordion />', () => {
   });
 
   it('should warn when switching from controlled to uncontrolled', () => {
-    const wrapper = render(
-      <Accordion expanded TransitionComponent={NoTransition}>
+    const { setProps } = render(
+      <Accordion expanded slots={{ transition: NoTransition }}>
         {minimalChildren}
       </Accordion>,
     );
 
-    expect(() => wrapper.setProps({ expanded: undefined })).to.toErrorDev(
+    expect(() => setProps({ expanded: undefined })).to.toErrorDev(
       'MUI: A component is changing the controlled expanded state of Accordion to be uncontrolled.',
     );
   });
 
   it('should warn when switching between uncontrolled to controlled', () => {
     const { setProps } = render(
-      <Accordion TransitionComponent={NoTransition}>{minimalChildren}</Accordion>,
+      <Accordion slots={{ transition: NoTransition }}>{minimalChildren}</Accordion>,
     );
 
     expect(() => setProps({ expanded: true })).toErrorDev(
@@ -237,39 +240,39 @@ describe('<Accordion />', () => {
     );
   });
 
-  describe('prop: TransitionProps', () => {
+  describe('slotProps.transition', () => {
     it('should apply properties to the Transition component', () => {
-      const { getByTestId } = render(
-        <Accordion TransitionProps={{ 'data-testid': 'transition-testid' }}>
+      render(
+        <Accordion slotProps={{ transition: { 'data-testid': 'transition-testid' } }}>
           {minimalChildren}
         </Accordion>,
       );
 
-      expect(getByTestId('transition-testid')).not.to.equal(null);
+      expect(screen.getByTestId('transition-testid')).not.to.equal(null);
     });
   });
 
   describe('details unmounting behavior', () => {
     it('does not unmount by default', () => {
-      const { queryByTestId } = render(
+      render(
         <Accordion expanded={false}>
           <AccordionSummary>Summary</AccordionSummary>
           <div data-testid="details">Details</div>
         </Accordion>,
       );
 
-      expect(queryByTestId('details')).not.to.equal(null);
+      expect(screen.queryByTestId('details')).not.to.equal(null);
     });
 
     it('unmounts if opted in via slotProps.transition', () => {
-      const { queryByTestId } = render(
+      render(
         <Accordion expanded={false} slotProps={{ transition: { unmountOnExit: true } }}>
           <AccordionSummary>Summary</AccordionSummary>
           <div data-testid="details">Details</div>
         </Accordion>,
       );
 
-      expect(queryByTestId('details')).to.equal(null);
+      expect(screen.queryByTestId('details')).to.equal(null);
     });
   });
 
@@ -298,7 +301,7 @@ describe('<Accordion />', () => {
     ];
 
     transitions.forEach((transition) => {
-      it(transition.name, () => {
+      it(`${transition.name}`, () => {
         render(
           <Accordion
             defaultExpanded
@@ -315,5 +318,16 @@ describe('<Accordion />', () => {
         expect(screen.getByRole('region')).not.to.have.attribute('ownerstate');
       });
     });
+  });
+
+  it('should allow custom role for region slot via slotProps', () => {
+    render(
+      <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        Details
+      </Accordion>,
+    );
+
+    expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
 });

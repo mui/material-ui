@@ -1,7 +1,6 @@
-import * as React from 'react';
 import Switch from '@mui/material/Switch';
 
-const label = { inputProps: { 'aria-label': 'Size switch demo' } };
+const label = { slotProps: { input: { 'aria-label': 'Size switch demo' } } };
 
 export default function SwitchesSize() {
   return (

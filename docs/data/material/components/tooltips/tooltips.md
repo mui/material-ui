@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Tooltip component
 components: Tooltip
-githubLabel: 'component: tooltip'
+githubLabel: 'scope: tooltip'
 materialDesign: https://m2.material.io/components/tooltips
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 githubSource: packages/mui-material/src/Tooltip
@@ -14,11 +14,29 @@ githubSource: packages/mui-material/src/Tooltip
 
 When activated, Tooltips display a text label identifying an element, such as a description of its function.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic tooltip
 
 {{"demo": "BasicTooltip.js"}}
+
+## Labels and descriptions
+
+By default, the tooltip only labels its child element.
+This is notably different from `title` which can either label or describe its child depending on whether the child already has a label.
+For example, in the element below, the `title` acts as an accessible description:
+
+```html
+<button title="some more information">A button</button>
+```
+
+If you want the tooltip to act as an accessible description, you can pass the `describeChild` prop.
+You shouldn't use `describeChild` if the tooltip provides the only visual label.
+In that case, the child would have no accessible name and the tooltip would violate [WCAG 2.2 Success Criterion 2.5.3](https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html).
+If the trigger already has either visible text or an `aria-label`, use the tooltip as a description and pass the `describeChild` prop.
+Otherwise, you can use the default behavior and let the tooltip label the trigger.
+
+{{"demo": "AccessibilityTooltips.js"}}
 
 ## Positioned tooltips
 
@@ -121,9 +139,9 @@ The `Tooltip` wraps long text by default to make it readable.
 
 ## Interactive
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)).
+Tooltips are interactive by default (to pass [WCAG 2.2 Success Criterion 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html)).
 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
-You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+You can disable this behavior (thus failing the success criterion which is required to reach Level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 
@@ -142,7 +160,7 @@ If you're not wrapping a Material UI component that inherits from `ButtonBase`,
 :::
 
 ```jsx
-<Tooltip title="You don't have permission to do this">
+<Tooltip describeChild title="You don't have permission to do this">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
       A disabled button
@@ -153,7 +171,7 @@ If you're not wrapping a Material UI component that inherits from `ButtonBase`,
 
 ## Transitions
 
-Use a different transition.
+Use `slots.transition` and `slotProps.transition` to use a different transition.
 
 {{"demo": "TransitionsTooltips.js"}}
 
@@ -183,16 +201,4 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
-By default, the tooltip only labels its child element.
-This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.
-For example, in:
-
-```html
-<button title="some more information">A button</button>
-```
-
-the `title` acts as an accessible description.
-If you want the tooltip to act as an accessible description you can pass `describeChild`.
-Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
-
-{{"demo": "AccessibilityTooltips.js"}}
+Tooltips should wrap triggers that are focusable and hoverable (for example, buttons) so that all users can activate them. When tooltips are displayed, they are automatically linked to the trigger. The trigger element is either labeled or described by the tooltip content. However, tooltip content should not be used as a full text alternative for truncated content.

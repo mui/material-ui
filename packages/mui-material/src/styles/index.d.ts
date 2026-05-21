@@ -1,3 +1,5 @@
+import { DistributiveOmit } from '@mui/types';
+
 export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
@@ -90,7 +92,31 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<ClassNameMap<ClassKey>>;
+  classes?: Partial<ClassNameMap<ClassKey>> | undefined;
+}
+
+/**
+ * All standard components exposed by `material-ui` are `StyledComponents` with
+ * certain `classes`, on which one can also set a top-level `className` and inline
+ * `style`.
+ * @deprecated will be removed in v5 for internal usage only
+ */
+export type StandardProps<
+  ComponentProps,
+  ClassKey extends string,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
+  StyledComponentProps<ClassKey> & {
+    className?: string | undefined;
+    ref?:
+      | (ComponentProps extends { ref?: infer RefType | undefined } ? RefType : React.Ref<unknown>)
+      | undefined;
+    style?: React.CSSProperties | undefined;
+  };
+
+export namespace PropTypes {
+  // keeping the type structure for backwards compat
+  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
 export { default as makeStyles } from './makeStyles';
@@ -134,6 +160,8 @@ export type {
   ThemeCssVar,
   ThemeCssVarOverrides,
   ColorSystemOptions,
+  Shape,
+  ShapeOptions,
 } from './createThemeWithVars';
 export { default as getOverlayAlpha } from './getOverlayAlpha';
 export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { Container, containerClasses as classes } from '@mui/system';
@@ -17,7 +16,6 @@ describe('<Container />', () => {
     render,
     refInstanceof: window.HTMLElement,
     muiName: 'MuiContainer',
-    skip: ['componentsProp'],
     testVariantProps: { fixed: true },
   }));
 

@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Drawer component
 components: Drawer, SwipeableDrawer
-githubLabel: 'component: drawer'
+githubLabel: 'scope: drawer'
 materialDesign: https://m2.material.io/components/navigation-drawer
 githubSource: packages/mui-material/src/Drawer
 ---
@@ -15,7 +15,7 @@ A navigation drawer can either be permanently on-screen or controlled by a navig
 
 [Side sheets](https://m2.material.io/components/sheets-side) are supplementary surfaces primarily used on tablet and desktop.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Temporary drawer
 
@@ -84,6 +84,11 @@ You can change this default behavior with the `ModalProps` prop, but you may enc
 />
 ```
 
+### Transition
+
+Temporary drawers use [Slide](/material-ui/transitions/#slide) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
 ## Responsive drawer
 
 You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
@@ -135,11 +140,3 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
-
-## Experimental APIs - Toolpad
-
-### Dashboard Layout
-
-The [DashboardLayout](https://mui.com/toolpad/core/react-dashboard-layout/) component from `@toolpad/core` is the starting point for dashboarding applications. It takes care of application layout, theming, navigation, and more. An example usage of this component:
-
-{{"demo": "../app-bar/DashboardLayoutBasic.js", "height": 400, "iframe": true, "isolated": true, "bg": "inline", "defaultExpanded": false}}

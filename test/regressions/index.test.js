@@ -1,9 +1,12 @@
 import * as url from 'url';
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
+import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
+import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
 
 async function main() {
   const baseUrl = 'http://localhost:5001';
@@ -53,6 +56,8 @@ async function main() {
   });
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
+  const axeSource = await fs.readFile(AXE_SCRIPT, 'utf8');
+
   /**
    * @param {string} route
    */
@@ -79,7 +84,7 @@ async function main() {
 
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
-    await fse.ensureDir(path.dirname(screenshotPath));
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
 
     const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
     const screenshotTarget = explicitScreenshotTarget || testcase;
@@ -92,7 +97,8 @@ async function main() {
   }
 
   // prepare screenshots
-  await fse.emptyDir(screenshotDir);
+  await fs.rm(screenshotDir, { recursive: true, force: true });
+  await fs.mkdir(screenshotDir, { recursive: true });
 
   describe('visual regressions', () => {
     beforeEach(async () => {
@@ -101,19 +107,68 @@ async function main() {
       });
     });
 
-    after(async () => {
+    afterAll(async () => {
       await browser.close();
     });
 
     routes.forEach((route) => {
-      it(`creates screenshots of ${route}`, async function test() {
+      const parsed = parseRoute(route);
+      const screenshotRule = parsed ? getConfig(SCREENSHOT_RULES, parsed.path) : undefined;
+      const a11yRule = parsed ? getConfig(A11Y_RULES, parsed.path) : undefined;
+      const runScreenshot = parsed ? (screenshotRule?.enabled ?? true) : true;
+      const runA11y = a11yRule?.enabled === true;
+      if (!runScreenshot && !runA11y) {
+        return;
+      }
+
+      let action;
+      if (runA11y && runScreenshot) {
+        action = 'creates screenshots and runs a11y on';
+      } else if (runA11y) {
+        action = 'runs a11y on';
+      } else {
+        action = 'creates screenshots of';
+      }
+
+      it(`${action} ${route}`, async function test(ctx) {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {
-          this.timeout(0);
+          this?.timeout?.(0);
         }
 
         const testcase = await renderFixture(route);
-        await takeScreenshot({ testcase, route });
+
+        if (screenshotRule?.waitForSelector) {
+          await page.waitForSelector(screenshotRule.waitForSelector);
+        }
+
+        // Run axe before the screenshot (if any) so it observes the natural
+        // DOM — Playwright's `animations: 'disabled'` injects inline
+        // `!important` styles that otherwise perturb rule applicability.
+        if (runA11y) {
+          // Inject axe fresh each run — page.addScriptTag can leak between navigations.
+          await page.evaluate(axeSource);
+          const results = await page.evaluate(
+            async ({ element, disabledRules, tags }) => {
+              window.axe.configure({
+                rules: disabledRules.map((id) => ({ id, enabled: false })),
+              });
+              return window.axe.run(element, {
+                runOnly: { type: 'tag', values: tags },
+              });
+            },
+            { element: testcase, disabledRules: GLOBAL_DISABLED_RULES, tags: WCAG_TAGS },
+          );
+          recordA11y(ctx, results, {
+            slug: parsed.slug,
+            demo: parsed.demo,
+            skipAssertions: a11yRule.skipAssertions,
+          });
+        }
+
+        if (runScreenshot) {
+          await takeScreenshot({ testcase, route });
+        }
       });
     });
 
@@ -159,6 +214,36 @@ async function main() {
       });
     });
 
+    describe('Switch', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-Switch/SimpleSwitch');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-Switch/SimpleSwitchForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
+    describe('TextField', () => {
+      it('should render standard variant correctly in forced-colors mode', async () => {
+        await page.emulateMedia({ forcedColors: 'active' });
+        try {
+          const testcase = await renderFixture('/regression-TextField/StandardTextField');
+          await takeScreenshot({
+            testcase,
+            route: '/regression-TextField/StandardTextFieldForcedColors',
+          });
+        } finally {
+          await page.emulateMedia({ forcedColors: 'none' });
+        }
+      });
+    });
+
     describe('Textarea', () => {
       it('should keep input caret position at the end when adding a newline', async () => {
         await renderFixture('/regression-Textarea/TextareaAutosize');
@@ -184,13 +269,6 @@ async function main() {
       });
     });
   });
-
-  run();
 }
 
-main().catch((error) => {
-  // error during setup.
-  // Throwing lets mocha hang.
-  console.error(error);
-  process.exit(1);
-});
+await main();

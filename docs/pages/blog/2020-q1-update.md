@@ -46,15 +46,12 @@ Here are the most significant improvements since the beginning of the year:
   </video>
 
 - ⚛️ We have worked on improving developer experience inside text editors.
-
   - We have migrated prop descriptions from JSDoc to TypeScript for 60% of the components. Back-and-forths with the documentation API will be less frequent:
 
   ![props](/static/blog/2020-q1-update/props.png)
-
   - The color modules come with new previews:
 
   ![colors](/static/blog/2020-q1-update/colors.png)
-
   - We have collaborated with [Andy Edwards](https://github.com/jedwards1211) to provide [snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) with Visual Studio Code:
 
   ![snippets](/static/blog/2020-q1-update/snippets.gif)
@@ -98,7 +95,6 @@ We'll do our best, no guarantee!
 
 - 🔥 We will start to work on the [next major: v5](https://github.com/mui/material-ui/issues/20012).
   You can expect the following:
-
   - A feature freeze on v4.
   - The introduction of deprecation messages in the next v4 minors. These messages will help developers upgrade to v5.
   - A progressive bug fixes freeze on v4, with the exception of security issues and important bugs.

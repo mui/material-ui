@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
@@ -31,7 +30,7 @@ export default function HalfBorderedGrid() {
         })}
       >
         {[...Array(6)].map((_, index) => (
-          <Grid key={index} size={colWidth} minHeight={160} />
+          <Grid key={index} size={colWidth} sx={{ minHeight: 160 }} />
         ))}
       </Grid>
     </Box>

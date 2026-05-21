@@ -8,13 +8,10 @@
       "description": "If <code>true</code>, the first option is automatically highlighted."
     },
     "autoSelect": {
-      "description": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.<br>When using the <code>freeSolo</code> mode, the typed value will be the input value if the Autocomplete loses focus without highlighting an option."
+      "description": "If <code>true</code>, the value is updated when the input loses focus under one of these conditions:<br>- An option highlighted via keyboard navigation or <code>autoHighlight</code> is selected.   Hover and touch highlights are ignored. - Otherwise, in <code>freeSolo</code> mode, the typed text becomes the value."
     },
     "blurOnSelect": {
       "description": "<p>Control if the input should be blurred when an option is selected:</p>\n<ul>\n<li><code>false</code> the input is not blurred.</li>\n<li><code>true</code> the input is always blurred.</li>\n<li><code>touch</code> the input is blurred after a touch event.</li>\n<li><code>mouse</code> the input is blurred after a mouse event.</li>\n</ul>\n"
-    },
-    "ChipProps": {
-      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/chip/\"><code>Chip</code></a> element."
     },
     "classes": { "description": "Override or extend the styles applied to the component." },
     "clearIcon": { "description": "The icon to display in place of the default clear icon." },
@@ -30,7 +27,6 @@
     "closeText": {
       "description": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
-    "componentsProps": { "description": "The props used for each slot inside." },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
@@ -51,8 +47,8 @@
     "filterOptions": {
       "description": "A function that determines the filtered options to be rendered on search.",
       "typeDescriptions": {
-        "options": "The options to render.",
-        "state": "The state of the component."
+        "options": { "name": "options", "description": "The options to render." },
+        "state": { "name": "state", "description": "The state of the component." }
       }
     },
     "filterSelectedOptions": {
@@ -67,22 +63,35 @@
     },
     "getLimitTagsText": {
       "description": "The label to display when the tags are truncated (<code>limitTags</code>).",
-      "typeDescriptions": { "more": "The number of truncated tags." }
+      "typeDescriptions": {
+        "more": { "name": "more", "description": "The number of truncated tags." }
+      }
     },
     "getOptionDisabled": {
       "description": "Used to determine the disabled state for a given option.",
-      "typeDescriptions": { "option": "The option to test." }
+      "typeDescriptions": {
+        "option": {
+          "name": "option",
+          "description": "The option to test.",
+          "argType": "Value",
+          "argTypeDescription": "The option shape. Will be the same shape as an item of the options."
+        }
+      }
     },
     "getOptionKey": {
       "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).",
-      "typeDescriptions": { "option": "The option to get the key for." }
+      "typeDescriptions": {
+        "option": { "name": "option", "description": "The option to get the key for." }
+      }
     },
     "getOptionLabel": {
       "description": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string."
     },
     "groupBy": {
       "description": "If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.",
-      "typeDescriptions": { "option": "The Autocomplete option." }
+      "typeDescriptions": {
+        "option": { "name": "option", "description": "The Autocomplete option." }
+      }
     },
     "handleHomeEndKeys": {
       "description": "If <code>true</code>, the component handles the &quot;Home&quot; and &quot;End&quot; keys when the popup is open. It should move focus to the first option and last option, respectively."
@@ -96,13 +105,14 @@
     "inputValue": { "description": "The input value." },
     "isOptionEqualToValue": {
       "description": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.",
-      "typeDescriptions": { "option": "The option to test.", "value": "The value to test against." }
+      "typeDescriptions": {
+        "option": { "name": "option", "description": "The option to test." },
+        "value": { "name": "value", "description": "The value to test against." }
+      }
     },
     "limitTags": {
       "description": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit."
     },
-    "ListboxComponent": { "description": "The component used to render the listbox." },
-    "ListboxProps": { "description": "Props applied to the Listbox element." },
     "loading": {
       "description": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, for example <code>options</code> are empty)."
     },
@@ -118,37 +128,51 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value of the component.",
-        "reason": "One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value of the component." },
+        "reason": {
+          "name": "reason",
+          "description": "One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;."
+        }
       }
     },
     "onClose": {
       "description": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>."
+        }
       }
     },
     "onHighlightChange": {
       "description": "Callback fired when the highlight option changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "option": "The highlighted option.",
-        "reason": "Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "option": { "name": "option", "description": "The highlighted option." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>."
+        }
       }
     },
     "onInputChange": {
       "description": "Callback fired when the input value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "value": "The new value of the text input.",
-        "reason": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "value": { "name": "value", "description": "The new value of the text input." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>"
+        }
       }
     },
     "onOpen": {
       "description": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "openOnFocus": { "description": "If <code>true</code>, the popup will open on input focus." },
@@ -156,41 +180,45 @@
       "description": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>."
     },
     "options": { "description": "A list of options that will be shown in the Autocomplete." },
-    "PaperComponent": { "description": "The component used to render the body of the popup." },
-    "PopperComponent": { "description": "The component used to position the popup." },
     "popupIcon": { "description": "The icon to display in place of the default popup icon." },
     "readOnly": {
       "description": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted."
     },
     "renderGroup": {
       "description": "Render the group.",
-      "typeDescriptions": { "params": "The group to render." }
+      "typeDescriptions": { "params": { "name": "params", "description": "The group to render." } }
     },
-    "renderInput": { "description": "Render the input." },
+    "renderInput": {
+      "description": "Render the input.<br><strong>Note:</strong> The <code>renderInput</code> prop must return a <code>TextField</code> component or a compatible custom component that correctly forwards <code>InputProps.ref</code> and spreads <code>inputProps</code>. This ensures proper integration with the Autocomplete&#39;s internal logic (e.g., focus management and keyboard navigation).<br>Avoid using components like <code>DatePicker</code> or <code>Select</code> directly, as they may not forward the required props, leading to runtime errors or unexpected behavior."
+    },
     "renderOption": {
       "description": "Render the option, use <code>getOptionLabel</code> by default.",
       "typeDescriptions": {
-        "props": "The props to apply on the li element.",
-        "option": "The option to render.",
-        "state": "The state of each option.",
-        "ownerState": "The state of the Autocomplete component."
-      }
-    },
-    "renderTags": {
-      "description": "Render the selected value when doing multiple selections.",
-      "typeDescriptions": {
-        "value": "The <code>value</code> provided to the component.",
-        "getTagProps": "A tag props getter.",
-        "ownerState": "The state of the Autocomplete component."
+        "props": { "name": "props", "description": "The props to apply on the li element." },
+        "option": { "name": "option", "description": "The option to render." },
+        "state": { "name": "state", "description": "The state of each option." },
+        "ownerState": {
+          "name": "ownerState",
+          "description": "The state of the Autocomplete component."
+        }
       }
     },
     "renderValue": {
       "description": "Renders the selected value(s) as rich content in the input for both single and multiple selections.",
       "typeDescriptions": {
-        "value": "The <code>value</code> provided to the component.",
-        "getItemProps": "The value item props.",
-        "ownerState": "The state of the Autocomplete component."
+        "value": {
+          "name": "value",
+          "description": "The <code>value</code> provided to the component."
+        },
+        "getItemProps": { "name": "getItemProps", "description": "The value item props." },
+        "ownerState": {
+          "name": "ownerState",
+          "description": "The state of the Autocomplete component."
+        }
       }
+    },
+    "resetHighlightOnMouseLeave": {
+      "description": "If <code>true</code>, clears an option highlighted by mouse movement when the mouse leaves the listbox. This behavior will be enabled by default in the next major version."
     },
     "selectOnFocus": {
       "description": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value."
@@ -206,10 +234,6 @@
     }
   },
   "classDescriptions": {
-    "clearIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the clear indicator"
-    },
     "endAdornment": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the endAdornment element"
@@ -271,16 +295,11 @@
       "nodeName": "the popper element",
       "conditions": "<code>disablePortal={true}</code>"
     },
-    "popupIndicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the popup indicator"
-    },
     "popupIndicatorOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the popup indicator",
       "conditions": "the popup is open"
     },
-    "root": { "description": "Styles applied to the root element." },
     "tag": {
       "description": "Styles applied to {{nodeName}}, {{conditions}}.",
       "nodeName": "the tag elements",
@@ -298,8 +317,11 @@
     }
   },
   "slotDescriptions": {
+    "clearIndicator": "The component used to render the clear indicator element.",
     "listbox": "The component used to render the listbox.",
     "paper": "The component used to render the body of the popup.",
-    "popper": "The component used to position the popup."
+    "popper": "The component used to position the popup.",
+    "popupIndicator": "The component used to render the popup indicator element.",
+    "root": "The component that renders the root."
   }
 }

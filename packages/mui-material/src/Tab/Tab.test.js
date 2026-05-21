@@ -1,8 +1,9 @@
-import { expect } from 'chai';
 import * as React from 'react';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, simulatePointerDevice } from '@mui/internal-test-utils';
+import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -14,36 +15,50 @@ describe('<Tab />', () => {
   describeConformance(<Tab textColor="inherit" />, () => ({
     classes,
     inheritComponent: ButtonBase,
-    render,
+    render: (node) => {
+      const value = node.props.value ?? 0;
+      const { container, ...other } = render(
+        <Tabs value={value}>{React.cloneElement(node, { value })}</Tabs>,
+      );
+
+      return {
+        container: container.firstChild.firstChild.firstChild,
+        ...other,
+      };
+    },
     muiName: 'MuiTab',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentProp'],
   }));
 
   it('should have a ripple', async () => {
-    const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
+    const { container } = render(
+      <Tabs value={0}>
+        <Tab value={0} TouchRippleProps={{ className: 'touch-ripple' }} />
+      </Tabs>,
+    );
     await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', async () => {
     const { container } = render(
-      <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
+      <Tabs value={0}>
+        <Tab value={0} disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />
+      </Tabs>,
     );
 
     await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // JSDOM doesn't support :focus-visible
-      this.skip();
-    }
-
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())('should have a focusRipple', async function test() {
     const { container } = render(
-      <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <Tabs value={0}>
+        <Tab value={0} TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />
+      </Tabs>,
     );
     simulatePointerDevice();
 
@@ -54,7 +69,13 @@ describe('<Tab />', () => {
 
   it('can disable the focusRipple', async () => {
     const { container } = render(
-      <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <Tabs value={0}>
+        <Tab
+          value={0}
+          disableFocusRipple
+          TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }}
+        />
+      </Tabs>,
     );
     simulatePointerDevice();
 
@@ -65,9 +86,13 @@ describe('<Tab />', () => {
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
-      const { getByRole } = render(<Tab selected textColor="secondary" />);
+      render(
+        <Tabs value={0} textColor="secondary">
+          <Tab value={0} />
+        </Tabs>,
+      );
 
-      const tab = getByRole('tab');
+      const tab = screen.getByRole('tab');
       expect(tab).to.have.class(classes.root);
       expect(tab).to.have.class(classes.selected);
       expect(tab).to.have.class(classes.textColorSecondary);
@@ -77,9 +102,13 @@ describe('<Tab />', () => {
 
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
-      const { getByRole } = render(<Tab disabled textColor="secondary" />);
+      render(
+        <Tabs value={0} textColor="secondary">
+          <Tab value={0} disabled />
+        </Tabs>,
+      );
 
-      const tab = getByRole('tab');
+      const tab = screen.getByRole('tab');
       expect(tab).to.have.class(classes.root);
       expect(tab).to.have.class(classes.disabled);
       expect(tab).to.have.class(classes.textColorSecondary);
@@ -89,57 +118,99 @@ describe('<Tab />', () => {
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const { getByRole } = render(<Tab onClick={handleClick} />);
+      render(
+        <Tabs value={0}>
+          <Tab value={0} onClick={handleClick} />
+        </Tabs>,
+      );
 
-      getByRole('tab').click();
+      screen.getByRole('tab').click();
 
       expect(handleClick.callCount).to.equal(1);
     });
   });
 
+  describe('prop: onFocus', () => {
+    it('should be called once when focus is triggered', async () => {
+      const handleFocus = spy();
+      const { user } = render(
+        <Tabs value={0}>
+          <Tab value={0} onFocus={handleFocus} />
+        </Tabs>,
+      );
+
+      await user.tab();
+
+      expect(handleFocus.callCount).to.equal(1);
+    });
+  });
+
   describe('prop: label', () => {
     it('should render label', () => {
-      const { getByRole } = render(<Tab label="foo" />);
+      render(
+        <Tabs value={0}>
+          <Tab value={0} label="foo" />
+        </Tabs>,
+      );
 
-      expect(getByRole('tab')).to.have.text('foo');
+      expect(screen.getByRole('tab')).to.have.text('foo');
     });
   });
 
   describe('prop: wrapped', () => {
     it('should add the wrapped class', () => {
-      const { getByRole } = render(<Tab wrapped />);
+      render(
+        <Tabs value={0}>
+          <Tab value={0} wrapped />
+        </Tabs>,
+      );
 
-      expect(getByRole('tab')).to.have.class(classes.wrapped);
+      expect(screen.getByRole('tab')).to.have.class(classes.wrapped);
     });
   });
 
   describe('prop: icon', () => {
     it('should render icon element', () => {
-      const { getByTestId } = render(<Tab icon={<div data-testid="icon" />} />);
+      render(
+        <Tabs value={0}>
+          <Tab value={0} icon={<div data-testid="icon" />} />
+        </Tabs>,
+      );
 
-      expect(getByTestId('icon')).not.to.equal(null);
+      expect(screen.getByTestId('icon')).not.to.equal(null);
     });
 
     it('should add a classname when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
-      const wrapper = getByRole('tab').children[0];
-      expect(wrapper).to.have.class(classes.iconWrapper);
+      render(
+        <Tabs value={0}>
+          <Tab value={0} icon={<div className="test-icon" />} label="foo" />
+        </Tabs>,
+      );
+      const wrapper = screen.getByRole('tab').children[0];
       expect(wrapper).to.have.class(classes.icon);
       expect(wrapper).to.have.class('test-icon');
     });
 
     it('should have bottom margin when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div />} label="foo" />);
-      const wrapper = getByRole('tab').children[0];
+      render(
+        <Tabs value={0}>
+          <Tab value={0} icon={<div />} label="foo" />
+        </Tabs>,
+      );
+      const wrapper = screen.getByRole('tab').children[0];
       expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
     });
   });
 
   describe('prop: textColor', () => {
     it('should support the inherit value', () => {
-      const { getByRole } = render(<Tab selected textColor="inherit" />);
+      render(
+        <Tabs value={0} textColor="inherit">
+          <Tab value={0} />
+        </Tabs>,
+      );
 
-      const tab = getByRole('tab');
+      const tab = screen.getByRole('tab');
       expect(tab).to.have.class(classes.selected);
       expect(tab).to.have.class(classes.textColorInherit);
       expect(tab).to.have.class(classes.root);
@@ -148,58 +219,32 @@ describe('<Tab />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const { getByRole } = render(<Tab fullWidth />);
+      render(
+        <Tabs value={0} variant="fullWidth">
+          <Tab value={0} />
+        </Tabs>,
+      );
 
-      expect(getByRole('tab')).to.have.class(classes.fullWidth);
+      expect(screen.getByRole('tab')).to.have.class(classes.fullWidth);
     });
   });
 
   describe('prop: style', () => {
     it('should be able to override everything', () => {
-      const { getByRole } = render(
-        <Tab fullWidth style={{ width: '80%', color: 'red', alignText: 'center' }} />,
+      render(
+        <Tabs value={0} variant="fullWidth">
+          <Tab value={0} style={{ width: '80%', color: 'red', alignText: 'center' }} />
+        </Tabs>,
       );
 
-      const { style } = getByRole('tab');
+      const { style } = screen.getByRole('tab');
       expect(style).to.have.property('width', '80%');
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
     });
   });
 
-  it('should apply iconWrapper styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
-    const theme = createTheme({
-      components: {
-        MuiTab: {
-          styleOverrides: {
-            iconWrapper: {
-              backgroundColor: 'rgb(0, 0, 255)',
-            },
-          },
-        },
-      },
-    });
-
-    const { getByRole } = render(
-      <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
-      </ThemeProvider>,
-    );
-    const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-    expect(icon).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-  });
-
-  it('should apply icon styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-
+  it.skipIf(isJsdom())('should apply icon styles from theme', function test() {
     const theme = createTheme({
       components: {
         MuiTab: {
@@ -212,49 +257,40 @@ describe('<Tab />', () => {
       },
     });
 
-    const { getByRole } = render(
+    render(
       <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
+        <Tabs value={0}>
+          <Tab value={0} icon={<div>hello</div>} label="icon" />
+        </Tabs>
       </ThemeProvider>,
     );
-    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
+
+    const icon = screen.getByRole('tab').querySelector(`.${classes.icon}`);
     expect(icon).toHaveComputedStyle({
       backgroundColor: 'rgb(0, 0, 255)',
     });
   });
 
-  it('icon styles should override iconWrapper styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  describe('prop: nativeButton', () => {
+    it('forwards nativeButton={false} and preserves role="tab" over pseudo-button role', () => {
+      const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    const theme = createTheme({
-      components: {
-        MuiTab: {
-          styleOverrides: {
-            iconWrapper: {
-              backgroundColor: 'rgb(255, 0, 0)',
-            },
-            icon: {
-              backgroundColor: 'rgb(0, 0, 255)',
-            },
-          },
-        },
-      },
-    });
+      render(
+        <Tabs value={0}>
+          <Tab value={0} component={CustomSpan} nativeButton={false} />
+        </Tabs>,
+      );
 
-    const { getByRole } = render(
-      <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
-      </ThemeProvider>,
-    );
-    const icon = getByRole('tab').querySelector(`.${classes.icon}`);
-    const iconWrapper = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
-    expect(iconWrapper).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
-    });
-    expect(icon).toHaveComputedStyle({
-      backgroundColor: 'rgb(0, 0, 255)',
+      const tab = screen.getByRole('tab');
+      expect(tab).to.have.tagName('SPAN');
+      expect(tab).to.have.attribute('role', 'tab');
+      expect(tab).not.to.have.attribute('type');
+
+      // Proves nativeButton={false} was forwarded — without it, ButtonBase
+      // would warn about a non-button host with nativeButton omitted.
+      expect(errorSpy.mock.calls.length).to.equal(0);
+      errorSpy.mockRestore();
     });
   });
 });

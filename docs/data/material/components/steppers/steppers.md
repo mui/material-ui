@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
-githubLabel: 'component: stepper'
+githubLabel: 'scope: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
 githubSource: packages/mui-material/src/Stepper
 ---
@@ -17,7 +17,7 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
@@ -72,6 +72,8 @@ The use of the `StepButton` here demonstrates clickable step labels, as well as 
 flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to
 determine when all steps are completed (or even if they need to be completed).
 
+Actionable steps mean that they control the content update of a section. From an accessibility standpoint, this means that each `StepButton` requires an `aria-controls` attribute pointing at the content section element.
+
 {{"demo": "HorizontalNonLinearStepper.js"}}
 
 ### Alternative label
@@ -97,13 +99,24 @@ Vertical steppers are designed for narrow screen sizes. They are ideal for mobil
 
 {{"demo": "VerticalLinearStepper.js"}}
 
-### Performance
+### Alternative label
+
+Use `alternativeLabel` prop on the vertical `Stepper` component to reverse the placement of the label and content.
+
+{{"demo": "VerticalLinearAlternativeLabelStepper.js"}}
+
+## Transition
+
+`StepContent` uses [Collapse](/material-ui/transitions/#collapse) by default.
+Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
+
+## Performance
 
 The content of a step is unmounted when closed.
 If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
 
 ```jsx
-<StepContent TransitionProps={{ unmountOnExit: false }} />
+<StepContent slotProps={{ transition: { unmountOnExit: false } }} />
 ```
 
 ## Mobile stepper

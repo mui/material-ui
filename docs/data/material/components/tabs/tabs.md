@@ -2,10 +2,9 @@
 productId: material-ui
 title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
-githubLabel: 'component: tabs'
+githubLabel: 'scope: tabs'
 materialDesign: https://m2.material.io/components/tabs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
-unstyled: /base-ui/react-tabs/
 githubSource: packages/mui-material/src/Tabs
 ---
 
@@ -15,7 +14,7 @@ githubSource: packages/mui-material/src/Tabs
 
 Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -115,7 +114,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedTabs.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/tabs-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/tabs).
 
 ## Vertical tabs
 

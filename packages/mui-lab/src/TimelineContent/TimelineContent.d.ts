@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
-import { InternalStandardProps as StandardProps, TypographyProps } from '@mui/material';
+import { TypographyProps } from '@mui/material/Typography';
+import { InternalStandardProps as StandardProps } from '@mui/material/internal';
 import { TimelineContentClasses } from './timelineContentClasses';
 
 export interface TimelineContentProps extends StandardProps<TypographyProps> {
@@ -12,11 +13,11 @@ export interface TimelineContentProps extends StandardProps<TypographyProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<TimelineContentClasses>;
+  classes?: Partial<TimelineContentClasses> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

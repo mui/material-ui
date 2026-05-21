@@ -2,36 +2,22 @@ name: CI
 
 on:
   push:
-    branches-ignore:
-      # Renovate branches are always Pull Requests.
-      # We don't need to run CI twice (push+pull_request)
-      - 'renovate/**'
+    branches:
+      # should sync with ci-check.yml as a workaround to bypass github checks
+      - master
+      - next
+      - v*.x
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
-      - 'examples/**'
+      - 'docs/**'
 
 permissions: {}
 
 jobs:
   continuous-releases:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-      - name: Set up pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 20
-          cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: npm install -g npm@latest
-      - run: pnpm install:codesandbox
-      - run: pnpm build:codesandbox
-      - run: pnpm pkg-pr-new-release
+    name: Continuous releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@fb2e995849648cc3f6e43ed4ad10b7bad0750d7c # master
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
@@ -41,28 +27,64 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: echo '${{ github.actor }}'
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: pnpm/action-setup@91ab88e2619ed1f46221f0ba42d1492c02baf788 # v6.0.6
+      - name: Use Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: 20
+          node-version: '22.18.0'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
-      - run: pnpm build:ci
+      - name: Cache Next.js build
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nextjs-
+      - run: pnpm release:build
+      - name: Build docs
+        run: pnpm docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=6144
-      - run: pnpm release:changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: pnpm validate-declarations
-      - name: pnpm release:tag
+          # macOS-latest has 3 CPUs, but we get "EMFILE: too many open files" errors with that parallelism
+          # Limit Next.js to 2 CPUs to prevent file descriptor exhaustion. Empty string uses os.availableParallelism()
+          NEXT_PARALLELISM: ${{ runner.os == 'macOS' && '2' || '' }}
+          GITHUB_AUTH: Bearer ${{ secrets.GITHUB_TOKEN }}
+      # - run: pnpm release:changelog
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check docs links
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: pnpm docs:link-check
+      - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
+        if: failure()
+        run: cat ./docs/.next/export-detail.json || true
+      - name: Extract Vale version
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        id: vale-version
         run: |
-          git remote -v
-          pnpm release:tag --dryRun
+          VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
+          echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
+      - uses: vale-cli/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
+        continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          version: ${{ steps.vale-version.outputs.vale_version }}
+          # Errors should be more visible
+          fail_on_error: true
+          # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters
+          reporter: github-pr-check
+          # Required, set by GitHub actions automatically:
+          # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
+          token: ${{secrets.GITHUB_TOKEN}}

@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
 import cssContainerQueries from '../cssContainerQueries';
+import createBreakpoints from '../createBreakpoints/createBreakpoints';
+import createTheme from '../createTheme';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -13,47 +15,42 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = cssContainerQueries({
-    spacing: (val) => `${val * 10}px`,
-    breakpoints: {
-      keys: ['xs', 'sm', 'md', 'lg', 'xl'],
-      values: breakpointsValues,
-      unit: 'px',
-      up: (key) => {
-        return `@media (min-width:${breakpointsValues[key]}px)`;
+  const theme = createTheme(
+    cssContainerQueries({
+      spacing: (val) => `${val * 10}px`,
+      breakpoints: createBreakpoints({ values: breakpointsValues }),
+      palette: {
+        primary: {
+          main: 'rgb(0, 0, 255)',
+        },
+        secondary: {
+          main: 'rgb(0, 255, 0)',
+        },
       },
-    },
-    palette: {
-      primary: {
-        main: 'rgb(0, 0, 255)',
-      },
-      secondary: {
-        main: 'rgb(0, 255, 0)',
-      },
-    },
-    typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-      fontWeightLight: 300,
-      fontSize: 14,
-      body1: {
+      typography: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: '1rem',
-        letterSpacing: `${round(0.15 / 16)}em`,
-        fontWeight: 400,
-        lineHeight: 1.5,
+        fontWeightLight: 300,
+        fontSize: 14,
+        body1: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+        body2: {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
       },
-      body2: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: `${14 / 16}rem`,
-        letterSpacing: `${round(0.15 / 14)}em`,
-        fontWeight: 400,
-        lineHeight: 1.43,
-      },
-    },
-  });
+    }),
+  );
 
   describe('system', () => {
-    it('resolves system ', () => {
+    it('resolves system', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
@@ -109,6 +106,83 @@ describe('styleFunctionSx', () => {
           lineHeight: 1.43,
         },
         '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+        },
+      });
+    });
+
+    it('does not mutate theme.typography when using responsive typography shorthand (object syntax)', () => {
+      const body1Before = { ...theme.typography.body1 };
+
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: { sm: 'body1' }, width: { sm: '80%' }, mt: { sm: 4 } },
+      });
+
+      // Theme must not be mutated
+      expect(theme.typography.body1).to.deep.equal(body1Before);
+
+      // Output must contain both typography and sibling sx properties
+      expect(result).to.deep.equal({
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+          width: '80%',
+          marginTop: '40px',
+        },
+      });
+    });
+
+    it('does not mutate theme.typography when using responsive typography shorthand (array syntax)', () => {
+      const body2Before = { ...theme.typography.body2 };
+      const body1Before = { ...theme.typography.body1 };
+
+      const result = styleFunctionSx({
+        theme,
+        sx: { typography: ['body2', 'body1'], width: ['50%', '80%'] },
+      });
+
+      // Theme must not be mutated
+      expect(theme.typography.body2).to.deep.equal(body2Before);
+      expect(theme.typography.body1).to.deep.equal(body1Before);
+
+      // Output must contain both typography and sibling sx properties
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: `${14 / 16}rem`,
+          letterSpacing: `${round(0.15 / 14)}em`,
+          fontWeight: 400,
+          lineHeight: 1.43,
+          width: '50%',
+        },
+        '@media (min-width:600px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '1rem',
+          letterSpacing: `${round(0.15 / 16)}em`,
+          fontWeight: 400,
+          lineHeight: 1.5,
+          width: '80%',
+        },
+      });
+    });
+
+    it('preserves earlier responsive properties when typography shorthand targets the same breakpoint', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { color: { sm: 'red' }, typography: { sm: 'body1' } },
+      });
+
+      expect(result).to.deep.equal({
+        '@media (min-width:600px)': {
+          color: 'red',
           fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
           fontSize: '1rem',
           letterSpacing: `${round(0.15 / 16)}em`,
@@ -315,6 +389,23 @@ describe('styleFunctionSx', () => {
         '@container (min-width:1280px)': { margin: '20px' },
       });
     });
+
+    it('resolves container query shorthands for non-system CSS properties', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          opacity: {
+            '@xs': 0.1,
+            '@sm': 0.2,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { opacity: 0.1 },
+        '@container (min-width:600px)': { opacity: 0.2 },
+      });
+    });
   });
 
   describe('theme callback', () => {
@@ -475,6 +566,142 @@ describe('styleFunctionSx', () => {
           sx: [(t) => t.typography.unknown],
         }),
       ).not.to.throw();
+    });
+  });
+
+  describe('Modular CSS layers', () => {
+    it('should wrapped in @layer', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
+          m: 2,
+          p: 1,
+          fontFamily: 'default',
+          fontWeight: 'light',
+          fontSize: 'fontSize',
+          maxWidth: 'sm',
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+          outline: '1px solid',
+          outlineColor: 'rgb(0, 255, 0)',
+          margin: '20px',
+          padding: '10px',
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontWeight: 300,
+          fontSize: 14,
+          maxWidth: 600,
+        },
+      });
+    });
+
+    it('should work with array type', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: [
+          {
+            bgcolor: 'secondary.main',
+          },
+          {
+            color: 'primary.main',
+          },
+        ],
+      });
+
+      expect(result).to.deep.equal([
+        {
+          '@layer sx': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+        {
+          '@layer sx': {
+            color: 'rgb(0, 0, 255)',
+          },
+        },
+      ]);
+    });
+
+    it('should work with function type', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: (t) => ({
+          color: t.palette.primary.main,
+          bgcolor: t.palette.secondary.main,
+        }),
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          backgroundColor: 'rgb(0, 255, 0)',
+        },
+      });
+    });
+
+    it('should work with nested sx', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          '&:hover': {
+            bgcolor: 'secondary.main',
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          '&:hover': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+      });
+    });
+
+    it('should work with nested sx and function', () => {
+      const result = styleFunctionSx({
+        theme: {
+          ...theme,
+          modularCssLayers: true,
+        },
+        sx: {
+          color: 'primary.main',
+          '&:hover': (t) => ({
+            bgcolor: t.palette.secondary.main,
+          }),
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@layer sx': {
+          color: 'rgb(0, 0, 255)',
+          '&:hover': {
+            backgroundColor: 'rgb(0, 255, 0)',
+          },
+        },
+      });
     });
   });
 });

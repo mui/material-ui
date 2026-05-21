@@ -1,13 +1,8 @@
 {
   "name": "@mui/internal-docs-utils",
-  "version": "2.0.1",
+  "version": "3.0.4",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
-  "main": "./build/index.js",
-  "exports": {
-    ".": "./build/index.js"
-  },
-  "types": "./build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
@@ -15,16 +10,20 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "code-infra build --flat --skip-babel-runtime-check",
     "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "rimraf": "^6.0.1",
-    "typescript": "^5.8.3"
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

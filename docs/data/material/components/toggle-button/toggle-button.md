@@ -2,7 +2,7 @@
 productId: material-ui
 title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
-githubLabel: 'component: toggle button'
+githubLabel: 'scope: toggle button'
 materialDesign: https://m2.material.io/components/buttons#toggle-button
 githubSource: packages/mui-material/src/ToggleButton
 ---
@@ -15,7 +15,7 @@ To emphasize groups of related Toggle buttons,
 a group should share a common container.
 The `ToggleButtonGroup` controls the selected state of its child buttons when given its own `value` prop.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Exclusive selection
 
@@ -79,6 +79,18 @@ Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
+
+### Spacing
+
+The demos below show how to adjust spacing between toggle buttons in horizontal and vertical orientations.
+
+#### Horizontal Spacing
+
+{{"demo": "HorizontalSpacingToggleButton.js"}}
+
+#### Vertical Spacing
+
+{{"demo": "VerticalSpacingToggleButton.js"}}
 
 ## Accessibility
 

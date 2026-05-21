@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
-githubLabel: 'component: dialog'
+githubLabel: 'scope: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 githubSource: packages/mui-material/src/Dialog
@@ -16,7 +16,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Introduction
 
@@ -42,6 +42,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
 
+Use `role="alertdialog"` to create an Alert Dialog. This provides assistive technologies the correct purpose of the Dialog.
+
 Most alerts don't need titles.
 They summarize a decision in a sentence or two by either:
 
@@ -60,7 +62,8 @@ If a title is required:
 
 ## Transitions
 
-You can also swap out the transition, the next example uses `Slide`.
+You can swap out the default transition with the `slots.transition` and `slotProps.transition` props.
+The next example uses `Slide`.
 
 {{"demo": "AlertDialogSlide.js"}}
 
@@ -167,45 +170,3 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
-
-## Experimental APIs - Toolpad
-
-### useDialogs
-
-You can create and manipulate dialogs imperatively with the [`useDialogs()`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This hook handles
-
-- state management for opening and closing dialogs
-- passing data to dialogs and receiving results back from them
-- stacking multiple dialogs
-- themed, asynchronous versions of `window.alert()`, `window.confirm()` and `window.prompt()`
-
-The following example demonstrates some of these features:
-
-{{"demo": "ToolpadDialogsNoSnap.js", "defaultCodeOpen": false}}
-
-```tsx
-const handleDelete = async () => {
-  const id = await dialogs.prompt('Enter the ID to delete', {
-    okText: 'Delete',
-    cancelText: 'Cancel',
-  });
-
-  if (id) {
-    const deleteConfirmed = await dialogs.confirm(
-      `Are you sure you want to delete "${id}"?`,
-    );
-    if (deleteConfirmed) {
-      try {
-        setIsDeleting(true);
-        await mockApiDelete(id);
-        dialogs.alert('Deleted!');
-      } catch (error) {
-        const message = error instanceof Error ? error.message : 'Unknown error';
-        await dialogs.open(MyCustomDialog, { id, error: message });
-      } finally {
-        setIsDeleting(false);
-      }
-    }
-  }
-};
-```

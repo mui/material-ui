@@ -10,7 +10,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 
 const StyledRating = styled(Rating)(({ theme }) => ({
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   },
 }));
 
@@ -51,8 +51,8 @@ export default function RadioGroupRating() {
     <StyledRating
       name="highlight-selected-only"
       defaultValue={2}
-      IconContainerComponent={IconContainer}
       getLabelText={(value) => customIcons[value].label}
+      slotProps={{ icon: { component: IconContainer } }}
       highlightSelectedOnly
     />
   );

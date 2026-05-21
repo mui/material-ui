@@ -20,20 +20,22 @@ export default function FadeMenu() {
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open}
         onClick={handleClick}
       >
         Dashboard
       </Button>
       <Menu
         id="fade-menu"
-        MenuListProps={{
-          'aria-labelledby': 'fade-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'fade-button',
+          },
         }}
+        slots={{ transition: Fade }}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        TransitionComponent={Fade}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>

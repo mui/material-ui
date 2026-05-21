@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Paper from '@mui/material/Paper';
-import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState('row');
@@ -74,16 +74,6 @@ export default function InteractiveGrid() {
                     value="row-reverse"
                     control={<Radio />}
                     label="row-reverse"
-                  />
-                  <FormControlLabel
-                    value="column"
-                    control={<Radio />}
-                    label="column"
-                  />
-                  <FormControlLabel
-                    value="column-reverse"
-                    control={<Radio />}
-                    label="column-reverse"
                   />
                 </RadioGroup>
               </FormControl>

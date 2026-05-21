@@ -11,7 +11,6 @@
     "color": {
       "description": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#custom-colors\">palette customization guide</a>. The prop defaults to the value (<code>&#39;primary&#39;</code>) inherited from the parent FormControl component."
     },
-    "components": { "description": "The components used for each slot inside." },
     "defaultValue": {
       "description": "The default value. Use when the component is not controlled."
     },
@@ -55,7 +54,10 @@
     "onChange": {
       "description": "Callback fired when the value is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        }
       }
     },
     "placeholder": {
@@ -113,26 +115,6 @@
       "conditions": "the component is focused"
     },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
-    "inputAdornedEnd": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
-    },
-    "inputAdornedStart": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>startAdornment</code> is provided"
-    },
-    "inputMultiline": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
-    },
-    "inputSizeSmall": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
-    },
     "inputTypeSearch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

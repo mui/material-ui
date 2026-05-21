@@ -9,7 +9,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';
 import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
-import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import SectionHeadline from '@mui/internal-core-docs/SectionHeadline';
 
 function createLoading(sx: BoxProps['sx']) {
   return function Loading() {
@@ -36,10 +36,6 @@ const CoreShowcase = dynamic(() => import('./CoreShowcase'), {
 
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'), {
   loading: createLoading({ height: 630 }),
-});
-
-const ToolpadShowcase = dynamic(() => import('./ToolpadShowcase'), {
-  loading: createLoading({ height: 625 }),
 });
 
 const StoreTemplatesBanner = dynamic(() => import('./StoreTemplatesBanner'));
@@ -82,9 +78,8 @@ export default function ProductSuite() {
               <PrefetchDesignKitImages />
               {productIndex === 0 && <CoreShowcase />}
               {productIndex === 1 && <AdvancedShowcase />}
-              {productIndex === 2 && <ToolpadShowcase />}
-              {productIndex === 3 && <StoreTemplatesBanner />}
-              {productIndex === 4 && <DesignKits />}
+              {productIndex === 2 && <StoreTemplatesBanner />}
+              {productIndex === 3 && <DesignKits />}
             </React.Fragment>
           ) : (
             <Box sx={{ height: { xs: 0, md: 690 } }} />

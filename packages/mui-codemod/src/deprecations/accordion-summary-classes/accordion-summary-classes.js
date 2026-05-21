@@ -14,7 +14,11 @@ export default function transformer(file, api, options) {
 
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value.match(/^@mui\/material\/AccordionSummary$/))
+    .filter((path) =>
+      path.node.source.value.match(
+        new RegExp(`^${options.packageName || '@mui/material'}(/AccordionSummary)?$`),
+      ),
+    )
     .forEach((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (

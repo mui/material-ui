@@ -111,7 +111,7 @@ The `light` and `dark` tokens are calculated using the `tonalOffset` value, to s
 A higher tonal offset value will make `light` tokens lighter, and `dark` tokens darker.
 
 :::warning
-This only applies when working with custom colors—it won't have any effect on the [default values](#default-values).
+This only applies when working with custom colors—it won't have any effect on the [default values](#default-colors).
 :::
 
 For example, the tonal offset default value `0.2` shifts the luminance by approximately two indexes, so if the `main` token is `blue[500]`, then the `light` token would be `blue[300]` and `dark` would be `blue[700]`.
@@ -148,6 +148,11 @@ const theme = createTheme({
 ```
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
+
+:::info
+The supported color formats are `hex`, `rgb`, and `hsl`.
+If you want to use other formats, such as `oklch`, you need to enable the [native color](/material-ui/customization/css-theme-variables/native-color/) feature.
+:::
 
 <!-- #target-branch-reference -->
 
@@ -291,7 +296,7 @@ To learn how to add colors outside of `theme.palette`, see [Theming—Custom var
 
 ## Accessibility
 
-To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.1 Rule 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html), create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
+To meet the minimum contrast of at least 4.5:1 as defined in [WCAG 2.2 Success Criterion 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html), create a custom theme with a [contrast threshold](#contrast-threshold) value of 4.5 as follows:
 
 ```js
 import { createTheme } from '@mui/material/styles';

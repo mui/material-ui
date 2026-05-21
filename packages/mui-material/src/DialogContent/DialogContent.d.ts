@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { DialogContentClasses } from './dialogContentClasses';
 
 export interface DialogContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -11,16 +12,16 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<DialogContentClasses>;
+  classes?: Partial<DialogContentClasses> | undefined;
   /**
    * Display the top and bottom dividers.
    * @default false
    */
-  dividers?: boolean;
+  dividers?: boolean | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 /**

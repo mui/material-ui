@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import useTimeout from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
-import { Transition } from 'react-transition-group';
+import Transition from '../internal/Transition';
 import { useTheme } from '../zero-styled';
-import { getTransitionProps, reflow } from '../transitions/utils';
+import {
+  normalizedTransitionCallback,
+  getTransitionProps,
+  getTransitionChildStyle,
+  reflow,
+} from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
 function getScale(value) {
@@ -14,29 +19,17 @@ function getScale(value) {
 }
 
 const styles = {
-  entering: {
-    opacity: 1,
-    transform: getScale(1),
-  },
-  entered: {
-    opacity: 1,
-    transform: 'none',
-  },
+  entering: { opacity: 1, transform: getScale(1) },
+  entered: { opacity: 1, transform: 'none' },
+  exiting: { opacity: 0, transform: getScale(0.75) },
+  exited: { opacity: 0, transform: getScale(0.75) },
 };
 
-/*
- TODO v6: remove
- Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
- */
-const isWebKit154 =
-  typeof navigator !== 'undefined' &&
-  /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) &&
-  /(os |version\/)15(.|_)4/i.test(navigator.userAgent);
+const hiddenStyles = { opacity: 0, transform: getScale(0.75), visibility: 'hidden' };
 
 /**
  * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
  * [Popover](/material-ui/react-popover/) components.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
   const {
@@ -53,8 +46,6 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     onExiting,
     style,
     timeout = 'auto',
-    // eslint-disable-next-line react/prop-types
-    TransitionComponent = Transition,
     ...other
   } = props;
   const timer = useTimeout();
@@ -64,23 +55,10 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
-  const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
-    if (callback) {
-      const node = nodeRef.current;
+  const handleEntering = normalizedTransitionCallback(nodeRef, onEntering);
 
-      // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
-      if (maybeIsAppearing === undefined) {
-        callback(node);
-      } else {
-        callback(node, maybeIsAppearing);
-      }
-    }
-  };
-
-  const handleEntering = normalizedTransitionCallback(onEntering);
-
-  const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+  const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
+    reflow(node); // Force layout so the animation starts from the initial styles.
 
     const {
       duration: transitionDuration,
@@ -107,7 +85,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: isWebKit154 ? duration : duration * 0.666,
+        duration: duration * 0.666,
         delay,
         easing: transitionTimingFunction,
       }),
@@ -118,11 +96,11 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     }
   });
 
-  const handleEntered = normalizedTransitionCallback(onEntered);
+  const handleEntered = normalizedTransitionCallback(nodeRef, onEntered);
 
-  const handleExiting = normalizedTransitionCallback(onExiting);
+  const handleExiting = normalizedTransitionCallback(nodeRef, onExiting);
 
-  const handleExit = normalizedTransitionCallback((node) => {
+  const handleExit = normalizedTransitionCallback(nodeRef, (node) => {
     const {
       duration: transitionDuration,
       delay,
@@ -148,8 +126,8 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: isWebKit154 ? duration : duration * 0.666,
-        delay: isWebKit154 ? delay : delay || duration * 0.333,
+        duration: duration * 0.666,
+        delay: delay || duration * 0.333,
         easing: transitionTimingFunction,
       }),
     ].join(',');
@@ -162,20 +140,25 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     }
   });
 
-  const handleExited = normalizedTransitionCallback(onExited);
+  const handleExited = normalizedTransitionCallback(nodeRef, (node) => {
+    node.style.transition = '';
+
+    if (onExited) {
+      onExited(node);
+    }
+  });
 
   const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
       timer.start(autoTimeout.current || 0, next);
     }
     if (addEndListener) {
-      // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
 
   return (
-    <TransitionComponent
+    <Transition
       appear={appear}
       in={inProp}
       nodeRef={nodeRef}
@@ -189,22 +172,25 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
       {(state, { ownerState, ...restChildProps }) => {
+        // Do not pass ownerState to a DOM child. ownerState is only for
+        // Material UI styling, and React would treat it as an invalid DOM attribute.
+        const childStyle = getTransitionChildStyle(
+          state,
+          inProp,
+          styles,
+          hiddenStyles,
+          style,
+          children.props.style,
+        );
+
         return React.cloneElement(children, {
-          style: {
-            opacity: 0,
-            transform: getScale(0.75),
-            visibility: state === 'exited' && !inProp ? 'hidden' : undefined,
-            ...styles[state],
-            ...style,
-            ...children.props.style,
-          },
+          style: childStyle,
           ref: handleRef,
           ...restChildProps,
         });
       }}
-    </TransitionComponent>
+    </Transition>
   );
 });
 
@@ -214,9 +200,12 @@ Grow.propTypes /* remove-proptypes */ = {
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Add a custom transition end trigger. Called with the transitioning DOM
-   * node and a done callback. Allows for more fine grained transition end
-   * logic. Note: Timeouts are still used as a fallback if provided.
+   * Add a custom transition end trigger.
+   * Use it when you need custom logic to decide when the transition has ended.
+   * Note: Timeouts are still used as a fallback if provided.
+   *
+   * @param {HTMLElement} node The transitioning DOM node.
+   * @param {Function} done Call this when the transition has finished.
    */
   addEndListener: PropTypes.func,
   /**

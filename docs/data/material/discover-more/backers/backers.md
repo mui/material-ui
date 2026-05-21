@@ -2,26 +2,26 @@
 
 <p class="description">Support the development of the open-source projects of the MUI organization through crowdfunding.</p>
 
-Material UI, MUI Base, MUI System, and Joy UI are crowd-funded open-source projects, licensed under the permissive MIT license.
+Material UI is a crowd-funded open-source project, licensed under the permissive MIT license.
 Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
 ## Diamond sponsors
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap; margin-top: 8px;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="doit.com" href="https://www.doit.com/flexsave/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/doit-square.svg" alt="doit" title="Management platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="formengine.io" href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 24px;"><img height="128" width="128" src="/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
-_2/3 slots available_
+_1/3 slots available_
 
-Diamond sponsors are those who've pledged \$1,500/month or more to the MUI organization. [Tier benefits](#diamond).
+Diamond sponsors are those who've pledged $1,500/month or more to the MUI organization. [Tier benefits](#diamond).
 
 ## Gold sponsors
 
 via [Open Collective](https://opencollective.com/mui-org) or via [the for-profit](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img src="https://avatars.githubusercontent.com/u/1262264?s=96" srcset="https://avatars.githubusercontent.com/u/1262264?s=288 3x" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="tidelift.com" href="https://tidelift.com/" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=96" srcset="https://avatars.githubusercontent.com/u/30204434?s=288 3x" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="dialmycalls.com" href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/96.png" srcset="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png 3x" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
 </p>
 
@@ -29,16 +29,18 @@ via [Open Collective](https://opencollective.com/mui-org) or via [the for-profi
 List gold sponsors that regular sponsors could feel uncomfortable being listed next to.
 For example, it could be because the service breaks another service's Terms of service and hence is a moral minefield.
 -->
+
 <p style="display: flex; justify-content: start; align-items: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="23" src="https://images.opencollective.com/goread_io/eb6337d/logo/26.png" srcset="https://images.opencollective.com/goread_io/eb6337d/logo/78.png 3x" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" style="margin-right: 6px;" />Goread.io</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/26.png" srcset="https://images.opencollective.com/buzzoidz/d23d9bb/logo/78.png 3x" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" style="margin-right: 6px;" />Buzzoid</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="twicsy.com" href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/26.png" srcset="https://images.opencollective.com/twicsy/7af290f/logo/78.png 3x" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" style="margin-right: 6px;" />Twicsy</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="views4you.com" href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/26.png" srcset="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/78.png 3x" alt="views4you.com" title="Views4you: Social media growth services." loading="lazy" style="margin-right: 6px;" />Views4You</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="poprey.com" href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/instagram-likes/2a72a03/logo/26.png" srcset="https://images.opencollective.com/instagram-likes/2a72a03/logo/78.png 3x" alt="poprey.com" title="Poprey: Buy Instagram likes with crypto." loading="lazy" style="margin-right: 6px;" />Poprey</a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="socialwick.com/followers" href="https://www.socialwick.com/instagram/followers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;"><img height="26" width="26" src="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png" srcset="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png 3x" alt="socialwick.com/instagram/followers" title="SocialWick: Buy Instagram followers." loading="lazy" style="margin-right: 6px;" />SocialWick</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="goread.io" href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instagram followers, likes, views, and comments.">Goread.io</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="buzzoid.com" href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instant delivery Instagram followers.">Buzzoid</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="twicsy.com" href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Instant delivery Instagram followers.">Twicsy</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="poprey.com" href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Buy Instagram likes with crypto.">Poprey</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="socialwick.com/followers" href="https://www.socialwick.com/instagram/followers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Buy Instagram followers.">SocialWick</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="follower24.de" href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Social media success.">Follower24</a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="docs-backers" data-ga-event-label="followerfabrik.de" href="https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" class="remove-link-arrow" style="margin-right: 16px; display:flex;" title="Your German Social Media Agency.">FollowerFabrik</a>
 </p>
 
-Gold sponsors are those who've pledged \$500/month or more to the MUI organization. [Tier benefits](#gold).
+Gold sponsors are those who've pledged $500/month or more to the MUI organization. [Tier benefits](#gold).
 
 ## Silver sponsors
 
@@ -58,7 +60,7 @@ via [Open Collective](https://opencollective.com/mui-org)
   <object type="image/svg+xml" data="https://opencollective.com/mui-org/tiers/bronze-sponsor.svg?avatarHeight=60&width=600" style="border-radius: 10px;">Bronze Sponsors</object>
 </p>
 
-Bronze sponsors are those who've pledged $100/month to $250/month to the MUI organization. [Tier benefits](#sliver).
+Bronze sponsors are those who've pledged $100/month to $250/month to the MUI organization. [Tier benefits](#bronze).
 
 ## Backers
 
@@ -72,7 +74,7 @@ via [Open Collective](https://opencollective.com/mui-org)
 
 ### Why is Material UI a "crowd-funded open-source project"?
 
-Material UI (as well as MUI Base, MUI System, and Joy UI) is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
+Material UI is open-source to give users great freedom in how they use the software and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use cases.
 To ensure that these open-source libraries can stand the test of time for our users, they need to be well-directed and financially sustainable.
 
 The absolute best way to support the MUI organization to work on its libraries' ongoing development efforts is to become a sponsor.

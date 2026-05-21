@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Toolbar, { toolbarClasses as classes } from '@mui/material/Toolbar';
@@ -15,7 +14,6 @@ describe('<Toolbar />', () => {
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'foo', styleKey: 'foo' },
-    skip: ['componentsProp'],
   }));
 
   it('should render with gutters class', () => {

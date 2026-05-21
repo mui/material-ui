@@ -1,28 +1,21 @@
-import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
-import { Link } from '@mui/docs/Link';
-import ROUTES from 'docs/src/route';
+import { Link } from '@mui/internal-core-docs/Link';
+import { ROUTES } from '@mui/internal-core-docs/constants';
 
 const GOLDs = [
   {
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
-  },
-  {
-    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
-    name: 'Text-em-all',
-    description: 'Mass text messaging and automated calling.',
-    href: 'https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    href: 'https://tidelift.com/',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
@@ -32,6 +25,7 @@ const GOLDs = [
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
+
 const BACKLINKs = [
   {
     name: 'Goread.io',
@@ -49,11 +43,6 @@ const BACKLINKs = [
     href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Views4You',
-    description: 'Social media growth services.',
-    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
@@ -62,6 +51,16 @@ const BACKLINKs = [
     name: 'SocialWick',
     description: 'Buy Instagram followers.',
     href: 'https://www.socialwick.com/instagram/followers',
+  },
+  {
+    name: 'Follower24',
+    description: 'Social media success.',
+    href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'FollowerFabrik',
+    description: 'Your German Social Media Agency.',
+    href: 'https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -142,11 +141,11 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-      <div>
-        {BACKLINKs.map((item) => (
-          <BacklinkSponsor key={item.name} item={item} />
+      <Box sx={{ maxWidth: 1000, mt: { xs: 2, md: 3 } }}>
+        {BACKLINKs.map((item, index) => (
+          <BacklinkSponsor key={index} item={item} />
         ))}
-      </div>
+      </Box>
     </div>
   );
 }

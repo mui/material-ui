@@ -34,7 +34,11 @@ export default function ControlledOpenSpeedDial() {
           <SpeedDialAction
             key={action.name}
             icon={action.icon}
-            tooltipTitle={action.name}
+            slotProps={{
+              tooltip: {
+                title: action.name,
+              },
+            }}
             onClick={handleClose}
           />
         ))}

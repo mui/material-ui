@@ -2,7 +2,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import styled from '@mui/styled-engine';
-import styleFunctionSx, { extendSxProp } from '../styleFunctionSx';
+import styleFunctionSx from '../styleFunctionSx';
 import useTheme from '../useTheme';
 
 export default function createBox(options = {}) {
@@ -13,7 +13,7 @@ export default function createBox(options = {}) {
 
   const Box = React.forwardRef(function Box(inProps, ref) {
     const theme = useTheme(defaultTheme);
-    const { className, component = 'div', ...other } = extendSxProp(inProps);
+    const { className, component = 'div', ...other } = inProps;
 
     return (
       <BoxRoot

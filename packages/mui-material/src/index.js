@@ -151,8 +151,6 @@ export * from './FormHelperText';
 export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
-export { default as GridLegacy } from './GridLegacy';
-
 export { default as Grid } from './Grid';
 export * from './Grid';
 
@@ -353,6 +351,9 @@ export * from './TableHead';
 
 export { default as TablePagination } from './TablePagination';
 export * from './TablePagination';
+
+export { default as TablePaginationActions } from './TablePaginationActions';
+export * from './TablePaginationActions';
 
 export { default as TableRow } from './TableRow';
 export * from './TableRow';

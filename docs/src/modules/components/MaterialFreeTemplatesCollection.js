@@ -1,5 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,11 +10,10 @@ import SvgIcon from '@mui/material/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import { useTranslate } from '@mui/docs/i18n';
-import { pascalCase } from 'docs/src/modules/utils/helpers';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
+import { pascalCase } from '@mui/internal-core-docs/helpers';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
-import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
@@ -69,6 +66,13 @@ function layouts(translation) {
       description: translation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
+      hasDarkMode: true,
+    },
+    {
+      title: translation('crudDashboardTitle'),
+      description: translation('crudDashboardDescr'),
+      href: '/material-ui/getting-started/templates/crud-dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/crud-dashboard`,
       hasDarkMode: true,
     },
   ];

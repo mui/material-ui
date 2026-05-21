@@ -7,27 +7,10 @@ The MUI org and developers from the community have built some excellent supplem
 Do you have a project that you think should be featured here?
 Feel free to submit a pull request and the maintainers will work with you to write the description.
 
-## Third-party app starters
-
-### Admin frameworks
+## Third-party admin frameworks
 
 - [React-admin](https://github.com/marmelab/react-admin): A front-end framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
 - [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.
-
-### Paid starters
-
-- [Divjoy](https://divjoy.com?via=material-ui):
-
-  - Create a Material UI app in minutes.
-  - Templates, authentication, database integration, subscription payments, and more.
-
-- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
-  - Tool for building web applications.
-  - Choose your framework and library (React with Material UI).
-  - Choose your database (SQL, MongoDB or Firestore).
-  - Model your database and application with the intuitive GUI.
-  - Generate your application, including a complete scaffolded backend.
-  - Preview your application online and download the generated code.
 
 ## Third-party theming tools
 
@@ -37,7 +20,7 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 
 ### Layout
 
-- [MUI Treasury Layout](https://mui-treasury.com/?path=/docs/layout-v6-introduction--docs): Components to handle the overall layout of a page. Check out examples such as [a legacy.reactjs.org clone](https://mui-treasury.com/?path=/story/layout-v6-app-react-legacy--react-legacy).
+- [MUI Treasury Layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page.
 
 ### Image
 

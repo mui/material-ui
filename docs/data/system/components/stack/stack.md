@@ -17,7 +17,7 @@ The Stack component manages the layout of its immediate children along the verti
 Stack is ideal for one-dimensional layouts, while Grid is preferable when you need both vertical _and_ horizontal arrangement.
 :::
 
-{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader", "design": false}}
 
 ## Basics
 
@@ -58,7 +58,7 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 ## Flexbox gap
 
-To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) for the spacing implementation, set the `useFlexGap` prop to true.
+To use [flexbox `gap`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/gap) for the spacing implementation, set the `useFlexGap` prop to true.
 
 It removes the [known limitations](#limitations) of the default implementation that uses CSS nested selector. However, CSS flexbox gap is not fully supported in some browsers.
 
@@ -72,17 +72,14 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 {{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## System props
+## sx prop
 
-:::info
-System props are deprecated and will be removed in the next major release. Please use the `sx` prop instead.
+Use the [`sx` prop](/system/getting-started/the-sx-prop/) to quickly customize any Stack instance using a superset of CSS that has access to all the style functions and theme-aware properties exposed in the MUI System package.
+Below is an example of how to apply center align items using this prop:
 
-```diff
-- <Stack mt={2} />
-+ <Stack sx={{ mt: 2 }} />
+```jsx
+<Stack sx={{ alignItems: 'center' }} />
 ```
-
-:::
 
 ## Limitations
 

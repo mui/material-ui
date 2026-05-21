@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Rating component
 components: Rating
-githubLabel: 'component: rating'
+githubLabel: 'scope: rating'
 waiAria: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating
 githubSource: packages/mui-material/src/Rating
 ---
@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/Rating
 
 <p class="description">Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own.</p>
 
-{{"component": "@mui/docs/ComponentLinkHeader"}}
+{{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
 ## Basic rating
 
@@ -61,7 +61,7 @@ The accessibility of this component relies on:
 - Labels for the radio buttons containing actual text ("1 Star", "2 Stars", …).
   Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](/material-ui/guides/localization/), or provide your own.
 - A visually distinct appearance for the rating icons.
-  By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+  By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to meet [WCAG 2.2 Success Criterion 1.4.1](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html).
 
 {{"demo": "TextRating.js"}}
 
@@ -74,3 +74,35 @@ The read only rating has a role of "img", and an aria-label that describes the d
 Because the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
 
 The read only rating is not focusable.
+
+## Testing
+
+When testing the Rating component in environments such as Jest with jsdom, certain user interactions—especially hover-based interactions—may not behave as expected.
+This is because the component relies on `getBoundingClientRect()` to calculate the position of each icon and determine which icon is currently being hovered.
+In jsdom, `getBoundingClientRect()` returns `0` values by default, which can lead to incorrect behavior such as `NaN` being passed to the `onChange` handler.
+
+To avoid this issue in your test suite:
+
+- Prefer `fireEvent` over `userEvent` when simulating click events.
+- Avoid relying on hover behavior to trigger changes.
+- If needed, mock `getBoundingClientRect()` manually for more advanced interactions.
+
+```tsx
+// @vitest-environment jsdom
+
+import { Rating } from '@mui/material';
+import { render, fireEvent, screen } from '@testing-library/react';
+
+import { describe, test, vi } from 'vitest';
+
+describe('Rating', () => {
+  test('should update rating on click', () => {
+    const handleChange = vi.fn();
+    render(<Rating onChange={(_, newValue) => handleChange(newValue)} />);
+
+    fireEvent.click(screen.getByLabelText('2 Stars'));
+
+    expect(handleChange).toHaveBeenCalledWith(2);
+  });
+});
+```

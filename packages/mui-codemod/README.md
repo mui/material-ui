@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod <codemod> <paths...>
+npx @mui/codemod@latest <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -39,6 +39,16 @@ Examples:
   --component=Grid --from=prop --to=newProp
   npx @mui/codemod@latest v5.0.0/preset-safe src --parser=flow
 ```
+
+### package name
+
+Use this flag if you have a custom package name that reexports Material UI components. For example:
+
+```bash
+npx @mui/codemod@latest --packageName="@org/ui"
+```
+
+The snippet above will look for `@org/ui` instead of `@mui/material` in the codemod.
 
 ### jscodeshift options
 
@@ -268,6 +278,11 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 -  PopperComponent={CustomPopper}
 -  ListboxComponent={CustomListbox}
 -  ListboxProps={{ height: 12 }}
+-  renderTags={(value, getTagProps, ownerState) =>
+-    value.map((option, index) => (
+-      <Chip label={option.label} {...getTagProps({ index })} />
+-    ))
+-  }
 -  componentsProps={{
 -    clearIndicator: { width: 10 },
 -    paper: { width: 12 },
@@ -289,6 +304,11 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +    popper: { width: 14 },
 +    popupIndicator: { width: 16 },
 +  }}
++  renderValue={(value, getItemProps, ownerState) =>
++    value.map((option, index) => (
++      <Chip label={option.label} {...getItemProps({ index })} />
++    ))
++  }
  />
 ```
 
@@ -300,6 +320,10 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 -    PopperComponent: CustomPopper,
 -    ListboxComponent: CustomListbox,
 -    ListboxProps: { height: 12 },
+-    renderTags: (value, getTagProps, ownerState) =>
+-      value.map((option, index) => (
+-        <Chip label={option.label} {...getTagProps({ index })} />
+-      )),
 -    componentsProps: {
 -       clearIndicator: { width: 10 },
 -       paper: { width: 12 },
@@ -321,8 +345,50 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +      popper: { width: 14 },
 +      popupIndicator: { width: 16 },
 +    },
++    renderValue: (value, getItemProps, ownerState) =>
++      value.map((option, index) => (
++        <Chip label={option.label} {...getItemProps({ index })} />
++      )),
    },
  },
+```
+
+```diff
+ <Autocomplete
+  renderInput={(params) => (
+    <TextField
+      {...params}
+-      InputProps={{
+-        ...params.InputProps,
+-        endAdornment: (
+-          <React.Fragment>
+-            {params.InputProps.endAdornment}
+-          </React.Fragment>
+-        ),
+-      }}
++      slotProps={{
++        ...params.slotProps,
++        input: {
++          ...params.slotProps.input,
++          endAdornment: (
++            <React.Fragment>
++              {params.slotProps.input.endAdornment}
++            </React.Fragment>
++          ),
++        },
++      }}
+    />
+  )}
+ />
+```
+
+```diff
+ const {
+-  getTagProps,
+-  focusedTag,
++  getItemProps,
++  focusedItem,
+ } = useAutocomplete(props);
 ```
 
 ```bash
@@ -804,6 +870,50 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/button-group-classes <path>
 ```
 
+#### `card-header-props`
+
+```diff
+ <CardHeader
+-  titleTypographyProps={{ variant: 'h6' }}
+-  subheaderTypographyProps={{ variant: 'body2' }}
++  slotProps={{
++    title: { variant: 'h6' },
++    subheader: { variant: 'body2' }
++  }}
+ />
+```
+
+```diff
+ MuiCardHeader: {
+   defaultProps: {
+-    titleTypographyProps: { variant: 'h6' },
+-    subheaderTypographyProps: { variant: 'body2' },
++    slotProps: {
++      title: { variant: 'h6' },
++      subheader: { variant: 'body2' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/card-header-props <path>
+```
+
+#### `checkbox-props`
+
+```diff
+ <Checkbox
+-  inputProps={{ 'aria-label': 'Checkbox' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Checkbox', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/checkbox-props <path>
+```
+
 #### `chip-classes`
 
 JS transforms:
@@ -996,11 +1106,11 @@ JS transforms:
    styleOverrides: {
      root: {
 -      [`& .${circularProgressClasses.circleDeterminate}`]: {
-+      [`&.${circularProgressClasses.determinate} > .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.determinate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
 -      [`& .${circularProgressClasses.circleIndeterminate}`]: {
-+      [`&.${circularProgressClasses.indeterminate} > .${circularProgressClasses.circle}`]: {
++      [`&.${circularProgressClasses.indeterminate} .${circularProgressClasses.circle}`]: {
          color: 'red',
        },
      },
@@ -1012,12 +1122,12 @@ CSS transforms:
 
 ```diff
 -.MuiCircularProgress-circleDeterminate
-+.MuiCircularProgress-determinate > .MuiCircularProgress-circle
++.MuiCircularProgress-determinate .MuiCircularProgress-circle
 ```
 
 ```diff
 -.MuiCircularProgress-circleIndeterminate
-+.MuiCircularProgress-indeterminate > .MuiCircularProgress-circle
++.MuiCircularProgress-indeterminate .MuiCircularProgress-circle
 ```
 
 ```bash
@@ -1071,6 +1181,28 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
+#### `dialog-props`
+
+JS transforms:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+- TransitionComponent={CustomTransition}
++ slots={{ transition: CustomTransition }}
+- TransitionProps={CustomTransitionProps}
++ slotProps={{ transition: CustomTransitionProps }}
+ />
+     },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-props <path>
 ```
 
 #### `drawer-classes`
@@ -1143,6 +1275,46 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/drawer-classes <path>
+```
+
+#### `drawer-props`
+
+```diff
+ <Drawer
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ transitionDuration: 300 }}
+-  PaperProps={{ elevation: 20 }}
+-  SlideProps={{ direction: 'right' }}
++  slots={{ backdrop: CustomBackdrop }}
++  slotProps={{
++    backdrop: { transitionDuration: 300 },
++    paper: { elevation: 20 },
++    transition: { direction: 'right' },
++  }}
+ />
+```
+
+The same applies to `SwipeableDrawer`.
+
+```diff
+ MuiDrawer: {
+   defaultProps: {
+-    BackdropComponent: CustomBackdrop,
+-    BackdropProps: { transitionDuration: 300 },
+-    PaperProps: { elevation: 20 },
+-    SlideProps: { direction: 'right' },
++    slots: { backdrop: CustomBackdrop },
++    slotProps: {
++      backdrop: { transitionDuration: 300 },
++      paper: { elevation: 20 },
++      transition: { direction: 'right' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-props <path>
 ```
 
 #### `filled-input-props`
@@ -1508,6 +1680,40 @@ npx @mui/codemod@latest deprecations/modal-props <path>
 npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
 ```
 
+#### `menu-props`
+
+```diff
+ <Menu
+-  TransitionComponent={CustomTransition}
+-  MenuListProps={{ disablePadding: true }}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{
++    list: { disablePadding: true },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiMenu: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    MenuListProps: { disablePadding: true },
+-    TransitionProps: { timeout: 200 },
++    slots: { transition: CustomTransition },
++    slotProps: {
++      list: { disablePadding: true },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/menu-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -1594,6 +1800,46 @@ npx @mui/codemod@latest deprecations/pagination-item-classes <path>
 npx @mui/codemod@latest deprecations/pagination-item-props <path>
 ```
 
+#### `popover-props`
+
+```diff
+ <Popover
+-  BackdropComponent={CustomBackdrop}
+-  BackdropProps={{ timeout: 200 }}
+-  PaperProps={{ elevation: 4 }}
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ timeout: 200 }}
++  slots={{ backdrop: CustomBackdrop, transition: CustomTransition }}
++  slotProps={{
++    backdrop: { timeout: 200 },
++    paper: { elevation: 4 },
++    transition: { timeout: 200 },
++  }}
+ />
+```
+
+```diff
+ MuiPopover: {
+   defaultProps: {
+-    BackdropComponent: 'div',
+-    BackdropProps: { timeout: 200 },
+-    PaperProps: { elevation: 8 },
+-    TransitionComponent: 'em',
+-    TransitionProps: { timeout: 200 },
++    slots: { backdrop: 'div', transition: 'em' },
++    slotProps: {
++      backdrop: { timeout: 200 },
++      paper: { elevation: 8 },
++      transition: { timeout: 200 },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/popover-props <path>
+```
+
 #### `popper-props`
 
 ```diff
@@ -1657,8 +1903,24 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
  />
 ```
 
+<!-- #npm-tag-reference -->
+
 ```bash
-npx @mui/codemod deprecations/rating-props <path>
+npx @mui/codemod@latest deprecations/rating-props <path>
+```
+
+#### `radio-props`
+
+```diff
+ <Radio
+-  inputProps={{ 'aria-label': 'Radio' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Radio', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/radio-props <path>
 ```
 
 #### `select-classes`
@@ -1752,8 +2014,82 @@ npx @mui/codemod@latest deprecations/slider-props <path>
  />
 ```
 
+<!-- #npm-tag-reference -->
+
 ```bash
-npx @mui/codemod deprecations/snackbar-props <path>
+npx @mui/codemod@latest deprecations/snackbar-props <path>
+```
+
+#### `speed-dial-props`
+
+```diff
+ <SpeedDial
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={CustomTransitionProps}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: CustomTransitionProps }}
+ />
+```
+
+```diff
+ MuiSpeedDial: {
+   defaultProps: {
+-    TransitionComponent: CustomTransition,
+-    TransitionProps: CustomTransitionProps,
++    slots: { transition: CustomTransition },
++    slotProps: { transition: CustomTransitionProps },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-props <path>
+```
+
+#### `speed-dial-action-props`
+
+```diff
+ <SpeedDialAction
+-  FabProps={FabProps}
+-  TooltipClasses={TooltipClasses}
+-  tooltipOpen={true}
+-  tooltipPlacement="top"
+-  tooltipTitle="test"
++  slotProps={{
++    fab: FabProps,
++    tooltip: {
++      classes: TooltipClasses,
++      open: true,
++      placement: 'top',
++      title: 'test',
++    },
++  }}
+ />
+```
+
+```diff
+ MuiSpeedDialAction: {
+   defaultProps: {
+-    FabProps: { id: 'test' },
+-    TooltipClasses: classes,
+-    tooltipOpen: true,
+-    tooltipPlacement: 'top',
+-    tooltipTitle: 'test',
++    slotProps: {
++      fab: { id: 'test' },
++      tooltip: {
++        classes: classes,
++        open: true,
++        placement: 'top',
++        title: 'test',
++      },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-action-props <path>
 ```
 
 #### `slider-classes`
@@ -1828,23 +2164,68 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/slider-classes <path>
 ```
 
+#### `tabs-props`
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={CustomScrollButton}
+-  TabIndicatorProps={{ className: 'indicator' }}
+-  TabScrollButtonProps={{ disableRipple: true }}
++  slots={{ scrollButtons: CustomScrollButton }}
++  slotProps={{
++    indicator: { className: 'indicator' },
++    scrollButtons: { disableRipple: true },
++  }}
+ />
+```
+
+```diff
+ <Tabs
+-  slots={{ StartScrollButtonIcon: CustomIcon, EndScrollButtonIcon: CustomIcon2 }}
++  slots={{ startScrollButtonIcon: CustomIcon, endScrollButtonIcon: CustomIcon2 }}
+ />
+```
+
+```diff
+ MuiTabs: {
+   defaultProps: {
+-    ScrollButtonComponent: CustomScrollButton,
+-    TabScrollButtonProps: { disableRipple: true },
+-    TabIndicatorProps: { className: 'indicator' },
++    slots: {
++      scrollButtons: CustomScrollButton,
++    },
++    slotProps: {
++      scrollButtons: { disableRipple: true },
++      indicator: { className: 'indicator' },
++    },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
 #### `tooltip-props`
 
 ```diff
  <Tooltip
--  components={{ Arrow: CustomArrow }}
--  componentsProps={{ arrow: { testid: 'test-id' } }}
+-  components={{ Arrow: CustomArrow, Tooltip: CustomTooltip }}
+-  componentsProps={{ arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }}
 -  PopperComponent={CustomPopperComponent}
 -  TransitionComponent={CustomTransitionComponent}
 -  PopperProps={CustomPopperProps}
 -  TransitionProps={CustomTransitionProps}
 +  slots={{
 +    arrow: CustomArrow,
++    tooltip: CustomTooltip,
 +    popper: CustomPopperComponent,
 +    transition: CustomTransitionComponent,
 +  }}
 +  slotProps={{
 +    arrow: { testid: 'test-id' },
++    tooltip: { className: 'custom' },
 +    popper: CustomPopperProps,
 +    transition: CustomTransitionProps,
 +  }}
@@ -1858,15 +2239,17 @@ npx @mui/codemod@latest deprecations/slider-classes <path>
 -    TransitionComponent: CustomTransitionComponent,
 -    PopperProps: CustomPopperProps,
 -    TransitionProps: CustomTransitionProps,
--    components: { Arrow: CustomArrow }
+-    components: { Arrow: CustomArrow, Tooltip: CustomTooltip }
 +    slots: {
 +      arrow: CustomArrow,
++      tooltip: CustomTooltip,
 +      popper: CustomPopperComponent,
 +      transition: CustomTransitionComponent,
 +    },
--    componentsProps: { arrow: { testid: 'test-id' }}
+-    componentsProps: { arrow: { testid: 'test-id' }, tooltip: { className: 'custom' } }
 +    slotProps: {
 +      arrow: { testid: 'test-id' },
++      tooltip: { className: 'custom' },
 +      popper: CustomPopperProps,
 +      transition: CustomTransitionProps,
 +    },
@@ -1913,8 +2296,10 @@ CSS transforms:
 +.MuiStepConnector-vertical > .MuiStepConnector-line
 ```
 
+<!-- #npm-tag-reference -->
+
 ```bash
-npx @mui/codemod deprecations/step-connector-classes <path>
+npx @mui/codemod@latest deprecations/step-connector-classes <path>
 ```
 
 #### `step-content-props`
@@ -1960,6 +2345,20 @@ npx @mui/codemod@latest deprecations/step-content-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+#### `switch-props`
+
+```diff
+ <Switch
+-  inputProps={{ 'aria-label': 'Switch' }}
+-  inputRef={ref}
++  slotProps={{ input: { 'aria-label': 'Switch', ref } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/switch-props <path>
 ```
 
 #### `text-field-props`
@@ -2122,14 +2521,66 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 npx @mui/codemod@latest deprecations/typography-props <path>
 ```
 
+### v9.0.0
+
+#### `system-props`
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path>
+```
+
+Remove system props from Box, Stack, Typography, Link, Grid, DialogContentText, TimelineContent, and TimelineOppositeContent components and move them to the `sx` prop.
+
+Compared to the v6 codemod, the v9 version also handles:
+
+- `color="inherit"` on Typography (moved to `sx`)
+- `color="text.secondary"` on Link (moved to `sx`, while keeping named colors like `"primary"` and `"inherit"` as component props)
+- DialogContentText, TimelineContent, and TimelineOppositeContent components
+
+```diff
+-<Typography color="inherit" />
++<Typography sx={{ color: "inherit" }} />
+
+-<Link color="text.secondary" href="#" />
++<Link href="#" sx={{ color: "text.secondary" }} />
+```
+
+You can also pass `--jsx` to specify JSX element names directly, bypassing import detection.
+This is useful for projects using auto-import plugins (for example `unplugin-auto-import`) where Material UI components are available without explicit import statements:
+
+```bash
+npx @mui/codemod@latest v9.0.0/system-props <path> -- --jsx=Box,Typography,Stack,Link,Grid,DialogContentText
+```
+
 ### v7.0.0
+
+#### `theme-color-functions`
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+
+```diff
+- import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+
+- alpha(theme.palette.primary.main, 0.8)
++ theme.alpha((theme.vars || theme).palette.primary.main, 0.8)
+
+- lighten(theme.palette.primary.main, 0.1)
++ theme.lighten(theme.palette.primary.main, 0.1)
+
+- darken(theme.palette.primary.main, 0.3)
++ theme.darken(theme.palette.primary.main, 0.3)
+```
 
 #### `grid-props`
 
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/grid-props <path>
+npx @mui/codemod@latest v7.0.0/grid-props <path>
 ```
 
 Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
@@ -2150,7 +2601,7 @@ You can provide the theme breakpoints via options, for example, `--jscodeshift='
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod@latest v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 ```diff
@@ -2163,7 +2614,7 @@ npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/lab-removed-components <path>
+npx @mui/codemod@latest v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2209,12 +2660,12 @@ Updates the `InputLabel`'s `size` value from `normal` to `medium`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
+npx @mui/codemod@latest v7.0.0/input-label-size-normal-medium <path>
 ```
 
 <!-- #host-reference -->
 
-You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
+You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 
@@ -3413,6 +3864,26 @@ npx @mui/codemod@latest v5.0.0/pagination-round-circular <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#pagination).
 
+#### `path-imports`
+
+Converts all `@mui/material` & `@mui/icons-material` top-level imports to path imports (essentially the reverse of `top-level-imports`, with the addition of `@mui/icons-material`):
+
+```diff
+-import { List, Grid } from '@mui/material';
++import List from '@mui/material/List';
++import Grid from '@mui/material/Grid';
+
+-import { Delete, People as PeopleIcon } from '@mui/icons-material';
++import Delete from '@mui/icons-material/Delete';
++import PeopleIcon from '@mui/icons-material/People';
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/path-imports <path>
+```
+
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
+
 #### `optimal-imports`
 
 Fix private import paths.
@@ -3666,7 +4137,7 @@ Converts all `@mui/material` submodule imports to the root module:
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
 ```
 
-Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `transitions`
 

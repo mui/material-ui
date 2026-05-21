@@ -63,14 +63,12 @@ It contains the highlights that will be included in the first versions.
 
 - **Extended customization abilities**.\
   We want to empower more users to employ the Data Grid for complex use cases.
-
   - [ApiRef in the community package](https://github.com/mui/mui-x/issues/6147).
   - [Filtering on header](https://github.com/mui/mui-x/issues/6247).
   - [Use the Data Grid internal components outside the grid](https://github.com/mui/mui-x/issues/2522).
 
 - **Improved look & feel**\
   We're polishing edges in terms of design and usability.
-
   - [New column menu](https://github.com/mui/mui-x/issues/4929).
   - [New column visibility panel](https://github.com/mui/mui-x/issues/5700).
   - [Column resize bar only on hover](https://github.com/mui/mui-x/issues/1623).
@@ -83,7 +81,6 @@ It contains the highlights that will be included in the first versions.
 - **Improved UX**\
   In the previous version we focused on developer experience and overall stability of the components.
   Now we're tackling ways to improve usability.
-
   - [Remove the clock view on time pickers (for desktop)](https://github.com/mui/mui-x/issues/4483).
   - [Visually edit a range by dragging date markers](https://github.com/mui/mui-x/issues/5311).
   - [Range shortcuts](https://github.com/mui/mui-x/issues/4563).

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export interface AccordionSummarySlots {
@@ -32,7 +33,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
+     * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
     root: SlotProps<
       React.ElementType<ButtonBaseProps>,
@@ -41,7 +42,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the content slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     content: SlotProps<
       'div',
@@ -50,7 +51,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the expand icon wrapper slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     expandIconWrapper: SlotProps<
       'div',
@@ -61,11 +62,10 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
 >;
 
 export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotProps {
-  children?: React.ReactNode;
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: Partial<AccordionSummaryClasses>;
+  classes?: Partial<AccordionSummaryClasses> | undefined;
   /**
    * The icon to display as the expand indicator.
    */
@@ -73,7 +73,7 @@ export interface AccordionSummaryOwnProps extends AccordionSummarySlotsAndSlotPr
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  sx?: SxProps<Theme>;
+  sx?: SxProps<Theme> | undefined;
 }
 
 export type AccordionSummaryTypeMap<
@@ -84,8 +84,10 @@ export type AccordionSummaryTypeMap<
   defaultComponent: RootComponent;
 }>;
 
-export interface AccordionSummaryOwnerState
-  extends Omit<AccordionSummaryProps, 'slots' | 'slotProps'> {}
+export interface AccordionSummaryOwnerState extends Omit<
+  AccordionSummaryProps,
+  'slots' | 'slotProps'
+> {}
 
 /**
  *
@@ -104,7 +106,7 @@ export type AccordionSummaryProps<
   RootComponent extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<AccordionSummaryTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
-  component?: React.ElementType;
+  component?: React.ElementType | undefined;
 };
 
 export default AccordionSummary;
