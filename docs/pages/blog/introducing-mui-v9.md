@@ -106,10 +106,10 @@ manualCard: false
   <img id="blog-responsive-image" src="/static/blog/introducing-mui-v9/intro.png" alt="" width="2400" height="800" />
 </a>
 
-We are thrilled to announce the simultaneous release of **Material UI v9** and of each **MUI X v9 components**.
+We are thrilled to announce the simultaneous release of **Material UI v9** and of **each of the MUI X v9 components**.
 
-We are re-aligning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
-This is more than a version bump; it represents one step toward a strongly unified ecosystem for the MUI products.
+We are realigning the major versions of the core design system and all the advanced components to provide a more cohesive, predictable development experience.
+This is more than a version bump; it's one step toward a more unified ecosystem for MUI products.
 
 In v9, we focused on three concrete areas:
 
@@ -131,11 +131,11 @@ In v9, we focused on three concrete areas:
 - [What's next](#whats-next)
   - [Component portfolio expansion](#component-portfolio-expansion)
   - [AI-native workflows](#ai-native-workflows)
-  - [Remove emotion and add modern theme layering](#remove-emotion-and-add-modern-theme-layering)
+  - [Remove Emotion and add modern theme layering](#remove-emotion-and-add-modern-theme-layering)
 
 ## What we released
 
-All the announcements per product:
+All product announcements:
 
 <div class="v9-release-cards">
   <a class="v9-release-cards__link" href="/blog/introducing-material-ui-v9/">
@@ -205,7 +205,7 @@ We've focused on stability, accessibility, and new building blocks across the v9
 - **Date and Time Pickers:** keyboard calendar navigation, stable `fieldRef` with `clearValue`, better click‑away focus behavior, and locale/adapter work (`thTH`, `AdapterDayjsBuddhist`).\
   See the [MUI X v9 Date and Time Pickers](/blog/introducing-mui-x-tree-view-and-pickers-v9/#date-and-time-pickers) section.
 - **Scheduler and Chat debut:** v9 starts with two new advanced components: Scheduler for resource‑aware calendars and timelines, and Chat for conversational UI with adapters and streaming.
-  Both are debuting at alpha; product detail, onboarding, and tiers in the [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/) and [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/) posts.
+  Both are debuting at alpha; product details, onboarding, and tiers are covered in the [MUI X Scheduler v9 alpha](/blog/introducing-mui-x-scheduler-v9-alpha/) and [MUI X Chat v9 alpha](/blog/introducing-mui-x-chat-v9-alpha/) posts.
 
 Note: Event Timeline and advanced Charts preview features are available under the Premium plan.
 
@@ -228,7 +228,7 @@ We will expand Console over time, but v9 already covers the core operational loo
 
 ## "MUI Chat" renamed to "MUI Recipes"
 
-[MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want and it generates a production ready React interface using the idiomatic API of Material UI, MUI X, or Base UI if you asked for it.
+[MUI Chat](https://chat.mui.com/) is a generative UI tool: you describe the UI you want, and it generates a production-ready React interface using the idiomatic API of Material UI, MUI X, or Base UI, depending on the prompt.
 
 Compared with starting from a blank file, it generates a first draft UI quickly and uses MUI component APIs directly.
 That reduces the amount of adaptation needed before you can use the output in a real codebase.
@@ -268,7 +268,7 @@ Over the coming months, we plan to focus our work on the following areas.
 
 ### Component portfolio expansion
 
-Advanced components continue to grow across three workflow types: data analysis (Data Grid and Charts), Resource management (Calendar and Timeline), and conversational interfaces (Chat).
+Advanced components continue to grow across three workflow types: data analysis (Data Grid and Charts), resource management (Calendar and Timeline), and conversational interfaces (Chat).
 
 - NumberField and Menubar will ship as npm components, not only as documentation recipes you copy from the docs.
 - Data Grid continues to expand AI and workflow features, and Material UI continues to add Base UI-powered components.
@@ -285,12 +285,12 @@ Integrated AI workflows can reduce repetitive multi-step UI actions while keepin
 
 Across v9 minors, we plan to expand assistant coverage, improve reliability and documentation, and integrate assistant flows more deeply with advanced components.
 
-### Remove emotion and add modern theme layering
+### Remove Emotion and add modern theme layering
 
 We're listening to you, and for the next major, we're going to explore refactoring the styling layer and theme layering model to better support modern design-system workflows:
 
 - Target independence from Emotion and better integration paths for teams using Tailwind CSS.
-- The ability for you to use Material Design, or have a separate theme with your own brand, without having to override every class.
+- Support for using Material Design or bringing your own brand theme without having to override every class.
 
 ## Further reading
 
