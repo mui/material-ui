@@ -7,6 +7,7 @@ import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
+import { GrowProps } from '../Grow';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -73,8 +74,8 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType,
-      TransitionProps & MenuTransitionSlotPropsOverrides,
+      React.JSXElementConstructor<GrowProps>,
+      Omit<GrowProps, 'children'> & MenuTransitionSlotPropsOverrides,
       MenuOwnerState
     >;
     /**

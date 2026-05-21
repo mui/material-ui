@@ -14,7 +14,16 @@ function Test() {
   return (
     <React.Fragment>
       <Drawer open />;
-      <Drawer open PaperProps={paperProps} />;
+      <Drawer open slotProps={{ paper: paperProps }} />;
+      <Drawer open slotProps={{ transition: { direction: 'left' } }} />;
+      <Drawer
+        open
+        slotProps={{
+          // @ts-expect-error — unknown props should be rejected
+          transition: { randomInvalidProp: 'test' },
+        }}
+      />
+      ;
     </React.Fragment>
   );
 }
@@ -34,6 +43,8 @@ function Test() {
       'aria-hidden': true,
     },
     transition: {
+      container: document.body,
+      direction: 'left',
       timeout: 500,
     },
   }}

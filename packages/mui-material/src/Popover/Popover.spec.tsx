@@ -13,7 +13,16 @@ function Test() {
   return (
     <React.Fragment>
       <Popover open />;
-      <Popover open PaperProps={paperProps} />
+      <Popover open PaperProps={paperProps} />;
+      <Popover open anchorEl={document.body} slotProps={{ transition: { timeout: 'auto' } }} />;
+      <Popover
+        open
+        slotProps={{
+          // @ts-expect-error — unknown props should be rejected
+          transition: { randomInvalidProp: 'test' },
+        }}
+      />
+      ;
     </React.Fragment>
   );
 }

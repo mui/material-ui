@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils/types';
 import { BackdropProps } from '../Backdrop';
+import { GrowProps } from '../Grow';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
@@ -57,8 +58,8 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType,
-      TransitionProps & PopoverTransitionSlotPropsOverrides,
+      React.JSXElementConstructor<GrowProps>,
+      Omit<GrowProps, 'children'> & PopoverTransitionSlotPropsOverrides,
       PopoverOwnerState
     >;
     /**

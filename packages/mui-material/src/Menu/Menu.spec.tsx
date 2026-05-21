@@ -1,5 +1,14 @@
 import Menu, { MenuProps } from '@mui/material/Menu';
 
+// slotProps.transition should reject unknown props
+<Menu
+  open
+  slotProps={{
+    // @ts-expect-error — unknown props should be rejected
+    transition: { randomInvalidProp: 'test' },
+  }}
+/>;
+
 <Menu
   open
   slotProps={{
@@ -29,6 +38,9 @@ import Menu, { MenuProps } from '@mui/material/Menu';
     },
   }}
 />;
+
+// slotProps.transition should accept props from the default Grow transition.
+<Menu open slotProps={{ transition: { timeout: 'auto' } }} />;
 
 <Menu
   open
