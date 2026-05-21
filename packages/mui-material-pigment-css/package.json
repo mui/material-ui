@@ -25,7 +25,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --copy \"src/styles.css\" --copy \"src/styles.css:esm\"",
+    "build": "code-infra build --flat --copy \"src/styles.css\"",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-pigment-css\"",
     "typescript": "tsc -p tsconfig.json"
