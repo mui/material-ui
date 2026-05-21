@@ -23,6 +23,17 @@ export const DemoRoot = styled('div')(({ theme }) => ({
     marginLeft: 0,
     marginRight: 0,
   },
+  // Make each demo a layout/style boundary so the expand/collapse
+  // `max-height` transition doesn't force the entire document tree (every
+  // other demo, sidebar, etc.) to relayout on every frame. Without this,
+  // Chrome reports `partialLayout: false` and reflows 6000+ objects per
+  // animation frame; with it, sibling demos shift position but skip their
+  // internal layout/style passes.
+  //
+  // `paint` containment is intentionally omitted — it creates a paint layer
+  // per demo and multiplies Paint events (~30x on a typical docs page)
+  // without further reducing layout cost.
+  contain: 'layout style',
 }));
 
 // Outer preview wrapper — visual container around the rendered demo.
