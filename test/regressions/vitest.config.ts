@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     globals: true,
     testTimeout: 60_000,
-    maxConcurrency: 4,
+    maxConcurrency: 6,
     reporters: [['default', {}], new A11yReporter()],
   },
 });
