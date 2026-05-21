@@ -469,6 +469,557 @@ describe('<Select />', () => {
     });
   });
 
+  describe('closed typeahead', () => {
+    beforeEach(() => {
+      clock.restore();
+    });
+
+    function sleep(duration) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+      });
+    }
+
+    async function focusTrigger(user, testId) {
+      const trigger = testId ? screen.getByTestId(testId) : screen.getByRole('combobox');
+
+      for (let attempts = 0; document.activeElement !== trigger && attempts < 10; attempts += 1) {
+        await user.tab();
+      }
+
+      expect(trigger).toHaveFocus();
+      return trigger;
+    }
+
+    it('selects a matching option without opening the popup', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="cherry">Cherry</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('c');
+
+      expect(trigger).to.have.text('Cherry');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('passes the selected value, name, and matched child to onChange', async () => {
+      const onChange = vi.fn((event, child) => ({
+        childValue: child.props.value,
+        name: event.target.name,
+        value: event.target.value,
+      }));
+
+      const { user } = render(
+        <Select defaultValue="" name="fruit" onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="cherry">Cherry</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('c');
+
+      expect(onChange.mock.calls.length).to.equal(1);
+      expect(onChange.mock.results[0].value).to.deep.equal({
+        childValue: 'cherry',
+        name: 'fruit',
+        value: 'cherry',
+      });
+      expect(React.isValidElement(onChange.mock.calls[0][1])).to.equal(true);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('starts from the first matching option when no value is selected', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="banana">Banana</MenuItem>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="apricot">Apricot</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Apple');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('starts before the first option when the controlled value is out of range', async () => {
+      function ControlledSelect() {
+        const [selectedValue, setSelectedValue] = React.useState('missing');
+
+        return (
+          <Select
+            value={selectedValue}
+            onChange={(event) => {
+              setSelectedValue(event.target.value);
+            }}
+          >
+            <MenuItem value="apple">Apple</MenuItem>
+            <MenuItem value="apricot">Apricot</MenuItem>
+          </Select>
+        );
+      }
+
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      try {
+        const { user } = render(<ControlledSelect />);
+
+        await waitFor(() => {
+          expect(warn.mock.calls.length).to.equal(reactMajor >= 18 ? 3 : 2);
+        });
+        warn.mock.calls.forEach(([message]) => {
+          expect(String(message)).to.include(
+            'MUI: You have provided an out-of-range value `missing` for the select component.',
+          );
+        });
+
+        await focusTrigger(user);
+        await user.keyboard('a');
+
+        expect(screen.getByRole('combobox')).to.have.text('Apple');
+        expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+      } finally {
+        warn.mockRestore();
+      }
+    });
+
+    it('resets closed typeahead after controlled value changes', async () => {
+      function ControlledSelect() {
+        const [selectedValue, setSelectedValue] = React.useState('cat');
+
+        return (
+          <React.Fragment>
+            <Select
+              value={selectedValue}
+              onChange={(event) => {
+                setSelectedValue(event.target.value);
+              }}
+            >
+              <MenuItem value="apple">Apple</MenuItem>
+              <MenuItem value="cat">Cat</MenuItem>
+              <MenuItem value="car">Car</MenuItem>
+            </Select>
+            <button type="button" onClick={() => setSelectedValue('')}>
+              Reset
+            </button>
+            <button type="button" onClick={() => setSelectedValue('car')}>
+              Select car
+            </button>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ControlledSelect />);
+
+      await user.click(screen.getByRole('button', { name: 'Reset' }));
+      await focusTrigger(user);
+
+      await user.keyboard('a');
+      expect(screen.getByRole('combobox')).to.have.text('Apple');
+
+      await user.click(screen.getByRole('button', { name: 'Select car' }));
+      await focusTrigger(user);
+
+      await user.keyboard('c');
+      expect(screen.getByRole('combobox')).to.have.text('Cat');
+
+      await user.keyboard('a');
+      expect(screen.getByRole('combobox')).to.have.text('Cat');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('clears an active buffer when the controlled value resets to no option while focused', async () => {
+      const onChange = vi.fn();
+
+      function ControlledSelect() {
+        const [selectedValue, setSelectedValue] = React.useState('cat');
+
+        return (
+          <React.Fragment>
+            <Select
+              value={selectedValue}
+              onChange={(event) => {
+                onChange(event);
+                setSelectedValue(event.target.value);
+              }}
+            >
+              <MenuItem value="cat">Cat</MenuItem>
+              <MenuItem value="apple">Apple</MenuItem>
+            </Select>
+            <button
+              type="button"
+              onMouseDown={(event) => {
+                event.preventDefault();
+              }}
+              onClick={() => setSelectedValue('')}
+            >
+              Reset without focus change
+            </button>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ControlledSelect />);
+      await focusTrigger(user);
+
+      await user.keyboard('c');
+      expect(onChange.mock.calls.length).to.equal(0);
+
+      await user.click(screen.getByRole('button', { name: 'Reset without focus change' }));
+      expect(screen.getByRole('combobox')).toHaveFocus();
+
+      await user.keyboard('a');
+
+      expect(onChange.mock.calls.length).to.equal(1);
+      expect(onChange.mock.calls[0][0].target.value).to.equal('apple');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('cycles repeated characters through matching options', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="arizona">Arizona</MenuItem>
+          <MenuItem value="apricot">Apricot</MenuItem>
+          <MenuItem value="avocado">Avocado</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('a');
+      expect(trigger).to.have.text('Arizona');
+
+      await user.keyboard('a');
+      expect(trigger).to.have.text('Apricot');
+
+      await user.keyboard('a');
+      expect(trigger).to.have.text('Avocado');
+    });
+
+    it('does not incorrectly cycle repeated-start labels', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="aaron">Aaron</MenuItem>
+          <MenuItem value="arizona">Arizona</MenuItem>
+          <MenuItem value="apricot">Apricot</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('a');
+      expect(trigger).to.have.text('Aaron');
+
+      await user.keyboard('a');
+      expect(trigger).to.have.text('Aaron');
+    });
+
+    it('clears the buffer after a non-Space no-match', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('za');
+
+      expect(screen.getByRole('combobox')).to.have.text('Apple');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('resets the buffer after 750 ms', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="cat">Cat</MenuItem>
+          <MenuItem value="apple">Apple</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('c');
+      expect(trigger).to.have.text('Cat');
+
+      await sleep(800);
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Apple');
+    });
+
+    it('resets the buffer on blur', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <Select defaultValue="">
+            <MenuItem value="cat">Cat</MenuItem>
+            <MenuItem value="apple">Apple</MenuItem>
+          </Select>
+          <button type="button">Outside</button>
+        </React.Fragment>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('c');
+      expect(trigger).to.have.text('Cat');
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Outside' })).toHaveFocus();
+
+      await focusTrigger(user);
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Apple');
+    });
+
+    it('resets the buffer when the popup opens', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="cat">Cat</MenuItem>
+          <MenuItem value="apple">Apple</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('c');
+      expect(trigger).to.have.text('Cat');
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+
+      await user.keyboard('{Escape}');
+      await waitFor(() => {
+        expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+      });
+
+      await focusTrigger(user);
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Apple');
+    });
+
+    it('ignores modified printable keys', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select defaultValue="banana" onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('{Control>}a{/Control}');
+
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.getByRole('combobox')).to.have.text('Banana');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('does not call onChange when the matched value is already selected', async () => {
+      const onChange = vi.fn();
+
+      const { user } = render(
+        <Select defaultValue="apple" onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.getByRole('combobox')).to.have.text('Apple');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('still calls onKeyDown for printable keys handled by typeahead', async () => {
+      const onKeyDown = vi.fn();
+
+      const { user } = render(
+        <Select defaultValue="" onKeyDown={onKeyDown}>
+          <MenuItem value="apple">Apple</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(onKeyDown.mock.calls.length).to.equal(1);
+      expect(onKeyDown.mock.calls[0][0]).to.have.property('key', 'a');
+      expect(screen.getByRole('combobox')).to.have.text('Apple');
+    });
+
+    it('uses string/number equality for selected-index lookup', async () => {
+      const { user } = render(
+        <Select defaultValue="10">
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('t');
+      expect(screen.getByRole('combobox')).to.have.text('Twenty');
+    });
+
+    it('uses object reference equality for selected-index lookup', async () => {
+      const selectedObject = { id: 1 };
+
+      const { user } = render(
+        <Select defaultValue={selectedObject}>
+          <MenuItem value={{ id: 2 }}>Alpha</MenuItem>
+          <MenuItem value={selectedObject}>Apricot</MenuItem>
+          <MenuItem value={{ id: 3 }}>Avocado</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('a');
+      expect(screen.getByRole('combobox')).to.have.text('Avocado');
+    });
+
+    it('matches numeric labels', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value={7}>{7}</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('7');
+      expect(screen.getByRole('combobox')).to.have.text('7');
+    });
+
+    it('matches nested labels', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="deep">
+            <span>
+              Deep <strong>Blue</strong>
+            </span>
+          </MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('d');
+      expect(screen.getByRole('combobox')).to.have.text('Deep Blue');
+    });
+
+    it('skips disabled options and children without their own value prop', async () => {
+      function WrappedListSubheader(props) {
+        return <ListSubheader {...props} />;
+      }
+
+      const { user } = render(
+        <Select defaultValue="">
+          <ListSubheader>Apple group</ListSubheader>
+          <Divider />
+          <WrappedListSubheader>Apricot group</WrappedListSubheader>
+          <MenuItem disabled value="apple">
+            Apple
+          </MenuItem>
+          <MenuItem value="apricot">Apricot</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Apricot');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('skips disabled Select during keyboard navigation', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <Select disabled value="banana">
+            <MenuItem value="apple">Apple</MenuItem>
+            <MenuItem value="banana">Banana</MenuItem>
+          </Select>
+          <button type="button">Next</button>
+        </React.Fragment>,
+      );
+
+      await user.tab();
+
+      expect(screen.getByRole('button', { name: 'Next' })).toHaveFocus();
+      expect(screen.getByRole('combobox')).to.have.text('Banana');
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('does not typeahead when readOnly', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select readOnly value="banana" onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+      const trigger = await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(trigger).to.have.text('Banana');
+      expect(trigger).to.have.attribute('aria-readonly', 'true');
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('does not typeahead when multiple', async () => {
+      const onChange = vi.fn();
+      const { user } = render(
+        <Select multiple value={['banana']} onChange={onChange}>
+          <MenuItem value="apple">Apple</MenuItem>
+          <MenuItem value="banana">Banana</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('a');
+
+      expect(screen.getByRole('combobox')).to.have.text('Banana');
+      expect(onChange.mock.calls.length).to.equal(0);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('uses Space in an active buffer', async () => {
+      const onKeyDown = vi.fn();
+      const { user } = render(
+        <Select defaultValue="" onKeyDown={onKeyDown}>
+          <MenuItem value="one">Item One</MenuItem>
+          <MenuItem value="two">Item Two</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard('item t');
+
+      expect(screen.getByRole('combobox')).to.have.text('Item Two');
+      const spaceKeyDown = onKeyDown.mock.calls.find(([event]) => event.key === ' ');
+      expect(spaceKeyDown).not.to.equal(undefined);
+      expect(spaceKeyDown[0]).to.have.property('defaultPrevented', true);
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('opens the popup on initial Space', async () => {
+      const { user } = render(
+        <Select defaultValue="">
+          <MenuItem value="one">Item One</MenuItem>
+        </Select>,
+      );
+      await focusTrigger(user);
+
+      await user.keyboard(' ');
+      expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+  });
+
   it('should pass "name" as part of the event.target for onBlur', async () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
 
@@ -532,6 +1083,13 @@ describe('<Select />', () => {
         <Select value="" labelId="my$label" />
       </React.Fragment>,
     );
+    const selection = window.getSelection();
+    const range = document.createRange();
+
+    range.setStart(document.body, 0);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
 
     fireEvent.click(screen.getByTestId('label'));
 
@@ -606,6 +1164,26 @@ describe('<Select />', () => {
       });
 
       expect(onChangeHandler.callCount).to.equal(0);
+    });
+
+    it('should be called if the selected value is string-equivalent but not strictly equal', async () => {
+      clock.restore();
+      const onChangeHandler = vi.fn();
+      const { user } = render(
+        <Select onChange={onChangeHandler} value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+        </Select>,
+      );
+
+      await user.click(screen.getByRole('combobox'));
+      await user.click(screen.getByRole('option', { name: 'Ten' }));
+
+      expect(onChangeHandler.mock.calls.length).to.equal(1);
+      expect(onChangeHandler.mock.calls[0][0].target).to.deep.equal({
+        name: undefined,
+        value: 10,
+      });
     });
   });
 
