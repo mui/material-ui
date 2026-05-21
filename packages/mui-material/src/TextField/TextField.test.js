@@ -317,6 +317,123 @@ describe('<TextField />', () => {
     });
   });
 
+  describe('prop: slotProps', () => {
+    it('should merge deprecated props with their matching slot props', () => {
+      const handleInputMouseDown = spy();
+      const handleSlotInputMouseDown = spy();
+      const { container } = render(
+        <TextField
+          label="Name"
+          helperText="Helper"
+          InputProps={{
+            className: 'deprecated-input',
+            'data-deprecated-input': 'true',
+            'data-precedence': 'deprecated',
+            onMouseDown: handleInputMouseDown,
+            style: { color: 'red', backgroundColor: 'blue' },
+          }}
+          InputLabelProps={{
+            className: 'deprecated-input-label',
+            'data-deprecated-input-label': 'true',
+          }}
+          inputProps={{
+            className: 'deprecated-html-input',
+            'data-deprecated-html-input': 'true',
+            maxLength: 2,
+          }}
+          FormHelperTextProps={{
+            className: 'deprecated-helper-text',
+            'data-deprecated-helper-text': 'true',
+          }}
+          slotProps={{
+            input: {
+              className: 'slot-input',
+              'data-slot-input': 'true',
+              'data-precedence': 'slot',
+              onMouseDown: handleSlotInputMouseDown,
+              style: { backgroundColor: 'green' },
+            },
+            inputLabel: {
+              className: 'slot-input-label',
+              'data-slot-input-label': 'true',
+            },
+            htmlInput: {
+              className: 'slot-html-input',
+              'data-slot-html-input': 'true',
+              maxLength: 4,
+            },
+            formHelperText: {
+              className: 'slot-helper-text',
+              'data-slot-helper-text': 'true',
+            },
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('textbox');
+      const inputRoot = textbox.closest(`.${inputBaseClasses.root}`);
+      const inputLabel = container.querySelector('label');
+      const helperTextElement = screen.getByText('Helper');
+
+      expect(inputRoot).not.to.equal(null);
+      expect(inputRoot).to.have.class('deprecated-input');
+      expect(inputRoot).to.have.class('slot-input');
+      expect(inputRoot).to.have.attribute('data-deprecated-input', 'true');
+      expect(inputRoot).to.have.attribute('data-slot-input', 'true');
+      expect(inputRoot).to.have.attribute('data-precedence', 'slot');
+      expect(inputRoot.style.color).to.equal('red');
+      expect(inputRoot.style.backgroundColor).to.equal('green');
+
+      fireEvent.mouseDown(inputRoot);
+      expect(handleInputMouseDown.callCount).to.equal(1);
+      expect(handleSlotInputMouseDown.callCount).to.equal(1);
+
+      expect(inputLabel).to.have.class('deprecated-input-label');
+      expect(inputLabel).to.have.class('slot-input-label');
+      expect(inputLabel).to.have.attribute('data-deprecated-input-label', 'true');
+      expect(inputLabel).to.have.attribute('data-slot-input-label', 'true');
+
+      expect(textbox).to.have.class('deprecated-html-input');
+      expect(textbox).to.have.class('slot-html-input');
+      expect(textbox).to.have.attribute('data-deprecated-html-input', 'true');
+      expect(textbox).to.have.attribute('data-slot-html-input', 'true');
+      expect(textbox).to.have.property('maxLength', 4);
+
+      expect(helperTextElement).to.have.class('deprecated-helper-text');
+      expect(helperTextElement).to.have.class('slot-helper-text');
+      expect(helperTextElement).to.have.attribute('data-deprecated-helper-text', 'true');
+      expect(helperTextElement).to.have.attribute('data-slot-helper-text', 'true');
+    });
+
+    it('should merge deprecated SelectProps with slotProps.select', () => {
+      const { container: selectContainer } = render(
+        <TextField
+          select
+          value="one"
+          SelectProps={{
+            native: true,
+            className: 'deprecated-select',
+            'data-deprecated-select': 'true',
+          }}
+          slotProps={{
+            select: {
+              className: 'slot-select',
+              'data-slot-select': 'true',
+            },
+          }}
+        >
+          <option value="one">One</option>
+        </TextField>,
+      );
+
+      const selectRoot = selectContainer.querySelector('.deprecated-select.slot-select');
+      expect(selectRoot).not.to.equal(null);
+      expect(selectRoot).to.have.attribute('data-deprecated-select', 'true');
+      expect(selectRoot).to.have.attribute('data-slot-select', 'true');
+      expect(screen.getByRole('combobox')).to.have.property('nodeName', 'SELECT');
+    });
+  });
+
   describe('autofill', () => {
     it('should be filled after auto fill event', () => {
       function AutoFillComponentTest() {

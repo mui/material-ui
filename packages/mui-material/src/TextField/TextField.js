@@ -14,6 +14,7 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
+import { mergeSlotProps } from '../utils';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 import useSlot from '../utils/useSlot';
 
@@ -37,6 +38,14 @@ const TextFieldRoot = styled(FormControl, {
   name: 'MuiTextField',
   slot: 'Root',
 })({});
+
+const mergeDeprecatedSlotProps = (slotProps, deprecatedSlotProps) => {
+  if (deprecatedSlotProps == null) {
+    return slotProps;
+  }
+
+  return mergeSlotProps(slotProps, deprecatedSlotProps);
+};
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -141,12 +150,12 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
-      input: InputPropsProp,
-      inputLabel: InputLabelPropsProp,
-      htmlInput: inputPropsProp,
-      formHelperText: FormHelperTextPropsProp,
-      select: SelectPropsProp,
       ...slotProps,
+      input: mergeDeprecatedSlotProps(slotProps.input, InputPropsProp),
+      inputLabel: mergeDeprecatedSlotProps(slotProps.inputLabel, InputLabelPropsProp),
+      htmlInput: mergeDeprecatedSlotProps(slotProps.htmlInput, inputPropsProp),
+      formHelperText: mergeDeprecatedSlotProps(slotProps.formHelperText, FormHelperTextPropsProp),
+      select: mergeDeprecatedSlotProps(slotProps.select, SelectPropsProp),
     },
   };
 

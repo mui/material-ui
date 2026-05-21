@@ -2595,6 +2595,20 @@ describe('<Autocomplete />', () => {
   });
 
   describe('click input', () => {
+    it('should apply TextField htmlInput slot props when Autocomplete renderInput params are spread', () => {
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(params) => (
+            <TextField {...params} slotProps={{ htmlInput: { maxLength: 4 } }} />
+          )}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      expect(textbox).to.have.property('maxLength', 4);
+    });
+
     it('when `openOnFocus` toggles if empty', () => {
       render(
         <Autocomplete
