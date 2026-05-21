@@ -21,6 +21,39 @@ import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig, codeSandboxTsconfigOverride } from './exportConfig';
 
 // ---------------------------------------------------------------------------
+// Page-global "demo is animating" flag
+//
+// While any demo on the page is expanding/collapsing, set
+// `data-demo-transitioning` on `<html>`. Opted-in components (currently the
+// rainbow MUI Chat button) match `html[data-demo-transitioning] &` in their
+// own stylesheet and pause their continuous animations. Otherwise those
+// animations compete for paint/composite time with the demo's height
+// transition and visibly smear it.
+//
+// Refcounted so concurrent expansions don't clear each other early.
+// ---------------------------------------------------------------------------
+
+let transitioningCount = 0;
+
+function beginDemoTransitioning() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  transitioningCount += 1;
+  document.documentElement.setAttribute('data-demo-transitioning', '');
+}
+
+function endDemoTransitioning() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  transitioningCount = Math.max(0, transitioningCount - 1);
+  if (transitioningCount === 0) {
+    document.documentElement.removeAttribute('data-demo-transitioning');
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
@@ -236,10 +269,33 @@ export default function DemoContent(props: DemoContentProps) {
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;
+  const transitionTimerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  React.useEffect(
+    () => () => {
+      if (transitionTimerRef.current !== undefined) {
+        clearTimeout(transitionTimerRef.current);
+        transitionTimerRef.current = undefined;
+        endDemoTransitioning();
+      }
+    },
+    [],
+  );
   const handleToggleFrames = React.useCallback(() => {
     const next = !expandedRef.current;
     anchorScroll(next ? 'expand' : 'collapse');
     demo.setExpanded(next);
+    // Pause every CSS animation on the page for the duration of the
+    // expand/collapse so continuous paints don't smear the height transition.
+    // Cleared a touch after `useScrollAnchor`'s default duration (300ms).
+    if (transitionTimerRef.current !== undefined) {
+      clearTimeout(transitionTimerRef.current);
+    } else {
+      beginDemoTransitioning();
+    }
+    transitionTimerRef.current = setTimeout(() => {
+      transitionTimerRef.current = undefined;
+      endDemoTransitioning();
+    }, 400);
   }, [anchorScroll, demo]);
 
   // GA event label — the canonical demo slug is used since it uniquely
