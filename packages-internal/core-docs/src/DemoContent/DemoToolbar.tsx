@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
 import MDButton from '@mui/material/Button';
 import MDToggleButton from '@mui/material/ToggleButton';
@@ -364,34 +363,42 @@ export function DemoToolbar(props: DemoToolbarProps) {
         data-ga-event-action="open-in-mui-chat"
       />
 
-      {/* Left side: JS/TS toggle (only relevant when code is open) */}
-      <Fade in={expanded && hasJsTransform}>
-        <ToggleButtonGroup
-          sx={{ margin: '8px 0' }}
-          exclusive
-          value={isJsSelected ? 'js' : 'ts'}
-          onChange={onLanguageClick}
+      {/* Left side: JS/TS toggle (only relevant when code is open). Uses a
+          CSS-only opacity transition rather than MUI's `<Fade>` because Fade
+          calls `reflow(node)` (reading `node.scrollTop`) on every transition,
+          forcing a synchronous layout flush that thrashes with
+          `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
+      <ToggleButtonGroup
+        sx={{
+          margin: '8px 0',
+          transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
+          opacity: expanded && hasJsTransform ? 1 : 0,
+          visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
+          pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
+        }}
+        exclusive
+        value={isJsSelected ? 'js' : 'ts'}
+        onChange={onLanguageClick}
+      >
+        <ToggleButton
+          value="js"
+          aria-label={t('showJSSource')}
+          data-ga-event-category="demo"
+          data-ga-event-label={gaLabel}
+          data-ga-event-action="source-js"
         >
-          <ToggleButton
-            value="js"
-            aria-label={t('showJSSource')}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="source-js"
-          >
-            JS
-          </ToggleButton>
-          <ToggleButton
-            value="ts"
-            aria-label={t('showTSSource')}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="source-ts"
-          >
-            TS
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Fade>
+          JS
+        </ToggleButton>
+        <ToggleButton
+          value="ts"
+          aria-label={t('showTSSource')}
+          data-ga-event-category="demo"
+          data-ga-event-label={gaLabel}
+          data-ga-event-action="source-ts"
+        >
+          TS
+        </ToggleButton>
+      </ToggleButtonGroup>
 
       {/* Right side: action buttons */}
       <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.5 }}>
