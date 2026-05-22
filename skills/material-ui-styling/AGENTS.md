@@ -129,13 +129,13 @@ To reuse `sx` logic inside `styled()`, use theme's `unstable_sx` (see [styled()â
 
 ## Further reading (repo / site)
 
-| Topic                   | Doc                                                                                           |
-| :---------------------- | :-------------------------------------------------------------------------------------------- |
-| Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize.md)             |
-| `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/)                            |
-| `styled()` API          | [styled()](https://mui.com/system/styled/)                                                    |
-| Theme per component     | [Themed components](https://mui.com/material-ui/customization/theme-components.md)            |
-| System property mapping | [System properties](https://mui.com/system/properties/)                                       |
-| State / class naming    | [State classes](https://mui.com/material-ui/customization/how-to-customize.md#state-classes)  |
+| Topic                   | Doc                                                                                          |
+| :---------------------- | :------------------------------------------------------------------------------------------- |
+| Choosing strategy       | [How to customize](https://mui.com/material-ui/customization/how-to-customize.md)            |
+| `sx` reference          | [The sx prop](https://mui.com/system/getting-started/the-sx-prop/)                           |
+| `styled()` API          | [styled()](https://mui.com/system/styled/)                                                   |
+| Theme per component     | [Themed components](https://mui.com/material-ui/customization/theme-components.md)           |
+| System property mapping | [System properties](https://mui.com/system/properties/)                                      |
+| State / class naming    | [State classes](https://mui.com/material-ui/customization/how-to-customize.md#state-classes) |
 
 For MUI-specific class and state tables, see [reference.md](reference.md).
