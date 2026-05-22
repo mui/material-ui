@@ -67,8 +67,8 @@ export default function TailwindPlayground() {
   }
 
   return (
-    // ToDo: why don't we get the ease-in and duration variables are not generated.
-    // ToDo: make dark mode work.
+    // ToDo Silviu: why don't we get the ease-in and duration variables are not generated.
+    // ToDo Silviu: make dark mode work.
     <CssThemeProvider theme={theme}>
       <div className="p-6 md:p-10 max-w-3xl mx-auto min-h-screen bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
         {/* Header */}
