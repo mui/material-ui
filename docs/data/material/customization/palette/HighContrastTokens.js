@@ -2,6 +2,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
+// TODO: Ideally this should be generated from the HighContrastTokens TS interface
+// rather than maintained manually, but auto-extraction would lose descriptions and
+// default values. A solution that exports token metadata from the interface is needed.
 const tokens = [
   {
     token: 'disabled',
