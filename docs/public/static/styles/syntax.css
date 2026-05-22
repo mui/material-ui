@@ -58,6 +58,10 @@
   --color-docs-infra-syntax-property-string: #fc929e;
   --color-docs-infra-syntax-object-property: #f8f8f2;
   --color-docs-infra-syntax-punctuation: #f8f8f2;
+
+  /* Rendered line height of code blocks. Used by the `.collapse` placeholder
+   * animation to scale the entry/exit height to the number of hidden lines. */
+  --docs-infra-syntax-line-height: 19.5px;
 }
 
 .pl-c {
@@ -279,4 +283,151 @@ pre [data-hl='strong'] {
 pre [data-hlc] {
   color: #b78eff;
   background-color: var(--color-inline-highlight);
+}
+
+/* ----------------------------------------------------------------------
+ * Collapsed-lines placeholder
+ *
+ * `<span class="collapse" data-lines={n}>` is emitted wherever a source
+ * transform deleted a run of lines (e.g. the type-stripping path replaces
+ * type-only lines with empty strings, which the runtime then folds into a
+ * single placeholder). While a transform swap is in flight, `<Pre>` sets
+ * `data-transforming="expand"` or `data-transforming="collapse"` on the
+ * rendered `<pre>` so the placeholder can animate in the correct direction:
+ *
+ *   - `expand`   the OUTGOING tree's placeholders should expand back to
+ *                their original height (the lines being kept by the new
+ *                transform are about to reappear). Fired during the pre-swap
+ *                window for `transform → null` and the first half of
+ *                `transform → transform`.
+ *   - `collapse` the INCOMING tree's placeholders should collapse from their
+ *                original height down to 0 (the lines just removed by the new
+ *                transform). Fired during the post-swap window for
+ *                `null → transform` and the second half of
+ *                `transform → transform`.
+ *
+ * We use a CSS `@keyframes` rule (rather than a transition + the
+ * `@starting-style` at-rule) because React typically reuses the same `<span>`
+ * DOM node when a `.line` is replaced by a `.collapse` at the same position
+ * — only the `class` and `data-*` attributes change. That isn't an element
+ * insertion, so `@starting-style` would never fire; but a new
+ * `animation-name` starts as soon as the rule begins applying to the
+ * element, which is exactly what we want.
+ * ------------------------------------------------------------------- */
+
+pre .frame .collapse {
+  display: block;
+  overflow: hidden;
+}
+
+/* One empty `<span/>` per collapsed source line. Each child takes up
+ * exactly one line-height, so the placeholder's intrinsic height is
+ * `count * line-height` with no `data-lines` lookup, custom property,
+ * or per-count fallback rules. Animating each child independently is
+ * marginally more work than a single group animation but trades that
+ * for portable behavior across every engine and removes the upper
+ * bound on supported runs. */
+pre .frame .collapse > span {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Post-swap entry animation: the new tree just committed and any `.collapse`
+ * placeholders it contains should collapse from their children's expanded
+ * height down to 0. Gated on `data-transforming="collapse"` so initial
+ * renders and unrelated re-renders stay silent. */
+pre[data-transforming='collapse'] .frame .collapse > span {
+  animation: docs-infra-collapse-enter 350ms ease both;
+}
+
+@keyframes docs-infra-collapse-enter {
+  from {
+    height: var(--docs-infra-syntax-line-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Pre-swap exit animation. When `useCode({ transformDelay })` is set,
+ * switching away from the current transform doesn't commit the new tree
+ * synchronously — the hook flips `data-transforming="expand"` on the
+ * rendered `<pre>` first, waits `transformDelay` ms, then drops the
+ * attribute and commits the new tree (which may then immediately get a
+ * `data-transforming="collapse"` window of its own for the entry animation;
+ * transform → transform thus runs expand → swap → collapse back-to-back).
+ * During the expand window, any `.collapse` placeholders in the CURRENT
+ * tree run the exit animation below (each child 0 → line-height) so the
+ * removed lines visually reappear before the real `.line` spans replace
+ * them. */
+pre[data-transforming='expand'] .frame .collapse > span {
+  animation: docs-infra-collapse-exit 350ms ease forwards;
+}
+
+@keyframes docs-infra-collapse-exit {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--docs-infra-syntax-line-height);
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Transformer-added lines (single-line `data-expanding`)
+ *
+ * The symmetric case of the `.collapse` placeholder. Source transformers
+ * that *insert* lines (e.g. the api-key injector) mark each new line
+ * with `data-expanding=""` via paired `@expanding-start`/`@expanding-end`
+ * markers in their returned comments map. Each line animates
+ * independently — there is no equivalent of the multi-line placeholder
+ * here, since deletions can be folded into a placeholder ahead of the
+ * diff but insertions cannot be folded after one without losing the
+ * highlighted content the viewer wants to reveal.
+ *
+ *   - During the post-swap `data-transforming="collapse"` window
+ *     (incoming tree just committed), each added line expands from
+ *     0 to one line-height — the new lines visually slide in.
+ *   - During the pre-swap `data-transforming="expand"` window
+ *     (outgoing tree about to be replaced by one without these lines),
+ *     each added line collapses from one line-height to 0 — the lines
+ *     visually slide out before the new tree commits.
+ *
+ * Outside those windows the attribute is inert: the line renders at its
+ * natural height like any other `.line`. This means initial loads
+ * (where a transform may already be applied from URL/localStorage)
+ * show the added lines at full height with no animation, which is the
+ * correct behavior — there is no "before" state to animate from.
+ * ------------------------------------------------------------------- */
+
+pre .frame .line[data-expanding] {
+  display: block;
+  overflow: hidden;
+}
+
+pre[data-transforming='collapse'] .frame .line[data-expanding] {
+  animation: docs-infra-line-collapse-enter 350ms ease both;
+}
+
+@keyframes docs-infra-line-collapse-enter {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--docs-infra-syntax-line-height);
+  }
+}
+
+pre[data-transforming='expand'] .frame .line[data-expanding] {
+  animation: docs-infra-line-collapse-exit 350ms ease forwards;
+}
+
+@keyframes docs-infra-line-collapse-exit {
+  from {
+    height: var(--docs-infra-syntax-line-height);
+  }
+  to {
+    height: 0;
+  }
 }
