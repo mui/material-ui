@@ -661,6 +661,51 @@ describe('<Accordion />', () => {
       expect(summary.getAttribute('aria-controls')).to.equal(region.getAttribute('id'));
     });
 
+    it('supports function slotProps without letting them replace generated relationships', async () => {
+      render(
+        <Accordion
+          expanded
+          slotProps={{
+            region: ({ expanded: isExpanded }) => ({
+              id: 'slot-region',
+              'aria-labelledby': 'slot-summary',
+              className: isExpanded ? 'expanded-region' : undefined,
+              'data-testid': 'region',
+            }),
+          }}
+        >
+          <AccordionSummary
+            slotProps={{
+              root: ({ expanded: isExpanded }) => ({
+                id: 'slot-summary',
+                'aria-controls': 'slot-region',
+                className: isExpanded ? 'expanded-summary' : undefined,
+                'data-testid': 'summary',
+              }),
+            }}
+          >
+            Summary
+          </AccordionSummary>
+          <AccordionDetails>Details</AccordionDetails>
+        </Accordion>,
+      );
+
+      const summary = screen.getByTestId('summary');
+      const region = screen.getByTestId('region');
+
+      await waitFor(() => {
+        expect(summary).to.have.attribute('aria-controls', region.getAttribute('id'));
+        expect(region).to.have.attribute('aria-labelledby', summary.getAttribute('id'));
+      });
+
+      expect(summary).not.to.have.attribute('id', 'slot-summary');
+      expect(summary).not.to.have.attribute('aria-controls', 'slot-region');
+      expect(summary).to.have.class('expanded-summary');
+      expect(region).not.to.have.attribute('id', 'slot-region');
+      expect(region).not.to.have.attribute('aria-labelledby', 'slot-summary');
+      expect(region).to.have.class('expanded-region');
+    });
+
     it('preserves non-relationship slot props', async () => {
       const handleSummaryClick = spy();
       const handleRegionClick = spy();
@@ -728,7 +773,7 @@ describe('<Accordion />', () => {
       expect(screen.queryByRole('region')).to.equal(null);
     });
 
-    it('preserves explicit aria-controls when unmountOnExit keeps the region unmounted', () => {
+    it('preserves provided aria-controls when unmountOnExit keeps the region unmounted', () => {
       render(
         <Accordion slotProps={{ transition: { unmountOnExit: true } }}>
           <AccordionSummary id="panel-header" aria-controls="panel-content">
@@ -864,7 +909,7 @@ describe('<Accordion />', () => {
       });
     });
 
-    it('preserves explicit aria-controls with a closed custom transition that returns null', () => {
+    it('preserves provided aria-controls with a closed custom transition that returns null', () => {
       render(
         <Accordion slots={{ transition: NoTransition }}>
           <AccordionSummary id="panel-header" aria-controls="panel-content">

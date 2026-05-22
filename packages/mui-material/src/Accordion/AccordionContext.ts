@@ -2,26 +2,35 @@
 import * as React from 'react';
 
 interface AccordionContextValue {
-  expanded?: boolean | undefined;
-  disabled?: boolean | undefined;
-  disableGutters?: boolean | undefined;
-  toggle?: ((event: React.SyntheticEvent) => void) | undefined;
+  expanded: boolean;
+  disabled: boolean;
+  disableGutters: boolean;
+  toggle: (event: React.SyntheticEvent) => void;
   summaryId?: string | undefined;
   ariaControls?: string | undefined;
 }
 
+export const NOOP = () => {};
+
+const DEFAULT_CONTEXT_VALUE: AccordionContextValue = {
+  expanded: false,
+  disabled: false,
+  disableGutters: false,
+  toggle: NOOP,
+};
+
 /**
  * @ignore - internal component.
  */
-const AccordionContext = React.createContext<AccordionContextValue | undefined>(undefined);
+const AccordionContext = React.createContext(DEFAULT_CONTEXT_VALUE);
 
 if (process.env.NODE_ENV !== 'production') {
   AccordionContext.displayName = 'AccordionContext';
 }
 
-export function useAccordionContext(): AccordionContextValue | undefined {
+export function useAccordionContext(): AccordionContextValue {
   const context = React.useContext(AccordionContext);
-  if (context === undefined) {
+  if (context === DEFAULT_CONTEXT_VALUE) {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
         'MUI: AccordionSummary should be rendered inside <Accordion>. ' +

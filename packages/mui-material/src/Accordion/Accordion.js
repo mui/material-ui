@@ -175,13 +175,13 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     [expanded, onChange, setExpandedState],
   );
 
-  const [summary, ...children] = React.Children.toArray(childrenProp);
+  const [summary, ...regionChildren] = React.Children.toArray(childrenProp);
   const summaryProps = React.isValidElement(summary) ? summary.props : EMPTY;
   const summaryIdProp = summaryProps.id;
-  const summaryAriaControlsProp = summaryProps['aria-controls'];
+  const regionIdProp = summaryProps['aria-controls'];
   const summaryId = useId(summaryIdProp);
-  const regionId = useId(summaryAriaControlsProp);
-  const hasSummaryAriaControls = summaryAriaControlsProp != null;
+  const regionId = useId(regionIdProp);
+  const hasRegionIdProp = regionIdProp != null;
   const [isRegionMounted, setIsRegionMounted] = React.useState(false);
 
   const ownerState = {
@@ -210,7 +210,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ref,
   });
 
-  const [AccordionHeadingSlot, accordionHeadingProps] = useSlot('heading', {
+  const [HeadingSlot, headingProps] = useSlot('heading', {
     elementType: AccordionHeading,
     externalForwardedProps,
     className: classes.heading,
@@ -224,31 +224,32 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   });
 
   // The default Collapse keeps its child mounted unless mounting is explicitly deferred.
-  const isDefaultCollapseTransition = TransitionSlot === Collapse;
+  const isDefaultTransition = TransitionSlot === Collapse;
   // Mount tracking is only needed when generated aria-controls could point at an unmounted region.
   // Custom transitions are opaque, so they are treated as unknown until the region ref is set.
-  const hasGeneratedRegionId = !hasSummaryAriaControls;
+  const usesGeneratedRegionId = !hasRegionIdProp;
   const isRegionAlwaysMounted =
-    isDefaultCollapseTransition && !transitionProps.unmountOnExit && !transitionProps.mountOnEnter;
-  const shouldTrackRegionMount = hasGeneratedRegionId && !isRegionAlwaysMounted;
+    isDefaultTransition && !transitionProps.unmountOnExit && !transitionProps.mountOnEnter;
+  const shouldTrackRegionMount = usesGeneratedRegionId && !isRegionAlwaysMounted;
 
   const handleRegionMountRef = React.useCallback((node) => {
     setIsRegionMounted(node != null);
   }, []);
 
-  const canUseGeneratedRegionId =
-    hasGeneratedRegionId &&
-    (isRegionAlwaysMounted || (isDefaultCollapseTransition && expanded) || isRegionMounted);
+  const shouldUseGeneratedAriaControls =
+    usesGeneratedRegionId &&
+    (isRegionAlwaysMounted || (isDefaultTransition && expanded) || isRegionMounted);
 
+  const regionExternalSlotProps = slotProps.region;
   const regionSlotProps = mergeSlotProps(
     {
       id: regionId,
       'aria-labelledby': summaryId,
     },
-    slotProps.region ?? EMPTY,
+    regionExternalSlotProps ?? EMPTY,
   );
 
-  const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
+  const [RegionSlot, regionProps] = useSlot('region', {
     elementType: AccordionRegion,
     externalForwardedProps: {
       ...externalForwardedProps,
@@ -265,32 +266,27 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     },
   });
 
-  let summaryAriaControls;
-  if (hasSummaryAriaControls || canUseGeneratedRegionId) {
-    summaryAriaControls = regionId;
-  }
+  const ariaControls = hasRegionIdProp || shouldUseGeneratedAriaControls ? regionId : undefined;
 
-  const accordionContextValue = React.useMemo(
+  const contextValue = React.useMemo(
     () => ({
       expanded,
       disabled,
       disableGutters,
       toggle: handleChange,
       summaryId,
-      ariaControls: summaryAriaControls,
+      ariaControls,
     }),
-    [expanded, disabled, disableGutters, handleChange, summaryId, summaryAriaControls],
+    [expanded, disabled, disableGutters, handleChange, summaryId, ariaControls],
   );
 
   return (
     <RootSlot {...rootProps}>
-      <AccordionHeadingSlot {...accordionHeadingProps}>
-        <AccordionContext.Provider value={accordionContextValue}>
-          {summary}
-        </AccordionContext.Provider>
-      </AccordionHeadingSlot>
+      <HeadingSlot {...headingProps}>
+        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+      </HeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
-        <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
+        <RegionSlot {...regionProps}>{regionChildren}</RegionSlot>
       </TransitionSlot>
     </RootSlot>
   );

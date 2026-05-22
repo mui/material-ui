@@ -7,7 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
-import { useAccordionContext } from '../Accordion/AccordionContext';
+import { NOOP, useAccordionContext } from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
@@ -123,18 +123,9 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   } = props;
 
   const accordionContext = useAccordionContext();
-  const {
-    disabled = false,
-    disableGutters,
-    expanded,
-    toggle,
-    summaryId,
-    ariaControls,
-  } = accordionContext ?? {};
-  const handleChange = (event) => {
-    if (toggle) {
-      toggle(event);
-    }
+  const { disabled, disableGutters, expanded, toggle, summaryId, ariaControls } = accordionContext;
+  const handleClick = (event) => {
+    toggle(event);
     if (onClick) {
       onClick(event);
     }
@@ -149,7 +140,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootSlotPropsWithRelationship = mergeSlotProps(
+  const rootSlotProps = mergeSlotProps(
     {
       id: summaryId,
       'aria-controls': ariaControls,
@@ -160,15 +151,15 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   const externalForwardedProps = {
     slots,
     slotProps:
-      accordionContext === undefined
+      accordionContext.toggle === NOOP
         ? slotProps
         : {
             ...slotProps,
-            root: rootSlotPropsWithRelationship,
+            root: rootSlotProps,
           },
   };
 
-  const [RootSlot, rootSlotProps] = useSlot('root', {
+  const [RootSlot, rootProps] = useSlot('root', {
     ref,
     shouldForwardComponentProp: true,
     className: clsx(classes.root, className),
@@ -190,7 +181,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       ...handlers,
       onClick: (event) => {
         handlers.onClick?.(event);
-        handleChange(event);
+        handleClick(event);
       },
     }),
   });
@@ -210,7 +201,7 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
   });
 
   return (
-    <RootSlot {...rootSlotProps}>
+    <RootSlot {...rootProps}>
       <ContentSlot {...contentSlotProps}>{children}</ContentSlot>
       {expandIcon && (
         <ExpandIconWrapperSlot {...expandIconWrapperSlotProps}>{expandIcon}</ExpandIconWrapperSlot>
