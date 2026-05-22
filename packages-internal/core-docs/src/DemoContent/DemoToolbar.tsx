@@ -230,6 +230,11 @@ export interface DemoToolbarProps {
   hasJsTransform: boolean;
   isJsSelected: boolean;
   onLanguageClick: (event: React.MouseEvent, value: string | null) => void;
+  /**
+   * Ref attached to the JS/TS toggle group. `DemoContent` uses it as the
+   * scroll-anchor element when a transform swap reflows the code tree.
+   */
+  languageToggleRef?: React.Ref<HTMLDivElement>;
   /** Variant cycling (styling solutions). */
   variants: readonly string[];
   selectedVariant: string;
@@ -261,6 +266,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
     hasJsTransform,
     isJsSelected,
     onLanguageClick,
+    languageToggleRef,
     variants,
     selectedVariant,
     onSelectVariant,
@@ -369,6 +375,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           forcing a synchronous layout flush that thrashes with
           `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
       <ToggleButtonGroup
+        ref={languageToggleRef}
         sx={{
           margin: '8px 0',
           transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
