@@ -137,12 +137,13 @@ export default async function create(
         VITEST: 'true',
         NODE_ENV: 'development',
       },
-      // Cap worker count on CI: with file parallelism enabled each worker can
-      // have several pages in flight at once, and Firefox in particular is
-      // RAM-hungry. Two is conservative for an xlarge runner; raise later if
-      // we see headroom.
+      // Cap worker count on CI. With file parallelism enabled each worker keeps
+      // several browser pages in flight at once; measured peak RAM scales
+      // roughly linearly with this number and reaches the runner's memory
+      // ceiling at higher counts. Start at 1 (≈ one file at a time) and raise
+      // deliberately once we have memory headroom data per runner.
       ...(process.env.CI && {
-        maxWorkers: 3,
+        maxWorkers: 1,
       }),
     },
     resolve: {
