@@ -3,6 +3,7 @@ import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
 import { useCodeWindow } from '@mui/internal-docs-infra/useCodeWindow';
+import { useScrollAnchor } from '@mui/internal-docs-infra/useScrollAnchor';
 import { useTranslate } from '../i18n';
 import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
@@ -52,6 +53,11 @@ function endDemoTransitioning() {
     document.documentElement.removeAttribute('data-demo-transitioning');
   }
 }
+
+// Duration (ms) of one half of the transform swap window. The full
+// `expand → swap → collapse` cycle lasts `TRANSFORM_DELAY * 2`. Must match
+// the `.collapse` keyframe duration in `syntax.css`.
+const TRANSFORM_DELAY = 350;
 
 // ---------------------------------------------------------------------------
 // Component
@@ -171,6 +177,16 @@ export default function DemoContent(props: DemoContentProps) {
     defaultOpen: defaultCodeOpen,
     export: exportConfig,
     exportCodeSandbox: codeSandboxTsconfigOverride,
+    // Enables the expand → swap → collapse window on the rendered `<pre>` so
+    // the `.collapse` placeholder animation in `syntax.css` has time to run
+    // (must match the keyframe duration there).
+    transformDelay: TRANSFORM_DELAY,
+    // Only the file the user is currently looking at participates in the
+    // coordinated swap window — other files defer their transform until
+    // they're brought into view. Avoids paying layout-shift cost for code
+    // the viewer can't see and prevents `hasCollapseInFocus` work from
+    // spreading across files needlessly.
+    transformLayoutShift: 'focus',
   });
   useTypescriptRef.current = demo.selectedTransform !== 'js';
 
@@ -187,16 +203,38 @@ export default function DemoContent(props: DemoContentProps) {
   // identically in both states.
   const { containerRef, toggleRef, anchorScroll } = useCodeWindow<HTMLButtonElement>();
 
+  // Separate scroll-anchor session for transform swaps. Watches the same
+  // code container, but anchors the page scroll on the JS/TS toggle group
+  // so the clicked button stays under the user's pointer while the
+  // `expand → swap → collapse` window plays out.
+  const { containerRef: transformAnchorContainerRef, anchorScroll: anchorTransformScroll } =
+    useScrollAnchor<HTMLDivElement>();
+  const languageToggleRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Combined ref that feeds the code container element into both
+  // `useCodeWindow` (for expand/collapse anchoring) and the transform
+  // `useScrollAnchor` session above.
+  const setCodeContainerRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      (transformAnchorContainerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    },
+    [containerRef, transformAnchorContainerRef],
+  );
+
   const hasJsTransform = demo.availableTransforms.includes('js');
   const isJsSelected = demo.selectedTransform === 'js';
 
   const handleLanguageClick = React.useCallback(
     (_event: React.MouseEvent, value: string | null) => {
       if (value !== null) {
+        if (languageToggleRef.current) {
+          anchorTransformScroll(languageToggleRef.current, TRANSFORM_DELAY * 2);
+        }
         demo.selectTransform(value === 'js' ? 'js' : null);
       }
     },
-    [demo],
+    [demo, anchorTransformScroll],
   );
 
   // Prefer Material UI's `ButtonBase#focusVisible()` (a non-standard helper
@@ -343,6 +381,7 @@ export default function DemoContent(props: DemoContentProps) {
       hasJsTransform={hasJsTransform}
       isJsSelected={isJsSelected}
       onLanguageClick={handleLanguageClick}
+      languageToggleRef={languageToggleRef}
       variants={demo.variants}
       selectedVariant={demo.selectedVariant}
       onSelectVariant={demo.selectVariant}
@@ -435,7 +474,7 @@ export default function DemoContent(props: DemoContentProps) {
       codeOpen={demo.expanded}
       tabs={tabs}
       code={code}
-      codeRef={containerRef}
+      codeRef={setCodeContainerRef}
       afterCode={afterCode}
       renderTabsAndCode={renderTabsAndCode}
     />
