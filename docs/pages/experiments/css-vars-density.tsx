@@ -122,6 +122,33 @@ export default function App() {
         >
           <Controls />
         </Scope>
+
+        {/* --- Color knobs (agnostic, resting-only) --- */}
+        <Scope title="Color knobs — --Button-radius scopes all; --Button-bg/color are per-button">
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            sx={{ alignItems: "center", flexWrap: "wrap", "--Button-radius": "16px" }}
+          >
+            <Button variant="contained">Rounded (scope)</Button>
+            <Button variant="contained" sx={{ "--Button-bg": "tomato" }}>
+              --Button-bg: tomato
+            </Button>
+            <Button variant="outlined" sx={{ "--Button-border-color": "rebeccapurple" }}>
+              --Button-border-color
+            </Button>
+            <Button variant="outlined" sx={{ "--Button-border-width": "3px" }}>
+              --Button-border-width: 3px
+            </Button>
+            <Button variant="text" sx={{ "--Button-color": "seagreen" }}>
+              --Button-color
+            </Button>
+            <Button variant="contained" sx={{ "--Button-shadow": "0 4px 12px rgba(0,0,0,0.4)" }}>
+              --Button-shadow
+            </Button>
+          </Stack>
+        </Scope>
       </Box>
     </ThemeProvider>
   );
