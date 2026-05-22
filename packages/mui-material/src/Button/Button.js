@@ -100,6 +100,7 @@ const ButtonRoot = styled(ButtonBase, {
     return {
       ...theme.typography.button,
       minWidth: 64,
+      fontSize: `var(--Button-font-size, ${theme.typography.button.fontSize})`,
       padding: `var(--Button-padding-block, ${theme.spacing(0.75)}) var(--Button-padding-inline, ${theme.spacing(2)})`,
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -226,7 +227,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `var(--Button-padding-block, ${theme.spacing(0.5)}) var(--Button-padding-inline, ${theme.spacing(0.625)})`,
-            fontSize: theme.typography.pxToRem(13),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(13)})`,
           },
         },
         {
@@ -236,7 +237,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `var(--Button-padding-block, ${theme.spacing(1)}) var(--Button-padding-inline, ${theme.spacing(1.375)})`,
-            fontSize: theme.typography.pxToRem(15),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(15)})`,
           },
         },
         {
@@ -246,7 +247,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `calc(var(--Button-padding-block, ${theme.spacing(0.5)}) - 1px) calc(var(--Button-padding-inline, ${theme.spacing(1.25)}) - 1px)`,
-            fontSize: theme.typography.pxToRem(13),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(13)})`,
           },
         },
         {
@@ -256,7 +257,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `calc(var(--Button-padding-block, ${theme.spacing(1)}) - 1px) calc(var(--Button-padding-inline, ${theme.spacing(2.75)}) - 1px)`,
-            fontSize: theme.typography.pxToRem(15),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(15)})`,
           },
         },
         {
@@ -266,7 +267,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `var(--Button-padding-block, ${theme.spacing(0.5)}) var(--Button-padding-inline, ${theme.spacing(1.25)})`,
-            fontSize: theme.typography.pxToRem(13),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(13)})`,
           },
         },
         {
@@ -276,7 +277,7 @@ const ButtonRoot = styled(ButtonBase, {
           },
           style: {
             padding: `var(--Button-padding-block, ${theme.spacing(1)}) var(--Button-padding-inline, ${theme.spacing(2.75)})`,
-            fontSize: theme.typography.pxToRem(15),
+            fontSize: `var(--Button-font-size, ${theme.typography.pxToRem(15)})`,
           },
         },
         {

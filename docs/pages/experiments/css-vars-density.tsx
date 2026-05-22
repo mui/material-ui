@@ -16,7 +16,7 @@ const theme = createTheme({ cssVariables: true });
 function Controls() {
   return (
     <Stack spacing={2}>
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "center", flexWrap: "wrap" }}>
         <Button variant="contained" size="small">
           Small
         </Button>
@@ -27,7 +27,7 @@ function Controls() {
         <Button variant="outlined">Outlined</Button>
         <Button variant="text">Text</Button>
       </Stack>
-      <Stack direction="row" spacing={2} sx={{ alignItems: "start", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "start", flexWrap: "wrap" }}>
         <TextField label="Outlined" defaultValue="Value" />
         <TextField label="Small" size="small" defaultValue="Value" />
       </Stack>
@@ -83,7 +83,12 @@ export default function App() {
 
         {/* --- Fine-grained per-component knobs --- */}
         <Scope title="Per-component knobs">
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center", flexWrap: "wrap" }}>
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            sx={{ alignItems: "center", flexWrap: "wrap" }}
+          >
             <Button variant="contained" sx={{ "--Button-padding-block": "2px" }}>
               --Button-padding-block: 2px
             </Button>
@@ -101,6 +106,21 @@ export default function App() {
               sx={{ "--InputBase-line-height": "2" }}
             />
           </Stack>
+        </Scope>
+
+        {/* --- Responsive typography: font-size 1rem on mobile, 0.875rem on desktop --- */}
+        <Scope
+          title="Responsive font-size — 1rem mobile, 0.875rem desktop (≥900px). Resize to see."
+          sx={{
+            "--Button-font-size": "1rem",
+            "--TextField-font-size": "1rem",
+            "@media (min-width:900px)": {
+              "--Button-font-size": "0.875rem",
+              "--TextField-font-size": "0.875rem",
+            },
+          }}
+        >
+          <Controls />
         </Scope>
       </Box>
     </ThemeProvider>

@@ -98,6 +98,7 @@ export const InputBaseRoot = styled('div', {
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
     color: (theme.vars || theme).palette.text.primary,
+    fontSize: `var(--InputBase-font-size, ${theme.typography.body1.fontSize})`,
     lineHeight: 'var(--InputBase-line-height, 1.4375)', // 23px (unitless = multiplier of font-size)
     boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     position: 'relative',

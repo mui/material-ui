@@ -44,6 +44,7 @@ const TextFieldRoot = styled(FormControl, {
       props: { variant: 'outlined' },
       style: {
         '--OutlinedInput-height': 'var(--TextField-height)',
+        '--OutlinedInput-font-size': 'var(--TextField-font-size)',
       },
     },
   ],

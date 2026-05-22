@@ -47,6 +47,8 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
       position: 'relative',
+      // Variant-level font-size knob; inward fallback to the base --InputBase-font-size.
+      fontSize: `var(--OutlinedInput-font-size, var(--InputBase-font-size, ${theme.typography.body1.fontSize}))`,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,

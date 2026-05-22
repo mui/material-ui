@@ -33,7 +33,8 @@ A component's CSS-var fallback chain may reference only its own var and the vars
 - **Public = reading (A):** hand-authorable fixed API, not an internal theme-only mechanism. No `--mui-` prefix on component vars.
 - **POC runs under `cssVariables: true`.** Density mechanic is **A1** + `--mui-spacing` global override; no new `--spacing-*` token scale yet.
 - **Density is holistic (A):** overriding `--mui-spacing` reflows the whole UI (layout + component internals), not just controls.
-- **POC dimensions:** padding (block/inline) + line-height (inputs only — load-bearing in the height formula; no Button line-height var). Font-size and font-weight deferred. Color deferred.
+- **POC dimensions:** padding (block/inline) + line-height (inputs only — load-bearing in the height formula; no Button line-height var) + font-size (`--Button-font-size`; inputs via `--InputBase-font-size` with variant chain `--OutlinedInput-font-size` and TextField mapping `--TextField-font-size`). Font-weight and color deferred.
+- **Font-size & the input height formula compose for free:** the derived padding uses `1em` for the line box, and `1em` = the input's own font-size. So changing `--*-font-size` re-centers the text inside the fixed `--*-height` automatically — no extra line-height var needed for the font-size axis.
 - **POC build scope:** Button (direct-padding density) + OutlinedInput with TextField→OutlinedInput→InputBase mapping (layered height-derived density). FilledInput / standard Input / Select deferred.
 - **Density demo:** one `docs/pages/experiments/` page showing both diagram branches — "Different Apps" (`--mui-spacing` overridden via a class scope) and "Different Viewports" (`--mui-spacing` overridden in a `@media` query) — with the same Buttons/TextFields reflowing live.
 
