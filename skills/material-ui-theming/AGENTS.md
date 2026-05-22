@@ -129,7 +129,7 @@ const theme = enhanceHighContrast(createTheme());
 
 ```js
 const theme = enhanceHighContrast(createTheme(), {
-  activeBackground: 'SelectedItem',  // e.g. toggled/active controls
+  activeBackground: 'SelectedItem', // e.g. toggled/active controls
   activeText: 'SelectedItemText',
 });
 ```

@@ -324,17 +324,17 @@ It follows the same pattern as `responsiveFontSizes`: it accepts a fully-created
 1. `theme` (_object_): The theme object to enhance.
 2. `tokens` (_object_ [optional]): An object of [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) to override individual defaults.
 
-| Token                | Default              | Description                                  |
-| :------------------- | :------------------- | :------------------------------------------- |
-| `disabled`           | `GrayText`           | Color for disabled elements                  |
-| `error`              | `ActiveText`         | Color for error states                       |
-| `selectedBackground` | `SelectedItem`       | Background color for selected items          |
-| `selectedText`       | `SelectedItemText`   | Text color on selected items                 |
-| `activeBackground`   | `Highlight`          | Background color for active/toggled controls |
-| `activeText`         | `HighlightText`      | Text color on active/toggled controls        |
-| `buttonBorder`       | `ButtonBorder`       | Border color for interactive controls        |
-| `buttonText`         | `ButtonText`         | Text/icon color on buttons                   |
-| `canvas`             | `Canvas`             | Background color for the page/canvas         |
+| Token                | Default            | Description                                  |
+| :------------------- | :----------------- | :------------------------------------------- |
+| `disabled`           | `GrayText`         | Color for disabled elements                  |
+| `error`              | `ActiveText`       | Color for error states                       |
+| `selectedBackground` | `SelectedItem`     | Background color for selected items          |
+| `selectedText`       | `SelectedItemText` | Text color on selected items                 |
+| `activeBackground`   | `Highlight`        | Background color for active/toggled controls |
+| `activeText`         | `HighlightText`    | Text color on active/toggled controls        |
+| `buttonBorder`       | `ButtonBorder`     | Border color for interactive controls        |
+| `buttonText`         | `ButtonText`       | Text/icon color on buttons                   |
+| `canvas`             | `Canvas`           | Background color for the page/canvas         |
 
 #### Returns
 
