@@ -100,7 +100,7 @@ const ButtonRoot = styled(ButtonBase, {
     return {
       ...theme.typography.button,
       minWidth: 64,
-      padding: '6px 16px',
+      padding: `var(--Button-padding-block, ${theme.spacing(0.75)}) var(--Button-padding-inline, ${theme.spacing(2)})`,
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       transition: theme.transitions.create(
@@ -145,7 +145,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'outlined' },
           style: {
-            padding: '5px 15px',
+            padding: `calc(var(--Button-padding-block, ${theme.spacing(0.75)}) - 1px) calc(var(--Button-padding-inline, ${theme.spacing(2)}) - 1px)`,
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
@@ -158,7 +158,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'text' },
           style: {
-            padding: '6px 8px',
+            padding: `var(--Button-padding-block, ${theme.spacing(0.75)}) var(--Button-padding-inline, ${theme.spacing(1)})`,
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -225,7 +225,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '4px 5px',
+            padding: `var(--Button-padding-block, ${theme.spacing(0.5)}) var(--Button-padding-inline, ${theme.spacing(0.625)})`,
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -235,7 +235,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '8px 11px',
+            padding: `var(--Button-padding-block, ${theme.spacing(1)}) var(--Button-padding-inline, ${theme.spacing(1.375)})`,
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -245,7 +245,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '3px 9px',
+            padding: `calc(var(--Button-padding-block, ${theme.spacing(0.5)}) - 1px) calc(var(--Button-padding-inline, ${theme.spacing(1.25)}) - 1px)`,
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -255,7 +255,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '7px 21px',
+            padding: `calc(var(--Button-padding-block, ${theme.spacing(1)}) - 1px) calc(var(--Button-padding-inline, ${theme.spacing(2.75)}) - 1px)`,
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -265,7 +265,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '4px 10px',
+            padding: `var(--Button-padding-block, ${theme.spacing(0.5)}) var(--Button-padding-inline, ${theme.spacing(1.25)})`,
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -275,7 +275,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '8px 22px',
+            padding: `var(--Button-padding-block, ${theme.spacing(1)}) var(--Button-padding-inline, ${theme.spacing(2.75)})`,
             fontSize: theme.typography.pxToRem(15),
           },
         },

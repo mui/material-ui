@@ -98,7 +98,7 @@ export const InputBaseRoot = styled('div', {
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
     color: (theme.vars || theme).palette.text.primary,
-    lineHeight: '1.4375em', // 23px
+    lineHeight: 'var(--InputBase-line-height, 1.4375)', // 23px (unitless = multiplier of font-size)
     boxSizing: 'border-box', // Prevent padding issue with fullWidth.
     position: 'relative',
     cursor: 'text',
@@ -170,7 +170,7 @@ export const InputBaseInput = styled('input', {
       border: 0,
       boxSizing: 'content-box',
       background: 'none',
-      height: '1.4375em', // Reset 23pxthe native input line-height
+      height: 'calc(var(--InputBase-line-height, 1.4375) * 1em)', // Reset native input height to the line box (tracks --InputBase-line-height)
       margin: 0, // Reset for Safari
       WebkitTapHighlightColor: 'transparent',
       display: 'block',

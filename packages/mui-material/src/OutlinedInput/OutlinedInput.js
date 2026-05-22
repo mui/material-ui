@@ -134,7 +134,10 @@ const OutlinedInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    padding: '16.5px 14px',
+    // padding-block is derived from the target height so geometry stays centered:
+    // (height − line-height·1em) / 2. Height chain: --OutlinedInput-height → --InputBase-height → spacing(7).
+    // padding-inline rides --mui-spacing independently. See docs/design/public-css-var-layering.md.
+    padding: `var(--OutlinedInput-padding-block, var(--InputBase-padding-block, calc((var(--OutlinedInput-height, var(--InputBase-height, ${theme.spacing(7)})) - var(--InputBase-line-height, 1.4375) * 1em) / 2))) var(--OutlinedInput-padding-inline, var(--InputBase-padding-inline, ${theme.spacing(1.75)}))`,
     '&:-webkit-autofill': {
       ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -155,7 +158,8 @@ const OutlinedInputInput = styled(InputBaseInput, {
           size: 'small',
         },
         style: {
-          padding: '8.5px 14px',
+          // small target height defaults to spacing(5) = 40px
+          padding: `var(--OutlinedInput-padding-block, var(--InputBase-padding-block, calc((var(--OutlinedInput-height, var(--InputBase-height, ${theme.spacing(5)})) - var(--InputBase-line-height, 1.4375) * 1em) / 2))) var(--OutlinedInput-padding-inline, var(--InputBase-padding-inline, ${theme.spacing(1.75)}))`,
         },
       },
       {

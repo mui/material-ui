@@ -36,7 +36,18 @@ const useUtilityClasses = (ownerState) => {
 const TextFieldRoot = styled(FormControl, {
   name: 'MuiTextField',
   slot: 'Root',
-})({});
+})({
+  variants: [
+    {
+      // Single TextField knob: maps to the variant-level height var so a page-level
+      // --InputBase-height is not shadowed for wrapped inputs. See docs/design/public-css-var-layering.md.
+      props: { variant: 'outlined' },
+      style: {
+        '--OutlinedInput-height': 'var(--TextField-height)',
+      },
+    },
+  ],
+});
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
