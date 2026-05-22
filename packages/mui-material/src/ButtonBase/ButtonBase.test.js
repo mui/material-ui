@@ -1053,7 +1053,7 @@ describe('<ButtonBase />', () => {
       fireEvent.mouseLeave(button);
       expect(onMouseLeaveSpy.callCount).to.equal(1);
 
-      fireEvent.keyDown(button, { key: 'Escape' });
+      expect(fireEvent.keyDown(button, { key: 'Escape' })).to.equal(true);
       expect(onKeyDownSpy.callCount).to.equal(0);
       expect(parentKeyDownSpy.callCount).to.equal(1);
 

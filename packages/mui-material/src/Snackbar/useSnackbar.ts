@@ -11,7 +11,7 @@ import {
 import { EventHandlers } from '../utils/types';
 
 type MuiPreventableKeyboardEvent = KeyboardEvent & {
-  defaultMuiPrevented?: (boolean) | undefined;
+  defaultMuiPrevented?: boolean | undefined;
 };
 
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
