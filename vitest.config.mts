@@ -24,11 +24,10 @@ export default defineConfig({
   test: {
     projects: getProjects(),
     // Cap worker count on CI. Browser tests keep a live browser page per worker,
-    // so peak RAM scales ~linearly with worker count; unbounded parallelism OOMs
-    // the medium+ runner. maxWorkers is a root-level option (it has no effect in
-    // the per-project config in vitest.shared.mts). Start at 1 and raise
-    // deliberately once we have memory headroom data per runner.
-    ...(process.env.CI && { maxWorkers: 1 }),
+    // so peak test-phase RAM scales ~linearly with worker count; unbounded
+    // parallelism OOMs smaller runners. maxWorkers is a root-level option (it has
+    // no effect in the per-project config in vitest.shared.mts).
+    ...(process.env.CI && { maxWorkers: 2 }),
     sequence: {
       hooks: 'list',
     },
