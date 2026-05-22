@@ -1,4 +1,4 @@
-import prepareCssVars, { DefaultCssVarsTheme } from './prepareCssVars';
+import prepareCssVars, { type DefaultCssVarsTheme } from './prepareCssVars';
 import { createGetColorSchemeSelector } from './getColorSchemeSelector';
 import { DEFAULT_ATTRIBUTE } from '../InitColorSchemeScript/InitColorSchemeScript';
 

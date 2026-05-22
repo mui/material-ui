@@ -1,4 +1,4 @@
-import MuiPaper, { PaperProps } from '@mui/material/Paper';
+import MuiPaper, { type PaperProps } from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 interface ExtraPaperProps {

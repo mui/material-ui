@@ -1,4 +1,4 @@
-import Box, { BoxProps } from '@mui/material/Box';
+import Box, { type BoxProps } from '@mui/material/Box';
 
 function Item(props: BoxProps) {
   const { sx, ...other } = props;

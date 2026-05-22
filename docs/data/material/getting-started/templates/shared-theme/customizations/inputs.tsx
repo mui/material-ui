@@ -1,4 +1,4 @@
-import { alpha, Theme, Components } from '@mui/material/styles';
+import { alpha, type Theme, type Components } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';

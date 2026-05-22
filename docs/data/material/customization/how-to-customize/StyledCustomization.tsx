@@ -1,4 +1,4 @@
-import Slider, { SliderProps } from '@mui/material/Slider';
+import Slider, { type SliderProps } from '@mui/material/Slider';
 import { alpha, styled } from '@mui/material/styles';
 
 const SuccessSlider = styled(Slider)<SliderProps>(({ theme }) => ({

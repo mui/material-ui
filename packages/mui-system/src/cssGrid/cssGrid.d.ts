@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { type PropsFor, type SimpleStyleFunction } from '../style';
 
 export const gap: SimpleStyleFunction<'gap'>;
 export const columnGap: SimpleStyleFunction<'columnGap'>;

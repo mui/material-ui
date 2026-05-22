@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { ThemeProvider as SystemThemeProvider, DefaultTheme } from '@mui/system';
+import { ThemeProvider as SystemThemeProvider, type DefaultTheme } from '@mui/system';
 import THEME_ID from './identifier';
 
 export interface ThemeProviderNoVarsProps<Theme = DefaultTheme> {

@@ -6,7 +6,7 @@ import * as semver from 'semver';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
-import { NextConfig } from 'next';
+import { type NextConfig } from 'next';
 import { findPages } from './src/modules/utils/find';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));

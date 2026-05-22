@@ -1,4 +1,4 @@
-import { StyleFunction, TransformFunction } from '../style';
+import { type StyleFunction, type TransformFunction } from '../style';
 
 type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Record<PropKey, any>>>;
 

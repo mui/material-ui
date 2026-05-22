@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
-import { TypographyProps } from '@mui/material/Typography';
-import { InternalStandardProps as StandardProps } from '@mui/material/internal';
-import { TimelineOppositeContentClasses } from './timelineOppositeContentClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '@mui/material/styles';
+import { type TypographyProps } from '@mui/material/Typography';
+import { type InternalStandardProps as StandardProps } from '@mui/material/internal';
+import { type TimelineOppositeContentClasses } from './timelineOppositeContentClasses';
 
 export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
   /**

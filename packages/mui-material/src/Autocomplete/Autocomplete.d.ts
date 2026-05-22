@@ -1,25 +1,28 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { IconButtonProps } from '../IconButton';
-import { ChipProps, ChipTypeMap } from '../Chip';
-import { PaperProps } from '../Paper';
-import { PopperProps } from '../Popper';
-import useAutocomplete, {
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type OverridableStringUnion } from '@mui/types';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type IconButtonProps } from '../IconButton';
+import { type ChipProps, type ChipTypeMap } from '../Chip';
+import { type PaperProps } from '../Paper';
+import { type PopperProps } from '../Popper';
+import {
+  type UseAutocompleteProps,
+  type AutocompleteFreeSoloValueMapping,
+  type AutocompleteValueOrFreeSoloValueMapping,
+} from '../useAutocomplete';
+import type useAutocomplete from '../useAutocomplete';
+import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   AutocompleteValue,
   createFilterOptions,
-  UseAutocompleteProps,
-  AutocompleteFreeSoloValueMapping,
-  AutocompleteValueOrFreeSoloValueMapping,
 } from '../useAutocomplete';
-import { AutocompleteClasses } from './autocompleteClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { type AutocompleteClasses } from './autocompleteClasses';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}

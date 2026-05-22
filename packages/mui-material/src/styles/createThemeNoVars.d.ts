@@ -1,25 +1,25 @@
 import {
-  ThemeOptions as SystemThemeOptions,
-  Theme as SystemTheme,
-  SxProps,
-  CSSObject,
-  SxConfig,
-  ApplyStyles,
+  type ThemeOptions as SystemThemeOptions,
+  type Theme as SystemTheme,
+  type SxProps,
+  type CSSObject,
+  type SxConfig,
+  type ApplyStyles,
 } from '@mui/system';
-import { Mixins, MixinsOptions } from './createMixins';
-import { Palette, PaletteOptions } from './createPalette';
-import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
-import { Shadows } from './shadows';
-import { Transitions, TransitionsOptions } from './createTransitions';
-import { ZIndex, ZIndexOptions } from './zIndex';
-import { Components } from './components';
+import { type Mixins, type MixinsOptions } from './createMixins';
+import { type Palette, type PaletteOptions } from './createPalette';
+import { type TypographyVariants, type TypographyVariantsOptions } from './createTypography';
+import { type Shadows } from './shadows';
+import { type Transitions, type TransitionsOptions } from './createTransitions';
+import { type ZIndex, type ZIndexOptions } from './zIndex';
+import { type Components } from './components';
 import {
-  CssVarsTheme,
-  CssVarsPalette,
-  ColorSystemOptions,
-  Shape,
-  ShapeOptions,
-  SupportedColorScheme,
+  type CssVarsTheme,
+  type CssVarsPalette,
+  type ColorSystemOptions,
+  type Shape,
+  type ShapeOptions,
+  type SupportedColorScheme,
 } from './createThemeFoundation';
 
 /**

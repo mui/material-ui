@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import SvgIcon, { type SvgIconProps } from '@mui/material/SvgIcon';
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
