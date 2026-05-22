@@ -401,7 +401,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
       </ToggleButtonGroup>
 
       {/* Right side: action buttons */}
-      <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.5 }}>
+      <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
             size="small"
@@ -429,6 +429,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           data-ga-event-category="demo"
           data-ga-event-label={gaLabel}
           data-ga-event-action={expanded ? 'collapse' : 'expand'}
+          sx={{ mr: 0.5 }}
         >
           {showCodeLabel}
         </ToolbarButton>

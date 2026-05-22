@@ -55,10 +55,14 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   }
 
   // The toolbar buttons need `useDemo` state, so render an empty placeholder
-  // sized to match the live toolbar's content height (`26px` toggle buttons +
-  // `2px` vertical padding = `30px`) so the page layout doesn't jump when the
-  // interactive `DemoContent` takes over.
-  const toolbar = <div style={{ minHeight: 30 }} />;
+  // sized to match the live toolbar's content height. The tallest interactive
+  // element is the default-size `IconButton`, which renders at 42px once MUI's
+  // medium-size padding is applied. `DemoToolbarRoot` then adds 2px of
+  // vertical padding plus a 1px bottom border, for a rendered toolbar of
+  // 47px total. Sizing the placeholder to 42px keeps the layout from jumping
+  // when the interactive `DemoContent` takes over. Matches the
+  // `DemoToolbarFallback` value in master's `Demo.tsx`.
+  const toolbar = <div style={{ minHeight: 42 }} />;
 
   // Show the SSR'd source by default so the code block is visible before
   // hydration. The live `DemoContent` then takes over and respects the
