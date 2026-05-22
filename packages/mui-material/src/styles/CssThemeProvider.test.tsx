@@ -14,16 +14,16 @@ describe('CssThemeProvider', () => {
 
   it('throws when the theme was not created with cssVariables: true', () => {
     const theme = createTheme();
-    expect(() => render(<CssThemeProvider theme={theme}>{null}</CssThemeProvider>)).toErrorDev([
+    expect(() => render(<CssThemeProvider theme={theme}>{null}</CssThemeProvider>)).to.throw(
       'MUI: CssThemeProvider requires a theme created with `cssVariables: true`',
-    ]);
+    );
   });
 
   it('throws when passed a theme function', () => {
     const themeFn = () => createTheme({ cssVariables: true });
-    expect(() => render(<CssThemeProvider theme={themeFn}>{null}</CssThemeProvider>)).toErrorDev([
+    expect(() => render(<CssThemeProvider theme={themeFn}>{null}</CssThemeProvider>)).to.throw(
       'MUI: CssThemeProvider does not accept a theme function',
-    ]);
+    );
   });
 
   it('injects CSS variables into <head>', () => {
