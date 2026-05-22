@@ -264,7 +264,7 @@ export default function useButtonBase(
       };
 
       const handleKeyDown: React.KeyboardEventHandler<HTMLElement> = (event) => {
-        if (focusableWhenDisabled) {
+        if (focusableWhenDisabled && isKeyboardActivationKey(event)) {
           focusableWhenDisabledProps.onKeyDown(event);
         }
 

@@ -84,7 +84,7 @@ export interface SnackbarOrigin {
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export type SnackbarCloseEvent = (React.SyntheticEvent<any> | Event) & {
-  defaultMuiPrevented?: (boolean) | undefined;
+  defaultMuiPrevented?: boolean | undefined;
 };
 
 export interface SnackbarProps
