@@ -70,7 +70,8 @@ const NotchedOutlineLegend = styled('legend', {
       {
         props: ({ ownerState }) => ownerState.withLabel && ownerState.notched,
         style: {
-          maxWidth: '100%',
+          // Safari: avoid percentage max-width on <legend> inside <fieldset> in flex layouts.
+          maxWidth: 'none',
           transition: theme.transitions.create('max-width', {
             duration: 100,
             easing: theme.transitions.easing.easeOut,

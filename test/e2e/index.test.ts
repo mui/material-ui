@@ -241,6 +241,19 @@ describe('e2e', () => {
       const errorSelector = page.locator('.MuiInputBase-root.Mui-error');
       await errorSelector.waitFor();
     });
+
+    it('should expand the notched outline when focused inside a Stack layout', async () => {
+      await renderFixture('TextField/OutlinedTextFieldInStack');
+
+      const input = page.getByRole('textbox', { name: 'First name' });
+      await input.click();
+
+      const notchWidth = await page
+        .locator('fieldset legend')
+        .evaluate((element) => element.getBoundingClientRect().width);
+
+      expect(notchWidth).toBeGreaterThan(1);
+    });
   });
 
   describe('<Select />', () => {
