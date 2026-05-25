@@ -120,6 +120,11 @@ const ButtonRoot = styled(ButtonBase, {
       [`&.${buttonClasses.disabled}`]: {
         color: (theme.vars || theme).palette.action.disabled,
       },
+      // Opt-in focus ring; default `0` = no ring (ButtonBase already resets outline).
+      [`&.${buttonClasses.focusVisible}`]: {
+        outline: 'var(--Button-ring, 0)',
+        outlineOffset: 2,
+      },
       variants: [
         {
           props: { variant: 'contained' },

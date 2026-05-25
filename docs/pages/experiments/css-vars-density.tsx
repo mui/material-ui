@@ -1,12 +1,12 @@
-"use client";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+'use client';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Public CSS variables + density POC.
 // See CONTEXT.md, docs/adr/0001-public-css-var-inward-dependency.md,
@@ -16,7 +16,7 @@ const theme = createTheme({ cssVariables: true });
 function Controls() {
   return (
     <Stack spacing={2}>
-      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "center", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
         <Button variant="contained" size="small">
           Small
         </Button>
@@ -27,7 +27,7 @@ function Controls() {
         <Button variant="outlined">Outlined</Button>
         <Button variant="text">Text</Button>
       </Stack>
-      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "start", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'start', flexWrap: 'wrap' }}>
         <TextField label="Outlined" defaultValue="Value" />
         <TextField label="Small" size="small" defaultValue="Value" />
       </Stack>
@@ -37,7 +37,7 @@ function Controls() {
 
 function Scope({ title, sx, children }: { title: string; sx?: object; children: React.ReactNode }) {
   return (
-    <Box sx={{ p: 3, border: "1px dashed", borderColor: "divider", borderRadius: 1, ...sx }}>
+    <Box sx={{ p: 3, border: '1px dashed', borderColor: 'divider', borderRadius: 1, ...sx }}>
       <Typography variant="overline" color="text.secondary">
         {title}
       </Typography>
@@ -50,7 +50,7 @@ export default function App() {
   const [spacing, setSpacing] = React.useState(8);
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ p: 4, display: "grid", gap: 3, maxWidth: 720 }}>
+      <Box sx={{ p: 4, display: 'grid', gap: 3, maxWidth: 720 }}>
         <Typography variant="h5">Public CSS variables & density</Typography>
 
         {/* --- Different Apps: drive --mui-spacing live at a class scope --- */}
@@ -69,14 +69,14 @@ export default function App() {
             valueLabelFormat={(value) => `${value}px`}
           />
         </Box>
-        <Scope title="Controls" sx={{ "--mui-spacing": `${spacing}px` }}>
+        <Scope title="Controls" sx={{ '--mui-spacing': `${spacing}px` }}>
           <Controls />
         </Scope>
 
         {/* --- Different Viewports: override --mui-spacing inside a media query --- */}
         <Scope
           title="Viewport — --mui-spacing: 6px below 900px (resize to see)"
-          sx={{ "@media (max-width:900px)": { "--mui-spacing": "6px" } }}
+          sx={{ '@media (max-width:900px)': { '--mui-spacing': '6px' } }}
         >
           <Controls />
         </Scope>
@@ -87,23 +87,23 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "center", flexWrap: "wrap" }}
+            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
-            <Button variant="contained" sx={{ "--Button-padding-block": "2px" }}>
+            <Button variant="contained" sx={{ '--Button-padding-block': '2px' }}>
               --Button-padding-block: 2px
             </Button>
-            <Button variant="outlined" sx={{ "--Button-padding-inline": "40px" }}>
+            <Button variant="outlined" sx={{ '--Button-padding-inline': '40px' }}>
               --Button-padding-inline: 40px
             </Button>
             <TextField
               label="--TextField-height: 64px"
               defaultValue="Value"
-              sx={{ "--TextField-height": "64px" }}
+              sx={{ '--TextField-height': '64px' }}
             />
             <TextField
               label="--InputBase-line-height: 2"
               defaultValue="Value"
-              sx={{ "--InputBase-line-height": "2" }}
+              sx={{ '--InputBase-line-height': '2' }}
             />
           </Stack>
         </Scope>
@@ -112,11 +112,11 @@ export default function App() {
         <Scope
           title="Responsive font-size — 1rem mobile, 0.875rem desktop (≥900px). Resize to see."
           sx={{
-            "--Button-font-size": "1rem",
-            "--TextField-font-size": "1rem",
-            "@media (min-width:900px)": {
-              "--Button-font-size": "0.875rem",
-              "--TextField-font-size": "0.875rem",
+            '--Button-font-size': '1rem',
+            '--TextField-font-size': '1rem',
+            '@media (min-width:900px)': {
+              '--Button-font-size': '0.875rem',
+              '--TextField-font-size': '0.875rem',
             },
           }}
         >
@@ -129,23 +129,30 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "center", flexWrap: "wrap", "--Button-radius": "16px" }}
+            sx={{ alignItems: 'center', flexWrap: 'wrap', '--Button-radius': '16px' }}
           >
             <Button variant="contained">Rounded (scope)</Button>
-            <Button variant="contained" sx={{ "--Button-bg": "tomato" }}>
+            <Button variant="contained" sx={{ '--Button-bg': 'tomato' }}>
               --Button-bg: tomato
             </Button>
-            <Button variant="outlined" sx={{ "--Button-border-color": "rebeccapurple" }}>
+            <Button variant="outlined" sx={{ '--Button-border-color': 'rebeccapurple' }}>
               --Button-border-color
             </Button>
-            <Button variant="outlined" sx={{ "--Button-border-width": "3px" }}>
+            <Button variant="outlined" sx={{ '--Button-border-width': '3px' }}>
               --Button-border-width: 3px
             </Button>
-            <Button variant="text" sx={{ "--Button-color": "seagreen" }}>
+            <Button variant="text" sx={{ '--Button-color': 'seagreen' }}>
               --Button-color
             </Button>
-            <Button variant="contained" sx={{ "--Button-shadow": "0 4px 12px rgba(0,0,0,0.4)" }}>
+            <Button variant="contained" sx={{ '--Button-shadow': '0 4px 12px rgba(0,0,0,0.4)' }}>
               --Button-shadow
+            </Button>
+            <Button
+              disableRipple
+              variant="outlined"
+              sx={{ '--Button-ring': '2px solid dodgerblue' }}
+            >
+              --Button-ring (tab to focus)
             </Button>
           </Stack>
         </Scope>
@@ -156,27 +163,27 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "start", flexWrap: "wrap" }}
+            sx={{ alignItems: 'start', flexWrap: 'wrap' }}
           >
             <TextField
               label="--TextField-radius: 16px"
               defaultValue="Value"
-              sx={{ "--TextField-radius": "16px" }}
+              sx={{ '--TextField-radius': '16px' }}
             />
             <TextField
               label="--TextField-border-width: 2px"
               defaultValue="Value"
-              sx={{ "--TextField-border-width": "2px" }}
+              sx={{ '--TextField-border-width': '2px' }}
             />
             <TextField
               label="--TextField-border-color"
               defaultValue="Value"
-              sx={{ "--TextField-border-color": "rebeccapurple" }}
+              sx={{ '--TextField-border-color': 'rebeccapurple' }}
             />
             <TextField
               label="--TextField-color"
               defaultValue="Value"
-              sx={{ "--TextField-color": "seagreen" }}
+              sx={{ '--TextField-color': 'seagreen' }}
             />
           </Stack>
         </Scope>
