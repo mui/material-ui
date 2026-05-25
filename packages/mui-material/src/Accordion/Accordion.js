@@ -216,14 +216,17 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
+  const autoId = React.useId();
+  const summaryId = `${autoId}-header`;
+  const regionId = `${autoId}-content`;
   const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
     elementType: AccordionRegion,
     externalForwardedProps,
     ownerState,
     className: classes.region,
     additionalProps: {
-      'aria-labelledby': summary.props.id,
-      id: summary.props['aria-controls'],
+      'aria-labelledby': summaryId,
+      id: regionId,
       role: 'region',
     },
   });
@@ -231,7 +234,12 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   return (
     <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
-        <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
+        <AccordionContext.Provider value={contextValue}>
+          {React.cloneElement(summary, {
+          id: summaryId,
+          'aria-controls': regionId,
+          })}
+          </AccordionContext.Provider>
       </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
         <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
