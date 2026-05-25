@@ -235,10 +235,8 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>
-          {React.cloneElement(summary, {
-          id: summaryId,
-          'aria-controls': regionId,
-          })}
+          id: summary.props.id || summaryId,
+          'aria-controls': summary.props['aria-controls'] || regionId,
           </AccordionContext.Provider>
       </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
