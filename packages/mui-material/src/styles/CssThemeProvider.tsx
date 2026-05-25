@@ -90,8 +90,12 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
 
   const rtl = resolved.direction === 'rtl';
 
+  // ToDo Silviu: CSS at build time is simpler. It might make people harder to migrate, especially for intensive usage of JS.
+  // Enable the css layer. 1. Import the css file without layers. 2. For customization, use the css layer. For tw you use classnames, and for our css we use the layer.
+  // Maybe css layer by default.
+  // in the end, no theme provider, just a theme builder that will generate css files for that theme.
   return (
-    // TOTO: Maybe export RTLProvide separately.
+    // ToDo Silviu: Maybe export RTLProvide separately.
     <RtlProvider value={rtl}>
       <DefaultPropsProvider value={resolved.components}>
         <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
