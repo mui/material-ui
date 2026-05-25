@@ -1,21 +1,23 @@
-'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import composeClasses from '@mui/utils/composeClasses';
-import useId from '@mui/utils/useId';
-import refType from '@mui/utils/refType';
-import { styled } from '../zero-styled';
-import { useDefaultProps } from '../DefaultPropsProvider';
-import Input from '../Input';
-import FilledInput from '../FilledInput';
-import OutlinedInput from '../OutlinedInput';
-import InputLabel from '../InputLabel';
-import FormControl from '../FormControl';
-import FormHelperText from '../FormHelperText';
-import Select from '../Select';
-import { getTextFieldUtilityClass } from './textFieldClasses';
-import useSlot from '../utils/useSlot';
+"use client";
+import * as React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import composeClasses from "@mui/utils/composeClasses";
+import useId from "@mui/utils/useId";
+import refType from "@mui/utils/refType";
+import { styled } from "../zero-styled";
+import { useDefaultProps } from "../DefaultPropsProvider";
+import Input from "../Input";
+import FilledInput from "../FilledInput";
+import OutlinedInput from "../OutlinedInput";
+import InputLabel from "../InputLabel";
+import FormControl from "../FormControl";
+import FormHelperText from "../FormHelperText";
+import Select from "../Select";
+import { getTextFieldUtilityClass } from "./textFieldClasses";
+import textFieldVars from "./TextFieldVars";
+import outlinedInputVars from "../OutlinedInput/OutlinedInputVars";
+import useSlot from "../utils/useSlot";
 
 const variantComponent = {
   standard: Input,
@@ -27,28 +29,28 @@ const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ["root"],
   };
 
   return composeClasses(slots, getTextFieldUtilityClass, classes);
 };
 
 const TextFieldRoot = styled(FormControl, {
-  name: 'MuiTextField',
-  slot: 'Root',
+  name: "MuiTextField",
+  slot: "Root",
 })({
   variants: [
     {
       // Single TextField knob: maps to the variant-level height var so a page-level
       // --InputBase-height is not shadowed for wrapped inputs. See docs/design/public-css-var-layering.md.
-      props: { variant: 'outlined' },
+      props: { variant: "outlined" },
       style: {
-        '--OutlinedInput-height': 'var(--TextField-height)',
-        '--OutlinedInput-font-size': 'var(--TextField-font-size)',
-        '--OutlinedInput-color': 'var(--TextField-color)',
-        '--OutlinedInput-border-color': 'var(--TextField-border-color)',
-        '--OutlinedInput-border-width': 'var(--TextField-border-width)',
-        '--OutlinedInput-radius': 'var(--TextField-radius)',
+        [outlinedInputVars.height]: `var(${textFieldVars.height})`,
+        [outlinedInputVars.fontSize]: `var(${textFieldVars.fontSize})`,
+        [outlinedInputVars.color]: `var(${textFieldVars.color})`,
+        [outlinedInputVars.borderColor]: `var(${textFieldVars.borderColor})`,
+        [outlinedInputVars.borderWidth]: `var(${textFieldVars.borderWidth})`,
+        [outlinedInputVars.radius]: `var(${textFieldVars.radius})`,
       },
     },
   ],
@@ -89,13 +91,13 @@ const TextFieldRoot = styled(FormControl, {
  * - using the underlying components directly as shown in the demos
  */
 const TextField = React.forwardRef(function TextField(inProps, ref) {
-  const props = useDefaultProps({ props: inProps, name: 'MuiTextField' });
+  const props = useDefaultProps({ props: inProps, name: "MuiTextField" });
   const {
     autoComplete,
     autoFocus = false,
     children,
     className,
-    color = 'primary',
+    color = "primary",
     defaultValue,
     disabled = false,
     error = false,
@@ -119,7 +121,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     slotProps = {},
     type,
     value,
-    variant = 'outlined',
+    variant = "outlined",
     ...other
   } = props;
 
@@ -138,10 +140,10 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     if (select && !children) {
       console.error(
-        'MUI: `children` must be passed when using the `TextField` component with `select`.',
+        "MUI: `children` must be passed when using the `TextField` component with `select`."
       );
     }
   }
@@ -156,7 +158,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     slotProps,
   };
 
-  const [SelectSlot, selectProps] = useSlot('select', {
+  const [SelectSlot, selectProps] = useSlot("select", {
     elementType: Select,
     externalForwardedProps,
     ownerState,
@@ -167,8 +169,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const inputAdditionalProps = {};
   const inputLabelSlotProps = externalForwardedProps.slotProps.inputLabel;
 
-  if (variant === 'outlined') {
-    if (inputLabelSlotProps && typeof inputLabelSlotProps.shrink !== 'undefined') {
+  if (variant === "outlined") {
+    if (inputLabelSlotProps && typeof inputLabelSlotProps.shrink !== "undefined") {
       inputAdditionalProps.notched = inputLabelSlotProps.shrink;
     }
     inputAdditionalProps.label = label;
@@ -178,10 +180,10 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     if (!nativeSelect) {
       inputAdditionalProps.id = undefined;
     }
-    inputAdditionalProps['aria-describedby'] = undefined;
+    inputAdditionalProps["aria-describedby"] = undefined;
   }
 
-  const [RootSlot, rootProps] = useSlot('root', {
+  const [RootSlot, rootProps] = useSlot("root", {
     elementType: TextFieldRoot,
     shouldForwardComponentProp: true,
     externalForwardedProps: {
@@ -201,26 +203,26 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     },
   });
 
-  const [InputSlot, inputProps] = useSlot('input', {
+  const [InputSlot, inputProps] = useSlot("input", {
     elementType: InputComponent,
     externalForwardedProps,
     additionalProps: inputAdditionalProps,
     ownerState,
   });
 
-  const [InputLabelSlot, inputLabelProps] = useSlot('inputLabel', {
+  const [InputLabelSlot, inputLabelProps] = useSlot("inputLabel", {
     elementType: InputLabel,
     externalForwardedProps,
     ownerState,
   });
 
-  const [HtmlInputSlot, htmlInputProps] = useSlot('htmlInput', {
-    elementType: 'input',
+  const [HtmlInputSlot, htmlInputProps] = useSlot("htmlInput", {
+    elementType: "input",
     externalForwardedProps,
     ownerState,
   });
 
-  const [FormHelperTextSlot, formHelperTextProps] = useSlot('formHelperText', {
+  const [FormHelperTextSlot, formHelperTextProps] = useSlot("formHelperText", {
     elementType: FormHelperText,
     externalForwardedProps,
     ownerState,
@@ -256,11 +258,11 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   return (
     <RootSlot {...rootProps}>
-      {label != null && label !== '' && (
+      {label != null && label !== "" && (
         <InputLabelSlot
           htmlFor={select && !nativeSelect ? undefined : id}
           id={inputLabelId}
-          {...(select && !nativeSelect && { component: 'div' })}
+          {...(select && !nativeSelect && { component: "div" })}
           {...inputLabelProps}
         >
           {label}
@@ -326,7 +328,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(["primary", "secondary", "error", "info", "success", "warning"]),
     PropTypes.string,
   ]),
   /**
@@ -369,7 +371,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    * @default 'none'
    */
-  margin: PropTypes.oneOf(['dense', 'none', 'normal']),
+  margin: PropTypes.oneOf(["dense", "none", "normal"]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
@@ -426,7 +428,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.oneOf(["medium", "small"]),
     PropTypes.string,
   ]),
   /**
@@ -472,7 +474,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'outlined'
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
+  variant: PropTypes.oneOf(["filled", "outlined", "standard"]),
 };
 
 export default TextField;

@@ -1,27 +1,28 @@
-'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import refType from '@mui/utils/refType';
-import composeClasses from '@mui/utils/composeClasses';
-import isHostComponent from '@mui/utils/isHostComponent';
-import TextareaAutosize from '../TextareaAutosize';
-import FormControlContext from '../FormControl/FormControlContext';
-import { useFormControlState } from '../FormControl/useFormControl';
-import { styled, globalCss } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import { useDefaultProps } from '../DefaultPropsProvider';
-import capitalize from '../utils/capitalize';
-import useForkRef from '../utils/useForkRef';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
-import ownerDocument from '../utils/ownerDocument';
-import getActiveElement from '../utils/getActiveElement';
-import { isFilled } from './utils';
-import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
+"use client";
+import * as React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import elementTypeAcceptingRef from "@mui/utils/elementTypeAcceptingRef";
+import refType from "@mui/utils/refType";
+import composeClasses from "@mui/utils/composeClasses";
+import isHostComponent from "@mui/utils/isHostComponent";
+import TextareaAutosize from "../TextareaAutosize";
+import FormControlContext from "../FormControl/FormControlContext";
+import { useFormControlState } from "../FormControl/useFormControl";
+import { styled, globalCss } from "../zero-styled";
+import memoTheme from "../utils/memoTheme";
+import { useDefaultProps } from "../DefaultPropsProvider";
+import capitalize from "../utils/capitalize";
+import useForkRef from "../utils/useForkRef";
+import useEnhancedEffect from "../utils/useEnhancedEffect";
+import ownerDocument from "../utils/ownerDocument";
+import getActiveElement from "../utils/getActiveElement";
+import { isFilled } from "./utils";
+import inputBaseClasses, { getInputBaseUtilityClass } from "./inputBaseClasses";
+import inputBaseVars from "./InputBaseVars";
 
-const MUI_AUTO_FILL = 'mui-auto-fill';
-const MUI_AUTO_FILL_CANCEL = 'mui-auto-fill-cancel';
+const MUI_AUTO_FILL = "mui-auto-fill";
+const MUI_AUTO_FILL_CANCEL = "mui-auto-fill-cancel";
 
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -32,7 +33,7 @@ export const rootOverridesResolver = (props, styles) => {
     ownerState.startAdornment && styles.adornedStart,
     ownerState.endAdornment && styles.adornedEnd,
     ownerState.error && styles.error,
-    ownerState.size === 'small' && styles.sizeSmall,
+    ownerState.size === "small" && styles.sizeSmall,
     ownerState.multiline && styles.multiline,
     ownerState.color && styles[`color${capitalize(ownerState.color)}`],
     ownerState.fullWidth && styles.fullWidth,
@@ -43,7 +44,7 @@ export const rootOverridesResolver = (props, styles) => {
 export const inputOverridesResolver = (props, styles) => {
   const { ownerState } = props;
 
-  return [styles.input, ownerState.type === 'search' && styles.inputTypeSearch];
+  return [styles.input, ownerState.type === "search" && styles.inputTypeSearch];
 };
 
 const useUtilityClasses = (ownerState) => {
@@ -65,59 +66,59 @@ const useUtilityClasses = (ownerState) => {
   } = ownerState;
   const slots = {
     root: [
-      'root',
+      "root",
       `color${capitalize(color)}`,
-      disabled && 'disabled',
-      error && 'error',
-      fullWidth && 'fullWidth',
-      focused && 'focused',
-      formControl && 'formControl',
-      size && size !== 'medium' && `size${capitalize(size)}`,
-      multiline && 'multiline',
-      startAdornment && 'adornedStart',
-      endAdornment && 'adornedEnd',
-      hiddenLabel && 'hiddenLabel',
-      readOnly && 'readOnly',
+      disabled && "disabled",
+      error && "error",
+      fullWidth && "fullWidth",
+      focused && "focused",
+      formControl && "formControl",
+      size && size !== "medium" && `size${capitalize(size)}`,
+      multiline && "multiline",
+      startAdornment && "adornedStart",
+      endAdornment && "adornedEnd",
+      hiddenLabel && "hiddenLabel",
+      readOnly && "readOnly",
     ],
     input: [
-      'input',
-      disabled && 'disabled',
-      type === 'search' && 'inputTypeSearch',
-      readOnly && 'readOnly',
+      "input",
+      disabled && "disabled",
+      type === "search" && "inputTypeSearch",
+      readOnly && "readOnly",
     ],
   };
 
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-export const InputBaseRoot = styled('div', {
-  name: 'MuiInputBase',
-  slot: 'Root',
+export const InputBaseRoot = styled("div", {
+  name: "MuiInputBase",
+  slot: "Root",
   overridesResolver: rootOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
-    color: `var(--InputBase-color, ${(theme.vars || theme).palette.text.primary})`,
-    fontSize: `var(--InputBase-font-size, ${theme.typography.body1.fontSize})`,
-    lineHeight: 'var(--InputBase-line-height, 1.4375)', // 23px (unitless = multiplier of font-size)
-    boxSizing: 'border-box', // Prevent padding issue with fullWidth.
-    position: 'relative',
-    cursor: 'text',
-    display: 'inline-flex',
-    alignItems: 'center',
+    color: `var(${inputBaseVars.color},${(theme.vars || theme).palette.text.primary})`,
+    fontSize: `var(${inputBaseVars.fontSize},${theme.typography.body1.fontSize})`,
+    lineHeight: `var(${inputBaseVars.lineHeight},1.4375)`, // 23px (unitless = multiplier of font-size)
+    boxSizing: "border-box", // Prevent padding issue with fullWidth.
+    position: "relative",
+    cursor: "text",
+    display: "inline-flex",
+    alignItems: "center",
     [`&.${inputBaseClasses.disabled}`]: {
       color: (theme.vars || theme).palette.text.disabled,
-      cursor: 'default',
+      cursor: "default",
     },
     variants: [
       {
         props: ({ ownerState }) => ownerState.multiline,
         style: {
-          padding: '4px 0 5px',
+          padding: "4px 0 5px",
         },
       },
       {
-        props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
+        props: ({ ownerState, size }) => ownerState.multiline && size === "small",
         style: {
           paddingTop: 1,
         },
@@ -125,22 +126,22 @@ export const InputBaseRoot = styled('div', {
       {
         props: ({ ownerState }) => ownerState.fullWidth,
         style: {
-          width: '100%',
+          width: "100%",
         },
       },
     ],
-  })),
+  }))
 );
 
-export const InputBaseInput = styled('input', {
-  name: 'MuiInputBase',
-  slot: 'Input',
+export const InputBaseInput = styled("input", {
+  name: "MuiInputBase",
+  slot: "Input",
   overridesResolver: inputOverridesResolver,
 })(
   memoTheme(({ theme }) => {
-    const light = theme.palette.mode === 'light';
+    const light = theme.palette.mode === "light";
     const placeholder = {
-      color: 'currentColor',
+      color: "currentColor",
       ...(theme.vars
         ? {
             opacity: theme.vars.opacity.inputPlaceholder,
@@ -148,12 +149,12 @@ export const InputBaseInput = styled('input', {
         : {
             opacity: light ? 0.42 : 0.5,
           }),
-      transition: theme.transitions.create('opacity', {
+      transition: theme.transitions.create("opacity", {
         duration: theme.transitions.duration.shorter,
       }),
     };
     const placeholderHidden = {
-      opacity: '0 !important',
+      opacity: "0 !important",
     };
     const placeholderVisible = theme.vars
       ? {
@@ -164,42 +165,42 @@ export const InputBaseInput = styled('input', {
         };
 
     return {
-      font: 'inherit',
-      letterSpacing: 'inherit',
-      color: 'currentColor',
-      padding: '4px 0 5px',
+      font: "inherit",
+      letterSpacing: "inherit",
+      color: "currentColor",
+      padding: "4px 0 5px",
       border: 0,
-      boxSizing: 'content-box',
-      background: 'none',
-      height: 'calc(var(--InputBase-line-height, 1.4375) * 1em)', // Reset native input height to the line box (tracks --InputBase-line-height)
+      boxSizing: "content-box",
+      background: "none",
+      height: `calc(var(${inputBaseVars.lineHeight},1.4375) * 1em)`, // Reset native input height to the line box (tracks --InputBase-line-height)
       margin: 0, // Reset for Safari
-      WebkitTapHighlightColor: 'transparent',
-      display: 'block',
+      WebkitTapHighlightColor: "transparent",
+      display: "block",
       // Make the flex item shrink with Firefox
       minWidth: 0,
-      width: '100%',
-      '&::-webkit-input-placeholder': placeholder,
-      '&::-moz-placeholder': placeholder, // Firefox 19+
-      '&::-ms-input-placeholder': placeholder, // Edge
-      '&:focus': {
+      width: "100%",
+      "&::-webkit-input-placeholder": placeholder,
+      "&::-moz-placeholder": placeholder, // Firefox 19+
+      "&::-ms-input-placeholder": placeholder, // Edge
+      "&:focus": {
         outline: 0,
       },
       // Reset Firefox invalid required input style
-      '&:invalid': {
-        boxShadow: 'none',
+      "&:invalid": {
+        boxShadow: "none",
       },
-      '&::-webkit-search-decoration': {
+      "&::-webkit-search-decoration": {
         // Remove the padding when type=search.
-        WebkitAppearance: 'none',
+        WebkitAppearance: "none",
       },
       // Show and hide the placeholder logic
       [`label[data-shrink=false] + .${inputBaseClasses.formControl} &`]: {
-        '&::-webkit-input-placeholder': placeholderHidden,
-        '&::-moz-placeholder': placeholderHidden, // Firefox 19+
-        '&::-ms-input-placeholder': placeholderHidden, // Edge
-        '&:focus::-webkit-input-placeholder': placeholderVisible,
-        '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
-        '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
+        "&::-webkit-input-placeholder": placeholderHidden,
+        "&::-moz-placeholder": placeholderHidden, // Firefox 19+
+        "&::-ms-input-placeholder": placeholderHidden, // Edge
+        "&:focus::-webkit-input-placeholder": placeholderVisible,
+        "&:focus::-moz-placeholder": placeholderVisible, // Firefox 19+
+        "&:focus::-ms-input-placeholder": placeholderVisible, // Edge
       },
       [`&.${inputBaseClasses.disabled}`]: {
         opacity: 1, // Reset iOS opacity
@@ -210,16 +211,16 @@ export const InputBaseInput = styled('input', {
           props: ({ ownerState }) => !ownerState.disableInjectingGlobalStyles,
           style: {
             animationName: MUI_AUTO_FILL_CANCEL,
-            animationDuration: '10ms',
-            '&:-webkit-autofill': {
-              animationDuration: '5000s',
+            animationDuration: "10ms",
+            "&:-webkit-autofill": {
+              animationDuration: "5000s",
               animationName: MUI_AUTO_FILL,
             },
           },
         },
         {
           props: {
-            size: 'small',
+            size: "small",
           },
           style: {
             paddingTop: 1,
@@ -228,23 +229,23 @@ export const InputBaseInput = styled('input', {
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            height: 'auto',
-            resize: 'none',
+            height: "auto",
+            resize: "none",
             padding: 0,
             paddingTop: 0,
           },
         },
         {
           props: {
-            type: 'search',
+            type: "search",
           },
           style: {
-            MozAppearance: 'textfield', // Improve type search style.
+            MozAppearance: "textfield", // Improve type search style.
           },
         },
       ],
     };
-  }),
+  })
 );
 
 const InputGlobalStyles = globalCss({
@@ -260,10 +261,10 @@ const InputGlobalStyles = globalCss({
  * It contains a load of style reset and some state logic.
  */
 const InputBase = React.forwardRef(function InputBase(inProps, ref) {
-  const props = useDefaultProps({ props: inProps, name: 'MuiInputBase' });
+  const props = useDefaultProps({ props: inProps, name: "MuiInputBase" });
   const {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
+    "aria-describedby": ariaDescribedby,
+    "aria-label": ariaLabel,
     autoComplete,
     autoFocus,
     className,
@@ -275,7 +276,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     error,
     fullWidth = false,
     id,
-    inputComponent = 'input',
+    inputComponent = "input",
     inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
     margin,
@@ -297,7 +298,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     slotProps = {},
     slots = {},
     startAdornment,
-    type = 'text',
+    type = "text",
     value: valueProp,
     ...other
   } = props;
@@ -307,14 +308,14 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback((instance) => {
-    if (process.env.NODE_ENV !== 'production') {
-      if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
+    if (process.env.NODE_ENV !== "production") {
+      if (instance && instance.nodeName !== "INPUT" && !instance.focus) {
         console.error(
           [
-            'MUI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `ref` prop.',
-            'Make sure the `ref` prop is called with a HTMLInputElement.',
-          ].join('\n'),
+            "MUI: You have provided a `inputComponent` to the input component",
+            "that does not correctly handle the `ref` prop.",
+            "Make sure the `ref` prop is called with a HTMLInputElement.",
+          ].join("\n")
         );
       }
     }
@@ -324,16 +325,16 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     inputRef,
     inputRefProp,
     inputPropsProp.ref,
-    handleInputRefWarning,
+    handleInputRefWarning
   );
 
   const [focused, setFocused] = React.useState(false);
   const [fcs, muiFormControl] = useFormControlState({
     props,
-    states: ['color', 'disabled', 'error', 'hiddenLabel', 'size', 'required', 'filled'],
+    states: ["color", "disabled", "error", "hiddenLabel", "size", "required", "filled"],
   });
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== "production") {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
@@ -371,7 +372,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         onEmpty();
       }
     },
-    [onFilled, onEmpty],
+    [onFilled, onEmpty]
   );
 
   useEnhancedEffect(() => {
@@ -445,9 +446,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       const element = event.target || inputRef.current;
       if (element == null) {
         throw /* minify-error */ new Error(
-          'MUI: Expected valid input target. ' +
-            'Did you use a custom `inputComponent` and forget to forward refs? ' +
-            'See https://mui.com/r/input-component-ref-interface for more info.',
+          "MUI: Expected valid input target. " +
+            "Did you use a custom `inputComponent` and forget to forward refs? " +
+            "See https://mui.com/r/input-component-ref-interface for more info."
         );
       }
 
@@ -486,12 +487,12 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   let InputComponent = inputComponent;
   let inputProps = inputPropsProp;
 
-  if (multiline && InputComponent === 'input') {
+  if (multiline && InputComponent === "input") {
     if (rows) {
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.NODE_ENV !== "production") {
         if (minRows || maxRows) {
           console.warn(
-            'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
+            "MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set."
           );
         }
       }
@@ -515,7 +516,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const handleAutoFill = (event) => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: 'x' });
+    checkDirty(event.animationName === MUI_AUTO_FILL_CANCEL ? inputRef.current : { value: "x" });
   };
 
   React.useEffect(() => {
@@ -526,7 +527,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const ownerState = {
     ...props,
-    color: fcs.color || 'primary',
+    color: fcs.color || "primary",
     disabled: fcs.disabled,
     endAdornment,
     error: fcs.error,
@@ -550,7 +551,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === 'function' && (
+      {!disableInjectingGlobalStyles && typeof InputGlobalStyles === "function" && (
         // For Emotion/Styled-components, InputGlobalStyles will be a function
         // For Pigment CSS, this has no effect because the InputGlobalStyles will be null.
         <InputGlobalStyles />
@@ -568,10 +569,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
           classes.root,
           {
             // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-            'MuiInputBase-readOnly': readOnly,
+            "MuiInputBase-readOnly": readOnly,
           },
           rootProps.className,
-          className,
+          className
         )}
       >
         {startAdornment}
@@ -605,9 +606,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
               classes.input,
               {
                 // TODO v6: remove this class as it duplicates with the global state class Mui-readOnly
-                'MuiInputBase-readOnly': readOnly,
+                "MuiInputBase-readOnly": readOnly,
               },
-              inputProps.className,
+              inputProps.className
             )}
             onBlur={handleBlur}
             onChange={handleChange}
@@ -634,11 +635,11 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  'aria-describedby': PropTypes.string,
+  "aria-describedby": PropTypes.string,
   /**
    * @ignore
    */
-  'aria-label': PropTypes.string,
+  "aria-label": PropTypes.string,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -664,7 +665,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(["primary", "secondary", "error", "info", "success", "warning"]),
     PropTypes.string,
   ]),
   /**
@@ -720,7 +721,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * FormControl.
    * The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
    */
-  margin: PropTypes.oneOf(['dense', 'none']),
+  margin: PropTypes.oneOf(["dense", "none"]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
@@ -797,7 +798,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The size of the component.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.oneOf(["medium", "small"]),
     PropTypes.string,
   ]),
   /**

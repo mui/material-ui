@@ -1,31 +1,33 @@
-'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import refType from '@mui/utils/refType';
-import composeClasses from '@mui/utils/composeClasses';
-import NotchedOutline from './NotchedOutline';
-import { useFormControlState } from '../FormControl/useFormControl';
-import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-import { useDefaultProps } from '../DefaultPropsProvider';
-import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+"use client";
+import * as React from "react";
+import PropTypes from "prop-types";
+import refType from "@mui/utils/refType";
+import composeClasses from "@mui/utils/composeClasses";
+import NotchedOutline from "./NotchedOutline";
+import { useFormControlState } from "../FormControl/useFormControl";
+import rootShouldForwardProp from "../styles/rootShouldForwardProp";
+import { styled } from "../zero-styled";
+import memoTheme from "../utils/memoTheme";
+import createSimplePaletteValueFilter from "../utils/createSimplePaletteValueFilter";
+import { useDefaultProps } from "../DefaultPropsProvider";
+import outlinedInputClasses, { getOutlinedInputUtilityClass } from "./outlinedInputClasses";
+import outlinedInputVars from "./OutlinedInputVars";
+import inputBaseVars from "../InputBase/InputBaseVars";
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
   InputBaseInput,
-} from '../InputBase/InputBase';
-import useSlot from '../utils/useSlot';
+} from "../InputBase/InputBase";
+import useSlot from "../utils/useSlot";
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
   const slots = {
-    root: ['root'],
-    notchedOutline: ['notchedOutline'],
-    input: ['input'],
+    root: ["root"],
+    notchedOutline: ["notchedOutline"],
+    input: ["input"],
   };
 
   const composedClasses = composeClasses(slots, getOutlinedInputUtilityClass, classes);
@@ -36,26 +38,42 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
+// Derived input padding-block keeps text centered as the target height changes:
+// (height − line-height·1em) / 2. Height chain: --OutlinedInput-height → --InputBase-height → fallback.
+// padding-inline rides --mui-spacing independently. See docs/design/public-css-var-layering.md.
+const derivedInputPadding = (theme, heightFallback) =>
+  `var(${outlinedInputVars.paddingBlock},var(${inputBaseVars.paddingBlock},calc((var(${
+    outlinedInputVars.height
+  },var(${inputBaseVars.height},${heightFallback})) - var(${
+    inputBaseVars.lineHeight
+  },1.4375) * 1em) / 2))) var(${outlinedInputVars.paddingInline},var(${
+    inputBaseVars.paddingInline
+  },${theme.spacing(1.75)}))`;
+
 const OutlinedInputRoot = styled(InputBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
-  name: 'MuiOutlinedInput',
-  slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === "classes",
+  name: "MuiOutlinedInput",
+  slot: "Root",
   overridesResolver: inputBaseRootOverridesResolver,
 })(
   memoTheme(({ theme }) => {
     const borderColor =
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+      theme.palette.mode === "light" ? "rgba(0, 0, 0, 0.23)" : "rgba(255, 255, 255, 0.23)";
     return {
-      position: 'relative',
+      position: "relative",
       // Variant-level font-size knob; inward fallback to the base --InputBase-font-size.
-      fontSize: `var(--OutlinedInput-font-size, var(--InputBase-font-size, ${theme.typography.body1.fontSize}))`,
-      color: `var(--OutlinedInput-color, var(--InputBase-color, ${(theme.vars || theme).palette.text.primary}))`,
-      borderRadius: `var(--OutlinedInput-radius, ${(theme.vars || theme).shape.borderRadius}${theme.vars ? '' : 'px'})`,
+      fontSize: `var(${outlinedInputVars.fontSize},var(${inputBaseVars.fontSize},${theme.typography.body1.fontSize}))`,
+      color: `var(${outlinedInputVars.color},var(${inputBaseVars.color},${
+        (theme.vars || theme).palette.text.primary
+      }))`,
+      borderRadius: `var(${outlinedInputVars.radius},${(theme.vars || theme).shape.borderRadius}${
+        theme.vars ? "" : "px"
+      })`,
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
       // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
+      "@media (hover: none)": {
         [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
           borderColor: theme.vars
             ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
@@ -63,7 +81,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         },
       },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-        borderWidth: 'var(--OutlinedInput-border-width, 2px)',
+        borderWidth: `var(${outlinedInputVars.borderWidth},2px)`,
       },
       variants: [
         ...Object.entries(theme.palette)
@@ -102,67 +120,65 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            padding: '16.5px 14px',
+            padding: "16.5px 14px",
           },
         },
         {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
+          props: ({ ownerState, size }) => ownerState.multiline && size === "small",
           style: {
-            padding: '8.5px 14px',
+            padding: "8.5px 14px",
           },
         },
       ],
     };
-  }),
+  })
 );
 
 const NotchedOutlineRoot = styled(NotchedOutline, {
-  name: 'MuiOutlinedInput',
-  slot: 'NotchedOutline',
+  name: "MuiOutlinedInput",
+  slot: "NotchedOutline",
 })(
   memoTheme(({ theme }) => {
     const borderColor =
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+      theme.palette.mode === "light" ? "rgba(0, 0, 0, 0.23)" : "rgba(255, 255, 255, 0.23)";
     return {
-      borderColor: `var(--OutlinedInput-border-color, ${
+      borderColor: `var(${outlinedInputVars.borderColor},${
         theme.vars ? theme.alpha(theme.vars.palette.common.onBackground, 0.23) : borderColor
       })`,
     };
-  }),
+  })
 );
 
 const OutlinedInputInput = styled(InputBaseInput, {
-  name: 'MuiOutlinedInput',
-  slot: 'Input',
+  name: "MuiOutlinedInput",
+  slot: "Input",
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    // padding-block is derived from the target height so geometry stays centered:
-    // (height − line-height·1em) / 2. Height chain: --OutlinedInput-height → --InputBase-height → spacing(7).
-    // padding-inline rides --mui-spacing independently. See docs/design/public-css-var-layering.md.
-    padding: `var(--OutlinedInput-padding-block, var(--InputBase-padding-block, calc((var(--OutlinedInput-height, var(--InputBase-height, ${theme.spacing(7)})) - var(--InputBase-line-height, 1.4375) * 1em) / 2))) var(--OutlinedInput-padding-inline, var(--InputBase-padding-inline, ${theme.spacing(1.75)}))`,
-    '&:-webkit-autofill': {
+    // medium target height defaults to spacing(7) = 56px
+    padding: derivedInputPadding(theme, theme.spacing(7)),
+    "&:-webkit-autofill": {
       ...(!theme.vars && {
-        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-        caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        WebkitBoxShadow: theme.palette.mode === "light" ? null : "0 0 0 100px #266798 inset",
+        WebkitTextFillColor: theme.palette.mode === "light" ? null : "#fff",
+        caretColor: theme.palette.mode === "light" ? null : "#fff",
       }),
-      borderRadius: 'inherit',
+      borderRadius: "inherit",
       ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: '#fff',
-          caretColor: '#fff',
+        theme.applyStyles("dark", {
+          WebkitBoxShadow: "0 0 0 100px #266798 inset",
+          WebkitTextFillColor: "#fff",
+          caretColor: "#fff",
         })),
     },
     variants: [
       {
         props: {
-          size: 'small',
+          size: "small",
         },
         style: {
           // small target height defaults to spacing(5) = 40px
-          padding: `var(--OutlinedInput-padding-block, var(--InputBase-padding-block, calc((var(--OutlinedInput-height, var(--InputBase-height, ${theme.spacing(5)})) - var(--InputBase-line-height, 1.4375) * 1em) / 2))) var(--OutlinedInput-padding-inline, var(--InputBase-padding-inline, ${theme.spacing(1.75)}))`,
+          padding: derivedInputPadding(theme, theme.spacing(5)),
         },
       },
       {
@@ -184,20 +200,20 @@ const OutlinedInputInput = styled(InputBaseInput, {
         },
       },
     ],
-  })),
+  }))
 );
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
-  const props = useDefaultProps({ props: inProps, name: 'MuiOutlinedInput' });
+  const props = useDefaultProps({ props: inProps, name: "MuiOutlinedInput" });
   const {
     fullWidth = false,
-    inputComponent = 'input',
+    inputComponent = "input",
     label,
     multiline = false,
     notched,
     slots = {},
     slotProps = {},
-    type = 'text',
+    type = "text",
     ...other
   } = props;
 
@@ -205,12 +221,12 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   const [fcs, muiFormControl] = useFormControlState({
     props,
-    states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
+    states: ["color", "disabled", "error", "focused", "hiddenLabel", "size", "required"],
   });
 
   const ownerState = {
     ...props,
-    color: fcs.color || 'primary',
+    color: fcs.color || "primary",
     disabled: fcs.disabled,
     error: fcs.error,
     focused: fcs.focused,
@@ -225,7 +241,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const RootSlot = slots.root ?? OutlinedInputRoot;
   const InputSlot = slots.input ?? OutlinedInputInput;
 
-  const [NotchedSlot, notchedProps] = useSlot('notchedOutline', {
+  const [NotchedSlot, notchedProps] = useSlot("notchedOutline", {
     elementType: NotchedOutlineRoot,
     className: classes.notchedOutline,
     shouldForwardComponentProp: true,
@@ -236,10 +252,10 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     },
     additionalProps: {
       label:
-        label != null && label !== '' && fcs.required ? (
+        label != null && label !== "" && fcs.required ? (
           <React.Fragment>
             {label}
-            &thinsp;{'*'}
+            &thinsp;{"*"}
           </React.Fragment>
         ) : (
           label
@@ -255,7 +271,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
         <NotchedSlot
           {...notchedProps}
           notched={
-            typeof notched !== 'undefined'
+            typeof notched !== "undefined"
               ? notched
               : Boolean(state.startAdornment || state.filled || state.focused)
           }
@@ -301,7 +317,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(["primary", "secondary"]),
     PropTypes.string,
   ]),
   /**
@@ -356,7 +372,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    * FormControl.
    * The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
    */
-  margin: PropTypes.oneOf(['dense', 'none']),
+  margin: PropTypes.oneOf(["dense", "none"]),
   /**
    * Maximum number of rows to display when multiline option is set to true.
    */
@@ -444,6 +460,6 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-OutlinedInput.muiName = 'Input';
+OutlinedInput.muiName = "Input";
 
 export default OutlinedInput;
