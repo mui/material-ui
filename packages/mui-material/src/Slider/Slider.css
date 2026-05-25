@@ -129,10 +129,10 @@
     border: 1px solid currentColor;
     background-color: currentColor;
     transition:
-      left var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut),
-      width var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut),
-      bottom var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut),
-      height var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut);
+      left var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+      width var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+      bottom var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+      height var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut);
   }
 
   .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorPrimary {
@@ -199,9 +199,9 @@
     align-items: center;
     justify-content: center;
     transition:
-      box-shadow var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut),
-      left var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut),
-      bottom var(--mui-transition-duration-shortest) var(--mui-transition-easing-easeInOut);
+      box-shadow var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+      left var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+      bottom var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut);
   }
 
   @media (forced-colors: active) {
@@ -329,8 +329,8 @@
     line-height: 1.43;
     letter-spacing: 0.01071em;
     font-weight: 500;
-    transition: transform var(--mui-transition-duration-shortest)
-      var(--mui-transition-easing-easeInOut);
+    transition: transform var(--mui-transitions-duration-shortest)
+      var(--mui-transitions-easing-easeInOut);
     position: absolute;
     background-color: var(--mui-palette-grey-600);
     border-radius: 2px;
