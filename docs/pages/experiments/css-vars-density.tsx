@@ -1,12 +1,12 @@
-"use client";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+'use client';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Public CSS variables + density POC.
 // See CONTEXT.md, docs/adr/0002-agnostic-public-css-vars.md,
@@ -17,38 +17,52 @@ const theme = createTheme({ cssVariables: true });
 // Agnostic vars carry color / shape / elevation. They flatten across variants
 // (overriding = opting out of the Material spec), so color is applied per button.
 const steelVars = {
-  "--Button-bg": "#3c6997",
-  "--Button-color": "#ffffff",
-  "--Button-radius": "12px",
-  "--Button-shadow": "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -5px 8px rgba(15,32,56,0.40)",
-  "--Button-padding-block": "5px",
-  "--Button-padding-inline": "14px",
-  "--Button-ring": "2px solid #2f5377",
+  '--Button-bg': '#3c6997',
+  '--Button-color': '#ffffff',
+  '--Button-radius': '12px',
+  '--Button-shadow': 'inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -5px 8px rgba(15,32,56,0.40)',
+  '--Button-padding-block': '5px',
+  '--Button-padding-inline': '14px',
+  '--Button-ring': '2px solid #2f5377',
 } as const;
 
 // No var exists for typographic identity — the loudest Material tells. Plain CSS.
 const steelType = {
-  textTransform: "none",
-  fontFamily: "ui-sans-serif, system-ui, sans-serif",
+  textTransform: 'none',
+  fontFamily: 'ui-sans-serif, system-ui, sans-serif',
   fontWeight: 500,
-  letterSpacing: "normal",
+  letterSpacing: 'normal',
 } as const;
 
 // Per-variant agnostic color, parameterised by palette (Steel | Neutral).
 const palettes = {
-  Steel: { fill: "#3c6997", line: "#2f5377" },
-  Neutral: { fill: "#6c757d", line: "#495057" },
+  Steel: { fill: '#3c6997', line: '#2f5377' },
+  Neutral: { fill: '#6c757d', line: '#495057' },
 } as const;
 type PaletteKey = keyof typeof palettes;
 
 const variantVars = (p: PaletteKey) => ({
   contained: {
-    "--Button-bg": palettes[p].fill,
-    "--Button-color": "#fff",
-    "--Button-shadow": "none",
+    '--Button-bg': palettes[p].fill,
+    '--Button-color': '#fff',
+    '--Button-shadow': 'none',
+    '&.Mui-disabled': {
+      opacity: 0.5,
+    },
   },
-  outlined: { "--Button-border-color": palettes[p].line, "--Button-color": palettes[p].line },
-  text: { "--Button-color": palettes[p].line },
+  outlined: {
+    '--Button-border-color': palettes[p].line,
+    '--Button-color': palettes[p].line,
+    '&.Mui-disabled': {
+      opacity: 0.5,
+    },
+  },
+  text: {
+    '--Button-color': palettes[p].line,
+    '&.Mui-disabled': {
+      opacity: 0.5,
+    },
+  },
 });
 
 function Caption({ children }: { children: React.ReactNode }) {
@@ -56,7 +70,7 @@ function Caption({ children }: { children: React.ReactNode }) {
     <Typography
       variant="caption"
       color="text.secondary"
-      sx={{ display: "block", mt: 1, maxWidth: 200 }}
+      sx={{ display: 'block', mt: 1, maxWidth: 200 }}
     >
       {children}
     </Typography>
@@ -66,9 +80,10 @@ function Caption({ children }: { children: React.ReactNode }) {
 function fmt(obj: Record<string, string | number>) {
   return Object.entries(obj)
     .map(
-      ([k, v]) => `  ${k.startsWith("--") ? `'${k}'` : k}: ${typeof v === "string" ? `'${v}'` : v},`
+      ([k, v]) =>
+        `  ${k.startsWith('--') ? `'${k}'` : k}: ${typeof v === 'string' ? `'${v}'` : v},`,
     )
-    .join("\n");
+    .join('\n');
 }
 
 // Renders the exact objects applied below — auditable, cannot drift from what renders.
@@ -79,12 +94,12 @@ function CodeBlock() {
       sx={{
         m: 0,
         p: 2,
-        bgcolor: "grey.900",
-        color: "grey.100",
+        bgcolor: 'grey.900',
+        color: 'grey.100',
         borderRadius: 1,
         fontSize: 12,
         lineHeight: 1.6,
-        overflow: "auto",
+        overflow: 'auto',
       }}
     >
       {`sx={{
@@ -99,7 +114,7 @@ ${fmt(steelType)}
 
 function Scope({ title, sx, children }: { title: string; sx?: object; children: React.ReactNode }) {
   return (
-    <Box sx={{ p: 3, border: "1px dashed", borderColor: "divider", borderRadius: 1, ...sx }}>
+    <Box sx={{ p: 3, border: '1px dashed', borderColor: 'divider', borderRadius: 1, ...sx }}>
       <Typography variant="overline" color="text.secondary">
         {title}
       </Typography>
@@ -111,7 +126,7 @@ function Scope({ title, sx, children }: { title: string; sx?: object; children: 
 function Controls() {
   return (
     <Stack spacing={2}>
-      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "center", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
         <Button variant="contained" size="small">
           Small
         </Button>
@@ -122,7 +137,7 @@ function Controls() {
         <Button variant="outlined">Outlined</Button>
         <Button variant="text">Text</Button>
       </Stack>
-      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: "start", flexWrap: "wrap" }}>
+      <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'start', flexWrap: 'wrap' }}>
         <TextField label="Outlined" defaultValue="Value" />
         <TextField label="Small" size="small" defaultValue="Value" />
       </Stack>
@@ -139,10 +154,10 @@ function MatrixGroup({ palette }: { palette: PaletteKey }) {
       spacing={2}
       useFlexGap
       sx={{
-        alignItems: "center",
-        flexWrap: "wrap",
-        "--Button-radius": "8px",
-        "--Button-ring": "2px solid #2f5377",
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        '--Button-radius': '8px',
+        '--Button-ring': '2px solid #2f5377',
         ...steelType,
       }}
     >
@@ -163,8 +178,9 @@ function MatrixGroup({ palette }: { palette: PaletteKey }) {
       {row(false)}
       {row(true)}
       <Caption>
-        Disabled (2nd row) reverts to theme greys — agnostic color is resting-only (ADR-0002).
-        Matching it needs <code>&.Mui-disabled</code> CSS or a future state layer.
+        Disabled (2nd row) keeps the custom color — an agnostic var opts that property out of the
+        spec in <i>every</i> state, so the default disabled grey-out is gone too (ADR-0002). The
+        cue is now yours: here we re-add one with <code>&.Mui-disabled</code> opacity 0.5.
       </Caption>
     </Stack>
   );
@@ -174,7 +190,7 @@ export default function App() {
   const [spacing, setSpacing] = React.useState(8);
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ p: 4, display: "grid", gap: 4, maxWidth: 860 }}>
+      <Box sx={{ p: 4, display: 'grid', gap: 4, maxWidth: 860 }}>
         <div>
           <Typography variant="h5">Agnostic CSS variables — leaving Material Design</Typography>
           <Typography color="text.secondary" sx={{ mt: 0.5 }}>
@@ -187,10 +203,10 @@ export default function App() {
         <Scope title="Stock Material → vars only → finished 'Steel UI'">
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr 1fr" },
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr 1fr' },
               gap: 3,
-              alignItems: "start",
+              alignItems: 'start',
             }}
           >
             <div>
@@ -200,13 +216,13 @@ export default function App() {
               </Caption>
             </div>
             <div>
-              <Button variant="contained" disableRipple sx={steelVars}>
+              <Button variant="contained" sx={steelVars}>
                 Label
               </Button>
               <Caption>
-                <b>Agnostic vars only.</b> Steel-blue, 8px, custom shadow + focus ring (tab to see)
-                — but still UPPERCASE Roboto and still ripples. Vars carry color/shape/elevation;
-                type & behaviour are the gap.
+                <b>Agnostic vars only.</b> Steel-blue, rounded, custom shadow + focus ring (tab to
+                see) — but still UPPERCASE Roboto and still ripples. Vars carry
+                color/shape/elevation; type & behaviour are the gap.
               </Caption>
             </div>
             <div>
@@ -242,23 +258,23 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "center", flexWrap: "wrap" }}
+            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
-            <Button variant="contained" sx={{ "--Button-padding-block": "2px" }}>
+            <Button variant="contained" sx={{ '--Button-padding-block': '2px' }}>
               --Button-padding-block: 2px
             </Button>
-            <Button variant="outlined" sx={{ "--Button-padding-inline": "40px" }}>
+            <Button variant="outlined" sx={{ '--Button-padding-inline': '40px' }}>
               --Button-padding-inline: 40px
             </Button>
             <TextField
               label="--TextField-height: 64px"
               defaultValue="Value"
-              sx={{ "--TextField-height": "64px" }}
+              sx={{ '--TextField-height': '64px' }}
             />
             <TextField
               label="--InputBase-line-height: 2"
               defaultValue="Value"
-              sx={{ "--InputBase-line-height": "2" }}
+              sx={{ '--InputBase-line-height': '2' }}
             />
           </Stack>
         </Scope>
@@ -267,11 +283,11 @@ export default function App() {
         <Scope
           title="Responsive font-size — 1rem mobile, 0.875rem desktop (≥900px). Resize to see."
           sx={{
-            "--Button-font-size": "1rem",
-            "--TextField-font-size": "1rem",
-            "@media (min-width:900px)": {
-              "--Button-font-size": "0.875rem",
-              "--TextField-font-size": "0.875rem",
+            '--Button-font-size': '1rem',
+            '--TextField-font-size': '1rem',
+            '@media (min-width:900px)': {
+              '--Button-font-size': '0.875rem',
+              '--TextField-font-size': '0.875rem',
             },
           }}
         >
@@ -284,28 +300,28 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "center", flexWrap: "wrap", "--Button-radius": "16px" }}
+            sx={{ alignItems: 'center', flexWrap: 'wrap', '--Button-radius': '16px' }}
           >
             <Button variant="contained">Rounded (scope)</Button>
-            <Button variant="contained" sx={{ "--Button-bg": "tomato" }}>
+            <Button variant="contained" sx={{ '--Button-bg': 'tomato' }}>
               --Button-bg: tomato
             </Button>
-            <Button variant="outlined" sx={{ "--Button-border-color": "rebeccapurple" }}>
+            <Button variant="outlined" sx={{ '--Button-border-color': 'rebeccapurple' }}>
               --Button-border-color
             </Button>
-            <Button variant="outlined" sx={{ "--Button-border-width": "3px" }}>
+            <Button variant="outlined" sx={{ '--Button-border-width': '3px' }}>
               --Button-border-width: 3px
             </Button>
-            <Button variant="text" sx={{ "--Button-color": "seagreen" }}>
+            <Button variant="text" sx={{ '--Button-color': 'seagreen' }}>
               --Button-color
             </Button>
-            <Button variant="contained" sx={{ "--Button-shadow": "0 4px 12px rgba(0,0,0,0.4)" }}>
+            <Button variant="contained" sx={{ '--Button-shadow': '0 4px 12px rgba(0,0,0,0.4)' }}>
               --Button-shadow
             </Button>
             <Button
               disableRipple
               variant="outlined"
-              sx={{ "--Button-ring": "2px solid dodgerblue" }}
+              sx={{ '--Button-ring': '2px solid dodgerblue' }}
             >
               --Button-ring (tab to focus)
             </Button>
@@ -318,27 +334,27 @@ export default function App() {
             direction="row"
             spacing={2}
             useFlexGap
-            sx={{ alignItems: "start", flexWrap: "wrap" }}
+            sx={{ alignItems: 'start', flexWrap: 'wrap' }}
           >
             <TextField
               label="--TextField-radius: 16px"
               defaultValue="Value"
-              sx={{ "--TextField-radius": "16px" }}
+              sx={{ '--TextField-radius': '16px' }}
             />
             <TextField
               label="--TextField-border-width: 2px"
               defaultValue="Value"
-              sx={{ "--TextField-border-width": "2px" }}
+              sx={{ '--TextField-border-width': '2px' }}
             />
             <TextField
               label="--TextField-border-color"
               defaultValue="Value"
-              sx={{ "--TextField-border-color": "rebeccapurple" }}
+              sx={{ '--TextField-border-color': 'rebeccapurple' }}
             />
             <TextField
               label="--TextField-color"
               defaultValue="Value"
-              sx={{ "--TextField-color": "seagreen" }}
+              sx={{ '--TextField-color': 'seagreen' }}
             />
           </Stack>
           <Caption>
@@ -367,14 +383,14 @@ export default function App() {
             valueLabelFormat={(value) => `${value}px`}
           />
         </Box>
-        <Scope title="Controls" sx={{ "--mui-spacing": `${spacing}px` }}>
+        <Scope title="Controls" sx={{ '--mui-spacing': `${spacing}px` }}>
           <Controls />
         </Scope>
 
         {/* --- Different Viewports --- */}
         <Scope
           title="Viewport — --mui-spacing: 6px below 900px (resize to see)"
-          sx={{ "@media (max-width:900px)": { "--mui-spacing": "6px" } }}
+          sx={{ '@media (max-width:900px)': { '--mui-spacing': '6px' } }}
         >
           <Controls />
         </Scope>

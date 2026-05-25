@@ -102,10 +102,14 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           props: {}, // to override the above style
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (theme.vars || theme).palette.error.main,
+              borderColor: `var(${outlinedInputVars.borderColor},${
+                (theme.vars || theme).palette.error.main
+              })`,
             },
             [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: (theme.vars || theme).palette.action.disabled,
+              borderColor: `var(${outlinedInputVars.borderColor},${
+                (theme.vars || theme).palette.action.disabled
+              })`,
             },
           },
         },

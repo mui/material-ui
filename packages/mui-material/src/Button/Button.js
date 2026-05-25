@@ -119,7 +119,7 @@ const ButtonRoot = styled(ButtonBase, {
         textDecoration: 'none',
       },
       [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
+        color: `var(${buttonVars.color},${(theme.vars || theme).palette.action.disabled})`,
       },
       // Opt-in focus ring; default `0` = no ring (ButtonBase already resets outline).
       [`&.${buttonClasses.focusVisible}`]: {
@@ -147,9 +147,11 @@ const ButtonRoot = styled(ButtonBase, {
               boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[6]})`,
             },
             [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
-              boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+              color: `var(${buttonVars.color},${(theme.vars || theme).palette.action.disabled})`,
+              boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[0]})`,
+              backgroundColor: `var(${buttonVars.bg},${
+                (theme.vars || theme).palette.action.disabledBackground
+              })`,
             },
           },
         },
@@ -167,7 +169,9 @@ const ButtonRoot = styled(ButtonBase, {
             backgroundColor: `var(${buttonVars.bg},var(--variant-outlinedBg))`,
             color: `var(${buttonVars.color},var(--variant-outlinedColor))`,
             [`&.${buttonClasses.disabled}`]: {
-              borderColor: (theme.vars || theme).palette.action.disabledBackground,
+              borderColor: `var(${buttonVars.borderColor},${
+                (theme.vars || theme).palette.action.disabledBackground
+              })`,
             },
           },
         },
@@ -215,8 +219,8 @@ const ButtonRoot = styled(ButtonBase, {
             color: 'inherit',
           },
           style: {
-            color: 'inherit',
-            borderColor: 'currentColor',
+            color: `var(${buttonVars.color},inherit)`,
+            borderColor: `var(${buttonVars.borderColor},currentColor)`,
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
@@ -318,18 +322,18 @@ const ButtonRoot = styled(ButtonBase, {
             disableElevation: true,
           },
           style: {
-            boxShadow: 'none',
+            boxShadow: `var(${buttonVars.shadow},none)`,
             '&:hover': {
-              boxShadow: 'none',
+              boxShadow: `var(${buttonVars.shadow},none)`,
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: 'none',
+              boxShadow: `var(${buttonVars.shadow},none)`,
             },
             '&:active': {
-              boxShadow: 'none',
+              boxShadow: `var(${buttonVars.shadow},none)`,
             },
             [`&.${buttonClasses.disabled}`]: {
-              boxShadow: 'none',
+              boxShadow: `var(${buttonVars.shadow},none)`,
             },
           },
         },
@@ -480,7 +484,7 @@ const ButtonLoadingIndicator = styled('span', {
       style: {
         left: '50%',
         transform: 'translate(-50%)',
-        color: (theme.vars || theme).palette.action.disabled,
+        color: `var(${buttonVars.color},${(theme.vars || theme).palette.action.disabled})`,
       },
     },
     {

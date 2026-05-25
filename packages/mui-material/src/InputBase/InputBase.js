@@ -107,7 +107,7 @@ export const InputBaseRoot = styled('div', {
     display: 'inline-flex',
     alignItems: 'center',
     [`&.${inputBaseClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.text.disabled,
+      color: `var(${inputBaseVars.color},${(theme.vars || theme).palette.text.disabled})`,
       cursor: 'default',
     },
     variants: [
