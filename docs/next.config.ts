@@ -20,7 +20,84 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  webpack: (config: NextConfig, options): NextConfig => {
+  turbopack: {
+    resolveAlias: {
+      '@mui/material': '../packages/mui-material/src',
+      '@mui/material/package.json': '../packages/mui-material/package.json',
+      '@mui/internal-core-docs': '../packages-internal/core-docs/src',
+      // Pin bare `@mui/icons-material` to the ESM index.mjs (mirrors the
+      // webpack `@mui/icons-material$` exact-match alias). Turbopack directory
+      // resolution can otherwise land on the CJS `index.js`, which breaks
+      // `import * as mui from '@mui/icons-material'` (namespace members end up
+      // as `{ default: Component }` under CJS-ESM interop).
+      '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
+      '@mui/lab': '../packages/mui-lab/src',
+      '@mui/styled-engine': '../packages/mui-styled-engine/src',
+      '@mui/system': '../packages/mui-system/src',
+      '@mui/system/package.json': '../packages/mui-system/package.json',
+      '@mui/private-theming': '../packages/mui-private-theming/src',
+      '@mui/utils': '../packages/mui-utils/src',
+      '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
+      // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
+      docs: '.',
+    },
+    resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
+    // Suppress turbopack's over-strict pages-router global-CSS check. Our
+    // global CSS imports are all in `pages/_app.tsx`, which is the documented
+    // allowed location — turbopack's check misfires here.
+    ignoreIssue: [
+      { path: /_app\.tsx/, title: /Global CSS/ },
+      { path: /_app\.tsx/, description: /Global CSS/ },
+      { path: /global\.css$/ },
+      { path: /components-gallery\/base-theme\.css$/ },
+    ],
+    rules: {
+      // Turbopack requires serializable loader options, so `ignoreLanguagePages`
+      // (a function) is omitted. Safe while docs is English-only in SSR.
+      '*.md': [
+        // `.md?muiMarkdown` → markdown loader (mirrors the webpack `oneOf` first branch).
+        {
+          condition: { query: /[?&]muiMarkdown(?=&|$)/ },
+          loaders: [
+            {
+              loader: '@mui/internal-markdown/loader',
+              options: {
+                workspaceRoot,
+                languagesInProgress: [],
+                packages: [
+                  {
+                    productId: 'material-ui',
+                    paths: [
+                      path.join(workspaceRoot, 'packages/mui-lab/src'),
+                      path.join(workspaceRoot, 'packages/mui-material/src'),
+                    ],
+                  },
+                ],
+                env: {
+                  SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+                  LIB_VERSION: pkg.version,
+                },
+              },
+            },
+          ],
+          as: '*.js',
+        },
+        // Non-muiMarkdown `.md` (e.g. `import terms from './terms.md'`) → raw source.
+        // `{ not: 'foreign' }` keeps raw-loader away from node_modules / Next.js internals.
+        {
+          condition: {
+            all: [{ not: 'foreign' }, { not: { query: /[?&]muiMarkdown(?=&|$)/ } }],
+          },
+          loaders: ['raw-loader'],
+          as: '*.js',
+        },
+      ],
+    },
+  },
+  webpack: (
+    config: Parameters<NonNullable<NextConfig['webpack']>>[0],
+    options: Parameters<NonNullable<NextConfig['webpack']>>[1],
+  ) => {
     const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
@@ -161,7 +238,12 @@ export default withDocsInfra({
           {
             test: /\.(js|mjs|tsx|ts)$/,
             resourceQuery: { not: [/raw/] },
-            include: [workspaceRoot],
+            // Narrow the scope to fixed directories
+            include: [
+              path.join(workspaceRoot, 'docs'),
+              path.join(workspaceRoot, 'packages'),
+              path.join(workspaceRoot, 'packages-internal'),
+            ],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
           },
