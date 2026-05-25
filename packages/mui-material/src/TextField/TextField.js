@@ -45,6 +45,10 @@ const TextFieldRoot = styled(FormControl, {
       style: {
         '--OutlinedInput-height': 'var(--TextField-height)',
         '--OutlinedInput-font-size': 'var(--TextField-font-size)',
+        '--OutlinedInput-color': 'var(--TextField-color)',
+        '--OutlinedInput-border-color': 'var(--TextField-border-color)',
+        '--OutlinedInput-border-width': 'var(--TextField-border-width)',
+        '--OutlinedInput-radius': 'var(--TextField-radius)',
       },
     },
   ],

@@ -149,6 +149,37 @@ export default function App() {
             </Button>
           </Stack>
         </Scope>
+
+        {/* --- TextField knobs (outlined; resting-only, focus width keeps emphasis) --- */}
+        <Scope title="TextField knobs — border/radius/color (focus still thickens to 2px default)">
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            sx={{ alignItems: "start", flexWrap: "wrap" }}
+          >
+            <TextField
+              label="--TextField-radius: 16px"
+              defaultValue="Value"
+              sx={{ "--TextField-radius": "16px" }}
+            />
+            <TextField
+              label="--TextField-border-width: 2px"
+              defaultValue="Value"
+              sx={{ "--TextField-border-width": "2px" }}
+            />
+            <TextField
+              label="--TextField-border-color"
+              defaultValue="Value"
+              sx={{ "--TextField-border-color": "rebeccapurple" }}
+            />
+            <TextField
+              label="--TextField-color"
+              defaultValue="Value"
+              sx={{ "--TextField-color": "seagreen" }}
+            />
+          </Stack>
+        </Scope>
       </Box>
     </ThemeProvider>
   );

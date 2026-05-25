@@ -19,7 +19,7 @@ const NotchedOutlineRoot = styled('fieldset', {
   pointerEvents: 'none',
   borderRadius: 'inherit',
   borderStyle: 'solid',
-  borderWidth: 1,
+  borderWidth: 'var(--OutlinedInput-border-width, 1px)',
   overflow: 'hidden',
   minWidth: '0%',
 });

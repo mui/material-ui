@@ -49,7 +49,8 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       position: 'relative',
       // Variant-level font-size knob; inward fallback to the base --InputBase-font-size.
       fontSize: `var(--OutlinedInput-font-size, var(--InputBase-font-size, ${theme.typography.body1.fontSize}))`,
-      borderRadius: (theme.vars || theme).shape.borderRadius,
+      color: `var(--OutlinedInput-color, var(--InputBase-color, ${(theme.vars || theme).palette.text.primary}))`,
+      borderRadius: `var(--OutlinedInput-radius, ${(theme.vars || theme).shape.borderRadius}${theme.vars ? '' : 'px'})`,
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
@@ -62,7 +63,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         },
       },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-        borderWidth: 2,
+        borderWidth: 'var(--OutlinedInput-border-width, 2px)',
       },
       variants: [
         ...Object.entries(theme.palette)
@@ -123,9 +124,9 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
-      borderColor: theme.vars
-        ? theme.alpha(theme.vars.palette.common.onBackground, 0.23)
-        : borderColor,
+      borderColor: `var(--OutlinedInput-border-color, ${
+        theme.vars ? theme.alpha(theme.vars.palette.common.onBackground, 0.23) : borderColor
+      })`,
     };
   }),
 );
