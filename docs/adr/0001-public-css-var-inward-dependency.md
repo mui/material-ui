@@ -11,6 +11,6 @@ The rejected alternative was a single nested-fallback chain at the consumer — 
 ## Consequences
 
 - A user setting `--TextField-padding-block` drives the rendered Input via the downward mapping; defaults survive because an unset `var(--TextField-padding-block)` yields the guaranteed-invalid value, so downstream `var(--…, <literal>)` falls through to the literal.
-- When wrapped by TextField, the TextField root re-declares `--OutlinedInput-padding-block`, so setting that inner knob on an *ancestor of* the TextField is shadowed. Contract: use `--TextField-*` for TextField, inner knobs for standalone Inputs.
+- When wrapped by TextField, the TextField root re-declares `--OutlinedInput-padding-block`, so setting that inner knob on an _ancestor of_ the TextField is shadowed. Contract: use `--TextField-*` for TextField, inner knobs for standalone Inputs.
 
 See [Public CSS Variable Layering](../design/public-css-var-layering.md) for detailed mechanics, a worked input example, and the rejected alternatives.

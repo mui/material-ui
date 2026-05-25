@@ -115,14 +115,14 @@ Pseudo-CSS for the three layers (real selectors elided; `${spacing(n)}` renders 
 
 ### Traces (rendered as `<TextField variant="outlined">`)
 
-| user sets                                            | `padding-block` resolves to | path                                                                                                                                                  |
-| :--------------------------------------------------- | :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| nothing                                              | `16.5px`                    | `--TextField-*` unset → `--OutlinedInput-*` guaranteed-invalid → `--InputBase-*` unset → derived `(spacing(7)−23)/2` = 16.5px. **Default preserved.** |
-| `--TextField-height: 40px` (on the TextField)        | `8.5px`                     | wrapper maps to `--OutlinedInput-height` → `(40−23)/2`; height becomes 40px                                                                           |
-| `--InputBase-height: 48px`                           | `12.5px`                    | `(48−23)/2` — geometry stays centered, height contract holds                                                                                          |
-| `--InputBase-line-height: 1.2`                       | `18.4px`                    | `(56−19.2)/2` — line-height density, height stays 56px                                                                                                |
-| `--mui-spacing: 6px` (page scope)                    | `9.5px`, height 42px        | `--InputBase-height` defaults to `spacing(7)` → rides the global dial                                                                                 |
-| `--InputBase-padding-block: 9px`                     | `9px`                       | base-knob override beats the derived formula                                                                                                          |
+| user sets                                     | `padding-block` resolves to | path                                                                                                                                                  |
+| :-------------------------------------------- | :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| nothing                                       | `16.5px`                    | `--TextField-*` unset → `--OutlinedInput-*` guaranteed-invalid → `--InputBase-*` unset → derived `(spacing(7)−23)/2` = 16.5px. **Default preserved.** |
+| `--TextField-height: 40px` (on the TextField) | `8.5px`                     | wrapper maps to `--OutlinedInput-height` → `(40−23)/2`; height becomes 40px                                                                           |
+| `--InputBase-height: 48px`                    | `12.5px`                    | `(48−23)/2` — geometry stays centered, height contract holds                                                                                          |
+| `--InputBase-line-height: 1.2`                | `18.4px`                    | `(56−19.2)/2` — line-height density, height stays 56px                                                                                                |
+| `--mui-spacing: 6px` (page scope)             | `9.5px`, height 42px        | `--InputBase-height` defaults to `spacing(7)` → rides the global dial                                                                                 |
+| `--InputBase-padding-block: 9px`              | `9px`                       | base-knob override beats the derived formula                                                                                                          |
 
 **Floor:** when `height < line-height·font-size` (e.g. `--mui-spacing: 3px` → `spacing(7)=21px < 23px`), the derived padding goes negative. Fixing this needs font-size to scale too (deferred) or a `max(…, lineBox)` clamp.
 

@@ -134,17 +134,17 @@ const ButtonRoot = styled(ButtonBase, {
             backgroundColor: `var(${buttonVars.bg},var(--variant-containedBg))`,
             boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[2]})`,
             '&:hover': {
-              boxShadow: (theme.vars || theme).shadows[4],
+              boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[4]})`,
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
-                boxShadow: (theme.vars || theme).shadows[2],
+                boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[2]})`,
               },
             },
             '&:active': {
-              boxShadow: (theme.vars || theme).shadows[8],
+              boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[8]})`,
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: (theme.vars || theme).shadows[6],
+              boxShadow: `var(${buttonVars.shadow},${(theme.vars || theme).shadows[6]})`,
             },
             [`&.${buttonClasses.disabled}`]: {
               color: (theme.vars || theme).palette.action.disabled,

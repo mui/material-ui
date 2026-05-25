@@ -5,12 +5,12 @@
  * docs/design/public-css-var-layering.md.
  */
 const textFieldVars = {
-  height: "--TextField-height",
-  fontSize: "--TextField-font-size",
-  color: "--TextField-color",
-  borderColor: "--TextField-border-color",
-  borderWidth: "--TextField-border-width",
-  radius: "--TextField-radius",
+  height: '--TextField-height',
+  fontSize: '--TextField-font-size',
+  color: '--TextField-color',
+  borderColor: '--TextField-border-color',
+  borderWidth: '--TextField-border-width',
+  radius: '--TextField-radius',
 } as const;
 
 export default textFieldVars;

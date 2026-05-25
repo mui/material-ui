@@ -19,9 +19,8 @@ const theme = createTheme({ cssVariables: true });
 const steelVars = {
   "--Button-bg": "#3c6997",
   "--Button-color": "#ffffff",
-  "--Button-radius": "8px",
-  "--Button-shadow":
-    "0 1px 1px rgba(15,32,56,0.10), 0 3px 6px rgba(15,32,56,0.14), 0 10px 24px rgba(15,32,56,0.22), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(15,32,56,0.20)",
+  "--Button-radius": "12px",
+  "--Button-shadow": "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -5px 8px rgba(15,32,56,0.40)",
   "--Button-padding-block": "5px",
   "--Button-padding-inline": "14px",
   "--Button-ring": "2px solid #2f5377",
