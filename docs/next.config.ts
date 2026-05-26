@@ -20,6 +20,9 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
+  experimental: {
+    turbopackFileSystemCacheForBuild: true,
+  },
   turbopack: {
     resolveAlias: {
       '@mui/material': '../packages/mui-material/src',
@@ -269,7 +272,20 @@ export default withDocsInfra({
   },
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
-  transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
+  // `@mui/x-*` entries: keep their `@mui/material/*` subpath imports
+  // inside the bundler so the turbopack source aliases win; otherwise
+  // resolution falls back to the pnpm symlink (→ `packages/mui-material/build/`),
+  // which is empty unless the package has been built.
+  transpilePackages: [
+    '@mui/x-charts',
+    '@mui/x-data-grid',
+    '@mui/x-data-grid-pro',
+    '@mui/x-data-grid-premium',
+    '@mui/x-tree-view',
+    '@mui/x-date-pickers',
+    '@mui/x-date-pickers-pro',
+    '@mui/x-data-grid-generator',
+  ],
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
