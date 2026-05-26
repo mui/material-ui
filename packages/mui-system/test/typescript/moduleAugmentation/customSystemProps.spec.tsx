@@ -21,6 +21,8 @@ const invalidProps: SystemProps = {
 };
 
 <Box customProp={2} />;
+
+// @ts-expect-error Standard system aliases are not direct Box props.
 <Box m={4} />;
 
 // @ts-expect-error customProp only accepts numbers.

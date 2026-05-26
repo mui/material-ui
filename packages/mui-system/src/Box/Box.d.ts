@@ -46,15 +46,17 @@ type StandardSystemKeys = Extract<SimpleSystemKeys, keyof AllSystemCSSProperties
 
 type CustomSystemKeys = Exclude<keyof CustomSystemProps, StandardSystemKeys>;
 
-export type SystemProps<Theme extends object = {}> = {
-  [K in StandardSystemKeys]?:
-    | ResponsiveStyleValue<AllSystemCSSProperties[K]>
-    | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
-} & {
+type CustomSystemPropsFor<Theme extends object = {}> = {
   [K in CustomSystemKeys]?:
     | ResponsiveStyleValue<CustomSystemProps[K]>
     | ((theme: Theme) => ResponsiveStyleValue<CustomSystemProps[K]>);
 };
+
+export type SystemProps<Theme extends object = {}> = {
+  [K in StandardSystemKeys]?:
+    | ResponsiveStyleValue<AllSystemCSSProperties[K]>
+    | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
+} & CustomSystemPropsFor<Theme>;
 
 export interface BoxOwnProps<Theme extends object = SystemTheme> {
   children?: React.ReactNode;
@@ -70,7 +72,7 @@ export interface BoxTypeMap<
   RootComponent extends React.ElementType = 'div',
   Theme extends object = SystemTheme,
 > {
-  props: AdditionalProps & BoxOwnProps<Theme> & SystemProps<Theme>;
+  props: AdditionalProps & BoxOwnProps<Theme> & CustomSystemPropsFor<Theme>;
   defaultComponent: RootComponent;
 }
 
