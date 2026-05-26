@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as semver from 'semver';
+// @ts-ignore
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
 import { findPages } from './src/modules/utils/find';
@@ -17,53 +19,58 @@ const workspaceRoot = path.join(currentDirectory, '../');
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
-export default withDocsInfra({
-  experimental: {
-    turbopackFileSystemCacheForBuild: true,
-  },
-  turbopack: {
-    resolveAlias: {
-      '@mui/material': '../packages/mui-material/src',
-      '@mui/material/package.json': '../packages/mui-material/package.json',
-      '@mui/internal-core-docs': '../packages-internal/core-docs/src',
-      '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
-      '@mui/lab': '../packages/mui-lab/src',
-      '@mui/styled-engine': '../packages/mui-styled-engine/src',
-      '@mui/system': '../packages/mui-system/src',
-      '@mui/system/package.json': '../packages/mui-system/package.json',
-      '@mui/private-theming': '../packages/mui-private-theming/src',
-      '@mui/utils': '../packages/mui-utils/src',
-      '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
-      docs: '.',
+// Shared alias list. Used by both turbopack (relative paths from `docs/`)
+// and webpack (absolute paths via `path.resolve`).
+const aliasEntries: ReadonlyArray<readonly [string, string]> = [
+  ['@mui/material', 'packages/mui-material/src'],
+  ['@mui/material/package.json', 'packages/mui-material/package.json'],
+  ['@mui/internal-core-docs', 'packages-internal/core-docs/src'],
+  ['@mui/icons-material', 'packages/mui-icons-material/lib/index.mjs'],
+  ['@mui/lab', 'packages/mui-lab/src'],
+  ['@mui/styled-engine', 'packages/mui-styled-engine/src'],
+  ['@mui/system', 'packages/mui-system/src'],
+  ['@mui/system/package.json', 'packages/mui-system/package.json'],
+  ['@mui/private-theming', 'packages/mui-private-theming/src'],
+  ['@mui/utils', 'packages/mui-utils/src'],
+  ['@mui/material-nextjs', 'packages/mui-material-nextjs/src'],
+];
+
+const turbopackResolveAlias: Record<string, string> = {
+  ...Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`])),
+  // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
+  docs: '.',
+};
+
+const markdownLoaderBase = {
+  workspaceRoot,
+  languagesInProgress: [],
+  packages: [
+    {
+      productId: 'material-ui',
+      paths: [
+        path.join(workspaceRoot, 'packages/mui-lab/src'),
+        path.join(workspaceRoot, 'packages/mui-material/src'),
+      ],
     },
+  ],
+  env: {
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
+    LIB_VERSION: pkg.version,
+  },
+};
+
+export default withDocsInfra({
+  turbopack: {
+    resolveAlias: turbopackResolveAlias,
     resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
     rules: {
+      // Turbopack requires serializable loader options, so `ignoreLanguagePages`
+      // (a function) is omitted. Safe while docs is English-only in SSR.
       '*.md': [
         // `.md?muiMarkdown` → markdown loader (mirrors the webpack `oneOf` first branch).
         {
           condition: { query: /[?&]muiMarkdown(?=&|$)/ },
-          loaders: [
-            {
-              loader: '@mui/internal-markdown/loader',
-              options: {
-                workspaceRoot,
-                languagesInProgress: [],
-                packages: [
-                  {
-                    productId: 'material-ui',
-                    paths: [
-                      path.join(workspaceRoot, 'packages/mui-lab/src'),
-                      path.join(workspaceRoot, 'packages/mui-material/src'),
-                    ],
-                  },
-                ],
-                env: {
-                  SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-                  LIB_VERSION: pkg.version,
-                },
-              },
-            },
-          ],
+          loaders: [{ loader: '@mui/internal-markdown/loader', options: markdownLoaderBase }],
           as: '*.js',
         },
         // Non-muiMarkdown `.md` (e.g. `import terms from './terms.md'`) → raw source.
@@ -77,6 +84,158 @@ export default withDocsInfra({
         },
       ],
     },
+  },
+  webpack: (
+    config: Parameters<NonNullable<NextConfig['webpack']>>[0],
+    options: Parameters<NonNullable<NextConfig['webpack']>>[1],
+  ) => {
+    const plugins = config.plugins.slice();
+
+    if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
+      plugins.push(
+        // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          generateStatsFile: true,
+          analyzerPort: options.isServer ? 8888 : 8889,
+          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
+          // Will be available at `.next/${statsFilename}`
+          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
+        }),
+      );
+    }
+
+    // If a module is an webpack "external" the webpack aliases configured are not used.
+    // Next.js includes node_modules in webpack externals, some of those have dependencies
+    // on the aliases we defined above.
+    // So we need tell webpack to not consider those packages as externals.
+    if (
+      options.isServer &&
+      // Next.js executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
+      const externals = config.externals.slice(0, -1);
+      const nextExternals = config.externals.at(-1);
+
+      config.externals = [
+        // @ts-ignore
+        (ctx, callback) => {
+          const { request } = ctx;
+          const hasDependencyOnRepoPackages = [
+            'material-ui-popup-state',
+            // Assume any X dependencies depend on a package defined in this repository.
+            '@mui/x-',
+            '@toolpad/core',
+          ].some((dep) => request.startsWith(dep));
+
+          if (hasDependencyOnRepoPackages) {
+            return callback(null);
+          }
+          return nextExternals(ctx, callback);
+        },
+        ...externals,
+      ];
+    }
+
+    // @ts-ignore
+    config.module.rules.forEach((rule) => {
+      rule.resourceQuery = { not: [/raw/] };
+    });
+
+    // Webpack alias matching is order-sensitive (first match wins for prefix
+    // aliases), so list more specific paths (`@mui/material/package.json`)
+    // before broader ones (`@mui/material`). We sort by key length desc to
+    // guarantee this regardless of how `aliasEntries` is declared.
+    const sharedWebpackAliases = [...aliasEntries]
+      .sort(([a], [b]) => b.length - a.length)
+      .map(([name, rel]) => [name, path.resolve(workspaceRoot, rel)] as const);
+
+    const webpackAliases: Record<string, string> = {
+      // Exact-match overrides (with the `$` suffix) for bare imports.
+      // Pin `@mui/material` to its compiled `index.js` and `@mui/icons-material`
+      // to the ESM index so `import * as mui from '@mui/icons-material'`
+      // doesn't land on the CJS index and break namespace interop.
+      '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
+      '@mui/icons-material$': path.resolve(
+        workspaceRoot,
+        'packages/mui-icons-material/lib/index.mjs',
+      ),
+      ...Object.fromEntries(sharedWebpackAliases),
+      // Bare `@mui/icons-material` should resolve to the lib dir (not the ESM
+      // index), so deep imports `@mui/icons-material/Add` work.
+      '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
+    };
+
+    return {
+      ...config,
+      plugins,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          ...webpackAliases,
+        },
+        extensions: [
+          '.mjs',
+          '.tsx',
+          // @ts-ignore
+          ...config.resolve.extensions.filter(
+            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
+          ),
+        ],
+      },
+      module: {
+        ...config.module,
+        rules: config.module.rules.concat([
+          {
+            test: /\.md$/,
+            oneOf: [
+              {
+                resourceQuery: /muiMarkdown/,
+                use: [
+                  options.defaultLoaders.babel,
+                  {
+                    loader: require.resolve('@mui/internal-markdown/loader'),
+                    options: {
+                      ...markdownLoaderBase,
+                      // Function form is allowed under webpack; turbopack
+                      // requires serialisable options so it's omitted there.
+                      ignoreLanguagePages: () => false,
+                      env: {
+                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
+                        LIB_VERSION: options.config.env.LIB_VERSION,
+                      },
+                    },
+                  },
+                ],
+              },
+              {
+                // used in some /getting-started/templates
+                type: 'asset/source',
+              },
+            ],
+          },
+          // required to transpile ../packages/
+          {
+            test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
+            // Narrow the scope to fixed directories
+            include: [
+              path.join(workspaceRoot, 'docs'),
+              path.join(workspaceRoot, 'packages'),
+              path.join(workspaceRoot, 'packages-internal'),
+            ],
+            exclude: /(node_modules|mui-icons-material)/,
+            use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
+          },
+        ]),
+      },
+    };
   },
   env: {
     // docs-infra
@@ -93,9 +252,9 @@ export default withDocsInfra({
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
   // `@mui/x-*` entries: keep their `@mui/material/*` subpath imports
-  // inside the bundler so the turbopack source aliases win; otherwise
-  // resolution falls back to the pnpm symlink (→ `packages/mui-material/build/`),
-  // which is empty unless the package has been built.
+  // inside the bundler so the source aliases above win; otherwise resolution
+  // falls back to the pnpm symlink (→ `packages/mui-material/build/`), which
+  // is empty unless the package has been built.
   transpilePackages: [
     '@mui/x-charts',
     '@mui/x-data-grid',

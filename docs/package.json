@@ -3,10 +3,11 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw",
+    "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --webpack && pnpm build-sw",
+    "build:turbopack": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build --turbopack && pnpm build-sw",
     "build:clean": "rimraf .next && pnpm build",
     "build-sw": "node ./scripts/buildServiceWorker.js",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "deploy": "git fetch upstream master && git push -f material-ui-docs FETCH_HEAD:latest",
     "icons": "rimraf --glob public/static/icons/* && node ./scripts/buildIcons.js",
     "start": "serve ./export",
@@ -95,7 +96,8 @@
     "semver": "^7.7.4",
     "styled-components": "^6.4.1",
     "stylis": "catalog:docs",
-    "use-count-up": "^3.0.1"
+    "use-count-up": "^3.0.1",
+    "webpack-bundle-analyzer": "^5.3.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
