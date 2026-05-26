@@ -1157,7 +1157,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it.only('should remove only the focused chip when pressing the delete key', async () => {
+    it('should remove only the focused chip when pressing the delete key', async () => {
       const handleChange = spy();
       const options = ['one', 'two', 'three'];
       const { user } = render(
@@ -1182,7 +1182,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it.only('should remove only the focused chip when pressing the backspace key', async () => {
+    it('should remove only the focused chip when pressing the backspace key', async () => {
       const handleChange = spy();
       const options = ['one', 'two', 'three'];
       const { user } = render(
