@@ -26,11 +26,6 @@ export default withDocsInfra({
       '@mui/material': '../packages/mui-material/src',
       '@mui/material/package.json': '../packages/mui-material/package.json',
       '@mui/internal-core-docs': '../packages-internal/core-docs/src',
-      // Pin bare `@mui/icons-material` to the ESM index.mjs (mirrors the
-      // webpack `@mui/icons-material$` exact-match alias). Turbopack directory
-      // resolution can otherwise land on the CJS `index.js`, which breaks
-      // `import * as mui from '@mui/icons-material'` (namespace members end up
-      // as `{ default: Component }` under CJS-ESM interop).
       '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
       '@mui/lab': '../packages/mui-lab/src',
       '@mui/styled-engine': '../packages/mui-styled-engine/src',
@@ -39,13 +34,10 @@ export default withDocsInfra({
       '@mui/private-theming': '../packages/mui-private-theming/src',
       '@mui/utils': '../packages/mui-utils/src',
       '@mui/material-nextjs': '../packages/mui-material-nextjs/src',
-      // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
       docs: '.',
     },
     resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
     rules: {
-      // Turbopack requires serializable loader options, so `ignoreLanguagePages`
-      // (a function) is omitted. Safe while docs is English-only in SSR.
       '*.md': [
         // `.md?muiMarkdown` → markdown loader (mirrors the webpack `oneOf` first branch).
         {
