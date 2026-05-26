@@ -151,10 +151,9 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
-  // When a chip has DOM focus and the user presses Backspace/Delete, handleKeyDown
-  // performs the deletion (focusedItem is the chip index in that closure) and then
-  // moves DOM focus back to the input. VoiceOver synthesises a spurious Backspace on
-  // the input immediately after — this flag suppresses that one synthetic event.
+  // VoiceOver synthesises a spurious Backspace on the input after a chip
+  // deletion moves DOM focus back to it. This flag suppresses that one event.
+  // It is cleared on the next non-Backspace key or when focus moves to a chip.
   const ignoreNextBackspaceRef = React.useRef(false);
   const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -919,6 +918,12 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
+    // Any key other than Backspace proves the VoiceOver spurious event already
+    // fired (or won't), so the suppression flag can be safely cleared.
+    if (event.key !== 'Backspace') {
+      ignoreNextBackspaceRef.current = false;
+    }
+
     // Wait until IME is settled.
     if (event.which !== 229) {
       switch (event.key) {
@@ -1090,11 +1095,10 @@ function useAutocomplete(props) {
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
-            // focusedItem is read from the current render's closure. When the
-            // deletion was triggered while a chip had DOM focus (focusedItem !== -1),
-            // VoiceOver fires a synthetic Backspace on the input after returning
-            // focus to it. Set the flag so that spurious event is skipped.
             if (focusedItem !== -1) {
+              // Suppress the spurious Backspace VoiceOver synthesises on the
+              // input after focus returns to it. Cleared on the next non-Backspace
+              // key or when focus moves to another chip (see getItemProps.onFocus).
               ignoreNextBackspaceRef.current = true;
             }
           }

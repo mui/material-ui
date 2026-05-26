@@ -1154,6 +1154,36 @@ describe('<Autocomplete />', () => {
 
       await user.keyboard('{Delete}');
       expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('can delete one tag after another', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(textbox).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][1]).to.deep.equal([]);
       expect(textbox).toHaveFocus();
     });
 
