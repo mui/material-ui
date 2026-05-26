@@ -44,10 +44,16 @@ export type SimpleSystemKeys = keyof PropsFor<
 // This is needed as these are used as keys inside AllSystemCSSProperties
 type StandardSystemKeys = Extract<SimpleSystemKeys, keyof AllSystemCSSProperties>;
 
+type CustomSystemKeys = Exclude<keyof CustomSystemProps, StandardSystemKeys>;
+
 export type SystemProps<Theme extends object = {}> = {
   [K in StandardSystemKeys]?:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>);
+} & {
+  [K in CustomSystemKeys]?:
+    | ResponsiveStyleValue<CustomSystemProps[K]>
+    | ((theme: Theme) => ResponsiveStyleValue<CustomSystemProps[K]>);
 };
 
 export interface BoxOwnProps<Theme extends object = SystemTheme> {
