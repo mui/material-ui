@@ -168,7 +168,8 @@ export default function TopLayoutCaseStudy(props) {
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
   const card = `/static/blog/${slug}/card.png`;
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (headers.manualCard === undefined) {
       throw new Error(
         [
