@@ -175,6 +175,15 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
   default export stays `export default function X`. (Plain
   `X.propTypes = {} as any` keeps the guard but adds the expando; `(X as
   any).propTypes = {}` without the comment drops the guard — JS regression.)
+  **The companion dev-only `exactProp` reassignment inside
+  `if (process.env.NODE_ENV !== 'production') { … }` must NOT carry the
+  `/* remove-proptypes */` marker** — the env-guard already dead-code-
+  eliminates it in production builds, so the marker is redundant. Use:
+  `(X as any).propTypes = exactProp((X as any).propTypes);` — the `(X as any)`
+  cast is just to satisfy TS for the read/write; no LHS comment, no expando
+  (no static `.propTypes = {}` assignment on `X`'s declaration). Matches
+  `mui-material`'s convention (e.g. `Portal.tsx`, `FocusTrap.tsx`). Surfaced
+  on `@mui/private-theming` PR #48565 review.
 - **`stripInternal: true` + `/** @internal *​/`** on a declaration removes
   runtime-only exports (e.g. `TEST_INTERNALS_DO_NOT_USE`) from emitted `.d.ts`.
   **An export that exists at runtime but is missing from the hand-written
