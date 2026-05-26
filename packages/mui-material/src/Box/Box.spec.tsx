@@ -29,7 +29,8 @@ const defaultTheme = createTheme({});
 const CustomBox = createBox({ defaultTheme });
 expectType<typeof Box, typeof CustomBox>(CustomBox);
 
-expectType<typeof SystemBox, typeof CustomBox>(CustomBox);
+const CustomSystemBox = createBox();
+expectType<typeof SystemBox, typeof CustomSystemBox>(CustomSystemBox);
 
 function ColorTest() {
   <Box
