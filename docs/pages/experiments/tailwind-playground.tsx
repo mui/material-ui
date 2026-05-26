@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { CssThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { CssThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Slider from '@mui/material/Slider';
@@ -27,7 +27,7 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 // ---------- Page ------------------------------------------------------------
 
 const theme = createTheme({
-  cssVariables: { colorSchemeSelector: 'data' },
+  cssVariables: { colorSchemeSelector: 'data-mui-color-scheme' },
   colorSchemes: { light: true, dark: true },
 });
 
@@ -39,14 +39,23 @@ function useMounted() {
 }
 
 function DarkModeToggle() {
-  const { mode, setMode } = useColorScheme();
+  const [dark, setDark] = React.useState(false);
   const mounted = useMounted();
+
+  const toggle = (checked: boolean) => {
+    setDark(checked);
+    document.documentElement.setAttribute(
+      'data-mui-color-scheme',
+      checked ? 'dark' : 'light',
+    );
+  };
+
   return (
     <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
       <Typography variant="body2">Light</Typography>
       <Switch
-        checked={mounted ? mode === 'dark' : false}
-        onChange={(event) => setMode(event.target.checked ? 'dark' : 'light')}
+        checked={mounted ? dark : false}
+        onChange={(event) => toggle(event.target.checked)}
       />
       <Typography variant="body2">Dark</Typography>
     </Stack>
@@ -199,7 +208,7 @@ export default function TailwindPlayground() {
                 value={pinkSliderValue}
                 onChange={(_, v) => setPinkSliderValue(v as number)}
                 className="
-                  w-full sm:w-80 text-pink-500
+                  w-full sm:w-80 text-pink-500 dark:text-green-500
                   [&_.MuiSlider-thumb:hover]:shadow-[0px_0px_0px_8px_color-mix(in_srgb,_theme(colors.pink.500)_16%,_transparent)]
                   [&_.MuiSlider-thumb.Mui-focusVisible]:shadow-[0px_0px_0px_8px_color-mix(in_srgb,_theme(colors.pink.500)_16%,_transparent)]
                   [&_.MuiSlider-thumb.Mui-active]:shadow-[0px_0px_0px_14px_color-mix(in_srgb,_theme(colors.pink.500)_16%,_transparent)]

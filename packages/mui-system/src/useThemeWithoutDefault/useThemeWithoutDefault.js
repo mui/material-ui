@@ -5,7 +5,6 @@ function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-// ToDo Silviu: Why do I need to import from private? It also breaks ThemeProvider tests.
 function useTheme(defaultTheme = null) {
   // Read from the `@mui/private-theming` context. Both `SystemThemeProvider`
   // (Emotion path) and the lightweight `CssThemeProvider` (CSS-only path)
