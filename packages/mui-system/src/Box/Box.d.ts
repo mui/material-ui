@@ -70,7 +70,7 @@ export interface BoxTypeMap<
   RootComponent extends React.ElementType = 'div',
   Theme extends object = SystemTheme,
 > {
-  props: AdditionalProps & BoxOwnProps<Theme>;
+  props: AdditionalProps & BoxOwnProps<Theme> & SystemProps<Theme>;
   defaultComponent: RootComponent;
 }
 

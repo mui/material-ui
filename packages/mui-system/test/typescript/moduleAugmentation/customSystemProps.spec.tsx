@@ -1,4 +1,4 @@
-import { SystemProps } from '@mui/system/Box';
+import Box, { SystemProps } from '@mui/system/Box';
 
 declare module '@mui/system/Box' {
   interface CustomSystemProps {
@@ -19,3 +19,8 @@ const invalidProps: SystemProps = {
   // @ts-expect-error customProp only accepts numbers.
   customProp: '2',
 };
+
+<Box customProp={2} />;
+
+// @ts-expect-error customProp only accepts numbers.
+const invalidBox = <Box customProp="2" />;
