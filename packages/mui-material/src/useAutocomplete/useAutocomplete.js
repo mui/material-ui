@@ -151,6 +151,11 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  // When a chip has DOM focus and the user presses Backspace/Delete, handleKeyDown
+  // performs the deletion (focusedItem is the chip index in that closure) and then
+  // moves DOM focus back to the input. VoiceOver synthesises a spurious Backspace on
+  // the input immediately after — this flag suppresses that one synthetic event.
+  const ignoreNextBackspaceRef = React.useRef(false);
   const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -1074,6 +1079,10 @@ function useAutocomplete(props) {
           break;
         case 'Backspace':
           // Remove the value on the left of the "cursor"
+          if (ignoreNextBackspaceRef.current) {
+            ignoreNextBackspaceRef.current = false;
+            break;
+          }
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
@@ -1081,6 +1090,13 @@ function useAutocomplete(props) {
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+            // focusedItem is read from the current render's closure. When the
+            // deletion was triggered while a chip had DOM focus (focusedItem !== -1),
+            // VoiceOver fires a synthetic Backspace on the input after returning
+            // focus to it. Set the flag so that spurious event is skipped.
+            if (focusedItem !== -1) {
+              ignoreNextBackspaceRef.current = true;
+            }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
             handleValue(event, null, 'removeOption', { option: value });
@@ -1418,6 +1434,12 @@ function useAutocomplete(props) {
       ...(multiple && { key: index }),
       'data-item-index': index,
       tabIndex: -1,
+      onFocus: () => {
+        // If focus on the item comes not from keyboard events, we update the state via onFocus.
+        if (focusedItem !== index) {
+          setFocusedItem(index);
+        }
+      },
       ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
     getPopupIndicatorProps: () => ({

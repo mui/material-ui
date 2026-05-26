@@ -1095,10 +1095,10 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
 
-    it('navigates between different tags', () => {
+    it.only('navigates between different tags', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1110,22 +1110,22 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
+      await user.keyboard('{Backspace}');
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(textbox).toHaveFocus();
     });
 
-    it('deletes a focused tag when pressing the delete key', () => {
+    it.only('deletes a focused tag when pressing the delete key', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1138,23 +1138,72 @@ describe('<Autocomplete />', () => {
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
       // check that no tags get deleted when the tag is not a focused tag
-      fireEvent.keyDown(textbox, { key: 'Delete' });
+      await user.keyboard('{Delete}');
 
       expect(handleChange.callCount).to.equal(0);
       expect(textbox).toHaveFocus();
 
       // expect on focused tag to delete when pressing delete key
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
+      await user.keyboard('{Delete}');
+      expect(handleChange.callCount).to.equal(1);
+      expect(textbox).toHaveFocus();
+    });
+
+    it.only('should remove only the focused chip when pressing the delete key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Delete}');
 
       expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+      expect(textbox).toHaveFocus();
+    });
+
+    it.only('should remove only the focused chip when pressing the backspace key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
       expect(textbox).toHaveFocus();
     });
 
