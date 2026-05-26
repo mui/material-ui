@@ -21,6 +21,7 @@ const invalidProps: SystemProps = {
 };
 
 <Box customProp={2} />;
+<Box m={4} />;
 
 // @ts-expect-error customProp only accepts numbers.
 const invalidBox = <Box customProp="2" />;
