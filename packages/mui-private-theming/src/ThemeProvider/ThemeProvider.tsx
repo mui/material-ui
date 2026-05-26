@@ -85,9 +85,7 @@ function ThemeProvider<T = DefaultTheme>(
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  (ThemeProvider as any).propTypes /* remove-proptypes */ = exactProp(
-    (ThemeProvider as any).propTypes,
-  );
+  (ThemeProvider as any).propTypes = exactProp((ThemeProvider as any).propTypes);
 }
 
 export default ThemeProvider;
