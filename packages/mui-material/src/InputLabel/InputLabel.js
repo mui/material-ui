@@ -144,7 +144,7 @@ const InputLabelRoot = styled(FormLabel, {
           // see comment above on filled.zIndex
           zIndex: 1,
           pointerEvents: 'none',
-          transform: 'translate(14px, 16px) scale(1)',
+          transform: `translate(14px, calc(${theme.spacing(3.5)} - 12px)) scale(1)`,
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -154,7 +154,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(14px, 9px) scale(1)',
+          transform: `translate(14px, calc(${theme.spacing(2.5)} - 11px)) scale(1)`,
         },
       },
       {
