@@ -3,8 +3,6 @@ import * as path from 'path';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as semver from 'semver';
-// @ts-ignore
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
 import { findPages } from './src/modules/utils/find';
@@ -45,15 +43,6 @@ export default withDocsInfra({
       docs: '.',
     },
     resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
-    // Suppress turbopack's over-strict pages-router global-CSS check. Our
-    // global CSS imports are all in `pages/_app.tsx`, which is the documented
-    // allowed location — turbopack's check misfires here.
-    ignoreIssue: [
-      { path: /_app\.tsx/, title: /Global CSS/ },
-      { path: /_app\.tsx/, description: /Global CSS/ },
-      { path: /global\.css$/ },
-      { path: /components-gallery\/base-theme\.css$/ },
-    ],
     rules: {
       // Turbopack requires serializable loader options, so `ignoreLanguagePages`
       // (a function) is omitted. Safe while docs is English-only in SSR.
@@ -96,167 +85,6 @@ export default withDocsInfra({
         },
       ],
     },
-  },
-  webpack: (
-    config: Parameters<NonNullable<NextConfig['webpack']>>[0],
-    options: Parameters<NonNullable<NextConfig['webpack']>>[1],
-  ) => {
-    const plugins = config.plugins.slice();
-
-    if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
-      plugins.push(
-        // For all options see https://github.com/th0r/webpack-bundle-analyzer#as-plugin
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          generateStatsFile: true,
-          analyzerPort: options.isServer ? 8888 : 8889,
-          reportTitle: `${options.isServer ? 'server' : 'client'} docs bundle`,
-          // Will be available at `.next/${statsFilename}`
-          statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
-        }),
-      );
-    }
-
-    // If a module is an webpack "external" the webpack aliases configured are not used.
-    // Next.js includes node_modules in webpack externals, some of those have dependencies
-    // on the aliases we defined above.
-    // So we need tell webpack to not consider those packages as externals.
-    if (
-      options.isServer &&
-      // Next.js executes this twice on the server with React 18 (once per runtime).
-      // We only care about Node runtime at this point.
-      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
-    ) {
-      const externals = config.externals.slice(0, -1);
-      const nextExternals = config.externals.at(-1);
-
-      config.externals = [
-        // @ts-ignore
-        (ctx, callback) => {
-          const { request } = ctx;
-          const hasDependencyOnRepoPackages = [
-            'material-ui-popup-state',
-            // Assume any X dependencies depend on a package defined in this repository.
-            '@mui/x-',
-            '@toolpad/core',
-          ].some((dep) => request.startsWith(dep));
-
-          if (hasDependencyOnRepoPackages) {
-            return callback(null);
-          }
-          return nextExternals(ctx, callback);
-        },
-        ...externals,
-      ];
-    }
-
-    // @ts-ignore
-    config.module.rules.forEach((rule) => {
-      rule.resourceQuery = { not: [/raw/] };
-    });
-
-    return {
-      ...config,
-      plugins,
-      resolve: {
-        ...config.resolve,
-        // resolve .tsx first
-        alias: {
-          ...config.resolve.alias,
-
-          // for 3rd party packages with dependencies in this repository
-          '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
-          '@mui/material/package.json': path.resolve(
-            workspaceRoot,
-            'packages/mui-material/package.json',
-          ),
-          '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
-
-          '@mui/internal-core-docs': path.resolve(workspaceRoot, 'packages-internal/core-docs/src'),
-          '@mui/icons-material$': path.resolve(
-            workspaceRoot,
-            'packages/mui-icons-material/lib/index.mjs',
-          ),
-          '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
-          '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
-          '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
-          '@mui/system/package.json': path.resolve(
-            workspaceRoot,
-            'packages/mui-system/package.json',
-          ),
-          '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
-          '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
-          '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
-          '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-        },
-        extensions: [
-          '.mjs',
-          '.tsx',
-          // @ts-ignore
-          ...config.resolve.extensions.filter(
-            (extension: string) => extension !== '.tsx' && extension !== '.mjs',
-          ),
-        ],
-      },
-      module: {
-        ...config.module,
-        rules: config.module.rules.concat([
-          {
-            test: /\.md$/,
-            oneOf: [
-              {
-                resourceQuery: /muiMarkdown/,
-                use: [
-                  options.defaultLoaders.babel,
-                  {
-                    loader: require.resolve('@mui/internal-markdown/loader'),
-                    options: {
-                      workspaceRoot,
-                      ignoreLanguagePages: () => false,
-                      languagesInProgress: [],
-                      packages: [
-                        {
-                          productId: 'material-ui',
-                          paths: [
-                            path.join(workspaceRoot, 'packages/mui-lab/src'),
-                            path.join(workspaceRoot, 'packages/mui-material/src'),
-                          ],
-                        },
-                      ],
-                      env: {
-                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
-                        LIB_VERSION: options.config.env.LIB_VERSION,
-                      },
-                    },
-                  },
-                ],
-              },
-              {
-                // used in some /getting-started/templates
-                type: 'asset/source',
-              },
-            ],
-          },
-          // required to transpile ../packages/
-          {
-            test: /\.(js|mjs|tsx|ts)$/,
-            resourceQuery: { not: [/raw/] },
-            // Narrow the scope to fixed directories
-            include: [
-              path.join(workspaceRoot, 'docs'),
-              path.join(workspaceRoot, 'packages'),
-              path.join(workspaceRoot, 'packages-internal'),
-            ],
-            exclude: /(node_modules|mui-icons-material)/,
-            use: options.defaultLoaders.babel,
-          },
-          {
-            resourceQuery: /raw/,
-            type: 'asset/source',
-          },
-        ]),
-      },
-    };
   },
   env: {
     // docs-infra

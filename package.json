@@ -25,7 +25,7 @@
     "docs:deploy": "pnpm --filter docs run deploy",
     "docs:dev": "pnpm --filter docs dev",
     "docs:icons": "pnpm --filter docs icons",
-    "docs:size-why": "cross-env DOCS_STATS_ENABLED=true pnpm docs:build",
+    "docs:size-why": "cross-env DOCS_STATS_ENABLED=true pnpm -F docs exec next experimental-analyze",
     "docs:start": "pnpm --filter docs start",
     "docs:create-playground": "pnpm --filter docs create-playground",
     "docs:link-check": "pnpm --filter docs link-check",

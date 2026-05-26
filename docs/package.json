@@ -95,8 +95,7 @@
     "semver": "^7.7.4",
     "styled-components": "^6.4.1",
     "stylis": "catalog:docs",
-    "use-count-up": "^3.0.1",
-    "webpack-bundle-analyzer": "^5.3.0"
+    "use-count-up": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "7.27.1",
