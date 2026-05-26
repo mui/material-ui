@@ -153,7 +153,6 @@ function useAutocomplete(props) {
   const listboxRef = React.useRef(null);
   // VoiceOver synthesises a spurious Backspace on the input after a chip
   // deletion moves DOM focus back to it. This flag suppresses that one event.
-  // It is cleared on the next non-Backspace key or when focus moves to a chip.
   const ignoreNextBackspaceRef = React.useRef(false);
   const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -918,12 +917,6 @@ function useAutocomplete(props) {
       focusItem(-1);
     }
 
-    // Any key other than Backspace proves the VoiceOver spurious event already
-    // fired (or won't), so the suppression flag can be safely cleared.
-    if (event.key !== 'Backspace') {
-      ignoreNextBackspaceRef.current = false;
-    }
-
     // Wait until IME is settled.
     if (event.which !== 229) {
       switch (event.key) {
@@ -1097,9 +1090,15 @@ function useAutocomplete(props) {
             });
             if (focusedItem !== -1) {
               // Suppress the spurious Backspace VoiceOver synthesises on the
-              // input after focus returns to it. Cleared on the next non-Backspace
-              // key or when focus moves to another chip (see getItemProps.onFocus).
+              // input after focus returns to it. Clear it on shortly after
+              // deletion so a later real Backspace is not ignored if the
+              // synthetic follow-up event never arrives.
               ignoreNextBackspaceRef.current = true;
+              setTimeout(() => {
+                if (ignoreNextBackspaceRef.current) {
+                  ignoreNextBackspaceRef.current = false;
+                }
+              }, 0);
             }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
@@ -1439,7 +1438,7 @@ function useAutocomplete(props) {
       'data-item-index': index,
       tabIndex: -1,
       onFocus: () => {
-        // If focus on the item comes not from keyboard events, we update the state via onFocus.
+        // If focus on the item doesn't come from keyboard events, we update the state via onFocus.
         if (focusedItem !== index) {
           setFocusedItem(index);
         }

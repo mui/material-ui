@@ -1237,6 +1237,39 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
+    it('should suppress a spurious Backspace on the input immediately after removing a focused chip', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      await user.keyboard('{ArrowLeft}{ArrowLeft}{ArrowLeft}');
+
+      // Removing the focused chip sets the suppression flag.
+      // Use fireEvent (not user.keyboard) so the setTimeout(0) auto-clear
+      // is not flushed before the next keydown.
+      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(textbox).toHaveFocus();
+
+      // Simulate the spurious Backspace VoiceOver synthesises on the input
+      // right after focus returns to it — should be suppressed.
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+    });
+
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
       const handleClose = spy();
       const options = ['one', 'two', 'three'];
