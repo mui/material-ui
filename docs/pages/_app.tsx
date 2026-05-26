@@ -7,7 +7,7 @@ import {
   DocsApp,
   createGetInitialProps,
   printConsoleBanner,
-  reportWebVitals,
+  reportWebVitals as _reportWebVitals,
 } from '@mui/internal-core-docs/DocsApp';
 import {
   DEFAULT_DOCS_CONFIG,
@@ -36,11 +36,17 @@ import {
   muiSvgWordmarkString,
 } from '@mui/internal-core-docs/svgIcons';
 
+import { fontClasses as _fontClasses } from '@mui/internal-core-docs/nextFonts';
 import versionsJson from '../versions.json';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
-export { fontClasses } from '@mui/internal-core-docs/nextFonts';
+// Workaround: turbopack's pages-router Custom App detection misfires when
+// `_app.tsx` contains a re-export of an imported binding (either
+// `export ... from`, or `import { x } from ...; export { x }`), causing
+// the global CSS imports above to be rejected. Re-export as a fresh local
+// binding to keep the file recognized as the Custom App.
+export const fontClasses = _fontClasses;
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
@@ -318,4 +324,6 @@ MyApp.getInitialProps = createGetInitialProps({
   versions: versionsJson.versions,
 });
 
-export { reportWebVitals };
+// See note above about turbopack re-export detection — wrap rather than
+// `export { reportWebVitals }` so _app.tsx stays the Custom App.
+export const reportWebVitals: typeof _reportWebVitals = (...args) => _reportWebVitals(...args);
