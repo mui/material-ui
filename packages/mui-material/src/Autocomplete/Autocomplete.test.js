@@ -1095,7 +1095,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
 
-    it.only('navigates between different tags', async () => {
+    it('navigates between different tags', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       const { user } = render(
@@ -1122,7 +1122,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it.only('deletes a focused tag when pressing the delete key', async () => {
+    it('deletes a focused tag when pressing the delete key', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       const { user } = render(
