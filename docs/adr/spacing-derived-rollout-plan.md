@@ -109,9 +109,9 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 ### Lists & menus
 
-- [ ] List / ListSubheader
-- [ ] ListItem / ListItemButton / ListItemAvatar / ListItemIcon / ListItemText
-- [ ] MenuItem
+- [x] ~~List / ListSubheader~~ ✅ Done — List `paddingTop/Bottom 8` → `spacing(1)` (static styled → `memoTheme`). ListSubheader **skip**: only inline `16/72` (horizontal coupled).
+- [x] ~~ListItem / ListItemButton / ListItemAvatar / ListItemIcon / ListItemText~~ ✅ Done — **vertical only** (the list family's inline `16` ↔ icon width `56/36` ↔ inset `72/56` is an anchored horizontal system, kept literal). Block paddings `8` → `spacing(1)`, dense `4` → `spacing(1)−4px`; ListItemText margins `4/6` → `spacing(1)−4px`/`−2px`; Avatar/Icon flex-start `marginTop 8` → `spacing(1)`. ListItemAvatar/ListItemText were static → `memoTheme`.
+- [x] ~~MenuItem~~ ✅ Done — block `paddingTop/Bottom 6` → `spacing(1)−2px`, dense `4` → `spacing(1)−4px`. Inline `16/36/52` + minHeight stay literal (horizontal/geometry); divider margins were already `spacing(1)`.
 - [ ] Autocomplete
 
 ### Surfaces & containers

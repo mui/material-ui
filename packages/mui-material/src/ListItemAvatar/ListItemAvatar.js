@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
@@ -26,20 +27,22 @@ const ListItemAvatarRoot = styled('div', {
 
     return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})({
-  minWidth: 56,
-  flexShrink: 0,
-  variants: [
-    {
-      props: {
-        alignItems: 'flex-start',
+})(
+  memoTheme(({ theme }) => ({
+    minWidth: 56,
+    flexShrink: 0,
+    variants: [
+      {
+        props: {
+          alignItems: 'flex-start',
+        },
+        style: {
+          marginTop: theme.spacing(1),
+        },
       },
-      style: {
-        marginTop: 8,
-      },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 /**
  * A simple wrapper to apply `List` styles to an `Avatar`.

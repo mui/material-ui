@@ -15,6 +15,16 @@ import Tab from '@mui/material/Tab';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Pagination from '@mui/material/Pagination';
+import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -63,6 +73,38 @@ const demos: Record<string, React.ReactNode> = {
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
+  ),
+  ListFamily: (
+    <List sx={{ width: 320, border: '1px dashed #bbb' }}>
+      <ListSubheader>Subheader</ListSubheader>
+      <ListItem>
+        <ListItemIcon>
+          <Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />
+        </ListItemIcon>
+        <ListItemText primary="Single line item" />
+      </ListItem>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar>A</Avatar>
+        </ListItemAvatar>
+        <ListItemText primary="Two line item" secondary="Secondary text here" />
+      </ListItem>
+      <ListItemButton>
+        <ListItemText primary="Button item" />
+      </ListItemButton>
+      <ListItemButton dense>
+        <ListItemText primary="Dense button item" />
+      </ListItemButton>
+      <ListItemText inset primary="Inset text" />
+    </List>
+  ),
+  MenuItem: (
+    <MenuList sx={{ width: 240, border: '1px dashed #bbb' }}>
+      <MenuItem>Regular item</MenuItem>
+      <MenuItem>Another item</MenuItem>
+      <MenuItem dense>Dense item</MenuItem>
+      <MenuItem dense>Dense item two</MenuItem>
+    </MenuList>
   ),
   BottomNavigationAction: (
     <BottomNavigation showLabels value={0} sx={{ width: 360, border: '1px dashed #bbb' }}>

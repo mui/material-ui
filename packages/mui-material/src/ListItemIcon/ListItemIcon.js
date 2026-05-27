@@ -39,7 +39,7 @@ const ListItemIconRoot = styled('div', {
           alignItems: 'flex-start',
         },
         style: {
-          marginTop: 8,
+          marginTop: theme.spacing(1),
         },
       },
     ],
