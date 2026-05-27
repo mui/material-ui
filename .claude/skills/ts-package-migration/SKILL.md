@@ -166,24 +166,64 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
 - **propTypes on a component creates a tsc expando** → emits
   `declare namespace X { var propTypes: any }` and splits
   `export default function X` into `declare function X; export default X;`.
-  Suppress it **and** keep the Babel production guard with:
-  `(X as any).propTypes /* remove-proptypes */ = { ... };`
-  The `/* remove-proptypes */` trailing comment on the assignment LHS triggers
+  Two patterns exist; pick based on whether the file is processed by the
+  repo's `pnpm proptypes` (`typescript-to-proptypes`) generator — which is
+  **everything in `@mui/system`, `@mui/material`, `@mui/lab`, `@mui/joy` with
+  a React component**.
+
+  **Pattern A — `mui-material` convention** (used by `Portal.tsx`,
+  `FocusTrap.tsx`; mandatory for any file in `typescript-to-proptypes`'s
+  input list, since the script asserts the propTypes-assignment LHS object
+  is an `Identifier` and rejects `TSAsExpression`):
+  ```ts
+  X.propTypes /* remove-proptypes */ = {
+    /* ... */
+  } as any;
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line
+    (X as any)['propTypes' + ''] = exactProp((X as any).propTypes);
+  }
+  ```
+  The `/* remove-proptypes */` trailing comment on the static LHS triggers
   `babel-plugin-transform-react-remove-prop-types` `forceRemoval` (keeps the
-  `process.env.NODE_ENV !== "production" ? … : void 0` wrap), while the
-  `(X as any)` LHS stops `tsc` from creating the expando — so the `.d.ts`
-  default export stays `export default function X`. (Plain
-  `X.propTypes = {} as any` keeps the guard but adds the expando; `(X as
-  any).propTypes = {}` without the comment drops the guard — JS regression.)
-  **The companion dev-only `exactProp` reassignment inside
-  `if (process.env.NODE_ENV !== 'production') { … }` must NOT carry the
-  `/* remove-proptypes */` marker** — the env-guard already dead-code-
-  eliminates it in production builds, so the marker is redundant. Use:
-  `(X as any).propTypes = exactProp((X as any).propTypes);` — the `(X as any)`
-  cast is just to satisfy TS for the read/write; no LHS comment, no expando
-  (no static `.propTypes = {}` assignment on `X`'s declaration). Matches
-  `mui-material`'s convention (e.g. `Portal.tsx`, `FocusTrap.tsx`). Surfaced
-  on `@mui/private-theming` PR #48565 review.
+  `process.env.NODE_ENV !== "production" ? … : void 0` wrap). The `as any`
+  on the RHS satisfies tsc — at the cost of allowing the expando
+  `declare namespace X { var propTypes: any }` in the emitted `.d.ts`, which
+  is benign and matches what `mui-material` ships. The dev-only `exactProp`
+  reassignment uses a computed-key `['propTypes' + '']` LHS so
+  `typescript-to-proptypes` doesn't try to inject into it; the marker
+  comment is omitted because the `NODE_ENV` env-guard already dead-code-
+  eliminates it in production.
+
+  **Pattern B — `styled-engine` convention** (no expando in the emitted
+  `.d.ts`, but **breaks `typescript-to-proptypes`** with `Expected type
+  "Identifier", got "TSAsExpression"`):
+  `(X as any).propTypes /* remove-proptypes */ = { ... };` with
+  `(X as any).propTypes = exactProp((X as any).propTypes);` for the dev
+  reassignment. Use **only** when the file is not in `pnpm proptypes`'s
+  input list — e.g. a styling-only package with no React-component
+  propTypes (where Pattern A would emit a needless expando but the script
+  never runs anyway). The original skill commit (and `@mui/private-theming`
+  PR #48565 review) recommended Pattern B globally; that bricked
+  `test_static` (Generate PropTypes) on `@mui/system` PR #48578 for
+  `Box.tsx` and `ThemeProvider.tsx`. Default to Pattern A.
+
+  (Plain `X.propTypes = {}` without `as any` — no cast at all — keeps the
+  guard but emits a propTypes type-mismatch error at the tsc step. `(X as
+  any).propTypes = {}` without the `/* remove-proptypes */` comment drops
+  the Babel guard — JS regression.)
+- **Wildcard `package.json` `exports` resolve only the wildcard's literal
+  extension.** A catch-all like `"./*": "./src/*/index.ts"` only resolves
+  directories whose `index` file is `.ts`. If the conversion leaves any
+  directory on `index.js` — e.g. a partial conversion or a revert of one
+  dir mid-PR, as with `RtlProvider/` on `@mui/system` PR #48578 — that dir
+  needs an explicit entry:
+  `"./RtlProvider": "./src/RtlProvider/index.js"`. Otherwise rolldown (and
+  any strict ESM resolver) fails at bundle time with
+  `"./X" is not exported under the conditions [...]`. The package's own
+  build won't catch this — only downstream bundling does (CI surfaces it
+  as `test_bundle_size_monitor` failure). The set of explicit entries to
+  keep around therefore mirrors the set of dirs still on `.js`.
 - **`stripInternal: true` + `/** @internal *​/`** on a declaration removes
   runtime-only exports (e.g. `TEST_INTERNALS_DO_NOT_USE`) from emitted `.d.ts`.
   **An export that exists at runtime but is missing from the hand-written
