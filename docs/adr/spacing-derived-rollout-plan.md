@@ -7,7 +7,8 @@ component (or tight family) per PR, until every spacing dimension rides
 - **Decision / why:** [0001-spacing-derived-component-dimensions.md](./0001-spacing-derived-component-dimensions.md)
 - **How (the rule + worked examples):** [spacing-derived-dimensions-spec.md](./spacing-derived-dimensions-spec.md)
 
-Done: **Button**, **OutlinedInput**, **InputLabel (outlined)**.
+Done: **Button**, **OutlinedInput**, **InputLabel (outlined)**, **FilledInput +
+InputLabel (filled)**, **InputBase (standard `Input`)**.
 
 ## Requirement (per component)
 
@@ -80,8 +81,8 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 
 ### Next set — input / form family (completes TextField)
 
-- [ ] FilledInput (input md/sm incl. `25/8` label-space, adornments, multiline)
-- [ ] InputBase (standard `Input`: `4px 0 5px`, small, multiline)
+- [x] ~~FilledInput (input md/sm incl. `25/8` label-space, adornments, multiline)~~ ✅ Done
+- [x] ~~InputBase (standard `Input`: `4px 0 5px`, small, multiline)~~ ✅ Done — block only (`spacing(1)−4px` / `−3px`), 1px small nudge stays literal; inline already `0`. Standard label tracking ⇒ InputLabel item.
 - [ ] Input
 - [ ] NativeSelect / Select (`paddingRight 24/32`)
 - [ ] InputAdornment

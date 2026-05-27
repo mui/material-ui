@@ -52,6 +52,25 @@ const demos: Record<string, React.ReactNode> = {
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
   ),
+  StandardInput: (
+    <Stack spacing={2} useFlexGap sx={{ maxWidth: 280 }}>
+      <TextField label="standard medium" variant="standard" />
+      <TextField label="standard small" variant="standard" size="small" />
+      <TextField label="standard value" variant="standard" defaultValue="Value" />
+      <TextField label="standard value sm" variant="standard" size="small" defaultValue="Value" />
+      <TextField
+        label="standard adornments"
+        variant="standard"
+        slotProps={{
+          input: {
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            endAdornment: <InputAdornment position="end">kg</InputAdornment>,
+          },
+        }}
+      />
+      <TextField label="standard multiline" variant="standard" multiline rows={2} />
+    </Stack>
+  ),
   TextField: (
     <Stack spacing={2} useFlexGap sx={{ maxWidth: 280 }}>
       {(['medium', 'small'] as const).map((size) =>

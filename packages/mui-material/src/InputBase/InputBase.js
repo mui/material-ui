@@ -112,7 +112,7 @@ export const InputBaseRoot = styled('div', {
       {
         props: ({ ownerState }) => ownerState.multiline,
         style: {
-          padding: '4px 0 5px',
+          padding: `calc(${theme.spacing(1)} - 4px) 0 calc(${theme.spacing(1)} - 3px)`,
         },
       },
       {
@@ -166,7 +166,7 @@ export const InputBaseInput = styled('input', {
       font: 'inherit',
       letterSpacing: 'inherit',
       color: 'currentColor',
-      padding: '4px 0 5px',
+      padding: `calc(${theme.spacing(1)} - 4px) 0 calc(${theme.spacing(1)} - 3px)`,
       border: 0,
       boxSizing: 'content-box',
       background: 'none',

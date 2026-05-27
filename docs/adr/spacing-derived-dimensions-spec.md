@@ -91,6 +91,21 @@ Filled label `transformY` (x stays `12px`):
 | shrunk, md  | `spacing(1) − 1px` (7) — floats _into_ padding, so it tracks |
 | shrunk, sm  | `spacing(1) − 4px` (4)                                       |
 
+### InputBase (standard `Input`) — block only, inline already `0`
+
+Root-multiline + input share `4px 0 5px`. No inline padding ⇒ nothing anchored,
+but the variant has no notch either — still derive **block only** (the `0`
+inline is already density-free):
+
+| target                    | value                            |
+| :------------------------ | :------------------------------- |
+| block top                 | `spacing(1) − 4px` (4)           |
+| block bottom              | `spacing(1) − 3px` (5)           |
+| small `paddingTop`        | `1px` — literal (sub-unit nudge) |
+| multiline input `padding` | `0` — unchanged                  |
+
+The standard `InputLabel` transforms track this in their own rollout item.
+
 ## Verification
 
 Use the local harness (`scripts/spacing-screenshots/`) — see the rollout plan's
