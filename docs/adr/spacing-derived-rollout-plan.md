@@ -161,3 +161,71 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 - [x] ~~Divider~~ ✅ Audited — already uses `theme.spacing` for its margins/padding; inset `marginLeft: 72` is icon-anchored (list inset) → literal. Nothing to change.
 - [x] ~~Typography (margin resets — confirm)~~ ✅ Audited, skip — `margin: 0` reset + `gutterBottom 0.35em` (em, typographic).
 - [x] ~~CssBaseline / internal~~ ✅ Audited, skip — global resets, no component spacing.
+
+## Iteration 2 — deferred & skipped backlog
+
+Iteration 1 derived the **block / unanchored** spacing of every component. What
+remains below was deliberately left literal, grouped by **why** (which decides how
+to revisit it). "Partial" = the component was otherwise derived; only the listed
+values are still literal.
+
+### A. Anchored horizontal systems (need a _coordinated_ horizontal pass)
+
+The inline axis is coupled across components — deriving one value alone breaks the
+alignment with its anchor. A future pass must derive the whole chain together (or
+introduce a dedicated horizontal-density var) so the anchor stays aligned at every
+`--mui-spacing`.
+
+- [ ] **OutlinedInput** (partial) — inline padding `14` + adornment `14` literal (notch `<legend>` left inset).
+- [ ] **FilledInput** (partial) — inline padding `12` + adornments literal.
+- [ ] **InputLabel** (partial) — `transformX` literal all variants (outlined `14px`, filled `12px`, standard `0`); outlined shrunk `translateY(-9px)` literal (floats onto the border).
+- [ ] **InputAdornment** (partial) — `marginRight/Left 8` (horizontal, part of input inline layout).
+- [ ] **Select / NativeSelect** (full skip) — `paddingRight 24/32` + icon `right 0/7` reserve space for the fixed 24px arrow.
+- [ ] **List / ListSubheader / ListItem / ListItemButton / ListItemText** (partial) — edge padding `16`, inset `56/72`, subheader `16/72`; `ListItemIcon/Avatar` icon width `36/56`.
+- [ ] **MenuItem** (partial) — inline `16` gutters / inset `36` / `marginLeft 52`.
+- [ ] **Autocomplete** (partial) — icon reservation `paddingRight 26+4+9` / `52+4+9`, `endAdornment right: 9`, indicator paddings `4/2`.
+- [ ] **TableCell** (partial) — checkbox-column paddings `0 12px 0 16px` / `0 0 0 4px` (fixed-width `24/48` column; deriving overflows).
+- [ ] **TablePagination** (partial) — select `paddingRight 24` (arrow reservation).
+- [ ] **FormHelperText** (full skip) — contained `marginLeft/Right 14` (aligns to input inline). (Also see C.)
+
+### B. Geometry → spacing (need to extend the rule to `width/height/translate`)
+
+Sized by fixed dimensions or icon offsets, not padding. Iteration 1's rule targets
+padding/margin/gap only. Revisiting needs a decision: should fixed geometry ride
+`--mui-spacing` (or a separate size scale)?
+
+- [ ] **Chip** (full skip) — `height 32/24`; inline padding `12/8` coupled to avatar/icon/delete offsets.
+- [ ] **Switch** (full skip) — `padding 12/7/4` coupled to the literal thumb-travel `translateX`; track/thumb sizes; edge `-8`.
+- [ ] **Slider** (full skip) — `padding 13px 0` / `20px 0` rail touch-area; rail/thumb/mark geometry.
+- [ ] **Fab** (partial) — circular `width/height 56/40/48`, `minWidth`, `minHeight 36`.
+- [ ] **PaginationItem** (partial) — `height/minWidth 32/26/40`; page-icon `margin 0 -8px`.
+- [ ] **Badge** (partial) — `height/minWidth` (RADIUS\*2); `--Badge-translate` (`%`).
+- [ ] **IconButton** (partial) — edge `marginLeft/Right -12/-3` (icon-anchored), `fontSize`.
+- [ ] **ButtonGroup** (full skip) — `marginLeft/Top -1` border-overlap, `minWidth 40`.
+- [ ] **StepConnector** (full skip) + **StepContent** (partial) — half-icon `12`, `calc(±50% + 20px)`.
+- [ ] **Button** (partial) — `minWidth 64`.
+- [ ] **Tab / MenuItem / BottomNavigationAction** (partial) — `minWidth/maxWidth/minHeight`.
+- [ ] **Tooltip** (partial) — arrow placement margins `-0.71em` + `14/24px`.
+- [ ] **MobileStepper** (partial) — dot `width/height 8`.
+
+### C. Sub-unit nudges (`< 4px`) left literal
+
+Tiny tuning values; deriving them is low-value and can invert size relationships.
+Revisit only if exact-px fidelity at high density matters.
+
+- [ ] InputBase small `paddingTop 1`; FormHelperText `marginTop 3/4`; AlertTitle `marginTop -2`; CardHeader action `marginTop/Bottom -4`; Tooltip `margin 2`; MobileStepper dot `margin 0 2px`; PaginationItem inter-item `margin 3/1`; Autocomplete small/standard inner blocks (`2 / 2.5 / 3px`) + `paddingBottom 1`; TablePagination toolbar `paddingRight 2`.
+
+### D. Coupled to static media-query breakpoints
+
+- [ ] **Dialog** (full skip) — paper `margin 32` + `maxHeight/maxWidth/width calc(100% - 64px)` + breakpoint thresholds `+ 32*2`. The CSS could derive, but the JS breakpoint values can't use CSS vars → margin would desync from the threshold. Needs a different approach (e.g. accept the threshold staying fixed, or a container query).
+
+### E. Public-prop / CSS-var driven spacing
+
+User-controlled; revisiting means making the _default_ spacing-aware, not the value.
+
+- [ ] **ImageList / ImageListItem** (full skip) — `gap` is a public px prop (inline style) + masonry `marginBottom = gap`.
+- [ ] **AvatarGroup** (full skip) — overlap `--AvatarGroup-spacing` from the `spacing` prop (`SPACINGS` `-16/-8`).
+
+### F. em/rem & resets — likely permanent skip (listed for completeness)
+
+- [ ] Typography `gutterBottom 0.35em`; Slider valueLabel `rem` padding; LinearProgress / Skeleton / CssBaseline resets; Link (no spacing). Divider needs nothing (already `theme.spacing`).
