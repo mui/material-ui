@@ -1,6 +1,17 @@
-import * as React from 'react';
-import * as CSS from 'csstype';
-import * as hoistNonReactStatics from 'hoist-non-react-statics';
+/* eslint-disable @typescript-eslint/naming-convention */
+import { styled as scStyled } from 'styled-components';
+import type * as React from 'react';
+import type * as CSS from 'csstype';
+import type * as hoistNonReactStatics from 'hoist-non-react-statics';
+
+// Re-export the full `styled-components` surface, matching the hand-written
+// `.d.ts` that this conversion replaces. Locally declared types below
+// intentionally shadow the corresponding `styled-components` names
+// (`Keyframes`, `Interpolation`, `StyledComponent`, `CSSObject`, …) — TS
+// resolves the local declaration for those names.
+// Note: this is broader than the previous runtime JS, which only re-exported
+// `ThemeContext`, `keyframes`, `css` — see the PR description.
+export * from 'styled-components';
 
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
@@ -64,33 +75,77 @@ export interface Keyframes {
   getName(): string;
 }
 
-export * from 'styled-components';
-export { default } from 'styled-components';
+function styled(tag: any, options?: any): any {
+  let stylesFactory: any;
 
-export { default as StyledEngineProvider } from './StyledEngineProvider';
+  if (options) {
+    stylesFactory = scStyled(tag).withConfig({
+      displayName: options.label,
+      shouldForwardProp: options.shouldForwardProp,
+    });
+  } else {
+    stylesFactory = scStyled(tag);
+  }
 
-export { default as GlobalStyles } from './GlobalStyles';
-export * from './GlobalStyles';
+  if (process.env.NODE_ENV !== 'production') {
+    const fn = (...styles: any[]) => {
+      const component = typeof tag === 'string' ? `"${tag}"` : 'component';
+      if (styles.length === 0) {
+        console.error(
+          [
+            `MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+            'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
+          ].join('\n'),
+        );
+      } else if (styles.some((style) => style === undefined)) {
+        console.error(
+          `MUI: the styled(${component})(...args) API requires all its args to be defined.`,
+        );
+      }
+      return stylesFactory(...styles);
+    };
+    fn.withConfig = stylesFactory.withConfig;
+    return fn;
+  }
+
+  return stylesFactory;
+}
+
+export default styled as unknown as typeof scStyled;
 
 /**
  * For internal usage in `@mui/system` package
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
-): void;
+): void {
+  // Styled-components attaches an instance to `componentStyle`.
+  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
+  //
+  // The instance contains `rules` (the styles)
+  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/ComponentStyle.ts#L23
+  if ((tag as any).componentStyle) {
+    (tag as any).componentStyle.rules = processor((tag as any).componentStyle.rules);
+  }
+}
 
 // Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
 // TODO: Remove it in v7
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function internal_processStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
-): void;
+): void {
+  return internal_mutateStyles(tag, processor);
+}
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object {
+  return styles as object;
+}
+
+export { default as StyledEngineProvider } from './StyledEngineProvider';
+export { default as GlobalStyles } from './GlobalStyles';
+export type { GlobalStylesProps } from './GlobalStyles';
 
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:

@@ -36,7 +36,7 @@ describe('GlobalStyles', () => {
   it.skipIf(isJsdom())('should add global styles using function', function test() {
     const { container } = render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
-        <GlobalStyles styles={(theme) => ({ span: { color: theme.color } })} />
+        <GlobalStyles styles={(theme: any) => ({ span: { color: theme.color } })} />
         <span>Blue text</span>
       </ThemeProvider>,
     );
@@ -51,7 +51,7 @@ describe('GlobalStyles', () => {
       render(
         <GlobalStyles
           defaultTheme={{ color: 'rgb(0, 0, 255)' }}
-          styles={(theme) => ({ span: { color: theme.color } })}
+          styles={(theme: any) => ({ span: { color: theme.color } })}
         />,
       ),
     ).not.to.throw();
