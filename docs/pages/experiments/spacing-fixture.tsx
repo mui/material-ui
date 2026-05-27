@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
+import Fab from '@mui/material/Fab';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -54,6 +55,17 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  Fab: (
+    <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+      <Fab variant="extended" size="small">
+        Small
+      </Fab>
+      <Fab variant="extended" size="medium">
+        Medium
+      </Fab>
+      <Fab variant="extended">Large</Fab>
     </Stack>
   ),
   IconButton: (

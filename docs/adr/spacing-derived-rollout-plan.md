@@ -98,9 +98,9 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 - [x] ~~IconButton~~ ✅ Done — padding `8/5/12` → `spacing(1)` / `spacing(1)−3px` / `spacing(2)−4px`. `fontSize` (icon size) + edge `−12/−3` margins (alignment compensation anchored to padding/icon) stay literal.
 - [x] ~~ButtonBase~~ ✅ Done — **skip**: only `padding: 0` / `margin: 0` resets.
-- [ ] ButtonGroup
-- [ ] Fab
-- [ ] Chip
+- [x] ~~ButtonGroup~~ ✅ Done — **skip**: `marginLeft/Top: -1` are border-overlap geometry, `minWidth: 40` is sizing; no padding/gap.
+- [x] ~~Fab~~ ✅ Done — extended inline padding `0 16px`/`0 8px` → `0 spacing(2)` / `0 spacing(1)`. Circular FAB + all width/height/minWidth/borderRadius are geometry (literal).
+- [x] ~~Chip~~ ✅ Done — **skip**: height `32/24` is geometry-fixed, block padding `0`; inline padding `12/8` is an anchored coupled system (avatar/icon/delete offsets reference it). Density on Chip needs a geometry→spacing pass (height), out of this rule's scope.
 - [ ] ToggleButton / ToggleButtonGroup
 - [ ] Tab
 - [ ] BottomNavigationAction
