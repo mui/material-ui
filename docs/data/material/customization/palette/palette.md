@@ -313,6 +313,35 @@ The `contrastThreshold` parameter can produce counterproductive results.\
 Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
 :::
 
+### Windows High Contrast mode
+
+To improve component visibility in Windows High Contrast mode (also known as [Forced Colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)), use the `enhanceHighContrast` theme enhancer.
+It follows the same pattern as `responsiveFontSizes`: it accepts a fully-created theme and returns an enhanced version of it with `@media (forced-colors: active)` overrides applied to the affected components.
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+const theme = enhanceHighContrast(createTheme());
+```
+
+By default, it uses the [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) (`Highlight`, `HighlightText`, `ButtonBorder`, etc.).
+You can override individual tokens with other [system colors](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/system-color) to match your brand or design requirements.
+When overriding paired tokens, choose values that the browser guarantees to contrast with each other — for example `SelectedItem` is always paired with `SelectedItemText`, and `Highlight` with `HighlightText`:
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+const theme = enhanceHighContrast(createTheme(), {
+  // Use the system's selection colors for active or toggled controls.
+  activeBackground: 'SelectedItem',
+  activeText: 'SelectedItemText',
+});
+```
+
+The following tokens are available, showing how your browser resolves each system color keyword in the current environment:
+
+{{"demo": "HighContrastTokens.js", "bg": "inline", "hideToolbar": true}}
+
 ## Picking colors
 
 Need inspiration? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.

@@ -1,21 +1,48 @@
-import * as CSS from 'csstype';
-import { StyledComponent, StyledOptions } from '@emotion/styled';
-import { PropsOf } from '@emotion/react';
+'use client';
+/* eslint-disable no-underscore-dangle */
+import emStyled, {
+  type CreateStyled,
+  type StyledComponent,
+  type StyledOptions,
+} from '@emotion/styled';
+import { serializeStyles as emSerializeStyles } from '@emotion/serialize';
+import type * as CSS from 'csstype';
+import { type PropsOf } from '@emotion/react';
 
-export * from '@emotion/styled';
-export { default } from '@emotion/styled';
-export { ThemeContext, keyframes, css } from '@emotion/react';
+// Re-export the public type surface of `@emotion/styled`. Explicit names rather
+// than `export type *`: an `export *` (even type-only) is disallowed by the
+// `'use client'` Next.js lint rule. Names locally redeclared below intentionally
+// shadow Emotion's and are not re-exported here.
+export type { CreateStyled, StyledComponent, StyledOptions, StyledTags } from '@emotion/styled';
 
-export { default as StyledEngineProvider } from './StyledEngineProvider';
+function styled(tag: React.ElementType, options?: StyledOptions<any>) {
+  // Emotion's `styled` overloads each expect a specific tag/component shape;
+  // none accept the broadened `React.ElementType` union, so cast the passthrough.
+  const stylesFactory = emStyled(tag as any, options);
 
-export { default as GlobalStyles } from './GlobalStyles';
-export * from './GlobalStyles';
+  if (process.env.NODE_ENV !== 'production') {
+    return (...styles: any[]) => {
+      const component = typeof tag === 'string' ? `"${tag}"` : 'component';
+      if (styles.length === 0) {
+        console.error(
+          [
+            `MUI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+            'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
+          ].join('\n'),
+        );
+      } else if (styles.some((style) => style === undefined)) {
+        console.error(
+          `MUI: the styled(${component})(...args) API requires all its args to be defined.`,
+        );
+      }
+      return stylesFactory(...styles);
+    };
+  }
 
-export type MUIStyledComponent<
-  ComponentProps extends {},
-  SpecificComponentProps extends {} = {},
-  JSXProps extends {} = {},
-> = StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+  return stylesFactory;
+}
+
+export default styled as unknown as CreateStyled;
 
 /**
  * For internal usage in `@mui/system` package
@@ -24,10 +51,32 @@ export type MUIStyledComponent<
 export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
-): void;
+): void {
+  // Emotion attaches all the styles as `__emotion_styles`.
+  // Ref: https://github.com/emotion-js/emotion/blob/16d971d0da229596d6bcc39d282ba9753c9ee7cf/packages/styled/src/base.js#L186
+  if (Array.isArray((tag as any).__emotion_styles)) {
+    (tag as any).__emotion_styles = processor((tag as any).__emotion_styles);
+  }
+}
 
+// Emotion only accepts an array, but we want to avoid allocations
+const wrapper: any[] = [];
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object {
+  wrapper[0] = styles;
+  return emSerializeStyles(wrapper);
+}
+
+export { ThemeContext, keyframes, css } from '@emotion/react';
+export { default as StyledEngineProvider } from './StyledEngineProvider';
+export { default as GlobalStyles } from './GlobalStyles';
+export type { GlobalStylesProps } from './GlobalStyles';
+
+export type MUIStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+> = StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
 
 export interface SerializedStyles {
   name: string;
@@ -126,7 +175,7 @@ export type Interpolation<Props> =
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 
-export function shouldForwardProp(propName: PropertyKey): boolean;
+export declare function shouldForwardProp(propName: PropertyKey): boolean;
 
 /** Same as StyledOptions but shouldForwardProp must be a type guard */
 export interface FilteringStyledOptions<Props, ForwardedProps extends keyof Props = keyof Props> {

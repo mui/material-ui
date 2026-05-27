@@ -7,10 +7,10 @@ import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 describe('[Emotion] StyledEngineProvider', () => {
   const { render } = createRenderer();
 
-  let rule;
+  let rule: string | undefined;
 
   beforeAll(() => {
-    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
+    TEST_INTERNALS_DO_NOT_USE.insert = (...args: any[]) => {
       rule = args[0];
     };
   });
