@@ -393,6 +393,7 @@ export interface DemoProps {
     disableLiveEdit?: boolean;
     aiSuggestion?: string;
     hideEditButton?: boolean;
+    anchorId?: string | null;
   };
   disableAd: boolean;
   githubLocation: string;
@@ -407,29 +408,32 @@ export interface DemoProps {
 export function Demo(props: DemoProps) {
   const { demo, demoOptions, disableAd, githubLocation, demoToolbarSlot: DemoToolbar } = props;
 
-  if (demoOptions.hideToolbar === false) {
-    throw new Error(
-      [
-        '"hideToolbar": false is already the default.',
-        `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
-      ].join('\n'),
-    );
-  }
-  if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
-    throw new Error(
-      [
-        '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
-        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-      ].join('\n'),
-    );
-  }
-  if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
-    throw new Error(
-      [
-        '"hideToolbar": true, "disableAd": true combination is invalid.',
-        `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
-      ].join('\n'),
-    );
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
+    if (demoOptions.hideToolbar === false) {
+      throw new Error(
+        [
+          '"hideToolbar": false is already the default.',
+          `Please remove the property in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.defaultCodeOpen === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
+    if (demoOptions.hideToolbar === true && demoOptions.disableAd === true) {
+      throw new Error(
+        [
+          '"hideToolbar": true, "disableAd": true combination is invalid.',
+          `Please remove one of the properties in {{"demo": "${demoOptions.demo}", …}}.`,
+        ].join('\n'),
+      );
+    }
   }
 
   if (
@@ -465,6 +469,8 @@ export function Demo(props: DemoProps) {
   );
 
   const demoName = getDemoName(demoData.githubLocation);
+  const anchorIdOption = demoOptions.anchorId;
+  const anchorName = anchorIdOption === undefined ? demoName : anchorIdOption;
   const demoSandboxedStyle = React.useMemo(
     () => ({
       maxWidth: demoOptions.maxWidth,
@@ -489,10 +495,13 @@ export function Demo(props: DemoProps) {
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
-    if (navigatedDemoName && demoName === navigatedDemoName) {
+    if (
+      navigatedDemoName &&
+      (demoName === navigatedDemoName || (anchorName !== null && anchorName === navigatedDemoName))
+    ) {
       setCodeOpen(true);
     }
-  }, [demoName]);
+  }, [demoName, anchorName]);
 
   const showPreview =
     !demoOptions.hideToolbar &&
@@ -598,7 +607,7 @@ export function Demo(props: DemoProps) {
 
   return (
     <Root>
-      <AnchorLink id={demoName} />
+      {anchorName !== null && <AnchorLink id={anchorName} />}
       <DemoRoot
         hideToolbar={demoOptions.hideToolbar}
         bg={demoOptions.bg}
@@ -620,18 +629,19 @@ export function Demo(props: DemoProps) {
       </DemoRoot>
       {demoOptions.hideToolbar ? null : (
         <React.Fragment>
-          {Object.keys(stylingSolutionMapping).map((key) => (
-            <React.Fragment key={key}>
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.js`}
-              />
-              <AnchorLink
-                id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${demoName}.tsx`}
-              />
-            </React.Fragment>
-          ))}
-          <AnchorLink id={`${demoName}.js`} />
-          <AnchorLink id={`${demoName}.tsx`} />
+          {anchorName !== null &&
+            Object.keys(stylingSolutionMapping).map((key) => (
+              <React.Fragment key={key}>
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.js`}
+                />
+                <AnchorLink
+                  id={`${stylingSolutionMapping[key as keyof typeof stylingSolutionMapping]}-${anchorName}.tsx`}
+                />
+              </React.Fragment>
+            ))}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.js`} />}
+          {anchorName !== null && <AnchorLink id={`${anchorName}.tsx`} />}
           <DemoToolbarRoot demoOptions={demoOptions} openDemoSource={openDemoSource}>
             {DemoToolbar ? (
               <NoSsr fallback={<DemoToolbarFallback />}>
