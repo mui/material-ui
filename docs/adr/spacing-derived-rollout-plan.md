@@ -119,11 +119,11 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 - [x] ~~Accordion / AccordionSummary / AccordionActions~~ ✅ Done — Accordion expanded `margin 16` → `spacing(2)`; Summary content margin `12/20` → `spacing(2)−4px` / `spacing(3)−4px`; Actions `padding/marginLeft 8` → `spacing(1)` (static → `memoTheme`). Summary padding + AccordionDetails were already `theme.spacing`.
 - [x] ~~Alert / AlertTitle~~ ✅ Done — root `6px 16px` → `spacing(1)−2px spacing(2)`; icon/message/action paddings + icon `marginRight 12` → spacing-based (all vertical derived together so they stay centered); action `marginRight −8` → `spacing(-1)` (tracks IconButton padding). Icon/Message/Action static → `memoTheme`. AlertTitle `marginTop −2` literal (sub-unit).
 - [x] ~~Dialog / DialogTitle / DialogContent / DialogActions~~ ✅ Done — Title `16px 24px` → `spacing(2) spacing(3)`; Content `20px 24px` → `spacing(3)−4px spacing(3)`, dividers `16px 24px` → `spacing(2) spacing(3)`; Actions `padding/marginLeft 8` → `spacing(1)`. **Dialog root skip**: paper `margin 32` is coupled to static media-query breakpoints (`+ 32*2`, can't use CSS vars) — deriving would desync margin from the breakpoint thresholds. Title/Actions static → `memoTheme`.
-- [ ] Card — CardHeader / CardContent / CardActions
-- [ ] SnackbarContent
-- [ ] Tooltip
-- [ ] Breadcrumbs
-- [ ] MobileStepper
+- [x] ~~Card — CardHeader / CardContent / CardActions~~ ✅ Done — Header `padding 16`/avatar `marginRight 16` → `spacing(2)`, action `marginRight −8` → `spacing(-1)` (`marginTop/Bottom −4` literal); Content `16` → `spacing(2)`, last-child `paddingBottom 24` → `spacing(3)`; Actions `padding/marginLeft 8` → `spacing(1)`. All static → `memoTheme`. Card root has no spacing.
+- [x] ~~SnackbarContent~~ ✅ Done — root `6px 16px` → `spacing(1)−2px spacing(2)`, message `8px 0` → `spacing(1) 0`, action `paddingLeft 16` → `spacing(2)` + `marginRight −8` → `spacing(-1)`. Message/Action static → `memoTheme`.
+- [x] ~~Tooltip~~ ✅ Done — tooltip `padding 4px 8px` → `spacing(1)−4px spacing(1)`, touch `8px 16px` → `spacing(1) spacing(2)`. Arrow/placement margins (`-0.71em`, `14/24px`) + `margin 2` stay literal (arrow geometry / popper positioning). Verified by unit tests (portal).
+- [x] ~~Breadcrumbs~~ ✅ Done — separator `marginLeft/Right 8` → `spacing(1)` (static → `memoTheme`).
+- [x] ~~MobileStepper~~ ✅ Done — `padding 8` → `spacing(1)`; dot `width/height 8` + `margin 0 2px` are geometry/sub-unit (literal).
 
 ### Steppers, tables, misc layout
 

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
 
@@ -25,21 +26,23 @@ const CardActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})({
-  display: 'flex',
-  alignItems: 'center',
-  padding: 8,
-  variants: [
-    {
-      props: { disableSpacing: false },
-      style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    variants: [
+      {
+        props: { disableSpacing: false },
+        style: {
+          '& > :not(style) ~ :not(style)': {
+            marginLeft: theme.spacing(1),
+          },
         },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const CardActions = React.forwardRef(function CardActions(inProps, ref) {
   const props = useDefaultProps({

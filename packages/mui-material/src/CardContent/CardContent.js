@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardContentUtilityClass } from './cardContentClasses';
 
@@ -20,12 +21,14 @@ const useUtilityClasses = (ownerState) => {
 const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
-})({
-  padding: 16,
-  '&:last-child': {
-    paddingBottom: 24,
-  },
-});
+})(
+  memoTheme(({ theme }) => ({
+    padding: theme.spacing(2),
+    '&:last-child': {
+      paddingBottom: theme.spacing(3),
+    },
+  })),
+);
 
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
   const props = useDefaultProps({

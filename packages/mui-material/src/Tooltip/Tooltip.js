@@ -127,7 +127,7 @@ const TooltipTooltip = styled('div', {
     borderRadius: (theme.vars || theme).shape.borderRadius,
     color: (theme.vars || theme).palette.common.white,
     fontFamily: theme.typography.fontFamily,
-    padding: '4px 8px',
+    padding: `calc(${theme.spacing(1)} - 4px) ${theme.spacing(1)}`,
     fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
     margin: 2,
@@ -160,7 +160,7 @@ const TooltipTooltip = styled('div', {
       {
         props: ({ ownerState }) => ownerState.touch,
         style: {
-          padding: '8px 16px',
+          padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
           fontSize: theme.typography.pxToRem(14),
           lineHeight: `${round(16 / 14)}em`,
           fontWeight: theme.typography.fontWeightRegular,

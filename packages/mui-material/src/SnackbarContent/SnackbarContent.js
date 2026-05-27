@@ -40,7 +40,7 @@ const SnackbarContentRoot = styled(Paper, {
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      padding: '6px 16px',
+      padding: `calc(${theme.spacing(1)} - 2px) ${theme.spacing(2)}`,
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
         flexGrow: 'initial',
@@ -53,20 +53,24 @@ const SnackbarContentRoot = styled(Paper, {
 const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Message',
-})({
-  padding: '8px 0',
-});
+})(
+  memoTheme(({ theme }) => ({
+    padding: `${theme.spacing(1)} 0`,
+  })),
+);
 
 const SnackbarContentAction = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Action',
-})({
-  display: 'flex',
-  alignItems: 'center',
-  marginLeft: 'auto',
-  paddingLeft: 16,
-  marginRight: -8,
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    paddingLeft: theme.spacing(2),
+    marginRight: theme.spacing(-1),
+  })),
+);
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSnackbarContent' });

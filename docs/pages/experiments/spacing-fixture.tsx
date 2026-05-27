@@ -37,6 +37,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import SnackbarContent from '@mui/material/SnackbarContent';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import MobileStepper from '@mui/material/MobileStepper';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -85,6 +92,54 @@ const demos: Record<string, React.ReactNode> = {
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
+  ),
+  CardFamily: (
+    <Card sx={{ width: 345 }}>
+      <CardHeader
+        avatar={<Avatar>R</Avatar>}
+        action={
+          <IconButton>
+            <Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />
+          </IconButton>
+        }
+        title="Card title"
+        subheader="September 14, 2026"
+      />
+      <CardContent>Card content text goes here for the body.</CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  ),
+  SnackbarContent: (
+    <SnackbarContent
+      sx={{ width: 360 }}
+      message="Snackbar message text"
+      action={
+        <Button color="secondary" size="small">
+          UNDO
+        </Button>
+      }
+    />
+  ),
+  Breadcrumbs: (
+    <Breadcrumbs sx={{ border: '1px dashed #bbb' }}>
+      <span>Home</span>
+      <span>Catalog</span>
+      <span>Item</span>
+    </Breadcrumbs>
+  ),
+  MobileStepperDemo: (
+    <MobileStepper
+      variant="dots"
+      steps={5}
+      activeStep={2}
+      position="static"
+      sx={{ width: 360, border: '1px dashed #bbb' }}
+      backButton={<Button size="small">Back</Button>}
+      nextButton={<Button size="small">Next</Button>}
+    />
   ),
   Accordion: (
     <Box sx={{ width: 360 }}>
