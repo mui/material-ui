@@ -13,6 +13,7 @@
   "include": ["src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
   "references": [
+    { "path": "../mui-private-theming/tsconfig.build.json" },
     { "path": "../mui-styled-engine/tsconfig.build.json" },
     { "path": "../mui-utils/tsconfig.build.json" }
   ]

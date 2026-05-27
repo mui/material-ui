@@ -8,10 +8,10 @@ describe('useTheme', () => {
   const { render } = createRenderer();
 
   it('should use the theme', () => {
-    const ref = React.createRef();
-    const text = () => ref.current.textContent;
+    const ref = React.createRef<HTMLSpanElement>();
+    const text = () => ref.current!.textContent;
     function Test() {
-      const theme = useTheme();
+      const theme = useTheme<Record<string, string>>();
 
       return <span ref={ref}>{theme.foo}</span>;
     }
