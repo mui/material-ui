@@ -54,16 +54,16 @@ This is not a role to optimize an existing marketing engine. It's a role to desi
 
 ## The role
 
-We're building MUI's marketing function from the ground up, and we're looking for a Senior Marketing Manager to define how MUI X goes to market and scales up in the Enterprise segment.
+We're building MUI's marketing function from the ground up, and we're looking for a Product Marketing Manager to define how MUI X goes to market and scales up in the Enterprise segment.
 
-In this role, you will own end-to-end marketing strategy, leading positioning, launches, and sales enablement while driving qualified pipeline across our most important commercial channels. You'll play a key role in shaping how MUI X is perceived in the market and building the foundation that helps Sales win against competitors and the ever-present "build it in-house" alternative.
+In this role, you will own end-to-end marketing strategy, leading positioning, launches, and sales enablement while driving qualified pipeline across our most important commercial channels. You'll play a key role in shaping how MUI X is perceived in the market and building the foundation that helps Sales win against competitors and the ever-present "build it in-house" alternative.
 
 This is a highly cross-functional, hands-on role for someone who thrives in ambiguity, is as comfortable writing a positioning doc as briefing an AE before a critical call, and can turn a strong product into a scalable growth engine.
 
 ### Key responsibilties
 
-- Own positioning & messaging: define and evolve MUI X's positioning for the Enterprise market, with differentiated narratives across buyer personas and competitors.
-- Drive GTM & launches: lead end-to-end go-to-market strategy and execution for major MUI X releases and commercial initiatives.
+- Own positioning & messaging: define and evolve MUI X's positioning for the Enterprise market, with differentiated narratives across buyer personas and competitors.
+- Drive GTM & launches: lead end-to-end go-to-market strategy and execution for major MUI X releases and commercial initiatives.
 - Enable sales: build the sales enablement foundation from scratch - battle cards, pitch decks, objection handling, ROI frameworks, and ICP maps.
 - Lead competitive intelligence: track AG Grid, Bryntum, and other alternatives, and translate insights into actionable recommendations for Sales, Product, and Marketing.
 - Generate pipeline: design and run campaigns that produce a qualified Enterprise pipeline, with tight feedback loops between marketing activity and sales outcomes.
