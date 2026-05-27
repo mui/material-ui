@@ -4,15 +4,6 @@ import type * as React from 'react';
 import type * as CSS from 'csstype';
 import type * as hoistNonReactStatics from 'hoist-non-react-statics';
 
-// Re-export the full `styled-components` surface, matching the hand-written
-// `.d.ts` that this conversion replaces. Locally declared types below
-// intentionally shadow the corresponding `styled-components` names
-// (`Keyframes`, `Interpolation`, `StyledComponent`, `CSSObject`, …) — TS
-// resolves the local declaration for those names.
-// Note: this is broader than the previous runtime JS, which only re-exported
-// `ThemeContext`, `keyframes`, `css` — see the PR description.
-export * from 'styled-components';
-
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
 };
@@ -143,6 +134,7 @@ export function internal_serializeStyles<P>(styles: Interpolation<P>): object {
   return styles as object;
 }
 
+export { ThemeContext, keyframes, css } from 'styled-components';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
