@@ -23,7 +23,7 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 ## Usage guidelines
 
-- **Keep disabled actions discoverable**: Use `focusableWhenDisabled` when a disabled `Button` or `IconButton` should remain discoverable to screen reader users. The control stays in the tab order, is announced as disabled, and cannot be activated.
+- **Keep disabled buttons discoverable**: Use `focusableWhenDisabled` to keep disabled `Button`s and `IconButton`s in the tab order. This makes unavailable actions discoverable to screen reader users while still preventing activation.
 
 ## Basic button
 

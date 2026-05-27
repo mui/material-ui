@@ -42,6 +42,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
+          focusableWhenDisabled
         >
           Fetch data
         </Button>
@@ -52,6 +53,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingPosition="end"
           variant="contained"
+          focusableWhenDisabled
         >
           Send
         </Button>
@@ -63,6 +65,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="start"
           startIcon={<SaveIcon />}
           variant="contained"
+          focusableWhenDisabled
         >
           Save
         </Button>
@@ -76,6 +79,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingIndicator="Loading…"
           variant="outlined"
+          focusableWhenDisabled
         >
           Fetch data
         </Button>
@@ -85,6 +89,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           loadingPosition="end"
           variant="contained"
+          focusableWhenDisabled
         >
           Send
         </Button>
@@ -95,6 +100,7 @@ export default function LoadingButtonsTransition() {
           loadingPosition="start"
           startIcon={<SaveIcon />}
           variant="contained"
+          focusableWhenDisabled
         >
           Save
         </Button>
