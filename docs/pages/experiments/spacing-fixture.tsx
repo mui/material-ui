@@ -44,6 +44,10 @@ import CardActions from '@mui/material/CardActions';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import MobileStepper from '@mui/material/MobileStepper';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -91,6 +95,31 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  StepperDemo: (
+    <Stack spacing={3} useFlexGap sx={{ width: 400 }}>
+      <Stepper activeStep={1}>
+        <Step>
+          <StepLabel>One</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Two</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Three</StepLabel>
+        </Step>
+      </Stepper>
+      <Stepper activeStep={1} orientation="vertical">
+        <Step>
+          <StepLabel>Step one</StepLabel>
+          <StepContent>Content for step one.</StepContent>
+        </Step>
+        <Step>
+          <StepLabel>Step two</StepLabel>
+          <StepContent>Content for step two.</StepContent>
+        </Step>
+      </Stepper>
     </Stack>
   ),
   CardFamily: (

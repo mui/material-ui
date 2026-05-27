@@ -127,7 +127,7 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 ### Steppers, tables, misc layout
 
-- [ ] Stepper / Step / StepButton / StepLabel / StepContent / StepConnector
+- [x] ~~Stepper / Step / StepButton / StepLabel / StepContent / StepConnector~~ ✅ Done — Stepper `gap 8`, Step `padding/gap 8` → `spacing(1)`; StepButton `padding 24px 16px` → `spacing(3) spacing(2)`, `margin -24px -16px` → `spacing(-3) spacing(-2)` (negatives track padding via `theme.spacing(-n)`); StepLabel `padding 8px 0`/icon `8`/alt `marginTop 16` → spacing-based; StepContent `padding 8` → `spacing(1)`, composite `8+12` → `calc(spacing(1) + 12px)` (the `12` half-icon stays literal). **StepConnector skip**: `marginLeft/Right 12` half-icon + `calc(±50% + 20px)` are icon geometry. Several static → `memoTheme`.
 - [ ] TableCell / TablePagination / TableSortLabel
 - [ ] ImageList / ImageListItemBar
 - [ ] AvatarGroup
