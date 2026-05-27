@@ -99,13 +99,13 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            padding: '16.5px 14px',
+            padding: `calc(${theme.spacing(2)} + 0.5px) 14px`,
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
           style: {
-            padding: '8.5px 14px',
+            padding: `calc(${theme.spacing(1)} + 0.5px) 14px`,
           },
         },
       ],
@@ -134,7 +134,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    padding: '16.5px 14px',
+    padding: `calc(${theme.spacing(2)} + 0.5px) 14px`,
     '&:-webkit-autofill': {
       ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -155,7 +155,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
           size: 'small',
         },
         style: {
-          padding: '8.5px 14px',
+          padding: `calc(${theme.spacing(1)} + 0.5px) 14px`,
         },
       },
       {
