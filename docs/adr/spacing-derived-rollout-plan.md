@@ -86,7 +86,7 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 - [x] ~~Input~~ ✅ Done — only spacing is the standard label-gap `marginTop: 16` → `spacing(2)`.
 - [x] ~~NativeSelect / Select (`paddingRight 24/32`)~~ ✅ Done — **skip**: `paddingRight 24/32` reserves space for the fixed 24px arrow icon (absolutely positioned, `right: 0/7`) → icon-anchored horizontal geometry, not density; block padding comes from the wrapping input variant. `minWidth 16` / icon `top: calc(50% − .5em)` are geometry.
 - [x] ~~InputAdornment~~ ✅ Done — filled start `marginTop: 16` → `spacing(2)` (tracks the filled label-space, verified with a valued field). `marginRight/marginLeft: 8` stay **literal** — horizontal, part of the input's inline layout which the whole family keeps literal.
-- [ ] InputLabel — **filled** + **standard** transform sets (track their input)
+- [x] ~~InputLabel — **filled** + **standard** transform sets (track their input)~~ ✅ Done — filled with FilledInput; standard resting y → `spacing(3) − 4px` (md) / `spacing(2) + 1px` (sm), tracking `Input` marginTop + `InputBase` paddingTop. Shrunk `-1.5px` floats above the field → literal.
 - [ ] FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel
 
 ### Buttons & actionable controls

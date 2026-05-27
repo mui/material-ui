@@ -71,6 +71,17 @@ Button has no notch, so both axes derive.
 | resting, sm | `translate(14px, spacing(1) + 1px)`       |
 | shrunk      | `translate(14px, −9px)` — fully literal   |
 
+### InputLabel (standard) — x stays `0`
+
+Resting y tracks the standard input's text top = `Input` `marginTop`
+(`spacing(2)`) + `InputBase` `paddingTop`:
+
+| state       | transform                                      |
+| :---------- | :--------------------------------------------- |
+| resting, md | `translate(0, spacing(3) − 4px)` (20)          |
+| resting, sm | `translate(0, spacing(2) + 1px)` (17)          |
+| shrunk      | `translate(0, −1.5px)` — floats above, literal |
+
 ### FilledInput + InputLabel (filled) — block only, x literal
 
 Input block padding (top / bottom); inline `12` + adornments stay literal:

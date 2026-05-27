@@ -66,8 +66,9 @@ const InputLabelRoot = styled(FormLabel, {
           position: 'absolute',
           left: 0,
           top: 0,
-          // slight alteration to spec spacing to match visual spec result
-          transform: 'translate(0, 20px) scale(1)',
+          // resting y tracks the standard input's text top: Input marginTop
+          // (spacing(2)) + InputBase paddingTop (spacing(1) − 4px) = spacing(3) − 4px.
+          transform: `translate(0, calc(${theme.spacing(3)} - 4px)) scale(1)`,
         },
       },
       {
@@ -75,8 +76,9 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          // Compensation for the `Input` small size style.
-          transform: 'translate(0, 17px) scale(1)',
+          // Compensation for the `Input` small size style: marginTop (spacing(2))
+          // + small paddingTop (1px literal).
+          transform: `translate(0, calc(${theme.spacing(2)} + 1px)) scale(1)`,
         },
       },
       {
