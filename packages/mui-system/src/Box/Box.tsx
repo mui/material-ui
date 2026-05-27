@@ -72,16 +72,27 @@ export interface BoxTypeMap<
   props: AdditionalProps & BoxOwnProps<Theme>;
   defaultComponent: RootComponent;
 }
-
-const Box: OverridableComponent<BoxTypeMap> = createBox({
+/**
+ *
+ * Demos:
+ *
+ * - [Box (Material UI)](https://mui.com/material-ui/react-box/)
+ * - [Menubar (Material UI)](https://mui.com/material-ui/react-menubar/)
+ * - [Box (MUI System)](https://mui.com/system/react-box/)
+ *
+ * API:
+ *
+ * - [Box API](https://mui.com/system/api/box/)
+ */
+const Box = createBox({
   defaultClassName: boxClasses.root,
   generateClassName: ClassNameGenerator.generate,
-}) as unknown as OverridableComponent<BoxTypeMap>;
+}) as OverridableComponent<BoxTypeMap>;
 
 Box.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
