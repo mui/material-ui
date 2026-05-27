@@ -1090,7 +1090,7 @@ function useAutocomplete(props) {
             });
             if (focusedItem !== -1) {
               // Suppress the spurious Backspace VoiceOver synthesises on the
-              // input after focus returns to it. Clear it on shortly after
+              // input after focus returns to it. Clear it shortly after
               // deletion so a later real Backspace is not ignored if the
               // synthetic follow-up event never arrives.
               ignoreNextBackspaceRef.current = true;
