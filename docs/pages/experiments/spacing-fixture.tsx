@@ -26,6 +26,17 @@ import Avatar from '@mui/material/Avatar';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import Autocomplete from '@mui/material/Autocomplete';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionActions from '@mui/material/AccordionActions';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Paper from '@mui/material/Paper';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -74,6 +85,46 @@ const demos: Record<string, React.ReactNode> = {
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
+  ),
+  Accordion: (
+    <Box sx={{ width: 360 }}>
+      <Accordion defaultExpanded>
+        <AccordionSummary>Expanded summary</AccordionSummary>
+        <AccordionDetails>Details content here.</AccordionDetails>
+        <AccordionActions>
+          <Button>Cancel</Button>
+          <Button>Agree</Button>
+        </AccordionActions>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary>Collapsed summary</AccordionSummary>
+        <AccordionDetails>Hidden details.</AccordionDetails>
+      </Accordion>
+    </Box>
+  ),
+  Alert: (
+    <Stack spacing={2} useFlexGap sx={{ width: 360 }}>
+      <Alert severity="success">Success message</Alert>
+      <Alert severity="info" onClose={() => {}}>
+        Info with close action
+      </Alert>
+      <Alert severity="warning">
+        <AlertTitle>Warning</AlertTitle>
+        Warning with title and body text.
+      </Alert>
+    </Stack>
+  ),
+  DialogParts: (
+    <Paper sx={{ width: 360 }}>
+      <DialogTitle>Dialog title</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Dialog content text goes here.</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button>Cancel</Button>
+        <Button>OK</Button>
+      </DialogActions>
+    </Paper>
   ),
   Autocomplete: (
     <Stack spacing={2} useFlexGap sx={{ width: 320 }}>

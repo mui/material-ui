@@ -33,12 +33,12 @@ const DialogContentRoot = styled('div', {
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
     overflowY: 'auto',
-    padding: '20px 24px',
+    padding: `calc(${theme.spacing(3)} - 4px) ${theme.spacing(3)}`,
     variants: [
       {
         props: ({ ownerState }) => ownerState.dividers,
         style: {
-          padding: '16px 24px',
+          padding: `${theme.spacing(2)} ${theme.spacing(3)}`,
           borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
           borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
         },

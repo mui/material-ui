@@ -116,9 +116,9 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 ### Surfaces & containers
 
-- [ ] Accordion / AccordionSummary / AccordionActions
-- [ ] Alert / AlertTitle
-- [ ] Dialog / DialogTitle / DialogContent / DialogActions
+- [x] ~~Accordion / AccordionSummary / AccordionActions~~ ✅ Done — Accordion expanded `margin 16` → `spacing(2)`; Summary content margin `12/20` → `spacing(2)−4px` / `spacing(3)−4px`; Actions `padding/marginLeft 8` → `spacing(1)` (static → `memoTheme`). Summary padding + AccordionDetails were already `theme.spacing`.
+- [x] ~~Alert / AlertTitle~~ ✅ Done — root `6px 16px` → `spacing(1)−2px spacing(2)`; icon/message/action paddings + icon `marginRight 12` → spacing-based (all vertical derived together so they stay centered); action `marginRight −8` → `spacing(-1)` (tracks IconButton padding). Icon/Message/Action static → `memoTheme`. AlertTitle `marginTop −2` literal (sub-unit).
+- [x] ~~Dialog / DialogTitle / DialogContent / DialogActions~~ ✅ Done — Title `16px 24px` → `spacing(2) spacing(3)`; Content `20px 24px` → `spacing(3)−4px spacing(3)`, dividers `16px 24px` → `spacing(2) spacing(3)`; Actions `padding/marginLeft 8` → `spacing(1)`. **Dialog root skip**: paper `margin 32` is coupled to static media-query breakpoints (`+ 32*2`, can't use CSS vars) — deriving would desync margin from the breakpoint thresholds. Title/Actions static → `memoTheme`.
 - [ ] Card — CardHeader / CardContent / CardActions
 - [ ] SnackbarContent
 - [ ] Tooltip

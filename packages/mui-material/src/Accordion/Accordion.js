@@ -118,7 +118,7 @@ const AccordionRoot = styled(Paper, {
         props: (props) => !props.disableGutters,
         style: {
           [`&.${accordionClasses.expanded}`]: {
-            margin: '16px 0',
+            margin: `${theme.spacing(2)} 0`,
           },
         },
       },
