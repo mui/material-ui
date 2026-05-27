@@ -198,6 +198,33 @@ Re-run the type-equivalence probe after any lint/format fix that touches source.
   call to the user with your recommendation before applying**; never silently
   mark a runtime export `@internal`. Note: `@internal` on an *expando
   assignment* does NOT propagate — only on the declaration itself.
+
+  **Per-item triage for packages with many undeclared runtime exports.** On
+  packages with a dozen-plus such leaks (e.g. `@mui/system` had ~26 across 7
+  dirs), the judgement scales by shape: a runtime export that mirrors the
+  *form* of declared siblings — `outline`/`outlineColor` next to `border`/etc.,
+  or `displayPrint`/`displayRaw`/`overflow`/`textOverflow`/`visibility`/
+  `whiteSpace` when the dir's compose-default treats them uniformly — is
+  almost certainly an oversight-(b) case; let `tsc` emit it and call out the
+  surface additions in the PR description. A runtime export that is a utility
+  helper consumed cross-submodule but never style-function-shaped —
+  `borderTransform`, `paletteTransform`, `sizingTransform`,
+  `marginKeys`/`paddingKeys`, `styleFunctionMapping`, breakpoint-internal
+  helpers like `createEmptyBreakpointObject` — is (a); annotate `@internal`.
+  Surfaced on `@mui/system` PR #48578.
+
+  **`stripInternal: true` strips every `@internal`-marked declaration in the
+  package — including pre-existing ones you didn't add.** If a pre-existing
+  `@internal` is referenced transitively in another emitted type (e.g. as a
+  literal key in a `PartiallyRequired<T, K>` constraint, or anywhere `keyof`
+  the stripped surface is consumed), turning on `stripInternal` will break the
+  downstream consumer's declaration build — *not* the converted package's own
+  build, which makes the failure easy to miss locally if Verification step 6
+  is skipped. Before enabling: `git grep "@internal" packages/<pkg>/src/`,
+  and for each match check whether the symbol is reachable through the
+  public type surface anyway. If it is — as `Grid.unstable_level` was via
+  `GridOwnerState` in `@mui/system` — the pre-existing `@internal` was
+  lying; drop the tag rather than letting the strip break consumers.
 - `tsc` always emits `declare` on function declarations in `.d.ts`; hand-written
   baselines often omit it. `export function f` vs `export declare function f`
   are identical in a declaration file — document, don't chase.
