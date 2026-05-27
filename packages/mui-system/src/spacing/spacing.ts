@@ -197,9 +197,9 @@ export function createUnaryUnit<Spacing>(
   return (() => undefined) as any;
 }
 
-export function createUnarySpacing<Spacing>(
-  theme: { spacing: Spacing },
-): Spacing extends number
+export function createUnarySpacing<Spacing>(theme: {
+  spacing: Spacing;
+}): Spacing extends number
   ? (abs: number | string) => number | number
   : Spacing extends any[]
     ? <Index extends number>(abs: Index | string) => Spacing[Index] | string
@@ -246,18 +246,18 @@ function style(props: any, keys: Set<string>) {
   return result;
 }
 
-function _margin(props: any) {
+function marginFn(props: any) {
   return style(props, marginKeys);
 }
-(_margin as any).propTypes =
+(marginFn as any).propTypes =
   process.env.NODE_ENV !== 'production'
     ? Array.from(marginKeys).reduce<Record<string, any>>((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
     : {};
-(_margin as any).filterProps = marginKeys;
-export const margin = _margin as unknown as SimpleStyleFunction<
+(marginFn as any).filterProps = marginKeys;
+export const margin = marginFn as unknown as SimpleStyleFunction<
   | 'm'
   | 'mt'
   | 'mr'
@@ -282,18 +282,18 @@ export const margin = _margin as unknown as SimpleStyleFunction<
 
 export type MarginProps = PropsFor<typeof margin>;
 
-function _padding(props: any) {
+function paddingFn(props: any) {
   return style(props, paddingKeys);
 }
-(_padding as any).propTypes =
+(paddingFn as any).propTypes =
   process.env.NODE_ENV !== 'production'
     ? Array.from(paddingKeys).reduce<Record<string, any>>((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
     : {};
-(_padding as any).filterProps = paddingKeys;
-export const padding = _padding as unknown as SimpleStyleFunction<
+(paddingFn as any).filterProps = paddingKeys;
+export const padding = paddingFn as unknown as SimpleStyleFunction<
   | 'p'
   | 'pt'
   | 'pr'
@@ -318,19 +318,19 @@ export const padding = _padding as unknown as SimpleStyleFunction<
 
 export type PaddingProps = PropsFor<typeof padding>;
 
-function _spacing(props: any) {
+function spacingFn(props: any) {
   return style(props, spacingKeys);
 }
-(_spacing as any).propTypes =
+(spacingFn as any).propTypes =
   process.env.NODE_ENV !== 'production'
     ? Array.from(spacingKeys).reduce<Record<string, any>>((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
     : {};
-(_spacing as any).filterProps = spacingKeys;
+(spacingFn as any).filterProps = spacingKeys;
 
-const spacing = _spacing as unknown as SimpleStyleFunction<
+const spacing = spacingFn as unknown as SimpleStyleFunction<
   | 'm'
   | 'mt'
   | 'mr'

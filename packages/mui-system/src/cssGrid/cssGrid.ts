@@ -17,8 +17,7 @@ export const gap = ((props: any) => {
   return null;
 }) as unknown as SimpleStyleFunction<'gap'>;
 
-(gap as any).propTypes =
-  process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
+(gap as any).propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropType } : {};
 
 (gap as any).filterProps = ['gap'];
 
@@ -56,14 +55,28 @@ export const rowGap = ((props: any) => {
 
 (rowGap as any).filterProps = ['rowGap'];
 
-export const gridColumn = style({ prop: 'gridColumn' }) as unknown as SimpleStyleFunction<'gridColumn'>;
+export const gridColumn = style({
+  prop: 'gridColumn',
+}) as unknown as SimpleStyleFunction<'gridColumn'>;
 export const gridRow = style({ prop: 'gridRow' }) as unknown as SimpleStyleFunction<'gridRow'>;
-export const gridAutoFlow = style({ prop: 'gridAutoFlow' }) as unknown as SimpleStyleFunction<'gridAutoFlow'>;
-export const gridAutoColumns = style({ prop: 'gridAutoColumns' }) as unknown as SimpleStyleFunction<'gridAutoColumns'>;
-export const gridAutoRows = style({ prop: 'gridAutoRows' }) as unknown as SimpleStyleFunction<'gridAutoRows'>;
-export const gridTemplateColumns = style({ prop: 'gridTemplateColumns' }) as unknown as SimpleStyleFunction<'gridTemplateColumns'>;
-export const gridTemplateRows = style({ prop: 'gridTemplateRows' }) as unknown as SimpleStyleFunction<'gridTemplateRows'>;
-export const gridTemplateAreas = style({ prop: 'gridTemplateAreas' }) as unknown as SimpleStyleFunction<'gridTemplateAreas'>;
+export const gridAutoFlow = style({
+  prop: 'gridAutoFlow',
+}) as unknown as SimpleStyleFunction<'gridAutoFlow'>;
+export const gridAutoColumns = style({
+  prop: 'gridAutoColumns',
+}) as unknown as SimpleStyleFunction<'gridAutoColumns'>;
+export const gridAutoRows = style({
+  prop: 'gridAutoRows',
+}) as unknown as SimpleStyleFunction<'gridAutoRows'>;
+export const gridTemplateColumns = style({
+  prop: 'gridTemplateColumns',
+}) as unknown as SimpleStyleFunction<'gridTemplateColumns'>;
+export const gridTemplateRows = style({
+  prop: 'gridTemplateRows',
+}) as unknown as SimpleStyleFunction<'gridTemplateRows'>;
+export const gridTemplateAreas = style({
+  prop: 'gridTemplateAreas',
+}) as unknown as SimpleStyleFunction<'gridTemplateAreas'>;
 export const gridArea = style({ prop: 'gridArea' }) as unknown as SimpleStyleFunction<'gridArea'>;
 
 const grid = compose(

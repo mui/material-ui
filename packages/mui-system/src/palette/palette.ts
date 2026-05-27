@@ -28,11 +28,9 @@ export const backgroundColor = style({
   transform: paletteTransform as any,
 });
 
-const palette = compose(
-  color,
-  bgcolor,
-  backgroundColor,
-) as unknown as SimpleStyleFunction<'bgcolor' | 'color'>;
+const palette = compose(color, bgcolor, backgroundColor) as unknown as SimpleStyleFunction<
+  'bgcolor' | 'color'
+>;
 
 export type PaletteProps = PropsFor<typeof palette>;
 

@@ -9,9 +9,14 @@ export const right = style({ prop: 'right' });
 export const bottom = style({ prop: 'bottom' });
 export const left = style({ prop: 'left' });
 
-const positions = compose(position, zIndex, top, right, bottom, left) as unknown as SimpleStyleFunction<
-  'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
->;
+const positions = compose(
+  position,
+  zIndex,
+  top,
+  right,
+  bottom,
+  left,
+) as unknown as SimpleStyleFunction<'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'>;
 
 export type PositionsProps = PropsFor<typeof positions>;
 

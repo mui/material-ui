@@ -4,8 +4,8 @@ export interface Shape {
 
 export type ShapeOptions = Partial<Shape>;
 
-const shape: Shape = {
+const shape = {
   borderRadius: 4,
 };
 
-export default shape;
+export default shape as unknown as Shape;

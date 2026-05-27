@@ -28,8 +28,7 @@ export const DEFAULT_BREAKPOINTS: Breakpoints = createBreakpoints({ values: valu
 const defaultContainerQueries = {
   containerQueries: (containerName: string) => ({
     up: (key: string | number) => {
-      let result =
-        typeof key === 'number' ? key : (values as any)[key as any] || (key as any);
+      let result = typeof key === 'number' ? key : (values as any)[key as any] || (key as any);
       if (typeof result === 'number') {
         result = `${result}px`;
       }
@@ -145,7 +144,7 @@ function setupBreakpoints<Props, BreakpointsInput extends string = DefaultBreakP
     return merge(base, extended);
   }) as StyleFunction<Partial<Record<BreakpointsInput, Props>> & Props> & {
     propTypes?: any;
-    filterProps?: string[];
+    filterProps?: string[] | undefined;
   };
 
   newStyleFunction.propTypes =

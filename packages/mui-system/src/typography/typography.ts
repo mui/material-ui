@@ -22,10 +22,18 @@ export const fontWeight = style({
   themeKey: 'typography',
 }) as unknown as SimpleStyleFunction<'fontWeight'>;
 
-export const letterSpacing = style({ prop: 'letterSpacing' }) as unknown as SimpleStyleFunction<'letterSpacing'>;
-export const textTransform = style({ prop: 'textTransform' }) as unknown as SimpleStyleFunction<'textTransform'>;
-export const lineHeight = style({ prop: 'lineHeight' }) as unknown as SimpleStyleFunction<'lineHeight'>;
-export const textAlign = style({ prop: 'textAlign' }) as unknown as SimpleStyleFunction<'textAlign'>;
+export const letterSpacing = style({
+  prop: 'letterSpacing',
+}) as unknown as SimpleStyleFunction<'letterSpacing'>;
+export const textTransform = style({
+  prop: 'textTransform',
+}) as unknown as SimpleStyleFunction<'textTransform'>;
+export const lineHeight = style({
+  prop: 'lineHeight',
+}) as unknown as SimpleStyleFunction<'lineHeight'>;
+export const textAlign = style({
+  prop: 'textAlign',
+}) as unknown as SimpleStyleFunction<'textAlign'>;
 
 export const typographyVariant = style({
   prop: 'typography',

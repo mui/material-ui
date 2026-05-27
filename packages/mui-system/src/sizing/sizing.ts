@@ -19,8 +19,7 @@ export const maxWidth = ((props: any) => {
   if (props.maxWidth !== undefined && props.maxWidth !== null) {
     const styleFromPropValue = (propValue: any) => {
       const breakpoint =
-        props.theme?.breakpoints?.values?.[propValue] ||
-        (breakpointsValues as any)[propValue];
+        props.theme?.breakpoints?.values?.[propValue] || (breakpointsValues as any)[propValue];
 
       if (!breakpoint) {
         return {
@@ -76,7 +75,9 @@ export const sizeHeight = style({
   transform: sizingTransform,
 }) as unknown as SimpleStyleFunction<'sizeHeight'>;
 
-export const boxSizing = style({ prop: 'boxSizing' }) as unknown as SimpleStyleFunction<'boxSizing'>;
+export const boxSizing = style({
+  prop: 'boxSizing',
+}) as unknown as SimpleStyleFunction<'boxSizing'>;
 
 const sizing = compose(
   width,

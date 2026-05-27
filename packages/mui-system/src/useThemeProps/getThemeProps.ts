@@ -22,8 +22,6 @@ export default function getThemeProps<Theme, Props, Name extends keyof any>(para
     return props as Props & ThemedProps<Theme, Name>;
   }
 
-  return resolveProps(
-    (theme as any).components[name].defaultProps,
-    props,
-  ) as Props & ThemedProps<Theme, Name>;
+  return resolveProps((theme as any).components[name].defaultProps, props) as Props &
+    ThemedProps<Theme, Name>;
 }

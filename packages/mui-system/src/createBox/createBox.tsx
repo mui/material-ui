@@ -14,15 +14,14 @@ export default function createBox<
 >(
   options: {
     themeId?: string | undefined;
-    defaultTheme?: T;
+    defaultTheme?: T | undefined;
     defaultClassName?: string | undefined;
     generateClassName?: ((componentName: string) => string) | undefined;
   } = {},
 ): OverridableComponent<BoxTypeMap<AdditionalProps, 'div', T>> {
   const { themeId, defaultTheme, defaultClassName = 'MuiBox-root', generateClassName } = options;
   const BoxRoot: any = (styled as any)('div', {
-    shouldForwardProp: (prop: string) =>
-      prop !== 'theme' && prop !== 'sx' && prop !== 'as',
+    shouldForwardProp: (prop: string) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
   })(styleFunctionSx);
 
   const Box = React.forwardRef(function Box(inProps: any, ref) {

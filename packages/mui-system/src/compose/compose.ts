@@ -9,13 +9,16 @@ export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFu
 > & { filterProps: string[] };
 
 function compose<T extends Array<StyleFunction<any>>>(...styles: T): ComposedStyleFunction<T> {
-  const handlers: Record<string, any> = (styles as any[]).reduce((acc, style) => {
-    style.filterProps.forEach((prop: string) => {
-      acc[prop] = style;
-    });
+  const handlers: Record<string, any> = (styles as any[]).reduce(
+    (acc, style) => {
+      style.filterProps.forEach((prop: string) => {
+        acc[prop] = style;
+      });
 
-    return acc;
-  }, {} as Record<string, any>);
+      return acc;
+    },
+    {} as Record<string, any>,
+  );
 
   const fn = ((props: any) => {
     const result: Record<string, any> = {};

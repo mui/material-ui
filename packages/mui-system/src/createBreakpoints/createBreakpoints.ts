@@ -43,8 +43,7 @@ export interface BreakpointsOptions extends Partial<Breakpoints> {
 }
 
 const sortBreakpointsValues = (values: Record<string, number>): Record<string, number> => {
-  const breakpointsAsArray =
-    Object.keys(values).map((key) => ({ key, val: values[key] })) || [];
+  const breakpointsAsArray = Object.keys(values).map((key) => ({ key, val: values[key] })) || [];
   // Sort in ascending order
   breakpointsAsArray.sort((breakpoint1, breakpoint2) => breakpoint1.val - breakpoint2.val);
   return breakpointsAsArray.reduce<Record<string, number>>((acc, obj) => {
@@ -65,7 +64,7 @@ export default function createBreakpoints(breakpoints: BreakpointsOptions): Brea
     unit = 'px',
     step = 5,
     ...other
-  } = breakpoints as BreakpointsOptions & { values?: Record<string, number> };
+  } = breakpoints as BreakpointsOptions & { values?: Record<string, number> | undefined };
 
   const sortedValues = sortBreakpointsValues(values as Record<string, number>);
   const keys = Object.keys(sortedValues);
@@ -87,9 +86,7 @@ export default function createBreakpoints(breakpoints: BreakpointsOptions): Brea
 
     return (
       `@media (min-width:${
-        typeof (values as any)[start as any] === 'number'
-          ? (values as any)[start as any]
-          : start
+        typeof (values as any)[start as any] === 'number' ? (values as any)[start as any] : start
       }${unit}) and ` +
       `(max-width:${
         (endIndex !== -1 && typeof (values as any)[keys[endIndex]] === 'number'
