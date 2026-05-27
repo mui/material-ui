@@ -83,7 +83,7 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 
 - [x] ~~FilledInput (input md/sm incl. `25/8` label-space, adornments, multiline)~~ ✅ Done
 - [x] ~~InputBase (standard `Input`: `4px 0 5px`, small, multiline)~~ ✅ Done — block only (`spacing(1)−4px` / `−3px`), 1px small nudge stays literal; inline already `0`. Standard label tracking ⇒ InputLabel item.
-- [ ] Input
+- [x] ~~Input~~ ✅ Done — only spacing is the standard label-gap `marginTop: 16` → `spacing(2)`.
 - [ ] NativeSelect / Select (`paddingRight 24/32`)
 - [ ] InputAdornment
 - [ ] InputLabel — **filled** + **standard** transform sets (track their input)
