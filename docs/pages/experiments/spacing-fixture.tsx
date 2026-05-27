@@ -33,6 +33,25 @@ const demos: Record<string, React.ReactNode> = {
       ))}
     </Stack>
   ),
+  FilledInput: (
+    <Stack spacing={2} useFlexGap sx={{ maxWidth: 280 }}>
+      <TextField label="filled medium" variant="filled" />
+      <TextField label="filled small" variant="filled" size="small" />
+      <TextField label="filled value" variant="filled" defaultValue="Value" />
+      <TextField label="filled value sm" variant="filled" size="small" defaultValue="Value" />
+      <TextField
+        label="filled adornments"
+        variant="filled"
+        slotProps={{
+          input: {
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            endAdornment: <InputAdornment position="end">kg</InputAdornment>,
+          },
+        }}
+      />
+      <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
   TextField: (
     <Stack spacing={2} useFlexGap sx={{ maxWidth: 280 }}>
       {(['medium', 'small'] as const).map((size) =>
