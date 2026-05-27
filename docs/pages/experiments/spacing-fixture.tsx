@@ -48,6 +48,14 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableFooter from '@mui/material/TableFooter';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import TablePagination from '@mui/material/TablePagination';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -96,6 +104,51 @@ const demos: Record<string, React.ReactNode> = {
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
+  ),
+  TableDemo: (
+    <Stack spacing={3} useFlexGap sx={{ width: 480 }}>
+      {(['medium', 'small'] as const).map((size) => (
+        <Table key={size} size={size}>
+          <TableHead>
+            <TableRow>
+              <TableCell padding="checkbox">
+                <Checkbox />
+              </TableCell>
+              <TableCell>
+                <TableSortLabel active direction="asc">
+                  Dessert
+                </TableSortLabel>
+              </TableCell>
+              <TableCell align="right">Calories</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell padding="checkbox">
+                <Checkbox />
+              </TableCell>
+              <TableCell>Frozen yoghurt</TableCell>
+              <TableCell align="right">159</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      ))}
+    </Stack>
+  ),
+  TablePaginationDemo: (
+    <Table sx={{ width: 480 }}>
+      <TableFooter>
+        <TableRow>
+          <TablePagination
+            count={100}
+            page={2}
+            rowsPerPage={10}
+            onPageChange={() => {}}
+            onRowsPerPageChange={() => {}}
+          />
+        </TableRow>
+      </TableFooter>
+    </Table>
   ),
   StepperDemo: (
     <Stack spacing={3} useFlexGap sx={{ width: 400 }}>

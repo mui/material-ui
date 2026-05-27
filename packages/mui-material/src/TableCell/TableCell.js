@@ -59,7 +59,7 @@ const TableCellRoot = styled('td', {
         : theme.darken(theme.alpha(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    padding: 16,
+    padding: theme.spacing(2),
     variants: [
       {
         props: {
@@ -94,7 +94,7 @@ const TableCellRoot = styled('td', {
           size: 'small',
         },
         style: {
-          padding: '6px 16px',
+          padding: `calc(${theme.spacing(1)} - 2px) ${theme.spacing(2)}`,
           [`&.${tableCellClasses.paddingCheckbox}`]: {
             width: 24, // prevent the checkbox column from growing
             padding: '0 12px 0 16px',

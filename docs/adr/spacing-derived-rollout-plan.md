@@ -128,7 +128,7 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 ### Steppers, tables, misc layout
 
 - [x] ~~Stepper / Step / StepButton / StepLabel / StepContent / StepConnector~~ ✅ Done — Stepper `gap 8`, Step `padding/gap 8` → `spacing(1)`; StepButton `padding 24px 16px` → `spacing(3) spacing(2)`, `margin -24px -16px` → `spacing(-3) spacing(-2)` (negatives track padding via `theme.spacing(-n)`); StepLabel `padding 8px 0`/icon `8`/alt `marginTop 16` → spacing-based; StepContent `padding 8` → `spacing(1)`, composite `8+12` → `calc(spacing(1) + 12px)` (the `12` half-icon stays literal). **StepConnector skip**: `marginLeft/Right 12` half-icon + `calc(±50% + 20px)` are icon geometry. Several static → `memoTheme`.
-- [ ] TableCell / TablePagination / TableSortLabel
+- [x] ~~TableCell / TablePagination / TableSortLabel~~ ✅ Done — TableCell `padding 16` → `spacing(2)`, small `6px 16px` → `spacing(1)−2px spacing(2)`; checkbox-column paddings kept literal (fixed-width column, deriving would overflow). TablePagination actions `marginLeft 20` → `spacing(3)−4px`, Select `marginRight 32`/`marginLeft 8`/select `paddingLeft 8` → spacing-based (`paddingRight 24` literal — arrow icon); Select static → `memoTheme`. TableSortLabel icon `margin 4` → `spacing(1)−4px`.
 - [ ] ImageList / ImageListItemBar
 - [ ] AvatarGroup
 - [ ] Link
