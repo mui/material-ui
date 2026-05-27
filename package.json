@@ -133,7 +133,6 @@
     "prettier": "3.8.3",
     "pretty-quick": "4.2.2",
     "process": "0.11.10",
-    "raw-loader": "^4.0.2",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "rimraf": "6.1.3",
