@@ -129,10 +129,10 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 - [x] ~~Stepper / Step / StepButton / StepLabel / StepContent / StepConnector~~ ✅ Done — Stepper `gap 8`, Step `padding/gap 8` → `spacing(1)`; StepButton `padding 24px 16px` → `spacing(3) spacing(2)`, `margin -24px -16px` → `spacing(-3) spacing(-2)` (negatives track padding via `theme.spacing(-n)`); StepLabel `padding 8px 0`/icon `8`/alt `marginTop 16` → spacing-based; StepContent `padding 8` → `spacing(1)`, composite `8+12` → `calc(spacing(1) + 12px)` (the `12` half-icon stays literal). **StepConnector skip**: `marginLeft/Right 12` half-icon + `calc(±50% + 20px)` are icon geometry. Several static → `memoTheme`.
 - [x] ~~TableCell / TablePagination / TableSortLabel~~ ✅ Done — TableCell `padding 16` → `spacing(2)`, small `6px 16px` → `spacing(1)−2px spacing(2)`; checkbox-column paddings kept literal (fixed-width column, deriving would overflow). TablePagination actions `marginLeft 20` → `spacing(3)−4px`, Select `marginRight 32`/`marginLeft 8`/select `paddingLeft 8` → spacing-based (`paddingRight 24` literal — arrow icon); Select static → `memoTheme`. TableSortLabel icon `margin 4` → `spacing(1)−4px`.
-- [ ] ImageList / ImageListItemBar
-- [ ] AvatarGroup
-- [ ] Link
-- [ ] Badge (audit: `translate` offsets are geometry, not spacing)
+- [x] ~~ImageList / ImageListItemBar~~ ✅ Done — ImageListItemBar `padding 12px 16px` → `spacing(2)−4px spacing(2)`, below `6px 0 12px` → spacing-based. **ImageList/ImageListItem skip**: `gap` is a public px prop applied via inline style (user-controlled, not internal spacing).
+- [x] ~~AvatarGroup~~ ✅ Done — **skip**: overlap is `--AvatarGroup-spacing` (negative margin) computed from the `spacing` prop — overlap geometry, not density.
+- [x] ~~Link~~ ✅ Done — **skip**: no spacing values.
+- [x] ~~Badge~~ ✅ Done — `padding 0 6px` → `0 calc(spacing(1)−2px)`. `translate` offsets (`--Badge-translate`, %) + `height/minWidth` (RADIUS) are geometry (literal).
 
 ### Audit & likely skip (geometry, not spacing density)
 

@@ -56,6 +56,8 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import TablePagination from '@mui/material/TablePagination';
+import Badge from '@mui/material/Badge';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -103,6 +105,26 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  BadgeDemo: (
+    <Stack direction="row" spacing={4} useFlexGap sx={{ alignItems: 'center' }}>
+      <Badge badgeContent={4} color="primary">
+        <Box sx={{ width: 28, height: 28, bgcolor: 'grey.400', borderRadius: '4px' }} />
+      </Badge>
+      <Badge badgeContent={99} color="primary">
+        <Box sx={{ width: 28, height: 28, bgcolor: 'grey.400', borderRadius: '4px' }} />
+      </Badge>
+    </Stack>
+  ),
+  ImageListItemBarDemo: (
+    <Stack spacing={2} useFlexGap sx={{ width: 320 }}>
+      <Box sx={{ position: 'relative', height: 120, bgcolor: 'grey.300' }}>
+        <ImageListItemBar title="Overlay title" subtitle="Overlay subtitle" />
+      </Box>
+      <Box sx={{ bgcolor: 'grey.100' }}>
+        <ImageListItemBar position="below" title="Below title" subtitle="Below subtitle" />
+      </Box>
     </Stack>
   ),
   TableDemo: (

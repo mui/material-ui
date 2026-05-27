@@ -81,7 +81,7 @@ const BadgeBadge = styled('span', {
     fontSize: theme.typography.pxToRem(12),
     minWidth: RADIUS_STANDARD * 2,
     lineHeight: 1,
-    padding: '0 6px',
+    padding: `0 calc(${theme.spacing(1)} - 2px)`,
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
