@@ -1,5 +1,6 @@
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/no-relative-packages
 import { alias } from '../../vitest.shared.mts';
 
@@ -28,6 +29,7 @@ export default defineConfig({
       },
     },
     react(),
+    tailwindcss(),
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
