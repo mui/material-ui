@@ -640,6 +640,7 @@ workflows:
                 - master
                 - v5.x
                 - v6.x
+                - v7.x
     jobs:
       - test_unit:
           <<: *default-context
