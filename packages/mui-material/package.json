@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "code-infra build --flat",
+    "build:theme-css": "esbuild scripts/buildDefaultThemeCss.mts --bundle --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildTheme.mjs && OUTFILE=default-theme.css node /tmp/buildTheme.mjs",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsc -p tsconfig.json",
