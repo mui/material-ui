@@ -400,15 +400,18 @@ function DensityShowcase() {
         sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: 2 }}
         style={{ '--mui-spacing': `${spacing}px` } as React.CSSProperties}
       >
-        <Stack spacing={2} useFlexGap>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: 'wrap' }}>
-            <Button variant="contained">Save</Button>
-            <Button variant="outlined">Cancel</Button>
-          </Stack>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ flexWrap: 'wrap' }}>
-            <TextField label="Email" defaultValue="hello@mui.com" />
-            <TextField label="Name" size="small" />
-          </Stack>
+        <Stack spacing={2} useFlexGap sx={{ maxWidth: 320, mx: 'auto' }}>
+          <Typography variant="h6" sx={{ textAlign: 'center' }}>
+            Sign in
+          </Typography>
+          <TextField label="Email" type="email" fullWidth />
+          <TextField label="Password" type="password" fullWidth />
+          <Button variant="contained" fullWidth>
+            Sign in
+          </Button>
+          <Button variant="text" size="small">
+            Forgot password?
+          </Button>
         </Stack>
       </Box>
     </ThemeProvider>
