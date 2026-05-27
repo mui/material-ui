@@ -78,7 +78,7 @@ const Box: OverridableComponent<BoxTypeMap> = createBox({
   generateClassName: ClassNameGenerator.generate,
 }) as unknown as OverridableComponent<BoxTypeMap>;
 
-(Box as any).propTypes /* remove-proptypes */ = {
+Box.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
@@ -100,7 +100,7 @@ const Box: OverridableComponent<BoxTypeMap> = createBox({
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export type BoxProps<
   RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],

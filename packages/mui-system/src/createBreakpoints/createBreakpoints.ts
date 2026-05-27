@@ -9,7 +9,7 @@ export type Breakpoint = OverridableStringUnion<
 
 // Sorted ASC by size. That's important.
 // It can't be configured as it's used statically for propTypes.
-export const breakpointKeys: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+export const breakpointKeys = ['xs', 'sm', 'md', 'lg', 'xl'] as unknown as Breakpoint[];
 
 // Keep in sync with docs/src/pages/customization/breakpoints/breakpoints.md
 // #host-reference

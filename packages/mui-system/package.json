@@ -85,6 +85,7 @@
     ".": "./src/index.js",
     "./Box": "./src/Box/index.js",
     "./createTheme": "./src/createTheme/index.js",
+    "./RtlProvider": "./src/RtlProvider/index.js",
     "./styleFunctionSx": "./src/styleFunctionSx/index.js",
     "./*": "./src/*/index.ts"
   }
