@@ -1,0 +1,132 @@
+# Spacing-derived dimensions — rollout plan
+
+Roll the spacing-derivation pattern across `packages/mui-material/src/*`, one
+component (or tight family) per PR, until every spacing dimension rides
+`--mui-spacing`.
+
+- **Decision / why:** [0001-spacing-derived-component-dimensions.md](./0001-spacing-derived-component-dimensions.md)
+- **How (the rule + worked examples):** [spacing-derived-dimensions-spec.md](./spacing-derived-dimensions-spec.md)
+
+Done: **Button**, **OutlinedInput**, **InputLabel (outlined)**.
+
+## Requirement (per component)
+
+For every **spacing** value (padding / margin / gap / row-column-gap, and any
+transform offset that positions content relative to padding):
+
+1. Convert to `calc(theme.spacing(N) ± offsetpx)`, `N = round(px/8)` integer,
+   offset for a **pixel-identical default**. Offset `0` → bare `theme.spacing(N)`.
+2. Keep the value's relationships intact (border `−1px` comps, label/anchor
+   transforms tracking their controlled element).
+3. Touch nothing else — no public vars, no visual change at the default theme.
+
+## Edge cases (check every component against these)
+
+- **Horizontal / anchored coupling.** If a horizontal value couples to fixed
+  sibling geometry (the outlined notch is the known case), keep it **literal** —
+  only the vertical axis derives. Re-evaluate per component; most non-outlined
+  components have no such coupling and may derive both axes.
+- **Not spacing → leave literal:** `em`/`rem` line-boxes, icon/avatar sizes,
+  `border-width`, `border-radius`, `scale()`, `translate` used for motion/flip,
+  rail/thumb/track geometry.
+- **Sub-unit values (< 4px).** `round(px/8) = 0` → keep the px literal (don't
+  write `spacing(0) ± x`), unless it's part of a scaling family (then express
+  relative, e.g. `contained − 1px`).
+- **Fractional offsets** (`+ 0.5px`, inputs) are fine.
+- **Asymmetric block padding** (e.g. FilledInput `25` top / `8` bottom) — derive
+  each side independently; the matching InputLabel transform tracks the top.
+- **Label / anchored transforms** must track the element they sit over: filled
+  label ↔ filled input block padding, standard label ↔ standard input.
+- **Mixed shorthand** — block derived, inline literal → `` `calc(…) 14px` ``.
+- **default-prop margins** (e.g. `FormControl` `margin="dense|normal"`) are
+  spacing — convert them too.
+- **Geometry-only components** (Switch, Slider, LinearProgress, Skeleton,
+  Divider) — likely nothing to convert; confirm and skip.
+
+## How to verify (every PR — local, no Argos)
+
+Argos per-component is too slow. Verify locally with the screenshot harness
+(`scripts/spacing-screenshots/` — a Playwright test using its built-in pixel
+comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>/`
+(gitignored) for your review. Requires `pnpm docs:dev` running.
+
+1. Add the component's load-bearing matrix (variants × sizes, adornment,
+   multiline) to the `spacing-fixture` route's demo map.
+2. **Baseline (before):** on the _unconverted_ component,
+   `COMPONENT=<C> pnpm spacing:shot:update` — writes the "before" baseline
+   (`baseline-default.png`).
+3. Implement the spacing-derivation.
+4. **Assert + density (after):** `COMPONENT=<C> pnpm spacing:shot` —
+   - asserts the default render is **pixel-identical to the baseline**
+     (`toHaveScreenshot`, `maxDiffPixels: 0`); a mismatch ⇒ a wrong offset, and
+     a diff image is written to `test-results/`. **This is the regression gate.**
+   - writes `after-6px.png` / `after-10px.png` (`--mui-spacing` set inline on the
+     fixture scope) for review.
+5. **Density review (human):** eyeball `after-6px` / `after-10px` for reflow and
+   anchored/notch alignment — new behavior, not assertable.
+6. Unit tests green (`pnpm test:unit run <paths>` — browser **and** node),
+   `eslint`, `prettier`, `tsc`. No jsdom assertion on computed padding px.
+
+> Pixel-identical at default is also true by construction (`calc(8px − 2px) ≡ 6px`); step 4's diff is the belt-and-suspenders catch for a mistyped offset.
+
+## Component checklist
+
+### Next set — input / form family (completes TextField)
+
+- [ ] FilledInput (input md/sm incl. `25/8` label-space, adornments, multiline)
+- [ ] InputBase (standard `Input`: `4px 0 5px`, small, multiline)
+- [ ] Input
+- [ ] NativeSelect / Select (`paddingRight 24/32`)
+- [ ] InputAdornment
+- [ ] InputLabel — **filled** + **standard** transform sets (track their input)
+- [ ] FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel
+
+### Buttons & actionable controls
+
+- [ ] IconButton
+- [ ] ButtonBase
+- [ ] ButtonGroup
+- [ ] Fab
+- [ ] Chip
+- [ ] ToggleButton / ToggleButtonGroup
+- [ ] Tab
+- [ ] BottomNavigationAction
+- [ ] SpeedDialAction
+- [ ] Pagination / PaginationItem
+
+### Lists & menus
+
+- [ ] List / ListSubheader
+- [ ] ListItem / ListItemButton / ListItemAvatar / ListItemIcon / ListItemText
+- [ ] MenuItem
+- [ ] Autocomplete
+
+### Surfaces & containers
+
+- [ ] Accordion / AccordionSummary / AccordionActions
+- [ ] Alert / AlertTitle
+- [ ] Dialog / DialogTitle / DialogContent / DialogActions
+- [ ] Card — CardHeader / CardContent / CardActions
+- [ ] SnackbarContent
+- [ ] Tooltip
+- [ ] Breadcrumbs
+- [ ] MobileStepper
+
+### Steppers, tables, misc layout
+
+- [ ] Stepper / Step / StepButton / StepLabel / StepContent / StepConnector
+- [ ] TableCell / TablePagination / TableSortLabel
+- [ ] ImageList / ImageListItemBar
+- [ ] AvatarGroup
+- [ ] Link
+- [ ] Badge (audit: `translate` offsets are geometry, not spacing)
+
+### Audit & likely skip (geometry, not spacing density)
+
+- [ ] Switch — thumb/track geometry
+- [ ] Slider — rail/thumb/mark geometry
+- [ ] LinearProgress
+- [ ] Skeleton
+- [ ] Divider
+- [ ] Typography (margin resets — confirm)
+- [ ] CssBaseline / internal

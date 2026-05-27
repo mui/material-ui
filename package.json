@@ -24,6 +24,8 @@
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
     "docs:deploy": "pnpm --filter docs run deploy",
     "docs:dev": "pnpm --filter docs dev",
+    "spacing:shot": "playwright test -c scripts/spacing-screenshots/playwright.config.mjs",
+    "spacing:shot:update": "playwright test -c scripts/spacing-screenshots/playwright.config.mjs --update-snapshots",
     "docs:icons": "pnpm --filter docs icons",
     "docs:size-why": "cross-env DOCS_STATS_ENABLED=true pnpm docs:build",
     "docs:start": "pnpm --filter docs start",
