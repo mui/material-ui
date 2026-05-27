@@ -25,6 +25,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -72,6 +73,33 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  Autocomplete: (
+    <Stack spacing={2} useFlexGap sx={{ width: 320 }}>
+      <Autocomplete
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} label="outlined" />}
+      />
+      <Autocomplete
+        options={['One', 'Two', 'Three']}
+        size="small"
+        renderInput={(params) => <TextField {...params} label="outlined small" />}
+      />
+      <Autocomplete
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} label="filled" variant="filled" />}
+      />
+      <Autocomplete
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} label="standard" variant="standard" />}
+      />
+      <Autocomplete
+        multiple
+        options={['One', 'Two', 'Three']}
+        defaultValue={['One', 'Two']}
+        renderInput={(params) => <TextField {...params} label="multiple" />}
+      />
     </Stack>
   ),
   ListFamily: (

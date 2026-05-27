@@ -86,144 +86,147 @@ const AutocompleteRoot = styled('div', {
       hasClearIcon && styles.hasClearIcon,
     ];
   },
-})({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
-  },
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+})(
+  memoTheme(({ theme }) => ({
+    [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
     },
-  },
-  [`& .${autocompleteClasses.tag}`]: {
-    margin: 3,
-    maxWidth: 'calc(100% - 6px)',
-  },
-  [`& .${autocompleteClasses.inputRoot}`]: {
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4,
-    },
-    [`& .${autocompleteClasses.input}`]: {
-      width: 0,
-      minWidth: 30,
-    },
-  },
-  [`& .${inputClasses.root}`]: {
-    paddingBottom: 1,
-    '& .MuiInput-input': {
-      padding: '4px 4px 4px 0px',
-    },
-  },
-  [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    [`& .${inputClasses.input}`]: {
-      padding: '2px 4px 3px 0',
-    },
-  },
-  [`& .${outlinedInputClasses.root}`]: {
-    padding: 9,
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4 + 9,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4 + 9,
-    },
-    [`& .${autocompleteClasses.input}`]: {
-      padding: '7.5px 4px 7.5px 5px',
-    },
-    [`& .${autocompleteClasses.endAdornment}`]: {
-      right: 9,
-    },
-  },
-  [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    // Don't specify paddingRight, as it overrides the default value set when there is only
-    // one of the popup or clear icon as the specificity is equal so the latter one wins
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 6,
-    [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 8px',
-    },
-  },
-  [`& .${filledInputClasses.root}`]: {
-    paddingTop: 19,
-    paddingLeft: 8,
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4 + 9,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4 + 9,
-    },
-    [`& .${filledInputClasses.input}`]: {
-      padding: '7px 4px',
-    },
-    [`& .${autocompleteClasses.endAdornment}`]: {
-      right: 9,
-    },
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    paddingBottom: 1,
-    [`& .${filledInputClasses.input}`]: {
-      padding: '2.5px 4px',
-    },
-  },
-  [`& .${inputBaseClasses.hiddenLabel}`]: {
-    paddingTop: 8,
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    [`& .${autocompleteClasses.input}`]: {
-      paddingTop: 16,
-      paddingBottom: 17,
-    },
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]: {
-    [`& .${autocompleteClasses.input}`]: {
-      paddingTop: 8,
-      paddingBottom: 9,
-    },
-  },
-  [`& .${autocompleteClasses.input}`]: {
-    flexGrow: 1,
-    textOverflow: 'ellipsis',
-    opacity: 0,
-  },
-  variants: [
-    {
-      props: { fullWidth: true },
-      style: { width: '100%' },
-    },
-    {
-      props: { size: 'small' },
-      style: {
-        [`& .${autocompleteClasses.tag}`]: {
-          margin: 2,
-          maxWidth: 'calc(100% - 4px)',
-        },
+    /* Avoid double tap issue on iOS */
+    '@media (pointer: fine)': {
+      [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+        visibility: 'visible',
       },
     },
-    {
-      props: { inputFocused: true },
-      style: {
+    [`& .${autocompleteClasses.tag}`]: {
+      margin: 3,
+      maxWidth: 'calc(100% - 6px)',
+    },
+    [`& .${autocompleteClasses.inputRoot}`]: {
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4,
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        width: 0,
+        minWidth: 30,
+      },
+    },
+    [`& .${inputClasses.root}`]: {
+      paddingBottom: 1,
+      '& .MuiInput-input': {
+        padding: `calc(${theme.spacing(1)} - 4px) 4px calc(${theme.spacing(1)} - 4px) 0px`,
+      },
+    },
+    [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      [`& .${inputClasses.input}`]: {
+        padding: '2px 4px 3px 0',
+      },
+    },
+    [`& .${outlinedInputClasses.root}`]: {
+      padding: `calc(${theme.spacing(1)} + 1px) 9px`,
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4 + 9,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4 + 9,
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        padding: `calc(${theme.spacing(1)} - 0.5px) 4px calc(${theme.spacing(1)} - 0.5px) 5px`,
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: {
+        right: 9,
+      },
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      // Don't specify paddingRight, as it overrides the default value set when there is only
+      // one of the popup or clear icon as the specificity is equal so the latter one wins
+      paddingTop: `calc(${theme.spacing(1)} - 2px)`,
+      paddingBottom: `calc(${theme.spacing(1)} - 2px)`,
+      paddingLeft: 6,
+      [`& .${autocompleteClasses.input}`]: {
+        padding: '2.5px 4px 2.5px 8px',
+      },
+    },
+    [`& .${filledInputClasses.root}`]: {
+      paddingTop: `calc(${theme.spacing(2)} + 3px)`,
+      paddingLeft: 8,
+      [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 26 + 4 + 9,
+      },
+      [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+        paddingRight: 52 + 4 + 9,
+      },
+      [`& .${filledInputClasses.input}`]: {
+        padding: `calc(${theme.spacing(1)} - 1px) 4px`,
+      },
+      [`& .${autocompleteClasses.endAdornment}`]: {
+        right: 9,
+      },
+    },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      paddingBottom: 1,
+      [`& .${filledInputClasses.input}`]: {
+        padding: '2.5px 4px',
+      },
+    },
+    [`& .${inputBaseClasses.hiddenLabel}`]: {
+      paddingTop: theme.spacing(1),
+    },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}`]: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      [`& .${autocompleteClasses.input}`]: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: `calc(${theme.spacing(2)} + 1px)`,
+      },
+    },
+    [`& .${filledInputClasses.root}.${inputBaseClasses.hiddenLabel}.${inputBaseClasses.sizeSmall}`]:
+      {
         [`& .${autocompleteClasses.input}`]: {
-          opacity: 1,
+          paddingTop: theme.spacing(1),
+          paddingBottom: `calc(${theme.spacing(1)} + 1px)`,
         },
       },
+    [`& .${autocompleteClasses.input}`]: {
+      flexGrow: 1,
+      textOverflow: 'ellipsis',
+      opacity: 0,
     },
-    {
-      props: { multiple: true },
-      style: {
-        [`& .${autocompleteClasses.inputRoot}`]: {
-          flexWrap: 'wrap',
+    variants: [
+      {
+        props: { fullWidth: true },
+        style: { width: '100%' },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          [`& .${autocompleteClasses.tag}`]: {
+            margin: 2,
+            maxWidth: 'calc(100% - 4px)',
+          },
         },
       },
-    },
-  ],
-});
+      {
+        props: { inputFocused: true },
+        style: {
+          [`& .${autocompleteClasses.input}`]: {
+            opacity: 1,
+          },
+        },
+      },
+      {
+        props: { multiple: true },
+        style: {
+          [`& .${autocompleteClasses.inputRoot}`]: {
+            flexWrap: 'wrap',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
@@ -308,7 +311,7 @@ const AutocompleteLoading = styled('div', {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
-    padding: '14px 16px',
+    padding: `calc(${theme.spacing(2)} - 2px) 16px`,
   })),
 );
 
@@ -318,7 +321,7 @@ const AutocompleteNoOptions = styled('div', {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
-    padding: '14px 16px',
+    padding: `calc(${theme.spacing(2)} - 2px) 16px`,
   })),
 );
 
@@ -329,7 +332,7 @@ const AutocompleteListbox = styled('ul', {
   memoTheme(({ theme }) => ({
     listStyle: 'none',
     margin: 0,
-    padding: '8px 0',
+    padding: `${theme.spacing(1)} 0`,
     maxHeight: '40vh',
     overflow: 'auto',
     isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
@@ -341,11 +344,11 @@ const AutocompleteListbox = styled('ul', {
       justifyContent: 'flex-start',
       alignItems: 'center',
       cursor: 'pointer',
-      paddingTop: 6,
+      paddingTop: `calc(${theme.spacing(1)} - 2px)`,
       boxSizing: 'border-box',
       outline: '0',
       WebkitTapHighlightColor: 'transparent',
-      paddingBottom: 6,
+      paddingBottom: `calc(${theme.spacing(1)} - 2px)`,
       paddingLeft: 16,
       paddingRight: 16,
       [theme.breakpoints.up('sm')]: {
