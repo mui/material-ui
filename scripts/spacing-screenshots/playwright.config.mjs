@@ -5,6 +5,8 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: '.',
   testMatch: /spacing\.spec\.mjs/,
+  // Keep Playwright's artifacts out of the repo's tracked test-results/.
+  outputDir: './.playwright-output',
   // "before" baselines (gitignored) — co-located with the harness.
   snapshotPathTemplate: '{testDir}/__baselines__/{arg}{ext}',
   reporter: 'list',

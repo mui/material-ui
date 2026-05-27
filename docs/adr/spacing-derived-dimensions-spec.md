@@ -18,19 +18,26 @@ Relationship rules:
 
 - **Outlined = contained − 1px** (border compensation), e.g. Button outlined
   block `5 = 6 − 1`.
-- **Horizontal exception — notch coupling.** For OutlinedInput and the outlined
-  InputLabel, keep **inline padding, adornment paddings, and `transformX`
-  literal**. The notch (`<legend>`) sits at a fixed left inset; scaling the
-  horizontal axis desyncs the value text, the floating label, and the notch
-  gap. Only the **block / y-axis** derives there. Components with no notch
-  coupling (Button) derive **both** axes.
-- **Outlined InputLabel resting y tracks the input block padding**; the shrunk
-  (floated) transform stays fully literal — border-relative, not
-  padding-relative.
+- **Horizontal stays literal where x is anchored.** Keep inline padding,
+  adornment paddings, and label `transformX` **literal** whenever something is
+  horizontally anchored to the input's inline padding. The outlined notch
+  (`<legend>`, fixed left inset) is the obvious break — but the **filled and
+  standard labels also align their x to inline padding**, so keep their x
+  literal too. For inputs and their labels, only the **block / y-axis** derives.
+  Components with no anchored horizontal relationship (Button) derive **both**.
+- **Floating-label y tracks the input — but the shrunk state splits by where it
+  floats:**
+  - **resting** y → tracks the input's block padding (the value position).
+  - **shrunk** y → **literal if it floats onto a border** (outlined: the floated
+    label sits on the border line, which padding doesn't move). **Tracks the
+    input if it floats into reserved padding** (filled: into the top padding).
+    Filled shrunk is the tricky one — tracking one unit while `paddingTop` tracks
+    three leaves a growing gap at high density; tune the coefficient and **verify
+    with a valued/focused field** (an empty field only shows the resting label).
 
 Leave untouched (not spacing): `em` line-boxes, `border-radius`,
 `border-width`, `scale()`, NotchedOutline notch padding, and horizontal
-(inline/x) values on notch-coupled components.
+(inline/x) values on inputs + their labels.
 
 ## Worked examples (this PR)
 
@@ -64,16 +71,31 @@ Button has no notch, so both axes derive.
 | resting, sm | `translate(14px, spacing(1) + 1px)`       |
 | shrunk      | `translate(14px, −9px)` — fully literal   |
 
+### FilledInput + InputLabel (filled) — block only, x literal
+
+Input block padding (top / bottom); inline `12` + adornments stay literal:
+
+| state          | top                     | bottom                  |
+| :------------- | :---------------------- | :---------------------- |
+| md             | `spacing(3) + 1px` (25) | `spacing(1)` (8)        |
+| sm             | `spacing(3) − 3px` (21) | `spacing(1) − 4px` (4)  |
+| hiddenLabel md | `spacing(2)` (16)       | `spacing(2) + 1px` (17) |
+| hiddenLabel sm | `spacing(1)` (8)        | `spacing(1) + 1px` (9)  |
+
+Filled label `transformY` (x stays `12px`):
+
+| state       | y                                                            |
+| :---------- | :----------------------------------------------------------- |
+| resting, md | `spacing(2)` (16)                                            |
+| resting, sm | `spacing(2) − 3px` (13)                                      |
+| shrunk, md  | `spacing(1) − 1px` (7) — floats _into_ padding, so it tracks |
+| shrunk, sm  | `spacing(1) − 4px` (4)                                       |
+
 ## Verification
 
-- **Argos zero-diff** at the default theme — the acceptance gate.
-- Unit tests (vitest, browser + node) green; lint, prettier.
-- No jsdom assertion on computed padding px (jsdom can't resolve `calc`).
-
-## Remaining components (next set)
-
-- [ ] FilledInput — input md/sm (incl. `25/8` label-space asymmetry),
-      adornments, multiline; InputLabel **filled** transforms track.
-- [ ] InputBase (standard `Input`) — `4px 0 5px`, small, multiline;
-      InputLabel **standard** transforms track.
-- [ ] Select / NativeSelect — `paddingRight 24/32`.
+Use the local harness (`scripts/spacing-screenshots/`) — see the rollout plan's
+"How to verify". Default render must be **pixel-identical** to the pre-change
+baseline (`toHaveScreenshot`, `maxDiffPixels: 0`); review 6px/10px shots for
+density. For floating-label components, put a **valued field** in the fixture so
+the shrunk label is visible. Unit tests (vitest, browser + node) green; lint,
+prettier. No jsdom assertion on computed padding px.

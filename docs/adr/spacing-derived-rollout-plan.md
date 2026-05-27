@@ -22,10 +22,12 @@ transform offset that positions content relative to padding):
 
 ## Edge cases (check every component against these)
 
-- **Horizontal / anchored coupling.** If a horizontal value couples to fixed
-  sibling geometry (the outlined notch is the known case), keep it **literal** —
-  only the vertical axis derives. Re-evaluate per component; most non-outlined
-  components have no such coupling and may derive both axes.
+- **Horizontal / anchored coupling.** Keep a horizontal value **literal** when
+  something is anchored to it. The outlined notch is the loud case, but the
+  **filled and standard label x also align to the input's inline padding** — so
+  inputs and their labels keep inline/x literal (derive vertical only).
+  Re-evaluate per component; ones with no anchored horizontal relationship
+  (Button) derive both axes.
 - **Not spacing → leave literal:** `em`/`rem` line-boxes, icon/avatar sizes,
   `border-width`, `border-radius`, `scale()`, `translate` used for motion/flip,
   rail/thumb/track geometry.
@@ -35,8 +37,12 @@ transform offset that positions content relative to padding):
 - **Fractional offsets** (`+ 0.5px`, inputs) are fine.
 - **Asymmetric block padding** (e.g. FilledInput `25` top / `8` bottom) — derive
   each side independently; the matching InputLabel transform tracks the top.
-- **Label / anchored transforms** must track the element they sit over: filled
-  label ↔ filled input block padding, standard label ↔ standard input.
+- **Floating-label transforms** track their input on the **y-axis** (x stays
+  literal). Resting y tracks the input's block padding. Shrunk y is **literal if
+  the label floats onto a border** (outlined) but **tracks the input if it
+  floats into reserved padding** (filled — and expect a growing gap at high
+  density unless the coefficient is tuned). Verify the shrunk state with a
+  valued/focused field — an empty field only shows the resting label.
 - **Mixed shorthand** — block derived, inline literal → `` `calc(…) 14px` ``.
 - **default-prop margins** (e.g. `FormControl` `margin="dense|normal"`) are
   spacing — convert them too.
@@ -51,7 +57,8 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 (gitignored) for your review. Requires `pnpm docs:dev` running.
 
 1. Add the component's load-bearing matrix (variants × sizes, adornment,
-   multiline) to the `spacing-fixture` route's demo map.
+   multiline) to the `spacing-fixture` route's demo map. For floating-label
+   components, include a **valued/focused field** so the shrunk label is visible.
 2. **Baseline (before):** on the _unconverted_ component,
    `COMPONENT=<C> pnpm spacing:shot:update` — writes the "before" baseline
    (`baseline-default.png`).
