@@ -96,8 +96,8 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 ### Buttons & actionable controls
 
-- [ ] IconButton
-- [ ] ButtonBase
+- [x] ~~IconButton~~ ✅ Done — padding `8/5/12` → `spacing(1)` / `spacing(1)−3px` / `spacing(2)−4px`. `fontSize` (icon size) + edge `−12/−3` margins (alignment compensation anchored to padding/icon) stay literal.
+- [x] ~~ButtonBase~~ ✅ Done — **skip**: only `padding: 0` / `margin: 0` resets.
 - [ ] ButtonGroup
 - [ ] Fab
 - [ ] Chip

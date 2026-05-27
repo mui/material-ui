@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -53,6 +54,26 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  IconButton: (
+    <Stack
+      direction="row"
+      spacing={2}
+      useFlexGap
+      sx={{ alignItems: 'center', border: '1px dashed #bbb' }}
+    >
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <IconButton key={size} size={size}>
+          <Box sx={{ width: '1em', height: '1em', bgcolor: 'currentColor', borderRadius: '2px' }} />
+        </IconButton>
+      ))}
+      <IconButton edge="start">
+        <Box sx={{ width: '1em', height: '1em', bgcolor: 'currentColor', borderRadius: '2px' }} />
+      </IconButton>
+      <IconButton edge="end">
+        <Box sx={{ width: '1em', height: '1em', bgcolor: 'currentColor', borderRadius: '2px' }} />
+      </IconButton>
     </Stack>
   ),
   FormSpacing: (
