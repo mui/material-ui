@@ -8,6 +8,10 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -56,6 +60,30 @@ const demos: Record<string, React.ReactNode> = {
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
     </Stack>
+  ),
+  ToggleButton: (
+    <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <ToggleButtonGroup key={size} size={size} value="left">
+          <ToggleButton value="left">Left</ToggleButton>
+          <ToggleButton value="right">Right</ToggleButton>
+        </ToggleButtonGroup>
+      ))}
+    </Stack>
+  ),
+  Tab: (
+    <Tabs value={0} sx={{ border: '1px dashed #bbb' }}>
+      <Tab label="Plain" />
+      <Tab
+        label="Top icon"
+        icon={<Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />}
+      />
+      <Tab
+        label="Start icon"
+        iconPosition="start"
+        icon={<Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />}
+      />
+    </Tabs>
   ),
   Fab: (
     <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>

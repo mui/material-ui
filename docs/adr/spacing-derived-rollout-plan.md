@@ -101,8 +101,8 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 - [x] ~~ButtonGroup~~ ✅ Done — **skip**: `marginLeft/Top: -1` are border-overlap geometry, `minWidth: 40` is sizing; no padding/gap.
 - [x] ~~Fab~~ ✅ Done — extended inline padding `0 16px`/`0 8px` → `0 spacing(2)` / `0 spacing(1)`. Circular FAB + all width/height/minWidth/borderRadius are geometry (literal).
 - [x] ~~Chip~~ ✅ Done — **skip**: height `32/24` is geometry-fixed, block padding `0`; inline padding `12/8` is an anchored coupled system (avatar/icon/delete offsets reference it). Density on Chip needs a geometry→spacing pass (height), out of this rule's scope.
-- [ ] ToggleButton / ToggleButtonGroup
-- [ ] Tab
+- [x] ~~ToggleButton / ToggleButtonGroup~~ ✅ Done — ToggleButton padding `11/7/15` → `spacing(1)+3px` / `spacing(1)−1px` / `spacing(2)−1px`. ToggleButtonGroup **skip**: only `-1` border-overlap margins.
+- [x] ~~Tab~~ ✅ Done — padding `12px 16px` → `spacing(2)−4px spacing(2)`; labelIcon `paddingTop/Bottom 9` → `spacing(1)+1px`; stacked-icon margin `6` → `spacing(1)−2px` (start/end icon margins were already `spacing(1)`). One jsdom computed-style test → `skipIf(isJsdom())` (calc).
 - [ ] BottomNavigationAction
 - [ ] SpeedDialAction
 - [ ] Pagination / PaginationItem
