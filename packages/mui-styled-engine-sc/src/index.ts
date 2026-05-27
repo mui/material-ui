@@ -4,6 +4,13 @@ import type * as React from 'react';
 import type * as CSS from 'csstype';
 import type * as hoistNonReactStatics from 'hoist-non-react-statics';
 
+// Re-export the full `styled-components` *type* surface, matching the
+// hand-written `.d.ts` that this conversion replaces. Type-only: emits
+// nothing at runtime. Local declarations below intentionally shadow some
+// styled-components names (`Keyframes`, `Interpolation`, `StyledComponent`,
+// `CSSObject`, …) — local declarations win over re-exports.
+export type * from 'styled-components';
+
 type WithOptionalTheme<P extends { theme?: T | undefined }, T> = OmitU<P, 'theme'> & {
   theme?: T | undefined;
 };
