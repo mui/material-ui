@@ -1,6 +1,6 @@
 # Product Marketing Manager
 
-<p class="description">Establish MUI X product positioning and messaging.</p>
+<p class="description">Establish MUI product positioning and messaging.</p>
 
 ## Details of the role
 
