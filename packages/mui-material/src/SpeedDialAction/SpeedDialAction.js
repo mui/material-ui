@@ -41,7 +41,7 @@ const SpeedDialActionFab = styled(Fab, {
   },
 })(
   memoTheme(({ theme }) => ({
-    margin: 8,
+    margin: theme.spacing(1),
     color: (theme.vars || theme).palette.text.secondary,
     backgroundColor: (theme.vars || theme).palette.background.paper,
     '&:hover': {
@@ -106,7 +106,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
             transformOrigin: '100% 50%',
             right: '100%',
-            marginRight: 8,
+            marginRight: theme.spacing(1),
           },
         },
       },
@@ -118,7 +118,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
           [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
             transformOrigin: '0% 50%',
             left: '100%',
-            marginLeft: 8,
+            marginLeft: theme.spacing(1),
           },
         },
       },
@@ -137,7 +137,7 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
     borderRadius: (theme.vars || theme).shape.borderRadius,
     boxShadow: (theme.vars || theme).shadows[1],
     color: (theme.vars || theme).palette.text.secondary,
-    padding: '4px 16px',
+    padding: `calc(${theme.spacing(1)} - 4px) ${theme.spacing(2)}`,
     wordBreak: 'keep-all',
   })),
 );

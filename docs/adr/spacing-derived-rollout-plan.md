@@ -103,9 +103,9 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 - [x] ~~Chip~~ ✅ Done — **skip**: height `32/24` is geometry-fixed, block padding `0`; inline padding `12/8` is an anchored coupled system (avatar/icon/delete offsets reference it). Density on Chip needs a geometry→spacing pass (height), out of this rule's scope.
 - [x] ~~ToggleButton / ToggleButtonGroup~~ ✅ Done — ToggleButton padding `11/7/15` → `spacing(1)+3px` / `spacing(1)−1px` / `spacing(2)−1px`. ToggleButtonGroup **skip**: only `-1` border-overlap margins.
 - [x] ~~Tab~~ ✅ Done — padding `12px 16px` → `spacing(2)−4px spacing(2)`; labelIcon `paddingTop/Bottom 9` → `spacing(1)+1px`; stacked-icon margin `6` → `spacing(1)−2px` (start/end icon margins were already `spacing(1)`). One jsdom computed-style test → `skipIf(isJsdom())` (calc).
-- [ ] BottomNavigationAction
-- [ ] SpeedDialAction
-- [ ] Pagination / PaginationItem
+- [x] ~~BottomNavigationAction~~ ✅ Done — inline padding `12` → `spacing(2)−4px`; unselected `paddingTop 14` → `spacing(2)−2px`. minWidth/maxWidth geometry.
+- [x] ~~SpeedDialAction~~ ✅ Done — fab `margin 8` → `spacing(1)`; static-tooltip `marginLeft/Right 8` → `spacing(1)`; label `padding 4px 16px` → `spacing(1)−4px spacing(2)`. Verified by construction + unit tests (SpeedDial is position-fixed, doesn't isolate in the harness scope).
+- [x] ~~Pagination / PaginationItem~~ ✅ Done — Pagination root **skip** (`padding/margin: 0`). PaginationItem inline padding `6/4/10` → `spacing(1)−2px` / `−4px` / `+2px` (both text + outlined blocks); inter-item margins `3/1` + page-icon `−8` stay literal. Fixed `height/minWidth` = geometry (like Fab-extended: horizontal padding scales, height doesn't).
 
 ### Lists & menus
 

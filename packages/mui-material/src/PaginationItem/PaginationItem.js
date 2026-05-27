@@ -71,7 +71,7 @@ const PaginationItemEllipsis = styled('div', {
     textAlign: 'center',
     boxSizing: 'border-box',
     minWidth: 32,
-    padding: '0 6px',
+    padding: `0 calc(${theme.spacing(1)} - 2px)`,
     margin: '0 3px',
     color: (theme.vars || theme).palette.text.primary,
     height: 'auto',
@@ -85,7 +85,7 @@ const PaginationItemEllipsis = styled('div', {
           minWidth: 26,
           borderRadius: 26 / 2,
           margin: '0 1px',
-          padding: '0 4px',
+          padding: `0 calc(${theme.spacing(1)} - 4px)`,
         },
       },
       {
@@ -93,7 +93,7 @@ const PaginationItemEllipsis = styled('div', {
         style: {
           minWidth: 40,
           borderRadius: 40 / 2,
-          padding: '0 10px',
+          padding: `0 calc(${theme.spacing(1)} + 2px)`,
           fontSize: theme.typography.pxToRem(15),
         },
       },
@@ -113,7 +113,7 @@ const PaginationItemPage = styled(ButtonBase, {
     boxSizing: 'border-box',
     minWidth: 32,
     height: 32,
-    padding: '0 6px',
+    padding: `0 calc(${theme.spacing(1)} - 2px)`,
     margin: '0 3px',
     color: (theme.vars || theme).palette.text.primary,
     [`&.${paginationItemClasses.focusVisible}`]: {
@@ -164,7 +164,7 @@ const PaginationItemPage = styled(ButtonBase, {
           height: 26,
           borderRadius: 26 / 2,
           margin: '0 1px',
-          padding: '0 4px',
+          padding: `0 calc(${theme.spacing(1)} - 4px)`,
         },
       },
       {
@@ -173,7 +173,7 @@ const PaginationItemPage = styled(ButtonBase, {
           minWidth: 40,
           height: 40,
           borderRadius: 40 / 2,
-          padding: '0 10px',
+          padding: `0 calc(${theme.spacing(1)} + 2px)`,
           fontSize: theme.typography.pxToRem(15),
         },
       },

@@ -12,6 +12,9 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Pagination from '@mui/material/Pagination';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -59,6 +62,26 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  BottomNavigationAction: (
+    <BottomNavigation showLabels value={0} sx={{ width: 360, border: '1px dashed #bbb' }}>
+      <BottomNavigationAction
+        label="Recents"
+        icon={<Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />}
+      />
+      <BottomNavigationAction
+        label="Favorites"
+        icon={<Box sx={{ width: 24, height: 24, bgcolor: 'currentColor', borderRadius: '2px' }} />}
+      />
+    </BottomNavigation>
+  ),
+  PaginationItem: (
+    <Stack spacing={2} useFlexGap>
+      <Pagination count={100} page={50} />
+      <Pagination count={100} page={50} size="small" />
+      <Pagination count={100} page={50} size="large" />
+      <Pagination count={100} page={50} variant="outlined" />
     </Stack>
   ),
   ToggleButton: (
