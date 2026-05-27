@@ -117,6 +117,22 @@ inline is already density-free):
 
 The standard `InputLabel` transforms track this in their own rollout item.
 
+### Surrounding form components
+
+| component        | value                          | derivation                            |
+| :--------------- | :----------------------------- | :------------------------------------ |
+| FormControl      | normal `marginTop 16`          | `spacing(2)`                          |
+| FormControl      | normal `marginBottom 8`        | `spacing(1)`                          |
+| FormControl      | dense `marginTop 8`            | `spacing(1)`                          |
+| FormControl      | dense `marginBottom 4`         | `spacing(1) − 4px`                    |
+| FormControlLabel | row gaps `marginRight/Left 16` | `spacing(2)`                          |
+| FormControlLabel | `marginLeft/Right −11`         | literal — compensates control padding |
+| FormHelperText   | `marginTop 3/4`, inline `14`   | literal — micro-gap / input-anchored  |
+| InputAdornment   | filled start `marginTop 16`    | `spacing(2)` (tracks label-space)     |
+
+FormControl's root was a static styled object — wrap it in `memoTheme(({ theme })
+=> …)` to reach `theme.spacing`.
+
 ## Verification
 
 Use the local harness (`scripts/spacing-screenshots/`) — see the rollout plan's

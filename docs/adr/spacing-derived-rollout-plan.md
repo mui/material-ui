@@ -7,8 +7,10 @@ component (or tight family) per PR, until every spacing dimension rides
 - **Decision / why:** [0001-spacing-derived-component-dimensions.md](./0001-spacing-derived-component-dimensions.md)
 - **How (the rule + worked examples):** [spacing-derived-dimensions-spec.md](./spacing-derived-dimensions-spec.md)
 
-Done: **Button**, **OutlinedInput**, **InputLabel (outlined)**, **FilledInput +
-InputLabel (filled)**, **InputBase (standard `Input`)**.
+Done: the **entire input / form family** — Button, OutlinedInput, FilledInput,
+InputBase (standard `Input`) + `Input`, all three InputLabel transform sets,
+InputAdornment, FormControl margins, FormControlLabel row gaps. Audited-skip
+within it: Select/NativeSelect, FormHelperText, FormLabel.
 
 ## Requirement (per component)
 
@@ -87,7 +89,10 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 - [x] ~~NativeSelect / Select (`paddingRight 24/32`)~~ ✅ Done — **skip**: `paddingRight 24/32` reserves space for the fixed 24px arrow icon (absolutely positioned, `right: 0/7`) → icon-anchored horizontal geometry, not density; block padding comes from the wrapping input variant. `minWidth 16` / icon `top: calc(50% − .5em)` are geometry.
 - [x] ~~InputAdornment~~ ✅ Done — filled start `marginTop: 16` → `spacing(2)` (tracks the filled label-space, verified with a valued field). `marginRight/marginLeft: 8` stay **literal** — horizontal, part of the input's inline layout which the whole family keeps literal.
 - [x] ~~InputLabel — **filled** + **standard** transform sets (track their input)~~ ✅ Done — filled with FilledInput; standard resting y → `spacing(3) − 4px` (md) / `spacing(2) + 1px` (sm), tracking `Input` marginTop + `InputBase` paddingTop. Shrunk `-1.5px` floats above the field → literal.
-- [ ] FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel
+- [x] ~~FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel~~ ✅ Done — FormControl normal `16/8` → `spacing(2)`/`spacing(1)`, dense `8/4` → `spacing(1)`/`spacing(1)−4px` (static styled → `memoTheme`). FormControlLabel row gaps `16` → `spacing(2)`; `−11` stays literal (compensates control icon-button padding). FormHelperText **skip**: `marginTop 3/4` micro typographic gaps (deriving 4 would invert vs the 3 medium), `marginLeft/Right 14` align to input inline → literal. FormLabel **skip**: only `padding: 0`.
+
+**Input / form family complete.** Skipped within it: Select/NativeSelect (icon
+geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0`).
 
 ### Buttons & actionable controls
 

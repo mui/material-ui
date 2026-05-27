@@ -6,6 +6,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // Local verification fixture for the spacing-derivation rollout.
@@ -50,6 +53,20 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  FormSpacing: (
+    <Stack sx={{ maxWidth: 320, border: '1px dashed #bbb' }}>
+      <TextField margin="normal" label="margin normal" helperText="helper text" />
+      <TextField margin="dense" label="margin dense" helperText="dense helper" size="small" />
+      <FormGroup row>
+        <FormControlLabel control={<Checkbox />} label="One" />
+        <FormControlLabel control={<Checkbox />} label="Two" />
+      </FormGroup>
+      <FormGroup row>
+        <FormControlLabel control={<Checkbox />} label="Start" labelPlacement="start" />
+        <FormControlLabel control={<Checkbox />} label="Start2" labelPlacement="start" />
+      </FormGroup>
     </Stack>
   ),
   InputAdornment: (
