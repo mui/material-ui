@@ -7,10 +7,28 @@ component (or tight family) per PR, until every spacing dimension rides
 - **Decision / why:** [0001-spacing-derived-component-dimensions.md](./0001-spacing-derived-component-dimensions.md)
 - **How (the rule + worked examples):** [spacing-derived-dimensions-spec.md](./spacing-derived-dimensions-spec.md)
 
-Done: the **entire input / form family** — Button, OutlinedInput, FilledInput,
-InputBase (standard `Input`) + `Input`, all three InputLabel transform sets,
-InputAdornment, FormControl margins, FormControlLabel row gaps. Audited-skip
-within it: Select/NativeSelect, FormHelperText, FormLabel.
+**Rollout complete** — every group in the checklist below is done or audited-skip.
+Each component was verified with the local harness (default render pixel-identical
+to the pre-change baseline) + unit tests + lint/prettier; see per-item notes.
+
+Recurring decisions applied throughout:
+
+- **Vertical (block) derives; anchored horizontal stays literal.** Inputs (notch /
+  label-x), lists (edge padding ↔ icon width ↔ inset), select arrow reservation,
+  autocomplete icon reservation, checkbox columns, tooltip arrows.
+- **Geometry stays literal** — fixed `width/height/minWidth`, icon sizes, `em`/`rem`
+  line-boxes, `border`, `scale()`, thumb/track/rail, half-icon offsets, `%` translates.
+- **Negative compensation margins track their padding** via `theme.spacing(-n)`
+  (e.g. StepButton, Alert/Card/Snackbar action, IconButton edge stays literal where
+  it doesn't cleanly map to a unit).
+- **Sub-unit values (`< 4px`, and the `1/2/3px` nudges) stay literal.**
+- Static styled objects were wrapped in `memoTheme(({ theme }) => …)` to reach
+  `theme.spacing`.
+
+Audited-skip components: Select/NativeSelect, FormHelperText, FormLabel,
+ButtonGroup, Chip, StepConnector, Dialog paper margin, ImageList/ImageListItem,
+AvatarGroup, Link, Switch, Slider, LinearProgress, Skeleton, Divider (already
+derived), Typography, CssBaseline.
 
 ## Requirement (per component)
 
@@ -136,10 +154,10 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 
 ### Audit & likely skip (geometry, not spacing density)
 
-- [ ] Switch — thumb/track geometry
-- [ ] Slider — rail/thumb/mark geometry
-- [ ] LinearProgress
-- [ ] Skeleton
-- [ ] Divider
-- [ ] Typography (margin resets — confirm)
-- [ ] CssBaseline / internal
+- [x] ~~Switch — thumb/track geometry~~ ✅ Audited, skip — `padding 12/7/4` is coupled to the literal thumb-travel `translateX`; deriving padding alone misaligns the thumb. Edge `−8` margins literal.
+- [x] ~~Slider — rail/thumb/mark geometry~~ ✅ Audited, skip — `padding 13px 0`/`20px 0` are rail touch-area geometry (coupled to thumb size); valueLabel padding is `rem`; mark-label clearance margins literal.
+- [x] ~~LinearProgress~~ ✅ Audited, skip — only `margin: 0` reset.
+- [x] ~~Skeleton~~ ✅ Audited, skip — only `marginTop/Bottom: 0` resets.
+- [x] ~~Divider~~ ✅ Audited — already uses `theme.spacing` for its margins/padding; inset `marginLeft: 72` is icon-anchored (list inset) → literal. Nothing to change.
+- [x] ~~Typography (margin resets — confirm)~~ ✅ Audited, skip — `margin: 0` reset + `gutterBottom 0.35em` (em, typographic).
+- [x] ~~CssBaseline / internal~~ ✅ Audited, skip — global resets, no component spacing.
