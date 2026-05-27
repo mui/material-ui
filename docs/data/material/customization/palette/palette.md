@@ -340,7 +340,7 @@ const theme = enhanceHighContrast(createTheme(), {
 
 The following tokens are available, showing how your browser resolves each system color keyword in the current environment:
 
-{{"demo": "HighContrastTokens.js", "bg": "inline", "hideToolbar": true}}
+{{"component": "file://./demos/high-contrast-tokens/index.ts", "bg": "inline", "hideToolbar": true}}
 
 ## Picking colors
 
