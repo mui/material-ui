@@ -6,6 +6,7 @@ import * as breakpointsModule from '../breakpoints';
 
 const breakpointsValues: Record<string, number> = (breakpointsModule as any).values;
 
+/** @internal */
 export function sizingTransform(value: any) {
   return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }

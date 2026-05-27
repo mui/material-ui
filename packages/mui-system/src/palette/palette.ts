@@ -2,6 +2,7 @@ import style from '../style';
 import type { PropsFor, SimpleStyleFunction } from '../style';
 import compose from '../compose';
 
+/** @internal */
 export function paletteTransform(value: unknown, userValue: unknown) {
   if (userValue === 'grey') {
     return userValue;
@@ -26,7 +27,7 @@ export const backgroundColor = style({
   prop: 'backgroundColor',
   themeKey: 'palette',
   transform: paletteTransform as any,
-});
+}) as unknown as SimpleStyleFunction<'backgroundColor'>;
 
 const palette = compose(color, bgcolor, backgroundColor) as unknown as SimpleStyleFunction<
   'bgcolor' | 'color'

@@ -15,6 +15,7 @@ const EMPTY_THEME = {};
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
+/** @internal */
 export const values: Record<string, number> = {
   xs: 0, // phone
   sm: 600, // tablet
@@ -171,6 +172,7 @@ function setupBreakpoints<Props, BreakpointsInput extends string = DefaultBreakP
   return newStyleFunction;
 }
 
+/** @internal */
 export function createEmptyBreakpointObject(
   breakpoints: Breakpoints = DEFAULT_BREAKPOINTS,
 ): Record<string, object> {
@@ -182,6 +184,7 @@ export function createEmptyBreakpointObject(
   return result;
 }
 
+/** @internal */
 export function removeUnusedBreakpoints(
   breakpoints: Breakpoints,
   style: Record<string, any>,
@@ -211,6 +214,7 @@ export function mergeBreakpointsInOrder(
   return removeUnusedBreakpoints(breakpoints, mergedOutput) as CSSObject;
 }
 
+/** @internal */
 export function computeBreakpointsBase(
   breakpointValues: any,
   themeBreakpoints: Record<string, number>,

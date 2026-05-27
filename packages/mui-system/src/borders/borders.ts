@@ -5,6 +5,7 @@ import compose from '../compose';
 import { createUnaryUnit, getValue } from '../spacing';
 import { handleBreakpoints } from '../breakpoints';
 
+/** @internal */
 export function borderTransform(value: unknown) {
   if (typeof value !== 'number') {
     return value as string;

@@ -48,6 +48,7 @@ for (const key in aliases) {
   CSS_PROPERTIES[key] = CSS_PROPERTIES[aliases[key]];
 }
 
+/** @internal */
 export const marginKeys = new Set([
   'm',
   'mt',
@@ -71,6 +72,7 @@ export const marginKeys = new Set([
   'marginBlockEnd',
 ]);
 
+/** @internal */
 export const paddingKeys = new Set([
   'p',
   'pt',

@@ -22,6 +22,7 @@ const filterPropsMapping: Record<string, string[]> = {
   typography: typography.filterProps,
 };
 
+/** @internal */
 export const styleFunctionMapping: Record<string, (props: any) => any> = {
   borders,
   display,
@@ -35,6 +36,7 @@ export const styleFunctionMapping: Record<string, (props: any) => any> = {
   typography,
 };
 
+/** @internal */
 export const propToStyleFunction: Record<string, (props: any) => any> = Object.keys(
   filterPropsMapping,
 ).reduce<Record<string, (props: any) => any>>((acc, styleFnName) => {
