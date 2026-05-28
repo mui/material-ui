@@ -27,7 +27,7 @@
     "@emotion/styled": "catalog:docs",
     "@mui/icons-material": "workspace:^",
     "@mui/internal-core-docs": "workspace:^",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@98cd23b",
+    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@49ee303",
     "@mui/internal-markdown": "workspace:^",
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
