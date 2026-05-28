@@ -52,7 +52,7 @@ export const FormControlLabelRoot = styled('label', {
     // For correct alignment with the text.
     verticalAlign: 'middle',
     WebkitTapHighlightColor: 'transparent',
-    marginLeft: -11, // compensates the control's icon-button padding (geometry)
+    marginLeft: `calc(${theme.spacing(-1)} - 3px)`, // compensates the control's icon-button padding (geometry)
     marginRight: theme.spacing(2), // gap used for row presentation of radio/checkbox
     [`&.${formControlLabelClasses.disabled}`]: {
       cursor: 'default',
@@ -67,7 +67,7 @@ export const FormControlLabelRoot = styled('label', {
         props: { labelPlacement: 'start' },
         style: {
           flexDirection: 'row-reverse',
-          marginRight: -11,
+          marginRight: `calc(${theme.spacing(-1)} - 3px)`,
         },
       },
       {

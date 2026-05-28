@@ -107,7 +107,7 @@ comparator, no extra deps). Screenshots land in `spacing-screenshots/<Component>
 - [x] ~~NativeSelect / Select (`paddingRight 24/32`)~~ ✅ Done — **skip**: `paddingRight 24/32` reserves space for the fixed 24px arrow icon (absolutely positioned, `right: 0/7`) → icon-anchored horizontal geometry, not density; block padding comes from the wrapping input variant. `minWidth 16` / icon `top: calc(50% − .5em)` are geometry.
 - [x] ~~InputAdornment~~ ✅ Done — filled start `marginTop: 16` → `spacing(2)` (tracks the filled label-space, verified with a valued field). `marginRight/marginLeft: 8` stay **literal** — horizontal, part of the input's inline layout which the whole family keeps literal.
 - [x] ~~InputLabel — **filled** + **standard** transform sets (track their input)~~ ✅ Done — filled with FilledInput; standard resting y → `spacing(3) − 4px` (md) / `spacing(2) + 1px` (sm), tracking `Input` marginTop + `InputBase` paddingTop. Shrunk `-1.5px` floats above the field → literal.
-- [x] ~~FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel~~ ✅ Done — FormControl normal `16/8` → `spacing(2)`/`spacing(1)`, dense `8/4` → `spacing(1)`/`spacing(1)−4px` (static styled → `memoTheme`). FormControlLabel row gaps `16` → `spacing(2)`; `−11` stays literal (compensates control icon-button padding). FormHelperText **skip**: `marginTop 3/4` micro typographic gaps (deriving 4 would invert vs the 3 medium), `marginLeft/Right 14` align to input inline → literal. FormLabel **skip**: only `padding: 0`.
+- [x] ~~FormControl (margin dense/normal), FormControlLabel, FormHelperText, FormLabel~~ ✅ Done — FormControl normal `16/8` → `spacing(2)`/`spacing(1)`, dense `8/4` → `spacing(1)`/`spacing(1)−4px` (static styled → `memoTheme`). FormControlLabel row gaps `16` → `spacing(2)`; `−11` (compensates control icon-button padding) → `calc(${theme.spacing(-1)} - 3px)` in **iter 2** so it tracks IconButton padding at density. FormHelperText **skip**: `marginTop 3/4` micro typographic gaps (deriving 4 would invert vs the 3 medium), `marginLeft/Right 14` align to input inline → literal. FormLabel **skip**: only `padding: 0`.
 
 **Input / form family complete.** Skipped within it: Select/NativeSelect (icon
 geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0`).
@@ -176,17 +176,11 @@ alignment with its anchor. A future pass must derive the whole chain together (o
 introduce a dedicated horizontal-density var) so the anchor stays aligned at every
 `--mui-spacing`.
 
-- [ ] **OutlinedInput** (partial) — inline padding `14` + adornment `14` literal (notch `<legend>` left inset).
-- [ ] **FilledInput** (partial) — inline padding `12` + adornments literal.
-- [ ] **InputLabel** (partial) — `transformX` literal all variants (outlined `14px`, filled `12px`, standard `0`); outlined shrunk `translateY(-9px)` literal (floats onto the border).
 - [ ] **InputAdornment** (partial) — `marginRight/Left 8` (horizontal, part of input inline layout).
-- [ ] **Select / NativeSelect** (full skip) — `paddingRight 24/32` + icon `right 0/7` reserve space for the fixed 24px arrow.
 - [ ] **List / ListSubheader / ListItem / ListItemButton / ListItemText** (partial) — edge padding `16`, inset `56/72`, subheader `16/72`; `ListItemIcon/Avatar` icon width `36/56`.
 - [ ] **MenuItem** (partial) — inline `16` gutters / inset `36` / `marginLeft 52`.
-- [ ] **Autocomplete** (partial) — icon reservation `paddingRight 26+4+9` / `52+4+9`, `endAdornment right: 9`, indicator paddings `4/2`.
 - [ ] **TableCell** (partial) — checkbox-column paddings `0 12px 0 16px` / `0 0 0 4px` (fixed-width `24/48` column; deriving overflows).
 - [ ] **TablePagination** (partial) — select `paddingRight 24` (arrow reservation).
-- [ ] **FormHelperText** (full skip) — contained `marginLeft/Right 14` (aligns to input inline). (Also see C.)
 
 ### B. Geometry → spacing (need to extend the rule to `width/height/translate`)
 
@@ -198,22 +192,15 @@ padding/margin/gap only. Revisiting needs a decision: should fixed geometry ride
 - [ ] **Switch** (full skip) — `padding 12/7/4` coupled to the literal thumb-travel `translateX`; track/thumb sizes; edge `-8`.
 - [ ] **Slider** (full skip) — `padding 13px 0` / `20px 0` rail touch-area; rail/thumb/mark geometry.
 - [ ] **Fab** (partial) — circular `width/height 56/40/48`, `minWidth`, `minHeight 36`.
-- [ ] **PaginationItem** (partial) — `height/minWidth 32/26/40`; page-icon `margin 0 -8px`.
-- [ ] **Badge** (partial) — `height/minWidth` (RADIUS\*2); `--Badge-translate` (`%`).
-- [ ] **IconButton** (partial) — edge `marginLeft/Right -12/-3` (icon-anchored), `fontSize`.
-- [ ] **ButtonGroup** (full skip) — `marginLeft/Top -1` border-overlap, `minWidth 40`.
-- [ ] **StepConnector** (full skip) + **StepContent** (partial) — half-icon `12`, `calc(±50% + 20px)`.
-- [ ] **Button** (partial) — `minWidth 64`.
-- [ ] **Tab / MenuItem / BottomNavigationAction** (partial) — `minWidth/maxWidth/minHeight`.
-- [ ] **Tooltip** (partial) — arrow placement margins `-0.71em` + `14/24px`.
-- [ ] **MobileStepper** (partial) — dot `width/height 8`.
+- [ ] **PaginationItem** (partial) — `height`; page-icon `margin 0 -8px`.
+- [ ] **Tab / MenuItem / BottomNavigationAction** (partial) — `minHeight`.
 
 ### C. Sub-unit nudges (`< 4px`) left literal
 
 Tiny tuning values; deriving them is low-value and can invert size relationships.
 Revisit only if exact-px fidelity at high density matters.
 
-- [ ] InputBase small `paddingTop 1`; FormHelperText `marginTop 3/4`; AlertTitle `marginTop -2`; CardHeader action `marginTop/Bottom -4`; Tooltip `margin 2`; MobileStepper dot `margin 0 2px`; PaginationItem inter-item `margin 3/1`; Autocomplete small/standard inner blocks (`2 / 2.5 / 3px`) + `paddingBottom 1`; TablePagination toolbar `paddingRight 2`.
+<!-- - [ ] InputBase small `paddingTop 1`; FormHelperText `marginTop 3/4`; AlertTitle `marginTop -2`; CardHeader action `marginTop/Bottom -4`; Tooltip `margin 2`; MobileStepper dot `margin 0 2px`; PaginationItem inter-item `margin 3/1`; Autocomplete small/standard inner blocks (`2 / 2.5 / 3px`) + `paddingBottom 1`; TablePagination toolbar `paddingRight 2`. -->
 
 ### D. Coupled to static media-query breakpoints
 
@@ -223,9 +210,25 @@ Revisit only if exact-px fidelity at high density matters.
 
 User-controlled; revisiting means making the _default_ spacing-aware, not the value.
 
-- [ ] **ImageList / ImageListItem** (full skip) — `gap` is a public px prop (inline style) + masonry `marginBottom = gap`.
 - [ ] **AvatarGroup** (full skip) — overlap `--AvatarGroup-spacing` from the `spacing` prop (`SPACINGS` `-16/-8`).
 
-### F. em/rem & resets — likely permanent skip (listed for completeness)
+### Iter-2 progress
 
-- [ ] Typography `gutterBottom 0.35em`; Slider valueLabel `rem` padding; LinearProgress / Skeleton / CssBaseline resets; Link (no spacing). Divider needs nothing (already `theme.spacing`).
+- [x] **FormControlLabel `−11`** — derived as `calc(${theme.spacing(-1)} - 3px)` so the compensation tracks IconButton padding at every `--mui-spacing`. Same pattern is applicable to other mixed-offset compensation negatives if revisited (e.g. IconButton edge `−12` → `calc(${theme.spacing(-1)} - 4px)`, currently out of the pruned iter-2 scope).
+
+### Workflow refinement (learned during iter 2)
+
+**`calc(...var(...))` vs literal-px sub-pixel diff.** Iter 1 captured baselines on the
+_unconverted_ literal values. When iter 2 converts a previously-literal value
+(e.g. `marginLeft: -11`) to a calc form (`calc(${theme.spacing(-1)} - 3px)`),
+the rendered pixel value is the same integer at default, but the browser resolves
+`calc(... - ...)` through `var(--mui-spacing)` with floating-point precision
+that doesn't always collapse to the exact same sub-pixel position as the integer
+literal. Result: a tiny (~1% of pixels) anti-aliasing diff that breaks the
+strict `maxDiffPixels: 0` gate even though the math is provably equal.
+
+**How to handle:** when the change is _purely_ a literal → calc rewrite (no
+intended visual change), refresh the baseline (`COMPONENT=<C> pnpm
+spacing:shot:update`) — the derived form is the new ground truth, equality is by
+construction. The strict pixel gate stays useful for any subsequent change to the
+same component (it's now anchored to the calc form).
