@@ -16,14 +16,32 @@ import { CodeTab, CodeTabList } from '../HighlightedCodeWithTabs';
 import { DemoSandbox } from './DemoSandbox';
 import { DemoToolbarRoot } from './DemoToolbarRoot';
 import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
-import { DemoEditor } from './DemoEditor';
 import { DemoEditorError } from './DemoEditorError';
-import { ReactRunner } from './ReactRunner';
 import { useDemoContext } from '../DemoContext/DemoContext';
 import { useCodeVariant } from '../codeVariant/codeVariant';
 import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
 import { useUserLanguage, useTranslate } from '../i18n';
 import { AdCarbonInline } from '../Ad/AdCarbon';
+
+// `react-runner` (pulls all of sucrase) and `react-simple-code-editor`
+// are only needed when the user enters live-edit mode. Defer the import,
+// but prefetch on hover so the chunks are ready by the time the user clicks.
+let demoEditorPromise: Promise<{ default: React.ComponentType<any> }> | undefined;
+function preloadDemoEditor(): Promise<{ default: React.ComponentType<any> }> {
+  if (!demoEditorPromise) {
+    demoEditorPromise = import('./DemoEditor').then((m) => ({ default: m.DemoEditor })) as any;
+  }
+  return demoEditorPromise!;
+}
+let reactRunnerPromise: Promise<{ default: React.ComponentType<any> }> | undefined;
+function preloadReactRunner(): Promise<{ default: React.ComponentType<any> }> {
+  if (!reactRunnerPromise) {
+    reactRunnerPromise = import('./ReactRunner').then((m) => ({ default: m.ReactRunner })) as any;
+  }
+  return reactRunnerPromise!;
+}
+const ReactRunner = React.lazy(preloadReactRunner);
+const DemoEditor = React.lazy(preloadDemoEditor);
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -148,20 +166,22 @@ function useDemoElement({
   );
   const LiveComponent = React.useMemo(
     () => (
-      <ReactRunner
-        scope={demoData.scope}
-        onError={debouncedSetError as any}
-        code={
-          editorCode.isPreview
-            ? trimLeadingSpaces(demoData.raw).replace(
-                trimLeadingSpaces(demoData.jsxPreview),
-                editorCode.value,
-              )
-            : editorCode.value
-        }
-      />
+      <React.Suspense fallback={BundledComponent}>
+        <ReactRunner
+          scope={demoData.scope}
+          onError={debouncedSetError as any}
+          code={
+            editorCode.isPreview
+              ? trimLeadingSpaces(demoData.raw).replace(
+                  trimLeadingSpaces(demoData.jsxPreview),
+                  editorCode.value,
+                )
+              : editorCode.value
+          }
+        />
+      </React.Suspense>
     ),
-    [demoData, debouncedSetError, editorCode.isPreview, editorCode.value],
+    [BundledComponent, demoData, debouncedSetError, editorCode.isPreview, editorCode.value],
   );
 
   // No need for a live environment if the code matches with the component rendered server-side.
@@ -605,8 +625,13 @@ export function Demo(props: DemoProps) {
   };
   const willRenderTabList = demoData.relativeModules && openDemoSource && !editorCode.isPreview;
 
+  const handlePreloadEditor = React.useCallback(() => {
+    preloadDemoEditor();
+    preloadReactRunner();
+  }, []);
+
   return (
-    <Root>
+    <Root onMouseEnter={handlePreloadEditor} onFocus={handlePreloadEditor}>
       {anchorName !== null && <AnchorLink id={anchorName} />}
       <DemoRoot
         hideToolbar={demoOptions.hideToolbar}
@@ -723,41 +748,43 @@ export function Demo(props: DemoProps) {
                       }}
                     />
                   ) : (
-                    <DemoEditor
-                      // Mount a new text editor when the preview mode change to reset the undo/redo history.
-                      key={String(editorCode.isPreview)}
-                      value={editorCode.value}
-                      onChange={
-                        ((value: string) => {
-                          setEditorCode({
-                            ...editorCode,
-                            value,
-                          });
-                        }) as any
-                      }
-                      onFocus={() => {
-                        setLiveDemoActive(true);
-                      }}
-                      id={demoSourceId}
-                      language={demoData.sourceLanguage}
-                      copyButtonProps={
-                        {
-                          'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
-                          'data-ga-event-label': demo.gaLabel,
-                          'data-ga-event-action': 'copy-click',
-                        } as any
-                      }
-                      sx={
-                        {
-                          '& .scrollContainer': {
-                            borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
-                            borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
-                          },
-                        } as any
-                      }
-                    >
-                      <DemoEditorError>{debouncedError}</DemoEditorError>
-                    </DemoEditor>
+                    <React.Suspense fallback={null}>
+                      <DemoEditor
+                        // Mount a new text editor when the preview mode change to reset the undo/redo history.
+                        key={String(editorCode.isPreview)}
+                        value={editorCode.value}
+                        onChange={
+                          ((value: string) => {
+                            setEditorCode({
+                              ...editorCode,
+                              value,
+                            });
+                          }) as any
+                        }
+                        onFocus={() => {
+                          setLiveDemoActive(true);
+                        }}
+                        id={demoSourceId}
+                        language={demoData.sourceLanguage}
+                        copyButtonProps={
+                          {
+                            'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+                            'data-ga-event-label': demo.gaLabel,
+                            'data-ga-event-action': 'copy-click',
+                          } as any
+                        }
+                        sx={
+                          {
+                            '& .scrollContainer': {
+                              borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
+                              borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
+                            },
+                          } as any
+                        }
+                      >
+                        <DemoEditorError>{debouncedError}</DemoEditorError>
+                      </DemoEditor>
+                    </React.Suspense>
                   )}
                 </Tabs.Panel>
               ))}
