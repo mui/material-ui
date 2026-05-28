@@ -63,16 +63,14 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
   const { position: positionProp, className, ...other } = props;
   const { position: positionContext } = React.useContext(TimelineContext);
-  const [hasOppositeContent, setHasOppositeContent] = React.useState(false);
 
-  React.useEffect(() => {
-    React.Children.forEach(props.children, (child) => {
-      if (isMuiElement(child, ['TimelineOppositeContent'])) {
-        setHasOppositeContent(true);
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  let hasOppositeContent = false;
+
+  React.Children.forEach(props.children, (child) => {
+    if (isMuiElement(child, ['TimelineOppositeContent'])) {
+      hasOppositeContent = true;
+    }
+  });
 
   const ownerState = {
     ...props,
