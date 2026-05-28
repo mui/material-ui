@@ -177,7 +177,7 @@ introduce a dedicated horizontal-density var) so the anchor stays aligned at eve
 `--mui-spacing`.
 
 - [ ] **InputAdornment** (partial) — `marginRight/Left 8` (horizontal, part of input inline layout).
-- [ ] **List / ListSubheader / ListItem / ListItemButton / ListItemText** (partial) — edge padding `16`, inset `56/72`, subheader `16/72`; `ListItemIcon/Avatar` icon width `36/56`.
+- [ ] **List / ListSubheader / ListItem / ListItemButton / ListItemText** (partial) — ~~edge padding `16`~~ ✅ done iter-2 (all three containers derive together); inset `56/72`, subheader inset `72`, `ListItem secondaryAction paddingRight 48`, `ListItemIcon/Avatar` icon width `36/56` still literal — coordinated icon-width derivation needed.
 - [ ] **MenuItem** (partial) — inline `16` gutters / inset `36` / `marginLeft 52`.
 - [ ] **TableCell** (partial) — checkbox-column paddings `0 12px 0 16px` / `0 0 0 4px` (fixed-width `24/48` column; deriving overflows).
 - [ ] **TablePagination** (partial) — select `paddingRight 24` (arrow reservation).
@@ -216,6 +216,7 @@ User-controlled; revisiting means making the _default_ spacing-aware, not the va
 
 - [x] **FormControlLabel `−11`** — derived as `calc(${theme.spacing(-1)} - 3px)` so the compensation tracks IconButton padding at every `--mui-spacing`. Same pattern is applicable to other mixed-offset compensation negatives if revisited (e.g. IconButton edge `−12` → `calc(${theme.spacing(-1)} - 4px)`, currently out of the pruned iter-2 scope).
 - [x] **Chip (full coupled derivation)** — every value (root `height`, `borderRadius`, avatar/icon `width/height`, all the small `±2/3/4/5/6` offsets, deleteIcon `fontSize`, label paddings) → `spacing(N) ± offset`. Whole pill scales as a unit. ChipLabel static → `memoTheme`. **Finding:** the iter-1 "sub-unit literal" rule was for _isolated_ small nudges; when sub-unit values are load-bearing in a coupled system (Chip's 5/6/4/2/3 offsets), deriving them via the formula keeps proportions and yields pixel-identical at default.
+- [x] **List family edge padding** — `ListItem` / `ListItemButton` / `ListSubheader` gutter `paddingLeft/Right 16` → `theme.spacing(2)`. The three parallel list-item containers now stay aligned at every `--mui-spacing` (was the coupling reason for iter-1's "horizontal literal" decision). Still literal in this pass: `ListItemText` inset `56`, `ListSubheader` inset `72`, `ListItem` `paddingRight 48` (secondary-action width), `ListItemIcon/Avatar` widths `36/56` — all anchored to icon geometry; the next list-family iter-2 step is a coordinated icon-width derivation.
 
 ### Workflow refinement (learned during iter 2)
 

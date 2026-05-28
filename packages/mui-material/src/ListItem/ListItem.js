@@ -75,8 +75,8 @@ export const ListItemRoot = styled('div', {
       {
         props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
         },
       },
       {
