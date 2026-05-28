@@ -3,7 +3,8 @@
  * screenshots, one for axe — so editing one tool can never stomp on the
  * other. Each list is evaluated last-match-wins (no inheritance: an override
  * rule must restate every field it cares about) against the docs path
- * `docs/data/material/components/{slug}/{Demo}`.
+ * `docs/data/material/components/{slug}/{Demo}` (component demos) or
+ * `docs/src/components/product{Product}/{Name}` (landing-page composites).
  *
  * Whole-slug exclusions where *no* tool wants anything live in the
  * `index.jsx` glob — dropping them from the bundle entirely, not just from
@@ -12,12 +13,17 @@
 
 import { minimatch } from 'minimatch';
 
+/** Default playwright viewport when no `ScreenshotRule.viewport` matches. */
+export const DEFAULT_VIEWPORT = { width: 1000, height: 700 };
+
 export interface ScreenshotRule {
-  /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
+  /** Minimatch glob against the docs path (see file-level comment). */
   test: string;
   enabled?: boolean;
   /** Playwright waits for this selector after navigation, before axe + screenshot. */
   waitForSelector?: string;
+  /** Per-route playwright viewport override. Defaults to {@link DEFAULT_VIEWPORT}. */
+  viewport?: { width: number; height: number };
 }
 
 export interface A11yRule {
@@ -98,6 +104,14 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     test: 'docs/data/material/components/table/ReactVirtualizedTable',
     waitForSelector: '[data-index="1"]',
   }, // Wait for virtualized rows to render
+
+  // Landing-page composites under `docs/src/components/product*/` use
+  // desktop breakpoints (`md`+) and look clipped at the 1000×700 default.
+  { test: 'docs/src/components/product*/**', viewport: { width: 1280, height: 800 } },
+  // X composites (large grids, dense charts) want a wider canvas to match
+  // their live-docs desktop layout. Last-match-wins so this overrides the
+  // broader product*/** viewport above.
+  { test: 'docs/src/components/productX/**', viewport: { width: 1440, height: 900 } },
 ];
 
 /**
@@ -117,19 +131,35 @@ export interface ParsedRoute {
   demo: string;
 }
 
-const ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPONENT_ROUTE_REGEX = /^\/docs-components-([^/]+)\/(.+)$/;
+const COMPOSITE_ROUTE_REGEX = /^\/docs-product-([^/]+)\/(.+)$/;
 
 /**
  * Map a VRT route to its docs path + slug + demo, or `null` for non-component
  * routes (regression fixtures).
+ *
+ * Recognises two route shapes:
+ * - `/docs-components-{slug}/{Demo}` → `docs/data/material/components/{slug}/{Demo}`
+ * - `/docs-product-{product}/{Name}` → `docs/src/components/product{Product}/{Name}`
  */
 export function parseRoute(route: string): ParsedRoute | null {
-  const match = route.match(ROUTE_REGEX);
-  if (!match) {
-    return null;
+  const componentMatch = route.match(COMPONENT_ROUTE_REGEX);
+  if (componentMatch) {
+    const [, slug, demo] = componentMatch;
+    return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
   }
-  const [, slug, demo] = match;
-  return { path: `docs/data/material/components/${slug}/${demo}`, slug, demo };
+  const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
+  if (compositeMatch) {
+    const [, product, demo] = compositeMatch;
+    // Reverse the kebab-case conversion applied by the glob in `index.jsx`:
+    // `design-kit` → `DesignKit` → directory `productDesignKit`.
+    const pascal = product
+      .split('-')
+      .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+      .join('');
+    return { path: `docs/src/components/product${pascal}/${demo}`, slug: product, demo };
+  }
+  return null;
 }
 
 /**

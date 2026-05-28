@@ -14,6 +14,25 @@ describe('parseRoute', () => {
       demo: 'BasicButtons',
     });
   });
+
+  it('parses a docs-product route into the matching product*/ docs/src path', () => {
+    expect(parseRoute('/docs-product-material/MaterialHero')).to.deep.equal({
+      path: 'docs/src/components/productMaterial/MaterialHero',
+      slug: 'material',
+      demo: 'MaterialHero',
+    });
+    expect(parseRoute('/docs-product-x/XGridFullDemo')).to.deep.equal({
+      path: 'docs/src/components/productX/XGridFullDemo',
+      slug: 'x',
+      demo: 'XGridFullDemo',
+    });
+    // Multi-segment slug: kebab-case round-trips to PascalCase directory.
+    expect(parseRoute('/docs-product-design-kit/DesignKitHero')).to.deep.equal({
+      path: 'docs/src/components/productDesignKit/DesignKitHero',
+      slug: 'design-kit',
+      demo: 'DesignKitHero',
+    });
+  });
 });
 
 describe('getConfig', () => {

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+import MarketingWrapper from './MarketingWrapper';
 import './global.css';
 
 // Skip charts annimation for screen shots
@@ -154,7 +155,39 @@ Object.keys(importDemos).forEach((path) => {
   });
 }, []);
 
-function FixtureRenderer({ component: FixtureComponent, path }) {
+// Bespoke composites under `docs/src/components/product*/` that assemble the
+// product landing pages (`/material-ui`, `/x`, `/core`, ...). They aren't
+// covered by the `docs/data/**` glob above. See
+// `test/regressions/MarketingWrapper.tsx` for the branding wrapper and
+// `test/regressions/stubs/` for the `next/*` shims that let composites with
+// transitive `next/router` imports render outside the Next.js docs host.
+const importComposites = import.meta.glob(['docs/src/components/product*/[A-Z]*.tsx'], {
+  import: 'default',
+  eager: true,
+});
+
+const compositeFixtures = [];
+Object.keys(importComposites).forEach((path) => {
+  const productMatch = path.match(/components\/product([^/]+)\//);
+  if (!productMatch) {
+    return;
+  }
+  // Convert PascalCase to kebab-case so the suite name follows the existing
+  // `docs-{kebab-case}` convention (e.g. `productDesignKit` →
+  // `design-kit` → suite `docs-product-design-kit`). `parseRoute` in
+  // `demoMeta.ts` reverses this when reconstructing the docs path.
+  const product = productMatch[1].replace(/(?<=[a-z])(?=[A-Z])/g, '-').toLowerCase();
+  const name = path.split('/').pop().replace(/\.tsx$/, '');
+  compositeFixtures.push({
+    path,
+    suite: `docs-product-${product}`,
+    name,
+    Component: importComposites[path],
+    isComposite: true,
+  });
+}, []);
+
+function FixtureRenderer({ component: FixtureComponent, path, isComposite }) {
   React.useEffect(() => {
     const viewerRoot = document.getElementById('test-viewer');
     const testRoot = document.createElement('div');
@@ -163,7 +196,13 @@ function FixtureRenderer({ component: FixtureComponent, path }) {
     React.startTransition(() => {
       reactRoot.render(
         <TestViewer path={path} FixtureComponent={FixtureComponent}>
-          <FixtureComponent />
+          {isComposite ? (
+            <MarketingWrapper>
+              <FixtureComponent />
+            </MarketingWrapper>
+          ) : (
+            <FixtureComponent />
+          )}
         </TestViewer>,
       );
     });
@@ -175,13 +214,14 @@ function FixtureRenderer({ component: FixtureComponent, path }) {
 
       viewerRoot.removeChild(testRoot);
     };
-  }, [FixtureComponent, path]);
+  }, [FixtureComponent, path, isComposite]);
 
   return null;
 }
 
 FixtureRenderer.propTypes = {
   component: PropTypes.elementType,
+  isComposite: PropTypes.bool,
   path: PropTypes.string.isRequired,
 };
 
@@ -260,7 +300,13 @@ function App(props) {
                 key={path}
                 exact
                 path={path}
-                element={<FixtureRenderer component={FixtureComponent} path={path} />}
+                element={
+                  <FixtureRenderer
+                    component={FixtureComponent}
+                    path={path}
+                    isComposite={fixture.isComposite}
+                  />
+                }
               />
             );
           })}
@@ -305,7 +351,7 @@ App.propTypes = {
 const container = document.getElementById('react-root');
 const children = (
   <Router>
-    <App fixtures={regressionFixtures.concat(demoFixtures)} />
+    <App fixtures={regressionFixtures.concat(demoFixtures).concat(compositeFixtures)} />
   </Router>
 );
 const reactRoot = ReactDOMClient.createRoot(container);

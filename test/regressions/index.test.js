@@ -3,7 +3,13 @@ import * as path from 'path';
 import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
-import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import {
+  A11Y_RULES,
+  DEFAULT_VIEWPORT,
+  SCREENSHOT_RULES,
+  getConfig,
+  parseRoute,
+} from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -17,10 +23,11 @@ async function main() {
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
   });
-  // reuse viewport from `vrtest`
-  // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
+  // Default viewport reused from `vrtest`
+  // (https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44).
+  // Per-route overrides are applied below via `screenshotRule.viewport`.
   const page = await browser.newPage({
-    viewport: { width: 1000, height: 700 },
+    viewport: DEFAULT_VIEWPORT,
     reducedMotion: 'reduce',
   });
 
@@ -135,6 +142,11 @@ async function main() {
         if (process.env.PWDEBUG) {
           this?.timeout?.(0);
         }
+
+        // Apply per-route viewport before rendering so the composite renders
+        // at its desktop breakpoint. Routes without a matching rule keep the
+        // default 1000x700.
+        await page.setViewportSize(screenshotRule?.viewport ?? DEFAULT_VIEWPORT);
 
         const testcase = await renderFixture(route);
 
