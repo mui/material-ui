@@ -167,11 +167,5 @@
     "@pigment-css/unplugin": "0.0.30",
     "@pigment-css/nextjs-plugin": "0.0.30",
     "@pigment-css/vite-plugin": "0.0.30"
-  },
-  "pnpm": {
-    "overrides": {
-      "stylis": "4.2.0",
-      "react-is": "19.2.6"
-    }
   }
 }
