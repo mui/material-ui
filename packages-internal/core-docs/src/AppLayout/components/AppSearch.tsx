@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import {
   DocSearchModal,
@@ -144,10 +145,10 @@ function NewStartScreen() {
         <div key={category.name} className="DocSearch-NewStartScreenCategory">
           <div className="DocSearch-NewStartScreenTitle">{category.name}</div>
           {items.map(({ name, icon, href }) => (
-            <a key={name} href={href} className="DocSearch-NewStartScreenItem">
+            <NextLink key={name} href={href} className="DocSearch-NewStartScreenItem">
               {icon}
               {name}
-            </a>
+            </NextLink>
           ))}
         </div>
       ))}
