@@ -12,7 +12,7 @@ function DefaultPropsProvider({
   return <PropsContext.Provider value={value}>{children}</PropsContext.Provider>;
 }
 
-DefaultPropsProvider.propTypes /* remove-proptypes */ = {
+(DefaultPropsProvider as any).propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -25,7 +25,7 @@ DefaultPropsProvider.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   value: PropTypes.object,
-} as any;
+};
 
 function getThemeProps<
   Theme extends {

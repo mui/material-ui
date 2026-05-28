@@ -9,7 +9,7 @@ import sizing from '../sizing';
 import spacing from '../spacing';
 import typography from '../typography';
 
-const filterPropsMapping: Record<string, string[]> = {
+const filterPropsMapping: Record<string, Iterable<string>> = {
   borders: borders.filterProps,
   display: display.filterProps,
   flexbox: flexbox.filterProps,
@@ -18,7 +18,7 @@ const filterPropsMapping: Record<string, string[]> = {
   palette: palette.filterProps,
   shadows: (shadows as any).filterProps,
   sizing: sizing.filterProps,
-  spacing: Array.from((spacing as any).filterProps),
+  spacing: (spacing as any).filterProps,
   typography: typography.filterProps,
 };
 
@@ -40,9 +40,9 @@ export const styleFunctionMapping: Record<string, (props: any) => any> = {
 export const propToStyleFunction: Record<string, (props: any) => any> = Object.keys(
   filterPropsMapping,
 ).reduce<Record<string, (props: any) => any>>((acc, styleFnName) => {
-  filterPropsMapping[styleFnName].forEach((propName) => {
+  for (const propName of filterPropsMapping[styleFnName]) {
     acc[propName] = styleFunctionMapping[styleFnName];
-  });
+  }
 
   return acc;
 }, {});

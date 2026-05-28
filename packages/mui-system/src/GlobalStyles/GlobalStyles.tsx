@@ -51,7 +51,7 @@ function GlobalStyles<Theme = SystemTheme>({
   return <MuiGlobalStyles styles={globalStyles as any} />;
 }
 
-GlobalStyles.propTypes /* remove-proptypes */ = {
+(GlobalStyles as any).propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -75,6 +75,6 @@ GlobalStyles.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   themeId: PropTypes.string,
-} as any;
+};
 
 export default GlobalStyles;

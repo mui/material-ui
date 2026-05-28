@@ -107,7 +107,7 @@ function ThemeProvider<T = DefaultTheme>(
   ) as unknown as React.ReactElement<ThemeProviderProps<T>>;
 }
 
-ThemeProvider.propTypes /* remove-proptypes */ = {
+(ThemeProvider as any).propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -124,7 +124,7 @@ ThemeProvider.propTypes /* remove-proptypes */ = {
    * The design system's unique id for getting the corresponded theme when there are multiple design systems.
    */
   themeId: PropTypes.string,
-} as any;
+};
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
