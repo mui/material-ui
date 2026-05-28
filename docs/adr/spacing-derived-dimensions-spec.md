@@ -39,6 +39,56 @@ Leave untouched (not spacing): `em` line-boxes, `border-radius`,
 `border-width`, `scale()`, NotchedOutline notch padding, and horizontal
 (inline/x) values on inputs + their labels.
 
+## Choosing `N` — the step coefficient
+
+Once a value is written as `calc(<literal> + theme.spacing(N))`, **N is the
+step coefficient**: each 1px change in `--mui-spacing` shifts that value by
+N px. So N is not just "the closest multiple of 8" — it's a design knob for
+how fast that element scales with density.
+
+**Rule of thumb: N reflects the size/role of the element.**
+
+- **Larger / container-like elements → larger N.** A medium-sized container
+  (Button padding, Chip height) typically uses `N = 2` (+2px per spacing unit),
+  so the container visibly responds to density.
+- **Smaller / inner elements → smaller N.** Inner glyphs inside a container
+  (Chip avatar/icon/deleteIcon `width`/`height`/`fontSize`) typically use `N = 1`
+  (+1px per spacing unit), so they scale gently and don't outgrow their parent.
+- **The result:** at high density the container grows faster than its contents,
+  so inner gaps grow rather than shrink (avatars don't overflow); at low density
+  the container shrinks faster than its contents, but a separate **min-clamp**
+  prevents inner offsets from going negative — see below.
+
+Choosing N this way trades two competing goals:
+
+1. **Default fidelity** — `calc(<literal> + spacing(N))` must equal the original
+   px at `--mui-spacing = 8` (the math constraint).
+2. **Density behavior** — at non-default densities, smaller N keeps proportions
+   tighter, larger N makes the element more density-responsive.
+
+Pick the smallest N that still gives meaningful response. For sub-unit values
+(`< 4px`) that are **load-bearing in a coupled system** (e.g. Chip's `5/-6/4`
+offsets), prefer `N = 1` with a px offset (`calc(spacing(1) - 3px)`) — this
+keeps the value scaling at the gentlest rate, matching the surrounding inner
+elements.
+
+### Clamp inner-margin negatives at `0`
+
+Compensation negatives like `calc(spacing(1) - 3px)` go _negative_ when
+`--mui-spacing < 3` (would pull the inner element past the container edge).
+Wrap them in `max(…, 0px)` to clamp:
+
+```js
+marginLeft: `max(calc(${theme.spacing(1)} - 3px), 0px)`;
+```
+
+At default the `max()` is a no-op (5px stays 5px). At ultra-low density it
+prevents the negative shift. Use this for inner-positive offsets that must
+not go negative (Chip avatar/icon `marginLeft`, deleteIcon `marginRight`).
+Compensation negatives that _should_ stay negative (FormControlLabel `-11`
+cancelling IconButton padding) don't need the clamp — they're meant to be
+negative at every density.
+
 ## Worked examples (this PR)
 
 ### Button (`theme.spacing(1)=8`, `(2)=16`, `(3)=24`)

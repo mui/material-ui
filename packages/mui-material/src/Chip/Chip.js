@@ -93,24 +93,23 @@ const ChipRoot = styled('div', {
         pointerEvents: 'none',
       },
       [`& .${chipClasses.avatar}`]: {
-        marginLeft: `calc(${theme.spacing(1)} - 3px)`,
+        marginLeft: `max(calc(${theme.spacing(1)} - 3px), 0px)`,
         marginRight: `calc(2px - ${theme.spacing(1)})`,
-        width: `calc(8px + ${theme.spacing(2)})`,
-        height: `calc(8px + ${theme.spacing(2)})`,
+        width: `calc(16px + ${theme.spacing(1)})`,
+        height: `calc(16px + ${theme.spacing(1)})`,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
-        fontSize: `calc(8px + ${theme.spacing(2)})`,
-        marginLeft: `calc(${theme.spacing(1)} - 3px)`,
+        marginLeft: `max(calc(${theme.spacing(1)} - 3px), 0px)`,
         marginRight: `calc(2px - ${theme.spacing(1)})`,
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: `calc(6px + ${theme.spacing(2)})`,
+        fontSize: `calc(14px + ${theme.spacing(1)})`,
         cursor: 'pointer',
-        margin: `0 calc(${theme.spacing(1)} - 3px) 0 calc(2px - ${theme.spacing(1)})`,
+        margin: `0 max(calc(${theme.spacing(1)} - 3px), 0px) 0 calc(2px - ${theme.spacing(1)})`,
         '&:hover': {
           color: theme.alpha((theme.vars || theme).palette.text.primary, 0.4),
         },
@@ -143,20 +142,20 @@ const ChipRoot = styled('div', {
           style: {
             height: `calc(${theme.spacing(2)} + 8px)`, // 32px
             [`& .${chipClasses.avatar}`]: {
-              marginLeft: `calc(${theme.spacing(1)} - 4px)`,
+              marginLeft: `max(calc(${theme.spacing(1)} - 4px), 0px)`,
               marginRight: `calc(4px - ${theme.spacing(1)})`,
-              width: `calc(${theme.spacing(2)} + 2px)`,
-              height: `calc(${theme.spacing(2)} + 2px)`,
+              width: `calc(${theme.spacing(1)} + 10px)`,
+              height: `calc(${theme.spacing(1)} + 10px)`,
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: `calc(${theme.spacing(2)} + 2px)`,
+              fontSize: `calc(${theme.spacing(1)} + 10px)`,
               marginLeft: `calc(${theme.spacing(1)} - 4px)`,
               marginRight: `calc(4px - ${theme.spacing(1)})`,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: theme.spacing(2),
-              marginRight: `calc(${theme.spacing(1)} - 4px)`,
+              fontSize: `calc(8px + ${theme.spacing(1)})`,
+              marginRight: `max(calc(${theme.spacing(1)} - 4px), 0px)`,
               marginLeft: `calc(4px - ${theme.spacing(1)})`,
             },
           },

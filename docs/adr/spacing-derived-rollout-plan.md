@@ -16,6 +16,13 @@ Recurring decisions applied throughout:
 - **Vertical (block) derives; anchored horizontal stays literal.** Inputs (notch /
   label-x), lists (edge padding ↔ icon width ↔ inset), select arrow reservation,
   autocomplete icon reservation, checkbox columns, tooltip arrows.
+- **`N` in `theme.spacing(N)` is the step coefficient** — each 1px of
+  `--mui-spacing` shifts the value by N px. Pick N from the element's size/role,
+  not just from `round(P/8)`: larger / container-like elements (Chip height,
+  Button padding) use `N = 2` so they respond visibly to density; smaller / inner
+  elements (Chip avatar/icon glyph sizes) use `N = 1` so they scale gently and
+  don't outgrow their container. See spec § "Choosing N — the step coefficient".
+  Wrap inner-positive offsets that must not go negative in `max(…, 0px)`.
 - **Geometry stays literal** — fixed `width/height/minWidth`, icon sizes, `em`/`rem`
   line-boxes, `border`, `scale()`, thumb/track/rail, half-icon offsets, `%` translates.
 - **Negative compensation margins track their padding** via `theme.spacing(-n)`
@@ -216,7 +223,7 @@ User-controlled; revisiting means making the _default_ spacing-aware, not the va
 
 - [x] **FormControlLabel `−11`** — derived as `calc(${theme.spacing(-1)} - 3px)` so the compensation tracks IconButton padding at every `--mui-spacing`. Same pattern is applicable to other mixed-offset compensation negatives if revisited (e.g. IconButton edge `−12` → `calc(${theme.spacing(-1)} - 4px)`, currently out of the pruned iter-2 scope).
 - [x] **Chip (full coupled derivation)** — every value (root `height`, `borderRadius`, avatar/icon `width/height`, all the small `±2/3/4/5/6` offsets, deleteIcon `fontSize`, label paddings) → `spacing(N) ± offset`. Whole pill scales as a unit. ChipLabel static → `memoTheme`. **Finding:** the iter-1 "sub-unit literal" rule was for _isolated_ small nudges; when sub-unit values are load-bearing in a coupled system (Chip's 5/6/4/2/3 offsets), deriving them via the formula keeps proportions and yields pixel-identical at default.
-  - **Refined to +2px-per-spacing-unit step.** Chip height = `calc(<literal> + theme.spacing(2))` so each `--mui-spacing` unit shifts height by 2px (medium `calc(16px + spacing(2))` = 32; small `calc(8px + spacing(2))` = 24). Avatar/icon `width/height/fontSize` aligned to the same +2/unit step: medium avatar/icon `calc(8px + spacing(2))` (=24), medium deleteIcon `calc(6px + spacing(2))` (=22). Small variants already matched. Medium icon got an explicit `fontSize` (was inheriting SvgIcon's 24) so it scales with the avatar. Constant 8px chip-vs-avatar gap preserved at every density (centering stays exact).
+  - **Two-tier step coefficient.** Container scales faster than inner glyphs so contents don't overflow at high density. Chip height uses `spacing(2)` (+2/unit): medium `calc(16px + spacing(2))` = 32, small `calc(8px + spacing(2))` = 24. Inner avatar/icon/deleteIcon `width/height/fontSize` use `spacing(1)` (+1/unit): medium avatar `calc(16px + spacing(1))` = 24, medium deleteIcon `calc(14px + spacing(1))` = 22, small avatar/icon `calc(spacing(1) + 10px)` = 18, small deleteIcon `calc(8px + spacing(1))` = 16. Inner-margin positives wrapped in `max(..., 0px)` so the compensation never goes negative at ultra-low density (avatar `marginLeft`, deleteIcon `marginRight`). `borderRadius` kept literal at `32 / 2` — CSS clamps to `h/2` for the pill regardless. Pixel-identical at default. See spec § "Choosing N — the step coefficient".
 - [x] **List family edge padding** — `ListItem` / `ListItemButton` / `ListSubheader` gutter `paddingLeft/Right 16` → `theme.spacing(2)`. The three parallel list-item containers now stay aligned at every `--mui-spacing` (was the coupling reason for iter-1's "horizontal literal" decision). Still literal in this pass: `ListItemText` inset `56`, `ListSubheader` inset `72`, `ListItem` `paddingRight 48` (secondary-action width), `ListItemIcon/Avatar` widths `36/56` — all anchored to icon geometry; the next list-family iter-2 step is a coordinated icon-width derivation.
 
 ### Workflow refinement (learned during iter 2)
