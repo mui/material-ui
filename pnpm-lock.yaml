@@ -24,9 +24,6 @@ catalogs:
     '@emotion/styled':
       specifier: ^11.14.1
       version: 11.14.1
-    stylis:
-      specifier: 4.2.0
-      version: 4.2.0
 
 overrides:
   caniuse-lite: ^1.0.30001792
@@ -42,6 +39,8 @@ overrides:
   '@pigment-css/unplugin': 0.0.30
   '@pigment-css/nextjs-plugin': 0.0.30
   '@pigment-css/vite-plugin': 0.0.30
+  stylis: 4.2.0
+  react-is: 19.2.6
 
 patchedDependencies:
   styled-components:
@@ -459,7 +458,7 @@ importers:
         specifier: ^10.0.3
         version: 10.0.3(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-is:
-        specifier: ^19.2.6
+        specifier: 19.2.6
         version: 19.2.6
       react-number-format:
         specifier: ^5.4.5
@@ -495,7 +494,7 @@ importers:
         specifier: ^6.4.1
         version: 6.4.1(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(css-to-react-native@3.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       stylis:
-        specifier: catalog:docs
+        specifier: 4.2.0
         version: 4.2.0
       use-count-up:
         specifier: ^3.0.1
@@ -781,7 +780,7 @@ importers:
         specifier: ^5.3.0 || ^6.0.0
         version: 6.4.1(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(css-to-react-native@3.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       stylis:
-        specifier: catalog:docs
+        specifier: 4.2.0
         version: 4.2.0
     devDependencies:
       '@mui/icons-material':
@@ -1162,7 +1161,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.6
+        specifier: 19.2.6
         version: 19.2.6
       react-transition-group:
         specifier: ^4.4.5
@@ -1388,8 +1387,8 @@ importers:
         specifier: 6.2.2
         version: 6.2.2
       stylis:
-        specifier: 4.4.0
-        version: 4.4.0
+        specifier: 4.2.0
+        version: 4.2.0
     publishDirectory: build
 
   packages/mui-system:
@@ -1492,7 +1491,7 @@ importers:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
-        specifier: ^19.2.6
+        specifier: 19.2.6
         version: 19.2.6
     devDependencies:
       '@types/chai':
@@ -1615,8 +1614,8 @@ importers:
         specifier: 6.4.1
         version: 6.4.1(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(css-to-react-native@3.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       stylis:
-        specifier: 4.4.0
-        version: 4.4.0
+        specifier: 4.2.0
+        version: 4.2.0
       tailwindcss:
         specifier: 4.2.4
         version: 4.2.4
@@ -3551,7 +3550,7 @@ packages:
     resolution: {integrity: sha512-X5e+C6Nw0+0Mwl8RoQcvbT6gPOL5snilg7dDy04FZySE7/fyagT2H1gYsGDUamAo0h6GcNFzYkMZBod0RGlnMw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      stylis: 4.x
+      stylis: 4.2.0
 
   '@mui/system@5.18.0':
     resolution: {integrity: sha512-ojZGVcRWqWhu557cdO3pWHloIGJdzVtxs3rk0F9L+x55LsUjcMUVkEhiF7E4TMxZoF9MmIHGGs0ZX3FDLAf0Xw==}
@@ -10010,15 +10009,6 @@ packages:
       react-dom:
         optional: true
 
-  react-is@16.13.1:
-    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  react-is@17.0.2:
-    resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
-
-  react-is@18.3.1:
-    resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
-
   react-is@19.2.6:
     resolution: {integrity: sha512-XjBR15BhXuylgWGuslhDKqlSayuqvqBX91BP8pauG8kd1zY8kotkNWbXksTCNRarse4kuGbe2kIY05ARtwNIvw==}
 
@@ -10833,16 +10823,10 @@ packages:
   stylis-plugin-rtl@2.1.1:
     resolution: {integrity: sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==}
     peerDependencies:
-      stylis: 4.x
+      stylis: 4.2.0
 
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
-
-  stylis@4.3.6:
-    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
-
-  stylis@4.4.0:
-    resolution: {integrity: sha512-5Z9ZpRzfuH6l/UAvCPAPUo3665Nk2wLaZU3x+TLHKVzIz33+sbJqbtrYoC3KD4/uVOr2Zp+L0LySezP9OHV9yA==}
 
   subsume@4.0.0:
     resolution: {integrity: sha512-BWnYJElmHbYZ/zKevy+TG+SsyoFCmRPDHJbR1MzLxkPOv1Jp/4hGhVUtP98s+wZBsBsHwCXvPTP0x287/WMjGg==}
@@ -13498,7 +13482,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
-      react-is: 17.0.2
+      react-is: 19.2.6
       react-transition-group: 4.4.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     optionalDependencies:
       '@types/react': 19.2.14
@@ -13547,7 +13531,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
-      react-is: 17.0.2
+      react-is: 19.2.6
 
   '@mdn/browser-compat-data@5.7.6': {}
 
@@ -14898,8 +14882,8 @@ snapshots:
       lodash: 4.18.1
       prop-types: 15.8.1
       react: 19.2.6
-      stylis: 4.4.0
-      stylis-plugin-rtl: 2.1.1(stylis@4.4.0)
+      stylis: 4.2.0
+      stylis-plugin-rtl: 2.1.1(stylis@4.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -15998,7 +15982,7 @@ snapshots:
       cosmiconfig: 8.3.6(typescript@5.9.3)
       happy-dom: 15.11.6
       source-map: 0.7.4
-      stylis: 4.4.0
+      stylis: 4.2.0
       ts-invariant: 0.10.3
     transitivePeerDependencies:
       - supports-color
@@ -18376,7 +18360,7 @@ snapshots:
 
   hoist-non-react-statics@3.3.2:
     dependencies:
-      react-is: 16.13.1
+      react-is: 19.2.6
 
   homedir-polyfill@1.0.3:
     dependencies:
@@ -20930,19 +20914,19 @@ snapshots:
     dependencies:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
-      react-is: 17.0.2
+      react-is: 19.2.6
 
   pretty-format@29.7.0:
     dependencies:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
-      react-is: 18.3.1
+      react-is: 19.2.6
 
   pretty-format@30.2.0:
     dependencies:
       '@jest/schemas': 30.0.5
       ansi-styles: 5.2.0
-      react-is: 18.3.1
+      react-is: 19.2.6
 
   pretty-hrtime@1.0.3: {}
 
@@ -20999,7 +20983,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
-      react-is: 16.13.1
+      react-is: 19.2.6
 
   property-information@7.1.0: {}
 
@@ -21110,12 +21094,6 @@ snapshots:
       react: 19.2.6
     optionalDependencies:
       react-dom: 19.2.6(react@19.2.6)
-
-  react-is@16.13.1: {}
-
-  react-is@17.0.2: {}
-
-  react-is@18.3.1: {}
 
   react-is@19.2.6: {}
 
@@ -22186,7 +22164,7 @@ snapshots:
       '@emotion/is-prop-valid': 1.4.0
       csstype: 3.2.3
       react: 19.2.6
-      stylis: 4.3.6
+      stylis: 4.2.0
     optionalDependencies:
       css-to-react-native: 3.2.0
       react-dom: 19.2.6(react@19.2.6)
@@ -22250,16 +22228,12 @@ snapshots:
       - supports-color
       - typescript
 
-  stylis-plugin-rtl@2.1.1(stylis@4.4.0):
+  stylis-plugin-rtl@2.1.1(stylis@4.2.0):
     dependencies:
       cssjanus: 2.3.0
-      stylis: 4.4.0
+      stylis: 4.2.0
 
   stylis@4.2.0: {}
-
-  stylis@4.3.6: {}
-
-  stylis@4.4.0: {}
 
   subsume@4.0.0:
     dependencies:
