@@ -196,16 +196,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
     return () => {
       // restoreLastFocus()
-      if (!disableRestoreFocus) {
-        // In IE11 it is possible for document.activeElement to be null resulting
-        // in nodeToRestore.current being null.
-        // Not all elements in IE11 have a focus method.
-        // Once IE11 support is dropped the focus() call can be unconditional.
-        if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
-          ignoreNextEnforceFocus.current = true;
-          (nodeToRestore.current as HTMLElement).focus();
-        }
-
+      if (!disableRestoreFocus && nodeToRestore.current) {
+        ignoreNextEnforceFocus.current = true;
+        (nodeToRestore.current as HTMLElement).focus();
         nodeToRestore.current = null;
       }
     };

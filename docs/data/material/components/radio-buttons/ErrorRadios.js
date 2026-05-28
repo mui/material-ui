@@ -15,8 +15,8 @@ export default function ErrorRadios() {
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
-    setHelperText(' ');
     setError(false);
+    setHelperText('Choose wisely');
   };
 
   const handleSubmit = (event) => {
@@ -37,7 +37,7 @@ export default function ErrorRadios() {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl sx={{ m: 3 }} error={error} variant="standard">
-        <FormLabel id={`${id}-label`}>Pop quiz: MUI is...</FormLabel>
+        <FormLabel id={`${id}-label`}>Pop quiz: MUI is…</FormLabel>
         <RadioGroup
           aria-labelledby={`${id}-label`}
           name="quiz"

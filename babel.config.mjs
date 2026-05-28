@@ -71,18 +71,6 @@ export default function getBabelConfig(api) {
       },
     ],
     env: {
-      coverage: {
-        plugins: [
-          'babel-plugin-istanbul',
-          [
-            'babel-plugin-module-resolver',
-            {
-              root: ['./'],
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
       development: {
         plugins: [
           [

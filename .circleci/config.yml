@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/f709101a0ec2bf0f9de40196669863653bf0979f/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/fb2e995849648cc3f6e43ed4ad10b7bad0750d7c/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -36,6 +36,7 @@ default-job: &default-job
   executor:
     name: code-infra/mui-node
     node-version: '22.18'
+  resource_class: medium
 
 default-context: &default-context
   context:
@@ -105,7 +106,6 @@ jobs:
       - install-deps
       - code-infra/eslint
       - code-infra/stylelint
-      - code-infra/markdownlint
       - code-infra/valelint
   test_static:
     <<: *default-job
@@ -126,19 +126,13 @@ jobs:
           name: '`pnpm docs:api` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
-          name: Update the navigation translations
-          command: pnpm docs:i18n
-      - run:
-          name: '`pnpm docs:i18n` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: '`pnpm extract-error-codes` changes committed?'
           command: |
             pnpm extract-error-codes
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+
     steps:
       - checkout
       - install-deps
@@ -158,7 +152,7 @@ jobs:
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+
     steps:
       - checkout
       - install-deps:
@@ -182,7 +176,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
@@ -196,15 +190,15 @@ jobs:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
       - run:
-          name: Tests chromium
+          name: Tests Chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests webkit
+          name: Tests WebKit
           environment:
             VITEST_BROWSERS: 'webkit'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests firefox
+          name: Tests Firefox
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
@@ -212,7 +206,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -221,15 +215,15 @@ jobs:
       - install-deps:
           react-version: << parameters.react-version >>
       - run:
-          name: Tests chromium
+          name: Tests Chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests webkit
+          name: Tests WebKit
           environment:
             VITEST_BROWSERS: 'webkit'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests firefox
+          name: Tests Firefox
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
@@ -273,6 +267,9 @@ jobs:
       - run:
           name: Run visual regression tests
           command: xvfb-run pnpm test:regressions
+      - run:
+          name: A11y results committed?
+          command: git add -A && git diff --exit-code --staged
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
@@ -588,10 +585,11 @@ workflows:
   #         react-version: ^17.0.0
   #         name: test_e2e-react@17
 
-  # This workflow can be triggered manually on the PR
-  react-18:
+  # Manually-triggered counterpart of nightly-cron — runs the full canary
+  # suite (react@18, react@next, typescript@next) on the current PR branch.
+  nightly:
     when:
-      equal: [react-18, << pipeline.parameters.workflow >>]
+      equal: [nightly, << pipeline.parameters.workflow >>]
     jobs:
       - test_unit:
           <<: *default-context
@@ -609,9 +607,29 @@ workflows:
           <<: *default-context
           react-version: ^18.0.0
           name: test_e2e-react@18
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
 
-  # This workflow is identical to react-18, but scheduled
-  react-18-cron:
+  # Scheduled counterpart of `nightly`. react@18 runs on all listed branches;
+  # the react@next and typescript@next jobs skip v5.x via per-job branch filters.
+  nightly-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -622,6 +640,7 @@ workflows:
                 - master
                 - v5.x
                 - v6.x
+                - v7.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -639,76 +658,37 @@ workflows:
           <<: *default-context
           react-version: ^18.0.0
           name: test_e2e-react@18
-
-  # This workflow can be triggered manually on the PR
-  react-next:
-    when:
-      equal: [react-next, << pipeline.parameters.workflow >>]
-    jobs:
       - test_unit:
           <<: *default-context
           react-version: next
           name: test_unit-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_browser:
           <<: *default-context
           react-version: next
           name: test_browser-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_regressions:
           <<: *default-context
           react-version: next
           name: test_regressions-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_e2e:
           <<: *default-context
           react-version: next
           name: test_e2e-react@next
-  # This workflow is identical to react-next, but scheduled
-  react-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_unit:
-          <<: *default-context
-          react-version: next
-          name: test_unit-react@next
-      - test_browser:
-          <<: *default-context
-          react-version: next
-          name: test_browser-react@next
-      - test_regressions:
-          <<: *default-context
-          react-version: next
-          name: test_regressions-react@next
-      - test_e2e:
-          <<: *default-context
-          react-version: next
-          name: test_e2e-react@next
-
-  typescript-next:
-    when:
-      equal: [typescript-next, << pipeline.parameters.workflow >>]
-    jobs:
+              ignore: v5.x
       - test_types_next:
           <<: *default-context
           typescript-version: next
-
-  typescript-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_types_next:
-          <<: *default-context
-          typescript-version: next
+              ignore: v5.x

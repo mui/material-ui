@@ -1,7 +1,58 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { normalizedTransitionCallback } from './utils';
+import { getTranslateOffsets, normalizedTransitionCallback } from './utils';
+
+describe('getTranslateOffsets', () => {
+  it('extracts matrix offsets', () => {
+    expect(getTranslateOffsets('matrix(1, 0, 0, 1, 20, 30)')).to.deep.equal({
+      offsetX: 20,
+      offsetY: 30,
+    });
+  });
+
+  it('extracts matrix3d offsets', () => {
+    expect(
+      getTranslateOffsets('matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 40, 50, 0, 1)'),
+    ).to.deep.equal({
+      offsetX: 40,
+      offsetY: 50,
+    });
+  });
+
+  it('extracts translate offsets', () => {
+    expect(getTranslateOffsets('translate(60px, 70px)')).to.deep.equal({
+      offsetX: 60,
+      offsetY: 70,
+    });
+  });
+
+  it('extracts translate3d offsets', () => {
+    expect(getTranslateOffsets('translate3d(80px, 90px, 0px)')).to.deep.equal({
+      offsetX: 80,
+      offsetY: 90,
+    });
+  });
+
+  it('extracts single-axis translate offsets', () => {
+    expect(getTranslateOffsets('translateX(100px)')).to.deep.equal({
+      offsetX: 100,
+      offsetY: 0,
+    });
+    expect(getTranslateOffsets('translateY(110px)')).to.deep.equal({
+      offsetX: 0,
+      offsetY: 110,
+    });
+  });
+
+  it('returns zero offsets for empty, none, or unsupported transforms', () => {
+    const defaultOffsets = { offsetX: 0, offsetY: 0 };
+
+    expect(getTranslateOffsets(undefined)).to.deep.equal(defaultOffsets);
+    expect(getTranslateOffsets('none')).to.deep.equal(defaultOffsets);
+    expect(getTranslateOffsets('rotate(45deg)')).to.deep.equal(defaultOffsets);
+  });
+});
 
 describe('normalizedTransitionCallback', () => {
   it('resolves node from ref and passes it to callback', () => {

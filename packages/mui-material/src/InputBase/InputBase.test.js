@@ -759,6 +759,66 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('autofill', () => {
+    it.skipIf(isJsdom())(
+      'does not animate display during autofill detection',
+      async function test() {
+        render(<InputBase inputProps={{ className: 'autofill-layout-test' }} />);
+
+        // Simulate an input styled as flex, then start MUI's autofill-cancel animation manually.
+        const style = document.createElement('style');
+        style.textContent = `
+        .${classes.input}.autofill-layout-test {
+          animation-duration: 1000s;
+          animation-name: none;
+          display: flex;
+        }
+
+        .${classes.input}.autofill-layout-test.autofill-layout-test--animated {
+          animation-name: mui-auto-fill-cancel;
+        }
+      `;
+        document.head.appendChild(style);
+
+        try {
+          // Confirm the real MUI keyframes are present and no longer animate display.
+          const keyframesRules = Array.from(document.styleSheets).flatMap((sheet) =>
+            Array.from(sheet.cssRules).filter((rule) => rule.type === CSSRule.KEYFRAMES_RULE),
+          );
+          const autofillRule = keyframesRules.find((rule) => rule.name === 'mui-auto-fill');
+          const autofillCancelRule = keyframesRules.find(
+            (rule) => rule.name === 'mui-auto-fill-cancel',
+          );
+
+          expect(autofillRule).not.to.equal(undefined);
+          expect(autofillCancelRule).not.to.equal(undefined);
+          expect(autofillRule.cssText).not.to.include('display');
+          expect(autofillCancelRule.cssText).not.to.include('display');
+
+          const input = screen.getByRole('textbox');
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+
+          // Starting the animation must not let its first keyframe override display.
+          input.classList.add('autofill-layout-test--animated');
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+
+          // Check one frame later too, when Chrome's visible layout jump used to happen.
+          await act(async () => {
+            await new Promise((resolve) => {
+              requestAnimationFrame(resolve);
+            });
+          });
+
+          expect(getComputedStyle(input).display).to.equal('flex');
+        } finally {
+          document.head.removeChild(style);
+        }
+      },
+    );
+  });
+
   describe('prop: inputComponent with prop: inputProps', () => {
     it('should call onChange inputProp callback with all params sent from custom inputComponent', () => {
       const INPUT_VALUE = 'material';

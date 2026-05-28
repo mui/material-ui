@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha, ThemeProvider, Theme } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider, type Theme } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -21,9 +21,9 @@ import { AppNavDrawerItem } from './AppNavDrawerItem';
 import { LogoWithCopyMenu } from '../components/LogoWithCopyMenu';
 import { MuiProductSelector } from './MuiProductSelector';
 import { pageToTitleI18n } from '../../helpers';
-import PageContext, { ProductVersion } from '../../PageContext';
+import PageContext, { type ProductVersion } from '../../PageContext';
 import { useTranslate } from '../../i18n';
-import { MuiPage } from '../../MuiPage';
+import { type MuiPage } from '../../MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: Theme) {
@@ -440,8 +440,8 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
         <ToolbarDiv>
           <LogoWithCopyMenu
             logo={productIdentifier.logo}
-            logoSvgString={productIdentifier.logoSvg}
-            wordmarkSvgString={productIdentifier.wordmarkSvg}
+            logomarkSvgString={productIdentifier.logoSvg}
+            logotypeSvgString={productIdentifier.wordmarkSvg}
           />
           <ProductIdentifier
             name={productIdentifier.name}
@@ -481,7 +481,8 @@ export function AppNavDrawer(props: AppNavDrawerProps) {
     );
   }, [onClose, pages, activePageParents, t, productIdentifier, anchorEl, swipeableDrawer]);
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (!productIdentifier) {
       throw new Error('docs-infra: missing productIdentifier in PageContext');
     }

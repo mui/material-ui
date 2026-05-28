@@ -164,8 +164,8 @@ export function AppFrame(props: AppFrameProps) {
             <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
               <LogoWithCopyMenu
                 logo={productIdentifier.logo}
-                logoSvgString={productIdentifier.logoSvg}
-                wordmarkSvgString={productIdentifier.wordmarkSvg}
+                logomarkSvgString={productIdentifier.logoSvg}
+                logotypeSvgString={productIdentifier.wordmarkSvg}
                 marginLeft
               />
             </Box>
