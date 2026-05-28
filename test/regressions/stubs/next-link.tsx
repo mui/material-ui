@@ -2,7 +2,11 @@ import * as React from 'react';
 
 // Stub for `next/link`. Renders a plain anchor — visually equivalent to the
 // Next.js Link for Argos purposes (link text + styling captured).
-interface NextLinkStubProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+//
+// `href` widens past the plain-anchor `string | undefined` to accept
+// Next.js's `UrlObject` shape, so we omit it from the base interface and
+// redeclare it here.
+interface NextLinkStubProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   href: string | { pathname?: string };
   as?: string;
   prefetch?: boolean;
