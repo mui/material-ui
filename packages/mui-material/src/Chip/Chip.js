@@ -72,11 +72,11 @@ const ChipRoot = styled('div', {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: theme.spacing(4),
+      height: `calc(${theme.spacing(2)} + 16px)`, // 32px
       lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
-      borderRadius: theme.spacing(2),
+      borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
       // reset cursor explicitly in case ButtonBase is used
@@ -95,19 +95,20 @@ const ChipRoot = styled('div', {
       [`& .${chipClasses.avatar}`]: {
         marginLeft: `calc(${theme.spacing(1)} - 3px)`,
         marginRight: `calc(2px - ${theme.spacing(1)})`,
-        width: theme.spacing(3),
-        height: theme.spacing(3),
+        width: `calc(8px + ${theme.spacing(2)})`,
+        height: `calc(8px + ${theme.spacing(2)})`,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
+        fontSize: `calc(8px + ${theme.spacing(2)})`,
         marginLeft: `calc(${theme.spacing(1)} - 3px)`,
         marginRight: `calc(2px - ${theme.spacing(1)})`,
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: `calc(${theme.spacing(3)} - 2px)`,
+        fontSize: `calc(6px + ${theme.spacing(2)})`,
         cursor: 'pointer',
         margin: `0 calc(${theme.spacing(1)} - 3px) 0 calc(2px - ${theme.spacing(1)})`,
         '&:hover': {
@@ -140,7 +141,7 @@ const ChipRoot = styled('div', {
         {
           props: { size: 'small' },
           style: {
-            height: theme.spacing(3),
+            height: `calc(${theme.spacing(2)} + 8px)`, // 32px
             [`& .${chipClasses.avatar}`]: {
               marginLeft: `calc(${theme.spacing(1)} - 4px)`,
               marginRight: `calc(4px - ${theme.spacing(1)})`,
