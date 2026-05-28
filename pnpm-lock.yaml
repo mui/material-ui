@@ -1352,6 +1352,9 @@ importers:
       '@types/chai':
         specifier: 5.2.3
         version: 5.2.3
+      '@types/prop-types':
+        specifier: 15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
