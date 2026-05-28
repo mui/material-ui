@@ -177,7 +177,10 @@ Object.keys(importComposites).forEach((path) => {
   // `design-kit` → suite `docs-product-design-kit`). `parseRoute` in
   // `demoMeta.ts` reverses this when reconstructing the docs path.
   const product = productMatch[1].replace(/(?<=[a-z])(?=[A-Z])/g, '-').toLowerCase();
-  const name = path.split('/').pop().replace(/\.tsx$/, '');
+  const name = path
+    .split('/')
+    .pop()
+    .replace(/\.tsx$/, '');
   compositeFixtures.push({
     path,
     suite: `docs-product-${product}`,
