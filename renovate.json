@@ -11,6 +11,11 @@
       "matchPackageNames": ["@pigment-css/*"]
     },
     {
+      "groupName": "Emotion",
+      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
+      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
+    },
+    {
       "groupName": "Font awesome SVG icons",
       "matchPackageNames": "@fortawesome/*"
     },
