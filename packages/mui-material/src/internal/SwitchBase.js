@@ -24,8 +24,8 @@ const useUtilityClasses = (ownerState) => {
 
 const SwitchBaseRoot = styled(ButtonBase, {
   name: 'MuiSwitchBase',
-})({
-  padding: 9,
+})(({ theme }) => ({
+  padding: `calc(${theme.spacing(1)} + 1px)`,
   borderRadius: '50%',
   variants: [
     {
@@ -59,7 +59,7 @@ const SwitchBaseRoot = styled(ButtonBase, {
       },
     },
   ],
-});
+}));
 
 const SwitchBaseInput = styled('input', {
   name: 'MuiSwitchBase',
