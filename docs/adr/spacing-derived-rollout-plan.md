@@ -118,7 +118,7 @@ geometry), FormHelperText + FormLabel (micro-gaps / input-anchored / `padding: 0
 - [x] ~~ButtonBase~~ ✅ Done — **skip**: only `padding: 0` / `margin: 0` resets.
 - [x] ~~ButtonGroup~~ ✅ Done — **skip**: `marginLeft/Top: -1` are border-overlap geometry, `minWidth: 40` is sizing; no padding/gap.
 - [x] ~~Fab~~ ✅ Done — extended inline padding `0 16px`/`0 8px` → `0 spacing(2)` / `0 spacing(1)`. Circular FAB + all width/height/minWidth/borderRadius are geometry (literal).
-- [x] ~~Chip~~ ✅ Done — **skip**: height `32/24` is geometry-fixed, block padding `0`; inline padding `12/8` is an anchored coupled system (avatar/icon/delete offsets reference it). Density on Chip needs a geometry→spacing pass (height), out of this rule's scope.
+- [x] ~~Chip~~ ✅ Done — initially skipped, then derived in **iter 2** as a fully coupled formula: every value (height `32/24`, inline padding `12/8`, avatar/icon `width/height 24/18`, all the `5/-6/4/-4/2/3` offsets, deleteIcon `fontSize 22/16`, label paddings) → `spacing(N) ± offset`. The whole pill scales coherently with `--mui-spacing` (10px → 40px-tall chip with proportional avatar/icon/gaps). ChipLabel static → `memoTheme`. Pixel-identical at default to the literal version.
 - [x] ~~ToggleButton / ToggleButtonGroup~~ ✅ Done — ToggleButton padding `11/7/15` → `spacing(1)+3px` / `spacing(1)−1px` / `spacing(2)−1px`. ToggleButtonGroup **skip**: only `-1` border-overlap margins.
 - [x] ~~Tab~~ ✅ Done — padding `12px 16px` → `spacing(2)−4px spacing(2)`; labelIcon `paddingTop/Bottom 9` → `spacing(1)+1px`; stacked-icon margin `6` → `spacing(1)−2px` (start/end icon margins were already `spacing(1)`). One jsdom computed-style test → `skipIf(isJsdom())` (calc).
 - [x] ~~BottomNavigationAction~~ ✅ Done — inline padding `12` → `spacing(2)−4px`; unselected `paddingTop 14` → `spacing(2)−2px`. minWidth/maxWidth geometry.
@@ -188,7 +188,7 @@ Sized by fixed dimensions or icon offsets, not padding. Iteration 1's rule targe
 padding/margin/gap only. Revisiting needs a decision: should fixed geometry ride
 `--mui-spacing` (or a separate size scale)?
 
-- [ ] **Chip** (full skip) — `height 32/24`; inline padding `12/8` coupled to avatar/icon/delete offsets.
+- [x] ~~**Chip** (full skip) — `height 32/24`; inline padding `12/8` coupled to avatar/icon/delete offsets.~~ ✅ **Done in iter 2** — coupled formula derives every value (height, avatar/icon, margins, label paddings, deleteIcon fontSize) via `spacing(N) ± offset`; whole pill scales together. Pixel-identical at default. (See iter-1 checklist note + "Iter-2 progress" below.)
 - [ ] **Switch** (full skip) — `padding 12/7/4` coupled to the literal thumb-travel `translateX`; track/thumb sizes; edge `-8`.
 - [ ] **Slider** (full skip) — `padding 13px 0` / `20px 0` rail touch-area; rail/thumb/mark geometry.
 - [ ] **Fab** (partial) — circular `width/height 56/40/48`, `minWidth`, `minHeight 36`.
@@ -215,6 +215,7 @@ User-controlled; revisiting means making the _default_ spacing-aware, not the va
 ### Iter-2 progress
 
 - [x] **FormControlLabel `−11`** — derived as `calc(${theme.spacing(-1)} - 3px)` so the compensation tracks IconButton padding at every `--mui-spacing`. Same pattern is applicable to other mixed-offset compensation negatives if revisited (e.g. IconButton edge `−12` → `calc(${theme.spacing(-1)} - 4px)`, currently out of the pruned iter-2 scope).
+- [x] **Chip (full coupled derivation)** — every value (root `height`, `borderRadius`, avatar/icon `width/height`, all the small `±2/3/4/5/6` offsets, deleteIcon `fontSize`, label paddings) → `spacing(N) ± offset`. Whole pill scales as a unit. ChipLabel static → `memoTheme`. **Finding:** the iter-1 "sub-unit literal" rule was for _isolated_ small nudges; when sub-unit values are load-bearing in a coupled system (Chip's 5/6/4/2/3 offsets), deriving them via the formula keeps proportions and yields pixel-identical at default.
 
 ### Workflow refinement (learned during iter 2)
 

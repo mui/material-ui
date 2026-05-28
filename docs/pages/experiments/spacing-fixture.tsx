@@ -58,6 +58,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import TablePagination from '@mui/material/TablePagination';
 import Badge from '@mui/material/Badge';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Chip from '@mui/material/Chip';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -105,6 +106,25 @@ const demos: Record<string, React.ReactNode> = {
         }}
       />
       <TextField label="filled multiline" variant="filled" multiline rows={2} />
+    </Stack>
+  ),
+  ChipDemo: (
+    <Stack spacing={2} useFlexGap sx={{ width: 360 }}>
+      {(['medium', 'small'] as const).map((size) => (
+        <Stack key={size} direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
+          <Chip label="Plain" size={size} />
+          <Chip label="Outlined" variant="outlined" size={size} />
+          <Chip label="Avatar" size={size} avatar={<Avatar>A</Avatar>} />
+          <Chip
+            label="Outlined avatar"
+            variant="outlined"
+            size={size}
+            avatar={<Avatar>A</Avatar>}
+          />
+          <Chip label="Delete" size={size} onDelete={() => {}} />
+          <Chip label="Outlined delete" variant="outlined" size={size} onDelete={() => {}} />
+        </Stack>
+      ))}
     </Stack>
   ),
   BadgeDemo: (
