@@ -21,6 +21,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkModeOutlined';
 import PaletteIcon from '@mui/icons-material/PaletteOutlined';
+import DensityMediumIcon from '@mui/icons-material/DensityMediumRounded';
 import { codeSandbox, stackBlitz } from '@mui/internal-core-docs/Demo';
 import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTemplates';
 import { pascalCase } from '@mui/internal-core-docs/helpers';
@@ -172,6 +173,43 @@ export function ThemeSelector({ value, onChange }) {
   );
 }
 
+export function DensitySelector({ value, onChange }) {
+  return (
+    <Select
+      size="small"
+      value={value}
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
+      startAdornment={
+        <InputAdornment position="start" sx={{ display: { sm: 'none' } }}>
+          <DensityMediumIcon fontSize="small" color="primary" />
+        </InputAdornment>
+      }
+      sx={(theme) => ({
+        pl: { sm: 0 },
+        minWidth: { xs: 64, sm: 168 },
+        '& .MuiSelect-select': {
+          pl: { sm: 1.5 },
+        },
+        [theme.breakpoints.only('xs')]: {
+          '& .MuiSelect-select': {
+            width: 'auto',
+            position: 'absolute',
+            inset: 0,
+            opacity: 0,
+          },
+        },
+      })}
+    >
+      <MenuItem value={10}>Comfortable (10px)</MenuItem>
+      <MenuItem value={8}>Default (8px)</MenuItem>
+      <MenuItem value={6}>Dense (6px)</MenuItem>
+      <MenuItem value={4}>Compact (4px)</MenuItem>
+    </Select>
+  );
+}
+
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
 
@@ -214,6 +252,14 @@ export default function TemplateFrame({ children }) {
   const templateId = router.pathname.split('/').pop();
   const templateName = pascalCase(templateId);
   const [selectedTheme, setSelectedTheme] = React.useState('custom');
+  const [spacing, setSpacing] = React.useState(8);
+  React.useEffect(() => {
+    const { style } = document.body;
+    style.setProperty('--mui-spacing', `${spacing}px`);
+    return () => {
+      style.removeProperty('--mui-spacing');
+    };
+  }, [spacing]);
   const materialTemplates = sourceMaterialTemplates();
   const item = materialTemplates.map.get(templateId);
   return (
@@ -352,6 +398,7 @@ export default function TemplateFrame({ children }) {
                     value={selectedTheme}
                     onChange={(newTheme) => setSelectedTheme(newTheme)}
                   />
+                  <DensitySelector value={spacing} onChange={setSpacing} />
                   <ColorSchemeControls />
                 </Box>
               </Toolbar>
