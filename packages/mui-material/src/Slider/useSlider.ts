@@ -152,9 +152,10 @@ function focusThumb(
           preventScroll: true,
           // Prevent pointer-driven focus rings in browsers that support this option.
           // Chrome 144+ supports `focusVisible` in `HTMLElement.focus()` options.
-          // @ts-expect-error `focusVisible` is not yet in TypeScript's lib.dom FocusOptions.
+          // Cast required for TypeScript 5.9; remove once stable TypeScript includes
+          // `focusVisible` in lib.dom FocusOptions (already present in typescript@next).
           focusVisible,
-        });
+        } as FocusOptions & { focusVisible?: boolean });
       }
     }
   }
