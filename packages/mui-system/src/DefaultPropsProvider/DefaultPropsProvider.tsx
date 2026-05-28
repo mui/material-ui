@@ -5,14 +5,19 @@ import resolveProps from '@mui/utils/resolveProps';
 
 const PropsContext = React.createContext<Record<string, any> | undefined>(undefined);
 
-function DefaultPropsProvider({
+interface DefaultPropsProviderType {
+  (props: React.PropsWithChildren<{ value: Record<string, any> | undefined }>): React.ReactElement;
+  propTypes?: any;
+}
+
+const DefaultPropsProvider: DefaultPropsProviderType = function DefaultPropsProvider({
   value,
   children,
 }: React.PropsWithChildren<{ value: Record<string, any> | undefined }>) {
   return <PropsContext.Provider value={value}>{children}</PropsContext.Provider>;
-}
+};
 
-(DefaultPropsProvider as any).propTypes /* remove-proptypes */ = {
+DefaultPropsProvider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -25,7 +30,7 @@ function DefaultPropsProvider({
    * @ignore
    */
   value: PropTypes.object,
-};
+} as any;
 
 function getThemeProps<
   Theme extends {

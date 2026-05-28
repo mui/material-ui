@@ -53,6 +53,11 @@ function useThemeScoping(
   }, [themeId, upperTheme, localTheme, isPrivate]);
 }
 
+interface ThemeProviderType {
+  <T = DefaultTheme>(props: ThemeProviderProps<T>): React.ReactElement<ThemeProviderProps<T>>;
+  propTypes?: any;
+}
+
 /**
  * This component makes the `theme` available down the React tree.
  * It should preferably be used at **the root of your component tree**.
@@ -60,7 +65,7 @@ function useThemeScoping(
  * <ThemeProvider theme={theme}> // existing use case
  * <ThemeProvider theme={{ id: theme }}> // theme scoping
  */
-function ThemeProvider<T = DefaultTheme>(
+const ThemeProvider: ThemeProviderType = function ThemeProvider<T = DefaultTheme>(
   props: ThemeProviderProps<T>,
 ): React.ReactElement<ThemeProviderProps<T>> {
   const { children, theme: localTheme, themeId } = props;
@@ -105,9 +110,9 @@ function ThemeProvider<T = DefaultTheme>(
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
   ) as unknown as React.ReactElement<ThemeProviderProps<T>>;
-}
+};
 
-(ThemeProvider as any).propTypes /* remove-proptypes */ = {
+ThemeProvider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -124,11 +129,10 @@ function ThemeProvider<T = DefaultTheme>(
    * The design system's unique id for getting the corresponded theme when there are multiple design systems.
    */
   themeId: PropTypes.string,
-};
+} as any;
 
 if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line
-  (ThemeProvider as any)['propTypes' + ''] = exactProp((ThemeProvider as any).propTypes);
+  ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
 }
 
 export default ThemeProvider;

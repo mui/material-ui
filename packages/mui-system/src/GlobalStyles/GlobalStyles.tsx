@@ -1,4 +1,5 @@
 'use client';
+import type * as React from 'react';
 import PropTypes from 'prop-types';
 import {
   GlobalStyles as MuiGlobalStyles,
@@ -26,7 +27,12 @@ function wrapGlobalLayer(styles: any) {
   return styles;
 }
 
-function GlobalStyles<Theme = SystemTheme>({
+interface GlobalStylesType {
+  <Theme = SystemTheme>(props: GlobalStylesProps<Theme>): React.ReactElement;
+  propTypes?: any;
+}
+
+const GlobalStyles: GlobalStylesType = function GlobalStyles<Theme = SystemTheme>({
   styles,
   themeId,
   defaultTheme = {},
@@ -49,9 +55,9 @@ function GlobalStyles<Theme = SystemTheme>({
   }
 
   return <MuiGlobalStyles styles={globalStyles as any} />;
-}
+};
 
-(GlobalStyles as any).propTypes /* remove-proptypes */ = {
+GlobalStyles.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
@@ -75,6 +81,6 @@ function GlobalStyles<Theme = SystemTheme>({
    * @ignore
    */
   themeId: PropTypes.string,
-};
+} as any;
 
 export default GlobalStyles;
