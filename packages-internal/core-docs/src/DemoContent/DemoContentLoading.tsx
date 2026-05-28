@@ -1,5 +1,7 @@
 import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
+import { hastToJsx } from '@mui/internal-docs-infra/pipeline/hastUtils';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
@@ -23,11 +25,11 @@ export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions> & {
 };
 
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
+  const { source } = useCodeFallback(props);
   const {
     hideToolbar,
     defaultCodeOpen,
     component,
-    source,
     fileNames,
     bg,
     maxWidth,
@@ -85,9 +87,10 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // the inner tokens, so wrap it in `<pre><code>` to satisfy `CodeSource`'s
   // descendant selectors.
   const code = codeOpen ? (
-    <CodeSource expanded={codeOpen}>
+    // TODO: use defaultCodeOpen prop
+    <CodeSource expanded={false}>
       <pre>
-        <code>{source}</code>
+        <code data-collapsible="">{source ? hastToJsx(source) : null}</code>
       </pre>
     </CodeSource>
   ) : null;
