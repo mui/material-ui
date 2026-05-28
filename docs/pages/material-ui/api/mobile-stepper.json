@@ -103,6 +103,5 @@
   "muiName": "MuiMobileStepper",
   "filename": "/packages/mui-material/src/MobileStepper/MobileStepper.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>"
 }

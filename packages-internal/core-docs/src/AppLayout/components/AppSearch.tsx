@@ -21,7 +21,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { alpha, SxProps } from '@mui/material/styles';
+import { alpha, type SxProps } from '@mui/material/styles';
 import { pathnameToLanguage } from '../../helpers';
 import { Link } from '../../Link';
 import { useTranslate, useUserLanguage } from '../../i18n';

@@ -3,8 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
-import formControlState from '../FormControl/formControlState';
-import useFormControl from '../FormControl/useFormControl';
+import { useFormControlState } from '../FormControl/useFormControl';
 import FormLabel, { formLabelClasses } from '../FormLabel';
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
@@ -184,18 +183,15 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     ...other
   } = props;
 
-  const muiFormControl = useFormControl();
+  const [fcs, muiFormControl] = useFormControlState({
+    props,
+    states: ['size', 'variant', 'required', 'focused'],
+  });
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
     shrink = muiFormControl.filled || muiFormControl.focused || muiFormControl.adornedStart;
   }
-
-  const fcs = formControlState({
-    props,
-    muiFormControl,
-    states: ['size', 'variant', 'required', 'focused'],
-  });
 
   const ownerState = {
     ...props,

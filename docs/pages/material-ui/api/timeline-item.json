@@ -65,6 +65,5 @@
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
-  "cssComponent": false
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>"
 }

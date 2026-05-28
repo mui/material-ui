@@ -188,7 +188,7 @@ Below is an example using the [`InputBase`](/material-ui/api/input-base/) compon
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/textField-introduction--docs).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/text-field).
 
 ## `useFormControl`
 
@@ -250,8 +250,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles
         styles={{
-          '@keyframes mui-auto-fill': { from: { display: 'block' } },
-          '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+          '@keyframes mui-auto-fill': { from: { animationName: 'mui-auto-fill' } },
+          '@keyframes mui-auto-fill-cancel': {
+            from: { animationName: 'mui-auto-fill-cancel' },
+          },
         }}
       />
       ...

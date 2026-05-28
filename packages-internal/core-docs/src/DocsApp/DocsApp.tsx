@@ -4,7 +4,7 @@ import type { AdConfig } from '../Ad';
 import { CodeCopyProvider } from '../CodeCopy';
 import type { DemoContextValue } from '../DemoContext';
 import DemoContext from '../DemoContext';
-import type { DocsConfig } from '../DocsProvider';
+import type { DocsConfig, VersionEntry } from '../DocsProvider';
 import { DEFAULT_DOCS_CONFIG, DocsProvider } from '../DocsProvider';
 import type { MuiPageContext } from '../PageContext';
 import PageContext from '../PageContext';
@@ -18,6 +18,7 @@ import DocsStyledEngineProvider from './StyledEngineProvider';
 import createEmotionCache from './createEmotionCache';
 import { loadDependencies } from './loadDependencies';
 import { registerServiceWorker } from './serviceWorker';
+import VersionsContext from './VersionsContext';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,6 +40,7 @@ export interface DocsAppProps {
   pageProps: {
     userLanguage: string;
     translations: Translations;
+    versions: VersionEntry[];
     [key: string]: unknown;
   };
   /**
@@ -156,24 +158,26 @@ function DocsApp(props: DocsAppProps) {
         defaultUserLanguage={pageProps.userLanguage}
         translations={pageProps.translations}
       >
-        <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <DemoContext.Provider value={demoContextValue}>
-                  <ThemeWrapper>
-                    <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                      <AnalyticsProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                        <GoogleAnalytics />
-                      </AnalyticsProvider>
-                    </DocsStyledEngineProvider>
-                  </ThemeWrapper>
-                </DemoContext.Provider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
-        </CodeCopyProvider>
+        <VersionsContext.Provider value={pageProps.versions}>
+          <CodeCopyProvider>
+            <CodeStylingProvider>
+              <CodeVariantProvider>
+                <PageContext.Provider value={pageContextValue}>
+                  <DemoContext.Provider value={demoContextValue}>
+                    <ThemeWrapper>
+                      <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                        <AnalyticsProvider>
+                          {getLayout(<Component {...pageProps} />)}
+                          <GoogleAnalytics />
+                        </AnalyticsProvider>
+                      </DocsStyledEngineProvider>
+                    </ThemeWrapper>
+                  </DemoContext.Provider>
+                </PageContext.Provider>
+              </CodeVariantProvider>
+            </CodeStylingProvider>
+          </CodeCopyProvider>
+        </VersionsContext.Provider>
       </DocsProvider>
     </React.Fragment>
   );

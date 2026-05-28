@@ -13,11 +13,26 @@ onlyBuiltDependencies:
   - '@vvago/vale'
 
 engineStrict: true
+updateNotifier: false
+blockExoticSubdeps: true
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@mui/*'
+  - '@base-ui/*'
+trustPolicy: no-downgrade
+# Skip trust-policy checks for packages published more than 365 days ago.
+# Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
+# reselect@5.1.1 and parts of @octokit/*) dropped provenance attestation for specific releases,
+# triggering false-positive trust-downgrade errors. Packages that old have had ample time for
+# community review; supply-chain risk is most relevant within a shorter window.
+# TODO: drop once @babel/core stops depending on semver@^6.3.1 (no 6.x semver release has
+# provenance), and the other legacy packages restore provenance.
+trustPolicyIgnoreAfter: 525600
 
 catalogs:
   docs:
     stylis: '4.2.0'
-    '@base-ui/react': '^1.4.0'
+    '@base-ui/react': '^1.4.1'
     '@docsearch/react': '^3.9.0'
     '@emotion/cache': '^11.14.0'
     '@emotion/react': '^11.14.0'
