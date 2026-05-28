@@ -7,10 +7,10 @@ import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-const {
-  CssVarsProvider: InternalCssVarsProvider,
-  useColorScheme,
-} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
+const { CssVarsProvider: InternalCssVarsProvider, useColorScheme } = createCssVarsProvider<
+  SupportedColorScheme,
+  typeof THEME_ID
+>({
   themeId: THEME_ID,
   // @ts-ignore ignore module augmentation tests
   theme: () => createTheme({ cssVariables: true }),
