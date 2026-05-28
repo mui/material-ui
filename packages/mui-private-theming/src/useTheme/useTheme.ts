@@ -1,8 +1,9 @@
 'use client';
 import * as React from 'react';
+import type { DefaultTheme } from '../defaultTheme';
 import ThemeContext from './ThemeContext';
 
-export default function useTheme() {
+export default function useTheme<T = DefaultTheme>(): T {
   const theme = React.useContext(ThemeContext);
 
   if (process.env.NODE_ENV !== 'production') {

@@ -12,10 +12,10 @@ describe('ThemeProvider', () => {
   const { render } = createRenderer();
 
   it('should provide the theme', () => {
-    const ref = React.createRef();
-    const text = () => ref.current.textContent;
+    const ref = React.createRef<HTMLSpanElement>();
+    const text = () => ref.current!.textContent;
     function Test() {
-      const theme = useTheme();
+      const theme = useTheme<Record<string, string>>();
 
       return <span ref={ref}>{theme.foo}</span>;
     }
@@ -29,10 +29,10 @@ describe('ThemeProvider', () => {
   });
 
   it('should merge the themes', () => {
-    const ref = React.createRef();
-    const text = () => ref.current.textContent;
+    const ref = React.createRef<HTMLSpanElement>();
+    const text = () => ref.current!.textContent;
     function Test() {
-      const theme = useTheme();
+      const theme = useTheme<Record<string, string>>();
 
       return (
         <span ref={ref}>
@@ -53,11 +53,11 @@ describe('ThemeProvider', () => {
   });
 
   it('should memoize the merged output', () => {
-    const ref = React.createRef();
-    const getRenderCountRef = React.createRef();
-    const text = () => ref.current.textContent;
+    const ref = React.createRef<HTMLSpanElement>();
+    const getRenderCountRef = React.createRef<() => number>();
+    const text = () => ref.current!.textContent;
     function Test() {
-      const theme = useTheme();
+      const theme = useTheme<Record<string, string>>();
       return (
         <RenderCounter ref={getRenderCountRef}>
           <span ref={ref}>
@@ -85,14 +85,14 @@ describe('ThemeProvider', () => {
     expect(text()).to.equal('foobar');
     setProps({});
     expect(text()).to.equal('foobar');
-    expect(getRenderCountRef.current()).to.equal(2);
+    expect(getRenderCountRef.current!()).to.equal(2);
   });
 
   describe('warnings', () => {
     it('should warn about missing provider', () => {
       expect(() => {
         render(
-          <ThemeProvider theme={(theme) => theme}>
+          <ThemeProvider theme={(theme: any) => theme}>
             <div />
           </ThemeProvider>,
         );
@@ -106,7 +106,7 @@ describe('ThemeProvider', () => {
       expect(() => {
         render(
           <ThemeProvider theme={{ bar: 'bar' }}>
-            <ThemeProvider theme={() => {}}>
+            <ThemeProvider theme={(() => {}) as any}>
               <div />
             </ThemeProvider>
             ,
