@@ -1,9 +1,19 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import { useTranslate, useUserLanguage } from '../i18n';
 import { HighlightedCodeWithTabs } from '../HighlightedCodeWithTabs';
 import { MarkdownElement } from './MarkdownElement';
-import { Demo, type DemoProps } from '../Demo/Demo';
-import { DemoToolbar } from '../Demo/DemoToolbar';
+import { Demo, type DemoProps, DemoToolbarProps } from '../Demo/Demo';
+
+// `DemoToolbar` is interactive UI rendered below each demo. It pulls in
+// Menu, ToggleButtonGroup, Tooltip and friends and is already wrapped in
+// `<NoSsr>` + `<React.Suspense>` inside `Demo`, so deferring its bundle
+// keeps initial JS smaller and re-introduces a chunk-load yield during
+// hydration (lowers TBT).
+const DemoToolbar = dynamic<DemoToolbarProps>(
+  () => import('../Demo/DemoToolbar').then((m) => m.DemoToolbar),
+  { ssr: false },
+);
 
 function noComponent(moduleID: string) {
   return function NoComponent() {
