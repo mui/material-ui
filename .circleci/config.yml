@@ -109,6 +109,7 @@ jobs:
       - code-infra/valelint
   test_static:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
@@ -259,6 +260,7 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_regressions:
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -448,6 +450,7 @@ jobs:
           command: pnpm start
   test_bundle_size_monitor:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
