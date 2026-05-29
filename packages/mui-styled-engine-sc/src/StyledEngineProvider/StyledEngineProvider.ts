@@ -1,6 +1,12 @@
+import type * as React from 'react';
 import PropTypes from 'prop-types';
 
-export default function StyledEngineProvider(props) {
+export interface StyledEngineProviderProps {
+  children?: React.ReactNode;
+  injectFirst?: boolean | undefined;
+}
+
+export default function StyledEngineProvider(props: StyledEngineProviderProps): React.JSX.Element {
   const { injectFirst, children } = props;
 
   if (injectFirst && typeof window !== 'undefined') {
@@ -12,10 +18,10 @@ export default function StyledEngineProvider(props) {
     }
   }
 
-  return children;
+  return children as React.JSX.Element;
 }
 
-StyledEngineProvider.propTypes = {
+(StyledEngineProvider as any).propTypes /* remove-proptypes */ = {
   /**
    * Your component tree.
    */

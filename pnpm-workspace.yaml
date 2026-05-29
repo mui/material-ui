@@ -38,3 +38,8 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
+
+overrides:
+  # Both were bundled twice in the docs build
+  'docs>stylis': '4.2.0'
+  'docs>react-is': '19.2.6'

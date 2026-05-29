@@ -11,32 +11,13 @@
       "matchPackageNames": ["@pigment-css/*"]
     },
     {
-      "groupName": "Font awesome SVG icons",
-      "matchPackageNames": "@fortawesome/*"
+      "groupName": "Emotion",
+      "description": "Keep stylis in sync with emotion to avoid duplicated stylis versions in the bundle.",
+      "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
     },
     {
-      "groupName": "JSS",
-      "matchPackageNames": [
-        "css-jss",
-        "jss-plugin-cache",
-        "jss-plugin-camel-case",
-        "jss-plugin-compose",
-        "jss-plugin-default-unit",
-        "jss-plugin-expand",
-        "jss-plugin-extend",
-        "jss-plugin-global",
-        "jss-plugin-isolate",
-        "jss-plugin-nested",
-        "jss-plugin-props-sort",
-        "jss-plugin-rule-value-function",
-        "jss-plugin-rule-value-observable",
-        "jss-plugin-template",
-        "jss-plugin-vendor-prefixer",
-        "jss-preset-default",
-        "jss-starter-kit",
-        "jss",
-        "react-jss"
-      ]
+      "groupName": "Font awesome SVG icons",
+      "matchPackageNames": "@fortawesome/*"
     },
     {
       "groupName": "MUI X",
