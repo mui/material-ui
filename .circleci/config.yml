@@ -36,7 +36,7 @@ default-job: &default-job
   executor:
     name: code-infra/mui-node
     node-version: '22.18'
-  resource_class: medium
+  resource_class: medium.gen2
 
 default-context: &default-context
   context:
@@ -132,7 +132,7 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps
@@ -152,7 +152,7 @@ jobs:
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps:
@@ -176,7 +176,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
@@ -206,7 +206,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
