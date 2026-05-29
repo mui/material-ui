@@ -2,24 +2,42 @@
 <html>
   <head>
     <script>
-      // Freeze the clock before the module bundle evaluates. Some MUI X
-      // composites (XHero, XDateRangeDemo) compute `dayjs()` at *module scope*
-      // for picker default values, which runs when the eager fixture glob
-      // loads — too early for any render-time or per-test mock to catch. A
-      // fixed `Date` here makes those screenshots deterministic for Argos and
-      // also pins any date columns in the data-grid demos. Mirrors the
-      // fixed-date approach used by mui-x's regression bundle.
-      (function freezeDate() {
-        const FIXED_NOW = new Date('2025-06-15T09:00:00.000Z').valueOf();
-        const NativeDate = Date;
-        function MockDate(...args) {
-          return args.length === 0 ? new NativeDate(FIXED_NOW) : new NativeDate(...args);
+      // Pin `Date` to a fixed instant before anything else runs, so the
+      // `today` in date-aware composites (XHero / XDateRangeDemo build picker
+      // defaults from `dayjs()`) doesn't shift the Argos baseline every day.
+      //
+      // This is an inline classic <script>: it executes synchronously during
+      // parsing, before the deferred `<script type="module">` bundle. That
+      // ordering matters because `import.meta.glob({ eager: true })` *prepends*
+      // its demo imports ahead of the entry module's own imports, so those
+      // modules' top-level `dayjs()` runs before any module-level setup could —
+      // see mui/base-ui#4370. Running here sidesteps that entirely.
+      //
+      // The override itself follows mui/base-ui#4337: `Reflect.construct`
+      // preserves the native `Date.prototype` (subclassing date libraries
+      // enumerate its own methods) and forwards `new.target`. The playwright
+      // page also pins `timezoneId: 'UTC'` so the frozen instant renders the
+      // same regardless of the CI machine's timezone.
+      (function fakeDateSetup() {
+        var fakeNow = new Date('2025-06-15T09:00:00.000Z').valueOf();
+        var OriginalDate = Date;
+        var offset = fakeNow - OriginalDate.now();
+
+        function FakeDate(...args) {
+          if (new.target) {
+            return args.length === 0
+              ? Reflect.construct(OriginalDate, [OriginalDate.now() + offset], new.target)
+              : Reflect.construct(OriginalDate, args, new.target);
+          }
+          return new OriginalDate(OriginalDate.now() + offset).toString();
         }
-        MockDate.UTC = NativeDate.UTC;
-        MockDate.parse = NativeDate.parse;
-        MockDate.now = () => FIXED_NOW;
-        MockDate.prototype = NativeDate.prototype;
-        window.Date = MockDate;
+
+        FakeDate.prototype = OriginalDate.prototype;
+        FakeDate.parse = OriginalDate.parse;
+        FakeDate.UTC = OriginalDate.UTC;
+        FakeDate.now = () => OriginalDate.now() + offset;
+
+        window.Date = FakeDate;
       })();
     </script>
     <title>Visual regression tests</title>

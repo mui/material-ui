@@ -34,6 +34,9 @@ async function main() {
     const page = await _browser.newPage({
       viewport: DEFAULT_VIEWPORT,
       reducedMotion: 'reduce',
+      // Pin the timezone so the frozen `Date` (see `index.html`) renders the
+      // same instant regardless of the CI machine's local timezone.
+      timezoneId: 'UTC',
     });
 
     // Block images since they slow down tests (need download).
