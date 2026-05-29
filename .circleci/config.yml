@@ -260,6 +260,7 @@ jobs:
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
+    resource_class: 'medium+'
     steps:
       - checkout
       - install-deps:
@@ -270,22 +271,6 @@ jobs:
       - run:
           name: A11y results committed?
           command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Build packages for fixtures
-          command: pnpm release:build
-      - run:
-          name: Validate type declarations
-          command: pnpm validate-declarations
-      - run:
-          name: Analyze exported typescript
-          command: pnpm test:attw
-          no_output_timeout: 20m
-      - run:
-          name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.mjs
-      - run:
-          name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
@@ -456,6 +441,19 @@ jobs:
       - run:
           name: Create and upload a size snapshot
           command: pnpm size:snapshot --concurrency 6
+      - run:
+          name: Validate type declarations
+          command: pnpm validate-declarations
+      - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+          no_output_timeout: 20m
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.mjs
+      - run:
+          name: test exported typescript
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
