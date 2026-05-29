@@ -1,10 +1,6 @@
 import { expect } from 'chai';
 import { reset } from '@mui/utils/errorOnce';
-import {
-  createRenderer,
-  screen,
-  strictModeDoubleLoggingSuppressed,
-} from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 import describeConformance from '../../test/describeConformance';

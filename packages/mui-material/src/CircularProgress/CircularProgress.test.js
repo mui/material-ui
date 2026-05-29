@@ -1,10 +1,6 @@
 import { expect } from 'chai';
 import { reset } from '@mui/utils/errorOnce';
-import {
-  createRenderer,
-  strictModeDoubleLoggingSuppressed,
-  screen,
-} from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
