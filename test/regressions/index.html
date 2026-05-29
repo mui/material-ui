@@ -1,6 +1,27 @@
 <!doctype html>
 <html>
   <head>
+    <script>
+      // Freeze the clock before the module bundle evaluates. Some MUI X
+      // composites (XHero, XDateRangeDemo) compute `dayjs()` at *module scope*
+      // for picker default values, which runs when the eager fixture glob
+      // loads — too early for any render-time or per-test mock to catch. A
+      // fixed `Date` here makes those screenshots deterministic for Argos and
+      // also pins any date columns in the data-grid demos. Mirrors the
+      // fixed-date approach used by mui-x's regression bundle.
+      (function freezeDate() {
+        const FIXED_NOW = new Date('2025-06-15T09:00:00.000Z').valueOf();
+        const NativeDate = Date;
+        function MockDate(...args) {
+          return args.length === 0 ? new NativeDate(FIXED_NOW) : new NativeDate(...args);
+        }
+        MockDate.UTC = NativeDate.UTC;
+        MockDate.parse = NativeDate.parse;
+        MockDate.now = () => FIXED_NOW;
+        MockDate.prototype = NativeDate.prototype;
+        window.Date = MockDate;
+      })();
+    </script>
     <title>Visual regression tests</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
