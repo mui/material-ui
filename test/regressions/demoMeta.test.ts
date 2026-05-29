@@ -26,12 +26,6 @@ describe('parseRoute', () => {
       slug: 'x',
       demo: 'XGridFullDemo',
     });
-    // Multi-segment slug: kebab-case round-trips to PascalCase directory.
-    expect(parseRoute('/docs-product-design-kit/DesignKitHero')).to.deep.equal({
-      path: 'docs/src/components/productDesignKit/DesignKitHero',
-      slug: 'design-kit',
-      demo: 'DesignKitHero',
-    });
   });
 });
 

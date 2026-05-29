@@ -151,13 +151,10 @@ export function parseRoute(route: string): ParsedRoute | null {
   const compositeMatch = route.match(COMPOSITE_ROUTE_REGEX);
   if (compositeMatch) {
     const [, product, demo] = compositeMatch;
-    // Reverse the kebab-case conversion applied by the glob in `index.jsx`:
-    // `design-kit` → `DesignKit` → directory `productDesignKit`.
-    const pascal = product
-      .split('-')
-      .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-      .join('');
-    return { path: `docs/src/components/product${pascal}/${demo}`, slug: product, demo };
+    // Re-capitalize the single-word product segment from `index.jsx`'s glob
+    // (`material` → `Material`, `x` → `X`) to rebuild the directory name.
+    const dir = `product${product.charAt(0).toUpperCase()}${product.slice(1)}`;
+    return { path: `docs/src/components/${dir}/${demo}`, slug: product, demo };
   }
   return null;
 }

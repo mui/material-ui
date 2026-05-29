@@ -195,11 +195,10 @@ Object.keys(importComposites).forEach((path) => {
   if (!productMatch) {
     return;
   }
-  // Convert PascalCase to kebab-case so the suite name follows the existing
-  // `docs-{kebab-case}` convention (e.g. `productDesignKit` →
-  // `design-kit` → suite `docs-product-design-kit`). `parseRoute` in
-  // `demoMeta.ts` reverses this when reconstructing the docs path.
-  const product = productMatch[1].replace(/(?<=[a-z])(?=[A-Z])/g, '-').toLowerCase();
+  // Only single-word products are covered (`productMaterial`, `productX`), so
+  // the suite name is just the lower-cased segment (`material`, `x`).
+  // `parseRoute` in `demoMeta.ts` re-capitalizes it to rebuild the docs path.
+  const product = productMatch[1].toLowerCase();
   const name = path
     .split('/')
     .pop()
