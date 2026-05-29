@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-// Deep-import the theme directly rather than going through
-// `@mui/internal-core-docs/branding`'s barrel. The barrel re-exports a few
-// sibling modules whose relative imports lack `.js` extensions — fine under
-// the package's own `moduleResolution: 'bundler'`, but the test typecheck
-// runs under `nodenext` and would surface those as errors. Importing the
-// leaf module (which has no relative imports) sidesteps the chain.
-// eslint-disable-next-line import/no-relative-packages
-import { brandingLightTheme } from '../../packages-internal/core-docs/src/branding/brandingTheme';
+// Go through a local `.d.ts` shim rather than importing the docs branding
+// theme directly. The theme source file declares `@mui/material/*` module
+// augmentations that resolve fine in the package's own typecheck and in the
+// Vite bundle, but fail under `test/tsconfig.json`'s `nodenext` resolution.
+// The runtime side is in `brandingThemeShim.js`, excluded from the test
+// typecheck.
+import { brandingLightTheme } from './brandingThemeShim';
 
 // `docs/src/components/product*/*.tsx` composites are authored to run inside
 // the Next.js docs site and read the docs branding theme

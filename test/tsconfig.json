@@ -14,6 +14,7 @@
     "regressions/build/**/*",
     "vitest.config.ts",
     "e2e/vite.config.mts",
-    "regressions/vite.config.mts"
+    "regressions/vite.config.mts",
+    "regressions/brandingThemeShim.js"
   ]
 }
