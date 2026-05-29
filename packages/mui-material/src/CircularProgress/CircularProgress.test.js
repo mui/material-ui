@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import CircularProgress, { circularProgressClasses as classes } from '@mui/material/CircularProgress';
+import CircularProgress, {
+  circularProgressClasses as classes,
+} from '@mui/material/CircularProgress';
 import { resetWarningFlags } from './CircularProgress';
 import describeConformance from '../../test/describeConformance';
 
