@@ -156,15 +156,38 @@ Object.keys(importDemos).forEach((path) => {
 }, []);
 
 // Bespoke composites under `docs/src/components/product*/` that assemble the
-// product landing pages (`/material-ui`, `/x`, `/core`, ...). They aren't
-// covered by the `docs/data/**` glob above. See
-// `test/regressions/MarketingWrapper.tsx` for the branding wrapper and
-// `test/regressions/stubs/` for the `next/*` shims that let composites with
-// transitive `next/router` imports render outside the Next.js docs host.
-const importComposites = import.meta.glob(['docs/src/components/product*/[A-Z]*.tsx'], {
-  import: 'default',
-  eager: true,
-});
+// product landing pages (`/material-ui`, `/x`). They aren't covered by the
+// `docs/data/**` glob above. See `test/regressions/MarketingWrapper.tsx` for
+// the branding wrapper and `test/regressions/stubs/` for the `next/*` shims
+// that let composites with transitive `next/router` imports render outside
+// the Next.js docs host.
+//
+// This is an explicit allowlist rather than a `product*/[A-Z]*.tsx` glob: most
+// composites are marketing chrome (heroes with links, pricing tables, Figma
+// kit promos, template thumbnails) with no meaningful component integration to
+// guard. We only cover the ones that render real MUI / MUI X components in a
+// composed layout — where a CSS/theme regression would actually show up.
+const importComposites = import.meta.glob(
+  [
+    // Material UI — component showcases under the docs branding theme.
+    'docs/src/components/productMaterial/MaterialHero.tsx',
+    'docs/src/components/productMaterial/MaterialStyling.tsx',
+    'docs/src/components/productMaterial/MaterialTheming.tsx',
+    // MUI X — one isolated demo per product (the switcher composite
+    // `XComponents` renders these same demos behind tabs; isolating them
+    // drops the tab chrome and avoids screenshotting one product at a time).
+    'docs/src/components/productX/XHero.tsx',
+    'docs/src/components/productX/XGridFullDemo.tsx',
+    'docs/src/components/productX/XDateRangeDemo.tsx',
+    'docs/src/components/productX/XChartsDemo.tsx',
+    'docs/src/components/productX/XTreeViewDemo.tsx',
+    'docs/src/components/productX/XTheming.tsx',
+  ],
+  {
+    import: 'default',
+    eager: true,
+  },
+);
 
 const compositeFixtures = [];
 Object.keys(importComposites).forEach((path) => {
