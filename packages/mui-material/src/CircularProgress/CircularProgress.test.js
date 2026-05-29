@@ -1,9 +1,7 @@
 import { expect } from 'chai';
-import { reset } from '@mui/utils/errorOnce';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import CircularProgress, {
-  circularProgressClasses as classes,
-} from '@mui/material/CircularProgress';
+import CircularProgress, { circularProgressClasses as classes } from '@mui/material/CircularProgress';
+import { resetWarningFlags } from './CircularProgress';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CircularProgress />', () => {
@@ -223,7 +221,7 @@ describe('<CircularProgress />', () => {
 
     describe('warnings and errors', () => {
       beforeEach(() => {
-        reset();
+        resetWarningFlags();
       });
 
       it.each([

@@ -57,6 +57,5 @@ export { default as unstable_extractEventHandlers } from './extractEventHandlers
 export { default as unstable_getReactNodeRef } from './getReactNodeRef';
 export { default as unstable_getReactElementRef } from './getReactElementRef';
 export { default as isEventHandler } from './isEventHandler';
-export { default as errorOnce } from './errorOnce';
-export { reset as errorOnceReset } from './errorOnce';
+
 export * from './types';

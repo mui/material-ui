@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import errorOnce from '@mui/utils/errorOnce';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -13,6 +12,14 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
+
+let warnedMinMaxWithoutVariant = false;
+let warnedInvalidMinMaxValue = false;
+
+export function resetWarningFlags() {
+  warnedMinMaxWithoutVariant = false;
+  warnedInvalidMinMaxValue = false;
+}
 
 const circularRotateKeyframe = keyframes`
   0% {
@@ -198,12 +205,14 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     ...other
   } = props;
 
-  errorOnce(
-    variant === 'indeterminate' && (minProp !== undefined || maxProp !== undefined),
-    `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' variant. These props will have no effect.`,
-    'warn',
-    'circular-progress-min-max-without-variant',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (!warnedMinMaxWithoutVariant && variant === 'indeterminate' && (minProp !== undefined || maxProp !== undefined)) {
+      console.warn(
+        `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' variant. These props will have no effect.`,
+      );
+      warnedMinMaxWithoutVariant = true;
+    }
+  }
 
   const min = minProp ?? 0;
   const max = maxProp ?? 100;
@@ -228,12 +237,14 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   if (variant === 'determinate') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
 
-    errorOnce(
-      value < min || value > max || min >= max,
-      `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
-      'error',
-      'circular-progress-invalid-min-max-value',
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (!warnedInvalidMinMaxValue && (value < min || value > max || min >= max)) {
+        console.error(
+          `MUI: The min, max, and value props in CircularProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        );
+        warnedInvalidMinMaxValue = true;
+      }
+    }
 
     const range = max - min;
     circleStyle.strokeDasharray = circumference.toFixed(3);

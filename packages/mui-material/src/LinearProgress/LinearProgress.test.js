@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import { reset } from '@mui/utils/errorOnce';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
+import { resetWarningFlags } from './LinearProgress';
 import describeConformance from '../../test/describeConformance';
 
 describe('<LinearProgress />', () => {
@@ -226,7 +226,7 @@ describe('<LinearProgress />', () => {
 
     describe('warnings and errors', () => {
       beforeEach(() => {
-        reset();
+        resetWarningFlags();
       });
 
       it.each([
