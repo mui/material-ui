@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { reset } from '@mui/utils/errorOnce';
 import {
   createRenderer,
   screen,
@@ -161,28 +162,6 @@ describe('<LinearProgress />', () => {
     expect(progressbar).to.have.attribute('aria-valuemax', '100');
   });
 
-  describe('prop: value', () => {
-    it('should warn when not used as expected', () => {
-      let rerender;
-
-      expect(() => {
-        ({ rerender } = render(<LinearProgress variant="determinate" value={undefined} />));
-      }).toErrorDev([
-        'MUI: You need to provide a value prop',
-        !strictModeDoubleLoggingSuppressed && 'MUI: You need to provide a value prop',
-      ]);
-
-      expect(() => {
-        rerender(<LinearProgress variant="buffer" value={undefined} />);
-      }).toErrorDev([
-        'MUI: You need to provide a value prop',
-        'MUI: You need to provide a valueBuffer prop',
-        !strictModeDoubleLoggingSuppressed && 'MUI: You need to provide a value prop',
-        !strictModeDoubleLoggingSuppressed && 'MUI: You need to provide a valueBuffer prop',
-      ]);
-    });
-  });
-
   describe('prop: min & max', () => {
     it('should be able to use custom min and max values', () => {
       render(<LinearProgress variant="determinate" value={5} min={0} max={10} />);
@@ -249,83 +228,87 @@ describe('<LinearProgress />', () => {
       errorSpy.mockRestore();
     });
 
-    it('should warn if the value is out of range', () => {
-      expect(() => {
-        render(<LinearProgress variant="determinate" value={-1} min={0} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=-1.',
-      ]);
+    describe('warnings and errors', () => {
+      beforeEach(() => {
+        reset();
+      });
 
-      expect(() => {
-        render(<LinearProgress variant="determinate" value={11} min={0} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=0, max=10, value=11.',
-      ]);
-    });
+      it.each([
+        { variant: 'determinate', value: -1, min: 0, max: 10 },
+        { variant: 'determinate', value: 11, min: 0, max: 10 },
+      ])(
+        'should warn if value=$value is out of range (min=$min, max=$max)',
+        ({ variant, value, min, max }) => {
+          expect(() => {
+            render(<LinearProgress variant={variant} value={value} min={min} max={max} />);
+          }).toErrorDev([
+            `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+          ]);
+        },
+      );
 
-    it('should error if the valueBuffer is out of range or less than the value prop', () => {
-      expect(() => {
-        render(<LinearProgress variant="buffer" value={5} valueBuffer={4} min={0} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=4.',
-      ]);
+      it.each([
+        { value: 5, valueBuffer: 4, min: 0, max: 10 },
+        { value: 5, valueBuffer: 11, min: 0, max: 10 },
+        { value: 5, valueBuffer: -1, min: 0, max: 10 },
+      ])(
+        'should error if valueBuffer=$valueBuffer is out of range or less than value=$value',
+        ({ value, valueBuffer, min, max }) => {
+          expect(() => {
+            render(
+              <LinearProgress
+                variant="buffer"
+                value={value}
+                valueBuffer={valueBuffer}
+                min={min}
+                max={max}
+              />,
+            );
+          }).toErrorDev([
+            `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
+          ]);
+        },
+      );
 
-      expect(() => {
-        render(<LinearProgress variant="buffer" value={5} valueBuffer={11} min={0} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=11.',
-      ]);
+      it.each([
+        { value: 5, min: 10, max: 0 },
+        { value: 5, min: 10, max: 10 },
+      ])('should error if min=$min is equal or greater than max=$max', ({ value, min, max }) => {
+        expect(() => {
+          render(<LinearProgress variant="determinate" value={value} min={min} max={max} />);
+        }).toErrorDev([
+          `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        ]);
+      });
 
-      expect(() => {
-        render(<LinearProgress variant="buffer" value={5} valueBuffer={-1} min={0} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=0, max=10, value=5, valueBuffer=-1.',
-      ]);
-    });
+      it.each([
+        { variant: 'indeterminate', min: 0, max: undefined },
+        { variant: 'query', min: undefined, max: 100 },
+      ])(
+        'should warn if variant=$variant and min/max props are provided',
+        ({ variant, min, max }) => {
+          expect(() => {
+            render(<LinearProgress variant={variant} min={min} max={max} />);
+          }).toWarnDev([
+            "MUI: You have provided the `min` or `max` props with an 'indeterminate' or 'query' variant. These props will have no effect.",
+          ]);
+        },
+      );
 
-    it('should error if min is equal or greater than max', () => {
-      expect(() => {
-        render(<LinearProgress variant="determinate" value={5} min={10} max={0} />);
-      }).toErrorDev([
-        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=0, value=5.',
-      ]);
-      expect(() => {
-        render(<LinearProgress variant="determinate" value={5} min={10} max={10} />);
-      }).toErrorDev([
-        'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
-        !strictModeDoubleLoggingSuppressed &&
-          'MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=10, max=10, value=5.',
-      ]);
-    });
+      it('should error if value prop is not provided for the determinate variant', () => {
+        expect(() => {
+          render(<LinearProgress variant="determinate" value={undefined} />);
+        }).toErrorDev(['MUI: You need to provide a value prop']);
+      });
 
-    it('should warn if variant is indeterminate or query and min or max props are provided', () => {
-      expect(() => {
-        render(<LinearProgress variant="indeterminate" min={0} />);
-      }).toWarnDev([
-        "MUI: You have provided the `min` or `max` props with an 'indeterminate' or 'query' variant. These props will have no effect.",
-        !strictModeDoubleLoggingSuppressed &&
-          "MUI: You have provided the `min` or `max` props with an 'indeterminate' or 'query' variant. These props will have no effect.",
-      ]);
-
-      expect(() => {
-        render(<LinearProgress variant="query" max={100} />);
-      }).toWarnDev([
-        "MUI: You have provided the `min` or `max` props with an 'indeterminate' or 'query' variant. These props will have no effect.",
-        !strictModeDoubleLoggingSuppressed &&
-          "MUI: You have provided the `min` or `max` props with an 'indeterminate' or 'query' variant. These props will have no effect.",
-      ]);
+      it('should error if value and valueBuffer props are not provided for the buffer variant', () => {
+        expect(() => {
+          render(<LinearProgress variant="buffer" value={undefined} />);
+        }).toErrorDev([
+          'MUI: You need to provide a value prop',
+          'MUI: You need to provide a valueBuffer prop',
+        ]);
+      });
     });
   });
 });

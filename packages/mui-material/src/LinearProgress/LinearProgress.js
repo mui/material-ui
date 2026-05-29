@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import errorOnce from '@mui/utils/errorOnce';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -370,16 +371,13 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
     variant,
   };
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (
-      ['indeterminate', 'query'].includes(variant) &&
-      (minProp !== undefined || maxProp !== undefined)
-    ) {
-      console.warn(
-        `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' or 'query' variant. These props will have no effect.`,
-      );
-    }
-  }
+  errorOnce(
+    ['indeterminate', 'query'].includes(variant) &&
+      (minProp !== undefined || maxProp !== undefined),
+    `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' or 'query' variant. These props will have no effect.`,
+    'warn',
+    'linear-progress-min-max-without-variant',
+  );
 
   const min = minProp ?? 0;
   const max = maxProp ?? 100;
@@ -392,13 +390,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
-      if (process.env.NODE_ENV !== 'production') {
-        if (value < min || value > max || min >= max) {
-          console.error(
-            `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
-          );
-        }
-      }
+      errorOnce(
+        value < min || value > max || min >= max,
+        `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
+        'error',
+        'linear-progress-invalid-min-max-value',
+      );
 
       const range = max - min;
       let transform = ((value - min) / range) * 100 - 100;
@@ -410,22 +407,23 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       rootProps['aria-valuenow'] = value;
       rootProps['aria-valuemin'] = min;
       rootProps['aria-valuemax'] = max;
-    } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a value prop ' +
-          'when using the determinate or buffer variant of LinearProgress.',
+    } else {
+      errorOnce(
+        true,
+        'MUI: You need to provide a value prop when using the determinate or buffer variant of LinearProgress.',
+        'error',
+        'linear-progress-value-required-for-determinate-buffer',
       );
     }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      if (process.env.NODE_ENV !== 'production') {
-        if (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max) {
-          console.error(
-            `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
-          );
-        }
-      }
+      errorOnce(
+        valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max,
+        `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
+        'error',
+        'linear-progress-invalid-min-max-value-buffer',
+      );
 
       const range = max - min;
       let transform = ((valueBuffer - min) / range) * 100 - 100;
@@ -433,10 +431,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
-    } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a valueBuffer prop ' +
-          'when using the buffer variant of LinearProgress.',
+    } else {
+      errorOnce(
+        true,
+        'MUI: You need to provide a valueBuffer prop when using the buffer variant of LinearProgress.',
+        'error',
+        'linear-progress-value-buffer-required-for-buffer',
       );
     }
   }
