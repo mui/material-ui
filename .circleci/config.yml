@@ -231,6 +231,7 @@ jobs:
           path: test-results
   test_e2e:
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -244,6 +245,7 @@ jobs:
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
