@@ -5,17 +5,12 @@ import resolveProps from '@mui/utils/resolveProps';
 
 const PropsContext = React.createContext<Record<string, any> | undefined>(undefined);
 
-interface DefaultPropsProviderType {
-  (props: React.PropsWithChildren<{ value: Record<string, any> | undefined }>): React.ReactElement;
-  propTypes?: any;
-}
-
-const DefaultPropsProvider: DefaultPropsProviderType = function DefaultPropsProvider({
+function DefaultPropsProvider({
   value,
   children,
 }: React.PropsWithChildren<{ value: Record<string, any> | undefined }>) {
   return <PropsContext.Provider value={value}>{children}</PropsContext.Provider>;
-};
+}
 
 DefaultPropsProvider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

@@ -53,11 +53,6 @@ function useThemeScoping(
   }, [themeId, upperTheme, localTheme, isPrivate]);
 }
 
-interface ThemeProviderType {
-  <T = DefaultTheme>(props: ThemeProviderProps<T>): React.ReactElement<ThemeProviderProps<T>>;
-  propTypes?: any;
-}
-
 /**
  * This component makes the `theme` available down the React tree.
  * It should preferably be used at **the root of your component tree**.
@@ -65,7 +60,7 @@ interface ThemeProviderType {
  * <ThemeProvider theme={theme}> // existing use case
  * <ThemeProvider theme={{ id: theme }}> // theme scoping
  */
-const ThemeProvider: ThemeProviderType = function ThemeProvider<T = DefaultTheme>(
+function ThemeProvider<T = DefaultTheme>(
   props: ThemeProviderProps<T>,
 ): React.ReactElement<ThemeProviderProps<T>> {
   const { children, theme: localTheme, themeId } = props;
@@ -110,7 +105,7 @@ const ThemeProvider: ThemeProviderType = function ThemeProvider<T = DefaultTheme
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
   ) as unknown as React.ReactElement<ThemeProviderProps<T>>;
-};
+}
 
 ThemeProvider.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -132,7 +127,8 @@ ThemeProvider.propTypes /* remove-proptypes */ = {
 } as any;
 
 if (process.env.NODE_ENV !== 'production') {
-  ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
+  // eslint-disable-next-line
+  (ThemeProvider as any)['propTypes' + ''] = exactProp((ThemeProvider as any).propTypes);
 }
 
 export default ThemeProvider;
