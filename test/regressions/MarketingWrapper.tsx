@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 // Vite bundle, but fail under `test/tsconfig.json`'s `nodenext` resolution.
 // The runtime side is in `brandingThemeShim.js`, excluded from the test
 // typecheck.
-import { brandingLightTheme } from './brandingThemeShim';
+import brandingLightTheme from './brandingThemeShim';
 
 // `docs/src/components/product*/*.tsx` composites are authored to run inside
 // the Next.js docs site and read the docs branding theme

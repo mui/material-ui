@@ -11,4 +11,5 @@ import type { Theme } from '@mui/material/styles';
 // the Vite build, but fail under `test/tsconfig.json`'s `nodenext`
 // resolution (`@mui/material/themeCssVarsAugmentation` can't be found in
 // the test package's node_modules layout).
-export const brandingLightTheme: Theme;
+declare const brandingLightTheme: Theme;
+export default brandingLightTheme;
