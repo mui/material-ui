@@ -8,7 +8,7 @@ describe('styled', () => {
   it('should help debug wrong args', () => {
     expect(() => {
       expect(() => {
-        styled('span')();
+        (styled('span') as any)();
         // Error message changes between browsers.
         // It's not relevant to the test anyway.
       }).to.throw();
@@ -16,7 +16,7 @@ describe('styled', () => {
 
     expect(() => {
       expect(() => {
-        styled('span')(undefined, { color: 'red' });
+        (styled('span') as any)(undefined, { color: 'red' });
         // Error message changes between browsers.
         // It's not relevant to the test anyway.
       }).to.throw();
@@ -24,10 +24,10 @@ describe('styled', () => {
   });
 
   it('should respect the options', () => {
-    const StyledComponent = styled('div', {
-      shouldForwardProp: (prop) => prop !== 'color',
+    const StyledComponent = (styled as any)('div', {
+      shouldForwardProp: (prop: PropertyKey) => prop !== 'color',
       label: 'TestComponent',
-    })({ color: 'red' });
+    })({ color: 'red' }) as any;
 
     render(<StyledComponent data-testid="component" color="blue" />);
 
