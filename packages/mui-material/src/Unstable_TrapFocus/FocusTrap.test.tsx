@@ -152,6 +152,41 @@ describe('<FocusTrap />', () => {
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 
+  it('should respect positive tabIndex order when focus enters from the start sentinel', async () => {
+    const { user } = render(
+      <FocusTrap open>
+        <div tabIndex={-1} data-testid="root">
+          <button type="button">Normal</button>
+          <button type="button" tabIndex={3}>
+            Indexed 3
+          </button>
+          <button type="button" tabIndex={2}>
+            Indexed 2
+          </button>
+          <button type="button" tabIndex={1}>
+            Indexed 1
+          </button>
+        </div>
+      </FocusTrap>,
+      { strictEffects: false },
+    );
+
+    expect(screen.getByTestId('root')).toHaveFocus();
+    expect(screen.getByTestId('sentinelStart')).to.have.property('tabIndex', 1);
+    expect(screen.getByTestId('sentinelEnd')).to.have.property('tabIndex', 0);
+
+    await act(async () => {
+      screen.getByTestId('sentinelStart').focus();
+    });
+    expect(screen.getByRole('button', { name: 'Indexed 1' })).toHaveFocus();
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Indexed 2' })).toHaveFocus();
+
+    await user.tab();
+    expect(screen.getByRole('button', { name: 'Indexed 3' })).toHaveFocus();
+  });
+
   it('keeps focus trapped after the React 18 Strict Mode remount', async () => {
     render(
       <div>
