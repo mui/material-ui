@@ -71,6 +71,12 @@ It works well when it comes to typography as its height is set using `em` units.
 
 {{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
 
+To keep that typography sizing behavior while changing the shape, keep
+`variant="text"` and customize the border radius with the `sx` prop instead of
+switching to `rectangular` or `rounded`.
+
+{{"demo": "SkeletonTextWithCustomRadius.js", "defaultCodeOpen": false}}
+
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will
 infer its width and height from them.
