@@ -434,6 +434,40 @@ describe('<FocusTrap />', () => {
       }
     });
 
+    it('loops backward when Shift+Tab starts from the shadow-root trap container', async () => {
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      let unmount: (() => void) | undefined;
+
+      try {
+        ({ unmount } = render(
+          <FocusTrap open>
+            <div tabIndex={-1} data-testid="root">
+              <button type="button">first</button>
+              <button type="button">last</button>
+            </div>
+          </FocusTrap>,
+          { container: shadowContainer },
+        ));
+
+        const { user } = await setupBrowser();
+        const root = within(shadowContainer).getByTestId('root');
+        const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
+
+        expect(shadowRoot.activeElement).to.equal(root);
+
+        await user.tab({ shift: true });
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+      } finally {
+        unmount?.();
+        document.body.removeChild(shadowHost);
+      }
+    });
+
     it('loops backward when Shift+Tab enters a lazy shadow-root trap from the document', async () => {
       const shadowHost = document.createElement('div');
       const outsideAfter = document.createElement('input');
