@@ -322,6 +322,13 @@ export interface DemoContainerProps {
    */
   isolated?: boolean;
   /**
+   * When true, the demo renders inside an `<iframe>` sandbox so it gets its own
+   * document, CSS cascade, viewport, and `window` — required for
+   * `position: fixed`, responsive breakpoints, `useMediaQuery`, and
+   * `window`-prop demos.
+   */
+  iframe?: boolean;
+  /**
    * Identifier used to scope the per-demo `cssVarPrefix` when `isolated` is
    * true. Typically the demo `slug` or `name`.
    */
@@ -388,6 +395,7 @@ export function DemoContainer(props: DemoContainerProps) {
     hideToolbar,
     previewStyle,
     isolated,
+    iframe,
     name,
     onReset,
     previewOverlay,
@@ -414,7 +422,7 @@ export function DemoContainer(props: DemoContainerProps) {
   // skeleton share the exact same theming — hydration cannot shift visuals.
   const themedName = name ?? 'demo';
   const themedPreview = (
-    <DemoComponentTheme isolated={isolated} name={themedName}>
+    <DemoComponentTheme isolated={isolated} iframe={iframe} name={themedName}>
       <DemoErrorBoundary name={themedName} onReset={onReset}>
         {preview}
       </DemoErrorBoundary>
