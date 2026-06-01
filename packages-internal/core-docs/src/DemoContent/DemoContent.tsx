@@ -109,7 +109,12 @@ export default function DemoContent(props: DemoContentProps) {
     maxWidth,
     height,
     isolated,
+    iframe,
   } = props;
+
+  // Iframe demos default to the filled background treatment so the sandboxed
+  // surface reads as a distinct preview region (matching the legacy behavior).
+  const resolvedBg = bg ?? (iframe ? true : undefined);
 
   // Demo identifier surfaced in error messages — `name` is set by `createDemo`
   // from the demo's file path (e.g. `BasicButtons.js`).
@@ -458,9 +463,10 @@ export default function DemoContent(props: DemoContentProps) {
       anchors={anchors}
       preview={demo.component}
       isolated={isolated}
+      iframe={iframe}
       name={demoName ?? demo.slug ?? 'demo'}
       onReset={demo.reset}
-      bg={bg}
+      bg={resolvedBg}
       hideToolbar={hideToolbar}
       hasSourceFocus={hasSourceFocus}
       previewStyle={previewStyle}
