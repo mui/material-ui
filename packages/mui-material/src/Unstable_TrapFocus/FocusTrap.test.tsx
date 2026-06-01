@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
+import { vi } from 'vitest';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
@@ -170,6 +171,45 @@ describe('<FocusTrap />', () => {
     });
 
     expect(screen.getByTestId('root')).toHaveFocus();
+  });
+
+  it('should prevent scrolling when focusing the trap while zoomed', () => {
+    vi.stubGlobal('visualViewport', { scale: 2 });
+    const focusCalls: Array<FocusOptions | undefined> = [];
+    let isFocusStubInstalled = false;
+    let restoreFocusSpy = () => {};
+    const handleRootRef = (rootElement: HTMLDivElement | null) => {
+      if (!rootElement || isFocusStubInstalled) {
+        return;
+      }
+
+      isFocusStubInstalled = true;
+      const originalFocus = rootElement.focus;
+      const focusSpy = vi
+        .spyOn(rootElement, 'focus')
+        .mockImplementation((options?: FocusOptions) => {
+          focusCalls.push(options);
+          originalFocus.call(rootElement, options);
+        });
+      restoreFocusSpy = () => {
+        focusSpy.mockRestore();
+      };
+    };
+
+    try {
+      render(
+        <FocusTrap open>
+          <div tabIndex={-1} data-testid="root" ref={handleRootRef}>
+            <div>Title</div>
+          </div>
+        </FocusTrap>,
+      );
+
+      expect(focusCalls.some((options) => options?.preventScroll === true)).to.equal(true);
+    } finally {
+      restoreFocusSpy();
+      vi.unstubAllGlobals();
+    }
   });
 
   it('does not steal focus from a portaled element if any prop but open changes', async () => {

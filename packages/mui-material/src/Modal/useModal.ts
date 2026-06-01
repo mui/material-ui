@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import ownerDocument from '@mui/utils/ownerDocument';
+import ownerWindow from '@mui/utils/ownerWindow';
 import useForkRef from '@mui/utils/useForkRef';
 import useEventCallback from '@mui/utils/useEventCallback';
 import createChainedFunction from '@mui/utils/createChainedFunction';
@@ -23,6 +24,18 @@ function getHasTransition(children: UseModalParameters['children']) {
 }
 
 const noop = () => {};
+
+function shouldResetModalScroll(modalElement: HTMLDivElement) {
+  const visualViewport = ownerWindow(modalElement).visualViewport;
+
+  if (!visualViewport) {
+    return true;
+  }
+
+  return (
+    visualViewport.scale === 1 && visualViewport.offsetLeft === 0 && visualViewport.offsetTop === 0
+  );
+}
 
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
@@ -64,8 +77,9 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const handleMounted = () => {
     manager.mount(getModal(), { disableScrollLock });
 
-    // Fix a bug on Chrome where the scroll isn't initially 0.
-    if (modalRef.current) {
+    // Fix a Chrome quirk where the modal root can mount with a stale scroll position.
+    // Skip this while the visual viewport is zoomed or panned away from the origin.
+    if (modalRef.current && shouldResetModalScroll(modalRef.current)) {
       modalRef.current.scrollTop = 0;
     }
   };
