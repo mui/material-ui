@@ -114,6 +114,7 @@
     "./transitions": "./src/transitions/index.ts",
     "./useLazyRipple": "./src/useLazyRipple/index.ts",
     "./version": "./src/version/index.ts",
+    "./default-theme.css": "./default-theme.css",
     "./*": "./src/*/index.js"
   },
   "pigment-css": {
