@@ -4,6 +4,7 @@ import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
 import { BrandingCssVarsProvider } from '../branding';
+import { DemoIframe, IsolatedDemo } from '../DemoContent/DemoSandbox';
 
 const defaultTheme = createTheme({
   colorSchemes: { light: true, dark: true },
@@ -68,26 +69,9 @@ export function DemoInstanceThemeProvider({
   );
 }
 
-// Props injected via `cloneElement` into an isolated demo so its own
-// `CssVarsProvider` attaches to the per-demo container instead of `<html>`.
-interface IsolatedDemoProps {
-  children: React.ReactElement;
-  cssVarPrefix: string;
-  colorSchemeNode: Element | null;
-}
-
-function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode }: IsolatedDemoProps) {
-  return React.cloneElement(children, {
-    cssVarPrefix,
-    colorSchemeNode,
-    colorSchemeSelector: 'class',
-    disableNestedContext: true,
-    storageManager: null,
-  } as Partial<unknown> & React.Attributes);
-}
-
 /**
- * Wraps a demo's rendered component with the appropriate theme context.
+ * Wraps a demo's rendered component with the appropriate theme context and,
+ * when requested, an iframe sandbox.
  *
  * - When `isolated` is false (default), wraps in `DemoInstanceThemeProvider`
  *   so the demo sees a fresh Material UI theme rather than inheriting the
@@ -97,14 +81,20 @@ function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode }: IsolatedDemoP
  *   inheritance so the demo can own its `ThemeProvider`. The demo element is
  *   then cloned with `cssVarPrefix` / `colorSchemeNode` / etc. for its own
  *   `CssVarsProvider`.
+ * - When `iframe` is true, the demo renders inside a `DemoIframe` portal so it
+ *   gets its own document, CSS cascade, viewport, and `window`. The theme React
+ *   context above still reaches the portaled demo, while emotion styles and CSS
+ *   variables are redirected into the iframe by `FramedDemo`.
  */
 export function DemoComponentTheme({
   children,
   isolated,
+  iframe,
   name,
 }: {
   children: React.ReactNode;
   isolated?: boolean;
+  iframe?: boolean;
   name: string;
 }) {
   const [colorSchemeNode, setColorSchemeNode] = React.useState<HTMLDivElement | null>(null);
@@ -114,17 +104,33 @@ export function DemoComponentTheme({
       <SystemThemeProvider
         theme={(upperTheme: { direction?: 'ltr' | 'rtl'; vars?: Record<string, unknown> }) => ({
           direction: upperTheme.direction, // required for internal ThemeProvider
-          vars: upperTheme.vars, // required for styling the wrapper
+          vars: upperTheme.vars, // required for styling the wrapper / iframe
         })}
       >
-        <div ref={setColorSchemeNode}>
-          <IsolatedDemo cssVarPrefix={name} colorSchemeNode={colorSchemeNode}>
-            {children as React.ReactElement}
-          </IsolatedDemo>
-        </div>
+        {iframe ? (
+          <DemoIframe name={name} isolated>
+            {/* `IsolatedDemo` receives the iframe `window` via `FramedDemo`'s
+                `cloneElement`, so its `CssVarsProvider` attaches to the iframe. */}
+            <IsolatedDemo cssVarPrefix={name}>{children as React.ReactElement}</IsolatedDemo>
+          </DemoIframe>
+        ) : (
+          <div ref={setColorSchemeNode}>
+            <IsolatedDemo cssVarPrefix={name} colorSchemeNode={colorSchemeNode}>
+              {children as React.ReactElement}
+            </IsolatedDemo>
+          </div>
+        )}
       </SystemThemeProvider>
     );
   }
 
-  return <DemoInstanceThemeProvider runtimeTheme={undefined}>{children}</DemoInstanceThemeProvider>;
+  return (
+    <DemoInstanceThemeProvider runtimeTheme={undefined}>
+      {iframe && React.isValidElement(children) ? (
+        <DemoIframe name={name}>{children}</DemoIframe>
+      ) : (
+        children
+      )}
+    </DemoInstanceThemeProvider>
+  );
 }
