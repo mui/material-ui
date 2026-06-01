@@ -71,9 +71,8 @@ It works well when it comes to typography as its height is set using `em` units.
 
 {{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
 
-To keep that typography sizing behavior while changing the shape, keep
-`variant="text"` and customize the border radius with the `sx` prop instead of
-switching to `rectangular` or `rounded`.
+Use `variant="text"` and customize the border radius with the `sx` prop to
+preserve typography-based sizing.
 
 {{"demo": "SkeletonTextWithCustomRadius.js", "defaultCodeOpen": false}}
 
