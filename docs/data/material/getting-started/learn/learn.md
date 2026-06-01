@@ -35,4 +35,4 @@ The following is a curated list of some of the best third-party resources we've 
 
 - **[Material UI v5 Tutorial Playlist](https://www.youtube.com/playlist?list=PLlR2O33QQkfXnZMMZC0y22gLayBbB1UQd)** by Nikhil Thadani (Indian Coders): a detailed playlist covering almost every component of Material UI with Create React App.
 
-- **[The Clever Dev](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw)** and **[The Smart Devpreneur](https://smartdevpreneur.com/category/javascript/material-ui/)** by Jon M: dozens of high-quality videos and articles digging deep into the nuts and bolts of Material UI.
+- **[The Clever Dev](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw)** by Jon M: dozens of high-quality videos digging deep into the nuts and bolts of Material UI.
