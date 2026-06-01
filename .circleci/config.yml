@@ -260,11 +260,10 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_regressions:
     <<: *default-job
-    resource_class: medium
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
-    resource_class: 'medium+'
     steps:
       - checkout
       - install-deps:
