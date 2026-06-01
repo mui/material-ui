@@ -80,7 +80,22 @@ jobs:
           react-version: << parameters.react-version >>
       - run:
           name: Tests fake browser
-          command: pnpm test:node --no-isolate --no-file-parallelism
+          # Shard the suite into one run per vCPU (medium.gen2 = 2) and run the
+          # shards concurrently to saturate the CPUs. Each shard stays serial and
+          # non-isolated (`--no-isolate --no-file-parallelism`) — turning isolation
+          # back on is dramatically slower — so the parallelism comes from the
+          # shards, not from vitest's in-process pool. Ported from mui/mui-x#20179.
+          # `--reporter=blob` lets `vitest run --merge-reports` stitch the shard
+          # results back together; `--reporter=dot` keeps output flowing so the
+          # CircleCI step doesn't hit the no-output timeout (mui/mui-x#20193).
+          command: |
+            pnpm exec concurrently \
+              "pnpm test:node --no-isolate --no-file-parallelism --reporter=blob --reporter=dot --shard=1/2" \
+              "pnpm test:node --no-isolate --no-file-parallelism --reporter=blob --reporter=dot --shard=2/2" \
+              || TEST_EXIT_CODE=$?
+            pnpm exec vitest run --merge-reports
+            # Reports merged — exit with the stored shard exit code.
+            exit ${TEST_EXIT_CODE:-0}
       - run:
           name: internal-scripts
           command: |
