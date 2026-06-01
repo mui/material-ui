@@ -487,7 +487,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
               <Tab value={3} />
             </Tabs>,
           );
-          // The warning is logged only once (see `warnedOnceTabValueInvalid`).
+          // The warning is logged only once (see `warnedTabValueInvalid`).
         }).toErrorDev(['You can provide one of the following values: 1, 3']);
       });
 
