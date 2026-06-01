@@ -229,6 +229,11 @@ const TabsScrollbarSize = styled(ScrollbarSize)({
 
 const defaultIndicatorStyle = {};
 
+// Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
+// already logged, so it isn't repeated across the several effects that call `getTabsMeta`.
+// Only referenced from `process.env.NODE_ENV !== 'production'` blocks; the `@__PURE__` annotation
+// lets minifiers drop it (and the `WeakMap` allocation) entirely from production builds.
+const warnedTabValueInvalid = /* @__PURE__ */ new WeakMap();
 let warnedOnceTabPresent = false;
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
@@ -357,7 +362,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
         if (process.env.NODE_ENV !== 'production') {
-          if (!tab) {
+          // `getTabsMeta` runs from several effects, so guard against logging the warning repeatedly.
+          if (!tab && !warnedTabValueInvalid.has(tabsRef)) {
+            warnedTabValueInvalid.set(tabsRef, true);
             console.error(
               [
                 `MUI: The \`value\` provided to the Tabs component is invalid.`,
