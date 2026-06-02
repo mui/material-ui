@@ -112,6 +112,16 @@ describe('e2e', () => {
       await expect(page.getByText('indexed 1')).toBeFocused();
       await page.keyboard.press('Shift+Tab');
       await expect(page.getByText('normal 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
     });
 
     it('should loop the tab key after activation', async () => {
