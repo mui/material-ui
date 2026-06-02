@@ -31,38 +31,34 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
 })(
-  memoTheme(({ theme }) => {
-    const transition = {
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    width: '100%',
+    minHeight: 48,
+    padding: theme.spacing(0, 2),
+    ...getTransitionStyles(theme, ['min-height', 'background-color'], {
       duration: theme.transitions.duration.shortest,
-    };
-
-    return {
-      display: 'flex',
-      width: '100%',
-      minHeight: 48,
-      padding: theme.spacing(0, 2),
-      ...getTransitionStyles(theme, ['min-height', 'background-color'], transition),
-      [`&.${accordionSummaryClasses.focusVisible}`]: {
-        backgroundColor: (theme.vars || theme).palette.action.focus,
-      },
-      [`&.${accordionSummaryClasses.disabled}`]: {
-        opacity: (theme.vars || theme).palette.action.disabledOpacity,
-      },
-      [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
-        cursor: 'pointer',
-      },
-      variants: [
-        {
-          props: (props) => !props.disableGutters,
-          style: {
-            [`&.${accordionSummaryClasses.expanded}`]: {
-              minHeight: 64,
-            },
+    }),
+    [`&.${accordionSummaryClasses.focusVisible}`]: {
+      backgroundColor: (theme.vars || theme).palette.action.focus,
+    },
+    [`&.${accordionSummaryClasses.disabled}`]: {
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
+    },
+    [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
+      cursor: 'pointer',
+    },
+    variants: [
+      {
+        props: (props) => !props.disableGutters,
+        style: {
+          [`&.${accordionSummaryClasses.expanded}`]: {
+            minHeight: 64,
           },
         },
-      ],
-    };
-  }),
+      },
+    ],
+  })),
 );
 
 const AccordionSummaryContent = styled('span', {
@@ -94,19 +90,17 @@ const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
 })(
-  memoTheme(({ theme }) => {
-    return {
-      display: 'flex',
-      color: (theme.vars || theme).palette.action.active,
-      transform: 'rotate(0deg)',
-      ...getTransitionStyles(theme, 'transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      [`&.${accordionSummaryClasses.expanded}`]: {
-        transform: 'rotate(180deg)',
-      },
-    };
-  }),
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    color: (theme.vars || theme).palette.action.active,
+    transform: 'rotate(0deg)',
+    ...getTransitionStyles(theme, 'transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    [`&.${accordionSummaryClasses.expanded}`]: {
+      transform: 'rotate(180deg)',
+    },
+  })),
 );
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {

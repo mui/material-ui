@@ -47,7 +47,7 @@ theme.transitions.create(['background-color', 'transform']);
 
 ## Reduced motion
 
-Configure reduced-motion behavior with `theme.motion.reducedMotion`.
+Starting in v9.1.0, reduced-motion behavior can be configured with `theme.motion.reducedMotion`.
 
 ```js
 const theme = createTheme({

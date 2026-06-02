@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import type { ReducedMotionMode } from '../styles/createMotion';
 
 const MEDIA_QUERY = '(prefers-reduced-motion: reduce)';
@@ -33,7 +34,7 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
     }
   }
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const setResolvedMatches = (nextMatches: boolean | null) => {
       setQueryState((previousState) => {
         if (previousState.enabled === enabled && previousState.matches === nextMatches) {
