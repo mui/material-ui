@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "module": "node16",
     "moduleResolution": "node16"
   }
