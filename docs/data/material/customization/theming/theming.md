@@ -317,7 +317,7 @@ theme = responsiveFontSizes(theme);
 ### `enhanceHighContrast(theme, tokens) => theme`
 
 :::info
-This utility was introduced in Material UI v9.1.0.
+This utility was introduced in Material UI v9.1.0.
 :::
 
 Applies `@media (forced-colors: active)` overrides to a theme, improving component visibility in [Windows High Contrast / Forced Colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors).

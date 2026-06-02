@@ -319,7 +319,7 @@ To improve component visibility in Windows High Contrast mode (also known as [Fo
 It follows the same pattern as `responsiveFontSizes`: it accepts a fully-created theme and returns an enhanced version of it with `@media (forced-colors: active)` overrides applied to the affected components.
 
 :::info
-The `enhanceHighContrast` utility was introduced in Material UI v9.1.0.
+The `enhanceHighContrast` utility was introduced in Material UI v9.1.0.
 :::
 
 ```js
