@@ -306,8 +306,11 @@ function useAutocomplete(props) {
       return;
     }
 
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
+    // In freeSolo mode, only reset the input after a real value change.
+    // Also prevent the initial default value of `null` from clearing controlled values.
+    const shouldSkipFreeSoloReset =
+      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+    if (shouldSkipFreeSoloReset) {
       return;
     }
 
