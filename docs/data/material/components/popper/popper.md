@@ -63,6 +63,13 @@ Highlight part of the text to see the popper:
 
 {{"demo": "VirtualElementPopper.js"}}
 
+## Accessibility
+
+The Popper component is a positioning utility and does not add roles, focus management, or keyboard behavior on its own.
+When you use it to build an interactive widget, follow the WAI-ARIA pattern for that widget, such as a [tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/), [menu](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/), or [dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+If the popper should close when users interact outside of it, use the [Click-Away Listener](/material-ui/react-click-away-listener/) and make sure the trigger can be reached and operated with the keyboard.
+
 ## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:

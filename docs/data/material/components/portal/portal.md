@@ -55,3 +55,11 @@ The Portal component cannot be used to render child elements on the server—cli
 This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
 See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
 :::
+
+## Accessibility
+
+The Portal component only changes where its children are mounted in the DOM.
+It does not add roles, focus management, or keyboard behavior.
+
+When you render interactive content through a Portal, make sure users can reach it with the keyboard and move focus back to the trigger when the interaction is complete.
+For modal experiences, use the [Modal](/material-ui/react-modal/) component or follow the WAI-ARIA [dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
