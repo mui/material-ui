@@ -1,45 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <script>
-      // Pin `Date` to a fixed instant before anything else runs, so the
-      // `today` in date-aware composites (XHero / XDateRangeDemo build picker
-      // defaults from `dayjs()`) doesn't shift the Argos baseline every day.
-      //
-      // This is an inline classic <script>: it executes synchronously during
-      // parsing, before the deferred `<script type="module">` bundle. That
-      // ordering matters because `import.meta.glob({ eager: true })` *prepends*
-      // its demo imports ahead of the entry module's own imports, so those
-      // modules' top-level `dayjs()` runs before any module-level setup could —
-      // see mui/base-ui#4370. Running here sidesteps that entirely.
-      //
-      // The override itself follows mui/base-ui#4337: `Reflect.construct`
-      // preserves the native `Date.prototype` (subclassing date libraries
-      // enumerate its own methods) and forwards `new.target`. The playwright
-      // page also pins `timezoneId: 'UTC'` so the frozen instant renders the
-      // same regardless of the CI machine's timezone.
-      (function fakeDateSetup() {
-        var fakeNow = new Date('2025-06-15T09:00:00.000Z').valueOf();
-        var OriginalDate = Date;
-        var offset = fakeNow - OriginalDate.now();
-
-        function FakeDate(...args) {
-          if (new.target) {
-            return args.length === 0
-              ? Reflect.construct(OriginalDate, [OriginalDate.now() + offset], new.target)
-              : Reflect.construct(OriginalDate, args, new.target);
-          }
-          return new OriginalDate(OriginalDate.now() + offset).toString();
-        }
-
-        FakeDate.prototype = OriginalDate.prototype;
-        FakeDate.parse = OriginalDate.parse;
-        FakeDate.UTC = OriginalDate.UTC;
-        FakeDate.now = () => OriginalDate.now() + offset;
-
-        window.Date = FakeDate;
-      })();
-    </script>
     <title>Visual regression tests</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
