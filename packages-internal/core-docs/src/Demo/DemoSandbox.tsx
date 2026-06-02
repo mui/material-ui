@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { prefixer } from 'stylis';
-import rtlPlugin from '@mui/stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { StyleSheetManager } from 'styled-components';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -14,6 +12,16 @@ import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
 import { useDemoContext } from '../DemoContext/DemoContext';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
+
+type RtlBundle = typeof import('../utils/rtlBundle');
+
+let rtlBundlePromise: Promise<RtlBundle> | undefined;
+function loadRtlBundle() {
+  if (!rtlBundlePromise) {
+    rtlBundlePromise = import('../utils/rtlBundle');
+  }
+  return rtlBundlePromise;
+}
 
 const SRC_DOC = `<!DOCTYPE html>
 <html>
@@ -69,6 +77,14 @@ function FramedDemo(props: FramedDemoProps) {
   const { IframeWrapper } = useDemoContext();
 
   const theme = useTheme();
+  const rtl = theme.direction === 'rtl';
+  const [rtlBundle, setRtlBundle] = React.useState<RtlBundle | null>(null);
+
+  React.useEffect(() => {
+    if (rtl && !rtlBundle) {
+      loadRtlBundle().then(setRtlBundle);
+    }
+  }, [rtl, rtlBundle]);
 
   React.useEffect(() => {
     if (!isolated) {
@@ -84,9 +100,9 @@ function FramedDemo(props: FramedDemoProps) {
         key: `iframe-demo-${theme.direction}`,
         prepend: true,
         container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
+        stylisPlugins: rtl && rtlBundle ? [prefixer, rtlBundle.rtlPlugin] : [prefixer],
       }),
-    [document, theme.direction],
+    [document, theme.direction, rtl, rtlBundle],
   );
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
@@ -99,22 +115,27 @@ function FramedDemo(props: FramedDemoProps) {
   // Pass `null` explicitly via context to disable wrapper entirely
   const Wrapper = IframeWrapper === undefined ? MaterialIframeWrapper : IframeWrapper;
 
-  return (
-    <StyleSheetManager
-      target={document.head}
-      stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
-    >
-      <CacheProvider value={cache}>
-        {Wrapper ? (
-          <Wrapper document={document} isolated={isolated}>
-            {clonedChildren}
-          </Wrapper>
-        ) : (
-          clonedChildren
-        )}
-      </CacheProvider>
-    </StyleSheetManager>
+  const tree = (
+    <CacheProvider value={cache}>
+      {Wrapper ? (
+        <Wrapper document={document} isolated={isolated}>
+          {clonedChildren}
+        </Wrapper>
+      ) : (
+        clonedChildren
+      )}
+    </CacheProvider>
   );
+
+  if (rtl && rtlBundle) {
+    const { StyleSheetManager, rtlPlugin } = rtlBundle;
+    return (
+      <StyleSheetManager target={document.head} stylisPlugins={[rtlPlugin]}>
+        {tree}
+      </StyleSheetManager>
+    );
+  }
+  return tree;
 }
 
 const Iframe = styled('iframe')(({ theme }) => ({
