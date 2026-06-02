@@ -10,7 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
-import { getReducedMotionStyles } from '../transitions/utils';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
 import useReducedMotion from '../transitions/useReducedMotion';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
@@ -86,7 +86,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
     display: 'flex',
     alignItems: 'center',
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-      ...theme.transitions.createStyles(['transform', 'opacity'], {
+      ...getTransitionStyles(theme, ['transform', 'opacity'], {
         duration: theme.transitions.duration.shorter,
       }),
       opacity: 1,
@@ -149,7 +149,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const { className, delay = 0, icon, id, open, slots = {}, slotProps = {}, ...other } = props;
   const theme = useTheme();
-  const reducedMotion = useReducedMotion(theme.transitions.reducedMotion, false);
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
 
   const resolvedTooltipSlotProps =
     typeof slotProps.tooltip === 'function' ? slotProps.tooltip(props) : (slotProps.tooltip ?? {});

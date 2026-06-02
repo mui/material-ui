@@ -508,7 +508,7 @@ describe('<Dialog />', () => {
     it('opens on the next task when reduced motion is always', () => {
       const handleEntered = spy();
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

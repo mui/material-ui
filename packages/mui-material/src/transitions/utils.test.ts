@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getReducedMotionStyles, getTranslateOffsets, normalizedTransitionCallback } from './utils';
+import {
+  getReducedMotionStyles,
+  getTransitionStyles,
+  getTranslateOffsets,
+  normalizedTransitionCallback,
+} from './utils';
 
 describe('getTranslateOffsets', () => {
   it('extracts matrix offsets', () => {
@@ -104,17 +109,17 @@ describe('getReducedMotionStyles', () => {
   const customStyles = { animation: 'none' };
 
   it('returns null when reduced motion is off', () => {
-    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'never' } })).to.equal(null);
+    expect(getReducedMotionStyles({ motion: { reducedMotion: 'never' } })).to.equal(null);
   });
 
   it('returns the default transition reset when reduced motion is always on', () => {
-    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'always' } })).to.deep.equal({
+    expect(getReducedMotionStyles({ motion: { reducedMotion: 'always' } })).to.deep.equal({
       transition: 'none',
     });
   });
 
   it('wraps the default transition reset in a reduce media query in system mode', () => {
-    expect(getReducedMotionStyles({ transitions: { reducedMotion: 'system' } })).to.deep.equal({
+    expect(getReducedMotionStyles({ motion: { reducedMotion: 'system' } })).to.deep.equal({
       '@media (prefers-reduced-motion: reduce)': {
         transition: 'none',
       },
@@ -122,13 +127,52 @@ describe('getReducedMotionStyles', () => {
   });
 
   it('accepts custom reduced-motion styles', () => {
+    expect(getReducedMotionStyles({ motion: { reducedMotion: 'always' } }, customStyles)).to.equal(
+      customStyles,
+    );
     expect(
-      getReducedMotionStyles({ transitions: { reducedMotion: 'always' } }, customStyles),
-    ).to.equal(customStyles);
-    expect(
-      getReducedMotionStyles({ transitions: { reducedMotion: 'system' } }, customStyles),
+      getReducedMotionStyles({ motion: { reducedMotion: 'system' } }, customStyles),
     ).to.deep.equal({
       '@media (prefers-reduced-motion: reduce)': customStyles,
+    });
+  });
+});
+
+describe('getTransitionStyles', () => {
+  const theme = {
+    transitions: {
+      create: (
+        props: string | string[] = ['all'],
+        options: Partial<{ duration: number | string }> = {},
+      ) => `${Array.isArray(props) ? props.join(',') : props}-${options.duration ?? 'default'}`,
+    },
+    motion: {
+      reducedMotion: 'never' as const,
+    },
+  };
+
+  it('returns transition styles from theme.transitions.create()', () => {
+    expect(getTransitionStyles(theme, 'opacity', { duration: 100 })).to.deep.equal({
+      transition: 'opacity-100',
+    });
+  });
+
+  it('adds reduced-motion styles from theme.motion', () => {
+    expect(
+      getTransitionStyles(
+        {
+          ...theme,
+          motion: {
+            reducedMotion: 'system',
+          },
+        },
+        'opacity',
+      ),
+    ).to.deep.equal({
+      transition: 'opacity-default',
+      '@media (prefers-reduced-motion: reduce)': {
+        transition: 'none',
+      },
     });
   });
 });

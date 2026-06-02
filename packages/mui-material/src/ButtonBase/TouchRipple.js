@@ -153,7 +153,7 @@ const pulsateKeyframe = keyframes`
 `;
 
 function getAnimationStyles(theme) {
-  if (theme.transitions.reducedMotion === 'always') {
+  if (theme.motion.reducedMotion === 'always') {
     return null;
   }
 
@@ -183,7 +183,7 @@ function getAnimationStyles(theme) {
     }
   `;
 
-  if (theme.transitions.reducedMotion === 'system') {
+  if (theme.motion.reducedMotion === 'system') {
     return css`
       @media (prefers-reduced-motion: no-preference) {
         ${styles}
@@ -252,7 +252,7 @@ export const TouchRippleRipple = styled(Ripple, {
 const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
   const theme = useTheme();
-  const reducedMotion = useReducedMotion(theme.transitions.reducedMotion, false);
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
 
   const { center: centerProp = false, classes = EMPTY_OBJ, className, ...other } = props;
   // Store ripples as data so we can keep exiting ripples mounted until their

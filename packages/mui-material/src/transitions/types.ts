@@ -83,7 +83,7 @@ interface ConsumerTransitionProps extends TransitionHandlerProps {
    */
   addEndListener?: ((node: HTMLElement, done: () => void) => void) | undefined;
   /**
-   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
    * @default false
    */
   disablePrefersReducedMotion?: boolean | undefined;

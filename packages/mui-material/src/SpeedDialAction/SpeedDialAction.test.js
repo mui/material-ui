@@ -73,7 +73,7 @@ describe('<SpeedDialAction />', () => {
 
   it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -101,7 +101,7 @@ describe('<SpeedDialAction />', () => {
 
   it('uses authored transition delay when reduced motion is never', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'never',
       },
     });
@@ -125,7 +125,7 @@ describe('<SpeedDialAction />', () => {
 
   it('server-renders system mode with reduced transition delay before the media query resolves', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'system',
       },
     });

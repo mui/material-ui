@@ -22,7 +22,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    */
   children: React.ReactElement<unknown, any>;
   /**
-   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
    * @default false
    */
   disablePrefersReducedMotion?: boolean | undefined;

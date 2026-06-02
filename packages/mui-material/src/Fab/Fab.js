@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -52,7 +53,7 @@ const FabRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     minHeight: 36,
-    ...theme.transitions.createStyles(['background-color', 'box-shadow', 'border-color'], {
+    ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     borderRadius: '50%',

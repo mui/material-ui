@@ -86,7 +86,7 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
 
   it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

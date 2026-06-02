@@ -9,7 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-import { getReducedMotionStyles } from '../transitions/utils';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -105,7 +105,7 @@ const CircularProgressRoot = styled('span', {
             variant: 'determinate',
           },
           style: {
-            ...theme.transitions.createStyles('transform'),
+            ...getTransitionStyles(theme, 'transform'),
           },
         },
         {
@@ -168,7 +168,7 @@ const CircularProgressCircle = styled('circle', {
             variant: 'determinate',
           },
           style: {
-            ...theme.transitions.createStyles('stroke-dashoffset'),
+            ...getTransitionStyles(theme, 'stroke-dashoffset'),
           },
         },
         {

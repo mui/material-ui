@@ -77,7 +77,7 @@ describe('<CircularProgress />', () => {
 
   it.skipIf(isJsdom())('disables determinate transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -96,7 +96,7 @@ describe('<CircularProgress />', () => {
 
   it.skipIf(isJsdom())('disables indeterminate animations when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

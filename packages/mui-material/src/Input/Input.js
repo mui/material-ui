@@ -12,6 +12,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
+import { getTransitionStyles } from '../transitions/utils';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -78,7 +79,7 @@ const InputRoot = styled(InputBaseRoot, {
               position: 'absolute',
               right: 0,
               transform: 'scaleX(0)',
-              ...theme.transitions.createStyles('transform', {
+              ...getTransitionStyles(theme, 'transform', {
                 duration: theme.transitions.duration.shorter,
                 easing: theme.transitions.easing.easeOut,
               }),
@@ -101,7 +102,7 @@ const InputRoot = styled(InputBaseRoot, {
               content: '""',
               position: 'absolute',
               right: 0,
-              ...theme.transitions.createStyles('border-bottom-color', {
+              ...getTransitionStyles(theme, 'border-bottom-color', {
                 duration: theme.transitions.duration.shorter,
               }),
               pointerEvents: 'none', // Transparent to the hover style.

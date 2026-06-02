@@ -116,7 +116,7 @@ describe('<Fade />', () => {
     it('uses reduced timing for the initial appear transition before the media query resolves', () => {
       const handleEntered = spy();
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'system',
         },
       });

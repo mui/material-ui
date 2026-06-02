@@ -166,8 +166,10 @@ describe('<Grow />', () => {
         const handleEntered = spy();
         const getAutoHeightDuration = spy(() => 25);
         const theme = createTheme({
-          transitions: {
+          motion: {
             reducedMotion: 'always',
+          },
+          transitions: {
             getAutoHeightDuration,
           },
         });
@@ -251,8 +253,10 @@ describe('<Grow />', () => {
         const handleExited = spy();
         const getAutoHeightDuration = spy(() => 25);
         const theme = createTheme({
-          transitions: {
+          motion: {
             reducedMotion: 'always',
+          },
+          transitions: {
             getAutoHeightDuration,
           },
         });

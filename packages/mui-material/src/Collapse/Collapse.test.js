@@ -259,8 +259,10 @@ describe('<Collapse />', () => {
     it('completes auto duration on the next task when reduced motion is always', () => {
       const getAutoHeightDuration = spy(() => 25);
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
+        },
+        transitions: {
           getAutoHeightDuration,
         },
       });
@@ -293,8 +295,10 @@ describe('<Collapse />', () => {
     it('completes exit auto duration on the next task without calculating duration when reduced motion is always', () => {
       const getAutoHeightDuration = spy(() => 25);
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
+        },
+        transitions: {
           getAutoHeightDuration,
         },
       });

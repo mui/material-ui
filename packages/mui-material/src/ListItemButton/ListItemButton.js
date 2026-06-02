@@ -12,6 +12,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -66,7 +67,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     textAlign: 'left',
     paddingTop: 8,
     paddingBottom: 8,
-    ...theme.transitions.createStyles('background-color', {
+    ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     '&:hover': {

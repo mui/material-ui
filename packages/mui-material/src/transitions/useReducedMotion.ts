@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import type { ReducedMotionMode } from '../styles/createTransitions';
+import type { ReducedMotionMode } from '../styles/createMotion';
 
 const MEDIA_QUERY = '(prefers-reduced-motion: reduce)';
 const REDUCED_MOTION_DURATION = 0;

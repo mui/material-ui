@@ -74,7 +74,7 @@ export default function DashboardSidebarPageItem({
       ml: 0.5,
       fontSize: 20,
       transform: `rotate(${expanded ? 0 : -90}deg)`,
-      ...theme.transitions.createStyles('transform', {
+      transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.sharp,
         duration: 100,
       }),

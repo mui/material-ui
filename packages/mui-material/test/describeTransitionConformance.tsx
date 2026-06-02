@@ -331,7 +331,7 @@ function describeTransitionConformance(
 
         const timeout = reducedMotion.timeout ?? 250;
         const theme = createTheme({
-          transitions: {
+          motion: {
             reducedMotion: 'always',
           },
         });

@@ -1,5 +1,3 @@
-import { defaultStyles } from './reducedMotion';
-
 const DEFAULT_TRANSITION_PROPS = ['all'];
 const EMPTY_OPTIONS = {};
 
@@ -49,15 +47,17 @@ function getAutoHeightDuration(height) {
 }
 
 export default function createTransitions(inputTransitions) {
-  const reducedMotion = inputTransitions.reducedMotion ?? 'never';
+  const transitions = { ...inputTransitions };
+  delete transitions.reducedMotion;
+
   const mergedEasing = {
     ...easing,
-    ...inputTransitions.easing,
+    ...transitions.easing,
   };
 
   const mergedDuration = {
     ...duration,
-    ...inputTransitions.duration,
+    ...transitions.duration,
   };
 
   const createTransitionValue = (props = DEFAULT_TRANSITION_PROPS, options = EMPTY_OPTIONS) => {
@@ -113,31 +113,12 @@ export default function createTransitions(inputTransitions) {
       .join(',');
   };
 
-  const create = inputTransitions.create ?? createTransitionValue;
-
-  const createStyles = (props = DEFAULT_TRANSITION_PROPS, options = EMPTY_OPTIONS) => {
-    const transition = create(props, options);
-
-    if (reducedMotion === 'always') {
-      return defaultStyles;
-    }
-
-    if (reducedMotion === 'system') {
-      return {
-        transition,
-        '@media (prefers-reduced-motion: reduce)': defaultStyles,
-      };
-    }
-
-    return { transition };
-  };
+  const create = transitions.create ?? createTransitionValue;
 
   return {
     getAutoHeightDuration,
     create,
-    createStyles,
-    ...inputTransitions,
-    reducedMotion,
+    ...transitions,
     easing: mergedEasing,
     duration: mergedDuration,
   };

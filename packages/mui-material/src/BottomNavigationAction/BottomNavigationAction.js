@@ -8,6 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
+import { getTransitionStyles } from '../transitions/utils';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
@@ -34,7 +35,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => ({
-    ...theme.transitions.createStyles(['color', 'padding-top'], {
+    ...getTransitionStyles(theme, ['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
     padding: '0px 12px',
@@ -71,7 +72,7 @@ const BottomNavigationActionLabel = styled('span', {
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(12),
     opacity: 1,
-    ...theme.transitions.createStyles(['font-size', 'opacity'], {
+    ...getTransitionStyles(theme, ['font-size', 'opacity'], {
       duration: '0.2s',
       easing: 'ease',
     }),

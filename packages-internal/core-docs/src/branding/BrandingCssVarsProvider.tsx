@@ -28,7 +28,7 @@ const themeOptions = {
     },
   },
   ...designTokens,
-  transitions: {
+  motion: {
     reducedMotion: 'system' as const,
   },
   typography: deepmerge(typography, {

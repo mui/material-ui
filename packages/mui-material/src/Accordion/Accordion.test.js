@@ -164,7 +164,7 @@ describe('<Accordion />', () => {
   it('expands on the next task when reduced motion is always', () => {
     const handleEntered = spy();
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -207,7 +207,7 @@ describe('<Accordion />', () => {
   it('allows transition slot props to opt out of reduced motion', () => {
     const handleEntered = spy();
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -247,7 +247,7 @@ describe('<Accordion />', () => {
 
   it.skipIf(isJsdom())('disables Accordion CSS transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

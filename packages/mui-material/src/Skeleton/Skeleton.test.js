@@ -24,7 +24,7 @@ describe('<Skeleton />', () => {
 
   it.skipIf(isJsdom())('disables pulse animation when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -39,7 +39,7 @@ describe('<Skeleton />', () => {
 
   it.skipIf(isJsdom())('disables wave animation when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

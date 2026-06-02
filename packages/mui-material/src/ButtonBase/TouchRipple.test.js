@@ -161,7 +161,7 @@ describe('<TouchRipple />', () => {
 
     it('omits animation declarations but keeps visible feedback when reduced motion is always', () => {
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });
@@ -180,7 +180,7 @@ describe('<TouchRipple />', () => {
 
     it('removes stopped ripples after 0ms when reduced motion is always', () => {
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

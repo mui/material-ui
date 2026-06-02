@@ -71,7 +71,7 @@ Transitions can opt in to reduced-motion support through the theme:
 
 ```tsx
 const theme = createTheme({
-  transitions: {
+  motion: {
     reducedMotion: 'system',
   },
 });

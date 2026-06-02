@@ -1,4 +1,4 @@
-export type ReducedMotionMode = 'never' | 'system' | 'always';
+import type { ReducedMotionMode } from './createMotion';
 
 export const defaultStyles = {
   transition: 'none',

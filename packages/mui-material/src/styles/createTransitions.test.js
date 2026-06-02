@@ -18,54 +18,14 @@ describe('createTransitions', () => {
     expect(theme.transitions.create('color')).to.equal(`color 432ms ${easing.easeInOut} 0ms`);
   });
 
-  it('should default reducedMotion to never', () => {
-    expect(transitions.reducedMotion).to.equal('never');
-  });
-
-  it('should allow customizing reducedMotion', () => {
+  it('should not expose reducedMotion on transitions', () => {
     const theme = createTheme({
       transitions: {
         reducedMotion: 'system',
       },
     });
 
-    expect(theme.transitions.reducedMotion).to.equal('system');
-  });
-
-  describe('createStyles() function', () => {
-    it('should return a transition style object when reducedMotion is never', () => {
-      expect(createTransitions({ reducedMotion: 'never' }).createStyles('color')).to.deep.equal({
-        transition: `color ${duration.standard}ms ${easing.easeInOut} 0ms`,
-      });
-    });
-
-    it('should return transition none when reducedMotion is always', () => {
-      expect(createTransitions({ reducedMotion: 'always' }).createStyles('color')).to.deep.equal({
-        transition: 'none',
-      });
-    });
-
-    it('should include a media query override when reducedMotion is system', () => {
-      expect(createTransitions({ reducedMotion: 'system' }).createStyles('color')).to.deep.equal({
-        transition: `color ${duration.standard}ms ${easing.easeInOut} 0ms`,
-        '@media (prefers-reduced-motion: reduce)': {
-          transition: 'none',
-        },
-      });
-    });
-
-    it('should use a custom create implementation when provided', () => {
-      const customCreate = (props) => `custom-${props}`;
-
-      expect(
-        createTransitions({ create: customCreate, reducedMotion: 'system' }).createStyles('color'),
-      ).to.deep.equal({
-        transition: 'custom-color',
-        '@media (prefers-reduced-motion: reduce)': {
-          transition: 'none',
-        },
-      });
-    });
+    expect(theme.transitions).not.to.have.property('reducedMotion');
   });
 
   describe('create() function', () => {

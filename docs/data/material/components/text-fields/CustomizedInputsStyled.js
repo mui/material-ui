@@ -39,7 +39,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     fontSize: 16,
     width: 'auto',
     padding: '10px 12px',
-    ...theme.transitions.createStyles([
+    transition: theme.transitions.create([
       'border-color',
       'background-color',
       'box-shadow',
@@ -82,7 +82,7 @@ const RedditTextField = styled((props) => (
     border: '1px solid',
     backgroundColor: '#F3F6F9',
     borderColor: '#E0E3E7',
-    ...theme.transitions.createStyles([
+    transition: theme.transitions.create([
       'border-color',
       'background-color',
       'box-shadow',

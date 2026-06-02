@@ -181,7 +181,7 @@ describe('<Snackbar />', () => {
     it('still opens through transition slot props when reduced motion is always', () => {
       const handleEnter = spy();
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

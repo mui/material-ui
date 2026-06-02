@@ -8,6 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
+import { getTransitionStyles } from '../transitions/utils';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
@@ -40,7 +41,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
       width: '100%',
       minHeight: 48,
       padding: theme.spacing(0, 2),
-      ...theme.transitions.createStyles(['min-height', 'background-color'], transition),
+      ...getTransitionStyles(theme, ['min-height', 'background-color'], transition),
       [`&.${accordionSummaryClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
       },
@@ -77,7 +78,7 @@ const AccordionSummaryContent = styled('span', {
       {
         props: (props) => !props.disableGutters,
         style: {
-          ...theme.transitions.createStyles(['margin'], {
+          ...getTransitionStyles(theme, ['margin'], {
             duration: theme.transitions.duration.shortest,
           }),
           [`&.${accordionSummaryClasses.expanded}`]: {
@@ -98,7 +99,7 @@ const AccordionSummaryExpandIconWrapper = styled('span', {
       display: 'flex',
       color: (theme.vars || theme).palette.action.active,
       transform: 'rotate(0deg)',
-      ...theme.transitions.createStyles('transform', {
+      ...getTransitionStyles(theme, 'transform', {
         duration: theme.transitions.duration.shortest,
       }),
       [`&.${accordionSummaryClasses.expanded}`]: {

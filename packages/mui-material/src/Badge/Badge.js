@@ -12,6 +12,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -88,7 +89,7 @@ const BadgeBadge = styled('span', {
     '@media (forced-colors: active)': {
       border: '1px solid ButtonBorder',
     },
-    ...theme.transitions.createStyles('transform', {
+    ...getTransitionStyles(theme, 'transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -114,7 +115,7 @@ const BadgeBadge = styled('span', {
       {
         props: { invisible: true },
         style: {
-          ...theme.transitions.createStyles('transform', {
+          ...getTransitionStyles(theme, 'transform', {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.leavingScreen,
           }),

@@ -13,6 +13,7 @@ import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size, loading } = ownerState;
@@ -55,7 +56,7 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
-    ...theme.transitions.createStyles('background-color', {
+    ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     variants: [

@@ -860,7 +860,7 @@ describe.skipIf(isSafari)('<Tabs />', () => {
 
     it('should not animate scroll buttons when reduced motion is always', () => {
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

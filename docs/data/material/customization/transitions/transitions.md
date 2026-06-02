@@ -35,45 +35,6 @@ theme.transitions.create(['background-color', 'transform']);
 
 {{"demo": "TransitionHover.js", "defaultCodeOpen": false}}
 
-### `theme.transitions.createStyles(props, options) => styles`
-
-#### Arguments
-
-1. `props` (_string_ | _string[]_): Defaults to `['all']`. Provides a CSS property, or a list of CSS properties that should be transitioned.
-2. `options` (_object_ [optional]):
-
-- `options.duration` (_string_ | _number_ [optional]): Defaults to `theme.transitions.duration.standard`. Provides the duration of the transition.
-- `options.easing` (_string_ [optional]): Defaults to `theme.transitions.easing.easeInOut`. Provides the easing for the transition.
-- `options.delay` (_string_ | _number_ [optional]): Defaults to `0`. Provides the delay for the transition.
-
-#### Returns
-
-`styles`: A CSS style object containing the `transition` declaration. When reduced motion is enabled through <code>theme.transitions.reducedMotion</code>, the returned object also includes the override that disables that transition.
-
-For example, with <code>theme.transitions.reducedMotion = 'system'</code>, calling <code>theme.transitions.createStyles(['background-color', 'transform'])</code> returns an object like:
-
-```js
-{
-  transition:
-    'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  '@media (prefers-reduced-motion: reduce)': {
-    transition: 'none',
-  },
-}
-```
-
-Use the <code>theme.transitions.createStyles()</code> helper when you are authoring a CSS object and want the transition and reduced-motion handling together.
-
-```js
-{
-  ...theme.transitions.createStyles(['background-color', 'transform']),
-}
-```
-
-#### Example
-
-{{"demo": "TransitionStylesHover.js", "defaultCodeOpen": false}}
-
 ### `theme.transitions.getAutoHeightDuration(height) => duration`
 
 #### Arguments
@@ -86,11 +47,11 @@ Use the <code>theme.transitions.createStyles()</code> helper when you are author
 
 ## Reduced motion
 
-Configure reduced-motion behavior with `theme.transitions.reducedMotion`.
+Configure reduced-motion behavior with `theme.motion.reducedMotion`.
 
 ```js
 const theme = createTheme({
-  transitions: {
+  motion: {
     reducedMotion: 'system',
   },
 });
@@ -102,9 +63,24 @@ The supported values are:
 - `system`: reduce motion only when the user's operating system requests it with `prefers-reduced-motion: reduce`.
 - `always`: reduce motion for every user, regardless of the operating system setting.
 
-This setting is used by Material UI transition components, such as Collapse, Fade, Grow, Slide, and Zoom.
-It is also used by CSS transition styles created with `theme.transitions.createStyles()`.
-Use `createStyles()` when authoring style objects so the transition and its reduced-motion override are emitted together.
+This setting controls Material UI transition components, such as Collapse, Fade, Grow, Slide, and Zoom, as well as components that have animations such as Accordion, Menu, Tabs etc.
+
+For custom CSS transitions in your app, use `theme.transitions.create()` and add reduced-motion overrides directly:
+
+```js
+const transition = theme.transitions.create(['background-color', 'transform']);
+const styles = {
+  transition,
+  ...(theme.motion.reducedMotion === 'always' && {
+    transition: 'none',
+  }),
+  ...(theme.motion.reducedMotion === 'system' && {
+    '@media (prefers-reduced-motion: reduce)': {
+      transition: 'none',
+    },
+  }),
+};
+```
 
 When a specific transition component should keep its normal motion while the theme uses `system` or `always`, set `disablePrefersReducedMotion` on that transition component.
 

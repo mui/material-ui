@@ -69,7 +69,7 @@ describe('<SpeedDialIcon />', () => {
 
   it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

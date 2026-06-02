@@ -51,10 +51,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
-  const reducedMotion = useReducedMotion(
-    theme.transitions.reducedMotion,
-    disablePrefersReducedMotion,
-  );
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
@@ -192,7 +189,7 @@ Zoom.propTypes /* remove-proptypes */ = {
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
    * @default false
    */
   disablePrefersReducedMotion: PropTypes.bool,

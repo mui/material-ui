@@ -25,6 +25,7 @@ import getActiveElement from '../utils/getActiveElement';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -188,7 +189,7 @@ const TabsIndicator = styled('span', {
     height: 2,
     bottom: 0,
     width: '100%',
-    ...theme.transitions.createStyles(),
+    ...getTransitionStyles(theme),
     variants: [
       {
         props: {
@@ -241,7 +242,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
   const isRtl = useRtl();
-  const reducedMotion = useReducedMotion(theme.transitions.reducedMotion, false);
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,

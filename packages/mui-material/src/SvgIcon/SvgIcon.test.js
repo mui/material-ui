@@ -47,7 +47,7 @@ describe('<SvgIcon />', () => {
 
   it.skipIf(isJsdom())('disables the fill transition when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

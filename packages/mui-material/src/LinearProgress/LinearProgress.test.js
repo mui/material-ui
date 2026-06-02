@@ -152,7 +152,7 @@ describe('<LinearProgress />', () => {
 
   it.skipIf(isJsdom())('disables determinate transitions when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });
@@ -172,7 +172,7 @@ describe('<LinearProgress />', () => {
     'disables buffer transitions and animation when reduced motion is always',
     () => {
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });
@@ -195,7 +195,7 @@ describe('<LinearProgress />', () => {
 
   it.skipIf(isJsdom())('uses a static indeterminate layout when reduced motion is always', () => {
     const theme = createTheme({
-      transitions: {
+      motion: {
         reducedMotion: 'always',
       },
     });

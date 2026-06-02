@@ -141,10 +141,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
-  const reducedMotion = useReducedMotion(
-    theme.transitions.reducedMotion,
-    disablePrefersReducedMotion,
-  );
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const childrenRef = React.useRef(null);
   const preserveInlineTransformRef = React.useRef(false);
@@ -386,7 +383,7 @@ Slide.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * If `true`, the transition ignores `theme.transitions.reducedMotion` and keeps its normal timing.
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
    * @default false
    */
   disablePrefersReducedMotion: PropTypes.bool,

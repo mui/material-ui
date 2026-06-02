@@ -443,7 +443,7 @@ describe('<SwipeableDrawer />', () => {
     it('uses reduced motion timing when an opening swipe is aborted', () => {
       const handleOpen = spy();
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

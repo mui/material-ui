@@ -163,7 +163,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     slotProps = {},
     ...other
   } = props;
-  const reducedMotion = useReducedMotion(theme.transitions.reducedMotion, false);
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
 
   const [maybeSwiping, setMaybeSwiping] = React.useState(false);
   const swipeInstance = React.useRef({

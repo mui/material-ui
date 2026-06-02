@@ -9,7 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
-import { getReducedMotionStyles } from '../transitions/utils';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
@@ -242,7 +242,7 @@ const LinearProgressBar1 = styled('span', {
       left: 0,
       bottom: 0,
       top: 0,
-      ...theme.transitions.createStyles('transform', {
+      ...getTransitionStyles(theme, 'transform', {
         duration: '0.2s',
         easing: 'linear',
       }),
@@ -269,7 +269,7 @@ const LinearProgressBar1 = styled('span', {
             variant: 'determinate',
           },
           style: {
-            ...theme.transitions.createStyles('transform', {
+            ...getTransitionStyles(theme, 'transform', {
               duration: `.${TRANSITION_DURATION}s`,
               easing: 'linear',
             }),
@@ -281,7 +281,7 @@ const LinearProgressBar1 = styled('span', {
           },
           style: {
             zIndex: 1,
-            ...theme.transitions.createStyles('transform', {
+            ...getTransitionStyles(theme, 'transform', {
               duration: `.${TRANSITION_DURATION}s`,
               easing: 'linear',
             }),
@@ -334,7 +334,7 @@ const LinearProgressBar2 = styled('span', {
       left: 0,
       bottom: 0,
       top: 0,
-      ...theme.transitions.createStyles('transform', {
+      ...getTransitionStyles(theme, 'transform', {
         duration: '0.2s',
         easing: 'linear',
       }),
@@ -376,7 +376,7 @@ const LinearProgressBar2 = styled('span', {
             props: { color, variant: 'buffer' },
             style: {
               backgroundColor: getColorShade(theme, color),
-              ...theme.transitions.createStyles('transform', {
+              ...getTransitionStyles(theme, 'transform', {
                 duration: `.${TRANSITION_DURATION}s`,
                 easing: 'linear',
               }),

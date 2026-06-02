@@ -9,7 +9,7 @@ const defaultTheme = createTheme({
   cssVariables: {
     colorSchemeSelector: 'data-mui-color-scheme',
   },
-  transitions: {
+  motion: {
     reducedMotion: 'system',
   },
 });
@@ -46,7 +46,7 @@ export function DemoInstanceThemeProvider({
             dark: true,
           },
           direction: direction as 'ltr' | 'rtl',
-          transitions: {
+          motion: {
             reducedMotion: 'system',
           },
         },

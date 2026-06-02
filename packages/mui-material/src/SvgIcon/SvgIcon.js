@@ -8,6 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSvgIconUtilityClass } from './svgIconClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, fontSize, classes } = ownerState;
@@ -42,15 +43,9 @@ const SvgIconRoot = styled('svg', {
     height: '1em',
     display: 'inline-block',
     flexShrink: 0,
-    ...(theme.transitions?.createStyles
-      ? theme.transitions.createStyles('fill', {
-          duration: (theme.vars ?? theme).transitions?.duration?.shorter,
-        })
-      : {
-          transition: theme.transitions?.create?.('fill', {
-            duration: (theme.vars ?? theme).transitions?.duration?.shorter,
-          }),
-        }),
+    ...getTransitionStyles(theme, 'fill', {
+      duration: (theme.vars ?? theme).transitions?.duration?.shorter,
+    }),
     variants: [
       {
         props: (props) => !props.hasSvgAsChild,

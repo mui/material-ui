@@ -1,9 +1,6 @@
 import * as React from 'react';
-import {
-  defaultStyles,
-  resolveReducedMotionStyles,
-  type ReducedMotionMode,
-} from '../styles/reducedMotion';
+import { defaultStyles, resolveReducedMotionStyles } from '../styles/reducedMotion';
+import type { ReducedMotionMode } from '../styles/createMotion';
 
 export const reflow = (node: Element) => node.scrollTop;
 
@@ -23,6 +20,12 @@ interface TransitionProps {
   delay: string | undefined;
 }
 
+interface TransitionCreateOptions {
+  duration: number | string;
+  easing: string;
+  delay: number | string;
+}
+
 interface TranslateOffset {
   offsetX: number;
   offsetY: number;
@@ -30,6 +33,8 @@ interface TranslateOffset {
 
 const DEFAULT_TRANSLATE_OFFSET = { offsetX: 0, offsetY: 0 };
 const EMPTY_STYLE: React.CSSProperties = {};
+const DEFAULT_TRANSITION_PROPS = ['all'];
+const EMPTY_OPTIONS: Partial<TransitionCreateOptions> = {};
 
 const transformOffsetIndexes: Record<string, readonly [number | null, number | null]> = {
   matrix: [4, 5],
@@ -154,11 +159,29 @@ export function getTransitionProps(props: ComponentProps, options: Options): Tra
  */
 export function getReducedMotionStyles<Styles extends object = typeof defaultStyles>(
   theme: {
-    transitions?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
+    motion?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
   },
   styles?: Styles,
 ): Styles | { '@media (prefers-reduced-motion: reduce)': Styles } | null {
   const resolvedStyles = (styles ?? defaultStyles) as Styles;
 
-  return resolveReducedMotionStyles(theme.transitions?.reducedMotion, resolvedStyles);
+  return resolveReducedMotionStyles(theme.motion?.reducedMotion, resolvedStyles);
+}
+
+export function getTransitionStyles(
+  theme: {
+    transitions: {
+      create: (props?: string | string[], options?: Partial<TransitionCreateOptions>) => string;
+    };
+    motion?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
+  },
+  props: string | string[] = DEFAULT_TRANSITION_PROPS,
+  options: Partial<TransitionCreateOptions> = EMPTY_OPTIONS,
+) {
+  const transitionStyles = {
+    transition: theme.transitions.create(props, options),
+  };
+  const reducedMotionStyles = getReducedMotionStyles(theme);
+
+  return reducedMotionStyles ? { ...transitionStyles, ...reducedMotionStyles } : transitionStyles;
 }

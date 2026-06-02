@@ -685,7 +685,7 @@ describe('<SpeedDial />', () => {
     it('enters on the next task when reduced motion is always', () => {
       const handleEntered = spy();
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });
@@ -710,7 +710,7 @@ describe('<SpeedDial />', () => {
 
     it.skipIf(isJsdom())('disables actions CSS transition when reduced motion is always', () => {
       const theme = createTheme({
-        transitions: {
+        motion: {
           reducedMotion: 'always',
         },
       });

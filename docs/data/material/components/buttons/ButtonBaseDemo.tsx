@@ -72,7 +72,7 @@ const ImageBackdrop = styled('span')(({ theme }) => ({
   bottom: 0,
   backgroundColor: theme.palette.common.black,
   opacity: 0.4,
-  ...theme.transitions.createStyles('opacity'),
+  transition: theme.transitions.create('opacity'),
 }));
 
 const ImageMarked = styled('span')(({ theme }) => ({
@@ -82,7 +82,7 @@ const ImageMarked = styled('span')(({ theme }) => ({
   position: 'absolute',
   bottom: -2,
   left: 'calc(50% - 9px)',
-  ...theme.transitions.createStyles('opacity'),
+  transition: theme.transitions.create('opacity'),
 }));
 
 export default function ButtonBaseDemo() {

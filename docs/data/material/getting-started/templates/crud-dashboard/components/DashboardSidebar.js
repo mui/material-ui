@@ -35,8 +35,8 @@ function DashboardSidebar({
   const isOverMdViewport = useMediaQuery(theme.breakpoints.up('md'));
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const shouldReduceDrawerMotion =
-    theme.transitions.reducedMotion === 'always' ||
-    (theme.transitions.reducedMotion === 'system' && prefersReducedMotion);
+    theme.motion.reducedMotion === 'always' ||
+    (theme.motion.reducedMotion === 'system' && prefersReducedMotion);
   const drawerEnteringDuration = shouldReduceDrawerMotion
     ? 0
     : theme.transitions.duration.enteringScreen;
@@ -207,12 +207,10 @@ function DashboardSidebar({
   const getDrawerSharedSx = React.useCallback(
     (isTemporary) => (drawerTheme) => {
       const drawerWidth = mini ? MINI_DRAWER_WIDTH : DRAWER_WIDTH;
-      const widthTransitionStyles = drawerTheme.transitions.createStyles('width', {
-        easing: drawerTheme.transitions.easing.sharp,
-        duration: expanded
-          ? drawerTheme.transitions.duration.enteringScreen
-          : drawerTheme.transitions.duration.leavingScreen,
-      });
+      const widthTransitionStyles = getDrawerSxTransitionMixin(
+        expanded,
+        'width',
+      )(drawerTheme);
 
       return {
         displayPrint: 'none',
