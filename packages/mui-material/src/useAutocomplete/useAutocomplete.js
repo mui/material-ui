@@ -373,7 +373,7 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
-      if (!inputRef.current) {
+      if (inputRef.current == null) {
         return;
       }
 
