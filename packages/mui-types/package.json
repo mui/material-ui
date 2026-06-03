@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \".\""
   },
   "sideEffects": false,

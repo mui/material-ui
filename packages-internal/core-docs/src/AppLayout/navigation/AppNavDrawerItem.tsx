@@ -369,11 +369,11 @@ export function AppNavDrawerItem(props: AppNavDrawerItemProps) {
   return (
     <StyledLi {...other} depth={depth}>
       {/* Fix overloading with prefetch={false}, only prefetch on hover */}
-      {/* @ts-ignore */}
       <Item
         component={subheader ? DeadLink : Link}
         depth={depth}
         hasIcon={hasIcon}
+        // @ts-ignore
         href={href}
         prefetch={false}
         subheader={subheader}

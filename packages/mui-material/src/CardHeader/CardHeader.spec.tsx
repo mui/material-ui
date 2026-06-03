@@ -180,30 +180,33 @@ function mixedCardHeaderComponentAndTypographyTest() {
       // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp' },
       subheader: {
+        // @ts-expect-error
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: 2,
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     component={CustomComponent}
     stringProp="string"
     numberProp={1}
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp' },
+      // @ts-expect-error
       subheader: { component: CustomComponent, stringProp: 'stringProp' },
     }}
   />;
   <CardHeader
-    // @ts-expect-error
     component="incorrectComponent"
     stringProp="string"
     numberProp={1}
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, stringProp: 'stringProp', numberProp: 2 },
       subheader: {
+        // @ts-expect-error
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: 2,
@@ -232,10 +235,10 @@ function titleTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
       title: {
+        // @ts-expect-error
         component: CustomComponent,
         stringProp: 'stringProp',
         numberProp: '',
@@ -317,10 +320,11 @@ function mixedTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
+      // @ts-expect-error
       title: { component: 'incorrectComponent' },
+      // @ts-expect-error
       subheader: { component: 'incorrectComponent' },
     }}
   />;
@@ -338,10 +342,11 @@ function mixedTypographyPropsTest() {
       },
     }}
   />;
-  // @ts-expect-error
   <CardHeader
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, numberProp: 2 },
+      // @ts-expect-error
       subheader: { component: CustomComponent, numberProp: 2 },
     }}
   />;
@@ -349,11 +354,13 @@ function mixedTypographyPropsTest() {
     slotProps={{
       // @ts-expect-error
       title: { component: CustomComponent, numberProp: 2 },
+      // @ts-expect-error
       subheader: { component: CustomComponent, numberProp: 2, stringProp: 'yada' },
     }}
   />;
   <CardHeader
     slotProps={{
+      // @ts-expect-error
       title: { component: CustomComponent, numberProp: 2, stringProp: 'yada' },
       // @ts-expect-error
       subheader: { component: CustomComponent, numberProp: 2 },

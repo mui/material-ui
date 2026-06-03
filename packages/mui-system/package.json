@@ -24,10 +24,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/system\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --entrypoints \".\" \"Box\" \"styled\" \"useTheme\""
   },
