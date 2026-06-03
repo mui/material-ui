@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import Stack from '@mui/material/Stack';
 import TextField, { textFieldClasses as classes } from '@mui/material/TextField';
 import describeConformance from '../../test/describeConformance';
 
@@ -223,6 +224,20 @@ describe('<TextField />', () => {
         });
       },
     );
+
+    it.skipIf(isJsdom())('should expand notch when focused inside a Stack layout', function test() {
+      const { container } = render(
+        <Stack spacing={2} sx={{ width: 300 }}>
+          <TextField label="First name" variant="outlined" />
+        </Stack>,
+      );
+
+      const input = screen.getByRole('textbox', { name: 'First name' });
+      fireEvent.focus(input);
+
+      const legend = container.querySelector('fieldset legend');
+      expect(legend.getBoundingClientRect().width).to.be.greaterThan(1);
+    });
   });
 
   describe('prop: InputProps', () => {

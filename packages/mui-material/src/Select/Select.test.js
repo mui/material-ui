@@ -1866,9 +1866,9 @@ describe('<Select />', () => {
           </Select>,
         );
 
-        expect(container.querySelector('legend')).toHaveComputedStyle({
-          maxWidth: '100%',
-        });
+        expect(container.querySelector('legend').getBoundingClientRect().width).to.be.greaterThan(
+          1,
+        );
       },
     );
   });
