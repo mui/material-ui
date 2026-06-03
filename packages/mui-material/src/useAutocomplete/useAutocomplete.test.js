@@ -334,37 +334,45 @@ describe('useAutocomplete', () => {
     await flushEffects();
   });
 
-  it('should not crash when unmounting while highlighted', () => {
-    function Test({ options }) {
+  it('should not crash when the input ref is cleared before a pending highlighted index sync', async () => {
+    function Test() {
+      const [showAutocomplete, setShowAutocomplete] = React.useState(true);
+      const options = showAutocomplete ? ['foo', 'bar'] : [];
       const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
         useAutocomplete({ options, open: true });
 
       return (
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          {groupedOptions.length > 0 ? (
-            <ul {...getListboxProps()}>
-              {groupedOptions.map((option, index) => {
-                const { key, ...optionProps } = getOptionProps({ option, index });
-                return (
-                  <li key={key} {...optionProps}>
-                    {option}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : null}
-        </div>
+        <React.Fragment>
+          <button type="button" onClick={() => setShowAutocomplete(false)}>
+            Hide
+          </button>
+          <div {...getRootProps()}>
+            {showAutocomplete ? <input {...getInputProps()} /> : null}
+            {groupedOptions.length > 0 ? (
+              <ul {...getListboxProps()}>
+                {groupedOptions.map((option, index) => {
+                  const { key, ...optionProps } = getOptionProps({ option, index });
+                  return (
+                    <li key={key} {...optionProps}>
+                      {option}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+          </div>
+        </React.Fragment>
       );
     }
 
-    const { unmount } = render(<Test options={['foo', 'bar']} />);
-    const input = screen.getByRole('combobox');
-    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    const { user } = render(<Test />);
 
-    expect(() => {
-      unmount();
-    }).not.to.throw();
+    // This hides the input/listbox while the hook stays mounted. A full unmount
+    // doesn't run the highlighted index sync after refs are cleared; this state
+    // update does, so it exercises the problematic ordering.
+    await user.click(screen.getByRole('button', { name: 'Hide' }));
+
+    await flushEffects();
   });
 
   describe('prop: freeSolo', () => {

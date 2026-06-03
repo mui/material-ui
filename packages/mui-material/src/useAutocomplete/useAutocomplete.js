@@ -373,7 +373,9 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
-      if (inputRef.current == null) {
+      // React can clear refs before pending passive effects run during unmount.
+      // If both refs are gone, there is no DOM left to sync.
+      if (inputRef.current == null && listboxRef.current == null) {
         return;
       }
 
