@@ -347,10 +347,16 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
   const [copied2, setCopied2] = React.useState(false);
+  const [copied3, setCopied3] = React.useState(false);
 
   const handleClick = (tooltip) => async (event) => {
     await copy(event.currentTarget.textContent);
-    const setCopied = tooltip === 1 ? setCopied1 : setCopied2;
+    let setCopied = setCopied1;
+    if (tooltip === 2) {
+      setCopied = setCopied2;
+    } else if (tooltip === 3) {
+      setCopied = setCopied3;
+    }
 
     setCopied(true);
   };
@@ -398,6 +404,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
+              language="js"
+            />
+          </Tooltip>
+          <Tooltip
+            placement="bottom"
+            title={copied3 ? t('copied') : t('clickToCopy')}
+            slotProps={{
+              transition: { onExited: () => setCopied3(false) },
+            }}
+          >
+            <Markdown
+              copyButtonHidden
+              onClick={handleClick(3)}
+              code={`import { ${selectedIcon.importName} as ${selectedIcon.importName}Icon } from '@mui/icons-material';`}
               language="js"
             />
           </Tooltip>
