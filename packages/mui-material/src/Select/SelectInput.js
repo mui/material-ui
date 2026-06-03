@@ -633,9 +633,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleItemKeyDown = (child) => (event) => {
-    if (event.key === ' ') {
+    if (event.key === SPACE) {
+      // Prevent the browser from scrolling the page
       event.preventDefault();
-      handleItemClick(child)(event);
+      // Ignore auto-repeated keydowns to avoid toggling multiple times
+      if (!event.repeat) {
+        // Trigger via click so that onClick receives a click event,
+        // consistent with Enter and pointer interactions.
+        event.currentTarget.click();
+      }
     }
 
     child?.props?.onKeyDown?.(event);
