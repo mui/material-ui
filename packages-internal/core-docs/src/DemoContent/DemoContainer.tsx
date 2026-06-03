@@ -299,6 +299,86 @@ export const DemoCodeWrapper = styled('div', {
   ],
 }));
 
+// Fixed-height scroll "window" wrapped around the source panel, and the single
+// scroll container for both axes. The height is capped at `min(68vh, 1000px)`
+// so a long expanded source scrolls internally instead of growing the page
+// indefinitely; shorter collapsed/focused snippets sit under the cap and still
+// render at their natural height (a `max-height` cap never stretches content
+// beneath it).
+//
+// The vertical cap is applied in both states on purpose. Gating it on
+// `expanded` made collapse drop the cap on the first frame — before the inner
+// `.frame` elements had animated their height down (a 0.3s transition) — so the
+// window briefly ballooned to the full expanded source height and then shrank, a
+// visible jump. Keeping the cap means the window tracks the shrinking content
+// smoothly. It also keeps the panel a scroll container for the whole collapse,
+// which is what `useCodeWindow`'s `scrollContainerRef` anchoring (attached here)
+// compensates against (the resizing `DemoCodeWrapper` inside stays the observed
+// `containerRef`).
+//
+// Horizontal scroll lives here too — not on the inner `<pre>` — so the
+// horizontal scrollbar sits at the window's bottom edge (always in view) rather
+// than at the bottom of a collapsible `<pre>` whose full height runs past the
+// cap and out of sight. It is gated on `expanded`: a collapsed focused snippet
+// never scrolls horizontally; expanding the full source re-enables it.
+//
+// Because the window owns the horizontal scroll, `useCodeWindow`'s gutter swap
+// runs on this element (it is wired as `scrollContainerRef`): the hook flips
+// `data-scrollbar-gutter` on the window itself, so the rules below hold
+// `overflow-x: hidden` for the duration of the swap and animate an equivalent
+// `margin-bottom` on the inner `<code>` to reserve the scrollbar's height. When
+// the hook clears the attribute the real scrollbar takes over the reserved gap
+// without a snap.
+export const DemoCodeWindow = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'expanded',
+})<{ expanded?: boolean }>({
+  maxHeight: 'min(68vh, 1000px)',
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  // Width reserved for the horizontal scrollbar during the gutter swap. Matches
+  // the classic scrollbar thickness; overlay scrollbars (0px) make
+  // `useCodeWindow` skip the swap entirely.
+  '--scrollbar-gutter-size': '15px',
+  // Keep the bottom corners rounded with the inner `<pre>` while clipping the
+  // scrolled content.
+  borderBottomLeftRadius: 12,
+  borderBottomRightRadius: 12,
+  // Don't chain the scroll to the page once the panel hits its ends.
+  overscrollBehavior: 'contain',
+  // Hold the horizontal scrollbar back while the gutter swap runs. The
+  // attribute selectors out-specify the `expanded` variant below, so the lock
+  // wins mid-animation.
+  '&[data-scrollbar-gutter="expand-from"], &[data-scrollbar-gutter="expand-to"], &[data-scrollbar-gutter="collapse-from"], &[data-scrollbar-gutter="collapse-to"]':
+    {
+      overflowX: 'hidden',
+    },
+  // Animate the reserved gutter on the inner `<code>` in step with the swap.
+  '&[data-scrollbar-gutter="expand-from"] pre > code': {
+    marginBottom: 0,
+    transition: 'none',
+  },
+  '&[data-scrollbar-gutter="expand-to"] pre > code': {
+    marginBottom: 'var(--scrollbar-gutter-size)',
+    transition: 'margin-bottom 0.3s ease',
+  },
+  '&[data-scrollbar-gutter="collapse-from"] pre > code': {
+    marginBottom: 'var(--scrollbar-gutter-size)',
+    transition: 'none',
+  },
+  '&[data-scrollbar-gutter="collapse-to"] pre > code': {
+    marginBottom: 0,
+    transition: 'margin-bottom 0.3s ease',
+  },
+  variants: [
+    {
+      props: { expanded: true },
+      style: {
+        overflowX: 'auto',
+      },
+    },
+  ],
+});
+
 export interface DemoContainerProps {
   /** Anchor `<div>` elements rendered above the preview for deep-linking. */
   anchors?: React.ReactNode;
@@ -370,8 +450,14 @@ export interface DemoContainerProps {
   tabs?: React.ReactNode;
   /** Code viewer / source panel. */
   code?: React.ReactNode;
-  /** Optional ref forwarded to the code wrapper for scroll-anchoring. */
+  /** Optional ref forwarded to the code wrapper (the resizing element) for scroll-anchoring. */
   codeRef?: React.Ref<HTMLDivElement>;
+  /**
+   * Optional ref forwarded to the scrollable code window (the fixed-height
+   * `overflow: auto` ancestor). Wire `useCodeWindow`'s `scrollContainerRef`
+   * here so expand/collapse anchoring compensates the panel's scroll.
+   */
+  codeScrollRef?: React.Ref<HTMLDivElement>;
   /** Slot rendered after the code panel (AI hero, ads, etc.). */
   afterCode?: React.ReactNode;
   /**
@@ -410,6 +496,7 @@ export function DemoContainer(props: DemoContainerProps) {
     tabs,
     code,
     codeRef,
+    codeScrollRef,
     afterCode,
     renderTabsAndCode,
   } = props;
@@ -433,9 +520,11 @@ export function DemoContainer(props: DemoContainerProps) {
     <React.Fragment>
       {tabs}
       {code != null ? (
-        <DemoCodeWrapper ref={codeRef} expanded={codeOpen}>
-          {code}
-        </DemoCodeWrapper>
+        <DemoCodeWindow ref={codeScrollRef} expanded={codeOpen}>
+          <DemoCodeWrapper ref={codeRef} expanded={codeOpen}>
+            {code}
+          </DemoCodeWrapper>
+        </DemoCodeWindow>
       ) : null}
     </React.Fragment>
   );
