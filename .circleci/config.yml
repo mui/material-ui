@@ -36,7 +36,7 @@ default-job: &default-job
   executor:
     name: code-infra/mui-node
     node-version: '22.18'
-  resource_class: medium
+  resource_class: medium.gen2
 
 default-context: &default-context
   context:
@@ -109,6 +109,7 @@ jobs:
       - code-infra/valelint
   test_static:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
@@ -132,7 +133,7 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps
@@ -146,7 +147,7 @@ jobs:
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps:
@@ -170,7 +171,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
@@ -200,7 +201,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -225,6 +226,7 @@ jobs:
           path: test-results
   test_e2e:
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -238,6 +240,7 @@ jobs:
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -251,6 +254,7 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_regressions:
     <<: *default-job
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -264,22 +268,6 @@ jobs:
       - run:
           name: A11y results committed?
           command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Build packages for fixtures
-          command: pnpm release:build
-      - run:
-          name: Validate type declarations
-          command: pnpm validate-declarations
-      - run:
-          name: Analyze exported typescript
-          command: pnpm test:attw
-          no_output_timeout: 20m
-      - run:
-          name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.mjs
-      - run:
-          name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
@@ -440,6 +428,7 @@ jobs:
           command: pnpm start
   test_bundle_size_monitor:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
@@ -450,6 +439,19 @@ jobs:
       - run:
           name: Create and upload a size snapshot
           command: pnpm size:snapshot --concurrency 6
+      - run:
+          name: Validate type declarations
+          command: pnpm validate-declarations
+      - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+          no_output_timeout: 20m
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.mjs
+      - run:
+          name: test exported typescript
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
