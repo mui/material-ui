@@ -33,6 +33,7 @@ export default function LoadingButtonsTransition() {
           loading={loading}
           variant="outlined"
           disabled
+          focusableWhenDisabled
         >
           Disabled
         </Button>
@@ -71,7 +72,13 @@ export default function LoadingButtonsTransition() {
         </Button>
       </Box>
       <Box sx={{ '& > button': { m: 1 } }}>
-        <Button onClick={handleClick} loading={loading} variant="outlined" disabled>
+        <Button
+          onClick={handleClick}
+          loading={loading}
+          variant="outlined"
+          disabled
+          focusableWhenDisabled
+        >
           Disabled
         </Button>
         <Button
