@@ -22,8 +22,15 @@ export interface ScreenshotRule {
   enabled?: boolean;
   /** Playwright waits for this selector after navigation, before axe + screenshot. */
   waitForSelector?: string;
-  /** Per-route playwright viewport override. Defaults to {@link DEFAULT_VIEWPORT}. */
-  viewport?: { width: number; height: number };
+  /**
+   * Per-route viewport width override (px). Defaults to
+   * {@link DEFAULT_VIEWPORT}'s width. Only the width is configurable: the
+   * screenshot targets the testcase element, which captures its full rendered
+   * height regardless of viewport, so width is the only axis that affects the
+   * result (composites key off desktop breakpoints). The viewport height stays
+   * at the default.
+   */
+  viewportWidth?: number;
 }
 
 export interface A11yRule {
@@ -106,12 +113,12 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   }, // Wait for virtualized rows to render
 
   // Landing-page composites under `docs/src/components/product*/` use
-  // desktop breakpoints (`md`+) and look clipped at the 1000×700 default.
-  { test: 'docs/src/components/product*/**', viewport: { width: 1280, height: 800 } },
+  // desktop breakpoints (`md`+) and look clipped at the default width.
+  { test: 'docs/src/components/product*/**', viewportWidth: 1280 },
   // X composites (large grids, dense charts) want a wider canvas to match
   // their live-docs desktop layout. Last-match-wins so this overrides the
-  // broader product*/** viewport above.
-  { test: 'docs/src/components/productX/**', viewport: { width: 1440, height: 900 } },
+  // broader product*/** width above.
+  { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
 ];
 
 /**

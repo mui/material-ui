@@ -171,11 +171,16 @@ async function main() {
           { timeout: process.env.PWDEBUG ? 0 : undefined },
           async ({ pooled, task }) => {
             const { page } = pooled;
-            // Apply per-route viewport before rendering so the composite
-            // renders at its desktop breakpoint. Routes without a matching
-            // rule fall back to DEFAULT_VIEWPORT — important when the page
-            // comes from a pool and may have been resized by a prior test.
-            await page.setViewportSize(screenshotRule?.viewport ?? DEFAULT_VIEWPORT);
+            // Apply per-route viewport width before rendering so the composite
+            // renders at its desktop breakpoint. Only the width varies per
+            // rule (the screenshot captures the testcase element's full height
+            // regardless); the height stays at the default. Routes without a
+            // matching rule fall back to DEFAULT_VIEWPORT — important when the
+            // page comes from a pool and may have been resized by a prior test.
+            await page.setViewportSize({
+              width: screenshotRule?.viewportWidth ?? DEFAULT_VIEWPORT.width,
+              height: DEFAULT_VIEWPORT.height,
+            });
             const testcase = await renderFixture(page, route);
 
             if (screenshotRule?.waitForSelector) {
