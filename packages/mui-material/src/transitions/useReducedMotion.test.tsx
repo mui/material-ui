@@ -4,6 +4,9 @@ import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-u
 import type { ReducedMotionMode } from '../styles/createMotion';
 import useReducedMotion from './useReducedMotion';
 
+const safeReact = { ...React };
+const usesUseSyncExternalStore = safeReact.useSyncExternalStore !== undefined;
+
 describe('useReducedMotion', () => {
   const { render, renderToString } = createRenderer();
   let originalMatchMedia: typeof window.matchMedia;
@@ -100,6 +103,26 @@ describe('useReducedMotion', () => {
     expect(removeEventListenerCount).to.equal(addEventListenerCount);
   });
 
+  it('uses the resolved media query for the first client render when available', () => {
+    installMatchMedia(false);
+    const renderedValues: boolean[] = [];
+
+    function LoggingTest(props: {
+      mode: ReducedMotionMode;
+      disablePrefersReducedMotion?: boolean;
+    }) {
+      const reducedMotion = useReducedMotion(props.mode, props.disablePrefersReducedMotion);
+      renderedValues.push(reducedMotion.shouldReduceMotion);
+
+      return <span data-testid="result" data-should-reduce={reducedMotion.shouldReduceMotion} />;
+    }
+
+    render(<LoggingTest mode="system" />);
+
+    expect(renderedValues[0]).to.equal(!usesUseSyncExternalStore);
+    expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'false');
+  });
+
   it('reacts to media query changes in system mode', () => {
     installMatchMedia(false);
 
@@ -132,7 +155,7 @@ describe('useReducedMotion', () => {
     expect(result).to.have.attribute('data-delay', '0ms');
   });
 
-  it('treats newly enabled system mode as reduced-motion safe until the media query resolves', () => {
+  it('uses the resolved media query when system mode is enabled after opt-out', () => {
     installMatchMedia(false);
     const renderedValues: boolean[] = [];
 
@@ -152,7 +175,7 @@ describe('useReducedMotion', () => {
 
     setProps({ disablePrefersReducedMotion: false });
 
-    expect(renderedValues[0]).to.equal(true);
+    expect(renderedValues[0]).to.equal(!usesUseSyncExternalStore);
     expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'false');
   });
 
@@ -177,7 +200,7 @@ describe('useReducedMotion', () => {
     hydrate();
 
     expect(screen.getByTestId('result')).to.have.attribute('data-should-reduce', 'true');
-    expect(getRenderCountRef.current!()).to.equal(2);
+    expect(getRenderCountRef.current!()).to.equal(usesUseSyncExternalStore ? 1 : 2);
   });
 
   it('allows per-instance opt-out', () => {

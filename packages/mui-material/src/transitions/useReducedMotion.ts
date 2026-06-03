@@ -19,8 +19,9 @@ interface MediaQueryState {
 
 /**
  * Subscribes to the OS reduced-motion media query only when the theme mode needs it.
+ * React 17 reads the media query after mount, matching useMediaQuery's fallback path.
  */
-function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
+function useReducedMotionMediaQueryOld(enabled: boolean): boolean | null {
   const [queryState, setQueryState] = React.useState<MediaQueryState>(() => ({
     enabled,
     matches: enabled ? null : false,
@@ -76,6 +77,42 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
 
   return matches;
 }
+
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
+
+/**
+ * React 18+ can read the media query during client renders, so newly mounted
+ * transitions do not start from the SSR-safe reduced-motion default.
+ */
+function useReducedMotionMediaQueryNew(enabled: boolean): boolean {
+  const getServerSnapshot = React.useCallback(() => enabled, [enabled]);
+  const [getSnapshot, subscribe] = React.useMemo(() => {
+    if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return [() => false, () => () => {}];
+    }
+
+    const mediaQueryList = window.matchMedia(MEDIA_QUERY);
+
+    return [
+      () => mediaQueryList.matches,
+      (notify: () => void) => {
+        mediaQueryList.addEventListener('change', notify);
+        return () => {
+          mediaQueryList.removeEventListener('change', notify);
+        };
+      },
+    ];
+  }, [enabled]);
+
+  return maybeReactUseSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+const useReducedMotionMediaQuery =
+  maybeReactUseSyncExternalStore !== undefined
+    ? useReducedMotionMediaQueryNew
+    : useReducedMotionMediaQueryOld;
 
 /**
  * Resolves whether a Material UI transition should reduce motion and provides

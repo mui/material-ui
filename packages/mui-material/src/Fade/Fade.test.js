@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
@@ -6,6 +7,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
 import describeTransitionConformance from '../../test/describeTransitionConformance';
+
+const safeReact = { ...React };
+const usesUseSyncExternalStore = safeReact.useSyncExternalStore !== undefined;
 
 describe('<Fade />', () => {
   const { clock, render } = createRenderer();
@@ -113,7 +117,7 @@ describe('<Fade />', () => {
       window.matchMedia = originalMatchMedia;
     });
 
-    it('uses reduced timing for the initial appear transition before the media query resolves', () => {
+    it('uses the media query result for the initial appear transition when available', () => {
       const handleEntered = spy();
       const theme = createTheme({
         motion: {
@@ -132,17 +136,27 @@ describe('<Fade />', () => {
       const element = container.querySelector('div');
 
       if (isJsdom()) {
-        expect(element.style.transition).to.include('0ms');
+        expect(element.style.transition).to.include(usesUseSyncExternalStore ? '250ms' : '0ms');
       } else {
-        expect(element.style.transitionDuration).to.equal('0ms');
+        expect(element.style.transitionDuration).to.equal(
+          usesUseSyncExternalStore ? '250ms' : '0ms',
+        );
       }
       expect(handleEntered.callCount).to.equal(0);
 
       act(() => {
-        clock.tick(0);
+        clock.tick(usesUseSyncExternalStore ? 249 : 0);
       });
 
-      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered.callCount).to.equal(usesUseSyncExternalStore ? 0 : 1);
+
+      if (usesUseSyncExternalStore) {
+        act(() => {
+          clock.tick(1);
+        });
+
+        expect(handleEntered.callCount).to.equal(1);
+      }
     });
   });
 });
