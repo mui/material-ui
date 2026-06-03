@@ -104,10 +104,19 @@ export const CodeSource = styled('div', {
     maxHeight: 'min(68vh, 1000px)',
   },
 
-  // Collapsible blocks: hide horizontal overflow so the fade overlay can clip
-  // cleanly. Re-enabled when expanded (see `expanded` variant below).
+  // Collapsible blocks don't scroll on their own — the surrounding
+  // `DemoCodeWindow` is the single scroll container for both axes, so the
+  // horizontal scrollbar sits at the window's edge instead of the bottom of the
+  // full-height `<pre>` (which scrolls out of view once the expanded source is
+  // taller than the window's cap). The pre overflows freely; the window clips
+  // and scrolls (and owns the scrollbar-gutter swap; see `DemoCodeWindow`).
+  // `min-width: fit-content` grows the pre's box to the widest line (a block
+  // would otherwise stay at the window's width), so the panel background and
+  // border span the full horizontal scroll extent instead of stopping at the
+  // window edge and leaving overflowing code on the bare page background.
   '& pre:has(> code[data-collapsible])': {
-    overflowX: 'hidden',
+    overflow: 'visible',
+    minWidth: 'fit-content',
   },
 
   '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
@@ -370,9 +379,6 @@ export const CodeSource = styled('div', {
             ];
           }),
         ),
-        '& pre:has(> code[data-collapsible])': {
-          overflowX: 'auto',
-        },
         '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
           paddingBottom: 'calc(2 * var(--muidocs-spacing))',
         },
