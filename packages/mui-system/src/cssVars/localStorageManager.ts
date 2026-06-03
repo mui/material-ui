@@ -5,13 +5,13 @@ export interface StorageManager {
      * @param defaultValue The default value to be returned if the key is not found
      * @returns The value from the storage or the default value
      */
-    get(defaultValue: any): any;
+    get(defaultValue: string): string | null;
     /**
      * Function to set the value in the storage
      * @param value The value to be set
      * @returns void
      */
-    set(value: any): void;
+    set(value: string): void;
     /**
      * Function to subscribe to the value of the specified key triggered by external events
      * @param handler The function to be called when the value changes
@@ -24,7 +24,7 @@ export interface StorageManager {
      *  return unsubscribe;
      * }, []);
      */
-    subscribe(handler: (value: any) => void): () => void;
+    subscribe(handler: (value: string | null) => void): () => void;
   };
 }
 
