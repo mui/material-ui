@@ -10,16 +10,19 @@ import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
-export default function BadgeAlignment() {
-  const [horizontal, setHorizontal] = React.useState('right');
-  const [vertical, setVertical] = React.useState('top');
+type BadgeVerticalOrigin = 'top' | 'bottom';
+type BadgeHorizontalOrigin = 'right' | 'left';
 
-  const handleHorizontalChange = (event) => {
-    setHorizontal(event.target.value);
+export default function BadgeAlignment() {
+  const [horizontal, setHorizontal] = React.useState<BadgeHorizontalOrigin>('right');
+  const [vertical, setVertical] = React.useState<BadgeVerticalOrigin>('top');
+
+  const handleHorizontalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHorizontal(event.target.value as BadgeHorizontalOrigin);
   };
 
-  const handleVerticalChange = (event) => {
-    setVertical(event.target.value);
+  const handleVerticalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setVertical(event.target.value as BadgeVerticalOrigin);
   };
 
   const jsx = `
