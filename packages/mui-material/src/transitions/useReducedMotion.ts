@@ -48,7 +48,15 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
       });
     };
 
-    if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    if (!enabled) {
+      if (queryState.enabled) {
+        setResolvedMatches(false);
+      }
+
+      return undefined;
+    }
+
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       setResolvedMatches(false);
       return undefined;
     }
@@ -64,7 +72,7 @@ function useReducedMotionMediaQuery(enabled: boolean): boolean | null {
     return () => {
       mediaQueryList.removeEventListener('change', update);
     };
-  }, [enabled]);
+  }, [enabled, queryState.enabled]);
 
   return matches;
 }
