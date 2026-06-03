@@ -1,23 +1,35 @@
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 
-// Augment the shared `DataAttributesOverrides` interface to opt in to typed
-// support for `data-testid` on every MUI slot prop. The augmentation flows
-// through `SlotComponentProps` / `SlotComponentPropsWithSlotState` in
-// `@mui/utils/types`, and via `SlotProps` in `@mui/material`, to every slot
-// of every Material component that wires slot props through these helpers.
+// Loose opt-in: accept any `data-*` key on every MUI slot prop, mirroring the
+// primitive DOM elements. A single augmentation of the shared
+// `DataAttributesOverrides` interface flows through `SlotComponentProps` /
+// `SlotComponentPropsWithSlotState` in `@mui/utils/types` (and `SlotProps` in
+// `@mui/material`) to every slot of every component wired through these helpers.
 declare module '@mui/utils/types' {
   interface DataAttributesOverrides {
-    'data-testid'?: string;
+    [k: `data-${string}`]: string | number | boolean | undefined;
   }
 }
 
-// After augmentation: `data-testid` is assignable on any Material slot prop.
+// Object form: arbitrary `data-*` keys are assignable.
 <Backdrop
   open
   slotProps={{
     root: {
       'data-testid': 'backdrop-root',
+      'data-custom': 'forwarded',
     },
+  }}
+/>;
+
+// Callback form: the same widening applies to the function branch.
+<Backdrop
+  open
+  slotProps={{
+    root: () => ({
+      'data-testid': 'backdrop-root',
+      'data-custom': 'forwarded',
+    }),
   }}
 />;

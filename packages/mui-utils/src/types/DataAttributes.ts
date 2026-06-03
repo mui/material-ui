@@ -5,21 +5,21 @@
  * augmentation is the single switch consumers can flip to choose their level
  * of strictness.
  *
- * Examples:
+ * @example
+ * // Loose: accept any `data-*` key on slots (mirrors the primitive elements).
+ * declare module '@mui/utils/types' {
+ *   interface DataAttributesOverrides {
+ *     [k: `data-${string}`]: string | number | boolean | undefined;
+ *   }
+ * }
  *
- *     // Strongly-typed: only `data-testid` becomes assignable on slots.
- *     declare module '@mui/utils/types' {
- *       interface DataAttributesOverrides {
- *         'data-testid'?: string;
- *       }
- *     }
- *
- *     // Loose: accept any `data-*` key on slots.
- *     declare module '@mui/utils/types' {
- *       interface DataAttributesOverrides {
- *         [k: `data-${string}`]: string | number | boolean | undefined;
- *       }
- *     }
+ * @example
+ * // Strongly-typed: only the declared keys become assignable on slots.
+ * declare module '@mui/utils/types' {
+ *   interface DataAttributesOverrides {
+ *     'data-testid'?: string;
+ *   }
+ * }
  */
 export interface DataAttributesOverrides {}
 
