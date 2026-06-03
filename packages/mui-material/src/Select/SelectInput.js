@@ -632,6 +632,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
+  const handleItemKeyDown = (child) => (event) => {
+    if (event.key === ' ') {
+      event.preventDefault();
+      handleItemClick(child)(event);
+    }
+
+    child?.props?.onKeyDown?.(event);
+  };
+
   delete other['aria-invalid'];
 
   let display;
@@ -714,6 +723,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           child.props.onKeyUp(event);
         }
       },
+      onKeyDown: handleItemKeyDown(child),
       role: 'option',
       selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
