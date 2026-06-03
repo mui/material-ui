@@ -12,6 +12,20 @@ import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
+
+let warnedMinMaxWithoutVariant = false;
+let warnedInvalidMinMaxValue = false;
+let warnedValueRequired = false;
+let warnedInvalidMinMaxValueBuffer = false;
+let warnedValueBufferRequired = false;
+
+export function resetWarningFlags() {
+  warnedMinMaxWithoutVariant = false;
+  warnedInvalidMinMaxValue = false;
+  warnedValueRequired = false;
+  warnedInvalidMinMaxValueBuffer = false;
+  warnedValueBufferRequired = false;
+}
 const indeterminate1Keyframe = keyframes`
   0% {
     left: -35%;
@@ -372,12 +386,14 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (
+      !warnedMinMaxWithoutVariant &&
       ['indeterminate', 'query'].includes(variant) &&
       (minProp !== undefined || maxProp !== undefined)
     ) {
       console.warn(
         `MUI: You have provided the \`min\` or \`max\` props with an 'indeterminate' or 'query' variant. These props will have no effect.`,
       );
+      warnedMinMaxWithoutVariant = true;
     }
   }
 
@@ -393,10 +409,11 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        if (value < min || value > max || min >= max) {
+        if (!warnedInvalidMinMaxValue && (value < min || value > max || min >= max)) {
           console.error(
             `MUI: The min, max, and value props in LinearProgress should be numbers where min < max and min <= value <= max. Received min=${min}, max=${max}, value=${value}.`,
           );
+          warnedInvalidMinMaxValue = true;
         }
       }
 
@@ -411,19 +428,25 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       rootProps['aria-valuemin'] = min;
       rootProps['aria-valuemax'] = max;
     } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a value prop ' +
-          'when using the determinate or buffer variant of LinearProgress.',
-      );
+      if (!warnedValueRequired) {
+        console.error(
+          'MUI: You need to provide a value prop when using the determinate or buffer variant of LinearProgress.',
+        );
+        warnedValueRequired = true;
+      }
     }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        if (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max) {
+        if (
+          !warnedInvalidMinMaxValueBuffer &&
+          (valueBuffer < min || valueBuffer > max || valueBuffer < value || min >= max)
+        ) {
           console.error(
             `MUI: The min, max, value, and valueBuffer props in LinearProgress should be numbers where min < max and min <= value <= valueBuffer <= max. Received min=${min}, max=${max}, value=${value}, valueBuffer=${valueBuffer}.`,
           );
+          warnedInvalidMinMaxValueBuffer = true;
         }
       }
 
@@ -434,10 +457,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(inProps, ref) {
       }
       inlineStyles.bar2.transform = range > 0 ? `translateX(${transform}%)` : 'translateX(-100%)'; // empty-state fallback when range is invalid
     } else if (process.env.NODE_ENV !== 'production') {
-      console.error(
-        'MUI: You need to provide a valueBuffer prop ' +
-          'when using the buffer variant of LinearProgress.',
-      );
+      if (!warnedValueBufferRequired) {
+        console.error(
+          'MUI: You need to provide a valueBuffer prop when using the buffer variant of LinearProgress.',
+        );
+        warnedValueBufferRequired = true;
+      }
     }
   }
 

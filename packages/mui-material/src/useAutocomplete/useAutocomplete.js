@@ -151,6 +151,9 @@ function useAutocomplete(props) {
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
+  // VoiceOver synthesises a spurious Backspace on the input after a chip
+  // deletion moves DOM focus back to it. This flag suppresses that one event.
+  const ignoreNextBackspaceRef = React.useRef(false);
   const windowLostFocus = React.useRef(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -303,8 +306,11 @@ function useAutocomplete(props) {
       return;
     }
 
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
+    // In freeSolo mode, only reset the input after a real value change.
+    // Also prevent the initial default value of `null` from clearing controlled values.
+    const shouldSkipFreeSoloReset =
+      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+    if (shouldSkipFreeSoloReset) {
       return;
     }
 
@@ -1074,6 +1080,10 @@ function useAutocomplete(props) {
           break;
         case 'Backspace':
           // Remove the value on the left of the "cursor"
+          if (ignoreNextBackspaceRef.current) {
+            ignoreNextBackspaceRef.current = false;
+            break;
+          }
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
@@ -1081,6 +1091,18 @@ function useAutocomplete(props) {
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+            if (focusedItem !== -1) {
+              // Suppress the spurious Backspace VoiceOver synthesises on the
+              // input after focus returns to it. Clear it shortly after
+              // deletion so a later real Backspace is not ignored if the
+              // synthetic follow-up event never arrives.
+              ignoreNextBackspaceRef.current = true;
+              setTimeout(() => {
+                if (ignoreNextBackspaceRef.current) {
+                  ignoreNextBackspaceRef.current = false;
+                }
+              }, 0);
+            }
           }
           if (!multiple && renderValue && !readOnly && inputValue === '') {
             handleValue(event, null, 'removeOption', { option: value });
@@ -1418,6 +1440,12 @@ function useAutocomplete(props) {
       ...(multiple && { key: index }),
       'data-item-index': index,
       tabIndex: -1,
+      onFocus: () => {
+        // If focus on the item doesn't come from keyboard events, we update the state via onFocus.
+        if (focusedItem !== index) {
+          setFocusedItem(index);
+        }
+      },
       ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
     }),
     getPopupIndicatorProps: () => ({

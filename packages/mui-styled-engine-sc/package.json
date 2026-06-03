@@ -24,7 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat --skipTsc",
+    "build": "code-infra build --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine-sc\"",
     "typescript": "tsc -p tsconfig.json"
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
+    "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
     "chai": "6.2.2",
     "react": "19.2.6",
@@ -55,7 +56,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": "./src/index.js",
-    "./*": "./src/*/index.js"
+    ".": "./src/index.ts",
+    "./*": "./src/*/index.ts"
   }
 }
