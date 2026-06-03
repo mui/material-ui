@@ -96,11 +96,7 @@
 
 .pl-s,
 .pl-pds,
-.pl-s .pl-pse .pl-s1,
-.pl-sr,
-.pl-sr .pl-cce,
-.pl-sr .pl-sre,
-.pl-sr .pl-sra {
+.pl-s .pl-pse .pl-s1 {
   color: var(--color-prettylights-syntax-string);
 }
 
@@ -123,7 +119,10 @@
   background-color: var(--color-prettylights-syntax-carriage-return-bg);
 }
 
-.pl-sr .pl-cce {
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sre,
+.pl-sr .pl-sra {
   font-weight: bold;
   color: var(--color-prettylights-syntax-string-regexp);
 }
