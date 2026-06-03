@@ -56,7 +56,7 @@ const TablePaginationToolbar = styled(Toolbar, {
     },
     [`& .${tablePaginationClasses.actions}`]: {
       flexShrink: 0,
-      marginLeft: 20,
+      marginLeft: `calc(${theme.spacing(3)} - 4px)`,
     },
   })),
 );
@@ -87,19 +87,21 @@ const TablePaginationSelect = styled(Select, {
     ...styles.input,
     ...styles.selectRoot,
   }),
-})({
-  color: 'inherit',
-  fontSize: 'inherit',
-  flexShrink: 0,
-  marginRight: 32,
-  marginLeft: 8,
-  [`& .${tablePaginationClasses.select}`]: {
-    paddingLeft: 8,
-    paddingRight: 24,
-    textAlign: 'right',
-    textAlignLast: 'right', // Align <select> on Chrome.
-  },
-});
+})(
+  memoTheme(({ theme }) => ({
+    color: 'inherit',
+    fontSize: 'inherit',
+    flexShrink: 0,
+    marginRight: theme.spacing(4),
+    marginLeft: theme.spacing(1),
+    [`& .${tablePaginationClasses.select}`]: {
+      paddingLeft: theme.spacing(1),
+      paddingRight: 24,
+      textAlign: 'right',
+      textAlignLast: 'right', // Align <select> on Chrome.
+    },
+  })),
+);
 
 const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',

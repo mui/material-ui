@@ -37,7 +37,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     transition: theme.transitions.create(['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    padding: '0px 12px',
+    padding: `0px calc(${theme.spacing(2)} - 4px)`,
     minWidth: 80,
     maxWidth: 168,
     color: (theme.vars || theme).palette.text.secondary,
@@ -50,7 +50,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,
         style: {
-          paddingTop: 14,
+          paddingTop: `calc(${theme.spacing(2)} - 2px)`,
         },
       },
       {

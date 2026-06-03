@@ -99,7 +99,7 @@ const FabRoot = styled(ButtonBase, {
         props: { variant: 'extended' },
         style: {
           borderRadius: 48 / 2,
-          padding: '0 16px',
+          padding: `0 ${theme.spacing(2)}`,
           width: 'auto',
           minHeight: 'auto',
           minWidth: 48,
@@ -110,7 +110,7 @@ const FabRoot = styled(ButtonBase, {
         props: { variant: 'extended', size: 'small' },
         style: {
           width: 'auto',
-          padding: '0 8px',
+          padding: `0 ${theme.spacing(1)}`,
           borderRadius: 34 / 2,
           minWidth: 34,
           height: 34,
@@ -120,7 +120,7 @@ const FabRoot = styled(ButtonBase, {
         props: { variant: 'extended', size: 'medium' },
         style: {
           width: 'auto',
-          padding: '0 16px',
+          padding: `0 ${theme.spacing(2)}`,
           borderRadius: 40 / 2,
           minWidth: 40,
           height: 40,

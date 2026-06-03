@@ -72,7 +72,7 @@ const AccordionSummaryContent = styled('span', {
     display: 'flex',
     textAlign: 'start',
     flexGrow: 1,
-    margin: '12px 0',
+    margin: `calc(${theme.spacing(2)} - 4px) 0`,
     variants: [
       {
         props: (props) => !props.disableGutters,
@@ -81,7 +81,7 @@ const AccordionSummaryContent = styled('span', {
             duration: theme.transitions.duration.shortest,
           }),
           [`&.${accordionSummaryClasses.expanded}`]: {
-            margin: '20px 0',
+            margin: `calc(${theme.spacing(3)} - 4px) 0`,
           },
         },
       },

@@ -191,7 +191,8 @@ describe('<Tab />', () => {
       expect(wrapper).to.have.class('test-icon');
     });
 
-    it('should have bottom margin when passed together with label', () => {
+    // Margin is now `calc(spacing(1) - 2px)`; jsdom can't resolve calc, chromium does.
+    it.skipIf(isJsdom())('should have bottom margin when passed together with label', () => {
       render(
         <Tabs value={0}>
           <Tab value={0} icon={<div />} label="foo" />

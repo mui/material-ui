@@ -56,7 +56,7 @@ const TabRoot = styled(ButtonBase, {
     position: 'relative',
     minHeight: 48,
     flexShrink: 0,
-    padding: '12px 16px',
+    padding: `calc(${theme.spacing(2)} - 4px) ${theme.spacing(2)}`,
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
@@ -83,8 +83,8 @@ const TabRoot = styled(ButtonBase, {
         props: ({ ownerState }) => ownerState.icon && ownerState.label,
         style: {
           minHeight: 72,
-          paddingTop: 9,
-          paddingBottom: 9,
+          paddingTop: `calc(${theme.spacing(1)} + 1px)`,
+          paddingBottom: `calc(${theme.spacing(1)} + 1px)`,
         },
       },
       {
@@ -92,7 +92,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'top',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginBottom: 6,
+            marginBottom: `calc(${theme.spacing(1)} - 2px)`,
           },
         },
       },
@@ -101,7 +101,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'bottom',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginTop: 6,
+            marginTop: `calc(${theme.spacing(1)} - 2px)`,
           },
         },
       },

@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import Typography, { typographyClasses } from '../Typography';
 import ListContext from '../List/ListContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 import useSlot from '../utils/useSlot';
@@ -37,34 +38,36 @@ const ListItemTextRoot = styled('div', {
       ownerState.dense && styles.dense,
     ];
   },
-})({
-  flex: '1 1 auto',
-  minWidth: 0,
-  marginTop: 4,
-  marginBottom: 4,
-  // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
-  [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
-    display: 'block',
-  },
-  [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
-    display: 'block',
-  },
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
-      style: {
-        marginTop: 6,
-        marginBottom: 6,
-      },
+})(
+  memoTheme(({ theme }) => ({
+    flex: '1 1 auto',
+    minWidth: 0,
+    marginTop: `calc(${theme.spacing(1)} - 4px)`,
+    marginBottom: `calc(${theme.spacing(1)} - 4px)`,
+    // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
+    [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
+      display: 'block',
     },
-    {
-      props: ({ ownerState }) => ownerState.inset,
-      style: {
-        paddingLeft: 56,
-      },
+    [`.${typographyClasses.root}:where(& .${listItemTextClasses.secondary})`]: {
+      display: 'block',
     },
-  ],
-});
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
+        style: {
+          marginTop: `calc(${theme.spacing(1)} - 2px)`,
+          marginBottom: `calc(${theme.spacing(1)} - 2px)`,
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.inset,
+        style: {
+          paddingLeft: 56,
+        },
+      },
+    ],
+  })),
+);
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });

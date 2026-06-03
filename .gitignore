@@ -52,3 +52,8 @@ test-results/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# spacing-derivation review screenshots (local verification harness)
+/spacing-screenshots/
+/scripts/spacing-screenshots/__baselines__/
+/scripts/spacing-screenshots/.playwright-output/

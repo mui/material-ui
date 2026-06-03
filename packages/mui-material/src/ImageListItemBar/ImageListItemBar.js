@@ -84,7 +84,7 @@ const ImageListItemBarTitleWrap = styled('div', {
   memoTheme(({ theme }) => {
     return {
       flexGrow: 1,
-      padding: '12px 16px',
+      padding: `calc(${theme.spacing(2)} - 4px) ${theme.spacing(2)}`,
       color: (theme.vars || theme).palette.common.white,
       overflow: 'hidden',
       variants: [
@@ -93,7 +93,7 @@ const ImageListItemBarTitleWrap = styled('div', {
             position: 'below',
           },
           style: {
-            padding: '6px 0 12px',
+            padding: `calc(${theme.spacing(1)} - 2px) 0 calc(${theme.spacing(2)} - 4px)`,
             color: 'inherit',
           },
         },

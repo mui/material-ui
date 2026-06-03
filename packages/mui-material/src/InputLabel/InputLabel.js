@@ -66,8 +66,9 @@ const InputLabelRoot = styled(FormLabel, {
           position: 'absolute',
           left: 0,
           top: 0,
-          // slight alteration to spec spacing to match visual spec result
-          transform: 'translate(0, 20px) scale(1)',
+          // resting y tracks the standard input's text top: Input marginTop
+          // (spacing(2)) + InputBase paddingTop (spacing(1) − 4px) = spacing(3) − 4px.
+          transform: `translate(0, calc(${theme.spacing(3)} - 4px)) scale(1)`,
         },
       },
       {
@@ -75,8 +76,9 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          // Compensation for the `Input` small size style.
-          transform: 'translate(0, 17px) scale(1)',
+          // Compensation for the `Input` small size style: marginTop (spacing(2))
+          // + small paddingTop (1px literal).
+          transform: `translate(0, calc(${theme.spacing(2)} + 1px)) scale(1)`,
         },
       },
       {
@@ -107,7 +109,7 @@ const InputLabelRoot = styled(FormLabel, {
           // zIndex: 1 will raise the label above opaque background-colors of input.
           zIndex: 1,
           pointerEvents: 'none',
-          transform: 'translate(12px, 16px) scale(1)',
+          transform: `translate(12px, ${theme.spacing(2)}) scale(1)`,
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -117,7 +119,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(12px, 13px) scale(1)',
+          transform: `translate(12px, calc(${theme.spacing(2)} - 3px)) scale(1)`,
         },
       },
       {
@@ -125,7 +127,7 @@ const InputLabelRoot = styled(FormLabel, {
         style: {
           userSelect: 'none',
           pointerEvents: 'auto',
-          transform: 'translate(12px, 7px) scale(0.75)',
+          transform: `translate(12px, calc(${theme.spacing(1)} - 1px)) scale(0.75)`,
           maxWidth: 'calc(133% - 24px)',
         },
       },
@@ -133,7 +135,7 @@ const InputLabelRoot = styled(FormLabel, {
         props: ({ variant, ownerState, size }) =>
           variant === 'filled' && ownerState.shrink && size === 'small',
         style: {
-          transform: 'translate(12px, 4px) scale(0.75)',
+          transform: `translate(12px, calc(${theme.spacing(1)} - 4px)) scale(0.75)`,
         },
       },
       {
@@ -144,7 +146,7 @@ const InputLabelRoot = styled(FormLabel, {
           // see comment above on filled.zIndex
           zIndex: 1,
           pointerEvents: 'none',
-          transform: 'translate(14px, 16px) scale(1)',
+          transform: `translate(14px, ${theme.spacing(2)}) scale(1)`,
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -154,7 +156,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(14px, 9px) scale(1)',
+          transform: `translate(14px, calc(${theme.spacing(1)} + 1px)) scale(1)`,
         },
       },
       {

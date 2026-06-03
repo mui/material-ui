@@ -7,6 +7,7 @@ import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
@@ -48,12 +49,14 @@ const BreadcrumbsOl = styled('ol', {
 const BreadcrumbsSeparator = styled('li', {
   name: 'MuiBreadcrumbs',
   slot: 'Separator',
-})({
-  display: 'flex',
-  userSelect: 'none',
-  marginLeft: 8,
-  marginRight: 8,
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    userSelect: 'none',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  })),
+);
 
 function insertSeparators(items, className, separator, ownerState) {
   return items.reduce((acc, current, index) => {

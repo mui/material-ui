@@ -52,7 +52,7 @@ const IconButtonRoot = styled(ButtonBase, {
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    padding: 8,
+    padding: theme.spacing(1),
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
@@ -124,14 +124,14 @@ const IconButtonRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          padding: 5,
+          padding: `calc(${theme.spacing(1)} - 3px)`,
           fontSize: theme.typography.pxToRem(18),
         },
       },
       {
         props: { size: 'large' },
         style: {
-          padding: 12,
+          padding: `calc(${theme.spacing(2)} - 4px)`,
           fontSize: theme.typography.pxToRem(28),
         },
       },

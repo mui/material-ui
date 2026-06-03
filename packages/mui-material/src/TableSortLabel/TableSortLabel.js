@@ -63,8 +63,8 @@ const TableSortLabelIcon = styled('span', {
 })(
   memoTheme(({ theme }) => ({
     fontSize: 18,
-    marginRight: 4,
-    marginLeft: 4,
+    marginRight: `calc(${theme.spacing(1)} - 4px)`,
+    marginLeft: `calc(${theme.spacing(1)} - 4px)`,
     opacity: 0,
     transition: theme.transitions.create(['opacity', 'transform'], {
       duration: theme.transitions.duration.shorter,

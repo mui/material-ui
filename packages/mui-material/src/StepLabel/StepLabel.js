@@ -53,34 +53,36 @@ const StepLabelRoot = styled('span', {
 
     return [styles.root, styles[ownerState.orientation]];
   },
-})({
-  display: 'flex',
-  alignItems: 'center',
-  [`&.${stepLabelClasses.disabled}`]: {
-    cursor: 'default',
-  },
-  variants: [
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        textAlign: 'left',
-        padding: '8px 0',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    [`&.${stepLabelClasses.disabled}`]: {
+      cursor: 'default',
     },
-    {
-      props: { alternativeLabel: true },
-      style: {
-        flexDirection: 'column',
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          textAlign: 'left',
+          padding: `${theme.spacing(1)} 0`,
+        },
       },
-    },
-    {
-      props: { orientation: 'vertical', alternativeLabel: true },
-      style: {
-        flexDirection: 'row-reverse',
+      {
+        props: { alternativeLabel: true },
+        style: {
+          flexDirection: 'column',
+        },
       },
-    },
-  ],
-});
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          flexDirection: 'row-reverse',
+        },
+      },
+    ],
+  })),
+);
 
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
@@ -97,7 +99,7 @@ const StepLabelLabel = styled('span', {
       fontWeight: 500,
     },
     [`&.${stepLabelClasses.alternativeLabel}`]: {
-      marginTop: 16,
+      marginTop: theme.spacing(2),
     },
     [`&.${stepLabelClasses.error}`]: {
       color: (theme.vars || theme).palette.error.main,
@@ -118,23 +120,25 @@ const StepLabelLabel = styled('span', {
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
-})({
-  flexShrink: 0,
-  display: 'flex',
-  paddingRight: 8,
-  [`&.${stepLabelClasses.alternativeLabel}`]: {
-    paddingRight: 0,
-  },
-  variants: [
-    {
-      props: { orientation: 'vertical', alternativeLabel: true },
-      style: {
-        paddingRight: 0,
-        paddingLeft: 8,
-      },
+})(
+  memoTheme(({ theme }) => ({
+    flexShrink: 0,
+    display: 'flex',
+    paddingRight: theme.spacing(1),
+    [`&.${stepLabelClasses.alternativeLabel}`]: {
+      paddingRight: 0,
     },
-  ],
-});
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          paddingRight: 0,
+          paddingLeft: theme.spacing(1),
+        },
+      },
+    ],
+  })),
+);
 
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',

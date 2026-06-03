@@ -72,7 +72,7 @@ const ChipRoot = styled('div', {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 32,
+      height: `calc(${theme.spacing(2)} + 16px)`, // 32px
       lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
@@ -93,23 +93,23 @@ const ChipRoot = styled('div', {
         pointerEvents: 'none',
       },
       [`& .${chipClasses.avatar}`]: {
-        marginLeft: 5,
-        marginRight: -6,
-        width: 24,
-        height: 24,
+        marginLeft: `max(calc(${theme.spacing(1)} - 3px), 0px)`,
+        marginRight: `calc(2px - ${theme.spacing(1)})`,
+        width: `calc(16px + ${theme.spacing(1)})`,
+        height: `calc(16px + ${theme.spacing(1)})`,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
-        marginLeft: 5,
-        marginRight: -6,
+        marginLeft: `max(calc(${theme.spacing(1)} - 3px), 0px)`,
+        marginRight: `calc(2px - ${theme.spacing(1)})`,
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: 22,
+        fontSize: `calc(14px + ${theme.spacing(1)})`,
         cursor: 'pointer',
-        margin: '0 5px 0 -6px',
+        margin: `0 max(calc(${theme.spacing(1)} - 3px), 0px) 0 calc(2px - ${theme.spacing(1)})`,
         '&:hover': {
           color: theme.alpha((theme.vars || theme).palette.text.primary, 0.4),
         },
@@ -140,23 +140,23 @@ const ChipRoot = styled('div', {
         {
           props: { size: 'small' },
           style: {
-            height: 24,
+            height: `calc(${theme.spacing(2)} + 8px)`, // 32px
             [`& .${chipClasses.avatar}`]: {
-              marginLeft: 4,
-              marginRight: -4,
-              width: 18,
-              height: 18,
+              marginLeft: `max(calc(${theme.spacing(1)} - 4px), 0px)`,
+              marginRight: `calc(4px - ${theme.spacing(1)})`,
+              width: `calc(${theme.spacing(1)} + 10px)`,
+              height: `calc(${theme.spacing(1)} + 10px)`,
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: 18,
-              marginLeft: 4,
-              marginRight: -4,
+              fontSize: `calc(${theme.spacing(1)} + 10px)`,
+              marginLeft: `calc(${theme.spacing(1)} - 4px)`,
+              marginRight: `calc(4px - ${theme.spacing(1)})`,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 16,
-              marginRight: 4,
-              marginLeft: -4,
+              fontSize: `calc(8px + ${theme.spacing(1)})`,
+              marginRight: `max(calc(${theme.spacing(1)} - 4px), 0px)`,
+              marginLeft: `calc(4px - ${theme.spacing(1)})`,
             },
           },
         },
@@ -265,13 +265,13 @@ const ChipRoot = styled('div', {
               backgroundColor: (theme.vars || theme).palette.action.focus,
             },
             [`& .${chipClasses.avatar}`]: {
-              marginLeft: 4,
+              marginLeft: `calc(${theme.spacing(1)} - 4px)`,
             },
             [`& .${chipClasses.icon}`]: {
-              marginLeft: 4,
+              marginLeft: `calc(${theme.spacing(1)} - 4px)`,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              marginRight: 5,
+              marginRight: `calc(${theme.spacing(1)} - 3px)`,
             },
           },
         },
@@ -279,13 +279,13 @@ const ChipRoot = styled('div', {
           props: { size: 'small', variant: 'outlined' },
           style: {
             [`& .${chipClasses.avatar}`]: {
-              marginLeft: 2,
+              marginLeft: `calc(${theme.spacing(1)} - 6px)`,
             },
             [`& .${chipClasses.icon}`]: {
-              marginLeft: 2,
+              marginLeft: `calc(${theme.spacing(1)} - 6px)`,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              marginRight: 3,
+              marginRight: `calc(${theme.spacing(1)} - 5px)`,
             },
           },
         },
@@ -324,36 +324,38 @@ const ChipRoot = styled('div', {
 const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
-})({
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  paddingLeft: 12,
-  paddingRight: 12,
-  whiteSpace: 'nowrap',
-  variants: [
-    {
-      props: { variant: 'outlined' },
-      style: {
-        paddingLeft: 11,
-        paddingRight: 11,
+})(
+  memoTheme(({ theme }) => ({
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    paddingLeft: `calc(${theme.spacing(2)} - 4px)`,
+    paddingRight: `calc(${theme.spacing(2)} - 4px)`,
+    whiteSpace: 'nowrap',
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+          paddingLeft: `calc(${theme.spacing(1)} + 3px)`,
+          paddingRight: `calc(${theme.spacing(1)} + 3px)`,
+        },
       },
-    },
-    {
-      props: { size: 'small' },
-      style: {
-        paddingLeft: 8,
-        paddingRight: 8,
+      {
+        props: { size: 'small' },
+        style: {
+          paddingLeft: theme.spacing(1),
+          paddingRight: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { size: 'small', variant: 'outlined' },
-      style: {
-        paddingLeft: 7,
-        paddingRight: 7,
+      {
+        props: { size: 'small', variant: 'outlined' },
+        style: {
+          paddingLeft: `calc(${theme.spacing(1)} - 1px)`,
+          paddingRight: `calc(${theme.spacing(1)} - 1px)`,
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 function isDeleteKeyboardEvent(keyboardEvent) {
   return keyboardEvent.key === 'Backspace' || keyboardEvent.key === 'Delete';

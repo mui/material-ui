@@ -43,7 +43,7 @@ const MobileStepperRoot = styled(Paper, {
     justifyContent: 'space-between',
     alignItems: 'center',
     background: (theme.vars || theme).palette.background.default,
-    padding: 8,
+    padding: theme.spacing(1),
     variants: [
       {
         props: ({ position }) => position === 'top' || position === 'bottom',

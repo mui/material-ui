@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography, { typographyClasses } from '../Typography';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 import useSlot from '../utils/useSlot';
@@ -33,31 +34,37 @@ const CardHeaderRoot = styled('div', {
       styles.root,
     ];
   },
-})({
-  display: 'flex',
-  alignItems: 'center',
-  padding: 16,
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+  })),
+);
 
 const CardHeaderAvatar = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Avatar',
-})({
-  display: 'flex',
-  flex: '0 0 auto',
-  marginRight: 16,
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flex: '0 0 auto',
+    marginRight: theme.spacing(2),
+  })),
+);
 
 const CardHeaderAction = styled('div', {
   name: 'MuiCardHeader',
   slot: 'Action',
-})({
-  flex: '0 0 auto',
-  alignSelf: 'flex-start',
-  marginTop: -4,
-  marginRight: -8,
-  marginBottom: -4,
-});
+})(
+  memoTheme(({ theme }) => ({
+    flex: '0 0 auto',
+    alignSelf: 'flex-start',
+    marginTop: -4,
+    marginRight: theme.spacing(-1),
+    marginBottom: -4,
+  })),
+);
 
 const CardHeaderContent = styled('div', {
   name: 'MuiCardHeader',

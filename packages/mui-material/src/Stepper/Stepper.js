@@ -6,6 +6,7 @@ import integerPropType from '@mui/utils/integerPropType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
 import { getStepperUtilityClass } from './stepperClasses';
@@ -34,45 +35,47 @@ const StepperRoot = styled('ol', {
       ownerState.nonLinear && styles.nonLinear,
     ];
   },
-})({
-  display: 'flex',
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  variants: [
-    {
-      props: { orientation: 'horizontal' },
-      style: {
-        flexDirection: 'row',
-        alignItems: 'center',
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          flexDirection: 'row',
+          alignItems: 'center',
+        },
       },
-    },
-    {
-      props: { orientation: 'horizontal', alternativeLabel: false },
-      style: {
-        gap: 8,
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false },
+        style: {
+          gap: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        flexDirection: 'column',
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          flexDirection: 'column',
+        },
       },
-    },
-    {
-      props: { alternativeLabel: true },
-      style: {
-        alignItems: 'flex-start',
+      {
+        props: { alternativeLabel: true },
+        style: {
+          alignItems: 'flex-start',
+        },
       },
-    },
-    {
-      props: { orientation: 'vertical', alternativeLabel: true },
-      style: {
-        alignItems: 'flex-end',
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          alignItems: 'flex-end',
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const defaultConnector = <StepConnector />;
 

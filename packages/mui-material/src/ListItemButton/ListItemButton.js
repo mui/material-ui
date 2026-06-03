@@ -64,8 +64,8 @@ const ListItemButtonRoot = styled(ButtonBase, {
     minWidth: 0,
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -127,15 +127,15 @@ const ListItemButtonRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
         },
       },
       {
         props: ({ ownerState }) => ownerState.dense,
         style: {
-          paddingTop: 4,
-          paddingBottom: 4,
+          paddingTop: `calc(${theme.spacing(1)} - 4px)`,
+          paddingBottom: `calc(${theme.spacing(1)} - 4px)`,
         },
       },
     ],

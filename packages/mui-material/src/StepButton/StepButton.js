@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
@@ -36,25 +37,27 @@ const StepButtonRoot = styled(ButtonBase, {
       styles[ownerState.orientation],
     ];
   },
-})({
-  width: '100%',
-  padding: '24px 16px',
-  margin: '-24px -16px',
-  boxSizing: 'content-box',
-  [`& .${stepButtonClasses.touchRipple}`]: {
-    color: 'rgba(0, 0, 0, 0.3)',
-  },
-  variants: [
-    {
-      props: { orientation: 'vertical' },
-      style: {
-        justifyContent: 'flex-start',
-        padding: '8px',
-        margin: '-8px',
-      },
+})(
+  memoTheme(({ theme }) => ({
+    width: '100%',
+    padding: `${theme.spacing(3)} ${theme.spacing(2)}`,
+    margin: `${theme.spacing(-3)} ${theme.spacing(-2)}`,
+    boxSizing: 'content-box',
+    [`& .${stepButtonClasses.touchRipple}`]: {
+      color: 'rgba(0, 0, 0, 0.3)',
     },
-  ],
-});
+    variants: [
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          justifyContent: 'flex-start',
+          padding: theme.spacing(1),
+          margin: theme.spacing(-1),
+        },
+      },
+    ],
+  })),
+);
 
 const RovingStepButton = React.forwardRef(function RovingStepButton(props, ref) {
   // eslint-disable-next-line react/prop-types

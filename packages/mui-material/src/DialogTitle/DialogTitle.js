@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
@@ -22,10 +23,12 @@ const useUtilityClasses = (ownerState) => {
 const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
-})({
-  padding: '16px 24px',
-  flex: '0 0 auto',
-});
+})(
+  memoTheme(({ theme }) => ({
+    padding: `${theme.spacing(2)} ${theme.spacing(3)}`,
+    flex: '0 0 auto',
+  })),
+);
 
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
   const props = useDefaultProps({

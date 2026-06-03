@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
 
@@ -25,22 +26,24 @@ const AccordionActionsRoot = styled('div', {
 
     return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})({
-  display: 'flex',
-  alignItems: 'center',
-  padding: 8,
-  justifyContent: 'flex-end',
-  variants: [
-    {
-      props: (props) => !props.disableSpacing,
-      style: {
-        '& > :not(style) ~ :not(style)': {
-          marginLeft: 8,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    justifyContent: 'flex-end',
+    variants: [
+      {
+        props: (props) => !props.disableSpacing,
+        style: {
+          '& > :not(style) ~ :not(style)': {
+            marginLeft: theme.spacing(1),
+          },
         },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const AccordionActions = React.forwardRef(function AccordionActions(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionActions' });

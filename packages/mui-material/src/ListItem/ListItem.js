@@ -61,22 +61,22 @@ export const ListItemRoot = styled('div', {
       {
         props: ({ ownerState }) => !ownerState.disablePadding,
         style: {
-          paddingTop: 8,
-          paddingBottom: 8,
+          paddingTop: theme.spacing(1),
+          paddingBottom: theme.spacing(1),
         },
       },
       {
         props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
         style: {
-          paddingTop: 4,
-          paddingBottom: 4,
+          paddingTop: `calc(${theme.spacing(1)} - 4px)`,
+          paddingBottom: `calc(${theme.spacing(1)} - 4px)`,
         },
       },
       {
         props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
         },
       },
       {

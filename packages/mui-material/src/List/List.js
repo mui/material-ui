@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
@@ -31,28 +32,30 @@ const ListRoot = styled('ul', {
       ownerState.subheader && styles.subheader,
     ];
   },
-})({
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  position: 'relative',
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.disablePadding,
-      style: {
-        paddingTop: 8,
-        paddingBottom: 8,
+})(
+  memoTheme(({ theme }) => ({
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+    position: 'relative',
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.disablePadding,
+        style: {
+          paddingTop: theme.spacing(1),
+          paddingBottom: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.subheader,
-      style: {
-        paddingTop: 0,
-        isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
+      {
+        props: ({ ownerState }) => ownerState.subheader,
+        style: {
+          paddingTop: 0,
+          isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const List = React.forwardRef(function List(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiList' });

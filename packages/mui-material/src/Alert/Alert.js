@@ -47,7 +47,7 @@ const AlertRoot = styled(Paper, {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
       display: 'flex',
-      padding: '6px 16px',
+      padding: `calc(${theme.spacing(1)} - 2px) ${theme.spacing(2)}`,
       variants: [
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter(['light']))
@@ -111,33 +111,39 @@ const AlertRoot = styled(Paper, {
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
-})({
-  marginRight: 12,
-  padding: '7px 0',
-  display: 'flex',
-  fontSize: 22,
-  opacity: 0.9,
-});
+})(
+  memoTheme(({ theme }) => ({
+    marginRight: `calc(${theme.spacing(2)} - 4px)`,
+    padding: `calc(${theme.spacing(1)} - 1px) 0`,
+    display: 'flex',
+    fontSize: 22,
+    opacity: 0.9,
+  })),
+);
 
 const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
-})({
-  padding: '8px 0',
-  minWidth: 0,
-  overflow: 'auto',
-});
+})(
+  memoTheme(({ theme }) => ({
+    padding: `${theme.spacing(1)} 0`,
+    minWidth: 0,
+    overflow: 'auto',
+  })),
+);
 
 const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
-})({
-  display: 'flex',
-  alignItems: 'flex-start',
-  padding: '4px 0 0 16px',
-  marginLeft: 'auto',
-  marginRight: -8,
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'flex-start',
+    padding: `calc(${theme.spacing(1)} - 4px) 0 0 ${theme.spacing(2)}`,
+    marginLeft: 'auto',
+    marginRight: theme.spacing(-1),
+  })),
+);
 
 const defaultIconMapping = {
   success: <SuccessOutlinedIcon fontSize="inherit" />,

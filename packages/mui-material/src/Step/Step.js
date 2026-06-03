@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { useStepperContext } from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepUtilityClass } from './stepClasses';
 
@@ -33,46 +34,48 @@ const StepRoot = styled('li', {
       ownerState.completed && styles.completed,
     ];
   },
-})({
-  variants: [
-    {
-      props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
-      style: {
-        paddingLeft: 8,
+})(
+  memoTheme(({ theme }) => ({
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
+        style: {
+          paddingLeft: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { orientation: 'horizontal', alternativeLabel: false, last: true },
-      style: {
-        paddingRight: 8,
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, last: true },
+        style: {
+          paddingRight: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: true },
-      style: {
-        flex: '1 1 auto',
-        display: 'grid',
-        gridTemplateColumns: '1fr auto',
-        alignItems: 'center',
-        gap: 8,
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: true },
+        style: {
+          flex: '1 1 auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto',
+          alignItems: 'center',
+          gap: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { orientation: 'vertical', alternativeLabel: true },
-      style: {
-        display: 'flex',
-        flexDirection: 'column',
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+        },
       },
-    },
-    {
-      props: { orientation: 'horizontal', alternativeLabel: true },
-      style: {
-        flex: 1,
-        position: 'relative',
+      {
+        props: { orientation: 'horizontal', alternativeLabel: true },
+        style: {
+          flex: 1,
+          position: 'relative',
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const Step = React.forwardRef(function Step(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiStep' });

@@ -168,29 +168,29 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            padding: '25px 12px 8px',
+            padding: `calc(${theme.spacing(3)} + 1px) 12px ${theme.spacing(1)}`,
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
           style: {
-            paddingTop: 21,
-            paddingBottom: 4,
+            paddingTop: `calc(${theme.spacing(3)} - 3px)`,
+            paddingBottom: `calc(${theme.spacing(1)} - 4px)`,
           },
         },
         {
           props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
           style: {
-            paddingTop: 16,
-            paddingBottom: 17,
+            paddingTop: theme.spacing(2),
+            paddingBottom: `calc(${theme.spacing(2)} + 1px)`,
           },
         },
         {
           props: ({ ownerState }) =>
             ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
           style: {
-            paddingTop: 8,
-            paddingBottom: 9,
+            paddingTop: theme.spacing(1),
+            paddingBottom: `calc(${theme.spacing(1)} + 1px)`,
           },
         },
       ],
@@ -204,9 +204,9 @@ const FilledInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    paddingTop: 25,
+    paddingTop: `calc(${theme.spacing(3)} + 1px)`,
     paddingRight: 12,
-    paddingBottom: 8,
+    paddingBottom: theme.spacing(1),
     paddingLeft: 12,
     '&:-webkit-autofill': {
       ...(!theme.vars && {
@@ -229,15 +229,15 @@ const FilledInputInput = styled(InputBaseInput, {
           size: 'small',
         },
         style: {
-          paddingTop: 21,
-          paddingBottom: 4,
+          paddingTop: `calc(${theme.spacing(3)} - 3px)`,
+          paddingBottom: `calc(${theme.spacing(1)} - 4px)`,
         },
       },
       {
         props: ({ ownerState }) => ownerState.hiddenLabel,
         style: {
-          paddingTop: 16,
-          paddingBottom: 17,
+          paddingTop: theme.spacing(2),
+          paddingBottom: `calc(${theme.spacing(2)} + 1px)`,
         },
       },
       {
@@ -255,8 +255,8 @@ const FilledInputInput = styled(InputBaseInput, {
       {
         props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === 'small',
         style: {
-          paddingTop: 8,
-          paddingBottom: 9,
+          paddingTop: theme.spacing(1),
+          paddingBottom: `calc(${theme.spacing(1)} + 1px)`,
         },
       },
       {

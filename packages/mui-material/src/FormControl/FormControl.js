@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
@@ -32,39 +33,41 @@ const FormControlRoot = styled('div', {
       ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})({
-  display: 'inline-flex',
-  flexDirection: 'column',
-  position: 'relative',
-  // Reset fieldset default style.
-  minWidth: 0,
-  padding: 0,
-  margin: 0,
-  border: 0,
-  verticalAlign: 'top', // Fix alignment issue on Safari.
-  variants: [
-    {
-      props: { margin: 'normal' },
-      style: {
-        marginTop: 16,
-        marginBottom: 8,
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    flexDirection: 'column',
+    position: 'relative',
+    // Reset fieldset default style.
+    minWidth: 0,
+    padding: 0,
+    margin: 0,
+    border: 0,
+    verticalAlign: 'top', // Fix alignment issue on Safari.
+    variants: [
+      {
+        props: { margin: 'normal' },
+        style: {
+          marginTop: theme.spacing(2),
+          marginBottom: theme.spacing(1),
+        },
       },
-    },
-    {
-      props: { margin: 'dense' },
-      style: {
-        marginTop: 8,
-        marginBottom: 4,
+      {
+        props: { margin: 'dense' },
+        style: {
+          marginTop: theme.spacing(1),
+          marginBottom: `calc(${theme.spacing(1)} - 4px)`,
+        },
       },
-    },
-    {
-      props: { fullWidth: true },
-      style: {
-        width: '100%',
+      {
+        props: { fullWidth: true },
+        style: {
+          width: '100%',
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.

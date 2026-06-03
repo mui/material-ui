@@ -58,7 +58,7 @@ const InputAdornmentRoot = styled('div', {
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
-              marginTop: 16,
+              marginTop: theme.spacing(2),
             },
         },
       },

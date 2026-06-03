@@ -67,8 +67,8 @@ const MenuItemRoot = styled(ButtonBase, {
     position: 'relative',
     textDecoration: 'none',
     minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: `calc(${theme.spacing(1)} - 2px)`,
+    paddingBottom: `calc(${theme.spacing(1)} - 2px)`,
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
     '&:hover': {
@@ -154,8 +154,8 @@ const MenuItemRoot = styled(ButtonBase, {
         props: ({ ownerState }) => ownerState.dense,
         style: {
           minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
-          paddingTop: 4,
-          paddingBottom: 4,
+          paddingTop: `calc(${theme.spacing(1)} - 4px)`,
+          paddingBottom: `calc(${theme.spacing(1)} - 4px)`,
           ...theme.typography.body2,
           [`& .${listItemIconClasses.root} svg`]: {
             fontSize: '1.25rem',

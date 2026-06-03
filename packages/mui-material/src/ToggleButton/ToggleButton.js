@@ -45,7 +45,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     borderRadius: (theme.vars || theme).shape.borderRadius,
-    padding: 11,
+    padding: `calc(${theme.spacing(1)} + 3px)`,
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     color: (theme.vars || theme).palette.action.active,
     [`&.${toggleButtonClasses.disabled}`]: {
@@ -125,14 +125,14 @@ const ToggleButtonRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          padding: 7,
+          padding: `calc(${theme.spacing(1)} - 1px)`,
           fontSize: theme.typography.pxToRem(13),
         },
       },
       {
         props: { size: 'large' },
         style: {
-          padding: 15,
+          padding: `calc(${theme.spacing(2)} - 1px)`,
           fontSize: theme.typography.pxToRem(15),
         },
       },
