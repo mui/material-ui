@@ -68,9 +68,8 @@ This setting controls Material UI transition components, such as Collapse, Fade
 For custom CSS transitions in your app, use `theme.transitions.create()` and add reduced-motion overrides directly:
 
 ```js
-const transition = theme.transitions.create(['background-color', 'transform']);
 const styles = {
-  transition,
+  transition: theme.transitions.create(['background-color', 'transform']),
   ...(theme.motion.reducedMotion === 'always' && {
     transition: 'none',
   }),
