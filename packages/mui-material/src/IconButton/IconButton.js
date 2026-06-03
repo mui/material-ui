@@ -9,7 +9,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
@@ -56,6 +56,7 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
+    '--IconButton-focusRingColor': (theme.vars || theme).palette.primary.main,
     ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -105,9 +106,19 @@ const IconButtonRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     variants: [
       {
+        props: { focusableWhenDisabled: true },
+        style: {
+          [`&.${iconButtonClasses.disabled}.${buttonBaseClasses.focusVisible}`]: {
+            outline: '2px solid var(--IconButton-focusRingColor)',
+            outlineOffset: 2,
+          },
+        },
+      },
+      {
         props: { color: 'inherit' },
         style: {
           color: 'inherit',
+          '--IconButton-focusRingColor': (theme.vars || theme).palette.text.primary,
         },
       },
       ...Object.entries(theme.palette)
@@ -116,6 +127,7 @@ const IconButtonRoot = styled(ButtonBase, {
           props: { color },
           style: {
             color: (theme.vars || theme).palette[color].main,
+            '--IconButton-focusRingColor': (theme.vars || theme).palette[color].main,
             '--IconButton-hoverBg': theme.alpha(
               (theme.vars || theme).palette[color].main,
               (theme.vars || theme).palette.action.hoverOpacity,

@@ -168,6 +168,38 @@ describe('<Button />', () => {
     expect(onParentClick.callCount).to.equal(0);
   });
 
+  it.skipIf(isJsdom())('applies a customizable focus ring to disabled focusable buttons', () => {
+    const theme = createTheme({
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              '--Button-focusRingColor': 'rgb(1, 2, 3)',
+            },
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Button disabled focusableWhenDisabled className={classes.focusVisible}>
+          Hello World
+        </Button>
+      </ThemeProvider>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveComputedStyle({
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
+      outlineOffset: '2px',
+    });
+    expect(getComputedStyle(button).getPropertyValue('--Button-focusRingColor')).to.equal(
+      'rgb(1, 2, 3)',
+    );
+  });
+
   it('allows Tooltip to open from hover and focus on disabled focusable buttons', async () => {
     const { user } = render(
       <Tooltip title="Disabled action" enterDelay={0} leaveDelay={0}>

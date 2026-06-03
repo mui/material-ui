@@ -104,6 +104,7 @@ const ButtonRoot = styled(ButtonBase, {
       padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
+      '--Button-focusRingColor': (theme.vars || theme).palette.primary.main,
       ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
         duration: theme.transitions.duration.short,
       }),
@@ -114,6 +115,15 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
+        {
+          props: { focusableWhenDisabled: true },
+          style: {
+            [`&.${buttonClasses.disabled}.${buttonClasses.focusVisible}`]: {
+              outline: '2px solid var(--Button-focusRingColor)',
+              outlineOffset: 2,
+            },
+          },
+        },
         {
           props: { variant: 'contained' },
           style: {
@@ -174,6 +184,7 @@ const ButtonRoot = styled(ButtonBase, {
               ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
+              '--Button-focusRingColor': (theme.vars || theme).palette[color].main,
               '@media (hover: hover)': {
                 [`&:hover:not(.${buttonClasses.disabled})`]: {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
@@ -200,6 +211,7 @@ const ButtonRoot = styled(ButtonBase, {
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
+            '--Button-focusRingColor': (theme.vars || theme).palette.text.primary,
             '@media (hover: hover)': {
               [`&:hover:not(.${buttonClasses.disabled})`]: {
                 '--variant-containedBg': theme.vars

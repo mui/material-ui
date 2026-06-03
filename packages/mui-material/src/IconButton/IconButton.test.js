@@ -2,12 +2,12 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor, screen, within } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, reactMajor, screen, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
@@ -126,6 +126,38 @@ describe('<IconButton />', () => {
 
       expect(onClick.callCount).to.equal(0);
       expect(onParentClick.callCount).to.equal(0);
+    });
+
+    it.skipIf(isJsdom())('applies a customizable focus ring to disabled focusable buttons', () => {
+      const theme = createTheme({
+        components: {
+          MuiIconButton: {
+            styleOverrides: {
+              root: {
+                '--IconButton-focusRingColor': 'rgb(1, 2, 3)',
+              },
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <IconButton disabled focusableWhenDisabled className={buttonBaseClasses.focusVisible}>
+            book
+          </IconButton>
+        </ThemeProvider>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+      expect(getComputedStyle(button).getPropertyValue('--IconButton-focusRingColor')).to.equal(
+        'rgb(1, 2, 3)',
+      );
     });
 
     it('allows Tooltip to open from hover and focus on disabled focusable buttons', async () => {
