@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
+import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
@@ -271,6 +272,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const enterTimer = useTimeout();
   const leaveTimer = useTimeout();
   const touchTimer = useTimeout();
+  // Tracks an open request until the next committed render so a rapid close event can cancel it.
+  const openRequestRef = React.useRef(false);
 
   const [openState, setOpenState] = useControlled({
     controlled: openProp,
@@ -280,6 +283,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
+
+  // Intentionally no dependency array. The flag should be cleared after every commit;
+  // it only needs to stay true between `onOpen` and the next rendered `open` prop.
+  useEnhancedEffect(() => {
+    openRequestRef.current = false;
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -331,7 +340,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
     setOpenState(true);
 
-    if (onOpen && !open) {
+    if (onOpen && !open && !openRequestRef.current) {
+      openRequestRef.current = true;
       onOpen(event);
     }
   };
@@ -344,9 +354,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
       });
+      // A close request should cancel a pending open request before it renders.
+      const wasOpen = open || openRequestRef.current;
+      openRequestRef.current = false;
       setOpenState(false);
 
-      if (onClose && open) {
+      if (onClose && wasOpen) {
         onClose(event);
       }
 

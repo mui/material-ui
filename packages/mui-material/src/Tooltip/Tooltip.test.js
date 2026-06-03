@@ -15,6 +15,7 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -420,6 +421,109 @@ describe('<Tooltip />', () => {
     clock.tick(0);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
+  });
+
+  it('should close a controlled tooltip if the trigger is left before the open prop is rendered', async () => {
+    const eventLog = [];
+
+    function Test() {
+      const [open, setOpen] = React.useState(false);
+      const openTimerRef = React.useRef();
+
+      React.useEffect(() => {
+        return () => {
+          clearTimeout(openTimerRef.current);
+        };
+      }, []);
+
+      return (
+        <Tooltip
+          enterDelay={0}
+          open={open}
+          onClose={() => {
+            eventLog.push('close');
+            clearTimeout(openTimerRef.current);
+            setOpen(false);
+          }}
+          onOpen={() => {
+            eventLog.push('open');
+            openTimerRef.current = setTimeout(() => {
+              setOpen(true);
+            }, 20);
+          }}
+          slotProps={{
+            transition: { timeout: 0 },
+          }}
+          title="Hello World"
+        >
+          <IconButton>
+            <svg data-testid="icon" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" />
+            </svg>
+          </IconButton>
+        </Tooltip>
+      );
+    }
+
+    clock.restore();
+    const { user } = render(<Test />);
+    const trigger = screen.getByRole('button');
+
+    await user.hover(trigger);
+    await user.unhover(trigger);
+    await act(async () => {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 30);
+      });
+    });
+
+    expect(eventLog).to.deep.equal(['open', 'close']);
+    expect(screen.queryByRole('tooltip')).to.equal(null);
+  });
+
+  it('should not call onOpen again while a controlled open request is pending', async () => {
+    const eventLog = [];
+
+    function Test() {
+      const [open, setOpen] = React.useState(false);
+      const openTimerRef = React.useRef();
+
+      React.useEffect(() => {
+        return () => {
+          clearTimeout(openTimerRef.current);
+        };
+      }, []);
+
+      return (
+        <Tooltip
+          enterDelay={0}
+          open={open}
+          onOpen={() => {
+            eventLog.push('open');
+            openTimerRef.current = setTimeout(() => {
+              setOpen(true);
+            }, 20);
+          }}
+          title="Hello World"
+        >
+          <IconButton>
+            <svg data-testid="icon" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" />
+            </svg>
+          </IconButton>
+        </Tooltip>
+      );
+    }
+
+    clock.restore();
+    const { user } = render(<Test />);
+    const trigger = screen.getByRole('button');
+    const icon = screen.getByTestId('icon');
+
+    await user.hover(trigger);
+    await user.hover(icon);
+
+    expect(eventLog).to.deep.equal(['open']);
   });
 
   it('should not call onOpen again if already open', () => {
