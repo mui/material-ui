@@ -206,12 +206,18 @@ export default function DemoContent(props: DemoContentProps) {
   // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
   // this expands all hidden context lines. Demos without emphasis frames render
   // identically in both states.
-  const { containerRef, toggleRef, anchorScroll } = useCodeWindow<HTMLButtonElement>();
+  // `scrollContainerRef` points at the fixed-height code window so the
+  // expand/collapse anchoring compensates that panel's own scroll once the
+  // expanded source exceeds the cap, rather than scrolling the page.
+  const { containerRef, scrollContainerRef, toggleRef, anchorScroll } = useCodeWindow<
+    HTMLButtonElement,
+    HTMLDivElement
+  >();
 
   // Separate scroll-anchor session for transform swaps. Watches the same
   // code container, but anchors the page scroll on the JS/TS toggle group
-  // so the clicked button stays under the user's pointer while the
-  // `expand → swap → collapse` window plays out.
+  // (which lives outside the code window) so the clicked button stays under
+  // the user's pointer while the `expand → swap → collapse` window plays out.
   const { containerRef: transformAnchorContainerRef, anchorScroll: anchorTransformScroll } =
     useScrollAnchor<HTMLDivElement>();
   const languageToggleRef = React.useRef<HTMLDivElement | null>(null);
@@ -481,6 +487,7 @@ export default function DemoContent(props: DemoContentProps) {
       tabs={tabs}
       code={code}
       codeRef={setCodeContainerRef}
+      codeScrollRef={scrollContainerRef}
       afterCode={afterCode}
       renderTabsAndCode={renderTabsAndCode}
     />
