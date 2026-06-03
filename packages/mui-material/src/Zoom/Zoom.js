@@ -120,11 +120,11 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      addEndListener(nodeRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(nodeRef.current, next);
+      }
+    : undefined;
 
   return (
     <Transition

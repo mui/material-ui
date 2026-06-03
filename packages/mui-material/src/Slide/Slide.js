@@ -227,11 +227,11 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      addEndListener(childrenRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(childrenRef.current, next);
+      }
+    : undefined;
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {

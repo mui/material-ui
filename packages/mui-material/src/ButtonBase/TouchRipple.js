@@ -16,6 +16,7 @@ export const DELAY_RIPPLE = 80;
 
 const EMPTY_OBJ = {};
 const EMPTY_ARRAY = [];
+const NOOP = () => {};
 
 /**
  * Keep the same DOM order TouchRipple had when it used react-transition-group:
@@ -334,7 +335,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     rippleCallback.current = cb;
   });
 
-  const start = useEventCallback((event = EMPTY_OBJ, options = EMPTY_OBJ, cb = () => {}) => {
+  const start = useEventCallback((event = EMPTY_OBJ, options = EMPTY_OBJ, cb = NOOP) => {
     const {
       pulsate = false,
       center = centerProp || options.pulsate,

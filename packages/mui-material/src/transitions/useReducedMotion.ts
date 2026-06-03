@@ -6,6 +6,9 @@ import type { ReducedMotionMode } from '../styles/createMotion';
 const MEDIA_QUERY = '(prefers-reduced-motion: reduce)';
 const REDUCED_MOTION_DURATION = 0;
 const REDUCED_MOTION_DELAY = '0ms';
+const NOOP = () => {};
+const getDefaultSnapshot = () => false;
+const subscribeNoop = () => NOOP;
 
 interface TransitionTiming {
   duration: string | number;
@@ -90,7 +93,7 @@ function useReducedMotionMediaQueryNew(enabled: boolean): boolean {
   const getServerSnapshot = React.useCallback(() => enabled, [enabled]);
   const [getSnapshot, subscribe] = React.useMemo(() => {
     if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-      return [() => false, () => () => {}];
+      return [getDefaultSnapshot, subscribeNoop];
     }
 
     const mediaQueryList = window.matchMedia(MEDIA_QUERY);

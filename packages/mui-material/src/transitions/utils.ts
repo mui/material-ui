@@ -170,18 +170,24 @@ export function getReducedMotionStyles<Styles extends object = typeof defaultSty
 
 export function getTransitionStyles(
   theme: {
-    transitions: {
-      create: (props?: string | string[], options?: Partial<TransitionCreateOptions>) => string;
-    };
+    transitions?:
+      | {
+          create: (props?: string | string[], options?: Partial<TransitionCreateOptions>) => string;
+        }
+      | undefined;
     motion?: { reducedMotion?: ReducedMotionMode | undefined } | undefined;
   },
   props: string | string[] = DEFAULT_TRANSITION_PROPS,
   options: Partial<TransitionCreateOptions> = EMPTY_OPTIONS,
 ) {
-  const transitionStyles = {
-    transition: theme.transitions.create(props, options),
-  };
+  const transition = theme.transitions?.create?.(props, options);
   const reducedMotionStyles = getReducedMotionStyles(theme);
+
+  if (transition === undefined) {
+    return reducedMotionStyles ?? EMPTY_STYLE;
+  }
+
+  const transitionStyles = { transition };
 
   return reducedMotionStyles ? { ...transitionStyles, ...reducedMotionStyles } : transitionStyles;
 }

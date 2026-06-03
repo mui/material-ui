@@ -6,6 +6,7 @@ import useReducedMotion from './useReducedMotion';
 
 const safeReact = { ...React };
 const usesUseSyncExternalStore = safeReact.useSyncExternalStore !== undefined;
+const NOOP = () => {};
 
 describe('useReducedMotion', () => {
   const { render, renderToString } = createRenderer();
@@ -31,8 +32,8 @@ describe('useReducedMotion', () => {
         removeEventListenerCount += 1;
         listeners = listeners.filter((item) => item !== listener);
       },
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: NOOP,
+      removeListener: NOOP,
       dispatchEvent: () => true,
     };
 

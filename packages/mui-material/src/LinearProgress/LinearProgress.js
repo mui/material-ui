@@ -13,6 +13,7 @@ import { getReducedMotionStyles, getTransitionStyles } from '../transitions/util
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
 
 const TRANSITION_DURATION = 4; // seconds
+const EMPTY_STYLE = {};
 
 let warnedMinMaxWithoutVariant = false;
 let warnedInvalidMinMaxValue = false;
@@ -218,7 +219,7 @@ const LinearProgressDashed = styled('span', {
     // At runtime for Pigment CSS, `bufferAnimation` will be null and the generated keyframe will be used.
     animation: `${bufferKeyframe} 3s infinite linear`,
   },
-  memoTheme(({ theme }) => getReducedMotionStyles(theme, { animation: 'none' }) || {}),
+  memoTheme(({ theme }) => getReducedMotionStyles(theme, { animation: 'none' }) || EMPTY_STYLE),
 );
 
 const LinearProgressBar1 = styled('span', {

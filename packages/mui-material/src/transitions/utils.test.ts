@@ -157,6 +157,16 @@ describe('getTransitionStyles', () => {
     });
   });
 
+  it('does not require theme.transitions.create()', () => {
+    expect(getTransitionStyles({})).to.deep.equal({});
+  });
+
+  it('returns reduced-motion styles when theme.transitions.create() is unavailable', () => {
+    expect(getTransitionStyles({ motion: { reducedMotion: 'always' } })).to.deep.equal({
+      transition: 'none',
+    });
+  });
+
   it('adds reduced-motion styles from theme.motion', () => {
     expect(
       getTransitionStyles(

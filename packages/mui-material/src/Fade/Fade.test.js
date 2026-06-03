@@ -9,6 +9,7 @@ import describeTransitionConformance from '../../test/describeTransitionConforma
 
 const safeReact = { ...React };
 const usesUseSyncExternalStore = safeReact.useSyncExternalStore !== undefined;
+const NOOP = () => {};
 
 describe('<Fade />', () => {
   const { clock, render } = createRenderer();
@@ -104,10 +105,10 @@ describe('<Fade />', () => {
         matches: false,
         media: '(prefers-reduced-motion: reduce)',
         onchange: null,
-        addEventListener: () => {},
-        removeEventListener: () => {},
-        addListener: () => {},
-        removeListener: () => {},
+        addEventListener: NOOP,
+        removeEventListener: NOOP,
+        addListener: NOOP,
+        removeListener: NOOP,
         dispatchEvent: () => true,
       });
     });
