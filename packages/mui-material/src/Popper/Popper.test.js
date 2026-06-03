@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
-import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
@@ -283,7 +282,7 @@ describe('<Popper />', () => {
     });
 
     it('opens on the next task when reduced motion is always', () => {
-      const handleEntered = spy();
+      const handleEntered = vi.fn();
       const theme = createTheme({
         motion: {
           reducedMotion: 'always',
@@ -308,14 +307,14 @@ describe('<Popper />', () => {
 
       setProps({ open: true });
 
-      expect(handleEntered.callCount).to.equal(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
       clock.tick(0);
-      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
       expect(screen.getByRole('tooltip')).to.have.text('Hello World');
     });
 
     it('allows transition slot props to opt out of reduced motion', () => {
-      const handleEntered = spy();
+      const handleEntered = vi.fn();
       const theme = createTheme({
         motion: {
           reducedMotion: 'always',
@@ -345,11 +344,11 @@ describe('<Popper />', () => {
 
       setProps({ open: true });
 
-      expect(handleEntered.callCount).to.equal(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
       clock.tick(0);
-      expect(handleEntered.callCount).to.equal(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
       clock.tick(250);
-      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
     });
   });
 

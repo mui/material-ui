@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { collapseClasses } from '@mui/material/Collapse';
 import Stepper from '@mui/material/Stepper';
@@ -9,7 +8,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<StepContent />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer();
 
   describeConformance(<StepContent />, () => ({
     classes,
@@ -53,6 +52,8 @@ describe('<StepContent />', () => {
   });
 
   describe('prop: transitionDuration', () => {
+    clock.withFakeTimers();
+
     it('should use default Collapse component', () => {
       const { container } = render(
         <Stepper orientation="vertical">
@@ -89,7 +90,7 @@ describe('<StepContent />', () => {
     });
 
     it('enters on the next task when reduced motion is always', () => {
-      const handleEntered = spy();
+      const handleEntered = vi.fn();
       const theme = createTheme({
         motion: {
           reducedMotion: 'always',
@@ -117,9 +118,9 @@ describe('<StepContent />', () => {
 
       setProps({ active: true });
 
-      expect(handleEntered.callCount).to.equal(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
       clock.tick(0);
-      expect(handleEntered.callCount).to.equal(1);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
       expect(screen.getByText('Content')).not.to.equal(null);
     });
   });

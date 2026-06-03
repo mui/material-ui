@@ -71,7 +71,7 @@ describe('<TouchRipple />', () => {
     Array.from(document.styleSheets).forEach((styleSheet) => {
       try {
         collectFromRules(styleSheet.cssRules);
-      } catch (error) {
+      } catch {
         // Ignore style sheets that the browser does not expose to tests.
       }
     });

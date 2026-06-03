@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import { act, createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Fade from '@mui/material/Fade';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -118,7 +117,7 @@ describe('<Fade />', () => {
     });
 
     it('uses the media query result for the initial appear transition when available', () => {
-      const handleEntered = spy();
+      const handleEntered = vi.fn();
       const theme = createTheme({
         motion: {
           reducedMotion: 'system',
@@ -142,20 +141,20 @@ describe('<Fade />', () => {
           usesUseSyncExternalStore ? '250ms' : '0ms',
         );
       }
-      expect(handleEntered.callCount).to.equal(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
 
       act(() => {
         clock.tick(usesUseSyncExternalStore ? 249 : 0);
       });
 
-      expect(handleEntered.callCount).to.equal(usesUseSyncExternalStore ? 0 : 1);
+      expect(handleEntered).toHaveBeenCalledTimes(usesUseSyncExternalStore ? 0 : 1);
 
       if (usesUseSyncExternalStore) {
         act(() => {
           clock.tick(1);
         });
 
-        expect(handleEntered.callCount).to.equal(1);
+        expect(handleEntered).toHaveBeenCalledTimes(1);
       }
     });
   });

@@ -26,7 +26,7 @@ function NoTransition(props) {
 const CustomPaper = React.forwardRef(({ square, ...props }, ref) => <Paper ref={ref} {...props} />);
 
 describe('<Accordion />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer();
 
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
@@ -161,119 +161,123 @@ describe('<Accordion />', () => {
     expect(screen.queryByText('Hello')).to.equal(null);
   });
 
-  it('expands on the next task when reduced motion is always', () => {
-    const handleEntered = spy();
-    const theme = createTheme({
-      motion: {
-        reducedMotion: 'always',
-      },
+  describe('reduced motion', () => {
+    clock.withFakeTimers();
+
+    it('expands on the next task when reduced motion is always', () => {
+      const handleEntered = vi.fn();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Accordion
+              expanded={props.expanded}
+              slotProps={{ transition: { onEntered: handleEntered } }}
+            >
+              <AccordionSummary>Summary</AccordionSummary>
+              <div>Hello</div>
+            </Accordion>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test expanded={false} />);
+
+      setProps({ expanded: true });
+
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+      clock.tick(0);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
+      expect(screen.getByText('Hello')).not.to.equal(null);
     });
 
-    function Test(props) {
-      return (
-        <ThemeProvider theme={theme}>
-          <Accordion
-            expanded={props.expanded}
-            slotProps={{ transition: { onEntered: handleEntered } }}
-          >
-            <AccordionSummary>Summary</AccordionSummary>
-            <div>Hello</div>
-          </Accordion>
-        </ThemeProvider>
-      );
-    }
-
-    const { setProps } = render(<Test expanded={false} />);
-
-    setProps({ expanded: true });
-
-    expect(handleEntered.callCount).to.equal(0);
-    clock.tick(0);
-    expect(handleEntered.callCount).to.equal(1);
-    expect(screen.getByText('Hello')).not.to.equal(null);
-  });
-
-  it('does not leak disablePrefersReducedMotion to the transition DOM node', () => {
-    const { container } = render(
-      <Accordion expanded slotProps={{ transition: { disablePrefersReducedMotion: true } }}>
-        <AccordionSummary>Summary</AccordionSummary>
-        <div>Hello</div>
-      </Accordion>,
-    );
-
-    expect(container.querySelector('[disablePrefersReducedMotion]')).to.equal(null);
-  });
-
-  it('allows transition slot props to opt out of reduced motion', () => {
-    const handleEntered = spy();
-    const theme = createTheme({
-      motion: {
-        reducedMotion: 'always',
-      },
-    });
-
-    function Test(props) {
-      return (
-        <ThemeProvider theme={theme}>
-          <Accordion
-            expanded={props.expanded}
-            slotProps={{
-              transition: {
-                disablePrefersReducedMotion: true,
-                onEntered: handleEntered,
-                timeout: 250,
-              },
-            }}
-          >
-            <AccordionSummary>Summary</AccordionSummary>
-            <div>Hello</div>
-          </Accordion>
-        </ThemeProvider>
-      );
-    }
-
-    const { setProps } = render(<Test expanded={false} />);
-
-    setProps({ expanded: true });
-
-    expect(handleEntered.callCount).to.equal(0);
-    clock.tick(0);
-    expect(handleEntered.callCount).to.equal(0);
-
-    clock.tick(250);
-
-    expect(handleEntered.callCount).to.equal(1);
-  });
-
-  it.skipIf(isJsdom())('disables Accordion CSS transitions when reduced motion is always', () => {
-    const theme = createTheme({
-      motion: {
-        reducedMotion: 'always',
-      },
-    });
-
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Accordion expanded>
-          <AccordionSummary expandIcon={<span>+</span>}>Summary</AccordionSummary>
+    it('does not leak disablePrefersReducedMotion to the transition DOM node', () => {
+      const { container } = render(
+        <Accordion expanded slotProps={{ transition: { disablePrefersReducedMotion: true } }}>
+          <AccordionSummary>Summary</AccordionSummary>
           <div>Hello</div>
-        </Accordion>
-      </ThemeProvider>,
-    );
+        </Accordion>,
+      );
 
-    expect(container.firstChild).toHaveComputedStyle({
-      transitionDuration: '0s',
+      expect(container.querySelector('[disablePrefersReducedMotion]')).to.equal(null);
     });
-    expect(screen.getByRole('button')).toHaveComputedStyle({
-      transitionDuration: '0s',
+
+    it('allows transition slot props to opt out of reduced motion', () => {
+      const handleEntered = vi.fn();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Accordion
+              expanded={props.expanded}
+              slotProps={{
+                transition: {
+                  disablePrefersReducedMotion: true,
+                  onEntered: handleEntered,
+                  timeout: 250,
+                },
+              }}
+            >
+              <AccordionSummary>Summary</AccordionSummary>
+              <div>Hello</div>
+            </Accordion>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test expanded={false} />);
+
+      setProps({ expanded: true });
+
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+      clock.tick(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+
+      clock.tick(250);
+
+      expect(handleEntered).toHaveBeenCalledTimes(1);
     });
-    expect(container.querySelector(`.${accordionSummaryClasses.content}`)).toHaveComputedStyle({
-      transitionDuration: '0s',
-    });
-    expect(
-      container.querySelector(`.${accordionSummaryClasses.expandIconWrapper}`),
-    ).toHaveComputedStyle({
-      transitionDuration: '0s',
+
+    it.skipIf(isJsdom())('disables Accordion CSS transitions when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Accordion expanded>
+            <AccordionSummary expandIcon={<span>+</span>}>Summary</AccordionSummary>
+            <div>Hello</div>
+          </Accordion>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        transitionDuration: '0s',
+      });
+      expect(screen.getByRole('button')).toHaveComputedStyle({
+        transitionDuration: '0s',
+      });
+      expect(container.querySelector(`.${accordionSummaryClasses.content}`)).toHaveComputedStyle({
+        transitionDuration: '0s',
+      });
+      expect(
+        container.querySelector(`.${accordionSummaryClasses.expandIconWrapper}`),
+      ).toHaveComputedStyle({
+        transitionDuration: '0s',
+      });
     });
   });
 
