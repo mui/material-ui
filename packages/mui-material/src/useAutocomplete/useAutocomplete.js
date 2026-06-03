@@ -373,6 +373,10 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
+      if (!inputRef.current) {
+        return;
+      }
+
       // does the index exist?
       if (index === -1) {
         inputRef.current.removeAttribute('aria-activedescendant');

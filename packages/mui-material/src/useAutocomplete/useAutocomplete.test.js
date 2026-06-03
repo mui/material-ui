@@ -334,6 +334,39 @@ describe('useAutocomplete', () => {
     await flushEffects();
   });
 
+  it('should not crash when unmounting while highlighted', () => {
+    function Test({ options }) {
+      const { getRootProps, getInputProps, getListboxProps, getOptionProps, groupedOptions } =
+        useAutocomplete({ options, open: true });
+
+      return (
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          {groupedOptions.length > 0 ? (
+            <ul {...getListboxProps()}>
+              {groupedOptions.map((option, index) => {
+                const { key, ...optionProps } = getOptionProps({ option, index });
+                return (
+                  <li key={key} {...optionProps}>
+                    {option}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
+        </div>
+      );
+    }
+
+    const { unmount } = render(<Test options={['foo', 'bar']} />);
+    const input = screen.getByRole('combobox');
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+    expect(() => {
+      unmount();
+    }).not.to.throw();
+  });
+
   describe('prop: freeSolo', () => {
     it('should not reset if the component value does not change on blur', () => {
       function Test(props) {
