@@ -285,7 +285,7 @@ export default function MaterialTemplates() {
                     sx={[
                       (theme) => ({
                         display: 'flex',
-                        alignItems: 'center',
+                        justifyContent: 'center',
                         gap: 0.5,
                         color: 'primary.500',
                         ...theme.applyDarkStyles({
