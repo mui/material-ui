@@ -47,7 +47,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix broken URLs (#48520) @oliviertassinari
 - [docs] Fix invalid JSON in Zed MCP setup example (#48490) @pavan-sh
 - [docs] Mention release version for enhanceHighContrast (#48609) @silviuaavram
-- [docs] Remove outdated MUI X v8 notification (#48600) @cherniavskii
+- [docs] Remove outdated MUI X v8 notification (#48600) @cherniavskii
 - [docs-infra] Decrease loaded bundle size on docs (#48584) @brijeshb42
 - [docs-infra] Fix Cookie banner heading (#48529) @oliviertassinari
 - [docs-infra] Remove outdated noSEOadvantage entries (#48527) @oliviertassinari
