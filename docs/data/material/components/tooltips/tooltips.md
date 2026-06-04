@@ -152,9 +152,7 @@ When wrapping a Material UI component that inherits from `ButtonBase`, you shou
 {{"demo": "DisabledTooltips.js"}}
 
 :::warning
-
 By default, disabled elements like `<button>` are not keyboard focusable, so a `Tooltip` will only work for mouse users.
-
 :::
 
 ## Transitions

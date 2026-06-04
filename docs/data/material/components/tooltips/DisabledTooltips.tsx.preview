@@ -1,3 +1,5 @@
 <Tooltip describeChild title="You don't have permission to do this">
-  <Button disabled style={{ pointerEvents: 'auto' }}>A Disabled Button</Button>
+  <Button disabled style={{ pointerEvents: 'auto' }}>
+    A Disabled Button
+  </Button>
 </Tooltip>
