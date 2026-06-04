@@ -71,7 +71,7 @@
   --mui-font-inherit: inherit inherit/inherit inherit;
 }
 :root, [data-mui-color-scheme="light"] {
-  colorScheme: light;
+  color-scheme: light;
   --mui-palette-common-black: #000;
   --mui-palette-common-white: #fff;
   --mui-palette-common-background: #fff;
@@ -228,7 +228,7 @@
   --mui-opacity-switchTrack: 0.38;
 }
 [data-mui-color-scheme="dark"] {
-  colorScheme: dark;
+  color-scheme: dark;
   --mui-palette-common-black: #000;
   --mui-palette-common-white: #fff;
   --mui-palette-common-background: #000;

@@ -17,6 +17,19 @@
  * @param sheets The style sheets to convert.
  * @returns A CSS string.
  */
+/**
+ * Convert a camelCase JS property name to a hyphenated CSS property name.
+ * CSS custom properties (`--*`) are returned unchanged.
+ *
+ * e.g. `colorScheme` → `color-scheme`, `--mui-palette-primary-main` → `--mui-palette-primary-main`
+ */
+function toCssProp(prop: string): string {
+  if (prop.startsWith('--')) {
+    return prop;
+  }
+  return prop.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`);
+}
+
 function styleSheetsToString(sheets: Array<Record<string, any>>): string {
   let css = '';
   for (const sheet of sheets) {
@@ -26,7 +39,7 @@ function styleSheetsToString(sheets: Array<Record<string, any>>): string {
         let inner = '';
         for (const [innerSelector, innerVars] of Object.entries(vars as Record<string, any>)) {
           const body = Object.entries(innerVars as Record<string, string | number>)
-            .map(([prop, value]) => `    ${prop}: ${value};`)
+            .map(([prop, value]) => `    ${toCssProp(prop)}: ${value};`)
             .join('\n');
           if (body) {
             inner += `  ${innerSelector} {\n${body}\n  }\n`;
@@ -38,7 +51,7 @@ function styleSheetsToString(sheets: Array<Record<string, any>>): string {
       } else {
         // Flat selector: { 'selector': { prop: value } }
         const body = Object.entries(vars as Record<string, string | number>)
-          .map(([prop, value]) => `  ${prop}: ${value};`)
+          .map(([prop, value]) => `  ${toCssProp(prop)}: ${value};`)
           .join('\n');
         if (body) {
           css += `${selector} {\n${body}\n}\n`;
