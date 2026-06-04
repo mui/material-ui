@@ -524,7 +524,9 @@ describe('<Select />', () => {
     await act(async () => {
       // Dispatch directly to bypass testing-library's active-element guard so that
       // event.target (span) !== event.currentTarget (li) inside the React handler.
-      innerSpan.dispatchEvent(new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }));
+      innerSpan.dispatchEvent(
+        new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
+      );
     });
 
     expect(handleChange.callCount).to.equal(0);
