@@ -427,7 +427,7 @@ describe('<Tooltip />', () => {
       <Tooltip
         title="Hello World"
         enterDelay={0}
-        leaveDelay={20}
+        leaveDelay={500}
         slotProps={{ transition: { timeout: 0 } }}
       >
         <button disabled type="button">
@@ -445,7 +445,7 @@ describe('<Tooltip />', () => {
     await user.hover(screen.getByRole('tooltip'));
     await act(async () => {
       await new Promise((resolve) => {
-        setTimeout(resolve, 50);
+        setTimeout(resolve, 600);
       });
     });
 
