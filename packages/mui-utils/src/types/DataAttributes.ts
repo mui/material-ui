@@ -1,16 +1,20 @@
 /**
- * Module-augmentable interface that lets consumers opt in to typed support for
- * `data-*` (and any other) attributes on MUI slot props. Empty by default —
- * by design, MUI slot prop types do not include arbitrary `data-*` keys; the
- * augmentation is the single switch consumers can flip to choose their level
- * of strictness.
+ * Opt-in interface for typing `data-*` attributes on MUI slot props.
  *
- * The loose index-signature form accepts any `data-*` key but offers no key
- * autocomplete; the strongly-typed form restricts to the keys you declare, but
- * in exchange gives IntelliSense and flags typos on those keys.
+ * Slot prop types reject arbitrary `data-*` keys by design, so this interface is
+ * empty by default. Augment it to declare the keys you want, and they become
+ * assignable on every slot of every component that routes its slot props through
+ * `@mui/utils/types`.
+ *
+ * Choose the form that matches how strict you want to be:
+ *
+ * - Loose index signature: accepts any `data-*` key, like the underlying DOM
+ *   element. Simplest to set up, but you get no autocomplete and typos slip through.
+ * - Explicit keys: lists each `data-*` key you allow. More to declare up front,
+ *   in return for autocomplete and typo-checking on those keys.
  *
  * @example
- * // Loose: accept any `data-*` key (mirrors the primitive elements); no autocomplete.
+ * // Loose: accept any `data-*` key.
  * declare module '@mui/utils/types' {
  *   interface DataAttributesOverrides {
  *     [k: `data-${string}`]: string | number | boolean | undefined;
@@ -18,7 +22,7 @@
  * }
  *
  * @example
- * // Strongly-typed: only the declared keys, with autocomplete and typo-checking.
+ * // Explicit: only the keys you declare, with autocomplete.
  * declare module '@mui/utils/types' {
  *   interface DataAttributesOverrides {
  *     'data-testid'?: string;
