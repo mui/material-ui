@@ -300,6 +300,7 @@ export default function MaterialTemplates() {
                   <Link
                     href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
                     noLinkStyle
+                    tabIndex={templateIndex === index ? undefined : -1}
                     target="_blank"
                     sx={(theme) => ({
                       display: 'inline-flex',
