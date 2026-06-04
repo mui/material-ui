@@ -8,6 +8,7 @@ const REDUCED_MOTION_DURATION = 0;
 const REDUCED_MOTION_DELAY = '0ms';
 const NOOP = () => {};
 const getDefaultSnapshot = () => false;
+const getReducedMotionSnapshot = () => true;
 const subscribeNoop = () => NOOP;
 
 interface TransitionTiming {
@@ -16,6 +17,12 @@ interface TransitionTiming {
 }
 
 interface MediaQueryState {
+  /**
+   * When `true` the hook will track OS-level `prefers-reduced-motion`.
+   * This means the theme is in `system` mode and unknown media-query state
+   * is treated as reduced-motion safe until resolved. It does not mean that
+   * reduced motion is in effect.
+   */
   enabled: boolean;
   matches: boolean | null;
 }
@@ -90,7 +97,7 @@ const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExterna
  * transitions do not start from the SSR-safe reduced-motion default.
  */
 function useReducedMotionMediaQueryNew(enabled: boolean): boolean {
-  const getServerSnapshot = React.useCallback(() => enabled, [enabled]);
+  const getServerSnapshot = enabled ? getReducedMotionSnapshot : getDefaultSnapshot;
   const [getSnapshot, subscribe] = React.useMemo(() => {
     if (!enabled || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
       return [getDefaultSnapshot, subscribeNoop];
