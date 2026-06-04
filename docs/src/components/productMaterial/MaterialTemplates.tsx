@@ -115,8 +115,8 @@ function ActionArea(props: ButtonBaseProps) {
           boxShadow: `0 4px 12px ${alpha(theme.palette.grey[500], 0.2)}`,
           transition: '0.2s',
           '& > svg': { transition: '0.2s' },
-          '&.Mui-disabled': { 
-            opacity: 0, 
+          '&.Mui-disabled': {
+            opacity: 0,
           },
           '&:hover, &:focus': {
             '& > svg': { fontSize: 28 },
@@ -217,6 +217,8 @@ export default function MaterialTemplates() {
                   overflow: 'hidden',
                   borderRadius: 1,
                   height: { xs: 220, sm: 320, md: 500 },
+                  '--MaterialTemplates-imgFilter': 'blur(0px)',
+                  '--MaterialTemplates-infoOpacity': '0',
                   border: '1px solid',
                   borderColor: templateIndex === index ? 'primary.100' : 'divider',
                   boxShadow:
@@ -234,17 +236,13 @@ export default function MaterialTemplates() {
                         : undefined,
                   }),
 
-                  '&:hover [data-role="img-layer"]': {
-                    filter: 'blur(2px)',
-                  },
-
-                  '&:hover [data-role="info-layer"]': {
-                    opacity: 1,
+                  '&:hover, &:focus-within': {
+                    '--MaterialTemplates-imgFilter': 'blur(2px)',
+                    '--MaterialTemplates-infoOpacity': '1',
                   },
                 })}
               >
                 <Box
-                  data-role="img-layer"
                   sx={(theme) => ({
                     position: 'absolute',
                     inset: 0,
@@ -254,7 +252,7 @@ export default function MaterialTemplates() {
                     backgroundPosition: 'center',
                     transform: 'scale(1.05)',
                     transition: 'filter 0.25s ease',
-                    filter: 'blur(0px)',
+                    filter: 'var(--MaterialTemplates-imgFilter)',
                     ...theme.applyDarkStyles({
                       backgroundImage: `url(${item.src.dark})`,
                     }),
@@ -262,7 +260,6 @@ export default function MaterialTemplates() {
                 />
 
                 <Box
-                  data-role="info-layer"
                   sx={(theme) => ({
                     position: 'absolute',
                     inset: 0,
@@ -273,7 +270,7 @@ export default function MaterialTemplates() {
                     justifyContent: 'center',
                     gap: 1,
                     bgcolor: alpha(theme.palette.primary[50], 0.72),
-                    opacity: 0,
+                    opacity: 'var(--MaterialTemplates-infoOpacity)',
                     transition: 'opacity 0.25s ease',
                     ...theme.applyDarkStyles({
                       bgcolor: alpha(theme.palette.primaryDark[900], 0.75),
@@ -317,26 +314,26 @@ export default function MaterialTemplates() {
                       }),
                     })}
                   >
-                   <Typography 
-                    component="span" 
-                    sx={{ 
-                      fontWeight: 'bold', 
-                      lineHeight: 1,
-                      display: 'inline-flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                  Buy now
-                  </Typography>
-                  <LaunchRounded 
-                    fontSize="small" 
-                    sx={{ 
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
-                      fontSize: '0.95rem',
-                      marginTop: '-1px'   
-                    }} 
-                  />
+                    <Typography
+                      component="span"
+                      sx={{
+                        fontWeight: 'bold',
+                        lineHeight: 1,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      Buy now
+                    </Typography>
+                    <LaunchRounded
+                      fontSize="small"
+                      sx={{
+                        display: 'inline-block',
+                        verticalAlign: 'middle',
+                        fontSize: '0.95rem',
+                        marginTop: '-1px',
+                      }}
+                    />
                   </Link>
                 </Box>
               </Box>
