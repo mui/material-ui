@@ -115,8 +115,8 @@ function ActionArea(props: ButtonBaseProps) {
           boxShadow: `0 4px 12px ${alpha(theme.palette.grey[500], 0.2)}`,
           transition: '0.2s',
           '& > svg': { transition: '0.2s' },
-          '&.Mui-disabled': {
-            opacity: 0,
+          '&.Mui-disabled': { 
+            opacity: 0, 
           },
           '&:hover, &:focus': {
             '& > svg': { fontSize: 28 },
@@ -213,12 +213,10 @@ export default function MaterialTemplates() {
               <Box
                 key={item.name}
                 sx={(theme) => ({
-                  overflow: 'auto',
+                  position: 'relative',
+                  overflow: 'hidden',
                   borderRadius: 1,
                   height: { xs: 220, sm: 320, md: 500 },
-                  backgroundImage: `url(${item.src.light})`,
-                  backgroundSize: 'cover',
-                  backgroundRepeat: 'no-repeat',
                   border: '1px solid',
                   borderColor: templateIndex === index ? 'primary.100' : 'divider',
                   boxShadow:
@@ -229,78 +227,122 @@ export default function MaterialTemplates() {
                   transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
                   opacity: templateIndex === index ? 1 : 0.2,
                   ...theme.applyDarkStyles({
-                    backgroundImage: `url(${item.src.dark})`,
                     borderColor: templateIndex === index ? 'primary.900' : 'divider',
                     boxShadow:
                       templateIndex === index
                         ? `0px 2px 8px ${alpha(theme.palette.primary[900], 0.4)}`
                         : undefined,
                   }),
+
+                  '&:hover [data-role="img-layer"]': {
+                    filter: 'blur(2px)',
+                  },
+
+                  '&:hover [data-role="info-layer"]': {
+                    opacity: 1,
+                  },
                 })}
               >
-                <Link
-                  href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
-                  noLinkStyle
-                  target="_blank"
-                  sx={[
-                    (theme) => ({
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexDirection: 'column',
-                      gap: 1,
-                      transition: '0.2s',
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      opacity: 0,
-                      top: 0,
-                      left: 0,
-                      bgcolor: alpha(theme.palette.primary[50], 0.6),
-                      backdropFilter: 'blur(4px)',
-                      textDecoration: 'none',
-                      '&:hover, &:focus': {
-                        opacity: 1,
-                      },
-                      ...theme.applyDarkStyles({
-                        bgcolor: alpha(theme.palette.primaryDark[900], 0.6),
-                      }),
+                <Box
+                  data-role="img-layer"
+                  sx={(theme) => ({
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundImage: `url(${item.src.light})`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    transform: 'scale(1.05)',
+                    transition: 'filter 0.25s ease',
+                    filter: 'blur(0px)',
+                    ...theme.applyDarkStyles({
+                      backgroundImage: `url(${item.src.dark})`,
                     }),
-                  ]}
+                  })}
+                />
+
+                <Box
+                  data-role="info-layer"
+                  sx={(theme) => ({
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1,
+                    bgcolor: alpha(theme.palette.primary[50], 0.72),
+                    opacity: 0,
+                    transition: 'opacity 0.25s ease',
+                    ...theme.applyDarkStyles({
+                      bgcolor: alpha(theme.palette.primaryDark[900], 0.75),
+                    }),
+                  })}
                 >
                   <Typography
                     variant="body2"
                     sx={{ color: 'text.tertiary', fontWeight: 'semiBold', textAlign: 'center' }}
                   >
-                    Developed by {templates[templateIndex].author}
+                    Developed by {item.author}
                   </Typography>
+
                   <Typography
                     component="p"
                     variant="h6"
-                    sx={{ fontWeight: 'semiBold', textAlign: 'center', color: 'text.primary' }}
+                    sx={{
+                      fontWeight: 'semiBold',
+                      textAlign: 'center',
+                      color: 'text.primary',
+                      px: 2,
+                    }}
                   >
-                    {templates[templateIndex].name}
+                    {item.name}
                   </Typography>
-                  <Box
-                    sx={[
-                      (theme) => ({
-                        display: 'flex',
-                        justifyContent: 'center',
-                        gap: 0.5,
-                        color: 'primary.500',
-                        ...theme.applyDarkStyles({
-                          color: 'primary.200',
-                        }),
+
+                  <Link
+                    href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
+                    noLinkStyle
+                    target="_blank"
+                    sx={(theme) => ({
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.5,
+                      color: 'primary.500',
+                      textDecoration: 'none',
+                      pointerEvents: 'auto',
+                      whiteSpace: 'nowrap',
+                      ...theme.applyDarkStyles({
+                        color: 'primary.200',
                       }),
-                    ]}
+                    })}
                   >
-                    <Typography sx={{ fontWeight: 'bold' }}>Buy now</Typography>
-                    <LaunchRounded fontSize="small" />
-                  </Box>
-                </Link>
+                   <Typography 
+                    component="span" 
+                    sx={{ 
+                      fontWeight: 'bold', 
+                      lineHeight: 1,
+                      display: 'inline-flex',
+                      alignItems: 'center'
+                    }}
+                  >
+                  Buy now
+                  </Typography>
+                  <LaunchRounded 
+                    fontSize="small" 
+                    sx={{ 
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                      fontSize: '0.95rem',
+                      marginTop: '-1px'   
+                    }} 
+                  />
+                  </Link>
+                </Box>
               </Box>
             ))}
           </SwipeableViews>
+
           {templates.length > 1 && (
             <React.Fragment>
               <ActionArea
