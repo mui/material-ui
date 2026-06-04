@@ -281,34 +281,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   let open = openState;
 
-  if (process.env.NODE_ENV !== 'production') {
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    const { current: isControlled } = React.useRef(openProp !== undefined);
-
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
-    React.useEffect(() => {
-      if (
-        childNode &&
-        childNode.disabled &&
-        !isControlled &&
-        title !== '' &&
-        childNode.tagName.toLowerCase() === 'button'
-      ) {
-        console.warn(
-          [
-            'MUI: You are providing a disabled `button` child to the Tooltip component.',
-            'A disabled element does not fire events.',
-            "Tooltip needs to listen to the child element's events to display the title.",
-            '',
-            'Add a simple wrapper element, such as a `span`.',
-          ].join('\n'),
-        );
-      }
-    }, [title, childNode, isControlled]);
-  }
-
   const id = useId(idProp);
 
   const prevUserSelect = React.useRef();
