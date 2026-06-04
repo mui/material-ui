@@ -28,11 +28,11 @@ async function main() {
    * @returns {Promise<import('@playwright/test').Page>}
    */
   async function newTestPage(_browser) {
-    // Default viewport reused from `vrtest`
-    // (https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44).
-    // Per-route overrides are applied below via `page.setViewportSize`.
+    // Viewport is set per-acquisition in the `pooled` fixture (reset to
+    // DEFAULT_VIEWPORT) and per-route in the screenshot loop, so it's not set
+    // here. Default sizing reused from `vrtest`:
+    // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
     const page = await _browser.newPage({
-      viewport: DEFAULT_VIEWPORT,
       reducedMotion: 'reduce',
       // Pin the timezone so the frozen `Date` (see `index.html`) renders the
       // same instant regardless of the CI machine's local timezone.
@@ -86,6 +86,12 @@ async function main() {
     // eslint-disable-next-line no-empty-pattern
     pooled: async ({}, use) => {
       const page = await pool.acquire();
+      // Reset per-acquisition state. Pages are pooled and reused, so a prior
+      // test may have left a different viewport (route tests set per-route
+      // widths below); start every test from the default so tests that don't
+      // set their own viewport (the dedicated blocks at the bottom) are
+      // deterministic.
+      await page.setViewportSize(DEFAULT_VIEWPORT);
       await page.evaluate(() => {
         localStorage.clear();
       });
@@ -171,12 +177,12 @@ async function main() {
           { timeout: process.env.PWDEBUG ? 0 : undefined },
           async ({ pooled, task }) => {
             const { page } = pooled;
-            // Apply per-route viewport width before rendering so the composite
-            // renders at its desktop breakpoint. Only the width varies per
-            // rule (the screenshot captures the testcase element's full height
-            // regardless); the height stays at the default. Routes without a
-            // matching rule fall back to DEFAULT_VIEWPORT — important when the
-            // page comes from a pool and may have been resized by a prior test.
+            // Apply the per-route viewport width before rendering so the
+            // composite renders at its desktop breakpoint. Only the width
+            // varies per rule (the screenshot captures the testcase element's
+            // full height regardless); the height stays at the default. The
+            // `pooled` fixture already reset the page to DEFAULT_VIEWPORT, so a
+            // route with no width override is a no-op here.
             await page.setViewportSize({
               width: screenshotRule?.viewportWidth ?? DEFAULT_VIEWPORT.width,
               height: DEFAULT_VIEWPORT.height,
