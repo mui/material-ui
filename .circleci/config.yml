@@ -36,7 +36,7 @@ default-job: &default-job
   executor:
     name: code-infra/mui-node
     node-version: '22.18'
-  resource_class: medium
+  resource_class: medium.gen2
 
 default-context: &default-context
   context:
@@ -109,6 +109,7 @@ jobs:
       - code-infra/valelint
   test_static:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
@@ -132,7 +133,7 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps
@@ -152,7 +153,7 @@ jobs:
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     steps:
       - checkout
       - install-deps:
@@ -163,10 +164,6 @@ jobs:
           environment:
             NODE_OPTIONS: --max-old-space-size=3072
       - run:
-          name: Prepare files
-          # Enable configuration that is only valid in typescript@next
-          command: sed -i 's|// <ts@next uncomment>||g' test/moduleResolution/tsconfig.node.json
-      - run:
           name: Build declaration files
           command: |
             pnpm lerna run --scope "@mui/*" build
@@ -176,7 +173,7 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
@@ -206,7 +203,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: medium+
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -231,6 +228,7 @@ jobs:
           path: test-results
   test_e2e:
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -244,6 +242,7 @@ jobs:
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -257,10 +256,10 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_regressions:
     <<: *default-job
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
-    resource_class: 'medium+'
     steps:
       - checkout
       - install-deps:
@@ -431,6 +430,7 @@ jobs:
           command: pnpm start
   test_bundle_size_monitor:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps

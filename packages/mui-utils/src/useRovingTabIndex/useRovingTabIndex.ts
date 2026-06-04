@@ -207,11 +207,13 @@ export function useRovingTabIndexRoot<Key = unknown>(
     activeItemIdProp,
   );
 
-  const previousActiveItemIdPropRef = React.useRef<Key | null | undefined>(activeItemIdProp);
+  const [previousActiveItemIdProp, setPreviousActiveItemIdProp] = React.useState<
+    Key | null | undefined
+  >(activeItemIdProp);
   let activeItemIdCandidate = activeItemIdState;
 
-  if (activeItemIdProp !== previousActiveItemIdPropRef.current) {
-    previousActiveItemIdPropRef.current = activeItemIdProp;
+  if (activeItemIdProp !== previousActiveItemIdProp) {
+    setPreviousActiveItemIdProp(activeItemIdProp);
 
     if (activeItemIdProp !== undefined && activeItemIdProp !== activeItemIdState) {
       activeItemIdCandidate = activeItemIdProp;

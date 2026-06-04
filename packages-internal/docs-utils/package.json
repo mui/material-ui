@@ -16,8 +16,7 @@
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "rimraf": "^6.1.3",
-    "typescript": "^5.9.3"
+    "rimraf": "^6.1.3"
   },
   "publishConfig": {
     "access": "public",
@@ -25,5 +24,11 @@
   },
   "exports": {
     ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3 || ^6.0.0"
   }
 }
