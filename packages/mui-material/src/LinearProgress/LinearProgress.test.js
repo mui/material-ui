@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import RtlProvider from '@mui/system/RtlProvider';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { resetWarningFlags } from './LinearProgress';
 import describeConformance from '../../test/describeConformance';
 
@@ -147,6 +148,71 @@ describe('<LinearProgress />', () => {
     expect(progressbar).to.have.class(classes.query);
     expect(progressbar.children[0]).to.have.class(classes.bar1);
     expect(progressbar.children[1]).to.have.class(classes.bar2);
+  });
+
+  it.skipIf(isJsdom())('disables determinate transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <LinearProgress variant="determinate" value={50} />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const bar1 = progressbar.querySelector(`.${classes.bar1}`);
+
+    expect(window.getComputedStyle(bar1).transitionProperty).to.equal('none');
+  });
+
+  it.skipIf(isJsdom())(
+    'disables buffer transitions and animation when reduced motion is always',
+    () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <LinearProgress variant="buffer" value={50} valueBuffer={70} />
+        </ThemeProvider>,
+      );
+
+      const progressbar = screen.getByRole('progressbar');
+      const dashed = progressbar.querySelector(`.${classes.dashed}`);
+      const bar1 = progressbar.querySelector(`.${classes.bar1}`);
+      const bar2 = progressbar.querySelector(`.${classes.bar2}`);
+
+      expect(window.getComputedStyle(dashed).animationName).to.equal('none');
+      expect(window.getComputedStyle(bar1).transitionProperty).to.equal('none');
+      expect(window.getComputedStyle(bar2).transitionProperty).to.equal('none');
+    },
+  );
+
+  it.skipIf(isJsdom())('uses a static indeterminate layout when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <LinearProgress />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const bar1 = progressbar.querySelector(`.${classes.bar1}`);
+    const bar2 = progressbar.querySelector(`.${classes.bar2}`);
+
+    expect(window.getComputedStyle(bar1).animationName).to.equal('none');
+    expect(window.getComputedStyle(bar1).display).not.to.equal('none');
+    expect(window.getComputedStyle(bar2).animationName).to.equal('none');
+    expect(window.getComputedStyle(bar2).display).to.equal('none');
   });
 
   it('exposes the current, min and max value to screen readers when determinate', () => {

@@ -12,6 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import animate from '../internal/animate';
+import useReducedMotion from '../transitions/useReducedMotion';
 import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
@@ -24,6 +25,7 @@ import getActiveElement from '../utils/getActiveElement';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -187,7 +189,7 @@ const TabsIndicator = styled('span', {
     height: 2,
     bottom: 0,
     width: '100%',
-    transition: theme.transitions.create(),
+    ...getTransitionStyles(theme),
     variants: [
       {
         props: {
@@ -240,6 +242,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
   const isRtl = useRtl();
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -448,7 +451,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const scroll = (scrollValue, { animation = true } = {}) => {
-    if (animation) {
+    if (animation && !reducedMotion.shouldReduceMotion) {
       animate(scrollStart, tabsRef.current, scrollValue, {
         duration: theme.transitions.duration.standard,
       });

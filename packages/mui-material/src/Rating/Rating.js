@@ -17,6 +17,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
@@ -160,7 +161,7 @@ const RatingIcon = styled('span', {
   memoTheme(({ theme }) => ({
     // Fit wrapper to actual icon size.
     display: 'flex',
-    transition: theme.transitions.create('transform', {
+    ...getTransitionStyles(theme, 'transform', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.

@@ -15,6 +15,7 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -384,6 +385,34 @@ describe('<Tooltip />', () => {
     clock.tick(transitionTimeout);
 
     expect(screen.queryByRole('tooltip')).to.equal(null);
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Tooltip
+          enterDelay={0}
+          title="Hello World"
+          slotProps={{ transition: { onEntered: handleEntered, timeout: 250 } }}
+        >
+          <button type="button">Anchor</button>
+        </Tooltip>
+      </ThemeProvider>,
+    );
+
+    fireEvent.mouseOver(screen.getByRole('button'));
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('tooltip')).to.have.text('Hello World');
   });
 
   it('should be controllable', () => {
