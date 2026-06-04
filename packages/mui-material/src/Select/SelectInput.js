@@ -633,7 +633,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleItemKeyDown = (child) => (event) => {
-    if (event.key === SPACE) {
+    if (event.key === SPACE && event.target === event.currentTarget) {
       // Prevent the browser from scrolling the page
       event.preventDefault();
       // Ignore auto-repeated keydowns to avoid toggling multiple times
