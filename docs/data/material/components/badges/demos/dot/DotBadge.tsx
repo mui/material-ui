@@ -1,15 +1,15 @@
-import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export default function DotBadge() {
+  // @focus-start @padding 1
   return (
-    <Box sx={{ color: 'action.active' }}>
-      {/* @focus-start */}
+    <IconButton aria-label="show new notifications">
       <Badge color="secondary" variant="dot">
-        <MailIcon />
+        <NotificationsIcon />
       </Badge>
-      {/* @focus-end */}
-    </Box>
+    </IconButton>
   );
+  // @focus-end
 }

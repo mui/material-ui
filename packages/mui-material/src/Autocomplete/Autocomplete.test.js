@@ -3161,6 +3161,33 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: freeSolo', () => {
+    it('should not reset a controlled inputValue on mount', () => {
+      const handleInputChange = spy();
+
+      function App() {
+        const [inputValue, setInputValue] = React.useState('Option 1');
+
+        return (
+          <Autocomplete
+            freeSolo
+            value={null}
+            inputValue={inputValue}
+            options={['Option 1', 'Option 2']}
+            onInputChange={(event, newInputValue, reason) => {
+              handleInputChange(event, newInputValue, reason);
+              setInputValue(newInputValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByRole('combobox').value).to.equal('Option 1');
+      expect(handleInputChange.callCount).to.equal(0);
+    });
+
     it('should reset input when controlled value changes to null', async () => {
       function App() {
         const [value, setValue] = React.useState('foo');

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import Transition from '../internal/Transition';
+import useReducedMotion from '../transitions/useReducedMotion';
 import { useTheme } from '../zero-styled';
 import {
   normalizedTransitionCallback,
@@ -37,6 +38,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     addEndListener,
     appear = true,
     children,
+    disablePrefersReducedMotion = false,
     easing,
     in: inProp,
     onEnter,
@@ -49,6 +51,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const nodeRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
@@ -56,7 +59,9 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const handleEntering = normalizedTransitionCallback(nodeRef, onEntering);
 
   const handleEnter = normalizedTransitionCallback(nodeRef, (node, isAppearing) => {
-    reflow(node); // Force layout so the animation starts from the initial styles.
+    if (!reducedMotion.shouldReduceMotion) {
+      reflow(node); // Force layout so the animation starts from the initial styles.
+    }
 
     const transitionProps = getTransitionProps(
       { style, timeout, easing },
@@ -64,8 +69,16 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
         mode: 'enter',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -83,8 +96,16 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
         mode: 'exit',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     if (onExit) {
       onExit(node);
@@ -99,11 +120,11 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      addEndListener(nodeRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(nodeRef.current, next);
+      }
+    : undefined;
 
   return (
     <Transition
@@ -117,6 +138,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       onExited={handleExited}
       onExiting={handleExiting}
       addEndListener={handleAddEndListener}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       timeout={timeout}
       {...other}
     >
@@ -166,6 +188,11 @@ Zoom.propTypes /* remove-proptypes */ = {
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.

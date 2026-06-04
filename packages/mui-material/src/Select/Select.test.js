@@ -449,6 +449,111 @@ describe('<Select />', () => {
     expect(options[1]).to.have.attribute('data-value', '20');
   });
 
+  it('should select an option when the space key is pressed', () => {
+    const handleChange = spy();
+    const handleKeyDown = spy();
+    render(
+      <Select value="0" onChange={handleChange}>
+        <MenuItem value="0" onKeyDown={handleKeyDown}>
+          Zero
+        </MenuItem>
+        <MenuItem value="1" onKeyDown={handleKeyDown}>
+          One
+        </MenuItem>
+        <MenuItem value="2" onKeyDown={handleKeyDown}>
+          Two
+        </MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const options = screen.getAllByRole('option');
+    fireEvent.keyDown(options[0], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+    fireEvent.keyDown(options[2], { key: ' ' });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleKeyDown.callCount).to.equal(3);
+    expect(handleChange.firstCall.args[0].target.value).to.equal('2');
+  });
+
+  it('should call item onKeyDown before triggering selection on space', () => {
+    const callOrder = [];
+    const handleChange = spy(() => callOrder.push('change'));
+    const handleKeyDown = spy(() => callOrder.push('keydown'));
+
+    render(
+      <Select value="" onChange={handleChange}>
+        <MenuItem value="1" onKeyDown={handleKeyDown}>
+          One
+        </MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const option = screen.getByRole('option');
+    fireEvent.keyDown(option, { key: ' ' });
+
+    expect(handleKeyDown.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(1);
+    expect(callOrder).to.deep.equal(['keydown', 'change']);
+  });
+
+  it('should not select an option when space is pressed on a non-target element', async () => {
+    const handleChange = spy();
+    const handleKeyDown = spy();
+
+    render(
+      <Select value="" onChange={handleChange}>
+        <MenuItem value="1" onKeyDown={handleKeyDown}>
+          <span>One</span>
+        </MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const option = screen.getByRole('option');
+    const innerSpan = option.querySelector('span');
+
+    await act(async () => {
+      // Dispatch directly to bypass testing-library's active-element guard so that
+      // event.target (span) !== event.currentTarget (li) inside the React handler.
+      innerSpan.dispatchEvent(
+        new KeyboardEvent('keydown', { key: ' ', bubbles: true, cancelable: true }),
+      );
+    });
+
+    expect(handleChange.callCount).to.equal(0);
+  });
+
+  it('should not select an option when onKeyDown calls preventDefault', () => {
+    const handleChange = spy();
+    const handleKeyDown = spy((event) => event.preventDefault());
+
+    render(
+      <Select value="" onChange={handleChange}>
+        <MenuItem value="1" onKeyDown={handleKeyDown}>
+          One
+        </MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+    fireEvent.mouseDown(trigger);
+
+    const option = screen.getByRole('option');
+    fireEvent.keyDown(option, { key: ' ' });
+
+    expect(handleKeyDown.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(0);
+  });
+
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, async () => {
       render(

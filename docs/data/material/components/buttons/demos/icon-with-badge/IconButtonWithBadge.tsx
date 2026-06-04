@@ -13,7 +13,7 @@ const CartBadge = styled(Badge)`
 export default function IconButtonWithBadge() {
   // @focus-start @padding 1
   return (
-    <IconButton>
+    <IconButton aria-label="view cart with 2 items">
       <ShoppingCartIcon fontSize="small" />
       <CartBadge badgeContent={2} color="primary" overlap="circular" />
     </IconButton>
