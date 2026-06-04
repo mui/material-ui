@@ -504,5 +504,31 @@ describe('<Dialog />', () => {
         transitionDuration: '0.001s',
       });
     });
+
+    it('opens on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Dialog
+            open
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            content
+          </Dialog>
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByRole('dialog')).not.to.equal(null);
+    });
   });
 });
