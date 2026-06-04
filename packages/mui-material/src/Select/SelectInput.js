@@ -633,7 +633,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleItemKeyDown = (child) => (event) => {
-    if (event.key === SPACE && event.target === event.currentTarget) {
+    child?.props?.onKeyDown?.(event);
+
+    if (event.key === SPACE && event.target === event.currentTarget && !event.defaultPrevented) {
       // Prevent the browser from scrolling the page
       event.preventDefault();
       // Ignore auto-repeated keydowns to avoid toggling multiple times
@@ -643,8 +645,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.currentTarget.click();
       }
     }
-
-    child?.props?.onKeyDown?.(event);
   };
 
   delete other['aria-invalid'];
