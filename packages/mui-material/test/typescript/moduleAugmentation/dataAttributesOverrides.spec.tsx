@@ -6,6 +6,10 @@ import Backdrop from '@mui/material/Backdrop';
 // `DataAttributesOverrides` interface flows through `SlotComponentProps` /
 // `SlotComponentPropsWithSlotState` in `@mui/utils/types` (and `SlotProps` in
 // `@mui/material`) to every slot of every component wired through these helpers.
+//
+// See `dataAttributesOverridesAllowList.spec.tsx` for the narrow counterpart
+// (a closed allow-list with autocomplete). The two variants live in separate
+// files because module augmentation is global per compilation unit.
 declare module '@mui/utils/types' {
   interface DataAttributesOverrides {
     [k: `data-${string}`]: string | number | boolean | undefined;

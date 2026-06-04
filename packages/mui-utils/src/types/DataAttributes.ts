@@ -5,8 +5,12 @@
  * augmentation is the single switch consumers can flip to choose their level
  * of strictness.
  *
+ * The loose index-signature form accepts any `data-*` key but offers no key
+ * autocomplete; the strongly-typed form restricts to the keys you declare, but
+ * in exchange gives IntelliSense and flags typos on those keys.
+ *
  * @example
- * // Loose: accept any `data-*` key on slots (mirrors the primitive elements).
+ * // Loose: accept any `data-*` key (mirrors the primitive elements); no autocomplete.
  * declare module '@mui/utils/types' {
  *   interface DataAttributesOverrides {
  *     [k: `data-${string}`]: string | number | boolean | undefined;
@@ -14,7 +18,7 @@
  * }
  *
  * @example
- * // Strongly-typed: only the declared keys become assignable on slots.
+ * // Strongly-typed: only the declared keys, with autocomplete and typo-checking.
  * declare module '@mui/utils/types' {
  *   interface DataAttributesOverrides {
  *     'data-testid'?: string;
