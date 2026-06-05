@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 // Density experiment — CSS-var adapter (docs/adr/0001-css-var-density-adapter.md).
-// Button consumes `var(--_Button-padding*)`, resolved inline from a (variant,
+// Button consumes `var(--_padding*)`, resolved inline from a (variant,
 // size) lookup through `var(--Button-<size>-prop, var(--Button-prop, <literal>))`.
 // `enhanceDensity` wires `--Button-*` to the `--mui-density-*` scale.
 

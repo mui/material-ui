@@ -109,9 +109,11 @@ const ButtonRoot = styled(ButtonBase, {
     return {
       ...theme.typography.button,
       minWidth: 64,
-      // `--_Button-padding*` are set via inline style from the (variant, size)
-      // lookup; the literals here are only a safety fallback (medium contained).
-      padding: 'var(--_Button-paddingBlock, 6px) var(--_Button-paddingInline, 16px)',
+      // `--_padding*` are set via inline style from the (variant, size) lookup;
+      // the literals here are only a safety fallback (medium contained). The
+      // internal var is unprefixed — it's read on the same element that sets it
+      // inline, so no component prefix is needed to avoid inheritance bleed.
+      padding: 'var(--_paddingBlock, 6px) var(--_paddingInline, 16px)',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       transition: theme.transitions.create(
@@ -561,8 +563,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const [paddingBlock, paddingInline] = (variantPadding &&
     (variantPadding[size] || variantPadding.medium)) || ['6px', '16px'];
   const densityVars = {
-    '--_Button-paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${paddingBlock}))`,
-    '--_Button-paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${paddingInline}))`,
+    '--_paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${paddingBlock}))`,
+    '--_paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${paddingInline}))`,
   };
 
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (

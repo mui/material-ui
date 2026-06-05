@@ -26,12 +26,14 @@ specific than the base token** — when both are set, the sized token wins.
 _Avoid_: "size variant token".
 
 **Internal resolution var**:
-A private variable, shape `--_Component-<cssProperty>` (leading underscore),
-**set via inline style** from the rendered `(variant, size)` and consumed once
-in the styled root. It carries the full fallback chain (sized token → base
-token → literal). Lowest priority, so any public token or plain `styleOverrides`
-property still wins.
-_Avoid_: exposing it as API, "private token".
+A private variable, shape `--_<cssProperty>` (leading underscore, **no component
+prefix**), **set via inline style** from the rendered `(variant, size)` and
+consumed once in the styled root of the same element. It carries the full
+fallback chain (sized token → base token → literal). No prefix is needed because
+the reader is co-located with the inline setter, so an ancestor's value never
+bleeds into a descendant. Lowest priority, so any public token or plain
+`styleOverrides` property still wins.
+_Avoid_: exposing it as API, prefixing with the component name, "private token".
 
 **Token fallback**:
 The literal px at the end of the chain — today's exact value for that

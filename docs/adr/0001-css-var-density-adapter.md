@@ -31,7 +31,7 @@ Three token layers per component property, for example inline padding on Button:
 - **Base token** `--Button-paddingInline` (public) — reflows all variants/sizes.
 - **Sized token** `--Button-<size>-paddingInline` (public) — reflows one size;
   **more specific than base** (size wins).
-- **Internal resolution var** `--_Button-paddingInline` (private, leading
+- **Internal resolution var** `--_paddingInline` (private, leading
   underscore) — set via **inline style** from the rendered `(variant, size)`,
   carrying the chain `var(--Button-<size>-paddingInline, var(--Button-paddingInline, <literal>))`.
 
@@ -39,8 +39,8 @@ The styled root has **one** consumption point per property and **no conditional*
 
 ```js
 const ButtonRoot = styled(ButtonBase)({
-  paddingInline: 'var(--_Button-paddingInline)',
-  paddingBlock: 'var(--_Button-paddingBlock)',
+  paddingInline: 'var(--_paddingInline)',
+  paddingBlock: 'var(--_paddingBlock)',
 });
 ```
 
@@ -50,8 +50,8 @@ The component body holds the `(variant, size)` → px values as a **lookup table
 ```js
 const [block, inline] = PADDING[variant][size];
 const sizingVars = {
-  '--_Button-paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${block}))`,
-  '--_Button-paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${inline}))`,
+  '--_paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${block}))`,
+  '--_paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${inline}))`,
 };
 <ButtonRoot style={{ ...sizingVars, ...style }} />;
 ```
