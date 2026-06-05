@@ -10,7 +10,7 @@ If you are **new to or unfamiliar with grid**, you're encouraged to read this [C
 
 To define a `grid` container, you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
 
-{{"component": "file://./demos/display/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/display/index.ts", "collapseToEmpty": true}}
 
 ```jsx
 <Box sx={{ display: 'grid' }}>…</Box>

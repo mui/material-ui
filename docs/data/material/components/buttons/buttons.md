@@ -170,7 +170,7 @@ const CustomButton = React.forwardRef(function CustomButton(props, ref) {
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/customized/index.ts", "collapseToEmpty": true}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/button).
 

@@ -39,6 +39,35 @@ const ROOT = path.resolve(REPO_ROOT, ROOT_ARG);
 const DEMO_RE = /\{\{\s*"demo"\s*:\s*"([^"]+)\.(?:js|tsx|jsx|ts)"([^}]*)\}\}/g;
 const DEMO_EXTS = ['.tsx', '.js', '.jsx', '.ts'];
 
+// Matches a single `{{ … }}` demo/component metadata block (no nested braces —
+// these are flat JSON objects, the same assumption `DEMO_RE` makes with its
+// `[^}]*` tail).
+const META_BLOCK_RE = /\{\{[^}]*\}\}/g;
+
+// Matches the legacy `"defaultCodeOpen": true|false` option inside a metadata
+// block (tolerant of whitespace around the colon).
+const DEFAULT_CODE_OPEN_RE = /"defaultCodeOpen"\s*:\s*(true|false)/g;
+
+/**
+ * Migrate the legacy `defaultCodeOpen` option to the `@mui/internal-docs-infra`
+ * content-prop model, value-aware:
+ *   - `"defaultCodeOpen": true`  → `"initialExpanded": true`  — start expanded.
+ *   - `"defaultCodeOpen": false` → `"collapseToEmpty": true`  — the collapsed
+ *     window is empty (nothing shows until the reader expands), preserving the
+ *     legacy "code hidden until Show code" behavior. `initialExpanded: false`
+ *     would instead reveal the focused snippet, which isn't what these demos
+ *     asked for.
+ * Scoped to `{{ … }}` blocks so prose mentioning the old name is untouched, and
+ * idempotent — already-migrated files pass through unchanged.
+ */
+function migrateDemoOptions(md) {
+  return md.replace(META_BLOCK_RE, (block) =>
+    block.replace(DEFAULT_CODE_OPEN_RE, (_match, value) =>
+      value === 'true' ? '"initialExpanded": true' : '"collapseToEmpty": true',
+    ),
+  );
+}
+
 // ---------- helpers ----------
 function log(...m) {
   console.warn(...m);
@@ -369,7 +398,16 @@ async function processMarkdown(mdPath, plan) {
 
   const matches = [...src.matchAll(DEMO_RE)];
   if (!matches.length) {
-    vlog(`  skip (no {{"demo": ...}}): ${path.relative(REPO_ROOT, mdPath)}`);
+    // No legacy `{{"demo": …}}` blocks to migrate, but an already-migrated file
+    // (now using `{{"component": …}}`) may still carry the legacy
+    // `defaultCodeOpen` option. Migrate it and emit a markdown-only patch when
+    // it changes anything.
+    const migrated = migrateDemoOptions(src);
+    if (migrated !== src) {
+      plan.push({ mdPath, mdChanged: true, newMd: migrated, fileWrites: [], filesToDelete: [] });
+    } else {
+      vlog(`  skip (no {{"demo": ...}}): ${path.relative(REPO_ROOT, mdPath)}`);
+    }
     return;
   }
 
@@ -536,6 +574,9 @@ async function processMarkdown(mdPath, plan) {
     cursor = m.index + m[0].length;
   }
   newMd += src.slice(cursor);
+  // Migrate legacy options in the patched markdown (both the just-migrated
+  // `{{"component": …}}` blocks and any that were already migrated).
+  newMd = migrateDemoOptions(newMd);
   const mdChanged = newMd !== src;
 
   // Delete legacy siblings of every migrated demo.

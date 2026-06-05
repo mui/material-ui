@@ -66,7 +66,7 @@ This can be achieved by either using a color object or by providing the colors d
 
 The most direct way to customize a palette color is to import and apply one or more [color objects](/material-ui/customization/color/#2014-material-design-color-palettes), as shown below:
 
-{{"component": "file://./demos/using-color-object/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/using-color-object/index.ts", "initialExpanded": true}}
 
 #### Providing the colors directly
 
@@ -94,7 +94,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/manually-provide-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/manually-provide-color/index.ts", "collapseToEmpty": true}}
 
 ### Contrast threshold
 
@@ -103,7 +103,7 @@ The `contrastText` token is calculated using the `contrastThreshold` value, to m
 A higher contrast threshold value increases the point at which a background color is considered light, and thus given a dark `contrastText`.
 Note that the contrast threshold follows a non-linear curve, and defaults to a value of 3 which indicates a minimum contrast ratio of 3:1.
 
-{{"component": "file://./demos/contrast-threshold/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/contrast-threshold/index.ts", "collapseToEmpty": true}}
 
 ### Tonal offset
 
@@ -118,7 +118,7 @@ For example, the tonal offset default value `0.2` shifts the luminance by approx
 
 The tonal offset value can be either a number between 0 and 1 (which would apply to both `light` and `dark` tokens) or an object with `light` and `dark` keys specified:
 
-{{"component": "file://./demos/tonal-offset/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/tonal-offset/index.ts", "collapseToEmpty": true}}
 
 ## Custom colors
 
@@ -147,7 +147,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/manually-provide-custom-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/manually-provide-custom-color/index.ts", "collapseToEmpty": true}}
 
 :::info
 The supported color formats are `hex`, `rgb`, and `hsl`.
@@ -177,7 +177,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/using-styles-utils/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/using-styles-utils/index.ts", "collapseToEmpty": true}}
 
 ### Generate tokens using augmentColor utility
 
@@ -205,7 +205,7 @@ theme = createTheme(theme, {
 });
 ```
 
-{{"component": "file://./demos/using-augment-color/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/using-augment-color/index.ts", "collapseToEmpty": true}}
 
 The [contrast threshold](#contrast-threshold) and [tonal offset](#tonal-offset) values will apply for the colors defined using this utility.
 
@@ -270,7 +270,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/adding-color-tokens/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/adding-color-tokens/index.ts", "collapseToEmpty": true}}
 
 ### TypeScript
 
