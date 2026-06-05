@@ -56,7 +56,7 @@ const darkModeTheme = createTheme(getDesignTokens('dark'));
 
 export default function DarkThemeWithCustomPalette() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={darkModeTheme}>
       <MyApp />
     </ThemeProvider>

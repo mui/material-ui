@@ -14,11 +14,11 @@ const theme = createTheme({
 });
 
 export default function DefaultProps() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button>This button has disabled ripples.</Button>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

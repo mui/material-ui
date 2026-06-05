@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function CountrySelect() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Autocomplete
       id="country-select-demo"
       sx={{ width: 300 }}

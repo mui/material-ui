@@ -15,7 +15,7 @@ const style = {
 
 export default function DividerVariants() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <List sx={style}>
       <ListItem>
         <ListItemText primary="Full width variant below" />

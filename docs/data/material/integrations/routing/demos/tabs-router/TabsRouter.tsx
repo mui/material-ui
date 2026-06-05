@@ -68,8 +68,8 @@ function CurrentRoute() {
 }
 
 export default function TabsRouter() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Router>
       <Box sx={{ width: '100%' }}>
         <Routes>
@@ -78,6 +78,6 @@ export default function TabsRouter() {
         <MyTabs />
       </Box>
     </Router>
+    // @focus-end
   );
-  // @focus-end
 }
