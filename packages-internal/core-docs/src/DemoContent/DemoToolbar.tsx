@@ -216,6 +216,21 @@ export function useToolbarKeyboard() {
 // Toolbar component
 // ---------------------------------------------------------------------------
 
+/**
+ * Deploy permalinks surfaced in the More menu on staging / PR-preview builds.
+ * Each points at the same demo on a different Netlify deployment.
+ */
+export interface DemoDeploymentLinks {
+  /** Deploy-preview URL for the current PR. Omitted when not a PR build. */
+  pullRequest?: string;
+  /** URL on the `next` branch deployment. */
+  next: string;
+  /** Permalink to this exact deploy. */
+  permalink: string;
+  /** URL on the `master` branch deployment. */
+  master: string;
+}
+
 export interface DemoToolbarProps {
   gaLabel: string;
   /** ID of the source viewer for `aria-controls`. */
@@ -246,6 +261,20 @@ export interface DemoToolbarProps {
   onCopySource: (event: React.MouseEvent<HTMLElement>) => Promise<void>;
   onResetFocus: () => void;
   onReset?: () => void;
+  /**
+   * Hosted GitHub URL of the file currently shown in the viewer. Undefined
+   * when no repository URL is configured (the "View on GitHub" item is then
+   * disabled).
+   */
+  githubLocation?: string;
+  /**
+   * Demo anchor id used to build the "copy source link" permalinks (the
+   * matching `.js` / `.tsx` anchors are rendered alongside the demo). When
+   * unset, those items are disabled.
+   */
+  sourceAnchor?: string;
+  /** Deploy permalinks shown only on staging / PR-preview builds. `null` hides them. */
+  devLinks?: DemoDeploymentLinks | null;
 }
 
 /**
@@ -277,6 +306,9 @@ export function DemoToolbar(props: DemoToolbarProps) {
     onCopySource,
     onResetFocus,
     onReset,
+    githubLocation,
+    sourceAnchor,
+    devLinks,
   } = props;
   const t = useTranslate();
 
@@ -326,17 +358,18 @@ export function DemoToolbar(props: DemoToolbarProps) {
     [onCopySource],
   );
 
-  // Source-link copy handlers. The actual link targets are intentionally left
-  // undefined for now — this wires the menu structure so the URLs can be
-  // implemented in a follow-up without touching call sites.
+  // "Copy source link" handlers. Copies a permalink to the current page that
+  // targets the demo's `.js` / `.tsx` source anchor (the matching
+  // `<DemoAnchorLink>`s are rendered next to the demo). Built from
+  // `window.location` at click time so it reflects the page the user is on.
   const createHandleCodeSourceLink = React.useCallback(
-    (_target: 'js' | 'tsx') => async () => {
-      // TODO: build the canonical source link for the current demo + transform.
-      const link: string | undefined = undefined;
+    (target: 'js' | 'tsx') => async () => {
       handleMoreClose();
-      if (!link) {
+      if (!sourceAnchor || typeof window === 'undefined') {
         return;
       }
+      const base = window.location.href.split('#')[0];
+      const link = `${base}#${sourceAnchor}${target === 'tsx' ? '.tsx' : '.js'}`;
       try {
         await copy(link);
         setSnackbarMessage(t('copiedSourceLink'));
@@ -345,17 +378,8 @@ export function DemoToolbar(props: DemoToolbarProps) {
         // Swallow — clipboard access may be denied by the user agent.
       }
     },
-    [t, handleMoreClose],
+    [t, handleMoreClose, sourceAnchor],
   );
-
-  // Dev/staging-only debug links surfaced in the More menu (PR previews and
-  // permalinks). URLs left undefined until the deploy plumbing is reconnected.
-  const showDevLinks =
-    process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request';
-
-  // Placeholder for the GitHub "view source" link target. Leaving undefined
-  // disables the menu item until the link source is wired up.
-  const githubLocation: string | undefined = undefined;
 
   const hasNonSystemDemos = variants.length > 1;
 
@@ -541,6 +565,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           </MenuItem>
           <MenuItem
             onClick={createHandleCodeSourceLink('js')}
+            disabled={!sourceAnchor}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
             data-ga-event-action="copy-js-source-link"
@@ -549,55 +574,66 @@ export function DemoToolbar(props: DemoToolbarProps) {
           </MenuItem>
           <MenuItem
             onClick={createHandleCodeSourceLink('tsx')}
+            disabled={!sourceAnchor}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
             data-ga-event-action="copy-ts-source-link"
           >
             {t('copySourceLinkTS')}
           </MenuItem>
-          {showDevLinks
+          {devLinks
             ? [
-                <MenuItem
-                  key="pr-preview"
-                  component="a"
-                  href={undefined}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                  disabled
-                >
-                  demo on PR
-                </MenuItem>,
+                devLinks.pullRequest ? (
+                  <MenuItem
+                    key="pr-preview"
+                    component="a"
+                    href={devLinks.pullRequest}
+                    target="_blank"
+                    rel="noopener nofollow"
+                    onClick={handleMoreClose}
+                    data-ga-event-category="demo"
+                    data-ga-event-label={gaLabel}
+                    data-ga-event-action="link-deploy-preview"
+                  >
+                    demo on PR
+                  </MenuItem>
+                ) : null,
                 <MenuItem
                   key="next"
                   component="a"
-                  href={undefined}
+                  href={devLinks.next}
                   target="_blank"
                   rel="noopener nofollow"
                   onClick={handleMoreClose}
-                  disabled
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="link-next"
                 >
                   demo on next
                 </MenuItem>,
                 <MenuItem
                   key="permalink"
                   component="a"
-                  href={undefined}
+                  href={devLinks.permalink}
                   target="_blank"
                   rel="noopener nofollow"
                   onClick={handleMoreClose}
-                  disabled
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="permalink"
                 >
                   demo permalink
                 </MenuItem>,
                 <MenuItem
                   key="master"
                   component="a"
-                  href={undefined}
+                  href={devLinks.master}
                   target="_blank"
                   rel="noopener nofollow"
                   onClick={handleMoreClose}
-                  disabled
+                  data-ga-event-category="demo"
+                  data-ga-event-label={gaLabel}
+                  data-ga-event-action="link-master"
                 >
                   demo on master
                 </MenuItem>,

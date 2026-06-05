@@ -102,7 +102,15 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // live JS; the window stays sized to the focused snippet (empty for an
   // empty-focus block) until `DemoContent` hydrates.
   const code =
-    showCode && fallbackCode ? <CodeSource expanded={false}>{fallbackCode}</CodeSource> : null;
+    showCode && fallbackCode ? (
+      <CodeSource expanded={false}>
+        {/* `fallbackCode` is a bare `<code>` (from `useCodeFallback`); wrap it in
+            `<pre>` so `CodeSource`'s `& pre > code` selectors apply — the live
+            render gets its `<pre>` from `<Pre>`. Without it the panel is
+            unstyled (no dark background, frame layout, or collapse). */}
+        <pre>{fallbackCode}</pre>
+      </CodeSource>
+    ) : null;
 
   return (
     <DemoContainer
