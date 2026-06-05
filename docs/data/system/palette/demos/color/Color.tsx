@@ -2,8 +2,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 export default function Color() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Typography component="div" variant="body1">
       <Box sx={{ color: 'primary.main' }}>primary.main</Box>
       <Box sx={{ color: 'secondary.main' }}>secondary.main</Box>
@@ -15,6 +15,6 @@ export default function Color() {
       <Box sx={{ color: 'text.secondary' }}>text.secondary</Box>
       <Box sx={{ color: 'text.disabled' }}>text.disabled</Box>
     </Typography>
+    // @focus-end
   );
-  // @focus-end
 }

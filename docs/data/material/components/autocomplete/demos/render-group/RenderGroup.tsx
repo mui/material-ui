@@ -26,8 +26,8 @@ export default function RenderGroup() {
     };
   });
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Autocomplete
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option) => option.firstLetter}
@@ -41,8 +41,8 @@ export default function RenderGroup() {
         </li>
       )}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

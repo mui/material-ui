@@ -5,7 +5,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 export default function TextFieldTailwind() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <FormControl>
       <InputLabel
         shrink

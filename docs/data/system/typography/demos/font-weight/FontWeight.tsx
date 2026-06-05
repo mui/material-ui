@@ -2,8 +2,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 export default function FontWeight() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Typography component="div">
       <Box sx={{ fontWeight: 'light', m: 1 }}>Light</Box>
       <Box sx={{ fontWeight: 'regular', m: 1 }}>Regular</Box>
@@ -11,6 +11,6 @@ export default function FontWeight() {
       <Box sx={{ fontWeight: 500, m: 1 }}>500</Box>
       <Box sx={{ fontWeight: 'bold', m: 1 }}>Bold</Box>
     </Typography>
+    // @focus-end
   );
-  // @focus-end
 }

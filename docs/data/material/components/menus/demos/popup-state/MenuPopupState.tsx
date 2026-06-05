@@ -5,8 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
 export default function MenuPopupState() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
         <React.Fragment>
@@ -21,6 +21,6 @@ export default function MenuPopupState() {
         </React.Fragment>
       )}
     </PopupState>
+    // @focus-end
   );
-  // @focus-end
 }

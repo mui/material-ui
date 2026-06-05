@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 export default function IntroDivider() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Card variant="outlined" sx={{ maxWidth: 360 }}>
       <Box sx={{ p: 2 }}>
         <Stack

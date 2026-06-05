@@ -15,7 +15,7 @@ function srcset(image: string, width: number, height: number, rows = 1, cols = 1
 
 export default function CustomImageList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ImageList
       sx={{
         width: 500,

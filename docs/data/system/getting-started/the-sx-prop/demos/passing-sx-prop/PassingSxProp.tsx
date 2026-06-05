@@ -26,8 +26,8 @@ function ListHeader({ sx = [], children }: ListHeaderProps) {
 }
 
 export default function PassingSxProp() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ListHeader
       sx={(theme) => ({
         color: 'info.main',
@@ -36,6 +36,6 @@ export default function PassingSxProp() {
     >
       Header
     </ListHeader>
+    // @focus-end
   );
-  // @focus-end
 }

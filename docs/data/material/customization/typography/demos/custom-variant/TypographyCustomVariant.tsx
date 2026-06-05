@@ -25,8 +25,8 @@ const theme = createTheme({
 });
 
 export default function TypographyCustomVariant() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Box sx={{ '& > *': { display: 'block' } }}>
         {/* @ts-ignore */}
@@ -34,6 +34,6 @@ export default function TypographyCustomVariant() {
         <Typography variant="h3">h3</Typography>
       </Box>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

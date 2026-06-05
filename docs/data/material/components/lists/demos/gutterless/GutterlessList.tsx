@@ -5,8 +5,8 @@ import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 
 export default function GutterlessList() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {[1, 2, 3].map((value) => (
         <ListItem
@@ -22,6 +22,6 @@ export default function GutterlessList() {
         </ListItem>
       ))}
     </List>
+    // @focus-end
   );
-  // @focus-end
 }

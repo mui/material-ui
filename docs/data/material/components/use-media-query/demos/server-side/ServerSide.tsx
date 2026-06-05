@@ -17,8 +17,8 @@ export default function ServerSide() {
     }),
   });
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider<Theme>
       theme={{
         components: {
@@ -31,6 +31,6 @@ export default function ServerSide() {
     >
       <MyComponent />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

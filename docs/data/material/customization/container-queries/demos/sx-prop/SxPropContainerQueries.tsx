@@ -7,7 +7,7 @@ import ResizableDemo from '../ResizableDemo';
 
 export default function SxPropContainerQueries() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ResizableDemo>
       <Box
         sx={{

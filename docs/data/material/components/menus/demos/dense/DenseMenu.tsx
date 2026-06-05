@@ -8,7 +8,7 @@ import Check from '@mui/icons-material/Check';
 
 export default function DenseMenu() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Paper sx={{ width: 320 }}>
       <MenuList dense>
         <MenuItem>

@@ -45,16 +45,16 @@ export default function GloballyCustomizedOptions() {
   // useTheme is used to determine the dark or light mode of the docs to maintain the Autocomplete component default styles.
   const outerTheme = useTheme();
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme(outerTheme)}>
       <Stack spacing={5} sx={{ width: 300 }}>
         <MovieSelect />
         <CountrySelect />
       </Stack>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }
 
 function MovieSelect() {

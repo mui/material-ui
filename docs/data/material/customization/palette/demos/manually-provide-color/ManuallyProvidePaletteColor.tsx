@@ -47,14 +47,14 @@ function ColorShowcase({ color }: { color: 'primary' | 'secondary' }) {
 }
 
 export default function ManuallyProvidePaletteColor() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Stack direction="row" sx={{ gap: 8 }}>
         <ColorShowcase color="primary" />
         <ColorShowcase color="secondary" />
       </Stack>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

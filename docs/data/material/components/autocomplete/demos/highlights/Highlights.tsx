@@ -5,7 +5,7 @@ import match from 'autosuggest-highlight/match';
 
 export default function Highlights() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Autocomplete
       sx={{ width: 300 }}
       options={top100Films}

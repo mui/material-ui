@@ -44,7 +44,7 @@ const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
 export default function SpanningTable() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
         <TableHead>

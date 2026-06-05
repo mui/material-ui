@@ -2,8 +2,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
 export default function LimitTags() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Autocomplete
       multiple
       limitTags={2}
@@ -16,8 +16,8 @@ export default function LimitTags() {
       )}
       sx={{ width: '500px' }}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

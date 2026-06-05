@@ -49,8 +49,8 @@ function SkeletonChildrenDemo(props: { loading?: boolean }) {
 }
 
 export default function SkeletonChildren() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Grid container spacing={8}>
       <Grid size="grow">
         <SkeletonChildrenDemo loading />
@@ -59,6 +59,6 @@ export default function SkeletonChildren() {
         <SkeletonChildrenDemo />
       </Grid>
     </Grid>
+    // @focus-end
   );
-  // @focus-end
 }

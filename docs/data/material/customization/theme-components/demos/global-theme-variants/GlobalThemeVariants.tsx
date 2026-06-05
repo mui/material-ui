@@ -48,8 +48,8 @@ const customTheme = createTheme({
 });
 
 export default function GlobalThemeVariants() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme}>
       <Button variant="dashed" sx={{ m: 1 }}>
         Dashed
@@ -64,6 +64,6 @@ export default function GlobalThemeVariants() {
         Secondary large
       </Button>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

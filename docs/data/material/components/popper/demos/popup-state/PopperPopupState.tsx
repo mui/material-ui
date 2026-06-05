@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 
 export default function PopperPopupState() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <PopupState variant="popper" popupId="demo-popup-popper">
       {(popupState) => (
         <div>

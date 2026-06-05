@@ -38,8 +38,8 @@ export default function DynamicCSS() {
     setSuccess(event.target.checked);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <React.Fragment>
       <FormControlLabel
         control={
@@ -54,6 +54,6 @@ export default function DynamicCSS() {
       />
       <StyledSlider success={success} defaultValue={30} sx={{ mt: 1 }} />
     </React.Fragment>
+    // @focus-end
   );
-  // @focus-end
 }

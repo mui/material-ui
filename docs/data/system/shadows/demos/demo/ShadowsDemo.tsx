@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 export default function ShadowsDemo() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Grid container>
       <Box
         sx={(theme) => ({

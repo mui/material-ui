@@ -8,7 +8,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 export default function OppositeContentTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent
