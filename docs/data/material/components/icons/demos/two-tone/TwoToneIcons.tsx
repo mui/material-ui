@@ -9,14 +9,14 @@ const useIsDarkMode = () => {
 export default function TwoToneIcons() {
   const isDarkMode = useIsDarkMode();
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Icon
       sx={[isDarkMode && { filter: 'invert(1)' }]}
       baseClassName="material-icons-two-tone"
     >
       add_circle
     </Icon>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -1,8 +1,8 @@
 import Link from '@mui/material/Link';
 
 export default function ButtonLink() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Link
       component="button"
       variant="body2"
@@ -12,6 +12,6 @@ export default function ButtonLink() {
     >
       Button Link
     </Link>
+    // @focus-end
   );
-  // @focus-end
 }

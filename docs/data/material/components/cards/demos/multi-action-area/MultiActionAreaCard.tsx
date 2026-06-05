@@ -8,7 +8,7 @@ import CardActions from '@mui/material/CardActions';
 
 export default function MultiActionAreaCard() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia

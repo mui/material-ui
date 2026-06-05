@@ -12,13 +12,13 @@ export default function IconLabelTabs() {
     setValue(newValue);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
       <Tab icon={<PhoneIcon />} label="RECENTS" />
       <Tab icon={<FavoriteIcon />} label="FAVORITES" />
       <Tab icon={<PersonPinIcon />} label="NEARBY" />
     </Tabs>
+    // @focus-end
   );
-  // @focus-end
 }

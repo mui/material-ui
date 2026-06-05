@@ -9,7 +9,7 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 
 export default function TypographyMenu() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Paper sx={{ width: 230 }}>
       <MenuList>
         <MenuItem>

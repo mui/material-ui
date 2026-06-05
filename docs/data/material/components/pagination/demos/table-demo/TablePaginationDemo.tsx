@@ -19,8 +19,8 @@ export default function TablePaginationDemo() {
     setPage(0);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <TablePagination
       component="div"
       count={100}
@@ -29,6 +29,6 @@ export default function TablePaginationDemo() {
       rowsPerPage={rowsPerPage}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />
+    // @focus-end
   );
-  // @focus-end
 }

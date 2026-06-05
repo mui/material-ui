@@ -22,7 +22,7 @@ const theme = createTheme({
 
 export default function CustomColorSpace() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Card>
         <CardContent>

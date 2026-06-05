@@ -48,8 +48,8 @@ function IconContainer(props: IconContainerProps) {
 }
 
 export default function RadioGroupRating() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <StyledRating
       name="highlight-selected-only"
       defaultValue={2}
@@ -57,6 +57,6 @@ export default function RadioGroupRating() {
       slotProps={{ icon: { component: IconContainer } }}
       highlightSelectedOnly
     />
+    // @focus-end
   );
-  // @focus-end
 }

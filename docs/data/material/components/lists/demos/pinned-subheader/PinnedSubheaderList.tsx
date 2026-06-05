@@ -5,7 +5,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 
 export default function PinnedSubheaderList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <List
       sx={{
         width: '100%',

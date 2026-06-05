@@ -3,8 +3,8 @@ import Button from '@mui/material/Button';
 import SaveIcon from '@mui/icons-material/Save';
 
 export default function LoadingButtonGroup() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ButtonGroup variant="outlined" aria-label="Loading button group">
       <Button>Submit</Button>
       <Button>Fetch data</Button>
@@ -12,6 +12,6 @@ export default function LoadingButtonGroup() {
         Save
       </Button>
     </ButtonGroup>
+    // @focus-end
   );
-  // @focus-end
 }

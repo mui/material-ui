@@ -269,21 +269,6 @@
   color: var(--color-docs-infra-syntax-punctuation);
 }
 
-/* Line highlighting */
-pre [data-hl] {
-  background-color: var(--color-line-highlight);
-}
-
-pre [data-hl='strong'] {
-  background-color: var(--color-line-highlight-strong);
-}
-
-/* Character/word highlighting */
-pre [data-hlc] {
-  color: #b78eff;
-  background-color: var(--color-inline-highlight);
-}
-
 /* ----------------------------------------------------------------------
  * Collapsed-lines placeholder
  *

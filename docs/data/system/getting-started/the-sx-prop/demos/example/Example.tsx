@@ -20,7 +20,7 @@ const theme = createTheme({
 
 export default function Example() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Box
         sx={{

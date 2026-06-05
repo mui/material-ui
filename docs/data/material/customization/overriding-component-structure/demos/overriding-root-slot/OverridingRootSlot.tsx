@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
 
 export default function OverridingRootSlot() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Button
       component="a"
       href="https://mui.com/about/"
@@ -11,6 +11,6 @@ export default function OverridingRootSlot() {
     >
       About us
     </Button>
+    // @focus-end
   );
-  // @focus-end
 }

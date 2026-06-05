@@ -15,8 +15,8 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 export default function InputFileUpload() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Button
       component="label"
       role={undefined}
@@ -31,6 +31,6 @@ export default function InputFileUpload() {
         multiple
       />
     </Button>
+    // @focus-end
   );
-  // @focus-end
 }

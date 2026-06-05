@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 
 export default function BackgroundColor() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Grid container spacing={1}>
       <Grid
         size={{

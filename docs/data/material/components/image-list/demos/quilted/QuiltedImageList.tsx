@@ -11,8 +11,8 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
 }
 
 export default function QuiltedImageList() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ImageList
       sx={{ width: 500, height: 450 }}
       variant="quilted"
@@ -29,8 +29,8 @@ export default function QuiltedImageList() {
         </ImageListItem>
       ))}
     </ImageList>
+    // @focus-end
   );
-  // @focus-end
 }
 
 const itemData = [

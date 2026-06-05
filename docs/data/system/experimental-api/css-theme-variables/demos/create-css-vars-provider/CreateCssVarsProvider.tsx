@@ -138,11 +138,11 @@ function App() {
 }
 
 export default function CreateCssVarsProvider() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <CssVarsProvider>
       <App />
     </CssVarsProvider>
+    // @focus-end
   );
-  // @focus-end
 }

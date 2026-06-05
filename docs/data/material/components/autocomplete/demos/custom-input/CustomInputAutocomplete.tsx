@@ -4,7 +4,7 @@ const options = ['Option 1', 'Option 2'];
 
 export default function CustomInputAutocomplete() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <label>
       Value:{' '}
       <Autocomplete

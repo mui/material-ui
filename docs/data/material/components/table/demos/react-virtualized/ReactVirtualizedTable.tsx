@@ -120,8 +120,8 @@ function rowContent(_index: number, row: Data) {
 }
 
 export default function ReactVirtualizedTable() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Paper style={{ height: 400, width: '100%' }}>
       <TableVirtuoso
         data={rows}
@@ -130,6 +130,6 @@ export default function ReactVirtualizedTable() {
         itemContent={rowContent}
       />
     </Paper>
+    // @focus-end
   );
-  // @focus-end
 }

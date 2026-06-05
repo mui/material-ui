@@ -9,13 +9,13 @@ export default function DisabledTabs() {
     setValue(newValue);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Tabs value={value} onChange={handleChange} aria-label="disabled tabs example">
       <Tab label="Active" />
       <Tab label="Disabled" disabled />
       <Tab label="Active" />
     </Tabs>
+    // @focus-end
   );
-  // @focus-end
 }

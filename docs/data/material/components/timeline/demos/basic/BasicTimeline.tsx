@@ -7,7 +7,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function BasicTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline>
       <TimelineItem>
         <TimelineSeparator>

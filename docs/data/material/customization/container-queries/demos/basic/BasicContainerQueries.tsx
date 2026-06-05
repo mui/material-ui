@@ -44,7 +44,7 @@ const Content = styled(CardContent)(({ theme }) => ({
 
 export default function BasicContainerQueries() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ResizableDemo>
       <Box
         sx={{

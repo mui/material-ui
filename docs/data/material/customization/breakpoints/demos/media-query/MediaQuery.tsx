@@ -16,13 +16,13 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 export default function MediaQuery() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Root>
       <Typography>down(md): red</Typography>
       <Typography>up(md): blue</Typography>
       <Typography>up(lg): green</Typography>
     </Root>
+    // @focus-end
   );
-  // @focus-end
 }

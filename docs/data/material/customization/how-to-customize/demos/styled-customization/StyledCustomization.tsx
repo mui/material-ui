@@ -17,7 +17,7 @@ const SuccessSlider = styled(Slider)<SliderProps>(({ theme }) => ({
 
 export default function StyledCustomization() {
   return (
-    // @focus
+    // @focus @padding 2
     <SuccessSlider defaultValue={30} />
   );
 }

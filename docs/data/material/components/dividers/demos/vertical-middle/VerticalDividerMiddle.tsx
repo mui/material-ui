@@ -7,7 +7,7 @@ import FormatBoldIcon from '@mui/icons-material/FormatBold';
 
 export default function VerticalDividerMiddle() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Card
       variant="outlined"
       sx={{

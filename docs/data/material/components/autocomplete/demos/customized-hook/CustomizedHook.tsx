@@ -219,16 +219,16 @@ function CustomAutocomplete<Value>(
 }
 
 export default function CustomizedHook() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <CustomAutocomplete<FilmOptionType>
       id="customized-hook-demo"
       defaultValue={[top100Films[1]]}
       options={top100Films}
       getOptionLabel={(option) => option.title}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 interface FilmOptionType {

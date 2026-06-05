@@ -11,13 +11,13 @@ export default function LoadingIconButton() {
     }, 2000);
     return () => clearTimeout(timeout);
   });
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Tooltip title="Click to see loading">
       <IconButton onClick={() => setLoading(true)} loading={loading}>
         <ShoppingCartIcon />
       </IconButton>
     </Tooltip>
+    // @focus-end
   );
-  // @focus-end
 }

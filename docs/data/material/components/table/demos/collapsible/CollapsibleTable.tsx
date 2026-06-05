@@ -114,7 +114,7 @@ const rows = [
 ];
 export default function CollapsibleTable() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>

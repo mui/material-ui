@@ -16,8 +16,8 @@ export default function DividerText() {
     <p>{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</p>
   );
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Root>
       {content}
       <Divider>CENTER</Divider>
@@ -31,6 +31,6 @@ export default function DividerText() {
       </Divider>
       {content}
     </Root>
+    // @focus-end
   );
-  // @focus-end
 }
