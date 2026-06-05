@@ -47,7 +47,7 @@ const rows = [
 
 export default function CustomizedTables() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>

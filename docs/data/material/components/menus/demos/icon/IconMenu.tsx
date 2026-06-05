@@ -12,7 +12,7 @@ import Cloud from '@mui/icons-material/Cloud';
 
 export default function IconMenu() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
         <MenuItem>

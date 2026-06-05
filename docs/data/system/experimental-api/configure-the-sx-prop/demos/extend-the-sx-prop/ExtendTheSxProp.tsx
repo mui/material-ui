@@ -24,11 +24,11 @@ const customTheme = createTheme({
 });
 
 export default function ExtendTheSxProp() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme}>
       <Box sx={{ size: 10, border: 1 }} />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

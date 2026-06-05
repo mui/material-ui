@@ -13,8 +13,8 @@ export default function IconPositionTabs() {
     setValue(newValue);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Tabs
       value={value}
       onChange={handleChange}
@@ -25,6 +25,6 @@ export default function IconPositionTabs() {
       <Tab icon={<FavoriteIcon />} iconPosition="end" label="end" />
       <Tab icon={<PersonPinIcon />} iconPosition="bottom" label="bottom" />
     </Tabs>
+    // @focus-end
   );
-  // @focus-end
 }

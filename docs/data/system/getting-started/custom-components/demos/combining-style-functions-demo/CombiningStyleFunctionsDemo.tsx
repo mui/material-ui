@@ -8,11 +8,11 @@ const Div = styled.div<PaletteProps & SpacingProps>`
 `;
 
 export default function CombiningStyleFunctionsDemo() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Div color="white" bgcolor="palevioletred" p={1}>
       Styled components
     </Div>
+    // @focus-end
   );
-  // @focus-end
 }

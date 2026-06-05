@@ -5,8 +5,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 export default function StandaloneToggleButton() {
   const [selected, setSelected] = React.useState(false);
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ToggleButton
       value="check"
       selected={selected}
@@ -15,6 +15,6 @@ export default function StandaloneToggleButton() {
     >
       <CheckIcon />
     </ToggleButton>
+    // @focus-end
   );
-  // @focus-end
 }

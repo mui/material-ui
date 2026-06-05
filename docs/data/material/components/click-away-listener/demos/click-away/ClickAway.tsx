@@ -25,8 +25,8 @@ export default function ClickAway() {
     bgcolor: 'background.paper',
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ClickAwayListener onClickAway={handleClickAway}>
       <Box sx={{ position: 'relative' }}>
         <button type="button" onClick={handleClick}>
@@ -39,6 +39,6 @@ export default function ClickAway() {
         ) : null}
       </Box>
     </ClickAwayListener>
+    // @focus-end
   );
-  // @focus-end
 }

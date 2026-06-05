@@ -10,11 +10,11 @@ const theme = createTheme({
 });
 
 export default function ThemeVariables() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button>font-size: 1rem</Button>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

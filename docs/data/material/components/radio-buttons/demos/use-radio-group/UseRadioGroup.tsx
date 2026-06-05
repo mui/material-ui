@@ -36,12 +36,12 @@ function MyFormControlLabel(props: FormControlLabelProps) {
 }
 
 export default function UseRadioGroup() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <RadioGroup name="use-radio-group" defaultValue="first">
       <MyFormControlLabel value="first" label="First" control={<Radio />} />
       <MyFormControlLabel value="second" label="Second" control={<Radio />} />
     </RadioGroup>
+    // @focus-end
   );
-  // @focus-end
 }

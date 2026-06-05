@@ -9,7 +9,7 @@ const MyComponent = styled('div')({
 
 export default function BasicUsage() {
   return (
-    // @focus
+    // @focus @padding 2
     <MyComponent>Styled div</MyComponent>
   );
 }

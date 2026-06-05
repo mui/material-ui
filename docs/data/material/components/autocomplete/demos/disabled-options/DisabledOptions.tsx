@@ -2,8 +2,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 export default function DisabledOptions() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Autocomplete
       options={timeSlots}
       getOptionDisabled={(option) =>
@@ -12,8 +12,8 @@ export default function DisabledOptions() {
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Disabled options" />}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 // One time slot every 30 minutes.

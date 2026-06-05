@@ -4,7 +4,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 export default function TitlebarBelowImageList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ImageList sx={{ width: 500, height: 450 }}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>

@@ -7,7 +7,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function AlternateReverseTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline position="alternate-reverse">
       <TimelineItem>
         <TimelineSeparator>

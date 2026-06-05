@@ -5,7 +5,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 export default function PopoverPopupState() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>

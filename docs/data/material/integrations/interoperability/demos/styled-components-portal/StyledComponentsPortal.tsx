@@ -12,13 +12,13 @@ const StyledTooltip = styled(({ className, ...props }: TooltipProps) => (
 `;
 
 export default function StyledComponentsPortal() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <StyledTooltip title="I am navy">
       <Button variant="contained" color="primary">
         Styled tooltip
       </Button>
     </StyledTooltip>
+    // @focus-end
   );
-  // @focus-end
 }

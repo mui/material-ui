@@ -23,8 +23,8 @@ const cacheRtl = createCache({
 });
 
 export default function RtlDemo() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <CacheProvider value={cacheRtl}>
       <ThemeProvider theme={theme}>
         <div dir="rtl">
@@ -37,6 +37,6 @@ export default function RtlDemo() {
         </div>
       </ThemeProvider>
     </CacheProvider>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -1,8 +1,8 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
 export default function SvgIconChildren() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <SvgIcon>
       {/* credit: cog icon from https://heroicons.com */}
       <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -13,6 +13,6 @@ export default function SvgIconChildren() {
         />
       </svg>
     </SvgIcon>
+    // @focus-end
   );
-  // @focus-end
 }

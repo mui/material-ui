@@ -14,8 +14,8 @@ export default function CircularCustomScale() {
     };
   }, []);
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <CircularProgress
       variant="determinate"
       min={10}
@@ -23,6 +23,6 @@ export default function CircularCustomScale() {
       value={progress}
       aria-label="Loading"
     />
+    // @focus-end
   );
-  // @focus-end
 }

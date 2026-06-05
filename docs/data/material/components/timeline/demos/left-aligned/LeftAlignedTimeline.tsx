@@ -10,7 +10,7 @@ import TimelineOppositeContent, {
 
 export default function LeftAlignedTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline
       sx={{
         [`& .${timelineOppositeContentClasses.root}`]: {

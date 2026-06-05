@@ -26,8 +26,8 @@ export default function PortalClickAway() {
     bgcolor: 'background.paper',
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ClickAwayListener onClickAway={handleClickAway}>
       <div>
         <button type="button" onClick={handleClick}>
@@ -42,6 +42,6 @@ export default function PortalClickAway() {
         ) : null}
       </div>
     </ClickAwayListener>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -27,7 +27,7 @@ const theme = createTheme({
 
 export default function AddingColorTokens() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Stack direction="row" sx={{ gap: 1 }}>
         <Stack sx={{ alignItems: 'center' }}>

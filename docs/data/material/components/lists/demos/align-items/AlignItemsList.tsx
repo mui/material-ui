@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 export default function AlignItemsList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>

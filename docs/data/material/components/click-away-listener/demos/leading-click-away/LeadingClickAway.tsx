@@ -25,8 +25,8 @@ export default function LeadingClickAway() {
     bgcolor: 'background.paper',
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ClickAwayListener
       mouseEvent="onMouseDown"
       touchEvent="onTouchStart"
@@ -43,6 +43,6 @@ export default function LeadingClickAway() {
         ) : null}
       </Box>
     </ClickAwayListener>
+    // @focus-end
   );
-  // @focus-end
 }
