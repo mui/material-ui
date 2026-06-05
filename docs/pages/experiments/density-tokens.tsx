@@ -26,15 +26,20 @@ const theme = enhanceDensity(createTheme({ cssVariables: true }));
 
 function ButtonMatrix() {
   return (
-    <Stack spacing={1.5}>
+    <Stack spacing={2}>
       {VARIANTS.map((variant) => (
-        <Stack key={variant} direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-          {SIZES.map((size) => (
-            <Button key={size} variant={variant} size={size}>
-              {variant}/{size}
-            </Button>
-          ))}
-        </Stack>
+        <Box key={variant}>
+          <Typography variant="overline" color="text.secondary">
+            {variant}
+          </Typography>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
+            {SIZES.map((size) => (
+              <Button key={size} variant={variant} size={size}>
+                {size}
+              </Button>
+            ))}
+          </Stack>
+        </Box>
       ))}
     </Stack>
   );
@@ -52,7 +57,7 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <Paper variant="outlined" sx={{ p: 2, flex: 1, minWidth: 320 }} style={style}>
+    <Paper variant="outlined" sx={{ p: 2, flex: 1, minWidth: 0 }} style={style}>
       <Typography variant="subtitle2">{title}</Typography>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2 }}>
         {caption}
@@ -117,7 +122,7 @@ export default function DensityTokens() {
         </Stack>
 
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ mb: 4 }}>
-          <Stack spacing={3} sx={{ flex: 1, minWidth: 280 }}>
+          <Stack spacing={3} sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2">Density scale</Typography>
             <Box sx={{ width: '100%' }}>
               <Typography variant="caption">
@@ -145,7 +150,7 @@ export default function DensityTokens() {
 
           <Divider orientation="vertical" flexItem />
 
-          <Stack spacing={2} sx={{ flex: 1, minWidth: 280 }}>
+          <Stack spacing={2} sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2">Per-token override (granular)</Typography>
             <TextField
               label="--Button-paddingInline (base)"
