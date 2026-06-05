@@ -170,14 +170,14 @@ export const DemoAnchorLink = styled('div')({
   position: 'absolute',
 });
 
-// Action-button bar between preview and code. The `codeOpen` variant squares
+// Action-button bar between preview and code. The `expanded` variant squares
 // off the bottom corners so the toolbar visually merges with the code panel
 // below it. When `hasSourceFocus` is true a focused source snippet is always
 // visible beneath the toolbar, so the bottom corners stay square regardless
 // of whether the full source is expanded.
 export const DemoToolbarRoot = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'codeOpen' && prop !== 'hasSourceFocus',
-})<{ codeOpen?: boolean; hasSourceFocus?: boolean }>(({ theme }) => [
+  shouldForwardProp: (prop) => prop !== 'expanded' && prop !== 'hasSourceFocus',
+})<{ expanded?: boolean; hasSourceFocus?: boolean }>(({ theme }) => [
   {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -204,7 +204,7 @@ export const DemoToolbarRoot = styled('div', {
     },
     variants: [
       {
-        props: { codeOpen: true },
+        props: { expanded: true },
         style: {
           [theme.breakpoints.up('sm')]: {
             borderRadius: 0,
@@ -473,7 +473,7 @@ export interface DemoContainerProps {
   /** Focus handler used by the roving-tabindex hook. */
   onToolbarFocus?: React.FocusEventHandler<HTMLDivElement>;
   /** Whether the source viewer is currently expanded (drives the toolbar variant). */
-  codeOpen?: boolean;
+  expanded?: boolean;
   /**
    * Whether the code panel exposes a focused source snippet (e.g. emphasis
    * frames from `enhanceCodeEmphasis`). When `true`, the toolbar's expand
@@ -527,7 +527,7 @@ export function DemoContainer(props: DemoContainerProps) {
     toolbarLabel,
     onToolbarKeyDown,
     onToolbarFocus,
-    codeOpen,
+    expanded,
     hasSourceFocus,
     tabs,
     code,
@@ -556,8 +556,8 @@ export function DemoContainer(props: DemoContainerProps) {
     <React.Fragment>
       {tabs}
       {code != null ? (
-        <DemoCodeWindow ref={codeScrollRef} expanded={codeOpen}>
-          <DemoCodeWrapper ref={codeRef} expanded={codeOpen}>
+        <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
+          <DemoCodeWrapper ref={codeRef} expanded={expanded}>
             {code}
           </DemoCodeWrapper>
         </DemoCodeWindow>
@@ -566,7 +566,7 @@ export function DemoContainer(props: DemoContainerProps) {
   );
 
   return (
-    <DemoRoot data-code-open={codeOpen ? '' : undefined}>
+    <DemoRoot data-code-open={expanded ? '' : undefined}>
       {anchors}
       <DemoPreviewArea className="demo-preview" bg={resolvedBg} hideToolbar={hideToolbar}>
         <DemoInitialFocus ref={focusRef} tabIndex={-1} />
@@ -581,7 +581,7 @@ export function DemoContainer(props: DemoContainerProps) {
       {toolbar != null ? (
         <React.Fragment>
           <DemoToolbarRoot
-            codeOpen={codeOpen}
+            expanded={expanded}
             hasSourceFocus={hasSourceFocus}
             ref={toolbarRef}
             role="toolbar"
