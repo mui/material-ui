@@ -117,6 +117,15 @@ export const CodeSource = styled('div', {
   '& pre:has(> code[data-collapsible])': {
     overflow: 'visible',
     minWidth: 'fit-content',
+    // Expand stagger: when the focused region opens, frames directly bordering
+    // it grow at full speed while frames farther out wait out the first third —
+    // the bordering frames push them off-screen — then cover their height in the
+    // remaining two thirds. `--frame-expand-duration` is the single knob; the
+    // delayed frames still finish on time (delay + stagger duration = total).
+    '--frame-expand-duration': '0.3s',
+    '--frame-expand-stagger-delay': 'calc(var(--frame-expand-duration) / 3)',
+    '--frame-expand-stagger-duration':
+      'calc(var(--frame-expand-duration) - var(--frame-expand-stagger-delay))',
   },
 
   '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
@@ -478,9 +487,23 @@ export const CodeSource = styled('div', {
               maxHeight: 'unset',
               height: 'auto',
               overflow: 'clip',
-              transition: 'height 0.3s ease, opacity 0.3s ease, visibility 0s',
+              transition:
+                'height var(--frame-expand-stagger-duration) ease var(--frame-expand-stagger-delay), opacity 0.3s ease, visibility 0s',
             },
           } as any,
+        // Frames directly bordering the focused region run at full speed with no
+        // delay. `:has(+ visible)` catches the hidden frame above the region;
+        // `visible + frame` catches the one below. "Visible" is any typed frame
+        // except the hidden `-unfocused` overflow variants. These bordering
+        // frames push the delayed far frames off-screen during the first third
+        // before those start growing.
+        '& pre:has(> code[data-collapsible]) .frame:is(:not([data-frame-type]), [data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"]):has(+ .frame[data-frame-type]:not([data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"])), & pre:has(> code[data-collapsible]) .frame[data-frame-type]:not([data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"]) + .frame:is(:not([data-frame-type]), [data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"])':
+          {
+            '@supports (interpolate-size: allow-keywords)': {
+              transition:
+                'height var(--frame-expand-duration) ease, opacity 0.3s ease, visibility 0s',
+            },
+          },
         // Reset the indent shift and collapse the background extension when
         // expanded: the frame is back at its natural position, so zero
         // `--di-indent-shift` (the nested line pseudos inherit it) and the
