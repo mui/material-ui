@@ -114,7 +114,7 @@ This demo shows how to display multiple Snackbars without stacking them by using
 With an imperative API, [notistack](https://github.com/iamhosseindhv/notistack) lets you vertically stack multiple Snackbars without having to handle their open and close states.
 Even though this is discouraged in the Material Design guidelines, it is still a common pattern.
 
-{{"component": "file://./demos/integration-notistack/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/integration-notistack/index.ts", "collapseToEmpty": true}}
 
 :::warning
 Note that notistack prevents Snackbars from being [closed by pressing <kbd class="key">Escape</kbd>](#accessibility).
