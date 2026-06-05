@@ -7,7 +7,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function AlternateTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>

@@ -1,8 +1,8 @@
 import Slider from '@mui/material/Slider';
 
 export default function DevTools() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Slider
       defaultValue={30}
       sx={{
@@ -13,6 +13,6 @@ export default function DevTools() {
         },
       }}
     />
+    // @focus-end
   );
-  // @focus-end
 }

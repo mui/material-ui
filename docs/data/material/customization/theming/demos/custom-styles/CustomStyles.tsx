@@ -30,11 +30,11 @@ const theme = createTheme({
 });
 
 export default function CustomStyles() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <CustomCheckbox defaultChecked />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

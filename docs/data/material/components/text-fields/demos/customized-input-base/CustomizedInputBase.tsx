@@ -8,7 +8,7 @@ import DirectionsIcon from '@mui/icons-material/Directions';
 
 export default function CustomizedInputBase() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Paper
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}

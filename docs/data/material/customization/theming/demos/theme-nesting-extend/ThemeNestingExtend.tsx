@@ -13,7 +13,7 @@ const outerTheme = createTheme({
 
 export default function ThemeNestingExtend() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={outerTheme}>
       <Checkbox defaultChecked color="secondary" />
       <ThemeProvider

@@ -8,8 +8,8 @@ export default function ControlledCheckbox() {
     setChecked(event.target.checked);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Checkbox
       checked={checked}
       onChange={handleChange}
@@ -17,6 +17,6 @@ export default function ControlledCheckbox() {
         input: { 'aria-label': 'controlled' },
       }}
     />
+    // @focus-end
   );
-  // @focus-end
 }

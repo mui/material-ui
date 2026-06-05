@@ -8,7 +8,7 @@ const Div = styled('div')(({ theme }) => ({
 
 export default function TypographyTheme() {
   return (
-    // @focus
+    // @focus @padding 2
     <Div>{"This div's text looks like that of a button."}</Div>
   );
 }
