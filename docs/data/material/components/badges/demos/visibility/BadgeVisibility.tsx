@@ -10,7 +10,6 @@ const unreadMessagesCount = 4;
 
 export default function BadgeVisibility() {
   // @focus-start @padding 1
-  const [count, setCount] = React.useState(1);
   const [invisible, setInvisible] = React.useState(false);
 
   const handleBadgeVisibility = () => {

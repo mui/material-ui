@@ -12,6 +12,7 @@ const unreadMessagesCount = 4;
 
 export default function BadgeListItem() {
   return (
+    // @focus-start
     <Paper variant="outlined" sx={{ width: 320, maxWidth: '100%' }}>
       <List component="nav" aria-label="mail folders" sx={{ py: 0 }}>
         <ListItemButton
@@ -40,5 +41,6 @@ export default function BadgeListItem() {
         </ListItemButton>
       </List>
     </Paper>
+    // @focus-end
   );
 }
