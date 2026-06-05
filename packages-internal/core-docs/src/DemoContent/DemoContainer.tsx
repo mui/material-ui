@@ -361,6 +361,17 @@ export const DemoCodeWindow = styled('div', {
   borderBottomRightRadius: 12,
   // Don't chain the scroll to the page once the panel hits its ends.
   overscrollBehavior: 'contain',
+  // ---- Collapse-to-empty: suppress the vertical scrollbar ----
+  // A `collapseToEmpty` / `oversizedFocus: 'hide'` block collapses to an empty
+  // window (`<code data-focused-lines="0">`). Collapsed there is nothing to
+  // scroll, yet `overflowY: auto` still paints a 1px scrollbar: the inner
+  // `<pre>`'s `margin-top: -1` (which overlaps the toolbar border) leaves 1px of
+  // content above the window's top edge. That same overflow flashes mid-collapse
+  // as the content shrinks toward zero. Drop vertical scrolling while collapsed
+  // so no scrollbar can show; the expanded variant restores `overflowY: auto`.
+  '&:has(pre > code[data-focused-lines="0"])': {
+    overflowY: 'hidden',
+  },
   // Hold the horizontal scrollbar back while the gutter swap runs. The
   // attribute selectors out-specify the `expanded` variant below, so the lock
   // wins mid-animation.
@@ -390,6 +401,12 @@ export const DemoCodeWindow = styled('div', {
       props: { expanded: true },
       style: {
         overflowX: 'auto',
+        // Expanded, the empty-focus source is revealed and may exceed the
+        // height cap — restore vertical scrolling suppressed by the collapsed
+        // rule above.
+        '&:has(pre > code[data-focused-lines="0"])': {
+          overflowY: 'auto',
+        },
       },
     },
   ],

@@ -52,7 +52,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/link-router-with-theme/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/link-router-with-theme/index.ts", "collapseToEmpty": true}}
 
 :::warning
 This approach has limitations with TypeScript.
@@ -91,7 +91,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Tabs
 
-{{"component": "file://./demos/tabs-router/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/tabs-router/index.ts", "collapseToEmpty": true}}
 
 ### List
 
