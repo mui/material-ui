@@ -53,11 +53,11 @@ By default, the skeleton pulsates, but you can change the animation to a wave or
 
 ### Pulsate example
 
-{{"component": "file://./demos/you-tube/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/you-tube/index.ts", "collapseToEmpty": true}}
 
 ### Wave example
 
-{{"component": "file://./demos/facebook/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/facebook/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ## Inferring dimensions
 
@@ -69,7 +69,7 @@ It works well when it comes to typography as its height is set using `em` units.
 <Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
-{{"component": "file://./demos/typography/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/typography/index.ts", "collapseToEmpty": true}}
 
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will
@@ -85,7 +85,7 @@ loading ? (
 );
 ```
 
-{{"component": "file://./demos/children/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/children/index.ts", "collapseToEmpty": true}}
 
 ## Color
 

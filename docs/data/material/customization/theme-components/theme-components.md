@@ -212,7 +212,7 @@ This is especially handy if you're already using the `sx` prop with your compone
 The `sx` prop is a stable feature for customizing components since Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
 :::
 
-{{"component": "file://./demos/global-theme-override-sx/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/global-theme-override-sx/index.ts", "collapseToEmpty": true}}
 
 ```tsx
 const finalTheme = createTheme({

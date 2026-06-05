@@ -186,11 +186,11 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 - 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
 
-{{"component": "file://./demos/use/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/use/index.ts", "collapseToEmpty": true}}
 
 ### Customized hook
 
-{{"component": "file://./demos/customized-hook/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/customized-hook/index.ts", "collapseToEmpty": true}}
 
 Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
 
@@ -365,7 +365,7 @@ const filterOptions = createFilterOptions({
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-{{"component": "file://./demos/filter/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/filter/index.ts", "collapseToEmpty": true}}
 
 ### Advanced
 

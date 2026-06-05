@@ -8,7 +8,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ### display
 
-{{"component": "file://./demos/display/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/display/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ display: 'flex' }}>…
@@ -21,7 +21,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-direction" target="_blank" rel="noopener">flex-direction</a>
 on MDN.
 
-{{"component": "file://./demos/flex-direction/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/flex-direction/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ flexDirection: 'row' }}>…
@@ -36,7 +36,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-wrap" target="_blank" rel="noopener">flex-wrap</a>
 on MDN.
 
-{{"component": "file://./demos/flex-wrap/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/flex-wrap/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ flexWrap: 'nowrap' }}>…
@@ -50,7 +50,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/justify-content" target="_blank" rel="noopener">justify-content</a>
 on MDN.
 
-{{"component": "file://./demos/justify-content/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/justify-content/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ justifyContent: 'flex-start' }}>…
@@ -67,7 +67,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-items" target="_blank" rel="noopener">align-items</a>
 on MDN.
 
-{{"component": "file://./demos/align-items/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/align-items/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ alignItems: 'flex-start' }}>…
@@ -83,7 +83,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-content" target="_blank" rel="noopener">align-content</a>
 on MDN.
 
-{{"component": "file://./demos/align-content/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/align-content/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ alignContent: 'flex-start' }}>…
@@ -102,7 +102,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/order" target="_blank" rel="noopener">order</a>
 on MDN.
 
-{{"component": "file://./demos/order/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/order/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ order: 2 }}>Item 1</Box>
@@ -116,7 +116,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-grow" target="_blank" rel="noopener">flex-grow</a>
 on MDN.
 
-{{"component": "file://./demos/flex-grow/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/flex-grow/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ flexGrow: 1 }}>Item 1</Box>
@@ -130,7 +130,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex-shrink" target="_blank" rel="noopener">flex-shrink</a>
 on MDN.
 
-{{"component": "file://./demos/flex-shrink/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/flex-shrink/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box sx={{ width: '100%' }}>Item 1</Box>
@@ -144,7 +144,7 @@ For more information please see
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/align-self" target="_blank" rel="noopener">align-self</a>
 on MDN.
 
-{{"component": "file://./demos/align-self/index.ts", "defaultCodeOpen": false, "bg": true}}
+{{"component": "file://./demos/align-self/index.ts", "collapseToEmpty": true, "bg": true}}
 
 ```jsx
 <Box>Item 1</Box>

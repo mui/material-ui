@@ -179,11 +179,11 @@ Focus a tab and navigate with arrow keys to notice the difference, for example <
 <Tabs selectionFollowsFocus />
 ```
 
-{{"component": "file://./demos/accessible-tabs1/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/accessible-tabs1/index.ts", "collapseToEmpty": true}}
 
 ```jsx
 /* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 
-{{"component": "file://./demos/accessible-tabs2/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/accessible-tabs2/index.ts", "collapseToEmpty": true}}

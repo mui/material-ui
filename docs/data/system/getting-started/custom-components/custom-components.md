@@ -19,4 +19,4 @@ This is useful if you need to optimize for the smallest bundle size possible.
 
 The demo below illustrates how this works:
 
-{{"component": "file://./demos/combining-style-functions-demo/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/combining-style-functions-demo/index.ts", "initialExpanded": true}}

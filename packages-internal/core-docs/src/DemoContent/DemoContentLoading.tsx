@@ -1,7 +1,6 @@
 import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
-import { hastToJsx } from '@mui/internal-docs-infra/pipeline/hastUtils';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
@@ -25,10 +24,15 @@ export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions> & {
 };
 
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
-  const { source } = useCodeFallback(props);
+  // `code` is the ready `<code>` for the displayed file — the hook applies
+  // `data-collapsible`, `data-total-lines`, and `data-focused-lines` to match
+  // the hydrated `<Pre>`, so the collapse CSS sizes the window identically
+  // before highlighting swaps in. `focusedLines` is the collapsed window size
+  // (0 for a `collapseToEmpty` / `oversizedFocus: 'hide'` block).
+  const { code: fallbackCode, focusedLines } = useCodeFallback(props);
   const {
     hideToolbar,
-    defaultCodeOpen,
+    initialExpanded,
     component,
     fileNames,
     bg,
@@ -68,32 +72,37 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
 
   // Show the SSR'd source by default so the code block is visible before
   // hydration. The live `DemoContent` then takes over and respects the
-  // author's `defaultCodeOpen` (collapsed unless explicitly opted in) — a
+  // author's `initialExpanded` (collapsed unless explicitly opted in) — a
   // brief collapse-on-hydration is preferable to an empty placeholder that
   // hides documented source code during initial paint.
-  const codeOpen = defaultCodeOpen !== false;
+  const showCode = initialExpanded !== false;
+
+  // An empty-focus block (`focusedLines === 0`) has nothing to show while
+  // collapsed, so render the shell *closed*: a rounded toolbar over a collapsed,
+  // empty window, matching the hydrated demo's default state. Keeping it "open"
+  // would square the toolbar against an empty window (and leave the window's
+  // vertical scrollbar suppression off). Other demos stay open so their focused
+  // snippet is visible under the toolbar.
+  const codeOpen = showCode && focusedLines !== 0;
 
   // Only render the file tab bar when the author explicitly opted into an
   // open code panel — the live demo starts on the first file, so a multi-file
   // tab list is meaningless until the user actually opens the source viewer.
   const tabs =
-    defaultCodeOpen === true && fileNames && fileNames.length > 1 ? (
+    initialExpanded === true && fileNames && fileNames.length > 1 ? (
       <DemoFileTabBarSkeleton aria-hidden />
     ) : null;
 
   // Reuse the live `CodeSource` wrapper so the SSR'd code panel matches the
   // hydrated demo exactly (dark background, rounded bottom corners, padding,
-  // and the `enhanceCodeEmphasis` styles). The SSR `source` ReactNode is just
-  // the inner tokens, so wrap it in `<pre><code>` to satisfy `CodeSource`'s
-  // descendant selectors.
-  const code = codeOpen ? (
-    // TODO: use defaultCodeOpen prop
-    <CodeSource expanded={false}>
-      <pre>
-        <code data-collapsible="">{source ? hastToJsx(source) : null}</code>
-      </pre>
-    </CodeSource>
-  ) : null;
+  // and the `enhanceCodeEmphasis` styles). `fallbackCode` is the ready `<code>`
+  // (with the `data-*` attributes the collapse CSS keys off), so it only needs
+  // wrapping in `<pre>` to satisfy `CodeSource`'s descendant selectors. Render
+  // the collapsed frame layout (`expanded={false}`) — full expansion needs the
+  // live JS; the window stays sized to the focused snippet (empty for an
+  // empty-focus block) until `DemoContent` hydrates.
+  const code =
+    showCode && fallbackCode ? <CodeSource expanded={false}>{fallbackCode}</CodeSource> : null;
 
   return (
     <DemoContainer
