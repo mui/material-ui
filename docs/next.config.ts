@@ -166,7 +166,11 @@ export default withDocsInfra({
                 options: {
                   // The CSS in DemoContent.tsx uses `data-frame-indent` to
                   // shift highlighted/focus frames left when collapsed.
-                  emphasisOptions: { emitFrameIndent: true },
+                  emphasisOptions: {
+                    emitFrameIndent: true,
+                    focusFramesMaxSize: 12,
+                    oversizedFocus: 'hide',
+                  },
                   requireClient: '@mui/internal-core-docs/utils/createDemoClient',
                   transformTypescriptToJavascript: true,
                 },
