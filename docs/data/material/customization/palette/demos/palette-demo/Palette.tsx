@@ -17,7 +17,7 @@ const theme = createTheme({
 
 export default function Palette() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>

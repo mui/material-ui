@@ -8,7 +8,7 @@ export default function CheckboxesTags() {
   const [value, setValue] = React.useState<typeof top100Films>([]);
 
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"

@@ -12,8 +12,8 @@ export default function VerticalToggleButtons() {
     setView(nextView);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ToggleButtonGroup
       orientation="vertical"
       value={view}
@@ -30,6 +30,6 @@ export default function VerticalToggleButtons() {
         <ViewQuiltIcon />
       </ToggleButton>
     </ToggleButtonGroup>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -15,7 +15,7 @@ const style = {
 
 export default function ListDividers() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <List sx={style} aria-label="mailbox folders">
       <ListItem>
         <ListItemText primary="Inbox" />

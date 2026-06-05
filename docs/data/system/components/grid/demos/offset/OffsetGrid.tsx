@@ -15,8 +15,8 @@ const Item = styled('div')(({ theme }) => ({
 }));
 
 export default function OffsetGrid() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Grid container spacing={3} sx={{ flexGrow: 1 }}>
       <Grid size={{ xs: 6, md: 2 }} offset={{ xs: 3, md: 0 }}>
         <Item>1</Item>
@@ -31,6 +31,6 @@ export default function OffsetGrid() {
         <Item>4</Item>
       </Grid>
     </Grid>
+    // @focus-end
   );
-  // @focus-end
 }

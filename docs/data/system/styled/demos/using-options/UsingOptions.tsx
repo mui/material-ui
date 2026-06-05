@@ -56,8 +56,8 @@ const MyThemeComponent = styled('div', {
 }));
 
 export default function UsingOptions() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent sx={{ m: 1 }} color="primary" variant="dashed">
         Primary
@@ -66,6 +66,6 @@ export default function UsingOptions() {
         Secondary
       </MyThemeComponent>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

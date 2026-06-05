@@ -13,8 +13,8 @@ export default function ControlledTooltips() {
     setOpen(true);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Tooltip
       describeChild
       open={open}
@@ -24,6 +24,6 @@ export default function ControlledTooltips() {
     >
       <Button>Controlled</Button>
     </Tooltip>
+    // @focus-end
   );
-  // @focus-end
 }

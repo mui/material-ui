@@ -31,7 +31,7 @@ const theme = createTheme({
 
 export default function GlobalCss() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button>Overrides CSS</Button>
     </ThemeProvider>

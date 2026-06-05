@@ -31,7 +31,7 @@ const StyledMenubar = styled('div')(({ theme }) => ({
 }));
 export function Menubar(props: React.ComponentProps<typeof BaseMenubar>) {
   return (
-    // @focus
+    // @focus @padding 2
     <BaseMenubar render={<StyledMenubar />} {...props} />
   );
 }
