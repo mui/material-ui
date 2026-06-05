@@ -35,7 +35,7 @@ This new major is part of a coordinated effort across the entire product suite; 
   - [Autocomplete, Backdrop, Tooltip](#autocomplete-backdrop-tooltip)
 - [Platform cleanup](#platform-cleanup)
 - [Keyboard navigation](#keyboard-navigation)
-  - [Roving TabIndex across menus and navigation](#roving-tabindex-across-menus-and-navigation)
+  - [Roving tabindex across menus and navigation](#roving-tabindex-across-menus-and-navigation)
   - [Autocomplete](#autocomplete)
   - [CSS rule cleanup (partial revert)](#css-rule-cleanup-partial-revert)
   - [Repository note](#repository-note)
@@ -98,7 +98,7 @@ See the [Menubar](/material-ui/react-menubar/) documentation for API details and
 
 ### Derived colors with `color-mix()`
 
-Theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables.
+The theme in v9 extends the CSS variables system to generate `color-mix()` values on top of the default Material UI theme variables.
 This gives you:
 
 - More precise control over derived colors.
@@ -126,7 +126,7 @@ Autocomplete
 
 Backdrop
 
-- Remove `aria-hidden` by default so the backdrop is no longer aggressively hiding content from assistive technologies (a11y improvements).
+- Remove `aria-hidden` by default so the backdrop no longer aggressively hides content from assistive technologies.
 
 ButtonBase
 
@@ -154,7 +154,7 @@ Tooltip
 
 ## Platform cleanup
 
-Platform cleanup and docs infrastructure in v9 focus on cleanup, maintainability, and more efficient developer workflows.
+Platform and docs infrastructure work in v9 focuses on maintainability and more efficient developer workflows.
 
 Material UI
 
@@ -162,7 +162,7 @@ Material UI
 
 - Bundle size improvements.
 
-- `sx` prop performance improvements up to 30% for a heavy sx usage (details in [PR #44254](https://github.com/mui/material-ui/pull/44254)).
+- `sx` prop performance improvements up to 30% for heavy `sx` usage (details in [PR #44254](https://github.com/mui/material-ui/pull/44254)).
 
 System
 
@@ -172,12 +172,12 @@ System
 
 Keyboard navigation and accessibility improvements keep moving the ecosystem forward.
 
-### Roving TabIndex across menus and navigation
+### Roving tabindex across menus and navigation
 
-- Improved Roving TabIndex keyboard navigation for Stepper, Tabs, and MenuList.
+- Improved roving tabindex keyboard navigation for Stepper, Tabs, and MenuList.
 - Additional accessibility improvements for Stepper, MenuList, and Tabs.
 
-Improved roving TabIndex focus is a key v9 highlight for keyboard-first components like Menu, Stepper, and Tabs.
+Improved roving tabindex focus is a key v9 highlight for keyboard-first components like Menu, Stepper, and Tabs.
 
 ### Autocomplete
 
@@ -195,9 +195,9 @@ Improved roving TabIndex focus is a key v9 highlight for keyboard-first componen
 
 ## Breaking changes and migration
 
-Main breaking changes are related to removal of deprecated props such as `component` and `componentsProps` across the library, removal of deprecated system props from layout components, and accessibility improvements for Tabs and Menu.
+The main breaking changes are related to the removal of deprecated props such as `component` and `componentsProps` across the library, the removal of deprecated system props from layout components, and accessibility improvements for Tabs and Menu.
 
-The main benefit of the breaking changes are ~3% bundle size reduction compared to v7 and overall performance gain.
+The main benefits of the breaking changes include a roughly 3% bundle size reduction compared to v7 and overall performance gains.
 
 For a consolidated upgrade path from Material UI v7, follow the [Upgrade to v9](/material-ui/migration/upgrade-to-v9/) migration guide.
 For earlier majors, find the [v6](/material-ui/migration/upgrade-to-v6/) and [v7](/material-ui/migration/upgrade-to-v7/) upgrade guides.

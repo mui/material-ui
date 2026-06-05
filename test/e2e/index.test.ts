@@ -86,6 +86,44 @@ describe('e2e', () => {
       await expect(page.getByText('ok')).toBeFocused();
     });
 
+    it('should loop the tab key in positive tabIndex order', async () => {
+      await renderFixture('FocusTrap/PositiveTabIndexFocusTrap');
+
+      await expect(page.getByTestId('root')).toBeFocused();
+
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 2')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 2')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('normal 3')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('normal 1')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 3')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 2')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.getByText('indexed 1')).toBeFocused();
+    });
+
     it('should loop the tab key after activation', async () => {
       await renderFixture('FocusTrap/DefaultOpenLazyFocusTrap');
 

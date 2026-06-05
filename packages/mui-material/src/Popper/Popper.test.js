@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
-import { ThemeProvider } from '@mui/system';
-import createTheme from '@mui/system/createTheme';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
 import describeConformance from '../../test/describeConformance';
@@ -280,6 +279,76 @@ describe('<Popper />', () => {
       clock.tick(0);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
+    });
+
+    it('opens on the next task when reduced motion is always', () => {
+      const handleEntered = vi.fn();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Popper {...defaultProps} open={props.open} transition>
+              {({ TransitionProps }) => (
+                <Grow {...TransitionProps} timeout={250} onEntered={handleEntered}>
+                  <span>Hello World</span>
+                </Grow>
+              )}
+            </Popper>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test open={false} />);
+
+      setProps({ open: true });
+
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+      clock.tick(0);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
+      expect(screen.getByRole('tooltip')).to.have.text('Hello World');
+    });
+
+    it('allows transition slot props to opt out of reduced motion', () => {
+      const handleEntered = vi.fn();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Popper {...defaultProps} open={props.open} transition>
+              {({ TransitionProps }) => (
+                <Grow
+                  {...TransitionProps}
+                  timeout={250}
+                  onEntered={handleEntered}
+                  disablePrefersReducedMotion
+                >
+                  <span>Hello World</span>
+                </Grow>
+              )}
+            </Popper>
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test open={false} />);
+
+      setProps({ open: true });
+
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+      clock.tick(0);
+      expect(handleEntered).toHaveBeenCalledTimes(0);
+      clock.tick(250);
+      expect(handleEntered).toHaveBeenCalledTimes(1);
     });
   });
 

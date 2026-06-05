@@ -1095,10 +1095,10 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
 
-    it('navigates between different tags', () => {
+    it('navigates between different tags', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1110,22 +1110,22 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
+      await user.keyboard('{Backspace}');
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(textbox).toHaveFocus();
     });
 
-    it('deletes a focused tag when pressing the delete key', () => {
+    it('deletes a focused tag when pressing the delete key', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      render(
+      const { user } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
@@ -1138,24 +1138,136 @@ describe('<Autocomplete />', () => {
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
       // check that no tags get deleted when the tag is not a focused tag
-      fireEvent.keyDown(textbox, { key: 'Delete' });
+      await user.keyboard('{Delete}');
 
       expect(handleChange.callCount).to.equal(0);
       expect(textbox).toHaveFocus();
 
       // expect on focused tag to delete when pressing delete key
-      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(secondSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(secondSelectedValue, { key: 'ArrowLeft' });
+      await user.keyboard('{ArrowLeft}');
 
       expect(firstSelectedValue).toHaveFocus();
 
-      fireEvent.keyDown(firstSelectedValue, { key: 'Delete' });
+      await user.keyboard('{Delete}');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('can delete one tag after another', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(textbox).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][1]).to.deep.equal([]);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should remove only the focused chip when pressing the delete key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Delete}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should remove only the focused chip when pressing the backspace key', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      act(() => {
+        firstSelectedValue.focus();
+      });
+      await user.keyboard('{Backspace}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should suppress a spurious Backspace on the input immediately after removing a focused chip', async () => {
+      const handleChange = spy();
+      const options = ['one', 'two', 'three'];
+      const { user } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      const firstSelectedValue = screen.getByRole('button', { name: 'one' });
+
+      await user.keyboard('{ArrowLeft}{ArrowLeft}{ArrowLeft}');
+
+      // Removing the focused chip sets the suppression flag.
+      // Use fireEvent (not user.keyboard) so the setTimeout(0) auto-clear
+      // is not flushed before the next keydown.
+      fireEvent.keyDown(firstSelectedValue, { key: 'Backspace' });
 
       expect(handleChange.callCount).to.equal(1);
       expect(textbox).toHaveFocus();
+
+      // Simulate the spurious Backspace VoiceOver synthesises on the input
+      // right after focus returns to it — should be suppressed.
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['two', 'three']);
     });
 
     it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
@@ -3049,6 +3161,33 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: freeSolo', () => {
+    it('should not reset a controlled inputValue on mount', () => {
+      const handleInputChange = spy();
+
+      function App() {
+        const [inputValue, setInputValue] = React.useState('Option 1');
+
+        return (
+          <Autocomplete
+            freeSolo
+            value={null}
+            inputValue={inputValue}
+            options={['Option 1', 'Option 2']}
+            onInputChange={(event, newInputValue, reason) => {
+              handleInputChange(event, newInputValue, reason);
+              setInputValue(newInputValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        );
+      }
+
+      render(<App />);
+
+      expect(screen.getByRole('combobox').value).to.equal('Option 1');
+      expect(handleInputChange.callCount).to.equal(0);
+    });
+
     it('should reset input when controlled value changes to null', async () => {
       function App() {
         const [value, setValue] = React.useState('foo');

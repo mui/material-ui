@@ -4,17 +4,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useOnMount from '@mui/utils/useOnMount';
 import useTimeout from '@mui/utils/useTimeout';
-import { keyframes, styled } from '../zero-styled';
+import { keyframes, css, styled, useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
 import useEventCallback from '../utils/useEventCallback';
+import useReducedMotion from '../transitions/useReducedMotion';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 const EMPTY_OBJ = {};
 const EMPTY_ARRAY = [];
+const NOOP = () => {};
 
 /**
  * Keep the same DOM order TouchRipple had when it used react-transition-group:
@@ -151,6 +153,48 @@ const pulsateKeyframe = keyframes`
   }
 `;
 
+function getAnimationStyles(theme) {
+  if (theme.motion.reducedMotion === 'always') {
+    return null;
+  }
+
+  const styles = css`
+    &.${touchRippleClasses.rippleVisible} {
+      animation-name: ${enterKeyframe};
+      animation-duration: ${DURATION}ms;
+      animation-timing-function: ${theme.transitions.easing.easeInOut};
+    }
+
+    &.${touchRippleClasses.ripplePulsate} {
+      animation-duration: ${theme.transitions.duration.shorter}ms;
+    }
+
+    & .${touchRippleClasses.childLeaving} {
+      animation-name: ${exitKeyframe};
+      animation-duration: ${DURATION}ms;
+      animation-timing-function: ${theme.transitions.easing.easeInOut};
+    }
+
+    & .${touchRippleClasses.childPulsate} {
+      animation-name: ${pulsateKeyframe};
+      animation-duration: 2500ms;
+      animation-timing-function: ${theme.transitions.easing.easeInOut};
+      animation-iteration-count: infinite;
+      animation-delay: 200ms;
+    }
+  `;
+
+  if (theme.motion.reducedMotion === 'system') {
+    return css`
+      @media (prefers-reduced-motion: no-preference) {
+        ${styles}
+      }
+    `;
+  }
+
+  return styles;
+}
+
 export const TouchRippleRoot = styled('span', {
   name: 'MuiTouchRipple',
   slot: 'Root',
@@ -178,14 +222,20 @@ export const TouchRippleRipple = styled(Ripple, {
   &.${touchRippleClasses.rippleVisible} {
     opacity: 0.3;
     transform: scale(1);
-    animation-name: ${enterKeyframe};
-    animation-duration: ${DURATION}ms;
-    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
   }
 
-  &.${touchRippleClasses.ripplePulsate} {
-    animation-duration: ${({ theme }) => theme.transitions.duration.shorter}ms;
+  & .${touchRippleClasses.childLeaving} {
+    opacity: 0;
   }
+
+  & .${touchRippleClasses.childPulsate} {
+    position: absolute;
+    /* @noflip */
+    left: 0px;
+    top: 0;
+  }
+
+  ${({ theme }) => getAnimationStyles(theme)}
 
   & .${touchRippleClasses.child} {
     opacity: 1;
@@ -195,25 +245,6 @@ export const TouchRippleRipple = styled(Ripple, {
     border-radius: 50%;
     background-color: currentColor;
   }
-
-  & .${touchRippleClasses.childLeaving} {
-    opacity: 0;
-    animation-name: ${exitKeyframe};
-    animation-duration: ${DURATION}ms;
-    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
-  }
-
-  & .${touchRippleClasses.childPulsate} {
-    position: absolute;
-    /* @noflip */
-    left: 0px;
-    top: 0;
-    animation-name: ${pulsateKeyframe};
-    animation-duration: 2500ms;
-    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
-    animation-iteration-count: infinite;
-    animation-delay: 200ms;
-  }
 `;
 
 /**
@@ -221,6 +252,8 @@ export const TouchRippleRipple = styled(Ripple, {
  */
 const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTouchRipple' });
+  const theme = useTheme();
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
 
   const { center: centerProp = false, classes = EMPTY_OBJ, className, ...other } = props;
   // Store ripples as data so we can keep exiting ripples mounted until their
@@ -302,7 +335,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     rippleCallback.current = cb;
   });
 
-  const start = useEventCallback((event = EMPTY_OBJ, options = EMPTY_OBJ, cb = () => {}) => {
+  const start = useEventCallback((event = EMPTY_OBJ, options = EMPTY_OBJ, cb = NOOP) => {
     const {
       pulsate = false,
       center = centerProp || options.pulsate,
@@ -416,7 +449,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
             childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
             childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
           }}
-          timeout={DURATION}
+          timeout={reducedMotion.shouldReduceMotion ? 0 : DURATION}
           pulsate={ripple.pulsate}
           rippleX={ripple.rippleX}
           rippleY={ripple.rippleY}
