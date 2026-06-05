@@ -34,6 +34,22 @@ export const DemoRoot = styled('div')(({ theme }) => ({
   // per demo and multiplies Paint events (~30x on a typical docs page)
   // without further reducing layout cost.
   contain: 'layout style',
+
+  // ---- Empty-focus collapse: re-round the toolbar's bottom corners ----
+  // A `collapseToEmpty` / `oversizedFocus: 'hide'` block renders
+  // `<code data-focused-lines="0">` and, while collapsed, shows nothing (see the
+  // padding/frame rules in `CodeSource`). With an empty collapsed window the
+  // toolbar is the visual bottom of the demo, so its bottom corners should
+  // round — but `DemoToolbarRoot`'s `hasSourceFocus` variant squares them
+  // unconditionally (it assumes a focused snippet is always visible below). Undo
+  // that here while collapsed. `data-code-open` (set on expand) drops the rule
+  // so the corners square off as the source appears; the toolbar's own
+  // `transition: border-radius` animates the change.
+  '&:has(pre > code[data-focused-lines="0"]):not([data-code-open]) [role="toolbar"]': {
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: '0 0 12px 12px',
+    },
+  },
 }));
 
 // Outer preview wrapper — visual container around the rendered demo.
@@ -530,7 +546,7 @@ export function DemoContainer(props: DemoContainerProps) {
   );
 
   return (
-    <DemoRoot>
+    <DemoRoot data-code-open={codeOpen ? '' : undefined}>
       {anchors}
       <DemoPreviewArea className="demo-preview" bg={resolvedBg} hideToolbar={hideToolbar}>
         <DemoInitialFocus ref={focusRef} tabIndex={-1} />
