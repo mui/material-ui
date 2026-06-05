@@ -351,6 +351,14 @@ export default defineConfig(
     },
   },
   {
+    files: [`test/noop-vite-sandbox/**/*${EXTENSION_TS}`],
+    rules: {
+      'import/extensions': 'off',
+      'import/no-unresolved': 'off',
+      'import/no-relative-packages': 'off',
+    },
+  },
+  {
     files: ['docs/src/pages/premium-themes/onepirate/modules/form/RFTextField.js'],
     rules: {
       // Otherwise, running docs:typescript:formatted rearranges the imports and also removes the eslint-disable comment

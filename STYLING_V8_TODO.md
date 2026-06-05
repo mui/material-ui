@@ -135,7 +135,7 @@ The noop engine exists and works. The gap is documentation and long-term mechani
 - [ ] Decide whether to also implement Option B (subpath `@mui/material/css/Slider`) or Option C (`exports` condition) for a future zero-config setup, or defer.
 - [ ] Add an automated CI test: build the non-Emotion entry point and assert **zero** `@emotion/*` modules in the output graph.
 - [ ] Audit transitive deps for accidental Emotion imports (`@mui/system`, `zero-styled`, `styleFunctionSx`, `GlobalStyles`, `keyframes`/`css`).
-- [ ] Confirm `zero-styled` → `styles/styled` → `@mui/styled-engine` alias fully resolves to `-noop` on the non-Emotion path (including `css`, `keyframes`, `internal_serializeStyles`, `StyledEngineProvider`, `GlobalStyles`).
+- ✅ Confirmed `@mui/styled-engine` alias resolves to `-noop` in `test/noop-vite-sandbox` — production build contains zero `@emotion/*` runtime. The only `emotion` string in the output is the `__emotion_real` property-name guard in `@mui/system/createStyled`, which is a string literal, not an import.
 
 ### 3. Finish the single-component model for Slider _(both paths)_
 
@@ -197,7 +197,10 @@ The `sx` prop requires Emotion and is intentionally unsupported on the non-Emoti
 
 ### 8. Bundle size validation _(both paths, as a comparison)_
 
-- [ ] Build two minimal Vite apps (`Slider` + `Button` via Emotion path vs non-Emotion path); report JS bundle sizes (raw + gzip).
+- ✅ `test/noop-vite-sandbox` — non-Emotion Vite app with Slider. Current baseline: **276 KB raw / 88 KB gzip JS**, 32 KB CSS. Run `pnpm -F @mui-internal/noop-vite-sandbox build`.
+  - Notable: `process.env.NODE_ENV` must be defined explicitly via `vite.config.ts` `define` — MUI source uses Node-style env checks that Vite does not polyfill. The JSX-in-`.js` plugin is also required since MUI source files use `.js` extension with JSX syntax.
+  - Only Slider can be used without a `ThemeProvider` today — other components call `useTheme()` at render time and crash without a provider context.
+- [ ] Build a matching `test/emotion-vite-sandbox` (Emotion path, same Slider) and report the delta.
 - [ ] Add the measurement to the size-snapshot tooling so a regression (Emotion leaking into the non-Emotion path) fails CI.
 
 ### 9. Types, tests, docs _(both paths)_
