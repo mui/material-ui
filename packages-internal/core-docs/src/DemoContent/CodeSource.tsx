@@ -194,7 +194,7 @@ export const CodeSource = styled('div', {
   '& .frame[data-frame-type="highlighted"], & .frame[data-frame-type="highlighted-unfocused"]': {
     background: alpha(theme.palette.primary.main, 0.18),
     borderRadius: 8,
-    margin: '0 6px',
+    margin: '0 -6px',
     padding: '0 6px',
   },
 
@@ -376,12 +376,88 @@ export const CodeSource = styled('div', {
     {
       transition: 'transform 0.3s ease',
     },
+  // Highlight backgrounds for the collapsed/focused view are painted by a
+  // pseudo-element rather than the element's own `background`, so indent-
+  // shifting a frame left can extend the tint back to the code's right edge by
+  // animating one always-rounded box (its `width`). There are no element
+  // corners to square and un-square, so the un-indent animation stays smooth.
+  // `--di-indent-shift` is published per indent level on the frame (below) and
+  // inherited by nested lines, so a frame and its highlighted lines extend by
+  // the same amount. The frame paints via `::after` (its `::before` is the
+  // frame description badge); lines paint via `::before` (their `::after` is
+  // the line description badge). Each pseudo sits at `z-index: -1` behind the
+  // code text; `isolation` scopes that stacking to the frame.
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"]': {
+    position: 'relative',
+    isolation: 'isolate',
+    background: 'transparent',
+  },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl]': {
+    position: 'relative',
+    background: 'transparent',
+  },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"]::after, & pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl]::before':
+    {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      width: 'calc(100% + var(--di-indent-shift, 0px))',
+      zIndex: -1,
+      transition: 'width 0.3s ease',
+      pointerEvents: 'none',
+    },
+  // Frame tint — a single block, always fully rounded.
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"]::after': {
+    background: alpha(theme.palette.primary.main, 0.18),
+    borderRadius: 8,
+  },
+  // A truncated highlighted frame rounds only its visible end (mirrors the
+  // element-level `data-frame-truncated` rules, which the now-transparent
+  // element background no longer shows).
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"][data-frame-truncated="visible"]::after':
+    {
+      borderRadius: '8px 8px 0 0',
+    },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"][data-frame-truncated="hidden"]::after':
+    {
+      borderRadius: '0 0 8px 8px',
+    },
+  // Line tint — matches the line's `data-hl` tier and its position rounding
+  // (the pseudo is the whole line highlight, not just an extension).
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl]::before':
+    {
+      background: alpha(theme.palette.primary.main, 0.18),
+    },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl="strong"]::before':
+    {
+      background: alpha(theme.palette.primary.main, 0.32),
+    },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl][data-hl-position="single"]::before':
+    {
+      borderRadius: 8,
+    },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl][data-hl-position="start"]::before':
+    {
+      borderRadius: '8px 8px 0 0',
+    },
+  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"] .line[data-hl][data-hl-position="end"]::before':
+    {
+      borderRadius: '0 0 8px 8px',
+    },
+  // Per indent level: pull the frame left and publish the extension width (the
+  // `level * 2ch` shift plus 6px, so the tint reaches a touch past the code's
+  // right edge) as a custom property the frame and nested line pseudos read.
   ...Object.fromEntries(
     Array.from({ length: 8 }, (_unused, idx) => {
       const level = idx + 1;
       return [
         `& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"][data-frame-indent="${level}"], & pre:has(> code[data-collapsible]) .frame[data-frame-type="focus"][data-frame-indent="${level}"]`,
-        { transform: `translateX(-${level * 2}ch)` },
+        {
+          transform: `translateX(-${level * 2}ch)`,
+          '--di-indent-shift': `calc(${level * 2}ch + 6px)`,
+        },
       ];
     }),
   ),
@@ -405,15 +481,18 @@ export const CodeSource = styled('div', {
               transition: 'height 0.3s ease, opacity 0.3s ease, visibility 0s',
             },
           } as any,
-        // Reset indent shift when expanded. Must match the per-indent base
-        // rules' specificity (which include `[data-frame-indent="N"]`) or the
-        // base `translateX(-Nch)` would still win.
+        // Reset the indent shift and collapse the background extension when
+        // expanded: the frame is back at its natural position, so zero
+        // `--di-indent-shift` (the nested line pseudos inherit it) and the
+        // frame and line pseudos animate their `width` back to natural. Must
+        // match the per-indent base rules' specificity (which include
+        // `[data-frame-indent="N"]`) or the base values would still win.
         ...Object.fromEntries(
           Array.from({ length: 8 }, (_unused, idx) => {
             const level = idx + 1;
             return [
               `& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"][data-frame-indent="${level}"], & pre:has(> code[data-collapsible]) .frame[data-frame-type="focus"][data-frame-indent="${level}"]`,
-              { transform: 'translateX(0)' },
+              { transform: 'translateX(0)', '--di-indent-shift': '0px' },
             ];
           }),
         ),
