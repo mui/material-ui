@@ -7,103 +7,25 @@ import * as semver from 'semver';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
+import { withDeploymentConfig } from '@mui/internal-docs-infra/withDocsInfra';
 import { findPages } from './src/modules/utils/find';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
-// Shared alias list, paths relative to the workspace root. For turbopack, prefixed
-// with `../` (relative to `docs/`), and for webpack, resolved absolute.
-const aliasEntries: ReadonlyArray<readonly [string, string]> = [
-  ['@mui/material', 'packages/mui-material/src'],
-  ['@mui/material/package.json', 'packages/mui-material/package.json'],
-  ['@mui/internal-core-docs', 'packages-internal/core-docs/src'],
-  ['@mui/styled-engine', 'packages/mui-styled-engine/src'],
-  ['@mui/system', 'packages/mui-system/src'],
-  ['@mui/system/package.json', 'packages/mui-system/package.json'],
-  ['@mui/private-theming', 'packages/mui-private-theming/src'],
-  ['@mui/utils', 'packages/mui-utils/src'],
-  ['@mui/material-nextjs', 'packages/mui-material-nextjs/src'],
-];
-
-const turbopackResolveAlias: Record<string, string> = {
-  ...Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`])),
-  // Bare `@mui/icons-material` → ESM index for namespace interop; deep imports
-  // (`@mui/icons-material/Add`) fall through to the installed package.
-  '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
-  // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
-  docs: '.',
-};
-
-const markdownLoaderBase = {
-  workspaceRoot,
-  languagesInProgress: [],
-  packages: [
-    {
-      productId: 'material-ui',
-      paths: [
-        path.join(workspaceRoot, 'packages/mui-lab/src'),
-        path.join(workspaceRoot, 'packages/mui-material/src'),
-      ],
-    },
-  ],
-  env: {
-    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    LIB_VERSION: pkg.version,
-  },
-};
-
-export default withDocsInfra({
+export default withDeploymentConfig({
   experimental: {
     // The TS7 side-by-side alias (@typescript/typescript6) ships no `tsc` bin,
     // which the Next.js >= 16.3 setup check requires even with
     // `typescript.ignoreBuildErrors` set. Use the TS6 JS API instead.
     useTypeScriptCli: false,
   },
-  turbopack: {
-    resolveAlias: turbopackResolveAlias,
-    resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
-    rules: {
-      // Turbopack requires serializable loader options, so `ignoreLanguagePages`
-      // (a function) is omitted. Safe while docs is English-only in SSR.
-      '*.md': [
-        // `.md?muiMarkdown` → markdown loader (mirrors the webpack `oneOf` first branch).
-        {
-          condition: { query: /[?&]muiMarkdown(?=&|$)/ },
-          loaders: [{ loader: '@mui/internal-markdown/loader', options: markdownLoaderBase }],
-          as: '*.js',
-        },
-        // Non-muiMarkdown `.md` (e.g. `import terms from './terms.md'`) → raw source.
-        // `{ not: 'foreign' }` keeps raw-loader away from node_modules / Next.js internals.
-        {
-          condition: {
-            all: [{ not: 'foreign' }, { not: { query: /[?&]muiMarkdown(?=&|$)/ } }],
-          },
-          loaders: ['raw-loader'],
-          as: '*.js',
-        },
-      ],
-      // API page description JSON (imported only by generated API pages) → render
-      // the markdown to HTML at build time.
-      '**/translations/api-docs/**/*.json': [
-        {
-          loaders: [{ loader: '@mui/internal-markdown/apiPageTranslationLoader' }],
-          as: '*.js',
-        },
-      ],
-    },
-  },
-  webpack: (
-    config: Parameters<NonNullable<NextConfig['webpack']>>[0],
-    options: Parameters<NonNullable<NextConfig['webpack']>>[1],
-  ) => {
+  webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
@@ -279,6 +201,10 @@ export default withDocsInfra({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    // Legacy Netlify-prefixed env vars still read by the fork (e.g. pages/_app.tsx).
+    // withDeploymentConfig exposes the same values under the SITE_NAME / SITE_DEPLOY_URL names.
+    NETLIFY_SITE_NAME: process.env.SITE_NAME,
+    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',

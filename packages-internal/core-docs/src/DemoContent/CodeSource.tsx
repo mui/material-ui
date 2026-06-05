@@ -135,13 +135,16 @@ export const CodeSource = styled('div', {
   '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
     paddingTop: 0,
     paddingBottom: 0,
-    // In dark mode the <pre> carries a 1px divider border — its only separator
-    // from the matching dark page. Collapsed to empty the pre is ~1px tall, so
-    // that border would peek as a thin line below the now-rounded toolbar. Fade
-    // it out while collapsed (light mode already uses a transparent border, so
-    // this is a no-op there); the expanded variant restores it.
-    borderColor: 'transparent',
-    transition: 'padding 0.3s cubic-bezier(0.5, 0, 0, 1), border-color 0.3s ease',
+    // Collapse the <pre>'s border to zero width too. With padding and content
+    // already at zero, the only remaining height is the border-box — and since
+    // `background-clip` defaults to `border-box`, the dark code background fills
+    // those ~2px and pokes out (square top corners) past the rounded toolbar's
+    // bottom corners. Zeroing the border width collapses the border-box to zero
+    // height, so nothing renders below the toolbar (this also removes the
+    // dark-mode divider line). The expanded variant restores the 1px border;
+    // its color still comes from the base `& pre` rule.
+    borderWidth: 0,
+    transition: 'padding 0.3s cubic-bezier(0.5, 0, 0, 1), border-width 0.3s ease',
   },
 
   // Code element inside pre — block so frames stretch to the widest line.
@@ -403,15 +406,14 @@ export const CodeSource = styled('div', {
         '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
           paddingBottom: 'calc(2 * var(--muidocs-spacing))',
         },
-        // Collapse-to-empty: restore the <pre>'s vertical padding (and, in dark
-        // mode, its divider border) — both animated by the transitions declared
-        // on the collapsed base rule above.
+        // Collapse-to-empty: restore the <pre>'s vertical padding and 1px border
+        // width — both animated by the transitions declared on the collapsed
+        // base rule above. The border color comes from the base `& pre` rule
+        // (transparent in light mode, divider in dark).
         '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
           paddingTop: 'calc(2 * var(--muidocs-spacing))',
           paddingBottom: 'calc(2 * var(--muidocs-spacing))',
-          ...theme.applyDarkStyles({
-            borderColor: (theme.vars || theme).palette.divider,
-          }),
+          borderWidth: '1px',
         },
       },
     },
