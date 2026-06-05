@@ -22,13 +22,13 @@ function Content() {
 }
 
 export default function PaginationLink() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
       <Routes>
         <Route path="*" element={<Content />} />
       </Routes>
     </MemoryRouter>
+    // @focus-end
   );
-  // @focus-end
 }

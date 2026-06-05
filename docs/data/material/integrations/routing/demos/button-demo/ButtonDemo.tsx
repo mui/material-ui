@@ -1,11 +1,11 @@
 import Button from '@mui/material/Button';
 
 export default function ButtonDemo() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Button href="/" variant="contained">
       Link
     </Button>
+    // @focus-end
   );
-  // @focus-end
 }

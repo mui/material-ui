@@ -204,9 +204,23 @@ export const CodeSource = styled('div', {
     margin: '0 -6px',
     padding: '0 6px',
   },
-  '& :not(.line)[data-hl]': {
+  // Inline highlights are emitted as `<mark>` by `enhanceCodeEmphasis`
+  // (e.g. `@highlight-text`). Override the UA `mark` default (yellow fill,
+  // dark text — unreadable on the dark panel): keep the surrounding code's
+  // color and apply the brand tint. A bare `<mark>` is emitted for matches
+  // outside a line highlight; marks inside one inherit the line's `data-hl`
+  // tier (propagated by the enhancer) and read progressively stronger than
+  // the line background they sit on.
+  '& mark': {
+    color: 'inherit',
     background: alpha(theme.palette.primary.main, 0.32),
     borderRadius: 4,
+  },
+  '& mark[data-hl]': {
+    background: alpha(theme.palette.primary.main, 0.4),
+  },
+  '& mark[data-hl="strong"]': {
+    background: alpha(theme.palette.primary.main, 0.5),
   },
   '& .line[data-hl="strong"]': {
     background: alpha(theme.palette.primary.main, 0.32),

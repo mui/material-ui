@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 export default function ZIndex() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Typography
       component="div"
       variant="body1"

@@ -2,8 +2,8 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 export default function StandardImageList() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
@@ -16,8 +16,8 @@ export default function StandardImageList() {
         </ImageListItem>
       ))}
     </ImageList>
+    // @focus-end
   );
-  // @focus-end
 }
 
 const itemData = [

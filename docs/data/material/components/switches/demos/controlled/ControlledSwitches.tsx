@@ -8,13 +8,13 @@ export default function ControlledSwitches() {
     setChecked(event.target.checked);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Switch
       checked={checked}
       onChange={handleChange}
       slotProps={{ input: { 'aria-label': 'controlled' } }}
     />
+    // @focus-end
   );
-  // @focus-end
 }

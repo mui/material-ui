@@ -10,8 +10,8 @@ export default function Grouped() {
     };
   });
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Autocomplete
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option) => option.firstLetter}
@@ -19,8 +19,8 @@ export default function Grouped() {
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="With categories" />}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

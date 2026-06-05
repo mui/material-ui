@@ -25,8 +25,8 @@ function TypographyDemo(props: { loading?: boolean }) {
 }
 
 export default function SkeletonTypography() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Grid container spacing={8}>
       <Grid size="grow">
         <TypographyDemo loading />
@@ -35,6 +35,6 @@ export default function SkeletonTypography() {
         <TypographyDemo />
       </Grid>
     </Grid>
+    // @focus-end
   );
-  // @focus-end
 }

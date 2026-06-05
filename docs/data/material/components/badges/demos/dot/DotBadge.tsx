@@ -4,12 +4,12 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export default function DotBadge() {
   return (
-    <Box sx={{ color: 'action.active' }}>
-      {/* @focus-start */}
+    // @focus-start @padding 2
+    <IconButton aria-label="show new notifications">
       <Badge color="secondary" variant="dot">
         <NotificationsIcon />
       </Badge>
-      {/* @focus-end */}
-    </Box>
+    </IconButton>
+    // @focus-end
   );
 }

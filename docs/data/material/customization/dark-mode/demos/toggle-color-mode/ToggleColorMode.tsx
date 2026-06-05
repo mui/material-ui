@@ -52,11 +52,11 @@ const theme = createTheme({
 });
 
 export default function ToggleColorMode() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <MyApp />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

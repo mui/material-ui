@@ -8,7 +8,7 @@ import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 export default function RightAlignedTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline
       sx={{
         [`& .${timelineContentClasses.root}`]: {

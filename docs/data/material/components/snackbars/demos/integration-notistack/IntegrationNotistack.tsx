@@ -24,11 +24,11 @@ function MyApp() {
 }
 
 export default function IntegrationNotistack() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
+    // @focus-end
   );
-  // @focus-end
 }

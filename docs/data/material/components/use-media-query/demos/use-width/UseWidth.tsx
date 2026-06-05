@@ -30,11 +30,11 @@ function MyComponent() {
 const theme = createTheme();
 
 export default function UseWidth() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <MyComponent />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

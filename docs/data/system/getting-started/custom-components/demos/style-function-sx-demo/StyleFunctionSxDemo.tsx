@@ -15,11 +15,11 @@ const Div = styled('div')<DivProps>(
 );
 
 export default function StyleFunctionSxDemo() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Div sx={{ m: 1, p: 1, border: 1 }}>Custom component with the sx prop</Div>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

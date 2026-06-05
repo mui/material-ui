@@ -2,8 +2,8 @@ import * as React from 'react';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function GlobalCssOverrideTheme() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <React.Fragment>
       <GlobalStyles
         styles={(theme) => ({
@@ -12,6 +12,6 @@ export default function GlobalCssOverrideTheme() {
       />
       <h1>Grey h1 element</h1>
     </React.Fragment>
+    // @focus-end
   );
-  // @focus-end
 }

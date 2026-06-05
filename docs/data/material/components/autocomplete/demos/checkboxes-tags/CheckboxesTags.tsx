@@ -5,7 +5,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 export default function CheckboxesTags() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
