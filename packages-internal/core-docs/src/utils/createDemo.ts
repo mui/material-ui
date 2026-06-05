@@ -2,7 +2,15 @@ import {
   createDemoFactory,
   createDemoWithVariantsFactory,
 } from '@mui/internal-docs-infra/abstractCreateDemo';
-import { DemoContent, DemoContentLoading } from '../DemoContent';
+// Import directly from the files, NOT the `../DemoContent` barrel: the barrel
+// eagerly re-exports the heavy `DemoContent`, and the package has no
+// `sideEffects: false`, so the bundler can't drop that re-export — importing the
+// barrel here would pull `DemoContent` into this module's graph and defeat the
+// code-split. `DemoContentLazy` dynamic-imports `DemoContent` on the client;
+// `DemoContentLoading` stays eager so the fallback can paint immediately while
+// the content streams in.
+import DemoContentLazy from '../DemoContent/DemoContentLazy';
+import DemoContentLoading from '../DemoContent/DemoContentLoading';
 
 // Populated by `withDeploymentConfig` so build-time `file://` URLs gathered
 // from `import.meta.url` get rewritten into hosted Git URLs (e.g.
@@ -18,7 +26,7 @@ const projectUrl = process.env.SOURCE_CODE_ROOT_URL;
  * @param meta Additional meta for the demo.
  */
 export const createDemo = createDemoFactory({
-  DemoContent,
+  DemoContent: DemoContentLazy,
   DemoContentLoading,
   controlled: true,
   projectDir,
@@ -33,7 +41,7 @@ export const createDemo = createDemoFactory({
  * @param meta Additional meta for the demo.
  */
 export const createDemoWithVariants = createDemoWithVariantsFactory({
-  DemoContent,
+  DemoContent: DemoContentLazy,
   DemoContentLoading,
   controlled: true,
   projectDir,

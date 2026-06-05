@@ -526,7 +526,7 @@ export default function DemoContent(props: DemoContentProps) {
       toolbarLabel={t('demoToolbarLabel')}
       onToolbarKeyDown={handleToolbarKeyDown}
       onToolbarFocus={handleToolbarFocus}
-      codeOpen={demo.expanded}
+      expanded={demo.expanded}
       tabs={tabs}
       code={code}
       codeRef={setCodeContainerRef}

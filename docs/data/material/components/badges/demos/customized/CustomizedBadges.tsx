@@ -44,6 +44,7 @@ const ContactStatusBadge = styled(Badge, {
 export default function CustomizedBadges() {
   // @focus-start @padding 1
   return (
+    // @focus-start
     <Paper variant="outlined" sx={{ width: 320, maxWidth: '100%' }}>
       <List component="nav" aria-label="contacts" sx={{ py: 0 }}>
         {contacts.map((contact) => {
@@ -71,6 +72,7 @@ export default function CustomizedBadges() {
         })}
       </List>
     </Paper>
+    // @focus-end
   );
   // @focus-end
 }
