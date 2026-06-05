@@ -227,7 +227,12 @@ interface IsolatedDemoProps {
  * `CssVarsProvider` needs to attach to the right root — either the iframe
  * document (when `window` is provided) or the per-demo container node.
  */
-export function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }: IsolatedDemoProps) {
+export function IsolatedDemo({
+  children,
+  cssVarPrefix,
+  colorSchemeNode,
+  window,
+}: IsolatedDemoProps) {
   return React.cloneElement(children, {
     window,
     cssVarPrefix,
