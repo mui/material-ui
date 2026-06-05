@@ -28,8 +28,8 @@ const finalTheme = createTheme({
 });
 
 export default function GlobalThemeOverrideSx() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={finalTheme}>
       <Chip
         color="success"
@@ -41,6 +41,6 @@ export default function GlobalThemeOverrideSx() {
         icon={<Check fontSize="small" />}
       />
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -16,7 +16,7 @@ const bull = (
 
 export default function BasicCard() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>

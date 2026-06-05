@@ -25,11 +25,11 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 export default function TransitionHover() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme}>
       <StyledAvatar>OP</StyledAvatar>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

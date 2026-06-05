@@ -348,11 +348,11 @@ export default function InfiniteLoading() {
   // lives near the root alongside the rest of your data-fetching setup.
   const [queryClient] = React.useState(() => new QueryClient(queryClientOptions));
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <QueryClientProvider client={queryClient}>
       <InfiniteQueryAutocomplete />
     </QueryClientProvider>
+    // @focus-end
   );
-  // @focus-end
 }

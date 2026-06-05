@@ -17,11 +17,11 @@ const MyThemeComponent = styled('div')(({ theme }) => ({
 }));
 
 export default function ThemeUsage() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={customTheme}>
       <MyThemeComponent>Styled div with theme</MyThemeComponent>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

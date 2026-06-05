@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import { visuallyHidden } from '@mui/utils';
 
 export default function VisuallyHiddenUsage() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Link href="#foo">
       Read more
       {/* always visually hidden because the parent is focusable element */}
       <Box sx={visuallyHidden}>about how to visually hide elements</Box>
     </Link>
+    // @focus-end
   );
-  // @focus-end
 }

@@ -13,8 +13,8 @@ export default function ControlledRadioButtonsGroup() {
     setValue((event.target as HTMLInputElement).value);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <FormControl>
       <FormLabel id={`${id}-label`}>Gender</FormLabel>
       <RadioGroup
@@ -27,6 +27,6 @@ export default function ControlledRadioButtonsGroup() {
         <FormControlLabel value="male" control={<Radio />} label="Male" />
       </RadioGroup>
     </FormControl>
+    // @focus-end
   );
-  // @focus-end
 }

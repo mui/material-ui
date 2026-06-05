@@ -18,14 +18,14 @@ function MyFormHelperText() {
 }
 
 export default function UseFormControl() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <form noValidate autoComplete="off">
       <FormControl sx={{ width: '25ch' }}>
         <OutlinedInput placeholder="Please enter text" />
         <MyFormHelperText />
       </FormControl>
     </form>
+    // @focus-end
   );
-  // @focus-end
 }

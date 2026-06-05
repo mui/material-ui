@@ -3,7 +3,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 export default function TooltipMargin() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Tooltip
       title="Add"
       describeChild

@@ -19,12 +19,12 @@ const theme = createTheme({
 });
 
 export default function OverrideCallbackCssBaseline() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <h1>h1 element</h1>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

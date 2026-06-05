@@ -34,8 +34,8 @@ export default function DynamicCSSVariables() {
     setVars(event.target.checked ? successVars : defaultVars);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <React.Fragment>
       <FormControlLabel
         control={
@@ -50,6 +50,6 @@ export default function DynamicCSSVariables() {
       />
       <CustomSlider style={vars} defaultValue={30} sx={{ mt: 1 }} />
     </React.Fragment>
+    // @focus-end
   );
-  // @focus-end
 }

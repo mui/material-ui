@@ -9,11 +9,11 @@ const theme = createTheme({
 });
 
 export default function FontSizeTheme() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Typography>body1</Typography>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

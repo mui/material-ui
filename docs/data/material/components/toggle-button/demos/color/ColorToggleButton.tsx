@@ -12,8 +12,8 @@ export default function ColorToggleButton() {
     setAlignment(newAlignment);
   };
 
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ToggleButtonGroup
       color="primary"
       value={alignment}
@@ -25,6 +25,6 @@ export default function ColorToggleButton() {
       <ToggleButton value="android">Android</ToggleButton>
       <ToggleButton value="ios">iOS</ToggleButton>
     </ToggleButtonGroup>
+    // @focus-end
   );
-  // @focus-end
 }
