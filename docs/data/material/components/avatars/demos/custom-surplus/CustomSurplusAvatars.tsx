@@ -2,8 +2,8 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 
 export default function CustomSurplusAvatars() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <AvatarGroup
       renderSurplus={(surplus) => <span>+{surplus.toString()[0]}k</span>}
       total={4251}
@@ -13,6 +13,6 @@ export default function CustomSurplusAvatars() {
       <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
       <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg" />
     </AvatarGroup>
+    // @focus-end
   );
-  // @focus-end
 }

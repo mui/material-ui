@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 
 export default function CustomizedTimeline() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineOppositeContent

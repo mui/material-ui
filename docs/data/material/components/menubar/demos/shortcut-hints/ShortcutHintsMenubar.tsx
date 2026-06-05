@@ -12,7 +12,7 @@ import {
 
 export default function ShortcutHintsMenubar() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Menubar>
       <MenuRoot>
         <MenuTrigger>File</MenuTrigger>

@@ -50,8 +50,8 @@ function renderRowHeaderCell(props: GridCellProps) {
 }
 
 export default function DataTable() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Paper sx={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
@@ -63,6 +63,6 @@ export default function DataTable() {
         sx={{ border: 0 }}
       />
     </Paper>
+    // @focus-end
   );
-  // @focus-end
 }

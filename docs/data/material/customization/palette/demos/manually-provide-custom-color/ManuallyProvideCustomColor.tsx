@@ -35,7 +35,7 @@ const theme = createTheme({
 
 export default function ManuallyProvideCustomColor() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Stack sx={{ gap: 2, alignItems: 'center' }}>
         <Button variant="contained" color="ochre">

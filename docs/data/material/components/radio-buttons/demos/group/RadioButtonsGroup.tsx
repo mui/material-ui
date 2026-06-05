@@ -7,8 +7,8 @@ import FormLabel from '@mui/material/FormLabel';
 
 export default function RadioButtonsGroup() {
   const id = React.useId();
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <FormControl>
       <FormLabel id={`${id}-label`}>Gender</FormLabel>
       <RadioGroup
@@ -21,6 +21,6 @@ export default function RadioButtonsGroup() {
         <FormControlLabel value="other" control={<Radio />} label="Other" />
       </RadioGroup>
     </FormControl>
+    // @focus-end
   );
-  // @focus-end
 }

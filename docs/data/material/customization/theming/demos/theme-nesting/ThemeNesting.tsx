@@ -19,14 +19,14 @@ const innerTheme = createTheme({
 });
 
 export default function ThemeNesting() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <ThemeProvider theme={outerTheme}>
       <Checkbox defaultChecked />
       <ThemeProvider theme={innerTheme}>
         <Checkbox defaultChecked />
       </ThemeProvider>
     </ThemeProvider>
+    // @focus-end
   );
-  // @focus-end
 }

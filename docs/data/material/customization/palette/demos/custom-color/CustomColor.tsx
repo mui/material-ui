@@ -32,7 +32,7 @@ declare module '@mui/material/Button' {
 
 export default function CustomColor() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <Button color="neutral" variant="contained">
         neutral

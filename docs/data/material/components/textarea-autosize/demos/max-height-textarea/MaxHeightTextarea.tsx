@@ -1,8 +1,8 @@
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 export default function MaxHeightTextarea() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <TextareaAutosize
       maxRows={4}
       aria-label="maximum height"
@@ -12,6 +12,6 @@ export default function MaxHeightTextarea() {
 
       style={{ width: 200 }}
     />
+    // @focus-end
   );
-  // @focus-end
 }

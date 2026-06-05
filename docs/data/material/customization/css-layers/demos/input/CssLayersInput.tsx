@@ -11,7 +11,7 @@ const theme = createTheme({
 
 export default function CssLayersInput() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider theme={theme}>
       <FormControl variant="outlined">
         <InputLabel

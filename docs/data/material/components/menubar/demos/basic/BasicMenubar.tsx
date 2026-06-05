@@ -14,7 +14,7 @@ import {
 
 export default function BasicMenubar() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Menubar>
       <MenuRoot>
         <MenuTrigger>File</MenuTrigger>
