@@ -7,8 +7,8 @@ const filterOptions = createFilterOptions({
 });
 
 export default function Filter() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Autocomplete
       options={top100Films}
       getOptionLabel={(option) => option.title}
@@ -16,8 +16,8 @@ export default function Filter() {
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Custom filter" />}
     />
+    // @focus-end
   );
-  // @focus-end
 }
 
 interface FilmOptionType {

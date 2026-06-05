@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 export default function BoxSx() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ThemeProvider
       theme={{
         palette: {

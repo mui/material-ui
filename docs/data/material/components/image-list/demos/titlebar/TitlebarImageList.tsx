@@ -7,7 +7,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function TitlebarImageList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <ImageList sx={{ width: 500, height: 450 }}>
       <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">December</ListSubheader>

@@ -358,29 +358,22 @@ function insertFocusMarkers(code, previewText) {
       return newLines.join(newline);
     }
 
-    // Case 2: matched block IS the entire JSX returned by the function — the
-    // line above ends with `return (` (or just `(`) and the next line closes
-    // with `);`. Use line-comment markers around the `return` statement, the
-    // same form the eslint plugin's `wrapReturn` autofix produces.
+    // Case 2: matched block is the JSX inside a parenthesized return — the line
+    // above ends with `(` and the next line closes with `);`. Place the markers
+    // INSIDE the parens, around the JSX, matching the eslint
+    // `require-demo-focus` autofix (`wrapReturn`). The focus sits one level
+    // deeper than the function body, so `@padding 2` keeps the `return (` line
+    // and the function signature/closing brace visible as context when
+    // collapsed. `indent` is the JSX block's indentation.
     if (prevLine.endsWith('(') && /^\)\s*;?$/.test(nextLine)) {
-      // Find the line containing `return` (usually i-1, but allow the `(` to
-      // sit on its own line in unusual formatting).
-      let returnLineIdx = i - 1;
-      while (returnLineIdx >= 0 && !/\breturn\b/.test(codeLines[returnLineIdx])) {
-        returnLineIdx -= 1;
-      }
-      if (returnLineIdx < 0) {
-        return null;
-      }
-      const returnIndent = codeLines[returnLineIdx].match(/^\s*/)[0];
-      const startMarker = `${returnIndent}// @focus-start @padding 1`;
-      const endMarker = `${returnIndent}// @focus-end`;
+      const startMarker = `${indent}// @focus-start @padding 2`;
+      const endMarker = `${indent}// @focus-end`;
       const newLines = [
-        ...codeLines.slice(0, returnLineIdx),
+        ...codeLines.slice(0, i),
         startMarker,
-        ...codeLines.slice(returnLineIdx, nextLineIdx + 1),
+        ...codeLines.slice(i, nextLineIdx),
         endMarker,
-        ...codeLines.slice(nextLineIdx + 1),
+        ...codeLines.slice(nextLineIdx),
       ];
       return newLines.join(newline);
     }

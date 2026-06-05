@@ -24,7 +24,7 @@ const rows = [
 
 export default function AccessibleTable() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
         <caption>A basic table example with a caption</caption>

@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 export default function MediaCard() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}

@@ -7,7 +7,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 export default function InsetList() {
   return (
-    // @focus-start
+    // @focus-start @padding 2
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
       aria-label="contacts"

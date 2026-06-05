@@ -6,8 +6,8 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
 export default function ColorsTimeline() {
-  // @focus-start @padding 1
   return (
+    // @focus-start @padding 2
     <Timeline position="alternate">
       <TimelineItem>
         <TimelineSeparator>
@@ -23,6 +23,6 @@ export default function ColorsTimeline() {
         <TimelineContent>Success</TimelineContent>
       </TimelineItem>
     </Timeline>
+    // @focus-end
   );
-  // @focus-end
 }
