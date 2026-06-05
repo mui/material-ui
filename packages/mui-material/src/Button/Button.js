@@ -73,6 +73,15 @@ const commonIconStyles = [
   },
 ];
 
+// [block, inline] padding per (variant, size), in px — today's exact values.
+// Resolved to `--_Button-padding*` via inline style so the (variant, size)
+// matrix needs no static CSS and custom sizes work; see docs/adr/0001.
+const buttonPadding = {
+  text: { small: ['4px', '5px'], medium: ['6px', '8px'], large: ['8px', '11px'] },
+  outlined: { small: ['3px', '9px'], medium: ['5px', '15px'], large: ['7px', '21px'] },
+  contained: { small: ['4px', '10px'], medium: ['6px', '16px'], large: ['8px', '22px'] },
+};
+
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
@@ -100,7 +109,9 @@ const ButtonRoot = styled(ButtonBase, {
     return {
       ...theme.typography.button,
       minWidth: 64,
-      padding: '6px 16px',
+      // `--_Button-padding*` are set via inline style from the (variant, size)
+      // lookup; the literals here are only a safety fallback (medium contained).
+      padding: 'var(--_Button-paddingBlock, 6px) var(--_Button-paddingInline, 16px)',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       transition: theme.transitions.create(
@@ -145,7 +156,6 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'outlined' },
           style: {
-            padding: '5px 15px',
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
@@ -158,7 +168,6 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'text' },
           style: {
-            padding: '6px 8px',
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -225,7 +234,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '4px 5px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -235,7 +243,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '8px 11px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -245,7 +252,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '3px 9px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -255,7 +261,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '7px 21px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -265,7 +270,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '4px 10px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -275,7 +279,6 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '8px 22px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -550,6 +553,18 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Resolve the (variant, size) padding cell to the internal vars. Each falls
+  // through: sized token -> base token -> literal, so overriding either public
+  // token at any scope reflows the button (see docs/adr/0001). Unknown variant
+  // falls back to the root default, unknown size to the variant's medium.
+  const variantPadding = buttonPadding[variant];
+  const [paddingBlock, paddingInline] = (variantPadding &&
+    (variantPadding[size] || variantPadding.medium)) || ['6px', '16px'];
+  const densityVars = {
+    '--_Button-paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${paddingBlock}))`,
+    '--_Button-paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${paddingInline}))`,
+  };
+
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp || (
@@ -602,6 +617,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
+      style={{ ...densityVars, ...other.style }}
       classes={forwardedClasses}
     >
       {startIcon}
@@ -721,6 +737,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
