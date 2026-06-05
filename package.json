@@ -2,6 +2,10 @@
   "name": "@mui/monorepo",
   "version": "9.0.1",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
@@ -90,7 +94,7 @@
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.27",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.78",
     "@mui/internal-code-infra": "0.0.4-canary.50",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@4414aa9",
+    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@94ea566",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.5",
     "@mui/internal-scripts": "workspace:^",

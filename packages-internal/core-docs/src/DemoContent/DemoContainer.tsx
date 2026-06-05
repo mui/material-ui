@@ -359,8 +359,11 @@ export const DemoCodeWindow = styled('div', {
   // scrolled content.
   borderBottomLeftRadius: 12,
   borderBottomRightRadius: 12,
-  // Don't chain the scroll to the page once the panel hits its ends.
-  overscrollBehavior: 'contain',
+  // NB: no `overscroll-behavior: contain` here. As an `overflow: auto` element
+  // the window is a scroll container, and `contain` stops the wheel from
+  // chaining to the page — so hovering over a code block that can't scroll
+  // (a short collapsed snippet) or is already at its edge would freeze the page
+  // scroll. Default chaining keeps the page scrolling normally over the panel.
   // ---- Collapse-to-empty: suppress the vertical scrollbar ----
   // A `collapseToEmpty` / `oversizedFocus: 'hide'` block collapses to an empty
   // window (`<code data-focused-lines="0">`). Collapsed there is nothing to

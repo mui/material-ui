@@ -7,19 +7,18 @@ import * as semver from 'semver';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
+import { withDeploymentConfig } from '@mui/internal-docs-infra/withDocsInfra';
 import { findPages } from './src/modules/utils/find';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
-export default withDocsInfra({
+export default withDeploymentConfig({
   webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
@@ -207,6 +206,10 @@ export default withDocsInfra({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    // Legacy Netlify-prefixed env vars still read by the fork (e.g. pages/_app.tsx).
+    // withDeploymentConfig exposes the same values under the SITE_NAME / SITE_DEPLOY_URL names.
+    NETLIFY_SITE_NAME: process.env.SITE_NAME,
+    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',

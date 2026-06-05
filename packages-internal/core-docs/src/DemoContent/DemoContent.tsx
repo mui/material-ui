@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
@@ -203,6 +204,7 @@ export default function DemoContent(props: DemoContentProps) {
   });
 
   const t = useTranslate();
+  const router = useRouter();
   // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
   // this expands all hidden context lines. Demos without emphasis frames render
   // identically in both states.
@@ -381,6 +383,44 @@ export default function DemoContent(props: DemoContentProps) {
 
   const demoSourceId = anchorName ? `demo-source-${anchorName}` : undefined;
 
+  // GitHub "view source" link for the file currently shown in the viewer.
+  // `selectedFileUrl` is the demo's local source URL rewritten to a hosted Git
+  // URL by `createDemo`'s `projectUrl` (it's empty when no repository URL is
+  // configured, e.g. local dev — the menu item is then disabled). The rewrite
+  // yields a `/tree/<ref>/` prefix; swap it for `/blob/<ref>/` so the link
+  // opens the file view rather than a directory listing.
+  const githubLocation = demo.selectedFileUrl
+    ? demo.selectedFileUrl.replace('/tree/', '/blob/')
+    : undefined;
+
+  // Anchor used by the "copy source link" items and the deploy permalinks. The
+  // matching `<DemoAnchorLink>`s (e.g. `${anchorName}.tsx`) are rendered above.
+  const sourceAnchor = anchorName ?? demo.slug ?? undefined;
+
+  // Deploy permalinks are only meaningful on the staging / PR-preview Netlify
+  // builds. They reuse the current route + demo anchor, swapping the origin for
+  // the per-branch/per-deploy Netlify domains. `process.env` values are inlined
+  // by `withDeploymentConfig`, so in production this branch is dead-code and the
+  // links don't render.
+  const devLinks = React.useMemo(() => {
+    if (process.env.DEPLOY_ENV !== 'staging' && process.env.DEPLOY_ENV !== 'pull-request') {
+      return null;
+    }
+    const routePath = router.asPath.split('#')[0].split('?')[0];
+    const hash = sourceAnchor ? `#${sourceAnchor}` : '';
+    const siteName = process.env.NETLIFY_SITE_NAME;
+    const pullRequestId = process.env.PULL_REQUEST_ID;
+    return {
+      pullRequest:
+        pullRequestId && siteName
+          ? `https://deploy-preview-${pullRequestId}--${siteName}.netlify.app${routePath}${hash}`
+          : undefined,
+      next: `https://next--${siteName}.netlify.app${routePath}${hash}`,
+      permalink: `${process.env.NETLIFY_DEPLOY_URL ?? ''}${routePath}${hash}`,
+      master: `https://master--${siteName}.netlify.app${routePath}${hash}`,
+    };
+  }, [router.asPath, sourceAnchor]);
+
   const toolbar = hideToolbar ? null : (
     <DemoToolbar
       gaLabel={gaLabel}
@@ -403,6 +443,9 @@ export default function DemoContent(props: DemoContentProps) {
       onCopySource={demo.copy}
       onResetFocus={handleResetFocus}
       onReset={demo.reset}
+      githubLocation={githubLocation}
+      sourceAnchor={sourceAnchor}
+      devLinks={devLinks}
     />
   );
 
