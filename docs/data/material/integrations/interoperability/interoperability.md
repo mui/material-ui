@@ -307,7 +307,7 @@ In Material UI, all child elements have an increased specificity of 2: `.parent
 
 The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
 
-{{"component": "file://./demos/styled-components-deep/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/styled-components-deep/index.ts", "initialExpanded": true}}
 
 The above demo relies on the [default `className` values](https://v6.mui.com/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
 
@@ -596,7 +596,7 @@ This technique allows you to maintain modular styles while responding to dynamic
 
 Emotion's `css()` method works seamlessly with Material UI.
 
-{{"component": "file://./demos/emotion-css/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/emotion-css/index.ts", "initialExpanded": true}}
 
 ### Theme
 

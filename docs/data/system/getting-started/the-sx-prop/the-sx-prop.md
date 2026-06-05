@@ -11,7 +11,7 @@ The following demo illustrates how to work with the `sx` prop.
 Note that not all of the values are valid CSS properties—that's because the `sx` keys are mapped to specific properties of the theme.
 The rest of this document explores this concept in more detail.
 
-{{"component": "file://./demos/example/index.ts", "bg": true, "defaultCodeOpen": true}}
+{{"component": "file://./demos/example/index.ts", "bg": true, "initialExpanded": true}}
 
 ## Theme-aware properties
 
@@ -301,7 +301,7 @@ Each index can be an object or a callback.
 
 If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
 
-{{"component": "file://./demos/passing-sx-prop/index.ts", "bg": true, "defaultCodeOpen": true}}
+{{"component": "file://./demos/passing-sx-prop/index.ts", "bg": true, "initialExpanded": true}}
 
 ## Dynamic values
 

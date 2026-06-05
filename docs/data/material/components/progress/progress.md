@@ -113,7 +113,7 @@ By default, the progress value is read by assistive technology as percentages. U
 Here are some examples of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized-bars/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/customized-bars/index.ts", "collapseToEmpty": true}}
 
 ## Delaying appearance
 
