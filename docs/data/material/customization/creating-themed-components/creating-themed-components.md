@@ -327,4 +327,4 @@ declare module '@mui/material/styles' {
 
 This template is the final product of the step-by-step guide above, demonstrating how to build a custom component that can be styled with the theme as if it was a built-in component.
 
-{{"component": "file://./demos/stat-full-template/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/stat-full-template/index.ts", "initialExpanded": true}}
