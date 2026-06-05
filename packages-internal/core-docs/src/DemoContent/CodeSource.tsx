@@ -123,6 +123,27 @@ export const CodeSource = styled('div', {
     paddingBottom: 0,
   },
 
+  // ---- Collapse-to-empty padding ----
+  // A `collapseToEmpty` / `oversizedFocus: 'hide'` block records
+  // `data-focused-lines="0"`: the collapsed window shows nothing — every frame
+  // is hidden — so the panel must take no vertical space. The frames already
+  // animate to zero height (see the collapsible frame rules below), but the
+  // `<pre>`'s own vertical padding would otherwise leave a ~32px empty gap.
+  // Zero the top/bottom padding while collapsed and transition it so the gap
+  // grows and shrinks in step with the frames on expand/collapse instead of
+  // snapping. The expanded variant restores it.
+  '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
+    paddingTop: 0,
+    paddingBottom: 0,
+    // In dark mode the <pre> carries a 1px divider border — its only separator
+    // from the matching dark page. Collapsed to empty the pre is ~1px tall, so
+    // that border would peek as a thin line below the now-rounded toolbar. Fade
+    // it out while collapsed (light mode already uses a transparent border, so
+    // this is a no-op there); the expanded variant restores it.
+    borderColor: 'transparent',
+    transition: 'padding 0.3s cubic-bezier(0.5, 0, 0, 1), border-color 0.3s ease',
+  },
+
   // Code element inside pre — block so frames stretch to the widest line.
   '& pre > code': {
     display: 'block',
@@ -381,6 +402,16 @@ export const CodeSource = styled('div', {
         ),
         '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
           paddingBottom: 'calc(2 * var(--muidocs-spacing))',
+        },
+        // Collapse-to-empty: restore the <pre>'s vertical padding (and, in dark
+        // mode, its divider border) — both animated by the transitions declared
+        // on the collapsed base rule above.
+        '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
+          paddingTop: 'calc(2 * var(--muidocs-spacing))',
+          paddingBottom: 'calc(2 * var(--muidocs-spacing))',
+          ...theme.applyDarkStyles({
+            borderColor: (theme.vars || theme).palette.divider,
+          }),
         },
       },
     },
