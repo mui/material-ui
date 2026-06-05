@@ -9,6 +9,7 @@ import MailIcon from '@mui/icons-material/Mail';
 const unreadMessagesCount = 4;
 
 export default function BadgeVisibility() {
+  // @focus-start @padding 1
   const [invisible, setInvisible] = React.useState(false);
 
   const handleBadgeVisibility = () => {
@@ -38,4 +39,5 @@ export default function BadgeVisibility() {
       />
     </Stack>
   );
+  // @focus-end
 }

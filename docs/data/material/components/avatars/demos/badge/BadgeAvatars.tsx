@@ -42,6 +42,7 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 export default function BadgeAvatars() {
   return (
     <Stack direction="row" spacing={2}>
+      {/* @focus-start */}
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -70,6 +71,7 @@ export default function BadgeAvatars() {
           titleAccess="Q4 budget spreadsheet, last edited by Remy Sharp"
         />
       </Badge>
+      {/* @focus-end */}
     </Stack>
   );
 }

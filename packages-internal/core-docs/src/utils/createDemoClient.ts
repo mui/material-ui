@@ -1,5 +1,9 @@
 import { createDemoClientFactory } from '@mui/internal-docs-infra/abstractCreateDemoClient';
-import { DemoController } from '../DemoContent';
+// Import directly, not via the `../DemoContent` barrel, so this client factory
+// doesn't drag the heavy `DemoContent` (eagerly re-exported by the barrel, which
+// the bundler can't drop without `sideEffects: false`) into its graph. See
+// `createDemo.ts`.
+import DemoController from '../DemoContent/DemoController';
 
 /**
  * Creates a demo client provider for live editing with precomputed externals.
