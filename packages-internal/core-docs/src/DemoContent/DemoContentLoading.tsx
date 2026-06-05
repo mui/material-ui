@@ -29,7 +29,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // the hydrated `<Pre>`, so the collapse CSS sizes the window identically
   // before highlighting swaps in. `focusedLines` is the collapsed window size
   // (0 for a `collapseToEmpty` / `oversizedFocus: 'hide'` block).
-  const { code: fallbackCode, focusedLines } = useCodeFallback(props);
+  const { code: fallbackCode } = useCodeFallback(props);
   const {
     hideToolbar,
     initialExpanded,
@@ -70,26 +70,11 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // `DemoToolbarFallback` value in master's `Demo.tsx`.
   const toolbar = <div style={{ minHeight: 42 }} />;
 
-  // Show the SSR'd source by default so the code block is visible before
-  // hydration. The live `DemoContent` then takes over and respects the
-  // author's `initialExpanded` (collapsed unless explicitly opted in) — a
-  // brief collapse-on-hydration is preferable to an empty placeholder that
-  // hides documented source code during initial paint.
-  const showCode = initialExpanded !== false;
-
-  // An empty-focus block (`focusedLines === 0`) has nothing to show while
-  // collapsed, so render the shell *closed*: a rounded toolbar over a collapsed,
-  // empty window, matching the hydrated demo's default state. Keeping it "open"
-  // would square the toolbar against an empty window (and leave the window's
-  // vertical scrollbar suppression off). Other demos stay open so their focused
-  // snippet is visible under the toolbar.
-  const codeOpen = showCode && focusedLines !== 0;
-
   // Only render the file tab bar when the author explicitly opted into an
   // open code panel — the live demo starts on the first file, so a multi-file
   // tab list is meaningless until the user actually opens the source viewer.
   const tabs =
-    initialExpanded === true && fileNames && fileNames.length > 1 ? (
+    initialExpanded && fileNames && fileNames.length > 1 ? (
       <DemoFileTabBarSkeleton aria-hidden />
     ) : null;
 
@@ -101,16 +86,15 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // the collapsed frame layout (`expanded={false}`) — full expansion needs the
   // live JS; the window stays sized to the focused snippet (empty for an
   // empty-focus block) until `DemoContent` hydrates.
-  const code =
-    showCode && fallbackCode ? (
-      <CodeSource expanded={false}>
-        {/* `fallbackCode` is a bare `<code>` (from `useCodeFallback`); wrap it in
+  const code = fallbackCode ? (
+    <CodeSource expanded={initialExpanded}>
+      {/* `fallbackCode` is a bare `<code>` (from `useCodeFallback`); wrap it in
             `<pre>` so `CodeSource`'s `& pre > code` selectors apply — the live
             render gets its `<pre>` from `<Pre>`. Without it the panel is
             unstyled (no dark background, frame layout, or collapse). */}
-        <pre>{fallbackCode}</pre>
-      </CodeSource>
-    ) : null;
+      <pre>{fallbackCode}</pre>
+    </CodeSource>
+  ) : null;
 
   return (
     <DemoContainer
@@ -122,7 +106,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       hasSourceFocus={hasSourceFocus}
       previewStyle={previewStyle}
       toolbar={toolbar}
-      codeOpen={codeOpen}
+      expanded={initialExpanded}
       tabs={tabs}
       code={code}
     />
