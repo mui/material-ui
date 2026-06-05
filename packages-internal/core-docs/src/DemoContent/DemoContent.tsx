@@ -71,8 +71,6 @@ const TRANSFORM_DELAY = 350;
 export interface DemoOptions {
   /** Hide the action toolbar entirely. Disables most other interactive features. */
   hideToolbar?: boolean;
-  /** Expand the source viewer by default on first render. */
-  defaultCodeOpen?: boolean;
   /** Suppress the inline Carbon ad even when ads are enabled globally. */
   disableAd?: boolean;
   /** Disable in-place editing of the demo source. */
@@ -100,7 +98,7 @@ export type DemoContentProps = ContentProps<DemoOptions>;
 export default function DemoContent(props: DemoContentProps) {
   const {
     hideToolbar,
-    defaultCodeOpen,
+    initialExpanded,
     disableAd: demoDisableAd,
     aiSuggestion,
     anchorId: anchorIdOption,
@@ -130,10 +128,10 @@ export default function DemoContent(props: DemoContentProps) {
         ].join('\n'),
       );
     }
-    if (hideToolbar === true && defaultCodeOpen === true) {
+    if (hideToolbar === true && initialExpanded === true) {
       throw new Error(
         [
-          '"hideToolbar": true, "defaultCodeOpen": true combination is invalid.',
+          '"hideToolbar": true, "initialExpanded": true combination is invalid.',
           `Please remove one of the properties in {{"component": "${demoName}", …}}.`,
         ].join('\n'),
       );
@@ -178,8 +176,10 @@ export default function DemoContent(props: DemoContentProps) {
     [csbConfig],
   );
 
+  // `initialExpanded` is read by `useDemo` straight from `props` (it's a
+  // `contentProps` field, threaded from the MDX `{{"component": …}}` meta), so
+  // it isn't passed as an opt here.
   const demo = useDemo(props, {
-    defaultOpen: defaultCodeOpen,
     export: exportConfig,
     exportCodeSandbox: codeSandboxTsconfigOverride,
     // Enables the expand → swap → collapse window on the rendered `<pre>` so

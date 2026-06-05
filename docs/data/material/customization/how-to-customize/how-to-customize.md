@@ -141,7 +141,7 @@ Never apply styles directly to state class names. This will impact all component
 
 To reuse the same overrides in different locations across your application, create a reusable component using the [`styled()`](/system/styled/) utility:
 
-{{"component": "file://./demos/styled-customization/index.ts", "defaultCodeOpen": true}}
+{{"component": "file://./demos/styled-customization/index.ts", "initialExpanded": true}}
 
 ### Dynamic overrides
 
@@ -154,7 +154,7 @@ You can do this with **dynamic CSS** or **CSS variables**.
 If you are using TypeScript, you will need to update the prop's types of the new component.
 :::
 
-{{"component": "file://./demos/dynamic-css/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/dynamic-css/index.ts", "collapseToEmpty": true}}
 
 ```tsx
 import * as React from 'react';
