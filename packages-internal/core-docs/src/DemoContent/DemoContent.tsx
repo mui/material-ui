@@ -177,6 +177,20 @@ export default function DemoContent(props: DemoContentProps) {
     [csbConfig],
   );
 
+  // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
+  // this expands all hidden context lines. Demos without emphasis frames render
+  // identically in both states. Declared before `useDemo` so its `anchorScroll`
+  // can be handed to `onExpand` below.
+  // `scrollContainerRef` points at the fixed-height code window so the
+  // expand/collapse anchoring compensates that panel's own scroll once the
+  // expanded source exceeds the cap, rather than scrolling the page.
+  const { containerRef, scrollContainerRef, toggleRef, anchorScroll } = useCodeWindow<
+    HTMLButtonElement,
+    HTMLDivElement
+  >();
+
+  const onExpand = React.useCallback(() => anchorScroll('expand'), [anchorScroll]);
+
   // `initialExpanded` is read by `useDemo` straight from `props` (it's a
   // `contentProps` field, threaded from the MDX `{{"component": …}}` meta), so
   // it isn't passed as an opt here.
@@ -193,6 +207,10 @@ export default function DemoContent(props: DemoContentProps) {
     // the viewer can't see and prevents `hasCollapseInFocus` work from
     // spreading across files needlessly.
     transformLayoutShift: 'focus',
+    // Keyboard-driven expansion (the caret navigating past the visible top or
+    // bottom of a collapsed code window) anchors the scroll just like clicking
+    // the expand toggle does, instead of letting the viewport jump.
+    onExpand,
   });
   useTypescriptRef.current = demo.selectedTransform !== 'js';
 
@@ -205,16 +223,6 @@ export default function DemoContent(props: DemoContentProps) {
 
   const t = useTranslate();
   const router = useRouter();
-  // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
-  // this expands all hidden context lines. Demos without emphasis frames render
-  // identically in both states.
-  // `scrollContainerRef` points at the fixed-height code window so the
-  // expand/collapse anchoring compensates that panel's own scroll once the
-  // expanded source exceeds the cap, rather than scrolling the page.
-  const { containerRef, scrollContainerRef, toggleRef, anchorScroll } = useCodeWindow<
-    HTMLButtonElement,
-    HTMLDivElement
-  >();
 
   // Separate scroll-anchor session for transform swaps. Watches the same
   // code container, but anchors the page scroll on the JS/TS toggle group
