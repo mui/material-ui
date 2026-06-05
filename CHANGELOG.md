@@ -4,12 +4,12 @@
 
 <!-- generated comparing v9.0.1..master -->
 
-_Jun 4, 2026_
+_Jun 5, 2026_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- ⚙️ Support for the `prefers-reduced-motion` setting.
-- ♿️ Improved support for Windows High Contrast mode with the `enhanceHighContrast` theme wrapper.
+- ⚙️ Support for the [prefers-reduced-motion](https://mui.com/material-ui/transitions/#reduced-motion) setting.
+- ♿️ Improved support for Windows High Contrast mode with the [enhanceHighContrast](https://mui.com/material-ui/customization/palette/#windows-high-contrast-mode) theme wrapper.
 
 ### `@mui/material@9.1.0`
 
