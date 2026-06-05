@@ -124,7 +124,7 @@ To give your users a way to toggle between modes for [built-in support](#built-i
 The `mode` is always `undefined` on first render, so make sure to handle this case as shown in the demo below—otherwise you may encounter a hydration mismatch error.
 :::
 
-{{"component": "file://./demos/toggle-color-mode/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/toggle-color-mode/index.ts", "collapseToEmpty": true}}
 
 ## Storage manager
 

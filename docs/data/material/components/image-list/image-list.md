@@ -61,4 +61,4 @@ The title bar can be placed below the image.
 In this example the items have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
 The secondary action `IconButton` is positioned on the left. The `gap` prop is used to adjust the gap between items.
 
-{{"component": "file://./demos/custom/index.ts", "defaultCodeOpen": false}}
+{{"component": "file://./demos/custom/index.ts", "collapseToEmpty": true}}

@@ -9,7 +9,7 @@ This is especially useful for one-off components with custom designs.
 
 The following code samples illustrate the difference between styled-components and `sx`:
 
-{{"component": "file://./demos/why/index.ts", "bg": true, "defaultCodeOpen": false}}
+{{"component": "file://./demos/why/index.ts", "bg": true, "collapseToEmpty": true}}
 
 1. Using the styled-components API:
 
@@ -120,7 +120,7 @@ Visit [the `sx` prop page](/system/getting-started/the-sx-prop/) for complete de
 The following demo shows how to use the `sx` prop to apply custom styles and create a complex UI component using the `Box` wrapper alone.
 Resize the window to see the responsive breakpoints:
 
-{{"component": "file://./demos/demo/index.ts", "bg": true, "defaultCodeOpen": true}}
+{{"component": "file://./demos/demo/index.ts", "bg": true, "initialExpanded": true}}
 
 ## When to use MUI System
 
