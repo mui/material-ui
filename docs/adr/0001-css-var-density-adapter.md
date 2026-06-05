@@ -19,14 +19,14 @@ Constraints that shaped the design:
   token) per variant×size×property cell.
 - **Support user-provided sizes.** A custom `size` added via the theme must get
   the same tunability as built-in sizes.
-- **No JS conditionals in the styles implementation.** The `styled()` body must
+- **No JavaScript conditionals in the styles implementation.** The `styled()` body must
   not branch on `ownerState.size`/`variant` to pick a value.
 - **Non-breaking.** Existing variant/size padding and existing
   `styleOverrides`/`sx` overrides must keep working unchanged.
 
 ## Decision
 
-Three token layers per component property, e.g. inline padding on Button:
+Three token layers per component property, for example inline padding on Button:
 
 - **Base token** `--Button-paddingInline` (public) — reflows all variants/sizes.
 - **Sized token** `--Button-<size>-paddingInline` (public) — reflows one size;
@@ -53,7 +53,7 @@ const sizingVars = {
   '--_Button-paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${block}))`,
   '--_Button-paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${inline}))`,
 };
-<ButtonRoot style={{ ...sizingVars, ...style }} />
+<ButtonRoot style={{ ...sizingVars, ...style }} />;
 ```
 
 Holistic density is a separate, opt-in layer driven by a **single**

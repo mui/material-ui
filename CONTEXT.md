@@ -1,6 +1,6 @@
 # Density (CSS-var adapter)
 
-How Material UI component dimensions (padding / gap / height) are exposed as
+How Material UI component dimensions (padding / gap / height) are exposed as
 hand-authorable CSS variables so a designer can tune component density — per
 component, per size, or holistically — without touching component source, doing
 `calc` arithmetic, or riding the single `--mui-spacing` dial.
@@ -14,14 +14,14 @@ dimension is an overridable token whose default is a literal px.
 **Component spacing token** (public, base):
 A per-component, per-CSS-property variable a designer may set, shape
 `--Component-<cssProperty>` — PascalCase component, camelCase **logical** CSS
-property, unprefixed (e.g. `--Button-paddingInline`, `--Chip-gap`). Matches the
+property, unprefixed (for example `--Button-paddingInline`, `--Chip-gap`). Matches the
 existing component-var convention (`--AppBar-background`). Setting it reflows
 that property across every variant and size of the component.
 _Avoid_: kebab property (`--Button-padding-inline`), `--mui-`-prefixed component vars, "variable".
 
 **Sized token** (public, size-specific):
 A size-scoped override, shape `--Component-<size>-<cssProperty>`
-(e.g. `--Button-small-paddingInline`). Reflows only that one size. **More
+(for example `--Button-small-paddingInline`). Reflows only that one size. **More
 specific than the base token** — when both are set, the sized token wins.
 _Avoid_: "size variant token".
 
@@ -59,7 +59,7 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 
 ## Relationships
 
-- The styled root reads **one** internal resolution var per property; **no JS
+- The styled root reads **one** internal resolution var per property; **no JavaScript
   conditional** lives in the styles implementation. The `(variant, size)` → px
   matrix is a **lookup table** in the component body, applied via inline style.
 - Override priority (high → low): plain `styleOverrides` property → **sized

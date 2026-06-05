@@ -84,17 +84,20 @@ export default function DensityTokens() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Density tokens experiment" />
+      <Head
+        title="Density tokens experiment"
+        description="CSS-var adapter density experiment for Button."
+      />
       <Box sx={{ maxWidth: 1100, mx: 'auto', p: { xs: 2, md: 4 } }}>
         <Typography variant="h4" gutterBottom>
           Density tokens — CSS-var adapter
         </Typography>
         <Typography color="text.secondary" sx={{ mb: 3 }}>
           Button padding is exposed as <code>--Button-paddingInline</code> /{' '}
-          <code>--Button-paddingBlock</code> (base), <code>--Button-&lt;size&gt;-paddingInline</code>{' '}
-          (sized, wins over base), with a literal-px fallback so the default is pixel-identical.{' '}
-          <code>enhanceDensity</code> wires the base tokens to the{' '}
-          <code>--mui-density-*</code> scale.
+          <code>--Button-paddingBlock</code> (base),{' '}
+          <code>--Button-&lt;size&gt;-paddingInline</code> (sized, wins over base), with a
+          literal-px fallback so the default is pixel-identical. <code>enhanceDensity</code> wires
+          the base tokens to the <code>--mui-density-*</code> scale.
         </Typography>
 
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ mb: 4 }}>
@@ -117,7 +120,9 @@ export default function DensityTokens() {
           <Stack spacing={3} sx={{ flex: 1, minWidth: 280 }}>
             <Typography variant="subtitle2">Density scale</Typography>
             <Box sx={{ width: '100%' }}>
-              <Typography variant="caption">--mui-density-xs (base block): {densityXs}px</Typography>
+              <Typography variant="caption">
+                --mui-density-xs (base block): {densityXs}px
+              </Typography>
               <Slider
                 value={densityXs}
                 min={0}
