@@ -14,6 +14,7 @@
       "default": "'0px'"
     },
     "component": { "type": { "name": "custom", "description": "element type" } },
+    "disablePrefersReducedMotion": { "type": { "name": "bool" }, "default": "false" },
     "easing": {
       "type": {
         "name": "union",
