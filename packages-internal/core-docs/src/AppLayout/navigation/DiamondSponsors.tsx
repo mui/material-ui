@@ -57,7 +57,7 @@ export function DiamondSponsors() {
           data-ga-event-action="docs-premium"
           data-ga-event-label="doit.com"
           href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
-          rel="noopener sponsored"
+          rel="sponsored"
           target="_blank"
         >
           <Box
@@ -83,7 +83,7 @@ export function DiamondSponsors() {
           data-ga-event-action="docs-premium"
           data-ga-event-label="formengine.io"
           href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway"
-          rel="noopener sponsored"
+          rel="sponsored"
           target="_blank"
         >
           <Box
