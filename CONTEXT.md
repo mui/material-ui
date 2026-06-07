@@ -43,24 +43,26 @@ layer routes it over the internal default; when set at any scope it wins.
 For a **size-varying** axis, resolution is **sized-only** — no all-sizes base token.
 _Avoid_: "size variant token".
 
-**Base token** (public, size-invariant axes only):
-When an axis does **not** vary by size (e.g. OutlinedInput's `14px` inline
-gutter), skip the **size layer** but keep the same shape: internal default
-`--_<key>` + seam, consumed `var(--Component-<key>, var(--_<key>))`
-(`var(--OutlinedInput-padInline, var(--_padInline))`, `--_padInline: 14px`). The
-seam *is* the knob — nothing routes it, so a designer sets it directly. Use only
-when the value is genuinely constant across sizes; otherwise use a **sized token**.
-_Avoid_: a base token for a size-varying axis; a bare literal default (use `--_<key>`).
+**Base token** (public, only when per-size override is meaningless):
+An axis can skip the **size layer** — internal default `--_<key>` + seam,
+consumed `var(--Component-<key>, var(--_<key>))`, nothing routes it, so a designer
+sets the seam directly. Use this **only when tuning the axis per size makes no
+sense**, because a base token can't be size-scoped from the theme. A
+size-invariant *default* is **not** enough: OutlinedInput's inline gutter is
+`14px` for both sizes, yet it's a **sized token** (`--OutlinedInput-<size>-padInline`,
+default `14px` each) so a design system can make small inputs denser inline.
+Reach for a base token rarely; default to a **sized token**.
+_Avoid_: a base token just because the default is size-invariant; a bare literal
+default (use `--_<key>`).
 
 **Internal default**:
 A private variable, shape `--_<key>` (leading underscore, **no component
 prefix**), **set in `variants`** per `(variant, size)` cell (medium defaults
 reuse the `{ variant }` blocks), over a **universal default on the root** so a
 custom variant/size still renders. It holds the Material default — today's exact
-px for that cell. No prefix is needed because the consumer either reads it on the
-same element (Button) or is a descendant that re-sets its own (OutlinedInput's
-input inherits from the root, but every root re-declares it) — so an ancestor's
-value never wins over a component's own. Lowest priority, so any sized token or
+px for that cell. No prefix is needed because every cell that reads it also
+sets it on the same element (Button; OutlinedInput's input and root each declare
+their own) — so an ancestor's value never wins over a component's own. Lowest priority, so any sized token or
 plain `styleOverrides` property still wins.
 _Avoid_: exposing it as API, prefixing with the component name, "private token".
 
@@ -109,10 +111,13 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   the impl forces it.** Button sets all sides together via one shorthand on one
   element → one `pad` var (even though block 6 ≠ inline 8 — differing values alone
   don't force a split). OutlinedInput *is* forced: block vs inline land on
-  different elements/states and zero per adornment, and block is sized while the
-  `14px` inline gutter is a size-invariant **base token** (`--OutlinedInput-padInline`).
-  Its padding spans two elements, so the root routes block while the input
-  consumes by inheritance.
+  different elements/states and zero per adornment. **Both axes are sized**
+  (`--OutlinedInput-<size>-padBlock`/`-padInline`) — block defaults vary by size
+  (16.5/8.5), inline defaults don't (14 both) but it's sized anyway so density can
+  tune it per size. Its padding spans two elements (input when inline, root when
+  multiline/adorned — never both on a side at once), so each site tokenizes its
+  own literal in place rather than lifting size resolution to one owner; smallest
+  diff from master.
 - **Cross-component coordination respects dependency direction.** The outlined
   floating label must track the input's `padBlock`, but `InputLabel` is generic
   (shared by all input variants) so it only exposes a seam (`--InputLabel-y`,
@@ -145,8 +150,10 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 - "spacing scale" (earlier draft, tier-1) — renamed **density scale** and moved
   to `theme.density`, to disambiguate from `theme.spacing`.
 - Base (all-sizes-over-sized) token — dropped for **size-varying** axes;
-  resolution is sized-only, tune per size. A **size-invariant** axis (e.g.
-  OutlinedInput inline gutter) is the one place a plain base token applies.
+  resolution is sized-only, tune per size. A base token applies only when per-size
+  override is meaningless — *not* merely when the default is size-invariant
+  (OutlinedInput's `14px` inline gutter is still a **sized** token so density can
+  tune it per size).
 - Var key — single `pad` shorthand only when the impl sets all sides together on
   one element (Button); split per axis (`padBlock`/`padInline`) when forced —
   axes on different elements/states or different shapes (OutlinedInput). Sides are

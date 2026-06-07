@@ -22,10 +22,14 @@ padding: 'var(--Button-pad, var(--_pad))'
 Resolution = **sized-only** for a size-varying axis. Sized token wins -> else
 internal default. No all-sizes-over-sized base token.
 
-**Size-invariant axis** (value same every size, e.g. OutlinedInput `14px` inline
-gutter) -> skip the **size layer** only; keep internal default `--_<key>`. Base
-token `--Component-<key>`, consumed `var(--Component-<key>, var(--_<key>))` (same
-shape as sized, no routing). Seam = knob (nothing routes it).
+**Size-invariant default ≠ base token.** If an axis's default is the same every
+size (e.g. OutlinedInput inline `14px`) you *can* skip the size layer — base
+token `--Component-<key>`, consumed `var(--Component-<key>, var(--_<key>))`,
+nothing routes it. But only when per-size override is genuinely meaningless,
+because a **base token can't be tuned per size from the theme**. If a design
+system might want that axis denser on small (density!), **size it anyway**: same
+default both sizes, but expose `--Component-<size>-<key>`. OutlinedInput sizes
+*both* padBlock and padInline for this reason (inline default `14px` each size).
 
 ## Recipe A — small component (Button)
 
@@ -59,26 +63,34 @@ Padding spans 2 elements (root when multiline, input otherwise) + paired sibling
 (InputLabel). More dimensions but token model is *simpler*.
 
 **Pick real axis + shape.** Block (`16.5 -> 8.5`) varies by size -> **sized**
-`padBlock`. Inline `14px` constant across sizes -> **base** `padInline`
-(`var(--OutlinedInput-padInline, var(--_padInline))`, `--_padInline: 14px`, no
-size layer). Split forced:
-axes land on different elements/states, zero per adornment, different shapes.
+`padBlock`. Inline default is `14px` both sizes, but a design system may want
+per-size inline density -> **size it too** (`padInline`, same `14px` default each
+size). Both axes sized, routed per size. Split block/inline forced: they land on
+different elements/states + zero per adornment.
 
-**Two elements, one source via inheritance.** Root owns routing + `--_padBlock`.
-Input is child -> consumes resolved `--OutlinedInput-padBlock` by inheritance. No
-duplicated size logic.
+**Two elements, tokenize in place.** Padding lives on the input (non-multiline,
+inline gutters) *and* the root (multiline, adornment gutters) — never both on the
+same side at once (multiline zeroes input padding; an adorned side zeroes the
+input and gutters from the root). Keep master's split: each site declares its own
+`--_<key>` + routes the size token, right where the literal was. No lift to a
+single owner, no inheritance, no dropped variants — smallest diff from master.
 
 ```js
-// root base
+// input base + root multiline cell:
 '--_padBlock': '16.5px',
+'--_padInline': '14px',
 '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, var(--_padBlock))',
-// root { size: small } -> --_padBlock 8.5px + route to small token
-// input: padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) 14px'
-// root multiline: padding: 'var(--OutlinedInput-padBlock) 14px'
+'--OutlinedInput-padInline': 'var(--OutlinedInput-medium-padInline, var(--_padInline))',
+padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) var(--OutlinedInput-padInline, var(--_padInline))',
+// each size-small cell re-routes its axis to the small token:
+//   input { size: small } -> padBlock + padInline small (input owns both)
+//   root  { multiline && small }            -> padBlock + padInline small
+//   root  { startAdornment/endAdornment && small } -> padInline small (gutter)
 ```
 
-Var carries size -> redundant `multiline && small` + input `size: small`
-variants gone. Same pixels, fewer rules.
+Cost of sizing inline in place: the size-agnostic adornment gutters need a small
+re-route, so each adornment variant gains a `&& size === 'small'` sibling. Cheap
+(one line each), and keeps both axes wired identically (no lift).
 
 **Paired sibling component (the label).** Generic component must not name
 specific component token. Label exposes own seam:
@@ -88,13 +100,14 @@ specific component token. Label exposes own seam:
 transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)' // small: 9px
 ```
 
-Specific component owns bridge. Label = *preceding* sibling -> reach via `:has`:
+Specific component owns bridge. Label = *preceding* sibling -> reach via `:has`.
+Cross-element rule -> derive the label seam straight from the **public sized
+token** + literal fallback (can't read the input's internal `--_padBlock`):
 
 ```js
 // OutlinedInputRoot, per size
 [`.${inputLabelClasses.root}:has(~ &)`]: {
-  '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, 16.5px)',
-  '--InputLabel-y': 'calc(var(--OutlinedInput-padBlock) - 0.5px)', // small: + 0.5px
+  '--InputLabel-y': 'calc(var(--OutlinedInput-medium-padBlock, 16.5px) - 0.5px)', // small: small token + 0.5px
 }
 ```
 
@@ -169,7 +182,9 @@ Screenshot harness `scripts/density-screenshots/` (`maxDiffPixels: 0`):
 - Internal: `--_<key>` (leading underscore, no prefix).
 - Key granularity = component's real spacing structure. One shorthand key
   (`pad`) when sides set together on one element; split per axis only when forced
-  (see gotcha). Per axis: sized if size-varying, base if constant.
+  (see gotcha). Per axis: **sized by default** (per-size tunable); base token only
+  if per-size override is genuinely meaningless — a size-invariant *default* alone
+  doesn't justify base (size it so density can tune it per size).
 
 ## Order to roll out
 

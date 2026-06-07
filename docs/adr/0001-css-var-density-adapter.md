@@ -55,11 +55,12 @@ Per property, the chain (inline padding on Button):
   on the root so a custom variant/size still renders a sane value.
 
 Resolution for a **size-varying** axis is **sized-only** (no all-sizes base
-token): the sized token wins, else the Material default. A **size-invariant**
-axis (e.g. OutlinedInput's inline gutter) skips the size layer entirely and uses
-a plain **base token** `--Component-<key>` over an internal default `--_<key>`,
-consumed `var(--Component-<key>, var(--_<key>))` — same consume shape as a sized
-axis, just with no size layer/routing.
+token): the sized token wins, else the Material default. An axis whose default is
+the same every size can still be **sized** — and usually should be, so a design
+system can tune it per size (density). A plain **base token** `--Component-<key>`
+over an internal default `--_<key>` (consumed `var(--Component-<key>, var(--_<key>))`,
+no size layer/routing) is reserved for the rare axis where per-size override is
+genuinely meaningless.
 
 The styled root has **one** consumption point per property and **no conditional**;
 the defaults and built-in-size routing are plain `variants` entries:
@@ -138,28 +139,31 @@ InputBase/TextField to follow) for this experiment.
 
 Same three-tier model, with two component-driven differences:
 
-- **Block is sized; inline is a base token.** Block (`16.5px`→`8.5px`) is the
-  density axis → sized token `--OutlinedInput-<size>-padBlock`. The `14px` inline
-  gutter is constant across sizes → a **base token** `--OutlinedInput-padInline`
-  (the experiment's first): same `var(--seam, var(--_padInline))` consume shape,
-  just **no size layer/routing** — the seam is the public knob, `--_padInline` the
-  internal default. Consumed on each spot (input sides, root adornment side,
-  multiline). Block and inline are split because the impl
-  applies them separately — different elements/states, per-adornment side-zeroing,
-  and different token shapes (sized vs base). (Filled/Standard have asymmetric
+- **Both axes are sized.** Block (`16.5px`→`8.5px`) varies by size → sized token
+  `--OutlinedInput-<size>-padBlock`. The `14px` inline gutter is *constant* across
+  sizes, but it's **sized too** → `--OutlinedInput-<size>-padInline` (default
+  `14px` each size) so a design system can make small inputs denser inline. (We
+  first modeled inline as a single size-invariant **base token**, but that can't
+  be size-scoped from the theme — a flaw for density — so we promoted it; a base
+  token is now reserved for axes where per-size override is meaningless.) Block and
+  inline are still split because the impl applies them separately — different
+  elements/states, per-adornment side-zeroing. Each axis is routed per size **in
+  place** on the element/variant that consumes it (input + root cells), so sizing
+  inline adds a `&& size === 'small'` re-route beside each size-agnostic adornment
+  variant — no lift, both axes wired identically. (Filled/Standard have asymmetric
   block padding — `4/5`, `25/8` — so a shared InputBase block seam would need a
   richer, per-side shape; deferred.)
-- **Two consuming elements via inheritance.** Padding lives on the input
-  (non-multiline) *and* the root (multiline). The root owns the size routing and
-  `--_padBlock`; the **input (a child) consumes the resolved
-  `--OutlinedInput-padBlock` by inheritance** — single source, no duplicated size
-  logic. This diverges from Button's "reader co-located with setter": here the
-  reader is a descendant. Unprefixed `--_padBlock` stays safe because every
-  `OutlinedInputRoot` re-sets its own value, shadowing any inherited one.
-
-Because the block var is size-resolved before the multiline/input rules read it,
-the previous `multiline && size==='small'` and input `size: 'small'` variants
-become redundant and are dropped (identical pixels, fewer rules).
+- **Two consuming elements, tokenized in place.** Padding lives on the input
+  (non-multiline) *and* the root (multiline) — and the two never both apply block
+  padding at once (multiline zeroes the input's). Rather than lift size resolution
+  to a single owner, **each site keeps master's literal-bearing cell and
+  tokenizes in place**: input base + input `{ size: small }`, root `multiline` +
+  root `{ multiline && small }`, each declaring its own `--_padBlock` and routing
+  the size token. This keeps the smallest diff from master (no restructuring, no
+  inheritance reliance, no dropped variants); the minor cost is the size routing
+  written twice (input vs root-multiline), which is honest — they are genuinely
+  separate code paths. Unprefixed `--_padBlock` stays safe because every cell that
+  reads it also sets it on the same element.
 
 **Closing the loop — the floating label.** In a `TextField`, `InputLabel` is a
 *preceding sibling* of the input. The resting label must track the block padding
@@ -172,8 +176,9 @@ The bridge must respect the **dependency direction**: `InputLabel` is generic
 So `InputLabel` only exposes a seam — its outlined resting transform reads
 `var(--InputLabel-y, <literal>)` — and **OutlinedInput owns the bridge**. Because
 the label precedes the input, OutlinedInput reaches it with `:has` (sibling
-combinators only match *following* siblings) and, per size, routes its public
-token into the label scope and derives the seam:
+combinators only match *following* siblings) and, per size, derives the label
+seam straight from its public sized token (a cross-element rule must reference the
+public token, not the input's internal `--_padBlock`):
 
 ```js
 // InputLabel — generic seam, literal default
@@ -181,8 +186,7 @@ transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)' // small: 9px
 
 // OutlinedInputRoot — base (medium) + size:small variant
 [`.${inputLabelClasses.root}:has(~ &)`]: {
-  '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, 16.5px)',
-  '--InputLabel-y': 'calc(var(--OutlinedInput-padBlock) - 0.5px)', // small: + 0.5px, 8.5px
+  '--InputLabel-y': 'calc(var(--OutlinedInput-medium-padBlock, 16.5px) - 0.5px)', // small: small token + 0.5px = 9px
 },
 ```
 
