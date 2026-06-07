@@ -118,6 +118,260 @@ export default function enhanceDensity<
         ],
       },
     },
+    MuiChip: {
+      ...c?.MuiChip,
+      styleOverrides: {
+        ...c?.MuiChip?.styleOverrides,
+        root: [
+          c?.MuiChip?.styleOverrides?.root,
+          {
+            '--Chip-small-height': varRefs.lg,
+            '--Chip-medium-height': varRefs.xl,
+            '--Chip-small-padInline': varRefs.sm,
+            '--Chip-medium-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
+    MuiIconButton: {
+      ...c?.MuiIconButton,
+      styleOverrides: {
+        ...c?.MuiIconButton?.styleOverrides,
+        root: [
+          c?.MuiIconButton?.styleOverrides?.root,
+          {
+            '--IconButton-small-pad': varRefs.xs,
+            '--IconButton-medium-pad': varRefs.sm,
+            '--IconButton-large-pad': varRefs.lg,
+          },
+        ],
+      },
+    },
+    MuiMenuItem: {
+      ...c?.MuiMenuItem,
+      styleOverrides: {
+        ...c?.MuiMenuItem?.styleOverrides,
+        root: [
+          c?.MuiMenuItem?.styleOverrides?.root,
+          {
+            '--MenuItem-minHeight': varRefs.xl,
+            '--MenuItem-dense-minHeight': varRefs.lg,
+            '--MenuItem-padBlock': varRefs.xs,
+            '--MenuItem-dense-padBlock': varRefs.xxs,
+            '--MenuItem-padInline': varRefs.lg,
+            '--MenuItem-dense-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
+    MuiListItem: {
+      ...c?.MuiListItem,
+      styleOverrides: {
+        ...c?.MuiListItem?.styleOverrides,
+        root: [
+          c?.MuiListItem?.styleOverrides?.root,
+          {
+            '--ListItem-padBlock': varRefs.sm,
+            '--ListItem-dense-padBlock': varRefs.xxs,
+            '--ListItem-padInline': varRefs.lg,
+            '--ListItem-dense-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
+    MuiListItemButton: {
+      ...c?.MuiListItemButton,
+      styleOverrides: {
+        ...c?.MuiListItemButton?.styleOverrides,
+        root: [
+          c?.MuiListItemButton?.styleOverrides?.root,
+          {
+            '--ListItemButton-padBlock': varRefs.sm,
+            '--ListItemButton-dense-padBlock': varRefs.xs,
+            '--ListItemButton-padInline': varRefs.lg,
+            '--ListItemButton-dense-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
+    MuiListItemIcon: {
+      ...c?.MuiListItemIcon,
+      styleOverrides: {
+        ...c?.MuiListItemIcon?.styleOverrides,
+        root: [
+          c?.MuiListItemIcon?.styleOverrides?.root,
+          {
+            '--ListItemIcon-minWidth': `calc(36px + ${varRefs.md})`,
+          },
+        ],
+      },
+    },
+    MuiListItemText: {
+      ...c?.MuiListItemText,
+      styleOverrides: {
+        ...c?.MuiListItemText?.styleOverrides,
+        root: [
+          c?.MuiListItemText?.styleOverrides?.root,
+          {
+            // Sized-only: regular vs dense compactness each maps to its own step.
+            // marginBlock = vertical row spacing (smaller = denser); insetPad =
+            // indentation.
+            '--ListItemText-marginBlock': varRefs.xs,
+            '--ListItemText-dense-marginBlock': varRefs.xxs,
+            '--ListItemText-insetPad': `calc(${varRefs.xl} + ${varRefs.lg})`,
+            '--ListItemText-dense-insetPad': varRefs.xl,
+          },
+        ],
+      },
+    },
+    MuiListSubheader: {
+      ...c?.MuiListSubheader,
+      styleOverrides: {
+        ...c?.MuiListSubheader?.styleOverrides,
+        root: [
+          c?.MuiListSubheader?.styleOverrides?.root,
+          {
+            // Base tokens (no size layer): map the agnostic seams directly.
+            '--ListSubheader-height': varRefs.xl,
+            '--ListSubheader-padInline': varRefs.md,
+            '--ListSubheader-inset': `calc(${varRefs.xl} + ${varRefs.lg})`,
+          },
+        ],
+      },
+    },
+    MuiToolbar: {
+      ...c?.MuiToolbar,
+      styleOverrides: {
+        ...c?.MuiToolbar?.styleOverrides,
+        root: [
+          c?.MuiToolbar?.styleOverrides?.root,
+          {
+            // Only `dense` minHeight is tokenized (regular stays mixins.toolbar);
+            // gutter padInline is a base token.
+            '--Toolbar-dense-minHeight': varRefs.lg,
+            '--Toolbar-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
+    MuiTab: {
+      ...c?.MuiTab,
+      styleOverrides: {
+        ...c?.MuiTab?.styleOverrides,
+        root: [
+          c?.MuiTab?.styleOverrides?.root,
+          {
+            // Base tokens: Tab has no size prop, so map the agnostic seams
+            // directly to density steps (no per-size tokens to route).
+            '--Tab-padBlock': varRefs.sm,
+            '--Tab-padInline': varRefs.lg,
+            '--Tab-minHeight': `calc(${varRefs.xl} + ${varRefs.lg})`,
+            '--Tab-iconSpacing': varRefs.xs,
+          },
+        ],
+      },
+    },
+    MuiTablePagination: {
+      ...c?.MuiTablePagination,
+      styleOverrides: {
+        ...c?.MuiTablePagination?.styleOverrides,
+        root: [
+          c?.MuiTablePagination?.styleOverrides?.root,
+          {
+            '--TablePagination-minHeight': `calc(${varRefs.xl} + ${varRefs.md})`,
+            '--TablePagination-actionsSpacing': varRefs.lg,
+            '--TablePagination-selectSpacing': varRefs.xl,
+          },
+        ],
+      },
+    },
+    MuiCardContent: {
+      ...c?.MuiCardContent,
+      styleOverrides: {
+        ...c?.MuiCardContent?.styleOverrides,
+        root: [
+          c?.MuiCardContent?.styleOverrides?.root,
+          {
+            // CardContent has no size prop -> base tokens (no per-size layer).
+            '--CardContent-pad': varRefs.lg,
+            '--CardContent-padBottom': varRefs.xl,
+          },
+        ],
+      },
+    },
+    MuiSelect: {
+      ...c?.MuiSelect,
+      styleOverrides: {
+        ...c?.MuiSelect?.styleOverrides,
+        root: [
+          c?.MuiSelect?.styleOverrides?.root,
+          {
+            // Base axis (no size layer) — single agnostic seam, mapped to a
+            // mid-step so density nudges the select content-box floor uniformly.
+            '--Select-minHeight': varRefs.lg,
+          },
+        ],
+      },
+    },
+    MuiBreadcrumbs: {
+      ...c?.MuiBreadcrumbs,
+      styleOverrides: {
+        ...c?.MuiBreadcrumbs?.styleOverrides,
+        root: [
+          c?.MuiBreadcrumbs?.styleOverrides?.root,
+          {
+            '--Breadcrumbs-separatorGap': varRefs.sm,
+          },
+        ],
+      },
+    },
+    MuiInputAdornment: {
+      ...c?.MuiInputAdornment,
+      styleOverrides: {
+        ...c?.MuiInputAdornment?.styleOverrides,
+        root: [
+          c?.MuiInputAdornment?.styleOverrides?.root,
+          {
+            '--InputAdornment-small-gap': varRefs.xxs,
+            '--InputAdornment-medium-gap': varRefs.sm,
+            '--InputAdornment-small-marginTop': varRefs.md,
+            '--InputAdornment-medium-marginTop': varRefs.lg,
+          },
+        ],
+      },
+    },
+    MuiBadge: {
+      ...c?.MuiBadge,
+      styleOverrides: {
+        ...c?.MuiBadge?.styleOverrides,
+        root: [
+          c?.MuiBadge?.styleOverrides?.root,
+          {
+            '--Badge-standard-pad': `0 ${varRefs.sm}`,
+            '--Badge-standard-size': varRefs.lg,
+            '--Badge-dot-pad': '0px',
+            '--Badge-dot-size': varRefs.xs,
+          },
+        ],
+      },
+    },
+    MuiOutlinedInput: {
+      ...c?.MuiOutlinedInput,
+      styleOverrides: {
+        ...c?.MuiOutlinedInput?.styleOverrides,
+        root: [
+          c?.MuiOutlinedInput?.styleOverrides?.root,
+          {
+            // Sized block/inline padding per size; block < inline to keep the
+            // input's 16.5/14 feel.
+            '--OutlinedInput-medium-padBlock': varRefs.md,
+            '--OutlinedInput-small-padBlock': varRefs.sm,
+            '--OutlinedInput-medium-padInline': varRefs.lg,
+            '--OutlinedInput-small-padInline': varRefs.md,
+          },
+        ],
+      },
+    },
   };
 
   return theme;

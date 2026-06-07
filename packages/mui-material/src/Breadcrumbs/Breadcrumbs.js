@@ -49,10 +49,11 @@ const BreadcrumbsSeparator = styled('li', {
   name: 'MuiBreadcrumbs',
   slot: 'Separator',
 })({
+  '--_separatorGap': '8px',
   display: 'flex',
   userSelect: 'none',
-  marginLeft: 8,
-  marginRight: 8,
+  marginLeft: 'var(--Breadcrumbs-separatorGap, var(--_separatorGap))',
+  marginRight: 'var(--Breadcrumbs-separatorGap, var(--_separatorGap))',
 });
 
 function insertSeparators(items, className, separator, ownerState) {

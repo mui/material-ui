@@ -29,7 +29,8 @@ const ListItemIconRoot = styled('div', {
   },
 })(
   memoTheme(({ theme }) => ({
-    minWidth: theme.spacing(4.5),
+    '--_minWidth': theme.spacing(4.5),
+    minWidth: 'var(--ListItemIcon-minWidth, var(--_minWidth))',
     color: (theme.vars || theme).palette.action.active,
     flexShrink: 0,
     display: 'inline-flex',

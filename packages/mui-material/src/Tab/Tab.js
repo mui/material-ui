@@ -54,9 +54,15 @@ const TabRoot = styled(ButtonBase, {
     maxWidth: 360,
     minWidth: 90,
     position: 'relative',
-    minHeight: 48,
+    // Density seams: Tab has no `size` prop, so each axis is a base token
+    // (`--Tab-<key>`) over an internal default (`--_<key>`). The labelIcon state
+    // owns its own block/min-height literals; everything else reads these.
+    '--_padBlock': '12px',
+    '--_padInline': '16px',
+    '--_minHeight': '48px',
+    minHeight: 'var(--Tab-minHeight, var(--_minHeight))',
     flexShrink: 0,
-    padding: '12px 16px',
+    padding: 'var(--Tab-padBlock, var(--_padBlock)) var(--Tab-padInline, var(--_padInline))',
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
@@ -82,9 +88,12 @@ const TabRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => ownerState.icon && ownerState.label,
         style: {
-          minHeight: 72,
-          paddingTop: 9,
-          paddingBottom: 9,
+          // labelIcon owns its own compactness + block padding literals; inline
+          // padding stays from the base shorthand (unchanged at 16px).
+          '--_minHeight': '72px',
+          '--_padBlock': '9px',
+          paddingTop: 'var(--Tab-padBlock, var(--_padBlock))',
+          paddingBottom: 'var(--Tab-padBlock, var(--_padBlock))',
         },
       },
       {
@@ -92,7 +101,8 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'top',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginBottom: 6,
+            '--_iconSpacing': '6px',
+            marginBottom: 'var(--Tab-iconSpacing, var(--_iconSpacing))',
           },
         },
       },
@@ -101,7 +111,8 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'bottom',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginTop: 6,
+            '--_iconSpacing': '6px',
+            marginTop: 'var(--Tab-iconSpacing, var(--_iconSpacing))',
           },
         },
       },
@@ -110,7 +121,8 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'start',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginRight: theme.spacing(1),
+            '--_iconSpacing': theme.spacing(1),
+            marginRight: 'var(--Tab-iconSpacing, var(--_iconSpacing))',
           },
         },
       },
@@ -119,7 +131,8 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'end',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginLeft: theme.spacing(1),
+            '--_iconSpacing': theme.spacing(1),
+            marginLeft: 'var(--Tab-iconSpacing, var(--_iconSpacing))',
           },
         },
       },
