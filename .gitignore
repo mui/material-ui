@@ -52,3 +52,8 @@ test-results/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# density-adapter screenshot harness (local-only outputs)
+/density-screenshots/
+/scripts/density-screenshots/__baselines__/
+/scripts/density-screenshots/.playwright-output/
