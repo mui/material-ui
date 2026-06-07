@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -46,6 +47,20 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     return {
+      // Agnostic seam: the input (child) inherits the size-resolved
+      // --OutlinedInput-padBlock; the root consumes it only when multiline.
+      // --_padBlock is the medium default, specialized by the size variant.
+      // See docs/adr/0001. Block (vertical) is the density axis; the 14px inline
+      // gutter is constant, so it stays a literal.
+      '--_padBlock': '16.5px',
+      '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, var(--_padBlock))',
+      // The outlined label centers on the input's block padding. It's a preceding
+      // sibling, so reach it via :has and feed it the public token + the label's
+      // resting-Y seam. Medium default resolves to 16px (16.5 - 0.5 rounding).
+      [`.${inputLabelClasses.root}:has(~ &)`]: {
+        '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, 16.5px)',
+        '--InputLabel-y': 'calc(var(--OutlinedInput-padBlock) - 0.5px)',
+      },
       position: 'relative',
       borderRadius: (theme.vars || theme).shape.borderRadius,
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
@@ -85,6 +100,18 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           },
         },
         {
+          props: { size: 'small' },
+          style: {
+            '--_padBlock': '8.5px',
+            '--OutlinedInput-padBlock': 'var(--OutlinedInput-small-padBlock, var(--_padBlock))',
+            // Small default resolves to 9px (8.5 + 0.5).
+            [`.${inputLabelClasses.root}:has(~ &)`]: {
+              '--OutlinedInput-padBlock': 'var(--OutlinedInput-small-padBlock, 8.5px)',
+              '--InputLabel-y': 'calc(var(--OutlinedInput-padBlock) + 0.5px)',
+            },
+          },
+        },
+        {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {
             paddingLeft: 14,
@@ -99,13 +126,8 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            padding: '16.5px 14px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            padding: '8.5px 14px',
+            // Block from the size-resolved var (small + multiline → 8.5px).
+            padding: 'var(--OutlinedInput-padBlock) 14px',
           },
         },
       ],
@@ -134,7 +156,9 @@ const OutlinedInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    padding: '16.5px 14px',
+    // Inherits the size-resolved --OutlinedInput-padBlock from the root; the 14px
+    // inline gutter is constant (not a density axis).
+    padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) 14px',
     '&:-webkit-autofill': {
       ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -150,14 +174,6 @@ const OutlinedInputInput = styled(InputBaseInput, {
         })),
     },
     variants: [
-      {
-        props: {
-          size: 'small',
-        },
-        style: {
-          padding: '8.5px 14px',
-        },
-      },
       {
         props: ({ ownerState }) => ownerState.multiline,
         style: {

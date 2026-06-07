@@ -127,7 +127,67 @@ in the standard generation and can be re-scoped at any level), but it requires
 function: easy to A/B, easy to delete, no core change. The cost is that
 post-hoc-emitted vars live outside the standard `theme.vars` pipeline.
 
-Scope: **Button only** for this experiment.
+Scope: **Button** and the **outlined input family** (OutlinedInput, with
+InputBase/TextField to follow) for this experiment.
+
+### OutlinedInput specifics
+
+Same three-tier model, with two component-driven differences:
+
+- **Block-only.** Input "density" is vertical: Material's own `small` changes
+  only the block padding (`16.5px` → `8.5px`); the `14px` inline gutter is
+  constant, so only `--OutlinedInput-padBlock` is tokenized. The gutter stays a
+  literal. (Filled/Standard have asymmetric block padding — `4/5`, `25/8` — so a
+  shared InputBase block seam would need a richer, per-side shape; deferred.)
+- **Two consuming elements via inheritance.** Padding lives on the input
+  (non-multiline) *and* the root (multiline). The root owns the size routing and
+  `--_padBlock`; the **input (a child) consumes the resolved
+  `--OutlinedInput-padBlock` by inheritance** — single source, no duplicated size
+  logic. This diverges from Button's "reader co-located with setter": here the
+  reader is a descendant. Unprefixed `--_padBlock` stays safe because every
+  `OutlinedInputRoot` re-sets its own value, shadowing any inherited one.
+
+Because the block var is size-resolved before the multiline/input rules read it,
+the previous `multiline && size==='small'` and input `size: 'small'` variants
+become redundant and are dropped (identical pixels, fewer rules).
+
+**Closing the loop — the floating label.** In a `TextField`, `InputLabel` is a
+*preceding sibling* of the input. The resting label must track the block padding
+or it decenters when density is tuned. True centering is `labelY = padBlock`
+exactly (`(lineHeight + 2·padBlock)/2 − lineHeight/2`); today's `16px`/`9px` are
+that with ±0.5px historical rounding.
+
+The bridge must respect the **dependency direction**: `InputLabel` is generic
+(shared by outlined/filled/standard) and must not name a specific input's token.
+So `InputLabel` only exposes a seam — its outlined resting transform reads
+`var(--InputLabel-y, <literal>)` — and **OutlinedInput owns the bridge**. Because
+the label precedes the input, OutlinedInput reaches it with `:has` (sibling
+combinators only match *following* siblings) and, per size, routes its public
+token into the label scope and derives the seam:
+
+```js
+// InputLabel — generic seam, literal default
+transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)' // small: 9px
+
+// OutlinedInputRoot — base (medium) + size:small variant
+[`.${inputLabelClasses.root}:has(~ &)`]: {
+  '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, 16.5px)',
+  '--InputLabel-y': 'calc(var(--OutlinedInput-padBlock) - 0.5px)', // small: + 0.5px, 8.5px
+},
+```
+
+Defaults compute to exactly `16px`/`9px` (Argos zero-diff); setting
+`--OutlinedInput-<size>-padBlock` reflows input and label together — single knob,
+no FormControl, no `enhanceDensity`. The **shrunk** label (`-9px`, in the notch on
+the top border) is padding-independent and stays literal. InputBase needs no
+change — OutlinedInput fully overrides its padding.
+
+Why `:has` and not the alternatives: putting the calc in `InputLabel` would make
+a generic component name a sibling's token (wrong direction); a flat-scope
+`--InputLabel-y` can't be size-specific for mixed-size pages; routing through
+`enhanceDensity` defers single-knob to the design-system layer. The `:has` rule
+keeps the coupling in the one component that legitimately owns it. Cost: needs
+`:has()` (Chrome 105 / Safari 15.4 / Firefox 121).
 
 ## Consequences
 
@@ -148,7 +208,7 @@ Scope: **Button only** for this experiment.
 ### Accepted trade-offs
 
 | Trade-off | Why we can live with it |
-| --- | --- |
+| :-- | :-- |
 | `--Button-pad` is public-shaped but not a designer knob in the assembled Button (plumbing) | It's the agnostic seam; the real knob is `--Button-<size>-pad`, documented. The name marks the layer boundary. |
 | Two vars per property instead of one | Mandatory (see *Why two vars*); the indirection is mechanical and documented. |
 | Unprefixed `--_pad` could inherit a foreign value | Every built-in cell plus the root universal default set it on the element; revisit a prefix only if cross-component collisions surface as the pattern spreads. |

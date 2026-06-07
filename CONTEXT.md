@@ -48,10 +48,11 @@ A private variable, shape `--_<key>` (leading underscore, **no component
 prefix**), **set in `variants`** per `(variant, size)` cell (medium defaults
 reuse the `{ variant }` blocks), over a **universal default on the root** so a
 custom variant/size still renders. It holds the Material default — today's exact
-px for that cell. No prefix is needed because the reader (the agnostic var's
-fallback / the routing) is on the same element, so an ancestor's value never
-bleeds into a descendant. Lowest priority, so any sized token or plain
-`styleOverrides` property still wins.
+px for that cell. No prefix is needed because the consumer either reads it on the
+same element (Button) or is a descendant that re-sets its own (OutlinedInput's
+input inherits from the root, but every root re-declares it) — so an ancestor's
+value never wins over a component's own. Lowest priority, so any sized token or
+plain `styleOverrides` property still wins.
 _Avoid_: exposing it as API, prefixing with the component name, "private token".
 
 **Token fallback**:
@@ -95,6 +96,17 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 - Custom (user-defined) sizes work for free: when the size isn't built-in, the
   inline routing builds the sized-token name from the runtime size string; the
   design system supplies the value via that token.
+- **Token granularity follows the component's spacing structure.** Button tunes
+  all sides together → one `pad` shorthand var. OutlinedInput's density is
+  vertical only (the `14px` inline gutter is constant) → a single `padBlock` var;
+  and because its padding spans two elements, the root routes while the input
+  consumes by inheritance.
+- **Cross-component coordination respects dependency direction.** The outlined
+  floating label must track the input's `padBlock`, but `InputLabel` is generic
+  (shared by all input variants) so it only exposes a seam (`--InputLabel-y`,
+  literal default). The **specific** component, `OutlinedInput`, owns the bridge:
+  it reaches its preceding-sibling label via `:has(~ &)` and sets `--InputLabel-y`
+  from its public token. Generic never names specific; one knob still drives both.
 - **enhanceDensity** (opt-in) connects tier-2 component tokens to the tier-1
   **density scale**; un-enhanced, the literal fallbacks reproduce today's pixels.
 - This experiment does **not** ride `--mui-spacing`; holistic density comes from

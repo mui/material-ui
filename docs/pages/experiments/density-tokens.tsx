@@ -5,7 +5,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
@@ -19,7 +23,8 @@ import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 // layer sets the (variant, size) literal default `--_pad` and the built-in-size
 // routing `--Button-pad: var(--Button-<size>-pad, var(--_pad))` in `variants`
 // (custom sizes route inline). `enhanceDensity` wires the sized tokens to the
-// `--mui-density-*` scale.
+// `--mui-density-*` scale. OutlinedInput applies the same model block-only: the
+// root routes `--OutlinedInput-padBlock`, the input inherits it.
 
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
@@ -47,6 +52,34 @@ function ButtonMatrix() {
             ))}
           </Stack>
         </Box>
+      ))}
+    </Stack>
+  );
+}
+
+function OutlinedInputMatrix() {
+  return (
+    <Stack spacing={1.5}>
+      {(['small', 'medium'] as const).map((size) => (
+        <Stack
+          key={size}
+          direction="row"
+          spacing={1}
+          useFlexGap
+          sx={{ flexWrap: 'wrap', alignItems: 'flex-start' }}
+        >
+          <OutlinedInput size={size} placeholder={size} />
+          <OutlinedInput size={size} placeholder="multiline" multiline />
+          <OutlinedInput
+            size={size}
+            placeholder="adornment"
+            startAdornment={<InputAdornment position="start">@</InputAdornment>}
+          />
+          <FormControl size={size}>
+            <InputLabel>{`label ${size}`}</InputLabel>
+            <OutlinedInput label={`label ${size}`} />
+          </FormControl>
+        </Stack>
       ))}
     </Stack>
   );
@@ -81,6 +114,9 @@ export default function DensityTokens() {
   // Per-token overrides (sized-only).
   const [smallPad, setSmallPad] = React.useState('');
   const [largePad, setLargePad] = React.useState('');
+  // OutlinedInput block-density overrides.
+  const [smallPadBlock, setSmallPadBlock] = React.useState('');
+  const [mediumPadBlock, setMediumPadBlock] = React.useState('');
 
   const densityScope: React.CSSProperties = {
     // Retunes every enhanced button without rebuilding the theme.
@@ -93,12 +129,17 @@ export default function DensityTokens() {
     ...(largePad ? { ['--Button-large-pad' as any]: largePad } : null),
   };
 
+  const inputTokenScope: React.CSSProperties = {
+    ...(smallPadBlock ? { ['--OutlinedInput-small-padBlock' as any]: smallPadBlock } : null),
+    ...(mediumPadBlock ? { ['--OutlinedInput-medium-padBlock' as any]: mediumPadBlock } : null),
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Head
         title="Density tokens experiment"
-        description="CSS-var adapter density experiment for Button."
+        description="CSS-var adapter density experiment for Button and OutlinedInput."
       />
       <Box sx={{ maxWidth: 1100, mx: 'auto', p: { xs: 2, md: 4 } }}>
         <Typography variant="h4" gutterBottom>
@@ -180,6 +221,50 @@ export default function DensityTokens() {
               <ButtonMatrix />
             </Paper>
           </Stack>
+        </Stack>
+
+        <Divider sx={{ my: 4 }} />
+
+        <Typography variant="h6" gutterBottom>
+          OutlinedInput — block density
+        </Typography>
+        <Typography color="text.secondary" sx={{ mb: 3 }}>
+          Input density is vertical only: the root routes the size-resolved{' '}
+          <code>--OutlinedInput-padBlock</code> and the input inherits it; the{' '}
+          <code>14px</code> inline gutter is constant. Set{' '}
+          <code>--OutlinedInput-&lt;size&gt;-padBlock</code> to retune — it reflows the input
+          (non-multiline) and the root (multiline) together, across adornments. The last column
+          is a <code>FormControl + InputLabel + OutlinedInput</code>: <code>OutlinedInput</code>
+          reaches its sibling label via <code>:has</code> and sets <code>--InputLabel-y</code> from
+          the same token, so the resting label stays centered under override.
+        </Typography>
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ mb: 2 }}>
+          <Panel title="Default" caption="Plain · multiline · adornment · InputLabel, per size.">
+            <OutlinedInputMatrix />
+          </Panel>
+          <Panel
+            title="Token override (scoped)"
+            caption="--OutlinedInput-<size>-padBlock applied at this scope."
+            style={inputTokenScope}
+          >
+            <OutlinedInputMatrix />
+          </Panel>
+        </Stack>
+        <Stack direction="row" spacing={2} sx={{ mb: 4 }}>
+          <TextField
+            label="--OutlinedInput-small-padBlock"
+            placeholder="e.g. 4px"
+            size="small"
+            value={smallPadBlock}
+            onChange={(event) => setSmallPadBlock(event.target.value)}
+          />
+          <TextField
+            label="--OutlinedInput-medium-padBlock"
+            placeholder="e.g. 24px"
+            size="small"
+            value={mediumPadBlock}
+            onChange={(event) => setMediumPadBlock(event.target.value)}
+          />
         </Stack>
 
         <Typography variant="subtitle2" gutterBottom>
