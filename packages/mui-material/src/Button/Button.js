@@ -73,14 +73,8 @@ const commonIconStyles = [
   },
 ];
 
-// [block, inline] padding per (variant, size), in px — today's exact values.
-// Resolved to `--_Button-padding*` via inline style so the (variant, size)
-// matrix needs no static CSS and custom sizes work; see docs/adr/0001.
-const buttonPadding = {
-  text: { small: ['4px', '5px'], medium: ['6px', '8px'], large: ['8px', '11px'] },
-  outlined: { small: ['3px', '9px'], medium: ['5px', '15px'], large: ['7px', '21px'] },
-  contained: { small: ['4px', '10px'], medium: ['6px', '16px'], large: ['8px', '22px'] },
-};
+// Built-in sizes route padding via variants; any other size routes inline.
+const buttonSizes = ['small', 'medium', 'large'];
 
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
@@ -108,12 +102,12 @@ const ButtonRoot = styled(ButtonBase, {
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
       ...theme.typography.button,
+      // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
+      // is the universal default (today's root padding); variants specialize it
+      // per (variant, size), so a custom variant/size still gets a sane value.
+      '--_pad': '6px 16px',
+      padding: 'var(--Button-pad, var(--_pad))',
       minWidth: 64,
-      // `--_padding*` are set via inline style from the (variant, size) lookup;
-      // the literals here are only a safety fallback (medium contained). The
-      // internal var is unprefixed — it's read on the same element that sets it
-      // inline, so no component prefix is needed to avoid inheritance bleed.
-      padding: 'var(--_paddingBlock, 6px) var(--_paddingInline, 16px)',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       transition: theme.transitions.create(
@@ -129,9 +123,24 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
+        // Built-in size routing (CSS, deduped) — exposes the public sized token
+        // over the internal default. Custom sizes are routed inline instead.
+        {
+          props: { size: 'small' },
+          style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' },
+        },
+        {
+          props: { size: 'medium' },
+          style: { '--Button-pad': 'var(--Button-medium-pad, var(--_pad))' },
+        },
+        {
+          props: { size: 'large' },
+          style: { '--Button-pad': 'var(--Button-large-pad, var(--_pad))' },
+        },
         {
           props: { variant: 'contained' },
           style: {
+            '--_pad': '6px 16px', // medium default; small/large override below
             color: `var(--variant-containedColor)`,
             backgroundColor: `var(--variant-containedBg)`,
             boxShadow: (theme.vars || theme).shadows[2],
@@ -158,6 +167,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'outlined' },
           style: {
+            '--_pad': '5px 15px', // medium default; small/large override below
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
@@ -170,6 +180,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'text' },
           style: {
+            '--_pad': '6px 8px', // medium default; small/large override below
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -236,6 +247,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
+            '--_pad': '4px 5px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -245,6 +257,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
+            '--_pad': '8px 11px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -254,6 +267,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
+            '--_pad': '3px 9px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -263,6 +277,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
+            '--_pad': '7px 21px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -272,6 +287,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
+            '--_pad': '4px 10px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -281,6 +297,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
+            '--_pad': '8px 22px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -555,17 +572,13 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // Resolve the (variant, size) padding cell to the internal vars. Each falls
-  // through: sized token -> base token -> literal, so overriding either public
-  // token at any scope reflows the button (see docs/adr/0001). Unknown variant
-  // falls back to the root default, unknown size to the variant's medium.
-  const variantPadding = buttonPadding[variant];
-  const [paddingBlock, paddingInline] = (variantPadding &&
-    (variantPadding[size] || variantPadding.medium)) || ['6px', '16px'];
-  const densityVars = {
-    '--_paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${paddingBlock}))`,
-    '--_paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${paddingInline}))`,
-  };
+  // Material UI layer: built-in sizes route the public sized token via variants
+  // (deduped CSS). A custom size has no such variant, so route it inline — the
+  // token name carries the runtime size string, keeping custom sizes tunable for
+  // free. The `--_pad` default lives in the variants. See docs/adr/0001.
+  const densityVars = buttonSizes.includes(size)
+    ? undefined
+    : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
 
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>

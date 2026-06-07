@@ -43,8 +43,8 @@ const cssVar = (key: DensityKey) => `--mui-density-${key}`;
  * 1. **Emits** the density scale as `--mui-density-*` CSS vars at `:root`
  *    (via `MuiCssBaseline` — requires `<CssBaseline />`) and exposes them on
  *    `theme.density` / `theme.vars.density`.
- * 2. **Maps** each component's spacing tokens to a density step through injected
- *    `styleOverrides.root` (e.g. `--Button-paddingInline: var(--mui-density-lg)`).
+ * 2. **Maps** each component's sized tokens to density steps through injected
+ *    `styleOverrides.root` (e.g. `--Button-medium-pad: var(--mui-density-xs) var(--mui-density-lg)`).
  *
  * `createTheme` is left untouched; without this function components render their
  * literal-px defaults. See `docs/adr/0001-css-var-density-adapter.md`.
@@ -109,11 +109,11 @@ export default function enhanceDensity<
         root: [
           c?.MuiButton?.styleOverrides?.root,
           {
-            // Base tokens cover every size, so density flattens the size matrix
-            // to one comfortable value (set sized tokens to keep per-size
-            // steps). Medium block/inline map to xs/lg by default.
-            '--Button-paddingBlock': varRefs.xs,
-            '--Button-paddingInline': varRefs.lg,
+            // Sized-only: each size's `pad` shorthand (block inline) maps to its
+            // own density step, so tuning the scale keeps the per-size matrix.
+            '--Button-small-pad': `${varRefs.xxs} ${varRefs.sm}`,
+            '--Button-medium-pad': `${varRefs.xs} ${varRefs.lg}`,
+            '--Button-large-pad': `${varRefs.sm} ${varRefs.xl}`,
           },
         ],
       },

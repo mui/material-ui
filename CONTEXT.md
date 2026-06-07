@@ -9,34 +9,53 @@ This is the **adapter** sibling of the earlier `--mui-spacing`-derived
 experiment (`feat/components-theme-spacing`): instead of one global dial, each
 dimension is an overridable token whose default is a literal px.
 
+## Layers
+
+The component is read as **three layers of responsibility**, each owning a slice
+of one cascade:
+
+- **Agnostic** — the styled root, no design meaning (no size/variant/color). Its
+  spacing surface is one public var it consumes directly, falling back to the
+  internal default (`padding: var(--Button-pad, var(--_pad))`).
+- **Material UI** — Material Design's sizes/variants, all in `variants`: the
+  `(variant, size)` literal defaults (`--_pad`) and the sized-token routing
+  (`--Button-pad`) for built-in sizes. A custom size routes inline instead (it
+  needs the runtime size string).
+- **Design system** — tunes the public **sized tokens** the Material UI layer
+  routes over its default (wired via `enhanceDensity`).
+
 ## Language
 
-**Component spacing token** (public, base):
-A per-component, per-CSS-property variable a designer may set, shape
-`--Component-<cssProperty>` — PascalCase component, camelCase **logical** CSS
-property, unprefixed (for example `--Button-paddingInline`, `--Chip-gap`). Matches the
-existing component-var convention (`--AppBar-background`). Setting it reflows
-that property across every variant and size of the component.
-_Avoid_: kebab property (`--Button-padding-inline`), `--mui-`-prefixed component vars, "variable".
+**Agnostic var** (public, the layer-1 surface):
+The single per-property variable the styled root consumes, shape
+`--Component-<key>` — PascalCase component, short semantic key (`pad`, `gap`),
+unprefixed (for example `--Button-pad`). Matches the existing component-var
+convention (`--AppBar-background`). The root reads it with the internal default
+behind it (`var(--Button-pad, var(--_pad))`); the Material UI layer **sets it in
+a per-size `variants` block** to the sized-token routing (inline for custom
+sizes). A designer tunes it through the sized token, not by setting it directly.
+_Avoid_: literal CSS-property keys (`--Button-padding`), kebab keys, `--mui-`-prefixed component vars, "variable".
 
-**Sized token** (public, size-specific):
-A size-scoped override, shape `--Component-<size>-<cssProperty>`
-(for example `--Button-small-paddingInline`). Reflows only that one size. **More
-specific than the base token** — when both are set, the sized token wins.
-_Avoid_: "size variant token".
+**Sized token** (public, the design-system knob):
+A size-scoped override, shape `--Component-<size>-<key>`
+(for example `--Button-small-pad`). Reflows only that one size. The Material UI
+layer routes it over the internal default; when set at any scope it wins.
+**Resolution is sized-only** — there is no all-sizes base token.
+_Avoid_: "size variant token", a base/all-sizes token.
 
-**Internal resolution var**:
-A private variable, shape `--_<cssProperty>` (leading underscore, **no component
-prefix**), **set via inline style** from the rendered `(variant, size)` and
-consumed once in the styled root of the same element. It carries the full
-fallback chain (sized token → base token → literal). No prefix is needed because
-the reader is co-located with the inline setter, so an ancestor's value never
-bleeds into a descendant. Lowest priority, so any public token or plain
+**Internal default**:
+A private variable, shape `--_<key>` (leading underscore, **no component
+prefix**), **set in `variants`** per `(variant, size)` cell (medium defaults
+reuse the `{ variant }` blocks), over a **universal default on the root** so a
+custom variant/size still renders. It holds the Material default — today's exact
+px for that cell. No prefix is needed because the reader (the agnostic var's
+fallback / the routing) is on the same element, so an ancestor's value never
+bleeds into a descendant. Lowest priority, so any sized token or plain
 `styleOverrides` property still wins.
 _Avoid_: exposing it as API, prefixing with the component name, "private token".
 
 **Token fallback**:
-The literal px at the end of the chain — today's exact value for that
+The literal px the internal default carries — today's exact value for that
 `(variant, size)` cell. Makes the default render pixel-identical and bundle-light,
 at the cost that the single `--mui-spacing` dial no longer reflows the component.
 _Avoid_: "default value", "initial".
@@ -53,21 +72,29 @@ _Avoid_: "spacing scale" (that is `theme.spacing`), "grid".
 A single post-`createTheme` function (mirroring `enhanceHighContrast`) that does
 **both**: (a) emits the **density scale** as `--mui-density-*` and populates
 `theme.vars.density`, and (b) injects per-component `styleOverrides.root` mapping
-**component spacing tokens** to density steps
-(`--Button-paddingInline: theme.vars.density.md`). `createTheme` is untouched.
+**sized tokens** to density steps
+(`--Button-medium-pad: theme.vars.density.md`). `createTheme` is untouched.
 Opt-in: without it, components render their literal-px defaults; with it, tuning
 the density scale (or scoping `--mui-density-*`) reflows every wired component.
 _Avoid_: "density preset" (that is the resulting effect, not the function).
 
 ## Relationships
 
-- The styled root reads **one** internal resolution var per property; **no JavaScript
+- The styled root reads **one** agnostic var per property; **no JavaScript
   conditional** lives in the styles implementation. The `(variant, size)` → px
-  matrix is a **lookup table** in the component body, applied via inline style.
+  matrix and the built-in-size routing are both **`variants` cells**, not a body
+  lookup table; only custom-size routing is inline.
+- **Two vars, not one** (`--Button-pad` over `--_pad`): the cells write the
+  *value* (`--_pad`), the routing writes a *reference* (`--Button-pad`). One var
+  fails three ways — a self-referencing fallback in the inline bridge (invalid
+  CSS, forcing the literal back into runtime style), the `(variant×size)` and
+  size-only write-axes clobbering on one element, and losing the agnostic seam.
+  Full reasoning in `docs/adr/0001` → *Why two vars*.
 - Override priority (high → low): plain `styleOverrides` property → **sized
-  token** → **base token** → internal resolution var (literal fallback).
-- Custom (user-defined) sizes work for free: the sized-token name is built from
-  the runtime size string; no static per-size CSS is emitted.
+  token** → internal default (literal fallback).
+- Custom (user-defined) sizes work for free: when the size isn't built-in, the
+  inline routing builds the sized-token name from the runtime size string; the
+  design system supplies the value via that token.
 - **enhanceDensity** (opt-in) connects tier-2 component tokens to the tier-1
   **density scale**; un-enhanced, the literal fallbacks reproduce today's pixels.
 - This experiment does **not** ride `--mui-spacing`; holistic density comes from
@@ -75,21 +102,26 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 
 ## Example dialogue
 
-> **Dev:** "If I set `--Button-paddingInline` on the theme, what happens to a
-> small outlined button?"
-> **Domain expert:** "It reflows to your value — base token covers every
-> variant and size. Unless you also set `--Button-small-paddingInline`; the
-> **sized token** is more specific and wins for small."
+> **Dev:** "How do I shrink the padding of small buttons?"
+> **Domain expert:** "Set the **sized token** `--Button-small-pad` at any scope;
+> the Material UI layer routes it over its default, so every small button
+> reflows. Resolution is sized-only — there's no all-sizes base token, so do it
+> per size."
 > **Dev:** "And with nothing set?"
-> **Domain expert:** "The **internal resolution var**, set inline from the
-> `(variant, size)` cell, falls through to the literal px — pixel-identical to
-> today. The `--mui-spacing` dial does nothing here; for holistic density you
-> run **enhanceDensity** and tune the **density scale**."
+> **Domain expert:** "The agnostic `--Button-pad` falls back to the **internal
+> default** `--_pad` — the literal px set in the `(variant, size)` `variants`
+> cell, pixel-identical to today. The `--mui-spacing` dial does nothing here; for
+> holistic density you run **enhanceDensity** and tune the **density scale**."
 
 ## Flagged ambiguities
 
 - "spacing token" meant both a `theme.spacing` key and a per-component value —
-  resolved: `theme.spacing` is untouched; per-component vars are **component
-  spacing tokens** (base) and **sized tokens**.
+  resolved: `theme.spacing` is untouched; per-component vars are the **agnostic
+  var** (layer-1 surface) and **sized tokens** (the design-system knob).
 - "spacing scale" (earlier draft, tier-1) — renamed **density scale** and moved
   to `theme.density`, to disambiguate from `theme.spacing`.
+- Base (all-sizes) token — dropped; resolution is **sized-only**, so a designer
+  tunes per size.
+- Var key — `pad` shorthand (single `padding`), not logical `paddingInline`/
+  `paddingBlock`. Button padding is horizontally symmetric, so the physical
+  shorthand stays RTL-safe.

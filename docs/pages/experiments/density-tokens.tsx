@@ -15,9 +15,11 @@ import Typography from '@mui/material/Typography';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 // Density experiment — CSS-var adapter (docs/adr/0001-css-var-density-adapter.md).
-// Button consumes `var(--_padding*)`, resolved inline from a (variant,
-// size) lookup through `var(--Button-<size>-prop, var(--Button-prop, <literal>))`.
-// `enhanceDensity` wires `--Button-*` to the `--mui-density-*` scale.
+// Agnostic layer: Button consumes `var(--Button-pad, var(--_pad))`. Material UI
+// layer sets the (variant, size) literal default `--_pad` and the built-in-size
+// routing `--Button-pad: var(--Button-<size>-pad, var(--_pad))` in `variants`
+// (custom sizes route inline). `enhanceDensity` wires the sized tokens to the
+// `--mui-density-*` scale.
 
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
@@ -32,7 +34,12 @@ function ButtonMatrix() {
           <Typography variant="overline" color="text.secondary">
             {variant}
           </Typography>
-          <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
+          <Stack
+            direction="row"
+            spacing={1}
+            useFlexGap
+            sx={{ flexWrap: 'wrap', alignItems: 'center' }}
+          >
             {SIZES.map((size) => (
               <Button key={size} variant={variant} size={size}>
                 {size}
@@ -71,9 +78,9 @@ export default function DensityTokens() {
   // --mui-density-* live retune (overrides the scale at this scope).
   const [densityXs, setDensityXs] = React.useState(6);
   const [densityLg, setDensityLg] = React.useState(16);
-  // Per-token overrides (granular, base + sized).
-  const [baseInline, setBaseInline] = React.useState('');
-  const [smallInline, setSmallInline] = React.useState('');
+  // Per-token overrides (sized-only).
+  const [smallPad, setSmallPad] = React.useState('');
+  const [largePad, setLargePad] = React.useState('');
 
   const densityScope: React.CSSProperties = {
     // Retunes every enhanced button without rebuilding the theme.
@@ -82,8 +89,8 @@ export default function DensityTokens() {
   };
 
   const tokenScope: React.CSSProperties = {
-    ...(baseInline ? { ['--Button-paddingInline' as any]: baseInline } : null),
-    ...(smallInline ? { ['--Button-small-paddingInline' as any]: smallInline } : null),
+    ...(smallPad ? { ['--Button-small-pad' as any]: smallPad } : null),
+    ...(largePad ? { ['--Button-large-pad' as any]: largePad } : null),
   };
 
   return (
@@ -98,11 +105,11 @@ export default function DensityTokens() {
           Density tokens — CSS-var adapter
         </Typography>
         <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Button padding is exposed as <code>--Button-paddingInline</code> /{' '}
-          <code>--Button-paddingBlock</code> (base),{' '}
-          <code>--Button-&lt;size&gt;-paddingInline</code> (sized, wins over base), with a
-          literal-px fallback so the default is pixel-identical. <code>enhanceDensity</code> wires
-          the base tokens to the <code>--mui-density-*</code> scale.
+          The agnostic layer consumes <code>--Button-pad</code>; the Material UI layer feeds it
+          inline through the sized token <code>--Button-&lt;size&gt;-pad</code> over an internal
+          literal default, so the default is pixel-identical. Resolution is sized-only (no all-sizes
+          base token). <code>enhanceDensity</code> wires the sized tokens to the{' '}
+          <code>--mui-density-*</code> scale.
         </Typography>
 
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ mb: 4 }}>
@@ -114,7 +121,7 @@ export default function DensityTokens() {
           </Panel>
           <Panel
             title="enhanceDensity scale (live)"
-            caption="Retuning --mui-density-* at this scope reflows all wired buttons. Sizes flatten to the base step."
+            caption="Retuning --mui-density-* at this scope reflows all wired buttons. Each size keeps its own step."
             style={densityScope}
           >
             <ButtonMatrix />
@@ -126,7 +133,7 @@ export default function DensityTokens() {
             <Typography variant="subtitle2">Density scale</Typography>
             <Box sx={{ width: '100%' }}>
               <Typography variant="caption">
-                --mui-density-xs (base block): {densityXs}px
+                --mui-density-xs (medium block): {densityXs}px
               </Typography>
               <Slider
                 value={densityXs}
@@ -137,7 +144,7 @@ export default function DensityTokens() {
             </Box>
             <Box sx={{ width: '100%' }}>
               <Typography variant="caption">
-                --mui-density-lg (base inline): {densityLg}px
+                --mui-density-lg (medium inline): {densityLg}px
               </Typography>
               <Slider
                 value={densityLg}
@@ -153,18 +160,18 @@ export default function DensityTokens() {
           <Stack spacing={2} sx={{ flex: 1, minWidth: 0 }}>
             <Typography variant="subtitle2">Per-token override (granular)</Typography>
             <TextField
-              label="--Button-paddingInline (base)"
-              placeholder="e.g. 24px"
+              label="--Button-small-pad (sized)"
+              placeholder="e.g. 2px 6px"
               size="small"
-              value={baseInline}
-              onChange={(event) => setBaseInline(event.target.value)}
+              value={smallPad}
+              onChange={(event) => setSmallPad(event.target.value)}
             />
             <TextField
-              label="--Button-small-paddingInline (sized, wins)"
-              placeholder="e.g. 4px"
+              label="--Button-large-pad (sized)"
+              placeholder="e.g. 12px 28px"
               size="small"
-              value={smallInline}
-              onChange={(event) => setSmallInline(event.target.value)}
+              value={largePad}
+              onChange={(event) => setLargePad(event.target.value)}
             />
             <Paper variant="outlined" sx={{ p: 2 }} style={tokenScope}>
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>

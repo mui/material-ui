@@ -1,9 +1,10 @@
-# Component density via a CSS-var adapter, resolved inline
+# Component density via a CSS-var adapter, resolved in variants
 
 Component dimensions are exposed as public CSS variables with **literal-px
-fallbacks**, resolved through an **internal var set by inline style**, instead of
-riding the single `--mui-spacing` dial (`feat/components-theme-spacing`) or
-emitting a static per-(variant, size) token matrix (`poc/css-vars-map`).
+fallbacks**, resolved through an **internal var whose value lives in `variants`**
+(inline style bridges only the custom-size case), instead of riding the single
+`--mui-spacing` dial (`feat/components-theme-spacing`) or emitting a static
+per-(variant, size) token matrix (`poc/css-vars-map`).
 
 ## Context
 
@@ -15,10 +16,12 @@ Constraints that shaped the design:
 
 - **Pixel-identical default.** The un-configured theme must render today's exact
   px for every `(variant, size)` cell (Argos zero-diff).
-- **No token bloat at build time.** Don't emit a static CSS rule (or named
-  token) per variant×size×property cell.
+- **Literal defaults in `variants`, not the body.** The `(variant, size)` →
+  px matrix uses the idiomatic `variants` mechanism (Button already has these
+  cells for `fontSize`); no JS lookup table lives in the component body.
 - **Support user-provided sizes.** A custom `size` added via the theme must get
-  the same tunability as built-in sizes.
+  the same tunability as built-in sizes — built-in routing is per-size `variants`
+  blocks; a custom size falls back to inline routing (dynamic size string).
 - **No JavaScript conditionals in the styles implementation.** The `styled()` body must
   not branch on `ownerState.size`/`variant` to pick a value.
 - **Non-breaking.** Existing variant/size padding and existing
@@ -26,41 +29,94 @@ Constraints that shaped the design:
 
 ## Decision
 
-Three token layers per component property, for example inline padding on Button:
+The component is read as **three layers of responsibility**, each owning a
+distinct slice of the same cascade:
 
-- **Base token** `--Button-paddingInline` (public) — reflows all variants/sizes.
-- **Sized token** `--Button-<size>-paddingInline` (public) — reflows one size;
-  **more specific than base** (size wins).
-- **Internal resolution var** `--_paddingInline` (private, leading
-  underscore) — set via **inline style** from the rendered `(variant, size)`,
-  carrying the chain `var(--Button-<size>-paddingInline, var(--Button-paddingInline, <literal>))`.
+1. **Agnostic** — the styled root with no design meaning (no size/variant/color).
+   Its whole spacing surface is one public var it consumes directly, falling back
+   to the internal default: `padding: var(--Button-pad, var(--_pad))`.
+2. **Material UI** — Material Design's sizes/variants, all in `variants`: the
+   `(variant, size)` literal **defaults** (`--_pad`) and the **sized-token
+   routing** for the built-in sizes (`--Button-pad`). No JS lookup in the body.
+   Custom (non-built-in) sizes route inline instead — the one case that needs the
+   runtime size string.
+3. **Design system** — overrides through the public **sized token** the Material
+   UI layer routes over its default (driven by `enhanceDensity`).
 
-The styled root has **one** consumption point per property and **no conditional**:
+Per property, the chain (inline padding on Button):
+
+- **Agnostic var** `--Button-pad` (public) — the styled root's only spacing
+  consumption point; **set by a built-in-size `variants` block** to the
+  sized-token routing (inline for custom sizes), falling back to `--_pad`.
+- **Sized token** `--Button-<size>-pad` (public) — the design-system knob;
+  reflows one size.
+- **Internal default** `--_pad` (private, leading underscore) — the Material
+  default, **set in `variants`** per `(variant, size)`, with a universal default
+  on the root so a custom variant/size still renders a sane value.
+
+Resolution is **sized-only** (no all-sizes base token): the sized token wins,
+else the Material default.
+
+The styled root has **one** consumption point per property and **no conditional**;
+the defaults and built-in-size routing are plain `variants` entries:
 
 ```js
 const ButtonRoot = styled(ButtonBase)({
-  paddingInline: 'var(--_paddingInline)',
-  paddingBlock: 'var(--_paddingBlock)',
+  '--_pad': '6px 16px', // universal default (today's root padding)
+  padding: 'var(--Button-pad, var(--_pad))', // agnostic layer
+  variants: [
+    // routing for built-in sizes (deduped CSS)
+    { props: { size: 'small' }, style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' } },
+    // literal default per (variant, size); medium lives in the { variant } blocks (DRY)
+    { props: { variant: 'text', size: 'small' }, style: { '--_pad': '4px 5px' } },
+  ],
 });
 ```
 
-The component body holds the `(variant, size)` → px values as a **lookup table**
-(today's exact numbers) and applies them via inline style:
+Only **custom sizes** route inline — the one case needing the runtime size
+string (so custom sizes stay tunable without registering a variant):
 
 ```js
-const [block, inline] = PADDING[variant][size];
-const sizingVars = {
-  '--_paddingBlock': `var(--Button-${size}-paddingBlock, var(--Button-paddingBlock, ${block}))`,
-  '--_paddingInline': `var(--Button-${size}-paddingInline, var(--Button-paddingInline, ${inline}))`,
-};
-<ButtonRoot style={{ ...sizingVars, ...style }} />;
+const buttonSizes = ['small', 'medium', 'large'];
+const densityVars = buttonSizes.includes(size)
+  ? undefined // built-in: routed via variants above
+  : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
+<ButtonRoot style={{ ...densityVars, ...style }} />;
 ```
+
+### Why two vars (`--Button-pad` and `--_pad`), not one
+
+Three reasons, all pointing the same way:
+
+1. **Values belong in `variants`; the inline bridge must stay value-free.** The
+   literal px is a design decision — it must live in `variants`, co-located with
+   the rest of the variant's styling, statically deduped, smallest diff from
+   today. Inline style is only a **bridge** for the one dynamic case (a custom
+   size's token name) and must carry **no values**, only routing. Two vars allow
+   that: cells write the value (`--_pad`), the bridge writes a *reference*
+   (`--Button-pad: var(--Button-<size>-pad, var(--_pad))`). With a single
+   `--_pad`, the custom-size bridge would have to write
+   `--_pad: var(--Button-<size>-pad, var(--_pad))` — a property referencing
+   **itself**, which CSS treats as guaranteed-invalid. The only escape is
+   embedding the literal back into the inline string, dragging the value into
+   runtime style — exactly what we moved out.
+2. **Two write-axes on one element clobber if they share a name.** The literal
+   varies by **(variant × size)** (the cells); the token interception varies by
+   **size only** (`--Button-<size>-pad`, the routing). A single `--_pad` keeps
+   exactly one: routing-wins loses the per-variant literal (and the size block
+   can't supply the right fallback — it doesn't know the variant); literal-wins
+   never consults the token, so no override. Two names let each axis write
+   independently; `--Button-pad` chains to `--_pad`, the root reads `--Button-pad`.
+3. **Layer seam (naming).** `--Button-pad` is public-shaped because it's the
+   **agnostic-layer seam** — the var a no-design consumer of the bare root would
+   set; Material UI takes it over to inject token routing. `--_pad` is private:
+   Material UI's internal default, not a contract.
 
 Holistic density is a separate, opt-in layer driven by a **single**
 `enhanceDensity(theme)` function (mirroring `enhanceHighContrast`) that does
 both jobs: it **emits** the density scale as `--mui-density-*` (and populates
-`theme.vars.density`), and **maps** base tokens to density steps via injected
-`styleOverrides.root` (`--Button-paddingInline: var(--mui-density-md)`).
+`theme.vars.density`), and **maps** sized tokens to density steps via injected
+`styleOverrides.root` (`--Button-medium-pad: var(--mui-density-md)`).
 `createTheme` is left untouched. Types for `theme.vars.density` ship built-in;
 the vars exist at runtime only after `enhanceDensity` runs.
 
@@ -75,15 +131,28 @@ Scope: **Button only** for this experiment.
 
 ## Consequences
 
-- **Pixel-identical default & non-breaking.** Literals come from the lookup
-  table; the internal var is the lowest-priority fallback, so public tokens,
-  `styleOverrides`, and `sx` all still win via the cascade.
-- **Custom sizes work for free** — the sized-token name is built from the
-  runtime size string; nothing static is emitted per size.
-- **Inline style is the price.** Every instance carries a `style` attr with the
-  resolution vars (larger HTML, no CSS dedup of those values) — accepted to kill
-  the static token matrix and support arbitrary sizes.
+- **Pixel-identical default & non-breaking.** Literals come from the `variants`
+  cells (`--_pad`) over a universal root default, so a custom variant/size still
+  renders; public tokens, `styleOverrides`, and `sx` all still win via the cascade.
+- **No inline for built-in sizes.** Routing for `small`/`medium`/`large` lives in
+  `variants` (deduped CSS), so the common case carries no per-instance `style`
+  attr. Only a **custom size** routes inline.
+- **Custom sizes work for free** — the inline routing builds the sized-token name
+  from the runtime size string; the design system supplies the value via that
+  token, no variant registration needed.
 - **No `--mui-spacing` reflow.** Components opt out of the global dial; holistic
   density flows through the density scale + `enhanceDensity` instead.
 - **calc resolves only in a real browser** (jsdom does not), so density
   assertions belong in browser/visual tests, not jsdom unit tests.
+
+### Accepted trade-offs
+
+| Trade-off | Why we can live with it |
+| --- | --- |
+| `--Button-pad` is public-shaped but not a designer knob in the assembled Button (plumbing) | It's the agnostic seam; the real knob is `--Button-<size>-pad`, documented. The name marks the layer boundary. |
+| Two vars per property instead of one | Mandatory (see *Why two vars*); the indirection is mechanical and documented. |
+| Unprefixed `--_pad` could inherit a foreign value | Every built-in cell plus the root universal default set it on the element; revisit a prefix only if cross-component collisions surface as the pattern spreads. |
+| `pad` shorthand is coarse (an override sets all sides) | Button padding is symmetric; tiny token surface; granular logical props can come later. |
+| `var()` unresolved in jsdom (no computed-px assertions) | Argos covers default visuals; the chain is declarative and inspectable. |
+| Inline still present for custom sizes | Rare; the built-in common case carries zero inline. |
+| Per-property boilerplate grows with rollout | Acceptable for the payoff (runtime scoped theming); extract a helper before component #3. |
