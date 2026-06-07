@@ -94,10 +94,12 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: {
       ['--OutlinedInput-small-padBlock' as any]: '4px',
       ['--OutlinedInput-medium-padBlock' as any]: '10px',
+      ['--OutlinedInput-padInline' as any]: '8px',
     },
     loose: {
       ['--OutlinedInput-small-padBlock' as any]: '14px',
       ['--OutlinedInput-medium-padBlock' as any]: '28px',
+      ['--OutlinedInput-padInline' as any]: '24px',
     },
   },
 };
