@@ -57,7 +57,8 @@ class MyDocument extends Document {
         <body>
           <Main />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src="https://www.google-analytics.com/analytics.js" />
+          {/* With the UA → GA4 transition, this doesn't work anymore. */}
+          {/* <script async src="https://www.google-analytics.com/analytics.js" /> */}
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
