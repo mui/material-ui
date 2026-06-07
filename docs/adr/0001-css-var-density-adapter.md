@@ -54,8 +54,12 @@ Per property, the chain (inline padding on Button):
   default, **set in `variants`** per `(variant, size)`, with a universal default
   on the root so a custom variant/size still renders a sane value.
 
-Resolution is **sized-only** (no all-sizes base token): the sized token wins,
-else the Material default.
+Resolution for a **size-varying** axis is **sized-only** (no all-sizes base
+token): the sized token wins, else the Material default. A **size-invariant**
+axis (e.g. OutlinedInput's inline gutter) skips the size layer entirely and uses
+a plain **base token** `--Component-<key>` over an internal default `--_<key>`,
+consumed `var(--Component-<key>, var(--_<key>))` — same consume shape as a sized
+axis, just with no size layer/routing.
 
 The styled root has **one** consumption point per property and **no conditional**;
 the defaults and built-in-size routing are plain `variants` entries:
@@ -134,11 +138,17 @@ InputBase/TextField to follow) for this experiment.
 
 Same three-tier model, with two component-driven differences:
 
-- **Block-only.** Input "density" is vertical: Material's own `small` changes
-  only the block padding (`16.5px` → `8.5px`); the `14px` inline gutter is
-  constant, so only `--OutlinedInput-padBlock` is tokenized. The gutter stays a
-  literal. (Filled/Standard have asymmetric block padding — `4/5`, `25/8` — so a
-  shared InputBase block seam would need a richer, per-side shape; deferred.)
+- **Block is sized; inline is a base token.** Block (`16.5px`→`8.5px`) is the
+  density axis → sized token `--OutlinedInput-<size>-padBlock`. The `14px` inline
+  gutter is constant across sizes → a **base token** `--OutlinedInput-padInline`
+  (the experiment's first): same `var(--seam, var(--_padInline))` consume shape,
+  just **no size layer/routing** — the seam is the public knob, `--_padInline` the
+  internal default. Consumed on each spot (input sides, root adornment side,
+  multiline). Block and inline are split because the impl
+  applies them separately — different elements/states, per-adornment side-zeroing,
+  and different token shapes (sized vs base). (Filled/Standard have asymmetric
+  block padding — `4/5`, `25/8` — so a shared InputBase block seam would need a
+  richer, per-side shape; deferred.)
 - **Two consuming elements via inheritance.** Padding lives on the input
   (non-multiline) *and* the root (multiline). The root owns the size routing and
   `--_padBlock`; the **input (a child) consumes the resolved

@@ -40,8 +40,17 @@ _Avoid_: literal CSS-property keys (`--Button-padding`), kebab keys, `--mui-`-pr
 A size-scoped override, shape `--Component-<size>-<key>`
 (for example `--Button-small-pad`). Reflows only that one size. The Material UI
 layer routes it over the internal default; when set at any scope it wins.
-**Resolution is sized-only** — there is no all-sizes base token.
-_Avoid_: "size variant token", a base/all-sizes token.
+For a **size-varying** axis, resolution is **sized-only** — no all-sizes base token.
+_Avoid_: "size variant token".
+
+**Base token** (public, size-invariant axes only):
+When an axis does **not** vary by size (e.g. OutlinedInput's `14px` inline
+gutter), skip the **size layer** but keep the same shape: internal default
+`--_<key>` + seam, consumed `var(--Component-<key>, var(--_<key>))`
+(`var(--OutlinedInput-padInline, var(--_padInline))`, `--_padInline: 14px`). The
+seam *is* the knob — nothing routes it, so a designer sets it directly. Use only
+when the value is genuinely constant across sizes; otherwise use a **sized token**.
+_Avoid_: a base token for a size-varying axis; a bare literal default (use `--_<key>`).
 
 **Internal default**:
 A private variable, shape `--_<key>` (leading underscore, **no component
@@ -96,10 +105,13 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 - Custom (user-defined) sizes work for free: when the size isn't built-in, the
   inline routing builds the sized-token name from the runtime size string; the
   design system supplies the value via that token.
-- **Token granularity follows the component's spacing structure.** Button tunes
-  all sides together → one `pad` shorthand var. OutlinedInput's density is
-  vertical only (the `14px` inline gutter is constant) → a single `padBlock` var;
-  and because its padding spans two elements, the root routes while the input
+- **Token granularity follows the component's spacing structure; split only when
+  the impl forces it.** Button sets all sides together via one shorthand on one
+  element → one `pad` var (even though block 6 ≠ inline 8 — differing values alone
+  don't force a split). OutlinedInput *is* forced: block vs inline land on
+  different elements/states and zero per adornment, and block is sized while the
+  `14px` inline gutter is a size-invariant **base token** (`--OutlinedInput-padInline`).
+  Its padding spans two elements, so the root routes block while the input
   consumes by inheritance.
 - **Cross-component coordination respects dependency direction.** The outlined
   floating label must track the input's `padBlock`, but `InputLabel` is generic
@@ -132,8 +144,10 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   var** (layer-1 surface) and **sized tokens** (the design-system knob).
 - "spacing scale" (earlier draft, tier-1) — renamed **density scale** and moved
   to `theme.density`, to disambiguate from `theme.spacing`.
-- Base (all-sizes) token — dropped; resolution is **sized-only**, so a designer
-  tunes per size.
-- Var key — `pad` shorthand (single `padding`), not logical `paddingInline`/
-  `paddingBlock`. Button padding is horizontally symmetric, so the physical
-  shorthand stays RTL-safe.
+- Base (all-sizes-over-sized) token — dropped for **size-varying** axes;
+  resolution is sized-only, tune per size. A **size-invariant** axis (e.g.
+  OutlinedInput inline gutter) is the one place a plain base token applies.
+- Var key — single `pad` shorthand only when the impl sets all sides together on
+  one element (Button); split per axis (`padBlock`/`padInline`) when forced —
+  axes on different elements/states or different shapes (OutlinedInput). Sides are
+  symmetric within an axis, so `padding: <block> <inline>` stays RTL-safe.

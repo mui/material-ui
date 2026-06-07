@@ -50,9 +50,11 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       // Agnostic seam: the input (child) inherits the size-resolved
       // --OutlinedInput-padBlock; the root consumes it only when multiline.
       // --_padBlock is the medium default, specialized by the size variant.
-      // See docs/adr/0001. Block (vertical) is the density axis; the 14px inline
-      // gutter is constant, so it stays a literal.
+      // See docs/adr/0001. Each axis has an internal default `--_<key>` consumed
+      // as `var(--seam, var(--_<key>))`. Block (vertical) is sized — its seam is
+      // routed per size; inline is a base token — its seam is just the public knob.
       '--_padBlock': '16.5px',
+      '--_padInline': '14px',
       '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, var(--_padBlock))',
       // The outlined label centers on the input's block padding. It's a preceding
       // sibling, so reach it via :has and feed it the public token + the label's
@@ -114,20 +116,20 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {
-            paddingLeft: 14,
+            paddingLeft: 'var(--OutlinedInput-padInline, var(--_padInline))',
           },
         },
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 14,
+            paddingRight: 'var(--OutlinedInput-padInline, var(--_padInline))',
           },
         },
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
             // Block from the size-resolved var (small + multiline → 8.5px).
-            padding: 'var(--OutlinedInput-padBlock) 14px',
+            padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) var(--OutlinedInput-padInline, var(--_padInline))',
           },
         },
       ],
@@ -156,9 +158,10 @@ const OutlinedInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    // Inherits the size-resolved --OutlinedInput-padBlock from the root; the 14px
-    // inline gutter is constant (not a density axis).
-    padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) 14px',
+    // Both axes: `var(--seam, var(--_internal))`. padBlock is size-resolved on the
+    // root (routed) and inherited; padInline is a base token (no routing). The
+    // internal defaults `--_padBlock`/`--_padInline` are inherited from the root.
+    padding: 'var(--OutlinedInput-padBlock, var(--_padBlock)) var(--OutlinedInput-padInline, var(--_padInline))',
     '&:-webkit-autofill': {
       ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
