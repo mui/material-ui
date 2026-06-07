@@ -41,95 +41,131 @@ export function useCodeCopy(): React.HTMLAttributes<HTMLDivElement> {
 function InitCodeCopy() {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
-  React.useEffect(() => {
-    let key = 'Ctrl + ';
-    if (typeof window !== 'undefined') {
-      const macOS = window.navigator.platform.toUpperCase().includes('MAC');
-      if (macOS) {
-        key = '⌘';
-      }
-    }
-    const codeRoots = document.getElementsByClassName(
-      'MuiCode-root',
-    ) as HTMLCollectionOf<HTMLDivElement>;
 
-    if (codeRoots !== null) {
-      const listeners: Array<() => void> = [];
-      Array.from(codeRoots).forEach((elm) => {
-        const handleMouseEnter = () => {
-          rootNode.current = elm;
-        };
-
-        elm.addEventListener('mouseenter', handleMouseEnter);
-        listeners.push(() => elm.removeEventListener('mouseenter', handleMouseEnter));
-
-        const handleMouseLeave = () => {
-          if (rootNode.current === elm) {
-            (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
-            rootNode.current = null;
-          }
-        };
-        elm.addEventListener('mouseleave', handleMouseLeave);
-        listeners.push(() => elm.removeEventListener('mouseleave', handleMouseLeave));
-
-        const handleFocusin = () => {
-          // use `focusin` because it bubbles from the copy button
-          rootNode.current = elm;
-        };
-        elm.addEventListener('focusin', handleFocusin);
-        listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
-
-        const handleFocusout = () => {
-          // use `focusout` because it bubbles from the copy button
-          if (rootNode.current === elm) {
-            rootNode.current = null;
-          }
-        };
-        elm.addEventListener('focusout', handleFocusout);
-        listeners.push(() => elm.removeEventListener('focusout', handleFocusout));
-
-        async function handleClick(event: MouseEvent) {
-          const trigger = event.currentTarget as HTMLButtonElement;
-          const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
-          const textNode = trigger.childNodes[0];
-          textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
-          trigger.dataset.copied = 'true';
-          setTimeout(() => {
-            if (trigger) {
-              textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
-              delete trigger.dataset.copied;
-            }
-          }, 2000);
-          try {
-            if (pre.textContent) {
-              await clipboardCopy(pre.textContent);
-            }
-            // eslint-disable-next-line no-empty
-          } catch (error) {}
+  const prepareCopyButtons = React.useCallback(
+    (listeners: Array<() => void>) => {
+      let key = 'Ctrl + ';
+      if (typeof window !== 'undefined') {
+        const macOS = window.navigator.platform.toUpperCase().includes('MAC');
+        if (macOS) {
+          key = '⌘';
         }
+      }
+      const codeRoots = document.getElementsByClassName(
+        'MuiCode-root',
+      ) as HTMLCollectionOf<HTMLDivElement>;
 
-        const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
-        if (btn) {
-          const keyNode = btn.querySelector('.MuiCode-copyKeypress')?.childNodes[1];
-          if (!keyNode) {
-            // skip the logic if the btn is not generated from the markdown.
+      if (codeRoots !== null) {
+        Array.from(codeRoots).forEach((elm) => {
+          if (elm.dataset.copyInitalized) {
             return;
           }
-          keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
-          btn.addEventListener('click', handleClick);
-          listeners.push(() => btn.removeEventListener('click', handleClick));
-        }
-      });
+          elm.dataset.copyInitalized = 'true';
+          const handleMouseEnter = () => {
+            rootNode.current = elm;
+          };
 
-      return () => {
-        listeners.forEach((removeEventListener) => {
-          removeEventListener();
+          elm.addEventListener('mouseenter', handleMouseEnter);
+          listeners.push(() => elm.removeEventListener('mouseenter', handleMouseEnter));
+
+          const handleMouseLeave = () => {
+            if (rootNode.current === elm) {
+              (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
+              rootNode.current = null;
+            }
+          };
+          elm.addEventListener('mouseleave', handleMouseLeave);
+          listeners.push(() => elm.removeEventListener('mouseleave', handleMouseLeave));
+
+          const handleFocusin = () => {
+            // use `focusin` because it bubbles from the copy button
+            rootNode.current = elm;
+          };
+          elm.addEventListener('focusin', handleFocusin);
+          listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
+
+          const handleFocusout = () => {
+            // use `focusout` because it bubbles from the copy button
+            if (rootNode.current === elm) {
+              rootNode.current = null;
+            }
+          };
+          elm.addEventListener('focusout', handleFocusout);
+          listeners.push(() => elm.removeEventListener('focusout', handleFocusout));
+
+          async function handleClick(event: MouseEvent) {
+            const trigger = event.currentTarget as HTMLButtonElement;
+            const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
+            const textNode = trigger.childNodes[0];
+            textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
+            trigger.dataset.copied = 'true';
+            setTimeout(() => {
+              if (trigger) {
+                textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
+                delete trigger.dataset.copied;
+              }
+            }, 2000);
+            try {
+              if (pre.textContent) {
+                await clipboardCopy(pre.textContent);
+              }
+              // eslint-disable-next-line no-empty
+            } catch (error) {}
+          }
+
+          const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
+          if (btn) {
+            const keyNode = btn.querySelector('.MuiCode-copyKeypress')?.childNodes[1];
+            if (!keyNode) {
+              return;
+            }
+            keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
+            btn.addEventListener('click', handleClick);
+            listeners.push(() => btn.removeEventListener('click', handleClick));
+          }
         });
-      };
-    }
+      }
+    },
+    [rootNode],
+  );
 
-    return undefined;
-  }, [rootNode, router.pathname]);
+  React.useEffect(() => {
+    let listenersMutation: Array<() => void>;
+    const listeners: Array<() => void> = [];
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        for (const node of mutation.addedNodes) {
+          if (
+            node.nodeType === Node.ELEMENT_NODE &&
+            (node as HTMLElement).classList.contains('MuiCode-root')
+          ) {
+            listenersMutation = [];
+
+            prepareCopyButtons(listenersMutation);
+
+            return;
+          }
+        }
+      }
+    });
+    const observerOptions = {
+      childList: true,
+      subtree: true,
+    };
+
+    observer.observe(document.body, observerOptions);
+
+    prepareCopyButtons(listeners);
+
+    return () => {
+      listeners.forEach((removeEventListener) => removeEventListener());
+      if (listenersMutation && listenersMutation.length) {
+        listenersMutation.forEach((removeEventListener) => removeEventListener());
+      }
+      observer.disconnect();
+    };
+  }, [prepareCopyButtons, router.pathname, rootNode]);
+
   return null;
 }
 
