@@ -14,7 +14,7 @@ if (process.browser) {
     document.querySelector('#insertion-point-jss'),
   );
   loadCSS(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+    'https://cdn.jsdelivr.net/docsearch.js/2.6.3/docsearch.min.css',
     document.querySelector('#insertion-point-jss'),
   );
 }

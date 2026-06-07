@@ -68,7 +68,12 @@ ga('create', '${config.google.id}', 'material-ui.com');
             }}
           />
           <NextScript />
-          <script async src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js" />
+          <script
+            async
+            src="https://cdn.jsdelivr.net/docsearch.js/2.6.3/docsearch.min.js"
+            integrity="sha256-qybEsgf0PGiQS22AmoozPs09oRnSC7Gu7eBu4fbS2Ac="
+            crossOrigin="anonymous"
+          />
         </body>
       </html>
     );
