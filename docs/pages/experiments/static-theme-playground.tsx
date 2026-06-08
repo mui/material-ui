@@ -122,7 +122,7 @@ function Page({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void }) {
       </Section>
 
       <Section label="Slider (animations confirm the transition fallbacks)">
-        <Slider sx={{color: 'red'}} value={sliderValue} onChange={(_, v) => setSliderValue(v as number)} />
+        <Slider value={sliderValue} onChange={(_, v) => setSliderValue(v as number)} />
         <Typography variant="body2" sx={{ mt: 0.5, color: 'var(--mui-palette-text-secondary)' }}>
           Value: {sliderValue}. Drag the thumb — movement should ease, not snap.
         </Typography>
