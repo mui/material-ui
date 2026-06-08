@@ -268,7 +268,7 @@ const demos: Record<string, React.ReactNode> = {
           <ListItemText primary="Drafts" />
         </ListItem>
       </List>
-      <List>
+      <List dense>
         <ListItem alignItems="flex-start">
           <ListItemIcon>
             <InboxIcon />
@@ -461,15 +461,6 @@ const demos: Record<string, React.ReactNode> = {
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
       </Select>
-      <FormControl>
-        <InputLabel variant="filled" htmlFor="filled-select">
-          Age
-        </InputLabel>
-        <Select id="filled-select" variant="filled" defaultValue={10}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-        </Select>
-      </FormControl>
       <Select variant="standard" defaultValue={10}>
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
@@ -549,24 +540,6 @@ const demos: Record<string, React.ReactNode> = {
                   </InputAdornment>
                 ),
               },
-            }}
-          />
-          <TextField
-            size={size}
-            variant="filled"
-            label="Filled start"
-            defaultValue="abc"
-            slotProps={{
-              input: { startAdornment: <InputAdornment position="start">kg</InputAdornment> },
-            }}
-          />
-          <TextField
-            size={size}
-            variant="filled"
-            hiddenLabel
-            defaultValue="abc"
-            slotProps={{
-              input: { startAdornment: <InputAdornment position="start">kg</InputAdornment> },
             }}
           />
         </Stack>
