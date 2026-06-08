@@ -233,13 +233,13 @@ function Page({
           value={sliderValue}
           onChange={(_, v) => setSliderValue(v as number)}
           sx={{
-            color: 'secondary.main',
-            '& .MuiSlider-thumb': {
-              width: 22,
-              height: 22,
-              boxShadow: (t) => `0 0 0 7px ${t.palette.secondary.main}28`,
-            },
-            '& .MuiSlider-rail': { opacity: 0.3 },
+            // color: 'secondary.main',
+            // '& .MuiSlider-thumb': {
+            //   width: 22,
+            //   height: 22,
+            //   boxShadow: (t) => `0 0 0 7px ${t.palette.secondary.main}28`,
+            // },
+            // '& .MuiSlider-rail': { opacity: 0.3 },
           }}
         />
         <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
