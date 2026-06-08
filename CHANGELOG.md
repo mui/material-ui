@@ -48,8 +48,11 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [docs] Fix invalid JSON in Zed MCP setup example (#48490) @pavan-sh
 - [docs] Mention release version for enhanceHighContrast (#48609) @silviuaavram
 - [docs] Remove outdated MUI X v8 notification (#48600) @cherniavskii
+- [docs] Remove redundant enhanceHighContrast information (#48632) @silviuaavram
 - [docs-infra] Decrease loaded bundle size on docs (#48584) @brijeshb42
+- [docs-infra] Drop multi-locale plumbing from API pages (#48370) @brijeshb42
 - [docs-infra] Fix Cookie banner heading (#48529) @oliviertassinari
+- [docs-infra] Infinitely cache all static assets (#48627) @brijeshb42
 - [docs-infra] Remove outdated noSEOadvantage entries (#48527) @oliviertassinari
 - [docs-infra] Restore build-only invariant throws via `NEXT_RUNTIME` guard (#48475) @Janpot
 - [docs-infra] Test HTML validation in broken links checker (#48088) @Janpot
