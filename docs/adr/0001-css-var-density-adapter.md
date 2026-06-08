@@ -215,6 +215,36 @@ a generic component name a sibling's token (wrong direction); a flat-scope
 keeps the coupling in the one component that legitimately owns it. Cost: needs
 `:has()` (Chrome 105 / Safari 15.4 / Firefox 121).
 
+### Shared internal base (SwitchBase → Checkbox, Radio, Switch)
+
+When several components share one styled base, the **agnostic layer lives on the
+base**: `SwitchBase` consumes the seam once (`padding: var(--SwitchBase-pad,
+var(--_pad))`, `--_pad: 9px`), and each consumer — the **Material layer** — routes
+its own per-component public token into the shared seam. The seam keeps the
+_base's_ name (`--SwitchBase-pad`, plumbing); the designer-facing knob is the
+per-component sized token (`--Checkbox-<size>-pad`, `--Radio-<size>-pad`,
+`--Switch-<size>-pad`). Each consumer stays independently tunable while the base
+holds the one consumption point.
+
+Two reader topologies, both relying on **custom-property inheritance** (no
+descendant selector, no added specificity):
+
+- **Consumer is the base.** `Checkbox`/`Radio` are `styled(SwitchBase)`, so their
+  size variants set `--SwitchBase-pad` on the very element that consumes it.
+- **Consumer wraps the base.** The `Switch` thumb is a `SwitchBase` _inside_
+  `SwitchRoot`; the root sets `--SwitchBase-pad` and the thumb **inherits** it.
+  This works precisely because `SwitchBase` does not redeclare the seam.
+
+The inheritance caveat is the mirror of why `--_<key>` is safe unprefixed: the
+base **redeclares `--_<key>`** on itself, so an inherited `--_<key>` is shadowed.
+The seam inherits (not redeclared); the internal default does not. So when a
+wrapper needs a per-state default that differs from the base's (the small Switch
+thumb is `4px`, not the base's `9px`), it can't inherit `--_<key>` — it feeds the
+value **through the seam** by setting `--_<key>` on the wrapper root, where the
+seam's `var(..., var(--_<key>))` fallback resolves. Box geometry that is coupled
+to the value (Switch's `width = 34 + 12·2`) is left literal — only the
+inheritance-safe padding axis is tokenized.
+
 ## Consequences
 
 - **Pixel-identical default & non-breaking.** Literals come from the `variants`

@@ -131,6 +131,45 @@ token** + literal fallback (can't read the input's internal `--_padBlock`):
 
 One knob (`--OutlinedInput-<size>-padBlock`) -> input box + label move together.
 
+## Recipe C — shared internal base (SwitchBase -> Checkbox / Radio / Switch)
+
+Several components share one styled base. Put the **agnostic layer on the base**:
+it consumes the seam once, with the internal default. Each consumer is the
+**Material layer** -> routes its _own_ per-component public token into the shared
+seam.
+
+```js
+// SwitchBase (shared, agnostic): consume once
+'--_pad': '9px',
+padding: 'var(--SwitchBase-pad, var(--_pad))',
+```
+
+The seam keeps the **base's** name (`--SwitchBase-pad`) — it's plumbing; the
+public knob is the per-component sized token (`--Checkbox-<size>-pad`).
+
+Two reader topologies:
+
+- **Consumer _is_ the base** (Checkbox/Radio = `styled(SwitchBase)`): route on
+  the consumer's own root, same element, no selector.
+  ```js
+  { props: { size: 'small' }, style: { '--SwitchBase-pad': 'var(--Checkbox-small-pad, var(--_pad))' } }
+  ```
+- **Consumer _wraps_ the base** as a descendant (the Switch thumb is a
+  `SwitchBase` inside `SwitchRoot`): set the seam on the wrapper root — the base
+  **inherits** it. No descendant selector (custom props inherit; the base doesn't
+  redeclare the seam).
+  ```js
+  // SwitchRoot: thumb inherits this
+  '--SwitchBase-pad': 'var(--Switch-medium-pad, var(--_pad))',
+  ```
+
+**Inheritance caveat.** The _seam_ inherits because the base doesn't redeclare it.
+But the base **does** redeclare `--_<key>` (that's what keeps it unprefixed-safe),
+so an inherited `--_<key>` is _shadowed_ on the base. If a wrapper needs a
+per-state default different from the base's (Switch small thumb `4` ≠ base `9`),
+feed it **through the seam** — set `--_<key>` on the wrapper so the seam's fallback
+resolves there; don't expect the base to inherit your `--_<key>`.
+
 ## Gotchas
 
 - **Split axes only when the impl forces it.** Differing values per side is NOT
@@ -210,6 +249,10 @@ Screenshot harness `scripts/density-screenshots/` (`maxDiffPixels: 0`):
 ## Order to roll out
 
 Small single-element first (prove pattern) -> bigger multi-element -> paired
-sibling family. Done: Button, OutlinedInput (+ InputLabel, TextField outlined).
-Next candidates: FilledInput, Input (standard) — note asymmetric block padding
-(`4/5`, `25/8`) -> need per-side seam, not single `padBlock`.
+sibling family. Done: Button, OutlinedInput (+ InputLabel, TextField outlined),
+the dashboard set (Chip, IconButton, MenuItem, ListItem(+Button/Icon/Text),
+ListSubheader, Toolbar, Tab/Tabs, TablePagination, CardContent, Select,
+Breadcrumbs, InputAdornment, Badge), and the SwitchBase family (Checkbox, Radio,
+Switch — Recipe C). Next candidates: FilledInput, Input (standard) — note
+asymmetric block padding (`4/5`, `25/8`) -> need per-side seam, not single
+`padBlock`.

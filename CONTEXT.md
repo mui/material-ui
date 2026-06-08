@@ -138,6 +138,19 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   literal default). The **specific** component, `OutlinedInput`, owns the bridge:
   it reaches its preceding-sibling label via `:has(~ &)` and sets `--InputLabel-y`
   from its public token. Generic never names specific; one knob still drives both.
+- **A shared internal base owns the agnostic layer; consumers route their own
+  tokens into it.** `SwitchBase` consumes the seam once
+  (`var(--SwitchBase-pad, var(--_pad))`); `Checkbox`/`Radio`/`Switch` (the Material
+  layer) each route a per-component sized token (`--Checkbox-<size>-pad`, …) into
+  that shared seam, staying independently tunable. The seam keeps the base's name
+  (plumbing); the knob is the per-component token. Delivery rides **custom-property
+  inheritance**, no descendant selector: where the consumer _is_ the base
+  (`styled(SwitchBase)`) it sets the seam on its own root; where it _wraps_ the
+  base (the Switch thumb), the wrapper root sets the seam and the base inherits it
+  (the base doesn't redeclare the seam). Caveat: the base _does_ redeclare
+  `--_<key>` (what makes it unprefixed-safe), so an inherited `--_<key>` is
+  shadowed — a wrapper needing a different per-state default feeds it through the
+  seam (set `--_<key>` on the wrapper), not by inheriting `--_<key>`.
 - **enhanceDensity** (opt-in) connects tier-2 component tokens to the tier-1
   **density scale**; un-enhanced, the literal fallbacks reproduce today's pixels.
 - This experiment does **not** ride `--mui-spacing`; holistic density comes from
