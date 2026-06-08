@@ -866,13 +866,27 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     },
   },
   Switch: {
+    // Tune the four interlocked dims; pad/top/travel re-derive (touchSize == height
+    // keeps the thumb centered). thumbSize < height; width > touchSize.
     dense: {
-      ['--Switch-small-pad' as any]: '2px',
-      ['--Switch-medium-pad' as any]: '6px',
+      ['--Switch-small-width' as any]: '32px',
+      ['--Switch-small-height' as any]: '18px',
+      ['--Switch-small-thumbSize' as any]: '12px',
+      ['--Switch-small-touchSize' as any]: '18px',
+      ['--Switch-medium-width' as any]: '44px',
+      ['--Switch-medium-height' as any]: '24px',
+      ['--Switch-medium-thumbSize' as any]: '16px',
+      ['--Switch-medium-touchSize' as any]: '24px',
     },
     loose: {
-      ['--Switch-small-pad' as any]: '7px',
-      ['--Switch-medium-pad' as any]: '12px',
+      ['--Switch-small-width' as any]: '52px',
+      ['--Switch-small-height' as any]: '32px',
+      ['--Switch-small-thumbSize' as any]: '24px',
+      ['--Switch-small-touchSize' as any]: '32px',
+      ['--Switch-medium-width' as any]: '76px',
+      ['--Switch-medium-height' as any]: '48px',
+      ['--Switch-medium-thumbSize' as any]: '34px',
+      ['--Switch-medium-touchSize' as any]: '48px',
     },
   },
 };

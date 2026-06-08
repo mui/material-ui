@@ -399,20 +399,9 @@ export default function enhanceDensity<
         ],
       },
     },
-    MuiSwitch: {
-      ...c?.MuiSwitch,
-      styleOverrides: {
-        ...c?.MuiSwitch?.styleOverrides,
-        root: [
-          c?.MuiSwitch?.styleOverrides?.root,
-          {
-            // Thumb (SwitchBase) padding; box geometry stays literal.
-            '--Switch-medium-pad': varRefs.sm,
-            '--Switch-small-pad': varRefs.xxs,
-          },
-        ],
-      },
-    },
+    // Switch is intentionally not wired here: its geometry (width/height/thumbSize/
+    // touchSize) is interlocked, not spacing-scale-derived. Tune it per size via
+    // the public --Switch-<size>-* tokens directly.
   };
 
   return theme;
