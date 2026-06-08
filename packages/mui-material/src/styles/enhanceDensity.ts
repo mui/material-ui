@@ -408,20 +408,20 @@ export default function enhanceDensity<
         root: [
           c?.MuiSwitch?.styleOverrides?.root,
           {
-            // Switch maps its input dims to scale steps; pad/top/travel/radius
-            // re-derive from them, so the geometry stays valid (touchSize == height
-            // -> centered; width > touchSize -> positive travel). `xxl` covers the
-            // wider track.
-            '--Switch-medium-width': varRefs.xxl,
-            '--Switch-medium-height': varRefs.xl,
-            '--Switch-medium-touchSize': varRefs.xl,
-            '--Switch-medium-thumbSize': varRefs.lg,
-            '--Switch-medium-pad': varRefs.sm,
-            '--Switch-small-width': varRefs.xl,
-            '--Switch-small-height': varRefs.lg,
-            '--Switch-small-touchSize': varRefs.lg,
-            '--Switch-small-thumbSize': varRefs.md,
-            '--Switch-small-pad': varRefs.xs,
+            // Switch dims are composed from scale steps to land on today's sizes
+            // at the default scale, then track density proportionally. pad/top/
+            // travel/radius re-derive, so the geometry stays valid (touchSize ==
+            // height -> centered; width > touchSize -> positive travel).
+            '--Switch-medium-width': `calc(${varRefs.xxl} * 2 - 6px)`, // 58
+            '--Switch-medium-height': `calc(${varRefs.xxl} + ${varRefs.xs})`, // 38
+            '--Switch-medium-touchSize': `calc(${varRefs.xxl} + ${varRefs.xs})`, // 38 (= height)
+            '--Switch-medium-thumbSize': `calc(${varRefs.lg} + ${varRefs.xxs})`, // 20
+            '--Switch-medium-pad': varRefs.md, // 12
+            '--Switch-small-width': `calc(${varRefs.xxl} + ${varRefs.sm})`, // 40
+            '--Switch-small-height': varRefs.xl, // 24
+            '--Switch-small-touchSize': varRefs.xl, // 24 (= height)
+            '--Switch-small-thumbSize': varRefs.lg, // 16
+            '--Switch-small-pad': `calc(${varRefs.sm} - 1px)`, // 7
           },
         ],
       },
