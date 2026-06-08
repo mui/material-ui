@@ -280,6 +280,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   });
 
   let open = openState;
+  const openRef = React.useRef(open);
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -329,9 +330,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
+    const wasOpen = openRef.current;
+    openRef.current = true;
     setOpenState(true);
 
-    if (onOpen && !open) {
+    if (onOpen && !wasOpen) {
       onOpen(event);
     }
   };
@@ -344,9 +347,11 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
       });
+      const wasOpen = openRef.current;
+      openRef.current = false;
       setOpenState(false);
 
-      if (onClose && open) {
+      if (onClose && wasOpen) {
         onClose(event);
       }
 
@@ -498,6 +503,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (!title && title !== 0) {
     open = false;
   }
+  openRef.current = open;
 
   const popperRef = React.useRef();
 
