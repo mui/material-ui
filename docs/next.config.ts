@@ -19,14 +19,12 @@ const workspaceRoot = path.join(currentDirectory, '../');
 const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 'utf8');
 const pkg = JSON.parse(pkgContent);
 
-// Shared alias list. Used by both turbopack (relative paths from `docs/`)
-// and webpack (absolute paths via `path.resolve`).
+// Shared alias list, paths relative to the workspace root. For turbopack, prefixed
+// with `../` (relative to `docs/`), and for webpack, resolved absolute.
 const aliasEntries: ReadonlyArray<readonly [string, string]> = [
   ['@mui/material', 'packages/mui-material/src'],
   ['@mui/material/package.json', 'packages/mui-material/package.json'],
   ['@mui/internal-core-docs', 'packages-internal/core-docs/src'],
-  ['@mui/icons-material', 'packages/mui-icons-material/lib/index.mjs'],
-  ['@mui/lab', 'packages/mui-lab/src'],
   ['@mui/styled-engine', 'packages/mui-styled-engine/src'],
   ['@mui/system', 'packages/mui-system/src'],
   ['@mui/system/package.json', 'packages/mui-system/package.json'],
@@ -37,6 +35,9 @@ const aliasEntries: ReadonlyArray<readonly [string, string]> = [
 
 const turbopackResolveAlias: Record<string, string> = {
   ...Object.fromEntries(aliasEntries.map(([name, rel]) => [name, `../${rel}`])),
+  // Bare `@mui/icons-material` → ESM index for namespace interop; deep imports
+  // (`@mui/icons-material/Add`) fall through to the installed package.
+  '@mui/icons-material': '../packages/mui-icons-material/lib/index.mjs',
   // Mirrors the `docs` alias from babel.config.mjs / babel-plugin-module-resolver.
   docs: '.',
 };
@@ -152,18 +153,11 @@ export default withDocsInfra({
       .map(([name, rel]) => [name, path.resolve(workspaceRoot, rel)] as const);
 
     const webpackAliases: Record<string, string> = {
-      // Exact-match overrides (with the `$` suffix) for bare imports.
-      // Pin `@mui/material` to its compiled `index.js` and `@mui/icons-material`
-      // to the ESM index so `import * as mui from '@mui/icons-material'`
-      // doesn't land on the CJS index and break namespace interop.
-      '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
+      ...Object.fromEntries(sharedWebpackAliases),
       '@mui/icons-material$': path.resolve(
         workspaceRoot,
         'packages/mui-icons-material/lib/index.mjs',
       ),
-      ...Object.fromEntries(sharedWebpackAliases),
-      // Bare `@mui/icons-material` should resolve to the lib dir (not the ESM
-      // index), so deep imports `@mui/icons-material/Add` work.
       '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib'),
     };
 
