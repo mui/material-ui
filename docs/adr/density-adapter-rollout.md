@@ -16,20 +16,38 @@ pixel-identical to today. No `calc` math for users, no `--mui-spacing` dial.
 Root consumes seam, seam falls to internal default:
 
 ```js
-padding: 'var(--Button-pad, var(--_pad))'
+padding: 'var(--Button-pad, var(--_pad))';
 ```
 
 Resolution = **sized-only** for a size-varying axis. Sized token wins -> else
 internal default. No all-sizes-over-sized base token.
 
 **Size-invariant default ≠ base token.** If an axis's default is the same every
-size (e.g. OutlinedInput inline `14px`) you *can* skip the size layer — base
+size (e.g. OutlinedInput inline `14px`) you _can_ skip the size layer — base
 token `--Component-<key>`, consumed `var(--Component-<key>, var(--_<key>))`,
 nothing routes it. But only when per-size override is genuinely meaningless,
 because a **base token can't be tuned per size from the theme**. If a design
 system might want that axis denser on small (density!), **size it anyway**: same
 default both sizes, but expose `--Component-<size>-<key>`. OutlinedInput sizes
-*both* padBlock and padInline for this reason (inline default `14px` each size).
+_both_ padBlock and padInline for this reason (inline default `14px` each size).
+
+**Boolean `dense` axis (state token).** When compactness is a **boolean** prop
+(`dense`) not a `size` enum, don't name the off-state. The **default state is the
+plain seam** `--Component-<key>` (base-token-shaped: nothing routes it in the
+base; designer sets it directly); **only `dense` is qualified**
+`--Component-dense-<key>`, routed in the `dense` variant:
+
+```js
+// base: default state = plain seam, falls to the internal default literal
+'--_padBlock': '8px',
+paddingTop: 'var(--ListItem-padBlock, var(--_padBlock))',
+// { dense } variant: own literal + route the dense token
+'--_padBlock': '4px',
+'--ListItem-padBlock': 'var(--ListItem-dense-padBlock, var(--_padBlock))',
+```
+
+No `--Component-normal/regular/default-<key>` — a boolean has no name for "off".
+(MenuItem, ListItem, ListItemButton, ListItemText.)
 
 ## Recipe A — small component (Button)
 
@@ -51,7 +69,7 @@ One element. `pad` shorthand (all sides move together).
    ```
 4. Custom size -> route inline (only non-built-in size emits a `style` attr).
    ```js
-   const densityVars = ['small','medium','large'].includes(size)
+   const densityVars = ['small', 'medium', 'large'].includes(size)
      ? undefined
      : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
    ```
@@ -60,7 +78,7 @@ One element. `pad` shorthand (all sides move together).
 ## Recipe B — big component (OutlinedInput)
 
 Padding spans 2 elements (root when multiline, input otherwise) + paired sibling
-(InputLabel). More dimensions but token model is *simpler*.
+(InputLabel). More dimensions but token model is _simpler_.
 
 **Pick real axis + shape.** Block (`16.5 -> 8.5`) varies by size -> **sized**
 `padBlock`. Inline default is `14px` both sizes, but a design system may want
@@ -69,7 +87,7 @@ size). Both axes sized, routed per size. Split block/inline forced: they land on
 different elements/states + zero per adornment.
 
 **Two elements, tokenize in place.** Padding lives on the input (non-multiline,
-inline gutters) *and* the root (multiline, adornment gutters) — never both on the
+inline gutters) _and_ the root (multiline, adornment gutters) — never both on the
 same side at once (multiline zeroes input padding; an adorned side zeroes the
 input and gutters from the root). Keep master's split: each site declares its own
 `--_<key>` + routes the size token, right where the literal was. No lift to a
@@ -97,10 +115,10 @@ specific component token. Label exposes own seam:
 
 ```js
 // InputLabel — generic, literal default
-transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)' // small: 9px
+transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)'; // small: 9px
 ```
 
-Specific component owns bridge. Label = *preceding* sibling -> reach via `:has`.
+Specific component owns bridge. Label = _preceding_ sibling -> reach via `:has`.
 Cross-element rule -> derive the label seam straight from the **public sized
 token** + literal fallback (can't read the input's internal `--_padBlock`):
 
@@ -127,20 +145,20 @@ One knob (`--OutlinedInput-<size>-padBlock`) -> input box + label move together.
   CSS) -> literal leaks to runtime; `(variant×size)` vs size-only writes clobber
   on one element; lose the seam.
 - **Uniform consume shape — every axis.** Always `var(--Component-<key>,
-  var(--_<key>))`, including a size-invariant **base** axis. Two real mistakes to
+var(--_<key>))`, including a size-invariant **base** axis. Two real mistakes to
   avoid: (a) **bare literal default** for a base axis (`var(--seam, 14px)`) —
   instead define `--_<key>` (e.g. `--_padInline: 14px`) so the default lives in
   one place and the shape matches sized axes; (b) **dropping a fallback because
   the seam "is always set"** — keep it; the uniform shape is the contract (Button
-  `var(--Button-pad, var(--_pad))`; a sized axis carries `--_<key>` in *both* the
+  `var(--Button-pad, var(--_pad))`; a sized axis carries `--_<key>` in _both_ the
   routing and the consume — that double-reference is intentional). Consistency
   over minimalism.
 - **Unprefixed `--_<key>` safe only if every instance sets own.** Custom prop
   inherits. Co-located setter (Button) or every root re-sets (OutlinedInput) ->
   ancestor value never wins. Else prefix it.
 - **Sibling can't inherit.** Sibling vars need common ancestor. Specific
-  component reaches sibling via `:has(~ &)`. Note: `+`/`~` match *following*
-  siblings only -> `:has` makes the *earlier* element the subject.
+  component reaches sibling via `:has(~ &)`. Note: `+`/`~` match _following_
+  siblings only -> `:has` makes the _earlier_ element the subject.
 - **One element can't see another's internal var.** Label can't read input-root
   `--_padBlock`. Reference **public** token (visible at `:root`) + literal
   fallback. Never the internal var across elements.
@@ -183,8 +201,11 @@ Screenshot harness `scripts/density-screenshots/` (`maxDiffPixels: 0`):
 - Key granularity = component's real spacing structure. One shorthand key
   (`pad`) when sides set together on one element; split per axis only when forced
   (see gotcha). Per axis: **sized by default** (per-size tunable); base token only
-  if per-size override is genuinely meaningless — a size-invariant *default* alone
+  if per-size override is genuinely meaningless — a size-invariant _default_ alone
   doesn't justify base (size it so density can tune it per size).
+- **Boolean toggle (`dense`)** = **state token**: off-state is the plain seam
+  `--Component-<key>` (don't qualify it); only the on-state is qualified
+  `--Component-dense-<key>`. Never `--Component-normal/regular/default-<key>`.
 
 ## Order to roll out
 

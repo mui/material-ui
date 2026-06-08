@@ -48,12 +48,26 @@ An axis can skip the **size layer** — internal default `--_<key>` + seam,
 consumed `var(--Component-<key>, var(--_<key>))`, nothing routes it, so a designer
 sets the seam directly. Use this **only when tuning the axis per size makes no
 sense**, because a base token can't be size-scoped from the theme. A
-size-invariant *default* is **not** enough: OutlinedInput's inline gutter is
+size-invariant _default_ is **not** enough: OutlinedInput's inline gutter is
 `14px` for both sizes, yet it's a **sized token** (`--OutlinedInput-<size>-padInline`,
 default `14px` each) so a design system can make small inputs denser inline.
 Reach for a base token rarely; default to a **sized token**.
 _Avoid_: a base token just because the default is size-invariant; a bare literal
 default (use `--_<key>`).
+
+**State token** (public, for a boolean compactness toggle like `dense`):
+When the compactness axis is a **boolean** prop (`dense`) rather than a `size`
+enum, the **default (off) state** is exposed through the plain seam
+`--Component-<key>` — consumed `var(--Component-<key>, var(--_<key>))`, **nothing
+routes it in the base** (the seam _is_ the default knob, base-token-shaped) — and
+**only the on state** gets a qualified token `--Component-dense-<key>`, routed in
+the `dense` variant over its own `--_<key>` literal. A boolean has no name for
+"off", so there is **no** `--Component-normal/regular/default-<key>`: the absence
+of the toggle is the plain seam, not an arbitrarily-named size. Contrast a
+**sized token**, where every value (including `medium`) is qualified because each
+is a real named size. Used by MenuItem, ListItem, ListItemButton, ListItemText.
+_Avoid_: naming the off state (`-normal-`, `-regular-`, `-default-`); routing the
+seam in the base; treating `dense` as a 2-value size enum.
 
 **Internal default**:
 A private variable, shape `--_<key>` (leading underscore, **no component
@@ -97,11 +111,11 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   matrix and the built-in-size routing are both **`variants` cells**, not a body
   lookup table; only custom-size routing is inline.
 - **Two vars, not one** (`--Button-pad` over `--_pad`): the cells write the
-  *value* (`--_pad`), the routing writes a *reference* (`--Button-pad`). One var
+  _value_ (`--_pad`), the routing writes a _reference_ (`--Button-pad`). One var
   fails three ways — a self-referencing fallback in the inline bridge (invalid
   CSS, forcing the literal back into runtime style), the `(variant×size)` and
   size-only write-axes clobbering on one element, and losing the agnostic seam.
-  Full reasoning in `docs/adr/0001` → *Why two vars*.
+  Full reasoning in `docs/adr/0001` → _Why two vars_.
 - Override priority (high → low): plain `styleOverrides` property → **sized
   token** → internal default (literal fallback).
 - Custom (user-defined) sizes work for free: when the size isn't built-in, the
@@ -110,7 +124,7 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 - **Token granularity follows the component's spacing structure; split only when
   the impl forces it.** Button sets all sides together via one shorthand on one
   element → one `pad` var (even though block 6 ≠ inline 8 — differing values alone
-  don't force a split). OutlinedInput *is* forced: block vs inline land on
+  don't force a split). OutlinedInput _is_ forced: block vs inline land on
   different elements/states and zero per adornment. **Both axes are sized**
   (`--OutlinedInput-<size>-padBlock`/`-padInline`) — block defaults vary by size
   (16.5/8.5), inline defaults don't (14 both) but it's sized anyway so density can
@@ -151,7 +165,7 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   to `theme.density`, to disambiguate from `theme.spacing`.
 - Base (all-sizes-over-sized) token — dropped for **size-varying** axes;
   resolution is sized-only, tune per size. A base token applies only when per-size
-  override is meaningless — *not* merely when the default is size-invariant
+  override is meaningless — _not_ merely when the default is size-invariant
   (OutlinedInput's `14px` inline gutter is still a **sized** token so density can
   tune it per size).
 - Var key — single `pad` shorthand only when the impl sets all sides together on

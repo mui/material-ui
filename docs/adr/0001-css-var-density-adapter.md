@@ -62,6 +62,15 @@ over an internal default `--_<key>` (consumed `var(--Component-<key>, var(--_<ke
 no size layer/routing) is reserved for the rare axis where per-size override is
 genuinely meaningless.
 
+When the compactness axis is a **boolean** prop (`dense`) rather than a `size`
+enum, use a **state token**: the default (off) state is the plain seam
+`--Component-<key>` (base-token-shaped — nothing routes it in the base), and only
+the on state is qualified `--Component-dense-<key>`, routed in the `dense`
+variant. A boolean has no name for "off", so there is no
+`--Component-normal/regular/default-<key>` — unlike a size enum, where every value
+(including `medium`) is qualified because each is a real named size. Used by
+MenuItem, ListItem, ListItemButton, and ListItemText.
+
 The styled root has **one** consumption point per property and **no conditional**;
 the defaults and built-in-size routing are plain `variants` entries:
 
@@ -71,7 +80,10 @@ const ButtonRoot = styled(ButtonBase)({
   padding: 'var(--Button-pad, var(--_pad))', // agnostic layer
   variants: [
     // routing for built-in sizes (deduped CSS)
-    { props: { size: 'small' }, style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' } },
+    {
+      props: { size: 'small' },
+      style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' },
+    },
     // literal default per (variant, size); medium lives in the { variant } blocks (DRY)
     { props: { variant: 'text', size: 'small' }, style: { '--_pad': '4px 5px' } },
   ],
@@ -98,7 +110,7 @@ Three reasons, all pointing the same way:
    the rest of the variant's styling, statically deduped, smallest diff from
    today. Inline style is only a **bridge** for the one dynamic case (a custom
    size's token name) and must carry **no values**, only routing. Two vars allow
-   that: cells write the value (`--_pad`), the bridge writes a *reference*
+   that: cells write the value (`--_pad`), the bridge writes a _reference_
    (`--Button-pad: var(--Button-<size>-pad, var(--_pad))`). With a single
    `--_pad`, the custom-size bridge would have to write
    `--_pad: var(--Button-<size>-pad, var(--_pad))` — a property referencing
@@ -140,7 +152,7 @@ InputBase/TextField to follow) for this experiment.
 Same three-tier model, with two component-driven differences:
 
 - **Both axes are sized.** Block (`16.5px`→`8.5px`) varies by size → sized token
-  `--OutlinedInput-<size>-padBlock`. The `14px` inline gutter is *constant* across
+  `--OutlinedInput-<size>-padBlock`. The `14px` inline gutter is _constant_ across
   sizes, but it's **sized too** → `--OutlinedInput-<size>-padInline` (default
   `14px` each size) so a design system can make small inputs denser inline. (We
   first modeled inline as a single size-invariant **base token**, but that can't
@@ -154,7 +166,7 @@ Same three-tier model, with two component-driven differences:
   block padding — `4/5`, `25/8` — so a shared InputBase block seam would need a
   richer, per-side shape; deferred.)
 - **Two consuming elements, tokenized in place.** Padding lives on the input
-  (non-multiline) *and* the root (multiline) — and the two never both apply block
+  (non-multiline) _and_ the root (multiline) — and the two never both apply block
   padding at once (multiline zeroes the input's). Rather than lift size resolution
   to a single owner, **each site keeps master's literal-bearing cell and
   tokenizes in place**: input base + input `{ size: small }`, root `multiline` +
@@ -166,7 +178,7 @@ Same three-tier model, with two component-driven differences:
   reads it also sets it on the same element.
 
 **Closing the loop — the floating label.** In a `TextField`, `InputLabel` is a
-*preceding sibling* of the input. The resting label must track the block padding
+_preceding sibling_ of the input. The resting label must track the block padding
 or it decenters when density is tuned. True centering is `labelY = padBlock`
 exactly (`(lineHeight + 2·padBlock)/2 − lineHeight/2`); today's `16px`/`9px` are
 that with ±0.5px historical rounding.
@@ -176,7 +188,7 @@ The bridge must respect the **dependency direction**: `InputLabel` is generic
 So `InputLabel` only exposes a seam — its outlined resting transform reads
 `var(--InputLabel-y, <literal>)` — and **OutlinedInput owns the bridge**. Because
 the label precedes the input, OutlinedInput reaches it with `:has` (sibling
-combinators only match *following* siblings) and, per size, derives the label
+combinators only match _following_ siblings) and, per size, derives the label
 seam straight from its public sized token (a cross-element rule must reference the
 public token, not the input's internal `--_padBlock`):
 
@@ -221,12 +233,12 @@ keeps the coupling in the one component that legitimately owns it. Cost: needs
 
 ### Accepted trade-offs
 
-| Trade-off | Why we can live with it |
-| :-- | :-- |
-| `--Button-pad` is public-shaped but not a designer knob in the assembled Button (plumbing) | It's the agnostic seam; the real knob is `--Button-<size>-pad`, documented. The name marks the layer boundary. |
-| Two vars per property instead of one | Mandatory (see *Why two vars*); the indirection is mechanical and documented. |
-| Unprefixed `--_pad` could inherit a foreign value | Every built-in cell plus the root universal default set it on the element; revisit a prefix only if cross-component collisions surface as the pattern spreads. |
-| `pad` shorthand is coarse (an override sets all sides) | Button padding is symmetric; tiny token surface; granular logical props can come later. |
-| `var()` unresolved in jsdom (no computed-px assertions) | Argos covers default visuals; the chain is declarative and inspectable. |
-| Inline still present for custom sizes | Rare; the built-in common case carries zero inline. |
-| Per-property boilerplate grows with rollout | Acceptable for the payoff (runtime scoped theming); extract a helper before component #3. |
+| Trade-off                                                                                  | Why we can live with it                                                                                                                                        |
+| :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--Button-pad` is public-shaped but not a designer knob in the assembled Button (plumbing) | It's the agnostic seam; the real knob is `--Button-<size>-pad`, documented. The name marks the layer boundary.                                                 |
+| Two vars per property instead of one                                                       | Mandatory (see _Why two vars_); the indirection is mechanical and documented.                                                                                  |
+| Unprefixed `--_pad` could inherit a foreign value                                          | Every built-in cell plus the root universal default set it on the element; revisit a prefix only if cross-component collisions surface as the pattern spreads. |
+| `pad` shorthand is coarse (an override sets all sides)                                     | Button padding is symmetric; tiny token surface; granular logical props can come later.                                                                        |
+| `var()` unresolved in jsdom (no computed-px assertions)                                    | Argos covers default visuals; the chain is declarative and inspectable.                                                                                        |
+| Inline still present for custom sizes                                                      | Rare; the built-in common case carries zero inline.                                                                                                            |
+| Per-property boilerplate grows with rollout                                                | Acceptable for the payoff (runtime scoped theming); extract a helper before component #3.                                                                      |
