@@ -244,9 +244,10 @@ does exactly this: it sets `--SwitchBase-pad` to a derived `calc` (below).
 
 **Interlocked geometry — derive, don't tokenize one axis.** A `Switch`'s width,
 height, thumb, touch target and travel all move together; tokenizing the thumb
-pad alone drifts the thumb off the track. So Switch tokenizes the four real dims
-per size (`--Switch-<size>-width/height/thumbSize/touchSize`) and **derives** the
-coupled values with `calc`, feeding the shared seam: SwitchBase pad
+pad alone drifts the thumb off the track. So Switch tokenizes its real dims per
+size (`--Switch-<size>-width/height/thumbSize/touchSize` + the track gutter
+`--Switch-<size>-pad`) and **derives** the coupled values with `calc`, feeding the
+shared seam: SwitchBase pad
 `= (touchSize − thumbSize) / 2`; the absolutely-positioned button stays centered
 via `top = (height − touchSize) / 2` and checked `transform: translateX(width −
 touchSize)`; the thumb slot reads `thumbSize`. Defaults (`touchSize == height`)

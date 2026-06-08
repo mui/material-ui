@@ -51,29 +51,32 @@ const SwitchRoot = styled('span', {
     ];
   },
 })({
-  // Density (docs/adr/0001): Switch geometry is interlocked, so the meaningful
-  // knobs are the four dims (width/height/thumbSize/touchSize); the thumb's touch
-  // padding and travel are *derived* so the thumb stays centered on the track.
+  // Density (docs/adr/0001): Switch geometry is interlocked, so the knobs are the
+  // dims (width/height/thumbSize/touchSize) + the track gutter (pad); the thumb's
+  // touch padding and travel are *derived* so the thumb stays centered on the track.
   //   SwitchBase pad = (touchSize - thumbSize) / 2   (centers thumb in the button)
   //   button top     = (height - touchSize) / 2       (centers button in the root)
   //   checked travel = width - touchSize
   // Defaults: touchSize == height -> pad 9/4, top 0, travel 20/16 (pixel-identical).
   // The thumb (SwitchBase) and Thumb/Track slots inherit these seams (custom props
-  // inherit; they don't redeclare them). Track gutter (padding) stays literal.
+  // inherit; they don't redeclare them). `--_pad` here is the root's gutter default
+  // (the track inset), distinct from the thumb's own SwitchBase `--_pad`.
   '--_width': '58px', // 34 (track) + 12 (gutter) * 2
   '--_height': '38px', // 14 (track) + 12 (gutter) * 2
   '--_thumbSize': '20px',
   '--_touchSize': '38px',
+  '--_pad': '12px',
   '--Switch-width': 'var(--Switch-medium-width, var(--_width))',
   '--Switch-height': 'var(--Switch-medium-height, var(--_height))',
   '--Switch-thumbSize': 'var(--Switch-medium-thumbSize, var(--_thumbSize))',
   '--Switch-touchSize': 'var(--Switch-medium-touchSize, var(--_touchSize))',
+  '--Switch-pad': 'var(--Switch-medium-pad, var(--_pad))',
   '--SwitchBase-pad': 'calc((var(--Switch-touchSize) - var(--Switch-thumbSize)) / 2)',
   display: 'inline-flex',
   width: 'var(--Switch-width, var(--_width))',
   height: 'var(--Switch-height, var(--_height))',
   overflow: 'hidden',
-  padding: 12,
+  padding: 'var(--Switch-pad, var(--_pad))',
   boxSizing: 'border-box',
   position: 'relative',
   flexShrink: 0,
@@ -94,16 +97,17 @@ const SwitchRoot = styled('span', {
     {
       props: { size: 'small' },
       style: {
-        // Re-route the four dims to the small tokens; pad/top/travel re-derive.
+        // Re-route the dims + gutter to the small tokens; pad/top/travel re-derive.
         '--_width': '40px',
         '--_height': '24px',
         '--_thumbSize': '16px',
         '--_touchSize': '24px',
+        '--_pad': '7px',
         '--Switch-width': 'var(--Switch-small-width, var(--_width))',
         '--Switch-height': 'var(--Switch-small-height, var(--_height))',
         '--Switch-thumbSize': 'var(--Switch-small-thumbSize, var(--_thumbSize))',
         '--Switch-touchSize': 'var(--Switch-small-touchSize, var(--_touchSize))',
-        padding: 7,
+        '--Switch-pad': 'var(--Switch-small-pad, var(--_pad))',
       },
     },
   ],

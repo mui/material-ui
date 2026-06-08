@@ -172,10 +172,12 @@ the wrapper, not the shadowed `--_<key>`.
 **Interlocked geometry -> derive, don't tokenize one axis.** When a component's
 dims move together (a `Switch`: width/height/thumb/touch/travel), tokenizing one
 (the thumb pad) alone drifts the thumb off the track. Tokenize the real dims per
-size and **derive** the coupled values with `calc`, feeding the seam:
+size (incl. the track gutter `pad`) and **derive** the coupled values with `calc`,
+feeding the seam:
 
 ```js
-// SwitchRoot, per size: --Switch-<size>-{width,height,thumbSize,touchSize}
+// SwitchRoot, per size: --Switch-<size>-{width,height,thumbSize,touchSize,pad}
+padding: 'var(--Switch-pad, var(--_pad))', // track gutter (own axis)
 '--SwitchBase-pad': 'calc((var(--Switch-touchSize) - var(--Switch-thumbSize)) / 2)',
 // thumb button (absolute): keep it centered
 top: 'calc((var(--Switch-height) - var(--Switch-touchSize)) / 2)',
