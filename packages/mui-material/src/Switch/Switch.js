@@ -64,6 +64,12 @@ const SwitchRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
+  // Density: the thumb (SwitchBase) inherits the seam from here — no descendant
+  // selector needed (custom props inherit; the thumb doesn't redeclare the seam).
+  // `--_pad` is the thumb's default fallback (the root's own padding stays
+  // literal — box geometry is size-coupled).
+  '--_pad': '9px',
+  '--SwitchBase-pad': 'var(--Switch-medium-pad, var(--_pad))',
   variants: [
     {
       props: { edge: 'start' },
@@ -79,12 +85,15 @@ const SwitchRoot = styled('span', {
         width: 40,
         height: 24,
         padding: 7,
+        // Small thumb default is 4 (≠ the thumb's own --_pad 9), so feed it via
+        // the seam: set --_pad here (inherited as the seam's fallback).
+        '--_pad': '4px',
+        '--SwitchBase-pad': 'var(--Switch-small-pad, var(--_pad))',
         [`& .${switchClasses.thumb}`]: {
           width: 16,
           height: 16,
         },
         [`& .${switchClasses.switchBase}`]: {
-          padding: 4,
           [`&.${switchClasses.checked}`]: {
             transform: 'translateX(16px)',
           },

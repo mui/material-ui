@@ -34,6 +34,9 @@ import Select from '@mui/material/Select';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Badge from '@mui/material/Badge';
+import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
+import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import FaceIcon from '@mui/icons-material/Face';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -589,6 +592,46 @@ const demos: Record<string, React.ReactNode> = {
       </Badge>
     </Stack>
   ),
+  Checkbox: (
+    <Stack spacing={2} useFlexGap>
+      {(['small', 'medium'] as const).map((size) => (
+        <Stack key={size} direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
+          <Checkbox size={size} />
+          <Checkbox size={size} defaultChecked />
+          <Checkbox size={size} defaultChecked color="secondary" />
+          <Checkbox size={size} indeterminate />
+          <Checkbox size={size} disabled defaultChecked />
+          <Checkbox size={size} edge="start" />
+        </Stack>
+      ))}
+    </Stack>
+  ),
+  Radio: (
+    <Stack spacing={2} useFlexGap>
+      {(['small', 'medium'] as const).map((size) => (
+        <Stack key={size} direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
+          <Radio size={size} />
+          <Radio size={size} defaultChecked />
+          <Radio size={size} defaultChecked color="secondary" />
+          <Radio size={size} disabled defaultChecked />
+          <Radio size={size} edge="start" />
+        </Stack>
+      ))}
+    </Stack>
+  ),
+  Switch: (
+    <Stack spacing={2} useFlexGap>
+      {(['small', 'medium'] as const).map((size) => (
+        <Stack key={size} direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center' }}>
+          <Switch size={size} />
+          <Switch size={size} defaultChecked />
+          <Switch size={size} defaultChecked color="secondary" />
+          <Switch size={size} disabled defaultChecked />
+          <Switch size={size} edge="start" />
+        </Stack>
+      ))}
+    </Stack>
+  ),
 };
 
 // Per-component density-token overrides for the review levels. `default` is
@@ -800,6 +843,36 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Badge-standard-pad' as any]: '0 10px',
       ['--Badge-standard-size' as any]: '28px',
       ['--Badge-dot-size' as any]: '12px',
+    },
+  },
+  Checkbox: {
+    dense: {
+      ['--Checkbox-small-pad' as any]: '3px',
+      ['--Checkbox-medium-pad' as any]: '5px',
+    },
+    loose: {
+      ['--Checkbox-small-pad' as any]: '7px',
+      ['--Checkbox-medium-pad' as any]: '13px',
+    },
+  },
+  Radio: {
+    dense: {
+      ['--Radio-small-pad' as any]: '3px',
+      ['--Radio-medium-pad' as any]: '5px',
+    },
+    loose: {
+      ['--Radio-small-pad' as any]: '7px',
+      ['--Radio-medium-pad' as any]: '13px',
+    },
+  },
+  Switch: {
+    dense: {
+      ['--Switch-small-pad' as any]: '2px',
+      ['--Switch-medium-pad' as any]: '6px',
+    },
+    loose: {
+      ['--Switch-small-pad' as any]: '7px',
+      ['--Switch-medium-pad' as any]: '12px',
     },
   },
 };

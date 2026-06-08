@@ -372,6 +372,47 @@ export default function enhanceDensity<
         ],
       },
     },
+    MuiCheckbox: {
+      ...c?.MuiCheckbox,
+      styleOverrides: {
+        ...c?.MuiCheckbox?.styleOverrides,
+        root: [
+          c?.MuiCheckbox?.styleOverrides?.root,
+          {
+            // Touch-target padding (9px default both sizes), via SwitchBase.
+            '--Checkbox-medium-pad': varRefs.sm,
+            '--Checkbox-small-pad': varRefs.xs,
+          },
+        ],
+      },
+    },
+    MuiRadio: {
+      ...c?.MuiRadio,
+      styleOverrides: {
+        ...c?.MuiRadio?.styleOverrides,
+        root: [
+          c?.MuiRadio?.styleOverrides?.root,
+          {
+            '--Radio-medium-pad': varRefs.sm,
+            '--Radio-small-pad': varRefs.xs,
+          },
+        ],
+      },
+    },
+    MuiSwitch: {
+      ...c?.MuiSwitch,
+      styleOverrides: {
+        ...c?.MuiSwitch?.styleOverrides,
+        root: [
+          c?.MuiSwitch?.styleOverrides?.root,
+          {
+            // Thumb (SwitchBase) padding; box geometry stays literal.
+            '--Switch-medium-pad': varRefs.sm,
+            '--Switch-small-pad': varRefs.xxs,
+          },
+        ],
+      },
+    },
   };
 
   return theme;
