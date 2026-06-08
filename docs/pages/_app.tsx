@@ -46,6 +46,7 @@ import './global.css';
 // `export ... from`, or `import { x } from ...; export { x }`), causing
 // the global CSS imports above to be rejected. Re-export as a fresh local
 // binding to keep the file recognized as the Custom App.
+// Related issue - https://github.com/vercel/next.js/issues/93162
 export const fontClasses = _fontClasses;
 
 // Remove the license warning from demonstration purposes
