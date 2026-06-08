@@ -316,6 +316,7 @@ Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast i
 ### Windows High Contrast mode
 
 To improve component visibility in Windows High Contrast mode (also known as [Forced Colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)), use the `enhanceHighContrast` theme enhancer, starting from v9.1.0.
+It accepts a fully-created theme and returns an enhanced version of it with `@media (forced-colors: active)` overrides applied to the affected components.
 
 ```js
 import { createTheme, enhanceHighContrast } from '@mui/material/styles';
