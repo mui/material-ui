@@ -237,13 +237,22 @@ descendant selector, no added specificity):
 
 The inheritance caveat is the mirror of why `--_<key>` is safe unprefixed: the
 base **redeclares `--_<key>`** on itself, so an inherited `--_<key>` is shadowed.
-The seam inherits (not redeclared); the internal default does not. So when a
-wrapper needs a per-state default that differs from the base's (the small Switch
-thumb is `4px`, not the base's `9px`), it can't inherit `--_<key>` — it feeds the
-value **through the seam** by setting `--_<key>` on the wrapper root, where the
-seam's `var(..., var(--_<key>))` fallback resolves. Box geometry that is coupled
-to the value (Switch's `width = 34 + 12·2`) is left literal — only the
-inheritance-safe padding axis is tokenized.
+The seam inherits (not redeclared); the internal default does not. So a wrapper
+that needs a value different from the base's feeds it **through the seam** — set
+the seam directly on the wrapper (preferred), not the shadowed `--_<key>`. Switch
+does exactly this: it sets `--SwitchBase-pad` to a derived `calc` (below).
+
+**Interlocked geometry — derive, don't tokenize one axis.** A `Switch`'s width,
+height, thumb, touch target and travel all move together; tokenizing the thumb
+pad alone drifts the thumb off the track. So Switch tokenizes the four real dims
+per size (`--Switch-<size>-width/height/thumbSize/touchSize`) and **derives** the
+coupled values with `calc`, feeding the shared seam: SwitchBase pad
+`= (touchSize − thumbSize) / 2`; the absolutely-positioned button stays centered
+via `top = (height − touchSize) / 2` and checked `transform: translateX(width −
+touchSize)`; the thumb slot reads `thumbSize`. Defaults (`touchSize == height`)
+compute to today's `9/4` pad, `0` top, `20/16` travel — pixel-identical.
+`enhanceDensity` skips Switch (geometry isn't spacing-scale-derived); tune it per
+size through the public dim tokens.
 
 ## Consequences
 

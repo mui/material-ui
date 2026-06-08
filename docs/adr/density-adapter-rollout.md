@@ -165,10 +165,27 @@ Two reader topologies:
 
 **Inheritance caveat.** The _seam_ inherits because the base doesn't redeclare it.
 But the base **does** redeclare `--_<key>` (that's what keeps it unprefixed-safe),
-so an inherited `--_<key>` is _shadowed_ on the base. If a wrapper needs a
-per-state default different from the base's (Switch small thumb `4` ≠ base `9`),
-feed it **through the seam** — set `--_<key>` on the wrapper so the seam's fallback
-resolves there; don't expect the base to inherit your `--_<key>`.
+so an inherited `--_<key>` is _shadowed_ on the base. A wrapper that needs a value
+different from the base's feeds it **through the seam** — set the seam directly on
+the wrapper, not the shadowed `--_<key>`.
+
+**Interlocked geometry -> derive, don't tokenize one axis.** When a component's
+dims move together (a `Switch`: width/height/thumb/touch/travel), tokenizing one
+(the thumb pad) alone drifts the thumb off the track. Tokenize the real dims per
+size and **derive** the coupled values with `calc`, feeding the seam:
+
+```js
+// SwitchRoot, per size: --Switch-<size>-{width,height,thumbSize,touchSize}
+'--SwitchBase-pad': 'calc((var(--Switch-touchSize) - var(--Switch-thumbSize)) / 2)',
+// thumb button (absolute): keep it centered
+top: 'calc((var(--Switch-height) - var(--Switch-touchSize)) / 2)',
+// checked: travel = width - touch
+transform: 'translateX(calc(var(--Switch-width) - var(--Switch-touchSize)))',
+```
+
+`touchSize == height` by default -> pad `9/4`, top `0`, travel `20/16`
+(pixel-identical). Skip such a component in `enhanceDensity` (its dims aren't
+spacing-scale-derived) — tune per size via the public dim tokens.
 
 ## Gotchas
 
