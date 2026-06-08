@@ -503,7 +503,6 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   if (!title && title !== 0) {
     open = false;
   }
-  openRef.current = open;
 
   const popperRef = React.useRef();
 
