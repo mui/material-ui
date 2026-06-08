@@ -69,8 +69,20 @@ non-Emotion paths. The noop engine exists and works. The gap is documentation.
 ### TODOs — engine alias
 
 - [ ] Document per-bundler alias config (Vite, webpack, Next.js, esbuild).
-- [ ] Decide whether to also offer Option B (subpath e.g. `@mui/material/css/Slider`) or
-  Option C (`exports` condition) for zero-config setup, or defer.
+- [ ] Decide whether to also offer Option B or Option C for zero-config setup, or defer:
+  - **Option A (chosen approach, documented in `test/noop-vite-sandbox/vite.config.ts`)** —
+    bundler alias: user adds one alias rule to their bundler config (`@mui/styled-engine` →
+    `@mui/styled-engine-noop`). Works with any bundler, no import changes required, but requires
+    touching build config. End-user documentation is still a TODO above.
+  - **Option B — subpath imports** (e.g. `@mui/material/css/Slider`): a separate set of package
+    subpaths that resolve directly to the noop variant without any bundler config. Zero setup, but
+    users must change every component import in their app (`/Slider` → `/css/Slider`), making
+    migration tedious and mixing Emotion and noop imports in the same tree possible by accident.
+  - **Option C — `exports` condition**: `package.json` `exports` supports custom conditions (e.g.
+    `"mui-noop"`). Users activate it with a single bundler option (e.g. `resolve.conditions:
+    ['mui-noop']` in Vite), and all `@mui/material` imports automatically resolve to the noop
+    variant — no alias, no import changes. Cleanest DX, but custom conditions have uneven bundler
+    support and add permanent complexity to the package's `exports` map.
 - [ ] Add a CI test: build the non-Emotion entry point, assert **zero** `@emotion/*` modules.
 - [ ] Improve the noop engine dev warning: link to the migration guide, fire once per
   component type rather than per instance.
@@ -107,28 +119,33 @@ import { CssThemeProvider } from '@mui/material/styles';
   <App />
 </CssThemeProvider>
 
-// 4. SSR flash prevention (Next.js / Remix — put in <head>)
-import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-<InitColorSchemeScript />
-
-// 5. Dark mode toggle
+// 4. Dark mode toggle
 import { useColorScheme } from '@mui/material/styles'; // from CssThemeProvider context
 const { mode, setMode } = useColorScheme();
 setMode('dark');
 
-// 6. JS theme values (breakpoints, transitions, spacing)
+// 5. JS theme values (breakpoints, transitions, spacing)
 import { useTheme } from '@mui/material/styles';
 const theme = useTheme(); // theme.breakpoints.up('md'), etc.
 ```
 
+SSR flash prevention works the same as with `ThemeProvider`: place `<InitColorSchemeScript />`
+in `<head>` before React hydrates. No extra steps specific to `CssThemeProvider` — once
+`useCurrentColorScheme` is wired inside it with the same default storage keys and attribute,
+`InitColorSchemeScript` is automatically compatible.
+
 ### TODOs — Path A
 
 - [ ] Build `CssThemeProvider` as a real provider:
+  - Wire `useCurrentColorScheme` internally using the same defaults as `ThemeProvider`
+    (`modeStorageKey: 'mui-mode'`, `colorSchemeStorageKey: 'mui-color-scheme'`,
+    `attribute: 'data-mui-color-scheme'`) so `InitColorSchemeScript` works out of the box
+    without any extra user steps.
   - Provide a theme context so `useTheme()` works (currently missing despite JSDoc claiming otherwise).
-  - Wire `useColorScheme()` — manage mode state, read/write `data-mui-color-scheme` attribute,
-    persist to localStorage, subscribe to `prefers-color-scheme` for `system` mode.
   - `disableTransitionOnChange` to suppress CSS transitions during color scheme switch.
   - `defaultMode` prop (`'light' | 'dark' | 'system'`).
+  - `noSsr` prop to skip the hydration-safe default and read localStorage on first render,
+    matching `CssVarsProvider`'s `noSsr` behavior.
 - [ ] Fix `CssVarsInjector` for nested providers: use scoped injection (not a global
   `<style id="mui-css-vars">`) so two `CssThemeProvider` instances don't overwrite each other.
 - [ ] Verify SSR: `CssVarsInjector` renders a `<style>` tag server-side; confirm no FOUC in
