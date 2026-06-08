@@ -442,10 +442,17 @@ describe('<Tooltip />', () => {
     expect(screen.getByRole('tooltip')).toBeVisible();
 
     await user.unhover(button);
+    await act(async () => {
+      await new Promise((resolve) => {
+        // Wait a bit but not long enough for the tooltip to disappear
+        setTimeout(resolve, 250);
+      });
+    });
     await user.hover(screen.getByRole('tooltip'));
     await act(async () => {
       await new Promise((resolve) => {
-        setTimeout(resolve, 600);
+        // Wait out the close timeout until the tooltip should have disappeared
+        setTimeout(resolve, 300);
       });
     });
 
