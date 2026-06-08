@@ -215,7 +215,10 @@ const SwitchTrack = styled('span', {
   memoTheme(({ theme }) => ({
     height: '100%',
     width: '100%',
-    borderRadius: 14 / 2,
+    // Full pill: half the track thickness (height minus the two gutters). Inherits
+    // the seams from SwitchRoot. Medium -> 7px; small clamps to a pill either way.
+    borderRadius:
+      'calc((var(--Switch-height, var(--_height)) - 2 * var(--Switch-pad, var(--_pad))) / 2)',
     zIndex: -1,
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
