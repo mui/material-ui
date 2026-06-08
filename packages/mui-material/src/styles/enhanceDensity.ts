@@ -1,4 +1,5 @@
 import { Theme } from './createTheme';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 /**
  * Named density steps, surfaced as `--mui-density-*` CSS vars. Components wired
@@ -127,8 +128,8 @@ export default function enhanceDensity<
         root: [
           c?.MuiChip?.styleOverrides?.root,
           {
-            '--Chip-small-height': varRefs.lg,
-            '--Chip-medium-height': varRefs.xl,
+            '--Chip-small-height': varRefs.xl,
+            '--Chip-medium-height': varRefs.xxl,
             '--Chip-small-padInline': varRefs.sm,
             '--Chip-medium-padInline': varRefs.md,
           },
@@ -273,6 +274,19 @@ export default function enhanceDensity<
         ],
       },
     },
+    MuiTabs: {
+      ...c?.MuiTabs,
+      styleOverrides: {
+        ...c?.MuiTabs?.styleOverrides,
+        root: [
+          c?.MuiTabs?.styleOverrides?.root,
+          {
+            // Match Tab's minHeight step so the bar tracks the tabs it contains.
+            '--Tabs-minHeight': `calc(${varRefs.xl} + ${varRefs.lg})`,
+          },
+        ],
+      },
+    },
     MuiTablePagination: {
       ...c?.MuiTablePagination,
       styleOverrides: {
@@ -370,6 +384,25 @@ export default function enhanceDensity<
             '--OutlinedInput-small-padBlock': varRefs.sm,
             '--OutlinedInput-medium-padInline': varRefs.lg,
             '--OutlinedInput-small-padInline': varRefs.md,
+            // The outlined label resting-Y tracks the input's block padding, but
+            // the label is a preceding sibling — it can't read the input's
+            // `--OutlinedInput-*-padBlock` (custom props don't inherit sibling ->
+            // sibling). So derive `--InputLabel-y` straight from the density step
+            // (which the label DOES inherit from `:root`), matching the
+            // component's -0.5/+0.5 rounding per size.
+            [`.${inputLabelClasses.root}:has(~ &)`]: {
+              '--InputLabel-y': `calc(${varRefs.md} - 0.5px)`,
+            },
+            variants: [
+              {
+                props: { size: 'small' },
+                style: {
+                  [`.${inputLabelClasses.root}:has(~ &)`]: {
+                    '--InputLabel-y': `calc(${varRefs.sm} + 0.5px)`,
+                  },
+                },
+              },
+            ],
           },
         ],
       },

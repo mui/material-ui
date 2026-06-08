@@ -136,7 +136,7 @@ const MenuItemRoot = styled(ButtonBase, {
       paddingLeft: 36,
     },
     [`& .${listItemIconClasses.root}`]: {
-      minWidth: 36,
+      minWidth: 'var(--ListItemIcon-minWidth, 36px)',
     },
     variants: [
       {
