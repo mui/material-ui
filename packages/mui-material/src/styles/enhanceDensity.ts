@@ -11,6 +11,7 @@ export interface DensityScale {
   md: string;
   lg: string;
   xl: string;
+  xxl: string;
 }
 
 export interface DensityOptions {
@@ -22,7 +23,7 @@ export interface DensityOptions {
 
 type DensityKey = keyof DensityScale;
 
-const densityKeys: DensityKey[] = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'];
+const densityKeys: DensityKey[] = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
 // Default scale: t-shirt steps derived from the theme spacing unit.
 const defaultMultiplier: Record<DensityKey, number> = {
@@ -32,6 +33,7 @@ const defaultMultiplier: Record<DensityKey, number> = {
   md: 1.5,
   lg: 2,
   xl: 3,
+  xxl: 4,
 };
 
 const cssVar = (key: DensityKey) => `--mui-density-${key}`;
@@ -399,9 +401,31 @@ export default function enhanceDensity<
         ],
       },
     },
-    // Switch is intentionally not wired here: its geometry (width/height/thumbSize/
-    // touchSize) is interlocked, not spacing-scale-derived. Tune it per size via
-    // the public --Switch-<size>-* tokens directly.
+    MuiSwitch: {
+      ...c?.MuiSwitch,
+      styleOverrides: {
+        ...c?.MuiSwitch?.styleOverrides,
+        root: [
+          c?.MuiSwitch?.styleOverrides?.root,
+          {
+            // Switch maps its input dims to scale steps; pad/top/travel/radius
+            // re-derive from them, so the geometry stays valid (touchSize == height
+            // -> centered; width > touchSize -> positive travel). `xxl` covers the
+            // wider track.
+            '--Switch-medium-width': varRefs.xxl,
+            '--Switch-medium-height': varRefs.xl,
+            '--Switch-medium-touchSize': varRefs.xl,
+            '--Switch-medium-thumbSize': varRefs.lg,
+            '--Switch-medium-pad': varRefs.sm,
+            '--Switch-small-width': varRefs.xl,
+            '--Switch-small-height': varRefs.lg,
+            '--Switch-small-touchSize': varRefs.lg,
+            '--Switch-small-thumbSize': varRefs.md,
+            '--Switch-small-pad': varRefs.xs,
+          },
+        ],
+      },
+    },
   };
 
   return theme;

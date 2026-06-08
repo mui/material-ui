@@ -252,8 +252,10 @@ shared seam: SwitchBase pad
 via `top = (height − touchSize) / 2` and checked `transform: translateX(width −
 touchSize)`; the thumb slot reads `thumbSize`. Defaults (`touchSize == height`)
 compute to today's `9/4` pad, `0` top, `20/16` travel — pixel-identical.
-`enhanceDensity` skips Switch (geometry isn't spacing-scale-derived); tune it per
-size through the public dim tokens.
+`enhanceDensity` _can_ wire Switch precisely because it derives: it maps the input
+dims to scale steps (the `xxl` step covers the wider track) and pad/top/travel/
+radius re-derive, so the geometry stays valid (`touchSize == height` keeps it
+centered, `width > touchSize` keeps travel positive).
 
 ## Consequences
 

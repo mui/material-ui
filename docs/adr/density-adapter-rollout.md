@@ -186,8 +186,8 @@ transform: 'translateX(calc(var(--Switch-width) - var(--Switch-touchSize)))',
 ```
 
 `touchSize == height` by default -> pad `9/4`, top `0`, travel `20/16`
-(pixel-identical). Skip such a component in `enhanceDensity` (its dims aren't
-spacing-scale-derived) — tune per size via the public dim tokens.
+(pixel-identical). `enhanceDensity` can still wire it: map the input dims to scale
+steps and the derived values stay valid (Switch uses `xxl` for the wider track).
 
 ## Gotchas
 
