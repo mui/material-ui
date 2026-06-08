@@ -5,9 +5,8 @@ import { AdConfig } from '@mui/internal-core-docs/Ad';
 import { SandboxConfig } from '@mui/internal-core-docs/DemoContext';
 import {
   DocsApp,
-  createGetInitialProps,
   printConsoleBanner,
-  reportWebVitals,
+  reportWebVitals as _reportWebVitals,
 } from '@mui/internal-core-docs/DocsApp';
 import {
   DEFAULT_DOCS_CONFIG,
@@ -36,16 +35,30 @@ import {
   muiSvgWordmarkString,
 } from '@mui/internal-core-docs/svgIcons';
 
+import { fontClasses as _fontClasses } from '@mui/internal-core-docs/nextFonts';
 import versionsJson from '../versions.json';
+import translationsJson from '../translations/translations.json';
 import '../public/static/components-gallery/base-theme.css';
 import './global.css';
 
-export { fontClasses } from '@mui/internal-core-docs/nextFonts';
+// Workaround: turbopack's pages-router Custom App detection misfires when
+// `_app.tsx` contains a re-export of an imported binding (either
+// `export ... from`, or `import { x } from ...; export { x }`), causing
+// the global CSS imports above to be rejected. Re-export as a fresh local
+// binding to keep the file recognized as the Custom App.
+// Related issue - https://github.com/vercel/next.js/issues/93162
+export const fontClasses = _fontClasses;
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE!);
 
 printConsoleBanner();
+
+// Translations and versions are static, so resolve them once at module scope and
+// pass them straight to the page props. Doing this in `_app.getInitialProps`
+// would opt every page out of Next.js Automatic Static Optimization.
+const translations: Translations = { en: translationsJson };
+const allVersions = versionsJson.versions;
 
 const docsConfig: DocsConfig = {
   ...DEFAULT_DOCS_CONFIG,
@@ -279,10 +292,17 @@ function useDemoDisplayName() {
   }, [productId]);
 }
 
-export default function MyApp(
-  props: AppProps<{ userLanguage: string; translations: Translations; versions: VersionEntry[] }>,
-) {
-  const { Component, pageProps } = props;
+export default function MyApp(props: AppProps) {
+  const { Component } = props;
+  const pageProps = React.useMemo(
+    () => ({
+      userLanguage: 'en',
+      translations,
+      versions: allVersions,
+      ...props.pageProps,
+    }),
+    [props.pageProps],
+  );
   const {
     activePage,
     activePageParents,
@@ -313,9 +333,6 @@ export default function MyApp(
   );
 }
 
-MyApp.getInitialProps = createGetInitialProps({
-  translationsContext: require.context('../translations', false, /\.\/translations.*\.json$/),
-  versions: versionsJson.versions,
-});
-
-export { reportWebVitals };
+// See note above about turbopack re-export detection — wrap rather than
+// `export { reportWebVitals }` so _app.tsx stays the Custom App.
+export const reportWebVitals: typeof _reportWebVitals = (...args) => _reportWebVitals(...args);

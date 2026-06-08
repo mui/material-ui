@@ -97,7 +97,7 @@
     "@mui/internal-test-utils": "2.0.18-canary.23",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "15.5.16",
+    "@next/eslint-plugin-next": "16.2.7",
     "@octokit/rest": "22.0.1",
     "@pigment-css/react": "0.0.30",
     "@playwright/test": "1.59.1",
