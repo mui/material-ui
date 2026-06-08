@@ -96,22 +96,27 @@ const ChipRoot = styled('div', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
+      // Density adapter (docs/adr/0001): avatar/icon/deleteIcon scale with the
+      // chip height. Each is `calc(var(--Chip-height) - inset)` where the inset
+      // reproduces today's medium size (height 32: avatar/icon 24, deleteIcon 22);
+      // the small variant overrides the inset for height 24.
       [`& .${chipClasses.avatar}`]: {
         marginLeft: 5,
         marginRight: -6,
-        width: 24,
-        height: 24,
+        width: 'calc(var(--Chip-height, var(--_height)) - 8px)',
+        height: 'calc(var(--Chip-height, var(--_height)) - 8px)',
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
         marginLeft: 5,
         marginRight: -6,
+        fontSize: 'calc(var(--Chip-height, var(--_height)) - 8px)',
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: 22,
+        fontSize: 'calc(var(--Chip-height, var(--_height)) - 10px)',
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
@@ -158,17 +163,17 @@ const ChipRoot = styled('div', {
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
               marginRight: -4,
-              width: 18,
-              height: 18,
+              width: 'calc(var(--Chip-height, var(--_height)) - 6px)',
+              height: 'calc(var(--Chip-height, var(--_height)) - 6px)',
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: 18,
+              fontSize: 'calc(var(--Chip-height, var(--_height)) - 6px)',
               marginLeft: 4,
               marginRight: -4,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 16,
+              fontSize: 'calc(var(--Chip-height, var(--_height)) - 8px)',
               marginRight: 4,
               marginLeft: -4,
             },
