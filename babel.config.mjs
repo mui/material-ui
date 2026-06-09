@@ -21,6 +21,38 @@ function resolveAliasPath(relativeToBabelConf) {
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
+function rewriteTransitionGroupContextImport() {
+  const transitionSourcePath = path.join(
+    'packages',
+    'mui-material',
+    'src',
+    'internal',
+    'Transition.tsx',
+  );
+
+  return {
+    name: 'rewrite-transition-group-context-import',
+    visitor: {
+      ImportDeclaration(babelPath) {
+        const sourceFilename = babelPath.hub.file.opts.filename;
+        const isMaterialTransition =
+          typeof sourceFilename === 'string' &&
+          path.normalize(sourceFilename).endsWith(transitionSourcePath);
+
+        if (
+          isMaterialTransition &&
+          babelPath.node.source.value === 'react-transition-group/TransitionGroupContext'
+        ) {
+          // Package-private `#` imports are supported in Node 14.6.0+.
+          // Keep @mui/material's broader engine range unchanged here; changing it is a
+          // separate support-policy decision for the small Node 14.0-14.5 window.
+          babelPath.node.source.value = '#mui/TransitionGroupContext';
+        }
+      },
+    },
+  };
+}
+
 /** @type {babel.ConfigFunction} */
 export default function getBabelConfig(api) {
   const baseConfig = getBaseConfig(api);
@@ -28,6 +60,7 @@ export default function getBabelConfig(api) {
   // Covers: docs prod build (NODE_ENV=production), package esm build (BABEL_ENV=stable),
   // package cjs build (BABEL_ENV=node). Excludes docs dev, tests, coverage.
   const isProductionBuild = api.env(['production', 'stable', 'node']);
+  const isPackageBuild = api.env(['stable', 'node']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -70,6 +103,10 @@ export default function getBabelConfig(api) {
     (/** @type {[unknown, unknown, string]} */ [, , pluginName]) =>
       !excludedBasePlugins.has(pluginName),
   );
+
+  if (isPackageBuild) {
+    basePlugins.push(rewriteTransitionGroupContextImport());
+  }
 
   if (isProductionBuild) {
     basePlugins.push(...prodOnlyPlugins);

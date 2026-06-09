@@ -1,0 +1,18 @@
+{
+  "include": [".react-router/types/**/*", "app/**/*"],
+  "compilerOptions": {
+    "composite": true,
+    "strict": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["vite/client"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "rootDirs": [".", "./.react-router/types"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
+}

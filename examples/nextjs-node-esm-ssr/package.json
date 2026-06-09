@@ -1,0 +1,33 @@
+{
+  "name": "nextjs-node-esm-ssr",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "file:../../packages/mui-material/build",
+    "@mui/x-date-pickers": "^9.5.0",
+    "dayjs": "^1.11.13",
+    "next": "^16.0.7",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.14",
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/core-downloads-tracker": "file:../../packages/mui-core-downloads-tracker",
+      "@mui/private-theming": "file:../../packages/mui-private-theming/build",
+      "@mui/styled-engine": "file:../../packages/mui-styled-engine/build",
+      "@mui/system": "file:../../packages/mui-system/build",
+      "@mui/types": "file:../../packages/mui-types/build",
+      "@mui/utils": "file:../../packages/mui-utils/build"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "vitest-node-esm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "file:../../packages/mui-material/build",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "vitest": "^4.1.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/core-downloads-tracker": "file:../../packages/mui-core-downloads-tracker",
+      "@mui/private-theming": "file:../../packages/mui-private-theming/build",
+      "@mui/styled-engine": "file:../../packages/mui-styled-engine/build",
+      "@mui/system": "file:../../packages/mui-system/build",
+      "@mui/types": "file:../../packages/mui-types/build",
+      "@mui/utils": "file:../../packages/mui-utils/build"
+    }
+  }
+}

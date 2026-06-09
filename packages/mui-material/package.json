@@ -91,6 +91,13 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "imports": {
+    "#mui/TransitionGroupContext": {
+      "node": "./src/internal/TransitionGroupContext.ts",
+      "browser": "./src/internal/TransitionGroupContext.browser.ts",
+      "default": "./src/internal/TransitionGroupContext.browser.ts"
+    }
+  },
   "exports": {
     ".": "./src/index.js",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
