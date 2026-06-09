@@ -29,15 +29,6 @@ The `underline` prop can be used to set the underline behavior. The default is `
 
 {{"component": "file://./demos/underline/index.ts"}}
 
-## Security
-
-When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
-
-- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
-  Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to the new page.
-  ⚠️ Removing the referrer header will affect analytics.
-
 ## Third-party routing library
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.

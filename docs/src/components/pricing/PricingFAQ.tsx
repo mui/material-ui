@@ -50,7 +50,6 @@ const faqData = [
         <br />
         <Link
           target="_blank"
-          rel="noopener"
           href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
         >
           The clause in the EULA.
@@ -104,7 +103,7 @@ const faqData = [
           <li>Commercial solutions deployed for end-users</li>
         </ul>
         Based on the{' '}
-        <Link target="_blank" rel="noopener" href="https://mui.com/legal/mui-x-eula/#deployment">
+        <Link target="_blank" href="https://mui.com/legal/mui-x-eula/#deployment">
           'Deployment' section of the EULA
         </Link>
         , you can sublicense the software if it's made part of a larger work. The new licenses must
@@ -172,7 +171,6 @@ const faqData = [
         license.{' '}
         <Link
           target="_blank"
-          rel="noopener"
           href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
         >
           The relevant EULA clause.
@@ -186,11 +184,7 @@ const faqData = [
       <React.Fragment>
         The Priority Support add-on is valid for 1 year from the date of purchase. It is same for
         perpetual or annual license model.{' '}
-        <Link
-          target="_blank"
-          rel="noopener"
-          href="https://mui.com/legal/technical-support-sla/#support-plans"
-        >
+        <Link target="_blank" href="https://mui.com/legal/technical-support-sla/#support-plans">
           Support plans.
         </Link>
       </React.Fragment>

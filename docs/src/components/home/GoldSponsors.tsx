@@ -122,7 +122,6 @@ export default function GoldSponsors() {
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
-              rel="noopener"
               color="primary"
             >
               <AddRounded />
@@ -133,7 +132,7 @@ export default function GoldSponsors() {
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
-                <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
+                <Link href={ROUTES.goldSponsor} target="_blank">
                   you can support MUI.
                 </Link>
               </Typography>

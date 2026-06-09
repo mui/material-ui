@@ -676,8 +676,15 @@ export default async function demoLoader() {
       }
       moduleID = path.join(this.context, relative).replace(/\\/g, '/');
     } else {
-      // Legacy form: resolved from `docs/src/`.
-      moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
+      // Legacy form: resolved from `docs/src/`. Emit a relative path from the
+      // markdown file's directory. Turbopack rejects absolute paths emitted by
+      // loaders (interpreted as server-relative URLs); relative paths resolve
+      // correctly under both webpack and turbopack.
+      const componentAbsolute = path.join(this.rootContext, 'src', componentName);
+      const relative = path
+        .relative(path.dirname(this.resourcePath), componentAbsolute)
+        .replace(/\\/g, '/');
+      moduleID = relative.startsWith('.') ? relative : `./${relative}`;
     }
 
     components[moduleID] = componentName;
