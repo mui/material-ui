@@ -37,7 +37,7 @@
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/icons-material\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \".\" \"ZoomOutTwoTone\""
   },
   "dependencies": {

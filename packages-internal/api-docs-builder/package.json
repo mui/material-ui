@@ -3,8 +3,8 @@
   "version": "1.0.2",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-api-docs-builder\"",
-    "typescript": "tsc -p tsconfig.json",
-    "build": "code-infra build --flat --skipBabelRuntimeCheck"
+    "typescript": "tsgo -p tsconfig.json",
+    "build": "code-infra build --tsgo --flat --skipBabelRuntimeCheck"
   },
   "repository": {
     "type": "git",
