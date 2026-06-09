@@ -9,19 +9,6 @@ import sizing from '../sizing';
 import spacing from '../spacing';
 import typography from '../typography';
 
-const filterPropsMapping = {
-  borders: borders.filterProps,
-  display: display.filterProps,
-  flexbox: flexbox.filterProps,
-  grid: grid.filterProps,
-  positions: positions.filterProps,
-  palette: palette.filterProps,
-  shadows: shadows.filterProps,
-  sizing: sizing.filterProps,
-  spacing: spacing.filterProps,
-  typography: typography.filterProps,
-};
-
 export const styleFunctionMapping = {
   borders,
   display,
@@ -35,8 +22,8 @@ export const styleFunctionMapping = {
   typography,
 };
 
-export const propToStyleFunction = Object.keys(filterPropsMapping).reduce((acc, styleFnName) => {
-  filterPropsMapping[styleFnName].forEach((propName) => {
+export const propToStyleFunction = Object.keys(styleFunctionMapping).reduce((acc, styleFnName) => {
+  styleFunctionMapping[styleFnName].filterProps.forEach((propName) => {
     acc[propName] = styleFunctionMapping[styleFnName];
   });
 
