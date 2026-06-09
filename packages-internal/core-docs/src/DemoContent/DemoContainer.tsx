@@ -540,16 +540,24 @@ export function DemoContainer(props: DemoContainerProps) {
   // Default to the `'outlined'` background when none is specified.
   const resolvedBg = bg ?? 'outlined';
 
-  // Wrap the rendered demo with the per-demo theme provider and a render-
-  // error boundary so the live `DemoContent` and the SSR `DemoContentLoading`
-  // skeleton share the exact same theming — hydration cannot shift visuals.
+  // The error boundary must wrap `DemoComponentTheme` from the OUTSIDE. The
+  // isolated/iframe sandboxes inside `DemoComponentTheme` inject props into the
+  // demo via `React.cloneElement` (`colorSchemeNode`, `cssVarPrefix`, `window`,
+  // `documentNode`, `colorSchemeSelector`), and that clone targets
+  // `DemoComponentTheme`'s direct child. If the error boundary sat between them
+  // it would absorb those props — `DemoErrorBoundary` renders `children`
+  // verbatim — so the demo's `CssVarsProvider` would never receive them, leaving
+  // its color-scheme node unset and the iframe `window` unwired. Keeping the
+  // boundary outermost (as master's `DemoSandbox` does) lets the clone reach the
+  // demo element directly, while the live `DemoContent` and the SSR
+  // `DemoContentLoading` skeleton still share the exact same theming.
   const themedName = name ?? 'demo';
   const themedPreview = (
-    <DemoComponentTheme isolated={isolated} iframe={iframe} name={themedName}>
-      <DemoErrorBoundary name={themedName} onReset={onReset}>
+    <DemoErrorBoundary name={themedName} onReset={onReset}>
+      <DemoComponentTheme isolated={isolated} iframe={iframe} name={themedName}>
         {preview}
-      </DemoErrorBoundary>
-    </DemoComponentTheme>
+      </DemoComponentTheme>
+    </DemoErrorBoundary>
   );
 
   const tabsAndCode = (
