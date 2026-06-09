@@ -149,6 +149,7 @@
         "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
+    "resetHighlightOnMouseLeave": { "type": { "name": "bool" }, "default": "false" },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
       "type": {

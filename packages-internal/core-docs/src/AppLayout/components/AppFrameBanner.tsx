@@ -42,7 +42,8 @@ export function AppFrameBanner() {
     href = '/blog/introducing-mui-v9/';
   }
 
-  if (process.env.NODE_ENV !== 'production') {
+  // Guard with NEXT_RUNTIME so this check is dead-code-eliminated from client bundles.
+  if (process.env.NEXT_RUNTIME) {
     if (message.length > 100) {
       throw new Error(
         `Docs-infra: AppFrameBanner message is too long. It will overflow on smaller screens.`,
@@ -58,7 +59,6 @@ export function AppFrameBanner() {
     <Link
       href={href}
       target="_blank"
-      rel="noopener"
       variant="caption"
       sx={[
         (theme) => ({

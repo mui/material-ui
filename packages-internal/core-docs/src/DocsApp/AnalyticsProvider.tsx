@@ -129,10 +129,11 @@ export function CookieConsentDialog() {
                 <Stack spacing={0.5}>
                   <Typography
                     variant="subtitle2"
+                    component="h2"
                     id="cookie-consent-dialog-title"
                     sx={{ textAlign: { xs: 'center', sm: 'start' } }}
                   >
-                    Cookie Preferences
+                    Cookie preferences
                   </Typography>
                   <Typography
                     id="cookie-consent-dialog-description"

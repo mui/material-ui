@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
-import { styled } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
+import { getReducedMotionStyles, getTransitionStyles } from '../transitions/utils';
+import useReducedMotion from '../transitions/useReducedMotion';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 import useSlot from '../utils/useSlot';
@@ -52,6 +54,7 @@ const SpeedDialActionFab = styled(Fab, {
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,
+    ...getReducedMotionStyles(theme),
     opacity: 1,
     variants: [
       {
@@ -83,7 +86,7 @@ const SpeedDialActionStaticTooltip = styled('span', {
     display: 'flex',
     alignItems: 'center',
     [`& .${speedDialActionClasses.staticTooltipLabel}`]: {
-      transition: theme.transitions.create(['transform', 'opacity'], {
+      ...getTransitionStyles(theme, ['transform', 'opacity'], {
         duration: theme.transitions.duration.shorter,
       }),
       opacity: 1,
@@ -145,6 +148,8 @@ const SpeedDialActionStaticTooltipLabel = styled('span', {
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialAction' });
   const { className, delay = 0, icon, id, open, slots = {}, slotProps = {}, ...other } = props;
+  const theme = useTheme();
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
 
   const resolvedTooltipSlotProps =
     typeof slotProps.tooltip === 'function' ? slotProps.tooltip(props) : (slotProps.tooltip ?? {});
@@ -168,7 +173,14 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     setTooltipOpen(true);
   };
 
-  const transitionStyle = { transitionDelay: `${delay}ms` };
+  const transitionTiming = reducedMotion.getTransitionTiming({
+    duration: 0,
+    delay: `${delay}ms`,
+  });
+
+  const transitionStyle = {
+    transitionDelay: transitionTiming.delay,
+  };
 
   const [FabSlot, fabSlotProps] = useSlot('fab', {
     elementType: SpeedDialActionFab,

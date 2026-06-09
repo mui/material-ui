@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "license": "MIT",
@@ -23,10 +23,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material-nextjs\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \"v13-pagesRouter\" \"v16-appRouter\" \"v15-appRouter\""
   },
   "dependencies": {
@@ -37,8 +37,8 @@
     "@emotion/react": "11.14.0",
     "@emotion/server": "11.11.0",
     "@types/react": "19.2.14",
-    "next": "15.5.15",
-    "react": "19.2.4"
+    "next": "16.2.6",
+    "react": "19.2.6"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",

@@ -8,6 +8,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
 
+const isFirefox = /firefox/i.test(navigator.userAgent);
+
 /**
  * more comprehensive simulation of a user click (mousedown + click)
  * @param {HTMLElement} element
@@ -156,6 +158,9 @@ describe('<Dialog />', () => {
     expect(dialog).toHaveFocus();
     expect(dialog.tagName).to.equal('DIV');
     expect(dialog).to.have.attribute('tabindex', '-1');
+    if (!isJsdom()) {
+      expect(dialog).toHaveComputedStyle({ outlineWidth: '0px' });
+    }
   });
 
   it('should focus the Paper element (role="alertdialog") on open', () => {
@@ -372,7 +377,9 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
 
-    it.skipIf(isJsdom())('scrolls if overflown on the Y axis', function test() {
+    // Firefox reports a fractional `scrollTop` in Vitest browser mode, failing the exact
+    // assertion below. See https://github.com/vitest-dev/vitest/issues/9223
+    it.skipIf(isJsdom() || isFirefox)('scrolls if overflown on the Y axis', function test() {
       const ITEM_HEIGHT = 100;
       const ITEM_COUNT = 10;
 
@@ -500,6 +507,32 @@ describe('<Dialog />', () => {
       expect(container).toHaveComputedStyle({
         transitionDuration: '0.001s',
       });
+    });
+
+    it('opens on the next task when reduced motion is always', () => {
+      const handleEntered = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          <Dialog
+            open
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            content
+          </Dialog>
+        </ThemeProvider>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+      clock.tick(0);
+      expect(handleEntered.callCount).to.equal(1);
+      expect(screen.getByRole('dialog')).not.to.equal(null);
     });
   });
 });

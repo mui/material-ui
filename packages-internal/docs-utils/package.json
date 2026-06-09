@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-docs-utils",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "author": "MUI Team",
   "description": "Utilities for MUI docs. This is an internal package not meant for general use.",
   "repository": {
@@ -10,14 +10,13 @@
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "code-infra build --flat --skip-babel-runtime-check",
-    "typescript": "tsc -p tsconfig.json",
+    "build": "code-infra build --tsgo --flat --skip-babel-runtime-check",
+    "typescript": "tsgo -p tsconfig.json",
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "rimraf": "^6.1.3",
-    "typescript": "^5.9.3"
+    "rimraf": "^6.1.3"
   },
   "publishConfig": {
     "access": "public",
@@ -25,5 +24,11 @@
   },
   "exports": {
     ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3 || ^6.0.0"
   }
 }

@@ -6,6 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
@@ -22,12 +23,18 @@ export default function BadgeAlignment() {
   };
 
   const jsx = `
-<Badge
-  anchorOrigin={{
-    vertical: '${vertical}',
-    horizontal: '${horizontal}',
-  }}
->
+<IconButton aria-label="show 12 unread messages">
+  <Badge
+    badgeContent={12}
+    color="secondary"
+    anchorOrigin={{
+      vertical: '${vertical}',
+      horizontal: '${horizontal}',
+    }}
+  >
+    <MailIcon />
+  </Badge>
+</IconButton>
 `;
 
   return (
@@ -74,58 +81,67 @@ export default function BadgeAlignment() {
           },
         }}
       >
-        <Badge
-          color="secondary"
-          variant="dot"
-          badgeContent={1}
-          anchorOrigin={{
-            horizontal,
-            vertical,
-          }}
-        >
-          <MailIcon />
-        </Badge>
-        <Badge
-          color="secondary"
-          badgeContent={1}
-          anchorOrigin={{
-            horizontal,
-            vertical,
-          }}
-        >
-          <MailIcon />
-        </Badge>
-        <Badge
-          color="secondary"
-          badgeContent={12}
-          anchorOrigin={{
-            horizontal,
-            vertical,
-          }}
-        >
-          <MailIcon />
-        </Badge>
-        <Badge
-          color="secondary"
-          badgeContent={123}
-          anchorOrigin={{
-            horizontal,
-            vertical,
-          }}
-        >
-          <MailIcon />
-        </Badge>
-        <Badge
-          color="secondary"
-          max={999}
-          badgeContent={1337}
-          anchorOrigin={{
-            horizontal,
-            vertical,
-          }}
-        >
-          <MailIcon />
-        </Badge>
+        <IconButton aria-label="show unread messages">
+          <Badge
+            color="secondary"
+            variant="dot"
+            anchorOrigin={{
+              horizontal,
+              vertical,
+            }}
+          >
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show 1 unread message">
+          <Badge
+            color="secondary"
+            badgeContent={1}
+            anchorOrigin={{
+              horizontal,
+              vertical,
+            }}
+          >
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show 12 unread messages">
+          <Badge
+            color="secondary"
+            badgeContent={12}
+            anchorOrigin={{
+              horizontal,
+              vertical,
+            }}
+          >
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show more than 99 unread messages">
+          <Badge
+            color="secondary"
+            badgeContent={123}
+            anchorOrigin={{
+              horizontal,
+              vertical,
+            }}
+          >
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show more than 999 unread messages">
+          <Badge
+            color="secondary"
+            max={999}
+            badgeContent={1337}
+            anchorOrigin={{
+              horizontal,
+              vertical,
+            }}
+          >
+            <MailIcon />
+          </Badge>
+        </IconButton>
       </Box>
       <HighlightedCode code={jsx} language="jsx" />
     </Box>
