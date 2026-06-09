@@ -16,6 +16,7 @@ import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { getTransitionStyles } from '../transitions/utils';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -122,7 +123,7 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },
-    transition: theme.transitions.create(['color', 'background-color'], {
+    ...getTransitionStyles(theme, ['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {

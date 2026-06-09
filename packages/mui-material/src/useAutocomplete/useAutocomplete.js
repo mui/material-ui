@@ -306,8 +306,11 @@ function useAutocomplete(props) {
       return;
     }
 
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
+    // In freeSolo mode, only reset the input after a real value change.
+    // Also prevent the initial default value of `null` from clearing controlled values.
+    const shouldSkipFreeSoloReset =
+      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+    if (shouldSkipFreeSoloReset) {
       return;
     }
 
@@ -370,6 +373,12 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
+      // React can clear refs before pending passive effects run during unmount.
+      // If both refs are gone, there is no DOM left to sync.
+      if (inputRef.current == null && listboxRef.current == null) {
+        return;
+      }
+
       // does the index exist?
       if (index === -1) {
         inputRef.current.removeAttribute('aria-activedescendant');
