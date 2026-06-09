@@ -1,0 +1,4 @@
+build
+node_modules
+.react-router
+tsconfig.tsbuildinfo
