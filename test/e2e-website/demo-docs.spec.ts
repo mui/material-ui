@@ -59,7 +59,7 @@ test.describe('Demo docs', () => {
   test('mode toggle iframe demos should work', async ({ page }) => {
     await page.goto('/experiments/docs/demos/');
 
-    const iframe = page.locator('iframe[title*="DemoModeToggleIframe"]').contentFrame();
+    const iframe = page.locator('iframe[title*="Mode Toggle Iframe"]').contentFrame();
 
     await expect(iframe.locator('html')).toHaveClass(/light/);
     await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
