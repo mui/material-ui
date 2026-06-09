@@ -9,7 +9,11 @@ import type { DemoOptions } from './DemoContent';
 // SSR / streaming placeholder rendered before the live `DemoContent` mounts.
 // Shares the `DemoContainer` shell so the page layout doesn't shift when the
 // real demo takes over. We render:
-//   - the SSR'd `component` in the preview slot
+//   - the SSR'd `component` in the preview slot. `iframe` is forwarded to
+//     `DemoContainer` so iframe demos render the `<iframe>` shell here too and
+//     mount the demo in the client-only portal — never inline in the static
+//     HTML (which would otherwise fail HTML validation), matching the live
+//     `DemoContent`.
 //   - an empty toolbar shell (interactive buttons need `useDemo` state)
 //   - the SSR'd `source` (initial file) in the code slot when expanded
 // ---------------------------------------------------------------------------
@@ -39,6 +43,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     maxWidth,
     height,
     isolated,
+    iframe,
     name,
     slug,
     hasSourceFocus,
@@ -52,6 +57,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       <DemoContainer
         preview={component}
         isolated={isolated}
+        iframe={iframe}
         name={themeName}
         bg={bg}
         hideToolbar
@@ -100,6 +106,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     <DemoContainer
       preview={component}
       isolated={isolated}
+      iframe={iframe}
       name={themeName}
       bg={bg}
       hideToolbar={hideToolbar}
