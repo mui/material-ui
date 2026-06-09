@@ -25,7 +25,7 @@ window.muiFixture = {
   },
 };
 
-function FixtureRenderer({ component: FixtureComponent, path, isComposite }) {
+function FixtureRenderer({ component: FixtureComponent, path }) {
   React.useEffect(() => {
     const viewerRoot = document.getElementById('test-viewer');
     const testRoot = document.createElement('div');
@@ -34,13 +34,7 @@ function FixtureRenderer({ component: FixtureComponent, path, isComposite }) {
     React.startTransition(() => {
       reactRoot.render(
         <TestViewer path={path} FixtureComponent={FixtureComponent}>
-          {isComposite ? (
-            <MarketingWrapper>
-              <FixtureComponent />
-            </MarketingWrapper>
-          ) : (
-            <FixtureComponent />
-          )}
+          <FixtureComponent />
         </TestViewer>,
       );
     });
@@ -52,14 +46,13 @@ function FixtureRenderer({ component: FixtureComponent, path, isComposite }) {
 
       viewerRoot.removeChild(testRoot);
     };
-  }, [FixtureComponent, path, isComposite]);
+  }, [FixtureComponent, path]);
 
   return null;
 }
 
 FixtureRenderer.propTypes = {
   component: PropTypes.elementType,
-  isComposite: PropTypes.bool,
   path: PropTypes.string.isRequired,
 };
 
@@ -127,24 +120,29 @@ function App(props) {
         <Routes>
           {fixtures.map((fixture) => {
             const path = computePath(fixture);
-            const FixtureComponent = fixture.Component;
-            if (FixtureComponent === undefined) {
+            const Component = fixture.Component;
+            if (Component === undefined) {
               console.warn('Missing `Component` for ', fixture);
               return null;
             }
+
+            // Composites are authored for the Next.js docs site; wrap them in
+            // the branding theme here rather than threading a flag through
+            // `FixtureRenderer`.
+            const FixtureComponent = fixture.isComposite
+              ? () => (
+                  <MarketingWrapper>
+                    <Component />
+                  </MarketingWrapper>
+                )
+              : Component;
 
             return (
               <Route
                 key={path}
                 exact
                 path={path}
-                element={
-                  <FixtureRenderer
-                    component={FixtureComponent}
-                    path={path}
-                    isComposite={fixture.isComposite}
-                  />
-                }
+                element={<FixtureRenderer component={FixtureComponent} path={path} />}
               />
             );
           })}
