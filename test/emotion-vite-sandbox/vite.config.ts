@@ -4,7 +4,7 @@ import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-// Two levels up: test/noop-vite-sandbox → test → monorepo root
+// Two levels up: test/emotion-vite-sandbox → test → monorepo root
 const MONOREPO_ROOT = path.resolve(dirname, '../..');
 
 // https://vite.dev/config/
@@ -18,8 +18,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     // @mui/material source files use .js extension but contain JSX.
     // This plugin re-parses them as JSX so Rollup/esbuild can handle them.
-    // transformWithEsbuild must be imported at the top level — a dynamic
-    // import inside the transform hook breaks the Vite dev server.
     // enforce: 'pre' ensures this plugin runs before Vite's internal esbuild
     // pre-transform, which would otherwise reject JSX in .js files.
     {
@@ -42,12 +40,6 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: [
-      // CSS entry must come before the @mui/material package alias so the
-      // catch-all doesn't rewrite it to packages/mui-material/src/default-theme.css
-      {
-        find: '@mui/material/default-theme.css',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/default-theme.css'),
-      },
       // Resolve all @mui/* packages from monorepo source so we test the branch
       // code, not a published release.
       {
@@ -66,11 +58,9 @@ export default defineConfig(({ mode }) => ({
         find: '@mui/private-theming',
         replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src'),
       },
-      // THE KEY ALIAS: swap Emotion for the zero-runtime noop engine.
-      // This is exactly what non-Emotion users configure in their own bundler.
       {
         find: '@mui/styled-engine',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine-noop/src'),
+        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine/src'),
       },
     ],
   },

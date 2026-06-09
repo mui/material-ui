@@ -91,13 +91,29 @@ resolve: {
 },
 ```
 
+## Bundle size comparison
+
+Build all three sandboxes, then compare JS output sizes to measure the overhead
+of each approach:
+
+```bash
+pnpm -F @mui-internal/noop-vite-sandbox build
+pnpm -F @mui-internal/css-theme-provider-vite-sandbox build
+pnpm -F @mui-internal/emotion-vite-sandbox build
+
+# Compare JS sizes
+ls -lh test/noop-vite-sandbox/dist/assets/*.js
+ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.js
+ls -lh test/emotion-vite-sandbox/dist/assets/*.js
+
+# Compare CSS sizes
+ls -lh test/noop-vite-sandbox/dist/assets/*.css
+ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.css
+ls -lh test/emotion-vite-sandbox/dist/assets/*.css
+```
+
 ## Relation to the TODO
 
 This sandbox maps to **§8 (Bundle size validation)** in `STYLING_V8_TODO.md`.
 It serves as both a live demo of the non-Emotion path and the harness for
 measuring JS bundle deltas between the Emotion and noop engines.
-
-To compare against the Emotion path, a second sandbox
-(`test/emotion-vite-sandbox`) would use the standard alias
-(`@mui/styled-engine` → `packages/mui-styled-engine/src`) plus
-`@emotion/react` and `@emotion/styled` as dependencies.

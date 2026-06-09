@@ -275,8 +275,10 @@ component files. MUI will be the first to do this.
 
 ## Shared — Bundle size validation
 
-- ✅ `test/noop-vite-sandbox` — Slider, Path B. Baseline: **276 KB raw / 88 KB gzip JS**, 32 KB CSS.
-- [ ] Build `test/emotion-vite-sandbox` — Slider, Emotion path. Report the JS delta.
+- ✅ `test/noop-vite-sandbox` — Slider, Path B (static CSS). Baseline: **276 KB raw / 88 KB gzip JS**, 32 KB CSS.
+- ✅ `test/css-theme-provider-vite-sandbox` — Slider, Path A (CssThemeProvider, noop engine). Built; JS delta vs noop baseline to be measured.
+- ✅ `test/emotion-vite-sandbox` — Slider, Emotion path (ThemeProvider). Built; JS delta vs noop baseline to be measured.
+- [ ] Record actual bundle sizes for all three sandboxes and document the deltas in this file.
 - [ ] Add to size-snapshot tooling: regression if Emotion leaks into a non-Emotion build.
 
 ---
