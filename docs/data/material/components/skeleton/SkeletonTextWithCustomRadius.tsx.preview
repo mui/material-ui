@@ -1,5 +1,0 @@
-{variants.map((variant) => (
-  <Typography component="div" key={variant} variant={variant}>
-    <Skeleton variant="text" sx={{ borderRadius: 1 }} />
-  </Typography>
-))}
