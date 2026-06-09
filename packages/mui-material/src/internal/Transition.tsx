@@ -138,6 +138,13 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     return 'exited';
   });
 
+  // Match react-transition-group's getDerivedStateFromProps: when a transition
+  // opens from unmounted, render the child as exited in the same commit. The
+  // layout effect below then starts the enter transition after refs attach.
+  if (inProp && status === 'unmounted') {
+    setStatus('exited');
+  }
+
   const statusRef = React.useRef<InternalStatus>(status);
   statusRef.current = status;
 
@@ -351,11 +358,10 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     };
   }, [cancelPendingCallback, updateStatus]);
 
-  // Reconcile the rendered status after `in` or status changes:
-  // - opening from unmounted first renders the child as exited so refs exist.
-  // - unmountOnExit removes the child after the exited state commits.
-  // This matches react-transition-group's observable status steps without
-  // running work after unrelated commits.
+  // Reconcile the rendered status after `in` or status changes. Enter
+  // transitions start only after the exited child has committed, so refs exist
+  // before layout is read. unmountOnExit removes the child after the exited
+  // state commits.
   useEnhancedEffect(() => {
     if (!mountedRef.current) {
       return;
@@ -363,12 +369,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     const current = statusRef.current;
 
     if (inProp) {
-      if (current === 'unmounted') {
-        // Opening from unmounted needs one render with the child present so
-        // refs are attached before the enter animation starts.
-        statusRef.current = 'exited';
-        setStatus('exited');
-      } else if (current !== 'entering' && current !== 'entered') {
+      if (current !== 'entering' && current !== 'entered') {
         updateStatus(false, 'entering');
       }
     } else if (current === 'entering' || current === 'entered') {

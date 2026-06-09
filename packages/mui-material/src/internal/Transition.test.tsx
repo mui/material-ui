@@ -789,6 +789,27 @@ describe('<Transition />', () => {
   describe('mountOnEnter / unmountOnExit', () => {
     clock.withFakeTimers();
 
+    it('mounts before parent passive effects when opening from unmounted', () => {
+      let childStatusDuringParentEffect: string | null | undefined;
+
+      function Parent(props: { open: boolean }) {
+        React.useEffect(() => {
+          if (props.open) {
+            childStatusDuringParentEffect =
+              screen.queryByTestId('target')?.getAttribute('data-status') ?? null;
+          }
+        }, [props.open]);
+
+        return <TestHarness in={props.open} unmountOnExit timeout={100} />;
+      }
+
+      const { setProps } = render(<Parent open={false} />);
+
+      setProps({ open: true });
+
+      expect(childStatusDuringParentEffect).not.to.equal(null);
+    });
+
     it('mounts on first in=true then stays mounted (mountOnEnter)', () => {
       const { setProps } = render(<TestHarness in={false} mountOnEnter timeout={100} />);
       expect(screen.queryByTestId('target')).to.equal(null);
