@@ -253,11 +253,11 @@ export interface AutocompleteProps<
    */
   forcePopupIcon?: true | false | 'auto' | undefined;
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the input takes up the full width of its container.
    *
    * **Note:** `Autocomplete` treats `undefined` and `false` differently.
    * If `undefined`, the inner input takes up the full width of its container.
-   * If `false`, the inner input will be restricted to its intrinsic width.
+   * If `false`, the inner input is restricted to its intrinsic width.
    * @default false
    */
   fullWidth?: boolean | undefined;
