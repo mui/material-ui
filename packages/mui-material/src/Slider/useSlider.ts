@@ -771,7 +771,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       // Use pointer capture for reliable drag tracking
       try {
         event.currentTarget.setPointerCapture(event.pointerId);
-      } catch {
+      } catch (_e) {
         // setPointerCapture can throw if the pointerId is invalid (e.g. synthetic
         // events in tests, or the pointer was already released). The slider still
         // works via document-level listeners; pointer capture is a progressive

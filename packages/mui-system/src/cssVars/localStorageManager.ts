@@ -45,8 +45,10 @@ const localStorageManager: StorageManager = ({ key, storageWindow }) => {
       let value;
       try {
         value = storageWindow.localStorage.getItem(key);
-      } catch {
-        // Unsupported
+      } catch (_e) {
+        // localStorage.getItem can throw if the storage is disabled (Safari
+        // private mode, iframe with cookies blocked) or if storageWindow is a
+        // detached window. We silently fall back to the default value.
       }
       return value || defaultValue;
     },
@@ -54,8 +56,11 @@ const localStorageManager: StorageManager = ({ key, storageWindow }) => {
       if (storageWindow) {
         try {
           storageWindow.localStorage.setItem(key, value);
-        } catch {
-          // Unsupported
+        } catch (_e) {
+          // localStorage.setItem can throw QuotaExceededError when the
+          // storage area is full, or SecurityError if it has been disabled.
+          // We have no meaningful recovery — the next read will fall back
+          // to the default value the next time the page is loaded.
         }
       }
     },

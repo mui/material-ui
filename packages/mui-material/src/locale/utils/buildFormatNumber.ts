@@ -3,8 +3,10 @@ const buildFormatNumber = (locale: string) => {
   if (typeof Intl !== 'undefined' && Intl.NumberFormat) {
     try {
       formatter = new Intl.NumberFormat(locale);
-    } catch {
-      // fallback to String()
+    } catch (_e) {
+      // Intl.NumberFormat throws RangeError on an invalid BCP 47 locale tag
+      // and TypeError if the runtime is missing ICU data. We fall back to
+      // String(value) below, which gives a locale-independent rendering.
     }
   }
   return (value: number) => {
