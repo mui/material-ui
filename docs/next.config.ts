@@ -83,6 +83,30 @@ export default withDeploymentConfig({
           as: '*.js',
         },
       ],
+      // Demo `index.ts` factories → precomputed highlighter. Mirrors the
+      // webpack `demos/*/index.ts` rule below; turbopack requires serializable
+      // loader options, which these are (no functions).
+      './**/demos/*/index.ts': {
+        loaders: [
+          {
+            loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            options: {
+              emphasisOptions: {
+                emitFrameIndent: true,
+                focusFramesMaxSize: 12,
+                oversizedFocus: 'hide',
+              },
+              requireClient: '@mui/internal-core-docs/utils/createDemoClient',
+              transformTypescriptToJavascript: true,
+            },
+          },
+        ],
+      },
+      // Demo `client.ts` bundles → precomputed client highlighter. Mirrors the
+      // webpack `demos/*/client.ts` rule below.
+      './**/demos/*/client.ts': {
+        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient'],
+      },
     },
   },
   webpack: (
