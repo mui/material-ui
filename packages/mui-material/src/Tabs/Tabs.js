@@ -12,6 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import animate from '../internal/animate';
+import useReducedMotion from '../transitions/useReducedMotion';
 import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
@@ -24,6 +25,7 @@ import getActiveElement from '../utils/getActiveElement';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import { RovingTabIndexContext, useRovingTabIndexRoot } from '../utils/useRovingTabIndex';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -187,7 +189,7 @@ const TabsIndicator = styled('span', {
     height: 2,
     bottom: 0,
     width: '100%',
-    transition: theme.transitions.create(),
+    ...getTransitionStyles(theme),
     variants: [
       {
         props: {
@@ -229,12 +231,18 @@ const TabsScrollbarSize = styled(ScrollbarSize)({
 
 const defaultIndicatorStyle = {};
 
+// Dev-only: tracks per-`Tabs` instance (keyed by its ref) whether the invalid-value warning was
+// already logged, so it isn't repeated across the several effects that call `getTabsMeta`.
+// Only referenced from `process.env.NODE_ENV !== 'production'` blocks; the `@__PURE__` annotation
+// lets minifiers drop it (and the `WeakMap` allocation) entirely from production builds.
+const warnedTabValueInvalid = /* @__PURE__ */ new WeakMap();
 let warnedOnceTabPresent = false;
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
   const isRtl = useRtl();
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, false);
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
@@ -357,7 +365,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
         if (process.env.NODE_ENV !== 'production') {
-          if (!tab) {
+          // `getTabsMeta` runs from several effects, so guard against logging the warning repeatedly.
+          if (!tab && !warnedTabValueInvalid.has(tabsRef)) {
+            warnedTabValueInvalid.set(tabsRef, true);
             console.error(
               [
                 `MUI: The \`value\` provided to the Tabs component is invalid.`,
@@ -441,7 +451,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const scroll = (scrollValue, { animation = true } = {}) => {
-    if (animation) {
+    if (animation && !reducedMotion.shouldReduceMotion) {
       animate(scrollStart, tabsRef.current, scrollValue, {
         duration: theme.transitions.duration.standard,
       });

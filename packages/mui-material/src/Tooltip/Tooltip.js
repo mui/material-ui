@@ -357,6 +357,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   );
 
   const handleMouseOver = (event) => {
+    if (childNode?.disabled) {
+      return;
+    }
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }

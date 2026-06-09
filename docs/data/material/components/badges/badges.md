@@ -12,62 +12,78 @@ githubSource: packages/mui-material/src/Badge
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
-## Basic badge
+## Usage guidelines
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+- **Use badges for supplemental status**: Use badges for short counts or compact states
+  that update an existing control or item, such as unread messages on an inbox button. If
+  the status is important on its own, show it in the UI instead of relying only on the badge.
+- **Label the element that owns the badge**: A badge is a visual cue tied to another
+  element, so its meaning should be part of that element's accessible name. For example,
+  use `aria-label="Inbox, 4 unread messages"` instead of `aria-label="Inbox"` on the
+  target element.
+- **Use dot badges for simple states**: A dot badge does not show text or a number, so use
+  it only when the surrounding UI makes the state clear, such as `Online` or `Unread`.
+
+{{"demo": "BadgeIntro.js"}}
+
+This demo applies the same pattern to a `ListItemButton` with a `Badge`: the visible
+count is included in the item's accessible name so it's announced in the context of the
+surrounding UI.
+
+{{"demo": "BadgeListItem.js"}}
+
+## Badge content
+
+Use `badgeContent` to add a short count or label to the wrapped element.
 
 {{"demo": "SimpleBadge.js"}}
 
-## Color
+### Dot badge
 
-Use `color` prop to apply theme palette to component.
-
-{{"demo": "ColorBadge.js"}}
-
-## Customization
-
-Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
-
-{{"demo": "CustomizedBadges.js"}}
-
-## Badge visibility
-
-The visibility of badges can be controlled using the `invisible` prop.
-
-{{"demo": "BadgeVisibility.js"}}
-
-The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
-
-{{"demo": "ShowZeroBadge.js"}}
-
-## Maximum value
-
-You can use the `max` prop to cap the value of the badge content.
-
-{{"demo": "BadgeMax.js"}}
-
-## Dot badge
-
-The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+Use `variant="dot"` for a compact status indicator without a count.
 
 {{"demo": "DotBadge.js"}}
 
-## Badge overlap
+### Visibility
 
-You can use the `overlap` prop to place the badge relative to the corner of the wrapped element.
+Control badge visibility with the `invisible` prop.
 
-{{"demo": "BadgeOverlap.js"}}
+{{"demo": "BadgeVisibility.js"}}
 
-## Badge alignment
+The badge hides automatically when `badgeContent` is zero. Override this with the `showZero`
+prop when zero is meaningful to the interface.
 
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+{{"demo": "ShowZeroBadge.js"}}
+
+### Maximum value
+
+Use the `max` prop to cap large numeric values.
+
+{{"demo": "BadgeMax.js"}}
+
+## Customization
+
+### Color
+
+Use the `color` prop to apply theme palette colors to the badge.
+
+{{"demo": "ColorBadge.js"}}
+
+### Badge alignment
+
+Use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
-## Accessibility
+### Badge overlap
 
-You can't rely on the content of the badge to be announced correctly.
-You should provide a full description, for instance, with `aria-label`:
+Use the `overlap` prop when the wrapped element is circular.
 
-{{"demo": "AccessibleBadges.js"}}
+{{"demo": "BadgeOverlap.js"}}
+
+### Custom styles
+
+Use theme style overrides, the `sx` prop, or `styled()` to customize the badge.
+Learn more in the [customization guide](/material-ui/customization/how-to-customize/).
+
+{{"demo": "CustomizedBadges.js"}}
