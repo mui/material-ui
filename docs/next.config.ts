@@ -19,7 +19,59 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDeploymentConfig({
-  webpack: (config: NextConfig, options): NextConfig => {
+  turbopack: {
+    resolveAlias: turbopackResolveAlias,
+    resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
+    rules: {
+      // Turbopack requires serializable loader options, so `ignoreLanguagePages`
+      // (a function) is omitted. Safe while docs is English-only in SSR.
+      '*.md': [
+        // `.md?muiMarkdown` → markdown loader (mirrors the webpack `oneOf` first branch).
+        {
+          condition: { query: /[?&]muiMarkdown(?=&|$)/ },
+          loaders: [{ loader: '@mui/internal-markdown/loader', options: markdownLoaderBase }],
+          as: '*.js',
+        },
+        // Non-muiMarkdown `.md` (e.g. `import terms from './terms.md'`) → raw source.
+        // `{ not: 'foreign' }` keeps raw-loader away from node_modules / Next.js internals.
+        {
+          condition: {
+            all: [{ not: 'foreign' }, { not: { query: /[?&]muiMarkdown(?=&|$)/ } }],
+          },
+          loaders: ['raw-loader'],
+          as: '*.js',
+        },
+      ],
+      // Demo `index.ts` factories → precomputed highlighter. Mirrors the
+      // webpack `demos/*/index.ts` rule below; turbopack requires serializable
+      // loader options, which these are (no functions).
+      './**/demos/*/index.ts': {
+        loaders: [
+          {
+            loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            options: {
+              emphasisOptions: {
+                emitFrameIndent: true,
+                focusFramesMaxSize: 12,
+                oversizedFocus: 'hide',
+              },
+              requireClient: '@mui/internal-core-docs/utils/createDemoClient',
+              transformTypescriptToJavascript: true,
+            },
+          },
+        ],
+      },
+      // Demo `client.ts` bundles → precomputed client highlighter. Mirrors the
+      // webpack `demos/*/client.ts` rule below.
+      './**/demos/*/client.ts': {
+        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient'],
+      },
+    },
+  },
+  webpack: (
+    config: Parameters<NonNullable<NextConfig['webpack']>>[0],
+    options: Parameters<NonNullable<NextConfig['webpack']>>[1],
+  ) => {
     const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED && !options.isServer) {
