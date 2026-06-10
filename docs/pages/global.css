@@ -1,3 +1,8 @@
+@layer theme, base, mui.default, components, utilities;
+
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
+@import '@mui/tailwind/v4.css';
+
 @config '../tailwind.config.mjs';
+

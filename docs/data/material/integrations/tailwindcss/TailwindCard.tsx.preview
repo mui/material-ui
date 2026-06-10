@@ -1,0 +1,14 @@
+<JobCard
+  jobTitle="Frontend Developer"
+  team="Design Systems"
+  status="Active"
+  applicants={24}
+  avatarColors={['#6366f1', '#8b5cf6', '#ec4899']}
+/>
+<JobCard
+  jobTitle="Backend Engineer"
+  team="Platform"
+  status="Pending"
+  applicants={11}
+  avatarColors={['#0ea5e9', '#14b8a6', '#f59e0b']}
+/>
