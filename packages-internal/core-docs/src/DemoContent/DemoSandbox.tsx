@@ -223,6 +223,17 @@ interface IsolatedDemoProps {
 }
 
 /**
+ * Coerces a demo name into a valid CSS identifier for use as a `cssVarPrefix`.
+ * The demo `name` doubles as a human-readable title (e.g. `"Mode Toggle Iframe"`),
+ * but CSS custom-property names cannot contain whitespace or most punctuation —
+ * an unsanitized prefix produces invalid `--<prefix>-palette-*` variables, so the
+ * demo's theme variables never apply and it renders unstyled.
+ */
+function toCssVarPrefix(value: string | undefined): string | undefined {
+  return value?.replace(/[^a-zA-Z0-9-]+/g, '-').replace(/^-+|-+$/g, '') || undefined;
+}
+
+/**
  * Clones an isolated demo (e.g. Joy UI) with the props its own
  * `CssVarsProvider` needs to attach to the right root — either the iframe
  * document (when `window` is provided) or the per-demo container node.
@@ -235,7 +246,7 @@ export function IsolatedDemo({
 }: IsolatedDemoProps) {
   return React.cloneElement(children, {
     window,
-    cssVarPrefix,
+    cssVarPrefix: toCssVarPrefix(cssVarPrefix),
     colorSchemeNode: window ? window().document.documentElement : colorSchemeNode,
     colorSchemeSelector: 'class',
     documentNode: window ? window().document : undefined,
