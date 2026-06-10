@@ -184,6 +184,7 @@ describe('<Transition />', () => {
       // the child ref right after `in` flips must find it mounted, otherwise focus
       // management like the vertical stepper demo crashes. See issue #48637.
       let refWhenEffectRan: HTMLDivElement | null | undefined;
+      const onExited = spy();
       function Wrapper() {
         const [open, setOpen] = React.useState(false);
         const nodeRef = React.useRef<HTMLDivElement>(null);
@@ -197,7 +198,7 @@ describe('<Transition />', () => {
             <button type="button" onClick={() => setOpen(true)}>
               open
             </button>
-            <Transition in={open} unmountOnExit timeout={100} nodeRef={nodeRef}>
+            <Transition in={open} unmountOnExit timeout={100} nodeRef={nodeRef} onExited={onExited}>
               {(status) => (
                 <div ref={nodeRef} data-testid="target" data-status={status}>
                   content
@@ -212,7 +213,9 @@ describe('<Transition />', () => {
       act(() => {
         screen.getByText('open').click();
       });
-      expect(refWhenEffectRan).not.to.equal(null);
+      expect(refWhenEffectRan).to.equal(screen.getByTestId('target'));
+      // The intermediate `exited` status during open must not fire `onExited`.
+      expect(onExited.callCount).to.equal(0);
     });
   });
 
