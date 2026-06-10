@@ -4,7 +4,7 @@ import * as fs from 'node:fs/promises';
 import { chromium } from '@playwright/test';
 import { test as base } from 'vitest';
 import { recordA11y, WCAG_TAGS, GLOBAL_DISABLED_RULES } from './a11y/axe';
-import { A11Y_RULES, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
+import { A11Y_RULES, DEFAULT_VIEWPORT, SCREENSHOT_RULES, getConfig, parseRoute } from './demoMeta';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const AXE_SCRIPT = path.resolve(currentDirectory, '../../node_modules/axe-core/axe.min.js');
@@ -28,11 +28,15 @@ async function main() {
    * @returns {Promise<import('@playwright/test').Page>}
    */
   async function newTestPage(_browser) {
-    // reuse viewport from `vrtest`
+    // Viewport is set per-acquisition in the `pooled` fixture (reset to
+    // DEFAULT_VIEWPORT) and per-route in the screenshot loop, so it's not set
+    // here. Default sizing reused from `vrtest`:
     // https://github.com/nathanmarks/vrtest/blob/1185b852a6c1813cedf5d81f6d6843d9a241c1ce/src/server/runner.js#L44
     const page = await _browser.newPage({
-      viewport: { width: 1000, height: 700 },
       reducedMotion: 'reduce',
+      // Pin the timezone so the frozen `Date` (see `index.html`) renders the
+      // same instant regardless of the CI machine's local timezone.
+      timezoneId: 'UTC',
     });
 
     // Block images since they slow down tests (need download).
@@ -82,6 +86,12 @@ async function main() {
     // eslint-disable-next-line no-empty-pattern
     pooled: async ({}, use) => {
       const page = await pool.acquire();
+      // Reset per-acquisition state. Pages are pooled and reused, so a prior
+      // test may have left a different viewport (route tests set per-route
+      // widths below); start every test from the default so tests that don't
+      // set their own viewport (the dedicated blocks at the bottom) are
+      // deterministic.
+      await page.setViewportSize(DEFAULT_VIEWPORT);
       await page.evaluate(() => {
         localStorage.clear();
       });
@@ -167,6 +177,19 @@ async function main() {
           { timeout: process.env.PWDEBUG ? 0 : undefined },
           async ({ pooled, task }) => {
             const { page } = pooled;
+            // Apply the per-route viewport width before rendering so the
+            // composite renders at its desktop breakpoint. Only the width
+            // varies per rule (the screenshot captures the testcase element's
+            // full height regardless); the height stays at the default. The
+            // `pooled` fixture already reset the page to DEFAULT_VIEWPORT, so
+            // only override when a rule actually sets a width — saves a CDP
+            // round-trip on the vast majority of routes.
+            if (typeof screenshotRule?.viewportWidth === 'number') {
+              await page.setViewportSize({
+                width: screenshotRule.viewportWidth,
+                height: DEFAULT_VIEWPORT.height,
+              });
+            }
             const testcase = await renderFixture(page, route);
 
             if (screenshotRule?.waitForSelector) {
