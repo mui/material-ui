@@ -59,7 +59,7 @@
       "description": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options."
     },
     "fullWidth": {
-      "description": "<p>If <code>true</code>, the input takes up the full width of its container.</p>\n<p><strong>Note:</strong> <code>Autocomplete</code> treats <code>undefined</code> and <code>false</code> differently.\nIf <code>undefined</code>, the inner input takes up the full width of its container.\nIf <code>false</code>, the inner input is restricted to its intrinsic width.</p>\n"
+      "description": "If <code>true</code>, the input takes up the full width of its container.<br><code>Autocomplete</code> treats <code>undefined</code> and <code>false</code> differently. If <code>undefined</code>, the inner input takes up the full width of its container. If <code>false</code>, the inner input is restricted to its intrinsic width."
     },
     "getLimitTagsText": {
       "description": "The label to display when the tags are truncated (<code>limitTags</code>).",

@@ -980,7 +980,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the input takes up the full width of its container.
    *
-   * **Note:** `Autocomplete` treats `undefined` and `false` differently.
+   * `Autocomplete` treats `undefined` and `false` differently.
    * If `undefined`, the inner input takes up the full width of its container.
    * If `false`, the inner input is restricted to its intrinsic width.
    * @default false
