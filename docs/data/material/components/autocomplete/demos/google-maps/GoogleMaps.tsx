@@ -132,25 +132,43 @@ export default function GoogleMaps() {
   const callbackId = React.useId().replace(/[^\w]/g, '');
   const [loaded, setLoaded] = React.useState(false);
 
-  if (typeof window !== 'undefined') {
-    if (!document.querySelector('#google-maps')) {
-      const GOOGLE_NAMESPACE = '_google_callback';
-      const globalContext =
-        // @ts-ignore
-        window[GOOGLE_NAMESPACE] || (window[GOOGLE_NAMESPACE] = {});
-      globalContext[callbackId] = () => {
-        setLoaded(true);
-      };
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
 
+    // The Google global is already available (script loaded by a prior mount).
+    if ((window as any).google) {
+      setLoaded(true);
+      return undefined;
+    }
+
+    let active = true;
+    const GOOGLE_NAMESPACE = '_google_callback';
+    const globalContext =
+      // @ts-ignore
+      window[GOOGLE_NAMESPACE] || (window[GOOGLE_NAMESPACE] = {});
+    // Register (or re-register) the callback so it points at this mounted
+    // instance. The `active` guard turns a late callback (after unmount, e.g.
+    // a Strict Mode remount) into a no-op instead of a setState warning.
+    globalContext[callbackId] = () => {
+      if (active) {
+        setLoaded(true);
+      }
+    };
+
+    if (!document.querySelector('#google-maps')) {
       const script = loadScript(
         `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places&loading=async&callback=${GOOGLE_NAMESPACE}.${callbackId}`,
         document.querySelector('head')!,
       );
       script.id = 'google-maps';
-    } else if ((window as any).google && !loaded) {
-      setLoaded(true);
     }
-  }
+
+    return () => {
+      active = false;
+    };
+  }, [callbackId]);
 
   useEnhancedEffect(() => {
     if (!loaded) {
