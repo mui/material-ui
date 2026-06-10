@@ -70,7 +70,7 @@ export const CodeSource = styled('div', {
     overflow: 'auto',
     backgroundColor: CODE_BG,
     border: '1px solid transparent',
-    '-webkit-print-color-scheme': 'dark',
+    WebkitPrintColorScheme: 'dark',
     colorScheme: 'dark',
     color: '#f8f8f2',
     padding: 'calc(2 * var(--muidocs-spacing))',
