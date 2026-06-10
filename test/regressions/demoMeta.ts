@@ -119,6 +119,28 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // their live-docs desktop layout. Last-match-wins so this overrides the
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
+
+  // Composites whose Data Grid loads its rows asynchronously via
+  // `useDemoData` — `aria-busy` only tracks fonts, not the grid data, so
+  // without this the screenshot can capture the loading skeleton. Wait for a
+  // real data cell (the skeleton uses `.MuiDataGrid-skeletonRow`, not
+  // `.MuiDataGrid-row`). Rules are last-match-wins, so each restates the X
+  // width from the rule above.
+  {
+    test: 'docs/src/components/productX/XHero',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XGridFullDemo',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XTheming',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+  },
 ];
 
 /**
