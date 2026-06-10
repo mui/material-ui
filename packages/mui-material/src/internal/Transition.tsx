@@ -147,8 +147,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // layout effect instead would add a commit where the child is still null,
   // breaking consumers that read the ref right after `in` flips.
   if (inProp && status === 'unmounted') {
-    setStatus('exited');
     statusRef.current = 'exited';
+    setStatus('exited');
   }
 
   const shouldAppearOnMountRef = React.useRef(inProp && shouldEnterOnMount);
