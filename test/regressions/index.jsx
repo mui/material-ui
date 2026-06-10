@@ -1,3 +1,8 @@
+// `./fakeDateSetup` MUST stay first: it installs the frozen `Date` before any
+// other module — notably the demo modules pulled in by `./fixtures`'s eager
+// globs — reads `Date` at module scope. See `fakeDateSetup.ts` for why this
+// ordering (and the separate `./fixtures` module) is required.
+import './fakeDateSetup';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
@@ -5,6 +10,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+import MarketingWrapper from './MarketingWrapper';
+import allFixtures from './fixtures';
 import './global.css';
 
 // Skip charts annimation for screen shots
@@ -17,128 +24,6 @@ window.muiFixture = {
     throw new Error(`muiFixture.navigate is not ready`);
   },
 };
-
-// Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
-  import: 'default',
-  eager: true,
-});
-
-const regressionFixtures = [];
-
-Object.keys(importRegressionFixtures).forEach((path) => {
-  const [suite, name] = path
-    .replace('./fixtures/', '')
-    .replace(/\.\w+$/, '')
-    .split('/');
-
-  // TODO: Why does webpack include a key for the absolute and relative path?
-  // We just want the relative path
-  if (path.startsWith('./')) {
-    regressionFixtures.push({
-      path,
-      suite: `regression-${suite}`,
-      name,
-      Component: importRegressionFixtures[path],
-    });
-  }
-}, []);
-
-// Also use some of the demos to avoid code duplication.
-//
-// Two exclusion layers:
-//   - Slug-level (whole slug has no tool consumer, or path can't be imported) lives here,
-//     dropping the demo from the bundle entirely.
-//   - Per-demo (a specific demo inside an otherwise-enrolled slug is skipped by one tool
-//     or the other) lives in `demoMeta.ts`, so screenshot-specific reasons
-//     ("Redundant", "Flaky image loading") don't also drop a11y coverage.
-//
-// Enrolling a new component for a11y: un-negate the slug glob below if needed,
-// then add an `A11Y_RULES` entry in `demoMeta.ts`
-// (e.g. `{ test: 'docs/data/material/components/foo/{BasicFoo,FooVariants}', enabled: true }`).
-const importDemos = import.meta.glob(
-  [
-    // Migrated docs-infra demos: `<area>/demos/<slug>/<Name>.{js,tsx}`.
-    'docs/data/**/demos/*/[A-Z]*.{js,tsx}',
-    // Templates: flat `templates/<name>/<Name>.{js,tsx}` layout (not yet migrated).
-    'docs/data/material/getting-started/templates/*/[A-Z]*.{js,tsx}',
-    // Legacy Base UI variants (not yet migrated to the docs-infra demo layout).
-    'docs/data/base/**/[A-Z]*/css/index.js',
-    'docs/data/base/**/[A-Z]*/tailwind/index.js',
-    'docs/data/base/**/[A-Z]*/system/index.js',
-    // ================== Structural — cannot be imported safely ==================
-    '!docs/data/experiments',
-    '!docs/data/material/**/*NoSnap.*',
-    // Templates that aren't standalone demos
-    '!docs/data/material/getting-started/templates/marketing-page/**',
-    '!docs/data/material/getting-started/templates/shared-theme/**',
-    // Customization demos — not component pages
-    '!docs/data/material/customization/breakpoints/demos/**',
-    '!docs/data/material/customization/color/demos/**',
-    '!docs/data/material/customization/container-queries/demos/resizable/**',
-    '!docs/data/material/customization/default-theme/demos/**',
-    '!docs/data/material/customization/density/demos/**',
-    '!docs/data/material/customization/right-to-left/demos/rtl-demo/**',
-    '!docs/data/material/customization/transitions/demos/**',
-    '!docs/data/material/customization/typography/demos/responsive-font-sizes-chart/**',
-    // Other non-demo subtrees
-    '!docs/data/material/getting-started/supported-components/demos/**',
-    '!docs/data/material/guides',
-    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind',
-    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal',
-    '!docs/data/premium-themes',
-    // ================== Slug-level — no tool consumer ==================
-    '!docs/data/material/components/backdrop', // Needs interaction
-    '!docs/data/material/components/click-away-listener', // Needs interaction
-    '!docs/data/material/components/container', // Can't see the impact
-    '!docs/data/material/components/dialogs', // Needs interaction
-    '!docs/data/material/components/image-list', // Images don't load
-    '!docs/data/material/components/material-icons/demos/search-icons/**', // Heavy icon grid
-    '!docs/data/material/components/menus', // Needs interaction
-    '!docs/data/material/components/popper', // Needs interaction
-    '!docs/data/material/components/progress', // Flaky
-    '!docs/data/material/components/speed-dial', // Needs interaction
-    '!docs/data/material/components/textarea-autosize', // Superseded by a dedicated regression test
-    '!docs/data/material/components/tooltips', // Needs interaction
-    '!docs/data/material/components/transitions', // Needs interaction
-    '!docs/data/material/components/use-media-query', // Need to dynamically resize to test
-    '!docs/data/material/getting-started/versions/demos/**', // not a component
-  ],
-  {
-    import: 'default',
-    eager: true,
-  },
-);
-
-const demoFixtures = [];
-Object.keys(importDemos).forEach((path) => {
-  const [name, ...suiteArray] = path
-    .replace(/^.*?docs\/data\//, '')
-    .replace(/\.(tsx?|jsx?)$/, '')
-    .split('/')
-    .reverse();
-  // Drop the `demos/<slug>` infix introduced by the docs-infra demo layout so
-  // the suite slug stays stable: `<comp>/demos/<slug>/<Name>` -> `<comp>/<Name>`.
-  // After reverse + destructure, the original `demos/<slug>` pair shows up as
-  // adjacent entries `<slug>, demos` in `suiteArray`.
-  const segments = suiteArray.reverse();
-  const cleaned = [];
-  for (let i = 0; i < segments.length; i += 1) {
-    if (segments[i] === 'demos') {
-      i += 1; // also skip the slug that follows
-      continue;
-    }
-    cleaned.push(segments[i]);
-  }
-  const suite = `docs-${cleaned.join('-').replace(/^material-/, '')}`;
-
-  demoFixtures.push({
-    path,
-    suite,
-    name,
-    Component: importDemos[path],
-  });
-}, []);
 
 function FixtureRenderer({ component: FixtureComponent, path }) {
   React.useEffect(() => {
@@ -235,11 +120,22 @@ function App(props) {
         <Routes>
           {fixtures.map((fixture) => {
             const path = computePath(fixture);
-            const FixtureComponent = fixture.Component;
-            if (FixtureComponent === undefined) {
+            const Component = fixture.Component;
+            if (Component === undefined) {
               console.warn('Missing `Component` for ', fixture);
               return null;
             }
+
+            // Composites are authored for the Next.js docs site; wrap them in
+            // the branding theme here rather than threading a flag through
+            // `FixtureRenderer`.
+            const FixtureComponent = fixture.isComposite
+              ? () => (
+                  <MarketingWrapper>
+                    <Component />
+                  </MarketingWrapper>
+                )
+              : Component;
 
             return (
               <Route
@@ -291,7 +187,7 @@ App.propTypes = {
 const container = document.getElementById('react-root');
 const children = (
   <Router>
-    <App fixtures={regressionFixtures.concat(demoFixtures)} />
+    <App fixtures={allFixtures} />
   </Router>
 );
 const reactRoot = ReactDOMClient.createRoot(container);

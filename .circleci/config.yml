@@ -133,21 +133,19 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: medium+.gen2
+    resource_class: xlarge.gen2
     steps:
       - checkout
       - install-deps
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
-          environment:
-            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: medium+.gen2
+    resource_class: xlarge.gen2
     steps:
       - checkout
       - install-deps:
@@ -155,8 +153,6 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
-          environment:
-            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Build declaration files
           command: |

@@ -6,7 +6,7 @@
   "main": "./index.ts",
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui-internal/api-docs-builder-core\"",
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsgo -p tsconfig.json"
   },
   "repository": {
     "type": "git",
