@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import type { TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -26,19 +26,19 @@ const Shortcut = styled('kbd')(({ theme: t }) => ({
   backgroundColor: t.alpha((t.vars || t).palette.common.white, 0.16),
 }));
 
-function RichTitle({
+function RichCard({
   title,
   shortcut,
   description,
 }: {
-  title: string;
+  title: React.ReactNode;
   shortcut?: React.ReactNode;
-  description: string;
+  description?: React.ReactNode;
 }) {
   return (
-    // Inner wrapper owns rounding + clipping + elevation so the Tooltip slot
-    // stays unclipped — otherwise `overflow: hidden` would clip the arrow,
-    // which renders as a child of the tooltip positioned outside its box.
+    // Rounding/clipping/elevation live here, not on the tooltip slot — the arrow
+    // is a sibling of this card at the slot level, so slot-level `overflow: hidden`
+    // would clip it.
     <Box sx={{ borderRadius: 2, overflow: 'hidden', boxShadow: 8 }}>
       <Box
         sx={{
@@ -57,9 +57,11 @@ function RichTitle({
         </Typography>
         {shortcut ? <Shortcut>{shortcut}</Shortcut> : null}
       </Box>
-      <Typography variant="body2" sx={{ bgcolor: 'background.paper', px: 2, py: 1.75 }}>
-        {description}
-      </Typography>
+      {description ? (
+        <Typography variant="body2" sx={{ bgcolor: 'background.paper', px: 2, py: 1.75 }}>
+          {description}
+        </Typography>
+      ) : null}
     </Box>
   );
 }
@@ -78,6 +80,58 @@ const richSlotProps: TooltipProps['slotProps'] = {
     sx: { color: 'grey.900' },
   },
 };
+
+// Replaces the default tooltip slot. Mirrors the popper-placement margins +
+// transform-origins from Tooltip's own slot (lost when swapping the component)
+// and colors the arrow to match the dark header.
+const RichTooltipRoot = styled('div')(({ theme: t }) => ({
+  position: 'relative',
+  maxWidth: 320,
+  margin: 2,
+  color: (t.vars || t).palette.text.primary,
+  [`& .${tooltipClasses.arrow}`]: {
+    color: (t.vars || t).palette.grey[900],
+  },
+  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+    transformOrigin: 'right center',
+    marginInlineEnd: '14px',
+  },
+  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+    transformOrigin: 'left center',
+    marginInlineStart: '14px',
+  },
+  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
+    transformOrigin: 'center bottom',
+    marginBottom: '14px',
+  },
+  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
+    transformOrigin: 'center top',
+    marginTop: '14px',
+  },
+}));
+
+interface RichTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  shortcut?: React.ReactNode;
+  description?: React.ReactNode;
+}
+
+const RichTooltip = React.forwardRef<HTMLDivElement, RichTooltipProps>(function RichTooltip(
+  { children, shortcut, description, ...other },
+  ref,
+) {
+  // Tooltip appends the arrow as a slot child after `title`. Split it back out so
+  // the title fills the card while the arrow stays a sibling (kept unclipped).
+  const items = React.Children.toArray(children);
+  const arrow = items.find((child) => React.isValidElement(child));
+  const title = items.filter((child) => !React.isValidElement(child));
+
+  return (
+    <RichTooltipRoot ref={ref} {...other}>
+      <RichCard title={title} shortcut={shortcut} description={description} />
+      {arrow}
+    </RichTooltipRoot>
+  );
+});
 
 const triggerSx = {
   border: '1px solid',
@@ -110,7 +164,7 @@ export default function App() {
           placement="top"
           slotProps={{ ...richSlotProps, arrow: { sx: { color: 'white' } } }}
           title={
-            <RichTitle
+            <RichCard
               title="Publish to ACC"
               shortcut={
                 <React.Fragment>
@@ -138,7 +192,7 @@ export default function App() {
             placement="bottom"
             slotProps={richSlotProps}
             title={
-              <RichTitle
+              <RichCard
                 title="Copy link"
                 shortcut={
                   <React.Fragment>
@@ -157,20 +211,15 @@ export default function App() {
 
           <Tooltip
             arrow
-            placement="bottom"
-            slotProps={richSlotProps}
-            title={
-              <RichTitle
-                title="Settings"
-                shortcut={
-                  <React.Fragment>
-                    <span>⌘</span>
-                    <span>,</span>
-                  </React.Fragment>
-                }
-                description="Open project settings to manage members, permissions, and integrations."
-              />
-            }
+            title="Settings" // only "Settings" is announced by screen readers.
+            slots={{ tooltip: RichTooltip }}
+            slotProps={{
+              tooltip: {
+                shortcut: '⌘,',
+                description:
+                  'Open project settings to manage members, permissions, and integrations.',
+              } as RichTooltipProps,
+            }}
           >
             <IconButton sx={triggerSx}>
               <SettingsIcon />
