@@ -682,7 +682,9 @@ export default async function demoLoader() {
       const relativeToResource = path
         .relative(path.dirname(this.resourcePath), componentAbsolute)
         .replace(/\\/g, '/');
-      moduleID = relativeToResource.startsWith('.') ? relativeToResource : `./${relativeToResource}`;
+      moduleID = relativeToResource.startsWith('.')
+        ? relativeToResource
+        : `./${relativeToResource}`;
     } else {
       // Legacy form: resolved from `docs/src/`. Emit a relative path from the
       // markdown file's directory. Turbopack rejects absolute paths emitted by
