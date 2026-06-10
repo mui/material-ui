@@ -181,12 +181,15 @@ async function main() {
             // composite renders at its desktop breakpoint. Only the width
             // varies per rule (the screenshot captures the testcase element's
             // full height regardless); the height stays at the default. The
-            // `pooled` fixture already reset the page to DEFAULT_VIEWPORT, so a
-            // route with no width override is a no-op here.
-            await page.setViewportSize({
-              width: screenshotRule?.viewportWidth ?? DEFAULT_VIEWPORT.width,
-              height: DEFAULT_VIEWPORT.height,
-            });
+            // `pooled` fixture already reset the page to DEFAULT_VIEWPORT, so
+            // only override when a rule actually sets a width — saves a CDP
+            // round-trip on the vast majority of routes.
+            if (typeof screenshotRule?.viewportWidth === 'number') {
+              await page.setViewportSize({
+                width: screenshotRule.viewportWidth,
+                height: DEFAULT_VIEWPORT.height,
+              });
+            }
             const testcase = await renderFixture(page, route);
 
             if (screenshotRule?.waitForSelector) {
