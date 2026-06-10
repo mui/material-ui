@@ -606,6 +606,14 @@ const Root = styled('div')(
       whiteSpace: 'nowrap',
       opacity: 0.6,
     },
+    // The copy shortcut differs per OS. Resolve it from a `data-mac` attribute set on
+    // `<html>` after hydration.
+    '& .MuiCode-copyKeypressKey::before': {
+      content: '"Ctrl + "',
+    },
+    '[data-mac] & .MuiCode-copyKeypressKey::before': {
+      content: '"⌘"',
+    },
     '& li': {
       // tight lists https://spec.commonmark.org/0.30/#tight
       marginBottom: 4,
