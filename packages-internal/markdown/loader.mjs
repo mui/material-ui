@@ -682,7 +682,9 @@ export default async function demoLoader() {
       const relativeToResource = path
         .relative(path.dirname(this.resourcePath), componentAbsolute)
         .replace(/\\/g, '/');
-      moduleID = relativeToResource.startsWith('.') ? relativeToResource : `./${relativeToResource}`;
+      moduleID = relativeToResource.startsWith('.')
+        ? relativeToResource
+        : `./${relativeToResource}`;
     } else {
       // Legacy form: resolved from `docs/src/`.
       moduleID = path.join(this.rootContext, 'src', componentName).replace(/\\/g, '/');
