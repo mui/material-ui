@@ -1,93 +1,79 @@
 'use client';
 
 import * as React from 'react';
-import { useRunner, importCode } from 'react-runner';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
-import type {
-  ControlledCode,
-  ControlledVariantExtraFiles,
-} from '@mui/internal-docs-infra/CodeHighlighter/types';
-import { useCodeExternals } from '@mui/internal-docs-infra/CodeExternalsContext';
-import { DemoErrorProvider, useDemoErrorReporter } from './DemoErrorContext';
+import type { ControlledCode } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { DemoErrorProvider } from './DemoErrorContext';
+import type { DemoRunnerProps } from './DemoRunner';
 
-function Runner({
-  code,
-  extraFiles,
-  variantKey,
-}: {
-  code: string;
-  extraFiles?: ControlledVariantExtraFiles;
-  variantKey: string;
-}) {
-  const externalsContext = useCodeExternals();
-  const scope = React.useMemo(() => {
-    // `scope.import` is react-runner's module map; its `require` does an exact-key
-    // lookup. Start from the package externals, then evaluate each extra file with
-    // react-runner's `importCode` and register it under the specifier the main
-    // source imports it by. In flat mode that's `./<name>` without the extension
-    // (the loader strips it), e.g. key `top100Films.ts` -> `./top100Films`. Passing
-    // the same growing `imports` map lets a file import earlier siblings + externals.
-    const imports: Record<string, unknown> = {
-      ...(externalsContext?.externals ?? { react: React }),
-    };
-    for (const [fileName, file] of Object.entries(extraFiles ?? {})) {
-      if (typeof file?.source === 'string') {
-        imports[`./${fileName.replace(/\.[^.]+$/, '')}`] = importCode(file.source, {
-          import: imports,
-        });
-      }
-    }
-    return { import: imports };
-  }, [externalsContext, extraFiles]);
+type DemoRunnerComponent = React.ComponentType<DemoRunnerProps>;
 
-  const { element, error } = useRunner({ code, scope });
-  const reportError = useDemoErrorReporter(variantKey);
-
-  // Keep showing the last successfully-rendered element so the preview area
-  // doesn't blank out while the user is typing an intermediate broken state.
-  const lastGoodRef = React.useRef<React.ReactNode>(null);
-  if (!error && element) {
-    lastGoodRef.current = element;
+// Lazy-load the live-editing runtime (`react-runner` + its bundled `sucrase`
+// transpiler) as a separate chunk: only fetched when a reader engages a demo's
+// editor, so it stays out of the initial client bundle. Memoized so the
+// `onActivate` warm-up and the load-on-edit share one promise (and one request).
+let demoRunnerModule: Promise<DemoRunnerComponent> | undefined;
+function loadDemoRunner(): Promise<DemoRunnerComponent> {
+  if (!demoRunnerModule) {
+    demoRunnerModule = import('./DemoRunner').then((mod) => mod.default);
   }
-
-  const message = error ? String(error) : null;
-  React.useEffect(() => {
-    reportError(message);
-    return () => {
-      reportError(null);
-    };
-  }, [reportError, message]);
-
-  return error ? lastGoodRef.current : element;
+  return demoRunnerModule;
 }
 
 function DemoController({ children }: { children: React.ReactNode }) {
   const [code, setCode] = React.useState<ControlledCode | undefined>(undefined);
+  // The lazily-loaded runner, held in state so the live preview only swaps in
+  // *after* the chunk has loaded. Rendering it through `React.lazy`/`Suspense`
+  // flashed an empty frame on the first edit (lazy always suspends once, even
+  // when the chunk is already cached); delaying the swap ourselves avoids that.
+  const [Runner, setRunner] = React.useState<DemoRunnerComponent | null>(null);
 
-  const components = React.useMemo(
-    () =>
-      code
-        ? Object.keys(code).reduce(
-            (acc, cur) => {
-              const variant = code[cur];
-              if (!variant?.source) {
-                return acc;
-              }
+  // Start (or reuse) the runner-chunk fetch and store it once ready. The
+  // `setRunner` updater returns the component so React doesn't mistake it for a
+  // state-reducer function.
+  const warmRunner = React.useCallback(() => {
+    void loadDemoRunner().then((component) => setRunner(() => component));
+  }, []);
 
-              acc[cur] = (
-                <Runner code={variant.source} extraFiles={variant.extraFiles} variantKey={cur} />
-              );
-              return acc;
-            },
-            {} as Record<string, React.ReactNode>,
-          )
-        : undefined,
-    [code],
-  );
+  // Warm on first editing engagement (hover / focus / click), well before the
+  // first keystroke sets `code`.
+  const handleActivate = React.useCallback(() => {
+    warmRunner();
+  }, [warmRunner]);
+
+  // Safety net: if `code` ever arrives before the runner has loaded, kick off
+  // the fetch so the edited preview can render once it resolves.
+  React.useEffect(() => {
+    if (code && !Runner) {
+      warmRunner();
+    }
+  }, [code, Runner, warmRunner]);
+
+  // Build the preview overrides only once BOTH the edited `code` and the runner
+  // module are available. Until then `components` stays undefined, so the demo
+  // keeps rendering its current output instead of blanking.
+  const components = React.useMemo(() => {
+    if (!code || !Runner) {
+      return undefined;
+    }
+    return Object.keys(code).reduce(
+      (acc, cur) => {
+        const variant = code[cur];
+        if (!variant?.source) {
+          return acc;
+        }
+        acc[cur] = (
+          <Runner code={variant.source} extraFiles={variant.extraFiles} variantKey={cur} />
+        );
+        return acc;
+      },
+      {} as Record<string, React.ReactNode>,
+    );
+  }, [code, Runner]);
 
   const contextValue = React.useMemo(
-    () => ({ code, setCode, components }),
-    [code, setCode, components],
+    () => ({ code, setCode, components, onActivate: handleActivate }),
+    [code, setCode, components, handleActivate],
   );
 
   return (
