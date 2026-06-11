@@ -365,11 +365,7 @@ export default function DemoContent(props: DemoContentProps) {
   // identifies a demo within a page and is stable across renders.
   const gaLabel = demo.slug ?? props.name ?? '';
 
-  const {
-    toolbarRef,
-    handleKeyDown: handleToolbarKeyDown,
-    handleFocus: handleToolbarFocus,
-  } = useToolbarKeyboard();
+  const { toolbarRef, handleKeyDown: handleToolbarKeyDown } = useToolbarKeyboard();
 
   const anchors =
     anchorName != null ? (
@@ -467,8 +463,12 @@ export default function DemoContent(props: DemoContentProps) {
   // that toggling `expanded` doesn't re-mount the code panel below and reset
   // its CSS transitions. The wrapping `DemoFileTabBarCollapse` animates the
   // strip's height from 0 to `auto` (CSS-only via the grid `0fr → 1fr` trick).
+  // While collapsed the strip is only clipped (`max-height: 0; overflow:
+  // hidden`), so its tab `<button>`s stay in the DOM and tabbable — mark the
+  // region `inert` so a hidden tab can't be Tab-focused, clicked, or announced
+  // by assistive tech until the source viewer expands.
   const tabs = hasMultipleFiles ? (
-    <DemoFileTabBarCollapse expanded={demo.expanded}>
+    <DemoFileTabBarCollapse expanded={demo.expanded} inert={!demo.expanded}>
       <DemoFileTabBar activateOnFocus>
         {demo.files.map((file) => (
           <FileTab key={file.name} value={file.name}>
@@ -536,7 +536,6 @@ export default function DemoContent(props: DemoContentProps) {
       toolbarRef={toolbarRef}
       toolbarLabel={t('demoToolbarLabel')}
       onToolbarKeyDown={handleToolbarKeyDown}
-      onToolbarFocus={handleToolbarFocus}
       expanded={demo.expanded}
       tabs={tabs}
       code={code}

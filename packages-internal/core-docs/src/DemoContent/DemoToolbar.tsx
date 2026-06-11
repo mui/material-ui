@@ -95,11 +95,12 @@ function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
 // ---------------------------------------------------------------------------
 
 /**
- * ARIA toolbar roving keyboard navigation: a single Tab stop enters the
- * toolbar, then arrow keys (RTL aware) and Home/End move focus between
- * visible, non-disabled buttons. Tabindex is managed on the buttons directly
- * via a `MutationObserver` so the hook stays decoupled from the toolbar's
- * JSX.
+ * ARIA toolbar keyboard navigation with one roving-tabindex scope per
+ * `[data-toolbar-group]`. Each group's *first* focusable button is its single
+ * tab stop, so Tab moves *between* groups — landing on "Edit in Chat", then
+ * "Expand" — while arrow keys (RTL aware) and Home/End move focus *within* the
+ * focused button's group. Tabindex is managed on the buttons directly via a
+ * `MutationObserver` so the hook stays decoupled from the toolbar's JSX.
  */
 function isFocusableToolbarButton(button: HTMLElement): boolean {
   if (button.hasAttribute('disabled') || button.getAttribute('aria-hidden') === 'true') {
@@ -115,35 +116,28 @@ function isFocusableToolbarButton(button: HTMLElement): boolean {
   return style.visibility !== 'hidden' && style.display !== 'none';
 }
 
+function getGroupButtons(group: HTMLElement): HTMLElement[] {
+  return Array.from(group.querySelectorAll<HTMLElement>('button')).filter(isFocusableToolbarButton);
+}
+
 export function useToolbarKeyboard() {
   const theme = useTheme();
   const toolbarRef = React.useRef<HTMLDivElement>(null);
-  // Index into the *focusable* buttons list. Stored in a ref so the sync
-  // routine can run from a MutationObserver without re-rendering.
-  const activeIndexRef = React.useRef(0);
 
-  const getFocusableButtons = React.useCallback((): HTMLElement[] => {
+  // Make each group's first focusable button its only tab stop (the rest are
+  // reachable by arrow keys). Runs on mount and from the MutationObserver as
+  // buttons appear/disappear (e.g. the JS/TS toggle on expand).
+  const syncTabIndex = React.useCallback(() => {
     const container = toolbarRef.current;
     if (!container) {
-      return [];
-    }
-    return Array.from(container.querySelectorAll<HTMLElement>('button')).filter(
-      isFocusableToolbarButton,
-    );
-  }, []);
-
-  const syncTabIndex = React.useCallback(() => {
-    const buttons = getFocusableButtons();
-    if (buttons.length === 0) {
       return;
     }
-    if (activeIndexRef.current >= buttons.length) {
-      activeIndexRef.current = 0;
-    }
-    buttons.forEach((button, index) => {
-      button.tabIndex = index === activeIndexRef.current ? 0 : -1;
+    container.querySelectorAll<HTMLElement>('[data-toolbar-group]').forEach((group) => {
+      getGroupButtons(group).forEach((button, index) => {
+        button.tabIndex = index === 0 ? 0 : -1;
+      });
     });
-  }, [getFocusableButtons]);
+  }, []);
 
   React.useEffect(() => {
     const container = toolbarRef.current;
@@ -161,26 +155,15 @@ export function useToolbarKeyboard() {
     return () => observer.disconnect();
   }, [syncTabIndex]);
 
-  const handleFocus = React.useCallback(
-    (event: React.FocusEvent<HTMLDivElement>) => {
-      const buttons = getFocusableButtons();
-      const focusedIndex = buttons.indexOf(event.target as HTMLElement);
-      if (focusedIndex !== -1 && focusedIndex !== activeIndexRef.current) {
-        activeIndexRef.current = focusedIndex;
-        syncTabIndex();
-      }
-    },
-    [getFocusableButtons, syncTabIndex],
-  );
-
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      const buttons = getFocusableButtons();
-      if (buttons.length === 0) {
+      const active = document.activeElement as HTMLElement | null;
+      const group = active?.closest<HTMLElement>('[data-toolbar-group]');
+      if (!group) {
         return;
       }
-      const activeElement = document.activeElement as HTMLElement | null;
-      const currentIndex = activeElement ? buttons.indexOf(activeElement) : -1;
+      const buttons = getGroupButtons(group);
+      const currentIndex = active ? buttons.indexOf(active) : -1;
       if (currentIndex === -1) {
         return;
       }
@@ -206,10 +189,10 @@ export function useToolbarKeyboard() {
       event.preventDefault();
       buttons[nextIndex].focus();
     },
-    [theme.direction, getFocusableButtons],
+    [theme.direction],
   );
 
-  return { toolbarRef, handleKeyDown, handleFocus };
+  return { toolbarRef, handleKeyDown };
 }
 
 // ---------------------------------------------------------------------------
@@ -385,54 +368,66 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
   return (
     <React.Fragment>
-      {/* Left-most: Open in MUI Chat */}
-      <OpenInMUIChatButton
-        openMuiChat={openMuiChat}
-        data-ga-event-category="demo"
-        data-ga-event-label={gaLabel}
-        data-ga-event-action="open-in-mui-chat"
-      />
+      {/* Group 1: "Edit in Chat" + the JS/TS switcher form one roving-tabindex
+          scope (`data-toolbar-group`), so Tab lands here first (on "Edit in
+          Chat") and the next Tab jumps to the actions group; arrow keys move
+          between the two. The `gap` keeps "Edit in Chat" from touching the
+          JS/TS switcher. */}
+      <Box role="group" data-toolbar-group sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        {/* Open in MUI Chat */}
+        <OpenInMUIChatButton
+          openMuiChat={openMuiChat}
+          data-ga-event-category="demo"
+          data-ga-event-label={gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+        />
 
-      {/* Left side: JS/TS toggle (only relevant when code is open). Uses a
-          CSS-only opacity transition rather than MUI's `<Fade>` because Fade
-          calls `reflow(node)` (reading `node.scrollTop`) on every transition,
-          forcing a synchronous layout flush that thrashes with
-          `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
-      <ToggleButtonGroup
-        ref={languageToggleRef}
-        sx={{
-          margin: '8px 0',
-          transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
-          opacity: expanded && hasJsTransform ? 1 : 0,
-          visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
-          pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
-        }}
-        exclusive
-        value={isJsSelected ? 'js' : 'ts'}
-        onChange={onLanguageClick}
+        {/* JS/TS toggle (only relevant when code is open). Uses a CSS-only
+            opacity transition rather than MUI's `<Fade>` because Fade calls
+            `reflow(node)` (reading `node.scrollTop`) on every transition,
+            forcing a synchronous layout flush that thrashes with
+            `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
+        <ToggleButtonGroup
+          ref={languageToggleRef}
+          sx={{
+            margin: '8px 0',
+            transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: expanded && hasJsTransform ? 1 : 0,
+            visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
+            pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
+          }}
+          exclusive
+          value={isJsSelected ? 'js' : 'ts'}
+          onChange={onLanguageClick}
+        >
+          <ToggleButton
+            value="js"
+            aria-label={t('showJSSource')}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="source-js"
+          >
+            JS
+          </ToggleButton>
+          <ToggleButton
+            value="ts"
+            aria-label={t('showTSSource')}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="source-ts"
+          >
+            TS
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+
+      {/* Group 2: the remaining action buttons — its own roving-tabindex scope,
+          so the second Tab enters here (on "Expand" for a single-variant demo). */}
+      <Box
+        role="group"
+        data-toolbar-group
+        sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}
       >
-        <ToggleButton
-          value="js"
-          aria-label={t('showJSSource')}
-          data-ga-event-category="demo"
-          data-ga-event-label={gaLabel}
-          data-ga-event-action="source-js"
-        >
-          JS
-        </ToggleButton>
-        <ToggleButton
-          value="ts"
-          aria-label={t('showTSSource')}
-          data-ga-event-category="demo"
-          data-ga-event-label={gaLabel}
-          data-ga-event-action="source-ts"
-        >
-          TS
-        </ToggleButton>
-      </ToggleButtonGroup>
-
-      {/* Right side: action buttons */}
-      <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
             size="small"

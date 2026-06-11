@@ -456,8 +456,6 @@ export interface DemoContainerProps {
   toolbarLabel?: string;
   /** Keydown handler for ARIA toolbar keyboard navigation. */
   onToolbarKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
-  /** Focus handler used by the roving-tabindex hook. */
-  onToolbarFocus?: React.FocusEventHandler<HTMLDivElement>;
   /**
    * Whether the source viewer is currently expanded. Drives `data-code-open` on
    * the root (which squares the toolbar's bottom corners and reveals the code
@@ -508,7 +506,6 @@ export function DemoContainer(props: DemoContainerProps) {
     toolbarRef,
     toolbarLabel,
     onToolbarKeyDown,
-    onToolbarFocus,
     expanded,
     tabs,
     code,
@@ -574,7 +571,6 @@ export function DemoContainer(props: DemoContainerProps) {
             role="toolbar"
             aria-label={toolbarLabel}
             onKeyDown={onToolbarKeyDown}
-            onFocus={onToolbarFocus}
           >
             {toolbar}
           </DemoToolbarRoot>
