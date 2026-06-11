@@ -11,6 +11,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider, enhanceDensity, DensityScale } from '@mui/material/styles';
 import demos from 'docs/src/modules/components/densityDemos';
@@ -113,6 +115,16 @@ const mono = {
   fontSize: 12,
 } as const;
 
+// Outline every box inside a demo so the density effect (padding/height shifts)
+// is visible at a glance. `outline` is drawn outside the box and takes no layout
+// space, so toggling it never reflows the gallery — the geometry stays honest.
+const demoOutlineSx = {
+  '& *': {
+    outline: '1px solid rgba(244, 67, 54, 0.5)',
+    outlineOffset: '-1px',
+  },
+} as const;
+
 function ScalePanel({ preset }: { preset: PresetKey }) {
   const scale = displayScales[preset];
   return (
@@ -170,6 +182,7 @@ function VarsPanel({ preset }: { preset: PresetKey }) {
 
 export default function DensityShowcase() {
   const [preset, setPreset] = React.useState<PresetKey>('normal');
+  const [outline, setOutline] = React.useState(false);
 
   return (
     // Outer shell uses the base theme; the gallery + sidebar readouts use the
@@ -213,6 +226,17 @@ export default function DensityShowcase() {
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                size="small"
+                checked={outline}
+                onChange={(event) => setOutline(event.target.checked)}
+              />
+            }
+            label="Outline demos"
+            sx={{ mb: 2, display: 'flex' }}
+          />
           <ScalePanel preset={preset} />
           <Divider sx={{ my: 2 }} />
           <VarsPanel preset={preset} />
@@ -246,7 +270,7 @@ export default function DensityShowcase() {
                   >
                     {name}
                   </Typography>
-                  {demos[name]}
+                  <Box sx={outline ? demoOutlineSx : undefined}>{demos[name]}</Box>
                 </Paper>
               ))}
             </Box>
