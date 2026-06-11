@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { vi } from 'vitest';
 import cssVarsParser, { assignNestedKeys, walkObjectDeep } from './cssVarsParser';
 
 describe('cssVarsParser', () => {
@@ -404,5 +405,49 @@ describe('cssVarsParser', () => {
     });
     expect(css).to.deep.equal({});
     expect(vars).to.deep.equal({});
+  });
+
+  it('skips string values containing "//" to avoid stylis comment corruption', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { css, vars } = cssVarsParser({
+      palette: {
+        primary: {
+          main: '#000',
+        },
+      },
+      backgroundImage: 'url(https://example.com/image.png)',
+    });
+    expect(css).to.not.have.property('--backgroundImage');
+    expect(vars).to.not.have.property('backgroundImage');
+    expect(css).to.deep.equal({ '--palette-primary-main': '#000' });
+    expect(errorSpy.mock.calls[0][0]).to.include('backgroundImage');
+    expect(errorSpy.mock.calls[0][0]).to.include('//');
+    errorSpy.mockRestore();
+  });
+
+  it('skips only the URL value and preserves other variables', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { css, vars } = cssVarsParser({
+      palette: {
+        primary: {
+          main: '#ff5252',
+          image: 'url(https://example.com/image.png)',
+          dark: '#b71c1c',
+        },
+      },
+    });
+    expect(css).to.deep.equal({
+      '--palette-primary-main': '#ff5252',
+      '--palette-primary-dark': '#b71c1c',
+    });
+    expect(vars).to.deep.equal({
+      palette: {
+        primary: {
+          main: 'var(--palette-primary-main)',
+          dark: 'var(--palette-primary-dark)',
+        },
+      },
+    });
+    errorSpy.mockRestore();
   });
 });

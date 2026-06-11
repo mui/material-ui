@@ -82,6 +82,7 @@ Full defaults: [Default theme explorer](https://mui.com/material-ui/customizatio
 - `InitColorSchemeScript`: place before any rendered content to prevent the initial color-scheme flash. App Router: inside `<body>` before `{children}` in `app/layout.tsx`. Pages Router: in `_document.tsx` before `<Main />`. See [Preventing SSR flickering](https://mui.com/material-ui/customization/css-theme-variables/configuration.md#preventing-ssr-flickering).
 - Trade-offs: larger HTML (both schemes' variables), possible FCP impact; benefits include less JavaScript work on scheme switch and better SSR dark experience. See [Overview](https://mui.com/material-ui/customization/css-theme-variables/overview.md).
 - `CssVarsProvider` is superseded by `ThemeProvider` with the same capabilities. Use `ThemeProvider`.
+- **URL values and `//` in theme strings**: Stylis (the CSS preprocessor used by Emotion) treats `//` as a single-line comment. Any theme string value containing `//` — such as a `backgroundImage` URL like `https://…` — will corrupt the generated `:root {}` block and make all subsequent `--mui-*` CSS variables undefined. Use `shouldSkipGeneratingVar` to exclude these keys from CSS variable generation: `createTheme({ cssVariables: { shouldSkipGeneratingVar: (keys) => keys.includes('backgroundImage') } })`. A dev-mode `console.error` is emitted if such a value is detected.
 
 ---
 
