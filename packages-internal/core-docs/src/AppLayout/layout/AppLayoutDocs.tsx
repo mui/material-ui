@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { CodeProvider } from '@mui/internal-docs-infra/CodeProvider';
+import { CodeProviderLazy } from '@mui/internal-docs-infra/CodeProvider';
 import { createEnhanceCodeEmphasis } from '@mui/internal-docs-infra/pipeline/enhanceCodeEmphasis';
 import { AdManager, AD_MARGIN_TOP, AD_HEIGHT, AD_HEIGHT_MOBILE, AD_MARGIN_BOTTOM } from '../../Ad';
 import { AppFrame } from './AppFrame';
@@ -226,7 +226,7 @@ export function AppLayoutDocs(props: AppLayoutDocsProps) {
             disableToc={disableToc}
             wideLayout={wideLayout}
           >
-            <CodeProvider sourceEnhancers={sourceEnhancers}>{children}</CodeProvider>
+            <CodeProviderLazy sourceEnhancers={sourceEnhancers}>{children}</CodeProviderLazy>
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
           {disableToc ? null : <AppTableOfContents toc={toc} wideLayout={wideLayout} />}
