@@ -251,11 +251,18 @@ export interface DemoToolbarProps {
    */
   githubLocation?: string;
   /**
-   * Demo anchor id used to build the "copy source link" permalinks (the
-   * matching `.js` / `.tsx` anchors are rendered alongside the demo). When
-   * unset, those items are disabled.
+   * Anchor id for the TypeScript source of the currently-shown file (e.g.
+   * `ComboBox.tsx`), used by the "copy TypeScript link" item. The matching
+   * `<DemoAnchorLink>` is rendered alongside the demo; the item is disabled when
+   * unset.
    */
-  sourceAnchor?: string;
+  tsSourceAnchor?: string;
+  /**
+   * Anchor id for the JavaScript twin of the currently-shown file (e.g.
+   * `ComboBox.jsx`), used by the "copy JavaScript link" item. Landing on it swaps
+   * to the JS transform. Unset (and the item disabled) when there's no JS transform.
+   */
+  jsSourceAnchor?: string;
   /** Deploy permalinks shown only on staging / PR-preview builds. `null` hides them. */
   devLinks?: DemoDeploymentLinks | null;
 }
@@ -290,7 +297,8 @@ export function DemoToolbar(props: DemoToolbarProps) {
     onResetFocus,
     onReset,
     githubLocation,
-    sourceAnchor,
+    tsSourceAnchor,
+    jsSourceAnchor,
     devLinks,
   } = props;
   const t = useTranslate();
@@ -342,17 +350,19 @@ export function DemoToolbar(props: DemoToolbarProps) {
   );
 
   // "Copy source link" handlers. Copies a permalink to the current page that
-  // targets the demo's `.js` / `.tsx` source anchor (the matching
-  // `<DemoAnchorLink>`s are rendered next to the demo). Built from
+  // targets the selected file's `.tsx` (TS) or `.jsx`/`.js` (JS) source anchor —
+  // the per-file ids rendered next to the demo. The anchor already carries the
+  // extension, and landing on the JS one swaps to the JS transform. Built from
   // `window.location` at click time so it reflects the page the user is on.
   const createHandleCodeSourceLink = React.useCallback(
     (target: 'js' | 'tsx') => async () => {
       handleMoreClose();
-      if (!sourceAnchor || typeof window === 'undefined') {
+      const anchor = target === 'tsx' ? tsSourceAnchor : jsSourceAnchor;
+      if (!anchor || typeof window === 'undefined') {
         return;
       }
       const base = window.location.href.split('#')[0];
-      const link = `${base}#${sourceAnchor}${target === 'tsx' ? '.tsx' : '.js'}`;
+      const link = `${base}#${anchor}`;
       try {
         await copy(link);
         setSnackbarMessage(t('copiedSourceLink'));
@@ -361,7 +371,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         // Swallow — clipboard access may be denied by the user agent.
       }
     },
-    [t, handleMoreClose, sourceAnchor],
+    [t, handleMoreClose, tsSourceAnchor, jsSourceAnchor],
   );
 
   const hasNonSystemDemos = variants.length > 1;
@@ -560,7 +570,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           </MenuItem>
           <MenuItem
             onClick={createHandleCodeSourceLink('js')}
-            disabled={!sourceAnchor}
+            disabled={!jsSourceAnchor}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
             data-ga-event-action="copy-js-source-link"
@@ -569,7 +579,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
           </MenuItem>
           <MenuItem
             onClick={createHandleCodeSourceLink('tsx')}
-            disabled={!sourceAnchor}
+            disabled={!tsSourceAnchor}
             data-ga-event-category="demo"
             data-ga-event-label={gaLabel}
             data-ga-event-action="copy-ts-source-link"
