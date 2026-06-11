@@ -50,7 +50,7 @@ const faqData = [
         <br />
         <Link
           target="_blank"
-          href="href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses""
+          href="https://mui.com/legal/mui-x-eula/#authorized-developer-count-rule"
         >
           The clause in the EULA.
         </Link>
@@ -103,7 +103,7 @@ const faqData = [
           <li>Commercial solutions deployed for end-users</li>
         </ul>
         Based on the{' '}
-        <Link target="_blank" href="https://mui.com/legal/mui-x-eula/#deployment">
+        <Link target="_blank" href="https://mui.com/legal/mui-x-eula/#sublicense-conditions">
           'Deployment' section of the EULA
         </Link>
         , you can sublicense the software if it's made part of a larger work. The new licenses must
@@ -171,7 +171,7 @@ const faqData = [
         license.{' '}
         <Link
           target="_blank"
-          href="href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses""
+          href="https://mui.com/legal/mui-x-eula/#authorized-developer-count-rule"
         >
           The relevant EULA clause.
         </Link>

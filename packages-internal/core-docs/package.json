@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-core-docs",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "license": "MIT",
@@ -50,7 +50,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "next": "15.5.16"
+    "next": "15.5.18"
   },
   "peerDependencies": {
     "@base-ui/react": "^1",

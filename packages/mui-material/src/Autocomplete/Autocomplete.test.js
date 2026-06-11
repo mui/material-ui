@@ -24,6 +24,10 @@ import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 
+// Firefox reports fractional `scrollTop` values in Vitest browser mode, so the exact
+// scroll-position assertions below fail. See https://github.com/vitest-dev/vitest/issues/9223
+const isFirefox = /firefox/i.test(navigator.userAgent);
+
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
 
@@ -576,27 +580,30 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('The');
     });
 
-    it('preserves listbox scroll position when clearing a mouse-created highlight', async () => {
-      const { user } = render(
-        <Autocomplete
-          resetHighlightOnMouseLeave
-          options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
-          renderInput={(params) => <TextField {...params} />}
-          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
-        />,
-      );
+    it.skipIf(isFirefox)(
+      'preserves listbox scroll position when clearing a mouse-created highlight',
+      async () => {
+        const { user } = render(
+          <Autocomplete
+            resetHighlightOnMouseLeave
+            options={['one', 'two', 'three', 'four', 'five', 'six', 'seven']}
+            renderInput={(params) => <TextField {...params} />}
+            slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+          />,
+        );
 
-      const textbox = screen.getByRole('combobox');
-      await user.click(textbox);
-      const listbox = screen.getByRole('listbox');
-      listbox.scrollTop = 50;
+        const textbox = screen.getByRole('combobox');
+        await user.click(textbox);
+        const listbox = screen.getByRole('listbox');
+        listbox.scrollTop = 50;
 
-      await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
-      await user.pointer({ target: textbox });
+        await user.pointer({ target: screen.getByRole('option', { name: 'five' }) });
+        await user.pointer({ target: textbox });
 
-      expect(getActiveDescendant(textbox)).to.equal(null);
-      expect(listbox.scrollTop).to.equal(50);
-    });
+        expect(getActiveDescendant(textbox)).to.equal(null);
+        expect(listbox.scrollTop).to.equal(50);
+      },
+    );
   });
 
   describe('highlight synchronisation', () => {
@@ -4537,7 +4544,7 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36212
-  it.skipIf(isJsdom())(
+  it.skipIf(isJsdom() || isFirefox)(
     'should preserve scrollTop position of the listbox when adding new options on mobile',
     function test() {
       function getOptions(count) {
@@ -4570,7 +4577,7 @@ describe('<Autocomplete />', () => {
   );
 
   // https://github.com/mui/material-ui/issues/40250
-  it('should preserve scrollTop when more options are added', () => {
+  it.skipIf(isFirefox)('should preserve scrollTop when more options are added', () => {
     function OptionsAutocomplete({ options }) {
       return (
         <Autocomplete
@@ -4595,36 +4602,39 @@ describe('<Autocomplete />', () => {
     expect(listbox.scrollTop).to.equal(50);
   });
 
-  it('should preserve scrollTop when filtered options grow without changing the input', async () => {
-    function OptionsAutocomplete({ options }) {
-      return (
-        <Autocomplete
-          open
-          options={options}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-          slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
-        />
+  it.skipIf(isFirefox)(
+    'should preserve scrollTop when filtered options grow without changing the input',
+    async () => {
+      function OptionsAutocomplete({ options }) {
+        return (
+          <Autocomplete
+            open
+            options={options}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+            slotProps={{ listbox: { style: { maxHeight: '100px', overflow: 'auto' } } }}
+          />
+        );
+      }
+
+      const { rerender, user } = render(
+        <OptionsAutocomplete options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']} />,
       );
-    }
+      const textbox = screen.getByRole('combobox');
+      const listbox = screen.getByRole('listbox');
 
-    const { rerender, user } = render(
-      <OptionsAutocomplete options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6']} />,
-    );
-    const textbox = screen.getByRole('combobox');
-    const listbox = screen.getByRole('listbox');
+      await user.type(textbox, 'aaa');
 
-    await user.type(textbox, 'aaa');
+      listbox.scrollTop = 50;
 
-    listbox.scrollTop = 50;
+      rerender(
+        <OptionsAutocomplete
+          options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6', 'aaa7', 'aaa8']}
+        />,
+      );
 
-    rerender(
-      <OptionsAutocomplete
-        options={['aaaa1', 'aaaa2', 'aaaa3', 'aaaa4', 'aaa5', 'aaa6', 'aaa7', 'aaa8']}
-      />,
-    );
-
-    expect(listbox.scrollTop).to.equal(50);
-  });
+      expect(listbox.scrollTop).to.equal(50);
+    },
+  );
 
   it('should reset scrollTop when deleting input adds matching options', async () => {
     const { user } = render(

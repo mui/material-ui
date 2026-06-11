@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -99,7 +99,7 @@
     "@mui/utils": "workspace:^",
     "@next/eslint-plugin-next": "16.2.7",
     "@octokit/rest": "22.0.1",
-    "@pigment-css/react": "0.0.30",
+    "@pigment-css/react": "0.0.31",
     "@playwright/test": "1.59.1",
     "@pnpm/find-workspace-dir": "1000.1.5",
     "@types/babel__core": "7.20.5",
@@ -110,8 +110,8 @@
     "@types/yargs": "17.0.35",
     "@typescript/native-preview": "7.0.0-dev.20260514.1",
     "@vitejs/plugin-react": "^5.1.1",
-    "@vitest/browser-playwright": "^4.0.13",
-    "@vitest/coverage-v8": "^4.0.13",
+    "@vitest/browser-playwright": "^4.1.0",
+    "@vitest/coverage-v8": "^4.1.0",
     "axe-core": "4.11.1",
     "babel-plugin-module-resolver": "5.0.3",
     "chalk": "5.6.2",
@@ -141,8 +141,8 @@
     "stylelint": "17.11.0",
     "tsx": "4.21.0",
     "typescript": "6.0.3",
-    "vite": "^7.2.2",
-    "vitest": "^4.0.13",
+    "vite": "^7.3.2",
+    "vitest": "^4.1.0",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.0.0"
   },
@@ -164,9 +164,9 @@
     "@babel/runtime": "^7.29.2",
     "@types/node": "20.19.39",
     "cross-fetch": "^4.1.0",
-    "@pigment-css/react": "0.0.30",
-    "@pigment-css/unplugin": "0.0.30",
-    "@pigment-css/nextjs-plugin": "0.0.30",
-    "@pigment-css/vite-plugin": "0.0.30"
+    "@pigment-css/react": "0.0.31",
+    "@pigment-css/unplugin": "0.0.31",
+    "@pigment-css/nextjs-plugin": "0.0.31",
+    "@pigment-css/vite-plugin": "0.0.31"
   }
 }
