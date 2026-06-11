@@ -1,22 +1,44 @@
 'use client';
 
 import * as React from 'react';
-import { useRunner } from 'react-runner';
+import { useRunner, importCode } from 'react-runner';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
-import type { ControlledCode } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import type {
+  ControlledCode,
+  ControlledVariantExtraFiles,
+} from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeExternals } from '@mui/internal-docs-infra/CodeExternalsContext';
 import { DemoErrorProvider, useDemoErrorReporter } from './DemoErrorContext';
 
-function Runner({ code, variantKey }: { code: string; variantKey: string }) {
+function Runner({
+  code,
+  extraFiles,
+  variantKey,
+}: {
+  code: string;
+  extraFiles?: ControlledVariantExtraFiles;
+  variantKey: string;
+}) {
   const externalsContext = useCodeExternals();
   const scope = React.useMemo(() => {
-    let externals = externalsContext?.externals;
-    if (!externals) {
-      externals = { imports: { react: React } };
+    // `scope.import` is react-runner's module map; its `require` does an exact-key
+    // lookup. Start from the package externals, then evaluate each extra file with
+    // react-runner's `importCode` and register it under the specifier the main
+    // source imports it by. In flat mode that's `./<name>` without the extension
+    // (the loader strips it), e.g. key `top100Films.ts` -> `./top100Films`. Passing
+    // the same growing `imports` map lets a file import earlier siblings + externals.
+    const imports: Record<string, unknown> = {
+      ...(externalsContext?.externals ?? { react: React }),
+    };
+    for (const [fileName, file] of Object.entries(extraFiles ?? {})) {
+      if (typeof file?.source === 'string') {
+        imports[`./${fileName.replace(/\.[^.]+$/, '')}`] = importCode(file.source, {
+          import: imports,
+        });
+      }
     }
-
-    return { import: { ...externals } };
-  }, [externalsContext]);
+    return { import: imports };
+  }, [externalsContext, extraFiles]);
 
   const { element, error } = useRunner({ code, scope });
   const reportError = useDemoErrorReporter(variantKey);
@@ -47,12 +69,14 @@ function DemoController({ children }: { children: React.ReactNode }) {
       code
         ? Object.keys(code).reduce(
             (acc, cur) => {
-              const source = code[cur]?.source;
-              if (!source) {
+              const variant = code[cur];
+              if (!variant?.source) {
                 return acc;
               }
 
-              acc[cur] = <Runner code={source} variantKey={cur} />;
+              acc[cur] = (
+                <Runner code={variant.source} extraFiles={variant.extraFiles} variantKey={cur} />
+              );
               return acc;
             },
             {} as Record<string, React.ReactNode>,
