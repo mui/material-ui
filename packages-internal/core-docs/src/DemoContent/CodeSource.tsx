@@ -78,6 +78,7 @@ export const CodeSource = styled('div', {
     fontWeight: '400',
     fontSize: '0.8125rem',
     lineHeight: '1.5',
+    tabSize: 2,
     // In dark mode the page background already matches the code panel's dark
     // surface, so the panel needs a visible divider border to separate it
     // from the surrounding content. Light mode keeps the transparent border
