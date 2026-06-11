@@ -69,6 +69,14 @@ This is different from virtual elements used for the [`Popper`](/material-ui/rea
 Popover uses [Grow](/material-ui/transitions/#grow) by default.
 Use `slots.transition` and `slotProps.transition` to replace it with another transition or to pass transition props.
 
+## Accessibility
+
+The Popover component is built on top of the [Modal](/material-ui/react-modal/) component.
+It does not automatically describe the purpose of the popover content, so add an accessible label or description when the content needs context.
+
+Make sure the element that opens the popover can be reached and operated with the keyboard.
+If the popover contains interactive content, follow the WAI-ARIA pattern for the interaction, such as a [dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) or [menu](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+
 ## Supplementary projects
 
 For more advanced use cases, you might be able to take advantage of:
