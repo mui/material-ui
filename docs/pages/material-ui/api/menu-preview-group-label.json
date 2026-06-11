@@ -1,0 +1,28 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewGroupLabel",
+  "imports": ["import MenuPreviewGroupLabel from '@mui/material/MenuPreviewGroupLabel';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiMenuPreviewGroupLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "muiName": "MuiMenuPreviewGroupLabel",
+  "filename": "/packages/mui-material/src/MenuPreviewGroupLabel/MenuPreviewGroupLabel.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}

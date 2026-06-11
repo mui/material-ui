@@ -1,0 +1,22 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the menu." },
+    "closeParentOnEsc": {
+      "description": "When in a submenu, determines whether pressing the Escape key closes the entire menu."
+    },
+    "defaultOpen": {
+      "description": "Whether the menu is initially open.<br>To render a controlled menu, use the <code>open</code> prop instead."
+    },
+    "disabled": { "description": "Whether the component should ignore user interaction." },
+    "highlightItemOnHover": {
+      "description": "Whether moving the pointer over items should highlight them."
+    },
+    "loopFocus": { "description": "Whether to loop keyboard focus back to the first item." },
+    "modal": { "description": "Determines if the menu enters a modal state when open." },
+    "onOpenChange": { "description": "Event handler called when the menu is opened or closed." },
+    "open": { "description": "Whether the menu is currently open." },
+    "orientation": { "description": "The visual orientation of the menu." }
+  },
+  "classDescriptions": {}
+}

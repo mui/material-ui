@@ -1,0 +1,141 @@
+{
+  "props": {
+    "align": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'"
+      },
+      "default": "'start'"
+    },
+    "alignOffset": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;number" },
+      "default": "0"
+    },
+    "anchor": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "arrowPadding": { "type": { "name": "number" }, "default": "5" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "collisionAvoidance": {
+      "type": {
+        "name": "union",
+        "description": "{ align?: 'flip'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'shift', fallbackAxisSide?: 'end'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'start', side?: 'flip'<br>&#124;&nbsp;'none' }<br>&#124;&nbsp;{ align?: 'none'<br>&#124;&nbsp;'shift', fallbackAxisSide?: 'end'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'start', side?: 'none'<br>&#124;&nbsp;'shift' }"
+      }
+    },
+    "collisionBoundary": {
+      "type": {
+        "name": "union",
+        "description": "'clipping-ancestors'<br>&#124;&nbsp;HTML element<br>&#124;&nbsp;Array&lt;HTML element&gt;<br>&#124;&nbsp;{ height: number, width: number, x: number, y: number }"
+      },
+      "default": "'clipping-ancestors'"
+    },
+    "collisionPadding": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ bottom?: number, left?: number, right?: number, top?: number }"
+      },
+      "default": "5"
+    },
+    "container": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "disableAnchorTracking": { "type": { "name": "bool" }, "default": "false" },
+    "finalFocus": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: HTML element }<br>&#124;&nbsp;bool"
+      }
+    },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "positionMethod": {
+      "type": { "name": "enum", "description": "'absolute'<br>&#124;&nbsp;'fixed'" },
+      "default": "'absolute'"
+    },
+    "side": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'inline-end'<br>&#124;&nbsp;'inline-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'inline-end'"
+    },
+    "sideOffset": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;number" },
+      "default": "0"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ list?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popup?: func<br>&#124;&nbsp;object, portal?: func<br>&#124;&nbsp;object, positioner?: func<br>&#124;&nbsp;object }"
+      }
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ list?: elementType, paper?: elementType, popup?: elementType, portal?: elementType, positioner?: elementType }"
+      }
+    },
+    "sticky": { "type": { "name": "bool" }, "default": "false" },
+    "style": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewSubmenuPopup",
+  "imports": ["import MenuPreviewSubmenuPopup from '@mui/material/MenuPreviewSubmenuPopup';"],
+  "slots": [
+    {
+      "name": "portal",
+      "description": "The component used for the portal.",
+      "default": "BaseMenu.Portal",
+      "class": null
+    },
+    {
+      "name": "positioner",
+      "description": "The component used for the positioner.",
+      "default": "BaseMenu.Positioner",
+      "class": null
+    },
+    {
+      "name": "popup",
+      "description": "The component rendered by the Base UI popup.",
+      "default": "'div'",
+      "class": null
+    },
+    {
+      "name": "paper",
+      "description": "The component used for the Material surface.",
+      "default": "Paper",
+      "class": "MuiMenuPreviewSubmenuPopup-paper"
+    },
+    {
+      "name": "list",
+      "description": "The component used for the presentational list wrapper.",
+      "default": "List",
+      "class": "MuiMenuPreviewSubmenuPopup-list"
+    }
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiMenuPreviewSubmenuPopup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "muiName": "MuiMenuPreviewSubmenuPopup",
+  "filename": "/packages/mui-material/src/MenuPreviewSubmenuPopup/MenuPreviewSubmenuPopup.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}
