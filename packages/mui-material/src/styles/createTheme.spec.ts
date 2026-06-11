@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions, FocusRing } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
 
 const theme = createTheme();
@@ -315,5 +315,27 @@ const theme = createTheme();
     components: {
       mergeClassNameAndStyle: true,
     },
+  });
+}
+
+// focusRing theme key
+{
+  createTheme({ focusRing: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
+  createTheme({ focusRing: { outlineColor: 'red' } });
+  createTheme({ focusRing: { outlineStyle: 'dashed' } });
+  createTheme({ focusRing: false });
+  createTheme({ focusRing: undefined });
+
+  const focusRing: FocusRing | false | undefined = theme.focusRing;
+  createTheme({ focusRing });
+
+  createTheme({
+    // @ts-expect-error outlineWidth must be a number or string
+    focusRing: { outlineWidth: true },
+  });
+
+  createTheme({
+    // @ts-expect-error color is not a valid outline property
+    focusRing: { color: 'red' },
   });
 }

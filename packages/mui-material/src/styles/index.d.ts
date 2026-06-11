@@ -7,6 +7,7 @@ export {
   ThemeOptions,
   Theme,
   CssThemeVariables,
+  FocusRing,
 } from './createTheme';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
