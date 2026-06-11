@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Tabs } from '@base-ui/react/tabs';
 import IconButton from '@mui/material/IconButton';
 import { alpha, styled, type CSSObject, type Theme } from '@mui/material/styles';
+import { useTranslate } from '../i18n';
 import { DemoComponentTheme } from '../DemoThemeProviders';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 
@@ -515,6 +516,8 @@ export function DemoContainer(props: DemoContainerProps) {
     renderTabsAndCode,
   } = props;
 
+  const t = useTranslate();
+
   // Default to the `'outlined'` background when none is specified.
   const resolvedBg = bg ?? 'outlined';
 
@@ -555,7 +558,7 @@ export function DemoContainer(props: DemoContainerProps) {
     <DemoRoot data-code-open={expanded ? '' : undefined}>
       {anchors}
       <DemoPreviewArea className="demo-preview" bg={resolvedBg} hideToolbar={hideToolbar}>
-        <DemoInitialFocus ref={focusRef} tabIndex={-1} />
+        <DemoInitialFocus ref={focusRef} tabIndex={-1} aria-label={t('initialFocusLabel')} />
         {previewStyle ? (
           <DemoPreviewSandbox style={previewStyle}>{themedPreview}</DemoPreviewSandbox>
         ) : (
