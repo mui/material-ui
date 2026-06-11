@@ -47,6 +47,7 @@
       },
       "default": "0"
     },
+    "unstable_level": { "type": { "name": "number" } },
     "wrap": {
       "type": {
         "name": "enum",
