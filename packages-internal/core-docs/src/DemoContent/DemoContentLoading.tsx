@@ -4,6 +4,7 @@ import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
+import { fileSourceAnchorIds } from './sourceAnchors';
 
 // ---------------------------------------------------------------------------
 // SSR / streaming placeholder rendered before the live `DemoContent` mounts.
@@ -94,6 +95,12 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     </CodeSource>
   ) : null;
 
+  // Root-file deep-link ids for the SSR skeleton: `#<RootFile>.{tsx,ts,js,jsx}`,
+  // matching the live `DemoContent`, so a `#<RootFile>.tsx`/`.jsx` link resolves
+  // before hydration. The root file is the first entry in `fileNames`.
+  const rootFileName = fileNames?.[0];
+  const sourceAnchorIds = rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined;
+
   return (
     <DemoContainer
       preview={component}
@@ -107,6 +114,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       expanded={initialExpanded}
       tabs={tabs}
       code={code}
+      sourceAnchorIds={sourceAnchorIds}
     />
   );
 }

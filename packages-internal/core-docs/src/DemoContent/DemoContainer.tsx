@@ -405,6 +405,14 @@ export const DemoCodeWindow = styled('div', {
 export interface DemoContainerProps {
   /** Anchor `<div>` elements rendered above the preview for deep-linking. */
   anchors?: React.ReactNode;
+  /**
+   * Source deep-link anchor ids (e.g. `basic-buttons.tsx`, `basic-buttons.js`).
+   * Rendered here — rather than passed via `anchors` — so the SSR loading
+   * skeleton emits them too, letting a `#<slug>.tsx`/`.js` link resolve before
+   * the live demo hydrates. The interactive hash→language swap lives in
+   * `DemoContent`.
+   */
+  sourceAnchorIds?: string[];
   /** Main demo preview (rendered React element or a skeleton placeholder). */
   preview: React.ReactNode;
   /**
@@ -493,6 +501,7 @@ export interface DemoContainerProps {
 export function DemoContainer(props: DemoContainerProps) {
   const {
     anchors,
+    sourceAnchorIds,
     preview,
     bg,
     hideToolbar,
@@ -557,6 +566,9 @@ export function DemoContainer(props: DemoContainerProps) {
   return (
     <DemoRoot data-code-open={expanded ? '' : undefined}>
       {anchors}
+      {sourceAnchorIds?.map((id) => (
+        <DemoAnchorLink key={`source-${id}`} id={id} />
+      ))}
       <DemoPreviewArea className="demo-preview" bg={resolvedBg} hideToolbar={hideToolbar}>
         <DemoInitialFocus ref={focusRef} tabIndex={-1} aria-label={t('initialFocusLabel')} />
         {previewStyle ? (

@@ -5,6 +5,7 @@ import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/type
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
 import { useCodeWindow } from '@mui/internal-docs-infra/useCodeWindow';
 import { useScrollAnchor } from '@mui/internal-docs-infra/useScrollAnchor';
+import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { useTranslate } from '../i18n';
 import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
@@ -19,41 +20,9 @@ import {
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
+import { fileSourceAnchorIds, sourceAnchorTransform, toJavascriptFileName } from './sourceAnchors';
 import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig, codeSandboxTsconfigOverride } from './exportConfig';
-
-// ---------------------------------------------------------------------------
-// Page-global "demo is animating" flag
-//
-// While any demo on the page is expanding/collapsing, set
-// `data-demo-transitioning` on `<html>`. Opted-in components (currently the
-// rainbow MUI Chat button) match `html[data-demo-transitioning] &` in their
-// own stylesheet and pause their continuous animations. Otherwise those
-// animations compete for paint/composite time with the demo's height
-// transition and visibly smear it.
-//
-// Refcounted so concurrent expansions don't clear each other early.
-// ---------------------------------------------------------------------------
-
-let transitioningCount = 0;
-
-function beginDemoTransitioning() {
-  if (typeof document === 'undefined') {
-    return;
-  }
-  transitioningCount += 1;
-  document.documentElement.setAttribute('data-demo-transitioning', '');
-}
-
-function endDemoTransitioning() {
-  if (typeof document === 'undefined') {
-    return;
-  }
-  transitioningCount = Math.max(0, transitioningCount - 1);
-  if (transitioningCount === 0) {
-    document.documentElement.removeAttribute('data-demo-transitioning');
-  }
-}
 
 // Duration (ms) of one half of the transform swap window. The full
 // `expand → swap → collapse` cycle lasts `TRANSFORM_DELAY * 2`. Must match
@@ -332,33 +301,10 @@ export default function DemoContent(props: DemoContentProps) {
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;
-  const transitionTimerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  React.useEffect(
-    () => () => {
-      if (transitionTimerRef.current !== undefined) {
-        clearTimeout(transitionTimerRef.current);
-        transitionTimerRef.current = undefined;
-        endDemoTransitioning();
-      }
-    },
-    [],
-  );
   const handleToggleFrames = React.useCallback(() => {
     const next = !expandedRef.current;
     anchorScroll(next ? 'expand' : 'collapse');
     demo.setExpanded(next);
-    // Pause every CSS animation on the page for the duration of the
-    // expand/collapse so continuous paints don't smear the height transition.
-    // Cleared a touch after `useScrollAnchor`'s default duration (300ms).
-    if (transitionTimerRef.current !== undefined) {
-      clearTimeout(transitionTimerRef.current);
-    } else {
-      beginDemoTransitioning();
-    }
-    transitionTimerRef.current = setTimeout(() => {
-      transitionTimerRef.current = undefined;
-      endDemoTransitioning();
-    }, 400);
   }, [anchorScroll, demo]);
 
   // GA event label — the canonical demo slug is used since it uniquely
@@ -366,6 +312,43 @@ export default function DemoContent(props: DemoContentProps) {
   const gaLabel = demo.slug ?? props.name ?? '';
 
   const { toolbarRef, handleKeyDown: handleToolbarKeyDown } = useToolbarKeyboard();
+
+  // ---- Source deep links (custom, transform-only) ----
+  // Render the ROOT (entry) file's `#<FileName>.{tsx,ts,js,jsx}` anchors (via
+  // `DemoContainer`, so the loading skeleton emits them too) and, on a matching
+  // hash, swap to the right language: `.tsx`/`.ts` -> TS source, `.js`/`.jsx` ->
+  // the JS transform. Ids are FILENAME-based to match the existing/shipped slugs
+  // (e.g. `ButtonBaseDemo.tsx` / `.jsx`). We only swap the language — no file or
+  // variant selection. The native hash nav only reacts to `${kebab(slug)}:`-prefixed
+  // hashes (`isHashRelevantToDemo`), so these colon-less ids never fight it. NEVER
+  // join these ids with `:` or it re-enables native nav.
+  const [hash] = useUrlHashState();
+  const { availableTransforms, selectTransform, setExpanded } = demo;
+
+  // The root file is the selected variant's entry file (`VariantCode.fileName`,
+  // e.g. `ButtonBaseDemo.tsx`).
+  const rootVariantCode = props.code?.[demo.selectedVariant];
+  const rootFileName =
+    rootVariantCode && typeof rootVariantCode !== 'string' ? rootVariantCode.fileName : undefined;
+
+  const sourceAnchorIds = React.useMemo(
+    () => (!hideToolbar && rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined),
+    [hideToolbar, rootFileName],
+  );
+
+  // Apply the hash once per change. Gating on `appliedHashRef` is essential:
+  // `selectTransform`'s identity changes on every JS/TS toggle, so without it the
+  // effect would re-run with a stale hash and yank the user's toggle choice back.
+  const appliedHashRef = React.useRef<string | null>(null);
+  React.useEffect(() => {
+    if (!hash || hash === appliedHashRef.current || !sourceAnchorIds?.includes(hash)) {
+      return;
+    }
+    appliedHashRef.current = hash;
+    // Landing on a source link reveals the source and selects its language.
+    setExpanded(true);
+    selectTransform(sourceAnchorTransform(hash));
+  }, [hash, sourceAnchorIds, setExpanded, selectTransform]);
 
   const anchors =
     anchorName != null ? (
@@ -380,12 +363,6 @@ export default function DemoContent(props: DemoContentProps) {
                 <DemoAnchorLink key={`${slug}-tsx`} id={`${slug}-${anchorName}.tsx`} />,
               ];
             })}
-        {hideToolbar ? null : (
-          <React.Fragment>
-            <DemoAnchorLink id={`${anchorName}.js`} />
-            <DemoAnchorLink id={`${anchorName}.tsx`} />
-          </React.Fragment>
-        )}
       </React.Fragment>
     ) : null;
 
@@ -401,9 +378,17 @@ export default function DemoContent(props: DemoContentProps) {
     ? demo.selectedFileUrl.replace('/tree/', '/blob/')
     : undefined;
 
-  // Anchor used by the "copy source link" items and the deploy permalinks. The
-  // matching `<DemoAnchorLink>`s (e.g. `${anchorName}.tsx`) are rendered above.
+  // Anchor used by the deploy permalinks (demo-slug based).
   const sourceAnchor = anchorName ?? demo.slug ?? undefined;
+
+  // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
+  // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
+  // pasting the link opens the demo source in that language.
+  const tsSourceAnchor = rootFileName;
+  const jsSourceAnchor =
+    rootFileName && availableTransforms.includes('js')
+      ? toJavascriptFileName(rootFileName)
+      : undefined;
 
   // Deploy permalinks are only meaningful on the staging / PR-preview Netlify
   // builds. They reuse the current route + demo anchor, swapping the origin for
@@ -415,17 +400,17 @@ export default function DemoContent(props: DemoContentProps) {
       return null;
     }
     const routePath = router.asPath.split('#')[0].split('?')[0];
-    const hash = sourceAnchor ? `#${sourceAnchor}` : '';
+    const anchorHash = sourceAnchor ? `#${sourceAnchor}` : '';
     const siteName = process.env.NETLIFY_SITE_NAME;
     const pullRequestId = process.env.PULL_REQUEST_ID;
     return {
       pullRequest:
         pullRequestId && siteName
-          ? `https://deploy-preview-${pullRequestId}--${siteName}.netlify.app${routePath}${hash}`
+          ? `https://deploy-preview-${pullRequestId}--${siteName}.netlify.app${routePath}${anchorHash}`
           : undefined,
-      next: `https://next--${siteName}.netlify.app${routePath}${hash}`,
-      permalink: `${process.env.NETLIFY_DEPLOY_URL ?? ''}${routePath}${hash}`,
-      master: `https://master--${siteName}.netlify.app${routePath}${hash}`,
+      next: `https://next--${siteName}.netlify.app${routePath}${anchorHash}`,
+      permalink: `${process.env.NETLIFY_DEPLOY_URL ?? ''}${routePath}${anchorHash}`,
+      master: `https://master--${siteName}.netlify.app${routePath}${anchorHash}`,
     };
   }, [router.asPath, sourceAnchor]);
 
@@ -452,7 +437,8 @@ export default function DemoContent(props: DemoContentProps) {
       onResetFocus={handleResetFocus}
       onReset={demo.reset}
       githubLocation={githubLocation}
-      sourceAnchor={sourceAnchor}
+      tsSourceAnchor={tsSourceAnchor}
+      jsSourceAnchor={jsSourceAnchor}
       devLinks={devLinks}
     />
   );
@@ -522,6 +508,7 @@ export default function DemoContent(props: DemoContentProps) {
   return (
     <DemoContainer
       anchors={anchors}
+      sourceAnchorIds={sourceAnchorIds}
       preview={demo.component}
       isolated={isolated}
       iframe={iframe}
