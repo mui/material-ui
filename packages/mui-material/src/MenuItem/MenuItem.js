@@ -181,6 +181,11 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...other
   } = props;
 
+  // `menuitemcheckbox`/`menuitemradio` require `aria-checked`; derive it from `selected`
+  // (an omitted `selected` means unchecked). Other roles keep `selected` presentational.
+  const isCheckableRole = role === 'menuitemcheckbox' || role === 'menuitemradio';
+  const ariaChecked = isCheckableRole ? Boolean(props.selected) : undefined;
+
   const focusSource = useSelectFocusSource();
   const context = React.useContext(ListContext);
   const childContext = React.useMemo(
@@ -250,6 +255,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
       <MenuItemRoot
         ref={handleRef}
         role={role}
+        aria-checked={ariaChecked}
         tabIndex={tabIndex}
         component={component}
         internalNativeButton={false}
@@ -328,6 +334,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   role: PropTypes.string,
   /**
    * If `true`, the component is selected.
+   * For `menuitemcheckbox` and `menuitemradio` roles, this also drives `aria-checked`.
    * @default false
    */
   selected: PropTypes.bool,
