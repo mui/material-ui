@@ -45,6 +45,7 @@ const createDemoBase = createDemoFactory({
   controlled: true,
   projectDir,
   projectUrl,
+  editActivation: 'interaction',
 });
 
 const createDemoWithVariantsBase = createDemoWithVariantsFactory({
@@ -53,6 +54,7 @@ const createDemoWithVariantsBase = createDemoWithVariantsFactory({
   controlled: true,
   projectDir,
   projectUrl,
+  editActivation: 'interaction',
 });
 
 /**
