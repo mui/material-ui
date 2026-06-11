@@ -141,6 +141,16 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   const statusRef = React.useRef<InternalStatus>(status);
   statusRef.current = status;
 
+  // Opening from `unmounted`: mount the child in the same commit that `in` turns
+  // true so its ref is attached before effects run. react-transition-group did
+  // this by deriving the status from props during render; handling it in a
+  // layout effect instead would add a commit where the child is still null,
+  // breaking consumers that read the ref right after `in` flips.
+  if (inProp && status === 'unmounted') {
+    statusRef.current = 'exited';
+    setStatus('exited');
+  }
+
   const shouldAppearOnMountRef = React.useRef(inProp && shouldEnterOnMount);
   const mountedRef = React.useRef(false);
   const nextCallbackRef = React.useRef<CancellableCallback | null>(null);
@@ -352,7 +362,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   }, [cancelPendingCallback, updateStatus]);
 
   // Reconcile the rendered status after `in` or status changes:
-  // - opening from unmounted first renders the child as exited so refs exist.
+  // - opening from unmounted is handled during render (see above) so the child
+  //   is committed as exited with its ref attached before this effect runs.
   // - unmountOnExit removes the child after the exited state commits.
   // This matches react-transition-group's observable status steps without
   // running work after unrelated commits.
@@ -363,12 +374,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     const current = statusRef.current;
 
     if (inProp) {
-      if (current === 'unmounted') {
-        // Opening from unmounted needs one render with the child present so
-        // refs are attached before the enter animation starts.
-        statusRef.current = 'exited';
-        setStatus('exited');
-      } else if (current !== 'entering' && current !== 'entered') {
+      if (current !== 'entering' && current !== 'entered') {
         updateStatus(false, 'entering');
       }
     } else if (current === 'entering' || current === 'entered') {
