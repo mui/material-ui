@@ -15,6 +15,16 @@ export function fileBaseName(fileName: string): string {
   return dotIndex === -1 ? fileName : fileName.slice(0, dotIndex);
 }
 
+/**
+ * The demo's identity anchor id for `#`-deep links: the root file's base name
+ * with its extension chopped (e.g. `ContainedButtons.tsx` -> `ContainedButtons`),
+ * matching the existing/shipped slugs in `master`. Returns `undefined` when
+ * there's no root file to derive an id from.
+ */
+export function demoAnchorId(rootFileName: string | undefined): string | undefined {
+  return rootFileName ? fileBaseName(rootFileName) : undefined;
+}
+
 /** All `<base>.{tsx,ts,js,jsx}` deep-link anchor ids for the given files, deduped. */
 export function fileSourceAnchorIds(fileNames: Iterable<string>): string[] {
   const ids = new Set<string>();

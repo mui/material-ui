@@ -4,7 +4,7 @@ import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
-import { fileSourceAnchorIds } from './sourceAnchors';
+import { demoAnchorId, fileSourceAnchorIds } from './sourceAnchors';
 
 // ---------------------------------------------------------------------------
 // SSR / streaming placeholder rendered before the live `DemoContent` mounts.
@@ -40,14 +40,26 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     iframe,
     name,
     slug,
+    anchorId: anchorIdOption,
   } = props;
 
   const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
   const themeName = slug ?? name ?? 'demo';
 
+  // The root file is the first entry in `fileNames`, used both for the demo's
+  // deep-link anchor (its base name, e.g. `#ContainedButtons`) and the per-file
+  // source anchors below.
+  const rootFileName = fileNames?.[0];
+
+  // Match the live `DemoContent` anchor (the root file's base name) so a deep
+  // link resolves against the skeleton before the demo hydrates. An explicit
+  // `anchorId` option overrides it (`null` disables anchors).
+  const anchorId = anchorIdOption === undefined ? demoAnchorId(rootFileName) : anchorIdOption;
+
   if (hideToolbar === true) {
     return (
       <DemoContainer
+        anchorId={anchorId}
         preview={component}
         isolated={isolated}
         iframe={iframe}
@@ -97,12 +109,12 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
 
   // Root-file deep-link ids for the SSR skeleton: `#<RootFile>.{tsx,ts,js,jsx}`,
   // matching the live `DemoContent`, so a `#<RootFile>.tsx`/`.jsx` link resolves
-  // before hydration. The root file is the first entry in `fileNames`.
-  const rootFileName = fileNames?.[0];
+  // before hydration.
   const sourceAnchorIds = rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined;
 
   return (
     <DemoContainer
+      anchorId={anchorId}
       preview={component}
       isolated={isolated}
       iframe={iframe}

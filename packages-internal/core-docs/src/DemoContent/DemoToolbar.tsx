@@ -260,7 +260,8 @@ export interface DemoToolbarProps {
   /**
    * Anchor id for the JavaScript twin of the currently-shown file (e.g.
    * `ComboBox.jsx`), used by the "copy JavaScript link" item. Landing on it swaps
-   * to the JS transform. Unset (and the item disabled) when there's no JS transform.
+   * to the JS transform. Unset when there's no JS transform — the item is then
+   * omitted entirely rather than shown disabled.
    */
   jsSourceAnchor?: string;
   /** Deploy permalinks shown only on staging / PR-preview builds. `null` hides them. */
@@ -568,15 +569,16 @@ export function DemoToolbar(props: DemoToolbarProps) {
           >
             {t('viewGitHub')}
           </MenuItem>
-          <MenuItem
-            onClick={createHandleCodeSourceLink('js')}
-            disabled={!jsSourceAnchor}
-            data-ga-event-category="demo"
-            data-ga-event-label={gaLabel}
-            data-ga-event-action="copy-js-source-link"
-          >
-            {t('copySourceLinkJS')}
-          </MenuItem>
+          {jsSourceAnchor ? (
+            <MenuItem
+              onClick={createHandleCodeSourceLink('js')}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="copy-js-source-link"
+            >
+              {t('copySourceLinkJS')}
+            </MenuItem>
+          ) : null}
           <MenuItem
             onClick={createHandleCodeSourceLink('tsx')}
             disabled={!tsSourceAnchor}
