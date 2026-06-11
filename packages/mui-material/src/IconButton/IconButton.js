@@ -9,7 +9,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
@@ -56,6 +56,7 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
+    '--IconButton-focusRingColor': (theme.vars || theme).palette.primary.main,
     ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -105,9 +106,19 @@ const IconButtonRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     variants: [
       {
+        props: { focusableWhenDisabled: true },
+        style: {
+          [`&.${iconButtonClasses.disabled}.${buttonBaseClasses.focusVisible}`]: {
+            outline: '2px solid var(--IconButton-focusRingColor)',
+            outlineOffset: 2,
+          },
+        },
+      },
+      {
         props: { color: 'inherit' },
         style: {
           color: 'inherit',
+          '--IconButton-focusRingColor': (theme.vars || theme).palette.text.primary,
         },
       },
       ...Object.entries(theme.palette)
@@ -116,6 +127,7 @@ const IconButtonRoot = styled(ButtonBase, {
           props: { color },
           style: {
             color: (theme.vars || theme).palette[color].main,
+            '--IconButton-focusRingColor': (theme.vars || theme).palette[color].main,
             '--IconButton-hoverBg': theme.alpha(
               (theme.vars || theme).palette[color].main,
               (theme.vars || theme).palette.action.hoverOpacity,
@@ -174,13 +186,13 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color = 'default',
     disabled = false,
     disableFocusRipple = false,
+    focusableWhenDisabled = false,
     size = 'medium',
     id: idProp,
     loading = null,
     loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
-
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
@@ -209,6 +221,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
+      focusableWhenDisabled={focusableWhenDisabled === true}
       ownerState={ownerState}
     >
       {typeof loading === 'boolean' && (
@@ -302,6 +315,12 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * If `true`, allows a disabled component to retain keyboard and programmatic focusability while preventing activation.
+   * Disabled links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */

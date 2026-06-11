@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   createRenderer,
   screen,
@@ -11,6 +12,7 @@ import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
+import Tooltip from '@mui/material/Tooltip';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -137,16 +139,113 @@ describe('<Button />', () => {
     errorSpy.mockRestore();
   });
 
-  it('does not forward focusableWhenDisabled to ButtonBase', () => {
-    render(
-      <Button disabled focusableWhenDisabled>
-        Hello World
-      </Button>,
+  it('allows disabled buttons to remain focusable without activation', async () => {
+    const onClick = spy();
+    const onParentClick = spy();
+
+    const { user } = render(
+      <div onClick={onParentClick}>
+        <Button disabled focusableWhenDisabled onClick={onClick}>
+          Hello World
+        </Button>
+      </div>,
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.attribute('disabled');
-    expect(button).not.to.have.attribute('aria-disabled');
+    expect(button).not.to.have.attribute('disabled');
+    expect(button).to.have.attribute('aria-disabled', 'true');
+    expect(button).to.have.property('tabIndex', 0);
+    expect(button).toHaveComputedStyle({ pointerEvents: 'auto' });
+
+    await user.tab();
+    expect(button).toHaveFocus();
+
+    await user.keyboard('{Enter}');
+    await user.keyboard(' ');
+    await user.click(button);
+
+    expect(onClick.callCount).to.equal(0);
+    expect(onParentClick.callCount).to.equal(0);
+  });
+
+  it.skipIf(isJsdom())('applies a customizable focus ring to disabled focusable buttons', () => {
+    const theme = createTheme({
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              '--Button-focusRingColor': 'rgb(1, 2, 3)',
+            },
+          },
+        },
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Button disabled focusableWhenDisabled className={classes.focusVisible}>
+          Hello World
+        </Button>
+      </ThemeProvider>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveComputedStyle({
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
+      outlineOffset: '2px',
+    });
+    expect(getComputedStyle(button).getPropertyValue('--Button-focusRingColor')).to.equal(
+      'rgb(1, 2, 3)',
+    );
+  });
+
+  it('allows Tooltip to open from hover and focus on disabled focusable buttons', async () => {
+    const { user } = render(
+      <Tooltip title="Disabled action" enterDelay={0} leaveDelay={0}>
+        <Button disabled focusableWhenDisabled>
+          Hello World
+        </Button>
+      </Tooltip>,
+    );
+    const button = screen.getByRole('button');
+
+    await user.hover(button);
+    expect(await screen.findByRole('tooltip')).to.have.text('Disabled action');
+
+    await user.unhover(button);
+    await user.tab();
+    expect(button).toHaveFocus();
+    expect(await screen.findByRole('tooltip')).to.have.text('Disabled action');
+  });
+
+  it('keeps disabled links non-focusable and pointer-inert', () => {
+    const RouterLink = React.forwardRef(function RouterLink(props, ref) {
+      const { children, to, ...otherProps } = props;
+      return (
+        <a ref={ref} href={to} {...otherProps}>
+          {children}
+        </a>
+      );
+    });
+
+    render(
+      <React.Fragment>
+        <Button disabled focusableWhenDisabled href="https://example.com">
+          Href
+        </Button>
+        <Button disabled focusableWhenDisabled LinkComponent={RouterLink} to="/route">
+          To
+        </Button>
+      </React.Fragment>,
+    );
+    const links = screen.getAllByRole('link');
+
+    links.forEach((link) => {
+      expect(link).to.have.attribute('aria-disabled', 'true');
+      expect(link).to.have.property('tabIndex', -1);
+      expect(link).toHaveComputedStyle({ pointerEvents: 'none' });
+    });
   });
 
   it('does not pass classes.root to ButtonBase classes', () => {
@@ -969,6 +1068,76 @@ describe('<Button />', () => {
       render(<Button disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
+    });
+
+    it('can retain focus while loading when focusableWhenDisabled', async () => {
+      const { rerender, user } = render(<Button focusableWhenDisabled>Submit</Button>);
+      const button = screen.getByRole('button');
+
+      await user.tab();
+      expect(button).toHaveFocus();
+
+      rerender(
+        <Button loading focusableWhenDisabled>
+          Submit
+        </Button>,
+      );
+
+      const loadingButton = screen.getByRole('button');
+      expect(loadingButton).toHaveFocus();
+      expect(loadingButton).to.have.property('disabled', false);
+      expect(loadingButton).to.have.attribute('aria-disabled', 'true');
+    });
+
+    [
+      {
+        label: 'disabled focusableWhenDisabled',
+        props: { disabled: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'loading',
+        props: { loading: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'disabled loading',
+        props: { disabled: true, loading: true, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'disabled loading={false}',
+        props: { disabled: true, loading: false, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+      {
+        label: 'default loading={null}',
+        props: { disabled: true, loading: null, focusableWhenDisabled: true },
+        nativeDisabled: false,
+        ariaDisabled: true,
+        tabIndex: 0,
+      },
+    ].forEach(({ label, props, nativeDisabled, ariaDisabled, tabIndex }) => {
+      it(`resolves focusable disabled state for ${label}`, () => {
+        render(<Button {...props}>Submit</Button>);
+
+        const button = screen.getByRole('button');
+        expect(button).to.have.property('disabled', nativeDisabled);
+        expect(button).to.have.property('tabIndex', tabIndex);
+        if (ariaDisabled) {
+          expect(button).to.have.attribute('aria-disabled', 'true');
+        } else {
+          expect(button).not.to.have.attribute('aria-disabled');
+        }
+      });
     });
 
     it('renders a progressbar that is labelled by the button', () => {

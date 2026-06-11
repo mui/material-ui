@@ -46,8 +46,7 @@ export interface UseButtonBaseParameters {
    */
   tabIndex?: number | undefined;
   /**
-   * When `true`, a disabled root can remain focusable.
-   * When `undefined`, the feature is not enabled.
+   * When `true`, the disabled root remains focusable while activation is blocked.
    */
   focusableWhenDisabled?: boolean | undefined;
   /**
@@ -72,7 +71,7 @@ export interface ButtonBaseButtonProps {
   'aria-disabled'?: boolean | undefined;
   type?: string | undefined;
   disabled?: boolean | undefined;
-  tabIndex: number;
+  tabIndex?: number | undefined;
 }
 
 export interface ButtonBaseExternalProps extends React.HTMLAttributes<any> {
@@ -102,6 +101,10 @@ export interface UseButtonBaseReturnValue {
 
 const EMPTY = {};
 
+function isKeyboardActivationKey(event: React.KeyboardEvent<HTMLElement>) {
+  return event.key === 'Enter' || event.key === ' ';
+}
+
 export default function useButtonBase(
   parameters: UseButtonBaseParameters,
 ): UseButtonBaseReturnValue {
@@ -114,14 +117,14 @@ export default function useButtonBase(
     type,
     hasFormAction = false,
     tabIndex = 0,
-    focusableWhenDisabled: focusableWhenDisabledParam,
+    focusableWhenDisabled: focusableWhenDisabledParam = false,
     stopEventPropagation = false,
     onBeforeKeyDown,
     onBeforeKeyUp,
   } = parameters;
 
   const rootRef = React.useRef<HTMLElement | null>(null);
-  const focusableWhenDisabled = focusableWhenDisabledParam === true;
+  const focusableWhenDisabled = disabled && focusableWhenDisabledParam === true;
   const focusableWhenDisabledProps = useFocusableWhenDisabled({
     focusableWhenDisabled,
     disabled,
@@ -209,7 +212,7 @@ export default function useButtonBase(
 
   const buttonProps = React.useMemo(() => {
     const resolvedButtonProps: ButtonBaseButtonProps = focusableWhenDisabled
-      ? ({} as ButtonBaseButtonProps)
+      ? focusableWhenDisabledProps
       : { tabIndex: disabled ? -1 : tabIndex };
 
     if (nativeButton) {
@@ -222,13 +225,6 @@ export default function useButtonBase(
       if (!focusableWhenDisabled && disabled) {
         resolvedButtonProps['aria-disabled'] = disabled;
       }
-    }
-
-    if (focusableWhenDisabled) {
-      return {
-        ...resolvedButtonProps,
-        ...focusableWhenDisabledProps,
-      };
     }
 
     return resolvedButtonProps;
@@ -254,24 +250,29 @@ export default function useButtonBase(
       } = externalProps;
 
       const handleClick: React.MouseEventHandler<HTMLElement> = (event) => {
-        if (stopEventPropagation) {
-          event.stopPropagation();
-        }
-
         if (disabled) {
           event.preventDefault();
+          event.stopPropagation();
           return;
+        }
+
+        if (stopEventPropagation) {
+          event.stopPropagation();
         }
 
         externalOnClick?.(event);
       };
 
       const handleKeyDown: React.KeyboardEventHandler<HTMLElement> = (event) => {
-        if (focusableWhenDisabled) {
+        if (focusableWhenDisabled && isKeyboardActivationKey(event)) {
           focusableWhenDisabledProps.onKeyDown(event);
         }
 
         if (disabled) {
+          if (isKeyboardActivationKey(event)) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
           return;
         }
 
@@ -295,6 +296,10 @@ export default function useButtonBase(
 
       const handleKeyUp: React.KeyboardEventHandler<HTMLElement> = (event) => {
         if (disabled) {
+          if (isKeyboardActivationKey(event)) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
           return;
         }
 

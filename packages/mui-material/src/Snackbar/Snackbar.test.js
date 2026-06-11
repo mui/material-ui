@@ -5,6 +5,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen, isJsdom } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 import { snackbarContentClasses } from '@mui/material/SnackbarContent';
+import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -99,6 +100,101 @@ describe('<Snackbar />', () => {
 
       expect(handleCloseA.callCount).to.equal(1);
       expect(handleCloseB.callCount).to.equal(0);
+    });
+
+    it('can limit which Snackbars are closed when pressing Escape with defaultMuiPrevented', () => {
+      const handleCloseA = spy((event) => {
+        event.defaultMuiPrevented = true;
+      });
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar open onClose={handleCloseA} message="messageA" />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+
+      fireEvent.keyDown(document.body, { key: 'Escape' });
+
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseB.callCount).to.equal(0);
+    });
+
+    it('handles Escape from focused disabled focusable actions without pre-preventing default', () => {
+      const handleClose = spy();
+      render(
+        <Snackbar
+          open
+          onClose={handleClose}
+          message="message"
+          action={
+            <Button disabled focusableWhenDisabled>
+              Undo
+            </Button>
+          }
+        />,
+      );
+      const button = screen.getByRole('button', { name: 'Undo' });
+
+      act(() => {
+        button.focus();
+      });
+      expect(button).toHaveFocus();
+
+      const defaultNotPrevented = fireEvent.keyDown(button, { key: 'Escape' });
+
+      expect(defaultNotPrevented).to.equal(true);
+      expect(handleClose.callCount).to.equal(1);
+      expect(handleClose.args[0][0]).to.have.property('defaultPrevented', false);
+      expect(handleClose.args[0][1]).to.deep.equal('escapeKeyDown');
+    });
+
+    it('can limit which Snackbars are closed when pressing Escape from a disabled focusable action', () => {
+      const handleCloseA = spy((event) => event.preventDefault());
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar
+            open
+            onClose={handleCloseA}
+            message="messageA"
+            action={
+              <Button disabled focusableWhenDisabled>
+                Undo
+              </Button>
+            }
+          />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+      const button = screen.getByRole('button', { name: 'Undo' });
+
+      act(() => {
+        button.focus();
+      });
+      expect(button).toHaveFocus();
+
+      const defaultNotPrevented = fireEvent.keyDown(button, { key: 'Escape' });
+
+      expect(defaultNotPrevented).to.equal(false);
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseA.args[0][0]).to.have.property('defaultMuiPrevented', true);
+      expect(handleCloseB.callCount).to.equal(0);
+    });
+
+    it('skips Escape close when defaultMuiPrevented is true', () => {
+      const handleClose = spy();
+      render(<Snackbar open onClose={handleClose} message="message" />);
+
+      const event = new window.KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+        cancelable: true,
+      });
+      event.defaultMuiPrevented = true;
+      document.body.dispatchEvent(event);
+
+      expect(handleClose.callCount).to.equal(0);
     });
   });
 

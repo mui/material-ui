@@ -10,6 +10,10 @@ import {
 } from './useSnackbar.types';
 import { EventHandlers } from '../utils/types';
 
+type MuiPreventableKeyboardEvent = KeyboardEvent & {
+  defaultMuiPrevented?: boolean | undefined;
+};
+
 function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnValue {
   const {
     autoHideDuration = null,
@@ -29,11 +33,22 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
     /**
      * @param {KeyboardEvent} nativeEvent
      */
-    function handleKeyDown(nativeEvent: KeyboardEvent) {
-      if (!nativeEvent.defaultPrevented) {
-        if (nativeEvent.key === 'Escape') {
-          // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
-          onClose?.(nativeEvent, 'escapeKeyDown');
+    function handleKeyDown(nativeEvent: MuiPreventableKeyboardEvent) {
+      if (nativeEvent.defaultMuiPrevented) {
+        return;
+      }
+
+      if (nativeEvent.key === 'Escape') {
+        const defaultPreventedBeforeClose = nativeEvent.defaultPrevented;
+
+        // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
+        onClose?.(nativeEvent, 'escapeKeyDown');
+
+        // Backward compatibility: `preventDefault()` inside `onClose` used to stop later
+        // Snackbars from handling the same Escape event. Preserve that documented behavior
+        // without letting unrelated, pre-existing `defaultPrevented` values suppress Snackbar.
+        if (!defaultPreventedBeforeClose && nativeEvent.defaultPrevented) {
+          nativeEvent.defaultMuiPrevented = true;
         }
       }
     }
