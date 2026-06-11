@@ -82,6 +82,18 @@ export default function createTypography(palette, typography) {
     },
   };
 
+  // Inject fontFamily and allVariants into any custom typography variant objects in `other`
+  // so they behave consistently with the built-in variants produced by buildVariant.
+  const processedOther = {};
+  Object.keys(other).forEach((key) => {
+    const value = other[key];
+    if (value !== null && typeof value === 'object') {
+      processedOther[key] = { fontFamily, ...allVariants, ...value };
+    } else {
+      processedOther[key] = value;
+    }
+  });
+
   return deepmerge(
     {
       htmlFontSize,
@@ -94,7 +106,7 @@ export default function createTypography(palette, typography) {
       fontWeightBold,
       ...variants,
     },
-    other,
+    processedOther,
     {
       clone: false, // No need to clone deep
     },
