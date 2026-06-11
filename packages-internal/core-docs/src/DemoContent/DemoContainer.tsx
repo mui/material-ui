@@ -35,21 +35,27 @@ export const DemoRoot = styled('div')(({ theme }) => ({
   // without further reducing layout cost.
   contain: 'layout style',
 
-  // ---- Empty-focus collapse: re-round the toolbar's bottom corners ----
-  // A `collapseToEmpty` / `oversizedFocus: 'hide'` block renders
-  // `<code data-focused-lines="0">` and, while collapsed, shows nothing (see the
-  // padding/frame rules in `CodeSource`). With an empty collapsed window the
-  // toolbar is the visual bottom of the demo, so its bottom corners should
-  // round — but `DemoToolbarRoot`'s `hasSourceFocus` variant squares them
-  // unconditionally (it assumes a focused snippet is always visible below). Undo
-  // that here while collapsed. `data-code-open` (set on expand) drops the rule
-  // so the corners square off as the source appears; the toolbar's own
-  // `transition: border-radius` animates the change.
-  '&:has(pre > code[data-focused-lines="0"]):not([data-code-open]) [role="toolbar"]': {
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: '0 0 12px 12px',
+  // ---- Toolbar bottom corners: square against a visible source window ----
+  // The toolbar rounds its bottom corners by default (it's the demo's visual
+  // bottom) and squares them when a source window sits directly below it, so it
+  // merges into the code panel. Both conditions are read from the DOM here — not
+  // a prop — so the live demo and the SSR loading skeleton decide the corners
+  // identically (nothing to thread, or forget to thread):
+  //   - Expanded (`data-code-open`): the full source is revealed below.
+  //   - A non-empty collapsed focus window: the `<code>`'s `data-focused-lines`
+  //     is present and not `"0"`. It is `"0"` only for a `collapseToEmpty` /
+  //     `oversizedFocus: 'hide'` block (empty collapsed window); any other value
+  //     is the visible focus-window size (the full source when there's no
+  //     emphasis). `<Pre>` and `useCodeFallback` emit the attribute identically.
+  // The empty-focus case — and a toolbar with no code panel at all — keeps the
+  // rounded default; the toolbar's own `transition: border-radius` animates the
+  // change when the source expands.
+  '&[data-code-open] [role="toolbar"], &:has(pre > code[data-focused-lines]:not([data-focused-lines="0"])) [role="toolbar"]':
+    {
+      [theme.breakpoints.up('sm')]: {
+        borderRadius: 0,
+      },
     },
-  },
 }));
 
 // Outer preview wrapper — visual container around the rendered demo.
@@ -170,14 +176,12 @@ export const DemoAnchorLink = styled('div')({
   position: 'absolute',
 });
 
-// Action-button bar between preview and code. The `expanded` variant squares
-// off the bottom corners so the toolbar visually merges with the code panel
-// below it. When `hasSourceFocus` is true a focused source snippet is always
-// visible beneath the toolbar, so the bottom corners stay square regardless
-// of whether the full source is expanded.
-export const DemoToolbarRoot = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'expanded' && prop !== 'hasSourceFocus',
-})<{ expanded?: boolean; hasSourceFocus?: boolean }>(({ theme }) => [
+// Action-button bar between preview and code. Bottom corners round by default
+// (the toolbar is the demo's visual bottom) and square so it merges into the
+// code panel when a source window is visible below it — see the `DemoRoot`
+// `data-code-open` / `data-focused-lines` rule that drives the corners off the
+// DOM. The `transition: border-radius` here animates that change.
+export const DemoToolbarRoot = styled('div')(({ theme }) => [
   {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -202,24 +206,6 @@ export const DemoToolbarRoot = styled('div', {
       fontSize: 16,
       color: (theme.vars || theme).palette.grey[900],
     },
-    variants: [
-      {
-        props: { expanded: true },
-        style: {
-          [theme.breakpoints.up('sm')]: {
-            borderRadius: 0,
-          },
-        },
-      },
-      {
-        props: { hasSourceFocus: true },
-        style: {
-          [theme.breakpoints.up('sm')]: {
-            borderRadius: 0,
-          },
-        },
-      },
-    ],
   },
   theme.applyDarkStyles({
     [theme.breakpoints.up('sm')]: {
@@ -472,16 +458,12 @@ export interface DemoContainerProps {
   onToolbarKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   /** Focus handler used by the roving-tabindex hook. */
   onToolbarFocus?: React.FocusEventHandler<HTMLDivElement>;
-  /** Whether the source viewer is currently expanded (drives the toolbar variant). */
-  expanded?: boolean;
   /**
-   * Whether the code panel exposes a focused source snippet (e.g. emphasis
-   * frames from `enhanceCodeEmphasis`). When `true`, the toolbar's expand
-   * action reveals additional surrounding context rather than the entire
-   * source, and the toolbar's bottom corners stay square because the focused
-   * snippet is always visible below it.
+   * Whether the source viewer is currently expanded. Drives `data-code-open` on
+   * the root (which squares the toolbar's bottom corners and reveals the code
+   * panel) and the code window/wrapper expand state.
    */
-  hasSourceFocus?: boolean;
+  expanded?: boolean;
   /** Optional file tab bar — typically only present for multi-file demos when expanded. */
   tabs?: React.ReactNode;
   /** Code viewer / source panel. */
@@ -528,7 +510,6 @@ export function DemoContainer(props: DemoContainerProps) {
     onToolbarKeyDown,
     onToolbarFocus,
     expanded,
-    hasSourceFocus,
     tabs,
     code,
     codeRef,
@@ -589,8 +570,6 @@ export function DemoContainer(props: DemoContainerProps) {
       {toolbar != null ? (
         <React.Fragment>
           <DemoToolbarRoot
-            expanded={expanded}
-            hasSourceFocus={hasSourceFocus}
             ref={toolbarRef}
             role="toolbar"
             aria-label={toolbarLabel}
