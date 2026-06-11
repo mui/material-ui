@@ -40,7 +40,7 @@
     "@mui/x-charts": "9.1.0",
     "@mui/x-data-grid": "9.1.0",
     "@mui/x-data-grid-generator": "9.1.0",
-    "@mui/x-data-grid-premium": "9.1.0",
+    "@mui/x-data-grid-premium": "^9.4.0",
     "@mui/x-data-grid-pro": "9.1.0",
     "@mui/x-date-pickers": "9.1.0",
     "@mui/x-date-pickers-pro": "9.1.0",
