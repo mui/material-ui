@@ -35,6 +35,7 @@ export {
   TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
+export { ReducedMotionMode, Motion, MotionOptions } from './createMotion';
 export {
   Duration,
   Easing,

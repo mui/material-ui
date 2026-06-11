@@ -15,6 +15,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
@@ -82,7 +83,7 @@ const ChipRoot = styled('div', {
       backgroundColor: (theme.vars || theme).palette.action.selected,
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
-      transition: theme.transitions.create(['background-color', 'box-shadow']),
+      ...getTransitionStyles(theme, ['background-color', 'box-shadow']),
       // reset cursor explicitly in case ButtonBase is used
       cursor: 'unset',
       // We disable the focus ring for mouse, touch and keyboard users.

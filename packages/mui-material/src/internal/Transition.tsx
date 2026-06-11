@@ -41,6 +41,8 @@ interface InternalTransitionProps {
   mountOnEnter?: boolean | undefined;
   unmountOnExit?: boolean | undefined;
   addEndListener?: TransitionEndListener | undefined;
+  reduceMotion?: boolean | undefined;
+  getAutoTimeout?: (() => number | null | undefined) | undefined;
   onEnter?: ((isAppearing: boolean) => void) | undefined;
   onEntering?: ((isAppearing: boolean) => void) | undefined;
   onEntered?: ((isAppearing: boolean) => void) | undefined;
@@ -67,6 +69,32 @@ function resolveTimeouts(timeout: InternalTransitionProps['timeout']): ResolvedT
   return { appear, enter, exit };
 }
 
+/**
+ * Resolves the authored completion timeout for the current transition phase.
+ * Auto durations are read by the caller at scheduling time so Grow/Collapse
+ * can pass the latest measured value without storing it in React state.
+ */
+function getCompletionTimeout(params: {
+  currentStatus: 'entering' | 'exiting';
+  isAppearing: boolean;
+  timeout: InternalTransitionProps['timeout'];
+  autoTimeout?: number | null | undefined;
+}): number | null {
+  if (params.autoTimeout != null) {
+    return params.autoTimeout;
+  }
+
+  const resolved = resolveTimeouts(params.timeout);
+
+  if (params.currentStatus === 'entering') {
+    return params.isAppearing
+      ? (resolved.appear ?? resolved.enter ?? null)
+      : (resolved.enter ?? null);
+  }
+
+  return resolved.exit ?? null;
+}
+
 function Transition(props: InternalTransitionProps): React.ReactNode {
   const {
     in: inProp = false,
@@ -77,6 +105,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     unmountOnExit = false,
     timeout,
     addEndListener,
+    reduceMotion = false,
+    getAutoTimeout,
     nodeRef,
     onEnter,
     onEntering,
@@ -111,6 +141,16 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   const statusRef = React.useRef<InternalStatus>(status);
   statusRef.current = status;
 
+  // Opening from `unmounted`: mount the child in the same commit that `in` turns
+  // true so its ref is attached before effects run. react-transition-group did
+  // this by deriving the status from props during render; handling it in a
+  // layout effect instead would add a commit where the child is still null,
+  // breaking consumers that read the ref right after `in` flips.
+  if (inProp && status === 'unmounted') {
+    statusRef.current = 'exited';
+    setStatus('exited');
+  }
+
   const shouldAppearOnMountRef = React.useRef(inProp && shouldEnterOnMount);
   const mountedRef = React.useRef(false);
   const nextCallbackRef = React.useRef<CancellableCallback | null>(null);
@@ -120,12 +160,17 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // Store the isAppearing value for the current enter transition. performEnter
   // sets it before the status effect later calls onEntering/onEntered.
   const isAppearingRef = React.useRef(false);
+  // Capture reduced motion at the start of each phase so prop updates do not
+  // change the completion timing for an active transition.
+  const transitionReduceMotionRef = React.useRef(reduceMotion);
 
   // Transition end callbacks can run after props changed. Read props through
   // this ref so delayed work uses the latest callbacks and timeout settings.
   const propsRef = useValueAsRef({
     timeout,
     addEndListener,
+    reduceMotion,
+    getAutoTimeout,
     onEnter,
     onEntering,
     onEntered,
@@ -166,7 +211,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   }, []);
 
   const scheduleTransitionEnd = React.useCallback(
-    (timeoutValue: number | undefined, handler: () => void) => {
+    (nextStatus: 'entered' | 'exited', currentStatus: 'entering' | 'exiting') => {
       let timeoutId: ReturnType<typeof setTimeout> | undefined;
       const clearTimer = () => {
         if (timeoutId !== undefined) {
@@ -176,7 +221,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       };
       const done = makeCallback(() => {
         clearTimer();
-        handler();
+        statusRef.current = nextStatus;
+        setStatus(nextStatus);
       });
       const cancelDone = done.cancel;
       done.cancel = () => {
@@ -185,7 +231,19 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       };
       const node = propsRef.current.nodeRef.current;
       const listener = propsRef.current.addEndListener;
-      const noTimeoutOrListener = timeoutValue == null && !listener;
+      const hasAutoTimeout = propsRef.current.getAutoTimeout !== undefined;
+      const autoTimeout = propsRef.current.getAutoTimeout?.();
+      const authoredTimeout = getCompletionTimeout({
+        currentStatus,
+        isAppearing: isAppearingRef.current,
+        timeout: propsRef.current.timeout,
+        autoTimeout,
+      });
+      const transitionReduceMotion = transitionReduceMotionRef.current;
+      // Auto-duration consumers may skip measurement under reduced motion, but
+      // still need a 0ms timeout when they provide addEndListener.
+      const fallbackTimeout =
+        authoredTimeout ?? (transitionReduceMotion && hasAutoTimeout ? 0 : null);
       const scheduleTimer = (value: number) => {
         timeoutId = setTimeout(done, value);
       };
@@ -206,14 +264,11 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         scheduleTimer(0);
         return;
       }
-      if (noTimeoutOrListener) {
-        scheduleTimer(0);
-        return;
-      }
-      if (timeoutValue != null) {
-        scheduleTimer(timeoutValue);
-      }
       if (listener) {
+        if (fallbackTimeout != null) {
+          scheduleTimer(transitionReduceMotion ? 0 : fallbackTimeout);
+        }
+
         // With nodeRef, react-transition-group calls addEndListener(done).
         // Material UI has long supported addEndListener(node, done). Keep both call
         // shapes so existing transition wrappers do not have to change.
@@ -222,7 +277,11 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         } else {
           (listener as (done: () => void) => void)(done);
         }
+
+        return;
       }
+
+      scheduleTimer(transitionReduceMotion ? 0 : (authoredTimeout ?? 0));
     },
     [makeCallback, propsRef],
   );
@@ -242,6 +301,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
         return;
       }
 
+      transitionReduceMotionRef.current = current.reduceMotion;
       current.onEnter?.(isAppearing);
       statusRef.current = 'entering';
       setStatus('entering');
@@ -258,6 +318,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
       return;
     }
 
+    transitionReduceMotionRef.current = current.reduceMotion;
     current.onExit?.();
     statusRef.current = 'exiting';
     setStatus('exiting');
@@ -301,7 +362,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   }, [cancelPendingCallback, updateStatus]);
 
   // Reconcile the rendered status after `in` or status changes:
-  // - opening from unmounted first renders the child as exited so refs exist.
+  // - opening from unmounted is handled during render (see above) so the child
+  //   is committed as exited with its ref attached before this effect runs.
   // - unmountOnExit removes the child after the exited state commits.
   // This matches react-transition-group's observable status steps without
   // running work after unrelated commits.
@@ -312,12 +374,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     const current = statusRef.current;
 
     if (inProp) {
-      if (current === 'unmounted') {
-        // Opening from unmounted needs one render with the child present so
-        // refs are attached before the enter animation starts.
-        statusRef.current = 'exited';
-        setStatus('exited');
-      } else if (current !== 'entering' && current !== 'entered') {
+      if (current !== 'entering' && current !== 'entered') {
         updateStatus(false, 'entering');
       }
     } else if (current === 'entering' || current === 'entered') {
@@ -347,19 +404,10 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     const current = propsRef.current;
     if (status === 'entering') {
       current.onEntering?.(isAppearingRef.current);
-      const timeouts = resolveTimeouts(current.timeout);
-      const enterTimeout = isAppearingRef.current ? timeouts.appear : timeouts.enter;
-      scheduleTransitionEnd(enterTimeout, () => {
-        statusRef.current = 'entered';
-        setStatus('entered');
-      });
+      scheduleTransitionEnd('entered', 'entering');
     } else if (status === 'exiting') {
       current.onExiting?.();
-      const timeouts = resolveTimeouts(current.timeout);
-      scheduleTransitionEnd(timeouts.exit, () => {
-        statusRef.current = 'exited';
-        setStatus('exited');
-      });
+      scheduleTransitionEnd('exited', 'exiting');
     } else if (status === 'entered') {
       current.onEntered?.(isAppearingRef.current);
     } else if (status === 'exited') {
@@ -408,6 +456,10 @@ Transition.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  getAutoTimeout: PropTypes.func,
+  /**
+   * @ignore
+   */
   in: PropTypes.bool,
   /**
    * @ignore
@@ -451,6 +503,10 @@ Transition.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onExiting: PropTypes.func,
+  /**
+   * @ignore
+   */
+  reduceMotion: PropTypes.bool,
   /**
    * @ignore
    */

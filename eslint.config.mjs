@@ -94,6 +94,10 @@ export default defineConfig(
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+      // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
+      // See https://github.com/mui/material-ui/pull/40447
+      // TODO move to mui/mui-public.
+      'react/jsx-no-target-blank': 'off',
 
       // TODO enable:
       'react-hooks/refs': 'off',

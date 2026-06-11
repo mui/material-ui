@@ -13,6 +13,7 @@ import ButtonBase from '../ButtonBase';
 import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+import { getTransitionStyles } from '../transitions/utils';
 
 // Built-in sizes route padding via variants; any other size routes inline.
 const iconButtonSizes = ['small', 'medium', 'large'];
@@ -62,7 +63,7 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 'var(--IconButton-pad, var(--_pad))',
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
-    transition: theme.transitions.create('background-color', {
+    ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     variants: [
