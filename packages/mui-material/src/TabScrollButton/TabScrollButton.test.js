@@ -1,7 +1,9 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 import { createSvgIcon } from '@mui/material/utils';
+import RtlProvider from '@mui/system/RtlProvider';
 import describeConformance from '../../test/describeConformance';
 
 const ArrowBackIcon = createSvgIcon(<path d="M3 3h18v18H3z" />, 'ArrowBack');
@@ -80,5 +82,35 @@ describe('<TabScrollButton />', () => {
     );
 
     expect(screen.getAllByTestId('ArrowForwardIcon')).to.have.lengthOf(1);
+  });
+
+  describe('RTL', () => {
+    it('should render StartScrollButtonIcon for direction="right" in RTL', () => {
+      render(
+        <RtlProvider>
+          <TabScrollButton
+            {...defaultProps}
+            direction="right"
+            disabled
+            slots={{ StartScrollButtonIcon: ArrowBackIcon }}
+          />
+        </RtlProvider>,
+      );
+      expect(screen.getAllByTestId('ArrowBackIcon')).to.have.lengthOf(1);
+    });
+
+    it('should render EndScrollButtonIcon for direction="left" in RTL', () => {
+      render(
+        <RtlProvider>
+          <TabScrollButton
+            {...defaultProps}
+            direction="left"
+            disabled
+            slots={{ EndScrollButtonIcon: ArrowForwardIcon }}
+          />
+        </RtlProvider>,
+      );
+      expect(screen.getAllByTestId('ArrowForwardIcon')).to.have.lengthOf(1);
+    });
   });
 });
