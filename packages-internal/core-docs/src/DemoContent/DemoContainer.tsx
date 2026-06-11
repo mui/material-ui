@@ -16,6 +16,48 @@ import { DemoErrorBoundary } from './DemoErrorBoundary';
 // duplicating styled-components.
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Off-screen animation pausing
+//
+// Each `.demo-preview` (live demo or loading skeleton) is observed by a single
+// shared IntersectionObserver that toggles `data-visible` as the demo scrolls
+// in and out of view. `DemoPreviewArea` pauses every animation inside a preview
+// that lacks `data-visible`, so demos that aren't on screen don't burn CPU
+// animating.
+//
+// One observer is shared across every demo on the page (cheaper than one per
+// demo) and created lazily on the first mount, so it never runs during SSR and
+// the per-demo setup stays a single `observe()` call in an effect — off the
+// hydration path.
+// ---------------------------------------------------------------------------
+let visibilityObserver: IntersectionObserver | undefined;
+
+function observePreviewVisibility(node: Element): () => void {
+  if (typeof IntersectionObserver === 'undefined') {
+    // No observer support: reveal immediately so animations never freeze.
+    node.setAttribute('data-visible', '');
+    return () => {};
+  }
+  if (!visibilityObserver) {
+    visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-visible', '');
+          } else {
+            entry.target.removeAttribute('data-visible');
+          }
+        });
+      },
+      // A small margin starts the animations just before the demo scrolls into
+      // view, so they're already running by the time it's on screen.
+      { rootMargin: '200px' },
+    );
+  }
+  visibilityObserver.observe(node);
+  return () => visibilityObserver?.unobserve(node);
+}
+
 export const DemoRoot = styled('div')(({ theme }) => ({
   marginBottom: 24,
   marginLeft: theme.spacing(-2),
@@ -71,6 +113,13 @@ export const DemoPreviewArea = styled('div', {
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
+  // Hold every descendant animation paused while the preview is off screen. The
+  // shared IntersectionObserver (see `observePreviewVisibility`) adds
+  // `data-visible` once the demo scrolls into view, which lets the animations
+  // run. Matches the `.demo-preview` className set on this element below.
+  '&:not([data-visible=""]) *': {
+    animationPlayState: 'paused',
+  },
   variants: [
     {
       props: ({ hideToolbar }) => !!hideToolbar,
@@ -527,6 +576,15 @@ export function DemoContainer(props: DemoContainerProps) {
 
   const t = useTranslate();
 
+  // Pause the preview's animations until it scrolls into view. Wired in an
+  // effect — after hydration — so it never blocks the first paint, and works
+  // for both the live demo and the loading skeleton (both render this shell).
+  const previewRef = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    const node = previewRef.current;
+    return node ? observePreviewVisibility(node) : undefined;
+  }, []);
+
   // Default to the `'outlined'` background when none is specified.
   const resolvedBg = bg ?? 'outlined';
 
@@ -569,7 +627,12 @@ export function DemoContainer(props: DemoContainerProps) {
       {sourceAnchorIds?.map((id) => (
         <DemoAnchorLink key={`source-${id}`} id={id} />
       ))}
-      <DemoPreviewArea className="demo-preview" bg={resolvedBg} hideToolbar={hideToolbar}>
+      <DemoPreviewArea
+        ref={previewRef}
+        className="demo-preview"
+        bg={resolvedBg}
+        hideToolbar={hideToolbar}
+      >
         <DemoInitialFocus ref={focusRef} tabIndex={-1} aria-label={t('initialFocusLabel')} />
         {previewStyle ? (
           <DemoPreviewSandbox style={previewStyle}>{themedPreview}</DemoPreviewSandbox>
