@@ -20,7 +20,12 @@ import {
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
-import { fileSourceAnchorIds, sourceAnchorTransform, toJavascriptFileName } from './sourceAnchors';
+import {
+  demoAnchorId,
+  fileSourceAnchorIds,
+  sourceAnchorTransform,
+  toJavascriptFileName,
+} from './sourceAnchors';
 import { useMuiChatExporter } from './useMuiChatExporter';
 import { buildExportConfig, codeSandboxTsconfigOverride } from './exportConfig';
 
@@ -255,8 +260,6 @@ export default function DemoContent(props: DemoContentProps) {
     ? t(demo.expanded ? 'hideFullSource' : 'showFullSource')
     : t(demo.expanded ? 'hideSource' : 'showSource');
 
-  const anchorName = anchorIdOption === undefined ? demo.slug : anchorIdOption;
-
   // Track whether the source viewer has ever been opened so the Carbon ad
   // only appears once the user actually engages with the demo.
   const [adShown, setAdShown] = React.useState(false);
@@ -331,6 +334,12 @@ export default function DemoContent(props: DemoContentProps) {
   const rootFileName =
     rootVariantCode && typeof rootVariantCode !== 'string' ? rootVariantCode.fileName : undefined;
 
+  // The demo's deep-link anchor: the root file's base name (e.g. `#ContainedButtons`
+  // from `ContainedButtons.tsx`), matching the existing/shipped slugs in `master`
+  // — not the kebab-case `demo.slug`. An explicit `anchorId` option overrides it
+  // (`null` disables anchors).
+  const anchorName = anchorIdOption === undefined ? demoAnchorId(rootFileName) : anchorIdOption;
+
   const sourceAnchorIds = React.useMemo(
     () => (!hideToolbar && rootFileName ? fileSourceAnchorIds([rootFileName]) : undefined),
     [hideToolbar, rootFileName],
@@ -350,19 +359,20 @@ export default function DemoContent(props: DemoContentProps) {
     selectTransform(sourceAnchorTransform(hash));
   }, [hash, sourceAnchorIds, setExpanded, selectTransform]);
 
+  // The main `#<DemoName>` anchor is rendered by `DemoContainer` (via the
+  // `anchorId` prop) so the loading skeleton emits it too. Here we only add the
+  // styling-solution deep links (`#system-<DemoName>.js`, etc.), which are
+  // live-only and need the toolbar.
   const anchors =
-    anchorName != null ? (
+    anchorName != null && !hideToolbar ? (
       <React.Fragment>
-        <DemoAnchorLink id={anchorName} />
-        {hideToolbar
-          ? null
-          : Object.keys(stylingSolutionMapping).flatMap((key) => {
-              const slug = stylingSolutionMapping[key as keyof typeof stylingSolutionMapping];
-              return [
-                <DemoAnchorLink key={`${slug}-js`} id={`${slug}-${anchorName}.js`} />,
-                <DemoAnchorLink key={`${slug}-tsx`} id={`${slug}-${anchorName}.tsx`} />,
-              ];
-            })}
+        {Object.keys(stylingSolutionMapping).flatMap((key) => {
+          const slug = stylingSolutionMapping[key as keyof typeof stylingSolutionMapping];
+          return [
+            <DemoAnchorLink key={`${slug}-js`} id={`${slug}-${anchorName}.js`} />,
+            <DemoAnchorLink key={`${slug}-tsx`} id={`${slug}-${anchorName}.tsx`} />,
+          ];
+        })}
       </React.Fragment>
     ) : null;
 
@@ -378,8 +388,10 @@ export default function DemoContent(props: DemoContentProps) {
     ? demo.selectedFileUrl.replace('/tree/', '/blob/')
     : undefined;
 
-  // Anchor used by the deploy permalinks (demo-slug based).
-  const sourceAnchor = anchorName ?? demo.slug ?? undefined;
+  // Anchor used by the deploy permalinks — the demo's own anchor id, so the
+  // permalink hash always matches the rendered `<DemoAnchorLink>`. No fallback to
+  // `demo.slug`: when anchors are disabled there's no matching target to link to.
+  const sourceAnchor = anchorName ?? undefined;
 
   // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
   // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
@@ -507,6 +519,7 @@ export default function DemoContent(props: DemoContentProps) {
 
   return (
     <DemoContainer
+      anchorId={anchorName}
       anchors={anchors}
       sourceAnchorIds={sourceAnchorIds}
       preview={demo.component}
