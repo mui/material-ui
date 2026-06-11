@@ -3,6 +3,9 @@
 // globs — reads `Date` at module scope. See `fakeDateSetup.ts` for why this
 // ordering (and the separate `./fixtures` module) is required.
 import './fakeDateSetup';
+// Force programmatic smooth scrolls to be instant so composites that scroll on
+// mount (e.g. `MaterialStyling`) are captured at a deterministic offset.
+import './disableSmoothScroll';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
