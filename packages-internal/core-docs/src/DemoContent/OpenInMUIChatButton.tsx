@@ -30,12 +30,6 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   '--color-4': '195 100% 50%',
   '--color-5': '90 100% 50%',
   position: 'relative',
-  // Isolate the continuous rainbow paint and blurred `::before` from the
-  // rest of the demo. Without this, every animation frame invalidates the
-  // surrounding layout/paint, which smears the expand/collapse transition.
-  contain: 'layout paint',
-  isolation: 'isolate',
-  willChange: 'background-position',
   display: 'inline-flex',
   height: 26,
   padding: '7px 8px 8px 8px', // 7px for optical alignment
@@ -54,28 +48,20 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   backgroundSize: '200%',
   backgroundClip: 'padding-box, border-box, border-box',
   backgroundOrigin: 'border-box',
-  animation: `${rainbow} 2s linear infinite`,
-  // Stop the rainbow animations while any demo on the page is expanding
-  // or collapsing (set by `DemoContent`). Putting the rule in the Emotion
-  // stylesheet avoids injecting a `<style>` element at runtime (which would
-  // trigger an `@keyframes rule change` invalidation across all animated
-  // elements).
-  //
-  // Use `animation: none` rather than `animation-play-state: paused`: Chrome
-  // still schedules per-frame style invalidations for paused CSS animations
-  // (observed as ~20ms `UpdateLayoutTree` events every frame on ~100
-  // elements), whereas removing the animation entirely stops them.
-  'html[data-demo-transitioning] &': {
-    animation: 'none',
-    '&::before': {
-      animation: 'none',
-    },
-  },
   '--bg-color-raw': '255,255,255',
   '--bg-color': 'rgb(var(--bg-color-raw))',
   backgroundImage: `linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(var(--bg-color) 50%, rgba(var(--bg-color-raw)) 80%, rgba(var(--bg-color-raw), 0)), linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))`,
+  // Bring the rainbow to life only while hovered. Because just the single
+  // hovered button animates (rather than every button on the page,
+  // continuously), the animation no longer competes with demo
+  // expand/collapse transitions — so none of the previous `contain` /
+  // `isolation` / `data-demo-transitioning` machinery is needed.
   '&:hover': {
     '--bg-color-raw': '235,245,255',
+    animation: `${rainbow} 2s linear infinite`,
+    '&::before': {
+      animation: `${rainbow} 3s linear infinite`,
+    },
   },
   ...theme.applyDarkStyles({
     '--bg-color-raw': '16, 18, 20',
@@ -92,12 +78,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
     zIndex: 0,
     height: '20%',
     width: '60%',
-    // `translate3d` (rather than `translateX`) forces GPU promotion so the
-    // animated `filter: blur()` is rasterised once on its own layer instead
-    // of being recomputed against the page each animation frame.
-    transform: 'translate3d(-50%, 0, 0)',
-    willChange: 'background-position, filter',
-    animation: `${rainbow} 3s linear infinite`,
+    transform: 'translateX(-50%)',
     background:
       'linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))',
     filter: 'blur(1.2rem)',
