@@ -950,6 +950,64 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
+
+    it('should scroll selected tab into view when scroller resizes (scrollButtons="auto")', function test() {
+      if (typeof window === 'undefined') {
+        this.skip();
+      }
+
+      // Map from observed element to the ResizeObserver callback
+      const elementCallbacks = new Map();
+      const MockResizeObserver = class {
+        constructor(callback) {
+          this.resizeCallback = callback;
+        }
+
+        observe(el) {
+          elementCallbacks.set(el, this.resizeCallback);
+        }
+
+        disconnect() {}
+
+        unobserve(el) {
+          elementCallbacks.delete(el);
+        }
+      };
+
+      const originalRO = window.ResizeObserver;
+      window.ResizeObserver = MockResizeObserver;
+
+      try {
+        render(
+          <Tabs value={2} variant="scrollable" scrollButtons="auto" style={{ width: 200 }}>
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+            <Tab style={{ width: 120, minWidth: 'auto' }} />
+          </Tabs>,
+        );
+
+        const tablist = screen.getByRole('tablist');
+        const tablistContainer = tablist.parentElement;
+        const selectedTab = tablist.children[2];
+
+        // Simulate the scroller shrinking after scroll buttons appear:
+        // scroller is now narrower (right moved left by scroll button width)
+        tablistContainer.getBoundingClientRect = () => ({ left: 40, right: 160 });
+        selectedTab.getBoundingClientRect = () => ({ left: 150, right: 270 });
+        tablistContainer.scrollLeft = 0;
+
+        // Trigger the ResizeObserver callback registered for the scroller element
+        const scrollerCallback = elementCallbacks.get(tablistContainer);
+        expect(scrollerCallback).not.to.equal(undefined);
+        scrollerCallback([]);
+        clock.tick(1000);
+
+        // scrollSelectedIntoView should have scrolled right by (270 - 160) = 110
+        expect(tablistContainer.scrollLeft).to.equal(110);
+      } finally {
+        window.ResizeObserver = originalRO;
+      }
+    });
   });
 
   describe('slotProps: indicator', () => {
