@@ -151,13 +151,8 @@ export default function createStyled(input = {}) {
         ? 'components'
         : 'custom';
 
-    // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
-      inputSkipVariantsResolver !== undefined
-        ? inputSkipVariantsResolver
-        : // TODO v6: remove `Root` in the next major release
-          // For more details: https://github.com/mui/material-ui/pull/37908
-          (componentSlot && componentSlot !== 'Root' && componentSlot !== 'root') || false;
+      inputSkipVariantsResolver !== undefined ? inputSkipVariantsResolver : false;
 
     const skipSx = inputSkipSx || false;
 
