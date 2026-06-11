@@ -24,6 +24,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 import useSlot from '../utils/useSlot';
+import useEventCallback from '../utils/useEventCallback';
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -66,6 +67,51 @@ const useUtilityClasses = (ownerState) => {
 
   return composeClasses(slots, getAutocompleteUtilityClass, classes);
 };
+
+function getPlacementSide(placement) {
+  return placement.split('-')[0];
+}
+
+function getPlacementVariation(placement) {
+  return placement.split('-')[1];
+}
+
+function replacePlacementSide(placement, nextSide) {
+  const variation = getPlacementVariation(placement);
+
+  // Keep the requested alignment. Lazy flip sticks only to the rendered side.
+  return variation ? `${nextSide}-${variation}` : nextSide;
+}
+
+const EMPTY_LAZY_FLIP_PLACEMENT = {
+  anchorEl: null,
+  placement: null,
+  requestedPlacement: null,
+};
+
+function createLazyFlipModifier(onPlacementChange) {
+  return {
+    name: 'muiAutocompleteLazyFlip',
+    enabled: true,
+    phase: 'afterWrite',
+    fn: ({ state }) => {
+      const currentPlacement = state.options.placement;
+
+      if (!currentPlacement || getPlacementSide(currentPlacement) === 'auto') {
+        return;
+      }
+
+      const currentSide = getPlacementSide(currentPlacement);
+      const renderedSide = getPlacementSide(state.placement);
+
+      if (currentSide === renderedSide || renderedSide === 'auto') {
+        return;
+      }
+
+      onPlacementChange(replacePlacementSide(currentPlacement, renderedSide));
+    },
+  };
+}
 
 const AutocompleteRoot = styled('div', {
   name: 'MuiAutocomplete',
@@ -570,11 +616,92 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     size,
   };
 
+  const shouldApplyLazyFlip = !slots.popper;
+  const resolvedPopperProps =
+    typeof slotProps.popper === 'function' ? slotProps.popper(ownerState) : slotProps.popper;
+  const [lazyFlipPlacement, setLazyFlipPlacement] = React.useState(EMPTY_LAZY_FLIP_PLACEMENT);
+  const lazyFlipPopupOpenRef = React.useRef(false);
+
+  useEnhancedEffect(() => {
+    if (!popupOpen && lazyFlipPopupOpenRef.current && lazyFlipPlacement.placement != null) {
+      setLazyFlipPlacement(EMPTY_LAZY_FLIP_PLACEMENT);
+    }
+
+    lazyFlipPopupOpenRef.current = popupOpen;
+  }, [lazyFlipPlacement.placement, popupOpen]);
+
+  const requestedPopperPlacement =
+    resolvedPopperProps?.popperOptions?.placement ?? resolvedPopperProps?.placement ?? 'bottom';
+  // Prefer the last rendered Popper side for this open session, while still
+  // letting Popper flip again if that side overflows.
+  const lazyFlipPlacementOverride =
+    popupOpen &&
+    lazyFlipPlacement.anchorEl === anchorEl &&
+    lazyFlipPlacement.requestedPlacement === requestedPopperPlacement
+      ? lazyFlipPlacement.placement
+      : null;
+  const handleLazyFlipPlacementChange = useEventCallback((nextPlacement) => {
+    setLazyFlipPlacement((current) => {
+      if (
+        current.anchorEl === anchorEl &&
+        current.placement === nextPlacement &&
+        current.requestedPlacement === requestedPopperPlacement
+      ) {
+        return current;
+      }
+
+      return {
+        anchorEl,
+        placement: nextPlacement,
+        requestedPlacement: requestedPopperPlacement,
+      };
+    });
+  });
+  const lazyFlipModifier = React.useMemo(
+    () => createLazyFlipModifier(handleLazyFlipPlacementChange),
+    [handleLazyFlipPlacementChange],
+  );
+  const popperModifiers = React.useMemo(() => {
+    if (!shouldApplyLazyFlip) {
+      return resolvedPopperProps?.modifiers;
+    }
+
+    return resolvedPopperProps?.modifiers == null
+      ? [lazyFlipModifier]
+      : [...resolvedPopperProps.modifiers, lazyFlipModifier];
+  }, [lazyFlipModifier, resolvedPopperProps?.modifiers, shouldApplyLazyFlip]);
+  const autocompletePopperOptions = React.useMemo(() => {
+    if (!shouldApplyLazyFlip) {
+      return resolvedPopperProps?.popperOptions;
+    }
+
+    return {
+      ...resolvedPopperProps?.popperOptions,
+      ...(lazyFlipPlacementOverride != null && {
+        placement: lazyFlipPlacementOverride,
+      }),
+    };
+  }, [lazyFlipPlacementOverride, resolvedPopperProps?.popperOptions, shouldApplyLazyFlip]);
+  const resolvedPopperSlotProps = React.useMemo(() => {
+    if (!shouldApplyLazyFlip) {
+      return resolvedPopperProps;
+    }
+
+    return {
+      ...resolvedPopperProps,
+      modifiers: popperModifiers,
+      popperOptions: autocompletePopperOptions,
+    };
+  }, [autocompletePopperOptions, popperModifiers, resolvedPopperProps, shouldApplyLazyFlip]);
+
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
     slots,
-    slotProps,
+    slotProps: {
+      ...slotProps,
+      popper: resolvedPopperSlotProps,
+    },
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
