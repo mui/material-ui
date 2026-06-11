@@ -18,14 +18,7 @@ import type { DemoOptions } from './DemoContent';
 //   - the SSR'd `source` (initial file) in the code slot when expanded
 // ---------------------------------------------------------------------------
 
-export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions> & {
-  /**
-   * Whether the rendered code has a focused source snippet (emphasis frames).
-   * Forwarded to `DemoContainer` so the toolbar's bottom corners and expand
-   * label match the final hydrated demo.
-   */
-  hasSourceFocus?: boolean;
-};
+export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
 
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // `code` is the ready `<code>` for the displayed file — the hook applies
@@ -46,7 +39,6 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
     iframe,
     name,
     slug,
-    hasSourceFocus,
   } = props;
 
   const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
@@ -110,7 +102,6 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       name={themeName}
       bg={bg}
       hideToolbar={hideToolbar}
-      hasSourceFocus={hasSourceFocus}
       previewStyle={previewStyle}
       toolbar={toolbar}
       expanded={initialExpanded}
