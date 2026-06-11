@@ -45,18 +45,22 @@ const TablePaginationToolbar = styled(Toolbar, {
   }),
 })(
   memoTheme(({ theme }) => ({
-    minHeight: 52,
+    // Base density seams: no `size` prop here, so each axis is a size-invariant
+    // base token. `--_<key>` carries today's literal; the seam falls back to it.
+    '--_minHeight': '52px',
+    '--_actionsSpacing': '20px',
+    minHeight: 'var(--TablePagination-minHeight, var(--_minHeight))',
     paddingRight: 2,
     [`${theme.breakpoints.up('xs')} and (orientation: landscape)`]: {
-      minHeight: 52,
+      minHeight: 'var(--TablePagination-minHeight, var(--_minHeight))',
     },
     [theme.breakpoints.up('sm')]: {
-      minHeight: 52,
+      minHeight: 'var(--TablePagination-minHeight, var(--_minHeight))',
       paddingRight: 2,
     },
     [`& .${tablePaginationClasses.actions}`]: {
       flexShrink: 0,
-      marginLeft: 20,
+      marginLeft: 'var(--TablePagination-actionsSpacing, var(--_actionsSpacing))',
     },
   })),
 );
@@ -91,7 +95,10 @@ const TablePaginationSelect = styled(Select, {
   color: 'inherit',
   fontSize: 'inherit',
   flexShrink: 0,
-  marginRight: 32,
+  // Base density seam for the select-to-rows gap. Co-located default keeps the
+  // unprefixed `--_selectSpacing` from inheriting a foreign value.
+  '--_selectSpacing': '32px',
+  marginRight: 'var(--TablePagination-selectSpacing, var(--_selectSpacing))',
   marginLeft: 8,
   [`& .${tablePaginationClasses.select}`]: {
     paddingLeft: 8,

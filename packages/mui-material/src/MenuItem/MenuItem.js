@@ -61,14 +61,21 @@ const MenuItemRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
+    // Density adapter (docs/adr/0001): `dense` is the compactness axis (boolean).
+    // The default (non-dense) state is the plain seam `--MenuItem-<key>` over the
+    // internal default `--_<key>`; the `dense` variant re-routes the seam to the
+    // `--MenuItem-dense-<key>` token. Block + min-height live on the root
+    // unconditionally; inline gutters live on the !disableGutters variant.
+    '--_minHeight': '48px',
+    '--_padBlock': '6px',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
-    minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
+    minHeight: 'var(--MenuItem-minHeight, var(--_minHeight))',
+    paddingTop: 'var(--MenuItem-padBlock, var(--_padBlock))',
+    paddingBottom: 'var(--MenuItem-padBlock, var(--_padBlock))',
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
     '&:hover': {
@@ -87,14 +94,18 @@ const MenuItemRoot = styled(ButtonBase, {
       [`&.${menuItemClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+            (theme.vars || theme).palette.action.focusOpacity
+          }`,
         ),
       },
     },
     [`&.${menuItemClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${
+          (theme.vars || theme).palette.action.hoverOpacity
+        }`,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -125,14 +136,21 @@ const MenuItemRoot = styled(ButtonBase, {
       paddingLeft: 36,
     },
     [`& .${listItemIconClasses.root}`]: {
-      minWidth: 36,
+      minWidth: 'var(--ListItemIcon-minWidth, 36px)',
     },
     variants: [
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          '--_padInline': '16px',
+          paddingLeft: 'var(--MenuItem-padInline, var(--_padInline))',
+          paddingRight: 'var(--MenuItem-padInline, var(--_padInline))',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters && ownerState.dense,
+        style: {
+          '--MenuItem-padInline': 'var(--MenuItem-dense-padInline, var(--_padInline))',
         },
       },
       {
@@ -153,9 +171,10 @@ const MenuItemRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => ownerState.dense,
         style: {
-          minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
-          paddingTop: 4,
-          paddingBottom: 4,
+          '--_minHeight': '32px', // https://m2.material.io/components/menus#specs > Dense
+          '--_padBlock': '4px',
+          '--MenuItem-minHeight': 'var(--MenuItem-dense-minHeight, var(--_minHeight))',
+          '--MenuItem-padBlock': 'var(--MenuItem-dense-padBlock, var(--_padBlock))',
           ...theme.typography.body2,
           [`& .${listItemIconClasses.root} svg`]: {
             fontSize: '1.25rem',

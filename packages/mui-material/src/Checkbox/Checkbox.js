@@ -55,6 +55,16 @@ const CheckboxRoot = styled(SwitchBase, {
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
     variants: [
+      // Density: route the per-size public token into SwitchBase's seam. Default
+      // 9px both sizes (pixel-identical); size enables per-size density tuning.
+      {
+        props: { size: 'small' },
+        style: { '--SwitchBase-pad': 'var(--Checkbox-small-pad, var(--_pad))' },
+      },
+      {
+        props: { size: 'medium' },
+        style: { '--SwitchBase-pad': 'var(--Checkbox-medium-pad, var(--_pad))' },
+      },
       {
         props: { color: 'default', disableRipple: false },
         style: {

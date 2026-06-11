@@ -52,11 +52,32 @@ const SwitchRoot = styled('span', {
     ];
   },
 })({
+  // Density (docs/adr/0001): Switch geometry is interlocked, so the knobs are the
+  // dims (width/height/thumbSize/touchSize) + the track gutter (pad); the thumb's
+  // touch padding and travel are *derived* so the thumb stays centered on the track.
+  //   SwitchBase pad = (touchSize - thumbSize) / 2   (centers thumb in the button)
+  //   button top     = (height - touchSize) / 2       (centers button in the root)
+  //   checked travel = width - touchSize
+  // Defaults: touchSize == height -> pad 9/4, top 0, travel 20/16 (pixel-identical).
+  // The thumb (SwitchBase) and Thumb/Track slots inherit these seams (custom props
+  // inherit; they don't redeclare them). `--_pad` here is the root's gutter default
+  // (the track inset), distinct from the thumb's own SwitchBase `--_pad`.
+  '--_width': '58px', // 34 (track) + 12 (gutter) * 2
+  '--_height': '38px', // 14 (track) + 12 (gutter) * 2
+  '--_thumbSize': '20px',
+  '--_touchSize': '38px',
+  '--_pad': '12px',
+  '--Switch-width': 'var(--Switch-medium-width, var(--_width))',
+  '--Switch-height': 'var(--Switch-medium-height, var(--_height))',
+  '--Switch-thumbSize': 'var(--Switch-medium-thumbSize, var(--_thumbSize))',
+  '--Switch-touchSize': 'var(--Switch-medium-touchSize, var(--_touchSize))',
+  '--Switch-pad': 'var(--Switch-medium-pad, var(--_pad))',
+  '--SwitchBase-pad': 'calc((var(--Switch-touchSize) - var(--Switch-thumbSize)) / 2)',
   display: 'inline-flex',
-  width: 34 + 12 * 2,
-  height: 14 + 12 * 2,
+  width: 'var(--Switch-width, var(--_width))',
+  height: 'var(--Switch-height, var(--_height))',
   overflow: 'hidden',
-  padding: 12,
+  padding: 'var(--Switch-pad, var(--_pad))',
   boxSizing: 'border-box',
   position: 'relative',
   flexShrink: 0,
@@ -77,19 +98,17 @@ const SwitchRoot = styled('span', {
     {
       props: { size: 'small' },
       style: {
-        width: 40,
-        height: 24,
-        padding: 7,
-        [`& .${switchClasses.thumb}`]: {
-          width: 16,
-          height: 16,
-        },
-        [`& .${switchClasses.switchBase}`]: {
-          padding: 4,
-          [`&.${switchClasses.checked}`]: {
-            transform: 'translateX(16px)',
-          },
-        },
+        // Re-route the dims + gutter to the small tokens; pad/top/travel re-derive.
+        '--_width': '40px',
+        '--_height': '24px',
+        '--_thumbSize': '16px',
+        '--_touchSize': '24px',
+        '--_pad': '7px',
+        '--Switch-width': 'var(--Switch-small-width, var(--_width))',
+        '--Switch-height': 'var(--Switch-small-height, var(--_height))',
+        '--Switch-thumbSize': 'var(--Switch-small-thumbSize, var(--_thumbSize))',
+        '--Switch-touchSize': 'var(--Switch-small-touchSize, var(--_touchSize))',
+        '--Switch-pad': 'var(--Switch-small-pad, var(--_pad))',
       },
     },
   ],
@@ -110,7 +129,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
-    top: 0,
+    // Center the touch target in the root (top 0 when touchSize == height).
+    top: 'calc((var(--Switch-height, var(--_height)) - var(--Switch-touchSize, var(--_touchSize))) / 2)',
     left: 0,
     zIndex: 1, // Render above the focus ripple.
     color: theme.vars
@@ -120,7 +140,9 @@ const SwitchSwitchBase = styled(SwitchBase, {
       duration: theme.transitions.duration.shortest,
     }),
     [`&.${switchClasses.checked}`]: {
-      transform: 'translateX(20px)',
+      // Travel = root width - touch target (keeps the thumb symmetric on the track).
+      transform:
+        'translateX(calc(var(--Switch-width, var(--_width)) - var(--Switch-touchSize, var(--_touchSize))))',
     },
     [`&.${switchClasses.disabled}`]: {
       color: theme.vars
@@ -194,7 +216,10 @@ const SwitchTrack = styled('span', {
   memoTheme(({ theme }) => ({
     height: '100%',
     width: '100%',
-    borderRadius: 14 / 2,
+    // Full pill: half the track thickness (height minus the two gutters). Inherits
+    // the seams from SwitchRoot. Medium -> 7px; small clamps to a pill either way.
+    borderRadius:
+      'calc((var(--Switch-height, var(--_height)) - 2 * var(--Switch-pad, var(--_pad))) / 2)',
     zIndex: -1,
     ...getTransitionStyles(theme, ['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
@@ -221,8 +246,8 @@ const SwitchThumb = styled('span', {
     backgroundColor: 'currentColor',
     boxSizing: 'border-box',
     border: '1px solid transparent',
-    width: 20,
-    height: 20,
+    width: 'var(--Switch-thumbSize, var(--_thumbSize))',
+    height: 'var(--Switch-thumbSize, var(--_thumbSize))',
     borderRadius: '50%',
   })),
 );

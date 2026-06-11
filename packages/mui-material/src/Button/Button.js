@@ -74,6 +74,9 @@ const commonIconStyles = [
   },
 ];
 
+// Built-in sizes route padding via variants; any other size routes inline.
+const buttonSizes = ['small', 'medium', 'large'];
+
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
@@ -100,8 +103,12 @@ const ButtonRoot = styled(ButtonBase, {
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
       ...theme.typography.button,
+      // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
+      // is the universal default (today's root padding); variants specialize it
+      // per (variant, size), so a custom variant/size still gets a sane value.
+      '--_pad': '6px 16px',
+      padding: 'var(--Button-pad, var(--_pad))',
       minWidth: 64,
-      padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
@@ -114,9 +121,24 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
+        // Built-in size routing (CSS, deduped) — exposes the public sized token
+        // over the internal default. Custom sizes are routed inline instead.
+        {
+          props: { size: 'small' },
+          style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' },
+        },
+        {
+          props: { size: 'medium' },
+          style: { '--Button-pad': 'var(--Button-medium-pad, var(--_pad))' },
+        },
+        {
+          props: { size: 'large' },
+          style: { '--Button-pad': 'var(--Button-large-pad, var(--_pad))' },
+        },
         {
           props: { variant: 'contained' },
           style: {
+            '--_pad': '6px 16px', // medium default; small/large override below
             color: `var(--variant-containedColor)`,
             backgroundColor: `var(--variant-containedBg)`,
             boxShadow: (theme.vars || theme).shadows[2],
@@ -143,7 +165,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'outlined' },
           style: {
-            padding: '5px 15px',
+            '--_pad': '5px 15px', // medium default; small/large override below
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
@@ -156,7 +178,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'text' },
           style: {
-            padding: '6px 8px',
+            '--_pad': '6px 8px', // medium default; small/large override below
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -223,7 +245,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '4px 5px',
+            '--_pad': '4px 5px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -233,7 +255,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            padding: '8px 11px',
+            '--_pad': '8px 11px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -243,7 +265,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '3px 9px',
+            '--_pad': '3px 9px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -253,7 +275,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            padding: '7px 21px',
+            '--_pad': '7px 21px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -263,7 +285,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '4px 10px',
+            '--_pad': '4px 10px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -273,7 +295,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            padding: '8px 22px',
+            '--_pad': '8px 22px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -545,6 +567,14 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Material UI layer: built-in sizes route the public sized token via variants
+  // (deduped CSS). A custom size has no such variant, so route it inline — the
+  // token name carries the runtime size string, keeping custom sizes tunable for
+  // free. The `--_pad` default lives in the variants. See docs/adr/0001.
+  const densityVars = buttonSizes.includes(size)
+    ? undefined
+    : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
+
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp || (
@@ -597,6 +627,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
+      style={{ ...densityVars, ...other.style }}
       classes={forwardedClasses}
     >
       {startIcon}
@@ -716,6 +747,10 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
