@@ -417,7 +417,14 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <DialogContent>
             <Grid container spacing={2} sx={{ rowGap: { xs: 3, sm: 0 } }}>
               <Grid size={{ xs: 12, sm: 6 }}>
-                <Grid container sx={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <Grid
+                  container
+                  sx={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
