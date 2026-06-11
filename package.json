@@ -92,7 +92,7 @@
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.30",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.88",
     "@mui/internal-code-infra": "0.0.4-canary.107",
-    "@mui/internal-docs-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@4835901",
+    "@mui/internal-docs-infra": "0.11.1-canary.22",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.6",
     "@mui/internal-scripts": "workspace:^",
