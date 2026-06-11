@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "9.1.0",
+  "version": "9.1.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -119,7 +119,7 @@
     "axe-core": "4.11.1",
     "babel-plugin-module-resolver": "5.0.3",
     "chalk": "5.6.2",
-    "concurrently": "9.2.1",
+    "concurrently": "^10.0.3",
     "cpy-cli": "7.0.0",
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
@@ -132,7 +132,7 @@
     "jsdom": "26.1.0",
     "lerna": "9.0.7",
     "minimatch": "10.2.4",
-    "nx": "20.8.4",
+    "nx": "^22.7.5",
     "pkg-pr-new": "0.0.71",
     "playwright": "1.59.1",
     "prettier": "3.8.3",
