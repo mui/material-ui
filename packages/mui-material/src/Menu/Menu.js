@@ -39,7 +39,17 @@ const MenuRoot = styled(Popover, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
-})({});
+})({
+  variants: [
+    {
+      props: { open: false },
+      // Prevents clicks on items during the exit transition from registering
+      // as a selection. Without this, a fast follow-up click after choosing an
+      // item hits the menu item under the pointer instead of the trigger below.
+      style: { pointerEvents: 'none' },
+    },
+  ],
+});
 
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
