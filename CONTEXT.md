@@ -1,4 +1,17 @@
-# Density (CSS-var adapter)
+# Token adapter (CSS-var)
+
+How Material UI component styles are exposed as hand-authorable CSS variables so
+a designer can tune them — per component, per size/variant/state, or
+holistically — without touching component source or doing arithmetic. Two axes
+share the same three-layer model:
+
+- **Dimension** axis (padding / gap / height) — the **density** adapter.
+- **Color** axis (background / foreground / border, per variant, color, and
+  interaction state) — the **color/state** adapter.
+
+The original density framing follows.
+
+## Density (CSS-var adapter)
 
 How Material UI component dimensions (padding / gap / height) are exposed as
 hand-authorable CSS variables so a designer can tune component density — per
@@ -66,8 +79,14 @@ the `dense` variant over its own `--_<key>` literal. A boolean has no name for
 of the toggle is the plain seam, not an arbitrarily-named size. Contrast a
 **sized token**, where every value (including `medium`) is qualified because each
 is a real named size. Used by MenuItem, ListItem, ListItemButton, ListItemText.
-_Avoid_: naming the off state (`-normal-`, `-regular-`, `-default-`); routing the
-seam in the base; treating `dense` as a 2-value size enum.
+The same shape **generalizes to pseudo-class interaction states** on the color
+axis: **rest** is the unqualified base (the plain color token), and only the
+non-rest states (`hover`, `active`, `focus`, `disabled`, `selected`) get a
+qualified `<state>` segment, routed in their pseudo-class block. The trigger
+differs (a boolean prop vs a `:hover`/`.Mui-*` selector) but the rule is identical:
+the absent/default state is never named.
+_Avoid_: naming the off/rest state (`-normal-`, `-regular-`, `-default-`, `-rest-`);
+routing the seam in the base; treating `dense` as a 2-value size enum.
 
 **Internal default**:
 A private variable, shape `--_<key>` (leading underscore, **no component
@@ -81,10 +100,89 @@ plain `styleOverrides` property still wins.
 _Avoid_: exposing it as API, prefixing with the component name, "private token".
 
 **Token fallback**:
-The literal px the internal default carries — today's exact value for that
-`(variant, size)` cell. Makes the default render pixel-identical and bundle-light,
-at the cost that the single `--mui-spacing` dial no longer reflows the component.
+The default a token carries when unset — today's exact value for that cell.
+**Dimension axis:** a literal px (the internal default `--_<key>`). **Color axis:**
+the **palette CSS var** the cell already references (`--mui-palette-primary-main`),
+held by the color-axis internal default `--_<variant><Prop>`. Either way the
+un-configured component renders pixel-/color-identical (Argos zero-diff).
 _Avoid_: "default value", "initial".
+
+---
+
+The terms below cover the **color axis** specifically. It is **three-layer, like
+the dimension axis** (seam / private default / public knob) — not two. The private
+default earns its keep here because every component exposes the **full standard
+state set even where it is inert** (see _State standard_): an un-styled state must
+fall back to the value that state shows *today*, which the rest seam alone can't
+express without clobbering a styled state (e.g. hover-while-active). The private
+default, **advanced by each genuinely-styled state**, captures that current value.
+
+**Variant seam** (the color-axis analog of the agnostic var):
+The single per-property variable the styled root consumes for color, shape
+`--variant-<variant><Prop>` (`--variant-containedBg`, `--variant-outlinedColor`,
+`--variant-outlinedBorder`, `--variant-textBg`). **Pre-existing** (Button, since
+the CSS-extraction conversion #41378) — we adopt it as the seam, we don't replace
+it. Unlike the dimension seam it is **variant-qualified**, not agnostic: "background"
+is solid for `contained`, transparent for `text`, so the variant lives in the seam
+name. For a **value-state** it reads `var(--_<variant><Prop>)`; for an **inert
+state** it routes `var(<color token>, var(--_<variant><Prop>))` (see _Value-state
+vs inert-state_).
+_Avoid_: treating it as public API directly; renaming/prefixing it; assuming one
+agnostic color seam across variants.
+
+**Color internal default** (private, the color-axis analog of `--_<key>`):
+Shape `--_<variant><Prop>` (`--_containedBg`, leading underscore, no component
+prefix). Holds the **current resolved value** of its prop — the value the element
+shows right now, **including any rest/hover/disabled token override**, not the bare
+palette literal. Each **value-state** sets it to `var(<that state's token>, <palette
+literal>)` in its block (`--_containedBg: var(--Button-contained-error-hover-bg,
+<palette.dark>)` in `&:hover`); the seam then just reads `var(--_<variant><Prop>)`.
+An **inert state** reads it as its fallback, so it inherits whatever override the
+value-states put there.
+_Avoid_: omitting it (collapses to two vars and breaks inert standardized states);
+storing the bare palette literal with the token routed *above* it in the seam (then
+a rest override never reaches inert states — they snap back to the palette); exposing
+it as API.
+
+**Value-state vs inert-state** (where a state's token lives):
+A **value-state** genuinely sets the prop today (rest / hover / disabled for bg,
+border, etc.): its token lives **inside** the default —
+`--_<vp>: var(<token>, <palette>)`, seam = `var(--_<vp>)` — so the override is
+captured in the default and flows to every later state. An **inert state** does not
+change the prop (focus / active on Button — only box-shadow moves): its token is
+routed in the **seam over** the default — `--variant-<vp>: var(<token>, var(--_<vp>))`
+— settable, but unset it tracks the default. Which props are value vs inert is
+per (state, prop): hover is a value-state for bg/border but inert for fg (Button
+doesn't recolor text on hover).
+_Avoid_: routing a value-state's token in the seam above the default (the
+snap-to-palette bug); advancing the default in an inert state with a self-reference
+`--_<vp>: var(<token>, var(--_<vp>))` (guaranteed-invalid CSS).
+
+**Color token** (public, the design-system knob for color):
+A fully-qualified override, shape `--Component-<variant>-<color>-<state>-<prop>`
+(`--Button-contained-error-hover-bg`); the **rest** state omits the `<state>`
+segment (`--Button-contained-error-bg`). Vocabulary: `<prop> ∈ {bg, fg, border}`
+(`fg` = foreground/text color; `border` = border **color** on this axis),
+`<state> ∈ {hover, focus, active, disabled, selected}` plus the unqualified rest.
+Resolution is **per (variant, color, state, prop)** — the most
+specific meaningful granularity, no coarse color-agnostic layer (mirrors the
+dimension axis dropping the all-sizes base token). The name is built from the
+per-color loop variable, so **custom palette colors get tokens for free** (parallels
+custom-size routing). Variant-first ordering aligns with the seam (`--variant-contained…`).
+_Avoid_: a color-agnostic token (`--Button-contained-hover-bg` — forces all colors
+to one value); color-first ordering; omitting variant (breaks contained-vs-text).
+
+**State standard** (the predictable state surface):
+Every component exposes the **same** non-rest state segments — `hover`, `focus`,
+`active`, `disabled`, `selected` — for each variant×color×prop, **even where the
+component does not change that property in that state today** (the routing is then
+inert: token unset → tracks the current value). The goal is a *predictable* surface
+(a designer knows `--Button-<v>-<c>-disabled-bg` exists without reading source),
+traded against the extra inert CSS each component emits. `focus` maps to the
+`.Mui-focusVisible` selector (keyboard focus), not `:focus`. Contrast the dimension
+axis, where a token exists only where the axis is genuinely density-bearing.
+_Avoid_: tokenizing "only where color varies today"; naming the rest state; using
+`:focus` instead of `.Mui-focusVisible`; inventing per-component state sets.
 
 **Density scale** (tier-1):
 A named, ordered set of density steps (`xxs / xs / sm / md / lg …`), values
@@ -155,6 +253,18 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   **density scale**; un-enhanced, the literal fallbacks reproduce today's pixels.
 - This experiment does **not** ride `--mui-spacing`; holistic density comes from
   the density scale, not that dial.
+- **The color token carries only the axes the component has.** Button has variant
+  and palette-color → `--Button-<variant>-<color>-<state>-<prop>`. MenuItem has
+  neither (single styled root, no `color` prop) → `--MenuItem-<state>-<prop>`. The
+  segments are dropped, not stubbed; the value-state/inert-state and
+  rest-unqualified rules are unchanged. MenuItem's compound states
+  (`selected:hover`, `selected:focus`) are real states with their own tokens
+  (`--MenuItem-selected-hover-<prop>`), resolved by selector specificity as before.
+- **An inert prop with no native CSS home rides a zero-cost carrier.** MenuItem has
+  no border today, so its `border` token drives an **always-on inset box-shadow**
+  (`inset 0 0 0 1.5px var(--_border)`, default `transparent`) — invisible until set,
+  and never shifts layout (unlike a real `border`). The seam pattern is otherwise
+  identical to a component that already has the property (Button's `--variant-*`).
 
 ## Example dialogue
 
@@ -168,6 +278,18 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
 > default** `--_pad` — the literal px set in the `(variant, size)` `variants`
 > cell, pixel-identical to today. The `--mui-spacing` dial does nothing here; for
 > holistic density you run **enhanceDensity** and tune the **density scale**."
+
+> **Dev:** "How do I recolor the hover background of contained error buttons?"
+> **Domain expert:** "Set the **color token** `--Button-contained-error-hover-bg`.
+> The `&:hover` block routes it over the **color internal default** `--_containedBg`,
+> which hover has advanced to `palette.error.dark` — so unset it's today's hover
+> color, set it's yours. It's `(variant, color, state, prop)`-specific: error only,
+> hover only, background only."
+> **Dev:** "Is there a knob for the disabled state even though Button uses a flat grey?"
+> **Domain expert:** "Yes — `--Button-contained-error-disabled-bg` exists by the
+> **state standard**, even though it's inert by default (falls back to
+> `palette.action.disabledBackground`). Every component exposes the same
+> `hover/focus/active/disabled/selected` set, so the surface is predictable."
 
 ## Flagged ambiguities
 
@@ -185,3 +307,25 @@ _Avoid_: "density preset" (that is the resulting effect, not the function).
   one element (Button); split per axis (`padBlock`/`padInline`) when forced —
   axes on different elements/states or different shapes (OutlinedInput). Sides are
   symmetric within an axis, so `padding: <block> <inline>` stays RTL-safe.
+- Color `<prop>` foreground — the seam names it `Color` (`--variant-containedColor`),
+  but the public token already carries a palette `<color>` segment, so foreground
+  is **`fg`** (avoids `--Button-…-error-color`, two "color" meanings) — the public
+  vocabulary is deliberately separate from the internal seam suffix.
+- Color `<prop>` border — kept as bare **`border`** (not `borderColor`/`bc`):
+  `bc` reads as background-color, and `borderColor` is verbose. **Known caveat:**
+  on the color axis `border` means border _color_; if border _width_ ever becomes
+  a dimension-axis token this must be revisited to disambiguate.
+- "state token" — originally a binary-prop concept (`dense`); now also the
+  color-axis pseudo-class states. Same shape (rest/off unqualified, only non-rest
+  named), different trigger. The color axis additionally fixes a **standard** set
+  (`hover/focus/active/disabled/selected`) emitted even when inert, where the
+  dimension axis tokenizes only genuinely-density-bearing axes.
+- Where the value-state token lives — **corrected after the grill.** First draft
+  (and ADR-0002 v1) routed every state's token in the seam *over* a `--_<vp>` that
+  held the bare palette literal. Bug: overriding only the **rest** token left
+  inert states (focus/active) falling back to the palette literal, so a recoloured
+  button **snapped back to the palette colour on focus** (visible as default purple
+  on a re-greyed secondary). Fix: a **value-state** puts its token *inside*
+  `--_<vp>` (`--_<vp>: var(<token>, <palette>)`, seam reads `var(--_<vp>)`); only
+  **inert** states route over `--_<vp>`. Now `--_<vp>` is the current resolved
+  value and overrides propagate. See _Value-state vs inert-state_.

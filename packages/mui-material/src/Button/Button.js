@@ -1,22 +1,22 @@
-'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import resolveProps from '@mui/utils/resolveProps';
-import composeClasses from '@mui/utils/composeClasses';
-import { unstable_useId as useId } from '../utils';
-import rootShouldForwardProp from '../styles/rootShouldForwardProp';
-import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase from '../ButtonBase';
-import CircularProgress from '../CircularProgress';
-import capitalize from '../utils/capitalize';
-import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
-import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
-import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
-import { getTransitionStyles } from '../transitions/utils';
+"use client";
+import * as React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import resolveProps from "@mui/utils/resolveProps";
+import composeClasses from "@mui/utils/composeClasses";
+import { unstable_useId as useId } from "../utils";
+import rootShouldForwardProp from "../styles/rootShouldForwardProp";
+import { styled } from "../zero-styled";
+import memoTheme from "../utils/memoTheme";
+import { useDefaultProps } from "../DefaultPropsProvider";
+import ButtonBase from "../ButtonBase";
+import CircularProgress from "../CircularProgress";
+import capitalize from "../utils/capitalize";
+import createSimplePaletteValueFilter from "../utils/createSimplePaletteValueFilter";
+import buttonClasses, { getButtonUtilityClass } from "./buttonClasses";
+import ButtonGroupContext from "../ButtonGroup/ButtonGroupContext";
+import ButtonGroupButtonContext from "../ButtonGroup/ButtonGroupButtonContext";
+import { getTransitionStyles } from "../transitions/utils";
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -24,19 +24,19 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: [
-      'root',
-      loading && 'loading',
+      "root",
+      loading && "loading",
       variant,
       `size${capitalize(size)}`,
       `color${capitalize(color)}`,
-      disableElevation && 'disableElevation',
-      fullWidth && 'fullWidth',
+      disableElevation && "disableElevation",
+      fullWidth && "fullWidth",
       loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
-    startIcon: ['icon', 'startIcon'],
-    endIcon: ['icon', 'endIcon'],
-    loadingIndicator: ['loadingIndicator'],
-    loadingWrapper: ['loadingWrapper'],
+    startIcon: ["icon", "startIcon"],
+    endIcon: ["icon", "endIcon"],
+    loadingIndicator: ["loadingIndicator"],
+    loadingWrapper: ["loadingWrapper"],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -49,25 +49,25 @@ const useUtilityClasses = (ownerState) => {
 
 const commonIconStyles = [
   {
-    props: { size: 'small' },
+    props: { size: "small" },
     style: {
-      '& > *:nth-of-type(1)': {
+      "& > *:nth-of-type(1)": {
         fontSize: 18,
       },
     },
   },
   {
-    props: { size: 'medium' },
+    props: { size: "medium" },
     style: {
-      '& > *:nth-of-type(1)': {
+      "& > *:nth-of-type(1)": {
         fontSize: 20,
       },
     },
   },
   {
-    props: { size: 'large' },
+    props: { size: "large" },
     style: {
-      '& > *:nth-of-type(1)': {
+      "& > *:nth-of-type(1)": {
         fontSize: 22,
       },
     },
@@ -75,12 +75,97 @@ const commonIconStyles = [
 ];
 
 // Built-in sizes route padding via variants; any other size routes inline.
-const buttonSizes = ['small', 'medium', 'large'];
+const buttonSizes = ["small", "medium", "large"];
+
+// Color/state adapter (docs/adr/0002). Each variant-prop is consumed through the
+// pre-existing `--variant-*` seam over a private `--_<variant><Prop>` default.
+// Two kinds of state:
+//   • value-state (rest / hover / disabled) — genuinely sets the prop. Its public
+//     token lives INSIDE the default: `--_<vp>: var(<token>, <palette>)`, and the
+//     seam reads `var(--_<vp>)`. So a rest/hover override is captured in the default.
+//   • inert-state (focus / active) — Button moves only box-shadow. It routes its
+//     token in the SEAM over the default: `--variant-<vp>: var(<token>, var(--_<vp>))`.
+//     Unset, it inherits whatever the default currently resolves to (incl. a rest or
+//     hover override) — never the bare palette literal.
+// Unset, every token falls back to today's palette value (color-identical). `rest`
+// omits the `<state>` segment; `focus` maps to `.Mui-focusVisible`.
+const buildButtonColorVars = (theme, color) => {
+  const vars = theme.vars || theme;
+  const main = vars.palette[color].main;
+  const dark = vars.palette[color].dark;
+  const contrastText = vars.palette[color].contrastText;
+  const hoverBg = theme.alpha(main, vars.palette.action.hoverOpacity);
+  const outlinedBorderRest = theme.alpha(main, 0.5);
+  const disabledBg = vars.palette.action.disabledBackground;
+  const disabledFg = vars.palette.action.disabled;
+
+  // One entry per variant-prop: its seam suffix, variant, prop key, and the palette
+  // literal each value-state resolves to today (`hover`/`disabled` omitted = inert there).
+  const props = [
+    {
+      vp: "containedBg",
+      variant: "contained",
+      prop: "bg",
+      rest: main,
+      hover: dark,
+      disabled: disabledBg,
+    },
+    {
+      vp: "containedColor",
+      variant: "contained",
+      prop: "fg",
+      rest: contrastText,
+      disabled: disabledFg,
+    },
+    { vp: "textColor", variant: "text", prop: "fg", rest: main, disabled: disabledFg },
+    { vp: "textBg", variant: "text", prop: "bg", rest: "transparent", hover: hoverBg },
+    { vp: "outlinedColor", variant: "outlined", prop: "fg", rest: main, disabled: disabledFg },
+    {
+      vp: "outlinedBorder",
+      variant: "outlined",
+      prop: "border",
+      rest: outlinedBorderRest,
+      hover: main,
+      disabled: disabledBg,
+    },
+    { vp: "outlinedBg", variant: "outlined", prop: "bg", rest: "transparent", hover: hoverBg },
+  ];
+  const token = (variant, state, prop) =>
+    `--Button-${variant}-${color}${state ? `-${state}` : ""}-${prop}`;
+
+  // Build a state's style. `valueKey` names the palette field for value-states
+  // (rest = the literal directly); null marks an inert state (all props routed).
+  const block = (state, valueKey) => {
+    const style = {};
+    props.forEach((p) => {
+      const value = valueKey === "rest" ? p.rest : p[valueKey];
+      if (value !== undefined) {
+        // value-state: token inside the default, seam just reads it
+        style[`--_${p.vp}`] = `var(${token(p.variant, state, p.prop)}, ${value})`;
+        style[`--variant-${p.vp}`] = `var(--_${p.vp})`;
+      } else {
+        // inert for this state: route the token over the current default
+        style[`--variant-${p.vp}`] = `var(${token(p.variant, state, p.prop)}, var(--_${p.vp}))`;
+      }
+    });
+    return style;
+  };
+
+  return {
+    ...block("", "rest"),
+    "@media (hover: hover)": { "&:hover": block("hover", "hover") },
+    [`&.${buttonClasses.focusVisible}`]: block("focus", null),
+    "&:active": block("active", null),
+    // disabled: the value-states advance to today's neutral greys (color-invariant);
+    // replaces the literal disabled rules removed from root/contained/outlined.
+    [`&.${buttonClasses.disabled}`]: block("disabled", "disabled"),
+  };
+};
 
 const ButtonRoot = styled(ButtonBase, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
-  name: 'MuiButton',
-  slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === "classes",
+  name: "MuiButton",
+  slot: "Root",
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -88,7 +173,7 @@ const ButtonRoot = styled(ButtonBase, {
       styles.root,
       styles[ownerState.variant],
       styles[`size${capitalize(ownerState.size)}`],
-      ownerState.color === 'inherit' && styles.colorInherit,
+      ownerState.color === "inherit" && styles.colorInherit,
       ownerState.disableElevation && styles.disableElevation,
       ownerState.fullWidth && styles.fullWidth,
       ownerState.loading && styles.loading,
@@ -97,88 +182,80 @@ const ButtonRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => {
     const inheritContainedBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
+      theme.palette.mode === "light" ? theme.palette.grey[300] : theme.palette.grey[800];
 
     const inheritContainedHoverBackgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
+      theme.palette.mode === "light" ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
       ...theme.typography.button,
       // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
       // is the universal default (today's root padding); variants specialize it
       // per (variant, size), so a custom variant/size still gets a sane value.
-      '--_pad': '6px 16px',
-      padding: 'var(--Button-pad, var(--_pad))',
+      "--_pad": "6px 16px",
+      padding: "var(--Button-pad, var(--_pad))",
       minWidth: 64,
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
+      ...getTransitionStyles(theme, ["background-color", "box-shadow", "border-color", "color"], {
         duration: theme.transitions.duration.short,
       }),
-      '&:hover': {
-        textDecoration: 'none',
-      },
-      [`&.${buttonClasses.disabled}`]: {
-        color: (theme.vars || theme).palette.action.disabled,
+      "&:hover": {
+        textDecoration: "none",
       },
       variants: [
         // Built-in size routing (CSS, deduped) — exposes the public sized token
         // over the internal default. Custom sizes are routed inline instead.
         {
-          props: { size: 'small' },
-          style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' },
+          props: { size: "small" },
+          style: { "--Button-pad": "var(--Button-small-pad, var(--_pad))" },
         },
         {
-          props: { size: 'medium' },
-          style: { '--Button-pad': 'var(--Button-medium-pad, var(--_pad))' },
+          props: { size: "medium" },
+          style: { "--Button-pad": "var(--Button-medium-pad, var(--_pad))" },
         },
         {
-          props: { size: 'large' },
-          style: { '--Button-pad': 'var(--Button-large-pad, var(--_pad))' },
+          props: { size: "large" },
+          style: { "--Button-pad": "var(--Button-large-pad, var(--_pad))" },
         },
         {
-          props: { variant: 'contained' },
+          props: { variant: "contained" },
           style: {
-            '--_pad': '6px 16px', // medium default; small/large override below
+            "--_pad": "6px 16px", // medium default; small/large override below
             color: `var(--variant-containedColor)`,
             backgroundColor: `var(--variant-containedBg)`,
             boxShadow: (theme.vars || theme).shadows[2],
-            '&:hover': {
+            "&:hover": {
               boxShadow: (theme.vars || theme).shadows[4],
               // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
+              "@media (hover: none)": {
                 boxShadow: (theme.vars || theme).shadows[2],
               },
             },
-            '&:active': {
+            "&:active": {
               boxShadow: (theme.vars || theme).shadows[8],
             },
             [`&.${buttonClasses.focusVisible}`]: {
               boxShadow: (theme.vars || theme).shadows[6],
             },
             [`&.${buttonClasses.disabled}`]: {
-              color: (theme.vars || theme).palette.action.disabled,
               boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
             },
           },
         },
         {
-          props: { variant: 'outlined' },
+          props: { variant: "outlined" },
           style: {
-            '--_pad': '5px 15px', // medium default; small/large override below
-            border: '1px solid currentColor',
+            "--_pad": "5px 15px", // medium default; small/large override below
+            border: "1px solid currentColor",
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
             color: `var(--variant-outlinedColor)`,
-            [`&.${buttonClasses.disabled}`]: {
-              border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-            },
           },
         },
         {
-          props: { variant: 'text' },
+          props: { variant: "text" },
           style: {
-            '--_pad': '6px 8px', // medium default; small/large override below
+            "--_pad": "6px 8px", // medium default; small/large override below
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -187,115 +264,99 @@ const ButtonRoot = styled(ButtonBase, {
           .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color },
-            style: {
-              '--variant-textColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.alpha(
-                (theme.vars || theme).palette[color].main,
-                0.5,
-              ),
-              '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
-              '--variant-containedBg': (theme.vars || theme).palette[color].main,
-              '@media (hover: hover)': {
-                '&:hover': {
-                  '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                  '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.alpha(
-                    (theme.vars || theme).palette[color].main,
-                    (theme.vars || theme).palette.action.hoverOpacity,
-                  ),
-                },
-              },
-            },
+            style: buildButtonColorVars(theme, color),
           })),
         {
           props: {
-            color: 'inherit',
+            color: "inherit",
           },
           style: {
-            color: 'inherit',
-            borderColor: 'currentColor',
-            '--variant-containedBg': theme.vars
+            color: "inherit",
+            borderColor: "currentColor",
+            "--variant-containedBg": theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
-            '@media (hover: hover)': {
-              '&:hover': {
-                '--variant-containedBg': theme.vars
+            "@media (hover: hover)": {
+              "&:hover": {
+                "--variant-containedBg": theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.alpha(
+                "--variant-textBg": theme.alpha(
                   (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
+                  (theme.vars || theme).palette.action.hoverOpacity
                 ),
-                '--variant-outlinedBg': theme.alpha(
+                "--variant-outlinedBg": theme.alpha(
                   (theme.vars || theme).palette.text.primary,
-                  (theme.vars || theme).palette.action.hoverOpacity,
+                  (theme.vars || theme).palette.action.hoverOpacity
                 ),
               },
+            },
+            // inherit isn't routed through buildButtonColorVars, so restore the
+            // disabled greys the removed literal rules used to provide.
+            [`&.${buttonClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+              borderColor: (theme.vars || theme).palette.action.disabledBackground,
+              "--variant-containedBg": (theme.vars || theme).palette.action.disabledBackground,
             },
           },
         },
         {
           props: {
-            size: 'small',
-            variant: 'text',
+            size: "small",
+            variant: "text",
           },
           style: {
-            '--_pad': '4px 5px',
+            "--_pad": "4px 5px",
             fontSize: theme.typography.pxToRem(13),
           },
         },
         {
           props: {
-            size: 'large',
-            variant: 'text',
+            size: "large",
+            variant: "text",
           },
           style: {
-            '--_pad': '8px 11px',
+            "--_pad": "8px 11px",
             fontSize: theme.typography.pxToRem(15),
           },
         },
         {
           props: {
-            size: 'small',
-            variant: 'outlined',
+            size: "small",
+            variant: "outlined",
           },
           style: {
-            '--_pad': '3px 9px',
+            "--_pad": "3px 9px",
             fontSize: theme.typography.pxToRem(13),
           },
         },
         {
           props: {
-            size: 'large',
-            variant: 'outlined',
+            size: "large",
+            variant: "outlined",
           },
           style: {
-            '--_pad': '7px 21px',
+            "--_pad": "7px 21px",
             fontSize: theme.typography.pxToRem(15),
           },
         },
         {
           props: {
-            size: 'small',
-            variant: 'contained',
+            size: "small",
+            variant: "contained",
           },
           style: {
-            '--_pad': '4px 10px',
+            "--_pad": "4px 10px",
             fontSize: theme.typography.pxToRem(13),
           },
         },
         {
           props: {
-            size: 'large',
-            variant: 'contained',
+            size: "large",
+            variant: "contained",
           },
           style: {
-            '--_pad': '8px 22px',
+            "--_pad": "8px 22px",
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -304,79 +365,79 @@ const ButtonRoot = styled(ButtonBase, {
             disableElevation: true,
           },
           style: {
-            boxShadow: 'none',
-            '&:hover': {
-              boxShadow: 'none',
+            boxShadow: "none",
+            "&:hover": {
+              boxShadow: "none",
             },
             [`&.${buttonClasses.focusVisible}`]: {
-              boxShadow: 'none',
+              boxShadow: "none",
             },
-            '&:active': {
-              boxShadow: 'none',
+            "&:active": {
+              boxShadow: "none",
             },
             [`&.${buttonClasses.disabled}`]: {
-              boxShadow: 'none',
+              boxShadow: "none",
             },
           },
         },
         {
           props: { fullWidth: true },
-          style: { width: '100%' },
+          style: { width: "100%" },
         },
         {
           props: {
-            loadingPosition: 'center',
+            loadingPosition: "center",
           },
           style: {
-            ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
+            ...getTransitionStyles(theme, ["background-color", "box-shadow", "border-color"], {
               duration: theme.transitions.duration.short,
             }),
             [`&.${buttonClasses.loading}`]: {
-              color: 'transparent',
+              color: "transparent",
             },
           },
         },
       ],
     };
-  }),
+  })
 );
 
-const ButtonStartIcon = styled('span', {
-  name: 'MuiButton',
-  slot: 'StartIcon',
+const ButtonStartIcon = styled("span", {
+  name: "MuiButton",
+  slot: "StartIcon",
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
     return [styles.startIcon, ownerState.loading && styles.startIconLoadingStart];
   },
 })(({ theme }) => ({
-  display: 'inherit',
-  alignItems: 'center',
+  display: "inherit",
+  alignItems: "center",
   marginRight: 8,
   marginLeft: -4,
-  '&::before': {
+  "&::before": {
     content: '"\\200b"',
     width: 0,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   variants: [
     {
-      props: { size: 'small' },
+      props: { size: "small" },
       style: {
         marginLeft: -2,
       },
     },
     {
-      props: { loadingPosition: 'start', loading: true },
+      props: { loadingPosition: "start", loading: true },
       style: {
-        ...getTransitionStyles(theme, ['opacity'], {
+        ...getTransitionStyles(theme, ["opacity"], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
       },
     },
     {
-      props: { loadingPosition: 'start', loading: true, fullWidth: true },
+      props: { loadingPosition: "start", loading: true, fullWidth: true },
       style: {
         marginRight: -8,
       },
@@ -385,36 +446,36 @@ const ButtonStartIcon = styled('span', {
   ],
 }));
 
-const ButtonEndIcon = styled('span', {
-  name: 'MuiButton',
-  slot: 'EndIcon',
+const ButtonEndIcon = styled("span", {
+  name: "MuiButton",
+  slot: "EndIcon",
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
     return [styles.endIcon, ownerState.loading && styles.endIconLoadingEnd];
   },
 })(({ theme }) => ({
-  display: 'inherit',
+  display: "inherit",
   marginRight: -4,
   marginLeft: 8,
   variants: [
     {
-      props: { size: 'small' },
+      props: { size: "small" },
       style: {
         marginRight: -2,
       },
     },
     {
-      props: { loadingPosition: 'end', loading: true },
+      props: { loadingPosition: "end", loading: true },
       style: {
-        ...getTransitionStyles(theme, ['opacity'], {
+        ...getTransitionStyles(theme, ["opacity"], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
       },
     },
     {
-      props: { loadingPosition: 'end', loading: true, fullWidth: true },
+      props: { loadingPosition: "end", loading: true, fullWidth: true },
       style: {
         marginLeft: -8,
       },
@@ -423,25 +484,25 @@ const ButtonEndIcon = styled('span', {
   ],
 }));
 
-const ButtonLoadingIndicator = styled('span', {
-  name: 'MuiButton',
-  slot: 'LoadingIndicator',
+const ButtonLoadingIndicator = styled("span", {
+  name: "MuiButton",
+  slot: "LoadingIndicator",
 })(({ theme }) => ({
-  display: 'none',
-  position: 'absolute',
-  visibility: 'visible',
+  display: "none",
+  position: "absolute",
+  visibility: "visible",
   variants: [
-    { props: { loading: true }, style: { display: 'flex' } },
+    { props: { loading: true }, style: { display: "flex" } },
     {
-      props: { loadingPosition: 'start' },
+      props: { loadingPosition: "start" },
       style: {
         left: 14,
       },
     },
     {
       props: {
-        loadingPosition: 'start',
-        size: 'small',
+        loadingPosition: "start",
+        size: "small",
       },
       style: {
         left: 10,
@@ -449,8 +510,8 @@ const ButtonLoadingIndicator = styled('span', {
     },
     {
       props: {
-        variant: 'text',
-        loadingPosition: 'start',
+        variant: "text",
+        loadingPosition: "start",
       },
       style: {
         left: 6,
@@ -458,24 +519,24 @@ const ButtonLoadingIndicator = styled('span', {
     },
     {
       props: {
-        loadingPosition: 'center',
+        loadingPosition: "center",
       },
       style: {
-        left: '50%',
-        transform: 'translate(-50%)',
+        left: "50%",
+        transform: "translate(-50%)",
         color: (theme.vars || theme).palette.action.disabled,
       },
     },
     {
-      props: { loadingPosition: 'end' },
+      props: { loadingPosition: "end" },
       style: {
         right: 14,
       },
     },
     {
       props: {
-        loadingPosition: 'end',
-        size: 'small',
+        loadingPosition: "end",
+        size: "small",
       },
       style: {
         right: 10,
@@ -483,37 +544,37 @@ const ButtonLoadingIndicator = styled('span', {
     },
     {
       props: {
-        variant: 'text',
-        loadingPosition: 'end',
+        variant: "text",
+        loadingPosition: "end",
       },
       style: {
         right: 6,
       },
     },
     {
-      props: { loadingPosition: 'start', fullWidth: true },
+      props: { loadingPosition: "start", fullWidth: true },
       style: {
-        position: 'relative',
+        position: "relative",
         left: -10,
       },
     },
     {
-      props: { loadingPosition: 'end', fullWidth: true },
+      props: { loadingPosition: "end", fullWidth: true },
       style: {
-        position: 'relative',
+        position: "relative",
         right: -10,
       },
     },
   ],
 }));
 
-const ButtonLoadingIconPlaceholder = styled('span', {
-  name: 'MuiButton',
-  slot: 'LoadingIconPlaceholder',
+const ButtonLoadingIconPlaceholder = styled("span", {
+  name: "MuiButton",
+  slot: "LoadingIconPlaceholder",
 })({
-  display: 'inline-block',
-  width: '1em',
-  height: '1em',
+  display: "inline-block",
+  width: "1em",
+  height: "1em",
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
@@ -521,11 +582,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   const contextProps = React.useContext(ButtonGroupContext);
   const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
   const resolvedProps = resolveProps(contextProps, inProps);
-  const props = useDefaultProps({ props: resolvedProps, name: 'MuiButton' });
+  const props = useDefaultProps({ props: resolvedProps, name: "MuiButton" });
   const {
     children,
-    color = 'primary',
-    component = 'button',
+    color = "primary",
+    component = "button",
     className,
     disabled = false,
     disableElevation = false,
@@ -536,11 +597,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     id: idProp,
     loading = null,
     loadingIndicator: loadingIndicatorProp,
-    loadingPosition = 'center',
-    size = 'medium',
+    loadingPosition = "center",
+    size = "medium",
     startIcon: startIconProp,
     type,
-    variant = 'text',
+    variant = "text",
     ...other
   } = props;
 
@@ -573,9 +634,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   // free. The `--_pad` default lives in the variants. See docs/adr/0001.
   const densityVars = buttonSizes.includes(size)
     ? undefined
-    : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
+    : { "--Button-pad": `var(--Button-${size}-pad, var(--_pad))` };
 
-  const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
+  const startIcon = (startIconProp || (loading && loadingPosition === "start")) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp || (
         <ButtonLoadingIconPlaceholder
@@ -586,7 +647,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonStartIcon>
   );
 
-  const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
+  const endIcon = (endIconProp || (loading && loadingPosition === "end")) && (
     <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
       {endIconProp || (
         <ButtonLoadingIconPlaceholder
@@ -597,12 +658,12 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  const positionClassName = buttonGroupButtonContextPositionClassName || '';
+  const positionClassName = buttonGroupButtonContextPositionClassName || "";
 
   const loader =
-    typeof loading === 'boolean' ? (
+    typeof loading === "boolean" ? (
       // use plain HTML span to minimize the runtime overhead
-      <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+      <span className={classes.loadingWrapper} style={{ display: "contents" }}>
         {loading && (
           <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
             {loadingIndicator}
@@ -631,9 +692,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={forwardedClasses}
     >
       {startIcon}
-      {loadingPosition !== 'end' && loader}
+      {loadingPosition !== "end" && loader}
       {children}
-      {loadingPosition === 'end' && loader}
+      {loadingPosition === "end" && loader}
       {endIcon}
     </ButtonRoot>
   );
@@ -663,7 +724,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
+    PropTypes.oneOf(["inherit", "primary", "secondary", "success", "error", "info", "warning"]),
     PropTypes.string,
   ]),
   /**
@@ -733,14 +794,14 @@ Button.propTypes /* remove-proptypes */ = {
    * The loading indicator can be positioned on the start, end, or the center of the button.
    * @default 'center'
    */
-  loadingPosition: PropTypes.oneOf(['center', 'end', 'start']),
+  loadingPosition: PropTypes.oneOf(["center", "end", "start"]),
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['small', 'medium', 'large']),
+    PropTypes.oneOf(["small", "medium", "large"]),
     PropTypes.string,
   ]),
   /**
@@ -768,7 +829,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.oneOf(["contained", "outlined", "text"]),
     PropTypes.string,
   ]),
 };
