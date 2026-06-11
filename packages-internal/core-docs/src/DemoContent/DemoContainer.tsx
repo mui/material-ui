@@ -452,6 +452,13 @@ export const DemoCodeWindow = styled('div', {
 });
 
 export interface DemoContainerProps {
+  /**
+   * The demo's identity anchor id (e.g. `Filter`, `BasicButtons`) rendered as a
+   * deep-link target above the preview. Threaded as a prop — not via `anchors`
+   * — so the SSR loading skeleton emits it too, letting a `#<DemoName>` link
+   * resolve before the live demo hydrates. `null`/`undefined` renders nothing.
+   */
+  anchorId?: string | null;
   /** Anchor `<div>` elements rendered above the preview for deep-linking. */
   anchors?: React.ReactNode;
   /**
@@ -549,6 +556,7 @@ export interface DemoContainerProps {
  */
 export function DemoContainer(props: DemoContainerProps) {
   const {
+    anchorId,
     anchors,
     sourceAnchorIds,
     preview,
@@ -623,6 +631,7 @@ export function DemoContainer(props: DemoContainerProps) {
 
   return (
     <DemoRoot data-code-open={expanded ? '' : undefined}>
+      {anchorId != null ? <DemoAnchorLink id={anchorId} /> : null}
       {anchors}
       {sourceAnchorIds?.map((id) => (
         <DemoAnchorLink key={`source-${id}`} id={id} />
