@@ -67,7 +67,7 @@ function MyAutocomplete<
   renderInput={() => null}
 />;
 
-// Tests presence of onMouseDown prop in InputProps
+// Tests presence of onMouseDown prop in the input slot props.
 <Autocomplete
   options={['1', '2', '3']}
   renderInput={(params) => {

@@ -342,6 +342,36 @@ The Autocomplete's `componentsProps` prop was deprecated in favor of `slotProps`
  />
 ```
 
+### renderInput params
+
+Older Autocomplete versions pass `InputProps`, `InputLabelProps`, and `inputProps` to `renderInput`.
+When migrating the returned `TextField` to slots, map those params to the matching `TextField` slots.
+Keep the spreads because these props include the ref and event handlers Autocomplete needs.
+
+```diff
+ <Autocomplete
+-  renderInput={(params) => (
++  renderInput={({ InputProps, InputLabelProps, inputProps, ...params }) => (
+     <TextField
+       {...params}
+-      inputProps={{
+-        ...params.inputProps,
+-        maxLength: 20,
++      slotProps={{
++        input: InputProps,
++        inputLabel: InputLabelProps,
++        htmlInput: {
++          ...inputProps,
++          maxLength: 20,
++        },
+       }}
+     />
+   )}
+ />
+```
+
+Omitting `...inputProps` drops the input ref and can trigger the "Unable to find the input element" warning.
+
 ## Avatar
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#avatar-props) below to migrate the code as described in the following sections:
@@ -2444,6 +2474,8 @@ All of the TextField's slot props (`*Props`) props were deprecated in favor of e
 +  }}
  />
 ```
+
+When migrating a `TextField` returned from Autocomplete's `renderInput`, also see the [Autocomplete renderInput params](#renderinput-params) section because the params must be mapped to `TextField` slots.
 
 ## Tooltip
 

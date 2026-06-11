@@ -9,36 +9,42 @@ githubSource: packages/mui-material/src/Autocomplete
 
 # Autocomplete
 
-<p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
+<p class="description">A text input that suggests matching options as you type.</p>
 
-The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
+Autocomplete supports three core interaction modes:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
-
-It's meant to be an improved version of the "react-select" and "downshift" packages.
+1. Pick a single value from a predefined list, like a country picker: [Combobox](#combobox).
+2. Pick multiple values shown as chips, like a tag picker: [Multiple values](#multiple-values).
+3. Accept any text with suggestions, like a search field: [Free solo](#free-solo).
 
 {{"component": "@mui/internal-core-docs/ComponentLinkHeader"}}
 
-## Combo box
+## Usage guidelines
 
-The value must be chosen from a predefined set of allowed values.
+- **Use for filterable choices**: Autocomplete is best for lists that are too long to scan. Use [Select](/material-ui/react-select/) instead for short lists.
+- **Form controls must have an accessible name**: Use a visible `TextField` `label` when possible, or add `aria-label` if the label is hidden.
+- **Keep the popup option-only**: The listbox should only contain selectable options. Avoid buttons, links, or non-option controls such as "Select all" because they disrupt keyboard semantics and assistive technology behavior.
+
+## Combobox
+
+Use the basic combobox when users need to search a predefined list and pick one value.
 
 {{"demo": "ComboBox.js"}}
 
 ### Options structure
 
-By default, the component accepts the following options structures:
+By default, options can be strings or objects with a `label` string. You can add fields that model your data, such as a stable ID, timestamp, or grouping field. TypeScript infers the option type from the `options` prop, so callbacks like `onChange` are strongly typed.
 
 ```ts
 interface AutocompleteOption {
   label: string;
+  id?: string | number;
 }
 // or
 type AutocompleteOption = string;
 ```
 
-for instance:
+For example:
 
 ```js
 const options = [
@@ -49,49 +55,67 @@ const options = [
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
-However, you can use different structures by providing a `getOptionLabel` prop.
+When using object options, you must provide `isOptionEqualToValue` so the component can match the current value to the right option. The default comparison uses strict equality (`===`), which only works when the value reference is the same as one of the options:
 
-If your options are objects, you must provide the `isOptionEqualToValue` prop to ensure correct selection and highlighting. By default, it uses strict equality to compare options with the current value.
+```tsx
+<Autocomplete
+  options={options}
+  isOptionEqualToValue={(option, value) => option.id === value.id}
+/>
+```
 
-:::warning
-If your options have duplicate labels, you must extract a unique key with the `getOptionKey` prop.
+To display a value other than `label`, use `getOptionLabel` to return a string representing each option:
 
 ```tsx
 const options = [
-  { label: 'The Godfather', id: 1 },
-  { label: 'The Godfather', id: 2 },
+  { id: '1', email: 'alice@example.com' },
+  { id: '2', email: 'bob@example.com' },
 ];
 
-return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
+<Autocomplete options={options} getOptionLabel={(option) => option.email} />;
 ```
 
-:::
+Autocomplete uses the label as the React key for each option by default. If two options share the same label, keep `getOptionLabel` for the display text and use `getOptionKey` to provide a stable key for each rendered option:
+
+```tsx
+// Two contacts happen to share the same display name
+const options = [
+  { label: 'John Smith', id: 'usr_4f12a7b8' },
+  { label: 'John Smith', id: 'usr_e9c3d521' },
+];
+
+<Autocomplete
+  options={options}
+  getOptionLabel={(option) => option.label}
+  getOptionKey={(option) => option.id}
+/>;
+```
 
 ### Playground
 
-Each of the following examples demonstrates one feature of the Autocomplete component.
+Each example below demonstrates one feature.
 
 {{"demo": "Playground.js"}}
 
 ### Country select
 
-Choose one of the 248 countries.
+Use `renderOption` to customize each option. This country picker renders a flag, country code, and calling code.
 
 {{"demo": "CountrySelect.js"}}
 
 ### Controlled states
 
-The component has two states that can be controlled:
+Autocomplete has two states that can be controlled independently:
 
-1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
-2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
+1. **`value`** with `value`/`onChange`—the option the user has selected, set when they press <kbd class="key">Enter</kbd> or click an option.
+2. **`inputValue`** with `inputValue`/`onInputChange`—the text currently shown in the textbox.
 
-These two states are isolated, and should be controlled independently.
+Control them independently—the two states aren't linked.
 
 :::info
 
-- A component is **controlled** when it's managed by its parent using props.
-- A component is **uncontrolled** when it's managed by its own local state.
+- A component is **controlled** when its parent manages it through props.
+- A component is **uncontrolled** when it manages its own local state.
 
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
@@ -100,8 +124,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 
 :::warning
 
-If you control the `value`, make sure it's referentially stable between renders.
-In other words, the reference to the value shouldn't change if the value itself doesn't change.
+If you control `value`, keep the reference stable between renders by passing the same array or object if its contents haven't changed.
 
 ```tsx
 // ⚠️ BAD
@@ -115,105 +138,117 @@ const selectedValues = React.useMemo(
 return <Autocomplete multiple value={selectedValues} />;
 ```
 
-In the first example, `allValues.filter` is called and returns **a new array** every render.
-The fix includes memoizing the value, so it changes only when needed.
+In the first example, `allValues.filter` returns **a new array** every render. Wrapping it in `useMemo` ensures the array only changes when its contents change.
 :::
+
+### Disabled options
+
+Mark specific options as disabled with the `getOptionDisabled` prop.
+
+{{"demo": "DisabledOptions.js"}}
+
+### Grouped
+
+Group options with the `groupBy` prop. Sort the options by the same field you're grouping on—otherwise the same group header repeats.
+
+{{"demo": "Grouped.js"}}
+
+### Custom group rendering
+
+Customize how groups render with the `renderGroup` prop. It receives an object with:
+
+- `key`—the React key to apply to the rendered group
+- `group`—the group name string
+- `children`—the list items in that group
+
+The demo below groups countries by continent and customizes the group rendering.
+
+{{"demo": "RenderGroup.js"}}
 
 ## Free solo
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value.
+Use `freeSolo` when the input should accept values outside the provided options.
 
 ### Search input
 
-The prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.
+Designed for **search inputs** with suggestions—for example, Google search or a typeahead field.
 
 {{"demo": "FreeSolo.js"}}
 
 :::warning
-Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+Free solo with non-string options can cause type mismatches. The typed value is always a string, so make sure your callbacks can handle both strings and option objects:
 
-The value created by typing into the textbox is always a string, regardless of the type of the options.
+```tsx
+<Autocomplete
+  freeSolo
+  options={options}
+  getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+/>
+```
+
 :::
 
 ### Creatable
 
-If you intend to use this mode for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting:
+To let users pick an existing option or create a new one, we recommend setting:
 
-- `selectOnFocus` to help the user clear the selected value.
-- `clearOnBlur` to help the user enter a new value.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
-- `resetHighlightOnMouseLeave` to clear mouse-created highlights when the pointer leaves the popup.
-- A last option, for instance: `Add "YOUR SEARCH"`.
+- `selectOnFocus`: highlight the input's current text when it receives focus so the user can overwrite it.
+- `clearOnBlur`: clear leftover input text on blur when no option is picked or created.
+- `handleHomeEndKeys`: move focus to the first or last option with <kbd class="key">Home</kbd> and <kbd class="key">End</kbd>.
+- `resetHighlightOnMouseLeave`: clear mouse-created highlights when the pointer leaves the popup.
+- A trailing option like `Add "${inputValue}"` to make the create action discoverable.
 
 {{"demo": "FreeSoloCreateOption.js"}}
 
-You could also display a dialog when the user wants to add a new value.
+Or open a dialog when the user wants to add a new value.
 
 {{"demo": "FreeSoloCreateOptionDialog.js"}}
 
-## Grouped
+## Multiple values
 
-You can group the options with the `groupBy` prop.
-If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
-otherwise, you will notice duplicate headers.
+Set `multiple={true}` to let users select more than one value. By default, selected values render as removable Material UI Chips; customize their rendering with `renderValue`.
 
-{{"demo": "Grouped.js"}}
+- Spread the props from `getItemProps` onto each rendered item to preserve the component's built-in behavior.
+- If you replace the default Chip, destructure `onDelete` first; it's specific to `Chip`.
 
-To control how the groups are rendered, provide a custom `renderGroup` prop.
-This is a function that accepts an object with two fields:
+{{"demo": "Tags.js"}}
 
-- `group`—a string representing a group name
-- `children`—a collection of list items that belong to the group
+### Fixed options
 
-The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
+To lock certain tags so they can't be removed, mark their chips as disabled.
 
-{{"demo": "RenderGroup.js"}}
+{{"demo": "FixedTags.js"}}
 
-## Disabled options
+### Selection indicators
 
-{{"demo": "DisabledOptions.js"}}
+Use icons as a visual cue for sighted users to show which options are selected.
 
-## `useAutocomplete`
+{{"demo": "CheckboxesTags.js"}}
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
-It accepts almost the same options as the Autocomplete component minus all the props
-related to the rendering of JSX.
-The Autocomplete component is built on this hook.
+### Limit tags
 
-```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
-```
+Use `limitTags` to limit how many selected items are visible when the input isn't focused.
 
-- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
-
-{{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
-
-### Customized hook
-
-{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
-
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+{{"demo": "LimitTags.js"}}
 
 ## Asynchronous requests
 
-The component supports two different asynchronous use-cases:
+The component supports two async patterns:
 
-- [Load on open](#load-on-open): it waits for the component to be interacted with to load the options.
-- [Search as you type](#search-as-you-type): a new request is made for each keystroke.
+- [Load on open](#load-on-open): wait until the user interacts before fetching options.
+- [Search as you type](#search-as-you-type): make a new request on every keystroke.
 
 ### Load on open
 
-It displays a progress state as long as the network request is pending.
+Shows a loading state while the request is pending.
 
 {{"demo": "Asynchronous.js"}}
 
 ### Search as you type
 
-If your logic is fetching new options on each keystroke and using the current value of the textbox
-to filter on the server, you may want to consider throttling requests.
+If you fetch new options on every keystroke and filter on the server, throttle the requests.
 
-Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by
-overriding the `filterOptions` prop:
+Also disable the built-in client-side filtering—the server has already filtered the options, so re-filtering them would hide valid matches. Pass an identity function to `filterOptions`:
 
 ```jsx
 <Autocomplete filterOptions={(x) => x} />
@@ -221,140 +256,69 @@ overriding the `filterOptions` prop:
 
 ### Google Maps place
 
-A customized UI for Google Maps Places Autocomplete.
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
+A customized UI on top of Google Places Autocomplete. The demo loads the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) APIs.
 
 {{"demo": "GoogleMaps.js"}}
 
-The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+It uses [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting matched text.
 
 :::error
-Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+You'll need your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key) to use the Google Maps and Places APIs.
 
-This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
+This demo has a limited request quota. Once it's exceeded, results fall back to "Paris".
 :::
 
 ### Infinite loading
 
-This demo uses `@tanstack/react-query` to additively fetch new data onto existing `options` upon reaching the end of the current list. The list is virtualized using `@tanstack/react-virtual`.
+Uses `@tanstack/react-query` to fetch more options when the user scrolls to the bottom of the list. The list is virtualized with `@tanstack/react-virtual`.
 
 {{"demo": "InfiniteLoading.js"}}
 
-## Single value rendering
+## Customization
 
-By default (when `multiple={false}`), the selected option is displayed as plain text inside the input.
-The `renderValue` prop allows you to customize how the selected value is rendered.
-This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
+### Single value rendering
 
-- The `getItemProps` getter provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
-- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
+In the default single-selection mode (when `multiple={false}`), the selected option appears as plain text inside the input. Use `renderValue` to customize the display—for example, to add icons, badges, or formatted output.
+
+The `renderValue` callback receives two parameters:
+
+- `value`: the selected option to render inside the input.
+- `getItemProps`: returns props for the rendered item. Forward the DOM-safe props you need, such as `className`, `data-item-index`, and `tabIndex`; omit `onDelete` unless you render a Chip.
 
 {{"demo": "CustomSingleValueRendering.js"}}
 
-## Multiple values
+### Highlights
 
-When `multiple={true}`, the user can select multiple values. These selected values, referred to as "items" can be customized using the `renderValue` prop.
-
-- The `getItemProps` getter supplies essential props like `data-item-index`, `disabled`, `tabIndex` and others. Make sure to spread them on each rendered item.
-- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
-
-{{"demo": "Tags.js"}}
-
-### Fixed options
-
-In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
-
-{{"demo": "FixedTags.js"}}
-
-### Selection indicators
-
-This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
-
-{{"demo": "CheckboxesTags.js"}}
-
-### Limit tags
-
-You can use the `limitTags` prop to limit the number of displayed options when not focused.
-
-{{"demo": "LimitTags.js"}}
-
-## Sizes
-
-Fancy smaller inputs? Use the `size` prop.
-
-{{"demo": "Sizes.js"}}
-
-## Customization
-
-### Custom input
-
-The `renderInput` prop allows you to customize the rendered input.
-The first argument of this render prop contains props that you need to forward.
-Pay specific attention to the `ref` and `inputProps` keys.
-
-:::warning
-If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
-:::
-
-{{"demo": "CustomInputAutocomplete.js"}}
-
-### Globally customized options
-
-To globally customize the Autocomplete options for all components in your app,
-you can use the [theme default props](/material-ui/customization/theme-components/#theme-default-props) and set the `renderOption` property in the `defaultProps` key.
-The `renderOption` property takes the `ownerState` as the fourth parameter, which includes props and internal component state.
-To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
-This approach enables different options for each Autocomplete component while keeping the options styling consistent.
-
-{{"demo": "GloballyCustomizedOptions.js"}}
-
-### GitHub's picker
-
-This demo reproduces GitHub's label picker:
-
-{{"demo": "GitHubLabel.js"}}
-
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
-
-### Hint
-
-The following demo shows how to add a hint feature to the Autocomplete:
-
-{{"demo": "AutocompleteHint.js"}}
-
-## Highlights
-
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+Uses [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight) (1 kB) to highlight the matched portion of each option label.
 
 {{"demo": "Highlights.js"}}
 
-## Custom filter
+### Custom filter
 
-The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.
-You can use it to change the default option filter behavior.
+Customize how options are filtered with `createFilterOptions`—a factory that returns a function suitable for the `filterOptions` prop.
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
-### `createFilterOptions(config) => filterOptions`
+#### `createFilterOptions(config) => filterOptions`
 
-#### Arguments
+**Arguments**
 
 1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
-- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
-- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Removes diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercases everything.
+- `config.limit` (_number_ [optional]): Defaults to `null`. Limits how many matched options are shown. Useful when many options match and the listbox isn't virtualized.
 - `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
-- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted to a string for matching against the input.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Removes trailing spaces.
 
-#### Returns
+**Returns**
 
-`filterOptions`: the returned filter method can be provided directly to the `filterOptions` prop of the `Autocomplete` component, or the parameter of the same name for the hook.
+`filterOptions`: a function ready to pass to the `filterOptions` prop of `Autocomplete` (or the option of the same name in `useAutocomplete`).
 
-In the following demo, the options need to start with the query prefix:
+In the demo below, options must start with the query string:
 
 ```jsx
 const filterOptions = createFilterOptions({
@@ -367,9 +331,9 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "Filter.js", "defaultCodeOpen": false}}
 
-### Advanced
+### Advanced filter
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+For richer filtering—like fuzzy matching—we recommend [match-sorter](https://github.com/kentcdodds/match-sorter):
 
 ```jsx
 import { matchSorter } from 'match-sorter';
@@ -379,21 +343,99 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-## Virtualization
+### Sizes
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+Use the `size` prop to render a smaller input.
 
-{{"demo": "Virtualize.js"}}
+{{"demo": "Sizes.js"}}
 
-## Events
+### HTML input attributes
 
-If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+When setting native input attributes on `TextField`—for example `maxLength`—merge them with `params.slotProps.htmlInput` instead of replacing the whole slot object.
+Autocomplete passes its input ref and event handlers through that object, and dropping them can break focus, keyboard, and selection behavior.
+
+```tsx
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      slotProps={{
+        ...params.slotProps,
+        htmlInput: {
+          ...params.slotProps.htmlInput,
+          maxLength: 20,
+          spellCheck: false,
+        },
+      }}
+    />
+  )}
+/>
+```
+
+### Custom input
+
+Customize the rendered input with the `renderInput` prop.
+If you don't use `TextField`, attach `params.slotProps.input.ref` to the element that wraps the native input, and spread `params.slotProps.htmlInput` on the native input.
+
+```tsx
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <div ref={params.slotProps.input.ref}>
+      <input type="text" {...params.slotProps.htmlInput} />
+    </div>
+  )}
+/>
+```
+
+### Globally customized options
+
+To customize option rendering for every Autocomplete in your app, set `renderOption` in [theme default props](/material-ui/customization/theme-components/#theme-default-props).
+
+`renderOption` receives `ownerState` as its fourth argument, which exposes props and internal state. Use `ownerState.getOptionLabel` to render the label.
+
+This keeps option styling consistent across the app while letting each instance customize its content.
+
+{{"demo": "GloballyCustomizedOptions.js"}}
+
+### GitHub's picker
+
+A reproduction of GitHub's label picker:
+
+{{"demo": "GitHubLabel.js"}}
+
+### Hint
+
+Add a hint (ghost text suggestion) inside the input:
+
+{{"demo": "AutocompleteHint.js"}}
+
+### Events
+
+Callbacks such as `onChange`, `onClose`, `onHighlightChange`, and `onInputChange` include a `reason` argument. Use it to distinguish user input from selection, clear, and other internal updates:
+
+- Selected value changes use `AutocompleteChangeReason`, covering selection, creation, removal, clear, and blur transitions.
+- Textbox changes use `AutocompleteInputChangeReason`, which separates user typing from resets, clears, blur, and option selection or removal.
+- Popup and highlight changes use `AutocompleteCloseReason` and `AutocompleteHighlightChangeReason` to describe why the popup closed or how the highlighted option moved.
+
+```jsx
+<Autocomplete
+  onInputChange={(_event, value, reason) => {
+    if (reason === 'input') {
+      setQuery(value);
+    }
+  }}
+/>
+```
+
+To override the default key handling, set `defaultMuiPrevented` to `true` on the event:
 
 ```jsx
 <Autocomplete
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
-      // Prevent's default 'Enter' behavior.
+      // Prevents the default 'Enter' behavior.
       event.defaultMuiPrevented = true;
       // your handler code
     }
@@ -401,22 +443,94 @@ If you would like to prevent the default key handler behavior, you can set the e
 />
 ```
 
+### Virtualization
+
+Searches through a fixed list of 10,000 randomly generated options. The list is virtualized with [react-window](https://github.com/bvaughn/react-window).
+
+{{"demo": "Virtualize.js"}}
+
+### `useAutocomplete`
+
+Use the `useAutocomplete` hook when you need full control over markup. Import it from `@mui/material/useAutocomplete` ([4.6 kB gzipped](https://bundlephobia.com/package/@mui/material)); it accepts the same options as `Autocomplete`, minus the rendering props. The snippet shows the essential setup for a headless combobox.
+
+```tsx
+import useAutocomplete from '@mui/material/useAutocomplete';
+
+interface Option {
+  label: string;
+}
+
+interface MyAutocompleteProps {
+  id: string;
+  label: string;
+  options: readonly Option[];
+}
+
+function MyAutocomplete({ id, label, options }: MyAutocompleteProps) {
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
+    id,
+    options,
+  });
+
+  return (
+    <div>
+      <div {...getRootProps()}>
+        <label {...getInputLabelProps()}>{label}</label>
+        <input {...getInputProps()} />
+      </div>
+      {groupedOptions.length > 0 ? (
+        <ul {...getListboxProps()}>
+          {groupedOptions.map((option, index) => {
+            const { key, ...optionProps } = getOptionProps({ option, index });
+            return (
+              <li key={key} {...optionProps}>
+                {option.label}
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+export default function App() {
+  return <MyAutocomplete id="movie" label="Movie" options={movies} />;
+}
+
+interface Film extends Option {
+  year: number;
+}
+
+const movies: readonly Film[] = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+];
+```
+
+This demo shows a fully customized multi-selection combobox built with `useAutocomplete`.
+
+{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
+
 ## Limitations
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs.
-However, this can harm the UX of the component.
+Browsers use heuristics to try to autofill form inputs—but this can interfere with the Autocomplete experience.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
-Google Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).
-A possible workaround is to remove the `id` to have the component generate a random one.
+By default, the component sets `autoComplete="off"` to disable the browser's autocomplete history (remembering past entries for a field). Google Chrome ignores this setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)). A workaround: remove the `id` so the component generates a random one.
 
-In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
-In the event you want the avoid autofill, you can try the following:
+Browsers may also propose **autofill** suggestions (saved logins, addresses, payment details). To avoid these:
 
-- Name the input without leaking any information the browser can use. For example `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
-- Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
+- Use a generic input id that doesn't hint at the field's purpose—`id="field1"` rather than `id="country"`. Leave it empty to get a random id.
+- Set `autoComplete="new-password"` (some browsers will offer a strong password for these inputs):
 
   ```jsx
   <TextField
@@ -435,16 +549,8 @@ Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Pr
 
 ### iOS VoiceOver
 
-VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
-You can work around the issue with the `disablePortal` prop.
+VoiceOver on iOS Safari has poor support for `aria-owns`. Work around it with the `disablePortal` prop.
 
-### ListboxComponent
+### Custom listbox component
 
-If you provide a custom `ListboxComponent` prop, you need to make sure that the intended scroll container has the `role` attribute set to `listbox`. This ensures the correct behavior of the scroll, for example when using the keyboard to navigate.
-
-## Accessibility
-
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
-
-We encourage the usage of a label for the textbox.
-The component implements the WAI-ARIA authoring practices.
+When you provide a custom `listbox` slot, set `role="listbox"` on the scroll container. This is what keyboard navigation looks for to scroll the highlighted item into view.

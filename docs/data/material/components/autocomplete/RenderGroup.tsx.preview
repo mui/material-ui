@@ -1,13 +1,12 @@
 <Autocomplete
-  options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-  groupBy={(option) => option.firstLetter}
-  getOptionLabel={(option) => option.title}
+  options={options}
+  groupBy={(option) => option.continent}
   sx={{ width: 300 }}
-  renderInput={(params) => <TextField {...params} label="With categories" />}
+  renderInput={(params) => <TextField {...params} label="Choose a country" />}
   renderGroup={(params) => (
-    <li key={params.key}>
+    <Group key={params.key}>
       <GroupHeader>{params.group}</GroupHeader>
       <GroupItems>{params.children}</GroupItems>
-    </li>
+    </Group>
   )}
 />

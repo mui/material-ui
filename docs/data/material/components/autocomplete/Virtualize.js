@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
 import { List, useListRef } from 'react-window';
@@ -18,18 +17,18 @@ function RowComponent({ index, itemData, style }) {
     top: (style.top ?? 0) + LISTBOX_PADDING,
   };
 
-  if ('group' in dataSet) {
-    return (
-      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
-        {dataSet.group}
-      </ListSubheader>
-    );
-  }
-
   const { key, ...optionProps } = dataSet[0];
 
   return (
-    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
+    <Typography
+      key={key}
+      component="li"
+      {...optionProps}
+      aria-posinset={dataSet[2] + 1}
+      aria-setsize={itemData.length}
+      noWrap
+      style={inlineStyle}
+    >
       {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
@@ -40,39 +39,27 @@ function RowComponent({ index, itemData, style }) {
 RowComponent.propTypes = {
   index: PropTypes.number.isRequired,
   itemData: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string])
-          .isRequired,
-      ),
-      PropTypes.shape({
-        children: PropTypes.node,
-        group: PropTypes.string.isRequired,
-        key: PropTypes.number.isRequired,
-      }),
-    ]).isRequired,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.string])
+        .isRequired,
+    ),
   ).isRequired,
   style: PropTypes.object.isRequired,
 };
 
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, internalListRef, onItemsBuilt, ...other } = props;
-  const itemData = [];
-  const optionIndexMap = React.useMemo(() => new Map(), []);
+  const itemData = children;
 
-  children.forEach((item) => {
-    itemData.push(item);
-    if ('children' in item && Array.isArray(item.children)) {
-      itemData.push(...item.children);
-    }
-  });
+  const optionIndexMap = React.useMemo(() => {
+    const map = new Map();
 
-  // Map option values to their indices in the flattened array
-  itemData.forEach((item, index) => {
-    if (Array.isArray(item) && item[1]) {
-      optionIndexMap.set(item[1], index);
-    }
-  });
+    itemData.forEach((item, index) => {
+      map.set(item[1], index);
+    });
+
+    return map;
+  }, [itemData]);
 
   React.useEffect(() => {
     if (onItemsBuilt) {
@@ -87,18 +74,11 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child) => {
-    if (child.hasOwnProperty('group')) {
-      return 48;
-    }
-    return itemSize;
-  };
-
   const getHeight = () => {
     if (itemCount > 8) {
       return 8 * itemSize;
     }
-    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
+    return itemCount * itemSize;
   };
 
   // Separate className for List, other props for wrapper div (ARIA, handlers)
@@ -111,7 +91,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
         listRef={internalListRef}
         key={itemCount}
         rowCount={itemCount}
-        rowHeight={(index) => getChildSize(itemData[index])}
+        rowHeight={itemSize}
         rowComponent={RowComponent}
         rowProps={{ itemData }}
         style={{
@@ -177,7 +157,7 @@ export default function Virtualize() {
   }, []);
 
   // Handle keyboard navigation by scrolling to highlighted option
-  const handleHighlightChange = (event, option) => {
+  const handleHighlightChange = (_event, option) => {
     if (option && internalListRef.current) {
       const index = optionIndexMapRef.current.get(option);
       if (index !== undefined) {
@@ -191,10 +171,8 @@ export default function Virtualize() {
       sx={{ width: 300 }}
       disableListWrap
       options={OPTIONS}
-      groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option, state) => [props, option, state.index]}
-      renderGroup={(params) => params}
       onHighlightChange={handleHighlightChange}
       slots={{
         popper: StyledPopper,

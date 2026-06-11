@@ -2191,6 +2191,19 @@ If you render a `TextField` from `Autocomplete`, the `params` shape also changed
    )}
 ```
 
+Preserve the props that Autocomplete passes to `TextField` by spreading `params.slotProps` into `slotProps`.
+When customizing a specific slot, such as `htmlInput`, spread the matching nested object (`params.slotProps.htmlInput`) before adding your own attributes.
+
+```tsx
+slotProps={{
+  ...params.slotProps,
+  htmlInput: {
+    ...params.slotProps.htmlInput,
+    maxLength: 20,
+  },
+}}
+```
+
 ### Tooltip props
 
 Use the [tooltip-props codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tooltip-props) below to migrate the code as described in the following section:
