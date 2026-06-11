@@ -274,9 +274,13 @@ export default function DemoContent(props: DemoContentProps) {
     demo.resetFocus();
   }, [demo]);
 
+  // Picks the expand-button label: "full source" wording when the collapsed
+  // view shows only a focused snippet, plain "source" wording when it already
+  // shows the whole file. (The toolbar's bottom corners are driven separately,
+  // from the `<code>`'s `data-focused-lines` in `DemoContainer`'s CSS.)
   // TODO: derive from `useDemo()` once it exposes whether the rendered code
   // has a focused source snippet (e.g. emphasis frames from
-  // `enhanceCodeEmphasis`). Until then, treat all demos as full-source.
+  // `enhanceCodeEmphasis`). Until then, treat all demos as focused-source.
   const hasSourceFocus = true;
   const showCodeLabel = hasSourceFocus
     ? t(demo.expanded ? 'hideFullSource' : 'showFullSource')
@@ -525,7 +529,6 @@ export default function DemoContent(props: DemoContentProps) {
       onReset={demo.reset}
       bg={resolvedBg}
       hideToolbar={hideToolbar}
-      hasSourceFocus={hasSourceFocus}
       previewStyle={previewStyle}
       previewOverlay={<DemoErrorOverlay variantKey={demo.selectedVariant} />}
       focusRef={demo.focusRef}
