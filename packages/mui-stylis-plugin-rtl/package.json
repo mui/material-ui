@@ -1,6 +1,6 @@
 {
   "name": "@mui/stylis-plugin-rtl",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "author": "MUI Team",
   "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
   "license": "MIT",
