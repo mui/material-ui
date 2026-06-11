@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/material/styles';
 import { brandingLightTheme } from '../branding';
+import { UserLanguageProvider } from '../i18n';
 import { DemoContainer } from './DemoContainer';
 
 // Stand-in demo that records the isolation props injected by `IsolatedDemo` via
@@ -33,9 +34,14 @@ describe('DemoContainer', () => {
   // clone reaches the demo element directly.
   it('forwards isolation props to the demo, not the error boundary, when isolated', () => {
     render(
-      <ThemeProvider theme={brandingLightTheme}>
-        <DemoContainer name="probe-demo" isolated preview={<ProbeDemo />} />
-      </ThemeProvider>,
+      // `DemoContainer` reads `useTranslate()` (for the initial-focus button's
+      // `aria-label`), so it needs a language in scope — the app provides one via
+      // `AppFrame`; supply it here so the lookup resolves instead of warning.
+      <UserLanguageProvider defaultUserLanguage="en">
+        <ThemeProvider theme={brandingLightTheme}>
+          <DemoContainer name="probe-demo" isolated preview={<ProbeDemo />} />
+        </ThemeProvider>
+      </UserLanguageProvider>,
     );
 
     const probe = screen.getByTestId('probe');
