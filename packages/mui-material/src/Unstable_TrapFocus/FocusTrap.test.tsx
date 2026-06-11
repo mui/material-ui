@@ -1,7 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  fireEvent,
+  isJsdom,
+  reactMajor,
+  screen,
+  within,
+} from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
 import getActiveElement from '../utils/getActiveElement';
@@ -9,6 +17,27 @@ import { FOCUSABLE_ATTRIBUTE } from '../utils/focusable';
 
 interface GenericProps {
   [index: string]: any;
+}
+
+/**
+ * This file runs in both node and browser projects, so `vitest/browser` must be
+ * imported lazily from browser-only tests.
+ *
+ * Use the Vitest Browser userEvent provider for shadow-root keyboard interactions.
+ * The `user` returned by `render()` comes from @testing-library/user-event.
+ * Its Tab implementation computes the tab order from `document.querySelectorAll()`,
+ * which doesn't include focusable elements inside shadow roots.
+ *
+ * Keep the import specifier widened to `string` so package TypeScript checks
+ * don't load Vitest Browser's ambient matcher types.
+ */
+async function setupBrowser() {
+  const { page, userEvent: user } = await import('vitest/browser' as string);
+
+  return {
+    page,
+    user,
+  };
 }
 
 describe('<FocusTrap />', () => {
@@ -364,6 +393,177 @@ describe('<FocusTrap />', () => {
       screen.getByRole('textbox').focus();
     });
     expect(screen.getByRole('textbox')).toHaveFocus();
+  });
+
+  describe.skipIf(isJsdom())('shadow DOM', () => {
+    it('loops focus when rendered in a shadow root', async () => {
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      let unmount: (() => void) | undefined;
+
+      try {
+        ({ unmount } = render(
+          <FocusTrap open>
+            <div tabIndex={-1}>
+              <button type="button">first</button>
+              <button type="button">last</button>
+            </div>
+          </FocusTrap>,
+          { container: shadowContainer },
+        ));
+
+        const { user } = await setupBrowser();
+        const firstButton = within(shadowContainer).getByRole('button', { name: 'first' });
+        const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
+
+        await user.click(lastButton);
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+
+        await user.tab();
+        expect(shadowRoot.activeElement).to.equal(firstButton);
+
+        await user.tab({ shift: true });
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+      } finally {
+        unmount?.();
+        document.body.removeChild(shadowHost);
+      }
+    });
+
+    it('loops backward when Shift+Tab starts from the shadow-root trap container', async () => {
+      const shadowHost = document.createElement('div');
+      document.body.appendChild(shadowHost);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      let unmount: (() => void) | undefined;
+
+      try {
+        ({ unmount } = render(
+          <FocusTrap open>
+            <div tabIndex={-1} data-testid="root">
+              <button type="button">first</button>
+              <button type="button">last</button>
+            </div>
+          </FocusTrap>,
+          { container: shadowContainer },
+        ));
+
+        const { user } = await setupBrowser();
+        const root = within(shadowContainer).getByTestId('root');
+        const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
+
+        expect(shadowRoot.activeElement).to.equal(root);
+
+        await user.tab({ shift: true });
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+      } finally {
+        unmount?.();
+        document.body.removeChild(shadowHost);
+      }
+    });
+
+    it('loops backward when Shift+Tab enters a lazy shadow-root trap from the document', async () => {
+      const shadowHost = document.createElement('div');
+      const outsideAfter = document.createElement('input');
+      outsideAfter.setAttribute('aria-label', 'after');
+      document.body.appendChild(shadowHost);
+      document.body.appendChild(outsideAfter);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const shadowContainer = document.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      let unmount: (() => void) | undefined;
+
+      try {
+        ({ unmount } = render(
+          <FocusTrap open disableAutoFocus>
+            <div tabIndex={-1}>
+              <button type="button">first</button>
+              <button type="button">last</button>
+            </div>
+          </FocusTrap>,
+          { container: shadowContainer },
+        ));
+
+        const { page, user } = await setupBrowser();
+        const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
+
+        // In Firefox, filling through a provider locator is the reliable way
+        // to move focus to this dynamically appended input before pressing Shift+Tab.
+        // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
+        await user.fill(page.getByRole('textbox', { name: 'after' }), 'focused');
+        expect(document.activeElement).to.equal(outsideAfter);
+
+        await user.tab({ shift: true });
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+      } finally {
+        unmount?.();
+        document.body.removeChild(shadowHost);
+        document.body.removeChild(outsideAfter);
+      }
+    });
+
+    it('loops backward when Shift+Tab enters a shadow-root trap from an iframe document', async () => {
+      const frame = document.createElement('iframe');
+      frame.setAttribute('data-testid', 'focus-trap-shadow-root-iframe');
+      // Firefox in the full no-isolate browser run needs the iframe to load
+      // a real same-origin document before Vitest Browser can query inside it reliably.
+      frame.srcdoc = '<!doctype html><html><body></body></html>';
+      const frameLoaded = new Promise<void>((resolve) => {
+        frame.addEventListener('load', () => resolve(), { once: true });
+      });
+      document.body.appendChild(frame);
+      await frameLoaded;
+      const frameDocument = frame.contentDocument!;
+      const shadowHost = frameDocument.createElement('div');
+      const outsideAfter = frameDocument.createElement('input');
+      outsideAfter.setAttribute('aria-label', 'after');
+      frameDocument.body.appendChild(shadowHost);
+      frameDocument.body.appendChild(outsideAfter);
+      const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+      const shadowContainer = frameDocument.createElement('div');
+      shadowRoot.appendChild(shadowContainer);
+
+      let unmount: (() => void) | undefined;
+
+      try {
+        ({ unmount } = render(
+          <FocusTrap open disableAutoFocus>
+            <div tabIndex={-1}>
+              <button type="button">first</button>
+              <button type="button">last</button>
+            </div>
+          </FocusTrap>,
+          { container: shadowContainer },
+        ));
+
+        const { page, user } = await setupBrowser();
+        // Use a unique page locator instead of `page.elementLocator(frame)`.
+        // Vitest Browser serializes element locators for iframes to a broad `iframe`
+        // selector, which can bind to a stale iframe in the full no-isolate Firefox run.
+        // eslint-disable-next-line testing-library/prefer-screen-queries -- `page` is a Vitest Browser locator provider, not a render result.
+        const frameLocator = page.frameLocator(page.getByTestId('focus-trap-shadow-root-iframe'));
+        const lastButton = within(shadowContainer).getByRole('button', { name: 'last' });
+
+        // Passing the iframe-owned DOM element directly to `user.fill()` does
+        // not focus it reliably in Firefox.
+        // eslint-disable-next-line testing-library/prefer-screen-queries -- `frameLocator` is a Vitest Browser locator, not a render result.
+        await user.fill(frameLocator.getByLabelText('after'), 'focused');
+        expect(frameDocument.activeElement).to.equal(outsideAfter);
+
+        await user.tab({ shift: true });
+        expect(shadowRoot.activeElement).to.equal(lastButton);
+      } finally {
+        unmount?.();
+        document.body.removeChild(frame);
+      }
+    });
   });
 
   it('restores focus when closed', () => {

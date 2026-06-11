@@ -123,6 +123,26 @@ function defaultIsEnabled(): boolean {
   return true;
 }
 
+const DOCUMENT_FRAGMENT_NODE = 11;
+
+function isShadowRoot(node: Node): node is ShadowRoot {
+  return node.nodeType === DOCUMENT_FRAGMENT_NODE && 'host' in node && 'activeElement' in node;
+}
+
+function isKeyboardEvent(event: Event): event is KeyboardEvent {
+  return 'key' in event && typeof event.key === 'string';
+}
+
+function getFocusRoot(node: HTMLElement): Document | ShadowRoot {
+  const rootNode = node.getRootNode();
+
+  if (isShadowRoot(rootNode)) {
+    return rootNode;
+  }
+
+  return ownerDocument(node);
+}
+
 /**
  * @ignore - internal component.
  */
@@ -169,7 +189,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
-    const activeElement = getActiveElement(doc);
+    const focusRoot = getFocusRoot(rootRef.current);
+    const activeElement = getActiveElement(focusRoot) ?? getActiveElement(doc);
 
     // Prefer the explicitly marked focusable element. Fall back to the root
     // element for generic FocusTrap usage.
@@ -214,8 +235,14 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     }
 
     const doc = ownerDocument(rootRef.current);
+    const focusRoot = getFocusRoot(rootRef.current);
+    const getRootActiveElement = () => getActiveElement(focusRoot) ?? getActiveElement(doc);
 
-    const loopFocus = (nativeEvent: KeyboardEvent) => {
+    const handleLoopFocus: EventListener = (nativeEvent) => {
+      if (!isKeyboardEvent(nativeEvent)) {
+        return;
+      }
+
       lastKeydown.current = nativeEvent;
 
       if (disableEnforceFocus || !isEnabled() || nativeEvent.key !== 'Tab') {
@@ -223,7 +250,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
 
       const rootElement = rootRef.current;
-      const activeElement = getActiveElement(doc);
+      const activeElement = getRootActiveElement();
 
       if (rootElement === null) {
         return;
@@ -280,16 +307,18 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
     };
 
-    const contain = () => {
+    // Enforce the focus trap when focus moves outside the root or lands on
+    // one of the sentinel elements.
+    const handleFocusIn = () => {
       const rootElement = rootRef.current;
 
       // Cleanup functions are executed lazily in React 17.
-      // Contain can be called between the component being unmounted and its cleanup function being run.
+      // The focus-in handler can be called between the component being unmounted and its cleanup function being run.
       if (rootElement === null) {
         return;
       }
 
-      const activeEl = getActiveElement(doc);
+      const activeEl = getRootActiveElement();
 
       if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
@@ -349,8 +378,13 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       }
     };
 
-    doc.addEventListener('focusin', contain);
-    doc.addEventListener('keydown', loopFocus, true);
+    focusRoot.addEventListener('focusin', handleFocusIn);
+    focusRoot.addEventListener('keydown', handleLoopFocus, true);
+
+    if (focusRoot !== doc) {
+      doc.addEventListener('focusin', handleFocusIn);
+      doc.addEventListener('keydown', handleLoopFocus, true);
+    }
 
     // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area.
     // for example https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
@@ -359,17 +393,22 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      const activeEl = getActiveElement(doc);
+      const activeEl = getRootActiveElement();
       if (activeEl && activeEl.tagName === 'BODY') {
-        contain();
+        handleFocusIn();
       }
     }, 50);
 
     return () => {
       clearInterval(interval);
 
-      doc.removeEventListener('focusin', contain);
-      doc.removeEventListener('keydown', loopFocus, true);
+      focusRoot.removeEventListener('focusin', handleFocusIn);
+      focusRoot.removeEventListener('keydown', handleLoopFocus, true);
+
+      if (focusRoot !== doc) {
+        doc.removeEventListener('focusin', handleFocusIn);
+        doc.removeEventListener('keydown', handleLoopFocus, true);
+      }
     };
   }, [disableAutoFocus, disableEnforceFocus, disableRestoreFocus, isEnabled, open, getTabbable]);
 
