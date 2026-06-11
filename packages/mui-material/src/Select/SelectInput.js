@@ -88,8 +88,13 @@ const SelectSelect = styled(StyledSelectSelect, {
 })({
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
+    // Density seam: base axis (size-invariant — keeps select content box matched
+    // to the input line box for text-field height consistency; per-size
+    // compactness comes from the input root padding). Consume shape stays uniform
+    // with sized axes: var(seam, var(internal default)).
+    '--_minHeight': '1.4375em', // Required for select\text-field height consistency
     height: 'auto', // Resets for multiple select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
+    minHeight: 'var(--Select-minHeight, var(--_minHeight))',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',

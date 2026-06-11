@@ -80,10 +80,14 @@ const BadgeBadge = styled('span', {
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
-    minWidth: RADIUS_STANDARD * 2,
+    '--_pad': '0 6px',
+    '--_size': `${RADIUS_STANDARD * 2}px`,
+    '--Badge-pad': 'var(--Badge-standard-pad, var(--_pad))',
+    '--Badge-size': 'var(--Badge-standard-size, var(--_size))',
+    minWidth: 'var(--Badge-size, var(--_size))',
     lineHeight: 1,
-    padding: '0 6px',
-    height: RADIUS_STANDARD * 2,
+    padding: 'var(--Badge-pad, var(--_pad))',
+    height: 'var(--Badge-size, var(--_size))',
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
     '@media (forced-colors: active)': {
@@ -106,10 +110,14 @@ const BadgeBadge = styled('span', {
       {
         props: { variant: 'dot' },
         style: {
+          '--_pad': '0px',
+          '--_size': `${RADIUS_DOT * 2}px`,
+          '--Badge-pad': 'var(--Badge-dot-pad, var(--_pad))',
+          '--Badge-size': 'var(--Badge-dot-size, var(--_size))',
           borderRadius: RADIUS_DOT,
-          height: RADIUS_DOT * 2,
-          minWidth: RADIUS_DOT * 2,
-          padding: 0,
+          height: 'var(--Badge-size, var(--_size))',
+          minWidth: 'var(--Badge-size, var(--_size))',
+          padding: 'var(--Badge-pad, var(--_pad))',
         },
       },
       {
