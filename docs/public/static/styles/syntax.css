@@ -458,3 +458,58 @@ pre[data-transforming='expanding'] .frame .line[data-expanding] {
     height: 0;
   }
 }
+
+/* ----------------------------------------------------------------------
+ * Off-screen code skipping (progressive enhancement)
+ *
+ * `content-visibility: auto` lets the browser skip laying out and painting a
+ * code block's highlighted spans while it sits far from the viewport — a large
+ * saving on docs pages stacked with demos. For a skipped block to still
+ * reserve the correct vertical space (so the scrollbar doesn't jump as blocks
+ * are skipped and un-skipped), `contain-intrinsic-size` must match the rendered
+ * height. That height is `lines * line-height`, and `<Pre>` carries the line
+ * counts on the `<code>` as data attributes:
+ *   - `data-total-lines`    every line  (expanded / non-collapsible height)
+ *   - `data-focused-lines`  the focus window (collapsed height)
+ *
+ * The `<code>` has no padding of its own (the `<pre>` owns it), so its height
+ * is exactly `lines * --docs-infra-syntax-line-height`. The leading `auto`
+ * keyword uses that line-count estimate only until the block has rendered once,
+ * then remembers the real measured size.
+ *
+ * Gated behind `@supports` for typed `attr()` (Chromium 133+): without it the
+ * `calc()` is invalid, and turning on `content-visibility: auto` with no usable
+ * intrinsic size would collapse every off-screen block to 0 height and jump the
+ * scrollbar. Browsers without typed `attr()` just skip the optimisation and
+ * render code blocks as before.
+ * ------------------------------------------------------------------- */
+@supports (contain-intrinsic-size: calc(attr(data-total-lines type(<number>), 0) * 1px)) {
+  pre > code[data-total-lines] {
+    content-visibility: auto;
+
+    /* Expanded / non-collapsible: reserve every line. */
+    contain-intrinsic-height: auto
+      calc(attr(data-total-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+
+    /* Paint containment is implied by `content-visibility: auto`. Without this,
+     * it would clip the 6px rounded bleed of the frame/line highlight
+     * backgrounds (and the description badges) at the bare `<code>` box edge —
+     * let them paint just past it. */
+    overflow-clip-margin: 8px;
+  }
+
+  /* Collapsed: a collapsible block the host hasn't expanded shows only its
+   * focus window, so reserve that height instead. */
+  pre > code[data-collapsible][data-focused-lines] {
+    contain-intrinsic-height: auto
+      calc(attr(data-focused-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+  }
+
+  /* Expanded (`data-code-open` on the demo root reveals the full source):
+   * reserve every line again. Same specificity as the collapsed rule above but
+   * later in source order, so it wins while the source is open. */
+  [data-code-open] pre > code[data-collapsible] {
+    contain-intrinsic-height: auto
+      calc(attr(data-total-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+  }
+}
