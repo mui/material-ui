@@ -452,6 +452,27 @@ describe('<FocusTrap />', () => {
       expect(screen.getByTestId('root')).toHaveFocus();
     });
 
+    it('does not contain focus if the active element is body and the previous focus target is still mounted', async () => {
+      render(
+        <FocusTrap open>
+          <div tabIndex={-1} data-testid="root">
+            <div>Title</div>
+          </div>
+        </FocusTrap>,
+      );
+
+      const root = screen.getByTestId('root');
+      expect(root).toHaveFocus();
+
+      await act(async () => {
+        root.blur();
+      });
+      expect(document.activeElement).to.equal(document.body);
+
+      clock.tick(500); // wait for the interval check to kick in.
+      expect(document.activeElement).to.equal(document.body);
+    });
+
     describe('prop: disableAutoFocus', () => {
       it('should not trap', async () => {
         render(

@@ -124,6 +124,51 @@ function defaultIsEnabled(): boolean {
 }
 
 /**
+ * Determines whether a value is an HTMLElement in its owning window.
+ * This handles elements from iframes, where the global HTMLElement constructor differs.
+ */
+function isHTMLElement(element: unknown): element is HTMLElement {
+  if (typeof window === 'undefined' || element == null) {
+    return false;
+  }
+
+  const elementWindow = (element as Node).ownerDocument?.defaultView ?? window;
+  return element instanceof elementWindow.HTMLElement;
+}
+
+/**
+ * Checks whether the element itself is hidden from layout or visibility.
+ * Ancestors are checked separately by `isElementStillUsable`.
+ */
+function isElementHidden(element: HTMLElement): boolean {
+  if (element.hidden) {
+    return true;
+  }
+
+  const computedStyle = ownerDocument(element).defaultView?.getComputedStyle(element);
+  return computedStyle?.display === 'none' || computedStyle?.visibility === 'hidden';
+}
+
+/**
+ * Determines whether a previously focused element can still be treated as a valid focus target.
+ */
+function isElementStillUsable(element: HTMLElement | null): boolean {
+  if (!element?.isConnected || (element as HTMLInputElement).disabled) {
+    return false;
+  }
+
+  let currentElement: HTMLElement | null = element;
+  while (currentElement) {
+    if (isElementHidden(currentElement)) {
+      return false;
+    }
+    currentElement = currentElement.parentElement;
+  }
+
+  return true;
+}
+
+/**
  * @ignore - internal component.
  */
 function FocusTrap(props: FocusTrapProps): React.JSX.Element {
@@ -144,6 +189,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   // This variable is useful when disableAutoFocus is true.
   // It waits for the active element to move into the component to activate.
   const activated = React.useRef(false);
+  const lastFocusedElement = React.useRef<HTMLElement>(null);
 
   const rootRef = React.useRef<HTMLElement>(null);
   const handleRef = useForkRef(getReactElementRef(children), rootRef);
@@ -191,6 +237,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
       if (activated.current) {
         focusTarget.focus();
+        lastFocusedElement.current = focusTarget;
       }
     }
 
@@ -291,6 +338,18 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
       const activeEl = getActiveElement(doc);
 
+      // Avoid yanking focus back to the root when focus falls to <body> while
+      // the last focused element is still mounted. Some screen readers keep DOM
+      // focus there while moving a virtual cursor through the dialog content.
+      if (
+        activeEl === doc.body &&
+        isElementStillUsable(lastFocusedElement.current) &&
+        lastFocusedElement.current !== sentinelStart.current &&
+        lastFocusedElement.current !== sentinelEnd.current
+      ) {
+        return;
+      }
+
       if (!doc.hasFocus() || !isEnabled() || ignoreNextEnforceFocus.current) {
         ignoreNextEnforceFocus.current = false;
         return;
@@ -298,6 +357,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
 
       // The focus is already inside
       if (contains(rootElement, activeEl)) {
+        if (isHTMLElement(activeEl)) {
+          lastFocusedElement.current = activeEl;
+        }
         return;
       }
 
@@ -378,6 +440,9 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
       nodeToRestore.current = event.relatedTarget;
     }
     activated.current = true;
+    if (isHTMLElement(event.target)) {
+      lastFocusedElement.current = event.target;
+    }
     reactFocusEventTarget.current = event.target;
 
     const childrenPropsHandler = children.props.onFocus;
