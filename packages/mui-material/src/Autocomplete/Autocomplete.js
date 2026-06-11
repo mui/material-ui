@@ -139,11 +139,18 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    // Don't specify paddingRight, as it overrides the default value set when there is only
-    // one of the popup or clear icon as the specificity is equal so the latter one wins
     paddingTop: 6,
     paddingBottom: 6,
     paddingLeft: 6,
+    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
+      paddingRight: 26 + 4 + 6,
+    },
+    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
+      paddingRight: 52 + 4 + 6,
+    },
+    [`& .${autocompleteClasses.endAdornment}`]: {
+      right: 6,
+    },
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 8px',
     },
