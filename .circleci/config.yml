@@ -265,7 +265,10 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: A11y results committed?
-          command: git add -A && git diff --exit-code --staged
+          # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
+          # package.json/pnpm-lock.yaml. Exclude those so this check still verifies the a11y
+          # results on every job without tripping over the pinned dependencies.
+          command: git add -A -- . ':(exclude)package.json' ':(exclude)pnpm-lock.yaml' && git diff --exit-code --staged
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
