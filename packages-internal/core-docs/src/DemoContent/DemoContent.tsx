@@ -191,7 +191,7 @@ export default function DemoContent(props: DemoContentProps) {
   const openMuiChat = useMuiChatExporter({
     props,
     selectedVariant: demo.selectedVariant,
-    useTypescript: demo.selectedTransform !== 'js',
+    selectedTransform: demo.selectedTransform,
     exportConfig,
   });
 
