@@ -69,14 +69,15 @@ function InitCodeCopy() {
         return;
       }
       const pre = trigger.previousElementSibling;
-      trigger.dataset.copied = 'true';
-      clearTimeout(copiedTimeout);
-      copiedTimeout = setTimeout(() => {
-        delete trigger.dataset.copied;
-      }, 2000);
+
       try {
         if (pre?.textContent) {
           await clipboardCopy(pre.textContent);
+          trigger.dataset.copied = 'true';
+          clearTimeout(copiedTimeout);
+          copiedTimeout = setTimeout(() => {
+            delete trigger.dataset.copied;
+          }, 2000);
         }
         // eslint-disable-next-line no-empty
       } catch (error) {}
@@ -97,6 +98,8 @@ function InitCodeCopy() {
       const related = (event as MouseEvent | FocusEvent).relatedTarget;
       // Only clear when the pointer/focus actually left the active block.
       if (rootNode.current && (!(related instanceof Node) || !rootNode.current.contains(related))) {
+        // Drop focus so the `:focus` copy-shortcut hint doesn't linger after the pointer leaves.
+        (rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement | null)?.blur();
         rootNode.current = null;
       }
     };
