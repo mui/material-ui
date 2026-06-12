@@ -1,0 +1,41 @@
+{
+  "name": "react-router-node-esm-ssr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "file:../../packages/mui-material/build",
+    "@react-router/node": "7.16.0",
+    "@react-router/serve": "7.16.0",
+    "isbot": "^5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-router": "7.16.0",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@react-router/dev": "7.16.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-transition-group": "^4.4.12",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/core-downloads-tracker": "file:../../packages/mui-core-downloads-tracker",
+      "@mui/private-theming": "file:../../packages/mui-private-theming/build",
+      "@mui/styled-engine": "file:../../packages/mui-styled-engine/build",
+      "@mui/system": "file:../../packages/mui-system/build",
+      "@mui/types": "file:../../packages/mui-types/build",
+      "@mui/utils": "file:../../packages/mui-utils/build"
+    }
+  }
+}

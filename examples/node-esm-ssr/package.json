@@ -1,0 +1,27 @@
+{
+  "name": "node-esm-ssr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node ./server.mjs --once",
+    "start": "node ./server.mjs"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "file:../../packages/mui-material/build",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-transition-group": "^4.4.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/core-downloads-tracker": "file:../../packages/mui-core-downloads-tracker",
+      "@mui/private-theming": "file:../../packages/mui-private-theming/build",
+      "@mui/styled-engine": "file:../../packages/mui-styled-engine/build",
+      "@mui/system": "file:../../packages/mui-system/build",
+      "@mui/types": "file:../../packages/mui-types/build",
+      "@mui/utils": "file:../../packages/mui-utils/build"
+    }
+  }
+}
