@@ -58,6 +58,10 @@ function observePreviewVisibility(node: Element): () => void {
   return () => visibilityObserver?.unobserve(node);
 }
 
+// Dark code-panel surface, shared by `DemoCodePanel` (the rounded clip wrapper)
+// and the `DemoCodeWrapper` fade overlay.
+const CODE_BG = 'hsl(210, 25%, 9%)';
+
 export const DemoRoot = styled('div')(({ theme }) => ({
   marginBottom: 24,
   marginLeft: theme.spacing(-2),
@@ -334,7 +338,7 @@ export const DemoCodeWrapper = styled('div', {
     left: 0,
     right: 0,
     height: 40,
-    background: `linear-gradient(to bottom, transparent, ${alpha('hsl(210, 25%, 9%)', 0.85)})`,
+    background: `linear-gradient(to bottom, transparent, ${alpha(CODE_BG, 0.85)})`,
     transition: 'transform 0.3s ease',
     pointerEvents: 'none',
   },
@@ -351,65 +355,133 @@ export const DemoCodeWrapper = styled('div', {
   ],
 }));
 
-// Fixed-height scroll "window" wrapped around the source panel, and the single
-// scroll container for both axes. The height is capped at `min(68vh, 1000px)`
-// so a long expanded source scrolls internally instead of growing the page
-// indefinitely; shorter collapsed/focused snippets sit under the cap and still
-// render at their natural height (a `max-height` cap never stretches content
-// beneath it).
+// Rounded, clipping panel wrapped around the scroll window. The dark surface, 1px
+// divider border, rounded bottom corners, and the 1px toolbar overlap live HERE —
+// not on the inner `<pre>` — so the window's scrollbar (and the editable `<pre>`'s
+// focus ring) are clipped into the rounded shape instead of squaring the corner.
+// This mirrors mui-public's "scroll element inside a rounded `overflow: hidden`
+// container" model. The window fills the panel flush, so `overflow: hidden` here
+// rounds the window's square scrollbar corners; the dark surface is the scrollport
+// background the code scrolls over (fixed at every scroll position).
+export const DemoCodePanel = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'expanded',
+})<{ expanded?: boolean }>(({ theme }) => ({
+  marginTop: -1, // overlap the toolbar's bottom border for a seamless join
+  overflow: 'hidden',
+  borderBottomLeftRadius: 12,
+  borderBottomRightRadius: 12,
+  backgroundColor: CODE_BG,
+  border: '1px solid transparent',
+  WebkitPrintColorScheme: 'dark',
+  colorScheme: 'dark',
+  color: '#f8f8f2',
+  // In dark mode the page background matches the dark panel, so a visible divider
+  // border separates them; light mode keeps the transparent border (the dark
+  // panel already contrasts with the page).
+  ...theme.applyDarkStyles({
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
+  }),
+  // Surface the editable code's hover/focus state as a ring on THIS rounded panel
+  // (via `:has()`) so it follows the rounded border, rather than boxing the
+  // transparent inset `<pre>`. `box-shadow`/`outline` paint outside the border box
+  // (not clipped by this panel's own `overflow: hidden`) and both follow
+  // `border-radius`. Hover keys off the PANEL being hovered while it contains an
+  // `.editable-code-wrapper` (not off the `<pre>` itself), so hovering anywhere in
+  // the panel — including its inset padding — arms the ring. Focus keys off the
+  // `<pre>` since that's the element that actually takes editing focus. Non-editable
+  // demos have no `.editable-code-wrapper`, so they never match; the `<pre>`'s own
+  // default focus outline is suppressed in `CodeSource`.
+  '&:hover:has(.editable-code-wrapper)': {
+    boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
+  },
+  '&:has(.editable-code-wrapper pre:focus), &:has(.editable-code-wrapper pre:focus-visible)': {
+    outline: `3px solid ${alpha(theme.palette.primary[500], 0.8)}`,
+    outlineOffset: 0,
+  },
+  // Collapse-to-empty: drop the border so the zero-height panel doesn't leave a
+  // 1px line below the toolbar (the window zeroes its inset padding in step). The
+  // expanded variant restores it.
+  '&:has(pre > code[data-collapsible][data-focused-lines="0"])': {
+    borderWidth: 0,
+    transition: 'border-width 0.3s ease',
+  },
+  variants: [
+    {
+      props: { expanded: true },
+      style: {
+        '&:has(pre > code[data-collapsible][data-focused-lines="0"])': {
+          borderWidth: '1px',
+        },
+      },
+    },
+  ],
+}));
+
+// Fixed-height scroll "window" inside `DemoCodePanel`, and the single scroll
+// container for both axes. The height is capped at `min(68vh, 1000px)` so a long
+// expanded source scrolls internally instead of growing the page indefinitely;
+// shorter collapsed/focused snippets sit under the cap and still render at their
+// natural height (a `max-height` cap never stretches content beneath it).
 //
-// The vertical cap is applied in both states on purpose. Gating it on
-// `expanded` made collapse drop the cap on the first frame — before the inner
-// `.frame` elements had animated their height down (a 0.3s transition) — so the
-// window briefly ballooned to the full expanded source height and then shrank, a
-// visible jump. Keeping the cap means the window tracks the shrinking content
-// smoothly. It also keeps the panel a scroll container for the whole collapse,
-// which is what `useCodeWindow`'s `scrollContainerRef` anchoring (attached here)
-// compensates against (the resizing `DemoCodeWrapper` inside stays the observed
-// `containerRef`).
+// The vertical cap is applied in both states on purpose. Gating it on `expanded`
+// made collapse drop the cap on the first frame — before the inner `.frame`
+// elements had animated their height down (a 0.3s transition) — so the window
+// briefly ballooned to the full expanded source height and then shrank, a visible
+// jump. Keeping the cap means the window tracks the shrinking content smoothly. It
+// also keeps the panel a scroll container for the whole collapse, which is what
+// `useCodeWindow`'s `scrollContainerRef` anchoring (attached here) compensates
+// against (the resizing `DemoCodeWrapper` inside stays the observed `containerRef`).
 //
-// Horizontal scroll lives here too — not on the inner `<pre>` — so the
-// horizontal scrollbar sits at the window's bottom edge (always in view) rather
-// than at the bottom of a collapsible `<pre>` whose full height runs past the
-// cap and out of sight. It is gated on `expanded`: a collapsed focused snippet
-// never scrolls horizontally; expanding the full source re-enables it.
+// Horizontal scroll lives here (not on the inner `<pre>`) so the scrollbar sits at
+// the window's bottom edge — inside the rounded panel and always in view — rather
+// than at the bottom of a collapsible `<pre>` whose full height runs past the cap
+// and out of sight. It is enabled in BOTH states: a collapsed focused snippet
+// scrolls when its VISIBLE frames overflow (hidden frames are width-contained via
+// `contain: inline-size` in `CodeSource`, so they can't drive an empty-space
+// scrollbar), and expanding reveals the full source's natural width.
 //
-// Because the window owns the horizontal scroll, `useCodeWindow`'s gutter swap
-// runs on this element (it is wired as `scrollContainerRef`): the hook flips
-// `data-scrollbar-gutter` on the window itself, so the rules below hold
-// `overflow-x: hidden` for the duration of the swap and animate an equivalent
-// `margin-bottom` on the inner `<code>` to reserve the scrollbar's height. When
-// the hook clears the attribute the real scrollbar takes over the reserved gap
-// without a snap.
+// `useCodeWindow`'s gutter swap runs on this element (wired as `scrollContainerRef`):
+// the hook flips `data-scrollbar-gutter` here, so the rules below hold `overflow-x:
+// hidden` for the duration of the swap and animate an equivalent `margin-bottom` on
+// the inner `<code>` to reserve the scrollbar's height. When the hook clears the
+// attribute the real scrollbar takes over the reserved gap without a snap.
 export const DemoCodeWindow = styled('div', {
   shouldForwardProp: (prop) => prop !== 'expanded',
 })<{ expanded?: boolean }>({
   maxHeight: 'min(68vh, 1000px)',
   overflowY: 'auto',
-  overflowX: 'hidden',
+  overflowX: 'auto',
+  // The inset padding lives on the `<pre>` itself (see `CodeSource`) so the `<pre>`
+  // fills the container and the inset scrolls with the content. This window is just
+  // the transparent, height-capped scroll viewport over the panel's dark surface.
   // Width reserved for the horizontal scrollbar during the gutter swap. Matches
   // the classic scrollbar thickness; overlay scrollbars (0px) make
   // `useCodeWindow` skip the swap entirely.
   '--scrollbar-gutter-size': '15px',
-  // Keep the bottom corners rounded with the inner `<pre>` while clipping the
-  // scrolled content.
-  borderBottomLeftRadius: 12,
-  borderBottomRightRadius: 12,
   // NB: no `overscroll-behavior: contain` here. As an `overflow: auto` element
   // the window is a scroll container, and `contain` stops the wheel from
   // chaining to the page — so hovering over a code block that can't scroll
   // (a short collapsed snippet) or is already at its edge would freeze the page
   // scroll. Default chaining keeps the page scrolling normally over the panel.
-  // ---- Collapse-to-empty: suppress the vertical scrollbar ----
+  // ---- Collapse-to-empty ----
   // A `collapseToEmpty` / `oversizedFocus: 'hide'` block collapses to an empty
-  // window (`<code data-focused-lines="0">`). Collapsed there is nothing to
-  // scroll, yet `overflowY: auto` still paints a 1px scrollbar: the inner
-  // `<pre>`'s `margin-top: -1` (which overlaps the toolbar border) leaves 1px of
-  // content above the window's top edge. That same overflow flashes mid-collapse
-  // as the content shrinks toward zero. Drop vertical scrolling while collapsed
-  // so no scrollbar can show; the expanded variant restores `overflowY: auto`.
+  // window (`<code data-focused-lines="0">`). Suppress vertical scrolling so the
+  // zero-height window can't paint a phantom scrollbar; the `<pre>`'s own padding
+  // zeroes in `CodeSource`. The expanded variant restores scrolling.
   '&:has(pre > code[data-focused-lines="0"])': {
     overflowY: 'hidden',
+  },
+  // While the gutter swap is reserving a horizontal scrollbar, its `pre > code`
+  // margin-bottom already animates the bottom edge — so don't ALSO transition the
+  // collapse-to-empty `<pre>`'s bottom (and side) padding, or the two desync and
+  // jitter against the scrollbar. Animate only the top edge; the bottom/sides snap.
+  // The swap only runs when a real horizontal scrollbar exists
+  // (`animateScrollbarGutter` bails on overlay scrollbars and non-overflowing
+  // content), so without horizontal overflow the `<pre>`'s full `padding` transition
+  // (in `CodeSource`) still applies. The `[attr]` + `:has()` + descendant `pre`
+  // out-specifies that rule.
+  '&[data-scrollbar-gutter]:has(pre > code[data-focused-lines="0"]) pre': {
+    transition: 'padding-top 0.3s cubic-bezier(0.5, 0, 0, 1)',
   },
   // Hold the horizontal scrollbar back while the gutter swap runs. The
   // attribute selectors out-specify the `expanded` variant below, so the lock
@@ -439,10 +511,13 @@ export const DemoCodeWindow = styled('div', {
     {
       props: { expanded: true },
       style: {
-        overflowX: 'auto',
-        // Expanded, the empty-focus source is revealed and may exceed the
-        // height cap — restore vertical scrolling suppressed by the collapsed
-        // rule above.
+        // (`overflowX: 'auto'` is inherited from the base — collapsed already
+        // allows horizontal scroll — so it isn't repeated here.)
+        // Expanded, the empty-focus source is revealed and may exceed the height
+        // cap — restore vertical scrolling suppressed by the collapsed rule above
+        // (the `<pre>` restores its own inset padding in `CodeSource`). The revealed
+        // frames drop their `contain: inline-size`, so the source recovers its full
+        // width and scrolls normally.
         '&:has(pre > code[data-focused-lines="0"])': {
           overflowY: 'auto',
         },
@@ -620,11 +695,13 @@ export function DemoContainer(props: DemoContainerProps) {
     <React.Fragment>
       {tabs}
       {code != null ? (
-        <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
-          <DemoCodeWrapper ref={codeRef} expanded={expanded}>
-            {code}
-          </DemoCodeWrapper>
-        </DemoCodeWindow>
+        <DemoCodePanel expanded={expanded}>
+          <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
+            <DemoCodeWrapper ref={codeRef} expanded={expanded}>
+              {code}
+            </DemoCodeWrapper>
+          </DemoCodeWindow>
+        </DemoCodePanel>
       ) : null}
     </React.Fragment>
   );
