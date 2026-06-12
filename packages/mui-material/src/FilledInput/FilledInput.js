@@ -166,34 +166,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
             paddingRight: 12,
           },
         },
-        {
-          props: ({ ownerState }) => ownerState.multiline,
-          style: {
-            padding: '25px 12px 8px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            paddingTop: 21,
-            paddingBottom: 4,
-          },
-        },
-        {
-          props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
-          style: {
-            paddingTop: 16,
-            paddingBottom: 17,
-          },
-        },
-        {
-          props: ({ ownerState }) =>
-            ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
-          style: {
-            paddingTop: 8,
-            paddingBottom: 9,
-          },
-        },
       ],
     };
   }),
@@ -258,15 +230,6 @@ const FilledInputInput = styled(InputBaseInput, {
         style: {
           paddingTop: 8,
           paddingBottom: 9,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          paddingTop: 0,
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
         },
       },
     ],

@@ -96,18 +96,6 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             paddingRight: 14,
           },
         },
-        {
-          props: ({ ownerState }) => ownerState.multiline,
-          style: {
-            padding: '16.5px 14px',
-          },
-        },
-        {
-          props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
-          style: {
-            padding: '8.5px 14px',
-          },
-        },
       ],
     };
   }),
@@ -156,12 +144,6 @@ const OutlinedInputInput = styled(InputBaseInput, {
         },
         style: {
           padding: '8.5px 14px',
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          padding: 0,
         },
       },
       {
