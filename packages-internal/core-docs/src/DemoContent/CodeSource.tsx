@@ -1,6 +1,7 @@
 import { Tabs } from '@base-ui/react/tabs';
 import { alpha, styled } from '@mui/material/styles';
 import { blueDark } from '../branding';
+import { CODE_BG } from './DemoContainer';
 
 // Inset of the code text from the `<pre>` edge (the `<pre>` fills the container),
 // so the scrollbar and editable focus ring sit inside the rounded panel.
@@ -177,11 +178,27 @@ export const CodeSource = styled('div', {
     padding: '0 6px',
   },
 
-  // Line-level highlight inside a frame (nested emphasis).
+  // Line-level highlight inside a frame (nested emphasis). SOLID (opaque) — the
+  // `color-mix` blends the primary tint into the dark panel surface to the same
+  // visible color a translucent `alpha(primary, 0.18)` over `CODE_BG` would give,
+  // but without transparency: where the merge rules below overlap a regular and a
+  // strong line (or a `<pre>` spans z-layers), translucent tints would COMPOUND
+  // into a darker seam/stripe; an opaque background simply covers.
   '& .line[data-hl]': {
-    background: alpha(theme.palette.primary.main, 0.18),
+    background: `color-mix(in srgb, ${theme.palette.primary.main} 18%, ${CODE_BG})`,
     margin: '0 -6px',
     padding: '0 6px',
+    // Indent-shift: when a collapsible block collapses, its focused frame
+    // `translateX`es left to un-indent the code. Extend the highlight's RIGHT
+    // padding by the same `--di-indent-shift` the frame tints use (and pull the
+    // layout back with a matching negative right margin, so the code's width is
+    // unaffected) — the highlight's right edge then stays put while the text
+    // un-indents, animating the indent exactly the way the frame tints do.
+    // `--di-indent-shift` is 0 outside a collapse, so `max()` keeps the normal
+    // 6px gutter then.
+    marginRight: 'calc(-1 * max(6px, var(--di-indent-shift, 0px)))',
+    paddingRight: 'max(6px, var(--di-indent-shift, 0px))',
+    transition: 'padding-right 0.3s ease, margin-right 0.3s ease',
   },
   // Inline highlights are emitted as `<mark>` by `enhanceCodeEmphasis`
   // (e.g. `@highlight-text`). Override the UA `mark` default (yellow fill,
@@ -202,9 +219,11 @@ export const CodeSource = styled('div', {
     background: alpha(theme.palette.primary.main, 0.5),
   },
   '& .line[data-hl="strong"]': {
-    background: alpha(theme.palette.primary.main, 0.32),
-    margin: '0 -6px',
-    padding: '0 6px',
+    // Solid (see `.line[data-hl]`) — the stronger tier, blended opaque so it
+    // doesn't compound with the regular highlight it sits within. Margin/padding
+    // (including the indent-shift right extension) are inherited from
+    // `.line[data-hl]`.
+    background: `color-mix(in srgb, ${theme.palette.primary.main} 32%, ${CODE_BG})`,
   },
   // Strong lines bordering a regular highlight need to stack above it so the
   // regular line's extended background sits underneath the rounded corners.
