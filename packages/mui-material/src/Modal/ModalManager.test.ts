@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 
@@ -430,6 +431,162 @@ describe('ModalManager', () => {
       expect(container2.children[0]).toBeInaccessible();
       expect(container2.children[1]).toBeInaccessible();
       expect(container2.children[2]).not.toBeInaccessible();
+    });
+  });
+
+  // Regression test for https://github.com/mui/material-ui/issues/46791
+  // iOS Safari ignores `overflow: hidden` on the document scroll container, so
+  // the page can still scroll behind a modal (e.g. when the on-screen keyboard
+  // opens for an Autocomplete inside a Drawer). On iOS we additionally pin the
+  // body with `position: fixed` and restore the scroll position on unlock.
+  describe('iOS scroll lock', () => {
+    let scrollYDescriptor: PropertyDescriptor | undefined;
+    let originalScrollTo: typeof window.scrollTo;
+    let scrollToSpy: ReturnType<typeof spy>;
+
+    // Shadow the read-only navigator getters with own properties; afterEach
+    // deletes them to fall back to the original prototype getters.
+    function stubNavigator(values: {
+      userAgent?: string;
+      platform?: string;
+      maxTouchPoints?: number;
+    }) {
+      if (values.userAgent !== undefined) {
+        Object.defineProperty(navigator, 'userAgent', {
+          value: values.userAgent,
+          configurable: true,
+        });
+      }
+      if (values.platform !== undefined) {
+        Object.defineProperty(navigator, 'platform', {
+          value: values.platform,
+          configurable: true,
+        });
+      }
+      if (values.maxTouchPoints !== undefined) {
+        Object.defineProperty(navigator, 'maxTouchPoints', {
+          value: values.maxTouchPoints,
+          configurable: true,
+        });
+      }
+    }
+
+    beforeEach(() => {
+      modalManager = new ModalManager();
+      scrollYDescriptor = Object.getOwnPropertyDescriptor(window, 'scrollY');
+      Object.defineProperty(window, 'scrollY', { value: 150, configurable: true });
+
+      originalScrollTo = window.scrollTo;
+      scrollToSpy = spy();
+      window.scrollTo = scrollToSpy as unknown as typeof window.scrollTo;
+    });
+
+    afterEach(() => {
+      delete (navigator as any).userAgent;
+      delete (navigator as any).platform;
+      delete (navigator as any).maxTouchPoints;
+      if (scrollYDescriptor) {
+        Object.defineProperty(window, 'scrollY', scrollYDescriptor);
+      } else {
+        delete (window as any).scrollY;
+      }
+      window.scrollTo = originalScrollTo;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+    });
+
+    it('pins the body with position: fixed and restores scroll on iOS', () => {
+      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('fixed');
+      expect(document.body.style.top).to.equal('-150px');
+      expect(document.body.style.width).to.equal('100%');
+
+      modalManager.remove(modal);
+
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+      expect(document.body.style.overflow).to.equal('');
+      expect(scrollToSpy.calledOnceWith(0, 150)).to.equal(true);
+    });
+
+    it('detects iPadOS 13+ which reports as MacIntel with touch points', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/604.1',
+        platform: 'MacIntel',
+        maxTouchPoints: 5,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.position).to.equal('fixed');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.calledOnceWith(0, 150)).to.equal(true);
+    });
+
+    it('does not pin the body on non-iOS platforms', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/604.1',
+        platform: 'MacIntel',
+        maxTouchPoints: 0,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('does nothing when disableScrollLock is set on iOS', () => {
+      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, { disableScrollLock: true });
+
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('does not pin a non-document scroll container on iOS', () => {
+      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+
+      const customContainer = document.createElement('div');
+      document.body.appendChild(customContainer);
+
+      const modal = getDummyModal();
+      modalManager.add(modal, customContainer);
+      modalManager.mount(modal, {});
+
+      expect(customContainer.style.overflow).to.equal('hidden');
+      expect(customContainer.style.position).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+      document.body.removeChild(customContainer);
     });
   });
 });
