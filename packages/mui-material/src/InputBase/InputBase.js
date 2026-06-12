@@ -580,6 +580,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
             aria-label={ariaLabel}
+            data-something="test"
             autoComplete={autoComplete}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
