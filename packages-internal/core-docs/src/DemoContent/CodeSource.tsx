@@ -2,8 +2,13 @@ import { Tabs } from '@base-ui/react/tabs';
 import { alpha, styled } from '@mui/material/styles';
 import { blueDark } from '../branding';
 
-// Dark code-panel background used by the highlighted source viewer.
-const CODE_BG = 'hsl(210, 25%, 9%)';
+// Inset of the code text from the `<pre>` edge (the `<pre>` fills the container),
+// so the scrollbar and editable focus ring sit inside the rounded panel.
+const CODE_INSET = 'calc(2 * var(--muidocs-spacing))';
+
+// Shared duration + easing for the collapse animations (the `<pre>`'s padding and
+// the frames' height collapse in step on expand/collapse).
+const COLLAPSE_TIMING = '0.3s cubic-bezier(0.5, 0, 0, 1)';
 
 /**
  * Single-file tab button used in the multi-file tab bar between the toolbar
@@ -59,65 +64,30 @@ export const CodeSource = styled('div', {
 })<{ expanded?: boolean }>(({ theme }) => ({
   position: 'relative',
 
-  // ---- Base <pre> styles (existing dark code panel) ----
+  // ---- Base <pre> styles ----
+  // The dark surface, border, rounded corners, and toolbar overlap live on
+  // `DemoCodePanel` (the rounded `overflow: hidden` wrapper); the scroll and the
+  // height cap live on `DemoCodeWindow`. The `<pre>` fills that window and carries
+  // the inset padding ITSELF — so the editable `<pre>` (which IS the
+  // `contentEditable` surface) spans the whole container, and the inset scrolls
+  // with the content rather than the scroll container clipping a fixed gutter.
+  // This matches mui-public. The `<pre>` stays transparent; the dark surface
+  // behind it is the panel's, fixed at every scroll position.
   '& pre': {
     margin: 0,
-    marginTop: -1,
     maxWidth: 'initial',
-    borderRadius: 0,
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-    overflow: 'auto',
-    backgroundColor: CODE_BG,
-    border: '1px solid transparent',
-    WebkitPrintColorScheme: 'dark',
-    colorScheme: 'dark',
-    color: '#f8f8f2',
-    padding: 'calc(2 * var(--muidocs-spacing))',
+    overflow: 'visible',
+    // `min-width: fit-content` grows the `<pre>` box to the widest line so the
+    // code scrolls horizontally inside `DemoCodeWindow`; with `width: auto` it also
+    // fills the window when the content is narrower, so the `<pre>` always spans
+    // the full container.
+    minWidth: 'fit-content',
+    padding: CODE_INSET,
     fontFamily: 'Menlo, Consolas, "Droid Sans Mono", monospace',
     fontWeight: '400',
     fontSize: '0.8125rem',
     lineHeight: '1.5',
     tabSize: 2,
-    // In dark mode the page background already matches the code panel's dark
-    // surface, so the panel needs a visible divider border to separate it
-    // from the surrounding content. Light mode keeps the transparent border
-    // (the dark panel already contrasts with the page).
-    ...theme.applyDarkStyles({
-      border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    }),
-  },
-  // Hover ring on the editable `<pre>`.
-  '& .editable-code-wrapper pre:hover': {
-    boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
-  },
-  // When the editable `<pre>` is focused (after pressing Enter), use the
-  // brand-blue focus ring instead of the browser default (which is white in
-  // dark color schemes).
-  '& .editable-code-wrapper pre:focus, & .editable-code-wrapper pre:focus-visible': {
-    outline: `3px solid ${alpha(theme.palette.primary[500], 0.8)}`,
-    outlineOffset: 0,
-  },
-
-  // Cap height only on non-collapsible blocks; collapsible blocks animate their
-  // own height via frame transitions and need clean overflow handling.
-  '& pre:not(:has(> code[data-collapsible]))': {
-    maxHeight: 'min(68vh, 1000px)',
-  },
-
-  // Collapsible blocks don't scroll on their own — the surrounding
-  // `DemoCodeWindow` is the single scroll container for both axes, so the
-  // horizontal scrollbar sits at the window's edge instead of the bottom of the
-  // full-height `<pre>` (which scrolls out of view once the expanded source is
-  // taller than the window's cap). The pre overflows freely; the window clips
-  // and scrolls (and owns the scrollbar-gutter swap; see `DemoCodeWindow`).
-  // `min-width: fit-content` grows the pre's box to the widest line (a block
-  // would otherwise stay at the window's width), so the panel background and
-  // border span the full horizontal scroll extent instead of stopping at the
-  // window edge and leaving overflowing code on the bare page background.
-  '& pre:has(> code[data-collapsible])': {
-    overflow: 'visible',
-    minWidth: 'fit-content',
     // Expand stagger: when the focused region opens, frames directly bordering
     // it grow at full speed while frames farther out wait out the first third —
     // the bordering frames push them off-screen — then cover their height in the
@@ -128,33 +98,32 @@ export const CodeSource = styled('div', {
     '--frame-expand-stagger-duration':
       'calc(var(--frame-expand-duration) - var(--frame-expand-stagger-delay))',
   },
+  // The editable `<pre>`'s hover/focus ring is drawn on the rounded
+  // `DemoCodePanel` (via `:has()`) so it follows the rounded border instead of
+  // boxing the transparent inset `<pre>`. Here we only suppress the `<pre>`'s
+  // default focus outline (white in the dark color scheme); the panel ring is the
+  // visible indicator.
+  '& .editable-code-wrapper pre:focus, & .editable-code-wrapper pre:focus-visible': {
+    outline: 'none',
+  },
 
+  // Truncated collapsed frame: the fade overlay (anchored on `DemoCodeWrapper`)
+  // covers the bottom, so drop the `<pre>`'s bottom padding to keep it flush; the
+  // expanded variant restores it.
   '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
     paddingBottom: 0,
   },
-
   // ---- Collapse-to-empty padding ----
   // A `collapseToEmpty` / `oversizedFocus: 'hide'` block records
-  // `data-focused-lines="0"`: the collapsed window shows nothing — every frame
-  // is hidden — so the panel must take no vertical space. The frames already
-  // animate to zero height (see the collapsible frame rules below), but the
-  // `<pre>`'s own vertical padding would otherwise leave a ~32px empty gap.
-  // Zero the top/bottom padding while collapsed and transition it so the gap
-  // grows and shrinks in step with the frames on expand/collapse instead of
-  // snapping. The expanded variant restores it.
+  // `data-focused-lines="0"`: every frame is hidden, so the panel must take no
+  // vertical space. The frames animate to zero height; zero the `<pre>`'s own
+  // top/bottom padding too (transitioned so the gap shrinks in step) — otherwise
+  // it leaves a ~32px gap. The expanded variant restores it. The 1px panel border
+  // is zeroed separately on `DemoCodePanel`.
   '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
     paddingTop: 0,
     paddingBottom: 0,
-    // Collapse the <pre>'s border to zero width too. With padding and content
-    // already at zero, the only remaining height is the border-box — and since
-    // `background-clip` defaults to `border-box`, the dark code background fills
-    // those ~2px and pokes out (square top corners) past the rounded toolbar's
-    // bottom corners. Zeroing the border width collapses the border-box to zero
-    // height, so nothing renders below the toolbar (this also removes the
-    // dark-mode divider line). The expanded variant restores the 1px border;
-    // its color still comes from the base `& pre` rule.
-    borderWidth: 0,
-    transition: 'padding 0.3s cubic-bezier(0.5, 0, 0, 1), border-width 0.3s ease',
+    transition: `padding ${COLLAPSE_TIMING}`,
   },
 
   // Code element inside pre — block so frames stretch to the widest line.
@@ -293,6 +262,9 @@ export const CodeSource = styled('div', {
     position: 'relative',
     display: 'block',
     borderRadius: 8,
+    // Show the text caret over the whole editable area (which the `<pre>` now
+    // fills) — even before editing is armed — so hovering signals it's editable.
+    cursor: 'text',
   },
   '& .editable-code-wrapper:focus-visible': {
     outline: 0,
@@ -366,8 +338,23 @@ export const CodeSource = styled('div', {
       overflowAnchor: 'none',
       opacity: 0,
       visibility: 'hidden',
-      transition:
-        'max-height 0.3s cubic-bezier(0.5, 0, 0, 1), opacity 0.2s ease 0.1s, visibility 0.3s',
+      // Stop hidden frames from driving the collapsed horizontal scroll extent.
+      // The `<pre>`/`<code>` use `min-width: fit-content`, which resolves against
+      // the widest `.line` of EVERY in-flow frame — hidden frames included, since
+      // `height: 0` + `overflow: hidden/clip` + `visibility: hidden` collapse only
+      // the BLOCK axis and never remove a box from max-content width. So a wide
+      // off-screen line (a long import/comment elsewhere in the source) would
+      // inflate `code`'s fit-content and, once the window allows horizontal scroll
+      // while collapsed (`DemoCodeWindow` `overflow-x: auto`), produce a scrollbar
+      // that scrolls into empty space past the short visible focus frames.
+      // `contain: inline-size` sizes each hidden frame to the available (window)
+      // inline width instead of its content's max-content width, so its `.line`
+      // children no longer contribute to `code`'s `fit-content`. The collapsed
+      // scroll extent then reflects only the VISIBLE (focused) frames. The
+      // `expanded` variant drops these rules entirely, so the expanded source
+      // recovers its full natural width and scrolls normally.
+      contain: 'inline-size',
+      transition: `max-height ${COLLAPSE_TIMING}, opacity 0.2s ease 0.1s, visibility 0.3s`,
       '@supports (interpolate-size: allow-keywords)': {
         interpolateSize: 'allow-keywords',
         maxHeight: 'unset',
@@ -482,6 +469,13 @@ export const CodeSource = styled('div', {
             maxHeight: 2220,
             opacity: 1,
             visibility: 'visible',
+            // Release the collapsed width clamp so the revealed frames recover
+            // their natural max-content width and the expanded source scrolls
+            // horizontally as before. The base rule and this variant share the
+            // same selector/specificity, so without this explicit reset the base
+            // `contain: inline-size` would leak in and clip the expanded source
+            // to the window width.
+            contain: 'none',
             transition:
               'max-height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.15s ease, visibility 0s',
             '@supports (interpolate-size: allow-keywords)': {
@@ -520,17 +514,14 @@ export const CodeSource = styled('div', {
             ];
           }),
         ),
+        // Restore the `<pre>`'s inset padding once the source is expanded — both
+        // animated by the transitions declared on the collapsed base rules above.
         '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
-          paddingBottom: 'calc(2 * var(--muidocs-spacing))',
+          paddingBottom: CODE_INSET,
         },
-        // Collapse-to-empty: restore the <pre>'s vertical padding and 1px border
-        // width — both animated by the transitions declared on the collapsed
-        // base rule above. The border color comes from the base `& pre` rule
-        // (transparent in light mode, divider in dark).
         '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
-          paddingTop: 'calc(2 * var(--muidocs-spacing))',
-          paddingBottom: 'calc(2 * var(--muidocs-spacing))',
-          borderWidth: '1px',
+          paddingTop: CODE_INSET,
+          paddingBottom: CODE_INSET,
         },
       },
     },
