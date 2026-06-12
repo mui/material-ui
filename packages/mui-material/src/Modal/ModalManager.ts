@@ -6,6 +6,22 @@ export interface ManagedModalProps {
   disableScrollLock?: boolean | undefined;
 }
 
+// iOS Safari ignores `overflow: hidden` on the scroll container for touch
+// scrolling, so the page can still scroll behind a modal. We detect iOS to
+// apply a stronger `position: fixed` scroll lock there. Evaluated at call time
+// (not module load) so it stays SSR-safe and testable.
+function isIOS(): boolean {
+  if (typeof navigator === 'undefined') {
+    return false;
+  }
+  // iPadOS 13+ reports as "MacIntel"; distinguish a real Mac from an iPad
+  // via touch points.
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+}
+
 // Is a vertical scrollbar displayed?
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
@@ -94,6 +110,7 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     value: string;
   }> = [];
   const container = containerInfo.container;
+  let restoreScroll: (() => void) | undefined;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
@@ -157,6 +174,38 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     );
 
     scrollContainer.style.overflow = 'hidden';
+
+    // iOS Safari does not reliably honor `overflow: hidden` for touch scrolling,
+    // so the document can still scroll behind the modal — e.g. once the on-screen
+    // keyboard opens for an Autocomplete inside a Drawer. Pin the body with
+    // `position: fixed` (the robust scroll-lock technique) and restore the scroll
+    // position on unlock to avoid a jump to the top. Only the document scroll
+    // container is affected; custom containers keep the existing behavior.
+    const doc = ownerDocument(container);
+    const isDocumentScrollContainer =
+      scrollContainer === doc.body || scrollContainer === doc.documentElement;
+
+    if (isIOS() && isDocumentScrollContainer) {
+      const scrollContainerWindow = ownerWindow(container);
+      const scrollY = scrollContainerWindow.scrollY;
+
+      (['position', 'top', 'left', 'right', 'width'] as const).forEach((property) => {
+        restoreStyle.push({
+          value: scrollContainer.style.getPropertyValue(property),
+          property,
+          el: scrollContainer,
+        });
+      });
+
+      scrollContainer.style.position = 'fixed';
+      scrollContainer.style.top = `${-scrollY}px`;
+      scrollContainer.style.left = '0';
+      scrollContainer.style.right = '0';
+      // Preserve the layout width so content doesn't reflow while pinned.
+      scrollContainer.style.width = '100%';
+
+      restoreScroll = () => scrollContainerWindow.scrollTo(0, scrollY);
+    }
   }
 
   const restore = () => {
@@ -167,6 +216,8 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         el.style.removeProperty(property);
       }
     });
+    // Restore scroll position after the `position: fixed` styles are reverted.
+    restoreScroll?.();
   };
 
   return restore;
