@@ -9,5 +9,5 @@
   NODE_VERSION = "22.18"
   PNPM_FLAGS = "--frozen-lockfile"
 
-[[plugins]]
-  package = "@mui/internal-netlify-cache"
+# [[plugins]]
+#   package = "@mui/internal-netlify-cache"
