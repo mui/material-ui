@@ -58,9 +58,10 @@ function observePreviewVisibility(node: Element): () => void {
   return () => visibilityObserver?.unobserve(node);
 }
 
-// Dark code-panel surface, shared by `DemoCodePanel` (the rounded clip wrapper)
-// and the `DemoCodeWrapper` fade overlay.
-const CODE_BG = 'hsl(210, 25%, 9%)';
+// Dark code-panel surface, shared by `DemoCodePanel` (the rounded clip wrapper),
+// the `DemoCodeWrapper` fade overlay, and `CodeSource` (which blends the line
+// highlights against it into solid colors).
+export const CODE_BG = 'hsl(210, 25%, 9%)';
 
 export const DemoRoot = styled('div')(({ theme }) => ({
   marginBottom: 24,
