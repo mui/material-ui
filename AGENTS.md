@@ -58,11 +58,38 @@ pnpm proptypes && pnpm docs:api
 
 ### Docs demos
 
-Always author the TypeScript version of the demos. To generate the JavaScript variant, run:
+Demos live next to their page under `docs/data/<product>/components/<component>/demos/<demo-name>/`. Each demo folder contains three files:
 
-```bash
-pnpm docs:typescript:formatted
+- `<ComponentName>.tsx` — the demo source, authored as TypeScript (`.tsx`). The JavaScript variant shown in the docs is generated on the fly at build/runtime and is not committed.
+- `client.ts` — marks the demo's client boundary:
+
+  ```ts
+  'use client';
+
+  import { createDemoClient } from '@mui/internal-core-docs/utils/createDemoClient';
+
+  export default createDemoClient(import.meta.url);
+  ```
+
+- `index.ts` — wires the demo into the docs pipeline:
+
+  ```ts
+  import { createDemo } from '@mui/internal-core-docs/utils/createDemo';
+  import ClientProvider from './client';
+  import BasicButtons from './BasicButtons';
+
+  export default createDemo(import.meta.url, BasicButtons, { ClientProvider });
+  ```
+
+Reference the demo from the page's markdown via the `component` field. Use a `file://` URL with a path relative to the markdown file:
+
+```md
+{{"component": "file://./demos/basic/index.ts"}}
 ```
+
+Demo options (`bg`, `hideToolbar`, `isolated`, `iframe`, `defaultCodeOpen`, `maxWidth`, `height`, `disableAd`, `disableLiveEdit`, `hideEditButton`, `aiSuggestion`, `anchorId`) are defined by the `DemoOptions` interface in `packages-internal/core-docs/src/DemoContent/DemoContent.tsx`. Use `{/* @focus-start */}` / `{/* @focus-end */}` JSX comments inside the demo to highlight regions in the rendered code viewer.
+
+The demo infrastructure itself is documented at <https://mui-internal.netlify.app/docs-infra/>.
 
 ## Architecture
 
@@ -228,8 +255,7 @@ Read the relevant `AGENTS.md` when helping users with those topics.
 3. `pnpm typescript` - Pass type checking
 4. `pnpm test:unit` - Pass unit tests
 5. If API changed: `pnpm proptypes && pnpm docs:api`
-6. If demos changed: `pnpm docs:typescript:formatted`
-7. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
+6. If `.md` files changed: `pnpm vale <file1> <file2> ...` - Check prose style and grammar
 
 ## PR Title Format
 

@@ -7,12 +7,11 @@ import * as semver from 'semver';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
+import { withDeploymentConfig } from '@mui/internal-docs-infra/withDocsInfra';
 import { findPages } from './src/modules/utils/find';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -60,7 +59,7 @@ const markdownLoaderBase = {
   },
 };
 
-export default withDocsInfra({
+export default withDeploymentConfig({
   turbopack: {
     resolveAlias: turbopackResolveAlias,
     resolveExtensions: ['.mjs', '.tsx', '.ts', '.jsx', '.js', '.json'],
@@ -84,6 +83,30 @@ export default withDocsInfra({
           as: '*.js',
         },
       ],
+      // Demo `index.ts` factories → precomputed highlighter. Mirrors the
+      // webpack `demos/*/index.ts` rule below; turbopack requires serializable
+      // loader options, which these are (no functions).
+      './**/demos/*/index.ts': {
+        loaders: [
+          {
+            loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+            options: {
+              emphasisOptions: {
+                emitFrameIndent: true,
+                focusFramesMaxSize: 12,
+                oversizedFocus: 'hide',
+              },
+              requireClient: '@mui/internal-core-docs/utils/createDemoClient',
+              transformTypescriptToJavascript: true,
+            },
+          },
+        ],
+      },
+      // Demo `client.ts` bundles → precomputed client highlighter. Mirrors the
+      // webpack `demos/*/client.ts` rule below.
+      './**/demos/*/client.ts': {
+        loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient'],
+      },
     },
   },
   webpack: (
@@ -210,6 +233,33 @@ export default withDocsInfra({
               },
             ],
           },
+          {
+            test: /[/\\]demos[/\\][^/\\]+[/\\]index\.ts$/,
+            use: [
+              options.defaultLoaders.babel,
+              {
+                loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
+                options: {
+                  // The CSS in DemoContent.tsx uses `data-frame-indent` to
+                  // shift highlighted/focus frames left when collapsed.
+                  emphasisOptions: {
+                    emitFrameIndent: true,
+                    focusFramesMaxSize: 12,
+                    oversizedFocus: 'hide',
+                  },
+                  requireClient: '@mui/internal-core-docs/utils/createDemoClient',
+                  transformTypescriptToJavascript: true,
+                },
+              },
+            ],
+          },
+          {
+            test: /[/\\]demos[/\\][^/\\]+[/\\]client\.ts$/,
+            use: [
+              options.defaultLoaders.babel,
+              '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient',
+            ],
+          },
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
@@ -238,6 +288,10 @@ export default withDocsInfra({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    // Legacy Netlify-prefixed env vars still read by the fork (e.g. pages/_app.tsx).
+    // withDeploymentConfig exposes the same values under the SITE_NAME / SITE_DEPLOY_URL names.
+    NETLIFY_SITE_NAME: process.env.SITE_NAME,
+    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',

@@ -133,6 +133,7 @@ export function ThemeProvider(props: React.PropsWithChildren) {
   const { direction, paletteMode } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
+  useLazyCSS('/static/styles/syntax.css', '#syntax');
 
   // TODO replace with useColorScheme once all pages support css vars
   const { mode, systemMode } = useColorSchemeShim();

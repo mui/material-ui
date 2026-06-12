@@ -138,12 +138,6 @@ jobs:
       - checkout
       - install-deps
       - run:
-          name: Transpile TypeScript demos
-          command: pnpm docs:typescript:formatted
-      - run:
-          name: '`pnpm docs:typescript:formatted` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
       - run:
