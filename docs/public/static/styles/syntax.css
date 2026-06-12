@@ -495,7 +495,7 @@ pre[data-transforming='expanding'] .frame .line[data-expanding] {
      * it would clip the 6px rounded bleed of the frame/line highlight
      * backgrounds (and the description badges) at the bare `<code>` box edge —
      * let them paint just past it. */
-    overflow-clip-margin: 8px;
+    overflow-clip-margin: 16px;
   }
 
   /* Collapsed: a collapsible block the host hasn't expanded shows only its
