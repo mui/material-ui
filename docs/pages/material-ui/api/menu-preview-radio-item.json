@@ -1,0 +1,30 @@
+{
+  "props": {
+    "value": { "type": { "name": "any" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "closeOnClick": { "type": { "name": "bool" }, "default": "false" },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewRadioItem",
+  "imports": ["import MenuPreviewRadioItem from '@mui/material/MenuPreviewRadioItem';"],
+  "classes": [],
+  "muiName": "MuiMenuPreviewRadioItem",
+  "filename": "/packages/mui-material/src/MenuPreviewRadioItem/MenuPreviewRadioItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}

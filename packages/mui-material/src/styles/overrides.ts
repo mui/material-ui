@@ -67,6 +67,22 @@ import { ListSubheaderClassKey } from '../ListSubheader';
 import { MenuClassKey } from '../Menu';
 import { MenuItemClassKey } from '../MenuItem';
 import { MenuListClassKey } from '../MenuList';
+import {
+  MenuPreviewCheckboxItemClassKey,
+  MenuPreviewCheckboxItemIndicatorClassKey,
+  MenuPreviewGroupClassKey,
+  MenuPreviewGroupLabelClassKey,
+  MenuPreviewItemClassKey,
+  MenuPreviewLinkItemClassKey,
+  MenuPreviewPopupClassKey,
+  MenuPreviewRadioGroupClassKey,
+  MenuPreviewRadioItemClassKey,
+  MenuPreviewRadioItemIndicatorClassKey,
+  MenuPreviewSeparatorClassKey,
+  MenuPreviewSubmenuPopupClassKey,
+  MenuPreviewSubmenuTriggerClassKey,
+  MenuPreviewTriggerClassKey,
+} from '../MenuPreview';
 import { MobileStepperClassKey } from '../MobileStepper';
 import { ModalClassKey } from '../Modal';
 import { NativeSelectClassKey } from '../NativeSelect';
@@ -211,6 +227,20 @@ export interface ComponentNameToClassKey {
   MuiMenu: MenuClassKey;
   MuiMenuItem: MenuItemClassKey;
   MuiMenuList: MenuListClassKey;
+  MuiMenuPreviewCheckboxItem: MenuPreviewCheckboxItemClassKey;
+  MuiMenuPreviewCheckboxItemIndicator: MenuPreviewCheckboxItemIndicatorClassKey;
+  MuiMenuPreviewGroup: MenuPreviewGroupClassKey;
+  MuiMenuPreviewGroupLabel: MenuPreviewGroupLabelClassKey;
+  MuiMenuPreviewItem: MenuPreviewItemClassKey;
+  MuiMenuPreviewLinkItem: MenuPreviewLinkItemClassKey;
+  MuiMenuPreviewPopup: MenuPreviewPopupClassKey;
+  MuiMenuPreviewRadioGroup: MenuPreviewRadioGroupClassKey;
+  MuiMenuPreviewRadioItem: MenuPreviewRadioItemClassKey;
+  MuiMenuPreviewRadioItemIndicator: MenuPreviewRadioItemIndicatorClassKey;
+  MuiMenuPreviewSeparator: MenuPreviewSeparatorClassKey;
+  MuiMenuPreviewSubmenuPopup: MenuPreviewSubmenuPopupClassKey;
+  MuiMenuPreviewSubmenuTrigger: MenuPreviewSubmenuTriggerClassKey;
+  MuiMenuPreviewTrigger: MenuPreviewTriggerClassKey;
   MuiMobileStepper: MobileStepperClassKey;
   MuiModal: ModalClassKey;
   MuiNativeSelect: NativeSelectClassKey;

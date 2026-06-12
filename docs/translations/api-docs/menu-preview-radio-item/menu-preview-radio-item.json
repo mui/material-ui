@@ -1,0 +1,33 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "className": {
+      "description": "CSS class applied to the element, or a function that returns a class based on the component&#39;s state."
+    },
+    "closeOnClick": { "description": "Whether to close the menu when the item is clicked." },
+    "dense": {
+      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used."
+    },
+    "disabled": { "description": "Whether the component should ignore user interaction." },
+    "disableGutters": {
+      "description": "If <code>true</code>, the left and right padding is removed."
+    },
+    "divider": {
+      "description": "If <code>true</code>, a 1px light border is added to the bottom of the menu item."
+    },
+    "label": {
+      "description": "Overrides the text label to use when the item is matched during keyboard text navigation."
+    },
+    "render": {
+      "description": "Allows you to replace the component&#39;s HTML element with a different tag, or compose it with another component.<br>Accepts a <code>ReactElement</code> or a function that returns the element to render."
+    },
+    "selected": { "description": "If <code>true</code>, the component is selected." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "value": { "description": "Value of the radio item." }
+  },
+  "classDescriptions": {}
+}

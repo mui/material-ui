@@ -1,0 +1,45 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "closeDelay": { "type": { "name": "number" }, "default": "0" },
+    "delay": { "type": { "name": "number" }, "default": "100" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "openOnHover": { "type": { "name": "bool" } },
+    "payload": { "type": { "name": "any" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewTrigger",
+  "imports": ["import MenuPreviewTrigger from '@mui/material/MenuPreviewTrigger';"],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "open",
+      "className": "Mui-open",
+      "description": "State class applied to the root element if the menu is open.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuPreviewTrigger-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "muiName": "MuiMenuPreviewTrigger",
+  "filename": "/packages/mui-material/src/MenuPreviewTrigger/MenuPreviewTrigger.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}

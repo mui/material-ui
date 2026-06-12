@@ -1,0 +1,49 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewCheckboxItemIndicator",
+  "imports": [
+    "import MenuPreviewCheckboxItemIndicator from '@mui/material/MenuPreviewCheckboxItemIndicator';"
+  ],
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root element if `checked={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "highlighted",
+      "className": "MuiMenuPreviewCheckboxItemIndicator-highlighted",
+      "description": "State class applied to the root element if highlighted.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuPreviewCheckboxItemIndicator-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "muiName": "MuiMenuPreviewCheckboxItemIndicator",
+  "filename": "/packages/mui-material/src/MenuPreviewCheckboxItemIndicator/MenuPreviewCheckboxItemIndicator.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}

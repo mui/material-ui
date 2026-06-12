@@ -1,0 +1,29 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" } },
+    "closeOnClick": { "type": { "name": "bool" }, "default": "true" },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "render": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;func" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewItem",
+  "imports": ["import MenuPreviewItem from '@mui/material/MenuPreviewItem';"],
+  "classes": [],
+  "muiName": "MuiMenuPreviewItem",
+  "filename": "/packages/mui-material/src/MenuPreviewItem/MenuPreviewItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}
