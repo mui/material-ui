@@ -308,6 +308,9 @@ importers:
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
+      '@mui/tailwind':
+        specifier: workspace:^
+        version: link:../packages/mui-tailwind
       '@mui/types':
         specifier: workspace:^
         version: link:../packages/mui-types/build
@@ -428,9 +431,6 @@ importers:
       postcss:
         specifier: ^8.5.14
         version: 8.5.15
-      postcss-import:
-        specifier: ^16.1.1
-        version: 16.1.1(postcss@8.5.15)
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1460,6 +1460,12 @@ importers:
         specifier: 6.4.1
         version: 6.4.1(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(css-to-react-native@3.2.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     publishDirectory: build
+
+  packages/mui-tailwind:
+    dependencies:
+      tailwindcss:
+        specifier: '>=3.0.0'
+        version: 4.2.4
 
   packages/mui-types:
     dependencies:
@@ -9867,12 +9873,6 @@ packages:
     resolution: {integrity: sha512-0UnkNPSayHKRe/tc2YGW6XnSqqOA9eqpiRMgRlV1S6HdGi16vwJBx7lviARzbV1HpQHqLLRH3o8vTcB0cLc+5g==}
     engines: {node: '>=18'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.0
-
-  postcss-import@16.1.1:
-    resolution: {integrity: sha512-2xVS1NCZAfjtVdvXiyegxzJ447GyqCeEI5V7ApgQVOWnros1p5lGNovJNapwPpMombyFBfqDwt7AD3n2l0KOfQ==}
-    engines: {node: '>=18.0.0'}
     peerDependencies:
       postcss: ^8.0.0
 
@@ -21159,13 +21159,6 @@ snapshots:
     transitivePeerDependencies:
       - jiti
       - tsx
-
-  postcss-import@16.1.1(postcss@8.5.15):
-    dependencies:
-      postcss: 8.5.15
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.12
 
   postcss-load-config@5.1.0(jiti@2.6.1)(postcss@8.5.15)(tsx@4.21.0):
     dependencies:

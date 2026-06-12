@@ -29,12 +29,14 @@
  * @param slots a list of classes for each possible slot
  * @param getUtilityClass a function to resolve the class based on the slot name
  * @param classes the input classes from props
+ * @param cssModules the CSS module classes to apply
  * @returns the resolved classes for all slots
  */
 export default function composeClasses<ClassKey extends string>(
   slots: Record<ClassKey, ReadonlyArray<string | false | undefined | null>>,
   getUtilityClass: (slot: string) => string,
   classes: Record<string, string> | undefined = undefined,
+  cssModules: Record<string, string> | undefined = undefined,
 ): Record<ClassKey, string> {
   const output: Record<ClassKey, string> = {} as any;
 
@@ -46,11 +48,16 @@ export default function composeClasses<ClassKey extends string>(
     for (let i = 0; i < slot.length; i += 1) {
       const value = slot[i];
       if (value) {
-        buffer += (start === true ? '' : ' ') + getUtilityClass(value);
+        const utilityClass = getUtilityClass(value);
+        buffer += (start === true ? '' : ' ') + utilityClass;
         start = false;
 
         if (classes && classes[value]) {
           buffer += ' ' + classes[value];
+        }
+
+        if (cssModules && cssModules[utilityClass]) {
+          buffer += ' ' + cssModules[utilityClass];
         }
       }
     }
