@@ -35,7 +35,7 @@
     "stylis": "4.4.0",
     "tailwindcss": "4.2.4",
     "webfontloader": "1.6.28",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   },
   "dependencies": {
     "@react-spring/web": "^10.0.3"

@@ -945,8 +945,8 @@ importers:
         specifier: ^11.0.1
         version: 11.0.1(jiti@2.6.1)(postcss@8.5.15)(tsx@4.21.0)
       yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
+        specifier: ^18.0.0
+        version: 18.0.0
     devDependencies:
       '@material-ui/core':
         specifier: ^4.12.4
@@ -1625,8 +1625,8 @@ importers:
         specifier: 1.6.28
         version: 1.6.28
       yargs:
-        specifier: 17.7.2
-        version: 17.7.2
+        specifier: 18.0.0
+        version: 18.0.0
 
   test/bundle-size:
     dependencies:
