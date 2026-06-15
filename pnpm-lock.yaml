@@ -1679,7 +1679,87 @@ importers:
         specifier: 0.12.7
         version: 0.12.7
 
+  test/css-theme-provider-vite-sandbox:
+    dependencies:
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../../packages/mui-material/build
+      '@mui/styled-engine-noop':
+        specifier: workspace:*
+        version: link:../../packages/mui-styled-engine-noop/build
+      '@mui/system':
+        specifier: workspace:*
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:../../packages/mui-utils/build
+      react:
+        specifier: ^19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: ^19.2.6
+        version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.1.1(vite@7.3.5(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.5(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
+
   test/e2e: {}
+
+  test/emotion-vite-sandbox:
+    dependencies:
+      '@emotion/react':
+        specifier: ^11.14.0
+        version: 11.14.0(@types/react@19.2.14)(react@19.2.6)
+      '@emotion/styled':
+        specifier: ^11.14.0
+        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6)
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../../packages/mui-material/build
+      '@mui/styled-engine':
+        specifier: workspace:*
+        version: link:../../packages/mui-styled-engine/build
+      '@mui/system':
+        specifier: workspace:*
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:../../packages/mui-utils/build
+      react:
+        specifier: ^19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: ^19.2.6
+        version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.1.1(vite@7.3.5(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.5(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
 
   test/moduleResolution:
     dependencies:

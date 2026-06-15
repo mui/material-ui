@@ -1,0 +1,28 @@
+{
+  "name": "@mui-internal/emotion-vite-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "^6.0.3",
+    "vite": "^7.3.1"
+  }
+}
