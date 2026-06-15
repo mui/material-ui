@@ -666,7 +666,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
               target="_blank"
               color="inherit"
               underline="always"
-              rel="noopener"
             >
               Technical Support SLA
             </Link>

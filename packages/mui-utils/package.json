@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "9.0.1",
+  "version": "9.1.1",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "license": "MIT",
@@ -24,10 +24,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {

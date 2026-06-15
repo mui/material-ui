@@ -2,7 +2,7 @@
   "name": "@mui-internal/tests",
   "private": true,
   "scripts": {
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsgo -p tsconfig.json"
   },
   "devDependencies": {
     "@babel/runtime": "7.29.2",
