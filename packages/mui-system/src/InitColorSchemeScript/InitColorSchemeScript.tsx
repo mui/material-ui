@@ -1,3 +1,6 @@
+'use client';
+import * as React from 'react';
+
 export const DEFAULT_MODE_STORAGE_KEY = 'mode';
 export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
 export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
@@ -46,7 +49,32 @@ export interface InitColorSchemeScriptProps {
   nonce?: string | undefined;
 }
 
-export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
+// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+const safeReact = { ...React };
+const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
+
+const subscribe = () => () => {};
+
+/**
+ * `true` during the server render and the matching hydration render, `false`
+ * on every client render afterwards. React 19.3+ warns when a `<script>` is
+ * created during a client render (such scripts never execute), so the inline
+ * script is only emitted on the server pass and dropped after hydration — the
+ * attribute it already set on the document persists. React <18 has no
+ * `useSyncExternalStore` and no such warning, so the script is always emitted.
+ */
+function useIsServerRender() {
+  if (maybeReactUseSyncExternalStore === undefined) {
+    return true;
+  }
+  return maybeReactUseSyncExternalStore(
+    subscribe,
+    () => false,
+    () => true,
+  );
+}
+
+export function buildInitColorSchemeScript(options?: InitColorSchemeScriptProps) {
   const {
     defaultMode = 'system',
     defaultLightColorScheme = 'light',
@@ -118,4 +146,14 @@ try {
       }}
     />
   );
+}
+
+export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
+  // Inline scripts never execute when created during a client render, so only
+  // emit on the server pass to avoid React's client-script warning (#48595).
+  const isServerRender = useIsServerRender();
+  if (!isServerRender) {
+    return null;
+  }
+  return buildInitColorSchemeScript(options);
 }

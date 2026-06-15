@@ -12,7 +12,7 @@ describe('InitColorSchemeScript', () => {
   // `InitColorSchemeScript` is only ever rendered on the server (Next.js `_document` or the App
   // Router root layout), so render it to a string here. A client mount of a `<script>` triggers a
   // React warning (and is a non-executing no-op) starting with React 19.3.
-  const { renderToString } = createRenderer();
+  const { render, renderToString } = createRenderer();
   let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({
@@ -185,5 +185,12 @@ describe('InitColorSchemeScript', () => {
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
     });
+  });
+
+  // The inline script never executes when created during a client render, and React 19.3+ warns
+  // about it. Emitting it only on the server pass keeps client renders script-free (see #48595).
+  it('should not render the script on the client', () => {
+    const { container } = render(<InitColorSchemeScript />);
+    expect(container.querySelector('script')).to.equal(null);
   });
 });
