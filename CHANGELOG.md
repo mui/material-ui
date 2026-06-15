@@ -1,5 +1,43 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.1.1
+
+<!-- generated comparing v9.1.0..master -->
+
+_Jun 11, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@9.1.1`
+
+- [Autocomplete] Update fullWidth prop documentation (#48626) @vipin8797
+- [ButtonBase] Fix focus ripple lingering after blur (#48650) @siriwatknp
+- [InitColorSchemeScript] Server-render in tests for React 19.3 (#48604) @Janpot
+- [Transition] Mount child in same commit when opening from unmounted (#48649) @siriwatknp
+
+### `@mui/styled-engine@9.1.1`
+
+- [styled-engine] Prevent enableCssLayer styles from being overridden by unlayered styles (#48603) @Janpot
+
+### Docs
+
+- Send SOURCE to Brevo on newsletter subscribe (#48633) @aemartos
+- fix TypeScript heading capitalization (#48619) @ifer47
+- Remove outdated security section (#48628) @oliviertassinari
+- [legal] Update EULA links on website (#48642) @rluzists1
+
+### Core
+
+- Update dependencies to resolve Dependabot security alerts (#48641) @Janpot
+- [core-docs] Pin StackBlitz demo vite to v7 and plugin-react to v5 (#48643) @Janpot
+- [code-infra] Port codebase to use tsgo (#48616) @brijeshb42
+- [docs-infra] Fix immutable cache headers for /\_next/static assets (#48655) @brijeshb42
+- [docs-infra] Run link checker during docs build instead of as separate CI step (#48634) @Janpot
+- [docs-infra] Support turbopack for docs (#48569) @brijeshb42
+- [test] Cover docs landing-page composites with Argos (#48589) @LukasTy
+
+All contributors of this release in alphabetical order: @aemartos, @brijeshb42, @ifer47, @Janpot, @LukasTy, @oliviertassinari, @rluzists1, @siriwatknp, @vipin8797
+
 ## 9.1.0
 
 <!-- generated comparing v9.0.1..master -->
