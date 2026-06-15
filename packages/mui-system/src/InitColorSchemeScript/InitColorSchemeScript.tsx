@@ -57,7 +57,7 @@ const subscribe = () => () => {};
 
 /**
  * `true` during the server render and the matching hydration render, `false`
- * on every client render afterwards. React 19.3+ warns when a `<script>` is
+ * on every client render afterwards. React warns when a `<script>` is
  * created during a client render (such scripts never execute), so the inline
  * script is only emitted on the server pass and dropped after hydration — the
  * attribute it already set on the document persists. React <18 has no

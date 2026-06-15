@@ -11,7 +11,7 @@ import {
 describe('InitColorSchemeScript', () => {
   // `InitColorSchemeScript` is only ever rendered on the server (Next.js `_document` or the App
   // Router root layout), so render it to a string here. A client mount of a `<script>` triggers a
-  // React warning (and is a non-executing no-op) starting with React 19.3.
+  // React warning and is a non-executing no-op.
   const { render, renderToString } = createRenderer();
   let originalMatchmedia;
   let storage = {};
@@ -187,10 +187,24 @@ describe('InitColorSchemeScript', () => {
     });
   });
 
-  // The inline script never executes when created during a client render, and React 19.3+ warns
-  // about it. Emitting it only on the server pass keeps client renders script-free (see #48595).
+  // Pure client mount: the script never executes when created during a client render and React
+  // warns about it, so it must not be emitted (see #48595).
   it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
+    expect(container.querySelector('script')).to.equal(null);
+  });
+
+  // Hydration path (the bug in #48595): the script is server-rendered, hydrated without a mismatch
+  // warning (vitest-fail-on-console turns the warning into a failure), then dropped on the
+  // post-hydration commit when the client snapshot takes over.
+  it('should emit the script on server render and drop it after hydration', () => {
+    storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+    storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
+
+    const view = renderToString(<InitColorSchemeScript />);
+    expect(view.container.querySelector('script')).not.to.equal(null);
+
+    const { container } = view.hydrate();
     expect(container.querySelector('script')).to.equal(null);
   });
 });
