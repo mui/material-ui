@@ -34,14 +34,45 @@ export default defineConfig({
     },
     react(),
     tailwindcss(),
+    {
+      // Seed `@mui/x-data-grid-generator`'s data `Chance` with a fixed integer
+      // so the Data Grid composites (XHero/XGridFullDemo/XTheming via
+      // `useDemoData`) render the *same* rows on every load — without it the
+      // data is random per visit and churns the Argos baseline.
+      //
+      // The package's own `__DISABLE_CHANCE_RANDOM__` branch (set below) seeds
+      // the data generator with `new Chance(() => 0.5)`, a constant source that
+      // makes every row identical. We want deterministic *and* varied data, so
+      // rewrite that one seed to a fixed integer (`new Chance(42)`), which
+      // yields a fixed but varied sequence. Safe for our runner: each composite
+      // renders on its own browser page (its own module-scoped `chance`) and
+      // does a single generation pass, so nothing interleaves the sequence.
+      name: 'seed-x-data-grid-generator',
+      enforce: 'post',
+      transform(code, id) {
+        if (!id.includes('@mui/x-data-grid-generator') || !id.includes('random-generator')) {
+          return null;
+        }
+        const needle = 'new Chance(() => 0.5)';
+        if (!code.includes(needle)) {
+          // Fail loudly if upstream reformats the seed, rather than silently
+          // falling back to identical-row data.
+          throw new Error(
+            `[seed-x-data-grid-generator] expected "${needle}" in ${id}; the generator's seed line changed.`,
+          );
+        }
+        return code.replace(needle, 'new Chance(42)');
+      },
+    },
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
     // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
-    // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
-    // `useDemoData`) render identical rows on every load. Without this the
-    // generated data is random per page visit and churns the Argos baseline.
-    // Mirrors mui-x's regression bundle, which replaces the same token.
+    // the Data Grid composites (XHero/XGridFullDemo/XTheming via `useDemoData`)
+    // render the same rows on every load. Without this the generated data is
+    // random per page visit and churns the Argos baseline. Mirrors mui-x's
+    // regression bundle, which replaces the same token. The data seed is then
+    // re-pointed to a varied sequence by the plugin above.
     __DISABLE_CHANCE_RANDOM__: 'true',
   },
   resolve: {
