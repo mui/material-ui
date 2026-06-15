@@ -64,6 +64,14 @@ const theme = createTheme({
 </ThemeProvider>;
 ```
 
+The `container` prop only needs to be set on the three components that render through the `Portal` directly: `Modal`, `Popover`, and `Popper`.
+Higher-level components are built on top of these and inherit the default automatically—for example, `Dialog` and `Drawer` render a `Modal`, `Menu` renders a `Popover`, and `Tooltip` and `Autocomplete` render a `Popper`.
+
+:::info
+You don't need to set `container` on `Dialog`, `Menu`, or other higher-level components.
+Each one renders one of the base components internally, and that base component reads its own default props (`MuiModal`, `MuiPopover`, or `MuiPopper`) when it renders, so the example above already covers them.
+:::
+
 ### 3. CSS theme variables (optional)
 
 :::info
