@@ -20,8 +20,17 @@ export interface ScreenshotRule {
   /** Minimatch glob against the docs path (see file-level comment). */
   test: string;
   enabled?: boolean;
-  /** Playwright waits for this selector after navigation, before axe + screenshot. */
+  /** Playwright waits for this selector to appear after navigation, before axe + screenshot. */
   waitForSelector?: string;
+  /**
+   * Playwright waits for this selector to be *detached* after navigation,
+   * before axe + screenshot. Use for "loaded" signals expressed as the
+   * disappearance of a placeholder — e.g. a Data Grid's loading overlay
+   * (`.MuiDataGrid-overlayWrapper`), which sits above the rows (zIndex 5) and
+   * stays painted while `useDemoData` is still loading, so waiting for a row
+   * to *appear* isn't enough.
+   */
+  waitForSelectorDetached?: string;
   /**
    * Per-route viewport width override (px). Defaults to
    * {@link DEFAULT_VIEWPORT}'s width. Only the width is configurable: the
@@ -120,26 +129,28 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
 
-  // Composites whose Data Grid loads its rows asynchronously via
-  // `useDemoData` — `aria-busy` only tracks fonts, not the grid data, so
-  // without this the screenshot can capture the loading skeleton. Wait for a
-  // real data cell (the skeleton uses `.MuiDataGrid-skeletonRow`, not
-  // `.MuiDataGrid-row`). Rules are last-match-wins, so each restates the X
-  // width from the rule above.
+  // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
+  // — `aria-busy` only tracks fonts, not the grid data, so without this the
+  // screenshot can capture the loading state. Waiting for a row to *appear*
+  // isn't enough: the loading overlay sits above the rows (zIndex 5) and stays
+  // painted until load completes (notably `XHero` at `rowLength: 10000`, which
+  // renders the first rows but keeps spinning during seed extrapolation). Wait
+  // for the overlay to detach instead. Rules are last-match-wins, so each
+  // restates the X width from the rule above.
   {
     test: 'docs/src/components/productX/XHero',
     viewportWidth: 1440,
-    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+    waitForSelectorDetached: '.MuiDataGrid-overlayWrapper',
   },
   {
     test: 'docs/src/components/productX/XGridFullDemo',
     viewportWidth: 1440,
-    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+    waitForSelectorDetached: '.MuiDataGrid-overlayWrapper',
   },
   {
     test: 'docs/src/components/productX/XTheming',
     viewportWidth: 1440,
-    waitForSelector: '.MuiDataGrid-row .MuiDataGrid-cell',
+    waitForSelectorDetached: '.MuiDataGrid-overlayWrapper',
   },
 ];
 
