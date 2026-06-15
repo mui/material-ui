@@ -85,3 +85,10 @@ To customize a Card's styles when it's in an active state, you can attach a `dat
 {{"demo": "SelectActionCard.js", "bg": true}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/card).
+
+
+## Profile card
+
+Example of building a user profile card by combining multiple Material UI components.
+
+{{"demo": "ProfileCard.js", "bg": true}}
