@@ -330,6 +330,7 @@ function useAutocomplete(props) {
   // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
     if (multiple && focusedItem > value.length - 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedItem(-1);
       focusItem(-1);
     }
