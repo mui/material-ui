@@ -243,6 +243,7 @@ function DemoSandboxInner(props: DemoSandboxProps) {
   const [root, setRoot] = React.useState<HTMLElement | null>(null);
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setRoot(document.getElementById(id));
   }, [id]);
 
