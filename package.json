@@ -90,7 +90,7 @@
     "@eslint/compat": "2.0.5",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.27",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.78",
-    "@mui/internal-code-infra": "0.0.4-canary.60",
+    "@mui/internal-code-infra": "0.0.4-canary.63",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.5",
     "@mui/internal-scripts": "workspace:^",
@@ -149,24 +149,9 @@
   "config": {
     "valeVersion": "3.14.1"
   },
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@11.5.0",
   "engines": {
-    "pnpm": "10.33.4",
+    "pnpm": "11.5.0",
     "node": ">=22.18.0"
-  },
-  "resolutions": {
-    "caniuse-lite": "^1.0.30001792",
-    "@babel/core": "7.29.0",
-    "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.5",
-    "@babel/preset-react": "^7.28.5",
-    "@babel/preset-typescript": "^7.28.5",
-    "@babel/runtime": "^7.29.2",
-    "@types/node": "20.19.39",
-    "cross-fetch": "^4.1.0",
-    "@pigment-css/react": "0.0.31",
-    "@pigment-css/unplugin": "0.0.31",
-    "@pigment-css/nextjs-plugin": "0.0.31",
-    "@pigment-css/vite-plugin": "0.0.31"
   }
 }
