@@ -10,8 +10,7 @@ import {
 
 describe('InitColorSchemeScript', () => {
   // `InitColorSchemeScript` is only ever rendered on the server (Next.js `_document` or the App
-  // Router root layout), so render it to a string here. A client mount of a `<script>` triggers a
-  // React warning and is a non-executing no-op.
+  // Router root layout), so render it to a string here.
   const { render, renderToString } = createRenderer();
   let originalMatchmedia;
   let storage = {};
@@ -187,8 +186,7 @@ describe('InitColorSchemeScript', () => {
     });
   });
 
-  // Pure client mount: the script never executes when created during a client render and React
-  // warns about it, so it must not be emitted (see #48595).
+  // Client renders must stay script-free (#48595).
   it('should not render the script on the client', () => {
     const { container } = render(<InitColorSchemeScript />);
     expect(container.querySelector('script')).to.equal(null);

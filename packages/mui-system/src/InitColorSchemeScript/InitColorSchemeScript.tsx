@@ -49,7 +49,8 @@ export interface InitColorSchemeScriptProps {
   nonce?: string | undefined;
 }
 
-// See https://github.com/mui/material-ui/issues/41190#issuecomment-2040873379 for why
+// React 17 has no `useSyncExternalStore`; spread into a plain object so reading the
+// missing property returns `undefined` instead of throwing under strict ESM. See #41190 (comment).
 const safeReact = { ...React };
 const maybeReactUseSyncExternalStore: undefined | any = safeReact.useSyncExternalStore;
 
@@ -149,8 +150,6 @@ try {
 }
 
 export default function InitColorSchemeScript(options?: InitColorSchemeScriptProps) {
-  // Inline scripts never execute when created during a client render, so only
-  // emit on the server pass to avoid React's client-script warning (#48595).
   const isServerRender = useIsServerRender();
   if (!isServerRender) {
     return null;
