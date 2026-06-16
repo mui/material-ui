@@ -23,7 +23,7 @@
  *   # should print nothing
  */
 import * as React from 'react';
-import { createTheme, CssThemeProvider } from '@mui/material/styles';
+import { createTheme, CssThemeProvider, useCssColorScheme } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
 const theme = createTheme({
@@ -33,78 +33,78 @@ const theme = createTheme({
   colorSchemes: { light: true, dark: true },
 });
 
-type Mode = 'light' | 'dark';
-
-export default function App() {
+function AppContent() {
   const [value, setValue] = React.useState<number>(40);
-  const [mode, setMode] = React.useState<Mode>('light');
-
-  function toggleMode() {
-    const next: Mode = mode === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-mui-color-scheme', next);
-    setMode(next);
-  }
+  const { mode, setMode } = useCssColorScheme();
 
   return (
-    <CssThemeProvider theme={theme}>
-      <div
-        style={{
-          padding: 32,
-          minHeight: '100vh',
-          background: 'var(--mui-palette-background-default)',
-          color: 'var(--mui-palette-text-primary)',
-          fontFamily: 'sans-serif',
-        }}
+    <div
+      style={{
+        padding: 32,
+        minHeight: '100vh',
+        background: 'var(--mui-palette-background-default)',
+        color: 'var(--mui-palette-text-primary)',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <h1 style={{ marginTop: 0 }}>CssThemeProvider sandbox</h1>
+      <p>
+        Engine: <code>@mui/styled-engine-noop</code> — no Emotion. Theme delivered via{' '}
+        <code>CssThemeProvider</code> (runtime CSS variable injection).
+      </p>
+
+      <button
+        type="button"
+        onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+        style={{ marginBottom: 32 }}
       >
-        <h1 style={{ marginTop: 0 }}>CssThemeProvider sandbox</h1>
-        <p>
-          Engine: <code>@mui/styled-engine-noop</code> — no Emotion. Theme delivered via{' '}
-          <code>CssThemeProvider</code> (runtime CSS variable injection).
+        Switch to {mode === 'light' ? 'dark' : 'light'} mode
+      </button>
+
+      <div style={{ maxWidth: 400 }}>
+        <p>Slider value: {value}</p>
+
+        {/*
+          sx prop intentionally passed to trigger the noop dev warning.
+          Open the browser console — you should see:
+          "MUI: The `sx` prop was used on <span> but `@mui/styled-engine-noop` is active."
+        */}
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          // @ts-ignore — sx is valid on Slider types but deliberately passed to trigger the noop warning
+          sx={{ color: 'red' }}
+          aria-label="Sandbox slider"
+        />
+
+        <p style={{ marginTop: 32 }}>
+          className override (thumb should be purple, overriding the default via plain CSS that
+          beats @layer mui.default):
         </p>
 
-        {/* Dark mode toggle */}
-        <button type="button" onClick={toggleMode} style={{ marginBottom: 32 }}>
-          Switch to {mode === 'light' ? 'dark' : 'light'} mode
-        </button>
-
-        <div style={{ maxWidth: 400 }}>
-          <p>Slider value: {value}</p>
-
-          {/*
-            sx prop intentionally passed to trigger the noop dev warning.
-            Open the browser console — you should see:
-            "MUI: The `sx` prop was used on <span> but `@mui/styled-engine-noop` is active."
-          */}
-          <Slider
-            value={value}
-            onChange={(_, v) => setValue(v as number)}
-            // @ts-ignore — sx is valid on Slider types but deliberately passed to trigger the noop warning
-            sx={{ color: 'red' }}
-            aria-label="Sandbox slider"
-          />
-
-          <p style={{ marginTop: 32 }}>
-            className override (thumb should be purple, overriding the default via plain CSS that
-            beats @layer mui.default):
-          </p>
-
-          {/* className override — unlayered CSS always wins over @layer mui.default */}
-          <Slider
-            value={value}
-            onChange={(_, v) => setValue(v as number)}
-            className="custom-slider"
-            aria-label="Custom class slider"
-          />
-        </div>
-
-        <style>{`
-          .custom-slider .MuiSlider-thumb {
-            width: 24px;
-            height: 24px;
-            background: var(--mui-palette-secondary-main, #9c27b0);
-          }
-        `}</style>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="custom-slider"
+          aria-label="Custom class slider"
+        />
       </div>
+
+      <style>{`
+        .custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--mui-palette-secondary-main, #9c27b0);
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <CssThemeProvider theme={theme}>
+      <AppContent />
     </CssThemeProvider>
   );
 }

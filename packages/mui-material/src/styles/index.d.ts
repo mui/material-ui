@@ -82,7 +82,13 @@ export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
-export { default as CssThemeProvider, CssThemeProviderProps } from './CssThemeProvider';
+export {
+  default as CssThemeProvider,
+  CssThemeProviderProps,
+  useCssColorScheme,
+  CssColorSchemeContext,
+  CssColorSchemeContextValue,
+} from './CssThemeProvider';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';

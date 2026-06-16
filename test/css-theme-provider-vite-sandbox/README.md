@@ -21,14 +21,14 @@ Verifies that:
 
 ## How this differs from the other sandboxes
 
-| | noop-vite-sandbox | css-theme-provider-vite-sandbox | emotion-vite-sandbox |
-|---|---|---|---|
-| Engine | noop | noop | Emotion |
-| Theme delivery | `default-theme.css` (static) | `CssThemeProvider` (runtime) | `ThemeProvider` (runtime) |
-| Emotion in bundle | ❌ | ❌ | ✅ |
-| `sx` prop | ignored + warning | ignored + warning | ✅ works |
-| `useTheme()` | ❌ no provider | ✅ | ✅ |
-| Analogy | Radix Themes | Mantine | MUI default |
+|                   | noop-vite-sandbox            | css-theme-provider-vite-sandbox | emotion-vite-sandbox      |
+| :---------------- | :--------------------------- | :------------------------------ | :------------------------ |
+| Engine            | noop                         | noop                            | Emotion                   |
+| Theme delivery    | `default-theme.css` (static) | `CssThemeProvider` (runtime)    | `ThemeProvider` (runtime) |
+| Emotion in bundle | ❌                           | ❌                              | ✅                        |
+| `sx` prop         | ignored + warning            | ignored + warning               | ✅ works                  |
+| `useTheme()`      | ❌ no provider               | ✅                              | ✅                        |
+| Analogy           | Radix Themes                 | Mantine                         | MUI default               |
 
 ## Dev server
 

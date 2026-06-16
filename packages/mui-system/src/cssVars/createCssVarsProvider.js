@@ -3,17 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
-import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import ThemeProvider from '../ThemeProvider';
 import {
   buildInitColorSchemeScript,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from '../InitColorSchemeScript/InitColorSchemeScript';
-import useCurrentColorScheme from './useCurrentColorScheme';
+import useColorSchemeSetup, { DISABLE_CSS_TRANSITION } from './useColorSchemeSetup';
 
-export const DISABLE_CSS_TRANSITION =
-  '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
+export { DISABLE_CSS_TRANSITION };
 
 export default function createCssVarsProvider(options) {
   const {
@@ -71,7 +69,6 @@ export default function createCssVarsProvider(options) {
       forceThemeRerender = false,
       noSsr,
     } = props;
-    const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
     const ctx = React.useContext(ColorSchemeContext);
     const nested = !!ctx && !disableNestedContext;
@@ -89,13 +86,6 @@ export default function createCssVarsProvider(options) {
       components = defaultComponents,
       cssVarPrefix,
     } = restThemeProp;
-    const joinedColorSchemes = Object.keys(colorSchemes)
-      .filter((k) => !!colorSchemes[k])
-      .join(',');
-    const allColorSchemes = React.useMemo(
-      () => joinedColorSchemes.split(','),
-      [joinedColorSchemes],
-    );
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
     const defaultDarkColorScheme =
@@ -106,17 +96,21 @@ export default function createCssVarsProvider(options) {
         : colorSchemes[restThemeProp.defaultColorScheme]?.palette?.mode ||
           restThemeProp.palette?.mode;
 
-    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
+    // 1. Color-scheme state, DOM attribute sync, and transition suppression.
+    //    Pass colorSchemeNode: null when nested so the inner provider does not
+    //    fight the root provider over the DOM attribute.
     const {
-      mode: stateMode,
-      setMode,
+      allColorSchemes,
+      colorScheme: setupColorScheme,
+      mode: setupMode,
       systemMode,
       lightColorScheme,
       darkColorScheme,
-      colorScheme: stateColorScheme,
+      setMode,
       setColorScheme,
-    } = useCurrentColorScheme({
-      supportedColorSchemes: allColorSchemes,
+    } = useColorSchemeSetup({
+      colorSchemes,
+      colorSchemeSelector: restThemeProp.colorSchemeSelector,
       defaultLightColorScheme,
       defaultDarkColorScheme,
       modeStorageKey,
@@ -124,11 +118,16 @@ export default function createCssVarsProvider(options) {
       defaultMode,
       storageManager,
       storageWindow,
+      colorSchemeNode: nested ? null : colorSchemeNode,
+      documentNode,
+      disableTransitionOnChange,
       noSsr,
     });
 
-    let mode = stateMode;
-    let colorScheme = stateColorScheme;
+    // When nested, defer to the root provider's mode/colorScheme so all
+    // design-system instances stay in sync.
+    let mode = setupMode;
+    let colorScheme = setupColorScheme;
 
     if (nested) {
       mode = ctx.mode;
@@ -189,79 +188,6 @@ export default function createCssVarsProvider(options) {
 
       return resolveTheme ? resolveTheme(theme) : theme;
     }, [restThemeProp, calculatedColorScheme, components, colorSchemes, cssVarPrefix]);
-
-    // 5. Declaring effects
-    // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
-    const colorSchemeSelector = restThemeProp.colorSchemeSelector;
-    useEnhancedEffect(() => {
-      if (
-        colorScheme &&
-        colorSchemeNode &&
-        colorSchemeSelector &&
-        colorSchemeSelector !== 'media'
-      ) {
-        const selector = colorSchemeSelector;
-        let rule = colorSchemeSelector;
-        if (selector === 'class') {
-          rule = `.%s`;
-        }
-        if (selector === 'data') {
-          rule = `[data-%s]`;
-        }
-        if (selector?.startsWith('data-') && !selector.includes('%s')) {
-          // 'data-mui-color-scheme' -> '[data-mui-color-scheme="%s"]'
-          rule = `[${selector}="%s"]`;
-        }
-        if (rule.startsWith('.')) {
-          colorSchemeNode.classList.remove(
-            ...allColorSchemes.map((scheme) => rule.substring(1).replace('%s', scheme)),
-          );
-          colorSchemeNode.classList.add(rule.substring(1).replace('%s', colorScheme));
-        } else {
-          const matches = rule.replace('%s', colorScheme).match(/\[([^\]]+)\]/);
-          if (matches) {
-            const [attr, value] = matches[1].split('=');
-            if (!value) {
-              // for attributes like `data-theme-dark`, `data-theme-light`
-              // remove all the existing data attributes before setting the new one
-              allColorSchemes.forEach((scheme) => {
-                colorSchemeNode.removeAttribute(attr.replace(colorScheme, scheme));
-              });
-            }
-            colorSchemeNode.setAttribute(attr, value ? value.replace(/"|'/g, '') : '');
-          } else {
-            colorSchemeNode.setAttribute(rule, colorScheme);
-          }
-        }
-      }
-    }, [colorScheme, colorSchemeSelector, colorSchemeNode, allColorSchemes]);
-
-    // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
-    // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
-    React.useEffect(() => {
-      let timer;
-      if (disableTransitionOnChange && hasMounted.current && documentNode) {
-        const css = documentNode.createElement('style');
-        css.appendChild(documentNode.createTextNode(DISABLE_CSS_TRANSITION));
-        documentNode.head.appendChild(css);
-
-        // Force browser repaint
-        (() => window.getComputedStyle(documentNode.body))();
-
-        timer = setTimeout(() => {
-          documentNode.head.removeChild(css);
-        }, 1);
-      }
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [colorScheme, disableTransitionOnChange, documentNode]);
-    React.useEffect(() => {
-      hasMounted.current = true;
-      return () => {
-        hasMounted.current = false;
-      };
-    }, []);
 
     const contextValue = React.useMemo(
       () => ({

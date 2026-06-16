@@ -1,13 +1,7 @@
 'use client';
 import * as React from 'react';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import Stack from '@mui/material/Stack';
-import Switch from '@mui/material/Switch';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Typography from '@mui/material/Typography';
 
 // ---------- Themes ----------------------------------------------------------
 
@@ -66,28 +60,6 @@ const GradientSlider = styled(Slider)(({ theme }) => ({
   },
 }));
 
-// ---------- Layout helpers --------------------------------------------------
-
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <Box sx={{ mb: 5 }}>
-      <Typography
-        variant="overline"
-        sx={{
-          color: 'text.disabled',
-          fontWeight: 700,
-          letterSpacing: '0.1em',
-          display: 'block',
-          mb: 1.5,
-        }}
-      >
-        {label}
-      </Typography>
-      {children}
-    </Box>
-  );
-}
-
 // ---------- useMounted guard (avoid SSR hydration mismatch) ----------------
 
 function useMounted() {
@@ -107,137 +79,104 @@ function Page({
 }) {
   const { mode, setMode } = useColorScheme();
   const mounted = useMounted();
-  const [value1, setValue1] = React.useState<number>(40);
-  const [value2, setValue2] = React.useState<number>(60);
+  const [value1, setValue1] = React.useState<number>(60);
+  const [value2, setValue2] = React.useState<number>(40);
   const [value3, setValue3] = React.useState<number>(30);
-  const [value4, setValue4] = React.useState<number[]>([20, 70]);
 
   return (
-    <Box
-      sx={{
-        p: { xs: 3, md: 5 },
+    <div
+      style={{
+        padding: 32,
         maxWidth: 760,
-        mx: 'auto',
+        margin: '0 auto',
         minHeight: '100vh',
-        bgcolor: 'background.default',
-        color: 'text.primary',
+        background: 'var(--mui-palette-background-default)',
+        color: 'var(--mui-palette-text-primary)',
+        fontFamily: 'sans-serif',
       }}
     >
-      {/* Header */}
-      <Typography variant="h4" sx={{ fontWeight: 700, mb: 0.5 }}>
-        Emotion + Slider
-      </Typography>
-      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 4 }}>
-        Verifies Slider still works with Emotion customization: <code>sx</code>,{' '}
-        <code>styled()</code>, <code>styleOverrides</code>, and <code>defaultProps</code> via{' '}
-        <code>createTheme</code>.
-      </Typography>
+      <h1 style={{ marginTop: 0 }}>Emotion + Slider</h1>
+      <p style={{ color: 'var(--mui-palette-text-secondary)', marginTop: 0 }}>
+        Verifies Slider works with the Emotion path. Engine: <code>@mui/styled-engine</code>{' '}
+        (Emotion).
+      </p>
 
-      {/* ── Theme + dark mode switcher ──────────────────────────────────── */}
-      <Section label="Live theme">
-        <Stack direction="row" spacing={3} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
-          <ToggleButtonGroup
-            value={themeKey}
-            exclusive
-            onChange={(_, v) => v && setThemeKey(v as ThemeKey)}
-            size="small"
+      {/* Theme switcher */}
+      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+        {(Object.keys(themes) as ThemeKey[]).map((key) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setThemeKey(key)}
+            style={{
+              padding: '4px 16px',
+              fontWeight: key === themeKey ? 700 : 400,
+              outline: key === themeKey ? '2px solid var(--mui-palette-primary-main)' : 'none',
+              cursor: 'pointer',
+            }}
           >
-            {(Object.keys(themes) as ThemeKey[]).map((key) => (
-              <ToggleButton key={key} value={key} sx={{ textTransform: 'capitalize', px: 2 }}>
-                {key}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
-          <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-            <Typography variant="body2">Light</Typography>
-            <Switch
-              checked={mounted ? mode === 'dark' : false}
-              onChange={(event) => setMode(event.target.checked ? 'dark' : 'light')}
-            />
-            <Typography variant="body2">Dark</Typography>
-          </Stack>
-        </Stack>
-        <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.disabled' }}>
-          {themeKey === 'teal' &&
-            'This theme overrides MuiSlider — larger thumb & track via styleOverrides.'}
-          {themeKey === 'blue' && 'This theme sets size="small" on all Sliders via defaultProps.'}
-          {themeKey === 'violet' && 'Default theme with rounded corners (borderRadius: 12).'}
-        </Typography>
-      </Section>
+            {key}
+          </button>
+        ))}
+      </div>
 
-      {/* ── Default ─────────────────────────────────────────────────────── */}
-      <Section label="Default — color follows primary palette">
-        <Slider value={value1} onChange={(_, v) => setValue1(v as number)} />
-        <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Value: {value1}
-        </Typography>
-      </Section>
+      {/* Dark mode toggle */}
+      <button
+        type="button"
+        onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+        style={{ marginBottom: 32 }}
+      >
+        {mounted ? `Switch to ${mode === 'light' ? 'dark' : 'light'} mode` : 'Toggle mode'}
+      </button>
 
-      {/* ── sx prop ─────────────────────────────────────────────────────── */}
-      <Section label="sx prop — secondary color + custom thumb size">
+      {/* ── sx prop ──────────────────────────────────────────────────── */}
+      <p style={{ marginBottom: 4 }}>sx prop — secondary color + custom thumb:</p>
+      <div style={{ maxWidth: 500 }}>
+        <Slider
+          value={value1}
+          onChange={(_, v) => setValue1(v as number)}
+          sx={{
+            color: 'secondary.main',
+            '& .MuiSlider-thumb': { width: 22, height: 22 },
+          }}
+          aria-label="sx slider"
+        />
+      </div>
+      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value1}</p>
+
+      {/* ── className + style tag ─────────────────────────────────────── */}
+      <p style={{ marginBottom: 4, marginTop: 24 }}>
+        className override — thumb should be purple via plain CSS:
+      </p>
+      <div style={{ maxWidth: 500 }}>
         <Slider
           value={value2}
           onChange={(_, v) => setValue2(v as number)}
-          sx={{
-            color: 'secondary.main',
-            '& .MuiSlider-thumb': {
-              width: 22,
-              height: 22,
-              boxShadow: (t) => `0 0 0 7px ${t.palette.secondary.main}28`,
-            },
-            '& .MuiSlider-rail': { opacity: 0.3 },
-          }}
+          className="emotion-custom-slider"
+          aria-label="className slider"
         />
-        <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Value: {value2}
-        </Typography>
-      </Section>
+      </div>
+      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value2}</p>
 
-      {/* ── styled() ────────────────────────────────────────────────────── */}
-      <Section label="styled() — gradient track via styled(Slider)">
-        <GradientSlider value={value3} onChange={(_, v) => setValue3(v as number)} />
-        <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Value: {value3}
-        </Typography>
-      </Section>
-
-      {/* ── Range slider ────────────────────────────────────────────────── */}
-      <Section label="Range slider with sx marks">
-        <Slider
-          value={value4}
-          onChange={(_, v) => setValue4(v as number[])}
-          marks
-          step={10}
-          valueLabelDisplay="auto"
-          sx={{ '& .MuiSlider-markLabel': { fontSize: '0.7rem' } }}
+      {/* ── styled() ────────────────────────────────────────────────── */}
+      <p style={{ marginBottom: 4, marginTop: 24 }}>styled() — gradient track:</p>
+      <div style={{ maxWidth: 500 }}>
+        <GradientSlider
+          value={value3}
+          onChange={(_, v) => setValue3(v as number)}
+          aria-label="gradient slider"
         />
-        <Typography variant="body2" sx={{ mt: 0.5, color: 'text.secondary' }}>
-          Value: [{value4.join(', ')}]
-        </Typography>
-      </Section>
+      </div>
+      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value3}</p>
 
-      {/* ── Disabled ────────────────────────────────────────────────────── */}
-      <Section label="Disabled state">
-        <Slider value={50} disabled />
-      </Section>
-
-      {/* ── Vertical ────────────────────────────────────────────────────── */}
-      <Section label="Vertical orientation">
-        <Box sx={{ height: 160, display: 'flex', gap: 4 }}>
-          <Slider
-            orientation="vertical"
-            value={value1}
-            onChange={(_, v) => setValue1(v as number)}
-          />
-          <Slider
-            orientation="vertical"
-            value={value2}
-            onChange={(_, v) => setValue2(v as number)}
-            sx={{ color: 'secondary.main' }}
-          />
-        </Box>
-      </Section>
-    </Box>
+      <style>{`
+        .emotion-custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--mui-palette-secondary-main, #9c27b0);
+        }
+      `}</style>
+    </div>
   );
 }
 
