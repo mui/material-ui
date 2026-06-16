@@ -1,0 +1,8 @@
+<ThemeProvider theme={theme}>
+  <Router>
+    <Link href="/">Link</Link>
+    <Button href="/" variant="contained">
+      Link
+    </Button>
+  </Router>
+</ThemeProvider>
