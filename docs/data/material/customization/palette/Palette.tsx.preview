@@ -1,0 +1,4 @@
+<ThemeProvider theme={theme}>
+  <Button>Primary</Button>
+  <Button color="secondary">Secondary</Button>
+</ThemeProvider>

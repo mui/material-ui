@@ -1,0 +1,6 @@
+<LinearProgress
+  variant="buffer"
+  value={progress}
+  valueBuffer={buffer}
+  aria-label="Loading…"
+/>

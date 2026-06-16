@@ -23,7 +23,7 @@ The Material UI Accordion component includes several complementary utility comp
 - Accordion Details: the wrapper for the Accordion content.
 - Accordion Actions: an optional wrapper that groups a set of buttons.
 
-{{"component": "file://./demos/usage/index.ts", "bg": true}}
+{{"demo": "AccordionUsage.js", "bg": true}}
 
 :::info
 This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
@@ -42,31 +42,31 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 Use the `expandIcon` prop on the Accordion Summary component to change the expand indicator icon.
 The component handles the turning upside-down transition automatically.
 
-{{"component": "file://./demos/expand-icon/index.ts", "bg": true}}
+{{"demo": "AccordionExpandIcon.js", "bg": true}}
 
 ### Expanded by default
 
 Use the `defaultExpanded` prop on the Accordion component to have it opened by default.
 
-{{"component": "file://./demos/expand-default/index.ts", "bg": true}}
+{{"demo": "AccordionExpandDefault.js", "bg": true}}
 
 ### Transition
 
 Use the `slots.transition` and `slotProps.transition` props to change the Accordion's default transition.
 
-{{"component": "file://./demos/transition/index.ts", "bg": true}}
+{{"demo": "AccordionTransition.js", "bg": true}}
 
 ### Disabled item
 
 Use the `disabled` prop on the Accordion component to disable interaction and focus.
 
-{{"component": "file://./demos/disabled/index.ts", "bg": true}}
+{{"demo": "DisabledAccordion.js", "bg": true}}
 
 ### Controlled Accordion
 
 The Accordion component can be controlled or uncontrolled.
 
-{{"component": "file://./demos/controlled/index.ts", "bg": true}}
+{{"demo": "ControlledAccordions.js", "bg": true}}
 
 :::info
 
@@ -83,7 +83,7 @@ Learn more about controlled and uncontrolled components in the [React documentat
 Use the `expanded` prop with React's `useState` hook to allow only one Accordion item to be expanded at a time.
 The demo below also shows a bit of visual customization.
 
-{{"component": "file://./demos/customized/index.ts", "bg": true}}
+{{"demo": "CustomizedAccordions.js", "bg": true}}
 
 ### Changing heading level
 

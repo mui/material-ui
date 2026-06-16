@@ -25,7 +25,7 @@ The Paper component is ideally suited for designs that follow [Material Design's
 If you just need a generic container, you may prefer to use the [Box](/material-ui/react-box/) or [Container](/material-ui/react-container/) components.
 :::
 
-{{"component": "file://./demos/simple/index.ts", "bg": true}}
+{{"demo": "SimplePaper.js", "bg": true}}
 
 ## Component
 
@@ -50,20 +50,20 @@ The aforementioned dark mode behavior can lead to confusion when overriding the 
 To override it, you must either use a new background value, or customize the values for both `background-color` and `background-image`.
 :::
 
-{{"component": "file://./demos/elevation/index.ts", "bg": "outlined"}}
+{{"demo": "Elevation.js", "bg": "outlined"}}
 
 ### Variants
 
 Set the `variant` prop to `"outlined"` for a flat, outlined Paper with no shadows:
 
-{{"component": "file://./demos/variants/index.ts", "bg": true}}
+{{"demo": "Variants.js", "bg": true}}
 
 ### Corners
 
 The Paper component features rounded corners by default.
 Add the `square` prop for square corners:
 
-{{"component": "file://./demos/square-corners/index.ts", "bg": true}}
+{{"demo": "SquareCorners.js", "bg": true}}
 
 ## Anatomy
 
