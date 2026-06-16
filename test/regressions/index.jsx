@@ -3,6 +3,10 @@
 // globs — reads `Date` at module scope. See `fakeDateSetup.ts` for why this
 // ordering (and the separate `./fixtures` module) is required.
 import './fakeDateSetup';
+// Make the Data Grid demo-data generator run synchronously (before fixtures
+// load any composite). See `syncDataGridGenerator.ts` — prevents the async
+// row-generation skeleton/flake on the grid composites.
+import './syncDataGridGenerator';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';

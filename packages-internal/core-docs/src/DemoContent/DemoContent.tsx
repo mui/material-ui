@@ -263,11 +263,9 @@ export default function DemoContent(props: DemoContentProps) {
   // Track whether the source viewer has ever been opened so the Carbon ad
   // only appears once the user actually engages with the demo.
   const [adShown, setAdShown] = React.useState(false);
-  React.useEffect(() => {
-    if (demo.expanded) {
-      setAdShown(true);
-    }
-  }, [demo.expanded]);
+  if (demo.expanded && !adShown) {
+    setAdShown(true);
+  }
   const showAd = adShown && !pageDisableAd && !demoDisableAd;
 
   // Build the file list for the AI hero from the current variant's source
