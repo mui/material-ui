@@ -23,54 +23,54 @@ Radio buttons should have the most commonly used option selected by default.
 
 `RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
 
-{{"component": "file://./demos/group/index.ts"}}
+{{"demo": "RadioButtonsGroup.js"}}
 
 ### Direction
 
 To lay out the buttons horizontally, set the `row` prop:
 
-{{"component": "file://./demos/row-group/index.ts"}}
+{{"demo": "RowRadioButtonsGroup.js"}}
 
 ### Controlled
 
 You can control the radio with the `value` and `onChange` props:
 
-{{"component": "file://./demos/controlled-group/index.ts"}}
+{{"demo": "ControlledRadioButtonsGroup.js"}}
 
 ## Standalone radio buttons
 
 `Radio` can also be used standalone, without the RadioGroup wrapper.
 
-{{"component": "file://./demos/radio-buttons/index.ts"}}
+{{"demo": "RadioButtons.js"}}
 
 ## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
 
-{{"component": "file://./demos/size/index.ts"}}
+{{"demo": "SizeRadioButtons.js"}}
 
 ## Color
 
-{{"component": "file://./demos/color/index.ts"}}
+{{"demo": "ColorRadioButtons.js"}}
 
 ## Label placement
 
 You can change the placement of the label with the `FormControlLabel` component's `labelPlacement` prop:
 
-{{"component": "file://./demos/form-control-label-placement/index.ts"}}
+{{"demo": "FormControlLabelPlacement.js"}}
 
 ## Show error
 
 In general, radio buttons should have a value selected by default. If this is not the case, you can display an error if no value is selected when the form is submitted:
 
-{{"component": "file://./demos/error-radios/index.ts"}}
+{{"demo": "ErrorRadios.js"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized-radios/index.ts"}}
+{{"demo": "CustomizedRadios.js"}}
 
 ## `useRadioGroup`
 
@@ -94,7 +94,7 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 
 #### Example
 
-{{"component": "file://./demos/use-radio-group/index.ts"}}
+{{"demo": "UseRadioGroup.js"}}
 
 ## When to use
 

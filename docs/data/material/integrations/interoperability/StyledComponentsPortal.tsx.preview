@@ -1,0 +1,5 @@
+<StyledTooltip title="I am navy">
+  <Button variant="contained" color="primary">
+    Styled tooltip
+  </Button>
+</StyledTooltip>

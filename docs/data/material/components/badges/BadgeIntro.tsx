@@ -19,7 +19,6 @@ export default function BadgeIntro() {
   const label = getUnreadNotificationsLabel(unreadNotificationsCount);
 
   return (
-    // @focus-start @padding 2
     <IconButton aria-label={label}>
       <Badge
         badgeContent={unreadNotificationsCount}
@@ -29,6 +28,5 @@ export default function BadgeIntro() {
         <MailIcon />
       </Badge>
     </IconButton>
-    // @focus-end
   );
 }

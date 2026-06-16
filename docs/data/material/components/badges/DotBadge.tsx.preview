@@ -1,0 +1,5 @@
+<IconButton aria-label="show new notifications">
+  <Badge color="secondary" variant="dot">
+    <NotificationsIcon />
+  </Badge>
+</IconButton>

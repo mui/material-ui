@@ -22,33 +22,33 @@ If you have a single option, avoid using a checkbox and use an on/off switch ins
 
 ## Basic checkboxes
 
-{{"component": "file://./demos/checkboxes/index.ts"}}
+{{"demo": "Checkboxes.js"}}
 
 ## Label
 
 You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
 
-{{"component": "file://./demos/labels/index.ts"}}
+{{"demo": "CheckboxLabels.js"}}
 
 ## Size
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
 
-{{"component": "file://./demos/size/index.ts"}}
+{{"demo": "SizeCheckboxes.js"}}
 
 ## Color
 
-{{"component": "file://./demos/color/index.ts"}}
+{{"demo": "ColorCheckboxes.js"}}
 
 ## Icon
 
-{{"component": "file://./demos/icon/index.ts"}}
+{{"demo": "IconCheckboxes.js"}}
 
 ## Controlled
 
 You can control the checkbox with the `checked` and `onChange` props:
 
-{{"component": "file://./demos/controlled/index.ts"}}
+{{"demo": "ControlledCheckbox.js"}}
 
 ## Indeterminate
 
@@ -58,7 +58,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 
 You can change the indeterminate icon using the `indeterminateIcon` prop.
 
-{{"component": "file://./demos/indeterminate/index.ts"}}
+{{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
 When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
@@ -69,20 +69,20 @@ It has no accessibility or UX implications.
 
 `FormGroup` is a helpful wrapper used to group selection control components.
 
-{{"component": "file://./demos/group/index.ts"}}
+{{"demo": "CheckboxesGroup.js"}}
 
 ## Label placement
 
 You can change the placement of the label:
 
-{{"component": "file://./demos/form-control-label-position/index.ts"}}
+{{"demo": "FormControlLabelPosition.js"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedCheckbox.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/checkbox).
 

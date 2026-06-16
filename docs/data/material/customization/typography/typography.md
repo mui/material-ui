@@ -131,11 +131,11 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/custom-responsive-font-sizes/index.ts"}}
+{{"demo": "CustomResponsiveFontSizes.js"}}
 
 To automate this setup, you can use the [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
-{{"component": "file://./demos/responsive-font-sizes-chart/index.ts", "hideToolbar": true}}
+{{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
 You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/material-ui/customization/breakpoints/):
 
@@ -146,7 +146,7 @@ let theme = createTheme();
 theme = responsiveFontSizes(theme);
 ```
 
-{{"component": "file://./demos/responsive-font-sizes/index.ts"}}
+{{"demo": "ResponsiveFontSizes.js"}}
 
 ### Fluid font sizes
 
@@ -181,7 +181,7 @@ html {
 
 You need to apply the above CSS on the HTML element of this page to see the below demo rendered correctly.
 
-{{"component": "file://./demos/font-size-theme/index.ts"}}
+{{"demo": "FontSizeTheme.js"}}
 
 ## Variants
 
@@ -219,7 +219,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/variants/index.ts"}}
+{{"demo": "TypographyVariants.js"}}
 
 ## Adding & disabling variants
 
@@ -305,7 +305,7 @@ declare module '@mui/material/Typography' {
 
 **Step 4. You can now use the new variant**
 
-{{"component": "file://./demos/custom-variant/index.ts", "hideToolbar": true}}
+{{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
 ```jsx
 <Typography variant="poster">poster</Typography>;

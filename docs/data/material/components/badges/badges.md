@@ -36,7 +36,7 @@ surrounding UI.
 
 Use `badgeContent` to add a short count or label to the wrapped element.
 
-{{"component": "file://./demos/simple/index.ts"}}
+{{"demo": "SimpleBadge.js"}}
 
 ### Dot badge
 
@@ -71,13 +71,13 @@ You can use the `max` prop to cap the value of the badge content.
 
 The `dot` prop changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
-{{"component": "file://./demos/dot/index.ts"}}
+{{"demo": "DotBadge.js"}}
 
 ### Visibility
 
 Control badge visibility with the `invisible` prop.
 
-{{"component": "file://./demos/overlap/index.ts"}}
+{{"demo": "BadgeVisibility.js"}}
 
 The badge hides automatically when `badgeContent` is zero. Override this with the `showZero`
 prop when zero is meaningful to the interface.
@@ -102,10 +102,17 @@ Use the `color` prop to apply theme palette colors to the badge.
 
 Use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"component": "file://./demos/alignment/index.ts", "hideToolbar": true}}
+{{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
 ### Badge overlap
 
 Use the `overlap` prop when the wrapped element is circular.
 
-{{"component": "file://./demos/accessible/index.ts"}}
+{{"demo": "BadgeOverlap.js"}}
+
+### Custom styles
+
+Use theme style overrides, the `sx` prop, or `styled()` to customize the badge.
+Learn more in the [customization guide](/material-ui/customization/how-to-customize/).
+
+{{"demo": "CustomizedBadges.js"}}
