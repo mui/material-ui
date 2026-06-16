@@ -1024,6 +1024,11 @@ function useAutocomplete(props) {
           // deliberate user interactions like hovering a suggestion then pressing Enter.
           const shouldSelectHighlighted =
             !freeSolo || inputPristine || highlightReasonRef.current !== null;
+          const shouldPreventSubmitAfterFreeSoloCommit =
+            popupOpen &&
+            highlightedIndexRef.current !== -1 &&
+            !shouldSelectHighlighted &&
+            !touchScrolledRef.current;
 
           if (
             highlightedIndexRef.current !== -1 &&
@@ -1053,8 +1058,8 @@ function useAutocomplete(props) {
               );
             }
           } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
-            if (multiple) {
-              // Allow people to add new values before they submit the form.
+            if (multiple || shouldPreventSubmitAfterFreeSoloCommit) {
+              // Allow people to commit the freeSolo value before they submit the form.
               event.preventDefault();
             }
             selectNewValue(event, inputValue, 'createOption', 'freeSolo');
