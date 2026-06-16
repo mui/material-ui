@@ -39,7 +39,7 @@ In order to create a grid layout, you need a container. Use `container` prop to 
 Column widths are integer values between 1 and 12.
 For example, an item with `size={6}` occupies half of the grid container's width.
 
-{{"component": "file://./demos/basic/index.ts", "bg": true}}
+{{"demo": "BasicGrid.js", "bg": true}}
 
 ### Multiple breakpoints
 
@@ -47,7 +47,7 @@ Components may have multiple widths defined, causing the layout to change at the
 
 For example, `size={{ xs: 12, sm: 6 }}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
 
-{{"component": "file://./demos/full-width/index.ts", "bg": true}}
+{{"demo": "FullWidthGrid.js", "bg": true}}
 
 ## Spacing
 
@@ -55,21 +55,21 @@ To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
 The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
-{{"component": "file://./demos/spacing/index.ts", "bg": true, "hideToolbar": true}}
+{{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
 ### Row & column spacing
 
 The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
 It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-column-gap).
 
-{{"component": "file://./demos/row-and-column-spacing/index.ts", "bg": true}}
+{{"demo": "RowAndColumnSpacing.js", "bg": true}}
 
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
 For instance, we can implement the [recommended](https://m2.material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
-{{"component": "file://./demos/responsive/index.ts", "bg": true}}
+{{"demo": "ResponsiveGrid.js", "bg": true}}
 
 Responsive values is supported by:
 
@@ -87,25 +87,25 @@ Responsive values is supported by:
 The Auto-layout makes the _items_ equitably share the available space.
 That also means you can set the width of one _item_ and the others will automatically resize around it.
 
-{{"component": "file://./demos/auto/index.ts", "bg": true}}
+{{"demo": "AutoGrid.js", "bg": true}}
 
 ### Variable width content
 
 Set one of the size breakpoint props to `"auto"` to size a column based on the width of its content.
 
-{{"component": "file://./demos/variable-width/index.ts", "bg": true}}
+{{"demo": "VariableWidthGrid.js", "bg": true}}
 
 ## Nested Grid
 
 The grid container that renders inside another grid container is a nested grid which inherits the [`columns`](#columns) and [`spacing`](#spacing) from the top. The deep nested grid will inherit the props from the upper nested grid if it receives those props.
 
-{{"component": "file://./demos/nested/index.ts", "bg": true}}
+{{"demo": "NestedGrid.js", "bg": true}}
 
 ## Columns
 
 You can change the default number of columns (12) with the `columns` prop.
 
-{{"component": "file://./demos/columns/index.ts", "bg": true}}
+{{"demo": "ColumnsGrid.js", "bg": true}}
 
 ## Offset
 
@@ -114,13 +114,13 @@ Move the item to the right by using the `offset` prop which can be:
 - number, for example, `offset={{ md: 2 }}` - when used the item is moved to the right by 2 columns starts from `md` breakpoint and up.
 - `"auto"` - when used, the item is moved to the right edge of the grid container.
 
-{{"component": "file://./demos/offset/index.ts", "bg": true}}
+{{"demo": "OffsetGrid.js", "bg": true}}
 
 ## Custom breakpoints
 
 If you specify custom breakpoints to the theme, you can use those names as grid item props in responsive values.
 
-{{"component": "file://./demos/custom-breakpoints/index.ts", "bg": true}}
+{{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
 :::info
 Custom breakpoints affect all [responsive values](#responsive-values).

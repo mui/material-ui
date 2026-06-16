@@ -23,7 +23,7 @@ Tabs are implemented using a collection of related components:
 - `<Tab />` - the tab element itself. Clicking on a tab displays its corresponding panel.
 - `<Tabs />` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicTabs.js"}}
 
 ## Basics
 
@@ -41,24 +41,24 @@ following [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/pattern
 - `<TabPanel />` - the card that hosts the content associated with a tab.
 - `<TabContext />` - the top-level component that wraps the Tab List and Tab Panel components.
 
-{{"component": "file://./demos/lab/index.ts"}}
+{{"demo": "LabTabs.js"}}
 
 ## Wrapped labels
 
 Long labels will automatically wrap on tabs.
 If the label is too long for the tab, it will overflow, and the text will not be visible.
 
-{{"component": "file://./demos/wrapped-label/index.ts"}}
+{{"demo": "TabsWrappedLabel.js"}}
 
 ## Colored tab
 
-{{"component": "file://./demos/color/index.ts"}}
+{{"demo": "ColorTabs.js"}}
 
 ## Disabled tab
 
 A tab can be disabled by setting the `disabled` prop.
 
-{{"component": "file://./demos/disabled/index.ts"}}
+{{"demo": "DisabledTabs.js"}}
 
 ## Fixed tabs
 
@@ -68,13 +68,13 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 The `variant="fullWidth"` prop should be used for smaller views.
 
-{{"component": "file://./demos/full-width/index.ts", "bg": true}}
+{{"demo": "FullWidthTabs.js", "bg": true}}
 
 ### Centered
 
 The `centered` prop should be used for larger views.
 
-{{"component": "file://./demos/centered/index.ts", "bg": true}}
+{{"demo": "CenteredTabs.js", "bg": true}}
 
 ## Scrollable tabs
 
@@ -82,13 +82,13 @@ The `centered` prop should be used for larger views.
 
 Use the `variant="scrollable"` and `scrollButtons="auto"` props to display left and right scroll buttons on desktop that are hidden on mobile:
 
-{{"component": "file://./demos/scrollable-button-auto/index.ts", "bg": true}}
+{{"demo": "ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Forced scroll buttons
 
 Apply `scrollButtons={true}` and the `allowScrollButtonsMobile` prop to display the left and right scroll buttons on all viewports:
 
-{{"component": "file://./demos/scrollable-button-force/index.ts", "bg": true}}
+{{"demo": "ScrollableTabsButtonForce.js", "bg": true}}
 
 If you want to make sure the buttons are always visible, you should customize the opacity.
 
@@ -98,21 +98,21 @@ If you want to make sure the buttons are always visible, you should customize th
 }
 ```
 
-{{"component": "file://./demos/scrollable-button-visible/index.ts", "bg": true}}
+{{"demo": "ScrollableTabsButtonVisible.js", "bg": true}}
 
 ### Prevent scroll buttons
 
 Left and right scroll buttons are never be presented with `scrollButtons={false}`.
 All scrolling must be initiated through user agent scrolling mechanisms (for example left/right swipe, shift mouse wheel, etc.)
 
-{{"component": "file://./demos/scrollable-button-prevent/index.ts", "bg": true}}
+{{"demo": "ScrollableTabsButtonPrevent.js", "bg": true}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedTabs.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/tabs).
 
@@ -120,7 +120,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 To make vertical tabs instead of default horizontal ones, there is `orientation="vertical"`:
 
-{{"component": "file://./demos/vertical/index.ts", "bg": true}}
+{{"demo": "VerticalTabs.js", "bg": true}}
 
 Note that you can restore the scrollbar with `visibleScrollbar`.
 
@@ -128,7 +128,7 @@ Note that you can restore the scrollbar with `visibleScrollbar`.
 
 By default, tabs use a `button` element, but you can provide your custom tag or component. Here's an example of implementing tabbed navigation:
 
-{{"component": "file://./demos/nav/index.ts"}}
+{{"demo": "NavTabs.js"}}
 
 ### Third-party routing library
 
@@ -140,15 +140,15 @@ Here is a [more detailed guide](/material-ui/integrations/routing/#tabs).
 
 Tab labels may be either all icons or all text.
 
-{{"component": "file://./demos/icon/index.ts"}}
+{{"demo": "IconTabs.js"}}
 
-{{"component": "file://./demos/icon-label/index.ts"}}
+{{"demo": "IconLabelTabs.js"}}
 
 ## Icon position
 
 By default, the icon is positioned at the `top` of a tab. Other supported positions are `start`, `end`, `bottom`.
 
-{{"component": "file://./demos/icon-position/index.ts"}}
+{{"demo": "IconPositionTabs.js"}}
 
 ## Accessibility
 
@@ -179,11 +179,11 @@ Focus a tab and navigate with arrow keys to notice the difference, for example <
 <Tabs selectionFollowsFocus />
 ```
 
-{{"component": "file://./demos/accessible-tabs1/index.ts", "collapseToEmpty": true}}
+{{"demo": "AccessibleTabs1.js", "defaultCodeOpen": false}}
 
 ```jsx
 /* Tabs where each tab needs to be selected manually */
 <Tabs />
 ```
 
-{{"component": "file://./demos/accessible-tabs2/index.ts", "collapseToEmpty": true}}
+{{"demo": "AccessibleTabs2.js", "defaultCodeOpen": false}}

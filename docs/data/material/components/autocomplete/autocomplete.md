@@ -24,7 +24,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 The value must be chosen from a predefined set of allowed values.
 
-{{"component": "file://./demos/combo-box/index.ts"}}
+{{"demo": "ComboBox.js"}}
 
 ### Options structure
 
@@ -71,13 +71,13 @@ return <Autocomplete options={options} getOptionKey={(option) => option.id} />;
 
 Each of the following examples demonstrates one feature of the Autocomplete component.
 
-{{"component": "file://./demos/playground/index.ts"}}
+{{"demo": "Playground.js"}}
 
 ### Country select
 
 Choose one of the 248 countries.
 
-{{"component": "file://./demos/country-select/index.ts"}}
+{{"demo": "CountrySelect.js"}}
 
 ### Controlled states
 
@@ -96,7 +96,7 @@ These two states are isolated, and should be controlled independently.
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-{{"component": "file://./demos/controllable-states/index.ts"}}
+{{"demo": "ControllableStates.js"}}
 
 :::warning
 
@@ -127,7 +127,7 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 The prop is designed to cover the primary use case of a **search input** with suggestions, for example Google search or react-autowhatever.
 
-{{"component": "file://./demos/free-solo/index.ts"}}
+{{"demo": "FreeSolo.js"}}
 
 :::warning
 Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
@@ -145,11 +145,11 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `resetHighlightOnMouseLeave` to clear mouse-created highlights when the pointer leaves the popup.
 - A last option, for instance: `Add "YOUR SEARCH"`.
 
-{{"component": "file://./demos/free-solo-create-option/index.ts"}}
+{{"demo": "FreeSoloCreateOption.js"}}
 
 You could also display a dialog when the user wants to add a new value.
 
-{{"component": "file://./demos/free-solo-create-option-dialog/index.ts"}}
+{{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 ## Grouped
 
@@ -157,7 +157,7 @@ You can group the options with the `groupBy` prop.
 If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
 otherwise, you will notice duplicate headers.
 
-{{"component": "file://./demos/grouped/index.ts"}}
+{{"demo": "Grouped.js"}}
 
 To control how the groups are rendered, provide a custom `renderGroup` prop.
 This is a function that accepts an object with two fields:
@@ -167,11 +167,11 @@ This is a function that accepts an object with two fields:
 
 The following demo shows how to use this prop to define custom markup and override the styles of the default groups:
 
-{{"component": "file://./demos/render-group/index.ts"}}
+{{"demo": "RenderGroup.js"}}
 
 ## Disabled options
 
-{{"component": "file://./demos/disabled-options/index.ts"}}
+{{"demo": "DisabledOptions.js"}}
 
 ## `useAutocomplete`
 
@@ -186,11 +186,11 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 - 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
 
-{{"component": "file://./demos/use/index.ts", "collapseToEmpty": true}}
+{{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
 ### Customized hook
 
-{{"component": "file://./demos/customized-hook/index.ts", "collapseToEmpty": true}}
+{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
 
 Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
 
@@ -205,7 +205,7 @@ The component supports two different asynchronous use-cases:
 
 It displays a progress state as long as the network request is pending.
 
-{{"component": "file://./demos/asynchronous/index.ts"}}
+{{"demo": "Asynchronous.js"}}
 
 ### Search as you type
 
@@ -224,7 +224,7 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
-{{"component": "file://./demos/google-maps/index.ts"}}
+{{"demo": "GoogleMaps.js"}}
 
 The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
@@ -238,7 +238,7 @@ This demo has limited quotas to make API requests. When your quota exceeds, you 
 
 This demo uses `@tanstack/react-query` to additively fetch new data onto existing `options` upon reaching the end of the current list. The list is virtualized using `@tanstack/react-virtual`.
 
-{{"component": "file://./demos/infinite-loading/index.ts"}}
+{{"demo": "InfiniteLoading.js"}}
 
 ## Single value rendering
 
@@ -249,7 +249,7 @@ This can be useful for adding custom styles, displaying additional information, 
 - The `getItemProps` getter provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
 - If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
 
-{{"component": "file://./demos/custom-single-value-rendering/index.ts"}}
+{{"demo": "CustomSingleValueRendering.js"}}
 
 ## Multiple values
 
@@ -258,31 +258,31 @@ When `multiple={true}`, the user can select multiple values. These selected valu
 - The `getItemProps` getter supplies essential props like `data-item-index`, `disabled`, `tabIndex` and others. Make sure to spread them on each rendered item.
 - If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
 
-{{"component": "file://./demos/tags/index.ts"}}
+{{"demo": "Tags.js"}}
 
 ### Fixed options
 
 In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
-{{"component": "file://./demos/fixed-tags/index.ts"}}
+{{"demo": "FixedTags.js"}}
 
 ### Selection indicators
 
 This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
 
-{{"component": "file://./demos/checkboxes-tags/index.ts"}}
+{{"demo": "CheckboxesTags.js"}}
 
 ### Limit tags
 
 You can use the `limitTags` prop to limit the number of displayed options when not focused.
 
-{{"component": "file://./demos/limit-tags/index.ts"}}
+{{"demo": "LimitTags.js"}}
 
 ## Sizes
 
 Fancy smaller inputs? Use the `size` prop.
 
-{{"component": "file://./demos/sizes/index.ts"}}
+{{"demo": "Sizes.js"}}
 
 ## Customization
 
@@ -296,7 +296,7 @@ Pay specific attention to the `ref` and `inputProps` keys.
 If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
 :::
 
-{{"component": "file://./demos/custom-input/index.ts"}}
+{{"demo": "CustomInputAutocomplete.js"}}
 
 ### Globally customized options
 
@@ -306,13 +306,13 @@ The `renderOption` property takes the `ownerState` as the fourth parameter, whic
 To display the label, you can use the `getOptionLabel` prop from the `ownerState`.
 This approach enables different options for each Autocomplete component while keeping the options styling consistent.
 
-{{"component": "file://./demos/globally-customized-options/index.ts"}}
+{{"demo": "GloballyCustomizedOptions.js"}}
 
 ### GitHub's picker
 
 This demo reproduces GitHub's label picker:
 
-{{"component": "file://./demos/git-hub-label/index.ts"}}
+{{"demo": "GitHubLabel.js"}}
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
@@ -320,13 +320,13 @@ Head to the [Customized hook](#customized-hook) section for a customization exam
 
 The following demo shows how to add a hint feature to the Autocomplete:
 
-{{"component": "file://./demos/hint/index.ts"}}
+{{"demo": "AutocompleteHint.js"}}
 
 ## Highlights
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
-{{"component": "file://./demos/highlights/index.ts"}}
+{{"demo": "Highlights.js"}}
 
 ## Custom filter
 
@@ -365,7 +365,7 @@ const filterOptions = createFilterOptions({
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-{{"component": "file://./demos/filter/index.ts", "collapseToEmpty": true}}
+{{"demo": "Filter.js", "defaultCodeOpen": false}}
 
 ### Advanced
 
@@ -383,7 +383,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 
-{{"component": "file://./demos/virtualize/index.ts"}}
+{{"demo": "Virtualize.js"}}
 
 ## Events
 

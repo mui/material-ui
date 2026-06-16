@@ -43,21 +43,21 @@ The component supports 4 shape variants:
 - `text` (default): represents a single line of text (you can adjust the height via font size).
 - `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
-{{"component": "file://./demos/variants/index.ts"}}
+{{"demo": "Variants.js"}}
 
 ## Animations
 
 By default, the skeleton pulsates, but you can change the animation to a wave or disable it entirely.
 
-{{"component": "file://./demos/animations/index.ts"}}
+{{"demo": "Animations.js"}}
 
 ### Pulsate example
 
-{{"component": "file://./demos/you-tube/index.ts", "collapseToEmpty": true}}
+{{"demo": "YouTube.js", "defaultCodeOpen": false}}
 
 ### Wave example
 
-{{"component": "file://./demos/facebook/index.ts", "collapseToEmpty": true, "bg": true}}
+{{"demo": "Facebook.js", "defaultCodeOpen": false, "bg": true}}
 
 ## Inferring dimensions
 
@@ -69,7 +69,7 @@ It works well when it comes to typography as its height is set using `em` units.
 <Typography variant="h1">{loading ? <Skeleton /> : 'h1'}</Typography>
 ```
 
-{{"component": "file://./demos/typography/index.ts", "collapseToEmpty": true}}
+{{"demo": "SkeletonTypography.js", "defaultCodeOpen": false}}
 
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will
@@ -85,14 +85,14 @@ loading ? (
 );
 ```
 
-{{"component": "file://./demos/children/index.ts", "collapseToEmpty": true}}
+{{"demo": "SkeletonChildren.js", "defaultCodeOpen": false}}
 
 ## Color
 
 The color of the component can be customized by changing its `background-color` CSS property.
 This is especially useful when on a black background (as the skeleton will otherwise be invisible).
 
-{{"component": "file://./demos/color/index.ts", "bg": "inline"}}
+{{"demo": "SkeletonColor.js", "bg": "inline"}}
 
 ## Accessibility
 

@@ -17,7 +17,7 @@ githubSource: packages/mui-material/src/Divider
 
 The Material UI Divider component renders as a dark gray `<hr>` by default, and features several useful props for quick style adjustments.
 
-{{"component": "file://./demos/intro/index.ts", "bg": true}}
+{{"demo": "IntroDivider.js", "bg": true}}
 
 ## Basics
 
@@ -29,25 +29,25 @@ import Divider from '@mui/material/Divider';
 
 The Divider component supports three variants: `fullWidth` (default), `inset`, and `middle`.
 
-{{"component": "file://./demos/variants/index.ts", "bg": true}}
+{{"demo": "DividerVariants.js", "bg": true}}
 
 ### Orientation
 
 Use the `orientation` prop to change the Divider from horizontal to vertical. When using vertical orientation, the Divider renders a `<div>` with the corresponding accessibility attributes instead of `<hr>` to adhere to the WAI-ARIA [spec](https://www.w3.org/TR/wai-aria-1.2/#separator).
 
-{{"component": "file://./demos/vertical/index.ts", "bg": true}}
+{{"demo": "VerticalDividers.js", "bg": true}}
 
 ### Flex item
 
 Use the `flexItem` prop to display the Divider when it's being used in a flex container.
 
-{{"component": "file://./demos/flex/index.ts", "bg": true}}
+{{"demo": "FlexDivider.js", "bg": true}}
 
 ### With children
 
 Use the `textAlign` prop to align elements that are wrapped by the Divider.
 
-{{"component": "file://./demos/text/index.ts", "bg": true}}
+{{"demo": "DividerText.js", "bg": true}}
 
 ## Customization
 
@@ -55,13 +55,13 @@ Use the `textAlign` prop to align elements that are wrapped by the Divider.
 
 When using the Divider to separate items in a List, use the `component` prop to render it as an `<li>`—otherwise it won't be a valid HTML element.
 
-{{"component": "file://./demos/list/index.ts", "bg": true}}
+{{"demo": "ListDividers.js", "bg": true}}
 
 ### Icon grouping
 
 The demo below shows how to combine the props `variant="middle"` and `orientation="vertical"`.
 
-{{"component": "file://./demos/vertical-middle/index.ts", "bg": true}}
+{{"demo": "VerticalDividerMiddle.js", "bg": true}}
 
 ## Accessibility
 

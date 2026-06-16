@@ -39,7 +39,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 ## Basic modal
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
@@ -49,7 +49,7 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 If you need to nest modals, use the `hideBackdrop` prop on nested Modals to avoid stacking multiple backdrops, which can obscure the active modal or affect interactions.
 
-{{"component": "file://./demos/nested/index.ts"}}
+{{"demo": "NestedModal.js"}}
 
 ## Transitions
 
@@ -64,11 +64,11 @@ This component should respect the following conditions:
 
 Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"component": "file://./demos/transitions/index.ts"}}
+{{"demo": "TransitionsModal.js"}}
 
 Alternatively, you can use [react-spring](https://github.com/pmndrs/react-spring).
 
-{{"component": "file://./demos/spring/index.ts"}}
+{{"demo": "SpringModal.js"}}
 
 ## Performance
 
@@ -80,7 +80,7 @@ it might be a good idea to change this default behavior by enabling the `keepMou
 <Modal keepMounted />
 ```
 
-{{"component": "file://./demos/keep-mounted/index.ts", "collapseToEmpty": true}}
+{{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
 As with any performance optimization, this is not a silver bullet.
 Be sure to identify bottlenecks first, and then try out these optimization strategies.
@@ -90,7 +90,7 @@ Be sure to identify bottlenecks first, and then try out these optimization strat
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://react.dev/reference/react-dom/createPortal) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
-{{"component": "file://./demos/server/index.ts"}}
+{{"demo": "ServerModal.js"}}
 
 ## Limitations
 
