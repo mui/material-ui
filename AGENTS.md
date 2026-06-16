@@ -60,7 +60,7 @@ pnpm proptypes && pnpm docs:api
 
 Demos live next to their page under `docs/data/<product>/components/<component>/demos/<demo-name>/`. Each demo folder contains three files:
 
-- `<ComponentName>.tsx` — the demo source, authored as TypeScript (`.tsx`). The JavaScript variant shown in the docs is generated on the fly at build/runtime and is not committed.
+- `<ComponentName>.tsx` — the demo source, authored as TypeScript (`.tsx`).
 - `client.ts` — marks the demo's client boundary:
 
   ```ts
