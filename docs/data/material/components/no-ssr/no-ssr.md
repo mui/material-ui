@@ -23,7 +23,7 @@ This can be useful in a variety of situations, including:
 
 The demo below illustrates how this component works:
 
-{{"component": "file://./demos/simple/index.ts"}}
+{{"demo": "SimpleNoSsr.js"}}
 
 ## Basics
 
@@ -41,7 +41,7 @@ You can also use No-SSR to delay the rendering of specific components on the cli
 
 The following demo shows how to use the `defer` prop to prioritize rendering the rest of the app outside of what is nested within No-SSR:
 
-{{"component": "file://./demos/frame-deferring/index.ts"}}
+{{"demo": "FrameDeferring.js"}}
 
 :::warning
 When using No-SSR in this way, React applies [two commits](https://react.dev/learn/render-and-commit) instead of one.
