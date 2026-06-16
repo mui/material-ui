@@ -1,0 +1,2 @@
+<Pagination count={10} showFirstButton showLastButton />
+<Pagination count={10} hidePrevButton hideNextButton />

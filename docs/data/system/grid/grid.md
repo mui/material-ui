@@ -10,7 +10,7 @@ If you are **new to or unfamiliar with grid**, you're encouraged to read this [C
 
 To define a `grid` container, you must specify the `display` CSS property to have one of the values: `grid` or `inline-grid`.
 
-{{"component": "file://./demos/display/index.ts", "collapseToEmpty": true}}
+{{"demo": "Display.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ display: 'grid' }}>…</Box>
@@ -21,37 +21,37 @@ To define a `grid` container, you must specify the `display` CSS property to hav
 
 The `grid-template-rows` property defines the line names and track sizing functions of the grid rows.
 
-{{"component": "file://./demos/template-rows/index.ts", "bg": true}}
+{{"demo": "GridTemplateRows.js", "bg": true}}
 
 ### grid-template-columns
 
 The `grid-template-columns` property defines the line names and track sizing functions of the grid columns.
 
-{{"component": "file://./demos/template-columns/index.ts", "bg": true}}
+{{"demo": "GridTemplateColumns.js", "bg": true}}
 
 ### gap
 
 The `gap: size` property specifies the gap between the different items inside the CSS grid.
 
-{{"component": "file://./demos/gap/index.ts", "bg": true}}
+{{"demo": "Gap.js", "bg": true}}
 
 ### row-gap & column-gap
 
 The `row-gap` and `column-gap` CSS properties allow for specifying the row and column gaps independently.
 
-{{"component": "file://./demos/row-and-column-gap/index.ts", "bg": true}}
+{{"demo": "RowAndColumnGap.js", "bg": true}}
 
 ### grid-template-areas
 
 The `grid-template-area` property defines a grid template by referencing the names of the grid areas which are specified with the `grid-area` property.
 
-{{"component": "file://./demos/template-areas/index.ts", "bg": true}}
+{{"demo": "GridTemplateAreas.js", "bg": true}}
 
 ### grid-auto-columns
 
 The `grid-auto-column` property specifies the size of an implicitly-created grid column track or pattern of tracks.
 
-{{"component": "file://./demos/auto-columns/index.ts", "bg": true}}
+{{"demo": "GridAutoColumns.js", "bg": true}}
 
 On the demo above, the second non-visible column has a width of `1fr`/4 which is approximately equal to `25%`.
 
@@ -59,13 +59,13 @@ On the demo above, the second non-visible column has a width of `1fr`/4 which is
 
 The `grid-auto-rows` property specifies the size of an implicitly-created grid row track or pattern of tracks.
 
-{{"component": "file://./demos/auto-rows/index.ts", "bg": true}}
+{{"demo": "GridAutoRows.js", "bg": true}}
 
 ### grid-auto-flow
 
 The `grid-auto-flow` property controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.
 
-{{"component": "file://./demos/auto-flow/index.ts", "bg": true}}
+{{"demo": "GridAutoFlow.js", "bg": true}}
 
 ## Properties for the children
 

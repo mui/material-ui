@@ -4,7 +4,7 @@
 
 ## Color
 
-{{"component": "file://./demos/color/index.ts", "collapseToEmpty": true}}
+{{"demo": "Color.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ color: 'primary.main' }}>…
@@ -20,7 +20,7 @@
 
 ## Background color
 
-{{"component": "file://./demos/background-color/index.ts", "collapseToEmpty": true}}
+{{"demo": "BackgroundColor.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }}>…
