@@ -147,7 +147,7 @@ Now you should see the autocomplete and syntax highlighting features when using 
 - Use the `className` prop to apply Tailwind CSS classes to the root element of the component.
 - Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to a component's [interior slots](/material-ui/customization/overriding-component-structure/#interior-slots).
 
-{{"component": "file://./demos/text-field-tailwind/index.ts"}}
+{{"demo": "TextFieldTailwind.js"}}
 
 ## Extend Material UI classes
 

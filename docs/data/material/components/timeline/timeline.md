@@ -20,48 +20,48 @@ This component is not documented in the [Material Design guidelines](https://m2.
 
 A basic timeline showing list of events.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicTimeline.js"}}
 
 ## Left-positioned timeline
 
 The main content of the timeline can be positioned on the left side relative to the time axis.
 
-{{"component": "file://./demos/left-positioned/index.ts"}}
+{{"demo": "LeftPositionedTimeline.js"}}
 
 ## Alternating timeline
 
 The timeline can display the events on alternating sides.
 
-{{"component": "file://./demos/alternate/index.ts"}}
+{{"demo": "AlternateTimeline.js"}}
 
 ## Reverse Alternating timeline
 
 The timeline can display the events on alternating sides in reverse order.
 
-{{"component": "file://./demos/alternate-reverse/index.ts"}}
+{{"demo": "AlternateReverseTimeline.js"}}
 
 ## Color
 
 The `TimelineDot` can appear in different colors from theme palette.
 
-{{"component": "file://./demos/colors/index.ts"}}
+{{"demo": "ColorsTimeline.js"}}
 
 ## Outlined
 
-{{"component": "file://./demos/outlined/index.ts"}}
+{{"demo": "OutlinedTimeline.js"}}
 
 ## Opposite content
 
 The timeline can display content on opposite sides.
 
-{{"component": "file://./demos/opposite-content/index.ts"}}
+{{"demo": "OppositeContentTimeline.js"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedTimeline.js"}}
 
 ## Alignment
 
@@ -75,12 +75,12 @@ The demos below show how to adjust the relative width of the left and right side
 
 ### Left-aligned
 
-{{"component": "file://./demos/left-aligned/index.ts"}}
+{{"demo": "LeftAlignedTimeline.js"}}
 
 ### Right-aligned
 
-{{"component": "file://./demos/right-aligned/index.ts"}}
+{{"demo": "RightAlignedTimeline.js"}}
 
 ### Left-aligned with no opposite content
 
-{{"component": "file://./demos/no-opposite-content/index.ts"}}
+{{"demo": "NoOppositeContent.js"}}
