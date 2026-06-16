@@ -31,6 +31,8 @@ export interface InputBaseClasses {
   /** Styles applied to the input element. */
   input: string;
   inputTypeSearch: string;
+  /** State class applied to the input element if it is an empty date/time input (`type="date"`, `"datetime-local"`, `"month"`, `"time"`, or `"week"`). */
+  inputEmptyDateLike: string;
 }
 
 export type InputBaseClassKey = keyof InputBaseClasses;
@@ -55,6 +57,7 @@ const inputBaseClasses: InputBaseClasses = generateUtilityClasses('MuiInputBase'
   'readOnly',
   'input',
   'inputTypeSearch',
+  'inputEmptyDateLike',
 ]);
 
 export default inputBaseClasses;

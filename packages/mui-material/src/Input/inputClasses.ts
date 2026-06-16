@@ -27,6 +27,8 @@ export interface InputClasses {
   input: string;
   /** Styles applied to the input element if `type="search"`. */
   inputTypeSearch: string;
+  /** State class applied to the input element if it is an empty date/time input (`type="date"`, `"datetime-local"`, `"month"`, `"time"`, or `"week"`). */
+  inputEmptyDateLike: string;
 }
 
 export type InputClassKey = keyof InputClasses;

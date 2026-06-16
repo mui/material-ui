@@ -24,6 +24,12 @@ import { getTransitionStyles } from '../transitions/utils';
 const MUI_AUTO_FILL = 'mui-auto-fill';
 const MUI_AUTO_FILL_CANCEL = 'mui-auto-fill-cancel';
 
+// Native date/time inputs render their value (and, when empty, a placeholder)
+// through the `::-webkit-datetime-edit` pseudo-elements using the input's color.
+// As a result an empty field looks identical to a filled one. We track the empty
+// state to grey out the placeholder, matching the regular text placeholder.
+const DATE_LIKE_TYPES = ['date', 'datetime-local', 'month', 'time', 'week'];
+
 export const rootOverridesResolver = (props, styles) => {
   const { ownerState } = props;
 
@@ -58,6 +64,7 @@ const useUtilityClasses = (ownerState) => {
     formControl,
     fullWidth,
     hiddenLabel,
+    isEmptyDateLikeInput,
     multiline,
     readOnly,
     size,
@@ -84,6 +91,7 @@ const useUtilityClasses = (ownerState) => {
       'input',
       disabled && 'disabled',
       type === 'search' && 'inputTypeSearch',
+      isEmptyDateLikeInput && 'inputEmptyDateLike',
       readOnly && 'readOnly',
     ],
   };
@@ -162,6 +170,14 @@ export const InputBaseInput = styled('input', {
       : {
           opacity: light ? 0.42 : 0.5,
         };
+    // Applied to the `::-webkit-datetime-edit` of an empty date/time input so its
+    // placeholder is dimmed like a regular text placeholder instead of looking filled.
+    const datetimePlaceholder = {
+      ...placeholderVisible,
+      ...getTransitionStyles(theme, 'opacity', {
+        duration: theme.transitions.duration.shorter,
+      }),
+    };
 
     return {
       font: 'inherit',
@@ -242,6 +258,12 @@ export const InputBaseInput = styled('input', {
             MozAppearance: 'textfield', // Improve type search style.
           },
         },
+        {
+          props: ({ ownerState }) => ownerState.isEmptyDateLikeInput,
+          style: {
+            '&::-webkit-datetime-edit': datetimePlaceholder,
+          },
+        },
       ],
     };
   }),
@@ -305,6 +327,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
+  const isDateLikeType = DATE_LIKE_TYPES.includes(type);
+  // Only meaningful for date/time inputs, where it dims the native placeholder.
+  const [empty, setEmpty] = React.useState(() => !isFilled({ value, defaultValue }, true));
+
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback((instance) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -364,15 +390,19 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const checkDirty = React.useCallback(
     (obj) => {
-      if (isFilled(obj)) {
+      const filled = isFilled(obj);
+      if (filled) {
         if (onFilled) {
           onFilled();
         }
       } else if (onEmpty) {
         onEmpty();
       }
+      if (isDateLikeType) {
+        setEmpty(!filled);
+      }
     },
-    [onFilled, onEmpty],
+    [onFilled, onEmpty, isDateLikeType],
   );
 
   useEnhancedEffect(() => {
@@ -535,6 +565,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     formControl: muiFormControl,
     fullWidth,
     hiddenLabel: fcs.hiddenLabel,
+    isEmptyDateLikeInput: isDateLikeType && empty,
     multiline,
     size: fcs.size,
     startAdornment,

@@ -114,6 +114,11 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
+    "inputEmptyDateLike": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the input element",
+      "conditions": "it is an empty date/time input (<code>type=\"date\"</code>, <code>\"datetime-local\"</code>, <code>\"month\"</code>, <code>\"time\"</code>, or <code>\"week\"</code>)"
+    },
     "inputTypeSearch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

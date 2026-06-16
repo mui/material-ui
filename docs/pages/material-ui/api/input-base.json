@@ -132,6 +132,12 @@
       "isGlobal": false
     },
     {
+      "key": "inputEmptyDateLike",
+      "className": "MuiInputBase-inputEmptyDateLike",
+      "description": "State class applied to the input element if it is an empty date/time input (`type=\"date\"`, `\"datetime-local\"`, `\"month\"`, `\"time\"`, or `\"week\"`).",
+      "isGlobal": false
+    },
+    {
       "key": "inputTypeSearch",
       "className": "MuiInputBase-inputTypeSearch",
       "description": "",

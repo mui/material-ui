@@ -150,6 +150,49 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('empty date/time inputs', () => {
+    ['date', 'datetime-local', 'month', 'time', 'week'].forEach((type) => {
+      it(`applies the inputEmptyDateLike class to an empty type="${type}" input`, () => {
+        const { container } = render(<InputBase type={type} value="" onChange={() => {}} />);
+        expect(container.querySelector('input')).to.have.class(classes.inputEmptyDateLike);
+      });
+    });
+
+    it('does not apply the class when the date input has a value', () => {
+      const { container } = render(
+        <InputBase type="date" value="2020-01-01" onChange={() => {}} />,
+      );
+      expect(container.querySelector('input')).not.to.have.class(classes.inputEmptyDateLike);
+    });
+
+    it('does not apply the class to a non-date input even when empty', () => {
+      const { container } = render(<InputBase type="text" value="" onChange={() => {}} />);
+      expect(container.querySelector('input')).not.to.have.class(classes.inputEmptyDateLike);
+    });
+
+    it('toggles the class as the controlled value changes', () => {
+      const { container, setProps } = render(
+        <InputBase type="date" value="" onChange={() => {}} />,
+      );
+      expect(container.querySelector('input')).to.have.class(classes.inputEmptyDateLike);
+
+      setProps({ value: '2020-01-01' });
+      expect(container.querySelector('input')).not.to.have.class(classes.inputEmptyDateLike);
+
+      setProps({ value: '' });
+      expect(container.querySelector('input')).to.have.class(classes.inputEmptyDateLike);
+    });
+
+    it('toggles the class for uncontrolled inputs on change', () => {
+      const { container } = render(<InputBase type="date" />);
+      const input = container.querySelector('input');
+      expect(input).to.have.class(classes.inputEmptyDateLike);
+
+      fireEvent.change(input, { target: { value: '2020-01-01' } });
+      expect(input).not.to.have.class(classes.inputEmptyDateLike);
+    });
+  });
+
   it('should fire event callbacks', () => {
     const handleChange = spy();
     const handleFocus = spy();
