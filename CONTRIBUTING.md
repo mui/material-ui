@@ -314,7 +314,7 @@ docs/data/material/components/buttons/demos/super/
 
 #### 2. Write the demo code
 
-Demos are authored as TypeScript (`.tsx`). The JavaScript variant shown in the docs is generated on the fly at build/runtime—no separate `.js` file needs to be committed.
+Demos are authored as TypeScript (`.tsx`).
 
 ```tsx
 // docs/data/material/components/buttons/demos/super/SuperButtons.tsx
