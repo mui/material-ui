@@ -192,8 +192,11 @@ async function main() {
             }
             const testcase = await renderFixture(page, route);
 
+            // Scope the wait to the route's testcase element: pooled pages
+            // keep the previous route's DOM around briefly, so a page-global
+            // selector could match a leftover fixture instead of this one.
             if (screenshotRule?.waitForSelector) {
-              await page.waitForSelector(screenshotRule.waitForSelector);
+              await testcase.waitForSelector(screenshotRule.waitForSelector);
             }
 
             // Run axe before the screenshot (if any) so it observes the natural

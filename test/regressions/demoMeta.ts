@@ -20,7 +20,7 @@ export interface ScreenshotRule {
   /** Minimatch glob against the docs path (see file-level comment). */
   test: string;
   enabled?: boolean;
-  /** Playwright waits for this selector after navigation, before axe + screenshot. */
+  /** Playwright waits for this selector to appear after navigation, before axe + screenshot. */
   waitForSelector?: string;
   /**
    * Per-route viewport width override (px). Defaults to
@@ -119,6 +119,30 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   // their live-docs desktop layout. Last-match-wins so this overrides the
   // broader product*/** width above.
   { test: 'docs/src/components/productX/**', viewportWidth: 1440 },
+
+  // Composites whose Data Grid loads its rows asynchronously via `useDemoData`
+  // — `aria-busy` only tracks fonts, not the grid data, so without this the
+  // screenshot can capture the loading skeleton. The skeleton's cells carry
+  // *both* `.MuiDataGrid-cell` and `.MuiDataGrid-cellSkeleton` (and its rows
+  // both `.MuiDataGrid-row` and `.MuiDataGrid-rowSkeleton`), so a plain
+  // `.MuiDataGrid-row .MuiDataGrid-cell` matches the skeleton too. Exclude
+  // skeleton rows so the wait only resolves once real data has rendered. Rules
+  // are last-match-wins, so each restates the X width from the rule above.
+  {
+    test: 'docs/src/components/productX/XHero',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XGridFullDemo',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
+  {
+    test: 'docs/src/components/productX/XTheming',
+    viewportWidth: 1440,
+    waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
+  },
 ];
 
 /**
