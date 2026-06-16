@@ -1,0 +1,12 @@
+<ThemeProvider<Theme>
+  theme={{
+    components: {
+      MuiUseMediaQuery: {
+        // Change the default options of useMediaQuery
+        defaultProps: { ssrMatchMedia },
+      },
+    },
+  }}
+>
+  <MyComponent />
+</ThemeProvider>

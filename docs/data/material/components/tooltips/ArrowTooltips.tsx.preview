@@ -1,0 +1,3 @@
+<Tooltip describeChild title="Add" arrow>
+  <Button>Arrow</Button>
+</Tooltip>

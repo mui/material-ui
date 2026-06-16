@@ -15,7 +15,7 @@ function transform(value) {
 If the value is between (0, 1], it's converted to percent.
 Otherwise, it is directly set on the CSS property.
 
-{{"component": "file://./demos/values/index.ts", "collapseToEmpty": true}}
+{{"demo": "Values.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ width: 1/4 }}> // Equivalent to width: '25%'
@@ -26,7 +26,7 @@ Otherwise, it is directly set on the CSS property.
 
 ## Width
 
-{{"component": "file://./demos/width/index.ts", "collapseToEmpty": true}}
+{{"demo": "Width.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ width: '25%' }}>…
@@ -47,7 +47,7 @@ In this example, the value resolves to [`theme.breakpoints.values.md`](/material
 
 ## Height
 
-{{"component": "file://./demos/height/index.ts", "collapseToEmpty": true}}
+{{"demo": "Height.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ height: '25%' }}>…

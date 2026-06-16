@@ -23,7 +23,7 @@ not shown in context.
 
 The `Chip` component supports outlined and filled styling.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicChips.js"}}
 
 ## Chip actions
 
@@ -34,23 +34,23 @@ You can use the following actions.
 
 ### Clickable
 
-{{"component": "file://./demos/clickable/index.ts"}}
+{{"demo": "ClickableChips.js"}}
 
 ### Deletable
 
-{{"component": "file://./demos/deletable/index.ts"}}
+{{"demo": "DeletableChips.js"}}
 
 ### Clickable and deletable
 
-{{"component": "file://./demos/clickable-and-deletable/index.ts"}}
+{{"demo": "ClickableAndDeletableChips.js"}}
 
 ### Clickable link
 
-{{"component": "file://./demos/clickable-link/index.ts"}}
+{{"demo": "ClickableLinkChips.js"}}
 
 ### Custom delete icon
 
-{{"component": "file://./demos/custom-delete-icon/index.ts"}}
+{{"demo": "CustomDeleteIconChips.js"}}
 
 ## Chip adornments
 
@@ -60,30 +60,30 @@ Use the `avatar` prop to add an avatar or use the `icon` prop to add an icon.
 
 ### Avatar chip
 
-{{"component": "file://./demos/avatar/index.ts"}}
+{{"demo": "AvatarChips.js"}}
 
 ### Icon chip
 
-{{"component": "file://./demos/icon/index.ts"}}
+{{"demo": "IconChips.js"}}
 
 ## Color chip
 
 You can use the `color` prop to define a color from theme palette.
 
-{{"component": "file://./demos/color/index.ts"}}
+{{"demo": "ColorChips.js"}}
 
 ## Sizes chip
 
 You can use the `size` prop to define a small Chip.
 
-{{"component": "file://./demos/sizes/index.ts"}}
+{{"demo": "SizesChips.js"}}
 
 ## Multiline chip
 
 By default, Chips displays labels only in a single line.
 To have them support multiline content, use the `sx` prop to add `height:auto` to the Chip component, and `whiteSpace: normal` to the `label` styles.
 
-{{"component": "file://./demos/multiline/index.ts"}}
+{{"demo": "MultilineChips.js"}}
 
 ## Chip array
 
@@ -92,11 +92,11 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` prop is defined, the `Chip` can be focused, but does not
 gain depth while clicked or touched.
 
-{{"component": "file://./demos/array/index.ts"}}
+{{"demo": "ChipsArray.js"}}
 
 ## Chip playground
 
-{{"component": "file://./demos/playground/index.ts", "hideToolbar": true}}
+{{"demo": "ChipsPlayground.js", "hideToolbar": true}}
 
 ## Accessibility
 
