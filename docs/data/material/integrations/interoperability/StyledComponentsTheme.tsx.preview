@@ -1,0 +1,3 @@
+<ThemeProvider theme={customTheme}>
+  <CustomizedSlider defaultValue={30} />
+</ThemeProvider>
