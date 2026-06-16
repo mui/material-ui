@@ -17,40 +17,40 @@ githubSource: packages/mui-material/src/ButtonGroup
 The buttons can be grouped by wrapping them with the `ButtonGroup` component.
 They need to be immediate children.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicButtonGroup.js"}}
 
 ## Button variants
 
 All the standard button variants are supported.
 
-{{"component": "file://./demos/variant/index.ts"}}
+{{"demo": "VariantButtonGroup.js"}}
 
 ## Sizes and colors
 
 The `size` and `color` props can be used to control the appearance of the button group.
 
-{{"component": "file://./demos/group-sizes-colors/index.ts"}}
+{{"demo": "GroupSizesColors.js"}}
 
 ## Vertical group
 
 The button group can be displayed vertically using the `orientation` prop.
 
-{{"component": "file://./demos/group-orientation/index.ts"}}
+{{"demo": "GroupOrientation.js"}}
 
 ## Split button
 
 `ButtonGroup` can also be used to create a split button. The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
 
-{{"component": "file://./demos/split-button/index.ts"}}
+{{"demo": "SplitButton.js"}}
 
 ## Disabled elevation
 
 You can remove the elevation with the `disableElevation` prop.
 
-{{"component": "file://./demos/disable-elevation/index.ts"}}
+{{"demo": "DisableElevation.js"}}
 
 ## Loading
 
 Use the `loading` prop from `Button` to set buttons in a loading state and disable interactions.
 
-{{"component": "file://./demos/loading/index.ts"}}
+{{"demo": "LoadingButtonGroup.js"}}
