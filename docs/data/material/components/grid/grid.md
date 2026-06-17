@@ -49,7 +49,7 @@ For example, an item with `size={6}` occupies half of the grid container's width
 {{"demo": "BasicGrid.js", "bg": true}}
 
 :::info
-The `Item` component in these demos isn't part of Material UI—it's a `styled(Paper)` helper that gives each grid cell a visible background. Replace `<Item>` with your own content.
+The `Item` component in these demos isn't part of Material UI—it's a `styled(Paper)` helper that gives each grid cell a visible background. Replace `<Item>` with your own content.
 :::
 
 ### Multiple breakpoints
