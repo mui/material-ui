@@ -137,7 +137,7 @@ describe('<Button />', () => {
     errorSpy.mockRestore();
   });
 
-  it('does not forward focusableWhenDisabled to ButtonBase', () => {
+  it('forwards focusableWhenDisabled to ButtonBase', () => {
     render(
       <Button disabled focusableWhenDisabled>
         Hello World
@@ -145,8 +145,9 @@ describe('<Button />', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).to.have.attribute('disabled');
-    expect(button).not.to.have.attribute('aria-disabled');
+    expect(button).not.to.have.attribute('disabled');
+    expect(button).to.have.attribute('aria-disabled', 'true');
+    expect(button).to.have.property('tabIndex', 0);
   });
 
   it('does not pass classes.root to ButtonBase classes', () => {

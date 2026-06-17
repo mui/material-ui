@@ -14,6 +14,7 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -754,6 +755,49 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).not.toErrorDev();
+    });
+
+    it('should not raise a warning for a `focusableWhenDisabled` child', () => {
+      expect(() => {
+        render(
+          <Tooltip title="Hello World">
+            <IconButton aria-label="action" disabled focusableWhenDisabled>
+              <span />
+            </IconButton>
+          </Tooltip>,
+        );
+      }).not.toErrorDev();
+    });
+  });
+
+  describe('disabled element with focusableWhenDisabled', () => {
+    it('displays the tooltip on hover', () => {
+      render(
+        <Tooltip title="Delete" enterDelay={100}>
+          <IconButton aria-label="action" disabled focusableWhenDisabled>
+            <span />
+          </IconButton>
+        </Tooltip>,
+      );
+
+      fireEvent.mouseOver(screen.getByRole('button'));
+      clock.tick(100);
+
+      expect(screen.getByRole('tooltip')).toBeVisible();
+    });
+
+    it('forwards the accessible name to the disabled element, not a wrapper', () => {
+      render(
+        <Tooltip title="Delete">
+          <IconButton disabled focusableWhenDisabled>
+            <span />
+          </IconButton>
+        </Tooltip>,
+      );
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.attribute('aria-label', 'Delete');
+      expect(button).to.have.attribute('aria-disabled', 'true');
     });
   });
 

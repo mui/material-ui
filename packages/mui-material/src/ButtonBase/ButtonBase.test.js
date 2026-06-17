@@ -879,6 +879,78 @@ describe('<ButtonBase />', () => {
     });
   });
 
+  describe('prop: focusableWhenDisabled', () => {
+    it('uses aria-disabled instead of the disabled attribute on a native button', () => {
+      render(
+        <ButtonBase disabled focusableWhenDisabled>
+          Hello
+        </ButtonBase>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).not.to.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled', 'true');
+    });
+
+    it('stays focusable when disabled', () => {
+      render(
+        <ButtonBase disabled focusableWhenDisabled>
+          Hello
+        </ButtonBase>,
+      );
+      const button = screen.getByRole('button');
+
+      expect(button).to.have.property('tabIndex', 0);
+
+      act(() => {
+        button.focus();
+      });
+      expect(button).toHaveFocus();
+    });
+
+    it('still applies the disabled class', () => {
+      render(
+        <ButtonBase disabled focusableWhenDisabled>
+          Hello
+        </ButtonBase>,
+      );
+
+      expect(screen.getByRole('button')).to.have.class(classes.disabled);
+    });
+
+    it('keeps firing pointer and focus events while disabled', () => {
+      const onMouseOver = spy();
+      const onFocus = spy();
+      render(
+        <ButtonBase disabled focusableWhenDisabled onMouseOver={onMouseOver} onFocus={onFocus}>
+          Hello
+        </ButtonBase>,
+      );
+      const button = screen.getByRole('button');
+
+      fireEvent.mouseOver(button);
+      act(() => {
+        button.focus();
+      });
+
+      expect(onMouseOver.callCount).to.equal(1);
+      expect(onFocus.callCount).to.equal(1);
+    });
+
+    it('does not fire click while disabled', async () => {
+      const onClick = spy();
+      const { user } = render(
+        <ButtonBase disabled focusableWhenDisabled onClick={onClick}>
+          Hello
+        </ButtonBase>,
+      );
+
+      await user.click(screen.getByRole('button'));
+
+      expect(onClick.callCount).to.equal(0);
+    });
+  });
+
   describe('prop: component', () => {
     it('should allow to use a link component', () => {
       /**

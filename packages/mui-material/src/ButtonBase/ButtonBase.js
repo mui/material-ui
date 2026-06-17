@@ -61,12 +61,23 @@ export const ButtonBaseRoot = styled('button', {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
   [`&.${buttonBaseClasses.disabled}`]: {
-    pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
   '@media print': {
     colorAdjust: 'exact',
   },
+  variants: [
+    {
+      // Keep events firing on a disabled-but-focusable element so listeners
+      // (e.g. Tooltip hover) still work without a wrapper element.
+      props: ({ ownerState }) => !ownerState.focusableWhenDisabled,
+      style: {
+        [`&.${buttonBaseClasses.disabled}`]: {
+          pointerEvents: 'none', // Disable link interactions
+        },
+      },
+    },
+  ],
 });
 
 /**
@@ -85,11 +96,10 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disabled = false,
     disableRipple = false,
     disableTouchRipple = false,
+    focusableWhenDisabled = false,
     focusRipple = false,
     focusVisibleClassName,
     /* eslint-disable react/prop-types */
-    // replaces internal handling in Chip, other components can opt-in individually to use this in the future
-    focusableWhenDisabled,
     // escape hatch to suppress the focusVisible state and callback
     // used by anchored <Menu>s to to suppress focus visible styling when opened with a pointer
     suppressFocusVisible = false,
@@ -165,6 +175,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     internalNativeButton,
     allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
     disabled,
+    focusableWhenDisabled,
     type,
     hasFormAction,
     tabIndex,
@@ -269,6 +280,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disabled,
     disableRipple,
     disableTouchRipple,
+    focusableWhenDisabled,
     focusRipple,
     suppressFocusVisible,
     tabIndex,
@@ -372,6 +384,14 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableTouchRipple: PropTypes.bool,
+  /**
+   * If `true`, the component keeps its DOM events and stays focusable when disabled,
+   * using `aria-disabled` instead of the native `disabled` attribute.
+   * This lets wrappers like `Tooltip` listen to hover and focus events directly on the
+   * element, without an extra `<span>` wrapper.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * @default false

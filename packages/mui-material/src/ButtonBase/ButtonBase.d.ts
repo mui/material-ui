@@ -46,6 +46,14 @@ export interface ButtonBaseOwnProps {
    */
   disableTouchRipple?: boolean | undefined;
   /**
+   * If `true`, the component keeps its DOM events and stays focusable when disabled,
+   * using `aria-disabled` instead of the native `disabled` attribute.
+   * This lets wrappers like `Tooltip` listen to hover and focus events directly on the
+   * element, without an extra `<span>` wrapper.
+   * @default false
+   */
+  focusableWhenDisabled?: boolean | undefined;
+  /**
    * If `true`, the base button will have a keyboard focus ripple.
    * @default false
    */

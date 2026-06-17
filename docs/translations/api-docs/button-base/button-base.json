@@ -20,6 +20,9 @@
     "disableTouchRipple": {
       "description": "If <code>true</code>, the touch ripple effect is disabled."
     },
+    "focusableWhenDisabled": {
+      "description": "If <code>true</code>, the component keeps its DOM events and stays focusable when disabled, using <code>aria-disabled</code> instead of the native <code>disabled</code> attribute. This lets wrappers like <code>Tooltip</code> listen to hover and focus events directly on the element, without an extra <code>&lt;span&gt;</code> wrapper."
+    },
     "focusRipple": {
       "description": "If <code>true</code>, the base button will have a keyboard focus ripple."
     },

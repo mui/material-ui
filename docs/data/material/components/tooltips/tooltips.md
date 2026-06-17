@@ -147,16 +147,16 @@ You can disable this behavior (thus failing the success criterion which is requi
 
 ## Disabled elements
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+A natively disabled element (`<button disabled>`) doesn't fire the hover and focus events that a `Tooltip` needs, so the tooltip never shows.
 
-:::warning
-In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
-:::
+For components that inherit from `ButtonBase`—such as `Button` and `IconButton`—add the `focusableWhenDisabled` prop. The element then uses `aria-disabled` instead of the native `disabled` attribute, so it keeps firing events and stays focusable while still being inert. The `Tooltip` works on both hover and keyboard focus, and forwards the accessible name to the element directly—no wrapper needed.
 
 {{"demo": "DisabledTooltips.js"}}
 
+If you're wrapping a native disabled element (or any component that doesn't inherit from `ButtonBase`), add a wrapper element such as a `span`, and set `pointer-events: none` on the disabled element so its swallowed events bubble up to the wrapper. With this approach, the accessible name is applied to the wrapper rather than the element.
+
 :::warning
-If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 :::
 
 ```jsx

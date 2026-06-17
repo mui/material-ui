@@ -8,6 +8,7 @@
     "disabled": { "type": { "name": "bool" }, "default": "false" },
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
     "focusRipple": { "type": { "name": "bool" }, "default": "false" },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
