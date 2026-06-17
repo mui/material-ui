@@ -127,8 +127,9 @@ const TooltipTooltip = styled('div', {
     borderRadius: (theme.vars || theme).shape.borderRadius,
     color: (theme.vars || theme).palette.common.white,
     fontFamily: theme.typography.fontFamily,
-    padding: '4px 8px',
-    fontSize: theme.typography.pxToRem(11),
+    padding: '12px',
+    fontSize: theme.typography.pxToRem(14),
+    lineHeight: 1.43,
     maxWidth: 300,
     margin: 2,
     wordWrap: 'break-word',
@@ -249,7 +250,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     onClose,
     onOpen,
     open: openProp,
-    placement = 'bottom',
+    placement = 'top',
     slotProps = {},
     slots = {},
     title,
@@ -281,6 +282,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   let open = openState;
   const openRef = React.useRef(open);
+  React.useLayoutEffect(() => {
+    openRef.current = open;
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -344,12 +348,12 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
      * @param {React.SyntheticEvent | Event} event
      */
     (event) => {
+      const wasOpen = openRef.current;
       hystersisTimer.start(800 + leaveDelay, () => {
         hystersisOpen = false;
       });
-      const wasOpen = openRef.current;
-      openRef.current = false;
       setOpenState(false);
+      openRef.current = false;
 
       if (onClose && wasOpen) {
         onClose(event);
