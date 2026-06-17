@@ -1,0 +1,51 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "string" } },
+    "component": { "type": { "name": "elementType" } },
+    "keepMounted": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "style": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewRadioItemIndicator",
+  "imports": [
+    "import MenuPreviewRadioItemIndicator from '@mui/material/MenuPreviewRadioItemIndicator';"
+  ],
+  "slots": [
+    { "name": "root", "description": "", "class": "MuiMenuPreviewRadioItemIndicator-root" }
+  ],
+  "classes": [
+    {
+      "key": "checked",
+      "className": "Mui-checked",
+      "description": "State class applied to the root element if `checked={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "highlighted",
+      "className": "MuiMenuPreviewRadioItemIndicator-highlighted",
+      "description": "State class applied to the root element if highlighted.",
+      "isGlobal": false
+    }
+  ],
+  "muiName": "MuiMenuPreviewRadioItemIndicator",
+  "filename": "/packages/mui-material/src/MenuPreviewRadioItemIndicator/MenuPreviewRadioItemIndicator.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}

@@ -477,6 +477,116 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenuList'] | undefined;
       }
     | undefined;
+  MuiMenuPreview?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreview'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewCheckboxItem?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewCheckboxItem'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewCheckboxItem'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewCheckboxItem'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewCheckboxItemIndicator?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewCheckboxItemIndicator'] | undefined;
+        styleOverrides?:
+          | ComponentsOverrides<Theme>['MuiMenuPreviewCheckboxItemIndicator']
+          | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewCheckboxItemIndicator'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewGroup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewGroup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewGroup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewGroup'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewGroupLabel?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewGroupLabel'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewGroupLabel'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewGroupLabel'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewItem?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewItem'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewItem'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewItem'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewLinkItem?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewLinkItem'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewLinkItem'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewLinkItem'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewPopup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewPopup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewPopup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewPopup'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewRadioGroup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewRadioGroup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewRadioGroup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewRadioGroup'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewRadioItem?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewRadioItem'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewRadioItem'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewRadioItem'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewRadioItemIndicator?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewRadioItemIndicator'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewRadioItemIndicator'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewRadioItemIndicator'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewSeparator?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewSeparator'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewSeparator'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewSeparator'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewSubmenuPopup?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewSubmenuPopup'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewSubmenuPopup'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewSubmenuPopup'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewSubmenuRoot?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewSubmenuRoot'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewSubmenuTrigger?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewSubmenuTrigger'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewSubmenuTrigger'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewSubmenuTrigger'] | undefined;
+      }
+    | undefined;
+  MuiMenuPreviewTrigger?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenuPreviewTrigger'] | undefined;
+        styleOverrides?: ComponentsOverrides<Theme>['MuiMenuPreviewTrigger'] | undefined;
+        variants?: ComponentsVariants<Theme>['MuiMenuPreviewTrigger'] | undefined;
+      }
+    | undefined;
   MuiMobileStepper?:
     | {
         defaultProps?: ComponentsProps['MuiMobileStepper'] | undefined;

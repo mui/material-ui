@@ -1,0 +1,27 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "string" } },
+    "component": { "type": { "name": "elementType" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "style": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewGroupLabel",
+  "imports": ["import MenuPreviewGroupLabel from '@mui/material/MenuPreviewGroupLabel';"],
+  "slots": [{ "name": "root", "description": "", "class": "MuiMenuPreviewGroupLabel-root" }],
+  "classes": [],
+  "muiName": "MuiMenuPreviewGroupLabel",
+  "filename": "/packages/mui-material/src/MenuPreviewGroupLabel/MenuPreviewGroupLabel.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}
