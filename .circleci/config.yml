@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/fb2e995849648cc3f6e43ed4ad10b7bad0750d7c/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/c031d4471d2dcc537912379edc22953a7bb1fdc7/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -28,7 +28,7 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
-  environment:
+  environment: &default-environment
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -110,6 +110,10 @@ jobs:
   test_static:
     <<: *default-job
     resource_class: medium
+    environment:
+      <<: *default-environment
+      # pnpm 11's `pnpm dedupe --check` exceeds Node's default heap on this runner.
+      NODE_OPTIONS: --max-old-space-size=3584
     steps:
       - checkout
       - install-deps
@@ -169,6 +173,14 @@ jobs:
       playwright-img-version: v1.49.1-noble
     steps:
       - checkout
+      # The legacy Playwright image (pinned for older browser engines) ships Node 22.12,
+      # which is below pnpm 11.5's minimum of Node 22.13. Install a newer Node into
+      # /usr/local (ahead of the image's /usr/bin on PATH) without changing the browsers.
+      - run:
+          name: Upgrade Node.js for pnpm 11
+          command: |
+            curl -fsSL https://nodejs.org/dist/v22.18.0/node-v22.18.0-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            node --version
       - code-infra/install-pnpm
       - run:
           name: Configure pnpm engine-strict
