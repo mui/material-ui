@@ -1,8 +1,9 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import CircularProgress, {
   circularProgressClasses as classes,
 } from '@mui/material/CircularProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { resetWarningFlags } from './CircularProgress';
 import describeConformance from '../../test/describeConformance';
 
@@ -72,6 +73,44 @@ describe('<CircularProgress />', () => {
     expect(circle).to.have.tagName('circle');
     expect(circle).to.have.attribute('cx', '44');
     expect(circle).to.have.attribute('cy', '44');
+  });
+
+  it.skipIf(isJsdom())('disables determinate transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <CircularProgress variant="determinate" value={50} />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const circle = progressbar.querySelector(`.${classes.circle}`);
+
+    expect(window.getComputedStyle(progressbar).transitionProperty).to.equal('none');
+    expect(window.getComputedStyle(circle).transitionProperty).to.equal('none');
+  });
+
+  it.skipIf(isJsdom())('disables indeterminate animations when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <CircularProgress />
+      </ThemeProvider>,
+    );
+
+    const progressbar = screen.getByRole('progressbar');
+    const circle = progressbar.querySelector(`.${classes.circle}`);
+
+    expect(window.getComputedStyle(progressbar).animationName).to.equal('none');
+    expect(window.getComputedStyle(circle).animationName).to.equal('none');
   });
 
   describe('prop: variant="determinate"', () => {

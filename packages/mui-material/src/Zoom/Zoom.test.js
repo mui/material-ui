@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom } from '@mui/internal-test-utils';
 import Zoom from '@mui/material/Zoom';
 import Transition from '../internal/Transition';
 import describeConformance from '../../test/describeConformance';
@@ -45,6 +45,18 @@ describe('<Zoom />', () => {
           <div data-testid="child">Foo</div>
         </Zoom>
       ),
+    },
+    reducedMotion: {
+      assertReducedTiming: (node) => {
+        if (isJsdom()) {
+          expect(node.style.transition).to.include('0ms');
+        } else {
+          expect(node.style.transitionDuration).to.equal('0ms');
+        }
+      },
+      testReflow: true,
+      testOptOut: true,
+      testNoDomPropLeak: true,
     },
   }));
 

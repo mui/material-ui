@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine",
-  "version": "9.0.0",
+  "version": "9.1.1",
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
   "license": "MIT",
@@ -24,10 +24,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/styled-engine\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \".\" \"GlobalStyles\" \"StyledEngineProvider\""
   },
   "dependencies": {

@@ -155,7 +155,7 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.privacyPolicy}>
               Privacy policy
             </Link>
-            <Link prefetch={false} target="_blank" rel="noopener" href="mailto:contact@mui.com">
+            <Link prefetch={false} target="_blank" href="mailto:contact@mui.com">
               Contact us
             </Link>
           </Box>
@@ -177,7 +177,6 @@ export default function AppFooter(props: AppFooterProps) {
         <Stack spacing={1} direction="row" useFlexGap sx={{ flexWrap: 'wrap' }}>
           <IconButton
             target="_blank"
-            rel="noopener"
             href="https://github.com/mui"
             aria-label="github"
             title="GitHub"
@@ -187,7 +186,6 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener"
             href={ROUTES.rssFeed}
             aria-label="RSS Feed"
             title="RSS Feed"
@@ -197,7 +195,6 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener"
             href="https://x.com/MUI_hq"
             aria-label="X/twitter"
             title="X"
@@ -207,7 +204,6 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener"
             href="https://www.linkedin.com/company/mui/"
             aria-label="linkedin"
             title="LinkedIn"
@@ -217,7 +213,6 @@ export default function AppFooter(props: AppFooterProps) {
           </IconButton>
           <IconButton
             target="_blank"
-            rel="noopener"
             href="https://www.youtube.com/@MUI_hq"
             aria-label="YouTube"
             title="YouTube"
@@ -228,7 +223,6 @@ export default function AppFooter(props: AppFooterProps) {
           {stackOverflowUrl ? (
             <IconButton
               target="_blank"
-              rel="noopener"
               href={stackOverflowUrl}
               aria-label="Stack Overflow"
               title="Stack Overflow"

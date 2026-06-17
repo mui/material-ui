@@ -19,6 +19,7 @@
       },
       "default": "'down'"
     },
+    "disablePrefersReducedMotion": { "type": { "name": "bool" }, "default": "false" },
     "easing": {
       "type": {
         "name": "union",

@@ -285,6 +285,7 @@ export function AppSearch(props: AppSearchProps) {
     const initial = findDropdown();
     let observer: MutationObserver | undefined;
     if (initial) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStartScreenHost(initial);
     } else {
       observer = new MutationObserver(() => {

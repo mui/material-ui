@@ -330,6 +330,7 @@ function useAutocomplete(props) {
   // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
     if (multiple && focusedItem > value.length - 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedItem(-1);
       focusItem(-1);
     }
@@ -373,6 +374,12 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
+      // React can clear refs before pending passive effects run during unmount.
+      // If both refs are gone, there is no DOM left to sync.
+      if (inputRef.current == null && listboxRef.current == null) {
+        return;
+      }
+
       // does the index exist?
       if (index === -1) {
         inputRef.current.removeAttribute('aria-activedescendant');

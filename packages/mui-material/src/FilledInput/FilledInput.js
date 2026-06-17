@@ -18,6 +18,7 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -67,7 +68,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create('background-color', {
+      ...getTransitionStyles(theme, 'background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
@@ -97,7 +98,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               position: 'absolute',
               right: 0,
               transform: 'scaleX(0)',
-              transition: theme.transitions.create('transform', {
+              ...getTransitionStyles(theme, 'transform', {
                 duration: theme.transitions.duration.shorter,
                 easing: theme.transitions.easing.easeOut,
               }),
@@ -127,7 +128,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               content: '""',
               position: 'absolute',
               right: 0,
-              transition: theme.transitions.create('border-bottom-color', {
+              ...getTransitionStyles(theme, 'border-bottom-color', {
                 duration: theme.transitions.duration.shorter,
               }),
               pointerEvents: 'none', // Transparent to the hover style.
