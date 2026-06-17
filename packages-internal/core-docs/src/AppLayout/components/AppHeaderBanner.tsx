@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import { Link } from '../../Link';
 import { ROUTES, FEATURE_TOGGLE } from '../../constants';
 
@@ -26,7 +26,6 @@ function getCustomMessage() {
       <Link
         href="/blog/introducing-mui-v9/"
         target="_blank"
-        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >
@@ -45,7 +44,6 @@ function getDefaultHiringMessage() {
         // Fix me!
         href={ROUTES.careers}
         target="_blank"
-        rel="noopener"
         underline="always"
         sx={linkStyleOverrides}
       >

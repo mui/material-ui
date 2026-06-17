@@ -1,4 +1,253 @@
-# [Versions](https://mui.com/versions/)
+# [Versions](https://mui.com/material-ui/getting-started/versions/)
+
+## 9.1.1
+
+<!-- generated comparing v9.1.0..master -->
+
+_Jun 11, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@9.1.1`
+
+- [Autocomplete] Update fullWidth prop documentation (#48626) @vipin8797
+- [ButtonBase] Fix focus ripple lingering after blur (#48650) @siriwatknp
+- [InitColorSchemeScript] Server-render in tests for React 19.3 (#48604) @Janpot
+- [Transition] Mount child in same commit when opening from unmounted (#48649) @siriwatknp
+
+### `@mui/styled-engine@9.1.1`
+
+- [styled-engine] Prevent enableCssLayer styles from being overridden by unlayered styles (#48603) @Janpot
+
+### Docs
+
+- Send SOURCE to Brevo on newsletter subscribe (#48633) @aemartos
+- fix TypeScript heading capitalization (#48619) @ifer47
+- Remove outdated security section (#48628) @oliviertassinari
+- [legal] Update EULA links on website (#48642) @rluzists1
+
+### Core
+
+- Update dependencies to resolve Dependabot security alerts (#48641) @Janpot
+- [core-docs] Pin StackBlitz demo vite to v7 and plugin-react to v5 (#48643) @Janpot
+- [code-infra] Port codebase to use tsgo (#48616) @brijeshb42
+- [docs-infra] Fix immutable cache headers for /\_next/static assets (#48655) @brijeshb42
+- [docs-infra] Run link checker during docs build instead of as separate CI step (#48634) @Janpot
+- [docs-infra] Support turbopack for docs (#48569) @brijeshb42
+- [test] Cover docs landing-page composites with Argos (#48589) @LukasTy
+
+All contributors of this release in alphabetical order: @aemartos, @brijeshb42, @ifer47, @Janpot, @LukasTy, @oliviertassinari, @rluzists1, @siriwatknp, @vipin8797
+
+## 9.1.0
+
+<!-- generated comparing v9.0.1..master -->
+
+_Jun 8, 2026_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚙️ Support for the [prefers-reduced-motion](https://mui.com/material-ui/transitions/#reduced-motion) setting.
+- ♿️ Improved support for Windows High Contrast mode with the [enhanceHighContrast](https://mui.com/material-ui/customization/palette/#windows-high-contrast-mode) theme wrapper.
+
+### `@mui/material@9.1.0`
+
+- [autocomplete] Enable clearing highlight when mouse leaves popup (#48354) @mj12albert
+- [autocomplete] Fix `freeSolo` controlled values cleared by initial `null` (#48611) @mj12albert
+- [autocomplete] Fix item removal when it receives focus from VoiceOver before using Backspace (#48572) @silviuaavram
+- [autocomplete] Fix `resetHighlightOnMouseLeave` JSdoc (#48536) @mj12albert
+- [autocomplete] Guard against null inputRef during unmount (#48617) @noam3127
+- [badge] Add `aria-hidden` to badge content and polish docs demos (#48471) @mj12albert
+- [badge] Use inline CSS variables for anchorOrigin/overlap positioning (#48549) @siriwatknp
+- [button] Fix customized flex gap styles (#48542) @mj12albert
+- [dialog] Fix unwanted `DialogPaper` focus ring (#48535) @mj12albert
+- [focus trap] Fix incorrect tab order when `tabIndex >= 1` (#48546) @mj12albert
+- [progress] Show runtime errors only once (#48591) @silviuaavram
+- [select] Allow spacebar to select elements (#48615) @silviuaavram
+- [select] Support typeahead when closed (#48563) @mj12albert
+- [step button] Choose higher contrast ripple color for dark mode focus (#48612) @silviuaavram
+- [stepper] Include StepConnector inside Step element (#48492) @silviuaavram
+- [stepper] Proper support for vertical alternativeLabel (#48485) @silviuaavram
+- [tabs] Fix React 18 roving tabindex and dedupe invalid-value warning (#48605) @Janpot
+- [theme] Add HighContrast theme enhancer (#48319) @silviuaavram
+- [timeline item] Fix extra ::before spacing when TimelineOppositeContent is present (#46663) @tyalau
+- [tooltip] Prevent stuck-open tooltip when child becomes disabled (#48606) @Janpot
+- [transitions] Custom `Transition` component (#48325) @mj12albert
+- [transitions] Support `prefers-reduced-motion` (#48357) @mj12albert
+
+### `@mui/utils@9.1.0`
+
+- [utils] Prevent prototype pollution in fastDeepAssign (#48580) @Janpot
+
+### Docs
+
+- [docs] Add function `slotProps` documentation (#48574) @mj12albert
+- [docs] Clarify styled-components version compatibility (#48533) @nightt5879
+- [docs] Fix broken URLs (#48520) @oliviertassinari
+- [docs] Fix invalid JSON in Zed MCP setup example (#48490) @pavan-sh
+- [docs] Mention release version for enhanceHighContrast (#48609) @silviuaavram
+- [docs] Remove outdated MUI X v8 notification (#48600) @cherniavskii
+- [docs] Remove redundant enhanceHighContrast information (#48632) @silviuaavram
+- [docs-infra] Decrease loaded bundle size on docs (#48584) @brijeshb42
+- [docs-infra] Drop multi-locale plumbing from API pages (#48370) @brijeshb42
+- [docs-infra] Fix Cookie banner heading (#48529) @oliviertassinari
+- [docs-infra] Infinitely cache all static assets (#48627) @brijeshb42
+- [docs-infra] Remove outdated noSEOadvantage entries (#48527) @oliviertassinari
+- [docs-infra] Restore build-only invariant throws via `NEXT_RUNTIME` guard (#48475) @Janpot
+- [docs-infra] Test HTML validation in broken links checker (#48088) @Janpot
+- [docs][icons] Fix Font Awesome Chip demo in dark mode (#48576) @siriwatknp
+- [docs][icons] Remove redundant font awesome demo (#48493) @ZeeshanTamboli
+- [docs][modal] Add nested modal guidance (#46507) @JakeSaterlay
+- [docs][stepper] Fix focus management in examples (#48494) @silviuaavram
+
+### Core
+
+- Eslint markdown (#48371) @Janpot
+- [agents] Fix some docs links (#48561) @silviuaavram
+- [blog] Copy editing improvement on v9 announcement blog posts (#48543) @joserodolfofreitas
+- [code-infra] Cleanup unused jss packages (#48590) @brijeshb42
+- [code-infra] Collapse canary workflows into nightly and nightly-cron (#48556) @Janpot
+- [code-infra] Convert @mui/private-theming to TypeScript (#48565) @Janpot
+- [code-infra] Convert @mui/styled-engine to TypeScript (#48544) @Janpot
+- [code-infra] Convert @mui/styled-engine-sc to TypeScript (#48577) @Janpot
+- [code-infra] Fix duplicate resource_class in test_regressions CI job (#48601) @LukasTy
+- [code-infra] Make @mui/internal-docs-utils compatible with TypeScript 6 (#48594) @Janpot
+- [code-infra] Migrate CircleCI jobs to Gen2 resource classes (#48593) @LukasTy
+- [code-infra] Parallelize visual regression screenshots (#48557) @Janpot
+- [code-infra] Run nightly-cron on v7.x (#48579) @Janpot
+- [core] Fix typescript@next typecheck (#48587) @Janpot
+- [pnpm] Add security settings to pnpm-workspace.yaml (#48582) @Janpot
+- [styled-engine-sc] Fix compatibility with Vite and Vitest (#48558) @mj12albert
+- [test] Add axe-core tests for mui-material (#48341) @siriwatknp
+- [test] Configure Tailwind CSS in the visual-regression app (#48575) @Janpot
+
+All contributors of this release in alphabetical order: @brijeshb42, @cherniavskii, @JakeSaterlay, @Janpot, @joserodolfofreitas, @LukasTy, @mj12albert, @nightt5879, @noam3127, @oliviertassinari, @pavan-sh, @silviuaavram, @siriwatknp, @tyalau, @ZeeshanTamboli
+
+## 9.0.1
+
+<!-- generated comparing v9.0.0..master -->
+
+_May 6, 2026_
+
+A big thanks to the 25 contributors who made this release possible.
+
+### `@mui/material@9.0.1`
+
+- [accessibility] HighContrast mode on Avatar, Badge, Slider and Switch (#48320) @silviuaavram
+- [autocomplete] Fix highlight sync and scroll preservation (#48322) @mj12albert
+- [autocomplete] Fix input value and clear (#48263) @mj12albert
+- [autocomplete] Fix iOS group scrollbar overflow (#48400) @oliviertassinari
+- [autocomplete] Fix popper rendering issues (#48327) @mj12albert
+- [autocomplete] Improve highlight tracking and selection state (#48219) @mj12albert
+- [button] Fix `startIcon` alignment (#48332) @mj12albert
+- [button][button base] Document `type` attribute (#48146) @mj12albert
+- [button][fab][menu item][list item button] Remove duplicated className entries (#48213) @silviuaavram
+- [checkbox] Set `aria-checked=mixed` when indeterminate (#48147) @mj12albert
+- [circularprogress][linearprogress] Improve accessibility (#48172) @silviuaavram
+- [dialog][drawer][focus trap] Fix initial focus target (#48280) @mj12albert
+- [drawer] Fix swipe close flicker (#48372) @mj12albert
+- [drawer] Fix transition jump (#48308) @mj12albert
+- [focus trap] Remove IE 11-specific focus safety check from FocusTrap cleanup (#48368) @ZeeshanTamboli
+- [form controls] Add internal `useFormControlState` hook (#48344) @mj12albert
+- [icon button] Remove unused color palette mapping in styles (#48353) @sai6855
+- [icons] Revert to using wildcard export paths (#48381) @brijeshb42
+- [input] Fix layout shift with display: flex (#43839) @oliviertassinari
+- [input] Prevent `notched` prop leaking into DOM (#48281) @mj12albert
+- [input base] Place aria-label on the input element (#48283) @silviuaavram
+- [inputs] Fix autofocus in SSR environment (#48290) @mj12albert
+- [List] Fix sticky subheader overlapping iOS scrollbar (#48375) @sandeshdamkondwar
+- [popper] Persist positioning styles when popperOptions changes reference (#48121) @mj12albert
+- [select] Stop using combobox element for labeling (#48251) @silviuaavram
+- [select] Support single-pointer-cycle selection and pointer cancellation (#48328) @mj12albert
+- [switch] Fix incorrect `role` with `slotProps.input` (#48469) @mj12albert
+- [tabs] Fix scrollable tabs blocking pointer events (#48166) @mj12albert
+- [textfield] Fix autofill styles always in dark mode when CSS variables is used (#48244) @ZeeshanTamboli
+- [tooltip] Simplify RTL styles using CSS logical properties (#48351) @sai6855
+- [tooltip] Close Tooltip when its child becomes disabled (#44507) @chudesno
+- [typography] Fix `h4` variant when using `responsiveFontSizes()` (#48314) @mj12albert
+- [useMediaQuery] Fix crash in Firefox extension (#45196) @Mr-Quin
+
+### `@mui/system@9.0.1`
+
+- [system] Fix theme mutation when using responsive typography shorthand in sx (#48266) @tomups
+
+### `@mui/codemod@9.0.1`
+
+- [codemod] Add --jsx option to `v9.0.0/system-props` codemod (#48315) @siriwatknp
+- [codemod] Add packageName support to the v9 system props codemod (#48253) @franco-dias
+
+### `@mui/utils@9.0.1`
+
+- [utils] Add shadow dom utils (#48256) @mj12albert
+- [utils] Fix `resolveProps` receiving empty string className (#48289) @SAY-5
+- [utils] Remove unnecessary `excludeKeys` from `extractEventHandlers` (#48481) @ZeeshanTamboli
+
+### Docs
+
+- [docs][autocomplete] Add demo with Tanstack Query `useInfiniteQuery` (#48356) @mj12albert
+- [docs] Add agent skills for styling, theming, Next.js, and Tailwind CSS integrations (#48187) @mapache-salvaje
+- [docs] Cleanup `@mui/base` (#48278) @mj12albert
+- [docs] Fix create-playground script (#48380) @imazizbohra
+- [docs] Fix date range calendar demo after MUI X v9 update (#48262) @LukasTy
+- [docs] Fix icon search modal (#48255) @mj12albert
+- [docs] Fix Material UI and MUI system "Upgrade to v9" docs (#48245) @ZeeshanTamboli
+- [docs] Fix Popover JSdoc (#48310) @nitzan-treg
+- [docs] Fix RTL toggle highlight in docs settings drawer (#48476) @sai6855
+- [docs] Fix typos (#48155) @ayushshukla1807
+- [docs] Fix typos (#48270) @pavan-sh
+- [docs] Fix versions page (#48261) @mnajdova
+- [docs] Fix vision grammar (#48477) @pavan-sh
+- [docs] Improve accessibility for select examples (#48250) @silviuaavram
+- [docs] Improve CSP guide with required directives (#48258) @Janpot
+- [docs] Link to agent skills in relevant docs (#48387) @mapache-salvaje
+- [docs] Make NumberField described by helper text (#48257) @silviuaavram
+- [docs] Remove esm.sh references and endorsement (#44649) (#48330) @starboyvarun
+- [docs] Remove generated CSS utility component doc (#48383) @mj12albert
+- [docs] Remove incorrect message from experiments page and hide `/experiments` from crawlers (#48297) @ZeeshanTamboli
+- [docs] Remove outdated references of .ttf and .woff (#48399) @oliviertassinari
+- [docs] Restore wider maxWidth for `disableToc` pages (#48260) @LukasTy
+- [docs] Show v9 announcement banner (#48242) @mnajdova
+- [docs] Sync team members from frontend-public endpoint (#48273) @Janpot
+- [docs] Update AGENTS.md testing section (#48392) @mj12albert
+- [docs] Update e2e test README and test error message (#48285) @ZeeshanTamboli
+- [docs] Update menu examples to always have aria-expanded (#48211) @silviuaavram
+- [docs] Update MUI Treasury links (#47760) @siriwatknp
+- [docs] Update MUI X dependencies to v9.0.0 (#48231) @siriwatknp
+- [docs] Update MUI X roadmap section (#48316) @siriwatknp
+- [docs] Update WCAG links and version from 2.1 to 2.2 (#48379) @mj12albert
+- [docs] Use `React.useId()` for demo IDs (#48300) @Janpot
+
+### Core
+
+- [blog] Introducing Material UI and MUI X v9 (#48157) @joserodolfofreitas
+- [code-infra] bundle size check internal core docs (#48390) @Janpot
+- [code-infra] Deduplicate vale script (#48385) @brijeshb42
+- [code-infra] Fix type shadowing (#48389) @Janpot
+- [code-infra] Migrate to vite from webpack for e2e tests (#48248) @brijeshb42
+- [code-infra] Remove a few ts-ignore comments (#43265) @Janpot
+- [code-infra] Remove no longer needed `eslint-import-resolver-webpack` package (#48207) @ZeeshanTamboli
+- [code-infra] Remove references to @mui/base and @mui/joy (#48358) @brijeshb42
+- [code-infra] Use vale rules from code-infra package (#48173) @brijeshb42
+- [core] Remove next.mui.com links (#48240) @mnajdova
+- [core-docs] Use type-only imports for type-only references (#48386) @JCQuintas
+- [docs-infra] Add x-chat to MuiProductId type and product switcher (#48209) @hasdfa
+- [docs-infra] Fix duplicate JSDoc in proptypes generation (#48304) @brijeshb42
+- [docs-infra] Fix duplicate JSDoc in proptypes generation for merged declarations (#48296) @brijeshb42
+- [docs-infra] Fix import of cjs react-simple-code-editor in esm (#48349) @brijeshb42
+- [docs-infra] Fix tab index on Base UI tab (#48345) @brijeshb42
+- [docs-infra] Migrate docs app container/frame components (#48182) @brijeshb42
+- [docs-infra] Migrate MarkdownDocs component to docs package (#48227) @brijeshb42
+- [docs-infra] Re-apply changes from previous revert (#48243) @brijeshb42
+- [docs-infra] Remove infra around the i18n setup (#48360) @brijeshb42
+- [docs-infra] Rename package to @mui/internal-api-docs-builder (#48230) @brijeshb42
+- [docs-infra] Revert JSDoc in proptypes generation for merged declarations (#48301) @brijeshb42
+- [docs-infra] Revert Migrate docs app container/frame components (#48239) @brijeshb42
+- [docs-infra] Revert Migrate MarkdownDocs component to docs package (#48238) @brijeshb42
+- [internal] Add missing #host-reference (#48226) @silviuaavram
+- [internal] Move changelog and update security page for post v9 release (#48298) @siriwatknp
+- [internal] Remove outdated .woff files (#48398) @oliviertassinari
+- [test] Fix autocomplete test description (#48395) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @ayushshukla1807, @brijeshb42, @chudesno, @franco-dias, @hasdfa, @imazizbohra, @Janpot, @JCQuintas, @joserodolfofreitas, @LukasTy, @mapache-salvaje, @mj12albert, @mnajdova, @Mr-Quin, @nitzan-treg, @oliviertassinari, @pavan-sh, @sai6855, @sandeshdamkondwar, @SAY-5, @silviuaavram, @siriwatknp, @starboyvarun, @tomups, @ZeeshanTamboli
 
 ## 9.0.0
 

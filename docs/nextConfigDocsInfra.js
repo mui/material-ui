@@ -55,7 +55,6 @@ function withDocsInfra(nextConfig) {
     productionBrowserSourceMaps: true,
     ...nextConfig,
     env: {
-      BUILD_ONLY_ENGLISH_LOCALE: 'true', // disable translations by default
       // production | staging | pull-request | development
       DEPLOY_ENV,
       ...nextConfig.env,
@@ -85,10 +84,6 @@ function withDocsInfra(nextConfig) {
           }
         : {}),
       ...nextConfig.experimental,
-    },
-    eslint: {
-      ignoreDuringBuilds: true,
-      ...nextConfig.eslint,
     },
     typescript: {
       // Motivated by https://github.com/vercel/next.js/issues/7687

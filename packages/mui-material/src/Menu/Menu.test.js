@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent, reactMajor, isJsdom } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, isJsdom } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
@@ -18,7 +18,7 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Menu />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   let defaultAnchorEl;
   beforeAll(() => {
@@ -87,10 +87,7 @@ describe('<Menu />', () => {
           />,
         );
 
-        expect(handleEnter.callCount).to.equal(
-          // onEnter is called on mount which is run twice with Strict Effects
-          reactMajor >= 18 ? 2 : 1,
-        );
+        expect(handleEnter.callCount).to.equal(1);
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);
         expect(handleEntering.args[0].length).to.equal(2);
@@ -267,6 +264,39 @@ describe('<Menu />', () => {
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    function Test(props) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Menu
+            anchorEl={defaultAnchorEl}
+            open={props.open}
+            transitionDuration={250}
+            slotProps={{ transition: { onEntered: handleEntered } }}
+          >
+            <MenuItem>one</MenuItem>
+          </Menu>
+        </ThemeProvider>
+      );
+    }
+
+    const { setProps } = render(<Test open={false} />);
+
+    setProps({ open: true });
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('menu')).not.to.equal(null);
   });
 
   it('should call onClose on tab', () => {

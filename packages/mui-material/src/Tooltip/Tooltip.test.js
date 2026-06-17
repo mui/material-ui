@@ -9,12 +9,14 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
+  flushEffects,
   isJsdom,
   waitFor,
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -36,6 +38,51 @@ function focusVisibleSync(element) {
   act(() => {
     element.focus();
   });
+}
+
+const fixedRightPlacementPopperProps = {
+  popperOptions: {
+    modifiers: [
+      { name: 'flip', enabled: false },
+      { name: 'preventOverflow', enabled: false },
+    ],
+  },
+};
+
+function getTooltipParts() {
+  const popper = screen.getByRole('tooltip');
+  const tooltip = popper.querySelector(`.${classes.tooltip}`);
+  const arrow = popper.querySelector(`.${classes.arrow}`);
+
+  expect(tooltip).not.to.equal(null);
+  expect(arrow).not.to.equal(null);
+
+  return { popper, tooltip, arrow };
+}
+
+function hasInjectedStyle(declaration) {
+  const normalizedStyles = (document.head.textContent ?? '').replace(/\s+/g, '');
+
+  return normalizedStyles.includes(declaration.replace(/\s+/g, ''));
+}
+
+function expectArrowOnInlineEnd(tooltip, arrow) {
+  const tooltipRect = tooltip.getBoundingClientRect();
+  const arrowRect = arrow.getBoundingClientRect();
+  const tooltipCenterX = (tooltipRect.left + tooltipRect.right) / 2;
+  const arrowCenterX = (arrowRect.left + arrowRect.right) / 2;
+
+  expect(arrowCenterX).to.be.greaterThan(tooltipCenterX);
+}
+
+function expectRtlRightPlacementStyles() {
+  const { popper, tooltip, arrow } = getTooltipParts();
+
+  expect(popper).to.have.attribute('data-popper-placement', 'right');
+  expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
+  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
+  expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
+  expectArrowOnInlineEnd(tooltip, arrow);
 }
 
 describe('<Tooltip />', () => {
@@ -339,6 +386,34 @@ describe('<Tooltip />', () => {
     clock.tick(transitionTimeout);
 
     expect(screen.queryByRole('tooltip')).to.equal(null);
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Tooltip
+          enterDelay={0}
+          title="Hello World"
+          slotProps={{ transition: { onEntered: handleEntered, timeout: 250 } }}
+        >
+          <button type="button">Anchor</button>
+        </Tooltip>
+      </ThemeProvider>,
+    );
+
+    fireEvent.mouseOver(screen.getByRole('button'));
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('tooltip')).to.have.text('Hello World');
   });
 
   it('should be controllable', () => {
@@ -950,6 +1025,84 @@ describe('<Tooltip />', () => {
 
       expect(appliedComputeStylesModifier).not.to.equal(undefined);
     });
+
+    it.skipIf(isJsdom())('uses RTL side offsets when html dir is rtl', async () => {
+      const previousDir = document.documentElement.getAttribute('dir');
+
+      document.documentElement.setAttribute('dir', 'rtl');
+
+      try {
+        render(
+          <div style={{ margin: '5em' }}>
+            <Tooltip
+              arrow
+              open
+              placement="right"
+              title="Tooltip content"
+              slotProps={{
+                popper: {
+                  ...fixedRightPlacementPopperProps,
+                },
+              }}
+            >
+              <button type="submit">Anchor</button>
+            </Tooltip>
+          </div>,
+        );
+
+        await flushEffects();
+        expectRtlRightPlacementStyles();
+      } finally {
+        if (previousDir === null) {
+          document.documentElement.removeAttribute('dir');
+        } else {
+          document.documentElement.setAttribute('dir', previousDir);
+        }
+      }
+    });
+
+    it.skipIf(isJsdom())(
+      'uses RTL side offsets when the popper portal container is inside an rtl subtree',
+      async () => {
+        const previousDir = document.documentElement.getAttribute('dir');
+
+        document.documentElement.removeAttribute('dir');
+
+        function Test() {
+          const rtlContainerRef = React.useRef(null);
+
+          return (
+            <div data-testid="rtl-root" dir="rtl" ref={rtlContainerRef} style={{ margin: '5em' }}>
+              <Tooltip
+                arrow
+                open
+                placement="right"
+                title="Tooltip content"
+                slotProps={{
+                  popper: {
+                    container: () => rtlContainerRef.current,
+                    ...fixedRightPlacementPopperProps,
+                  },
+                }}
+              >
+                <button type="submit">Anchor</button>
+              </Tooltip>
+            </div>
+          );
+        }
+
+        try {
+          render(<Test />);
+
+          await flushEffects();
+          expectRtlRightPlacementStyles();
+        } finally {
+          if (previousDir !== null) {
+            document.documentElement.setAttribute('dir', previousDir);
+          }
+        }
+      },
+    );
   });
 
   describe('prop forwarding', () => {
@@ -1046,6 +1199,53 @@ describe('<Tooltip />', () => {
 
       await user.keyboard('{Enter}');
 
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('stays closed when a stray mouseover lands while the disabled child is closing', async () => {
+      // Deterministic regression test for the flaky "stuck open" tooltip:
+      // when the focused child becomes disabled the close is scheduled via the React
+      // #9142 native-blur workaround, but a layout-shift `mouseover` on the interactive
+      // popper used to cancel that pending close and reopen the tooltip. A disabled
+      // anchor must never (re)open. `leaveDelay` opens a deterministic window in which to
+      // dispatch the stray `mouseover` before the close fires.
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={100}
+            onClose={handleClose}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled} onClick={() => setDisabled(true)}>
+              Disable
+            </button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      // Disabling the focused child schedules the close (leaveDelay window still pending).
+      await user.keyboard('{Enter}');
+
+      // A stray `mouseover` reaches the interactive popper before the close fires.
+      fireEvent.mouseOver(screen.getByRole('tooltip'));
+
+      // The disabled anchor must still close (and not reopen).
       await waitFor(() => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
       });

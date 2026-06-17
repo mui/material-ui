@@ -57,12 +57,12 @@ const openRolesData = [
   {
     title: 'Sales',
     roles: [
-      {
-        title: 'Account Executive',
-        description:
-          'You will be a key player in driving revenue growth and building strong customer relationships.',
-        url: '/careers/account-executive/',
-      },
+      // {
+      //   title: 'Account Executive',
+      //   description:
+      //     'You will be a key player in driving revenue growth and building strong customer relationships.',
+      //   url: '/careers/account-executive/',
+      // },
       // {
       //   title: 'Account Manager',
       //   description:
@@ -79,6 +79,16 @@ const openRolesData = [
       //   description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
       //   url: '/careers/technical-recruiter/',
       // },
+    ],
+  },
+  {
+    title: 'Marketing',
+    roles: [
+      {
+        title: 'Product Marketing Manager',
+        description: 'Establish MUI product positioning and messaging.',
+        url: '/careers/product-marketing-manager/',
+      },
     ],
   },
   {

@@ -13,6 +13,7 @@ import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-
 import * as path from 'node:path';
 import vitestPlugin from '@vitest/eslint-plugin';
 import { fileURLToPath } from 'url';
+import remarkConfig from './.remarkrc.mjs';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -60,6 +61,11 @@ export default defineConfig(
     baseDirectory: dirname,
     materialUi: true,
   }),
+  // eslint-plugin-mdx loads `.remarkrc.mjs` itself, but ESLint doesn't know
+  // that file is a config dependency, so `--cache` doesn't invalidate when
+  // it changes. Embedding the imported value in a setting puts its content
+  // into the resolved-config hash, forcing cache invalidation on edits.
+  { settings: { remarkConfig } },
   {
     name: 'Material UI overrides',
     files: [`**/*${EXTENSION_TS}`],
@@ -83,10 +89,15 @@ export default defineConfig(
         },
       ],
       'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-shadow': 'off',
       'react/sort-prop-types': 'off', // 228
       '@typescript-eslint/ban-ts-comment': 'off', // 117
       '@typescript-eslint/no-require-imports': 'off', // 133
       'react/jsx-filename-extension': 'off',
+      // Modern browsers imply rel="noopener" for target="_blank", so no rel is required.
+      // See https://github.com/mui/material-ui/pull/40447
+      // TODO move to mui/mui-public.
+      'react/jsx-no-target-blank': 'off',
 
       // TODO enable:
       'react-hooks/refs': 'off',
@@ -216,6 +227,12 @@ export default defineConfig(
     },
   },
   // Docs end
+  {
+    files: [`test/**/*${EXTENSION_TS}`, `docs/**/*${EXTENSION_TS}`],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
   {
     files: [`**/*${EXTENSION_DTS}`],
     rules: {

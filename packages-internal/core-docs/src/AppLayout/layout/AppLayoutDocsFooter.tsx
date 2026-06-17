@@ -436,22 +436,21 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
           sx={{ alignItems: 'center' }}
         >
           <Stack direction="row" spacing={1} useFlexGap sx={{ alignItems: 'center', flexGrow: 1 }}>
-            <Link href="https://mui.com/" aria-label="Go to homepage">
+            <Link href="https://mui.com/" aria-label="Go to the homepage">
               <MuiLogotypeIcon height={28} width={64} />
             </Link>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
-            <FooterLink href="https://mui.com/blog/" target="_blank" rel="noopener">
+            <FooterLink href="https://mui.com/blog/" target="_blank">
               Blog <ArrowOutwardRoundedIcon />
             </FooterLink>
             <Typography sx={{ color: 'grey.500', fontSize: 13, opacity: '70%' }}>&bull;</Typography>
-            <FooterLink href="https://mui.com/store/" target="_blank" rel="noopener">
+            <FooterLink href="https://mui.com/store/" target="_blank">
               Store <ArrowOutwardRoundedIcon />
             </FooterLink>
           </Stack>
           <Stack spacing={1} direction="row" useFlexGap>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://x.com/MUI_hq"
               aria-label="X/twitter"
               title="X"
@@ -461,7 +460,6 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://www.youtube.com/@MUI_hq"
               aria-label="YouTube"
               title="YouTube"
@@ -471,7 +469,6 @@ export function AppLayoutDocsFooter(props: AppLayoutDocsFooterProps) {
             </IconButton>
             <IconButton
               target="_blank"
-              rel="noopener"
               href="https://mui.com/feed/blog/rss.xml"
               aria-label="RSS Feed"
               title="RSS Feed"

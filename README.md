@@ -1,7 +1,8 @@
+<!-- lint disable mui-first-block-heading -->
 <!-- #host-reference -->
-<!-- markdownlint-disable-next-line -->
+
 <p align="center">
-  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
+  <a href="https://mui.com/core/" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
 </p>
 
 <h1 align="center">Material UI</h1>
@@ -49,43 +50,41 @@ Use `@latest` for the latest stable release.
 ### Diamond 💎
 
 <p>
-  <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
+  <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
-Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
+Diamond sponsors are those who have pledged $1,500/month or more to MUI.
 
 ### Gold 🏆
 
 via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p>
-  <a href="https://tidelift.com/" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
+  <a href="https://tidelift.com/" rel="sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
-  <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
-  &nbsp;
-  <a href="https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/288.png" alt="react-pdf-kit.dev" title="Powerful, Fast, Dev-Friendly React PDF Viewer." loading="lazy" /></a>
+  <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
   &nbsp;
 </p>
 
 <p>
-  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Goread.io</a>
+  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Goread.io</a>
   &nbsp;
-  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Buzzoid</a>
+  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Buzzoid</a>
   &nbsp;
-  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Twicsy</a>
+  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Twicsy</a>
   &nbsp;
-  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Views4You</a>
+  <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Poprey</a>
   &nbsp;
-  <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Poprey</a>
+  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">SocialWick</a>
   &nbsp;
-  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">SocialWick</a>
+ <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Follower24</a>
   &nbsp;
- <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Follower24</a>
+  <a href="https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">FollowerFabrik</a>
   &nbsp;
 </p>
 
-Gold sponsors are those who have pledged \$500/month or more to MUI.
+Gold sponsors are those who have pledged $500/month or more to MUI.
 
 ### More backers
 

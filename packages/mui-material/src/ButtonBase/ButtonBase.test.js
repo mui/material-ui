@@ -623,7 +623,6 @@ describe('<ButtonBase />', () => {
       await ripple.startTouch(screen.getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = /** @type {Element} */ (container.querySelector('.touch-ripple-ripple'));
       expect(rippleRipple).not.to.equal(null);
-
       const rippleStyle = window.getComputedStyle(rippleRipple);
       expect(rippleStyle).to.have.property('height', '101px');
       expect(rippleStyle).to.have.property('width', '101px');
@@ -650,7 +649,6 @@ describe('<ButtonBase />', () => {
       await ripple.startTouch(screen.getByRole('button'), { clientX: 10, clientY: 10 });
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
-
       const rippleStyle = window.getComputedStyle(/** @type {Element} */ (rippleRipple));
       expect(rippleStyle).not.to.have.property('height', '101px');
       expect(rippleStyle).not.to.have.property('width', '101px');

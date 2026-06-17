@@ -1,6 +1,6 @@
 ---
 productId: material-ui
-title: React Transition component
+title: React transitions
 components: Collapse, Fade, Grow, Slide, Zoom
 githubLabel: 'scope: transitions'
 githubSource: packages/mui-material/src/transitions
@@ -42,7 +42,7 @@ the `timeout` prop to change the entry speed.
 Slide in from the edge of the screen.
 The `direction` prop controls which edge of the screen the transition starts from.
 
-The Transition component's `mountOnEnter` prop prevents the child component from being mounted
+The `mountOnEnter` prop prevents the child component from being mounted
 until `in` is `true`.
 This prevents the relatively positioned component from scrolling into view
 from its off-screen position.
@@ -64,6 +64,32 @@ Expand outwards from the center of the child element.
 This example also demonstrates how to delay the enter transition.
 
 {{"demo": "SimpleZoom.js", "bg": true}}
+
+## Reduced motion
+
+Transitions can opt in to reduced-motion support through the theme:
+
+```tsx
+const theme = createTheme({
+  motion: {
+    reducedMotion: 'system',
+  },
+});
+```
+
+When enabled, Material UI transition components preserve lifecycle callbacks and mount/unmount
+behavior. When reduced motion is active, entering content appears in its final state and exiting
+content disappears without the normal animation. Components still run the same callbacks, so code
+that waits for `onEntered` or `onExited` continues to work.
+
+Use `disablePrefersReducedMotion` only when a specific transition should intentionally keep its
+normal motion:
+
+```tsx
+<Fade in disablePrefersReducedMotion>
+  <div />
+</Fade>
+```
 
 ## Child requirement
 
@@ -100,10 +126,11 @@ As components are added or removed, the `in` prop is toggled automatically by `T
 
 {{"demo": "TransitionGroupExample.js"}}
 
-## TransitionComponent prop
+## Transition slots
 
-Some Material UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
-You can use any of the above components or your own.
+Many Material UI components use these transitions internally.
+Use `slots.transition` and `slotProps.transition` to customize the default transition.
+You can use any of the above components or your own transition implementation.
 It should respect the following conditions:
 
 - Accepts an `in` prop. This corresponds to the open/close state.
