@@ -43,10 +43,9 @@ function rewriteTransitionGroupContextImport() {
           isMaterialTransition &&
           babelPath.node.source.value === 'react-transition-group/TransitionGroupContext'
         ) {
-          // Package-private `#` imports are supported in Node 14.6.0+.
-          // Keep @mui/material's broader engine range unchanged here; changing it is a
-          // separate support-policy decision for the small Node 14.0-14.5 window.
-          babelPath.node.source.value = '#mui/TransitionGroupContext';
+          // Use the explicit CJS file for Node builds; package.json's `browser`
+          // field redirects this request to RTG's ESM file in browser bundlers.
+          babelPath.node.source.value = 'react-transition-group/cjs/TransitionGroupContext.js';
         }
       },
     },

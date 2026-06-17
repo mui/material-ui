@@ -91,12 +91,8 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "imports": {
-    "#mui/TransitionGroupContext": {
-      "node": "./src/internal/TransitionGroupContext.ts",
-      "browser": "./src/internal/TransitionGroupContext.browser.ts",
-      "default": "./src/internal/TransitionGroupContext.browser.ts"
-    }
+  "browser": {
+    "react-transition-group/cjs/TransitionGroupContext.js": "react-transition-group/esm/TransitionGroupContext.js"
   },
   "exports": {
     ".": "./src/index.js",
