@@ -1,0 +1,22 @@
+{
+  "name": "webpack-cjs-browser",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "build:dev": "webpack --mode=development"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "https://pkg.pr.new/mui/material-ui/@mui/material@7f9e8d8be3505656a0a2fd6b40495ab6b1c9ad8e",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-dev-server": "latest"
+  }
+}

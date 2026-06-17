@@ -1,0 +1,23 @@
+{
+  "name": "nextjs-node-esm-ssr",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "https://pkg.pr.new/mui/material-ui/@mui/material@7f9e8d8be3505656a0a2fd6b40495ab6b1c9ad8e",
+    "@mui/x-date-pickers": "^9.5.0",
+    "dayjs": "^1.11.13",
+    "next": "^16.0.7",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.14",
+    "typescript": "^5.9.3"
+  }
+}

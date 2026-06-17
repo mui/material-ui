@@ -1,0 +1,22 @@
+{
+  "name": "vitest-node-esm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "https://pkg.pr.new/mui/material-ui/@mui/material@7f9e8d8be3505656a0a2fd6b40495ab6b1c9ad8e",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "vitest": "^4.1.0"
+  }
+}
