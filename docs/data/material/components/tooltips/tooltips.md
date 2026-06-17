@@ -149,7 +149,7 @@ You can disable this behavior (thus failing the success criterion which is requi
 
 A natively disabled element (`<button disabled>`) doesn't fire the hover and focus events that a `Tooltip` needs, so the tooltip never shows.
 
-For components that inherit from `ButtonBase`—such as `Button` and `IconButton`—add the `focusableWhenDisabled` prop. The element then uses `aria-disabled` instead of the native `disabled` attribute, so it keeps firing events and stays focusable while still being inert. The `Tooltip` works on both hover and keyboard focus, and forwards the accessible name to the element directly—no wrapper needed.
+Use the `focusableWhenDisabled` prop on `Button` (or any Material UI component that extends `ButtonBase`) to keep a disabled element interactive enough for the tooltip to work. The element renders `aria-disabled` instead of the native `disabled` attribute, so it stays focusable and keeps firing events while remaining inert. The `Tooltip` then works on both hover and keyboard focus, and applies the accessible name directly to the element—no wrapper needed.
 
 {{"demo": "DisabledTooltips.js"}}
 
