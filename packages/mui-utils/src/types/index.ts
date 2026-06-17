@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { WithDataAttributes } from './DataAttributes';
 
-export * from './DataAttributes';
+// Re-export only what consumers need: `DataAttributesOverrides` to augment and
+// `WithDataAttributes` for typing custom slot props. `DataAttributes` stays
+// internal — it is a bare alias of `DataAttributesOverrides` with no behavior.
+export type { DataAttributesOverrides, WithDataAttributes } from './DataAttributes';
 
 export type EventHandlers = Record<string, React.EventHandler<any>>;
 

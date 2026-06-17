@@ -32,13 +32,12 @@
 export interface DataAttributesOverrides {}
 
 /**
- * Surface contributed to slot prop types by the `DataAttributesOverrides`
- * augmentation. Empty by default; populated only when a consumer declares
- * `data-*` keys via module augmentation. This is what `WithDataAttributes`
- * intersects into the widened branch of every slot prop union exposed by
- * `@mui/utils/types`.
+ * Internal alias for the augmented surface, intersected into the widened branch
+ * by `WithDataAttributes`. Not part of the public API: it is a bare pass-through
+ * of `DataAttributesOverrides`, so consumers augment `DataAttributesOverrides`
+ * directly instead.
  */
-export type DataAttributes = DataAttributesOverrides;
+type DataAttributes = DataAttributesOverrides;
 
 /**
  * Widens a slot-props type so that, when a consumer augments
