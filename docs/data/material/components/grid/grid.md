@@ -48,6 +48,10 @@ For example, an item with `size={6}` occupies half of the grid container's width
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
+:::info
+The `Item` component used throughout these demos isn't part of Material UI—it's a `styled(Paper)` helper that gives each grid cell a visible surface so the layout is easy to see. Replace `<Item>` with your own content.
+:::
+
 ### Multiple breakpoints
 
 Items may have multiple widths defined, causing the layout to change at the defined breakpoint.
