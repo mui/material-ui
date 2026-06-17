@@ -32,23 +32,15 @@
 export interface DataAttributesOverrides {}
 
 /**
- * Internal alias for the augmented surface, intersected into the widened branch
- * by `WithDataAttributes`. Not part of the public API: it is a bare pass-through
- * of `DataAttributesOverrides`, so consumers augment `DataAttributesOverrides`
- * directly instead.
- */
-type DataAttributes = DataAttributesOverrides;
-
-/**
  * Widens a slot-props type so that, when a consumer augments
  * `DataAttributesOverrides`, the augmented keys become assignable to the
- * widened branch. The default `DataAttributes` is empty, so this widening is
- * a no-op until a consumer opts in.
+ * widened branch. `DataAttributesOverrides` is empty by default, so this
+ * widening is a no-op until a consumer opts in.
  *
  * Implemented as a union between the original type and the intersected widened
- * form — `T | (T & DataAttributes)` — so that pre-typed values remain
+ * form — `T | (T & DataAttributesOverrides)` — so that pre-typed values remain
  * assignable to the original branch without having to declare a `data-*`
  * index signature themselves, while object literals can pick up the widened
  * branch and include the augmented keys.
  */
-export type WithDataAttributes<T> = T | (T & DataAttributes);
+export type WithDataAttributes<T> = T | (T & DataAttributesOverrides);
