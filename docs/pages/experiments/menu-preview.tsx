@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
+import Popover from '@mui/material/Popover';
 import Stack from '@mui/material/Stack';
 import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
@@ -29,7 +30,7 @@ import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 interface MenuSettings {
   modal: boolean;
   disabled: boolean;
-  openOnHover: boolean;
+  submenusOpenOnHover: boolean;
 }
 
 const theme = createTheme({});
@@ -37,8 +38,53 @@ const theme = createTheme({});
 const defaultSettings: MenuSettings = {
   modal: true,
   disabled: false,
-  openOnHover: false,
+  submenusOpenOnHover: false,
 };
+
+interface PreviewCardItem {
+  id: string;
+  label: string;
+  description: string;
+  footer: string;
+}
+
+const rootPreviewCardItems: PreviewCardItem[] = [
+  {
+    id: 'template-gallery',
+    label: 'Template gallery',
+    description: 'Start from a polished document layout for notes, proposals, and project plans.',
+    footer: 'Opens the template picker',
+  },
+  {
+    id: 'publish-web',
+    label: 'Publish to web',
+    description: 'Create a public read-only page that updates when this document changes.',
+    footer: 'Requires sharing permission',
+  },
+];
+
+const versionHistoryPreviewCardItems: PreviewCardItem[] = [
+  {
+    id: 'named-versions',
+    label: 'Named versions',
+    description: 'Create and manage named checkpoints for important document milestones.',
+    footer: 'Keeps the current version history',
+  },
+  {
+    id: 'compare-changes',
+    label: 'Compare changes',
+    description: 'Review edits between two versions and inspect who changed each section.',
+    footer: 'Opens in a side-by-side view',
+  },
+  {
+    id: 'restore-version',
+    label: 'Restore version',
+    description: 'Replace the current document with a selected earlier version.',
+    footer: 'Creates a new restore checkpoint',
+  },
+];
+
+const previewCardItems = [...rootPreviewCardItems, ...versionHistoryPreviewCardItems];
 
 const horizontalTooltipProps = {
   placement: 'right',
@@ -98,6 +144,68 @@ function MenuTooltip(props: {
   );
 }
 
+function MaterialPreviewCard(props: {
+  id: string | undefined;
+  item: PreviewCardItem | null;
+  anchorEl: HTMLElement | null;
+}) {
+  const { id, item, anchorEl } = props;
+  const open = Boolean(item && anchorEl);
+
+  return (
+    <Popover
+      open={open}
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      marginThreshold={8}
+      // Material UI does not have a PreviewCard primitive, so keep the Popover
+      // non-interactive and opt out of Modal focus behavior for this experiment.
+      disableAutoFocus
+      disableEnforceFocus
+      disableRestoreFocus
+      disableScrollLock
+      hideBackdrop
+      slotProps={{
+        root: {
+          sx: {
+            pointerEvents: 'none',
+          },
+        },
+        paper: {
+          id,
+          sx: {
+            width: 256,
+            p: 1.5,
+            ml: 1,
+            pointerEvents: 'none',
+          },
+        },
+      }}
+    >
+      {item ? (
+        <React.Fragment>
+          <Typography variant="subtitle2" aria-hidden>
+            {item.label}
+          </Typography>
+          <Typography color="text.secondary" sx={{ mt: 0.5 }} variant="body2">
+            {item.description}
+          </Typography>
+          <Typography color="text.secondary" sx={{ mt: 1 }} variant="caption">
+            {item.footer}
+          </Typography>
+        </React.Fragment>
+      ) : null}
+    </Popover>
+  );
+}
+
 function DisabledTooltip(props: { title: string; children: React.ReactElement }) {
   const { title, children } = props;
 
@@ -110,6 +218,91 @@ function DisabledTooltip(props: { title: string; children: React.ReactElement })
   );
 }
 
+function MenuPreviewWithPreviewCardsDemo({
+  submenusOpenOnHover,
+}: {
+  submenusOpenOnHover: boolean;
+}) {
+  const previewCardIdPrefix = React.useId();
+  const [activeItemId, setActiveItemId] = React.useState<string | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const activeItem =
+    previewCardItems.find((previewCardItem) => previewCardItem.id === activeItemId) ?? null;
+  const activePreviewCardId = activeItem
+    ? `${previewCardIdPrefix}-${activeItem.id}-preview-card`
+    : undefined;
+
+  const clearActiveItem = () => {
+    setActiveItemId(null);
+    setAnchorEl(null);
+  };
+
+  const getPreviewCardProps = (item: PreviewCardItem) => {
+    const setActiveItem = (element: HTMLElement) => {
+      setActiveItemId(item.id);
+      setAnchorEl(element);
+    };
+
+    return {
+      'aria-describedby':
+        activeItemId === item.id ? `${previewCardIdPrefix}-${item.id}-preview-card` : undefined,
+      onFocus: (event: React.FocusEvent<HTMLElement>) => {
+        setActiveItem(event.currentTarget);
+      },
+      onMouseEnter: (event: React.MouseEvent<HTMLElement>) => {
+        setActiveItem(event.currentTarget);
+      },
+    };
+  };
+
+  return (
+    <Menu
+      onOpenChange={(open) => {
+        if (!open) {
+          setActiveItemId(null);
+          setAnchorEl(null);
+        }
+      }}
+    >
+      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+        Help cards
+      </Trigger>
+      <Popup sideOffset={8}>
+        <Item
+          label={rootPreviewCardItems[0].label}
+          {...getPreviewCardProps(rootPreviewCardItems[0])}
+        >
+          {rootPreviewCardItems[0].label}
+        </Item>
+        <SubmenuRoot>
+          <SubmenuTrigger
+            openOnHover={submenusOpenOnHover}
+            onFocus={clearActiveItem}
+            onMouseEnter={clearActiveItem}
+          >
+            Version history
+            <KeyboardArrowRightRoundedIcon fontSize="small" />
+          </SubmenuTrigger>
+          <SubmenuPopup sideOffset={8}>
+            {versionHistoryPreviewCardItems.map((item) => (
+              <Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
+                {item.label}
+              </Item>
+            ))}
+          </SubmenuPopup>
+        </SubmenuRoot>
+        <Item
+          label={rootPreviewCardItems[1].label}
+          {...getPreviewCardProps(rootPreviewCardItems[1])}
+        >
+          {rootPreviewCardItems[1].label}
+        </Item>
+      </Popup>
+      <MaterialPreviewCard id={activePreviewCardId} item={activeItem} anchorEl={anchorEl} />
+    </Menu>
+  );
+}
+
 function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
   const handleItemClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
     // eslint-disable-next-line no-console
@@ -118,11 +311,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
 
   return (
     <Menu modal={settings.modal} disabled={settings.disabled}>
-      <Trigger
-        variant="contained"
-        endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
-        openOnHover={settings.openOnHover}
-      >
+      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
         File
       </Trigger>
       <Popup sideOffset={8}>
@@ -142,7 +331,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
         <Separator />
 
         <SubmenuRoot>
-          <SubmenuTrigger>
+          <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             View options
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </SubmenuTrigger>
@@ -194,7 +383,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
             <Separator />
 
             <SubmenuRoot>
-              <SubmenuTrigger>
+              <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
                 More tools
                 <KeyboardArrowRightRoundedIcon fontSize="small" />
               </SubmenuTrigger>
@@ -208,7 +397,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
         </SubmenuRoot>
 
         <SubmenuRoot>
-          <SubmenuTrigger>
+          <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             Download
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </SubmenuTrigger>
@@ -220,7 +409,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
         </SubmenuRoot>
 
         <SubmenuRoot disabled>
-          <SubmenuTrigger disabled>
+          <SubmenuTrigger disabled openOnHover={settings.submenusOpenOnHover}>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
           </SubmenuTrigger>
@@ -233,7 +422,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
   );
 }
 
-function MenuPreviewWithTooltipsDemo() {
+function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
   return (
     <Menu>
       <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
@@ -259,7 +448,7 @@ function MenuPreviewWithTooltipsDemo() {
 
         <SubmenuRoot>
           <MenuTooltip title="Open view settings">
-            <SubmenuTrigger openOnHover={false}>
+            <SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
               <KeyboardArrowRightRoundedIcon fontSize="small" />
             </SubmenuTrigger>
@@ -349,10 +538,10 @@ export default function MenuPreviewExperiment() {
             <label>
               <input
                 type="checkbox"
-                checked={settings.openOnHover}
-                onChange={handleCheckboxChange('openOnHover')}
+                checked={settings.submenusOpenOnHover}
+                onChange={handleCheckboxChange('submenusOpenOnHover')}
               />{' '}
-              Open on hover
+              Submenus open on hover
             </label>
           </fieldset>
           <section>
@@ -361,7 +550,11 @@ export default function MenuPreviewExperiment() {
           </section>
           <section>
             <p>Material UI Tooltip integrated with every menu item.</p>
-            <MenuPreviewWithTooltipsDemo />
+            <MenuPreviewWithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+          </section>
+          <section>
+            <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
+            <MenuPreviewWithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>
