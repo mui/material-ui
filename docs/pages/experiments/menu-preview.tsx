@@ -7,7 +7,7 @@ import Tooltip, { type TooltipProps } from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Menu, {
   CheckboxItem,
   CheckboxItemIndicator,
@@ -111,8 +111,9 @@ interface MenuTooltipChildProps {
 function MenuTooltip(props: {
   title: string;
   children: React.ReactElement<MenuTooltipChildProps>;
+  tooltipProps?: Partial<TooltipProps>;
 }) {
-  const { title, children } = props;
+  const { title, children, tooltipProps = horizontalTooltipProps } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = React.useCallback(() => {
@@ -132,7 +133,7 @@ function MenuTooltip(props: {
 
   return (
     <Tooltip
-      {...horizontalTooltipProps}
+      {...tooltipProps}
       title={title}
       describeChild
       open={open}
@@ -423,6 +424,28 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
 }
 
 function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
+  const { direction } = useTheme();
+  const submenuTriggerTooltipProps = React.useMemo<Partial<TooltipProps>>(
+    () => ({
+      placement: direction === 'rtl' ? 'right' : 'left',
+      slotProps: {
+        popper: {
+          popperOptions: {
+            modifiers: [
+              {
+                // Submenus default to inline-end, so keep this tooltip on
+                // inline-start instead of letting Popper flip it onto the submenu.
+                name: 'flip',
+                enabled: false,
+              },
+            ],
+          },
+        },
+      },
+    }),
+    [direction],
+  );
+
   return (
     <Menu>
       <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
@@ -447,7 +470,7 @@ function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHo
         <Separator />
 
         <SubmenuRoot>
-          <MenuTooltip title="Open view settings">
+          <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
             <SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
               <KeyboardArrowRightRoundedIcon fontSize="small" />
@@ -545,14 +568,17 @@ export default function MenuPreviewExperiment() {
             </label>
           </fieldset>
           <section>
+            <h3 id="fully-featured-menu">Fully featured menu</h3>
             <p>Fully-featured menu with submenus, links, radio groups, and checkbox items.</p>
             <MenuPreviewDemo settings={settings} />
           </section>
           <section>
+            <h3 id="menu-preview-tooltips">MenuPreview + Tooltip</h3>
             <p>Material UI Tooltip integrated with every menu item.</p>
             <MenuPreviewWithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
+            <h3 id="menu-preview-popover-preview-card">MenuPreview + Popover-based preview card</h3>
             <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
             <MenuPreviewWithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
