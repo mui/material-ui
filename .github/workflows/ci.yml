@@ -17,7 +17,9 @@ permissions: {}
 jobs:
   continuous-releases:
     name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@2cf5fd6323dcc09a25dd287dca00cb5edb5bdd14 # master
+    uses: mui/mui-public/.github/workflows/ci-base.yml@a3db8b4b949ded07185f7a6b94a3acb96e0851f8 # master
+    with:
+      npm-dry-run: true
 
   # Tests dev-only scripts across all supported dev environments
   test-dev:
