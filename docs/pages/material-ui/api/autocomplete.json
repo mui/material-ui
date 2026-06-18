@@ -161,14 +161,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ chip?: func<br>&#124;&nbsp;object, clearIndicator?: func<br>&#124;&nbsp;object, listbox?: func<br>&#124;&nbsp;object, noOptions?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, popper?: func<br>&#124;&nbsp;object, popupIndicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: elementType, listbox?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
+        "description": "{ clearIndicator?: elementType, listbox?: elementType, noOptions?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
       },
       "default": "{}"
     },
@@ -210,6 +210,12 @@
       "description": "The component used to render the listbox.",
       "default": "'ul'",
       "class": "MuiAutocomplete-listbox"
+    },
+    {
+      "name": "noOptions",
+      "description": "The component used to render the \"no options\" container.",
+      "default": "'div'",
+      "class": "MuiAutocomplete-noOptions"
     },
     {
       "name": "paper",
@@ -301,12 +307,6 @@
       "key": "loading",
       "className": "MuiAutocomplete-loading",
       "description": "Styles applied to the loading wrapper.",
-      "isGlobal": false
-    },
-    {
-      "key": "noOptions",
-      "className": "MuiAutocomplete-noOptions",
-      "description": "Styles applied to the no option wrapper.",
       "isGlobal": false
     },
     {

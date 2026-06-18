@@ -151,6 +151,7 @@ function AutocompleteComponentsProps() {
       renderInput={(params) => <TextField {...params} />}
       slotProps={{
         clearIndicator: { size: 'large' },
+        noOptions: { 'aria-label': 'no results' },
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
         popupIndicator: { size: 'large' },
@@ -166,6 +167,18 @@ function CustomListboxRef() {
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
       slotProps={{ listbox: { ref } }}
+    />
+  );
+}
+
+function CustomNoOptionsSlot() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  return (
+    <Autocomplete
+      renderInput={(params) => <TextField {...params} />}
+      options={['one', 'two', 'three']}
+      slots={{ noOptions: 'div' }}
+      slotProps={{ noOptions: { ref } }}
     />
   );
 }

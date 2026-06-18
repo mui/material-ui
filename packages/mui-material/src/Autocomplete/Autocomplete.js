@@ -322,6 +322,8 @@ const AutocompleteNoOptions = styled('div', {
   })),
 );
 
+const AutocompleteNoOptionsContainer = styled('div', {})();
+
 const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
@@ -604,6 +606,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.paper,
   });
 
+  const [NoOptionsSlot, noOptionsProps] = useSlot('noOptions', {
+    elementType: AutocompleteNoOptionsContainer,
+    externalForwardedProps,
+    ownerState,
+    className: classes.noOptions,
+    additionalProps: {
+      role: 'status',
+      'aria-live': 'polite',
+      'aria-atomic': 'true',
+    },
+  });
+
   const [PopperSlot, popperProps] = useSlot('popper', {
     elementType: Popper,
     externalForwardedProps,
@@ -796,19 +810,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                 {loadingText}
               </AutocompleteLoading>
             ) : null}
-            {renderedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
-            ) : null}
+            <NoOptionsSlot {...noOptionsProps}>
+              {renderedOptions.length === 0 && !freeSolo && !loading ? (
+                <AutocompleteNoOptions
+                  className={classes.noOptions}
+                  ownerState={ownerState}
+                  onMouseDown={(event) => {
+                    // Prevent input blur when interacting with the "no options" content
+                    event.preventDefault();
+                  }}
+                >
+                  {noOptionsText}
+                </AutocompleteNoOptions>
+              ) : null}
+            </NoOptionsSlot>
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
@@ -1232,6 +1247,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -1244,6 +1260,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
