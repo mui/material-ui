@@ -610,7 +610,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     elementType: AutocompleteNoOptionsContainer,
     externalForwardedProps,
     ownerState,
-    className: classes.noOptions,
     additionalProps: {
       role: 'status',
       'aria-live': 'polite',
