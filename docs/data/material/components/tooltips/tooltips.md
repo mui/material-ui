@@ -147,13 +147,27 @@ You can disable this behavior (thus failing the success criterion which is requi
 
 ## Disabled elements
 
-When wrapping a Material UI component that inherits from `ButtonBase`, you should add the CSS property _pointer-events: auto;_ to your element when disabled:
+By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+:::warning
+In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+:::
 
 {{"demo": "DisabledTooltips.js"}}
 
 :::warning
-By default, disabled elements like `<button>` are not keyboard focusable, so a `Tooltip` will only work for mouse users.
+If you're not wrapping a Material UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
 :::
+
+```jsx
+<Tooltip describeChild title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      A disabled button
+    </button>
+  </span>
+</Tooltip>
+```
 
 ## Transitions
 

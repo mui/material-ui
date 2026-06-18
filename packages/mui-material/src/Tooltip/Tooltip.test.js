@@ -15,7 +15,6 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
-import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
@@ -396,22 +395,6 @@ describe('<Tooltip />', () => {
         <button disabled type="button">
           Hello World
         </button>
-      </Tooltip>,
-    );
-
-    await user.hover(screen.getByRole('button'));
-
-    expect(screen.getByRole('tooltip')).toBeVisible();
-  });
-
-  it('opens when a disabled Button receives mouse events', async () => {
-    clock.restore();
-
-    const { user } = render(
-      <Tooltip title="Hello World" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
-        <Button disabled style={{ pointerEvents: 'auto' }}>
-          Hello World
-        </Button>
       </Tooltip>,
     );
 
