@@ -322,8 +322,6 @@ const AutocompleteNoOptions = styled('div', {
   })),
 );
 
-const AutocompleteNoOptionsContainer = styled('div', {})();
-
 const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
@@ -607,7 +605,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   });
 
   const [NoOptionsSlot, noOptionsProps] = useSlot('noOptions', {
-    elementType: AutocompleteNoOptionsContainer,
+    elementType: 'div',
     externalForwardedProps,
     ownerState,
     additionalProps: {
