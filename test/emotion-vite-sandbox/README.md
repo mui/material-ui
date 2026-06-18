@@ -1,7 +1,7 @@
 # emotion-vite-sandbox
 
 A minimal Vite + React app that exercises the **Emotion (default) path** for
-Material UI components.
+Material UI components.
 
 ## Purpose
 
@@ -48,7 +48,7 @@ grep -r "@emotion" test/emotion-vite-sandbox/dist/
 
 ## Bundle size comparison
 
-Build all three sandboxes, then compare JS output sizes to measure the overhead
+Build all three sandboxes, then compare JavaScript output sizes to measure the overhead
 of each approach:
 
 ```bash
@@ -71,4 +71,4 @@ ls -lh test/emotion-vite-sandbox/dist/assets/*.css
 
 This sandbox maps to **§8 (Bundle size validation)** in `STYLING_V8_TODO.md`.
 It is the Emotion-path counterpart to `test/noop-vite-sandbox`, used to
-measure the JS bundle delta between the two engines.
+measure the JavaScript bundle delta between the two engines.

@@ -1,7 +1,7 @@
 # css-theme-provider-vite-sandbox
 
 A minimal Vite + React app that exercises **Path A (Mantine analogy)** for
-Material UI components — noop engine + runtime `CssThemeProvider`.
+Material UI components — noop engine + runtime `CssThemeProvider`.
 
 ## Purpose
 
@@ -17,7 +17,7 @@ Verifies that:
 5. `className`-based overrides beat `@layer mui.default` without `!important`.
 6. Dark mode works via `CssThemeProvider` by flipping `data-mui-color-scheme`
    on `document.documentElement`.
-7. `useTheme()` returns live JS theme values (breakpoints, spacing, etc.).
+7. `useTheme()` returns live JavaScript theme values (breakpoints, spacing, etc.).
 
 ## How this differs from the other sandboxes
 
@@ -56,7 +56,7 @@ grep -r "@emotion/react\|@emotion/styled\|@emotion/cache\|EmotionCacheContext\|i
 
 ## Bundle size comparison
 
-Build all three sandboxes, then compare JS output sizes to measure the overhead
+Build all three sandboxes, then compare JavaScript output sizes to measure the overhead
 of each approach:
 
 ```bash
