@@ -1,5 +1,5 @@
 /**
- * @mui/icons-material v9.0.0-beta.0
+ * @mui/icons-material v9.1.1
  *
  * @license MIT
  * This source code is licensed under the MIT license found in the
