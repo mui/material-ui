@@ -39,15 +39,26 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
       }
 
       if (nativeEvent.key === 'Escape') {
-        const defaultPreventedBeforeClose = nativeEvent.defaultPrevented;
+        let defaultPreventedByOnClose = false;
+        const originalPreventDefault = nativeEvent.preventDefault;
 
-        // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
-        onClose?.(nativeEvent, 'escapeKeyDown');
+        nativeEvent.preventDefault = () => {
+          defaultPreventedByOnClose = true;
+          originalPreventDefault.call(nativeEvent);
+        };
 
-        // Backward compatibility: `preventDefault()` inside `onClose` used to stop later
-        // Snackbars from handling the same Escape event. Preserve that documented behavior
-        // without letting unrelated, pre-existing `defaultPrevented` values suppress Snackbar.
-        if (!defaultPreventedBeforeClose && nativeEvent.defaultPrevented) {
+        // Snackbar itself does not call `preventDefault`, since a caller may choose
+        // to keep it open permanently.
+        try {
+          onClose?.(nativeEvent, 'escapeKeyDown');
+        } finally {
+          nativeEvent.preventDefault = originalPreventDefault;
+        }
+
+        // `preventDefault()` inside `onClose` should stop later Snackbars from
+        // handling the same Escape event, even if the event was already
+        // default-prevented before it reached this listener.
+        if (defaultPreventedByOnClose) {
           nativeEvent.defaultMuiPrevented = true;
         }
       }
@@ -87,11 +98,11 @@ function useSnackbar(parameters: UseSnackbarParameters = {}): UseSnackbarReturnV
   };
 
   // Pause the timer when the user is interacting with the Snackbar
-  // or when the user hide the window.
+  // or when the window loses focus.
   const handlePause = timerAutoHide.clear;
 
   // Restart the timer when the user is no longer interacting with the Snackbar
-  // or when the window is shown back.
+  // or when the window regains focus.
   const handleResume = React.useCallback(() => {
     if (autoHideDuration != null) {
       setAutoHideTimer(resumeHideDuration != null ? resumeHideDuration : autoHideDuration * 0.5);

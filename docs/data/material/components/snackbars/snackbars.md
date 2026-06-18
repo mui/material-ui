@@ -135,7 +135,7 @@ export default function MyComponent() {
         onClose={(event, reason) => {
           setOpen(false);
           if (reason === 'escapeKeyDown') {
-            // Only close one Snackbar at a time.
+            // Close only one Snackbar per Escape key press.
             event.preventDefault();
           }
         }}

@@ -65,7 +65,7 @@ export const ButtonBaseRoot = styled('button', {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
   [`&.${buttonBaseClasses.disabled}`]: {
-    pointerEvents: ownerState?.focusableWhenDisabled ? 'auto' : 'none', // Disable link interactions
+    pointerEvents: ownerState?.focusableWhenDisabled ? 'auto' : 'none',
     cursor: 'default',
   },
   '@media print': {
@@ -92,12 +92,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusRipple = false,
     focusVisibleClassName,
     /* eslint-disable react/prop-types */
-    // private prop for scoped components that intentionally opt into disabled focusability
+    // private prop for components that intentionally opt into disabled focusability
     focusableWhenDisabled: focusableWhenDisabledProp = false,
     // escape hatch to suppress the focusVisible state and callback
-    // used by anchored <Menu>s to to suppress focus visible styling when opened with a pointer
+    // used by anchored <Menu>s to suppress focus visible styling when opened with a pointer
     suppressFocusVisible = false,
-    // private prop to allow native vs non-native button props to be resolved before mount
+    // private prop to resolve native vs non-native button props before mount
     internalNativeButton: internalNativeButtonProp,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',

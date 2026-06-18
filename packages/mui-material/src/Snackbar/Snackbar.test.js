@@ -12,11 +12,11 @@ import describeConformance from '../../test/describeConformance';
 describe('<Snackbar />', () => {
   const { clock, render: clientRender } = createRenderer({ clock: 'fake' });
   /**
-   * @type  {typeof plainRender extends (...args: infer T) => any ? T : never} args
+   * @type  {typeof clientRender extends (...args: infer T) => any ? T : never} args
    *
    * @remarks
    * This is for all intents and purposes the same as our client render method.
-   * `plainRender` is already wrapped in act().
+   * `clientRender` is already wrapped in act().
    * However, React has a bug that flushes effects in a portal synchronously.
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
    * React bug: https://github.com/facebook/react/issues/20074
@@ -99,6 +99,29 @@ describe('<Snackbar />', () => {
       fireEvent.keyDown(document.body, { key: 'Escape' });
 
       expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseB.callCount).to.equal(0);
+    });
+
+    it('can limit which Snackbars are closed when pressing already default-prevented Escape', () => {
+      const handleCloseA = spy((event) => event.preventDefault());
+      const handleCloseB = spy();
+      render(
+        <React.Fragment>
+          <Snackbar open onClose={handleCloseA} message="messageA" />
+          <Snackbar open onClose={handleCloseB} message="messageB" />
+        </React.Fragment>,
+      );
+
+      const event = new window.KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+        cancelable: true,
+      });
+      event.preventDefault();
+      document.body.dispatchEvent(event);
+
+      expect(handleCloseA.callCount).to.equal(1);
+      expect(handleCloseA.args[0][0]).to.have.property('defaultMuiPrevented', true);
       expect(handleCloseB.callCount).to.equal(0);
     });
 

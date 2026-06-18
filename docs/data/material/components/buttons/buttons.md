@@ -221,7 +221,7 @@ For disabled `Button` and `IconButton` components that need to trigger a Tooltip
 ```
 
 The prop keeps disabled buttons focusable and hoverable while preventing activation.
-Disabled links remain non-focusable and pointer-inert.
+Disabled buttons rendered as links remain non-focusable and pointer-inert.
 
 2. **DOM change**. You can wrap the button:
 
