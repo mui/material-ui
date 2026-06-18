@@ -1,11 +1,10 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+// import path from 'node:path';
+// import { fileURLToPath } from 'node:url';
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const dirname = path.dirname(fileURLToPath(import.meta.url));
-// Two levels up: test/emotion-vite-sandbox → test → monorepo root
-const MONOREPO_ROOT = path.resolve(dirname, '../..');
+// const dirname = path.dirname(fileURLToPath(import.meta.url));
+// const MONOREPO_ROOT = path.resolve(dirname, '../..');
 
 // https://vite.dev/config/
 // Use the function form so `mode` is available for the NODE_ENV define.
@@ -47,28 +46,21 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: [
-      // Resolve all @mui/* packages from monorepo source so we test the branch
-      // code, not a published release.
-      {
-        find: '@mui/material',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src'),
-      },
-      {
-        find: '@mui/system',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src'),
-      },
-      {
-        find: '@mui/utils',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src'),
-      },
-      {
-        find: '@mui/private-theming',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src'),
-      },
-      {
-        find: '@mui/styled-engine',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine/src'),
-      },
+      // These aliases used to point @mui/* packages at their monorepo `src/`
+      // directories so Vite would pick up in-flight source changes without a
+      // rebuild. Now that the packages are built (pnpm -F @mui/material build
+      // etc.), the workspace symlinks + each package's `exports` field in
+      // build/package.json are enough — no alias needed.
+      //
+      // If you want to test against source again (e.g. mid-refactor before
+      // rebuilding), un-comment these and re-add the `treat-js-files-as-jsx`
+      // plugin (source .js files contain JSX; built .mjs files do not).
+      //
+      // { find: '@mui/material',        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src') },
+      // { find: '@mui/system',           replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src') },
+      // { find: '@mui/utils',            replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src') },
+      // { find: '@mui/private-theming',  replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src') },
+      // { find: '@mui/styled-engine',    replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine/src') },
     ],
   },
 }));

@@ -47,24 +47,21 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: [
-      // Resolve all @mui/* packages from monorepo source so we test the branch
-      // code, not a published release.
-      {
-        find: '@mui/material',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src'),
-      },
-      {
-        find: '@mui/system',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src'),
-      },
-      {
-        find: '@mui/utils',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src'),
-      },
-      {
-        find: '@mui/private-theming',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src'),
-      },
+      // These aliases used to point @mui/* packages at their monorepo `src/`
+      // directories so Vite would pick up in-flight source changes without a
+      // rebuild. Now that the packages are built (pnpm -F @mui/material build
+      // etc.), the workspace symlinks + each package's `exports` field in
+      // build/package.json are enough — no alias needed.
+      //
+      // If you want to test against source again (e.g. mid-refactor before
+      // rebuilding), un-comment these and re-add the `treat-js-files-as-jsx`
+      // plugin (source .js files contain JSX; built .mjs files do not).
+      //
+      // { find: '@mui/material',        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src') },
+      // { find: '@mui/system',           replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src') },
+      // { find: '@mui/utils',            replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src') },
+      // { find: '@mui/private-theming',  replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src') },
+
       // THE KEY ALIAS: swap Emotion for the zero-runtime noop engine.
       // This is exactly what non-Emotion users configure in their own bundler.
       {
