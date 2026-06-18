@@ -1016,19 +1016,19 @@ function useAutocomplete(props) {
           }
           break;
         case 'Enter': {
-          // In freeSolo, only select the highlighted option if the user hasn't
-          // typed new text (inputPristine) or explicitly interacted with an option
-          // (keyboard, mouse, or touch — any non-null reason). This lets typed
-          // text win over a programmatic highlight (reason=null, e.g. from
-          // syncHighlightedIndex matching a previous value) while still honoring
-          // deliberate user interactions like hovering a suggestion then pressing Enter.
-          const shouldSelectHighlighted =
-            !freeSolo || inputPristine || highlightReasonRef.current !== null;
-          const shouldPreventSubmitAfterFreeSoloCommit =
+          // In freeSolo, once the user has typed new text, Enter should commit that text instead
+          // of treating a programmatic highlight as an intentional selection. Programmatic
+          // highlights include autoHighlight and syncHighlightedIndex matching a previous value.
+          const hasProgrammaticHighlight =
             popupOpen &&
             highlightedIndexRef.current !== -1 &&
-            !shouldSelectHighlighted &&
-            !touchScrolledRef.current;
+            highlightReasonRef.current === null;
+          const shouldCommitFreeSoloOverProgrammaticHighlight =
+            freeSolo && !inputPristine && hasProgrammaticHighlight;
+          const shouldSelectHighlighted =
+            !freeSolo || inputPristine || !hasProgrammaticHighlight;
+          const shouldPreventSubmitAfterFreeSoloCommit =
+            shouldCommitFreeSoloOverProgrammaticHighlight && !touchScrolledRef.current;
 
           if (
             highlightedIndexRef.current !== -1 &&

@@ -3408,6 +3408,39 @@ describe('<Autocomplete />', () => {
       expect(handleSubmit.callCount).to.equal(1);
     });
 
+    it('should prevent form submission when committing edited selected text over value-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            defaultValue="The Godfather"
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.keyboard('{Backspace}{Backspace}{Backspace}{Backspace}{Backspace}{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The Godf');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
     it('should prefer typed text after editing a selected value', async () => {
       const handleChange = spy();
       const options = ['The Shawshank Redemption', 'The Godfather'];
