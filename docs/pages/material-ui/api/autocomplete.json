@@ -215,7 +215,7 @@
       "name": "noOptionsContainer",
       "description": "The component used to render the \"no options\" container.",
       "default": "'div'",
-      "class": null
+      "class": "MuiAutocomplete-noOptionsContainer"
     },
     {
       "name": "paper",

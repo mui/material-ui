@@ -93,6 +93,7 @@ describe('<Autocomplete />', () => {
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
+        noOptionsContainer: { expectedClassName: classes.noOptionsContainer },
       },
       only: [
         'slotsProp',

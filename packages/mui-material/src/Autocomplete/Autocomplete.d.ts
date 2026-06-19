@@ -23,7 +23,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
-export interface AutocompleteNoOptionsSlotPropsOverrides {}
+export interface AutocompleteNoOptionsContainerSlotPropsOverrides {}
 
 export {
   AutocompleteChangeDetails,
@@ -193,7 +193,7 @@ export type AutocompleteSlotsAndSlotProps<
     >;
     noOptionsContainer: SlotProps<
       'div',
-      AutocompleteNoOptionsSlotPropsOverrides,
+      AutocompleteNoOptionsContainerSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     paper: SlotProps<

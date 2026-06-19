@@ -151,7 +151,7 @@ function AutocompleteComponentsProps() {
       renderInput={(params) => <TextField {...params} />}
       slotProps={{
         clearIndicator: { size: 'large' },
-        noOptions: { 'aria-label': 'no results' },
+        noOptionsContainer: { 'aria-label': 'no results' },
         paper: { elevation: 2 },
         popper: { placement: 'bottom-end' },
         popupIndicator: { size: 'large' },
@@ -177,8 +177,8 @@ function CustomNoOptionsSlot() {
     <Autocomplete
       renderInput={(params) => <TextField {...params} />}
       options={['one', 'two', 'three']}
-      slots={{ noOptions: 'div' }}
-      slotProps={{ noOptions: { ref } }}
+      slots={{ noOptionsContainer: 'div' }}
+      slotProps={{ noOptionsContainer: { ref } }}
     />
   );
 }
