@@ -57,6 +57,12 @@ function withDocsInfra(nextConfig) {
     env: {
       // production | staging | pull-request | development
       DEPLOY_ENV,
+      // Selects the analytics target (Google Analytics + Apollo). Defaults from
+      // DEPLOY_ENV but can be overridden per-deployment without changing the deploy
+      // context.
+      ANALYTICS_ENV:
+        process.env.ANALYTICS_ENV ??
+        (DEPLOY_ENV === 'production' || DEPLOY_ENV === 'staging' ? 'production' : 'development'),
       ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as "SHA" or "hash") of the commit we're building.
