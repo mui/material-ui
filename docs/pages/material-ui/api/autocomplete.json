@@ -168,7 +168,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ clearIndicator?: elementType, listbox?: elementType, noOptions?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
+        "description": "{ clearIndicator?: elementType, listbox?: elementType, noOptionsContainer?: elementType, paper?: elementType, popper?: elementType, popupIndicator?: elementType, root?: elementType }"
       },
       "default": "{}"
     },
@@ -212,10 +212,10 @@
       "class": "MuiAutocomplete-listbox"
     },
     {
-      "name": "noOptions",
+      "name": "noOptionsContainer",
       "description": "The component used to render the \"no options\" container.",
       "default": "'div'",
-      "class": "MuiAutocomplete-noOptions"
+      "class": null
     },
     {
       "name": "paper",
@@ -307,6 +307,12 @@
       "key": "loading",
       "className": "MuiAutocomplete-loading",
       "description": "Styles applied to the loading wrapper.",
+      "isGlobal": false
+    },
+    {
+      "key": "noOptions",
+      "className": "MuiAutocomplete-noOptions",
+      "description": "Styles applied to the no option wrapper.",
       "isGlobal": false
     },
     {

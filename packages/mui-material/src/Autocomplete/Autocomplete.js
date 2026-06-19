@@ -59,6 +59,7 @@ const useUtilityClasses = (ownerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
+    noOptionsContainer: ['noOptionsContainer'],
     option: ['option'],
     groupLabel: ['groupLabel'],
     groupUl: ['groupUl'],
@@ -608,6 +609,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     elementType: 'div',
     externalForwardedProps,
     ownerState,
+    className: classes.noOptionsContainer,
     additionalProps: {
       role: 'status',
       'aria-live': 'polite',
@@ -1257,7 +1259,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
-    noOptions: PropTypes.elementType,
+    noOptionsContainer: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,

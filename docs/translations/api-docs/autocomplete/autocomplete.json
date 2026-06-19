@@ -282,6 +282,10 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the loading wrapper"
     },
+    "noOptions": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the no option wrapper"
+    },
     "option": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the option elements"
@@ -315,7 +319,7 @@
   "slotDescriptions": {
     "clearIndicator": "The component used to render the clear indicator element.",
     "listbox": "The component used to render the listbox.",
-    "noOptions": "The component used to render the &quot;no options&quot; container.",
+    "noOptionsContainer": "The component used to render the &quot;no options&quot; container.",
     "paper": "The component used to render the body of the popup.",
     "popper": "The component used to position the popup.",
     "popupIndicator": "The component used to render the popup indicator element.",

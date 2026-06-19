@@ -141,7 +141,7 @@ export interface AutocompleteSlots {
    * The component used to render the "no options" container.
    * @default 'div'
    */
-  noOptions: React.ElementType;
+  noOptionsContainer: React.ElementType;
   /**
    * The component used to render the body of the popup.
    * @default Paper
@@ -191,7 +191,7 @@ export type AutocompleteSlotsAndSlotProps<
       {},
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
-    noOptions: SlotProps<
+    noOptionsContainer: SlotProps<
       'div',
       AutocompleteNoOptionsSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
