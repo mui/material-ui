@@ -1,3 +1,6 @@
+/**
+ * @ignore - internal component.
+ */
 import { styleSheetsToString } from '@mui/system';
 import * as React from 'react';
 
