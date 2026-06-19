@@ -605,7 +605,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.paper,
   });
 
-  const [NoOptionsSlot, noOptionsProps] = useSlot('noOptions', {
+  const [NoOptionsSlot, noOptionsProps] = useSlot('noOptionsContainer', {
     elementType: 'div',
     externalForwardedProps,
     ownerState,
@@ -1246,7 +1246,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    noOptionsContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
