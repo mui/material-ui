@@ -27,6 +27,7 @@ export default function useScrollTrigger(options = {}) {
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
   React.useEffect(() => {
     if (target === null) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       return setTrigger(false);
     }
     const handleScroll = () => {

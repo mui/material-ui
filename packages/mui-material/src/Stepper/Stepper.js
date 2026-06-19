@@ -48,6 +48,12 @@ const StepperRoot = styled('ol', {
       },
     },
     {
+      props: { orientation: 'horizontal', alternativeLabel: false },
+      style: {
+        gap: 8,
+      },
+    },
+    {
       props: { orientation: 'vertical' },
       style: {
         flexDirection: 'column',
@@ -57,6 +63,12 @@ const StepperRoot = styled('ol', {
       props: { alternativeLabel: true },
       style: {
         alignItems: 'flex-start',
+      },
+    },
+    {
+      props: { orientation: 'vertical', alternativeLabel: true },
+      style: {
+        alignItems: 'flex-end',
       },
     },
   ],
@@ -206,6 +218,8 @@ Stepper.propTypes /* remove-proptypes */ = {
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
+   * If set to 'true' and orientation is vertical,
+   * it reverses the position of the label and content.
    * @default false
    */
   alternativeLabel: PropTypes.bool,

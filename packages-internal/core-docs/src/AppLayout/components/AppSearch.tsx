@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as ReactDOMServer from 'react-dom/server';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import {
@@ -230,6 +229,7 @@ export function AppSearch(props: AppSearchProps) {
   const searchButtonRef = React.useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [initialQuery, setInitialQuery] = React.useState<string | undefined>(undefined);
+  const [startScreenHost, setStartScreenHost] = React.useState<HTMLElement | null>(null);
   const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
     ? `language:${userLanguage}`
     : `language:en`;
@@ -272,39 +272,47 @@ export function AppSearch(props: AppSearchProps) {
   });
 
   React.useEffect(() => {
-    const addStartScreen = () => {
-      const dropDown = document.querySelector('.DocSearch-Dropdown');
-      const isExisting = document.querySelector('.DocSearch-NewStartScreen');
-      if (dropDown && !isExisting) {
-        dropDown.insertAdjacentHTML(
-          'beforeend',
-          ReactDOMServer.renderToStaticMarkup(<NewStartScreen />),
-        );
+    if (!isOpen) {
+      return undefined;
+    }
+    const modal = document.querySelector<HTMLElement>('.DocSearch-Container');
+    if (modal) {
+      modal.style.opacity = '1';
+    }
+
+    // DocSearch may mount the dropdown asynchronously; watch the DOM until it appears.
+    const findDropdown = () => document.querySelector<HTMLElement>('.DocSearch-Dropdown');
+    const initial = findDropdown();
+    let observer: MutationObserver | undefined;
+    if (initial) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setStartScreenHost(initial);
+    } else {
+      observer = new MutationObserver(() => {
+        const host = findDropdown();
+        if (host) {
+          setStartScreenHost(host);
+          observer!.disconnect();
+          observer = undefined;
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    const searchInput = document.querySelector<HTMLInputElement>('.DocSearch-Input');
+    const handleInput = (event: Event) => {
+      const el = document.querySelector<HTMLElement>('.DocSearch-NewStartScreen');
+      if (el) {
+        el.style.display = (event.target as HTMLInputElement).value !== '' ? 'none' : 'grid';
       }
     };
-    // add transition to Modal
-    if (isOpen) {
-      const modal = document.querySelector<HTMLElement>('.DocSearch-Container');
-      const searchInput = document.querySelector<HTMLInputElement>('.DocSearch-Input');
-      if (modal) {
-        modal.style.opacity = '1';
-        addStartScreen();
-      }
-      if (searchInput) {
-        const handleInput = (event: Event) => {
-          const newStartScreen = document.querySelector<HTMLElement>('.DocSearch-NewStartScreen');
-          if (newStartScreen) {
-            newStartScreen.style.display =
-              (event.target as HTMLInputElement).value !== '' ? 'none' : 'grid';
-          }
-        };
-        searchInput.addEventListener('input', handleInput);
-        return () => {
-          searchInput.removeEventListener('input', handleInput);
-        };
-      }
-    }
-    return () => {};
+    searchInput?.addEventListener('input', handleInput);
+
+    return () => {
+      observer?.disconnect();
+      searchInput?.removeEventListener('input', handleInput);
+      setStartScreenHost(null);
+    };
   }, [isOpen]);
 
   const optionalFilters: string[] = [];
@@ -385,6 +393,7 @@ export function AppSearch(props: AppSearchProps) {
           />,
           document.body,
         )}
+      {startScreenHost && ReactDOM.createPortal(<NewStartScreen />, startScreenHost)}
       <GlobalStyles
         styles={(theme) => ({
           html: {

@@ -8,7 +8,7 @@ manualCard: false
 hideFromHomeList: true
 ---
 
-In v9, we focused: large trees that stay fast and predictable, and pickers that behave well on keyboard, in forms, and next to other controls, with locale and adapter coverage that stays aligned with all the other components.
+In v9, we focused on two areas: large trees that stay fast and predictable, and pickers that behave well with keyboards, forms, and adjacent controls, with locale and adapter coverage that stays aligned with all the other components.
 
 For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
 
@@ -38,7 +38,7 @@ The [Date and Time Pickers](/x/react-date-pickers/) docs (including migration no
 ## Tree View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 Rich Tree View Pro in v9 ships virtualization on by default, with an explicit opt‑out when you need a non‑virtualized layout.
-That shift comes with practical defaults (for example, row height, set `itemHeight` when content differs). Also, v9 changed Rich Tree View Pro events from a nested tree shape to a flat list (called out in the v9 alpha release notes), which is required to add support for virtualization.
+That shift comes with practical defaults. For example, row height is fixed by default; set `itemHeight` when content differs. v9 also changes Rich Tree View Pro events from a nested tree shape to a flat list, as called out in the v9 alpha release notes, which is required to support virtualization.
 
 API and styling hygiene matter too: older model and ref hooks are replaced by the richer variants (`useRichTreeViewApiRef`, `useSimpleTreeViewApiRef`, `useRichTreeViewProApiRef`), `TreeViewBaseItem` is removed in favor of documented model shapes, and state tokens on `treeItemClasses` that encoded expanded/selected styling are dropped in favor of `data-*` attributes you can target in CSS.
 

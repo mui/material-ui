@@ -89,10 +89,6 @@ function withDocsInfra(nextConfig) {
         : {}),
       ...nextConfig.experimental,
     },
-    eslint: {
-      ignoreDuringBuilds: true,
-      ...nextConfig.eslint,
-    },
     typescript: {
       // Motivated by https://github.com/vercel/next.js/issues/7687
       ignoreBuildErrors: true,

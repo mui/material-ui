@@ -61,7 +61,6 @@ export default function AppHeader(props: AppHeaderProps) {
               size="small"
               href={gitHubRepository}
               target="_blank"
-              rel="noopener"
               data-ga-event-category="header"
               data-ga-event-action="github"
             >

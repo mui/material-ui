@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "9.0.0",
+  "version": "9.1.1",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "license": "MIT",
@@ -24,10 +24,10 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/utils\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "attw": "attw --pack ./build --entrypoints \".\" \"deepmerge\" \"useId\" \"composeClasses\""
   },
   "dependencies": {
@@ -36,7 +36,7 @@
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.4"
+    "react-is": "^19.2.6"
   },
   "devDependencies": {
     "@mui/types": "workspace:^",
@@ -47,9 +47,9 @@
     "@types/react-is": "19.2.0",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sinon": "21.1.2"
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sinon": "22.0.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

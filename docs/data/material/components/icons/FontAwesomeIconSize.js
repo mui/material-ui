@@ -7,6 +7,7 @@ import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 
 const theme = createTheme({
+  colorSchemes: { light: true, dark: true },
   components: {
     MuiIcon: {
       styleOverrides: {

@@ -1,9 +1,6 @@
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
+<!-- lint disable mui-first-block-heading -->
 
 Last modified: October 7th, 2018.
-
-<!-- markdownlint-restore -->
 
 ## 1. Services
 
