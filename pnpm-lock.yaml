@@ -567,9 +567,9 @@ importers:
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
-      gm:
-        specifier: 1.25.1
-        version: 1.25.1
+      sharp:
+        specifier: 0.34.5
+        version: 0.34.5
       prettier:
         specifier: 3.8.3
         version: 3.8.3
@@ -897,9 +897,6 @@ importers:
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
-      '@types/uuid':
-        specifier: 10.0.0
-        version: 10.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2

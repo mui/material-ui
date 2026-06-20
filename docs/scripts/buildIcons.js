@@ -1,25 +1,14 @@
 /* eslint-disable no-console */
 const path = require('path');
-const gm = require('gm');
+const sharp = require('sharp');
 
 console.log('Generating Icons');
 
-function resizeIcon(size, output) {
+async function resizeIcon(size, output) {
   const INPUT_ICON = path.join(__dirname, '../public/static/logo.png');
 
-  return new Promise((resolve, reject) => {
-    gm(INPUT_ICON)
-      .resize(size, size)
-      .write(output, (err) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve();
-        console.log(`${path.basename(output)} created`);
-      });
-  });
+  await sharp(INPUT_ICON).resize(size, size).png().toFile(output);
+  console.log(`${path.basename(output)} created`);
 }
 
 const promises = [
