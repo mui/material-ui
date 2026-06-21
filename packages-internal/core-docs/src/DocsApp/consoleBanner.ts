@@ -20,7 +20,7 @@ export function printConsoleBanner(): void {
 ██║ ╚═╝ ██║ ╚██████╔╝ ██████╗
 ╚═╝     ╚═╝  ╚═════╝  ╚═════╝
 
-Tip: you can access the documentation \`theme\` object directly in the console.
+Tip: you can access the documentation theme object as \`window.theme\` in the console.
 `,
       'font-family:monospace;color:#1976d2;font-size:12px;',
     );
