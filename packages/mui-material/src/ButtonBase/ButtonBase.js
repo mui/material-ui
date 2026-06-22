@@ -165,6 +165,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     internalNativeButton,
     allowInferredHostMismatch: isLink || typeof ComponentProp === 'string',
     disabled,
+    focusableWhenDisabled,
     type,
     hasFormAction,
     tabIndex,

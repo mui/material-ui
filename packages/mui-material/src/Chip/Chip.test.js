@@ -140,12 +140,19 @@ describe('<Chip />', () => {
       expect(container.firstChild).not.to.have.attribute('skipfocuswhendisabled');
     });
 
-    it('does not forward focusableWhenDisabled to ButtonBase', () => {
-      render(<Chip label="My Chip" disabled onClick={() => {}} focusableWhenDisabled />);
+    it('should keep a disabled clickable chip focusable when skipFocusWhenDisabled is false (default)', () => {
+      render(<Chip label="My Chip" disabled onClick={() => {}} />);
 
       const chip = screen.getByRole('button');
       expect(chip).to.have.attribute('aria-disabled', 'true');
-      expect(chip).to.have.attribute('tabindex', '-1');
+      expect(chip).to.have.property('tabIndex', 0);
+    });
+
+    it('should make a disabled clickable chip non-focusable when skipFocusWhenDisabled is true', () => {
+      render(<Chip label="My Chip" disabled onClick={() => {}} skipFocusWhenDisabled />);
+
+      const chip = screen.getByRole('button');
+      expect(chip).to.have.property('tabIndex', -1);
     });
 
     it('does not warn when nativeButton is omitted and a custom non-button component is used', () => {
