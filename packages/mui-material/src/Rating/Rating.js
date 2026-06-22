@@ -635,7 +635,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
                 return (
                   <RatingItem
-                    key={itemDecimalValue}
+                    key={`${itemValue}-${indexDecimal}`}
                     {...ratingItemProps}
                     // The icon is already displayed as active
                     isActive={false}
