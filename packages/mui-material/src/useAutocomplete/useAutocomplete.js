@@ -1020,13 +1020,10 @@ function useAutocomplete(props) {
           // of treating a programmatic highlight as an intentional selection. Programmatic
           // highlights include autoHighlight and syncHighlightedIndex matching a previous value.
           const hasProgrammaticHighlight =
-            popupOpen &&
-            highlightedIndexRef.current !== -1 &&
-            highlightReasonRef.current === null;
+            popupOpen && highlightedIndexRef.current !== -1 && highlightReasonRef.current === null;
           const shouldCommitFreeSoloOverProgrammaticHighlight =
             freeSolo && !inputPristine && hasProgrammaticHighlight;
-          const shouldSelectHighlighted =
-            !freeSolo || inputPristine || !hasProgrammaticHighlight;
+          const shouldSelectHighlighted = !freeSolo || inputPristine || !hasProgrammaticHighlight;
           const shouldPreventSubmitAfterFreeSoloCommit =
             shouldCommitFreeSoloOverProgrammaticHighlight && !touchScrolledRef.current;
 
