@@ -43,12 +43,13 @@ Consumption is unchanged in shape — the seam falls back to the internal defaul
 `padding: var(--comp-pad, var(--_pad))`; each size variant routes the public token over the default
 into the seam: `'--comp-pad': var(--mui-Button-small-pad, var(--_pad))`.
 
-> **Caveat (generic seam inheritance).** Because `--comp-<key>` is generic (not component-scoped),
-> two *different* components that share a css key (e.g. both expose `pad`) and nest could inherit the
-> seam across the boundary if the inner root doesn't set it (custom sizes). In the current scope
-> (Button uses `pad`; OutlinedInput uses `padBlock`/`padInline`) the keys don't overlap, so there's no
-> collision. Mitigation when keys do overlap: every component root already sets its seam for built-in
-> sizes, which shadows any inherited value.
+> **Generic seam + custom sizes.** A `--comp-<key>` seam is set on the root for every **built-in**
+> size (default + each size variant), so it never reads an inherited value there — a same-named seam on
+> an ancestor is shadowed. The only seam-unset path is a **custom** (theme-added) size, and those are
+> deliberately **out of density scope** (no inline routing; they render the literal `--_pad`). So the
+> theoretical "two components share a css key and a custom-size inner one inherits the outer's seam"
+> case is a documented non-goal, not a live risk. (A design system that adds a dense custom size sets
+> the literal seam itself.)
 
 ## How
 
@@ -93,10 +94,13 @@ export const getButtonVars = makeComponentVars(buttonVars);
 - **Forcing `cssVarPrefix: 'mui'` on every theme (rejected).** Would give one stable name in
   all modes, but bolts a css-var concept onto non-css-var themes and needs a `createThemeNoVars`
   change. Since both sides share `getButtonVars`, names match without it.
-- **Custom-size inline token routing (dropped).** It required a `useTheme()` call in render
-  purely to name a token. Custom sizes now fall back to `--_pad`; only built-in sizes get
-  per-size tokens (handled in `variants`, which already have `theme`). One hook removed from
-  every Button render.
+- **Custom-size inline token routing (dropped — custom sizes are out of density scope).** The
+  unprefixed prototype routed custom sizes inline (`style={{ '--comp-pad': 'var(--Button-xl-pad)' }}`)
+  for free, since the token name was a static string. Prefixing makes that inline name
+  theme-dependent (a `useTheme()` in render). Rather than pay that for a rare path, custom sizes are
+  excluded from density: they render `--_pad`; only built-in sizes get per-size tokens (in `variants`,
+  which already have `theme`). This is itself a small, concrete **cost of prefixing** — in the
+  unprefixed design custom-size routing is free.
 
 ## Cost the team is being asked to accept
 
