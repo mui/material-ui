@@ -177,7 +177,8 @@ describe('<MenuList />', () => {
       render(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '');
-      stub(list, 'clientHeight').get(() => 11);
+      // Use Object.defineProperty so the stub is reliable in jsdom (clientHeight defaults to 0).
+      Object.defineProperty(list, 'clientHeight', { value: 11, configurable: true });
 
       // Simulate padding-right applied via a theme/CSS override (e.g. 8px)
       list.style.paddingRight = '8px';
@@ -191,6 +192,28 @@ describe('<MenuList />', () => {
       const scrollbarSizePx = getScrollbarSize(window);
       expect(list.style).to.have.property('paddingRight', `${8 + scrollbarSizePx}px`);
       expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', `calc(100% + ${scrollbarSizePx}px)`);
+    });
+
+    it('should add scrollbar width to existing padding-left rather than replacing it (RTL)', () => {
+      const menuListActionsRef = React.createRef();
+      const listRef = React.createRef();
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
+      const list = listRef.current;
+      setStyleWidthForJsdomOrBrowser(list.style, '');
+      Object.defineProperty(list, 'clientHeight', { value: 11, configurable: true });
+
+      // Simulate padding-left applied via a theme/CSS override (e.g. 8px)
+      list.style.paddingLeft = '8px';
+
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'rtl' },
+      );
+
+      const scrollbarSizePx = getScrollbarSize(window);
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', `${8 + scrollbarSizePx}px`);
       expect(list.style).to.have.property('width', `calc(100% + ${scrollbarSizePx}px)`);
     });
 
