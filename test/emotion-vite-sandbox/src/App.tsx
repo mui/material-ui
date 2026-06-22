@@ -93,12 +93,7 @@ function ScopedThemeProvider({
   const { colorScheme } = useColorScheme();
   return (
     <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
-      <ThemeProvider
-        theme={theme}
-        colorSchemeNode={null}
-        storageWindow={null}
-        disableNestedContext
-      >
+      <ThemeProvider theme={theme} colorSchemeNode={null} storageWindow={null} disableNestedContext>
         {children}
       </ThemeProvider>
     </div>
@@ -142,7 +137,8 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
       <div style={{ maxWidth: 400, marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          sx override — track turns inner secondary + thumb grows larger (Emotion: applied at runtime):
+          sx override — track turns inner secondary + thumb grows larger (Emotion: applied at
+          runtime):
         </p>
         <Slider
           value={value}
@@ -195,10 +191,7 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
             {name}
           </button>
         ))}
-        <button
-          type="button"
-          onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
-        >
+        <button type="button" onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
           Switch to {mode === 'light' ? 'dark' : 'light'} mode
         </button>
       </div>
@@ -241,7 +234,9 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
           borderRadius: 8,
         }}
       >
-        <h2 style={{ marginTop: 0 }}>Nested scoped theme (same --mui-palette-* names, scoped to container)</h2>
+        <h2 style={{ marginTop: 0 }}>
+          Nested scoped theme (same --mui-palette-* names, scoped to container)
+        </h2>
         <ScopedThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
         </ScopedThemeProvider>

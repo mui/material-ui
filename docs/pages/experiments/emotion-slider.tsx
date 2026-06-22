@@ -76,12 +76,7 @@ function ScopedThemeProvider({
   const { colorScheme } = useColorScheme();
   return (
     <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
-      <ThemeProvider
-        theme={theme}
-        colorSchemeNode={null}
-        storageWindow={null}
-        disableNestedContext
-      >
+      <ThemeProvider theme={theme} colorSchemeNode={null} storageWindow={null} disableNestedContext>
         {children}
       </ThemeProvider>
     </div>

@@ -30,7 +30,12 @@ function getStyleId(cssVarPrefix: string | undefined) {
   return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
 }
 
-export default function CssVarsInjector({ theme, nonce, documentNode, styleId: styleIdProp }: CssVarsInjectorProps) {
+export default function CssVarsInjector({
+  theme,
+  nonce,
+  documentNode,
+  styleId: styleIdProp,
+}: CssVarsInjectorProps) {
   const styleId = styleIdProp ?? getStyleId(theme.cssVarPrefix);
   const css = React.useMemo(
     () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),

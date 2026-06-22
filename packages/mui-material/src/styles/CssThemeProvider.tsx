@@ -230,7 +230,12 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
       <RtlProvider value={rtl}>
         <DefaultPropsProvider value={resolved.components}>
           <PrivateThemeProvider theme={resolved}>
-            <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} styleId={styleId} />
+            <CssVarsInjector
+              theme={resolved}
+              documentNode={documentNode}
+              nonce={nonce}
+              styleId={styleId}
+            />
             {children}
           </PrivateThemeProvider>
         </DefaultPropsProvider>
