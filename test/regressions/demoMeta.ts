@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -143,6 +148,7 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
+  { test: 'docs/data/material/components/buttons/ButtonA11y*', enabled: false }, // A11y-only coverage fixtures
 ];
 
 /**
@@ -153,7 +159,17 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
 export const A11Y_RULES: A11yRule[] = [
-  { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/buttons/{BasicButtons,TextButtons,ContainedButtons,DisableElevation,OutlinedButtons,ColorButtons,ButtonSizes,IconLabelButtons,InputFileUpload,LoadingButtons,CustomizedButtons,ButtonA11yColorMatrix,ButtonA11yNonNative,ButtonA11ySemanticStates,ButtonA11yTextSpacing}',
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    test: 'docs/data/material/components/buttons/ButtonA11yColorMatrix',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {

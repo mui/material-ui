@@ -1,0 +1,6 @@
+<Button component={CustomDivButton} nativeButton={false}>
+  Non-native action
+</Button>
+<Button component={CustomDivButton} nativeButton={false} disabled>
+  Disabled non-native
+</Button>

@@ -1,0 +1,9 @@
+{variants.map((variant) => (
+  <div key={variant}>
+    {colors.map((color) => (
+      <Button key={`${variant}-${color}`} variant={variant} color={color}>
+        {color} {variant}
+      </Button>
+    ))}
+  </div>
+))}
