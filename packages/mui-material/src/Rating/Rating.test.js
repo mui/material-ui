@@ -80,6 +80,13 @@ describe('<Rating />', () => {
     );
   });
 
+  it('should render without error when precision produces a non-integer ratio (e.g. 0.3)', () => {
+    // 1 / 0.3 = 3.333… which previously caused RangeError: Invalid array length
+    expect(() => render(<Rating name="rating-precision" precision={0.3} />)).not.to.throw();
+    expect(() => render(<Rating name="rating-precision-04" precision={0.4} />)).not.to.throw();
+    expect(() => render(<Rating name="rating-precision-06" precision={0.6} />)).not.to.throw();
+  });
+
   it('should handle mouse hover correctly', () => {
     const { container } = render(<Rating />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({

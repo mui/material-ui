@@ -619,7 +619,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
         if (precision < 1) {
-          const items = Array.from(new Array(1 / precision));
+          const items = Array.from(new Array(Math.round(1 / precision)));
           return (
             <DecimalSlot
               {...decimalSlotProps}
