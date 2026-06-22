@@ -529,6 +529,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     startIcon: startIconProp,
     type,
     variant = 'text',
+    // eslint-disable-next-line no-unused-vars
+    focusableWhenDisabled,
     ...other
   } = props;
 
