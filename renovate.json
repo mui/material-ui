@@ -68,12 +68,6 @@
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
-    },
-    {
-      "description": "Renovate cannot look up github-tags for actions-cool/issues-helper (no-result). The action is pinned to a commit SHA.",
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["actions-cool/issues-helper"],
-      "enabled": false
     }
   ]
 }

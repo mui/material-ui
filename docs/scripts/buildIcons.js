@@ -7,7 +7,15 @@ console.log('Generating Icons');
 async function resizeIcon(size, output) {
   const INPUT_ICON = path.join(__dirname, '../public/static/logo.png');
 
-  await sharp(INPUT_ICON).resize(size, size).png().toFile(output);
+  await sharp(INPUT_ICON)
+    .resize(size, size)
+    .png({
+      compressionLevel: 9,
+      effort: 10,
+      palette: true,
+      quality: 100,
+    })
+    .toFile(output);
   console.log(`${path.basename(output)} created`);
 }
 
