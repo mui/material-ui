@@ -1123,6 +1123,9 @@ importers:
       '@mui/material-pigment-css':
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
+      '@mui/private-theming':
+        specifier: workspace:^
+        version: link:../mui-private-theming/build
       '@mui/system':
         specifier: workspace:^
         version: link:../mui-system/build
