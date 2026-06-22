@@ -12,13 +12,14 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-// Var-prefix experiment (docs/adr/0003-density-var-prefix.md). The prefix tracks
-// the css-var feature: a theme created with `cssVariables` carries a
-// `cssVarPrefix` (default "mui"), so density tokens resolve to `--mui-Button-*`;
-// a plain `createTheme()` has none, so they resolve to bare `--Button-*`.
-// The styled component AND the consumer both resolve names through the SAME
-// `getButtonVars(theme)`, so the emitted name and the targeted name can never
-// drift. No `theme.vars.*`, no `getCssVar`, no forced prefix.
+// Var-prefix experiment (docs/adr/0003-density-var-prefix.md). The PUBLIC token
+// (the Material UI layer's designer knob) carries the prefix, which tracks the
+// css-var feature: a theme with `cssVariables` resolves it to
+// `--mui-Button-small-pad`; a plain `createTheme()` to bare `--Button-small-pad`.
+// The agnostic seam (`--comp-pad`) and internal default (`--_pad`) are a separate,
+// literal/unprefixed layer and aren't in `buttonVars`. The styled component AND
+// the consumer both resolve the public token through the SAME `getButtonVars(theme)`,
+// so emitted and targeted names can't drift. No `theme.vars.*`, no `getCssVar`.
 
 const THEMES = [
   { id: 'plain', label: 'createTheme()', theme: createTheme() },
@@ -107,24 +108,29 @@ export default function DensityVarPrefix() {
         Density tokens — variable prefix
       </Typography>
       <Typography color="text.secondary" sx={{ mb: 3 }}>
-        Component density tokens carry the theme prefix — but the prefix{' '}
+        The <strong>public token</strong> (the designer knob) carries the prefix — but the prefix{' '}
         <strong>tracks the css-var feature</strong>. A theme made with{' '}
         <Box component="code" sx={codeSx}>
           cssVariables
         </Box>{' '}
-        resolves tokens to{' '}
+        resolves it to{' '}
         <Box component="code" sx={codeSx}>
-          --mui-Button-pad
+          --mui-Button-small-pad
         </Box>{' '}
         (or your custom prefix); a plain{' '}
         <Box component="code" sx={codeSx}>
           createTheme()
         </Box>{' '}
-        resolves them to bare{' '}
+        to bare{' '}
         <Box component="code" sx={codeSx}>
-          --Button-pad
+          --Button-small-pad
         </Box>
-        . The styled component and the consumer below both resolve through the same{' '}
+        . The agnostic seam{' '}
+        <Box component="code" sx={codeSx}>
+          --comp-pad
+        </Box>{' '}
+        stays literal/unprefixed. The styled component and the consumer below both resolve the
+        public token through the same{' '}
         <Box component="code" sx={codeSx}>
           getButtonVars(theme)
         </Box>

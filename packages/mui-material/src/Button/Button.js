@@ -94,10 +94,11 @@ const ButtonRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => {
-    // Resolve the public density token names through the same helper consumers
-    // use (ADR-0003), so the emitted and targeted names can't drift. The prefix
-    // tracks the css-var feature: `--mui-Button-pad` with cssVariables, bare
-    // `--Button-pad` without. The internal `--_pad` default stays unprefixed.
+    // Material UI layer: resolve the public sized tokens through the same helper
+    // consumers use (ADR-0003), so emitted and targeted names can't drift. The
+    // prefix tracks the css-var feature: `--mui-Button-small-pad` with
+    // cssVariables, bare `--Button-small-pad` without. The agnostic seam
+    // (`--comp-pad`) and internal default (`--_pad`) are literal and unprefixed.
     const buttonVars = getButtonVars(theme);
 
     const inheritContainedBackgroundColor =
@@ -107,11 +108,12 @@ const ButtonRoot = styled(ButtonBase, {
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
       ...theme.typography.button,
-      // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
-      // is the universal default (today's root padding); variants specialize it
-      // per (variant, size), so a custom variant/size still gets a sane value.
+      // Agnostic layer: the styled root's single consumption point reads the
+      // literal, unprefixed seam `--comp-pad`. `--_pad` is the universal default
+      // (today's root padding); variants specialize it per (variant, size), so a
+      // custom variant/size still gets a sane value.
       '--_pad': '6px 16px',
-      padding: `var(${buttonVars.pad}, var(--_pad))`, // seam falls back to the internal default
+      padding: 'var(--comp-pad, var(--_pad))', // seam falls back to the internal default
       minWidth: 64,
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -126,19 +128,19 @@ const ButtonRoot = styled(ButtonBase, {
       },
       variants: [
         // Built-in size routing (CSS, deduped) — routes the public sized token
-        // over the internal default. A custom size matches none of these, so its
-        // seam stays unset and consumption falls back to `--_pad`.
+        // over the internal default into the agnostic seam. A custom size matches
+        // none of these, so the seam stays unset and consumption falls to `--_pad`.
         {
           props: { size: 'small' },
-          style: { [buttonVars.pad]: `var(${buttonVars.smallPad}, var(--_pad))` },
+          style: { '--comp-pad': `var(${buttonVars.smallPad}, var(--_pad))` },
         },
         {
           props: { size: 'medium' },
-          style: { [buttonVars.pad]: `var(${buttonVars.mediumPad}, var(--_pad))` },
+          style: { '--comp-pad': `var(${buttonVars.mediumPad}, var(--_pad))` },
         },
         {
           props: { size: 'large' },
-          style: { [buttonVars.pad]: `var(${buttonVars.largePad}, var(--_pad))` },
+          style: { '--comp-pad': `var(${buttonVars.largePad}, var(--_pad))` },
         },
         {
           props: { variant: 'contained' },

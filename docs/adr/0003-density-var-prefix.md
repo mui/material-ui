@@ -7,12 +7,48 @@
 
 ## Decision
 
-Component density tokens **carry the theme prefix, and the prefix tracks the css-var feature**:
+The **public** density tokens (the Material UI layer's designer knobs) **carry the theme
+prefix, and the prefix tracks the css-var feature**:
 
-- `createTheme({ cssVariables: true })` → `theme.cssVarPrefix` is `'mui'` (or custom) → tokens resolve to `--mui-Button-pad`.
-- plain `createTheme()` → no `cssVarPrefix` → tokens resolve to bare `--Button-pad`.
+- `createTheme({ cssVariables: true })` → `theme.cssVarPrefix` is `'mui'` (or custom) → `--mui-Button-small-pad`.
+- plain `createTheme()` → no `cssVarPrefix` → bare `--Button-small-pad`.
 
-The internal default `--_pad` is always **unprefixed** (private, co-located).
+The **agnostic seam** and the **internal default** are a different layer — see below.
+
+### The three layers map to three naming rules
+
+The adapter reads each component as three layers of responsibility (ADR-0001). The prefix
+decision applies **per layer**, not uniformly:
+
+| Layer | Owner | Token | Prefixed? | In `buttonVars`? |
+|---|---|---|---|---|
+| **Agnostic** | the bare styled root, no design opinion | `--comp-<key>` | **no** — literal | **no** |
+| **Material UI** | the public per-size designer knob | `--mui-Button-<size>-<key>` | yes (tracks feature) | **yes** |
+| **Internal default** | today's `(variant,size)` literal, in `variants` | `--_<key>` | no — literal | no |
+
+- The **agnostic seam** is the styled root's single consumption point. It must stay design-system-
+  agnostic, so it's the generic, literal `--comp-<key>` (e.g. `--comp-pad`, `--comp-padBlock`) —
+  **not** `--Button-pad`, which wrongly wore the component name and the theme prefix. It is **not**
+  a public designer knob, so it does **not** belong in `buttonVars` (which is the Material UI layer).
+- `buttonVars` therefore holds **only the public sized tokens** (`smallPad`, …) — the things a design
+  system actually tunes.
+
+```text
+--comp-pad                agnostic seam        ← styled root's consumption point; literal, unprefixed
+--mui-Button-<size>-pad   public sized token   ← designer knob; Material UI layer; tracks the prefix
+--_pad                    internal default     ← Material literal (in `variants`); literal, unprefixed
+```
+
+Consumption is unchanged in shape — the seam falls back to the internal default:
+`padding: var(--comp-pad, var(--_pad))`; each size variant routes the public token over the default
+into the seam: `'--comp-pad': var(--mui-Button-small-pad, var(--_pad))`.
+
+> **Caveat (generic seam inheritance).** Because `--comp-<key>` is generic (not component-scoped),
+> two *different* components that share a css key (e.g. both expose `pad`) and nest could inherit the
+> seam across the boundary if the inner root doesn't set it (custom sizes). In the current scope
+> (Button uses `pad`; OutlinedInput uses `padBlock`/`padInline`) the keys don't overlap, so there's no
+> collision. Mitigation when keys do overlap: every component root already sets its seam for built-in
+> sizes, which shadows any inherited value.
 
 ## How
 
@@ -33,15 +69,15 @@ export function makeComponentVars(keyMap) {        // cached by cssVarPrefix
 ```
 
 ```ts
-// Button/buttonVars.ts — the typed handle lives WITH the component
-export const buttonVars = { pad: 'Button-pad', smallPad: 'Button-small-pad', /* … */ } as const;
+// Button/buttonVars.ts — the typed handle lives WITH the component (public knobs only)
+export const buttonVars = { smallPad: 'Button-small-pad', /* mediumPad, largePad */ } as const;
 export const getButtonVars = makeComponentVars(buttonVars);
 ```
 
-- **Component internals** read `const v = getButtonVars(theme)` inside the styled fn (already
-  `memoTheme`-cached) and consume `var(${v.pad}, var(--_pad))`. No `theme.vars` branch, no
-  `|| 'mui'` fallback — works identically in both modes.
-- **Consumers** call the same `getButtonVars(theme)` for the bare name and set it:
+- **Component internals** read `const buttonVars = getButtonVars(theme)` inside the styled fn
+  (already `memoTheme`-cached), consume the literal seam `var(--comp-pad, var(--_pad))`, and route
+  the resolved public token into it per size. No `theme.vars` branch, no `|| 'mui'` fallback.
+- **Consumers** call the same `getButtonVars(theme)` for the bare public-token name and set it:
   `sx={{ [getButtonVars(theme).smallPad]: '2px 8px' }}`.
 
 ## Why these shapes (rejected alternatives)

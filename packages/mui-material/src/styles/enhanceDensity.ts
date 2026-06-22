@@ -393,18 +393,18 @@ export default function enhanceDensity<
             // The outlined label resting-Y tracks the input's block padding, but
             // the label is a preceding sibling — it can't read the input's
             // `--OutlinedInput-*-padBlock` (custom props don't inherit sibling ->
-            // sibling). So derive `--InputLabel-y` straight from the density step
-            // (which the label DOES inherit from `:root`), matching the
-            // component's -0.5/+0.5 rounding per size.
+            // sibling). So drive the agnostic `--comp-labelY` seam straight from
+            // the density step (which the label DOES inherit from `:root`),
+            // matching the component's -0.5/+0.5 rounding per size.
             [`.${inputLabelClasses.root}:has(~ &)`]: {
-              [pv('InputLabel-y')]: `calc(${varRefs.md} - 0.5px)`,
+              '--comp-labelY': `calc(${varRefs.md} - 0.5px)`,
             },
             variants: [
               {
                 props: { size: 'small' },
                 style: {
                   [`.${inputLabelClasses.root}:has(~ &)`]: {
-                    [pv('InputLabel-y')]: `calc(${varRefs.sm} + 0.5px)`,
+                    '--comp-labelY': `calc(${varRefs.sm} + 0.5px)`,
                   },
                 },
               },

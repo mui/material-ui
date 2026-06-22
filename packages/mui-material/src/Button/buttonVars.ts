@@ -1,12 +1,12 @@
 import { makeComponentVars } from '../styles/tokenAccess';
 
 /**
- * Button density token identities (ADR-0003) — unprefixed keys, the typed
- * handle a consumer imports. `pad` is the agnostic seam; the sized keys are the
- * public designer knobs.
+ * Button density token identities (ADR-0003) — the Material UI layer's public
+ * designer knobs (prefixed via `getButtonVars`), the typed handle a consumer
+ * imports. The agnostic seam (`--comp-pad`) and internal default (`--_pad`) are
+ * the literal, unprefixed plumbing and deliberately live outside this map.
  */
 export const buttonVars = {
-  pad: 'Button-pad',
   smallPad: 'Button-small-pad',
   mediumPad: 'Button-medium-pad',
   largePad: 'Button-large-pad',

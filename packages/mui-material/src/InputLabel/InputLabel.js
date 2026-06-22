@@ -12,7 +12,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 import { getTransitionStyles } from '../transitions/utils';
-import { varName } from '../styles/tokenAccess';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
@@ -54,130 +53,126 @@ const InputLabelRoot = styled(FormLabel, {
     ];
   },
 })(
-  memoTheme(({ theme }) => {
-    // Seam driven by OutlinedInput's `:has` bridge; honors cssVarPrefix. ADR-0003.
-    const labelY = varName(theme, 'InputLabel-y');
-    return {
-      display: 'block',
-      transformOrigin: 'top left',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      maxWidth: '100%',
-      variants: [
-        {
-          props: ({ ownerState }) => ownerState.formControl,
-          style: {
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            // slight alteration to spec spacing to match visual spec result
-            transform: 'translate(0, 20px) scale(1)',
-          },
+  memoTheme(({ theme }) => ({
+    display: 'block',
+    transformOrigin: 'top left',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '100%',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.formControl,
+        style: {
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          // slight alteration to spec spacing to match visual spec result
+          transform: 'translate(0, 20px) scale(1)',
         },
-        {
-          props: {
-            size: 'small',
-          },
-          style: {
-            // Compensation for the `Input` small size style.
-            transform: 'translate(0, 17px) scale(1)',
-          },
+      },
+      {
+        props: {
+          size: 'small',
         },
-        {
-          props: ({ ownerState }) => ownerState.shrink,
-          style: {
-            transform: 'translate(0, -1.5px) scale(0.75)',
-            transformOrigin: 'top left',
-            maxWidth: '133%',
-          },
+        style: {
+          // Compensation for the `Input` small size style.
+          transform: 'translate(0, 17px) scale(1)',
         },
-        {
-          props: ({ ownerState }) => !ownerState.disableAnimation,
-          style: {
-            ...getTransitionStyles(theme, ['color', 'transform', 'max-width'], {
-              duration: theme.transitions.duration.shorter,
-              easing: theme.transitions.easing.easeOut,
-            }),
-          },
+      },
+      {
+        props: ({ ownerState }) => ownerState.shrink,
+        style: {
+          transform: 'translate(0, -1.5px) scale(0.75)',
+          transformOrigin: 'top left',
+          maxWidth: '133%',
         },
-        {
-          props: {
-            variant: 'filled',
-          },
-          style: {
-            // Chrome's autofill feature gives the input field a yellow background.
-            // Since the input field is behind the label in the HTML tree,
-            // the input field is drawn last and hides the label with an opaque background color.
-            // zIndex: 1 will raise the label above opaque background-colors of input.
-            zIndex: 1,
-            pointerEvents: 'none',
-            transform: 'translate(12px, 16px) scale(1)',
-            maxWidth: 'calc(100% - 24px)',
-          },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableAnimation,
+        style: {
+          ...getTransitionStyles(theme, ['color', 'transform', 'max-width'], {
+            duration: theme.transitions.duration.shorter,
+            easing: theme.transitions.easing.easeOut,
+          }),
         },
-        {
-          props: {
-            variant: 'filled',
-            size: 'small',
-          },
-          style: {
-            transform: 'translate(12px, 13px) scale(1)',
-          },
+      },
+      {
+        props: {
+          variant: 'filled',
         },
-        {
-          props: ({ variant, ownerState }) => variant === 'filled' && ownerState.shrink,
-          style: {
-            userSelect: 'none',
-            pointerEvents: 'auto',
-            transform: 'translate(12px, 7px) scale(0.75)',
-            maxWidth: 'calc(133% - 24px)',
-          },
+        style: {
+          // Chrome's autofill feature gives the input field a yellow background.
+          // Since the input field is behind the label in the HTML tree,
+          // the input field is drawn last and hides the label with an opaque background color.
+          // zIndex: 1 will raise the label above opaque background-colors of input.
+          zIndex: 1,
+          pointerEvents: 'none',
+          transform: 'translate(12px, 16px) scale(1)',
+          maxWidth: 'calc(100% - 24px)',
         },
-        {
-          props: ({ variant, ownerState, size }) =>
-            variant === 'filled' && ownerState.shrink && size === 'small',
-          style: {
-            transform: 'translate(12px, 4px) scale(0.75)',
-          },
+      },
+      {
+        props: {
+          variant: 'filled',
+          size: 'small',
         },
-        {
-          props: {
-            variant: 'outlined',
-          },
-          style: {
-            // see comment above on filled.zIndex
-            zIndex: 1,
-            pointerEvents: 'none',
-            // Resting Y is a generic seam; the sibling input owns its value (see
-            // OutlinedInput's `:has` rule). Default is today's literal.
-            transform: `translate(14px, var(${labelY}, 16px)) scale(1)`,
-            maxWidth: 'calc(100% - 24px)',
-          },
+        style: {
+          transform: 'translate(12px, 13px) scale(1)',
         },
-        {
-          props: {
-            variant: 'outlined',
-            size: 'small',
-          },
-          style: {
-            transform: `translate(14px, var(${labelY}, 9px)) scale(1)`,
-          },
+      },
+      {
+        props: ({ variant, ownerState }) => variant === 'filled' && ownerState.shrink,
+        style: {
+          userSelect: 'none',
+          pointerEvents: 'auto',
+          transform: 'translate(12px, 7px) scale(0.75)',
+          maxWidth: 'calc(133% - 24px)',
         },
-        {
-          props: ({ variant, ownerState }) => variant === 'outlined' && ownerState.shrink,
-          style: {
-            userSelect: 'none',
-            pointerEvents: 'auto',
-            // Theoretically, we should have (8+5)*2/0.75 = 34px
-            // but it feels a better when it bleeds a bit on the left, so 32px.
-            maxWidth: 'calc(133% - 32px)',
-            transform: 'translate(14px, -9px) scale(0.75)',
-          },
+      },
+      {
+        props: ({ variant, ownerState, size }) =>
+          variant === 'filled' && ownerState.shrink && size === 'small',
+        style: {
+          transform: 'translate(12px, 4px) scale(0.75)',
         },
-      ],
-    };
-  }),
+      },
+      {
+        props: {
+          variant: 'outlined',
+        },
+        style: {
+          // see comment above on filled.zIndex
+          zIndex: 1,
+          pointerEvents: 'none',
+          // Resting Y is a generic seam; the sibling input owns its value (see
+          // OutlinedInput's `:has` rule). Default is today's literal.
+          transform: 'translate(14px, var(--comp-labelY, 16px)) scale(1)',
+          maxWidth: 'calc(100% - 24px)',
+        },
+      },
+      {
+        props: {
+          variant: 'outlined',
+          size: 'small',
+        },
+        style: {
+          transform: 'translate(14px, var(--comp-labelY, 9px)) scale(1)',
+        },
+      },
+      {
+        props: ({ variant, ownerState }) => variant === 'outlined' && ownerState.shrink,
+        style: {
+          userSelect: 'none',
+          pointerEvents: 'auto',
+          // Theoretically, we should have (8+5)*2/0.75 = 34px
+          // but it feels a better when it bleeds a bit on the left, so 32px.
+          maxWidth: 'calc(133% - 32px)',
+          transform: 'translate(14px, -9px) scale(0.75)',
+        },
+      },
+    ],
+  })),
 );
 
 const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
