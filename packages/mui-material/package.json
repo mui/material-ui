@@ -91,6 +91,9 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "browser": {
+    "react-transition-group/cjs/TransitionGroupContext.js": "react-transition-group/esm/TransitionGroupContext.js"
+  },
   "exports": {
     ".": "./src/index.js",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
