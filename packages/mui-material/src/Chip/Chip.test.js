@@ -156,19 +156,30 @@ describe('<Chip />', () => {
     });
 
     it('should keep a disabled link chip focusable when skipFocusWhenDisabled is false (default)', () => {
-      render(<Chip label="My Chip" component="a" href="/test" disabled onClick={() => {}} />);
+      const { container } = render(
+        <Chip label="My Chip" component="a" href="/test" disabled onClick={() => {}} />,
+      );
 
-      const chip = screen.getByRole('link');
+      const chip = container.firstChild;
+      expect(chip).to.have.tagName('a');
       expect(chip).to.have.attribute('aria-disabled', 'true');
       expect(chip).to.have.property('tabIndex', 0);
     });
 
     it('should make a disabled link chip non-focusable when skipFocusWhenDisabled is true', () => {
-      render(
-        <Chip label="My Chip" component="a" href="/test" disabled onClick={() => {}} skipFocusWhenDisabled />,
+      const { container } = render(
+        <Chip
+          label="My Chip"
+          component="a"
+          href="/test"
+          disabled
+          onClick={() => {}}
+          skipFocusWhenDisabled
+        />,
       );
 
-      const chip = screen.getByRole('link');
+      const chip = container.firstChild;
+      expect(chip).to.have.tagName('a');
       expect(chip).to.have.property('tabIndex', -1);
     });
 
