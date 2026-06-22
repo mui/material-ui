@@ -1,11 +1,11 @@
-// import path from 'node:path';
-// import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// const dirname = path.dirname(fileURLToPath(import.meta.url));
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 // Two levels up: test/css-theme-provider-vite-sandbox → test → monorepo root
-// const MONOREPO_ROOT = path.resolve(dirname, '../..');
+const MONOREPO_ROOT = path.resolve(dirname, '../..');
 
 // https://vite.dev/config/
 // Use the function form so `mode` is available for the NODE_ENV define.
@@ -64,9 +64,10 @@ export default defineConfig(({ mode }) => ({
 
       // THE KEY ALIAS: swap Emotion for the zero-runtime noop engine.
       // This is exactly what non-Emotion users configure in their own bundler.
+
       {
         find: '@mui/styled-engine',
-        replacement: '@mui/styled-engine-noop',
+        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine-noop/build'),
       },
     ],
   },
