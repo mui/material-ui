@@ -171,6 +171,29 @@ describe('<MenuList />', () => {
       expect(list.style).to.have.property('width', `calc(100% + ${expectedPadding})`);
     });
 
+    it('should add scrollbar width to existing padding-right rather than replacing it', () => {
+      const menuListActionsRef = React.createRef();
+      const listRef = React.createRef();
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
+      const list = listRef.current;
+      setStyleWidthForJsdomOrBrowser(list.style, '');
+      stub(list, 'clientHeight').get(() => 11);
+
+      // Simulate padding-right applied via a theme/CSS override (e.g. 8px)
+      list.style.paddingRight = '8px';
+
+      menuListActionsRef.current.adjustStyleForScrollbar(
+        { clientHeight: 10 },
+        { direction: 'ltr' },
+      );
+
+      // The scrollbar width should be added on top of the existing 8px, not replace it
+      const scrollbarSizePx = getScrollbarSize(window);
+      expect(list.style).to.have.property('paddingRight', `${8 + scrollbarSizePx}px`);
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', `calc(100% + ${scrollbarSizePx}px)`);
+    });
+
     it('should not adjust styles when width already specified', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
