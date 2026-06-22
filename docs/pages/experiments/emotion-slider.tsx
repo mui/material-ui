@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
@@ -30,24 +31,62 @@ const themeNames = ['Blue (default)', 'Green', 'Red'];
 
 const innerThemes = [
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
       dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
     },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
       dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
     },
   }),
 ];
+
+// ---------- ScopedThemeProvider --------------------------------------------
+
+// Wraps children in a container with scoped --mui-palette-* overrides.
+// disableNestedContext forces GlobalStyles injection (otherwise
+// createCssVarsProvider skips it when cssVarPrefix matches the outer provider).
+// colorSchemeNode={null} + storageWindow={null}: outer provider owns the DOM
+// attribute and localStorage; inner provider only injects CSS.
+function ScopedThemeProvider({
+  theme,
+  children,
+}: {
+  theme: ReturnType<typeof createTheme>;
+  children: React.ReactNode;
+}) {
+  const { colorScheme } = useColorScheme();
+  return (
+    <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
+      <ThemeProvider
+        theme={theme}
+        colorSchemeNode={null}
+        storageWindow={null}
+        disableNestedContext
+      >
+        {children}
+      </ThemeProvider>
+    </div>
+  );
+}
 
 // ---------- InnerSection ----------------------------------------------------
 
@@ -203,10 +242,10 @@ function Page({
           borderRadius: 8,
         }}
       >
-        <h2 style={{ marginTop: 0 }}>Nested ThemeProvider (cssVarPrefix: inner)</h2>
-        <ThemeProvider theme={innerThemes[innerThemeIndex]}>
+        <h2 style={{ marginTop: 0 }}>Nested scoped theme (same --mui-palette-* names)</h2>
+        <ScopedThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
-        </ThemeProvider>
+        </ScopedThemeProvider>
       </div>
 
       <style>{`
@@ -218,7 +257,7 @@ function Page({
         .inner-custom-slider .MuiSlider-thumb {
           width: 24px;
           height: 24px;
-          background: var(--inner-palette-secondary-main, #9c27b0);
+          background: var(--mui-palette-secondary-main, #9c27b0);
         }
       `}</style>
     </div>

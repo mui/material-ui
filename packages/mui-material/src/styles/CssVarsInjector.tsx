@@ -16,6 +16,12 @@ interface CssVarsInjectorProps {
    * works correctly when the provider is rendered inside an iframe.
    */
   documentNode?: Document | undefined;
+  /**
+   * Overrides the auto-derived `<style>` tag id (`{cssVarPrefix}-css-vars`).
+   * Use this when multiple providers share the same `cssVarPrefix` but need
+   * to inject into separate `<style>` tags so they don't overwrite each other.
+   */
+  styleId?: string | undefined;
 }
 
 const DEFAULT_STYLE_ID = 'mui-css-vars';
@@ -24,8 +30,8 @@ function getStyleId(cssVarPrefix: string | undefined) {
   return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
 }
 
-export default function CssVarsInjector({ theme, nonce, documentNode }: CssVarsInjectorProps) {
-  const styleId = getStyleId(theme.cssVarPrefix);
+export default function CssVarsInjector({ theme, nonce, documentNode, styleId: styleIdProp }: CssVarsInjectorProps) {
+  const styleId = styleIdProp ?? getStyleId(theme.cssVarPrefix);
   const css = React.useMemo(
     () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),
     [theme],

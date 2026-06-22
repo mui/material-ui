@@ -102,6 +102,13 @@ export interface CssThemeProviderProps<Theme = DefaultTheme> {
    * @default 'mui-color-scheme'
    */
   colorSchemeStorageKey?: string | undefined;
+  /**
+   * Overrides the auto-derived `<style>` tag id (`{cssVarPrefix}-css-vars`).
+   * Use this when multiple `CssThemeProvider` instances share the same
+   * `cssVarPrefix` but must inject into separate `<style>` tags so they
+   * don't overwrite each other.
+   */
+  styleId?: string | undefined;
 }
 
 interface ThemeLike {
@@ -147,6 +154,7 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
   storageWindow = typeof window === 'undefined' ? undefined : window,
   modeStorageKey = defaultConfig.modeStorageKey,
   colorSchemeStorageKey = defaultConfig.colorSchemeStorageKey,
+  styleId,
 }: CssThemeProviderProps<Theme>) {
   const resolved = React.useMemo(() => {
     if (typeof themeInput === 'function') {
@@ -222,7 +230,7 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
       <RtlProvider value={rtl}>
         <DefaultPropsProvider value={resolved.components}>
           <PrivateThemeProvider theme={resolved}>
-            <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
+            <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} styleId={styleId} />
             {children}
           </PrivateThemeProvider>
         </DefaultPropsProvider>

@@ -49,26 +49,78 @@ const themes = [
 
 const themeNames = ['Blue (default)', 'Green', 'Red'];
 
+// Inner themes scope their CSS to `.inner-theme-scope` so the --mui-palette-*
+// overrides only apply inside the container:
+//   rootSelector       → keeps the default-scheme vars off :root
+//   colorSchemeSelector → scopes the dark/light variants to the same container
+// ScopedCssThemeProvider injects the generated CSS into a dedicated
+// <style id="mui-css-vars-inner-scope"> in <head>, separate from the shared
+// <style id="mui-css-vars"> the outer CssThemeProvider owns, so the two never
+// overwrite each other.
 const innerThemes = [
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
       dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
     },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
       dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
     },
   }),
 ];
+
+const INNER_STYLE_ID = 'mui-css-vars-inner-scope';
+
+// Uses CssThemeProvider with a dedicated styleId so the inner CSS goes into its
+// own <style> tag and never overwrites the outer CssThemeProvider's
+// <style id="mui-css-vars">.
+//
+// colorScheme is read from the OUTER context (before the inner CssThemeProvider
+// is rendered) so dark-mode stays in sync with the rest of the page.
+//
+// colorSchemeNode={null} — inner provider must not touch the DOM attribute;
+//   we set data-inner-color-scheme ourselves via the React prop above.
+// storageWindow={null}   — outer provider owns localStorage; inner provider
+//   should not compete for the same keys.
+function ScopedCssThemeProvider({
+  theme,
+  children,
+}: {
+  theme: ReturnType<typeof createTheme>;
+  children: React.ReactNode;
+}) {
+  const { colorScheme } = useCssColorScheme();
+  return (
+    <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
+      <CssThemeProvider
+        theme={theme}
+        styleId={INNER_STYLE_ID}
+        colorSchemeNode={null}
+        storageWindow={null}
+      >
+        {children}
+      </CssThemeProvider>
+    </div>
+  );
+}
 
 interface InnerSectionProps {
   innerThemeIndex: number;
@@ -107,7 +159,8 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
       <div style={{ maxWidth: 400, marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          sx override — track should turn inner secondary + thumb should grow (noop engine: ignored, see console):
+          sx override — track should turn inner secondary + thumb should grow (noop engine: ignored,
+          see console):
         </p>
         <Slider
           value={value}
@@ -161,10 +214,7 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
             {name}
           </button>
         ))}
-        <button
-          type="button"
-          onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
-        >
+        <button type="button" onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
           Switch to {mode === 'light' ? 'dark' : 'light'} mode
         </button>
       </div>
@@ -185,7 +235,8 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
 
       <div style={{ maxWidth: 400, marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          sx override — track should turn secondary + thumb should grow (noop engine: ignored, see console):
+          sx override — track should turn secondary + thumb should grow (noop engine: ignored, see
+          console):
         </p>
         <Slider
           value={value}
@@ -207,10 +258,12 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
           borderRadius: 8,
         }}
       >
-        <h2 style={{ marginTop: 0 }}>Nested CssThemeProvider (cssVarPrefix: inner)</h2>
-        <CssThemeProvider theme={innerThemes[innerThemeIndex]}>
+        <h2 style={{ marginTop: 0 }}>
+          Nested scoped theme (separate head style, --mui-palette-* override)
+        </h2>
+        <ScopedCssThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
-        </CssThemeProvider>
+        </ScopedCssThemeProvider>
       </div>
 
       <style>{`
@@ -222,7 +275,7 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         .inner-custom-slider .MuiSlider-thumb {
           width: 24px;
           height: 24px;
-          background: var(--inner-palette-secondary-main, #9c27b0);
+          background: var(--mui-palette-secondary-main, #9c27b0);
         }
       `}</style>
     </div>

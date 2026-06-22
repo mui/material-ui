@@ -30,24 +30,64 @@ const themeNames = ['Blue (default)', 'Green', 'Red'];
 
 const innerThemes = [
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
       dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
     },
   }),
   createTheme({
-    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
     colorSchemes: {
       light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
       dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
     },
   }),
 ];
+
+// ---------- ScopedCssThemeProvider -----------------------------------------
+
+const INNER_STYLE_ID = 'mui-css-vars-inner-scope';
+
+// Uses CssThemeProvider with a dedicated styleId so the inner CSS goes into
+// its own <style id="mui-css-vars-inner-scope">, separate from the outer
+// provider's <style id="mui-css-vars">.
+// colorSchemeNode={null}  — outer div owns data-mui-color-scheme.
+// storageWindow={null}    — outer provider owns localStorage.
+function ScopedCssThemeProvider({
+  theme,
+  children,
+}: {
+  theme: ReturnType<typeof createTheme>;
+  children: React.ReactNode;
+}) {
+  const { colorScheme } = useCssColorScheme();
+  return (
+    <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
+      <CssThemeProvider
+        theme={theme}
+        styleId={INNER_STYLE_ID}
+        colorSchemeNode={null}
+        storageWindow={null}
+      >
+        {children}
+      </CssThemeProvider>
+    </div>
+  );
+}
 
 // ---------- InnerSection ----------------------------------------------------
 
@@ -95,7 +135,7 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
           value={value}
           onChange={(_, v) => setValue(v as number)}
           sx={{
-            color: 'var(--inner-palette-secondary-main)',
+            color: 'var(--mui-palette-secondary-main)',
             '& .MuiSlider-thumb': { width: 28, height: 28 },
           }}
           aria-label="Inner sx override slider"
@@ -197,8 +237,8 @@ function Page({
 
       {/* ── nested CssThemeProvider ─────────────────────────── */}
       {/* mounted guard: CssVarsInjector renders <style> on the server but null on the
-          client, which causes a React hydration mismatch. Deferring this subtree to
-          client-only avoids a second injector being present in the server HTML. */}
+          client, which causes a React hydration mismatch when a second injector is
+          present alongside the outer one. Deferring to client-only avoids it. */}
       {mounted && (
         <div
           style={{
@@ -208,13 +248,13 @@ function Page({
             borderRadius: 8,
           }}
         >
-          <h2 style={{ marginTop: 0 }}>Nested CssThemeProvider (cssVarPrefix: inner)</h2>
-          <CssThemeProvider theme={innerThemes[innerThemeIndex]}>
+          <h2 style={{ marginTop: 0 }}>Nested scoped theme (same --mui-palette-* names)</h2>
+          <ScopedCssThemeProvider theme={innerThemes[innerThemeIndex]}>
             <InnerSection
               innerThemeIndex={innerThemeIndex}
               setInnerThemeIndex={setInnerThemeIndex}
             />
-          </CssThemeProvider>
+          </ScopedCssThemeProvider>
         </div>
       )}
 
@@ -227,7 +267,7 @@ function Page({
         .inner-custom-slider .MuiSlider-thumb {
           width: 24px;
           height: 24px;
-          background: var(--inner-palette-secondary-main, #9c27b0);
+          background: var(--mui-palette-secondary-main, #9c27b0);
         }
       `}</style>
     </div>
