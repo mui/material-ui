@@ -7,6 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
+import { getButtonVars } from './buttonVars';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
@@ -74,9 +75,6 @@ const commonIconStyles = [
   },
 ];
 
-// Built-in sizes route padding via variants; any other size routes inline.
-const buttonSizes = ['small', 'medium', 'large'];
-
 const ButtonRoot = styled(ButtonBase, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiButton',
@@ -96,6 +94,12 @@ const ButtonRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => {
+    // Resolve the public density token names through the same helper consumers
+    // use (ADR-0003), so the emitted and targeted names can't drift. The prefix
+    // tracks the css-var feature: `--mui-Button-pad` with cssVariables, bare
+    // `--Button-pad` without. The internal `--_pad` default stays unprefixed.
+    const buttonVars = getButtonVars(theme);
+
     const inheritContainedBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
@@ -107,7 +111,7 @@ const ButtonRoot = styled(ButtonBase, {
       // is the universal default (today's root padding); variants specialize it
       // per (variant, size), so a custom variant/size still gets a sane value.
       '--_pad': '6px 16px',
-      padding: 'var(--Button-pad, var(--_pad))',
+      padding: `var(${buttonVars.pad}, var(--_pad))`, // seam falls back to the internal default
       minWidth: 64,
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -121,19 +125,20 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
-        // Built-in size routing (CSS, deduped) — exposes the public sized token
-        // over the internal default. Custom sizes are routed inline instead.
+        // Built-in size routing (CSS, deduped) — routes the public sized token
+        // over the internal default. A custom size matches none of these, so its
+        // seam stays unset and consumption falls back to `--_pad`.
         {
           props: { size: 'small' },
-          style: { '--Button-pad': 'var(--Button-small-pad, var(--_pad))' },
+          style: { [buttonVars.pad]: `var(${buttonVars.smallPad}, var(--_pad))` },
         },
         {
           props: { size: 'medium' },
-          style: { '--Button-pad': 'var(--Button-medium-pad, var(--_pad))' },
+          style: { [buttonVars.pad]: `var(${buttonVars.mediumPad}, var(--_pad))` },
         },
         {
           props: { size: 'large' },
-          style: { '--Button-pad': 'var(--Button-large-pad, var(--_pad))' },
+          style: { [buttonVars.pad]: `var(${buttonVars.largePad}, var(--_pad))` },
         },
         {
           props: { variant: 'contained' },
@@ -567,14 +572,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // Material UI layer: built-in sizes route the public sized token via variants
-  // (deduped CSS). A custom size has no such variant, so route it inline — the
-  // token name carries the runtime size string, keeping custom sizes tunable for
-  // free. The `--_pad` default lives in the variants. See docs/adr/0001.
-  const densityVars = buttonSizes.includes(size)
-    ? undefined
-    : { '--Button-pad': `var(--Button-${size}-pad, var(--_pad))` };
-
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp || (
@@ -627,7 +624,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
-      style={{ ...densityVars, ...other.style }}
       classes={forwardedClasses}
     >
       {startIcon}

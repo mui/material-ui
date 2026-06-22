@@ -84,6 +84,12 @@ export default function enhanceDensity<
     return acc;
   }, {} as DensityScale);
 
+  // Public token name, prefix-guarded to match the component resolver (ADR-0003):
+  // prefixed when the theme has a cssVarPrefix, bare otherwise. Only the converted
+  // components (Button, OutlinedInput, InputLabel) use it; the rest stay unprefixed.
+  const prefix = (themeInput as any).cssVarPrefix;
+  const pv = (name: string) => `--${prefix ? `${prefix}-` : ''}${name}`;
+
   const theme = { ...themeInput } as T & { density: DensityScale };
   theme.density = scale;
   theme.vars = { ...themeInput.vars, density: varRefs };
@@ -114,9 +120,9 @@ export default function enhanceDensity<
           {
             // Sized-only: each size's `pad` shorthand (block inline) maps to its
             // own density step, so tuning the scale keeps the per-size matrix.
-            '--Button-small-pad': `${varRefs.xxs} ${varRefs.sm}`,
-            '--Button-medium-pad': `${varRefs.xs} ${varRefs.lg}`,
-            '--Button-large-pad': `${varRefs.sm} ${varRefs.xl}`,
+            [pv('Button-small-pad')]: `${varRefs.xxs} ${varRefs.sm}`,
+            [pv('Button-medium-pad')]: `${varRefs.xs} ${varRefs.lg}`,
+            [pv('Button-large-pad')]: `${varRefs.sm} ${varRefs.xl}`,
           },
         ],
       },
@@ -380,10 +386,10 @@ export default function enhanceDensity<
           {
             // Sized block/inline padding per size; block < inline to keep the
             // input's 16.5/14 feel.
-            '--OutlinedInput-medium-padBlock': varRefs.md,
-            '--OutlinedInput-small-padBlock': varRefs.sm,
-            '--OutlinedInput-medium-padInline': varRefs.lg,
-            '--OutlinedInput-small-padInline': varRefs.md,
+            [pv('OutlinedInput-medium-padBlock')]: varRefs.md,
+            [pv('OutlinedInput-small-padBlock')]: varRefs.sm,
+            [pv('OutlinedInput-medium-padInline')]: varRefs.lg,
+            [pv('OutlinedInput-small-padInline')]: varRefs.md,
             // The outlined label resting-Y tracks the input's block padding, but
             // the label is a preceding sibling — it can't read the input's
             // `--OutlinedInput-*-padBlock` (custom props don't inherit sibling ->
@@ -391,14 +397,14 @@ export default function enhanceDensity<
             // (which the label DOES inherit from `:root`), matching the
             // component's -0.5/+0.5 rounding per size.
             [`.${inputLabelClasses.root}:has(~ &)`]: {
-              '--InputLabel-y': `calc(${varRefs.md} - 0.5px)`,
+              [pv('InputLabel-y')]: `calc(${varRefs.md} - 0.5px)`,
             },
             variants: [
               {
                 props: { size: 'small' },
                 style: {
                   [`.${inputLabelClasses.root}:has(~ &)`]: {
-                    '--InputLabel-y': `calc(${varRefs.sm} + 0.5px)`,
+                    [pv('InputLabel-y')]: `calc(${varRefs.sm} + 0.5px)`,
                   },
                 },
               },

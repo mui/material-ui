@@ -12,6 +12,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
+import { getOutlinedInputVars } from './outlinedInputVars';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -46,6 +47,9 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
   memoTheme(({ theme }) => {
     const borderColor =
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+    // Public density tokens honor cssVarPrefix (default "mui"); internal `--_*`
+    // defaults stay unprefixed (private, co-located). See ADR-0003.
+    const v = getOutlinedInputVars(theme);
     return {
       // Density adapter (docs/adr/0001): each padding literal becomes
       // `var(--seam, var(--_<key>))`, tokenized in place. Both axes are sized —
@@ -57,7 +61,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       // sibling, so reach it via :has and derive its resting-Y seam straight from
       // the public sized token. Medium resolves to 16px (16.5 - 0.5 rounding).
       [`.${inputLabelClasses.root}:has(~ &)`]: {
-        '--InputLabel-y': 'calc(var(--OutlinedInput-medium-padBlock, 16.5px) - 0.5px)',
+        [v.labelY]: `calc(var(${v.mediumPadBlock}, 16.5px) - 0.5px)`,
       },
       position: 'relative',
       borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -102,7 +106,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           style: {
             // Small label resolves to 9px (8.5 + 0.5).
             [`.${inputLabelClasses.root}:has(~ &)`]: {
-              '--InputLabel-y': 'calc(var(--OutlinedInput-small-padBlock, 8.5px) + 0.5px)',
+              [v.labelY]: `calc(var(${v.smallPadBlock}, 8.5px) + 0.5px)`,
             },
           },
         },
@@ -110,28 +114,28 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {
             '--_padInline': '14px',
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-medium-padInline, var(--_padInline))',
-            paddingLeft: 'var(--OutlinedInput-padInline, var(--_padInline))',
+            [v.padInline]: `var(${v.mediumPadInline}, var(--_padInline))`,
+            paddingLeft: `var(${v.padInline}, var(--_padInline))`,
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.startAdornment && size === 'small',
           style: {
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-small-padInline, var(--_padInline))',
+            [v.padInline]: `var(${v.smallPadInline}, var(--_padInline))`,
           },
         },
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
             '--_padInline': '14px',
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-medium-padInline, var(--_padInline))',
-            paddingRight: 'var(--OutlinedInput-padInline, var(--_padInline))',
+            [v.padInline]: `var(${v.mediumPadInline}, var(--_padInline))`,
+            paddingRight: `var(${v.padInline}, var(--_padInline))`,
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.endAdornment && size === 'small',
           style: {
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-small-padInline, var(--_padInline))',
+            [v.padInline]: `var(${v.smallPadInline}, var(--_padInline))`,
           },
         },
         {
@@ -139,18 +143,17 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
           style: {
             '--_padBlock': '16.5px',
             '--_padInline': '14px',
-            '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, var(--_padBlock))',
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-medium-padInline, var(--_padInline))',
-            padding:
-              'var(--OutlinedInput-padBlock, var(--_padBlock)) var(--OutlinedInput-padInline, var(--_padInline))',
+            [v.padBlock]: `var(${v.mediumPadBlock}, var(--_padBlock))`,
+            [v.padInline]: `var(${v.mediumPadInline}, var(--_padInline))`,
+            padding: `var(${v.padBlock}, var(--_padBlock)) var(${v.padInline}, var(--_padInline))`,
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
           style: {
             '--_padBlock': '8.5px',
-            '--OutlinedInput-padBlock': 'var(--OutlinedInput-small-padBlock, var(--_padBlock))',
-            '--OutlinedInput-padInline': 'var(--OutlinedInput-small-padInline, var(--_padInline))',
+            [v.padBlock]: `var(${v.smallPadBlock}, var(--_padBlock))`,
+            [v.padInline]: `var(${v.smallPadInline}, var(--_padInline))`,
           },
         },
       ],
@@ -178,59 +181,61 @@ const OutlinedInputInput = styled(InputBaseInput, {
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
 })(
-  memoTheme(({ theme }) => ({
-    // Both axes: `var(--seam, var(--_<key>))`, both sized — each seam routes the
-    // per-size public token over the internal default, specialized by the size
-    // variant below. Defaults are the Material px (inline 14px both sizes).
-    '--_padBlock': '16.5px',
-    '--_padInline': '14px',
-    '--OutlinedInput-padBlock': 'var(--OutlinedInput-medium-padBlock, var(--_padBlock))',
-    '--OutlinedInput-padInline': 'var(--OutlinedInput-medium-padInline, var(--_padInline))',
-    padding:
-      'var(--OutlinedInput-padBlock, var(--_padBlock)) var(--OutlinedInput-padInline, var(--_padInline))',
-    '&:-webkit-autofill': {
-      ...(!theme.vars && {
-        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-        caretColor: theme.palette.mode === 'light' ? null : '#fff',
-      }),
-      borderRadius: 'inherit',
-      ...(theme.vars &&
-        theme.applyStyles('dark', {
-          WebkitBoxShadow: '0 0 0 100px #266798 inset',
-          WebkitTextFillColor: '#fff',
-          caretColor: '#fff',
-        })),
-    },
-    variants: [
-      {
-        props: { size: 'small' },
-        style: {
-          '--_padBlock': '8.5px',
-          '--OutlinedInput-padBlock': 'var(--OutlinedInput-small-padBlock, var(--_padBlock))',
-          '--OutlinedInput-padInline': 'var(--OutlinedInput-small-padInline, var(--_padInline))',
-        },
+  memoTheme(({ theme }) => {
+    const v = getOutlinedInputVars(theme);
+    return {
+      // Both axes: `var(--seam, var(--_<key>))`, both sized — each seam routes the
+      // per-size public token over the internal default, specialized by the size
+      // variant below. Defaults are the Material px (inline 14px both sizes).
+      '--_padBlock': '16.5px',
+      '--_padInline': '14px',
+      [v.padBlock]: `var(${v.mediumPadBlock}, var(--_padBlock))`,
+      [v.padInline]: `var(${v.mediumPadInline}, var(--_padInline))`,
+      padding: `var(${v.padBlock}, var(--_padBlock)) var(${v.padInline}, var(--_padInline))`,
+      '&:-webkit-autofill': {
+        ...(!theme.vars && {
+          WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+          WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+          caretColor: theme.palette.mode === 'light' ? null : '#fff',
+        }),
+        borderRadius: 'inherit',
+        ...(theme.vars &&
+          theme.applyStyles('dark', {
+            WebkitBoxShadow: '0 0 0 100px #266798 inset',
+            WebkitTextFillColor: '#fff',
+            caretColor: '#fff',
+          })),
       },
-      {
-        props: ({ ownerState }) => ownerState.multiline,
-        style: {
-          padding: 0,
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            '--_padBlock': '8.5px',
+            [v.padBlock]: `var(${v.smallPadBlock}, var(--_padBlock))`,
+            [v.padInline]: `var(${v.smallPadInline}, var(--_padInline))`,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.startAdornment,
-        style: {
-          paddingLeft: 0,
+        {
+          props: ({ ownerState }) => ownerState.multiline,
+          style: {
+            padding: 0,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.endAdornment,
-        style: {
-          paddingRight: 0,
+        {
+          props: ({ ownerState }) => ownerState.startAdornment,
+          style: {
+            paddingLeft: 0,
+          },
         },
-      },
-    ],
-  })),
+        {
+          props: ({ ownerState }) => ownerState.endAdornment,
+          style: {
+            paddingRight: 0,
+          },
+        },
+      ],
+    };
+  }),
 );
 
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
