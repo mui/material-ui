@@ -619,7 +619,13 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
         if (precision < 1) {
-          const items = Array.from(new Array(Math.round(1 / precision)));
+          // Enumerate the precision steps that belong to this star using floor-based global
+          // indices. This avoids RangeError when 1/precision is non-integer (e.g. 0.3 → 3.333…)
+          // and prevents cross-star value collisions caused by floating-point rounding in
+          // roundValueToPrecision when the step boundary doesn't align with integer stars.
+          const starStart = Math.floor((itemValue - 1) / precision);
+          const starEnd = Math.floor(itemValue / precision);
+          const items = Array.from(new Array(Math.max(starEnd - starStart, 1)));
           return (
             <DecimalSlot
               {...decimalSlotProps}
@@ -628,9 +634,9 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
               iconActive={isActive}
             >
               {items.map(($, indexDecimal) => {
-                const itemDecimalValue = roundValueToPrecision(
-                  itemValue - 1 + (indexDecimal + 1) * precision,
-                  precision,
+                const globalIndex = starStart + indexDecimal + 1;
+                const itemDecimalValue = Number(
+                  (globalIndex * precision).toFixed(getDecimalPrecision(precision)),
                 );
 
                 return (
@@ -647,7 +653,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                           : {
                               width:
                                 itemDecimalValue === value
-                                  ? `${(indexDecimal + 1) * precision * 100}%`
+                                  ? `${(itemDecimalValue - (itemValue - 1)) * 100}%`
                                   : '0%',
                               overflow: 'hidden',
                               position: 'absolute',
