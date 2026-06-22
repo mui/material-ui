@@ -155,6 +155,23 @@ describe('<Chip />', () => {
       expect(chip).to.have.property('tabIndex', -1);
     });
 
+    it('should keep a disabled link chip focusable when skipFocusWhenDisabled is false (default)', () => {
+      render(<Chip label="My Chip" component="a" href="/test" disabled onClick={() => {}} />);
+
+      const chip = screen.getByRole('link');
+      expect(chip).to.have.attribute('aria-disabled', 'true');
+      expect(chip).to.have.property('tabIndex', 0);
+    });
+
+    it('should make a disabled link chip non-focusable when skipFocusWhenDisabled is true', () => {
+      render(
+        <Chip label="My Chip" component="a" href="/test" disabled onClick={() => {}} skipFocusWhenDisabled />,
+      );
+
+      const chip = screen.getByRole('link');
+      expect(chip).to.have.property('tabIndex', -1);
+    });
+
     it('does not warn when nativeButton is omitted and a custom non-button component is used', () => {
       const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});

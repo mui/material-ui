@@ -19,8 +19,10 @@ import useSlot from '../utils/useSlot';
 // Stable wrapper so that ButtonBase receives focusableWhenDisabled when skipFocusWhenDisabled=false.
 // shouldForwardProp on ChipRoot blocks focusableWhenDisabled from external props, so the prop is
 // added here inside the wrapper rather than passed through ChipRoot's prop-filtering layer.
-const ChipButtonBase = React.forwardRef(function ChipButtonBase(props, ref) {
-  return <ButtonBase {...props} ref={ref} focusableWhenDisabled />;
+// focusableWhenDisabled is gated on `disabled` to avoid setting aria-disabled when not needed.
+const ChipButtonBase = React.forwardRef(function ChipButtonBase(inProps, ref) {
+  const { disabled, ...props } = inProps;
+  return <ButtonBase disabled={disabled} {...props} ref={ref} focusableWhenDisabled={!!disabled} />;
 });
 
 const useUtilityClasses = (ownerState) => {
