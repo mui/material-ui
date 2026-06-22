@@ -26,15 +26,112 @@ import * as React from 'react';
 import { createTheme, CssThemeProvider, useCssColorScheme } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
-const theme = createTheme({
-  cssVariables: {
-    colorSchemeSelector: '[data-mui-color-scheme="%s"]',
-  },
-  colorSchemes: { light: true, dark: true },
-});
+const themes = [
+  createTheme({
+    cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
+    cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
+    },
+  }),
+  createTheme({
+    cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
+    },
+  }),
+];
 
-function AppContent() {
+const themeNames = ['Blue (default)', 'Green', 'Red'];
+
+const innerThemes = [
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
+    },
+  }),
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
+    },
+  }),
+];
+
+interface InnerSectionProps {
+  innerThemeIndex: number;
+  setInnerThemeIndex: (i: number) => void;
+}
+
+function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps) {
   const [value, setValue] = React.useState<number>(40);
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+        {themeNames.map((name, i) => (
+          <button
+            key={name}
+            type="button"
+            onClick={() => setInnerThemeIndex(i)}
+            style={{ fontWeight: innerThemeIndex === i ? 'bold' : 'normal' }}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ maxWidth: 400 }}>
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns inner secondary color via plain CSS:
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="inner-custom-slider"
+          aria-label="Inner custom class slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div style={{ maxWidth: 400, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track should turn inner secondary + thumb should grow (noop engine: ignored, see console):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          sx={{
+            color: 'secondary.main',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
+          }}
+          aria-label="Inner sx override slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+    </div>
+  );
+}
+
+interface AppContentProps {
+  themeIndex: number;
+  setThemeIndex: (i: number) => void;
+}
+
+function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
+  const [value, setValue] = React.useState<number>(40);
+  const [innerThemeIndex, setInnerThemeIndex] = React.useState(0);
   const { mode, setMode } = useCssColorScheme();
 
   return (
@@ -53,33 +150,28 @@ function AppContent() {
         <code>CssThemeProvider</code> (runtime CSS variable injection).
       </p>
 
-      <button
-        type="button"
-        onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
-        style={{ marginBottom: 32 }}
-      >
-        Switch to {mode === 'light' ? 'dark' : 'light'} mode
-      </button>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
+        {themeNames.map((name, i) => (
+          <button
+            key={name}
+            type="button"
+            onClick={() => setThemeIndex(i)}
+            style={{ fontWeight: themeIndex === i ? 'bold' : 'normal' }}
+          >
+            {name}
+          </button>
+        ))}
+        <button
+          type="button"
+          onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+        >
+          Switch to {mode === 'light' ? 'dark' : 'light'} mode
+        </button>
+      </div>
 
       <div style={{ maxWidth: 400 }}>
-        <p>Slider value: {value}</p>
-
-        {/*
-          sx prop intentionally passed to trigger the noop dev warning.
-          Open the browser console — you should see:
-          "MUI: The `sx` prop was used on <span> but `@mui/styled-engine-noop` is active."
-        */}
-        <Slider
-          value={value}
-          onChange={(_, v) => setValue(v as number)}
-          // @ts-ignore — sx is valid on Slider types but deliberately passed to trigger the noop warning
-          sx={{ color: 'red' }}
-          aria-label="Sandbox slider"
-        />
-
-        <p style={{ marginTop: 32 }}>
-          className override (thumb should be purple, overriding the default via plain CSS that
-          beats @layer mui.default):
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns secondary color via plain CSS:
         </p>
 
         <Slider
@@ -88,6 +180,37 @@ function AppContent() {
           className="custom-slider"
           aria-label="Custom class slider"
         />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div style={{ maxWidth: 400, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track should turn secondary + thumb should grow (noop engine: ignored, see console):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          sx={{
+            color: 'var(--mui-palette-secondary-main)',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
+          }}
+          aria-label="sx override slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div
+        style={{
+          marginTop: 48,
+          padding: 24,
+          border: '2px dashed var(--mui-palette-divider)',
+          borderRadius: 8,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Nested CssThemeProvider (cssVarPrefix: inner)</h2>
+        <CssThemeProvider theme={innerThemes[innerThemeIndex]}>
+          <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
+        </CssThemeProvider>
       </div>
 
       <style>{`
@@ -96,15 +219,21 @@ function AppContent() {
           height: 24px;
           background: var(--mui-palette-secondary-main, #9c27b0);
         }
+        .inner-custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--inner-palette-secondary-main, #9c27b0);
+        }
       `}</style>
     </div>
   );
 }
 
 export default function App() {
+  const [themeIndex, setThemeIndex] = React.useState(0);
   return (
-    <CssThemeProvider theme={theme}>
-      <AppContent />
+    <CssThemeProvider theme={themes[themeIndex]}>
+      <AppContent themeIndex={themeIndex} setThemeIndex={setThemeIndex} />
     </CssThemeProvider>
   );
 }

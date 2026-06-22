@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import PrivateThemeProvider from '@mui/private-theming/ThemeProvider';
 import type { DefaultTheme } from '@mui/system';
 import RtlProvider from '@mui/system/RtlProvider';
 import DefaultPropsProvider from '@mui/system/DefaultPropsProvider';
@@ -63,6 +64,11 @@ export interface CssThemeProviderProps<Theme = DefaultTheme> {
    * A nonce attribute to add to the injected `<style>` tag.
    */
   nonce?: string | undefined;
+  /**
+   * If `true`, the component will not render on the server, and will instead render a placeholder
+   * @default false
+   */
+  noSsr?: boolean | undefined; // For future use when SSR support is added. Not used currently.
   /**
    * The default color-scheme mode on first visit (before localStorage is set).
    * `'system'` follows the OS preference.
@@ -134,6 +140,7 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
   children,
   documentNode,
   nonce,
+  noSsr = false,
   defaultMode = 'system',
   disableTransitionOnChange = false,
   colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
@@ -182,6 +189,7 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
     colorSchemeNode,
     documentNode,
     disableTransitionOnChange,
+    noSsr,
   });
 
   const contextValue = React.useMemo<CssColorSchemeContextValue>(
@@ -213,8 +221,10 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
     <CssColorSchemeContext.Provider value={contextValue}>
       <RtlProvider value={rtl}>
         <DefaultPropsProvider value={resolved.components}>
-          <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
-          {children}
+          <PrivateThemeProvider theme={resolved}>
+            <CssVarsInjector theme={resolved} documentNode={documentNode} nonce={nonce} />
+            {children}
+          </PrivateThemeProvider>
         </DefaultPropsProvider>
       </RtlProvider>
     </CssColorSchemeContext.Provider>
