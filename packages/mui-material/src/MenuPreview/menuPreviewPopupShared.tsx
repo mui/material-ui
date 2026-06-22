@@ -336,7 +336,7 @@ export const MenuPreviewPopupBase = React.forwardRef(function MenuPreviewPopupBa
     ListSlot,
     {
       component: 'div',
-      disablePadding: true,
+      disablePadding: false,
       ...resolvedListProps,
       className: clsx(classes?.list, resolvedListProps?.className),
     },

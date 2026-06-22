@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { listClasses } from '@mui/material/List';
 import Tooltip from '@mui/material/Tooltip';
 import MenuPreview, {
   MenuPreviewCheckboxItem,
@@ -64,6 +65,7 @@ describe('<MenuPreview />', () => {
     const list = screen.getByTestId('paper').querySelector(`.${menuPreviewPopupClasses.list}`);
     expect(list).not.to.equal(null);
     expect(list!.tagName).to.equal('DIV');
+    expect(list!).to.have.class(listClasses.padding);
 
     expect(screen.getByRole('menuitem', { name: 'Profile' })).to.have.class(
       menuPreviewItemClasses.root,
