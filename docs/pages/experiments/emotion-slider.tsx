@@ -1,64 +1,110 @@
 'use client';
 import * as React from 'react';
-import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
 // ---------- Themes ----------------------------------------------------------
 
-const themes = {
-  violet: createTheme({
+const themes = [
+  createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
     cssVariables: { colorSchemeSelector: 'data' },
     colorSchemes: {
-      light: { palette: { primary: { main: '#7c3aed' }, secondary: { main: '#db2777' } } },
-      dark: { palette: { primary: { main: '#a78bfa' }, secondary: { main: '#f472b6' } } },
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
     },
-    shape: { borderRadius: 12 },
   }),
-  teal: createTheme({
+  createTheme({
     cssVariables: { colorSchemeSelector: 'data' },
     colorSchemes: {
-      light: { palette: { primary: { main: '#0d9488' }, secondary: { main: '#f59e0b' } } },
-      dark: { palette: { primary: { main: '#2dd4bf' }, secondary: { main: '#fbbf24' } } },
-    },
-    shape: { borderRadius: 4 },
-    components: {
-      MuiSlider: {
-        styleOverrides: {
-          thumb: { width: 24, height: 24 },
-          track: { height: 6 },
-          rail: { height: 6 },
-        },
-      },
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
     },
   }),
-  blue: createTheme({
-    cssVariables: { colorSchemeSelector: 'data' },
+];
+
+const themeNames = ['Blue (default)', 'Green', 'Red'];
+
+const innerThemes = [
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
     colorSchemes: {
-      light: { palette: { primary: { main: '#1d4ed8' }, secondary: { main: '#dc2626' } } },
-      dark: { palette: { primary: { main: '#60a5fa' }, secondary: { main: '#f87171' } } },
-    },
-    shape: { borderRadius: 8 },
-    components: {
-      MuiSlider: {
-        defaultProps: { size: 'small' },
-      },
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
     },
   }),
-} as const;
+  createTheme({
+    cssVariables: { cssVarPrefix: 'inner', colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
+    },
+  }),
+];
 
-type ThemeKey = keyof typeof themes;
+// ---------- InnerSection ----------------------------------------------------
 
-// ---------- styled() example ------------------------------------------------
+interface InnerSectionProps {
+  innerThemeIndex: number;
+  setInnerThemeIndex: (i: number) => void;
+}
 
-const GradientSlider = styled(Slider)(({ theme }) => ({
-  '& .MuiSlider-track': {
-    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-    border: 'none',
-  },
-  '& .MuiSlider-thumb': {
-    background: theme.palette.secondary.main,
-  },
-}));
+function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps) {
+  const [value, setValue] = React.useState<number>(40);
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+        {themeNames.map((name, i) => (
+          <button
+            key={name}
+            type="button"
+            onClick={() => setInnerThemeIndex(i)}
+            style={{ fontWeight: i === innerThemeIndex ? 700 : 400 }}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ maxWidth: 500 }}>
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns inner secondary color via plain CSS:
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="inner-custom-slider"
+          aria-label="Inner custom class slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div style={{ maxWidth: 500, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track turns inner secondary + thumb grows larger (Emotion: applied at
+          runtime):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          sx={{
+            color: 'secondary.main',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
+          }}
+          aria-label="Inner sx override slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+    </div>
+  );
+}
 
 // ---------- useMounted guard (avoid SSR hydration mismatch) ----------------
 
@@ -71,17 +117,16 @@ function useMounted() {
 // ---------- Page ------------------------------------------------------------
 
 function Page({
-  themeKey,
-  setThemeKey,
+  themeIndex,
+  setThemeIndex,
 }: {
-  themeKey: ThemeKey;
-  setThemeKey: (key: ThemeKey) => void;
+  themeIndex: number;
+  setThemeIndex: (i: number) => void;
 }) {
   const { mode, setMode } = useColorScheme();
   const mounted = useMounted();
-  const [value1, setValue1] = React.useState<number>(60);
-  const [value2, setValue2] = React.useState<number>(40);
-  const [value3, setValue3] = React.useState<number>(30);
+  const [value, setValue] = React.useState<number>(40);
+  const [innerThemeIndex, setInnerThemeIndex] = React.useState(0);
 
   return (
     <div
@@ -101,79 +146,79 @@ function Page({
         (Emotion).
       </p>
 
-      {/* Theme switcher */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-        {(Object.keys(themes) as ThemeKey[]).map((key) => (
+      {/* Theme switcher + dark mode toggle */}
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
+        {themeNames.map((name, i) => (
           <button
-            key={key}
+            key={name}
             type="button"
-            onClick={() => setThemeKey(key)}
-            style={{
-              padding: '4px 16px',
-              fontWeight: key === themeKey ? 700 : 400,
-              outline: key === themeKey ? '2px solid var(--mui-palette-primary-main)' : 'none',
-              cursor: 'pointer',
-            }}
+            onClick={() => setThemeIndex(i)}
+            style={{ fontWeight: i === themeIndex ? 700 : 400 }}
           >
-            {key}
+            {name}
           </button>
         ))}
+        <button type="button" onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+          {mounted ? `Switch to ${mode === 'light' ? 'dark' : 'light'} mode` : 'Toggle mode'}
+        </button>
       </div>
 
-      {/* Dark mode toggle */}
-      <button
-        type="button"
-        onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
-        style={{ marginBottom: 32 }}
-      >
-        {mounted ? `Switch to ${mode === 'light' ? 'dark' : 'light'} mode` : 'Toggle mode'}
-      </button>
-
-      {/* ── sx prop ──────────────────────────────────────────────────── */}
-      <p style={{ marginBottom: 4 }}>sx prop — secondary color + custom thumb:</p>
+      {/* ── className ────────────────────────────────────────────── */}
       <div style={{ maxWidth: 500 }}>
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns secondary color via plain CSS:
+        </p>
         <Slider
-          value={value1}
-          onChange={(_, v) => setValue1(v as number)}
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="custom-slider"
+          aria-label="Custom class slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      {/* ── sx prop ──────────────────────────────────────────────── */}
+      <div style={{ maxWidth: 500, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track turns secondary + thumb grows larger (Emotion: applied at runtime):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
           sx={{
-            color: 'secondary.main',
-            '& .MuiSlider-thumb': { width: 22, height: 22 },
+            color: 'var(--mui-palette-secondary-main)',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
           }}
-          aria-label="sx slider"
+          aria-label="sx override slider"
         />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
       </div>
-      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value1}</p>
 
-      {/* ── className + style tag ─────────────────────────────────────── */}
-      <p style={{ marginBottom: 4, marginTop: 24 }}>
-        className override — thumb should be purple via plain CSS:
-      </p>
-      <div style={{ maxWidth: 500 }}>
-        <Slider
-          value={value2}
-          onChange={(_, v) => setValue2(v as number)}
-          className="emotion-custom-slider"
-          aria-label="className slider"
-        />
+      {/* ── nested ThemeProvider ─────────────────────────────── */}
+      <div
+        style={{
+          marginTop: 48,
+          padding: 24,
+          border: '2px dashed var(--mui-palette-divider)',
+          borderRadius: 8,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Nested ThemeProvider (cssVarPrefix: inner)</h2>
+        <ThemeProvider theme={innerThemes[innerThemeIndex]}>
+          <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
+        </ThemeProvider>
       </div>
-      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value2}</p>
-
-      {/* ── styled() ────────────────────────────────────────────────── */}
-      <p style={{ marginBottom: 4, marginTop: 24 }}>styled() — gradient track:</p>
-      <div style={{ maxWidth: 500 }}>
-        <GradientSlider
-          value={value3}
-          onChange={(_, v) => setValue3(v as number)}
-          aria-label="gradient slider"
-        />
-      </div>
-      <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value3}</p>
 
       <style>{`
-        .emotion-custom-slider .MuiSlider-thumb {
+        .custom-slider .MuiSlider-thumb {
           width: 24px;
           height: 24px;
           background: var(--mui-palette-secondary-main, #9c27b0);
+        }
+        .inner-custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--inner-palette-secondary-main, #9c27b0);
         }
       `}</style>
     </div>
@@ -181,10 +226,10 @@ function Page({
 }
 
 export default function EmotionSlider() {
-  const [themeKey, setThemeKey] = React.useState<ThemeKey>('violet');
+  const [themeIndex, setThemeIndex] = React.useState(0);
   return (
-    <ThemeProvider theme={themes[themeKey]}>
-      <Page themeKey={themeKey} setThemeKey={setThemeKey} />
+    <ThemeProvider theme={themes[themeIndex]}>
+      <Page themeIndex={themeIndex} setThemeIndex={setThemeIndex} />
     </ThemeProvider>
   );
 }
