@@ -6,7 +6,7 @@
 
 _Jun 23, 2026_
 
-A big thanks to the 5 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 5 contributors who made this release possible.
 
 ### `@mui/material@9.1.2`
 
