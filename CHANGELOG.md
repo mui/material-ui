@@ -1,5 +1,41 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.1.2
+
+<!-- generated comparing v9.1.1..master -->
+
+_Jun 23, 2026_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@9.1.2`
+
+- [autocomplete] Don't submit forms when committing `freeSolo` value with Enter key (#48679) @mj12albert
+- [transitions] Fix RTG import in ESM (#48645) @mj12albert
+
+### `@mui/system@9.1.2`
+
+- [InitColorSchemeScript] Fix script tag warning in Next.js 16 dev mode (#48671) @siriwatknp
+
+### Docs
+
+- Fix typos in release instructions (#48687) @brijeshb42
+- Update @mui/x-* packages to latest (#48661) @Janpot
+
+### Core
+
+- [code-infra] Convert leaf @mui/system .js+.d.ts pairs to TypeScript (part 1) (#48578) @Janpot
+- [code-infra] Bump to latest code-infra packages (#48672) @brijeshb42
+- [code-infra] Resolve remaining minimatch advisory (#48662) @Janpot
+- [code-infra] Bump nx to resolve minimatch advisory (#48658) @Janpot
+- [core] Drop @babel/* pnpm overrides (#48710) @Janpot
+- [docs-infra] Revert "Pin StackBlitz demo vite to v7 and plugin-react to v5" (#48709) @Janpot
+- [docs-infra] Fix code-block copy button broken on direct page load (#48653) @brijeshb42
+- [test] Stabilize Data Grid demo data in Argos screenshots (#48654) @LukasTy
+
+
+All contributors of this release in alphabetical order: @brijeshb42, @Janpot, @LukasTy, @mj12albert, @siriwatknp
+
 ## 9.1.1
 
 <!-- generated comparing v9.1.0..master -->
