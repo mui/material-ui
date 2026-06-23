@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
@@ -30,7 +32,14 @@ import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
 import { ROUTES } from '@mui/internal-core-docs/constants';
 
-const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
+const DEMOS = [
+  'Editing',
+  'Selection',
+  'Sorting',
+  'Pagination',
+  'Filtering',
+  'AI Assistant',
+] as const;
 
 const code = `<DataGrid
   columns={[ // column definition example
@@ -45,21 +54,22 @@ const code = `<DataGrid
   checkboxSelection
   disableRowSelectionOnClick
   pagination
+  showToolbar
 />`;
 
-const startLine = {
+const startLine: Partial<Record<(typeof DEMOS)[number], number>> = {
   [DEMOS[0]]: 6,
   [DEMOS[1]]: 11,
   [DEMOS[2]]: 7,
   [DEMOS[3]]: 13,
   [DEMOS[4]]: 8,
+  [DEMOS[5]]: 14,
 };
 
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
 
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number] | null>(null);
-  const router = useRouter();
   const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
@@ -67,6 +77,7 @@ export default function XDataGrid() {
     [DEMOS[2]]: <SortByAlphaRounded fontSize="small" />,
     [DEMOS[3]]: <AutoStoriesOutlined fontSize="small" />,
     [DEMOS[4]]: <FilterAltRounded fontSize="small" />,
+    [DEMOS[5]]: <AutoAwesomeRoundedIcon fontSize="small" />,
   };
   const { loading, data } = useDemoData({
     dataSet: 'Employee',
@@ -144,14 +155,6 @@ export default function XDataGrid() {
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
-            <Highlighter
-              onClick={() => {
-                void router.push('/x/react-data-grid/ai-assistant/');
-              }}
-              sx={{ textDecoration: 'none' }}
-            >
-              <Item icon={<AutoAwesomeRoundedIcon fontSize="small" />} title="AI Assistant" />
-            </Highlighter>
             <More href={ROUTES.dataGridFeatures} />
           </Group>
         </Grid>
@@ -204,12 +207,68 @@ export default function XDataGrid() {
               disableRowSelectionOnClick
               pagination
             />
+            {demo === DEMOS[5] && (
+              <Paper
+                variant="outlined"
+                sx={(theme) => ({
+                  position: 'absolute',
+                  zIndex: 2,
+                  top: 12,
+                  right: 12,
+                  width: { xs: 'calc(100% - 24px)', sm: 300 },
+                  maxWidth: 'calc(100% - 24px)',
+                  overflow: 'hidden',
+                  boxShadow: `0px 8px 24px ${theme.palette.grey[200]}`,
+                  bgcolor: '#FFF',
+                  ...theme.applyDarkStyles({
+                    bgcolor: 'primaryDark.900',
+                    boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.32)',
+                  }),
+                })}
+              >
+                <Box sx={{ p: 1.5 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                    <AutoAwesomeRoundedIcon color="primary" fontSize="small" />
+                    <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
+                      AI Assistant
+                    </Typography>
+                  </Box>
+                  <Typography
+                    variant="body2"
+                    sx={(theme) => ({
+                      p: 1,
+                      borderRadius: 1,
+                      bgcolor: 'grey.50',
+                      color: 'text.primary',
+                      ...theme.applyDarkStyles({
+                        bgcolor: 'primaryDark.800',
+                      }),
+                    })}
+                  >
+                    Show only Engineering rows and group them by role.
+                  </Typography>
+                </Box>
+                <Divider />
+                <Box sx={{ p: 1.5, display: 'grid', gap: 1 }}>
+                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                    Applied changes
+                  </Typography>
+                  <Box sx={{ display: 'flex', gap: 0.75, flexWrap: 'wrap' }}>
+                    <Chip label="Filter: Engineering" size="small" color="primary" />
+                    <Chip label="Group by role" size="small" />
+                    <Chip label="Sort by seniority" size="small" />
+                  </Box>
+                </Box>
+              </Paper>
+            )}
           </Paper>
           <Frame.Info sx={{ p: 0 }}>
             <ShowcaseCodeWrapper maxHeight="100%" clip>
               <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
-              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
-              <AppearingInfoBox appeared={demo === DEMOS[3] || demo === DEMOS[4]}>
+              {demo && startLine[demo] && <FlashCode startLine={startLine[demo]} sx={{ mx: 1 }} />}
+              <AppearingInfoBox
+                appeared={demo === DEMOS[3] || demo === DEMOS[4] || demo === DEMOS[5]}
+              >
                 <React.Fragment>
                   <Typography
                     variant="body2"
@@ -217,6 +276,8 @@ export default function XDataGrid() {
                   >
                     {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
                     {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
+                    {demo === DEMOS[5] &&
+                      'The AI Assistant helps users apply structured grid changes in natural language.'}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'grey.300' }}>
                     The Data Grid and all other MUI X components are available on free and paid

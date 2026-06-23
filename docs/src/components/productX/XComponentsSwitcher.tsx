@@ -1,8 +1,5 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
@@ -16,22 +13,18 @@ import { Highlighter } from '@mui/internal-core-docs/AppLayout';
 import { Link } from '@mui/internal-core-docs/Link';
 import { ROUTES } from '@mui/internal-core-docs/constants';
 
-const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
-
 function ComponentItem({
   label,
   icon,
   name,
   description,
   href,
-  docsLink = true,
 }: {
   label: string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description?: React.ReactNode;
   href: string;
-  docsLink?: boolean;
 }) {
   const viewDocsContent = (
     <React.Fragment>
@@ -58,13 +51,14 @@ function ComponentItem({
         flexGrow: 1,
         display: 'flex',
         p: 2,
-        flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { md: 'center' },
-        gap: 2.5,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 1.5,
+        minWidth: 0,
       }}
     >
       {icon}
-      <div>
+      <Box component="span" sx={{ minWidth: 0 }}>
         <Typography
           component="span"
           variant="body2"
@@ -82,23 +76,17 @@ function ComponentItem({
             {description}
           </Typography>
         )}
-        {docsLink ? (
-          <Link
-            href={href}
-            variant="body2"
-            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-              event.stopPropagation();
-            }}
-            sx={viewDocsSx}
-          >
-            {viewDocsContent}
-          </Link>
-        ) : (
-          <Typography component="span" variant="body2" sx={viewDocsSx}>
-            {viewDocsContent}
-          </Typography>
-        )}
-      </div>
+        <Link
+          href={href}
+          variant="body2"
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
+          sx={viewDocsSx}
+        >
+          {viewDocsContent}
+        </Link>
+      </Box>
     </Box>
   );
 }
@@ -108,8 +96,7 @@ export default function XComponentsSwitcher(props: {
   setComponentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { componentIndex, setComponentIndex } = props;
-  const router = useRouter();
-  const demoComponentElements = [
+  const componentElements = [
     {
       element: (
         <ComponentItem
@@ -154,10 +141,7 @@ export default function XComponentsSwitcher(props: {
         />
       ),
     },
-  ];
-  const docsComponentElements = [
     {
-      href: ROUTES.schedulerOverview,
       element: (
         <ComponentItem
           name="Scheduler"
@@ -165,12 +149,10 @@ export default function XComponentsSwitcher(props: {
           label="Event calendar and timeline for scheduling workflows."
           icon={<EventNoteRoundedIcon />}
           href={ROUTES.schedulerOverview}
-          docsLink={false}
         />
       ),
     },
     {
-      href: ROUTES.chatOverview,
       element: (
         <ComponentItem
           name="Chat"
@@ -178,69 +160,31 @@ export default function XComponentsSwitcher(props: {
           label="AI-powered chat components."
           icon={<ForumRoundedIcon />}
           href={ROUTES.chatOverview}
-          docsLink={false}
         />
       ),
     },
   ];
 
-  const renderDocsComponent = ({ href, element }: (typeof docsComponentElements)[number]) => (
-    <Highlighter
-      key={href}
-      disableBorder
-      onClick={() => {
-        void router.push(href);
-      }}
-      sx={{ textDecoration: 'none' }}
-    >
-      {element}
-    </Highlighter>
-  );
-
   return (
-    <React.Fragment>
-      <Box
-        sx={{ display: { md: 'none' }, maxWidth: 'calc(100vw - 40px)', '& > div': { pr: '32%' } }}
-      >
-        <SwipeableViews
-          index={componentIndex}
-          resistance
-          enableMouseEvents
-          onChangeIndex={(index) => setComponentIndex(index)}
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+        gap: 1,
+        maxWidth: 500,
+      }}
+    >
+      {componentElements.map(({ element }, index) => (
+        <Highlighter
+          key={index}
+          disableBorder
+          onClick={() => setComponentIndex(index)}
+          selected={componentIndex === index}
+          sx={{ minWidth: 0, height: 'auto' }}
         >
-          {demoComponentElements.map(({ element }, index) => (
-            <Highlighter
-              key={index}
-              disableBorder
-              onClick={() => setComponentIndex(index)}
-              selected={componentIndex === index}
-              sx={{
-                width: '100%',
-                transition: '0.3s',
-                transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
-              }}
-            >
-              {element}
-            </Highlighter>
-          ))}
-        </SwipeableViews>
-      </Box>
-      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'flex', md: 'none' }, mt: 1 }}>
-        {docsComponentElements.map(renderDocsComponent)}
-      </Stack>
-      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
-        {demoComponentElements.map(({ element }, index) => (
-          <Highlighter
-            key={index}
-            disableBorder
-            onClick={() => setComponentIndex(index)}
-            selected={componentIndex === index}
-          >
-            {element}
-          </Highlighter>
-        ))}
-        {docsComponentElements.map(renderDocsComponent)}
-      </Stack>
-    </React.Fragment>
+          {element}
+        </Highlighter>
+      ))}
+    </Box>
   );
 }

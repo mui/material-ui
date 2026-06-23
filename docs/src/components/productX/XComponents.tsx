@@ -9,6 +9,8 @@ import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
 import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
 import XChartsDemo from 'docs/src/components/productX/XChartsDemo';
+import XSchedulerDemo from 'docs/src/components/productX/XSchedulerDemo';
+import XChatDemo from 'docs/src/components/productX/XChatDemo';
 
 export default function XComponents() {
   const [componentIndex, setComponentIndex] = React.useState(0);
@@ -39,6 +41,8 @@ export default function XComponents() {
             {componentIndex === 1 && <XDateRangeDemo />}
             {componentIndex === 2 && <XChartsDemo />}
             {componentIndex === 3 && <XTreeViewDemo />}
+            {componentIndex === 4 && <XSchedulerDemo />}
+            {componentIndex === 5 && <XChatDemo />}
           </React.Fragment>
         </Grid>
       </Grid>
