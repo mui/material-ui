@@ -1,4 +1,4 @@
-@layer theme, base, mui.default, components, utilities;
+@layer theme, base, mui, components, utilities;
 
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);

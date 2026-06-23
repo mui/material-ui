@@ -1,4 +1,4 @@
-@layer mui.components {
+@layer mui {
   .MuiSlider-root {
     border-radius: 12px;
     box-sizing: content-box;

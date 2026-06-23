@@ -14,7 +14,7 @@ Verifies that:
 3. `Slider` renders correctly using `Slider.css` + runtime CSS vars from
    `CssThemeProvider`.
 4. The `sx` prop fires a dev-only `console.error` and is otherwise ignored.
-5. `className`-based overrides beat `@layer mui.default` without `!important`.
+5. `className`-based overrides beat `@layer mui` without `!important`.
 6. Dark mode works via `CssThemeProvider` by flipping `data-mui-color-scheme`
    on `document.documentElement`.
 7. `useTheme()` returns live JavaScript theme values (breakpoints, spacing, etc.).

@@ -3,7 +3,7 @@
  *
  * Usage in your global CSS file:
  *
- *   @layer theme, base, mui.default, components, utilities;
+ *   @layer theme, base, mui, components, utilities;
  *   @import "tailwindcss";
  *   @import "@mui/tailwind/v4.css";
  *

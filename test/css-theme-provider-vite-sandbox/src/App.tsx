@@ -11,7 +11,7 @@
  *   2. CssThemeProvider injects --mui-* CSS variables at runtime without Emotion.
  *   3. Slider renders correctly using Slider.css + runtime CSS vars.
  *   4. The `sx` prop fires a console.error in dev and is otherwise ignored.
- *   5. className-based overrides beat @layer mui.default without !important.
+ *   5. className-based overrides beat @layer mui without !important.
  *   6. Dark mode works via CssThemeProvider by toggling data-mui-color-scheme
  *      on <html>.
  *   7. useTheme() returns JS theme values (breakpoints, spacing, etc.).

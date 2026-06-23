@@ -74,8 +74,6 @@ Start the docs dev server:
 pnpm docs:dev
 ```
 
-Then open: http://localhost:3000/material-ui/integrations/tailwindcss/tailwindcss-components/
-
 ### Filter chips with `mui-selected`
 
 The following demo shows `mui-selected:` styling applied to a `ToggleButtonGroup`.
