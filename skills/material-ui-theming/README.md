@@ -1,6 +1,6 @@
-# Material UI theming (agent skill)
+# Material UI theming (agent skill)
 
-Theming and design tokens for Material UI: `createTheme`, `ThemeProvider`, palette, typography, spacing, `colorSchemes`, `cssVariables` / `theme.vars`, and TypeScript customization.
+Theming and design tokens for Material UI: `createTheme`, `ThemeProvider`, palette, typography, spacing, `colorSchemes`, `cssVariables` / `theme.vars`, and TypeScript customization.
 
 ## Files in this folder
 

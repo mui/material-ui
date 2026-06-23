@@ -1,14 +1,14 @@
-# Material UI and Next.js
+# Material UI and Next.js
 
 Version 1.0.0
 
-> Note: This document is for agents and LLMs integrating Material UI with Next.js. Source: `docs/data/material/integrations/nextjs/nextjs.md` and related integration docs in this repository.
+> Note: This document is for agents and LLMs integrating Material UI with Next.js. Source: `docs/data/material/integrations/nextjs/nextjs.md` and related integration docs in this repository.
 
 ---
 
 ## Abstract
 
-Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache so SSR and streaming produce correct CSS (prefer injecting styles into `head` instead of only `body`). The `@mui/material-nextjs` package supplies `AppRouterCacheProvider` (App Router) and `AppCacheProvider` / `DocumentHeadTags` (Pages Router). Material UI components ship as client components (`"use client"`); they still SSR but are not React Server Components. Match the package import suffix (for example `v15-appRouter`) to your Next.js major version.
+Material UI uses Emotion for styles. On Next.js you must wire an Emotion cache so SSR and streaming produce correct CSS (prefer injecting styles into `head` instead of only `body`). The `@mui/material-nextjs` package supplies `AppRouterCacheProvider` (App Router) and `AppCacheProvider` / `DocumentHeadTags` (Pages Router). Material UI components ship as client components (`"use client"`); they still SSR but are not React Server Components. Match the package import suffix (for example `v15-appRouter`) to your Next.js major version.
 
 ---
 
@@ -43,7 +43,7 @@ In `app/layout.tsx`, wrap everything under `<body>` with `AppRouterCacheProvider
 
 (Use the `v1X-appRouter` path that matches your Next.js version if not on v15.)
 
-Why: it collects CSS from MUI System during server rendering and streaming so styles attach predictably; it is recommended so styles go to `<head>` instead of only `<body>`. See [Next.js integration—Configuration](https://mui.com/material-ui/integrations/nextjs.md#configuration).
+Why: it collects CSS from MUI System during server rendering and streaming so styles attach predictably; it is recommended so styles go to `<head>` instead of only `<body>`. See [Next.js integration—Configuration](https://mui.com/material-ui/integrations/nextjs.md#configuration).
 
 ### Optional cache `options`
 
@@ -108,7 +108,7 @@ Enable `cssVariables: true` in `createTheme` when using [CSS theme variables](ht
 
 ## Other styling stacks (CSS layers)
 
-If you combine MUI with Tailwind CSS, CSS Modules, or other global CSS, set `enableCssLayer: true` on `AppRouterCacheProvider`:
+If you combine MUI with Tailwind CSS, CSS Modules, or other global CSS, set `enableCssLayer: true` on `AppRouterCacheProvider`:
 
 `<AppRouterCacheProvider options={{ enableCssLayer: true }}>`
 

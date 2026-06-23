@@ -1,14 +1,14 @@
-# Material UI styling
+# Material UI styling
 
 Version 1.0.0
 
-> Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
+> Note: This document is for agents and LLMs maintaining or generating Material UI code. It follows [How to customize](https://mui.com/material-ui/customization/how-to-customize.md) and related sources in this repository (`docs/data/material/customization/`, `docs/data/system/`).
 
 ---
 
 ## Abstract
 
-Material UI stacks four strategies from narrowest to broadest scope. Pick the smallest scope that solves the problem to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme's `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
+Material UI stacks four strategies from narrowest to broadest scope. Pick the smallest scope that solves the problem to avoid scattering global rules. The `sx` prop is the default for one-off tweaks; `styled()` is for reusable wrappers; the theme's `components` API is for app-wide consistency; `GlobalStyles` / `CssBaseline` is for baseline HTML or cross-cutting globals.
 
 ---
 
@@ -40,7 +40,7 @@ Do not jump to global theme overrides for a one-off screen; do not use `sx` for 
 
 Use when: changing one instance (or a small inline case) with access to the theme.
 
-- All Material UI components support `sx`.
+- All Material UI components support `sx`.
 - Supports theme shortcuts (`palette`, `spacing`, breakpoints, etc.), pseudo-selectors, nested selectors, and responsive objects.
 - Array syntax: `sx={[base, condition && extra]}` merges styles conditionally — entries applied in order, falsy entries skipped. Prefer this over object spread for conditional `sx`.
 
@@ -74,7 +74,7 @@ Use when: the same customized component appears in multiple places and deserves 
 import { styled } from '@mui/material/styles';
 ```
 
-- Prefer `@mui/material/styles` when using Material UI so the default theme matches the rest of the app.
+- Prefer `@mui/material/styles` when using Material UI so the default theme matches the rest of the app.
 - `styled()` adds theme integration, optional `name` / `slot` for theme overrides, and `sx` on the result (unless disabled).
 - For custom props, use `shouldForwardProp` so DOM/React does not receive invalid attributes. Extend the component's prop types in TypeScript.
 

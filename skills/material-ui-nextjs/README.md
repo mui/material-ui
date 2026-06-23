@@ -1,6 +1,6 @@
-# Material UI + Next.js (agent skill)
+# Material UI + Next.js (agent skill)
 
-Integration guide for Material UI with the Next.js App Router and Pages Router: Emotion cache via `@mui/material-nextjs`, `ThemeProvider`, `next/font`, CSS layers with other tools, and `Link` usage.
+Integration guide for Material UI with the Next.js App Router and Pages Router: Emotion cache via `@mui/material-nextjs`, `ThemeProvider`, `next/font`, CSS layers with other tools, and `Link` usage.
 
 ## Files in this folder
 

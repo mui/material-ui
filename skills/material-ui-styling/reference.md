@@ -1,4 +1,4 @@
-# Material UI styling: reference tables
+# Material UI styling: reference tables
 
 ## Global state class names
 
