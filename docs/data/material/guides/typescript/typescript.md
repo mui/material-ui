@@ -42,6 +42,38 @@ It is an acceptable tradeoff because the types are all located in a single file 
 You have to decide for yourself if the same tradeoff is acceptable for you.
 The library types are strict by default and loose via opt-in.
 
+## Allowing `data-*` attributes on `slotProps`
+
+By default, slot prop types reject arbitrary `data-*` attributes, even though they are forwarded to the DOM at runtime.
+This keeps the typed surface tight and catches typos.
+To pass `data-*` attributes through `slotProps` (for example, test locators like `data-testid`), opt in by augmenting the `DataAttributesOverrides` interface from `@mui/utils/types` once, anywhere in your project:
+
+```ts
+// Accept any data-* attribute on every slot.
+declare module '@mui/utils/types' {
+  interface DataAttributesOverrides {
+    [key: `data-${string}`]: string | number | boolean | undefined;
+  }
+}
+```
+
+The `data-*` attributes then type-check on any component's `slotProps`:
+
+```tsx
+<Badge slotProps={{ badge: { 'data-testid': 'badge' } }} />
+```
+
+For a stricter contract, declare only the keys you use.
+You then get autocomplete and typo-checking for them, at the cost of listing each one:
+
+```ts
+declare module '@mui/utils/types' {
+  interface DataAttributesOverrides {
+    'data-testid'?: string;
+  }
+}
+```
+
 ## Customization of `Theme`
 
 Moved to [the Customizing the theme page](/material-ui/customization/theming/#custom-variables).
