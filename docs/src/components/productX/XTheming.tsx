@@ -41,38 +41,148 @@ const ThemedSchedulerPreview = dynamic(
   },
 );
 
+const customThemeTokens = {
+  ink: '#101322',
+  muted: '#5D667A',
+  canvas: '#F8FAFF',
+  surface: '#FFFFFF',
+  surfaceTint: '#F2F6FF',
+  border: '#E2E8F6',
+  accent: 'hsl(210, 100%, 45%)',
+  accentLight: 'hsl(210, 100%, 90%)',
+  accentBright: 'hsl(210, 100%, 60%)',
+  accentDark: 'hsl(210, 100%, 30%)',
+  violet: '#7C3AED',
+  violetLight: '#EDE9FE',
+};
+
+const customGlassPanelSx = {
+  position: 'relative',
+  borderRadius: '16px',
+  borderColor: alpha(customThemeTokens.accentBright, 0.42),
+  background: `linear-gradient(135deg, ${alpha('#FFFFFF', 0.9)} 0%, ${alpha(
+    '#FFFFFF',
+    0.62,
+  )} 100%), linear-gradient(145deg, ${alpha(customThemeTokens.accentLight, 0.56)} 0%, ${alpha(
+    customThemeTokens.violetLight,
+    0.48,
+  )} 100%)`,
+  backdropFilter: 'blur(18px) saturate(180%)',
+  boxShadow: `0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.26)}, 0 0 22px ${alpha(
+    customThemeTokens.accentBright,
+    0.22,
+  )}, 0 24px 64px ${alpha(customThemeTokens.accentDark, 0.12)}, 0 1px 0 ${alpha(
+    '#FFFFFF',
+    0.88,
+  )} inset, inset 0 0 0 1px ${alpha('#FFFFFF', 0.56)}`,
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    inset: -1,
+    zIndex: 1,
+    border: '1px solid transparent',
+    borderRadius: 'inherit',
+    pointerEvents: 'none',
+    background: `linear-gradient(135deg, ${alpha(customThemeTokens.accentBright, 0.92)} 0%, ${alpha(
+      '#FFFFFF',
+      0.72,
+    )} 28%, ${alpha(customThemeTokens.violet, 0.38)} 68%, ${alpha(
+      customThemeTokens.accentBright,
+      0.2,
+    )} 100%) border-box`,
+    WebkitMask: 'linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0)',
+    WebkitMaskComposite: 'xor',
+    maskComposite: 'exclude',
+  },
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    inset: 0,
+    zIndex: 1,
+    borderRadius: 'inherit',
+    pointerEvents: 'none',
+    boxShadow: `inset 0 0 26px ${alpha(customThemeTokens.accentBright, 0.16)}`,
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 2,
+  },
+  '[data-mui-color-scheme="dark"] &': {
+    color: '#F8FBFF',
+    borderColor: alpha(customThemeTokens.accentBright, 0.72),
+    background: `linear-gradient(135deg, ${alpha('#07122E', 0.86)} 0%, ${alpha(
+      '#030712',
+      0.76,
+    )} 100%), radial-gradient(circle at 12% 0%, ${alpha(
+      customThemeTokens.accentBright,
+      0.28,
+    )} 0, transparent 34%), radial-gradient(circle at 92% 12%, ${alpha(
+      customThemeTokens.violet,
+      0.24,
+    )} 0, transparent 38%)`,
+    boxShadow: `0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.48)}, 0 0 24px ${alpha(
+      customThemeTokens.accentBright,
+      0.54,
+    )}, 0 0 58px ${alpha(customThemeTokens.accent, 0.34)}, 0 26px 70px ${alpha(
+      '#000000',
+      0.52,
+    )}, inset 0 1px 0 ${alpha('#FFFFFF', 0.18)}`,
+    '&::before': {
+      background: `linear-gradient(135deg, ${alpha(
+        customThemeTokens.accentBright,
+        1,
+      )} 0%, ${alpha('#FFFFFF', 0.72)} 22%, ${alpha(customThemeTokens.violet, 0.58)} 62%, ${alpha(
+        customThemeTokens.accentBright,
+        0.28,
+      )} 100%) border-box`,
+    },
+    '&::after': {
+      boxShadow: `inset 0 0 34px ${alpha(customThemeTokens.accentBright, 0.24)}`,
+    },
+    '& .MuiTypography-root': {
+      color: '#F8FBFF',
+    },
+    '& .MuiTypography-subtitle2': {
+      color: '#F8FBFF',
+    },
+    '& .MuiTypography-body2, & .MuiTypography-caption': {
+      color: alpha('#DDEBFF', 0.74),
+    },
+  },
+};
+
 const customChartsTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#2563EB',
-      light: '#93C5FD',
-      dark: '#172554',
+      main: customThemeTokens.accent,
+      light: customThemeTokens.accentLight,
+      dark: customThemeTokens.accentDark,
     },
     secondary: {
-      main: '#0F766E',
-      light: '#99F6E4',
-      dark: '#134E4A',
+      main: customThemeTokens.ink,
+      light: '#E4E8F4',
+      dark: '#020617',
     },
     warning: {
-      main: '#F97316',
-      light: '#FDBA74',
-      dark: '#9A3412',
+      main: customThemeTokens.violet,
+      light: customThemeTokens.violetLight,
+      dark: '#4C1D95',
     },
     success: {
-      main: '#059669',
-      light: '#A7F3D0',
-      dark: '#065F46',
+      main: customThemeTokens.accent,
+      light: customThemeTokens.accentLight,
+      dark: customThemeTokens.accentDark,
     },
     text: {
-      primary: '#111827',
-      secondary: '#667085',
+      primary: customThemeTokens.ink,
+      secondary: customThemeTokens.muted,
     },
     background: {
-      paper: '#FFFFFF',
-      default: '#F8FAFC',
+      paper: customThemeTokens.surface,
+      default: customThemeTokens.canvas,
     },
-    divider: '#E6EAF0',
+    divider: customThemeTokens.border,
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -94,13 +204,13 @@ const customChartsTheme = createTheme({
       styleOverrides: {
         root: {
           [`& .${axisClasses.line}`]: {
-            stroke: alpha('#111827', 0.1),
+            stroke: alpha(customThemeTokens.ink, 0.1),
           },
           [`& .${axisClasses.tick}`]: {
-            stroke: alpha('#111827', 0.1),
+            stroke: alpha(customThemeTokens.ink, 0.1),
           },
           [`& .${axisClasses.tickLabel}`]: {
-            fill: '#667085',
+            fill: customThemeTokens.muted,
             fontSize: 12,
             fontWeight: 600,
           },
@@ -111,13 +221,23 @@ const customChartsTheme = createTheme({
       styleOverrides: {
         root: {
           [`& .${chartsGridClasses.line}`]: {
-            stroke: alpha('#111827', 0.075),
-            strokeDasharray: '4 8',
-            strokeWidth: 0.8,
+            stroke: alpha(customThemeTokens.ink, 0.07),
+            strokeDasharray: '2 8',
+            strokeWidth: 0.9,
           },
         },
       },
     },
+  },
+});
+
+const materialPreviewTheme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
   },
 });
 
@@ -126,53 +246,350 @@ const subscriptionsData = [38, 44, 42, 48, 52, 59, 63, 68];
 const expansionData = [18, 22, 24, 21, 29, 32, 35, 39];
 const runRateData = [52, 60, 64, 66, 76, 84, 91, 99];
 
+type MiniGridSegment = 'Enterprise' | 'Commercial' | 'Scale-up';
+type MiniGridStatus = 'Healthy' | 'Expansion' | 'Watch';
+
 interface MiniGridRow {
   id: number;
   account: string;
-  segment: string;
-  revenue: string;
+  region: string;
+  initials: string;
+  segment: MiniGridSegment;
+  arr: number;
+  growth: number;
   health: number;
+  status: MiniGridStatus;
 }
 
 const miniGridRows: MiniGridRow[] = [
-  { id: 1, account: 'Northwind', segment: 'Enterprise', revenue: '$420K', health: 98 },
-  { id: 2, account: 'Contoso', segment: 'Commercial', revenue: '$318K', health: 92 },
-  { id: 3, account: 'Tailspin', segment: 'Enterprise', revenue: '$286K', health: 88 },
-  { id: 4, account: 'Fabrikam', segment: 'Scale-up', revenue: '$164K', health: 81 },
-  { id: 5, account: 'Blue Yonder', segment: 'Commercial', revenue: '$138K', health: 74 },
+  {
+    id: 1,
+    account: 'Northwind',
+    region: 'North America',
+    initials: 'NW',
+    segment: 'Enterprise',
+    arr: 420,
+    growth: 18.4,
+    health: 98,
+    status: 'Healthy',
+  },
+  {
+    id: 2,
+    account: 'Contoso',
+    region: 'EMEA',
+    initials: 'CO',
+    segment: 'Commercial',
+    arr: 318,
+    growth: 9.2,
+    health: 92,
+    status: 'Expansion',
+  },
+  {
+    id: 3,
+    account: 'Tailspin',
+    region: 'APAC',
+    initials: 'TS',
+    segment: 'Enterprise',
+    arr: 286,
+    growth: -2.1,
+    health: 76,
+    status: 'Watch',
+  },
+  {
+    id: 4,
+    account: 'Fabrikam',
+    region: 'Latin America',
+    initials: 'FB',
+    segment: 'Scale-up',
+    arr: 164,
+    growth: 14.7,
+    health: 81,
+    status: 'Expansion',
+  },
 ];
 
+const miniGridMaxArr = Math.max(...miniGridRows.map((row) => row.arr));
+
+const miniSegmentStyles: Record<MiniGridSegment, { color: string; background: string }> = {
+  Enterprise: {
+    color: customThemeTokens.accentDark,
+    background: `linear-gradient(135deg, ${alpha(customThemeTokens.accentLight, 0.82)} 0%, ${alpha(
+      '#FFFFFF',
+      0.66,
+    )} 100%)`,
+  },
+  Commercial: {
+    color: '#4C1D95',
+    background: `linear-gradient(135deg, ${alpha(customThemeTokens.violetLight, 0.9)} 0%, ${alpha(
+      '#FFFFFF',
+      0.7,
+    )} 100%)`,
+  },
+  'Scale-up': {
+    color: '#0F766E',
+    background: `linear-gradient(135deg, ${alpha('#CCFBF1', 0.86)} 0%, ${alpha(
+      '#FFFFFF',
+      0.72,
+    )} 100%)`,
+  },
+};
+
+const miniStatusStyles: Record<
+  MiniGridStatus,
+  { color: string; background: string; progress: string }
+> = {
+  Healthy: {
+    color: customThemeTokens.accentDark,
+    background: alpha(customThemeTokens.accentLight, 0.78),
+    progress: customThemeTokens.accent,
+  },
+  Expansion: {
+    color: '#4C1D95',
+    background: alpha(customThemeTokens.violetLight, 0.82),
+    progress: customThemeTokens.violet,
+  },
+  Watch: {
+    color: '#92400E',
+    background: alpha('#FEF3C7', 0.9),
+    progress: '#F59E0B',
+  },
+};
+
 const miniGridColumns: GridColDef<MiniGridRow>[] = [
-  { field: 'account', headerName: 'Account', flex: 1, minWidth: 132 },
-  { field: 'segment', headerName: 'Segment', width: 122 },
-  { field: 'revenue', headerName: 'ARR', width: 86, align: 'right', headerAlign: 'right' },
+  {
+    field: 'account',
+    headerName: 'Account',
+    flex: 1,
+    minWidth: 164,
+    renderCell: (params) => (
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ width: '100%', minWidth: 0, overflow: 'hidden', alignItems: 'center' }}
+      >
+        <Box
+          component="span"
+          aria-hidden="true"
+          sx={{
+            width: 30,
+            height: 30,
+            flexShrink: 0,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '10px',
+            color: '#FFFFFF',
+            background: `linear-gradient(135deg, ${customThemeTokens.accent} 0%, ${customThemeTokens.violet} 100%)`,
+            fontSize: 11,
+            fontWeight: 800,
+            boxShadow: `0 8px 18px ${alpha(customThemeTokens.accentDark, 0.18)}`,
+          }}
+        >
+          {params.row.initials}
+        </Box>
+        <Box sx={{ minWidth: 0, overflow: 'hidden' }}>
+          <Typography
+            component="span"
+            sx={{
+              display: 'block',
+              color: 'text.primary',
+              fontSize: 13,
+              fontWeight: 700,
+              lineHeight: 1.2,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {params.row.account}
+          </Typography>
+          <Typography
+            component="span"
+            sx={{
+              display: 'block',
+              color: 'text.secondary',
+              fontSize: 11,
+              lineHeight: 1.2,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {params.row.region}
+          </Typography>
+        </Box>
+      </Stack>
+    ),
+  },
+  {
+    field: 'segment',
+    headerName: 'Segment',
+    width: 108,
+    renderCell: (params) => {
+      const segmentStyle = miniSegmentStyles[params.row.segment];
+
+      return (
+        <Box
+          component="span"
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            maxWidth: '100%',
+            px: 0.85,
+            py: 0.35,
+            borderRadius: 999,
+            color: segmentStyle.color,
+            background: segmentStyle.background,
+            fontSize: 11,
+            fontWeight: 800,
+            lineHeight: 1.3,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            boxShadow: `inset 0 0 0 1px ${alpha('#FFFFFF', 0.58)}`,
+            '[data-mui-color-scheme="dark"] &': {
+              color: '#F8FBFF',
+              background: alpha(
+                params.row.segment === 'Commercial'
+                  ? customThemeTokens.violet
+                  : customThemeTokens.accent,
+                0.24,
+              ),
+              boxShadow: `inset 0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.2)}`,
+            },
+          }}
+        >
+          {params.row.segment}
+        </Box>
+      );
+    },
+  },
+  {
+    field: 'arr',
+    headerName: 'ARR',
+    width: 104,
+    renderCell: (params) => {
+      const arrProgress = Math.round((params.row.arr / miniGridMaxArr) * 100);
+      const positiveGrowth = params.row.growth >= 0;
+
+      return (
+        <Box sx={{ width: '100%' }}>
+          <Stack direction="row" sx={{ alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <Typography component="span" sx={{ fontSize: 13, fontWeight: 800, lineHeight: 1.2 }}>
+              ${params.row.arr}K
+            </Typography>
+            <Typography
+              component="span"
+              sx={{
+                color: positiveGrowth ? customThemeTokens.accent : '#D97706',
+                fontSize: 10,
+                fontWeight: 800,
+                lineHeight: 1.2,
+                '[data-mui-color-scheme="dark"] &': {
+                  color: positiveGrowth ? customThemeTokens.accentBright : '#FBBF24',
+                },
+              }}
+            >
+              {positiveGrowth ? '+' : ''}
+              {params.row.growth}%
+            </Typography>
+          </Stack>
+          <Box
+            aria-hidden="true"
+            sx={{
+              mt: 0.55,
+              height: 4,
+              borderRadius: 999,
+              backgroundColor: alpha(customThemeTokens.accent, 0.1),
+              overflow: 'hidden',
+              '[data-mui-color-scheme="dark"] &': {
+                backgroundColor: alpha(customThemeTokens.accentBright, 0.12),
+              },
+            }}
+          >
+            <Box
+              sx={{
+                width: `${arrProgress}%`,
+                height: '100%',
+                borderRadius: 'inherit',
+                background: `linear-gradient(90deg, ${customThemeTokens.accent} 0%, ${customThemeTokens.violet} 100%)`,
+              }}
+            />
+          </Box>
+        </Box>
+      );
+    },
+  },
   {
     field: 'health',
     headerName: 'Health',
-    width: 94,
-    align: 'right',
-    headerAlign: 'right',
-    renderCell: (params) => (
-      <Box
-        component="span"
-        sx={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minWidth: 46,
-          px: 0.75,
-          py: 0.25,
-          borderRadius: 999,
-          color: 'success.dark',
-          bgcolor: 'success.light',
-          fontSize: 12,
-          fontWeight: 700,
-          lineHeight: 1.45,
-        }}
-      >
-        {params.value}%
-      </Box>
-    ),
+    width: 112,
+    renderCell: (params) => {
+      const statusStyle = miniStatusStyles[params.row.status];
+
+      return (
+        <Box sx={{ width: '100%' }}>
+          <Stack
+            direction="row"
+            sx={{ minWidth: 0, alignItems: 'center', justifyContent: 'space-between' }}
+          >
+            <Box
+              component="span"
+              sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                maxWidth: 'calc(100% - 30px)',
+                px: 0.7,
+                py: 0.2,
+                borderRadius: 999,
+                color: statusStyle.color,
+                backgroundColor: statusStyle.background,
+                fontSize: 10,
+                fontWeight: 800,
+                lineHeight: 1.25,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                '[data-mui-color-scheme="dark"] &': {
+                  color: '#F8FBFF',
+                  backgroundColor: alpha(statusStyle.progress, 0.24),
+                },
+              }}
+            >
+              {params.row.status}
+            </Box>
+            <Typography
+              component="span"
+              sx={{ flexShrink: 0, fontSize: 11, fontWeight: 800, lineHeight: 1.2 }}
+            >
+              {params.row.health}%
+            </Typography>
+          </Stack>
+          <Box
+            aria-hidden="true"
+            sx={{
+              mt: 0.55,
+              height: 4,
+              borderRadius: 999,
+              backgroundColor: alpha(statusStyle.progress, 0.12),
+              overflow: 'hidden',
+              '[data-mui-color-scheme="dark"] &': {
+                backgroundColor: alpha(statusStyle.progress, 0.16),
+              },
+            }}
+          >
+            <Box
+              sx={{
+                width: `${params.row.health}%`,
+                height: '100%',
+                borderRadius: 'inherit',
+                background: statusStyle.progress,
+              }}
+            />
+          </Box>
+        </Box>
+      );
+    },
   },
 ];
 
@@ -183,6 +600,12 @@ const previewItems = [
 ] as const;
 
 type PreviewItemId = (typeof previewItems)[number]['id'];
+
+interface ThemedPreviewCarouselProps {
+  custom: boolean;
+  previewId: PreviewItemId;
+  setPreviewId: React.Dispatch<React.SetStateAction<PreviewItemId>>;
+}
 
 const customGradientIds = {
   subscriptions: 'x-theming-subscriptions-gradient',
@@ -203,9 +626,10 @@ const materialChartColors = {
 };
 
 const customLegendColors = {
-  subscriptions: 'linear-gradient(180deg, #2563EB 0%, #93C5FD 100%)',
-  expansion: 'linear-gradient(180deg, #F97316 0%, #FDBA74 100%)',
-  runRate: 'linear-gradient(90deg, #0F766E 0%, #2563EB 58%, #111827 100%)',
+  subscriptions:
+    'linear-gradient(180deg, hsl(210, 100%, 30%) 0%, hsl(210, 100%, 45%) 55%, hsl(210, 100%, 60%) 100%)',
+  expansion: 'linear-gradient(180deg, #7C3AED 0%, #A78BFA 100%)',
+  runRate: 'linear-gradient(90deg, #101322 0%, hsl(210, 100%, 45%) 52%, #7C3AED 100%)',
 };
 
 const legendItems = [
@@ -218,34 +642,34 @@ const customThemeCode = `
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2563EB',
-      light: '#93C5FD',
-      dark: '#172554',
+      main: 'hsl(210, 100%, 45%)',
+      light: 'hsl(210, 100%, 90%)',
+      dark: 'hsl(210, 100%, 30%)',
     },
     secondary: {
-      main: '#0F766E',
-      light: '#99F6E4',
-      dark: '#134E4A',
+      main: '#101322',
+      light: '#E4E8F4',
+      dark: '#020617',
     },
     warning: {
-      main: '#F97316',
-      light: '#FDBA74',
-      dark: '#9A3412',
+      main: '#7C3AED',
+      light: '#EDE9FE',
+      dark: '#4C1D95',
     },
     success: {
-      main: '#059669',
-      light: '#A7F3D0',
-      dark: '#065F46',
+      main: 'hsl(210, 100%, 45%)',
+      light: 'hsl(210, 100%, 90%)',
+      dark: 'hsl(210, 100%, 30%)',
     },
     text: {
-      primary: '#111827',
-      secondary: '#667085',
+      primary: '#101322',
+      secondary: '#5D667A',
     },
     background: {
       paper: '#FFFFFF',
-      default: '#F8FAFC',
+      default: '#F8FAFF',
     },
-    divider: '#E6EAF0',
+    divider: '#E2E8F6',
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
@@ -265,10 +689,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           [\`& .\${axisClasses.line}, & .\${axisClasses.tick}\`]: {
-            stroke: alpha('#111827', 0.1),
+            stroke: alpha('#101322', 0.1),
           },
           [\`& .\${axisClasses.tickLabel}\`]: {
-            fill: '#667085',
+            fill: '#5D667A',
             fontSize: 12,
             fontWeight: 600,
           },
@@ -279,9 +703,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           [\`& .\${chartsGridClasses.line}\`]: {
-            stroke: alpha('#111827', 0.075),
-            strokeDasharray: '4 8',
-            strokeWidth: 0.8,
+            stroke: alpha('#101322', 0.07),
+            strokeDasharray: '2 8',
+            strokeWidth: 0.9,
           },
         },
       },
@@ -306,7 +730,17 @@ const theme = createTheme({
 </ThemeProvider>`;
 
 const materialThemeCode = `
-<CssVarsProvider>
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+
+<CssVarsProvider theme={theme} forceThemeRerender>
   <ChartsContainer
     series={[
       { type: 'bar', color: '#1976d2' },
@@ -337,19 +771,19 @@ function CustomChartGradients() {
   return (
     <defs>
       <linearGradient id={customGradientIds.subscriptions} x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stopColor="#2563EB" stopOpacity={0.96} />
-        <stop offset="58%" stopColor="#60A5FA" stopOpacity={0.82} />
-        <stop offset="100%" stopColor="#BFDBFE" stopOpacity={0.54} />
+        <stop offset="0%" stopColor={customThemeTokens.accentDark} stopOpacity={0.94} />
+        <stop offset="54%" stopColor={customThemeTokens.accent} stopOpacity={0.82} />
+        <stop offset="100%" stopColor={customThemeTokens.accentBright} stopOpacity={0.48} />
       </linearGradient>
       <linearGradient id={customGradientIds.expansion} x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stopColor="#F97316" stopOpacity={0.94} />
-        <stop offset="58%" stopColor="#FB923C" stopOpacity={0.76} />
-        <stop offset="100%" stopColor="#FED7AA" stopOpacity={0.58} />
+        <stop offset="0%" stopColor={customThemeTokens.violet} stopOpacity={0.88} />
+        <stop offset="58%" stopColor="#A78BFA" stopOpacity={0.72} />
+        <stop offset="100%" stopColor={customThemeTokens.violetLight} stopOpacity={0.56} />
       </linearGradient>
       <linearGradient id={customGradientIds.runRate} x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stopColor="#0F766E" />
-        <stop offset="52%" stopColor="#2563EB" />
-        <stop offset="100%" stopColor="#111827" />
+        <stop offset="0%" stopColor={customThemeTokens.ink} />
+        <stop offset="54%" stopColor={customThemeTokens.accent} />
+        <stop offset="100%" stopColor={customThemeTokens.violet} />
       </linearGradient>
     </defs>
   );
@@ -398,15 +832,7 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
           bgcolor: 'background.paper',
           borderColor: 'divider',
         },
-        custom && {
-          borderRadius: '16px',
-          borderColor: alpha('#2563EB', 0.14),
-          background: `linear-gradient(180deg, #FFFFFF 0%, ${alpha('#F8FAFC', 0.98)} 100%)`,
-          boxShadow: `0 20px 44px ${alpha('#111827', 0.08)}, 0 1px 0 ${alpha(
-            '#FFFFFF',
-            0.86,
-          )} inset`,
-        },
+        custom && customGlassPanelSx,
       ]}
     >
       <Stack
@@ -423,10 +849,20 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
           },
           custom && {
             py: 2,
-            background: `linear-gradient(90deg, ${alpha('#EFF6FF', 0.78)} 0%, ${alpha(
-              '#FFF7ED',
-              0.55,
+            background: `linear-gradient(90deg, ${alpha(
+              customThemeTokens.accentLight,
+              0.46,
+            )} 0%, ${alpha('#FFFFFF', 0.42)} 52%, ${alpha(
+              customThemeTokens.violetLight,
+              0.4,
             )} 100%)`,
+            '[data-mui-color-scheme="dark"] &': {
+              borderColor: alpha(customThemeTokens.accentBright, 0.18),
+              background: `linear-gradient(90deg, ${alpha(
+                customThemeTokens.accent,
+                0.16,
+              )} 0%, ${alpha('#FFFFFF', 0.04)} 52%, ${alpha(customThemeTokens.violet, 0.12)} 100%)`,
+            },
           },
         ]}
       >
@@ -471,10 +907,17 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
               },
             },
             custom && {
-              color: '#1D4ED8',
-              bgcolor: alpha('#FFFFFF', 0.86),
-              borderColor: alpha('#2563EB', 0.16),
-              boxShadow: `0 1px 2px ${alpha('#111827', 0.06)}`,
+              color: customThemeTokens.ink,
+              background: alpha('#FFFFFF', 0.58),
+              borderColor: alpha(customThemeTokens.accent, 0.16),
+              backdropFilter: 'blur(12px)',
+              boxShadow: `0 8px 18px ${alpha(customThemeTokens.accentDark, 0.08)}`,
+              '[data-mui-color-scheme="dark"] &': {
+                color: '#F8FBFF',
+                background: alpha('#06183B', 0.56),
+                borderColor: alpha(customThemeTokens.accentBright, 0.34),
+                boxShadow: `0 0 16px ${alpha(customThemeTokens.accentBright, 0.22)}`,
+              },
             },
           ]}
         >
@@ -517,10 +960,16 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                 gap: 1.5,
               },
               custom && {
-                background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.64)} 0%, ${alpha(
-                  '#EFF6FF',
-                  0.42,
-                )} 55%, ${alpha('#FFF7ED', 0.42)} 100%)`,
+                background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.54)} 0%, ${alpha(
+                  customThemeTokens.surfaceTint,
+                  0.48,
+                )} 58%, ${alpha(customThemeTokens.violetLight, 0.34)} 100%)`,
+                '[data-mui-color-scheme="dark"] &': {
+                  background: `linear-gradient(180deg, ${alpha('#081733', 0.42)} 0%, ${alpha(
+                    '#020817',
+                    0.4,
+                  )} 58%, ${alpha(customThemeTokens.violet, 0.12)} 100%)`,
+                },
               },
             ]}
           >
@@ -543,7 +992,7 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                       letterSpacing: 0,
                     },
                     custom && {
-                      color: '#111827',
+                      color: customThemeTokens.ink,
                     },
                   ]}
                 >
@@ -569,11 +1018,17 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                   },
                   custom && {
                     color: '#FFFFFF',
-                    background: 'linear-gradient(135deg, #047857 0%, #15803D 100%)',
+                    background: `linear-gradient(135deg, ${customThemeTokens.accentDark} 0%, ${customThemeTokens.violet} 100%)`,
                     boxShadow: `0 8px 18px ${alpha(
-                      '#047857',
+                      customThemeTokens.violet,
                       0.22,
                     )}, inset 0 0 0 1px ${alpha('#FFFFFF', 0.22)}`,
+                    '[data-mui-color-scheme="dark"] &': {
+                      boxShadow: `0 0 18px ${alpha(
+                        customThemeTokens.accentBright,
+                        0.38,
+                      )}, inset 0 0 0 1px ${alpha('#FFFFFF', 0.22)}`,
+                    },
                   },
                 ]}
               >
@@ -590,17 +1045,31 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                   borderRadius: custom ? 3 : 1,
                 },
                 custom && {
-                  background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.86)} 0%, ${alpha(
+                  background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.68)} 0%, ${alpha(
                     '#FFFFFF',
-                    0.52,
+                    0.38,
                   )} 100%), repeating-linear-gradient(90deg, transparent 0 68px, ${alpha(
-                    '#2563EB',
-                    0.035,
+                    customThemeTokens.accent,
+                    0.045,
                   )} 68px 69px)`,
-                  boxShadow: `inset 0 1px 0 ${alpha(
-                    '#FFFFFF',
-                    0.92,
-                  )}, inset 0 0 0 1px ${alpha('#2563EB', 0.06)}`,
+                  backdropFilter: 'blur(12px)',
+                  boxShadow: `inset 0 1px 0 ${alpha('#FFFFFF', 0.92)}, inset 0 0 0 1px ${alpha(
+                    customThemeTokens.accent,
+                    0.1,
+                  )}`,
+                  '[data-mui-color-scheme="dark"] &': {
+                    background: `linear-gradient(180deg, ${alpha('#0A1833', 0.52)} 0%, ${alpha(
+                      '#030713',
+                      0.34,
+                    )} 100%), repeating-linear-gradient(90deg, transparent 0 68px, ${alpha(
+                      customThemeTokens.accentBright,
+                      0.08,
+                    )} 68px 69px)`,
+                    boxShadow: `inset 0 1px 0 ${alpha(
+                      '#FFFFFF',
+                      0.16,
+                    )}, inset 0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.16)}`,
+                  },
                 },
               ]}
             >
@@ -634,25 +1103,43 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                   },
                   custom && {
                     [`& .${barClasses.element}`]: {
-                      filter: `drop-shadow(0 9px 12px ${alpha('#111827', 0.1)})`,
+                      filter: `drop-shadow(0 9px 12px ${alpha(customThemeTokens.ink, 0.1)})`,
                       stroke: alpha('#FFFFFF', 0.82),
                       strokeWidth: 0.6,
                     },
                     [`& .${lineClasses.line}`]: {
-                      filter: `drop-shadow(0 7px 8px ${alpha('#2563EB', 0.2)})`,
+                      filter: `drop-shadow(0 7px 8px ${alpha(customThemeTokens.accent, 0.2)})`,
                     },
                     [`& .${lineClasses.mark}`]: {
                       fill: '#FFFFFF',
-                      stroke: '#2563EB',
+                      stroke: customThemeTokens.accent,
                       strokeWidth: 2.2,
-                      filter: `drop-shadow(0 3px 5px ${alpha('#2563EB', 0.22)})`,
+                      filter: `drop-shadow(0 3px 5px ${alpha(customThemeTokens.accent, 0.22)})`,
                     },
                     [`& .${axisClasses.line}, & .${axisClasses.tick}`]: {
-                      stroke: alpha('#111827', 0.1),
+                      stroke: alpha(customThemeTokens.ink, 0.1),
                     },
                     [`& .${axisClasses.tickLabel}`]: {
-                      fill: '#667085',
+                      fill: customThemeTokens.muted,
                       fontWeight: 600,
+                    },
+                    '[data-mui-color-scheme="dark"] &': {
+                      [`& .${lineClasses.line}`]: {
+                        filter: `drop-shadow(0 0 10px ${alpha(
+                          customThemeTokens.accentBright,
+                          0.5,
+                        )})`,
+                      },
+                      [`& .${lineClasses.mark}`]: {
+                        fill: '#07122E',
+                        stroke: customThemeTokens.accentBright,
+                      },
+                      [`& .${axisClasses.line}, & .${axisClasses.tick}`]: {
+                        stroke: alpha(customThemeTokens.accentBright, 0.16),
+                      },
+                      [`& .${axisClasses.tickLabel}`]: {
+                        fill: alpha('#DDEBFF', 0.72),
+                      },
                     },
                   },
                 ]}
@@ -682,9 +1169,13 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
               custom && {
                 color: 'text.secondary',
                 background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.7)} 0%, ${alpha(
-                  '#EFF6FF',
-                  0.44,
+                  customThemeTokens.surfaceTint,
+                  0.46,
                 )} 100%)`,
+                '[data-mui-color-scheme="dark"] &': {
+                  borderColor: alpha(customThemeTokens.accentBright, 0.16),
+                  background: alpha('#07122E', 0.42),
+                },
               },
             ]}
           >
@@ -707,7 +1198,10 @@ function ThemedComposedChart({ custom }: { custom: boolean }) {
                       borderRadius: item.key === 'runRate' ? 999 : 6,
                       background: legendColors[item.key],
                       boxShadow: custom
-                        ? `0 0 0 1px ${alpha('#FFFFFF', 0.7)}, 0 4px 8px ${alpha('#0F172A', 0.08)}`
+                        ? `0 0 0 1px ${alpha('#FFFFFF', 0.7)}, 0 4px 8px ${alpha(
+                            customThemeTokens.ink,
+                            0.08,
+                          )}`
                         : undefined,
                     }}
                   />
@@ -735,15 +1229,7 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
           bgcolor: 'background.paper',
           borderColor: 'divider',
         },
-        custom && {
-          borderRadius: '16px',
-          borderColor: alpha('#2563EB', 0.14),
-          background: `linear-gradient(180deg, #FFFFFF 0%, ${alpha('#F8FAFC', 0.98)} 100%)`,
-          boxShadow: `0 20px 44px ${alpha('#111827', 0.08)}, 0 1px 0 ${alpha(
-            '#FFFFFF',
-            0.86,
-          )} inset`,
-        },
+        custom && customGlassPanelSx,
       ]}
     >
       <Stack
@@ -760,10 +1246,20 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
           },
           custom && {
             py: 2,
-            background: `linear-gradient(90deg, ${alpha('#EFF6FF', 0.78)} 0%, ${alpha(
-              '#ECFDF5',
-              0.62,
+            background: `linear-gradient(90deg, ${alpha(
+              customThemeTokens.accentLight,
+              0.46,
+            )} 0%, ${alpha('#FFFFFF', 0.42)} 52%, ${alpha(
+              customThemeTokens.violetLight,
+              0.4,
             )} 100%)`,
+            '[data-mui-color-scheme="dark"] &': {
+              borderColor: alpha(customThemeTokens.accentBright, 0.18),
+              background: `linear-gradient(90deg, ${alpha(
+                customThemeTokens.accent,
+                0.16,
+              )} 0%, ${alpha('#FFFFFF', 0.04)} 52%, ${alpha(customThemeTokens.violet, 0.12)} 100%)`,
+            },
           },
         ]}
       >
@@ -772,7 +1268,7 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
             Account health
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary', maxWidth: 520 }}>
-            A compact Data Grid preview using the selected theme.
+            A compact Data Grid preview with custom cell renderers.
           </Typography>
         </Box>
       </Stack>
@@ -786,10 +1282,19 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
             bgcolor: 'background.default',
           },
           custom && {
-            background: `linear-gradient(145deg, ${alpha('#EFF6FF', 0.78)} 0%, ${alpha(
+            background: `linear-gradient(145deg, ${alpha(
+              customThemeTokens.surfaceTint,
+              0.56,
+            )} 0%, ${alpha(
               '#FFFFFF',
-              0.88,
-            )} 46%, ${alpha('#FFF7ED', 0.55)} 100%)`,
+              0.48,
+            )} 56%, ${alpha(customThemeTokens.violetLight, 0.38)} 100%)`,
+            '[data-mui-color-scheme="dark"] &': {
+              background: `linear-gradient(145deg, ${alpha(
+                '#081733',
+                0.44,
+              )} 0%, ${alpha('#020817', 0.42)} 58%, ${alpha(customThemeTokens.violet, 0.12)} 100%)`,
+            },
           },
         ]}
       >
@@ -802,9 +1307,9 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
           disableColumnMenu
           disableColumnSorting
           disableVirtualization
-          rowHeight={custom ? 49 : 45}
-          columnHeaderHeight={custom ? 50 : 44}
-          density={custom ? 'standard' : 'compact'}
+          rowHeight={58}
+          columnHeaderHeight={50}
+          density="standard"
           sx={[
             {
               height: '100%',
@@ -822,6 +1327,8 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
                 fontWeight: 700,
               },
               '& .MuiDataGrid-cell': {
+                display: 'flex',
+                alignItems: 'center',
                 borderColor: 'divider',
               },
               '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within, & .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within':
@@ -830,35 +1337,72 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
                 },
             },
             custom && {
-              border: `1px solid ${alpha('#2563EB', 0.12)}`,
+              border: `1px solid ${alpha(customThemeTokens.accent, 0.14)}`,
               borderRadius: '14px',
               overflow: 'hidden',
-              background: alpha('#FFFFFF', 0.82),
-              boxShadow: `0 16px 36px ${alpha('#0F172A', 0.08)}, inset 0 1px 0 ${alpha(
-                '#FFFFFF',
-                0.9,
-              )}`,
-              '--DataGrid-rowBorderColor': alpha('#2563EB', 0.08),
+              background: alpha('#FFFFFF', 0.62),
+              backdropFilter: 'blur(14px) saturate(170%)',
+              boxShadow: `0 16px 34px ${alpha(
+                customThemeTokens.accentDark,
+                0.08,
+              )}, inset 0 1px 0 ${alpha('#FFFFFF', 0.9)}`,
+              '--DataGrid-rowBorderColor': alpha(customThemeTokens.accent, 0.08),
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                px: 2,
+                px: 1.5,
               },
               '& .MuiDataGrid-columnHeader': {
                 background: `linear-gradient(180deg, ${alpha('#FFFFFF', 0.96)} 0%, ${alpha(
-                  '#EFF6FF',
+                  customThemeTokens.surfaceTint,
                   0.72,
                 )} 100%)`,
               },
               '& .MuiDataGrid-columnHeaderTitle': {
-                color: '#1F2937',
+                color: customThemeTokens.ink,
               },
               '& .MuiDataGrid-row': {
-                backgroundColor: alpha('#FFFFFF', 0.72),
+                backgroundColor: alpha('#FFFFFF', 0.52),
               },
               '& .MuiDataGrid-row:hover': {
-                backgroundColor: alpha('#DBEAFE', 0.48),
+                backgroundColor: alpha(customThemeTokens.accentLight, 0.32),
               },
               '& .MuiDataGrid-cell': {
-                borderColor: alpha('#2563EB', 0.08),
+                borderColor: alpha(customThemeTokens.accent, 0.08),
+              },
+              '[data-mui-color-scheme="dark"] &': {
+                color: '#F8FBFF',
+                borderColor: alpha(customThemeTokens.accentBright, 0.26),
+                background: alpha('#07122E', 0.58),
+                boxShadow: `0 0 22px ${alpha(
+                  customThemeTokens.accentBright,
+                  0.18,
+                )}, inset 0 1px 0 ${alpha('#FFFFFF', 0.14)}`,
+                '--DataGrid-rowBorderColor': alpha(customThemeTokens.accentBright, 0.14),
+                '& .MuiDataGrid-columnHeaders, & .MuiDataGrid-topContainer': {
+                  color: '#F8FBFF',
+                  borderColor: alpha(customThemeTokens.accentBright, 0.16),
+                  background: `linear-gradient(180deg, ${alpha(
+                    customThemeTokens.accent,
+                    0.18,
+                  )} 0%, ${alpha('#061226', 0.62)} 100%)`,
+                },
+                '& .MuiDataGrid-columnHeader': {
+                  background: `linear-gradient(180deg, ${alpha(
+                    customThemeTokens.accent,
+                    0.14,
+                  )} 0%, ${alpha('#061226', 0.42)} 100%)`,
+                },
+                '& .MuiDataGrid-columnHeaderTitle': {
+                  color: '#F8FBFF',
+                },
+                '& .MuiDataGrid-row': {
+                  backgroundColor: alpha('#061226', 0.38),
+                },
+                '& .MuiDataGrid-row:hover': {
+                  backgroundColor: alpha(customThemeTokens.accent, 0.18),
+                },
+                '& .MuiDataGrid-cell': {
+                  borderColor: alpha(customThemeTokens.accentBright, 0.14),
+                },
               },
             },
           ]}
@@ -868,8 +1412,7 @@ function ThemedMiniDataGrid({ custom }: { custom: boolean }) {
   );
 }
 
-function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
-  const [previewId, setPreviewId] = React.useState<PreviewItemId>('charts');
+function ThemedPreviewCarousel({ custom, previewId, setPreviewId }: ThemedPreviewCarouselProps) {
   const selectedPreviewIndex = previewItems.findIndex((item) => item.id === previewId);
 
   const handlePrevious = () => {
@@ -916,9 +1459,21 @@ function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
               bgcolor: 'background.paper',
             },
             custom && {
-              borderColor: alpha('#2563EB', 0.14),
-              background: alpha('#FFFFFF', 0.76),
-              boxShadow: `0 12px 24px ${alpha('#111827', 0.07)}`,
+              borderColor: alpha(customThemeTokens.accent, 0.14),
+              background: alpha('#FFFFFF', 0.54),
+              backdropFilter: 'blur(14px) saturate(180%)',
+              boxShadow: `0 16px 34px ${alpha(customThemeTokens.accentDark, 0.1)}, inset 0 0 0 1px ${alpha(
+                '#FFFFFF',
+                0.48,
+              )}`,
+              '[data-mui-color-scheme="dark"] &': {
+                borderColor: alpha(customThemeTokens.accentBright, 0.28),
+                background: alpha('#07122E', 0.56),
+                boxShadow: `0 0 18px ${alpha(
+                  customThemeTokens.accentBright,
+                  0.2,
+                )}, inset 0 0 0 1px ${alpha('#FFFFFF', 0.12)}`,
+              },
             },
           ]}
         >
@@ -947,18 +1502,56 @@ function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
                     lineHeight: 1,
                     cursor: 'pointer',
                     whiteSpace: 'nowrap',
+                    outline: 0,
+                    '&:focus-visible': {
+                      boxShadow: `0 0 0 3px ${alpha('#1976d2', 0.18)}`,
+                    },
+                  },
+                  custom && {
+                    '&:focus-visible': {
+                      boxShadow: `0 0 0 3px ${alpha(customThemeTokens.accent, 0.16)}`,
+                    },
+                    '[data-mui-color-scheme="dark"] &': {
+                      color: alpha('#DDEBFF', 0.72),
+                    },
                   },
                   custom &&
                     selected && {
-                      color: '#1D4ED8',
-                      background: `linear-gradient(135deg, ${alpha('#DBEAFE', 0.98)} 0%, ${alpha(
-                        '#FFFFFF',
-                        0.92,
+                      color: customThemeTokens.accentDark,
+                      background: `linear-gradient(135deg, ${alpha(
+                        customThemeTokens.accentLight,
+                        0.68,
+                      )} 0%, ${alpha('#FFFFFF', 0.56)} 48%, ${alpha(
+                        customThemeTokens.violetLight,
+                        0.58,
                       )} 100%)`,
-                      boxShadow: `0 8px 18px ${alpha('#2563EB', 0.14)}, inset 0 0 0 1px ${alpha(
-                        '#2563EB',
-                        0.16,
-                      )}`,
+                      boxShadow: `0 8px 18px ${alpha(
+                        customThemeTokens.accent,
+                        0.14,
+                      )}, inset 0 0 0 1px ${alpha(customThemeTokens.accent, 0.16)}`,
+                      '[data-mui-color-scheme="dark"] &': {
+                        color: '#F8FBFF',
+                        background: `linear-gradient(135deg, ${alpha(
+                          customThemeTokens.accent,
+                          0.34,
+                        )} 0%, ${alpha('#FFFFFF', 0.08)} 48%, ${alpha(
+                          customThemeTokens.violet,
+                          0.24,
+                        )} 100%)`,
+                        boxShadow: `0 0 18px ${alpha(
+                          customThemeTokens.accentBright,
+                          0.32,
+                        )}, inset 0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.28)}`,
+                      },
+                      '&:focus-visible': {
+                        boxShadow: `0 0 0 3px ${alpha(
+                          customThemeTokens.accent,
+                          0.16,
+                        )}, 0 8px 18px ${alpha(
+                          customThemeTokens.accent,
+                          0.14,
+                        )}, inset 0 0 0 1px ${alpha(customThemeTokens.accent, 0.16)}`,
+                      },
                     },
                 ]}
               >
@@ -980,9 +1573,16 @@ function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
                 bgcolor: 'background.paper',
               },
               custom && {
-                borderColor: alpha('#2563EB', 0.14),
-                background: alpha('#FFFFFF', 0.76),
-                boxShadow: `0 8px 18px ${alpha('#111827', 0.06)}`,
+                borderColor: alpha(customThemeTokens.accent, 0.14),
+                background: alpha('#FFFFFF', 0.54),
+                backdropFilter: 'blur(14px) saturate(180%)',
+                boxShadow: `0 10px 22px ${alpha(customThemeTokens.accentDark, 0.08)}`,
+                '[data-mui-color-scheme="dark"] &': {
+                  color: '#DDEBFF',
+                  borderColor: alpha(customThemeTokens.accentBright, 0.28),
+                  background: alpha('#07122E', 0.56),
+                  boxShadow: `0 0 16px ${alpha(customThemeTokens.accentBright, 0.18)}`,
+                },
               },
             ]}
           >
@@ -999,9 +1599,16 @@ function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
                 bgcolor: 'background.paper',
               },
               custom && {
-                borderColor: alpha('#2563EB', 0.14),
-                background: alpha('#FFFFFF', 0.76),
-                boxShadow: `0 8px 18px ${alpha('#111827', 0.06)}`,
+                borderColor: alpha(customThemeTokens.accent, 0.14),
+                background: alpha('#FFFFFF', 0.54),
+                backdropFilter: 'blur(14px) saturate(180%)',
+                boxShadow: `0 10px 22px ${alpha(customThemeTokens.accentDark, 0.08)}`,
+                '[data-mui-color-scheme="dark"] &': {
+                  color: '#DDEBFF',
+                  borderColor: alpha(customThemeTokens.accentBright, 0.28),
+                  background: alpha('#07122E', 0.56),
+                  boxShadow: `0 0 16px ${alpha(customThemeTokens.accentBright, 0.18)}`,
+                },
               },
             ]}
           >
@@ -1014,24 +1621,31 @@ function ThemedPreviewCarousel({ custom }: { custom: boolean }) {
   );
 }
 
-function CustomThemePreview() {
+function CustomThemePreview({
+  previewId,
+  setPreviewId,
+}: Pick<ThemedPreviewCarouselProps, 'previewId' | 'setPreviewId'>) {
   return (
     <ThemeProvider theme={customChartsTheme}>
-      <ThemedPreviewCarousel custom />
+      <ThemedPreviewCarousel custom previewId={previewId} setPreviewId={setPreviewId} />
     </ThemeProvider>
   );
 }
 
-function MaterialThemePreview() {
+function MaterialThemePreview({
+  previewId,
+  setPreviewId,
+}: Pick<ThemedPreviewCarouselProps, 'previewId' | 'setPreviewId'>) {
   return (
-    <CssVarsProvider>
-      <ThemedPreviewCarousel custom={false} />
+    <CssVarsProvider theme={materialPreviewTheme} forceThemeRerender>
+      <ThemedPreviewCarousel custom={false} previewId={previewId} setPreviewId={setPreviewId} />
     </CssVarsProvider>
   );
 }
 
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
+  const [previewId, setPreviewId] = React.useState<PreviewItemId>('charts');
 
   return (
     <Section bg="gradient">
@@ -1064,7 +1678,11 @@ export default function XTheming() {
           </Group>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          {customized ? <CustomThemePreview /> : <MaterialThemePreview />}
+          {customized ? (
+            <CustomThemePreview previewId={previewId} setPreviewId={setPreviewId} />
+          ) : (
+            <MaterialThemePreview previewId={previewId} setPreviewId={setPreviewId} />
+          )}
         </Grid>
       </Grid>
     </Section>
