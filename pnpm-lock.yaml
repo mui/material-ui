@@ -335,6 +335,9 @@ importers:
       '@mui/x-scheduler':
         specifier: 9.0.0-beta.2
         version: 9.0.0-beta.2(@date-fns/tz@1.5.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-scheduler-premium':
+        specifier: 9.0.0-beta.2
+        version: 9.0.0-beta.2(@date-fns/tz@1.5.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@mui/x-tree-view':
         specifier: 9.4.0
         version: 9.4.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -3933,12 +3936,42 @@ packages:
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
 
+  '@mui/x-license@9.6.0':
+    resolution: {integrity: sha512-E+laPXwX/MtgAza+X8VTnyfl6r3yLw8nPvQWyrZIzjCOGQAG2xTYi0Wl7l0Sgg+bbCCJsglN80abjRV1XM3BIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@mui/x-scheduler-internals-premium@9.0.0-beta.2':
+    resolution: {integrity: sha512-txeY+b35PRnTaTpaHqjtEqcI1xEhy596/h1kiJ5BYEwDpKoy7d0GT3sbT/urpQHHIdcst3giFCHFLduH/VcH7w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@mui/x-scheduler-internals@9.0.0-beta.2':
     resolution: {integrity: sha512-sGmu6pwiDQNF4Fpcaensnpu6qwVAcONx0CpHzFxGxLg2V5L8VrHDaJmvsgjohxMJxAZ/U52R1ci5oc3lLSrczQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@mui/x-scheduler-premium@9.0.0-beta.2':
+    resolution: {integrity: sha512-3AOQB+XcjH0cJ46GngDHea7EviM9AtAgJG84OrY0aK+IVgBIakx+2r3jRmGaLgVmRpBaQR8bXGnB9lb/1yNRDQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.9.0
+      '@emotion/styled': ^11.8.1
+      '@mui/icons-material': ^7.3.0 || ^9.0.0
+      '@mui/material': ^7.3.0 || ^9.0.0
+      '@mui/system': ^7.3.0 || ^9.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
 
   '@mui/x-scheduler@9.0.0-beta.2':
     resolution: {integrity: sha512-WxmHa2tR49D0+IJ4ir1RIH+4fvZzlUhACbxqNJnVV1LKGIaqDBdqLQBFtUCuhi86SLxlvG0Dk7/fT3TJ3Jik3Q==}
@@ -3992,6 +4025,13 @@ packages:
         optional: true
       '@emotion/styled':
         optional: true
+
+  '@mui/x-virtualizer@9.0.0-alpha.10':
+    resolution: {integrity: sha512-Et1wloXfxD/z037Wk6H0lGFcFzH4o/+5VL+faLgkE1IZHzV64PEg7Z4OLoi9vwSMsfOB35OBVNjBajiepD8L+w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@mui/x-virtualizer@9.0.0-alpha.8':
     resolution: {integrity: sha512-Bfvj2Zhi68rkJ/p99UAWqqTgRWvyTOIyzglagtfSaibrNwDmwN2cwfwLmSd2XrWmpirNY39kCxzqoURmacMutA==}
@@ -14503,6 +14543,32 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  '@mui/x-license@9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+    dependencies:
+      '@babel/runtime': 7.29.7
+      '@mui/utils': 9.1.1(@types/react@19.2.14)(react@19.2.6)
+      '@mui/x-internals': 9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-telemetry': 9.2.0
+      react: 19.2.6
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+
+  '@mui/x-scheduler-internals-premium@9.0.0-beta.2(@date-fns/tz@1.5.0)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+    dependencies:
+      '@babel/runtime': 7.29.7
+      '@base-ui/react': 1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@base-ui/utils': 0.2.9(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-internals': 9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-scheduler-internals': 9.0.0-beta.2(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      prop-types: 15.8.1
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+    transitivePeerDependencies:
+      - '@date-fns/tz'
+      - '@types/react'
+      - date-fns
+
   '@mui/x-scheduler-internals@9.0.0-beta.2(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@atlaskit/pragmatic-drag-and-drop': 1.8.1
@@ -14522,6 +14588,33 @@ snapshots:
       use-sync-external-store: 1.6.0(react@19.2.6)
     transitivePeerDependencies:
       - '@types/react'
+
+  '@mui/x-scheduler-premium@9.0.0-beta.2(@date-fns/tz@1.5.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+    dependencies:
+      '@babel/runtime': 7.29.7
+      '@base-ui/react': 1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@base-ui/utils': 0.2.9(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/icons-material': link:packages/mui-icons-material/build
+      '@mui/material': link:packages/mui-material/build
+      '@mui/system': link:packages/mui-system/build
+      '@mui/utils': 9.1.1(@types/react@19.2.14)(react@19.2.6)
+      '@mui/x-internals': 9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-license': 9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-scheduler': 9.0.0-beta.2(@date-fns/tz@1.5.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-scheduler-internals': 9.0.0-beta.2(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-scheduler-internals-premium': 9.0.0-beta.2(@date-fns/tz@1.5.0)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@mui/x-virtualizer': 9.0.0-alpha.10(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+    optionalDependencies:
+      '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.6)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6)
+    transitivePeerDependencies:
+      - '@date-fns/tz'
+      - '@types/react'
+      - date-fns
 
   '@mui/x-scheduler@9.0.0-beta.2(@date-fns/tz@1.5.0)(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.2.14)(date-fns@4.4.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
@@ -14592,6 +14685,16 @@ snapshots:
     optionalDependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.2.6)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6)
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@mui/x-virtualizer@9.0.0-alpha.10(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+    dependencies:
+      '@babel/runtime': 7.29.7
+      '@mui/utils': 9.1.1(@types/react@19.2.14)(react@19.2.6)
+      '@mui/x-internals': 9.6.0(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
     transitivePeerDependencies:
       - '@types/react'
 

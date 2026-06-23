@@ -6,8 +6,8 @@ import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRound
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
-import EventNoteRoundedIcon from '@mui/icons-material/EventNoteRounded';
-import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
 import { visuallyHidden } from '@mui/utils';
 import { Highlighter } from '@mui/internal-core-docs/AppLayout';
 import { Link } from '@mui/internal-core-docs/Link';
@@ -144,22 +144,22 @@ export default function XComponentsSwitcher(props: {
     {
       element: (
         <ComponentItem
-          name="Scheduler"
-          description="Event calendar and timeline for scheduling workflows."
-          label="Event calendar and timeline for scheduling workflows."
-          icon={<EventNoteRoundedIcon />}
-          href={ROUTES.schedulerOverview}
+          name="Event Calendar"
+          description="Schedule meetings, deadlines, and recurring work in calendar views."
+          label="Schedule meetings, deadlines, and recurring work in calendar views."
+          icon={<EventAvailableRoundedIcon />}
+          href="/x/react-scheduler/event-calendar/views/"
         />
       ),
     },
     {
       element: (
         <ComponentItem
-          name="Chat"
-          description="AI-powered chat components."
-          label="AI-powered chat components."
-          icon={<ForumRoundedIcon />}
-          href={ROUTES.chatOverview}
+          name="Event Timeline"
+          description="Plan resource-based work across horizontal timelines."
+          label="Plan resource-based work across horizontal timelines."
+          icon={<ViewTimelineRoundedIcon />}
+          href="/x/react-scheduler/event-timeline/views/"
         />
       ),
     },

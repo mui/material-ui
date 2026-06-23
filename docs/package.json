@@ -47,6 +47,7 @@
     "@mui/x-date-pickers-pro": "9.5.0",
     "@mui/x-license": "9.4.0",
     "@mui/x-scheduler": "9.0.0-beta.2",
+    "@mui/x-scheduler-premium": "9.0.0-beta.2",
     "@mui/x-tree-view": "9.4.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.0.3",

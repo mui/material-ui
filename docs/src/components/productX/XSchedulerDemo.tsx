@@ -1,159 +1,121 @@
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import { alpha } from '@mui/material/styles';
+import { EventCalendar } from '@mui/x-scheduler/event-calendar';
+import type { SchedulerEvent, SchedulerResource } from '@mui/x-scheduler/models';
+import { EventTimelinePremium } from '@mui/x-scheduler-premium/event-timeline-premium';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import { Frame } from '@mui/internal-core-docs/AppLayout';
 
-const days = ['Mon 12', 'Tue 13', 'Wed 14', 'Thu 15'];
-const times = ['8 AM', '10 AM', '12 PM', '2 PM', '4 PM'];
+const events: SchedulerEvent[] = [
+  {
+    id: 'launch-plan',
+    title: 'Launch plan',
+    start: '2026-01-12T08:00:00Z',
+    end: '2026-01-12T12:00:00Z',
+    resource: 'product',
+  },
+  {
+    id: 'fulfillment-window',
+    title: 'Fulfillment window',
+    start: '2026-01-12T13:00:00Z',
+    end: '2026-01-14T10:00:00Z',
+    resource: 'operations',
+  },
+  {
+    id: 'customer-briefings',
+    title: 'Customer briefings',
+    start: '2026-01-13T09:00:00Z',
+    end: '2026-01-15T15:00:00Z',
+    resource: 'success',
+  },
+  {
+    id: 'quality-review',
+    title: 'Quality review',
+    start: '2026-01-15T08:00:00Z',
+    end: '2026-01-15T14:00:00Z',
+    resource: 'operations',
+  },
+];
 
-const events = [
-  { day: 0, row: 1, span: 2, title: 'Design review', detail: 'Room 204', color: 'primary' },
-  { day: 1, row: 2, span: 2, title: 'Dispatch shift', detail: 'Ops team', color: 'success' },
-  { day: 2, row: 1, span: 1, title: 'Client sync', detail: 'Video call', color: 'warning' },
-  { day: 3, row: 3, span: 2, title: 'Maintenance', detail: 'Bay 4', color: 'info' },
-] as const;
+const resources: SchedulerResource[] = [
+  { id: 'product', title: 'Product', eventColor: 'blue' },
+  { id: 'operations', title: 'Operations', eventColor: 'teal' },
+  { id: 'success', title: 'Success', eventColor: 'amber' },
+];
 
-const code = `
+const frameDemoSx = { p: 2, overflow: 'auto' };
+
+const schedulerSx = {
+  height: 360,
+  minWidth: 520,
+  border: '1px solid',
+  borderColor: 'divider',
+  borderRadius: 1,
+  bgcolor: 'background.paper',
+  overflow: 'hidden',
+};
+
+const eventCalendarCode = `
 <EventCalendar
   events={events}
   resources={resources}
-  initialView="week"
-  timezone="system"
+  defaultView="week"
+  defaultVisibleDate={new Date('2026-01-12T00:00:00Z')}
+  defaultPreferences={{ isSidePanelOpen: false }}
+  displayTimezone="UTC"
+  readOnly
 />`;
 
-export default function XSchedulerDemo() {
+const eventTimelineCode = `
+<EventTimelinePremium
+  events={events}
+  resources={resources}
+  preset="dayAndWeek"
+  defaultVisibleDate={new Date('2026-01-12T00:00:00Z')}
+  displayTimezone="UTC"
+  resourceColumnLabel="Team"
+  readOnly
+/>`;
+
+export default function XEventCalendarDemo() {
   return (
     <Frame sx={{ height: '100%' }}>
-      <Frame.Demo sx={{ p: 2 }}>
-        <Paper
-          variant="outlined"
-          sx={(theme) => ({
-            borderRadius: '8px',
-            overflow: 'hidden',
-            bgcolor: '#FFF',
-            ...theme.applyDarkStyles({
-              bgcolor: 'primaryDark.900',
-            }),
-          })}
-        >
-          <Box
-            sx={{
-              px: 2,
-              py: 1.5,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-            }}
-          >
-            <div>
-              <Typography variant="body2" sx={{ fontWeight: 'semiBold', color: 'text.primary' }}>
-                Team schedule
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                Resource planning
-              </Typography>
-            </div>
-            <Chip label="Week" size="small" color="primary" variant="outlined" />
-          </Box>
-          <Box sx={{ overflow: 'auto' }}>
-            <Box
-              sx={{
-                minWidth: 520,
-                display: 'grid',
-                gridTemplateColumns: '56px repeat(4, minmax(96px, 1fr))',
-                gridTemplateRows: '36px repeat(5, 48px)',
-              }}
-            >
-              <div />
-              {days.map((day) => (
-                <Box
-                  key={day}
-                  sx={{
-                    px: 1.5,
-                    display: 'flex',
-                    alignItems: 'center',
-                    borderBottom: '1px solid',
-                    borderLeft: '1px solid',
-                    borderColor: 'divider',
-                  }}
-                >
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                    {day}
-                  </Typography>
-                </Box>
-              ))}
-              {times.map((time) => (
-                <Box
-                  key={time}
-                  sx={{
-                    px: 1,
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-end',
-                    borderTop: '1px solid',
-                    borderColor: 'divider',
-                  }}
-                >
-                  <Typography variant="caption" sx={{ color: 'text.secondary', mt: -0.5 }}>
-                    {time}
-                  </Typography>
-                </Box>
-              ))}
-              {times.flatMap((time, rowIndex) =>
-                days.map((day, dayIndex) => (
-                  <Box
-                    key={`${day}-${time}`}
-                    sx={{
-                      gridColumn: dayIndex + 2,
-                      gridRow: rowIndex + 2,
-                      borderTop: '1px solid',
-                      borderLeft: '1px solid',
-                      borderColor: 'divider',
-                    }}
-                  />
-                )),
-              )}
-              {events.map((event) => (
-                <Box
-                  key={event.title}
-                  sx={(theme) => ({
-                    gridColumn: event.day + 2,
-                    gridRow: `${event.row + 2} / span ${event.span}`,
-                    zIndex: 1,
-                    m: 0.5,
-                    p: 1,
-                    borderRadius: 1,
-                    border: '1px solid',
-                    borderColor: alpha(theme.palette[event.color].main, 0.28),
-                    bgcolor: alpha(theme.palette[event.color].main, 0.12),
-                    color: theme.palette[event.color].dark,
-                    overflow: 'hidden',
-                    ...theme.applyDarkStyles({
-                      borderColor: alpha(theme.palette[event.color].light, 0.35),
-                      bgcolor: alpha(theme.palette[event.color].main, 0.2),
-                      color: theme.palette[event.color].light,
-                    }),
-                  })}
-                >
-                  <Typography variant="caption" sx={{ display: 'block', fontWeight: 'semiBold' }}>
-                    {event.title}
-                  </Typography>
-                  <Typography variant="caption" sx={{ display: 'block', opacity: 0.8 }}>
-                    {event.detail}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-        </Paper>
+      <Frame.Demo sx={frameDemoSx}>
+        <EventCalendar
+          events={events}
+          resources={resources}
+          defaultView="week"
+          defaultVisibleDate={new Date('2026-01-12T00:00:00Z')}
+          defaultPreferences={{ isSidePanelOpen: false }}
+          displayTimezone="UTC"
+          showCurrentTimeIndicator={false}
+          readOnly
+          sx={schedulerSx}
+        />
       </Frame.Demo>
       <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
-        <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
+        <HighlightedCode copyButtonHidden plainStyle code={eventCalendarCode} language="jsx" />
+      </Frame.Info>
+    </Frame>
+  );
+}
+
+export function XEventTimelineDemo() {
+  return (
+    <Frame sx={{ height: '100%' }}>
+      <Frame.Demo sx={frameDemoSx}>
+        <EventTimelinePremium
+          events={events}
+          resources={resources}
+          preset="dayAndWeek"
+          defaultVisibleDate={new Date('2026-01-12T00:00:00Z')}
+          displayTimezone="UTC"
+          showCurrentTimeIndicator={false}
+          resourceColumnLabel="Team"
+          readOnly
+          sx={schedulerSx}
+        />
+      </Frame.Demo>
+      <Frame.Info data-mui-color-scheme="dark" sx={{ maxHeight: 300, overflow: 'auto' }}>
+        <HighlightedCode copyButtonHidden plainStyle code={eventTimelineCode} language="jsx" />
       </Frame.Info>
     </Frame>
   );
