@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import Grid from '@mui/material/Grid';
@@ -9,6 +10,7 @@ import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
 import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import { Link } from '@mui/internal-core-docs/Link';
 import Section from 'docs/src/layouts/Section';
@@ -57,6 +59,7 @@ const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro
 
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState<(typeof DEMOS)[number] | null>(null);
+  const router = useRouter();
   const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
@@ -141,6 +144,14 @@ export default function XDataGrid() {
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
+            <Highlighter
+              onClick={() => {
+                void router.push('/x/react-data-grid/ai-assistant/');
+              }}
+              sx={{ textDecoration: 'none' }}
+            >
+              <Item icon={<AutoAwesomeRoundedIcon fontSize="small" />} title="AI Assistant" />
+            </Highlighter>
             <More href={ROUTES.dataGridFeatures} />
           </Group>
         </Grid>
