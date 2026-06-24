@@ -1,3 +1,6 @@
+/**
+ * @ignore - internal component.
+ */
 'use client';
 import * as React from 'react';
 import { useColorScheme } from './ThemeProviderWithVars';
