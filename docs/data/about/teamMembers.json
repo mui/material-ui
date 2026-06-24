@@ -358,5 +358,23 @@
     "locationCountry": "rs",
     "github": "lukatosic19-del",
     "twitter": null
+  },
+  {
+    "name": "Eliot Heitz",
+    "title": "Account Executive — Sales",
+    "about": "Big on reading, travel, and time with friends and family 🙌.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": null,
+    "twitter": null
+  },
+  {
+    "name": "Jenna Smith",
+    "title": "Product Engineer — Base UI",
+    "about": "👩🏻‍💻 codes 🤘 gigs 😴 sleeps ♻️ repeats.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": "jjenzz",
+    "twitter": "jjenzz"
   }
 ]
