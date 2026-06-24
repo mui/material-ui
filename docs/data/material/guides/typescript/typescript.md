@@ -46,11 +46,11 @@ The library types are strict by default and loose via opt-in.
 
 By default, slot prop types reject arbitrary `data-*` attributes, even though they are forwarded to the DOM at runtime.
 This keeps the typed surface tight and catches typos.
-To pass `data-*` attributes through `slotProps` (for example, test locators like `data-testid`), opt in by augmenting the `DataAttributesOverrides` interface from `@mui/utils/types` once, anywhere in your project:
+Augment the `DataAttributesOverrides` interface to allow `data-*` attributes (such as test locators like `data-testid`) on `slotProps`:
 
 ```ts
 // Accept any data-* attribute on every slot.
-declare module '@mui/utils/types' {
+declare module '@mui/material/utils' {
   interface DataAttributesOverrides {
     [key: `data-${string}`]: string | number | boolean | undefined;
   }
@@ -67,7 +67,7 @@ For a stricter contract, declare only the keys you use.
 You then get autocomplete and typo-checking for them, at the cost of listing each one:
 
 ```ts
-declare module '@mui/utils/types' {
+declare module '@mui/material/utils' {
   interface DataAttributesOverrides {
     'data-testid'?: string;
   }
