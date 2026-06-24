@@ -20,8 +20,15 @@
  */
 import * as React from 'react';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
+import {
+  createTheme,
+  ThemeProvider,
+  ThemeScope,
+  useColorScheme,
+  useThemeScopeProps,
+} from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
+import Dialog, { type DialogProps } from '@mui/material/Dialog';
 
 const themes = [
   createTheme({
@@ -76,13 +83,8 @@ const innerThemes = [
   }),
 ];
 
-// Uses ThemeProvider scoped to .inner-theme-scope so --mui-palette-* overrides
-// only apply inside the container (same variable names, different values).
-//
-// colorScheme is read from the OUTER context so dark-mode stays in sync.
-// colorSchemeNode={null}  — inner provider must not touch the DOM attribute;
-//   we set data-inner-color-scheme ourselves via the React prop.
-// storageWindow={null}    — outer provider owns localStorage.
+// ThemeScope is the explicit DOM boundary for the scoped variables. It keeps
+// the provider DOM-transparent while still giving portals scope props to reuse.
 function ScopedThemeProvider({
   theme,
   children,
@@ -90,14 +92,21 @@ function ScopedThemeProvider({
   theme: ReturnType<typeof createTheme>;
   children: React.ReactNode;
 }) {
-  const { colorScheme } = useColorScheme();
   return (
-    <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
-      <ThemeProvider theme={theme} colorSchemeNode={null} storageWindow={null} disableNestedContext>
+    <ThemeScope className="inner-theme-scope">
+      {/* Keep color-scheme state nested, but let the outer provider own the DOM attribute. */}
+      <ThemeProvider theme={theme} colorSchemeNode={null}>
         {children}
       </ThemeProvider>
-    </div>
+    </ThemeScope>
   );
+}
+
+// PoC wrapper. Final version should make Modal/Dialog consume ThemeScope internally.
+function ScopedDialog({ slotProps, ...props }: DialogProps) {
+  const rootScopeProps = useThemeScopeProps(slotProps?.root as React.HTMLAttributes<HTMLElement>);
+
+  return <Dialog {...props} slotProps={{ ...slotProps, root: rootScopeProps }} />;
 }
 
 interface InnerSectionProps {
@@ -107,6 +116,8 @@ interface InnerSectionProps {
 
 function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps) {
   const [value, setValue] = React.useState<number>(40);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
   return (
     <div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
@@ -150,6 +161,27 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
           aria-label="Inner sx override slider"
         />
         <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div style={{ marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          Dialog portal — root slot receives the current theme scope:
+        </p>
+        <button type="button" onClick={() => setDialogOpen(true)}>
+          Open scoped Dialog
+        </button>
+        <ScopedDialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+          <div style={{ padding: 24, minWidth: 320 }}>
+            <p style={{ marginTop: 0 }}>
+              This Slider portals to <code>document.body</code>, but the Dialog root carries the
+              nested scope.
+            </p>
+            <Slider defaultValue={40} aria-label="Dialog scoped slider" />
+            <button type="button" onClick={() => setDialogOpen(false)}>
+              Close
+            </button>
+          </div>
+        </ScopedDialog>
       </div>
     </div>
   );

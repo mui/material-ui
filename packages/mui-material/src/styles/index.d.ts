@@ -89,6 +89,13 @@ export {
   CssColorSchemeContext,
   CssColorSchemeContextValue,
 } from './CssThemeProvider';
+export {
+  default as ThemeScope,
+  ThemeScopeProps,
+  ThemeScopeContext,
+  ThemeScopeContextValue,
+  useThemeScopeProps,
+} from './ThemeScope';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';

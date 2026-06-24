@@ -232,7 +232,11 @@ export default function createCssVarsProvider(options) {
     if (
       disableStyleSheetGeneration ||
       restThemeProp.cssVariables === false ||
-      (nested && upperTheme?.cssVarPrefix === cssVarPrefix)
+      // Same-prefix nested providers can reuse :root vars, but scoped themes
+      // need their own stylesheet for their rootSelector.
+      (nested &&
+        upperTheme?.cssVarPrefix === cssVarPrefix &&
+        (restThemeProp.rootSelector || ':root') === ':root')
     ) {
       shouldGenerateStyleSheet = false;
     }

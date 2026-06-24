@@ -41,6 +41,7 @@ export {
   useCssColorScheme,
   CssColorSchemeContext,
 } from './CssThemeProvider';
+export { default as ThemeScope, ThemeScopeContext, useThemeScopeProps } from './ThemeScope';
 export { StyledEngineProvider } from '@mui/system';
 // The legacy utilities from @mui/styles
 // These are just empty functions that throws when invoked
