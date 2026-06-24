@@ -391,10 +391,12 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   // Clamp to the largest step that does not exceed max so that e.g. precision=0.4 + value=5
   // (where 5/0.4 = 12.5, so roundValueToPrecision gives 5.2) never exceeds max.
+  // Preserve null/undefined as-is — clamp(null, 0, n) would coerce null to 0 via Math.max.
   const maxAchievableValue = Number(
     (Math.floor(max / precision) * precision).toFixed(getDecimalPrecision(precision)),
   );
-  const valueRounded = clamp(roundValueToPrecision(valueDerived, precision), 0, maxAchievableValue);
+  const rawRounded = roundValueToPrecision(valueDerived, precision);
+  const valueRounded = rawRounded == null ? rawRounded : clamp(rawRounded, 0, maxAchievableValue);
   const isRtl = useRtl();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
