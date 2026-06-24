@@ -24,13 +24,6 @@ const GOLDs = [
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: 'https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/40.png',
-    srcSet: 'https://images.opencollective.com/react-pdf-kit/c8e1c25/logo/120.png 3x',
-    name: 'React PDF Kit',
-    description: 'Powerful, Fast, Dev-Friendly React PDF Viewer.',
-    href: 'https://www.react-pdf-kit.dev/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
 ];
 
 const BACKLINKs = [
@@ -50,11 +43,6 @@ const BACKLINKs = [
     href: 'https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Views4You',
-    description: 'Social media growth services.',
-    href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
@@ -68,6 +56,11 @@ const BACKLINKs = [
     name: 'Follower24',
     description: 'Social media success.',
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'FollowerFabrik',
+    description: 'Your German Social Media Agency.',
+    href: 'https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -129,7 +122,6 @@ export default function GoldSponsors() {
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
-              rel="noopener"
               color="primary"
             >
               <AddRounded />
@@ -140,7 +132,7 @@ export default function GoldSponsors() {
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Find out how{' '}
-                <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener">
+                <Link href={ROUTES.goldSponsor} target="_blank">
                   you can support MUI.
                 </Link>
               </Typography>

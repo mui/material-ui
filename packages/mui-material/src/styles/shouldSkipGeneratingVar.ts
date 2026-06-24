@@ -1,5 +1,6 @@
 export default function shouldSkipGeneratingVar(keys: string[]) {
   return (
+    keys[0] === 'motion' ||
     !!keys[0].match(
       /(cssVarPrefix|colorSchemeSelector|modularCssLayers|rootSelector|typography|mixins|breakpoints|direction|transitions)/,
     ) ||

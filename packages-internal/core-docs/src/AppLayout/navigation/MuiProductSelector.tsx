@@ -1,11 +1,11 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import { styled, alpha, Theme } from '@mui/material/styles';
+import { styled, alpha, type Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import MenuList, { MenuListProps } from '@mui/material/MenuList';
-import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
+import MenuList, { type MenuListProps } from '@mui/material/MenuList';
+import MenuItem, { type MenuItemProps } from '@mui/material/MenuItem';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';

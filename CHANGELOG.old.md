@@ -2703,7 +2703,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [core] Revert lint for `useThemeProps` (#42817) @siriwatknp
 - [core] Remove useIsFocusVisible util (#42467) @DiegoAndai
 - [core] Remove react-test-renderer (#42784) @aarongarciah
-- [core][mui-utils] Remove remaining IE11 references (#42777) @DiegoAndai
+- [core][mui-utils] Remove remaining IE 11 references (#42777) @DiegoAndai
 - [code-infra] Move `HighlightedCode` test into `@mui/docs` package (#42835) @LukasTy
 - [code-infra] Cleanup `@mui/docs` usage and legacy re-exports (#42833) @LukasTy
 - [docs-infra] Fix React Compiler ESLint issues in website components (#42566) @aarongarciah
@@ -2904,14 +2904,14 @@ A big thanks to the 7 contributors who made this release possible.
 - [Collapse] Bound max transition time (#42390) @oliviertassinari
 - [FilledInput] Remove unapplied classes from filledInputClasses interface and add missing classes to root (#42082) @sai6855
 - [InputBase] Deprecate components and componentProps props for v6 (#42093) @ChronicusUA
-- Remove remaining IE11 code (#42283) @DiegoAndai
+- Remove remaining IE 11 code (#42283) @DiegoAndai
 - [Modal] Deprecate `components` and `componentsProps` (#42469) @DiegoAndai
 - [Popover] Migrate useSlotProps to useSlot (#42369) @sai6855
 - [useMediaQuery] Remove unused useMediaQueryTheme (#42367) @aarongarciah
 
 ### `@mui/system@6.0.0-alpha.10`
 
-- Remove IE11 code (#42436) @DiegoAndai
+- Remove IE 11 code (#42436) @DiegoAndai
 
 ### Docs
 
@@ -16451,7 +16451,7 @@ Here are some highlights ✨:
 
   Check the updated [Supported platforms documentation](https://mui.com/material-ui/getting-started/supported-platforms/) and [new "minimizing bundle size" guide](https://mui.com/material-ui/guides/minimizing-bundle-size/).
 
-  If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
+  If you target IE 11, you need to use the new bundle (`legacy`). We are treating IE 11 as a second class-citizen, which is a continuation of the direction taken in #22873.
 
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
   This was a prerequisite step to improve the [system](https://mui.com/system/getting-started/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
@@ -16583,10 +16583,10 @@ Here are some highlights ✨:
   The prop is no longer relevant.
 - [Box] Add mui styled usage (#22945) @mnajdova
   Change the style-engine powering the Box component from JSS to the style engine adatper (emotion by default).
-- [CircularProgress] Drop IE11 wobbly workaround (#22873) @suliskh
-  The IE11 workaround is harming performance on the latest browsers.
-  This change is part of a best-effort strategy to keep IE11 support.
-  We are degrading the UX and DX with IE11 where we can improve the components on modern browsers.
+- [CircularProgress] Drop IE 11 wobbly workaround (#22873) @suliskh
+  The IE 11 workaround is harming performance on the latest browsers.
+  This change is part of a best-effort strategy to keep IE 11 support.
+  We are degrading the UX and DX with IE 11 where we can improve the components on modern browsers.
 - [Table] Rename onChangeRowsPerPage and onChangePage (#22900) @eladmotola
   The change was done to match the API convention.
 
@@ -16628,7 +16628,7 @@ Here are some highlights ✨:
 
 - [Accordion] Remove incorrect demo which nests input in button (#22898) @croraf
 - [Autocomplete] Fix filtering when value is already selected (#22935) @montelius
-- [Autocomplete] Fix virtualization example in IE11 (#22940) @bearfromtheabyss
+- [Autocomplete] Fix virtualization example in IE 11 (#22940) @bearfromtheabyss
 - [Autocomplete] Restrict component props in `renderInput` (#22789) @eps1lon
 - [Box] Add types for `ref` (#22927) @lcswillems
 - [Button] Fix invalid type value (#22883) @oliviertassinari
@@ -18713,7 +18713,7 @@ A big thanks to the 21 contributors who made this release possible.
 
 ### `@material-ui/core@v4.10.1`
 
-- [CircularProgress] Fix IE11 wobbling (#21248) @AmirAhrari
+- [CircularProgress] Fix IE 11 wobbling (#21248) @AmirAhrari
 - [l10n] Improve Ukrainian translation (#21239) @goodwin64
 - [LinearProgress] Set aria-valuemin and aria-valuemax (#21195) @eps1lon
 - [List] Add 'alignItemsFlexStart' to ListItemIconClassKey #21256) @YoonjiJang
@@ -18865,7 +18865,7 @@ Here are some highlights ✨:
 - [l10n] Add Hindi (hi-IN) locale (#20916) @chandan-singh
 - [Popper] Fix keepMounted visibility (#20937) @weslenng
 - [Select] Focus labeled element on click (#20833) @qkdreyer
-- [Slider] Fix center label in IE11 (#20942) @Uneetpatel7
+- [Slider] Fix center label in IE 11 (#20942) @Uneetpatel7
 - [Tabs] Add `selectionFollowsFocus` (#20936) @eps1lon
 - [Tabs] Forward aria-label\* attributes to tablist (#20986) @eps1lon
 - [TextField] Fix typography inheritance issue (#20908) @esseswann
@@ -19415,7 +19415,7 @@ Here are some highlights ✨:
 #### Changes
 
 - [Autocomplete] Add more details in the onChange event (#19959) @akharkhonov
-- [Autocomplete] Add scrollbar support in IE11 (#19969) @SergeyUstinovich
+- [Autocomplete] Add scrollbar support in IE 11 (#19969) @SergeyUstinovich
 - [Autocomplete] Better synchronize the highlight with the value (#19923) @captain-yossarian
 - [Autocomplete] Document listbox limitation (#20101) @zatine
 - [Autocomplete] Fix clearOnEscape + multiple combination (#20065) @chaudharykiran
@@ -20898,7 +20898,7 @@ Here are some highlights ✨:
 - [Popover] Fix update position action (#17097) @netochaves
 - [RadioGroup] Make value accept any (#17132) @cmeeren
 - [Slider] Avoid mutating user's value prop (#17085) @elmeerr
-- [Switch] Fix rendering in IE11 and Safari (#17095) @rbrishabh
+- [Switch] Fix rendering in IE 11 and Safari (#17095) @rbrishabh
 - [Table] Add sticky header support (#17139) @egerardus
 - [TextField] Specs alignment (#17192) @elmeerr
 - [TextField] Update outlined label when prop changes (#17217) @Shubhamchinda
@@ -21013,7 +21013,7 @@ Here are some highlights ✨:
 - [Slider] Update TypeScript demo to cast types to values (#16957) @allypally
 - [Stepper] Improve the description of the icon prop (#16916) @mbrookes
 - [TextField] How to leverage CSS input validation (#16903) @jonkelling
-- [Textfield] Add left property to prevent scrollbars on IE11 (#16936) @beaudry
+- [Textfield] Add left property to prevent scrollbars on IE 11 (#16936) @beaudry
 - [ToggleButton] Fix horizontal shift (#16861) @wereHamster
 - [Transition] Forward isAppearing to onEnter, onEntering, onEntered (#16917) @millerrafi
 
@@ -21457,7 +21457,7 @@ Here are some highlights ✨:
 - [docs] Batch of fixes (#16229) @oliviertassinari
 - [docs] Better react-router-dom version comment (#16335) @kyarik
 - [docs] Convert SideEffects to hooks (#16197) @eps1lon
-- [docs] Fix IE11 rendering issue on the pickers page (#16246) @oliviertassinari
+- [docs] Fix IE 11 rendering issue on the pickers page (#16246) @oliviertassinari
 - [docs] Fix code example (#16279) @maslowproject
 - [docs] Fix links that point to the next branch (#16326) @Maxim-Mazurok
 - [docs] Fix outdated react-transition-group docs link (#16274) @eps1lon
@@ -21637,7 +21637,7 @@ Here are some highlights ✨:
 
 - 🐛 A second stability release after the release of v4.0.0.
 - 💄 Add a new size="small" prop to the Chip component (#15751) @mbrookes.
-- 🐛 Fix three IE11 issues (#15921, #15952, #15967) @eps1lon, @rupert-ong, @ryancogswell
+- 🐛 Fix three IE 11 issues (#15921, #15952, #15967) @eps1lon, @rupert-ong, @ryancogswell
 - And many more 📚 improvements.
 
 ### `@material-ui/core@v4.0.2`
@@ -21650,7 +21650,7 @@ Here are some highlights ✨:
 - [Link] Better support of component="button" (#15863) @ianschmitz
 - [Popover] Convert to function component (#15623) @joshwooding
 - [Portal] Synchronously call onRendered (#15943) @Arlevoy
-- [Radio] Fix dot misalignment in IE11 (#15952) @rupert-ong
+- [Radio] Fix dot misalignment in IE 11 (#15952) @rupert-ong
 - [theme] Return default value for spacing when no args provided (#15891) @mbrookes
 - [FocusTrap] Fix error restoring focus when activeElement is null (#15967) @ryancogswell
 - [core] Export useMediaQuery & useScrollTrigger in index.js (#15958) @adeelibr
@@ -21701,7 +21701,7 @@ Here are some highlights ✨:
 ### Core
 
 - [core] Add dependency react>=16.3.0 requested by @emotion/core and react-js (#15982) @marco-silva0000
-- [core] Fix IE11 crashes related to Object.assign (#15921) @eps1lon
+- [core] Fix IE 11 crashes related to Object.assign (#15921) @eps1lon
 - [core] Minor fixes (#15875) @joshwooding
 - [core] Remove export of internal test-utils (#15895) @eps1lon
 - [core] Update babel-plugin-optimize-clsx (#15894) @merceyz
@@ -21719,7 +21719,7 @@ Here are some highlights ✨:
 
 - 🐛 A stability release after the release of v4.0.0.
 - 🤖 A new codemod to migrate the theme.spacing.unit API (#15782) @joshwooding.
-- 🐛 Fix IE11 crash (#15856) @aditya1906.
+- 🐛 Fix IE 11 crash (#15856) @aditya1906.
 - 📚 Clean up the documentation after the next -> master migration.
 
 ### `@material-ui/core@v4.0.1`
@@ -21741,7 +21741,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/styles@v4.0.1`
 
-- [styles] Fix Symbol() usage in IE11 (#15856) @aditya1906
+- [styles] Fix Symbol() usage in IE 11 (#15856) @aditya1906
 
 ### `@material-ui/lab@v4.0.0-alpha.14`
 
@@ -22426,7 +22426,7 @@ Here are some highlights ✨:
 - [docs] Add ref forwarding to API docs (#15135) @eps1lon
 - [docs] Add ImgMediaCard TypeScript demo (#15130) @jasondashwang
 - [docs] Link 'React Material UI Cookbook' (#15211) @oliviertassinari
-- [docs] Fix the docs in dev mode for IE11 (#15230) @oliviertassinari
+- [docs] Fix the docs in dev mode for IE 11 (#15230) @oliviertassinari
 - [docs] New translations (#15235) @mbrookes
 - [examples] Update all the examples + page layout examples (#15219) @nareshbhatia
 - [docs] Tidy up moved / deleted translations and update the Crowdin config (#15247) @mbrookes
@@ -22484,7 +22484,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/styles@v4.0.0-alpha.6`
 
-- [styles] Fix IE11 issue (#15034) @oliviertassinari
+- [styles] Fix IE 11 issue (#15034) @oliviertassinari
 - [styles] Use the hook directly in styled() (#15029) @oliviertassinari
 - [styles] Add a new injectFirst prop (#15028) @oliviertassinari
 - [styles] Go back to index counter (#15044) @oliviertassinari
@@ -22813,7 +22813,7 @@ Here are some highlights ✨:
 - [docs] Add button demos in TypeScript (#14739) @eps1lon
 - [docs] Document the migration from v3 to v4 (#14741) @oliviertassinari
 - [docs] before() is Mocha; beforeEach() is Jest (#14743) @masaok
-- [docs] Fix IE11 build (#14781) @oliviertassinari
+- [docs] Fix IE 11 build (#14781) @oliviertassinari
 - [docs] Kill as many non hook demos as possible (#14805) @oliviertassinari
 - [docs] Prepare Google & Algolia i18n search + v3/v4 search (#14806) @oliviertassinari
 - [docs] Speed-up pull requests build (#14811) @oliviertassinari
@@ -23231,7 +23231,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 - [docs] Remove unneeded input from select docs (#14443) @eladmotola
 - [docs] Fix broken font-awesome icons in documentation (#14454) @EndiM
 - [docs] Reword certain phrases to improve i10n (#14457) @eps1lon
-- [docs] Fix IE11 crash on demo pages (#14466) @eps1lon
+- [docs] Fix IE 11 crash on demo pages (#14466) @eps1lon
 - [docs] Add french translation (#14467) @zek0faws
 - [docs] Standardize compose util usage (#14472) @mbrookes
 - [docs] Additional tweaks to English l10n strings (#14471) @mbrookes
@@ -23924,7 +23924,7 @@ import Divider from '@material-ui/core/Divider';
 - [TablePagination] Improve TypeScript definition (#13601) @xiaoyu-tamu
 - [SwipeableDrawer] Add `SwipeAreaProps` property (#13592) @SerhiiBilyk
 - [ListItem] Add three-line support (#13553) @ntorion
-- [Grid] Fix the IE11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
+- [Grid] Fix the IE 11 issue in the demo (7d2070fb388295d38806ecc49717006f34393e74) @oliviertassinari
 - [Zoom] Correct transition delay value of the example (#13645) @t49tran
 - [Tabs] Improve the warning message (#13640) @oliviertassinari
 - [Grow] Condense the demo (#13665) @Thyix
@@ -24128,7 +24128,7 @@ Here are some highlights ✨:
 - [docs] Add Google Analytics events (#13451) @goldins
 - [docs] Use stable context API (#13477) @eps1lon
 - [docs] Update CONTRIBUTING.md (#13478) @josgraha
-- [docs] Fix material-ui-popup-state IE11 issue (#13474) @jedwards1211
+- [docs] Fix material-ui-popup-state IE 11 issue (#13474) @jedwards1211
 - [docs] Add Typography example for MenuItem (#13500) @joshwooding
 - [docs] Reword flexbox limitation (#13508) @joshwooding
 
@@ -24147,12 +24147,12 @@ Here are some highlights ✨:
 
 - 🐛 Fix some important issues with the Modal (#13378, #13389) @TomiCake.
 - 🐛 Fix a Dialog scroll issue (#13409) @Ang-YC.
-- 📝 Full IE11 support (#13375, #13324) @eps1lon.
+- 📝 Full IE 11 support (#13375, #13324) @eps1lon.
 - And many more bug fixes and documentation improvements.
 
 ### `@material-ui/core@v3.3.2`
 
-- [Stepper] Fix visual issue on IE11 (#13375) @oliviertassinari
+- [Stepper] Fix visual issue on IE 11 (#13375) @oliviertassinari
 - [Modal] Reuse the same reference (#13378) @oliviertassinari
 - [MenuItem] Add disableGutters property (#13329) @adeelibr
 - [FormControl] Issue 13246 revert (#13380) @drkohlipk
@@ -24170,7 +24170,7 @@ Here are some highlights ✨:
 ### Docs
 
 - [docs] Fix some issue with i18n (#13342) @GFwer
-- [docs] Add polyfill for IE11 (#13324) @eps1lon
+- [docs] Add polyfill for IE 11 (#13324) @eps1lon
 - [docs] Correct title attribute for Paella recipe card (#13398) @vixmorrigan-redseven
 - [docs] CONTRIBUTING is not read by default (#13400) @eps1lon
 - [docs] Add missing </span> for prop-type (#13401) @mvsmal
@@ -24254,7 +24254,7 @@ Here are some highlights ✨:
 - [docs] Reverse show password logic (#13301) @ShunnyBunny
 - [docs] Some improvements (#13308) @programistka
 - [docs] Clarify on how to use the local distribution in the CONTRIBUTING file (#13312) @nicolasiensen
-- [docs] Refactor CheckboxesGroup to support IE11 (#13316) @simjes
+- [docs] Refactor CheckboxesGroup to support IE 11 (#13316) @simjes
 - [docs] Set the infrastructure for a full page demo (#13314) @oliviertassinari
 - [docs] Fix typos & formatting in filled-input (#13317) @dskiba
 - [docs] Remove usage of non-existent `margin` jss class (#13318) @G-Rath
@@ -24316,7 +24316,7 @@ Here are some highlights ✨:
 - [CardActionArea] Fix overflow issue (#13213) @mdsadiq
 - [Typography] Improve the upgrade story (#13214) @oliviertassinari
 - [Snackbar] Remove non supported property `anchorOrigin.vertical=enter` (#13238) @iamhosseindhv
-- [Tabs] Fix IE11 styling (#13230) @pography
+- [Tabs] Fix IE 11 styling (#13230) @pography
 
 ### `@material-ui/lab@v3.0.0-alpha.20`
 
@@ -24423,7 +24423,7 @@ This change updates the variant wording to match the one used in the Material De
 - [docs] Adds DropDownMenu to migration guide (#13110) @mxmcg
 - [docs] Warn about the number of inputs allowed in a FormControl (#13108) @matthewdordal
 - [docs] Repurpose page edit button as Chinese l10n call-to-action (#13115) @mbrookes
-- [docs] Fix a IE11 rendering issue (#13118) @oliviertassinari
+- [docs] Fix a IE 11 rendering issue (#13118) @oliviertassinari
 - [docs] Link the related projects where it's relevant (#13124) @oliviertassinari
 - [docs] Fix 404 edit button of the versions page (#13127) @oliviertassinari
 - [docs] Add a translation badge to readme, and update URLs (#13128) @mbrookes
@@ -24556,7 +24556,7 @@ Here are some highlights ✨:
 - [Popover] Change to offsetWidth and offsetHeight (#12816) @akaxiaok
 - [styles] Use the same class name generator (#12818) @oliviertassinari
 - [styles] Revert packageId as default option (#12823) @oliviertassinari
-- [withStyles] Fix JSS issues in IE11 in development (#12826) @novascreen
+- [withStyles] Fix JSS issues in IE 11 in development (#12826) @novascreen
 - [autocomplete] Fix incorrect input font in react-select autocomplete demo (#12828) @wijwoj
 - [withWidth] Prevent Rerendering (#12825) @junhyukee
 - [SvgIcon] Improve accessibility (#12822) @oliviertassinari
@@ -24655,7 +24655,7 @@ Here are some highlights ✨:
 - [Dialog] Remove dialog margin when fullScreen=true and scroll=body (#12718) @akaxiaok
 - [Table] Improved sorting in table for demo EnhancedTable (#12736) @adeelibr
 - [Snackbar] Add `ClickAwayListenerProps` property (#12735) @tendermario
-- [IconButton] Fix border radius cutting of badges on IE11 (#12743) @novascreen
+- [IconButton] Fix border radius cutting of badges on IE 11 (#12743) @novascreen
 - [Select] Pass child to onChange handler (#12747) @akaxiaok
 - [Input] Fix Input passing inputRef to intrinsic elements (#12719) @eps1lon
 - [withStyles] Better theme.props support (#12750) @oliviertassinari
@@ -24779,7 +24779,7 @@ We use the same strategy for Chrome.
 ### Docs
 
 - [examples] Update ts example to be closer to the official docs (#12593) @eps1lon
-- [docs] Fix a display issue on IE11 (#12599) @oliviertassinari
+- [docs] Fix a display issue on IE 11 (#12599) @oliviertassinari
 - [docs] Warn about checking for version mismatch (#12601) @hluedeke
 - [docs] Consistent content height in Albumn layout example (#12556) @mbrookes
 - [example] Support Gatsby v2 (#12331) @blukai
@@ -24787,7 +24787,7 @@ We use the same strategy for Chrome.
 - [docs] Add "Insights" by justaskusers.com to the list of showcases (#12620) @mattes3
 - [docs] Use public api of jss instead of private vars (#12629) @eps1lon
 - [docs] Improve Autocomplete filtering suggestions (#12641) @jorgegorka
-- [docs] Fix IE11 support (#12650) @oliviertassinari
+- [docs] Fix IE 11 support (#12650) @oliviertassinari
 - [docs] Fix typos (#12652) @dandv
 - [docs] Use the event.target.checked API systematically (#12644) @chellem
 - [docs] Correct `by and enum` typo in api.md (#12663) @G-Rath
@@ -25169,7 +25169,7 @@ N/A
 - [Dialog] Fix action width issue (#12081) @mim-Armand
 - [theme] Use `isPlainObject` to avoid dropping prototypes (#12100) @kivlor
 - [Popper] Add a modifiers property (#12108) @oliviertassinari
-- [Button] Fix IE11 support of CSS 'width:initial' (#12119) @koshea
+- [Button] Fix IE 11 support of CSS 'width:initial' (#12119) @koshea
 - [FormControlLabel] Add a failing test case and fix it (#12141) @oliviertassinari
 - [Toolbar] Add dense variant (#12075) @srilman
 - [Typography] Fix display2 cuts off the bottom of a 'g' (#12146) @Skaronator
@@ -25362,7 +25362,7 @@ N/A
 
 - [ClickAwayListener] Add a demo (#11801) @oliviertassinari
 - [Grid] Add support a auto value (#11804) @oliviertassinari
-- [StepButton] Fix IE11 flexbox (#11814) @paulnta
+- [StepButton] Fix IE 11 flexbox (#11814) @paulnta
 - [styles] Re-add default parameter of string for WithStyles (#11808) @pelotom
 - [SwipeableDrawer] Allow custom style (#11805) @Johann-S
 - [ButtonBase] Corrected the type definitions for the TouchRipple classes (#11818) @C-Rodg
@@ -25370,7 +25370,7 @@ N/A
 - [typography] Add a `allVariants` key in the theme (#11802) @oliviertassinari
 - [ButtonBase] Add a disableTouchRipple property (#11820) @oliviertassinari
 - [Tabs] Fix calculating tab indicator position (#11825) @ljani
-- [Tabs] Fix IE11 support (#11832) @oliviertassinari
+- [Tabs] Fix IE 11 support (#11832) @oliviertassinari
 - [withWidth] Reading initialWidth from the theme (#11831) @kleyson
 - [Tabs] Add support for a `component` property (#11844) @C-Rodg
 - [ListItemText] Detect and avoid re-wrapping Typography (#11849) @jedwards1211
@@ -25431,7 +25431,7 @@ N/A
 - [ButtonBase] Document the `type` property (#11728) @C-Rodg
 - [Popover] Fix default value (#11729) @oliviertassinari
 - [withWidth] Second iteration on the component (#11730) @oliviertassinari
-- [transition] Fix IE11 issue in dev mode (#11743) @adeelibr
+- [transition] Fix IE 11 issue in dev mode (#11743) @adeelibr
 - [Tabs] Better flex layout (#11748) @adeelibr
 - [core] Add React.createRef support (#11757) @t49tran
 - [Grid] Improve the dev warnings (#11765) @oliviertassinari
@@ -25461,7 +25461,7 @@ N/A
 
 #### Labs
 
-- [Slider] Fix for IE11 (#11727) @epodivilov
+- [Slider] Fix for IE 11 (#11727) @epodivilov
 - [Slider] Value can still be updated while disabled (#11744) @epodivilov
 
 ## 1.2.0
@@ -26000,7 +26000,7 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 - [Grid] Fix TypeScript definitions of class keys (#11102) @nmchaves
 - [Portal] Revert "Global option to disable the portal" (#11116) @oliviertassinari
 - [ButtonBase] Simpler global focus visible style override (#11130) @oliviertassinari
-- [Modal] Prevent IE11 from crashing on modal close (#11115) @JonAbrams
+- [Modal] Prevent IE 11 from crashing on modal close (#11115) @JonAbrams
 - [Input] Fix infinite rendering loop (#11159) @oliviertassinari
 - [lab] Fix the tests (#11160) @oliviertassinari
 - [Snackbar] Add a consecutive demo (#11111) @simoami
@@ -26062,7 +26062,7 @@ Here are some highlights ✨:
 - [Input] Allow div props on InputAdornment in TypeScript (#11077) @mtandersson
 - [Dialog] Fix iOS momentum scroll (#11066) @greenwombat
 - [Portal] Global option to disable the portal (#11086) @oliviertassinari
-- [ExpansionPanel] Fix display on IE11 and Edge (#11087) @oliviertassinari
+- [ExpansionPanel] Fix display on IE 11 and Edge (#11087) @oliviertassinari
 - [CardActions] Fix CSS override (#11092) @oliviertassinari
 
 ### Docs
@@ -26466,7 +26466,7 @@ For instance, it's not about adding JavaScript polyfills.
 - [ExpansionPanel] Fix controlled behavior (#10546) @oliviertassinari
 - [Autocomplete] Add multiple downshift example (#10550) @oliviertassinari
 - [Autocomplete] selectedItem can be null (#10565) @caub
-- [core] Improve IE11 support (#10568) @oliviertassinari
+- [core] Improve IE 11 support (#10568) @oliviertassinari
 - [TextField] Better inputComponent demo (#10573) @oliviertassinari
 - [typescript] Add a test case for ListItemIcon (#10593) @oliviertassinari
 - [ListItemText] Make the children an alias of the primary property (#10591) @caub
@@ -26609,7 +26609,7 @@ N/A
 - [docs] rename theme-default to default-theme (#10356) @mbrookes
 - [docs] Fix modal page link (#10360) @tanmayrajani
 - [docs] Plan the breaking changes before v1 (#10348) @oliviertassinari
-- [docs] Fix IE11 and W3C warnings (#10394) @oliviertassinari
+- [docs] Fix IE 11 and W3C warnings (#10394) @oliviertassinari
 - [docs] Sort the pages by path and ignore dashes (#10396) @leMaik
 - [docs] Autocomplete migration (#10397) @oliviertassinari
 - [docs] Add AudioNodes to the showcase (#10407) @JohnWeisz
@@ -27827,7 +27827,7 @@ It was a breaking change and not needed.
 
 - [docs] Additional tweaks (#9122) @mbrookes
 - [docs] Improved documentation for Menu style overrides (#9126) @lsemerini
-- [docs] Fix display on IE11 (#9166) @oliviertassinari
+- [docs] Fix display on IE 11 (#9166) @oliviertassinari
 - [docs] Fix broken link in README.md (#9177) @Primajin
 - [docs] Clean up code in IconLabelButton example (#9211) @xfumihiro
 - [docs] Fill enhanced table to always have the same height on all pages (#9214) @leMaik
@@ -27892,7 +27892,7 @@ In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
 - [Input] Remove gray highlight on iOS (#9057) @oliviertassinari
 - [Grid] Add missing wrap-reverse classname (#9076) @dehli
 - [breakpoint] Fix xs value (#9078) @oliviertassinari
-- [TablePagination] Fix IE11 colSpan issue (#9086) @sakulstra
+- [TablePagination] Fix IE 11 colSpan issue (#9086) @sakulstra
 - [Menu] Fix MenuList integration demo (#9088)
 - [Snackbar] Treat null properly and add a test for it (#9094) @leMaik
 - [Input] Fix inputProps.ref support (#9095) @oliviertassinari
@@ -27966,8 +27966,8 @@ Here are some highlights ✨:
 - [InputAdornment] Correct TypeScript export (#8959) @minajevs
 - [utils] Make ClickAwayListener public (#8967) @oliviertassinari
 - [Slider] Add the logic back (#8972) @oliviertassinari
-- [Select] Remove IE11 arrow (#8976) @oliviertassinari
-- [Select] Menu Items centered in IE11 (#8982) @lukePeavey
+- [Select] Remove IE 11 arrow (#8976) @oliviertassinari
+- [Select] Menu Items centered in IE 11 (#8982) @lukePeavey
 - [Select] Fix width on Safari (#8985) @oliviertassinari
 - [IconButton] Add buttonRef property (#8986) @oliviertassinari
 - [Grid] Document a limitation (#8987) @oliviertassinari
@@ -28053,7 +28053,7 @@ Here are some highlights ✨:
 - [Tooltip] Fix resize issue (#8862) @oliviertassinari
 - [CircularProgress] Add "inherit" color option (#8871) @dapetcu21
 - [Select] Fix array mutability flow annotation (#8870) @dapetcu21
-- [Dialog] Fix IE11 overflow bug (#8877) @sakulstra
+- [Dialog] Fix IE 11 overflow bug (#8877) @sakulstra
 - [Menu] Add a PopoverClasses property (#8884) @johnnynia
 - [CircularProgress] Add thickness property to .t.ds file (#8888) @jportela
 - [Slider] Shouldn't be visible when in=false (#8894) @oliviertassinari
@@ -28372,7 +28372,7 @@ A big thanks to the 18 contributors who made this release possible.
 - [Input] Better placeholder display logic (#8485) @oliviertassinari
 - [icons] Better interoperability with v0.x (#8473) @oliviertassinari
 - [icons] Update peer dependency to react 16 (#8476) @eyn
-- [Slider] Fix IE11 issue (#8486) @patrickml
+- [Slider] Fix IE 11 issue (#8486) @patrickml
 - [Chip] Adds option to provide custom delete icon to Chip (#8482) @LinkedList
 - [Tooltip] Fix usage with table head (#8488) @oliviertassinari
 
@@ -28698,7 +28698,7 @@ N/A
 - [Hidden] Change children type to allow many and add children tests (#8082) @rosskevin
 - [IconButton] Correct CSS precedence (#8106) @oliviertassinari
 - [Tabs] Accept null children (#8107) @oliviertassinari
-- [Snackbar] Fix click-through issue in IE11 (#8096) @stbenz88
+- [Snackbar] Fix click-through issue in IE 11 (#8096) @stbenz88
 - [InputLabel] Add a FormControlClasses property (#8108) @oliviertassinari
 - [typings] Switch tabIndex from string type to number | string (#8115) @xaviergonz
 - [Input] Dodge the BFcache issue (#8110) @rosskevin
@@ -28854,7 +28854,7 @@ If you want to avoid the default browser required property handling, you can add
 - [docs] Small fixes after the next.js refactorization (#7851) @oliviertassinari
 - [docs] Fix typo in floating-action button property of Button (#7951) @kgregory
 - [docs] Add the title for SEO (#7885) @oliviertassinari
-- [docs] Better support IE11 (#7939) @oliviertassinari
+- [docs] Better support IE 11 (#7939) @oliviertassinari
 - [docs] The style is injected at the bottom of the head (#7954) @oliviertassinari
 
 ### Core
@@ -29444,7 +29444,7 @@ you're going to have to change your strategy. Either use `innerRef` or `inputRef
 ### Docs
 
 - [docs] Enable flow on much more demos (#6881) @oliviertassinari
-- [docs] Better support IE11 (#6880) @oliviertassinari
+- [docs] Better support IE 11 (#6880) @oliviertassinari
 - [Tabs] Document that the index is required (#6935) @oliviertassinari
 
 ### Core
@@ -29567,7 +29567,7 @@ A big thanks to the 11 contributors who are pushing the `next` branch forward.
 - [docs] Fix theme toggling (#6652) @nathanmarks
 - [TextField] Add password example to docs (#6637) @peteratticusberg
 - [docs] Fix layout edit button (4b5fedf902704b5e3dd2dba63fc2263f11e975d0) @oliviertassinari
-- [docs] Fix IE11 issue (6ad3354ec1a844d0f03bf890a5e73a7987179be7) @oliviertassinari
+- [docs] Fix IE 11 issue (6ad3354ec1a844d0f03bf890a5e73a7987179be7) @oliviertassinari
 
 ### Core
 
@@ -30361,7 +30361,7 @@ Thanks @vizath, @hhaida, @nathanmarks and @aahan96 for their effort.
 - [Button] Never allow a disabled button to be in a hovered state (#4626)
 - [Button] Improve the propType definition for the label (#4618)
 - [Chip] Add to the index (#4570)
-- [ClickAwayListener] Add better support for IE11 (#4537)
+- [ClickAwayListener] Add better support for IE 11 (#4537)
 - [DatePicker] Expose dialog container style (#4355)
 - [DatePicker] Fix year overflow (#4381)
 - [DropDownMenu] Remove Synthetic Event from pooling when used asynchronously (#4564)

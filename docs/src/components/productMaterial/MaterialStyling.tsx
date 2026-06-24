@@ -77,7 +77,11 @@ export default function MaterialStyling() {
     // 18px line-height
     // 16px margin-top
     // 1px border-width
-    infoRef.current!.scroll({ top: scrollTo[index] * 18 + 16 - 1, behavior: 'smooth' });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    infoRef.current!.scroll({
+      top: scrollTo[index] * 18 + 16 - 1,
+      behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+    });
 
     objectRef.current!.style.setProperty('width', '100%');
   }, [index]);
