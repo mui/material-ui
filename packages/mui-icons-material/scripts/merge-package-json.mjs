@@ -22,6 +22,7 @@ const wildcardExports = {
     require: './*.js',
     import: './*.mjs',
     default: './*.mjs',
+    types: './SvgIconComponent.d.ts'
   },
 };
 
