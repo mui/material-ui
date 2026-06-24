@@ -107,6 +107,14 @@ export default withDeploymentConfig({
       './**/demos/*/client.ts': {
         loaders: ['@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient'],
       },
+      // API page description JSON (imported only by generated API pages) → render
+      // the markdown to HTML at build time.
+      '**/translations/api-docs/**/*.json': [
+        {
+          loaders: [{ loader: '@mui/internal-markdown/apiPageTranslationLoader' }],
+          as: '*.js',
+        },
+      ],
     },
   },
   webpack: (
@@ -260,6 +268,13 @@ export default withDeploymentConfig({
               '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighterClient',
             ],
           },
+          {
+            // API page description JSON (`translations/api-docs/**`, imported only by
+            // generated API pages) → render the markdown to HTML at build time.
+            test: /translations[\\/]api-docs[\\/].*\.json$/,
+            type: 'javascript/auto',
+            use: [{ loader: require.resolve('@mui/internal-markdown/apiPageTranslationLoader') }],
+          },
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
@@ -288,6 +303,10 @@ export default withDeploymentConfig({
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+    // Selects the analytics target (Google Analytics + Apollo). Provided per
+    // deployment via the environment; production analytics requires
+    // `ANALYTICS_ENV=production` to be set explicitly.
+    ANALYTICS_ENV: process.env.ANALYTICS_ENV,
     // Legacy Netlify-prefixed env vars still read by the fork (e.g. pages/_app.tsx).
     // withDeploymentConfig exposes the same values under the SITE_NAME / SITE_DEPLOY_URL names.
     NETLIFY_SITE_NAME: process.env.SITE_NAME,

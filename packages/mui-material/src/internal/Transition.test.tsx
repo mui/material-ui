@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { TransitionGroup } from 'react-transition-group';
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Transition from './Transition';
@@ -987,6 +988,53 @@ describe('<Transition />', () => {
       expect(handlers.onEnter!.callCount).to.equal(0);
       // The child moves straight to entered.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+    });
+  });
+
+  describe('react-transition-group public TransitionGroup interop', () => {
+    it('child added to an already-mounted TransitionGroup enters with isAppearing=false', async () => {
+      const handlers = { onEnter: spy(), onEntered: spy() };
+      let done: (() => void) | null = null;
+      const addEndListener = (_node: HTMLElement, next: () => void) => {
+        done = next;
+      };
+
+      function ChildWrapper() {
+        const [shouldRender, setShouldRender] = React.useState(false);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setShouldRender(true)}>
+              add
+            </button>
+            <TransitionGroup component={null}>
+              {shouldRender ? (
+                <TestHarness
+                  key="item"
+                  appear={false}
+                  timeout={null}
+                  addEndListener={addEndListener}
+                  handlers={handlers}
+                />
+              ) : null}
+            </TransitionGroup>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ChildWrapper />);
+      await user.click(screen.getByRole('button', { name: 'add' }));
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
+      expect(handlers.onEnter.callCount).to.equal(1);
+      expect(handlers.onEnter.args[0][0]).to.equal(false);
+
+      act(() => {
+        done!();
+      });
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+      expect(handlers.onEntered.callCount).to.equal(1);
+      expect(handlers.onEntered.args[0][0]).to.equal(false);
     });
   });
 
