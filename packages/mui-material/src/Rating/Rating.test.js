@@ -87,6 +87,17 @@ describe('<Rating />', () => {
     expect(() => render(<Rating name="rating-precision-06" precision={0.6} />)).not.to.throw();
   });
 
+  it('should check the correct radio for precision=0.4 value=0.8', () => {
+    const { container } = render(<Rating name="r" precision={0.4} value={0.8} />);
+    expect(container.querySelector('input[name="r"]:checked')).to.have.property('value', '0.8');
+  });
+
+  it('should not exceed max when precision does not divide max evenly (precision=0.4 value=5)', () => {
+    const { container } = render(<Rating name="r" precision={0.4} value={5} />);
+    const checked = container.querySelector('input[name="r"]:checked');
+    expect(Number(checked.value)).to.be.at.most(5);
+  });
+
   it('should handle mouse hover correctly', () => {
     const { container } = render(<Rating />);
     stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
