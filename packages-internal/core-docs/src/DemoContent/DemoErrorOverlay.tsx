@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
-import { useDemoError } from './DemoErrorContext';
 
 /**
- * Floating alert anchored to the top edge of the preview area. Surfaces
- * live-edit runtime errors reported by `DemoController`'s react-runner
- * instances.
+ * Floating alert anchored to the top edge of the preview area. Surfaces the
+ * live-edit runtime error for the selected variant, reported by
+ * `useDemoController` through `CodeControllerContext` and read off `useDemo().error`.
  */
-export function DemoErrorOverlay({ variantKey }: { variantKey: string | undefined }) {
-  const message = useDemoError(variantKey);
+export function DemoErrorOverlay({ message }: { message: string | null }) {
   if (!message) {
     return null;
   }
