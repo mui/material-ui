@@ -37,10 +37,7 @@ async function run() {
   await fs.mkdir(TARGET_DIR, { recursive: true });
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = await glob('!(index)*.mjs', { cwd: SRC_DIR });
-  await Promise.all([
-    createIconTypings(TARGET_DIR, files),
-    createIndexTyping(TARGET_DIR, files),
-  ]);
+  await Promise.all([createIconTypings(TARGET_DIR, files), createIndexTyping(TARGET_DIR, files)]);
   console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`);
 }
 
