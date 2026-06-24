@@ -7,8 +7,13 @@ console.log('Generating Icons');
 async function resizeIcon(size, output) {
   const INPUT_ICON = path.join(__dirname, '../public/static/logo.png');
 
-  // Match gm/ImageMagick defaults: resize only, truecolor PNG (no palette quantization).
-  await sharp(INPUT_ICON).resize(size, size).png().toFile(output);
+  // Quantize to a palette (libimagequant) to keep the generated icons small.
+  // quality:95 is the highest setting that stays visually indistinguishable from
+  // the truecolor source.
+  await sharp(INPUT_ICON)
+    .resize(size, size)
+    .png({ palette: true, compressionLevel: 9, effort: 10, quality: 95 })
+    .toFile(output);
   console.log(`${path.basename(output)} created`);
 }
 
