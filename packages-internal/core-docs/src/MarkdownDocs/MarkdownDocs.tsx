@@ -7,6 +7,8 @@ import { useUserLanguage } from '../i18n';
 
 export interface MarkdownDocsProps {
   wideLayout?: boolean;
+  demoComponents?: Record<string, React.ComponentType<any>>;
+  demos?: Record<string, any>;
   disableAd?: boolean;
   disableToc?: boolean;
   docs: Record<string, any>;
@@ -14,7 +16,15 @@ export interface MarkdownDocsProps {
 }
 
 export function MarkdownDocs(props: MarkdownDocsProps) {
-  const { disableAd = false, disableToc = false, wideLayout, docs, srcComponents } = props;
+  const {
+    disableAd = false,
+    disableToc = false,
+    wideLayout,
+    demos = {},
+    docs,
+    demoComponents = {},
+    srcComponents,
+  } = props;
 
   const userLanguage = useUserLanguage();
   const localizedDoc = docs[userLanguage] || docs.en;
@@ -51,6 +61,9 @@ export function MarkdownDocs(props: MarkdownDocsProps) {
       {localizedDoc.rendered.map((renderedMarkdownOrDemo: any, index: number) => (
         <RichMarkdownElement
           key={`demos-section-${index}`}
+          demoComponents={demoComponents}
+          demos={demos}
+          disableAd={disableAd}
           localizedDoc={localizedDoc}
           renderedMarkdownOrDemo={renderedMarkdownOrDemo}
           srcComponents={srcComponents}
