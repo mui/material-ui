@@ -458,6 +458,9 @@ importers:
       react-router:
         specifier: ^7.15.0
         version: 7.15.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      react-runner:
+        specifier: ^1.0.5
+        version: 1.0.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-simple-code-editor:
         specifier: ^0.14.1
         version: 0.14.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -765,6 +768,9 @@ importers:
       react-dom:
         specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
         version: 19.2.6(react@19.2.6)
+      react-runner:
+        specifier: ^1.0.5
+        version: 1.0.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-simple-code-editor:
         specifier: ^0.14.1
         version: 0.14.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -10199,6 +10205,12 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react-runner@1.0.5:
+    resolution: {integrity: sha512-eCIybRpssp6ffjqXqId024esO9UP2lV838Lvm3fC7VgMQ/dQHhR0jJwOY2IPrYD3AaM/bcvMikmASIRZqNUHsw==}
+    peerDependencies:
+      react: ^16.0.0 || ^17 || ^18
+      react-dom: ^16.0.0 || ^17 || ^18
 
   react-simple-code-editor@0.14.1:
     resolution: {integrity: sha512-BR5DtNRy+AswWJECyA17qhUDvrrCZ6zXOCfkQY5zSmb96BVUbpVAv03WpcjcwtCwiLbIANx3gebHOcXYn1EHow==}
@@ -21566,6 +21578,12 @@ snapshots:
       set-cookie-parser: 2.7.2
     optionalDependencies:
       react-dom: 19.2.6(react@19.2.6)
+
+  react-runner@1.0.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+    dependencies:
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+      sucrase: 3.35.1
 
   react-simple-code-editor@0.14.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
