@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.29.2",
-    "@mui/internal-docs-infra": "0.11.1-canary.22",
+    "@mui/internal-docs-infra": "0.12.1-canary.6",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -72,7 +72,6 @@
     "next": "^13.5.1 || ^14 || ^15.0.0 || ^16.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-runner": "^1.0.5",
     "react-simple-code-editor": "^0.14.1",
     "styled-components": "^5.3.0 || ^6.0.0"
   },
