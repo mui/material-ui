@@ -374,25 +374,17 @@ const generateApiPage = async (
     await writePrettifiedFile(
       path.resolve(apiPagesDirectory, `${kebabCase(reactApi.name)}.js`),
       `import * as React from 'react';
-import { ApiPage } from '@mui/internal-core-docs/ApiPage';
-import { mapApiPageTranslation } from '@mui/internal-core-docs/mapApiPageTranslations';${
+import { ApiPage } from '@mui/internal-core-docs/ApiPage';${
         layoutConfigPath === ''
           ? ''
           : `
 import layoutConfig from '${layoutConfigPath}';`
       }
-import translation from '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}/${kebabCase(reactApi.name)}.json';
+import descriptions from '${importTranslationPagesDirectory}/${kebabCase(reactApi.name)}/${kebabCase(reactApi.name)}.json';
 import jsonPageContent from './${kebabCase(reactApi.name)}.json';
 
-export default function Page(props) {
-  const { descriptions } = props;
+export default function Page() {
   return <ApiPage ${layoutConfigPath === '' ? '' : '{...layoutConfig} '}descriptions={descriptions} pageContent={jsonPageContent} />;
-}
-
-export async function getStaticProps() {
-  const descriptions = mapApiPageTranslation(translation);
-
-  return { props: { descriptions } };
 }
 `.replace(/\r?\n/g, reactApi.EOL),
     );
