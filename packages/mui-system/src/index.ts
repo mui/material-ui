@@ -50,9 +50,7 @@ export type * from './styleFunctionSx';
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
-/**
- * TODO: Remove this function in v6.
- */
+// TODO: Remove this function in v6
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function experimental_sx(): any {
   throw /* minify-error */ new Error(

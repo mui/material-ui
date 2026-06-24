@@ -26,10 +26,8 @@ export interface MUIStyledCommonProps<Theme extends object = DefaultTheme> {
 export interface MuiStyledOptions {
   name?: string | undefined;
   slot?: string | undefined;
-  /**
-   * The difference between Interpolation and CSSInterpolation is that the former supports functions based on props
-   * If we want to support props in the overrides, we will need to change the CSSInterpolation to Interpolation<Props>
-   */
+  // The difference between Interpolation and CSSInterpolation is that the former supports functions based on props
+  // If we want to support props in the overrides, we will need to change the CSSInterpolation to Interpolation<Props>
   overridesResolver?:
     | ((props: any, styles: Record<string, CSSInterpolation>) => CSSInterpolation)
     | undefined;
