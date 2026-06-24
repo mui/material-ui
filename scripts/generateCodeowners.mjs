@@ -179,12 +179,12 @@ const packageOwners = {
 const packageMaintainers = {
   base: ['michaldudak', 'mnajdova'],
   'icons-material': ['michaldudak', 'siriwatknp'],
-  material: ['mnajdova', 'danilo-leal'],
+  material: ['mnajdova'],
   system: ['mnajdova', 'siriwatknp'],
 };
 
 const additionalRules = {
-  '/scripts/': ['michaldudak', 'm4theushw'],
+  '/scripts/': ['michaldudak'],
 };
 
 const thisDirectory = url.fileURLToPath(new URL('.', import.meta.url));
