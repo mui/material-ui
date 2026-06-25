@@ -83,11 +83,6 @@ const DOCS = [
     href: ROUTES.materialDocs,
   },
   {
-    name: 'Joy UI',
-    description: "Component library that implements MUI's own in-house design principles.",
-    href: ROUTES.joyDocs,
-  },
-  {
     name: 'Base UI',
     description: 'Unstyled components for building accessible UIs.',
     href: ROUTES.baseDocs,
