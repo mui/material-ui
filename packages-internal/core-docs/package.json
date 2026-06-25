@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages-internal/core-docs",
   "scripts": {
-    "build": "code-infra build --tsgo --flat --bundle esm --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\"",
+    "build": "code-infra build --tsgo --flat --bundle esm --copy \"src/translations/translations.json\" --copy \"src/nextFonts/fonts\" --copy \"src/ThemeContext/syntax.css\"",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsgo -p tsconfig.json"
