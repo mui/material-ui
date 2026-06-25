@@ -25,7 +25,7 @@ const customThemeTokens = {
 const customGlassPanelSx = {
   position: 'relative',
   borderRadius: '16px',
-  borderColor: alpha(customThemeTokens.accentBright, 0.42),
+  borderColor: alpha(customThemeTokens.accentBright, 0.3),
   background: `linear-gradient(135deg, ${alpha('#FFFFFF', 0.9)} 0%, ${alpha(
     '#FFFFFF',
     0.62,
@@ -34,13 +34,10 @@ const customGlassPanelSx = {
     0.48,
   )} 100%)`,
   backdropFilter: 'blur(18px) saturate(180%)',
-  boxShadow: `0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.26)}, 0 0 22px ${alpha(
-    customThemeTokens.accentBright,
-    0.22,
-  )}, 0 24px 64px ${alpha(customThemeTokens.accentDark, 0.12)}, 0 1px 0 ${alpha(
-    '#FFFFFF',
-    0.88,
-  )} inset, inset 0 0 0 1px ${alpha('#FFFFFF', 0.56)}`,
+  boxShadow: `0 0 0 1px ${alpha(customThemeTokens.accentBright, 0.14)}, 0 18px 44px ${alpha(
+    customThemeTokens.accentDark,
+    0.08,
+  )}, 0 1px 0 ${alpha('#FFFFFF', 0.88)} inset, inset 0 0 0 1px ${alpha('#FFFFFF', 0.5)}`,
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -67,7 +64,7 @@ const customGlassPanelSx = {
     zIndex: 1,
     borderRadius: 'inherit',
     pointerEvents: 'none',
-    boxShadow: `inset 0 0 26px ${alpha(customThemeTokens.accentBright, 0.16)}`,
+    boxShadow: `inset 0 0 22px ${alpha(customThemeTokens.accentBright, 0.1)}`,
   },
   '& > *': {
     position: 'relative',
