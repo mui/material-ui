@@ -10,7 +10,7 @@ This gives you all the same capabilities, and with a smaller bundle size.
 
 The following demo shows how to implement this utility:
 
-{{"component": "file://./demos/style-function-sx-demo/index.ts"}}
+{{"demo": "StyleFunctionSxDemo.js"}}
 
 ## Using standalone system utilities
 
@@ -19,4 +19,4 @@ This is useful if you need to optimize for the smallest bundle size possible.
 
 The demo below illustrates how this works:
 
-{{"component": "file://./demos/combining-style-functions-demo/index.ts", "initialExpanded": true}}
+{{"demo": "CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}

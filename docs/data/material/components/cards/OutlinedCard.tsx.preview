@@ -1,0 +1,1 @@
+<Card variant="outlined">{card}</Card>
