@@ -1,0 +1,14 @@
+{[false, true].map((selected) => (
+  <div key={String(selected)}>
+    {colors.map((color) => (
+      <ToggleButton
+        key={`${color}-${selected}`}
+        value={`${color}-${selected}`}
+        color={color}
+        selected={selected}
+      >
+        {color}
+      </ToggleButton>
+    ))}
+  </div>
+))}
