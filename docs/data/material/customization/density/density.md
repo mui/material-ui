@@ -116,4 +116,4 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/tool/index.ts", "hideToolbar": true}}
+{{"demo": "DensityTool.js", "hideToolbar": true}}

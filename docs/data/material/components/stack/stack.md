@@ -32,7 +32,7 @@ Use the `spacing` prop to control the space between children.
 The spacing value can be any number, including decimals, or a string.
 (The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.)
 
-{{"component": "file://./demos/basic/index.ts", "bg": true}}
+{{"demo": "BasicStack.js", "bg": true}}
 
 ### Stack vs. Grid
 
@@ -43,20 +43,20 @@ The spacing value can be any number, including decimals, or a string.
 By default, Stack arranges items vertically in a column.
 Use the `direction` prop to position items horizontally in a row:
 
-{{"component": "file://./demos/direction/index.ts", "bg": true}}
+{{"demo": "DirectionStack.js", "bg": true}}
 
 ## Dividers
 
 Use the `divider` prop to insert an element between each child.
 This works particularly well with the [Divider](/material-ui/react-divider/) component, as shown below:
 
-{{"component": "file://./demos/divider/index.ts", "bg": true}}
+{{"demo": "DividerStack.js", "bg": true}}
 
 ## Responsive values
 
 You can switch the `direction` or `spacing` values based on the active breakpoint.
 
-{{"component": "file://./demos/responsive/index.ts", "bg": true}}
+{{"demo": "ResponsiveStack.js", "bg": true}}
 
 ## Flexbox gap
 
@@ -66,7 +66,7 @@ It removes the [known limitations](#limitations) of the default implementation t
 
 We recommend checking the [support percentage](https://caniuse.com/?search=flex%20gap) before using it.
 
-{{"component": "file://./demos/flexbox-gap/index.ts", "bg": true}}
+{{"demo": "FlexboxGapStack.js", "bg": true}}
 
 To set the prop to all stack instances, create a theme with default props:
 
@@ -97,7 +97,7 @@ function App() {
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{"component": "file://./demos/interactive/index.ts", "hideToolbar": true, "bg": true}}
+{{"demo": "InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
 ## Customization
 
@@ -146,7 +146,7 @@ In order for the item to stay within the container you need to set `min-width: 0
   <Typography noWrap>
 ```
 
-{{"component": "file://./demos/zero-width/index.ts", "bg": true}}
+{{"demo": "ZeroWidthStack.js", "bg": true}}
 
 ## Anatomy
 
