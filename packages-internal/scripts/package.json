@@ -33,6 +33,7 @@
     "@babel/plugin-syntax-jsx": "^7.28.6",
     "@babel/plugin-syntax-typescript": "^7.28.6",
     "@babel/types": "^7.29.0",
+    "@mui/internal-docs-infra": "0.12.1-canary.6",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "es-toolkit": "^1.46.1",
