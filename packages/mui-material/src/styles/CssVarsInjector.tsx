@@ -8,6 +8,7 @@ interface CssVarsInjectorProps {
   theme: {
     generateStyleSheets?: (() => Array<Record<string, any>>) | undefined;
     cssVarPrefix?: string | undefined;
+    rootSelector?: string | undefined;
   };
   nonce?: string | undefined;
   /**
@@ -26,8 +27,20 @@ interface CssVarsInjectorProps {
 
 const DEFAULT_STYLE_ID = 'mui-css-vars';
 
-function getStyleId(cssVarPrefix: string | undefined) {
-  return cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
+// Keep scoped nested providers from reusing the root provider's <style> tag.
+function getScopedStyleIdSuffix(rootSelector: string | undefined) {
+  if (!rootSelector || rootSelector === ':root') {
+    return '';
+  }
+
+  return `-${rootSelector.replace(/[^A-Za-z0-9_-]+/g, '-').replace(/^-|-$/g, '')}`;
+}
+
+// Root themes use the stable default id; scoped themes get a selector-derived id.
+function getStyleId(cssVarPrefix: string | undefined, rootSelector: string | undefined) {
+  const baseId = cssVarPrefix ? `${cssVarPrefix}-css-vars` : DEFAULT_STYLE_ID;
+
+  return `${baseId}${getScopedStyleIdSuffix(rootSelector)}`;
 }
 
 export default function CssVarsInjector({
@@ -36,7 +49,8 @@ export default function CssVarsInjector({
   documentNode,
   styleId: styleIdProp,
 }: CssVarsInjectorProps) {
-  const styleId = styleIdProp ?? getStyleId(theme.cssVarPrefix);
+  // Scoped nested themes need separate <style> tags so their vars can coexist.
+  const styleId = styleIdProp ?? getStyleId(theme.cssVarPrefix, theme.rootSelector);
   const css = React.useMemo(
     () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),
     [theme],

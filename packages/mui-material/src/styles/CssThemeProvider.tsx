@@ -7,6 +7,7 @@ import DefaultPropsProvider from '@mui/system/DefaultPropsProvider';
 import useColorSchemeSetup from '@mui/system/cssVars/useColorSchemeSetup';
 import CssVarsInjector from './CssVarsInjector';
 import THEME_ID from './identifier';
+import ThemeScope, { getThemeScopeProps } from './ThemeScope';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 export interface CssColorSchemeContextValue {
@@ -118,6 +119,7 @@ interface ThemeLike {
   direction?: 'ltr' | 'rtl' | undefined;
   colorSchemes?: Record<string, any> | undefined;
   colorSchemeSelector?: string | undefined;
+  rootSelector?: string | undefined;
   defaultColorScheme?: string | undefined;
 }
 
@@ -135,6 +137,7 @@ function resolveTheme(theme: any): ThemeLike {
  * 2. Color-scheme management (localStorage persistence, OS preference, DOM
  *    attribute sync) via `useCurrentColorScheme` + `CssColorSchemeContext`.
  * 3. `RtlProvider` and `DefaultPropsProvider` for direction and defaultProps.
+ * 4. Nested scoped themes via `ThemeScope`, reusing the outer color-scheme state.
  *
  * Use `useCssColorScheme()` inside this tree to read/set the active mode.
  *
@@ -166,6 +169,9 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
     }
     return resolveTheme(themeInput);
   }, [themeInput]);
+  // Nested providers should not fight the root provider over <html>'s color-scheme attribute.
+  const upperColorScheme = React.useContext(CssColorSchemeContext);
+  const nested = !!upperColorScheme;
 
   if (typeof resolved.generateStyleSheets !== 'function') {
     throw /* minify-error */ new Error(
@@ -194,7 +200,7 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
     colorSchemeStorageKey,
     defaultMode,
     storageWindow,
-    colorSchemeNode,
+    colorSchemeNode: nested ? null : colorSchemeNode,
     documentNode,
     disableTransitionOnChange,
     noSsr,
@@ -222,24 +228,32 @@ export default function CssThemeProvider<Theme = DefaultTheme>({
       setColorScheme,
     ],
   );
+  const activeContextValue = upperColorScheme ?? contextValue;
+  // If the theme has a simple scoped root selector, render the matching DOM boundary.
+  const themeScopeProps = nested
+    ? getThemeScopeProps(resolved, activeContextValue.colorScheme)
+    : null;
 
   const rtl = resolved.direction === 'rtl';
+  const content = (
+    <RtlProvider value={rtl}>
+      <DefaultPropsProvider value={resolved.components}>
+        <PrivateThemeProvider theme={resolved}>
+          <CssVarsInjector
+            theme={resolved}
+            documentNode={documentNode}
+            nonce={nonce}
+            styleId={styleId}
+          />
+          {children}
+        </PrivateThemeProvider>
+      </DefaultPropsProvider>
+    </RtlProvider>
+  );
 
   return (
-    <CssColorSchemeContext.Provider value={contextValue}>
-      <RtlProvider value={rtl}>
-        <DefaultPropsProvider value={resolved.components}>
-          <PrivateThemeProvider theme={resolved}>
-            <CssVarsInjector
-              theme={resolved}
-              documentNode={documentNode}
-              nonce={nonce}
-              styleId={styleId}
-            />
-            {children}
-          </PrivateThemeProvider>
-        </DefaultPropsProvider>
-      </RtlProvider>
+    <CssColorSchemeContext.Provider value={activeContextValue}>
+      {themeScopeProps ? <ThemeScope {...themeScopeProps}>{content}</ThemeScope> : content}
     </CssColorSchemeContext.Provider>
   );
 }

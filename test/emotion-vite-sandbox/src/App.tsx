@@ -23,7 +23,6 @@ import type {} from '@mui/material/themeCssVarsAugmentation';
 import {
   createTheme,
   ThemeProvider,
-  ThemeScope,
   useColorScheme,
   useThemeScopeProps,
 } from '@mui/material/styles';
@@ -53,6 +52,7 @@ const themes = [
 
 const themeNames = ['Blue (default)', 'Green', 'Red'];
 
+// Nested ThemeProvider auto-renders the scope wrapper for this simple class root.
 const innerThemes = [
   createTheme({
     cssVariables: {
@@ -83,26 +83,7 @@ const innerThemes = [
   }),
 ];
 
-// ThemeScope is the explicit DOM boundary for the scoped variables. It keeps
-// the provider DOM-transparent while still giving portals scope props to reuse.
-function ScopedThemeProvider({
-  theme,
-  children,
-}: {
-  theme: ReturnType<typeof createTheme>;
-  children: React.ReactNode;
-}) {
-  return (
-    <ThemeScope className="inner-theme-scope">
-      {/* Keep color-scheme state nested, but let the outer provider own the DOM attribute. */}
-      <ThemeProvider theme={theme} colorSchemeNode={null}>
-        {children}
-      </ThemeProvider>
-    </ThemeScope>
-  );
-}
-
-// PoC wrapper. Final version should make Modal/Dialog consume ThemeScope internally.
+// PoC portal bridge. Final version should make Modal/Dialog consume ThemeScope internally.
 function ScopedDialog({ slotProps, ...props }: DialogProps) {
   const rootScopeProps = useThemeScopeProps(slotProps?.root as React.HTMLAttributes<HTMLElement>);
 
@@ -269,9 +250,9 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         <h2 style={{ marginTop: 0 }}>
           Nested scoped theme (same --mui-palette-* names, scoped to container)
         </h2>
-        <ScopedThemeProvider theme={innerThemes[innerThemeIndex]}>
+        <ThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
-        </ScopedThemeProvider>
+        </ThemeProvider>
       </div>
 
       <style>{`

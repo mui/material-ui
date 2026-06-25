@@ -61,6 +61,7 @@ export interface CreateCssVarsProviderResult<
                 cssVarPrefix?: string | undefined;
                 colorSchemes: Partial<Record<ColorScheme, any>>;
                 colorSchemeSelector?: 'media' | 'class' | 'data' | string | undefined;
+                rootSelector?: string | undefined;
               }
             >
           | undefined;
@@ -155,6 +156,11 @@ export default function createCssVarsProvider<
      * variants from those tokens.
      */
     resolveTheme?: ((theme: any) => any) | undefined; // the type is any because it depends on the design system.
+    /**
+     * Internal hooks for design systems that render a DOM scope around nested CSS vars providers.
+     */
+    themeScope?: React.ComponentType<any> | undefined;
+    getThemeScopeProps?: ((theme: any, colorScheme: ColorScheme | undefined) => any) | undefined;
   },
 ): CreateCssVarsProviderResult<ColorScheme, Identifier>;
 

@@ -3,13 +3,13 @@
  */
 'use client';
 import * as React from 'react';
-import { useColorScheme } from './ThemeProviderWithVars';
-import { CssColorSchemeContext } from './CssThemeProvider';
 
+// Providers render ThemeScope around nested themes. The div is the CSS-var
+// boundary; the context lets portals copy that boundary onto their root.
 export interface ThemeScopeContextValue {
   className: string | undefined;
   colorScheme: string | undefined;
-  colorSchemeAttribute: string;
+  colorSchemeAttribute: string | null | undefined;
 }
 
 export interface ThemeScopeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,9 +17,9 @@ export interface ThemeScopeProps extends React.HTMLAttributes<HTMLDivElement> {
    * The color-scheme attribute that matches the scoped theme's `colorSchemeSelector`.
    * @default 'data-mui-color-scheme'
    */
-  colorSchemeAttribute?: string | undefined;
+  colorSchemeAttribute?: string | null | undefined;
   /**
-   * Overrides the active color scheme read from the nearest Material color-scheme provider.
+   * The active color scheme stamped on the scoped root.
    */
   colorScheme?: string | undefined;
 }
@@ -34,13 +34,48 @@ function joinClassNames(...classNames: Array<string | undefined>) {
   return classNames.filter(Boolean).join(' ') || undefined;
 }
 
-function useActiveColorScheme(colorSchemeProp: string | undefined) {
-  const cssColorScheme = React.useContext(CssColorSchemeContext);
-  const varsColorScheme = useColorScheme();
+// Converts a simple scoped root selector, like `.foo`, into a className.
+function getClassNameFromRootSelector(rootSelector: string | undefined) {
+  const match = rootSelector?.match(/^\.([A-Za-z_-][A-Za-z0-9_-]*)$/);
 
-  return colorSchemeProp ?? cssColorScheme?.colorScheme ?? varsColorScheme.colorScheme;
+  return match?.[1];
 }
 
+// Finds the data attribute used to stamp the active color scheme on the scope.
+function getColorSchemeAttribute(colorSchemeSelector: string | undefined) {
+  if (!colorSchemeSelector || colorSchemeSelector === 'media' || colorSchemeSelector === 'class') {
+    return null;
+  }
+
+  if (colorSchemeSelector.startsWith('data-') && !colorSchemeSelector.includes('%s')) {
+    return colorSchemeSelector;
+  }
+
+  const match = colorSchemeSelector.match(/\[([A-Za-z0-9_-]+)=["']?%s["']?\]/);
+
+  return match?.[1] ?? null;
+}
+
+// Builds the props needed for the auto-rendered nested theme scope.
+export function getThemeScopeProps(
+  theme: { rootSelector?: string | undefined; colorSchemeSelector?: string | undefined },
+  colorScheme: string | undefined,
+): ThemeScopeProps | null {
+  // PoC: auto-scope simple class roots that match the generated CSS selector.
+  const className = getClassNameFromRootSelector(theme.rootSelector);
+
+  if (!className) {
+    return null;
+  }
+
+  return {
+    className,
+    colorScheme,
+    colorSchemeAttribute: getColorSchemeAttribute(theme.colorSchemeSelector),
+  };
+}
+
+// Reuses the current theme scope on portal roots rendered outside the scoped DOM subtree.
 export function useThemeScopeProps(
   props: React.HTMLAttributes<HTMLElement> = {},
 ): React.HTMLAttributes<HTMLElement> {
@@ -54,7 +89,7 @@ export function useThemeScopeProps(
   return {
     ...props,
     className: joinClassNames(scope.className, props.className),
-    [scope.colorSchemeAttribute]: scope.colorScheme,
+    ...(scope.colorSchemeAttribute ? { [scope.colorSchemeAttribute]: scope.colorScheme } : {}),
   } as React.HTMLAttributes<HTMLElement>;
 }
 
@@ -63,23 +98,28 @@ export default function ThemeScope(props: ThemeScopeProps) {
     children,
     className,
     colorScheme: colorSchemeProp,
-    colorSchemeAttribute = 'data-mui-color-scheme',
+    colorSchemeAttribute: colorSchemeAttributeProp,
     ...other
   } = props;
-  const colorScheme = useActiveColorScheme(colorSchemeProp);
+  const colorSchemeAttribute =
+    colorSchemeAttributeProp === undefined ? 'data-mui-color-scheme' : colorSchemeAttributeProp;
   // This is the actual DOM boundary that matches the scoped theme selectors.
   const contextValue = React.useMemo(
     () => ({
       className,
-      colorScheme,
+      colorScheme: colorSchemeProp,
       colorSchemeAttribute,
     }),
-    [className, colorScheme, colorSchemeAttribute],
+    [className, colorSchemeProp, colorSchemeAttribute],
   );
 
   return (
     <ThemeScopeContext.Provider value={contextValue}>
-      <div {...other} className={className} {...{ [colorSchemeAttribute]: colorScheme }}>
+      <div
+        {...other}
+        className={className}
+        {...(colorSchemeAttribute ? { [colorSchemeAttribute]: colorSchemeProp } : {})}
+      >
         {children}
       </div>
     </ThemeScopeContext.Provider>

@@ -28,6 +28,9 @@ export default function createCssVarsProvider(options) {
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     defaultColorScheme,
     resolveTheme,
+    // Optional design-system hook for rendering a DOM boundary around nested scoped vars.
+    themeScope: ThemeScope,
+    getThemeScopeProps,
   } = options;
 
   const defaultContext = {
@@ -253,6 +256,13 @@ export default function createCssVarsProvider(options) {
     );
 
     if (nested) {
+      // Nested providers share color-scheme state; scoped themes may still need a DOM boundary.
+      const themeScopeProps = getThemeScopeProps?.(restThemeProp, colorScheme);
+
+      if (ThemeScope && themeScopeProps) {
+        return <ThemeScope {...themeScopeProps}>{element}</ThemeScope>;
+      }
+
       return element;
     }
 

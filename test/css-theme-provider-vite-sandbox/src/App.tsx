@@ -26,7 +26,6 @@ import * as React from 'react';
 import {
   createTheme,
   CssThemeProvider,
-  ThemeScope,
   useCssColorScheme,
   useThemeScopeProps,
 } from '@mui/material/styles';
@@ -57,13 +56,9 @@ const themes = [
 const themeNames = ['Blue (default)', 'Green', 'Red'];
 
 // Inner themes scope their CSS to `.inner-theme-scope` so the --mui-palette-*
-// overrides only apply inside the container:
+// overrides only apply inside the nested provider's auto-rendered container:
 //   rootSelector       → keeps the default-scheme vars off :root
 //   colorSchemeSelector → scopes the dark/light variants to the same container
-// ScopedCssThemeProvider injects the generated CSS into a dedicated
-// <style id="mui-css-vars-inner-scope"> in <head>, separate from the shared
-// <style id="mui-css-vars"> the outer CssThemeProvider owns, so the two never
-// overwrite each other.
 const innerThemes = [
   createTheme({
     cssVariables: {
@@ -94,34 +89,7 @@ const innerThemes = [
   }),
 ];
 
-const INNER_STYLE_ID = 'mui-css-vars-inner-scope';
-
-// ThemeScope is the explicit DOM boundary for the scoped variables. It keeps
-// CssThemeProvider DOM-transparent while still giving portals scope props to
-// reuse through slotProps.root.
-function ScopedCssThemeProvider({
-  theme,
-  children,
-}: {
-  theme: ReturnType<typeof createTheme>;
-  children: React.ReactNode;
-}) {
-  return (
-    <ThemeScope className="inner-theme-scope">
-      {/* Outer provider owns the page-level color-scheme attribute. */}
-      <CssThemeProvider
-        theme={theme}
-        styleId={INNER_STYLE_ID}
-        colorSchemeNode={null}
-        storageWindow={null}
-      >
-        {children}
-      </CssThemeProvider>
-    </ThemeScope>
-  );
-}
-
-// PoC wrapper. Final version should make Modal/Dialog consume ThemeScope internally.
+// PoC portal bridge. Final version should make Modal/Dialog consume ThemeScope internally.
 function ScopedDialog({ slotProps, ...props }: DialogProps) {
   const rootScopeProps = useThemeScopeProps(slotProps?.root as React.HTMLAttributes<HTMLElement>);
 
@@ -288,11 +256,11 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         }}
       >
         <h2 style={{ marginTop: 0 }}>
-          Nested scoped theme (separate head style, --mui-palette-* override)
+          Nested scoped theme (auto scope wrapper, --mui-palette-* override)
         </h2>
-        <ScopedCssThemeProvider theme={innerThemes[innerThemeIndex]}>
+        <CssThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
-        </ScopedCssThemeProvider>
+        </CssThemeProvider>
       </div>
 
       <style>{`

@@ -5,6 +5,7 @@ import { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
 import createTheme from './createTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
+import ThemeScope, { getThemeScopeProps } from './ThemeScope';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const {
@@ -33,6 +34,8 @@ const {
 
     return newTheme;
   },
+  themeScope: ThemeScope,
+  getThemeScopeProps,
 });
 
 let warnedOnce = false;
