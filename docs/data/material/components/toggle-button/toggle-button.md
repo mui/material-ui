@@ -25,29 +25,29 @@ In this example, text justification toggle buttons present options for left, cen
 
 **Note**: Exclusive selection does not enforce that a button must be active. For that effect see [enforce value set](#enforce-value-set).
 
-{{"component": "file://./demos/toggle-buttons/index.ts"}}
+{{"demo": "ToggleButtons.js"}}
 
 ## Multiple selection
 
 Multiple selection allows for logically-grouped options, like bold, italic, and underline, to have multiple options selected.
 
-{{"component": "file://./demos/multiple/index.ts"}}
+{{"demo": "ToggleButtonsMultiple.js"}}
 
 ## Size
 
 For larger or smaller buttons, use the `size` prop.
 
-{{"component": "file://./demos/sizes/index.ts"}}
+{{"demo": "ToggleButtonSizes.js"}}
 
 ## Color
 
-{{"component": "file://./demos/color/index.ts"}}
+{{"demo": "ColorToggleButton.js"}}
 
 ## Vertical buttons
 
 The buttons can be stacked vertically with the `orientation` prop set to "vertical".
 
-{{"component": "file://./demos/vertical/index.ts"}}
+{{"demo": "VerticalToggleButtons.js"}}
 
 ## Enforce value set
 
@@ -67,18 +67,18 @@ const handleDevices = (event, newDevices) => {
 };
 ```
 
-{{"component": "file://./demos/not-empty/index.ts"}}
+{{"demo": "ToggleButtonNotEmpty.js"}}
 
 ## Standalone toggle button
 
-{{"component": "file://./demos/standalone/index.ts"}}
+{{"demo": "StandaloneToggleButton.js"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized-dividers/index.ts", "bg": true}}
+{{"demo": "CustomizedDividers.js", "bg": true}}
 
 ### Spacing
 
@@ -86,11 +86,11 @@ The demos below show how to adjust spacing between toggle buttons in horizontal 
 
 #### Horizontal Spacing
 
-{{"component": "file://./demos/horizontal-spacing/index.ts"}}
+{{"demo": "HorizontalSpacingToggleButton.js"}}
 
 #### Vertical Spacing
 
-{{"component": "file://./demos/vertical-spacing/index.ts"}}
+{{"demo": "VerticalSpacingToggleButton.js"}}
 
 ## Accessibility
 

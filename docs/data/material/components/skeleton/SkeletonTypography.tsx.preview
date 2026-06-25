@@ -1,0 +1,8 @@
+<Grid container spacing={8}>
+  <Grid size="grow">
+    <TypographyDemo loading />
+  </Grid>
+  <Grid size="grow">
+    <TypographyDemo />
+  </Grid>
+</Grid>

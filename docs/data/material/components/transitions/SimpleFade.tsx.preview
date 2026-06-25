@@ -1,0 +1,7 @@
+<FormControlLabel
+  control={<Switch checked={checked} onChange={handleChange} />}
+  label="Show"
+/>
+<Box sx={{ display: 'flex' }}>
+  <Fade in={checked}>{icon}</Fade>
+</Box>

@@ -1,0 +1,2 @@
+<Typography>Page: {page}</Typography>
+<Pagination count={10} page={page} onChange={handleChange} />

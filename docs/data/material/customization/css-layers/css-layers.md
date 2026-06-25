@@ -129,7 +129,7 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 }
 ```
 
-{{"component": "file://./demos/input/index.ts"}}
+{{"demo": "CssLayersInput.js"}}
 
 When this feature is enabled, Material UI generates these layers:
 
@@ -284,4 +284,4 @@ By default, the margin from the theme does _not_ take precedence over the defaul
 
 After enabling the `modularCssLayers` option, the margin from the theme _does_ take precedence because the theme layer comes after the components layer in the cascade order—so the style override is applied and the accordion has no margins when expanded.
 
-{{"component": "file://./demos/caveat/index.ts"}}
+{{"demo": "CssLayersCaveat.js"}}

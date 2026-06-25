@@ -53,7 +53,7 @@ const styles = (theme) => ({
 });
 ```
 
-{{"component": "file://./demos/media-query/index.ts"}}
+{{"demo": "MediaQuery.js"}}
 
 ## JavaScript Media Queries
 

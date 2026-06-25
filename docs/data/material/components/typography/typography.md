@@ -66,14 +66,14 @@ To install Roboto through the Google Web Fonts CDN, add the following code insid
 
 The Typography component follows the [Material Design typographic scale](https://m2.material.io/design/typography/#type-scale) that provides a limited set of type sizes that work well together for a consistent layout.
 
-{{"component": "file://./demos/types/index.ts"}}
+{{"demo": "Types.js"}}
 
 ### Theme keys
 
 In some situations you might not be able to use the Typography component.
 Hopefully, you might be able to take advantage of the [`typography`](/material-ui/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
-{{"component": "file://./demos/theme/index.ts"}}
+{{"demo": "TypographyTheme.js"}}
 
 ## Customization
 

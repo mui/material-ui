@@ -28,7 +28,7 @@ const theme = createTheme(
 
 ### Example
 
-{{"component": "file://./demos/locales/index.ts"}}
+{{"demo": "Locales.js"}}
 
 :::warning
 The [Data Grid and Data Grid Pro](/x/react-data-grid/) components have their own [localization](/x/react-data-grid/localization/).
