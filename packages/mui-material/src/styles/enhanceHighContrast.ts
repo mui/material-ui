@@ -129,11 +129,14 @@ export default function enhanceHighContrast<
               outline: `1px solid ${hcTokens.buttonBorder}`,
             },
             // The filled variant uses background colour to convey severity;
-            // in HCM backgrounds are overridden, so restore contrast via border.
+            // in HCM backgrounds are overridden by the OS, so explicitly set
+            // foreground/background using system color tokens to preserve contrast.
             [`&.${alertClasses.filled}`]: {
               [HCM]: {
                 forcedColorAdjust: 'none',
                 outline: `2px solid ${hcTokens.buttonBorder}`,
+                color: hcTokens.buttonText,
+                backgroundColor: hcTokens.activeBackground,
               },
             },
           },
