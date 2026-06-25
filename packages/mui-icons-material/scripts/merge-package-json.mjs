@@ -63,7 +63,7 @@ async function run() {
   // Note: To be removed when support for `moduleResolution=node10` is dropped
   mergedPackageJson.typesVersions = {
     '<7.0': {
-      "index.d.ts": ["index.d.ts"],
+      'index.d.ts': ['index.d.ts'],
       '*': ['SvgIconComponent.d.ts'],
     },
   };
