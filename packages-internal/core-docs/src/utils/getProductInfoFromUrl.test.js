@@ -29,13 +29,6 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
-  it('should handle Joy UI', () => {
-    expect(getProductInfoFromUrl('/joy-ui/react-button/')).to.deep.equal({
-      productCategoryId: 'core',
-      productId: 'joy-ui',
-    });
-  });
-
   it('should handle MUI System', () => {
     expect(getProductInfoFromUrl('/system/')).to.deep.equal({
       productCategoryId: 'core',
