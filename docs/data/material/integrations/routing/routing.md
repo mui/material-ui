@@ -8,13 +8,13 @@ There are two main components available to perform navigations.
 The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest.
 It renders a native `<a>` element and applies the `href` as an attribute.
 
-{{"component": "file://./demos/link-demo/index.ts"}}
+{{"demo": "LinkDemo.js"}}
 
 You can also make a button perform navigation actions.
 If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode.
 For instance, with a `Button` component:
 
-{{"component": "file://./demos/button-demo/index.ts"}}
+{{"demo": "ButtonDemo.js"}}
 
 ## Global theme Link
 
@@ -52,7 +52,7 @@ const theme = createTheme({
 });
 ```
 
-{{"component": "file://./demos/link-router-with-theme/index.ts", "collapseToEmpty": true}}
+{{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
 :::warning
 This approach has limitations with TypeScript.
@@ -72,11 +72,11 @@ You can apply the same strategy with all the components: BottomNavigation, Card,
 
 ### Link
 
-{{"component": "file://./demos/link-router/index.ts"}}
+{{"demo": "LinkRouter.js"}}
 
 ### Button
 
-{{"component": "file://./demos/button-router/index.ts"}}
+{{"demo": "ButtonRouter.js"}}
 
 **Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element.
 This can create issues when rendering a link.
@@ -91,11 +91,11 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Tabs
 
-{{"component": "file://./demos/tabs-router/index.ts", "collapseToEmpty": true}}
+{{"demo": "TabsRouter.js", "defaultCodeOpen": false}}
 
 ### List
 
-{{"component": "file://./demos/list-router/index.ts"}}
+{{"demo": "ListRouter.js"}}
 
 ## More examples
 

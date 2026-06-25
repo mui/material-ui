@@ -1,0 +1,5 @@
+<MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+  <Routes>
+    <Route path="*" element={<Content />} />
+  </Routes>
+</MemoryRouter>

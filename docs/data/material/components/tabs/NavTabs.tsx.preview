@@ -1,0 +1,10 @@
+<Tabs
+  value={value}
+  onChange={handleChange}
+  aria-label="nav tabs example"
+  role="navigation"
+>
+  <LinkTab label="Page One" href="/drafts" />
+  <LinkTab label="Page Two" href="/trash" />
+  <LinkTab label="Page Three" href="/spam" />
+</Tabs>

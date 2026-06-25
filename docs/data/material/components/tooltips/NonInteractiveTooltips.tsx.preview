@@ -1,0 +1,3 @@
+<Tooltip describeChild title="Add" disableInteractive>
+  <Button>Not interactive</Button>
+</Tooltip>
