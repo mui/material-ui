@@ -75,6 +75,24 @@ describe('<Checkbox />', () => {
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
+  it('toggles the checked state with the Space key (WCAG 2.1.1)', async () => {
+    const handleChange = spy();
+    const { user } = render(<Checkbox onChange={handleChange} />);
+    const checkbox = screen.getByRole('checkbox');
+
+    await act(async () => {
+      checkbox.focus();
+    });
+
+    await user.keyboard('[Space]');
+    expect(checkbox).to.have.property('checked', true);
+    expect(handleChange.callCount).to.equal(1);
+
+    await user.keyboard('[Space]');
+    expect(checkbox).to.have.property('checked', false);
+    expect(handleChange.callCount).to.equal(2);
+  });
+
   describe('prop: readOnly', () => {
     it('prevents interaction', async () => {
       const changeSpy = spy();

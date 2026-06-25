@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -145,6 +150,17 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
 ];
 
+const CHECKBOX_A11Y_DEMOS = [
+  'Checkboxes',
+  'CheckboxLabels',
+  'ColorCheckboxes',
+  'ControlledCheckbox',
+  'CustomizedCheckbox',
+  'IconCheckboxes',
+  'SizeCheckboxes',
+  'CheckboxesGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -154,6 +170,21 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: `docs/data/material/components/checkboxes/{${CHECKBOX_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
+  {
+    // `indeterminate` sets aria-checked="mixed" on the native <input type="checkbox">; axe's
+    // aria-conditional-attr flags it because the native .checked is false. Recorded, not asserted.
+    test: 'docs/data/material/components/checkboxes/IndeterminateCheckbox',
+    enabled: true,
+    assertions: 'all',
+    skipAssertions: ['aria-conditional-attr'],
+  },
+  // FormControlLabelPosition is not enrolled: its only axe finding is an aria-label on a
+  // role-less FormGroup div (aria-prohibited-attr), a demo quirk unrelated to Checkbox.
 ];
 
 export interface ParsedRoute {
