@@ -25,9 +25,13 @@ async function main() {
     ],
     // CSS selectors for content to ignore during link checking
     ignoredContent: [
-      // Links used in demos under MemoryRouter
-      // TODO: Create an easier way to identify content under MemoryRouter
-      // (e.g. a class or an option on the demo)
+      // Links that only resolve inside a demo, not as real site navigation: the
+      // MemoryRouter email-app routes (`/inbox`, `/trash`, …) and self-referential
+      // or placeholder anchors shown by demo examples (`#text-buttons`, `#foo`, …).
+      // Scoped to the stable `.demo-preview` wrapper rather than the per-demo
+      // container id, which is content-derived and changes. These are intentional
+      // demo content, so ignoring them does not hide user-facing broken links.
+      // TODO: Create an easier way to identify this content (e.g. an option on the demo).
       '.demo-preview a[href^="/inbox"]',
       '.demo-preview a[href^="/trash"]',
       '.demo-preview a[href^="/spam"]',
