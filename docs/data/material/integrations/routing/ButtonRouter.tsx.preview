@@ -1,0 +1,7 @@
+<Router>
+  <Button component={RouterLink} to="/">
+    With prop forwarding
+  </Button>
+  <br />
+  <Button component={LinkBehavior}>With inlining</Button>
+</Router>

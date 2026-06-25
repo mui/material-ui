@@ -1,0 +1,3 @@
+<SnackbarProvider maxSnack={3}>
+  <MyApp />
+</SnackbarProvider>
