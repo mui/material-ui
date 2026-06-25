@@ -124,7 +124,7 @@
     "@types/stylis": "4.2.7",
     "chai": "6.2.2",
     "cross-fetch": "4.1.0",
-    "gm": "1.25.1",
+    "sharp": "0.34.5",
     "prettier": "3.8.3",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.2.4",
