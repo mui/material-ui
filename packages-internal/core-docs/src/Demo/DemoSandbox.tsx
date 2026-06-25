@@ -272,7 +272,7 @@ function DemoSandboxInner(props: DemoSandboxProps) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {isolated ? (
-        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI and Joy UI
+        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI
         // The demo will need to handle the ThemeProvider itself.
         <SystemThemeProvider
           theme={(upperTheme) => ({
