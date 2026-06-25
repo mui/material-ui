@@ -18,7 +18,7 @@ githubSource: packages/mui-material/src/Select
 
 Menus are positioned under their emitting elements, unless they are close to the bottom of the viewport.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicSelect.js"}}
 
 ## Advanced features
 
@@ -39,7 +39,7 @@ Unlike input components, the `placeholder` prop is not available in Select. To a
 
 ### Variants
 
-{{"component": "file://./demos/variants/index.ts"}}
+{{"demo": "SelectVariants.js"}}
 
 :::warning
 Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo). This is needed for the label floating animation to work correctly.
@@ -49,26 +49,26 @@ Note that when using FormControl with the outlined variant of the Select, you ne
 
 Select always needs an accessible name. This can come from an associated visible label, such as an `InputLabel` linked to the `Select` with `labelId` or from adding an `aria-label` prop to the input element props (`inputProps`). If more information is needed, provide a helper text element and link it to the `Select` using `aria-describedby`.
 
-{{"component": "file://./demos/labels/index.ts"}}
+{{"demo": "SelectLabels.js"}}
 
 ### Auto width
 
-{{"component": "file://./demos/auto-width/index.ts"}}
+{{"demo": "SelectAutoWidth.js"}}
 
 ### Small Size
 
-{{"component": "file://./demos/small/index.ts"}}
+{{"demo": "SelectSmall.js"}}
 
 ### Other props
 
-{{"component": "file://./demos/other-props/index.ts"}}
+{{"demo": "SelectOtherProps.js"}}
 
 ## Native select
 
 As the user experience can be improved on mobile using the native select of the platform,
 we allow such pattern.
 
-{{"component": "file://./demos/native-demo/index.ts"}}
+{{"demo": "NativeSelectDemo.js"}}
 
 ## TextField
 
@@ -84,7 +84,7 @@ The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.
 Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedSelects.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/primitive/select).
 
@@ -97,25 +97,25 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 ### Default
 
-{{"component": "file://./demos/multiple/index.ts"}}
+{{"demo": "MultipleSelect.js"}}
 
 ### Selection indicators
 
 This example demonstrates how icons are used to indicate the selection state of each item in the listbox.
 
-{{"component": "file://./demos/multiple-checkmarks/index.ts"}}
+{{"demo": "MultipleSelectCheckmarks.js"}}
 
 ### Chip
 
-{{"component": "file://./demos/multiple-chip/index.ts"}}
+{{"demo": "MultipleSelectChip.js"}}
 
 ### Placeholder
 
-{{"component": "file://./demos/multiple-placeholder/index.ts"}}
+{{"demo": "MultipleSelectPlaceholder.js"}}
 
 ### Native
 
-{{"component": "file://./demos/multiple-native/index.ts"}}
+{{"demo": "MultipleSelectNative.js"}}
 
 ## Controlling the open state
 
@@ -129,19 +129,19 @@ You can control the open state of the select with the `open` prop. Alternatively
 Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
 :::
 
-{{"component": "file://./demos/controlled-open/index.ts"}}
+{{"demo": "ControlledOpenSelect.js"}}
 
 ## With a dialog
 
 While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
-{{"component": "file://./demos/dialog/index.ts"}}
+{{"demo": "DialogSelect.js"}}
 
 ## Grouping
 
 Display categories with the `ListSubheader` component or the native `<optgroup>` element.
 
-{{"component": "file://./demos/grouped/index.ts"}}
+{{"demo": "GroupedSelect.js"}}
 
 ## Accessibility
 

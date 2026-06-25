@@ -30,19 +30,19 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 You should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below.
 
-{{"component": "file://./demos/basic/index.ts"}}
+{{"demo": "BasicMenu.js"}}
 
 ## Icon menu
 
 In desktop viewport, padding is increased to give more space to the menu.
 
-{{"component": "file://./demos/icon/index.ts", "bg": true}}
+{{"demo": "IconMenu.js", "bg": true}}
 
 ## Dense menu
 
 For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
 
-{{"component": "file://./demos/dense/index.ts", "bg": true}}
+{{"demo": "DenseMenu.js", "bg": true}}
 
 ## Selected menu
 
@@ -50,14 +50,14 @@ If used for item selection, when opened, simple menus places the initial focus o
 The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
-{{"component": "file://./demos/simple-list/index.ts"}}
+{{"demo": "SimpleListMenu.js"}}
 
 ## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.
 For instance, you can display the menu on top of the anchor:
 
-{{"component": "file://./demos/positioned/index.ts"}}
+{{"demo": "PositionedMenu.js"}}
 
 ## Composition with Menu List
 
@@ -67,20 +67,20 @@ But you might want to use a different positioning strategy, or prefer not to blo
 The Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.
 See the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:
 
-{{"component": "file://./demos/list-composition/index.ts", "bg": true}}
+{{"demo": "MenuListComposition.js", "bg": true}}
 
 ## Account menu
 
 `Menu` content can be mixed with other components like `Avatar`.
 
-{{"component": "file://./demos/account/index.ts"}}
+{{"demo": "AccountMenu.js"}}
 
 ## Customization
 
 Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedMenus.js"}}
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles.
 You can use the same list composition features with the `MenuItem` component:
@@ -91,32 +91,32 @@ You can use the same list composition features with the `MenuItem` component:
 
 If the height of a menu prevents all menu items from being displayed, the menu can scroll internally.
 
-{{"component": "file://./demos/long/index.ts"}}
+{{"demo": "LongMenu.js"}}
 
 ## Limitations
 
 There is [a flexbox bug](https://issues.chromium.org/issues/40344463) that prevents `text-overflow: ellipsis` from working in a flexbox layout.
 You can use the `Typography` component with `noWrap` to workaround this issue:
 
-{{"component": "file://./demos/typography/index.ts", "bg": true}}
+{{"demo": "TypographyMenu.js", "bg": true}}
 
 ## Change transition
 
 Use `slots.transition` and `slotProps.transition` to use a different transition.
 
-{{"component": "file://./demos/fade/index.ts"}}
+{{"demo": "FadeMenu.js"}}
 
 ## Context menu
 
 Here is an example of a context menu. (Right click to open.)
 
-{{"component": "file://./demos/context/index.ts"}}
+{{"demo": "ContextMenu.js"}}
 
 ## Grouped Menu
 
 Display categories with the `ListSubheader` component.
 
-{{"component": "file://./demos/grouped/index.ts"}}
+{{"demo": "GroupedMenu.js"}}
 
 ## Supplementary projects
 
@@ -129,4 +129,4 @@ For more advanced use cases you might be able to take advantage of:
 
 The package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
-{{"component": "file://./demos/popup-state/index.ts"}}
+{{"demo": "MenuPopupState.js"}}

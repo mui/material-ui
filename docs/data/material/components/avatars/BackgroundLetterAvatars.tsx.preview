@@ -1,0 +1,3 @@
+<Avatar {...stringAvatar('Kent Dodds')} />
+<Avatar {...stringAvatar('Jed Watson')} />
+<Avatar {...stringAvatar('Tim Neutkens')} />

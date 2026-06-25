@@ -29,7 +29,7 @@ Dialogs are implemented using a collection of related components:
 - Dialog Content Text: a wrapper for text inside of `<DialogContent />`.
 - Slide: optional [Transition](/material-ui/transitions/#slide) used to slide the Dialog in from the edge of the screen.
 
-{{"component": "file://./demos/simple-demo/index.ts"}}
+{{"demo": "SimpleDialogDemo.js"}}
 
 ## Basics
 
@@ -58,21 +58,21 @@ If a title is required:
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
 - Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
-{{"component": "file://./demos/alert/index.ts"}}
+{{"demo": "AlertDialog.js"}}
 
 ## Transitions
 
 You can swap out the default transition with the `slots.transition` and `slotProps.transition` props.
 The next example uses `Slide`.
 
-{{"component": "file://./demos/alert-slide/index.ts"}}
+{{"demo": "AlertDialogSlide.js"}}
 
 ## Form dialogs
 
 Form dialogs allow users to fill out form fields within a dialog.
 For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
 
-{{"component": "file://./demos/form/index.ts"}}
+{{"demo": "FormDialog.js"}}
 
 ## Customization
 
@@ -81,18 +81,18 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 The dialog has a close button added to aid usability.
 
-{{"component": "file://./demos/customized/index.ts"}}
+{{"demo": "CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 
-{{"component": "file://./demos/full-screen/index.ts"}}
+{{"demo": "FullScreenDialog.js"}}
 
 ## Optional sizes
 
 You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean.
 When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth` value.
 
-{{"component": "file://./demos/max-width/index.ts"}}
+{{"demo": "MaxWidthDialog.js"}}
 
 ## Responsive full-screen
 
@@ -109,7 +109,7 @@ function MyComponent() {
 }
 ```
 
-{{"component": "file://./demos/responsive/index.ts"}}
+{{"demo": "ResponsiveDialog.js"}}
 
 ## Confirmation dialogs
 
@@ -118,7 +118,7 @@ For example, users can listen to multiple ringtones but only make a final select
 
 Touching "Cancel" in a confirmation dialog, cancels the action, discards any changes, and closes the dialog.
 
-{{"component": "file://./demos/confirmation/index.ts"}}
+{{"demo": "ConfirmationDialog.js"}}
 
 ## Non-modal dialog
 
@@ -127,7 +127,7 @@ Visit [the Nielsen Norman Group article](https://www.nngroup.com/articles/modal-
 
 The demo below shows a persistent cookie banner, a common non-modal dialog use case.
 
-{{"component": "file://./demos/cookies-banner/index.ts", "iframe": true}}
+{{"demo": "CookiesBanner.js", "iframe": true}}
 
 ## Draggable dialog
 
@@ -135,7 +135,7 @@ You can create a draggable dialog by using [react-draggable](https://github.com/
 To do so, you can pass the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
 This will make the entire dialog draggable.
 
-{{"component": "file://./demos/draggable/index.ts"}}
+{{"demo": "DraggableDialog.js"}}
 
 ## Scrolling long content
 
@@ -146,7 +146,7 @@ When dialogs become too long for the user's viewport or device, they scroll.
 
 Try the demo below to see what we mean:
 
-{{"component": "file://./demos/scroll/index.ts"}}
+{{"demo": "ScrollDialog.js"}}
 
 ## Performance
 

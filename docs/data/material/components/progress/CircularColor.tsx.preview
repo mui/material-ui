@@ -1,0 +1,3 @@
+<CircularProgress color="secondary" aria-label="Loading…" />
+<CircularProgress color="success" aria-label="Loading…" />
+<CircularProgress color="inherit" aria-label="Loading…" />

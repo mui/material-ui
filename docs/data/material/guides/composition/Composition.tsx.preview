@@ -1,0 +1,6 @@
+<IconButton>
+  <Icon>alarm</Icon>
+</IconButton>
+<IconButton>
+  <WrappedIcon>alarm</WrappedIcon>
+</IconButton>
