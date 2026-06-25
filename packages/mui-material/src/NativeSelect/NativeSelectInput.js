@@ -24,11 +24,14 @@ const useUtilityClasses = (ownerState) => {
 export const StyledSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
 })(({ theme }) => ({
-  '--_trailingPad': '0px',
+  '--_endAdornment': '0px',
   [`& ~ .${inputAdornmentClasses.root}`]: {
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
+  },
+  [`&:has(~ .${inputAdornmentClasses.root})`]: {
+    '--_endAdornment': '28px',
   },
   // Reset
   MozAppearance: 'none',
@@ -60,11 +63,8 @@ export const StyledSelectSelect = styled('select', {
       style: {
         // Bump specificity to allow extending custom inputs
         '&&&': {
-          paddingRight: 'calc(24px + var(--_trailingPad))',
+          paddingRight: 'calc(24px + var(--_endAdornment))',
           minWidth: 16, // So it doesn't collapse.
-        },
-        [`&:has(~ .${inputAdornmentClasses.root})`]: {
-          '--_trailingPad': '32px', // 24px (svg icon) + 8px (spacing)
         },
         [`& ~ .${inputAdornmentClasses.root}`]: {
           right: 26,
@@ -77,10 +77,7 @@ export const StyledSelectSelect = styled('select', {
       },
       style: {
         '&&&': {
-          paddingRight: 'calc(32px + var(--_trailingPad))',
-        },
-        [`&:has(~ .${inputAdornmentClasses.root})`]: {
-          '--_trailingPad': '20px', // 24px (svg icon) - 12px (filled padding right) + 8px (spacing)
+          paddingRight: 'calc(32px + var(--_endAdornment))',
         },
         [`& ~ .${inputAdornmentClasses.root}`]: {
           right: 34,
@@ -97,10 +94,7 @@ export const StyledSelectSelect = styled('select', {
           borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
         },
         '&&&': {
-          paddingRight: 'calc(32px + var(--_trailingPad))',
-        },
-        [`&:has(~ .${inputAdornmentClasses.root})`]: {
-          '--_trailingPad': '18px', // 24px (svg icon) - 14px (outlined padding right) + 8px (spacing)
+          paddingRight: 'calc(32px + var(--_endAdornment))',
         },
         [`& ~ .${inputAdornmentClasses.root}`]: {
           right: 34,
