@@ -111,33 +111,11 @@ export default function XComponentsSwitcher(props: {
     {
       element: (
         <ComponentItem
-          name="Date and Time Pickers"
-          description="A suite of components for selecting dates, times, and ranges."
-          label="A suite of components for selecting dates, times, and ranges."
-          icon={<CalendarMonthRoundedIcon />}
-          href={ROUTES.datePickersOverview}
-        />
-      ),
-    },
-    {
-      element: (
-        <ComponentItem
           name="Charts"
           description="Data visualization graphs, including bar, line, pie, scatter, and more."
           label="Data visualization graphs, including bar, line, pie, scatter, and more."
           icon={<BarChartRoundedIcon />}
           href={ROUTES.chartsOverview}
-        />
-      ),
-    },
-    {
-      element: (
-        <ComponentItem
-          name="Tree View"
-          description="Display hierarchical data, such as a file system navigator."
-          label="Display hierarchical data, such as a file system navigator."
-          icon={<AccountTreeRounded />}
-          href={ROUTES.treeViewOverview}
         />
       ),
     },
@@ -163,6 +141,28 @@ export default function XComponentsSwitcher(props: {
         />
       ),
     },
+    {
+      element: (
+        <ComponentItem
+          name="Tree View"
+          description="Display hierarchical data, such as a file system navigator."
+          label="Display hierarchical data, such as a file system navigator."
+          icon={<AccountTreeRounded />}
+          href={ROUTES.treeViewOverview}
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Date and Time Pickers"
+          description="A suite of components for selecting dates, times, and ranges."
+          label="A suite of components for selecting dates, times, and ranges."
+          icon={<CalendarMonthRoundedIcon />}
+          href={ROUTES.datePickersOverview}
+        />
+      ),
+    },
   ];
 
   return (
@@ -180,7 +180,7 @@ export default function XComponentsSwitcher(props: {
           disableBorder
           onClick={() => setComponentIndex(index)}
           selected={componentIndex === index}
-          sx={{ minWidth: 0, height: 'auto' }}
+          sx={{ minWidth: 0, height: 'auto', alignItems: 'flex-start' }}
         >
           {element}
         </Highlighter>

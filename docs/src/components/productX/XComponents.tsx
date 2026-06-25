@@ -48,11 +48,11 @@ export default function XComponents() {
         >
           <React.Fragment>
             {componentIndex === 0 && <XGridFullDemo />}
-            {componentIndex === 1 && <XDateRangeDemo />}
-            {componentIndex === 2 && <XChartsDemo />}
-            {componentIndex === 3 && <XTreeViewDemo />}
-            {componentIndex === 4 && <XEventCalendarDemo />}
-            {componentIndex === 5 && <XEventTimelineDemo />}
+            {componentIndex === 1 && <XChartsDemo />}
+            {componentIndex === 2 && <XEventCalendarDemo />}
+            {componentIndex === 3 && <XEventTimelineDemo />}
+            {componentIndex === 4 && <XTreeViewDemo />}
+            {componentIndex === 5 && <XDateRangeDemo />}
           </React.Fragment>
         </Grid>
       </Grid>
