@@ -60,10 +60,11 @@ async function run() {
   // In the case of `moduleResolution=node10`, the `exports` field is not read,
   // so typesVersions is used instead for typings resolutions
   // https://www.typescriptlang.org/docs/handbook/modules/reference.html#packagejson-typesversions
+  // Note: To be removed when support for `moduleResolution=node10` is dropped
   mergedPackageJson.typesVersions = {
-    '*': {
-      '.': './index.d.ts',
-      '*': './SvgIconComponent.d.ts',
+    '<7.0': {
+      "index.d.ts": ["index.d.ts"],
+      '*': ['SvgIconComponent.d.ts'],
     },
   };
   delete mergedPackageJson.publishConfig?.directory;
