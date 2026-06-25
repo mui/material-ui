@@ -313,6 +313,11 @@ const AutocompleteLoading = styled('div', {
   })),
 );
 
+const AutocompleteNoOptionsContainer = styled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'NoOptionsContainer',
+})({});
+
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
@@ -606,7 +611,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   });
 
   const [NoOptionsSlot, noOptionsProps] = useSlot('noOptionsContainer', {
-    elementType: 'div',
+    elementType: AutocompleteNoOptionsContainer,
     externalForwardedProps,
     ownerState,
     className: classes.noOptionsContainer,
