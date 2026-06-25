@@ -80,7 +80,7 @@ declare module '@mui/material/styles' {
 }
 ```
 
-{{"component": "file://./demos/custom-styles/index.ts"}}
+{{"demo": "CustomStyles.js"}}
 
 To add extra variables to the `theme.palette`, see [palette customization](/material-ui/customization/palette/).
 
@@ -113,12 +113,12 @@ function DeepChild() {
 
 [You can nest](https://v6.mui.com/system/styles/advanced/#theme-nesting) multiple theme providers.
 
-{{"component": "file://./demos/theme-nesting/index.ts"}}
+{{"demo": "ThemeNesting.js"}}
 
 The inner theme will **override** the outer theme.
 You can extend the outer theme by providing a function:
 
-{{"component": "file://./demos/theme-nesting-extend/index.ts"}}
+{{"demo": "ThemeNestingExtend.js"}}
 
 ## CSS theme variables
 

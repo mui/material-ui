@@ -4,7 +4,7 @@
 
 ## Variant
 
-{{"component": "file://./demos/variant/index.ts", "collapseToEmpty": true}}
+{{"demo": "Variant.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ typography: 'subtitle2' }}>… // theme.typography.subtitle2
@@ -14,7 +14,7 @@
 
 ## Text alignment
 
-{{"component": "file://./demos/text-alignment/index.ts", "collapseToEmpty": true}}
+{{"demo": "TextAlignment.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textAlign: 'left' }}>…
@@ -24,7 +24,7 @@
 
 ## Text transformation
 
-{{"component": "file://./demos/text-transform/index.ts", "collapseToEmpty": true}}
+{{"demo": "TextTransform.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ textTransform: 'capitalize' }}>…
@@ -34,7 +34,7 @@
 
 ## Font weight
 
-{{"component": "file://./demos/font-weight/index.ts", "collapseToEmpty": true}}
+{{"demo": "FontWeight.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }}>… // theme.typography.fontWeightLight
@@ -46,7 +46,7 @@
 
 ## Font size
 
-{{"component": "file://./demos/font-size/index.ts", "collapseToEmpty": true}}
+{{"demo": "FontSize.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontSize: 'default' }}>…  // theme.typography.fontSize
@@ -56,7 +56,7 @@
 
 ## Font style
 
-{{"component": "file://./demos/font-style/index.ts", "collapseToEmpty": true}}
+{{"demo": "FontStyle.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontStyle: 'normal' }}>…
@@ -66,7 +66,7 @@
 
 ## Font family
 
-{{"component": "file://./demos/font-family/index.ts", "collapseToEmpty": true}}
+{{"demo": "FontFamily.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ fontFamily: 'default' }}>…
@@ -75,7 +75,7 @@
 
 ## Letter spacing
 
-{{"component": "file://./demos/letter-spacing/index.ts", "collapseToEmpty": true}}
+{{"demo": "LetterSpacing.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ letterSpacing: 6 }}>…
@@ -84,7 +84,7 @@
 
 ## Line height
 
-{{"component": "file://./demos/line-height/index.ts", "collapseToEmpty": true}}
+{{"demo": "LineHeight.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box sx={{ lineHeight: 'normal' }}>…

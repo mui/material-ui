@@ -1,0 +1,3 @@
+<ThemeProvider theme={theme}>
+  <CustomCheckbox defaultChecked />
+</ThemeProvider>
