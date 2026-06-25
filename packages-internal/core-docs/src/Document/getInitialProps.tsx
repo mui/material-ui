@@ -41,10 +41,9 @@ export function createGetInitialProps({
         url += '/';
       }
 
-      const isProd =
-        process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
+      const isProd = process.env.ANALYTICS_ENV === 'production';
       const google = isProd ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
-      const apollo = isProd ? '691c2e920c5e20000d7801b6' : 'dev-id';
+      const apollo = isProd ? '6a35da279dcd68001e2385f2' : 'dev-id';
 
       return {
         ...finalProps,
