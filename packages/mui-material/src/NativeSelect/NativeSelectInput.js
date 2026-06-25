@@ -6,6 +6,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
+import inputBaseClasses from '../InputBase/inputBaseClasses';
 import { styled } from '../zero-styled';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
@@ -24,15 +25,6 @@ const useUtilityClasses = (ownerState) => {
 export const StyledSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
 })(({ theme }) => ({
-  '--_endAdornment': '0px',
-  [`& ~ .${inputAdornmentClasses.root}`]: {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  [`&:has(~ .${inputAdornmentClasses.root})`]: {
-    '--_endAdornment': '28px',
-  },
   // Reset
   MozAppearance: 'none',
   // Reset
@@ -56,18 +48,25 @@ export const StyledSelectSelect = styled('select', {
   '&:not([multiple]) option, &:not([multiple]) optgroup': {
     backgroundColor: (theme.vars || theme).palette.background.paper,
   },
+  [`& ~ .${inputAdornmentClasses.root}`]: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    right: 'calc(var(--_caret) + 2px)',
+  },
   variants: [
     {
       props: ({ ownerState }) =>
         ownerState.variant !== 'filled' && ownerState.variant !== 'outlined',
       style: {
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+          '--_caret': '24px',
+        },
         // Bump specificity to allow extending custom inputs
         '&&&': {
-          paddingRight: 'calc(24px + var(--_endAdornment))',
+          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
           minWidth: 16, // So it doesn't collapse.
-        },
-        [`& ~ .${inputAdornmentClasses.root}`]: {
-          right: 26,
         },
       },
     },
@@ -76,11 +75,12 @@ export const StyledSelectSelect = styled('select', {
         variant: 'filled',
       },
       style: {
-        '&&&': {
-          paddingRight: 'calc(32px + var(--_endAdornment))',
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+          '--_caret': '32px',
         },
-        [`& ~ .${inputAdornmentClasses.root}`]: {
-          right: 34,
+        '&&&': {
+          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
         },
       },
     },
@@ -89,15 +89,16 @@ export const StyledSelectSelect = styled('select', {
         variant: 'outlined',
       },
       style: {
+        [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
+          '--_endAdornment': '28px',
+          '--_caret': '32px',
+        },
         borderRadius: (theme.vars || theme).shape.borderRadius,
         '&:focus': {
           borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
         },
         '&&&': {
-          paddingRight: 'calc(32px + var(--_endAdornment))',
-        },
-        [`& ~ .${inputAdornmentClasses.root}`]: {
-          right: 34,
+          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
         },
       },
     },
