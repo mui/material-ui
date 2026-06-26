@@ -70,21 +70,11 @@ export const ButtonBaseRoot = styled('button', {
     '@media print': {
       colorAdjust: 'exact',
     },
-    variants: [
-      {
-        props: ({ ownerState }) =>
-          (ownerState.disableRipple && theme.focusRing !== false) || !!theme.focusRing,
-        style: {
-          [`&.${buttonBaseClasses.focusVisible}`]: {
-            outlineStyle: 'solid',
-            outlineColor: (theme.vars || theme).palette.primary.main,
-            outlineWidth: 2,
-            outlineOffset: 2,
-            ...theme.focusRing,
-          },
-        },
-      },
-    ],
+    // Opt-in keyboard focus ring. `theme.focusRing` is normalized to the resolved
+    // ring object at theme creation, so a truthy value here is ready to spread.
+    ...((theme.vars || theme).focusRing && {
+      [`&.${buttonBaseClasses.focusVisible}`]: (theme.vars || theme).focusRing,
+    }),
   })),
 );
 

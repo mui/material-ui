@@ -37,14 +37,11 @@ import {
 export interface CssThemeVariables {}
 
 /**
- * Outline properties of the keyboard focus ring, spread onto the `Mui-focusVisible` state.
- * Omitted properties fall back to the defaults: `solid` style, `palette.primary.main` color,
- * `2px` width, `2px` offset.
+ * CSS of the keyboard focus ring, spread onto the `Mui-focusVisible` state. An object merges
+ * over the curated default (`solid` style, `palette.primary.main` color, `2px` width, `2px`
+ * offset); set `outlineColor: 'transparent'` to drop the outline for a box-shadow-only ring.
  */
-export type FocusRing = Pick<
-  React.CSSProperties,
-  'outlineColor' | 'outlineOffset' | 'outlineStyle' | 'outlineWidth'
->;
+export type FocusRing = React.CSSProperties;
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
@@ -65,7 +62,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
     | ((palette: Palette) => TypographyVariantsOptions)
     | undefined;
   zIndex?: ZIndexOptions | undefined;
-  focusRing?: FocusRing | false | undefined;
+  focusRing?: boolean | FocusRing | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;

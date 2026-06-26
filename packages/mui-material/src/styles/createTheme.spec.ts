@@ -320,12 +320,16 @@ const theme = createTheme();
 
 // focusRing theme key
 {
+  createTheme({ focusRing: true });
   createTheme({ focusRing: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
   createTheme({ focusRing: { outlineColor: 'red' } });
   createTheme({ focusRing: { outlineStyle: 'dashed' } });
+  createTheme({ focusRing: { boxShadow: '0 0 0 4px #fff' } });
+  createTheme({ focusRing: { boxShadow: '0 0 0 4px #fff', outlineColor: 'transparent' } });
   createTheme({ focusRing: false });
   createTheme({ focusRing: undefined });
 
+  // Resolved theme always exposes the merged object (never the boolean).
   const focusRing: FocusRing | false | undefined = theme.focusRing;
   createTheme({ focusRing });
 
@@ -335,7 +339,7 @@ const theme = createTheme();
   });
 
   createTheme({
-    // @ts-expect-error color is not a valid outline property
-    focusRing: { color: 'red' },
+    // @ts-expect-error focusRing must be a boolean or a CSS properties object
+    focusRing: 'solid',
   });
 }
