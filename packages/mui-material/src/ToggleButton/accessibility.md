@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
-| 🚩 Unverified         | 17/24 |
+| 🚩 Unverified         | 14/24 |
 
 ## Known gaps
 
@@ -199,10 +199,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`⚠️ Partially Supports` · `● Component`
 
 - Keyboard focus shows the `.Mui-focusVisible` ripple (suppressed for mouse). The component sets no other focus style.
-- `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this).
+- `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this). [`ToggleButton.test.js`](./ToggleButton.test.js) confirms a keyboard-focused toggle renders no ripple under `disableRipple`.
 
 **Manual testing steps**
 
@@ -215,9 +215,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.5.3 Label in Name · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- When a toggle has a visible text label, that text is the accessible name (the children become the name). An icon-only toggle has no visible text, so its `aria-label` is the name.
+- When a toggle has a visible text label, that text is the accessible name (the children become the name). An icon-only toggle has no visible text, so its `aria-label` is the name. [`ToggleButton.test.js`](./ToggleButton.test.js) confirms the accessible name contains the visible label.
 - An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
 
 **Manual testing steps**
@@ -232,7 +232,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- A native `<button>` (or `role="button"` for a non-native host) sets the role; `aria-pressed` reflects `selected` for the on/off state, the W3C-prescribed mechanism for a toggle button (distinct from a switch's `aria-checked`); `disabled` sets state. axe-core `button-name` (with `aria-command-name` covering the non-native host), the other `aria-*` rules, and `nested-interactive` all pass.
+- A native `<button>` (or `role="button"` for a non-native host) sets the role; `aria-pressed` reflects `selected` for the on/off state, the W3C-prescribed mechanism for a toggle button (distinct from a switch's `aria-checked`); `disabled` sets state. axe-core `button-name` (with `aria-command-name` covering the non-native host), the other `aria-*` rules, and `nested-interactive` all pass; [`ToggleButton.test.js`](./ToggleButton.test.js) also unit-tests that `aria-pressed` reflects and flips with `selected`.
 - axe-core covers the mechanical layer (a name is present, `aria-pressed` is a valid and permitted value). Whether the name is meaningful, and whether the pressed state matches the visual state and is announced on change, needs an assistive-technology review.
 
 **Manual testing steps**
@@ -294,9 +294,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.5.2 Pointer Cancellation · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
-- Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
+- Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event. [`ToggleButton.test.js`](./ToggleButton.test.js) confirms `onChange` fires on click but not on `mouseDown` alone.
 
 #### 2.5.8 Target Size (Minimum) · AA
 

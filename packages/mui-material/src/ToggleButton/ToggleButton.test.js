@@ -1,9 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  isJsdom,
+  fireEvent,
+  focusVisible,
+  simulatePointerDevice,
+} from '@mui/internal-test-utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 
 describe('<ToggleButton />', () => {
@@ -148,6 +155,69 @@ describe('<ToggleButton />', () => {
       expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
     });
+  });
+
+  describe('accessibility', () => {
+    it('reflects `selected` as `aria-pressed` (WCAG 4.1.2)', () => {
+      const { setProps } = render(
+        <ToggleButton value="bold" selected={false}>
+          Bold
+        </ToggleButton>,
+      );
+      const button = screen.getByRole('button');
+      expect(button).to.have.attribute('aria-pressed', 'false');
+
+      setProps({ selected: true });
+      expect(button).to.have.attribute('aria-pressed', 'true');
+    });
+
+    it('keeps the visible label within the accessible name (WCAG 2.5.3)', () => {
+      render(
+        <ToggleButton value="bold" aria-label="Bold formatting">
+          Bold
+        </ToggleButton>,
+      );
+
+      const button = screen.getByRole('button');
+      expect(button.getAttribute('aria-label')).to.contain(button.textContent);
+    });
+
+    it('activates on click, not on `mouseDown` alone (WCAG 2.5.2)', () => {
+      const handleChange = spy();
+      render(
+        <ToggleButton value="x" onChange={handleChange} disableRipple>
+          Hello
+        </ToggleButton>,
+      );
+      const button = screen.getByRole('button');
+
+      fireEvent.mouseDown(button);
+      expect(handleChange.callCount).to.equal(0);
+
+      button.click();
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    // `:focus-visible` is only reliable in a real browser, so this runs there (not jsdom).
+    it.skipIf(isJsdom())(
+      'leaves no focus indicator (the ripple) under `disableRipple` (WCAG 2.4.7)',
+      () => {
+        render(
+          <ToggleButton value="x" disableRipple>
+            Hello
+          </ToggleButton>,
+        );
+        const button = screen.getByRole('button');
+
+        simulatePointerDevice();
+        focusVisible(button);
+
+        // Keyboard focus is detected, but `disableRipple` leaves no visible indicator:
+        // the ripple is the only focus style the component provides.
+        expect(button).to.have.class(buttonBaseClasses.focusVisible);
+        expect(button.querySelector('.MuiTouchRipple-root')).to.equal(null);
+      },
+    );
   });
 
   describe.skipIf(!isJsdom())('server-side', () => {
