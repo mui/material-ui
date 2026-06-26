@@ -24,7 +24,7 @@ export default function ToggleButtonA11ySemanticStates() {
           <FormatBoldIcon />
         </ToggleButton>
       </Stack>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
         <ToggleButton value="small" size="small" aria-label="Bold, small">
           <FormatBoldIcon />
         </ToggleButton>
