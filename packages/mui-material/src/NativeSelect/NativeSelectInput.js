@@ -54,14 +54,19 @@ export const StyledSelectSelect = styled('select', {
     transform: 'translateY(-50%)',
     right: 'calc(var(--_caret) + 2px)',
   },
+  [`.${inputBaseClasses.root}:has(> &)`]: {
+    '--_endAdornment': '0px',
+  },
   variants: [
     {
       props: ({ ownerState }) =>
         ownerState.variant !== 'filled' && ownerState.variant !== 'outlined',
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '24px',
+        },
         [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
           '--_endAdornment': '28px',
-          '--_caret': '24px',
         },
         // Bump specificity to allow extending custom inputs
         '&&&': {
@@ -75,9 +80,11 @@ export const StyledSelectSelect = styled('select', {
         variant: 'filled',
       },
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
         [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
           '--_endAdornment': '28px',
-          '--_caret': '32px',
         },
         '&&&': {
           paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
@@ -89,9 +96,11 @@ export const StyledSelectSelect = styled('select', {
         variant: 'outlined',
       },
       style: {
+        [`.${inputBaseClasses.root}:has(> &)`]: {
+          '--_caret': '32px',
+        },
         [`.${inputBaseClasses.root}:has(> & ~ .${inputAdornmentClasses.root})`]: {
           '--_endAdornment': '28px',
-          '--_caret': '32px',
         },
         borderRadius: (theme.vars || theme).shape.borderRadius,
         '&:focus': {
