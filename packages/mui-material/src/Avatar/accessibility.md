@@ -102,7 +102,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `🚩 Unverified` · `✅ Supports` · `◐ Shared`
 
-- Color is decorative only: the default grey background and the hash-derived `stringToColor` background in `BackgroundLetterAvatars` are aesthetic, so the component never uses color alone to convey meaning.
+- Color is decorative only: the default gray background and the hash-derived `stringToColor` background in `BackgroundLetterAvatars` are aesthetic, so the component never uses color alone to convey meaning.
 - The avatar's information is carried by the image, initials, or icon, not by the background hue, so nothing is lost when color is removed.
 - If an author repurposes the background to encode status or role (for example, green for online), they must add a non-color cue (text, icon, or shape) to satisfy this criterion.
 
@@ -125,13 +125,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render the default grey `LetterAvatars` (`<Avatar>H</Avatar>`) and measure foreground against background with a contrast tool (the color picker in browser DevTools shows a ratio): expect about 1.9:1.
+1. Render the default gray `LetterAvatars` (`<Avatar>H</Avatar>`) and measure foreground against background with a contrast tool (the color picker in browser DevTools shows a ratio): expect about 1.9:1.
 2. Confirm the children font is 20px at weight 400 (not large text), so `4.5:1` applies.
 3. Render `LetterAvatars` ("N" on `deepOrange[500]`) and `BackgroundLetterAvatars` across several names and measure each background against the white text.
 4. Render `ImageAvatars` and confirm a working image is exempt (no text on background).
 5. Repeat in the dark theme (`grey[600]` on `#121212`).
 
-**Pass:** all letter, initial, and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default grey letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
+**Pass:** all letter, initial, and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default gray letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
 
 #### 1.4.11 Non-text Contrast · AA
 
@@ -143,7 +143,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `IconAvatars` (Folder on default grey, Pageview on `pink[500]`, Assignment on `green[500]`) and measure each icon's foreground against its background: expect the default and `green[500]` below 3:1.
+1. Render `IconAvatars` (Folder on default gray, Pageview on `pink[500]`, Assignment on `green[500]`) and measure each icon's foreground against its background: expect the default and `green[500]` below 3:1.
 2. Render `VariantAvatars` (circular, rounded, square) and confirm the colored shape itself is decorative, not an information-bearing graphic.
 3. Enable Windows High Contrast / forced-colors and confirm the `1px` `ButtonBorder` keeps the avatar boundary visible.
 
