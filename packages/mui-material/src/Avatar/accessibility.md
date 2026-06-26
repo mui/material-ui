@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 44    |
-| 🚩 Unverified         | 9/11  |
+| 🚩 Unverified         | 6/11  |
 
 ## Known gaps
 
@@ -49,10 +49,11 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - Letter/initials children and the `alt[0]` fallback are live, CSS-styled DOM text, not images of text.
 - The only risk is an author deliberately passing a bitmap of text as the avatar image.
+- Confirmed by a unit test in `Avatar.test.js` (initials render as a text node, not an `<img>`).
 
 **Manual testing steps**
 
@@ -83,10 +84,11 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.1 Info and Relationships · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - The only relationship (image-to-name) is conveyed natively via `<img>` and `alt` text.
 - If an author builds meaning by composing the avatar with surrounding content (for example, a name and avatar in a list item), conveying that structure is the author's responsibility.
+- Confirmed by unit tests in `Avatar.test.js` (the root exposes no role; the `Person` fallback and `SvgIcon` children are `aria-hidden`).
 
 **Manual testing steps**
 
@@ -149,9 +151,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.12 Text Spacing · AA
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - An avatar holds 1 to 2 character initials (or the `alt[0]` fallback) in a fixed 40px box with `overflow: hidden`, so the only risk to text legibility is clipping. Increasing text spacing would overflow the content but not clip it.
+- Confirmed by a Playwright regression test (`test/regressions/index.test.js`): the `OP` initials stay within the box after the four text-spacing overrides.
 
 **Manual testing steps**
 
@@ -219,5 +222,5 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - **Standard.** WCAG 2.2, Level A and AA.
 - **Component version.** `@mui/material` 9.1.1.
 - **Scope.** The Avatar component in isolation, rendered through its documented API. `AvatarGroup` is a separate component and is out of scope.
-- **Automated.** axe-core via the Playwright regression harness, enrolling `LetterAvatars`, `BackgroundLetterAvatars`, `IconAvatars`, `VariantAvatars`, and the `AvatarA11yImage` fixture (results in [`avatars.a11y.json`](../../../../docs/data/material/components/avatars/avatars.a11y.json)); `color-contrast` is recorded but not asserted on the low-contrast letter demos (via `skipAssertions`). Plus unit tests in `Avatar.test.js` (for example, `alt` forwarding at `Avatar.test.js:65`).
+- **Automated.** axe-core via the Playwright regression harness (results in [`avatars.a11y.json`](../../../../docs/data/material/components/avatars/avatars.a11y.json)), a text-spacing clip test in the same harness, and unit tests in `Avatar.test.js`.
 - **Assistive-technology review.** Spot checked but not audited. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.

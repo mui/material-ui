@@ -278,4 +278,30 @@ describe('<Avatar />', () => {
       ),
     ).not.to.throw();
   });
+
+  describe('accessibility', () => {
+    // 1.3.1 Info and Relationships: the root is a generic container, and the
+    // no-image states are decorative, so no spurious semantics are exposed.
+    it('renders a generic root with no ARIA role', () => {
+      const { container } = render(<Avatar alt="Remy Sharp" src="/fake.png" />);
+      expect(container.firstChild).to.have.tagName('div');
+      expect(container.firstChild).not.to.have.attribute('role');
+    });
+
+    it('hides the Person fallback from assistive technology', () => {
+      const { container } = render(<Avatar />);
+      const fallback = container.querySelector('svg');
+      expect(fallback).to.have.attribute('data-testid', 'PersonIcon');
+      expect(fallback).to.have.attribute('aria-hidden', 'true');
+    });
+
+    it('hides a decorative SvgIcon child from assistive technology', () => {
+      const { container } = render(
+        <Avatar>
+          <CancelIcon />
+        </Avatar>,
+      );
+      expect(container.querySelector('svg')).to.have.attribute('aria-hidden', 'true');
+    });
+  });
 });

@@ -349,6 +349,41 @@ async function main() {
         });
       });
     });
+
+    describe('Avatar', () => {
+      // Deterministic clip check for 1.4.12 Text Spacing, which axe cannot cover.
+      // Renders `LetterAvatars` and targets the two-character ("OP") avatar,
+      // whose fixed 40px box with `overflow: hidden` is the only clipping risk.
+      test('1.4.12 Text Spacing: initials stay visible under the WCAG overrides', async ({
+        pooled,
+      }) => {
+        const { page } = pooled;
+        await renderFixture(page, '/docs-components-avatars/LetterAvatars');
+        const clipped = await page.evaluate(() => {
+          const style = document.createElement('style');
+          style.textContent =
+            '* { line-height: 1.5 !important; letter-spacing: 0.12em !important; word-spacing: 0.16em !important; }';
+          document.head.appendChild(style);
+          const avatar = Array.from(document.querySelectorAll('.MuiAvatar-root')).find(
+            (node) => node.textContent === 'OP',
+          );
+          const range = document.createRange();
+          range.selectNodeContents(avatar);
+          const text = range.getBoundingClientRect();
+          const box = avatar.getBoundingClientRect();
+          style.remove();
+          return (
+            text.left < box.left - 0.5 ||
+            text.right > box.right + 0.5 ||
+            text.top < box.top - 0.5 ||
+            text.bottom > box.bottom + 0.5
+          );
+        });
+        if (clipped) {
+          throw new Error('Avatar initials are clipped under WCAG text-spacing overrides');
+        }
+      });
+    });
   });
 }
 
