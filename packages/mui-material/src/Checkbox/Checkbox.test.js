@@ -342,14 +342,12 @@ describe('<Checkbox />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('does not change context or state on focus (3.2.1 On Focus)', () => {
+    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
       const handleChange = spy();
-      render(<Checkbox onChange={handleChange} />);
+      const { user } = render(<Checkbox onChange={handleChange} />);
       const checkbox = screen.getByRole('checkbox');
 
-      act(() => {
-        checkbox.focus();
-      });
+      await user.tab();
 
       expect(document.activeElement).to.equal(checkbox);
       expect(checkbox).to.have.property('checked', false);
