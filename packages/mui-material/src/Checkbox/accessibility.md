@@ -4,18 +4,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 22    |
-| ⚠️ Partially Supports | 3     |
+| ✅ Supports           | 21    |
+| ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-
-Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 24 are `🚩 Unverified`. Checkbox is not yet enrolled in the axe-core visual-regression harness (there is no `checkboxes.a11y.json`), so the ARIA facts below are read from source and the contrast ratios are computed from the theme tokens rather than asserted by a passing check.
+| 🚩 Unverified         | 12/25 |
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** Default glyphs clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the Customization demo's unchecked box is about 1.1:1 against the page).
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus cue (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
-- ⚠️ **3.3.2 Labels or Instructions.** The component ships no visible label, and the basic demos use a `slotProps.input` `aria-label` only (a name for assistive tech, but no label presented to all users). A visible label via `FormControlLabel` or adjacent text is required.
+- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the Customization demo's unchecked box is about 1.1:1 against the page).
+- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
+- ⚠️ **3.3.2 Labels or Instructions.** The component ships no visible label, and the basic demos use a `slotProps.input` `aria-label` only (a name for assistive technology, but no label presented to all users). A visible label via `FormControlLabel` or adjacent text is required.
+- ⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked="mixed"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead.
 
 ## Success criteria
 
@@ -25,7 +25,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `✅ Supports` · `○ Author`
 
-- The checkbox is one control: the hidden `<input>` followed by the `aria-hidden` glyph, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
+- The checkbox is one control: the hidden `<input>` followed by the `aria-hidden` checkmark icon, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
 - Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="start"` flips the label/control visually with `row-reverse`, so confirm the reading order of a checkbox group still matches its visual order.
 
 **Manual testing steps**
@@ -54,7 +54,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `✅ Supports` · `○ Author`
 
-- Labels and helper text render as live DOM text; the glyph is a vector icon, not an image of text and it carries no textual information.
+- Labels and helper text render as live DOM text; the checkmark icon is a vector graphic, not an image of text, and it carries no textual information.
 - This fails only if an author passes an image of text as the label. Use real text unless it is a logo.
 
 **Manual testing steps**
@@ -96,24 +96,24 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 1.1.1 Non-text Content · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- The default `CheckBox*` glyphs, and any MUI `SvgIcon` passed via `icon`/`checkedIcon`, default to `aria-hidden`, so they stay decorative; the accessible name comes from the label, not the glyph.
-- The name is not self-supplied: a bare `<Checkbox />` has none. It is satisfied when the author wraps it in `FormControlLabel` (a real `<label>`) or passes `slotProps.input` `aria-label`/`aria-labelledby`, as the docs instruct. axe-core `aria-input-field-name` would catch a missing name once Checkbox is enrolled.
+- The default `CheckBox*` icons, and any MUI `SvgIcon` passed via `icon`/`checkedIcon`, default to `aria-hidden`, so they stay decorative; the accessible name comes from the label, not the checkmark icon.
+- The name is not self-supplied: a bare `<Checkbox />` has none. It is satisfied when the author wraps it in `FormControlLabel` (a real `<label>`) or passes `slotProps.input` `aria-label`/`aria-labelledby`, as the docs instruct. axe-core `label` confirms a non-empty name across the enrolled demos in `checkboxes.a11y.json`.
 
 **Manual testing steps**
 
 1. Render `<FormControlLabel control={<Checkbox />} label="Subscribe" />` and confirm the accessibility tree shows `role=checkbox` named "Subscribe".
 2. Render a bare `<Checkbox />` and confirm it has an empty name, the failure mode authors must avoid.
-3. Confirm the glyph SVG is `aria-hidden`.
+3. Confirm the checkmark icon's SVG is `aria-hidden`.
 
-**Pass:** every checkbox exposes a non-empty accessible name and the glyph stays `aria-hidden`.
+**Pass:** every checkbox exposes a non-empty accessible name and the checkmark icon stays `aria-hidden`.
 
 #### 1.3.1 Info and Relationships · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- The native `<input type="checkbox">` exposes role and checked state; `indeterminate` sets `aria-checked="mixed"` (unit-tested); `required` and `disabled` map to the native attributes; `FormControlLabel` associates the label through a real `<label>`; and `FormControl component="fieldset"` with `FormLabel component="legend"` gives a group its name.
+- The native `<input type="checkbox">` exposes role and checked state; `indeterminate` sets `aria-checked="mixed"` (unit-tested); `required` and `disabled` map to the native attributes; `FormControlLabel` associates the label through a real `<label>`; and `FormControl component="fieldset"` with `FormLabel component="legend"` gives a group its name. axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos. The one exception is the `indeterminate` state's non-conforming `aria-checked="mixed"`, tracked as a gap under 4.1.2.
 - Two relationships are the author's to wire. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text are not tied to the control, and a tri-state "select all" parent is not linked to its children. Add `aria-describedby` and the group wiring in the application.
 
 **Manual testing steps**
@@ -128,7 +128,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `✅ Supports` · `◐ Shared`
 
-- State is conveyed by glyph shape, not color: an empty square (unchecked), a square with a check (checked), and a square with a dash (indeterminate). A color-blind user can tell all three apart.
+- State is conveyed by the checkmark icon's shape, not color: an empty square (unchecked), a square with a check (checked), and a square with a dash (indeterminate). A color-blind user can tell all three apart.
 - The group error state is color-only: `FormHelperText` conveys it through red text. Pair it with text or an icon. (Required, by contrast, shows a visible `*`, which is a non-color cue, so it is fine.) That is author content.
 
 **Manual testing steps**
@@ -140,9 +140,9 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 1.4.3 Contrast (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- This criterion governs the visible text (the label and helper text), not the glyph, which is covered by 1.4.11. The label uses `text.primary` (about 16:1 on white, 18:1 on the dark surface) and helper text uses `text.secondary` (about 5.7:1); error helper text `error.main` computes 4.98:1 on white, the tightest text case but above the 4.5:1 threshold.
+- This criterion governs the visible text (the label and helper text), not the checkmark icon, which is covered by 1.4.11. The label uses `text.primary` (about 16:1 on white, 18:1 on the dark surface) and helper text uses `text.secondary` (about 5.7:1); error helper text `error.main` computes 4.98:1 on white, the tightest text case but above the 4.5:1 threshold. axe-core `color-contrast` passes on the labeled demos (recorded in `checkboxes.a11y.json`); the disabled label text is correctly treated as exempt.
 - The component renders no text on a colored fill, so unlike a contained button there is no label-on-background risk. Custom label colors or a colored container behind the row are the author's to check. Disabled text is exempt.
 
 **Manual testing steps**
@@ -157,7 +157,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
 
-- This criterion, not 1.4.3, governs the glyph at 3:1, and every default state passes against the default page background (`#fff` light, `#121212` dark). In light mode `warning` is the tightest at 3.11:1, `info` 3.86:1, `primary` 4.60:1, the unchecked `text.secondary` outline 5.74:1, and the white check on the primary fill 4.60:1; dark mode clears 3:1 with room to spare (error, the lowest, is about 5:1). `warning.main` is tuned in the palette as "closest to orange[800] that pass 3:1", so a colored container behind the checkbox eats its small headroom first. Disabled (`action.disabled`, about 1.9:1) is exempt.
+- This criterion, not 1.4.3, governs the checkmark icon at 3:1, and every default state passes against the default page background (`#fff` light, `#121212` dark). In light mode `warning` is the tightest at 3.11:1, `info` 3.86:1, `primary` 4.60:1, the unchecked `text.secondary` outline 5.74:1, and the white check on the primary fill 4.60:1; dark mode clears 3:1 with room to spare (error, the lowest, is about 5:1). `warning.main` is tuned in the palette as "closest to orange[800] that pass 3:1", so a colored container behind the checkbox eats its small headroom first. Disabled (`action.disabled`, about 1.9:1) is exempt.
 - The gaps are the focus indicator and customization. The keyboard focus indicator's contrast is untested, and `disableRipple`/`disableFocusRipple` removes it. Custom icons can fall below 3:1: the `CustomizedCheckbox` unchecked box is `#f5f8fa` with a faint inset border, about 1.1:1 against the page and 1.5:1 at the edge.
 
 **Manual testing steps**
@@ -172,7 +172,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `✅ Supports` · `◐ Shared`
 
-- The component sets no text styles of its own and no fixed heights that would clip under user text-spacing overrides; the label is normal flowing text that wraps, and the glyph is a fixed vector unaffected by spacing.
+- The component sets no text styles of its own and no fixed heights that would clip under user text-spacing overrides; the label is normal flowing text that wraps, and the checkmark icon is a fixed vector unaffected by spacing.
 - Whether a long label clips depends on the author's container, not the checkbox.
 
 **Manual testing steps**
@@ -184,9 +184,9 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 2.4.6 Headings and Labels · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- The component renders whatever label and group legend the author supplies; descriptiveness is a content decision. This criterion does not require a label to exist, only that any provided label describes its purpose.
+- The component renders whatever label and group legend the author supplies; descriptiveness is a content decision. This criterion does not require a label to exist, only that any provided label describes its purpose. axe-core `label` confirms a name is present across the demos; whether it is descriptive is a manual review.
 - A vague label ("Option 1") would fail, and the component cannot enforce wording.
 
 **Manual testing steps**
@@ -201,11 +201,11 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 `🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
 
 - `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown.
-- `disableRipple` or `disableFocusRipple` removes the default focus cue (the focus ripple), leaving no indicator unless the author adds `.Mui-focusVisible` styles. The `CustomizedCheckbox` demo does this, re-adding a 2px outline.
+- `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedCheckbox` demo does this, re-adding a 2px outline.
 
 **Manual testing steps**
 
-1. Press <kbd>Tab</kbd> to a default `<Checkbox />` and confirm a visible focus highlight appears.
+1. Press <kbd>Tab</kbd> to a default `<Checkbox />` and confirm a visible focus indicator appears.
 2. Press <kbd>Tab</kbd> to a `<Checkbox disableRipple />` (or `disableFocusRipple`) with no custom styles and confirm none appears.
 3. Click with the mouse and confirm the indicator is keyboard-only.
 
@@ -213,9 +213,9 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 2.5.3 Label in Name · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- With `FormControlLabel` and a string label, the accessible name equals the visible text, so the name contains the label. The required `*` is symbolic punctuation, not part of the label, so it is correctly excluded from the name; native `required` conveys that state instead.
+- With `FormControlLabel` and a string label, the accessible name equals the visible text, so the name contains the label. The required `*` is symbolic punctuation, not part of the label, so it is correctly excluded from the name; native `required` conveys that state instead. A `getByRole('checkbox', { name })` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms the accessible name matches the visible label.
 - A `slotProps.input` `aria-label` that differs from the visible text breaks this. Keep the visible words in the name.
 
 **Manual testing steps**
@@ -230,8 +230,8 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
 
-- A label must be presented to all users, not only exposed to assistive tech. The Understanding document is explicit that a programmatic name alone (an `aria-label`) can pass 4.1.2 yet fail this criterion.
-- The component ships no visible label, and the basic demos (`Checkboxes`, `ColorCheckboxes`, `IconCheckboxes`, `CustomizedCheckbox`) supply only `slotProps.input` `aria-label="Checkbox demo"`, a name for assistive tech with no visible label. `FormControlLabel`, as used in `CheckboxLabels` and `CheckboxesGroup`, is the conforming pattern.
+- A label must be presented to all users, not only exposed to assistive technology. The Understanding document is explicit that a name exposed only to assistive technology (an `aria-label`) can pass 4.1.2 yet fail this criterion.
+- The component ships no visible label, and the basic demos (`Checkboxes`, `ColorCheckboxes`, `IconCheckboxes`, `CustomizedCheckbox`) supply only `slotProps.input` `aria-label="Checkbox demo"`, a name for assistive technology with no visible label. `FormControlLabel`, as used in `CheckboxLabels` and `CheckboxesGroup`, is the conforming pattern.
 
 **Manual testing steps**
 
@@ -243,10 +243,11 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 4.1.2 Name, Role, Value · A
 
-`✅ Supports` · `◐ Shared`
+`⚠️ Partially Supports` · `◐ Shared`
 
-- The native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed; `indeterminate` maps to `aria-checked="mixed"` (set deliberately instead of the native DOM `indeterminate` property, for cross-browser consistency), matching the WAI-ARIA tri-state checkbox model (`true`/`false`/`mixed`); `disabled` maps to native `disabled`. Tests in [`Checkbox.test.js`](./Checkbox.test.js) confirm the role resolves, `checked` flips on click, `aria-checked="mixed"` for indeterminate (including when also checked), and `disabled` through `FormControl`.
-- The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a checkbox and is not exposed to assistive tech, so a read-only checkbox is not announced as such. Use `disabled` or `aria-readonly` if that state must be conveyed.
+- Role, checked, and disabled are met natively: the native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed, and `disabled` maps to native `disabled`. axe-core (`aria-allowed-attr`, `aria-valid-attr-value`, `label`, `nested-interactive`) and unit tests in [`Checkbox.test.js`](./Checkbox.test.js) (role resolves, `checked` flips on click, `disabled` through `FormControl`) confirm them.
+- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native `<input type="checkbox">`, which ARIA in HTML disallows because the native `.checked` stays `false`, so axe `aria-conditional-attr` records a violation on `IndeterminateCheckbox` in `checkboxes.a11y.json`. Major screen readers do announce "mixed" and the value is unit-tested, but a `mixed` state on a native checkbox is not guaranteed across browsers. The conforming fix is to set the native `.indeterminate` property instead of `aria-checked` (MUI currently avoids `.indeterminate`, citing cross-browser inconsistency).
+- The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a checkbox and is not exposed to assistive technology, so a read-only checkbox is not announced as such. Use `disabled` or `aria-readonly` if that state must be conveyed.
 
 **Manual testing steps**
 
@@ -254,7 +255,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 2. Toggle it with a screen reader running and confirm the state change is announced.
 3. Render `indeterminate` and confirm "mixed" or partially checked is announced.
 
-**Pass:** role, programmatically determinable checked/unchecked/mixed/disabled states with change notification, and an author-supplied accessible name.
+**Pass:** the role, the checked/unchecked/mixed/disabled state with change notification, and an author-supplied accessible name are all programmatically determinable.
 
 ### ⚙️ Automated
 
@@ -262,7 +263,7 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 `🚩 Unverified` · `✅ Supports` · `◐ Shared`
 
-- The glyph is an `SvgIcon` whose size comes from `fontSize` in `rem` (medium 24px = 1.5rem, small 20px = 1.25rem) with a `1em` box, so it scales with browser zoom or root font size; the label is normal text. Nothing is pixel-fixed.
+- The checkmark icon is an `SvgIcon` whose size comes from `fontSize` in `rem` (medium 24px = 1.5rem, small 20px = 1.25rem) with a `1em` box, so it scales with browser zoom or root font size; the label is normal text. Nothing is pixel-fixed.
 - A fixed-pixel container in the surrounding layout could clip at 200%.
 
 **Manual testing steps**
@@ -288,48 +289,48 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 #### 2.1.1 Keyboard · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - The native `<input type="checkbox">` is the single focusable control (the root span is `role: undefined`, `tabIndex: null`), so the browser provides <kbd>Tab</kbd> focus and <kbd>Space</kbd> toggle with no timing or path dependence, matching the [APG checkbox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/). Disabled leaves the tab order.
-- Unverified because no test fires a key: the toggle test uses `click()`, and `ButtonBase`'s <kbd>Space</kbd>/<kbd>Enter</kbd> tests only drive the focus ripple. The behavior rests on native semantics.
+- Confirmed by a <kbd>Space</kbd>-key toggle test in [`Checkbox.test.js`](./Checkbox.test.js): focus the input, press <kbd>Space</kbd>, and assert `checked` flips and `onChange` fires on each press.
 
 #### 2.1.2 No Keyboard Trap · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
-- A single native input with standard <kbd>Tab</kbd> in and out. It installs no focus-capturing handlers and no containment logic, so focus cannot be trapped.
+- A single native input with standard <kbd>Tab</kbd> in and out. It installs no focus-capturing handlers and no containment logic, so focus cannot be trapped. A `user.tab()` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms focus enters and leaves with <kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd>.
 
 #### 2.4.3 Focus Order · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- The checkbox is one focusable element in natural DOM order, with no positive `tabIndex` and no reordering, so it is one correct focus stop.
+- The checkbox is one focusable element in natural DOM order, with no positive `tabIndex` and no reordering, so it is one correct focus stop. A `user.tab()` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms it takes a single tab stop in DOM order; whether that order preserves meaning in a given layout stays a manual check.
 - Order across controls, and group order, is the surrounding layout's responsibility.
 
 #### 2.5.2 Pointer Cancellation · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
-- Toggling runs on the native input's `click`, fired on pointer-up over the target. Nothing toggles on the down event (the ripple starts there but is decorative), and releasing off the control cancels.
+- Toggling runs on the native input's `click`, fired on pointer-up over the target. Nothing toggles on the down event (the ripple starts there but is decorative), and releasing off the control cancels. A pointer test in [`Checkbox.test.js`](./Checkbox.test.js) confirms mouse-down alone does not toggle and a release over the target does.
 
 #### 2.5.8 Target Size (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- The target is the padded root, not the icon (the input fills it at 100%): medium is a 24px icon plus 2 by 9px padding = 42px, and `size="small"` is 38px, both above the 24 by 24 CSS pixel minimum. A custom 16px icon still yields 34px.
-- It would drop below 24px only if an author both shrinks the icon and removes the padding. The existing size tests check class names only; a `toHaveComputedStyle` test on the root could guard this deterministically.
+- The target is the padded root, not the icon (the input fills it at 100%): medium is a 24px icon plus 2 by 9px padding = 42px, and `size="small"` is 38px, both above the 24 by 24 CSS pixel minimum. A custom 16px icon still yields 34px. axe-core `target-size` confirms this across the demos in `checkboxes.a11y.json`.
+- It would drop below 24px only if an author both shrinks the icon and removes the padding. Custom `sx`/`size` overrides and hit-area changes under browser zoom are not covered.
 
 #### 3.2.1 On Focus · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
-- Focusing the input only moves focus and shows the focus indicator. There is no navigation, dialog, or content change on focus, and the component registers no `onFocus` side effects.
+- Focusing the input only moves focus and shows the focus indicator. There is no navigation, dialog, or content change on focus, and the component registers no `onFocus` side effects. A focus test in [`Checkbox.test.js`](./Checkbox.test.js) confirms focusing fires no `onChange` and changes no state.
 
 #### 3.2.2 On Input · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
-- Toggling only flips the checked or indeterminate state and fires `onChange`; per the Understanding document, changing a control's value is not a change of context. `readOnly` short-circuits the change.
+- Toggling only flips the checked or indeterminate state and fires `onChange`; per the Understanding document, changing a control's value is not a change of context. `readOnly` short-circuits the change. The click-toggle test in [`Checkbox.test.js`](./Checkbox.test.js) confirms toggling updates the value and fires `onChange` with no context change.
 - An author `onChange` that navigates or submits without warning would be an author-side failure.
 
 ## Not applicable
@@ -359,10 +360,10 @@ Of the 25 applicable ratings, 1 (Name, Role, Value) is confirmed by a test and 2
 
 The following SC are applicable but out of scope:
 
-- **2.3.3 Animation from Interactions.** The ripple's `scale()` animation honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion` to `system` (follows the OS) or `always`; `disableRipple` also removes it. The default is `never`, so OS reduced-motion is not honored out of the box. `🚩`
+- **2.3.3 Animation from Interactions.** The ripple's `scale()` animation honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion` to `system` (follows the OS) or `always`; `disableRipple` also removes it. The default is `never`, so OS reduced-motion is not honored by default. `🚩`
 - **2.4.13 Focus Appearance.** The focus ripple is unlikely to meet the area and 3:1 thresholds, and `disableRipple` removes it. `🚩`
 - **2.5.5 Target Size (Enhanced), 44 px.** Default sizes (42px medium, 38px small) are below 44px. `🚩`
-- **1.4.6 Contrast (Enhanced), 7:1.** The label (`text.primary`, about 16:1) clears 7:1, but helper text (about 5:1) and the glyph fall short where the 7:1 text bar applies. `🚩`
+- **1.4.6 Contrast (Enhanced), 7:1.** The label (`text.primary`, about 16:1) clears 7:1, but helper text (about 5:1) and the checkmark icon fall short where the 7:1 text bar applies. `🚩`
 - Also touched, in the same shape as their A and AA siblings: **1.3.6 Identify Purpose, 1.4.9 Images of Text (No Exception), 2.1.3 Keyboard (No Exception), 2.4.12 Focus Not Obscured (Enhanced)**.
 
 ## Scope and test environment
@@ -370,6 +371,5 @@ The following SC are applicable but out of scope:
 - **Standard.** WCAG 2.2, Level A and AA.
 - **Component version.** `@mui/material` 9.1.1.
 - **Scope.** The Checkbox component and its documented composition with `FormControlLabel`, `FormControl`/`FormGroup`, `FormLabel`, and `FormHelperText`, rendered through the documented API.
-- **Automated.** Unit and interaction tests in [`Checkbox.test.js`](./Checkbox.test.js) (role, checked/unchecked, `indeterminate` to `aria-checked="mixed"`, `disabled`, `readOnly`) plus the shared [`../internal/SwitchBase.js`](../internal/SwitchBase.js) and [`../ButtonBase/ButtonBase.js`](../ButtonBase/ButtonBase.js). Checkbox is not yet enrolled in the axe-core visual-regression harness, so there is no `checkboxes.a11y.json`; the contrast ratios here are computed from the theme tokens.
+- **Automated.** axe-core via the Playwright visual-regression harness (results in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json)), plus interaction tests in [`Checkbox.test.js`](./Checkbox.test.js). Glyph contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
 - **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
-- **References.** [WAI-ARIA 1.2 checkbox role](https://www.w3.org/TR/wai-aria-1.2/#checkbox) and the [APG checkbox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).

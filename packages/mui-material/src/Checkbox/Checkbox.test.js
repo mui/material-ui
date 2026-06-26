@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -271,5 +272,88 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox').parentElement;
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  // Deterministic checks for the WCAG success criteria the report rates as
+  // automatable. See packages/mui-material/src/Checkbox/accessibility.md.
+  describe('WCAG conformance', () => {
+    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
+      render(<FormControlLabel control={<Checkbox />} label="Remember me" />);
+      // getByRole with `name` only resolves if the accessible name matches the visible label.
+      expect(screen.getByRole('checkbox', { name: 'Remember me' })).to.have.property(
+        'checked',
+        false,
+      );
+    });
+
+    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">before</button>
+          <Checkbox />
+          <button type="button">after</button>
+        </React.Fragment>,
+      );
+      const before = screen.getByRole('button', { name: 'before' });
+      const after = screen.getByRole('button', { name: 'after' });
+      const checkbox = screen.getByRole('checkbox');
+
+      before.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(checkbox);
+      await user.tab();
+      expect(document.activeElement).to.equal(after);
+      await user.tab({ shift: true });
+      expect(document.activeElement).to.equal(checkbox);
+    });
+
+    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">first</button>
+          <Checkbox />
+          <button type="button">last</button>
+        </React.Fragment>,
+      );
+      const first = screen.getByRole('button', { name: 'first' });
+      const checkbox = screen.getByRole('checkbox');
+      const last = screen.getByRole('button', { name: 'last' });
+
+      first.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(checkbox);
+      await user.tab();
+      expect(document.activeElement).to.equal(last);
+    });
+
+    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Checkbox onChange={handleChange} />);
+      const checkbox = screen.getByRole('checkbox');
+
+      // Press without releasing: the down-event must not toggle.
+      await user.pointer({ keys: '[MouseLeft>]', target: checkbox });
+      expect(checkbox).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+
+      // Releasing over the target completes the activation.
+      await user.pointer({ keys: '[/MouseLeft]', target: checkbox });
+      expect(checkbox).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('does not change context or state on focus (3.2.1 On Focus)', () => {
+      const handleChange = spy();
+      render(<Checkbox onChange={handleChange} />);
+      const checkbox = screen.getByRole('checkbox');
+
+      act(() => {
+        checkbox.focus();
+      });
+
+      expect(document.activeElement).to.equal(checkbox);
+      expect(checkbox).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+    });
   });
 });
