@@ -83,7 +83,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `🚩 Unverified` · `✅ Supports` · `● Component`
 
-- The animations are smooth translations; the `buffer` dashed layer pulses opacity once every three seconds (about `0.33 Hz`), well below the three-flashes-per-second threshold. Nothing flashes.
+- The animations are smooth translations; the `buffer` dashed layer pulses opacity once every three seconds, well below the three-flashes-per-second threshold. Nothing flashes.
 
 **Manual testing steps**
 
@@ -128,7 +128,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `● Component`
 
 - The root sets `role="progressbar"`. The `determinate` and `buffer` variants add `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` when a `value` is supplied; the `indeterminate` and `query` variants omit `aria-valuenow`, which WAI-ARIA defines as the correct pattern for an unknown value.
-- axe-core `aria-allowed-attr`, `aria-valid-attr`, `aria-valid-attr-value`, and `aria-roles` pass across the demos in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json), and the role and value attributes are asserted in [`LinearProgress.test.js`](./LinearProgress.test.js).
+- axe-core `aria-allowed-attr`, `aria-valid-attr`, `aria-valid-attr-value`, and `aria-roles` pass across the demos in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json), and unit tests assert the role and value attributes.
 
 **Manual testing steps**
 
@@ -156,7 +156,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `◐ Shared`
 
 - Role: `role="progressbar"` is always set. Value: `determinate` and `buffer` set `aria-valuenow`/`aria-valuemin`/`aria-valuemax` when given a `value`, and `indeterminate`/`query` correctly omit the value. Name: the component emits no name of its own; the author supplies it with `aria-label` or `aria-labelledby`, which the [Accessibility](https://mui.com/material-ui/react-progress/#accessibility) docs require.
-- axe-core's `aria-progressbar-name` (name) and `aria-*` attribute rules (role and value) pass across the demos in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json), and `LinearProgress.test.js` asserts the role and `aria-valuenow`/`min`/`max`. (axe tags `aria-progressbar-name` `1.1.1` upstream, but a `progressbar`'s name obligation sits with 4.1.2.)
+- axe-core's `aria-progressbar-name` (name) and `aria-*` attribute rules (role and value) pass across the demos in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json), and unit tests assert the role and `aria-valuenow`/`min`/`max`. (axe tags `aria-progressbar-name` `1.1.1` upstream, but a `progressbar`'s name obligation sits with 4.1.2.)
 - A bare `<LinearProgress />` (the default `indeterminate` variant) has a role but no value and no name; a `determinate` or `buffer` bar with a `value` exposes the value but still needs an author-supplied name. Whether a supplied name is meaningful needs an assistive-technology review.
 
 **Manual testing steps**
@@ -172,7 +172,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `● Component`
 
-- Determinate progress is conveyed by the length of the filled bar (the `bar1` transform) and by `aria-valuenow`, not by color, so the value survives without color. `LinearProgress.test.js` asserts the `bar1` transform tracks `value` (`value={77}` renders `translateX(-23%)`), confirming the proportion is encoded by length, not color.
+- Determinate progress is conveyed by the length of the filled bar (the `bar1` transform) and by `aria-valuenow`, not by color, so the value survives without color. Unit tests assert the `bar1` transform tracks `value` (`value={77}` renders `translateX(-23%)`), confirming the proportion is encoded by length, not color.
 - The `color` prop (`primary`, `error`, and so on) is decorative and does not encode the value. Whether the fill is visually distinguishable from the track is a contrast question, covered by 1.4.11.
 
 ## Not applicable
@@ -208,5 +208,5 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - **Standard.** WCAG 2.2, Level A and AA.
 - **Component version.** `@mui/material` 9.1.2.
 - **Scope.** The LinearProgress component in isolation, rendered through its documented API.
-- **Automated.** axe-core via the Playwright harness (results in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json)), plus interaction tests in `LinearProgress.test.js`.
+- **Automated.** axe-core via the Playwright harness (results in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json)), plus component unit tests.
 - **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
