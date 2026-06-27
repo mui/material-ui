@@ -1,15 +1,8 @@
-/// <reference path="./react-transition-group.d.ts" />
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useValueAsRef from '@mui/utils/useValueAsRef';
-// Material UI transitions must still work inside react-transition-group's TransitionGroup.
-// Import only its context module; do not import its Transition or TransitionGroup components.
-// Use RTG's explicit CJS file for Node ESM/SSR; package.json's `browser` field redirects
-// browser bundles to RTG's ESM file.
-// eslint-disable-next-line import/extensions -- Node ESM needs the explicit .js extension.
-import TransitionGroupContext from 'react-transition-group/cjs/TransitionGroupContext.js';
 import { reflow } from '../transitions/utils';
 
 type RenderedTransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited';
@@ -121,15 +114,9 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     ...childProps
   } = props;
 
-  const parentGroup = React.useContext(TransitionGroupContext);
-
-  // react-transition-group's TransitionGroup tells children whether the group
-  // is still mounting. Material UI needs two values from that:
-  // - shouldEnterOnMount: whether this child should run an enter animation now.
-  // - isAppearing: the value passed to enter callbacks.
-  // A child added after the group mounted still enters, but callbacks receive
-  // isAppearing=false because the parent group is no longer mounting.
-  const shouldEnterOnMount = parentGroup && !parentGroup.isMounting ? enter : appear;
+  // Controls whether the initial mount should perform an enter transition.
+  // When `appear` is false, the component starts directly in the entered state.
+  const shouldEnterOnMount = appear;
 
   const [status, setStatus] = React.useState<InternalStatus>(() => {
     if (inProp) {
@@ -145,10 +132,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   statusRef.current = status;
 
   // Opening from `unmounted`: mount the child in the same commit that `in` turns
-  // true so its ref is attached before effects run. react-transition-group did
-  // this by deriving the status from props during render; handling it in a
-  // layout effect instead would add a commit where the child is still null,
-  // breaking consumers that read the ref right after `in` flips.
+  // true so its ref is attached before effects run. This avoids an intermediate
+  // commit where the child is still null.
   if (inProp && status === 'unmounted') {
     statusRef.current = 'exited';
     setStatus('exited');
@@ -185,7 +170,6 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     mountOnEnter,
     unmountOnExit,
     nodeRef,
-    parentGroup,
   });
 
   // Effects below depend on these helpers. Keep their identity stable; they read
@@ -262,8 +246,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
           );
         }
 
-        // Match react-transition-group: if there is no DOM node, there is no
-        // transition to observe, so finish on the next tick.
+        // If there is no DOM node, there is no transition to observe.
+        // Complete the transition on the next task.
         scheduleTimer(0);
         return;
       }
@@ -272,9 +256,8 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
           scheduleTimer(transitionReduceMotion ? 0 : fallbackTimeout);
         }
 
-        // With nodeRef, react-transition-group calls addEndListener(done).
-        // Material UI has long supported addEndListener(node, done). Keep both call
-        // shapes so existing transition wrappers do not have to change.
+        // Support both addEndListener(node, done) and addEndListener(done)
+        // for compatibility with existing transition wrappers.
         if (listener.length >= 2) {
           (listener as (node: HTMLElement, done: () => void) => void)(node, done);
         } else {
@@ -292,7 +275,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   const performEnter = React.useCallback(
     (mounting: boolean) => {
       const current = propsRef.current;
-      const isAppearing = current.parentGroup ? current.parentGroup.isMounting : mounting;
+      const isAppearing = mounting;
       isAppearingRef.current = isAppearing;
 
       // On updates, enter=false skips the enter animation. Move straight to
@@ -368,8 +351,6 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
   // - opening from unmounted is handled during render (see above) so the child
   //   is committed as exited with its ref attached before this effect runs.
   // - unmountOnExit removes the child after the exited state commits.
-  // This matches react-transition-group's observable status steps without
-  // running work after unrelated commits.
   useEnhancedEffect(() => {
     if (!mountedRef.current) {
       return;
@@ -422,13 +403,7 @@ function Transition(props: InternalTransitionProps): React.ReactNode {
     return null;
   }
 
-  // Nested Material UI transitions should not inherit this transition's parent group.
-  // A null context keeps an outer TransitionGroup from controlling them.
-  return (
-    <TransitionGroupContext.Provider value={null}>
-      {children(status as RenderedTransitionStatus, childProps)}
-    </TransitionGroupContext.Provider>
-  );
+  return children(status as RenderedTransitionStatus, childProps);
 }
 
 Transition.propTypes /* remove-proptypes */ = {
