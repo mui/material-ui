@@ -4,14 +4,18 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
@@ -109,70 +113,81 @@ export default function FocusRing() {
   );
 
   return (
-    <Box sx={{ p: 4, maxWidth: 980 }}>
-      <Typography variant="h4" gutterBottom>
-        Focus ring — <code>theme.focusRing</code>
-      </Typography>
-
-      <Alert severity="info" sx={{ mb: 2 }}>
-        Tab / Shift+Tab through the gallery with the <strong>keyboard</strong> — the ring shows on{' '}
-        <code>:focus-visible</code> only (mouse clicks never show it). Switch presets and toggle
-        dark to compare.
-      </Alert>
-
-      {/* Controls live outside the themed gallery, so they never pick up the experiment ring. */}
-      <Stack direction="row" spacing={2} sx={{ mb: 1, flexWrap: 'wrap', rowGap: 1, alignItems: 'center' }}>
-        <ToggleButtonGroup
-          size="small"
-          exclusive
-          value={preset}
-          onChange={(_, v) => v && setPreset(v)}
+    <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
+      {/* Header band — controls live outside the themed gallery, so they never pick up the ring. */}
+      <Box sx={{ px: 3, py: 2, borderBottom: 1, borderColor: 'divider' }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', rowGap: 1 }}
         >
-          {(Object.keys(PRESETS) as Preset[]).map((p) => (
-            <ToggleButton key={p} value={p}>
-              {PRESETS[p].label}
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
-        <ToggleButtonGroup
-          size="small"
-          exclusive
-          value={mode}
-          onChange={(_, v) => v && setMode(v)}
-        >
-          <ToggleButton value="light">light</ToggleButton>
-          <ToggleButton value="dark">dark</ToggleButton>
-        </ToggleButtonGroup>
-      </Stack>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography variant="h5">
+              Focus ring — <code>theme.focusRing</code>
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              ⌨ Press Tab / Shift+Tab — the ring shows on <code>:focus-visible</code> (keyboard) only;
+              clicks never show it.
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+              Focused: <strong>{focused ?? '— (tab into the gallery)'}</strong>
+            </Typography>
+          </Box>
+          <ToggleButtonGroup size="small" exclusive value={mode} onChange={(_, v) => v && setMode(v)}>
+            <ToggleButton value="light">light</ToggleButton>
+            <ToggleButton value="dark">dark</ToggleButton>
+          </ToggleButtonGroup>
+        </Stack>
+      </Box>
 
-      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 2, minHeight: 18 }}>
-        Focused: <strong>{focused ?? '— (tab into the gallery)'}</strong>
-      </Typography>
-
-      <ThemeProvider theme={theme}>
+      {/* Two columns: sticky controls (left) + gallery (right). */}
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ p: 3, alignItems: 'flex-start' }}>
         <Paper
           variant="outlined"
-          onFocusCapture={(event) =>
-            setFocused((event.target as HTMLElement).getAttribute('data-ring-target'))
-          }
-          onBlurCapture={() => setFocused(null)}
-          sx={{ p: 3, bgcolor: 'background.default' }}
+          sx={{ p: 2, minWidth: 210, position: { md: 'sticky' }, top: 16 }}
         >
-          <Gallery />
+          <FormControl>
+            <FormLabel sx={{ typography: 'subtitle2', mb: 1 }}>Preset</FormLabel>
+            <RadioGroup value={preset} onChange={(event) => setPreset(event.target.value as Preset)}>
+              {(Object.keys(PRESETS) as Preset[]).map((p) => (
+                <FormControlLabel
+                  key={p}
+                  value={p}
+                  control={<Radio size="small" />}
+                  label={PRESETS[p].label}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
         </Paper>
-      </ThemeProvider>
 
-      <Stack spacing={1} sx={{ mt: 3 }}>
-        <Typography variant="subtitle2">Edge cases</Typography>
-        <Typography variant="body2" color="text.secondary">
-          • <strong>Contained Button / Fab (elevation override):</strong> these animate their own{' '}
-          <code>box-shadow</code> on focus, so the <em>two-color</em> preset&apos;s box-shadow may be
-          overridden on them — but the <code>outline</code> baseline always shows.
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{' '}
-          <code>disabled.focusVisible</code> at higher specificity, winning in that narrow state.
-        </Typography>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          <ThemeProvider theme={theme}>
+            <Paper
+              variant="outlined"
+              onFocusCapture={(event) =>
+                setFocused((event.target as HTMLElement).getAttribute('data-ring-target'))
+              }
+              onBlurCapture={() => setFocused(null)}
+              sx={{ p: 3, bgcolor: 'background.default' }}
+            >
+              <Gallery />
+            </Paper>
+          </ThemeProvider>
+
+          <Stack spacing={1} sx={{ mt: 3 }}>
+            <Typography variant="subtitle2">Edge cases</Typography>
+            <Typography variant="body2" color="text.secondary">
+              • <strong>Contained Button / Fab (elevation override):</strong> these animate their own{' '}
+              <code>box-shadow</code> on focus, so the <em>two-color</em> preset&apos;s box-shadow may
+              be overridden on them — but the <code>outline</code> baseline always shows.
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{' '}
+              <code>disabled.focusVisible</code> at higher specificity, winning in that narrow state.
+            </Typography>
+          </Stack>
+        </Box>
       </Stack>
     </Box>
   );
