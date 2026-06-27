@@ -1,8 +1,11 @@
+import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Switch />', () => {
@@ -209,6 +212,102 @@ describe('<Switch />', () => {
       const { container } = render(<Switch className="test-class-name" />);
 
       expect(container.firstChild).to.have.class('test-class-name');
+    });
+  });
+
+  // Deterministic checks for the WCAG success criteria the report rates as
+  // automatable. See packages/mui-material/src/Switch/accessibility.md.
+  describe('WCAG conformance', () => {
+    it('toggles the checked state with the Space key (2.1.1 Keyboard)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Switch onChange={handleChange} />);
+      const switchControl = screen.getByRole('switch');
+
+      await act(async () => {
+        switchControl.focus();
+      });
+
+      await user.keyboard('[Space]');
+      expect(switchControl).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+
+      await user.keyboard('[Space]');
+      expect(switchControl).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(2);
+    });
+
+    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">before</button>
+          <Switch />
+          <button type="button">after</button>
+        </React.Fragment>,
+      );
+      const before = screen.getByRole('button', { name: 'before' });
+      const after = screen.getByRole('button', { name: 'after' });
+      const switchControl = screen.getByRole('switch');
+
+      before.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(switchControl);
+      await user.tab();
+      expect(document.activeElement).to.equal(after);
+      await user.tab({ shift: true });
+      expect(document.activeElement).to.equal(switchControl);
+    });
+
+    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">first</button>
+          <Switch />
+          <button type="button">last</button>
+        </React.Fragment>,
+      );
+      const first = screen.getByRole('button', { name: 'first' });
+      const switchControl = screen.getByRole('switch');
+      const last = screen.getByRole('button', { name: 'last' });
+
+      first.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(switchControl);
+      await user.tab();
+      expect(document.activeElement).to.equal(last);
+    });
+
+    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Switch onChange={handleChange} />);
+      const switchControl = screen.getByRole('switch');
+
+      // Press without releasing: the down-event must not toggle.
+      await user.pointer({ keys: '[MouseLeft>]', target: switchControl });
+      expect(switchControl).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+
+      // Releasing over the target completes the activation.
+      await user.pointer({ keys: '[/MouseLeft]', target: switchControl });
+      expect(switchControl).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
+      render(<FormControlLabel control={<Switch />} label="Dark mode" />);
+      // getByRole with `name` only resolves if the accessible name matches the visible label.
+      expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
+    });
+
+    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Switch onChange={handleChange} />);
+      const switchControl = screen.getByRole('switch');
+
+      await user.tab();
+
+      expect(document.activeElement).to.equal(switchControl);
+      expect(switchControl).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
     });
   });
 });

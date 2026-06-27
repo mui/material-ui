@@ -58,6 +58,22 @@ describe('getConfig', () => {
     );
   });
 
+  it('asserts every rule on the enrolled Switch demos', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/switches/BasicSwitches'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/switches/CustomizedSwitches'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('leaves the FormControlLabelPosition Switch demo unenrolled', () => {
+    // Excluded for its `aria-label` on a role-less FormGroup div (aria-prohibited-attr).
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/switches/FormControlLabelPosition'),
+    ).to.equal(undefined);
+  });
+
   it('honours last-match-wins when multiple rules apply', () => {
     const rules = [
       { test: 'docs/data/material/components/foo/*', enabled: true },
