@@ -444,7 +444,24 @@ describe('ModalManager', () => {
     let scrollXDescriptor: PropertyDescriptor | undefined;
     let scrollYDescriptor: PropertyDescriptor | undefined;
     let originalScrollTo: typeof window.scrollTo;
+    let originalMatchMedia: typeof window.matchMedia;
     let scrollToSpy: ReturnType<typeof spy>;
+
+    // Minimal `matchMedia` stub so detection is deterministic regardless of the
+    // browser the tests actually run in. Only `(pointer: coarse)` is meaningful.
+    function stubMatchMedia(coarse: boolean) {
+      window.matchMedia = ((query: string) =>
+        ({
+          matches: coarse && query.includes('pointer: coarse'),
+          media: query,
+          onchange: null,
+          addListener: () => {},
+          removeListener: () => {},
+          addEventListener: () => {},
+          removeEventListener: () => {},
+          dispatchEvent: () => false,
+        }) as unknown as MediaQueryList) as typeof window.matchMedia;
+    }
 
     // Shadow the read-only navigator getters with own properties; afterEach
     // deletes them to fall back to the original prototype getters.
@@ -452,6 +469,7 @@ describe('ModalManager', () => {
       userAgent?: string;
       platform?: string;
       maxTouchPoints?: number;
+      pointerCoarse?: boolean;
     }) {
       if (values.userAgent !== undefined) {
         Object.defineProperty(navigator, 'userAgent', {
@@ -471,6 +489,9 @@ describe('ModalManager', () => {
           configurable: true,
         });
       }
+      if (values.pointerCoarse !== undefined) {
+        stubMatchMedia(values.pointerCoarse);
+      }
     }
 
     beforeEach(() => {
@@ -483,12 +504,17 @@ describe('ModalManager', () => {
       originalScrollTo = window.scrollTo;
       scrollToSpy = spy();
       window.scrollTo = scrollToSpy as unknown as typeof window.scrollTo;
+
+      // Default to a fine pointer; touch tests opt in via `pointerCoarse`.
+      originalMatchMedia = window.matchMedia;
+      stubMatchMedia(false);
     });
 
     afterEach(() => {
       delete (navigator as any).userAgent;
       delete (navigator as any).platform;
       delete (navigator as any).maxTouchPoints;
+      window.matchMedia = originalMatchMedia;
       if (scrollXDescriptor) {
         Object.defineProperty(window, 'scrollX', scrollXDescriptor);
       } else {
@@ -509,7 +535,9 @@ describe('ModalManager', () => {
     });
 
     it('pins the body with position: fixed and restores scroll on iOS', () => {
-      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
 
       const modal = getDummyModal();
       modalManager.add(modal, document.body);
@@ -589,8 +617,53 @@ describe('ModalManager', () => {
       expect(scrollToSpy.called).to.equal(false);
     });
 
+    it('does not pin the body on touch-capable laptops (fine primary pointer)', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        platform: 'Win32',
+        maxTouchPoints: 10,
+        pointerCoarse: false,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('pins the body on touch-primary devices reported via pointer: coarse', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        platform: 'Win32',
+        maxTouchPoints: 5,
+        pointerCoarse: true,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.position).to.equal('fixed');
+      expect(document.body.style.top).to.equal('-150px');
+      expect(document.body.style.left).to.equal('-80px');
+
+      modalManager.remove(modal);
+      expect(document.body.style.position).to.equal('');
+      expect(scrollToSpy.calledOnceWith(80, 150)).to.equal(true);
+    });
+
     it('does nothing when disableScrollLock is set on iOS', () => {
-      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
 
       const modal = getDummyModal();
       modalManager.add(modal, document.body);
@@ -604,7 +677,9 @@ describe('ModalManager', () => {
     });
 
     it('does not pin a non-document scroll container on iOS', () => {
-      stubNavigator({ userAgent: 'iPhone OS 17_0 like Mac OS X', platform: 'iPhone' });
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
 
       const customContainer = document.createElement('div');
       document.body.appendChild(customContainer);

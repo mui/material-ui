@@ -8,15 +8,28 @@ export interface ManagedModalProps {
 
 // `overflow: hidden` on the scroll container is not reliably honored for touch
 // scrolling (notably iOS Safari, but Android exhibits it too once the on-screen
-// keyboard opens), so the page can still scroll behind a modal. On touch
+// keyboard opens), so the page can still scroll behind a modal. On touch-primary
 // devices apply a stronger `position: fixed` scroll lock. Evaluated at call time
 // (not module load) so it stays SSR-safe and testable.
 function usesTouchScrollLock(): boolean {
   if (typeof navigator === 'undefined') {
     return false;
   }
-  // `maxTouchPoints` also covers iPadOS 13+, which reports as "MacIntel".
-  return navigator.maxTouchPoints > 0 || /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
+  // Real mobile browsers.
+  if (/iPad|iPhone|iPod|Android/.test(navigator.userAgent)) {
+    return true;
+  }
+  // iPadOS 13+ reports as "MacIntel" but still exposes touch points.
+  if (navigator.maxTouchPoints > 0 && /MacIntel/.test(navigator.platform)) {
+    return true;
+  }
+  // `pointer: coarse` matches when the primary input is touch. This excludes
+  // hybrid devices like touch-capable laptops, whose primary pointer is fine.
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(pointer: coarse)').matches
+  );
 }
 
 // Is a vertical scrollbar displayed?
