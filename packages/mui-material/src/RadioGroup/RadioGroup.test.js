@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
@@ -421,5 +421,49 @@ describe('<RadioGroup />', () => {
     expect(radiogroup).to.have.class(classes.root);
     expect(radiogroup).to.have.class(classes.row);
     expect(radiogroup).not.to.have.class(classes.error);
+  });
+
+  // Browser-only: native radio arrow-key navigation and roving tab order are not
+  // implemented by jsdom. See packages/mui-material/src/RadioGroup/accessibility.md.
+  describe('WCAG conformance', () => {
+    it.skipIf(isJsdom())(
+      'roves selection with the arrow keys as a single tab stop (WCAG 2.1.1, 2.4.3)',
+      async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">before</button>
+            <RadioGroup name="pet" defaultValue="cat">
+              <Radio value="cat" disableRipple slotProps={{ input: { 'aria-label': 'Cat' } }} />
+              <Radio value="dog" disableRipple slotProps={{ input: { 'aria-label': 'Dog' } }} />
+              <Radio value="bird" disableRipple slotProps={{ input: { 'aria-label': 'Bird' } }} />
+            </RadioGroup>
+            <button type="button">after</button>
+          </React.Fragment>,
+        );
+        const after = screen.getByRole('button', { name: 'after' });
+        const [cat, dog, bird] = screen.getAllByRole('radio');
+
+        screen.getByRole('button', { name: 'before' }).focus();
+
+        // Tab enters the group on the checked radio (roving tab order).
+        await user.tab();
+        expect(cat).toHaveFocus();
+        expect(cat).to.have.property('checked', true);
+
+        // Arrow keys move focus to the next radio and check it, unchecking the previous.
+        await user.keyboard('[ArrowDown]');
+        expect(dog).toHaveFocus();
+        expect(dog).to.have.property('checked', true);
+        expect(cat).to.have.property('checked', false);
+
+        await user.keyboard('[ArrowDown]');
+        expect(bird).toHaveFocus();
+        expect(bird).to.have.property('checked', true);
+
+        // The group is a single tab stop: Tab leaves to the next control.
+        await user.tab();
+        expect(after).toHaveFocus();
+      },
+    );
   });
 });

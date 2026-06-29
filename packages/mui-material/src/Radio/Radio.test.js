@@ -1,7 +1,10 @@
+import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import { spy } from 'sinon';
+import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import switchBaseClasses from '../internal/switchBaseClasses';
@@ -145,5 +148,111 @@ describe('<Radio />', () => {
     render(<Radio slotProps={{ input: { 'aria-label': 'A' } }} />);
 
     expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
+  });
+
+  it('selects the radio with the Space key (WCAG 2.1.1 Keyboard)', async () => {
+    const handleChange = spy();
+    const { user } = render(<Radio value="a" onChange={handleChange} />);
+    const radio = screen.getByRole('radio');
+
+    await act(async () => {
+      radio.focus();
+    });
+
+    await user.keyboard('[Space]');
+    expect(radio).to.have.property('checked', true);
+    expect(handleChange.callCount).to.equal(1);
+  });
+
+  // Deterministic checks for the WCAG success criteria the report rates as
+  // automatable. See packages/mui-material/src/Radio/accessibility.md.
+  describe('WCAG conformance', () => {
+    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
+      render(<FormControlLabel control={<Radio />} label="Express delivery" />);
+      // getByRole with `name` only resolves if the accessible name matches the visible label.
+      expect(screen.getByRole('radio', { name: 'Express delivery' })).to.have.property(
+        'checked',
+        false,
+      );
+    });
+
+    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">before</button>
+          <Radio value="a" />
+          <button type="button">after</button>
+        </React.Fragment>,
+      );
+      const before = screen.getByRole('button', { name: 'before' });
+      const after = screen.getByRole('button', { name: 'after' });
+      const radio = screen.getByRole('radio');
+
+      before.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(radio);
+      await user.tab();
+      expect(document.activeElement).to.equal(after);
+      await user.tab({ shift: true });
+      expect(document.activeElement).to.equal(radio);
+    });
+
+    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">first</button>
+          <Radio value="a" />
+          <button type="button">last</button>
+        </React.Fragment>,
+      );
+      const first = screen.getByRole('button', { name: 'first' });
+      const radio = screen.getByRole('radio');
+      const last = screen.getByRole('button', { name: 'last' });
+
+      first.focus();
+      await user.tab();
+      expect(document.activeElement).to.equal(radio);
+      await user.tab();
+      expect(document.activeElement).to.equal(last);
+    });
+
+    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Radio value="a" onChange={handleChange} />);
+      const radio = screen.getByRole('radio');
+
+      // Press without releasing: the down-event must not select.
+      await user.pointer({ keys: '[MouseLeft>]', target: radio });
+      expect(radio).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+
+      // Releasing over the target completes the activation.
+      await user.pointer({ keys: '[/MouseLeft]', target: radio });
+      expect(radio).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Radio value="a" onChange={handleChange} />);
+      const radio = screen.getByRole('radio');
+
+      await user.tab();
+
+      expect(document.activeElement).to.equal(radio);
+      expect(radio).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('changes only its value on selection, firing onChange (3.2.2 On Input)', async () => {
+      const handleChange = spy();
+      const { user } = render(<Radio value="a" onChange={handleChange} />);
+      const radio = screen.getByRole('radio');
+
+      await user.click(radio);
+
+      expect(radio).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
   });
 });
