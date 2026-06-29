@@ -69,7 +69,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `🚩 Unverified` · `✅ Supports` · `○ Author`
 
 - The checkbox is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
-- Confirm by moving focus to a checkbox beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
+- It passes as long as that content never hides a focused checkbox completely; partial overlap is fine.
 
 **Manual testing steps**
 
@@ -82,7 +82,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `🚩 Unverified` · `✅ Supports` · `○ Author`
 
-- The component surfaces whatever name the author supplies, stably per props, which is the precondition for consistent identification.
+- The author supplies the name through a `FormControlLabel` or an `aria-label`. Whether the same function is identified consistently across pages is up to the author.
 - Consistency is a cross-page property. Confirm that checkboxes with the same function share a label, and that one label is not reused for different functions.
 
 **Manual testing steps**
@@ -98,8 +98,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- The default `CheckBox*` icons, and any MUI `SvgIcon` passed via `icon`/`checkedIcon`, default to `aria-hidden`, so they stay decorative; the accessible name comes from the label, not the checkmark icon.
-- The name is not self-supplied: a bare `<Checkbox />` has none. It is satisfied when the author wraps it in `FormControlLabel` (a real `<label>`) or passes `slotProps.input` `aria-label`/`aria-labelledby`, as the docs instruct. axe-core `label` confirms a non-empty name across the enrolled demos in `checkboxes.a11y.json`.
+- The default `CheckBox*` icons, and any `SvgIcon` passed via `icon`/`checkedIcon`, default to `aria-hidden`, so they stay decorative; the accessible name comes from the label, not the checkmark icon.
+- The name is author-supplied: a bare `<Checkbox />` has none. The author adds one with `FormControlLabel` (a real `<label>`) or `slotProps.input` `aria-label`/`aria-labelledby`, as the docs instruct.
+- axe-core `label` confirms a non-empty name across the enrolled demos in `checkboxes.a11y.json`.
 
 **Manual testing steps**
 
@@ -113,8 +114,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- The native `<input type="checkbox">` exposes role and checked state; `indeterminate` sets `aria-checked="mixed"` (unit-tested); `required` and `disabled` map to the native attributes; `FormControlLabel` associates the label through a real `<label>`; and `FormControl component="fieldset"` with `FormLabel component="legend"` gives a group its name. axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos. The one exception is the `indeterminate` state's non-conforming `aria-checked="mixed"`, tracked as a gap under 4.1.2.
-- Two relationships are the author's to wire. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text are not tied to the control, and a tri-state "select all" parent is not linked to its children. Add `aria-describedby` and the group wiring in the application.
+- The native `<input type="checkbox">` exposes role and checked state; `required` and `disabled` map to native attributes; `indeterminate` sets `aria-checked="mixed"` (unit-tested).
+- `FormControlLabel` associates the label through a real `<label>`, and `FormControl component="fieldset"` with `FormLabel component="legend"` names a group.
+- axe-core's ARIA rules (`aria-allowed-attr`, `aria-valid-attr-value`, `aria-prohibited-attr`, `form-field-multiple-labels`) pass across the demos. The one exception is `indeterminate`'s non-conforming `aria-checked="mixed"`, tracked under 4.1.2.
+- Two relationships are the author's responsibility. `FormHelperText` is a bare `<p>` with no `aria-describedby`, so helper and error text are not associated with the control, and a tri-state "select all" parent is not linked to its children. The author must associate them with `aria-describedby` and the appropriate group markup.
 
 **Manual testing steps**
 
@@ -142,31 +145,37 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- This criterion governs the visible text (the label and helper text), not the checkmark icon, which is covered by 1.4.11. The label uses `text.primary` (about 16:1 on white, 18:1 on the dark surface) and helper text uses `text.secondary` (about 5.7:1); error helper text `error.main` computes 4.98:1 on white, the tightest text case but above the 4.5:1 threshold. axe-core `color-contrast` passes on the labeled demos (recorded in `checkboxes.a11y.json`); the disabled label text is correctly treated as exempt.
+- This criterion governs the visible text (the label and helper text), not the checkmark icon (that is 1.4.11).
+- The label uses `text.primary` (about `16:1` on white, `18:1` on dark) and helper text uses `text.secondary` (about `5.7:1`). Error helper text `error.main` is the tightest at `4.98:1`, still above `4.5:1`.
+- axe-core `color-contrast` passes on the labeled demos (recorded in `checkboxes.a11y.json`); disabled label text is exempt.
 - The component renders no text on a colored fill, so unlike a contained button there is no label-on-background risk. Custom label colors or a colored container behind the row are the author's to check. Disabled text is exempt.
 
 **Manual testing steps**
 
 1. Measure the label and helper text against the real background in light and dark themes.
-2. Pay attention to light-mode error text (`#d32f2f`, about 5:1) on any non-white background.
+2. Pay attention to light-mode error text (`#d32f2f`, about `5:1`) on any non-white background.
 3. Re-check any custom label color.
 
-**Pass:** label and helper/error text meet 4.5:1 (3:1 for large text) against the actual background.
+**Pass:** label and helper/error text meet `4.5:1` (`3:1` for large text) against the actual background.
 
 #### 1.4.11 Non-text Contrast · AA
 
 `🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
 
-- This criterion, not 1.4.3, governs the checkmark icon at 3:1, and every default state passes against the default page background (`#fff` light, `#121212` dark). In light mode `warning` is the tightest at 3.11:1, `info` 3.86:1, `primary` 4.60:1, the unchecked `text.secondary` outline 5.74:1, and the white check on the primary fill 4.60:1; dark mode clears 3:1 with room to spare (error, the lowest, is about 5:1). `warning.main` is tuned in the palette as "closest to orange[800] that pass 3:1", so a colored container behind the checkbox eats its small headroom first. Disabled (`action.disabled`, about 1.9:1) is exempt.
-- The gaps are the focus indicator and customization. The keyboard focus indicator's contrast is untested, and `disableRipple`/`disableFocusRipple` removes it. Custom icons can fall below 3:1: the `CustomizedCheckbox` unchecked box is `#f5f8fa` with a faint inset border, about 1.1:1 against the page and 1.5:1 at the edge.
+- This criterion (not 1.4.3) governs the checkmark icon at `3:1`, and every default state passes against the page background (`#fff` light, `#121212` dark).
+- Light mode: `warning` is the tightest at `3.11:1`, then `info` `3.86:1`, `primary` `4.60:1`, the unchecked `text.secondary` outline `5.74:1`, and the white check on the fill `4.60:1`. Dark mode clears `3:1` easily (lowest is error at about `5:1`).
+- `warning.main` is tuned to just clear `3:1`, so a colored container behind the checkbox can push it under.
+- The keyboard focus indicator's contrast is untested, and `disableRipple`/`disableFocusRipple` removes it.
+- Custom icons can fall below `3:1`: the `CustomizedCheckbox` unchecked box is about `1.1:1` against the page (`1.5:1` at its border).
+- Disabled (`action.disabled`, about `1.9:1`) is exempt.
 
 **Manual testing steps**
 
-1. Measure the unchecked outline and each checked color (`primary` through `warning`) against the background; confirm 3:1, checking `warning` specifically.
+1. Measure the unchecked outline and each checked color (`primary` through `warning`) against the background; confirm `3:1`, checking `warning` specifically.
 2. Measure the keyboard focus indicator against the colors next to it.
 3. Audit any custom icons (the Blueprint unchecked box is a known fail) and treat disabled as exempt.
 
-**Pass:** the indicator in every active state (unchecked outline, checked fill, indeterminate dash) and the focus indicator are 3:1 against adjacent colors; disabled is exempt.
+**Pass:** the indicator in every active state (unchecked outline, checked fill, indeterminate dash) and the focus indicator are `3:1` against adjacent colors; disabled is exempt.
 
 #### 1.4.12 Text Spacing · AA
 
@@ -246,7 +255,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `⚠️ Partially Supports` · `◐ Shared`
 
 - Role, checked, and disabled are met natively: the native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed, and `disabled` maps to native `disabled`. axe-core (`aria-allowed-attr`, `aria-valid-attr-value`, `label`, `nested-interactive`) and unit tests in [`Checkbox.test.js`](./Checkbox.test.js) (role resolves, `checked` flips on click, `disabled` through `FormControl`) confirm them.
-- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native `<input type="checkbox">`, which ARIA in HTML disallows because the native `.checked` stays `false`, so axe `aria-conditional-attr` records a violation on `IndeterminateCheckbox` in `checkboxes.a11y.json`. Major screen readers do announce "mixed" and the value is unit-tested, but a `mixed` state on a native checkbox is not guaranteed across browsers. The conforming fix is to set the native `.indeterminate` property instead of `aria-checked` (MUI currently avoids `.indeterminate`, citing cross-browser inconsistency).
+- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native input, which ARIA in HTML disallows because the native `.checked` stays `false`. axe `aria-conditional-attr` records the violation on `IndeterminateCheckbox` in `checkboxes.a11y.json`.
+- Major screen readers do announce "mixed" (and it is unit-tested), but a `mixed` state on a native checkbox is not guaranteed across browsers.
+- The conforming fix is the native `.indeterminate` property instead of `aria-checked`; the component currently avoids `.indeterminate`, citing cross-browser inconsistency.
 - The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a checkbox and is not exposed to assistive technology, so a read-only checkbox is not announced as such. Use `disabled` or `aria-readonly` if that state must be conveyed.
 
 **Manual testing steps**
