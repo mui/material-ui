@@ -50,6 +50,20 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** no instruction relies on "the green button" or "the button on the right" without naming it.
 
+#### 1.4.4 Resize Text · AA
+
+`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+
+- Typography is set in rem and em, so the label and button scale with browser zoom or font size rather than staying pixel-fixed.
+- A fixed-pixel container in the surrounding layout could clip at 200%.
+
+**Manual testing steps**
+
+1. Open the Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
+2. Confirm labels are fully visible and buttons still work.
+
+**Pass:** nothing is clipped or cut off at 200%.
+
 #### 1.4.5 Images of Text · AA
 
 `✅ Supports` · `○ Author`
@@ -62,6 +76,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 1. Open any button demo and confirm the label is selectable text, not an image.
 
 **Pass:** no button renders its label as an image of text (a logo with an accessible name is exempt).
+
+#### 1.4.10 Reflow · AA
+
+`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+
+- Labels wrap by default (the component sets no `white-space`), so a button reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a fixed-width button or a non-wrapping row.
+
+**Manual testing steps**
+
+1. Open the Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+2. Confirm there is no sideways scrolling and all button text is reachable.
+
+**Pass:** content reflows with no horizontal scroll, and long labels wrap.
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
@@ -288,33 +315,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 **Pass:** name, role, and state are correct for every variant, and state changes are announced.
 
 ### ⚙️ Automated
-
-#### 1.4.4 Resize Text · AA
-
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
-
-- Typography is set in rem and em, so the label and button scale with browser zoom or font size rather than staying pixel-fixed.
-- A fixed-pixel container in the surrounding layout could clip at 200%.
-
-**Manual testing steps**
-
-1. Open the Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
-2. Confirm labels are fully visible and buttons still work.
-
-**Pass:** nothing is clipped or cut off at 200%.
-
-#### 1.4.10 Reflow · AA
-
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
-
-- Labels wrap by default (the component sets no `white-space`), so a button reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a fixed-width button or a non-wrapping row.
-
-**Manual testing steps**
-
-1. Open the Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
-2. Confirm there is no sideways scrolling and all button text is reachable.
-
-**Pass:** content reflows with no horizontal scroll, and long labels wrap.
 
 #### 2.1.1 Keyboard · A
 
