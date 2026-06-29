@@ -47,6 +47,20 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** no instruction relies on "the round avatar" or "the one on the right" without a text identifier.
 
+#### 1.4.4 Resize Text · AA
+
+`🚩 Unverified` · `✅ Supports` · `● Component`
+
+- The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under full-page browser zoom, the default scaling mechanism, the box and the text scale together, so initials stay fully visible.
+
+**Manual testing steps**
+
+1. Open `LetterAvatars` and `FallbackAvatars`.
+2. Set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>) and confirm the box and initials scale together with nothing clipped.
+3. Optional: compare against text-only resize (Firefox "Zoom Text Only") to see the px box not scaling; long initials there are an author concern.
+
+**Pass:** initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
+
 #### 1.4.5 Images of Text · AA
 
 `✅ Supports` · `◐ Shared`
@@ -60,6 +74,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 1. Open `LetterAvatars` and `FallbackAvatars` and confirm the initials are selectable text, not an `<img>`.
 
 **Pass:** avatar initials and fallback are real text; the component renders no image of text.
+
+#### 1.4.10 Reflow · AA
+
+`🚩 Unverified` · `✅ Supports` · `● Component`
+
+- The avatar is a fixed 40px box that establishes no horizontal layout, so at a 320 CSS pixel width (or 400% zoom) it cannot force two-dimensional scrolling; it scales and wraps with its container.
+
+**Manual testing steps**
+
+1. Open the Avatar demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+2. Confirm there is no horizontal scrolling and every avatar stays visible.
+
+**Pass:** content reflows with no two-dimensional scrolling. A single 40px avatar never triggers it.
 
 ### 🔁 Hybrid
 
@@ -149,6 +176,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.
 
+### ⚙️ Automated
+
 #### 1.4.12 Text Spacing · AA
 
 `✅ Supports` · `● Component`
@@ -164,35 +193,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 4. Repeat with `SizeAvatars` to gauge sensitivity at other fixed sizes.
 
 **Pass:** documented initials and fallback text stay fully visible after applying the four overrides. Long author-supplied strings that already overflow at default spacing are out of scope.
-
-### ⚙️ Automated
-
-#### 1.4.4 Resize Text · AA
-
-`🚩 Unverified` · `✅ Supports` · `● Component`
-
-- The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under full-page browser zoom, the default scaling mechanism, the box and the text scale together, so initials stay fully visible.
-
-**Manual testing steps**
-
-1. Open `LetterAvatars` and `FallbackAvatars`.
-2. Set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>) and confirm the box and initials scale together with nothing clipped.
-3. Optional: compare against text-only resize (Firefox "Zoom Text Only") to see the px box not scaling; long initials there are an author concern.
-
-**Pass:** initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
-
-#### 1.4.10 Reflow · AA
-
-`🚩 Unverified` · `✅ Supports` · `● Component`
-
-- The avatar is a fixed 40px box that establishes no horizontal layout, so at a 320 CSS pixel width (or 400% zoom) it cannot force two-dimensional scrolling; it scales and wraps with its container.
-
-**Manual testing steps**
-
-1. Open the Avatar demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
-2. Confirm there is no horizontal scrolling and every avatar stays visible.
-
-**Pass:** content reflows with no two-dimensional scrolling. A single 40px avatar never triggers it.
 
 ## Not applicable
 
