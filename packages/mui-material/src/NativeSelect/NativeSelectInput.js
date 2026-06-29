@@ -52,7 +52,7 @@ export const StyledSelectSelect = styled('select', {
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
-    right: 'calc(var(--_caret) + 2px)',
+    right: 'calc(var(--_caret) + (var(--_endAdornment) - 1.5rem)/2)', // 1.5rem is the default icon size
   },
   [`.${inputBaseClasses.root}:has(> &)`]: {
     '--_endAdornment': '0px',
