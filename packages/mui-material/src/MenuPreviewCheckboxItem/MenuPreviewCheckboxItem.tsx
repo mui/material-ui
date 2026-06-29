@@ -12,7 +12,6 @@ import {
   getMenuPreviewRootRender,
   isMenuPreviewRootNativeButton,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -30,7 +29,13 @@ import {
   MenuPreviewCheckboxItemClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewCheckboxItemSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewCheckboxItemSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewCheckboxItemSlotProps extends MenuPreviewRootSlotProps<MenuPreviewItemOwnerState> {}
 

@@ -28,7 +28,14 @@
   },
   "name": "MenuPreviewRadioItem",
   "imports": ["import MenuPreviewRadioItem from '@mui/material/MenuPreviewRadioItem';"],
-  "slots": [{ "name": "root", "description": "", "class": null }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": null
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewRadioItem",
   "filename": "/packages/mui-material/src/MenuPreviewRadioItem/MenuPreviewRadioItem.tsx",

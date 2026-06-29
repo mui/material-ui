@@ -62,5 +62,3 @@ export * from '../MenuPreviewSubmenuRoot';
 export { default as SubmenuTrigger } from '../MenuPreviewSubmenuTrigger';
 export { default as MenuPreviewSubmenuTrigger } from '../MenuPreviewSubmenuTrigger';
 export * from '../MenuPreviewSubmenuTrigger';
-
-export * from './menuPreviewClasses';

@@ -10,7 +10,6 @@ import { getMenuPreviewItemStyles } from '../MenuPreview/menuPreviewSharedStyles
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -28,7 +27,13 @@ import {
   MenuPreviewLinkItemClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewLinkItemSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewLinkItemSlots {
+  /**
+   * The component that renders the root.
+   * @default 'a'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewLinkItemSlotProps extends MenuPreviewRootSlotProps<MenuPreviewItemOwnerState> {}
 

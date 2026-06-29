@@ -489,7 +489,7 @@ describe('<MenuPreview />', () => {
   });
 
   it('does not open when the root is disabled', async () => {
-    const { user } = render(
+    render(
       <MenuPreview disabled>
         <MenuPreviewTrigger>Options</MenuPreviewTrigger>
         <MenuPreviewPopup>

@@ -22,7 +22,12 @@
     "import MenuPreviewRadioItemIndicator from '@mui/material/MenuPreviewRadioItemIndicator';"
   ],
   "slots": [
-    { "name": "root", "description": "", "class": "MuiMenuPreviewRadioItemIndicator-root" }
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": "MuiMenuPreviewRadioItemIndicator-root"
+    }
   ],
   "classes": [
     {

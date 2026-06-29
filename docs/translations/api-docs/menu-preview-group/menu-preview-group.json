@@ -13,5 +13,5 @@
     }
   },
   "classDescriptions": {},
-  "slotDescriptions": { "root": "" }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

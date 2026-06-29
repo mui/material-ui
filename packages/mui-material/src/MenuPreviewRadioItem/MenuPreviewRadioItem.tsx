@@ -12,7 +12,6 @@ import {
   getMenuPreviewRootRender,
   isMenuPreviewRootNativeButton,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -30,7 +29,13 @@ import {
   MenuPreviewRadioItemClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewRadioItemSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewRadioItemSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewRadioItemSlotProps extends MenuPreviewRootSlotProps<MenuPreviewItemOwnerState> {}
 

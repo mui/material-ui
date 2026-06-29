@@ -22,7 +22,14 @@
   },
   "name": "MenuPreviewSeparator",
   "imports": ["import MenuPreviewSeparator from '@mui/material/MenuPreviewSeparator';"],
-  "slots": [{ "name": "root", "description": "", "class": "MuiMenuPreviewSeparator-root" }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Divider",
+      "class": "MuiMenuPreviewSeparator-root"
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewSeparator",
   "filename": "/packages/mui-material/src/MenuPreviewSeparator/MenuPreviewSeparator.tsx",

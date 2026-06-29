@@ -27,5 +27,5 @@
       "conditions": "<code>disabled={true}</code>"
     }
   },
-  "slotDescriptions": { "root": "" }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

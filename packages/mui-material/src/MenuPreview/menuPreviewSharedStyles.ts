@@ -11,7 +11,7 @@ export interface SharedMenuPreviewItemClasses {
   divider: string;
   gutters: string;
   selected: string;
-  open?: (string) | undefined;
+  open?: string | undefined;
 }
 
 export function getMenuPreviewItemStyles(

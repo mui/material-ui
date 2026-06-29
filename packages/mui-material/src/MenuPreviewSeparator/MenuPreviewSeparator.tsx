@@ -12,7 +12,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -20,7 +19,13 @@ import {
   MenuPreviewSeparatorClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewSeparatorSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewSeparatorSlots {
+  /**
+   * The component that renders the root.
+   * @default Divider
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewSeparatorSlotProps extends MenuPreviewRootSlotProps<MenuPreviewSeparatorProps> {}
 

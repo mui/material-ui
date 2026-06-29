@@ -18,7 +18,14 @@
   },
   "name": "MenuPreviewGroupLabel",
   "imports": ["import MenuPreviewGroupLabel from '@mui/material/MenuPreviewGroupLabel';"],
-  "slots": [{ "name": "root", "description": "", "class": "MuiMenuPreviewGroupLabel-root" }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "ListSubheader",
+      "class": "MuiMenuPreviewGroupLabel-root"
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewGroupLabel",
   "filename": "/packages/mui-material/src/MenuPreviewGroupLabel/MenuPreviewGroupLabel.tsx",

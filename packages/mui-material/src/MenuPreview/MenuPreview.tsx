@@ -23,11 +23,11 @@ export interface MenuPreviewProps {
   /**
    * Event handler called when the menu is opened or closed.
    */
-  onOpenChange?: (BaseMenu.Root.Props['onOpenChange']) | undefined;
+  onOpenChange?: BaseMenu.Root.Props['onOpenChange'] | undefined;
   /**
    * Event handler called after any animations complete when the menu is opened or closed.
    */
-  onOpenChangeComplete?: (BaseMenu.Root.Props['onOpenChangeComplete']) | undefined;
+  onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
   /**
    * Determines if the menu enters a modal state when open.
    * @default true

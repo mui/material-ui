@@ -30,7 +30,14 @@
   },
   "name": "MenuPreviewCheckboxItem",
   "imports": ["import MenuPreviewCheckboxItem from '@mui/material/MenuPreviewCheckboxItem';"],
-  "slots": [{ "name": "root", "description": "", "class": null }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": null
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewCheckboxItem",
   "filename": "/packages/mui-material/src/MenuPreviewCheckboxItem/MenuPreviewCheckboxItem.tsx",

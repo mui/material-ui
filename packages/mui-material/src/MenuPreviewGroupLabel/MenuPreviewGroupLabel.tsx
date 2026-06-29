@@ -12,7 +12,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -20,7 +19,13 @@ import {
   MenuPreviewGroupLabelClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewGroupLabelSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewGroupLabelSlots {
+  /**
+   * The component that renders the root.
+   * @default ListSubheader
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewGroupLabelSlotProps extends MenuPreviewRootSlotProps<MenuPreviewGroupLabelProps> {}
 

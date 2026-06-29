@@ -12,7 +12,6 @@ import { menuPreviewIndicatorStyles } from '../MenuPreview/menuPreviewSharedStyl
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -20,7 +19,13 @@ import {
   MenuPreviewCheckboxItemIndicatorClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewCheckboxItemIndicatorSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewCheckboxItemIndicatorSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewCheckboxItemIndicatorSlotProps extends MenuPreviewRootSlotProps<MenuPreviewCheckboxItemIndicatorProps> {}
 

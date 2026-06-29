@@ -27,7 +27,14 @@
   },
   "name": "MenuPreviewItem",
   "imports": ["import MenuPreviewItem from '@mui/material/MenuPreviewItem';"],
-  "slots": [{ "name": "root", "description": "", "class": null }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": null
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewItem",
   "filename": "/packages/mui-material/src/MenuPreviewItem/MenuPreviewItem.tsx",

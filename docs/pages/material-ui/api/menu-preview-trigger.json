@@ -23,7 +23,14 @@
   },
   "name": "MenuPreviewTrigger",
   "imports": ["import MenuPreviewTrigger from '@mui/material/MenuPreviewTrigger';"],
-  "slots": [{ "name": "root", "description": "", "class": "MuiMenuPreviewTrigger-root" }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Button",
+      "class": "MuiMenuPreviewTrigger-root"
+    }
+  ],
   "classes": [
     {
       "key": "disabled",

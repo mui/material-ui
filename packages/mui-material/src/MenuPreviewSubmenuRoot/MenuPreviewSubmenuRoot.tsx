@@ -23,11 +23,11 @@ export interface MenuPreviewSubmenuRootProps {
   /**
    * Event handler called when the submenu is opened or closed.
    */
-  onOpenChange?: (BaseMenu.SubmenuRoot.Props['onOpenChange']) | undefined;
+  onOpenChange?: BaseMenu.SubmenuRoot.Props['onOpenChange'] | undefined;
   /**
    * Event handler called after any animations complete when the submenu is opened or closed.
    */
-  onOpenChangeComplete?: (BaseMenu.SubmenuRoot.Props['onOpenChangeComplete']) | undefined;
+  onOpenChangeComplete?: BaseMenu.SubmenuRoot.Props['onOpenChangeComplete'] | undefined;
   /**
    * Whether the component should ignore user interaction.
    * @default false

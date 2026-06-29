@@ -19,7 +19,14 @@
   },
   "name": "MenuPreviewGroup",
   "imports": ["import MenuPreviewGroup from '@mui/material/MenuPreviewGroup';"],
-  "slots": [{ "name": "root", "description": "", "class": "MuiMenuPreviewGroup-root" }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "MuiMenuPreviewGroup-root"
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewGroup",
   "filename": "/packages/mui-material/src/MenuPreviewGroup/MenuPreviewGroup.tsx",

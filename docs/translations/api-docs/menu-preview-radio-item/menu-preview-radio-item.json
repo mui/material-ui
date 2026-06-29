@@ -32,5 +32,5 @@
     "value": { "description": "Value of the radio item." }
   },
   "classDescriptions": {},
-  "slotDescriptions": { "root": "" }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

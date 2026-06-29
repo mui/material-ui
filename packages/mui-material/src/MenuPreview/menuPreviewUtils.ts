@@ -34,7 +34,7 @@ export function resolveSlotProps<SlotPropsValue, OwnerState>(
 }
 
 export interface MenuPreviewRootSlots {
-  root?: (React.ElementType) | undefined;
+  root?: React.ElementType | undefined;
 }
 
 export interface MenuPreviewRootSlotProps<OwnerState> {

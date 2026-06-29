@@ -36,5 +36,5 @@
       "conditions": "the menu is open"
     }
   },
-  "slotDescriptions": { "root": "" }
+  "slotDescriptions": { "root": "The component that renders the root." }
 }

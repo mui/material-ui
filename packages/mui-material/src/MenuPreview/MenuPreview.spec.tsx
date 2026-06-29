@@ -182,7 +182,7 @@ createTheme({
 
 <Trigger
   // @ts-expect-error Base UI render prop is intentionally not supported.
-  render={<button type="button" />}
+  render={<button aria-label="Options" type="button" />}
 >
   Options
 </Trigger>;

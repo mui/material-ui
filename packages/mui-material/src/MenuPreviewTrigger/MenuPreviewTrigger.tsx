@@ -13,7 +13,6 @@ import {
   getMenuPreviewRootRender,
   isMenuPreviewRootNativeButton,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -21,7 +20,13 @@ import {
   MenuPreviewTriggerClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewTriggerSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewTriggerSlots {
+  /**
+   * The component that renders the root.
+   * @default Button
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewTriggerProps
   extends

@@ -12,7 +12,6 @@ import { menuPreviewIndicatorStyles } from '../MenuPreview/menuPreviewSharedStyl
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -20,7 +19,13 @@ import {
   MenuPreviewRadioItemIndicatorClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewRadioItemIndicatorSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewRadioItemIndicatorSlots {
+  /**
+   * The component that renders the root.
+   * @default 'span'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewRadioItemIndicatorSlotProps extends MenuPreviewRootSlotProps<MenuPreviewRadioItemIndicatorProps> {}
 

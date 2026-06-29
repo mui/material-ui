@@ -29,7 +29,14 @@
   },
   "name": "MenuPreviewSubmenuTrigger",
   "imports": ["import MenuPreviewSubmenuTrigger from '@mui/material/MenuPreviewSubmenuTrigger';"],
-  "slots": [{ "name": "root", "description": "", "class": null }],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": null
+    }
+  ],
   "classes": [],
   "muiName": "MuiMenuPreviewSubmenuTrigger",
   "filename": "/packages/mui-material/src/MenuPreviewSubmenuTrigger/MenuPreviewSubmenuTrigger.tsx",

@@ -11,7 +11,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -19,7 +18,13 @@ import {
   MenuPreviewGroupClasses,
 } from '../MenuPreview/menuPreviewClasses';
 
-export interface MenuPreviewGroupSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewGroupSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewGroupSlotProps extends MenuPreviewRootSlotProps<MenuPreviewGroupProps> {}
 

@@ -11,7 +11,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   getMenuPreviewRootRender,
   MenuPreviewRootSlotProps,
-  MenuPreviewRootSlots,
   resolveSlotProps,
 } from '../MenuPreview/menuPreviewUtils';
 import {
@@ -21,7 +20,13 @@ import {
 
 interface MenuPreviewRadioGroupOwnerState extends MenuPreviewRadioGroupProps {}
 
-export interface MenuPreviewRadioGroupSlots extends MenuPreviewRootSlots {}
+export interface MenuPreviewRadioGroupSlots {
+  /**
+   * The component that renders the root.
+   * @default 'div'
+   */
+  root?: React.ElementType | undefined;
+}
 
 export interface MenuPreviewRadioGroupSlotProps extends MenuPreviewRootSlotProps<MenuPreviewRadioGroupOwnerState> {}
 
