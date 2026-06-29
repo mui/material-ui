@@ -165,7 +165,7 @@ const RatingIcon = styled('span', {
       duration: theme.transitions.duration.shortest,
     }),
     // Fix mouseLeave issue.
-    // https://github.com/facebook/react/issues/4492
+    // https://github.com/react/react/issues/4492
     pointerEvents: 'none',
     variants: [
       {
@@ -479,7 +479,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const handleClear = (event) => {
     // Ignore keyboard events
-    // https://github.com/facebook/react/issues/7407
+    // https://github.com/react/react/issues/7407
     if (event.clientX === 0 && event.clientY === 0) {
       return;
     }
