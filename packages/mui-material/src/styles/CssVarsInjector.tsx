@@ -3,6 +3,12 @@
  */
 import { styleSheetsToString } from '@mui/system';
 import * as React from 'react';
+import {
+  generateBreakpointStyleSheets,
+  getBreakpointStylesServerSnapshot,
+  getBreakpointStylesSnapshot,
+  subscribeBreakpointStyles,
+} from './BreakpointStylesRegistry';
 
 interface CssVarsInjectorProps {
   theme: {
@@ -51,9 +57,19 @@ export default function CssVarsInjector({
 }: CssVarsInjectorProps) {
   // Scoped nested themes need separate <style> tags so their vars can coexist.
   const styleId = styleIdProp ?? getStyleId(theme.cssVarPrefix, theme.rootSelector);
+  // Recompute when lazy-loaded components register breakpoint descriptors.
+  const breakpointStyles = React.useSyncExternalStore(
+    subscribeBreakpointStyles,
+    getBreakpointStylesSnapshot,
+    getBreakpointStylesServerSnapshot,
+  );
   const css = React.useMemo(
-    () => styleSheetsToString(theme.generateStyleSheets?.() ?? []),
-    [theme],
+    () =>
+      [
+        styleSheetsToString(theme.generateStyleSheets?.() ?? []),
+        generateBreakpointStyleSheets(theme, breakpointStyles),
+      ].join(''),
+    [theme, breakpointStyles],
   );
 
   // Client: insert/update the <style> tag directly in <head> before any paint.

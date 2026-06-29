@@ -1,0 +1,20 @@
+@layer mui.components {
+  .MuiToolbar-root {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .MuiToolbar-root.MuiToolbar-gutters {
+    padding-left: var(--MuiToolbar-gutters-paddingLeft, calc(2 * var(--mui-spacing, 8px)));
+    padding-right: var(--MuiToolbar-gutters-paddingRight, calc(2 * var(--mui-spacing, 8px)));
+  }
+
+  .MuiToolbar-root.MuiToolbar-dense {
+    min-height: 48px;
+  }
+
+  .MuiToolbar-root.MuiToolbar-regular {
+    min-height: var(--MuiToolbar-regular-minHeight, 56px);
+  }
+}

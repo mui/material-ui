@@ -30,14 +30,21 @@ import {
   useThemeScopeProps,
 } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
+import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
+
+const customBreakpoints = {
+  values: { xs: 0, sm: 720, md: 900, lg: 1200, xl: 1536 },
+};
 
 const themes = [
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: {
       light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
@@ -45,6 +52,7 @@ const themes = [
     },
   }),
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: {
       light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
@@ -61,6 +69,7 @@ const themeNames = ['Blue (default)', 'Green', 'Red'];
 //   colorSchemeSelector → scopes the dark/light variants to the same container
 const innerThemes = [
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -68,6 +77,7 @@ const innerThemes = [
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -78,6 +88,7 @@ const innerThemes = [
     },
   }),
   createTheme({
+    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -214,6 +225,17 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         <button type="button" onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
           Switch to {mode === 'light' ? 'dark' : 'light'} mode
         </button>
+      </div>
+
+      <div style={{ maxWidth: 720, marginBottom: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          Toolbar breakpoint rule — gutters/min-height switch at custom <code>sm=720px</code>:
+        </p>
+        <div style={{ border: '1px solid var(--mui-palette-divider)' }}>
+          <Toolbar style={{ background: 'var(--mui-palette-action-hover)' }}>
+            Responsive Toolbar
+          </Toolbar>
+        </div>
       </div>
 
       <div style={{ maxWidth: 400 }}>
