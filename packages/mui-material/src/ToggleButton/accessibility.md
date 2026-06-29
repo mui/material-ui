@@ -50,6 +50,20 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** no instruction relies on "the highlighted one" or "the button on the left" without naming it.
 
+#### 1.4.4 Resize Text · AA
+
+`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+
+- Typography is set in rem and em, so the label and toggle scale with browser zoom or font size rather than staying pixel-fixed.
+- A fixed-pixel container in the surrounding layout could clip at 200%.
+
+**Manual testing steps**
+
+1. Open the Toggle Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
+2. Confirm labels are fully visible and toggles still work.
+
+**Pass:** nothing is clipped or cut off at 200%.
+
 #### 1.4.5 Images of Text · AA
 
 `🚩 Unverified` · `✅ Supports` · `○ Author`
@@ -63,6 +77,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 2. Confirm it behaves like real text (selectable, stays crisp), not a picture.
 
 **Pass:** labels are live text. No toggle uses an image of text.
+
+#### 1.4.10 Reflow · AA
+
+`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+
+- A toggle sizes to its content, so it reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a wide `ToggleButtonGroup` that does not wrap.
+
+**Manual testing steps**
+
+1. Open the Toggle Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+2. Confirm there is no sideways scrolling and all toggles are reachable.
+
+**Pass:** content reflows with no horizontal scroll.
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
@@ -244,33 +271,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 **Pass:** name, role, and state are correct for every variant, and state changes are announced.
 
 ### ⚙️ Automated
-
-#### 1.4.4 Resize Text · AA
-
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
-
-- Typography is set in rem and em, so the label and toggle scale with browser zoom or font size rather than staying pixel-fixed.
-- A fixed-pixel container in the surrounding layout could clip at 200%.
-
-**Manual testing steps**
-
-1. Open the Toggle Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
-2. Confirm labels are fully visible and toggles still work.
-
-**Pass:** nothing is clipped or cut off at 200%.
-
-#### 1.4.10 Reflow · AA
-
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
-
-- A toggle sizes to its content, so it reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a wide `ToggleButtonGroup` that does not wrap.
-
-**Manual testing steps**
-
-1. Open the Toggle Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
-2. Confirm there is no sideways scrolling and all toggles are reachable.
-
-**Pass:** content reflows with no horizontal scroll.
 
 #### 2.1.1 Keyboard · A
 
