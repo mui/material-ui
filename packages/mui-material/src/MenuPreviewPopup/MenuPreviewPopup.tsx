@@ -40,89 +40,89 @@ export interface MenuPreviewPopupProps extends Omit<
   /**
    * CSS class applied to the Base UI popup element.
    */
-  className?: MenuPreviewPopupPublicProps['className'];
+  className?: (MenuPreviewPopupPublicProps['className']) | undefined;
   /**
    * Styles applied to the Base UI popup element.
    */
-  style?: MenuPreviewPopupPublicProps['style'];
+  style?: (MenuPreviewPopupPublicProps['style']) | undefined;
   /**
    * An element to position the popup against.
    *
    * By default, the popup is positioned against the trigger.
    */
-  anchor?: MenuPreviewPopupPublicProps['anchor'];
+  anchor?: (MenuPreviewPopupPublicProps['anchor']) | undefined;
   /**
    * Determines which CSS `position` property to use.
    * @default 'absolute'
    */
-  positionMethod?: MenuPreviewPopupPublicProps['positionMethod'];
+  positionMethod?: (MenuPreviewPopupPublicProps['positionMethod']) | undefined;
   /**
    * Which side of the anchor element to align the popup against.
    * @default 'bottom'
    */
-  side?: MenuPreviewPopupPublicProps['side'];
+  side?: (MenuPreviewPopupPublicProps['side']) | undefined;
   /**
    * Distance between the anchor and the popup in pixels.
    * @default 0
    */
-  sideOffset?: MenuPreviewPopupPublicProps['sideOffset'];
+  sideOffset?: (MenuPreviewPopupPublicProps['sideOffset']) | undefined;
   /**
    * How to align the popup relative to the specified side.
    * @default 'start'
    */
-  align?: MenuPreviewPopupPublicProps['align'];
+  align?: (MenuPreviewPopupPublicProps['align']) | undefined;
   /**
    * Additional offset along the alignment axis in pixels.
    * @default 0
    */
-  alignOffset?: MenuPreviewPopupPublicProps['alignOffset'];
+  alignOffset?: (MenuPreviewPopupPublicProps['alignOffset']) | undefined;
   /**
    * An element or a rectangle that delimits the area that the popup is confined to.
    * @default 'clipping-ancestors'
    */
-  collisionBoundary?: MenuPreviewPopupPublicProps['collisionBoundary'];
+  collisionBoundary?: (MenuPreviewPopupPublicProps['collisionBoundary']) | undefined;
   /**
    * Additional space to maintain from the edge of the collision boundary.
    * @default 5
    */
-  collisionPadding?: MenuPreviewPopupPublicProps['collisionPadding'];
+  collisionPadding?: (MenuPreviewPopupPublicProps['collisionPadding']) | undefined;
   /**
    * Minimum distance to maintain between the arrow and the edges of the popup.
    * @default 5
    */
-  arrowPadding?: MenuPreviewPopupPublicProps['arrowPadding'];
+  arrowPadding?: (MenuPreviewPopupPublicProps['arrowPadding']) | undefined;
   /**
    * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
    * @default false
    */
-  sticky?: MenuPreviewPopupPublicProps['sticky'];
+  sticky?: (MenuPreviewPopupPublicProps['sticky']) | undefined;
   /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.
    * @default false
    */
-  disableAnchorTracking?: MenuPreviewPopupPublicProps['disableAnchorTracking'];
+  disableAnchorTracking?: (MenuPreviewPopupPublicProps['disableAnchorTracking']) | undefined;
   /**
    * Determines how to handle collisions when positioning the popup.
    */
-  collisionAvoidance?: MenuPreviewPopupPublicProps['collisionAvoidance'];
+  collisionAvoidance?: (MenuPreviewPopupPublicProps['collisionAvoidance']) | undefined;
   /**
    * The container element to portal the popup into.
    */
-  container?: MenuPreviewPopupPublicProps['container'];
+  container?: (MenuPreviewPopupPublicProps['container']) | undefined;
   /**
    * Whether to keep the portal mounted in the DOM while the popup is hidden.
    * @default false
    */
-  keepMounted?: MenuPreviewPopupPublicProps['keepMounted'];
+  keepMounted?: (MenuPreviewPopupPublicProps['keepMounted']) | undefined;
   /**
    * Determines the element to focus when the menu is closed.
    */
-  finalFocus?: MenuPreviewPopupPublicProps['finalFocus'];
+  finalFocus?: (MenuPreviewPopupPublicProps['finalFocus']) | undefined;
   /**
    * The elevation of the menu surface.
    * @default 8
    */
-  elevation?: MenuPreviewPopupPublicProps['elevation'];
+  elevation?: (MenuPreviewPopupPublicProps['elevation']) | undefined;
   /**
    * Override or extend the styles applied to the component.
    */

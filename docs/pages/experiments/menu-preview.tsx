@@ -41,6 +41,19 @@ const defaultSettings: MenuSettings = {
   submenusOpenOnHover: false,
 };
 
+function createVirtualAnchor(mouseX: number, mouseY: number) {
+  return {
+    getBoundingClientRect() {
+      return DOMRect.fromRect({
+        x: mouseX,
+        y: mouseY,
+        width: 0,
+        height: 0,
+      });
+    },
+  };
+}
+
 interface PreviewCardItem {
   id: string;
   label: string;
@@ -519,6 +532,79 @@ function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHo
   );
 }
 
+function MenuPreviewContextMenuRecipe() {
+  const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
+  const open = anchor !== null;
+
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+
+    setAnchor(
+      anchor === null
+        ? createVirtualAnchor(event.clientX + 2, event.clientY - 6)
+        : // Keep the old Material recipe behavior: a repeated contextmenu event while
+          // open closes the menu instead of relocating it through the backdrop.
+          null,
+    );
+
+    // Preserve selected text after opening the context menu in Safari and Firefox.
+    const selection = document.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+
+      setTimeout(() => {
+        selection.addRange(range);
+      });
+    }
+  };
+
+  const handleClose = () => {
+    setAnchor(null);
+  };
+
+  const handleOpenChange: React.ComponentProps<typeof Menu>['onOpenChange'] = (
+    nextOpen,
+    eventDetails,
+  ) => {
+    if (nextOpen) {
+      return;
+    }
+
+    if (
+      eventDetails.reason === 'item-press' ||
+      eventDetails.reason === 'outside-press' ||
+      eventDetails.reason === 'escape-key'
+    ) {
+      handleClose();
+      return;
+    }
+
+    eventDetails.cancel();
+  };
+
+  return (
+    <div onContextMenu={handleContextMenu} style={{ cursor: 'context-menu' }}>
+      <Typography>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
+        amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
+        finibus nec. Donec ac dolor sed dolor porttitor blandit vel vel purus. Fusce vel malesuada
+        ligula. Nam quis vehicula ante, eu finibus est. Proin ullamcorper fermentum orci, quis
+        finibus massa. Nunc lobortis, massa ut rutrum ultrices, metus metus finibus ex, sit amet
+        facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
+        lacinia tellus a libero volutpat maximus.
+      </Typography>
+      <Menu open={open} onOpenChange={handleOpenChange}>
+        <Popup anchor={anchor ?? undefined} positionMethod="fixed">
+          <Item onClick={handleClose}>Copy</Item>
+          <Item onClick={handleClose}>Print</Item>
+          <Item onClick={handleClose}>Highlight</Item>
+          <Item onClick={handleClose}>Email</Item>
+        </Popup>
+      </Menu>
+    </div>
+  );
+}
+
 export default function MenuPreviewExperiment() {
   const [settings, setSettings] = React.useState<MenuSettings>(defaultSettings);
 
@@ -581,6 +667,11 @@ export default function MenuPreviewExperiment() {
             <h3 id="menu-preview-popover-preview-card">MenuPreview + Popover-based preview card</h3>
             <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
             <MenuPreviewWithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+          </section>
+          <section>
+            <h3 id="menu-preview-context-menu-recipe">MenuPreview as ContextMenu recipe</h3>
+            <p>Right-click the text to open a cursor-positioned MenuPreview popup.</p>
+            <MenuPreviewContextMenuRecipe />
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>

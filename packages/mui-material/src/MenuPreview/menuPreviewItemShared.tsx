@@ -155,8 +155,8 @@ export interface MenuPreviewSubmenuTriggerBaseProps {
 }
 
 export interface MenuPreviewBaseItemState {
-  disabled?: boolean;
-  highlighted?: boolean;
+  disabled?: (boolean) | undefined;
+  highlighted?: (boolean) | undefined;
 }
 
 export function menuPreviewItemOverridesResolver(
@@ -191,9 +191,9 @@ export function getMenuPreviewItemOwnerState(
 
 export function useMenuPreviewItemUtilityClasses<Classes extends object>(
   ownerState: MenuPreviewItemOwnerState & {
-    classes?: Partial<Classes>;
-    checked?: boolean;
-    open?: boolean;
+    classes?: (Partial<Classes>) | undefined;
+    checked?: (boolean) | undefined;
+    open?: (boolean) | undefined;
   },
   getUtilityClass: (slot: string) => string,
 ) {

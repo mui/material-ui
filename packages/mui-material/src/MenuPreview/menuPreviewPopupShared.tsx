@@ -12,7 +12,7 @@ import { resolveSlotProps, SlotProps } from './menuPreviewUtils';
 
 type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
   className?: string | undefined;
-  render?: never;
+  render?: (never) | undefined;
   style?: React.CSSProperties | undefined;
 } & Record<string, any>;
 
@@ -88,35 +88,35 @@ export interface MenuPreviewPopupSharedSlots {
    * The component used for the portal.
    * @default BaseMenu.Portal
    */
-  portal?: React.ElementType;
+  portal?: (React.ElementType) | undefined;
   /**
    * The component used for the positioner.
    * @default BaseMenu.Positioner
    */
-  positioner?: React.ElementType;
+  positioner?: (React.ElementType) | undefined;
   /**
    * The component rendered by the Base UI popup.
    * @default 'div'
    */
-  popup?: React.ElementType;
+  popup?: (React.ElementType) | undefined;
   /**
    * The component used for the Material surface.
    * @default Paper
    */
-  paper?: React.ElementType;
+  paper?: (React.ElementType) | undefined;
   /**
    * The component used for the presentational list wrapper.
    * @default List
    */
-  list?: React.ElementType;
+  list?: (React.ElementType) | undefined;
 }
 
 export interface MenuPreviewPopupSharedSlotProps<OwnerState> {
-  portal?: SlotProps<ExternalSlotProps<BaseMenu.Portal.Props>, OwnerState>;
-  positioner?: SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props>, OwnerState>;
-  popup?: SlotProps<ExternalSlotProps<BaseMenu.Popup.Props>, OwnerState>;
-  paper?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState>;
-  list?: SlotProps<ExternalSlotProps<ListProps>, OwnerState>;
+  portal?: (SlotProps<ExternalSlotProps<BaseMenu.Portal.Props>, OwnerState>) | undefined;
+  positioner?: (SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props>, OwnerState>) | undefined;
+  popup?: (SlotProps<ExternalSlotProps<BaseMenu.Popup.Props>, OwnerState>) | undefined;
+  paper?: (SlotProps<ExternalSlotProps<PaperProps>, OwnerState>) | undefined;
+  list?: (SlotProps<ExternalSlotProps<ListProps>, OwnerState>) | undefined;
 }
 
 type MenuPreviewPositionerProps = BaseMenu.Positioner.Props;
@@ -152,12 +152,12 @@ export interface MenuPreviewPopupPublicProps {
    *
    * By default, the popup is positioned against the trigger.
    */
-  anchor?: MenuPreviewPopupAnchor;
+  anchor?: (MenuPreviewPopupAnchor) | undefined;
   /**
    * Determines which CSS `position` property to use.
    * @default 'absolute'
    */
-  positionMethod?: MenuPreviewPopupPositionMethod;
+  positionMethod?: (MenuPreviewPopupPositionMethod) | undefined;
   /**
    * Which side of the anchor element to align the popup against.
    * @default 'bottom'
@@ -182,44 +182,44 @@ export interface MenuPreviewPopupPublicProps {
    * An element or a rectangle that delimits the area that the popup is confined to.
    * @default 'clipping-ancestors'
    */
-  collisionBoundary?: MenuPreviewPopupCollisionBoundary;
+  collisionBoundary?: (MenuPreviewPopupCollisionBoundary) | undefined;
   /**
    * Additional space to maintain from the edge of the collision boundary.
    * @default 5
    */
-  collisionPadding?: MenuPreviewPopupCollisionPadding;
+  collisionPadding?: (MenuPreviewPopupCollisionPadding) | undefined;
   /**
    * Minimum distance to maintain between the arrow and the edges of the popup.
    * @default 5
    */
-  arrowPadding?: MenuPreviewPositionerProps['arrowPadding'];
+  arrowPadding?: (MenuPreviewPositionerProps['arrowPadding']) | undefined;
   /**
    * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
    * @default false
    */
-  sticky?: MenuPreviewPositionerProps['sticky'];
+  sticky?: (MenuPreviewPositionerProps['sticky']) | undefined;
   /**
    * Whether to disable the popup from tracking layout shifts of its positioning anchor.
    * @default false
    */
-  disableAnchorTracking?: MenuPreviewPositionerProps['disableAnchorTracking'];
+  disableAnchorTracking?: (MenuPreviewPositionerProps['disableAnchorTracking']) | undefined;
   /**
    * Determines how to handle collisions when positioning the popup.
    */
-  collisionAvoidance?: MenuPreviewPopupCollisionAvoidance;
+  collisionAvoidance?: (MenuPreviewPopupCollisionAvoidance) | undefined;
   /**
    * The container element to portal the popup into.
    */
-  container?: MenuPreviewPopupContainer;
+  container?: (MenuPreviewPopupContainer) | undefined;
   /**
    * Whether to keep the portal mounted in the DOM while the popup is hidden.
    * @default false
    */
-  keepMounted?: MenuPreviewPortalProps['keepMounted'];
+  keepMounted?: (MenuPreviewPortalProps['keepMounted']) | undefined;
   /**
    * Determines the element to focus when the menu is closed.
    */
-  finalFocus?: MenuPreviewPopupFinalFocus;
+  finalFocus?: (MenuPreviewPopupFinalFocus) | undefined;
   /**
    * The elevation of the menu surface.
    * @default 8
@@ -231,17 +231,17 @@ export interface MenuPreviewPopupSharedProps<OwnerState>
   extends
     Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
     MenuPreviewPopupPublicProps {
-  classes?: Partial<Record<'root' | 'paper' | 'list', string>>;
+  classes?: (Partial<Record<'root' | 'paper' | 'list', string>>) | undefined;
   ownerState: OwnerState;
-  slots?: MenuPreviewPopupSharedSlots;
-  slotProps?: MenuPreviewPopupSharedSlotProps<OwnerState>;
+  slots?: (MenuPreviewPopupSharedSlots) | undefined;
+  slotProps?: (MenuPreviewPopupSharedSlotProps<OwnerState>) | undefined;
   defaultSlots: {
     popup: React.ElementType;
     paper: React.ElementType;
     list: React.ElementType;
   };
-  defaultPositionerProps?: Partial<BaseMenu.Positioner.Props>;
-  sx?: SxProps<Theme>;
+  defaultPositionerProps?: (Partial<BaseMenu.Positioner.Props>) | undefined;
+  sx?: (SxProps<Theme>) | undefined;
 }
 
 export const MenuPreviewPopupBase = React.forwardRef(function MenuPreviewPopupBase<OwnerState>(
