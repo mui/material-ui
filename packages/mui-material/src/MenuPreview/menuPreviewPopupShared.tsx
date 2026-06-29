@@ -220,6 +220,11 @@ export interface MenuPreviewPopupPublicProps {
    * Determines the element to focus when the menu is closed.
    */
   finalFocus?: MenuPreviewPopupFinalFocus;
+  /**
+   * The elevation of the menu surface.
+   * @default 8
+   */
+  elevation?: number | undefined;
 }
 
 export interface MenuPreviewPopupSharedProps<OwnerState>
@@ -269,6 +274,7 @@ export const MenuPreviewPopupBase = React.forwardRef(function MenuPreviewPopupBa
     collisionAvoidance,
     id,
     finalFocus,
+    elevation,
     style,
     ...other
   } = props;
@@ -325,7 +331,7 @@ export const MenuPreviewPopupBase = React.forwardRef(function MenuPreviewPopupBa
   const paperSlotProps = getSlotProps(
     PaperSlot,
     {
-      elevation: 8,
+      elevation: elevation ?? 8,
       ...resolvedPaperProps,
       className: clsx(classes?.paper, resolvedPaperProps?.className),
       sx: mergeSx(sx, resolvedPaperProps?.sx),

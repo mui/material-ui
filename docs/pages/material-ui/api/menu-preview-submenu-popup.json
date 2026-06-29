@@ -48,6 +48,7 @@
       }
     },
     "disableAnchorTracking": { "type": { "name": "bool" }, "default": "false" },
+    "elevation": { "type": { "name": "number" }, "default": "8" },
     "finalFocus": {
       "type": {
         "name": "union",

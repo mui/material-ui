@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { listClasses } from '@mui/material/List';
+import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import MenuPreview, {
   MenuPreviewCheckboxItem,
@@ -430,6 +431,36 @@ describe('<MenuPreview />', () => {
     expect(list).not.to.have.attribute('disablePadding');
     expect(list).not.to.have.attribute('disablepadding');
     expect(list).not.to.have.attribute('sx');
+  });
+
+  it('defaults the popup surface elevation to 8', async () => {
+    const { user } = render(
+      <MenuPreview>
+        <MenuPreviewTrigger>Options</MenuPreviewTrigger>
+        <MenuPreviewPopup slotProps={{ paper: { 'data-testid': 'paper' } }}>
+          <MenuPreviewItem>Profile</MenuPreviewItem>
+        </MenuPreviewPopup>
+      </MenuPreview>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation8);
+  });
+
+  it('forwards a custom elevation to the popup surface', async () => {
+    const { user } = render(
+      <MenuPreview>
+        <MenuPreviewTrigger>Options</MenuPreviewTrigger>
+        <MenuPreviewPopup elevation={4} slotProps={{ paper: { 'data-testid': 'paper' } }}>
+          <MenuPreviewItem>Profile</MenuPreviewItem>
+        </MenuPreviewPopup>
+      </MenuPreview>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation4);
   });
 
   it('supports controlled open state and Base UI cancellation details', async () => {

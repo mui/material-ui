@@ -25,6 +25,7 @@
     "disableAnchorTracking": {
       "description": "Whether to disable the popup from tracking layout shifts of its positioning anchor."
     },
+    "elevation": { "description": "The elevation of the menu surface." },
     "finalFocus": { "description": "Determines the element to focus when the menu is closed." },
     "keepMounted": {
       "description": "Whether to keep the portal mounted in the DOM while the popup is hidden."

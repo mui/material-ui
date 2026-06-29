@@ -119,6 +119,11 @@ export interface MenuPreviewPopupProps extends Omit<
    */
   finalFocus?: MenuPreviewPopupPublicProps['finalFocus'];
   /**
+   * The elevation of the menu surface.
+   * @default 8
+   */
+  elevation?: MenuPreviewPopupPublicProps['elevation'];
+  /**
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<MenuPreviewPopupClasses> | undefined;
@@ -317,6 +322,11 @@ MenuPreviewPopup.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableAnchorTracking: PropTypes.bool,
+  /**
+   * The elevation of the menu surface.
+   * @default 8
+   */
+  elevation: PropTypes.number,
   /**
    * Determines the element to focus when the menu is closed.
    */
