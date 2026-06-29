@@ -86,7 +86,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
 
   React.useEffect(() => {
     // Ensure that this component is not "activated" synchronously.
-    // https://github.com/facebook/react/issues/20074
+    // https://github.com/react/react/issues/20074
     setTimeout(() => {
       activatedRef.current = true;
     }, 0);

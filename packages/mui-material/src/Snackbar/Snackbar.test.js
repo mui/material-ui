@@ -18,7 +18,7 @@ describe('<Snackbar />', () => {
    * `plainRender` is already wrapped in act().
    * However, React has a bug that flushes effects in a portal synchronously.
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
-   * React bug: https://github.com/facebook/react/issues/20074
+   * React bug: https://github.com/react/react/issues/20074
    */
   function render(...args) {
     // eslint-disable-next-line testing-library/render-result-naming-convention
