@@ -7,7 +7,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { getButtonVars } from './buttonVars';
+import { private_buttonVars as buttonVars } from './buttonVars';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
@@ -94,13 +94,10 @@ const ButtonRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => {
-    // Material UI layer: resolve the public sized tokens through the same helper
-    // consumers use (ADR-0003), so emitted and targeted names can't drift. The
-    // prefix tracks the css-var feature: `--mui-Button-small-pad` with
-    // cssVariables, bare `--Button-small-pad` without. The agnostic seam
-    // (`--comp-pad`) and internal default (`--_pad`) are literal and unprefixed.
-    const buttonVars = getButtonVars(theme);
-
+    // Material UI layer: the internal sized tokens are the static, unprefixed
+    // `private_buttonVars` map (ADR-0003), imported here and by `enhanceDensity`
+    // so emitted and targeted names can't drift. The agnostic seam (`--comp-pad`)
+    // and internal default (`--_pad`) are literal and unprefixed.
     const inheritContainedBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
