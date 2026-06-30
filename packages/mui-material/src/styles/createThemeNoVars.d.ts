@@ -1,25 +1,26 @@
 import {
-  type ThemeOptions as SystemThemeOptions,
-  type Theme as SystemTheme,
-  type SxProps,
-  type CSSObject,
-  type SxConfig,
-  type ApplyStyles,
+  ThemeOptions as SystemThemeOptions,
+  Theme as SystemTheme,
+  SxProps,
+  CSSObject,
+  SxConfig,
+  ApplyStyles,
 } from '@mui/system';
-import { type Mixins, type MixinsOptions } from './createMixins';
-import { type Palette, type PaletteOptions } from './createPalette';
-import { type TypographyVariants, type TypographyVariantsOptions } from './createTypography';
-import { type Shadows } from './shadows';
-import { type Transitions, type TransitionsOptions } from './createTransitions';
-import { type ZIndex, type ZIndexOptions } from './zIndex';
-import { type Components } from './components';
+import { Mixins, MixinsOptions } from './createMixins';
+import { Palette, PaletteOptions } from './createPalette';
+import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
+import { Shadows } from './shadows';
+import { Motion, MotionOptions } from './createMotion';
+import { Transitions, TransitionsOptions } from './createTransitions';
+import { ZIndex, ZIndexOptions } from './zIndex';
+import { Components } from './components';
 import {
-  type CssVarsTheme,
-  type CssVarsPalette,
-  type ColorSystemOptions,
-  type Shape,
-  type ShapeOptions,
-  type SupportedColorScheme,
+  CssVarsTheme,
+  CssVarsPalette,
+  ColorSystemOptions,
+  Shape,
+  ShapeOptions,
+  SupportedColorScheme,
 } from './createThemeFoundation';
 
 /**
@@ -43,6 +44,7 @@ type CssVarsOptions = CssThemeVariables extends {
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions | undefined;
   components?: Components<Omit<Theme, 'components'>> | undefined;
+  motion?: MotionOptions | undefined;
   palette?: PaletteOptions | undefined;
   shadows?: Shadows | undefined;
   shape?: ShapeOptions | undefined;
@@ -59,6 +61,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
 
 export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
+  motion: Motion;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
   shape: Shape;

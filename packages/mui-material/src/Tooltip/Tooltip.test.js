@@ -15,6 +15,7 @@ import {
 } from '@mui/internal-test-utils';
 import { camelCase } from 'es-toolkit/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
@@ -384,6 +385,34 @@ describe('<Tooltip />', () => {
     clock.tick(transitionTimeout);
 
     expect(screen.queryByRole('tooltip')).to.equal(null);
+  });
+
+  it('opens on the next task when reduced motion is always', () => {
+    const handleEntered = spy();
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    render(
+      <ThemeProvider theme={theme}>
+        <Tooltip
+          enterDelay={0}
+          title="Hello World"
+          slotProps={{ transition: { onEntered: handleEntered, timeout: 250 } }}
+        >
+          <button type="button">Anchor</button>
+        </Tooltip>
+      </ThemeProvider>,
+    );
+
+    fireEvent.mouseOver(screen.getByRole('button'));
+
+    expect(handleEntered.callCount).to.equal(0);
+    clock.tick(0);
+    expect(handleEntered.callCount).to.equal(1);
+    expect(screen.getByRole('tooltip')).to.have.text('Hello World');
   });
 
   it('should be controllable', () => {
@@ -1126,6 +1155,53 @@ describe('<Tooltip />', () => {
 
       await user.keyboard('{Enter}');
 
+      await waitFor(() => {
+        expect(screen.queryByRole('tooltip')).to.equal(null);
+      });
+      expect(handleClose.callCount).to.equal(1);
+    });
+
+    it('stays closed when a stray mouseover lands while the disabled child is closing', async () => {
+      // Deterministic regression test for the flaky "stuck open" tooltip:
+      // when the focused child becomes disabled the close is scheduled via the React
+      // #9142 native-blur workaround, but a layout-shift `mouseover` on the interactive
+      // popper used to cancel that pending close and reopen the tooltip. A disabled
+      // anchor must never (re)open. `leaveDelay` opens a deterministic window in which to
+      // dispatch the stray `mouseover` before the close fires.
+      clock.restore();
+      const handleClose = spy();
+
+      function TestCase() {
+        const [disabled, setDisabled] = React.useState(false);
+        return (
+          <Tooltip
+            enterDelay={0}
+            leaveDelay={100}
+            onClose={handleClose}
+            title="Some information"
+            slotProps={{ transition: { timeout: 0 } }}
+          >
+            <button disabled={disabled} onClick={() => setDisabled(true)}>
+              Disable
+            </button>
+          </Tooltip>
+        );
+      }
+
+      const { user } = render(<TestCase />);
+
+      await user.tab();
+      await waitFor(() => {
+        expect(screen.getByRole('tooltip')).toBeVisible();
+      });
+
+      // Disabling the focused child schedules the close (leaveDelay window still pending).
+      await user.keyboard('{Enter}');
+
+      // A stray `mouseover` reaches the interactive popper before the close fires.
+      fireEvent.mouseOver(screen.getByRole('tooltip'));
+
+      // The disabled anchor must still close (and not reopen).
       await waitFor(() => {
         expect(screen.queryByRole('tooltip')).to.equal(null);
       });

@@ -4,7 +4,6 @@ import { InfoCard } from '@mui/internal-core-docs/InfoCard';
 import { type Theme } from '@mui/material/styles';
 import { MuiLogomarkIcon } from '@mui/internal-core-docs/svgIcons';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
 const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
@@ -25,13 +24,6 @@ const content = [
     title: 'Material UI',
     description: "An open-source React component library that implements Google's Material Design.",
     link: '/material-ui/',
-  },
-  {
-    icon: <WebRoundedIcon sx={iconStyles} />,
-    title: 'Joy UI',
-    description:
-      "An open-source React component library that implements MUI's own in-house design principles.",
-    link: '/joy-ui/getting-started/',
   },
   {
     icon: <StyleRoundedIcon sx={iconStyles} />,

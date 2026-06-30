@@ -103,14 +103,14 @@ declare const Foo: OverridableComponent<{
 // @ts-expect-error
 <Foo<typeof MyOverrideComponent> component={MyOverrideComponent} ref={() => {}} />;
 
-// @ts-expect-error
 <Foo
   numberProp={3}
+  // @ts-expect-error
   bad="hi" // invalid prop
 />;
 
-// @ts-expect-error
 <Foo
+  // @ts-expect-error
   component={MyOverrideComponent}
   myString={4} // should be a string
   numberProp={3}

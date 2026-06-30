@@ -1,20 +1,21 @@
-import { type OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion } from '@mui/types';
 import {
-  type SxConfig,
-  type SxProps,
-  type CSSObject,
-  type ApplyStyles,
-  type Theme as SystemTheme,
-  type Shape as SystemShape,
-  type ShapeOptions as SystemShapeOptions,
+  SxConfig,
+  SxProps,
+  CSSObject,
+  ApplyStyles,
+  Theme as SystemTheme,
+  Shape as SystemShape,
+  ShapeOptions as SystemShapeOptions,
 } from '@mui/system';
-import { type ExtractTypographyTokens } from '@mui/system/cssVars';
-import { type Palette, type PaletteOptions } from './createPalette';
-import { type Shadows } from './shadows';
-import { type Transitions } from './createTransitions';
-import { type Mixins } from './createMixins';
-import { type TypographyVariants } from './createTypography';
-import { type ZIndex } from './zIndex';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
+import { Palette, PaletteOptions } from './createPalette';
+import { Shadows } from './shadows';
+import { Motion } from './createMotion';
+import { Transitions } from './createTransitions';
+import { Mixins } from './createMixins';
+import { TypographyVariants } from './createTypography';
+import { ZIndex } from './zIndex';
 
 /**
  * default MD color-schemes
@@ -413,6 +414,7 @@ export interface CssVarsTheme extends ColorSystem {
   breakpoints: SystemTheme['breakpoints'];
   shape: Shape;
   typography: TypographyVariants;
+  motion: Motion;
   transitions: Transitions;
   shadows: Shadows;
   mixins: Mixins;

@@ -43,11 +43,6 @@ const projects = {
     output: 'docs/public/static/screenshots',
     viewport: { width: 813 * 2, height: 457 * 2 },
   },
-  'joy-ui': {
-    input: path.join(process.cwd(), 'docs/pages/joy-ui/getting-started/templates'),
-    output: 'docs/public/static/screenshots',
-    viewport: { width: 1600, height: 800 },
-  },
 };
 
 const names = new Set(process.argv.slice(2));

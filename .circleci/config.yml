@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  code-infra: https://raw.githubusercontent.com/mui/mui-public/fb2e995849648cc3f6e43ed4ad10b7bad0750d7c/.circleci/orbs/code-infra.yml
+  code-infra: https://raw.githubusercontent.com/mui/mui-public/c031d4471d2dcc537912379edc22953a7bb1fdc7/.circleci/orbs/code-infra.yml
   aws-cli: circleci/aws-cli@5.4.1
   aws-s3: circleci/aws-s3@4.1.3
 
@@ -28,7 +28,7 @@ default-job: &default-job
       description: The base url for running end-to-end test
       type: string
       default: << pipeline.parameters.e2e-base-url >>
-  environment:
+  environment: &default-environment
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
@@ -36,6 +36,7 @@ default-job: &default-job
   executor:
     name: code-infra/mui-node
     node-version: '22.18'
+  resource_class: medium.gen2
 
 default-context: &default-context
   context:
@@ -108,6 +109,11 @@ jobs:
       - code-infra/valelint
   test_static:
     <<: *default-job
+    resource_class: medium
+    environment:
+      <<: *default-environment
+      # pnpm 11's `pnpm dedupe --check` exceeds Node's default heap on this runner.
+      NODE_OPTIONS: --max-old-space-size=3584
     steps:
       - checkout
       - install-deps
@@ -131,7 +137,7 @@ jobs:
             git add -A && git diff --exit-code --staged
   test_types:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: xlarge.gen2
     steps:
       - checkout
       - install-deps
@@ -144,14 +150,12 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
-          environment:
-            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Test module augmentation
           command: pnpm typescript:module-augmentation
   test_types_next:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: xlarge.gen2
     steps:
       - checkout
       - install-deps:
@@ -159,12 +163,6 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: pnpm typescript:ci
-          environment:
-            NODE_OPTIONS: --max-old-space-size=3072
-      - run:
-          name: Prepare files
-          # Enable configuration that is only valid in typescript@next
-          command: sed -i 's|// <ts@next uncomment>||g' test/moduleResolution/tsconfig.node.json
       - run:
           name: Build declaration files
           command: |
@@ -175,12 +173,20 @@ jobs:
             node scripts/testBuiltTypes.mjs
   test_browser_legacy:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.49.1-noble
     steps:
       - checkout
+      # The legacy Playwright image (pinned for older browser engines) ships Node 22.12,
+      # which is below pnpm 11.5's minimum of Node 22.13. Install a newer Node into
+      # /usr/local (ahead of the image's /usr/bin on PATH) without changing the browsers.
+      - run:
+          name: Upgrade Node.js for pnpm 11
+          command: |
+            curl -fsSL https://nodejs.org/dist/v22.18.0/node-v22.18.0-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            node --version
       - code-infra/install-pnpm
       - run:
           name: Configure pnpm engine-strict
@@ -189,15 +195,15 @@ jobs:
           react-version: << parameters.react-version >>
           playwright-version: '1.49.1'
       - run:
-          name: Tests chromium
+          name: Tests Chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests webkit
+          name: Tests WebKit
           environment:
             VITEST_BROWSERS: 'webkit'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests firefox
+          name: Tests Firefox
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
@@ -205,7 +211,7 @@ jobs:
           path: test-results
   test_browser:
     <<: *default-job
-    resource_class: 'medium+'
+    resource_class: medium+.gen2
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -214,15 +220,15 @@ jobs:
       - install-deps:
           react-version: << parameters.react-version >>
       - run:
-          name: Tests chromium
+          name: Tests Chromium
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests webkit
+          name: Tests WebKit
           environment:
             VITEST_BROWSERS: 'webkit'
           command: pnpm test:browser --no-isolate --no-file-parallelism
       - run:
-          name: Tests firefox
+          name: Tests Firefox
           environment:
             VITEST_BROWSERS: 'firefox'
           command: pnpm test:browser --no-isolate --no-file-parallelism
@@ -230,6 +236,7 @@ jobs:
           path: test-results
   test_e2e:
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -243,6 +250,7 @@ jobs:
   test_e2e_website:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
+    resource_class: medium
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -256,6 +264,7 @@ jobs:
             PLAYWRIGHT_TEST_BASE_URL: << parameters.e2e-base-url >>
   test_regressions:
     <<: *default-job
+    resource_class: medium+
     executor:
       name: code-infra/mui-node-browser
       playwright-img-version: v1.59.1-noble
@@ -268,23 +277,10 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: A11y results committed?
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: Build packages for fixtures
-          command: pnpm release:build
-      - run:
-          name: Validate type declarations
-          command: pnpm validate-declarations
-      - run:
-          name: Analyze exported typescript
-          command: pnpm test:attw
-          no_output_timeout: 20m
-      - run:
-          name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.mjs
-      - run:
-          name: test exported typescript
-          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
+          # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
+          # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
+          # this check still verifies the a11y results without tripping on the pinned deps.
+          command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
@@ -445,6 +441,7 @@ jobs:
           command: pnpm start
   test_bundle_size_monitor:
     <<: *default-job
+    resource_class: medium
     steps:
       - checkout
       - install-deps
@@ -455,6 +452,19 @@ jobs:
       - run:
           name: Create and upload a size snapshot
           command: pnpm size:snapshot --concurrency 6
+      - run:
+          name: Validate type declarations
+          command: pnpm validate-declarations
+      - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+          no_output_timeout: 20m
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.mjs
+      - run:
+          name: test exported typescript
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - store_artifacts:
           name: Persist size snapshot as pipeline artifact
           path: size-snapshot.json
@@ -584,10 +594,11 @@ workflows:
   #         react-version: ^17.0.0
   #         name: test_e2e-react@17
 
-  # This workflow can be triggered manually on the PR
-  react-18:
+  # Manually-triggered counterpart of nightly-cron — runs the full canary
+  # suite (react@18, react@next, typescript@next) on the current PR branch.
+  nightly:
     when:
-      equal: [react-18, << pipeline.parameters.workflow >>]
+      equal: [nightly, << pipeline.parameters.workflow >>]
     jobs:
       - test_unit:
           <<: *default-context
@@ -605,9 +616,29 @@ workflows:
           <<: *default-context
           react-version: ^18.0.0
           name: test_e2e-react@18
+      - test_unit:
+          <<: *default-context
+          react-version: next
+          name: test_unit-react@next
+      - test_browser:
+          <<: *default-context
+          react-version: next
+          name: test_browser-react@next
+      - test_regressions:
+          <<: *default-context
+          react-version: next
+          name: test_regressions-react@next
+      - test_e2e:
+          <<: *default-context
+          react-version: next
+          name: test_e2e-react@next
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
 
-  # This workflow is identical to react-18, but scheduled
-  react-18-cron:
+  # Scheduled counterpart of `nightly`. react@18 runs on all listed branches;
+  # the react@next and typescript@next jobs skip v5.x via per-job branch filters.
+  nightly-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -618,6 +649,7 @@ workflows:
                 - master
                 - v5.x
                 - v6.x
+                - v7.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -635,76 +667,37 @@ workflows:
           <<: *default-context
           react-version: ^18.0.0
           name: test_e2e-react@18
-
-  # This workflow can be triggered manually on the PR
-  react-next:
-    when:
-      equal: [react-next, << pipeline.parameters.workflow >>]
-    jobs:
       - test_unit:
           <<: *default-context
           react-version: next
           name: test_unit-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_browser:
           <<: *default-context
           react-version: next
           name: test_browser-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_regressions:
           <<: *default-context
           react-version: next
           name: test_regressions-react@next
+          filters:
+            branches:
+              ignore: v5.x
       - test_e2e:
           <<: *default-context
           react-version: next
           name: test_e2e-react@next
-  # This workflow is identical to react-next, but scheduled
-  react-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_unit:
-          <<: *default-context
-          react-version: next
-          name: test_unit-react@next
-      - test_browser:
-          <<: *default-context
-          react-version: next
-          name: test_browser-react@next
-      - test_regressions:
-          <<: *default-context
-          react-version: next
-          name: test_regressions-react@next
-      - test_e2e:
-          <<: *default-context
-          react-version: next
-          name: test_e2e-react@next
-
-  typescript-next:
-    when:
-      equal: [typescript-next, << pipeline.parameters.workflow >>]
-    jobs:
+              ignore: v5.x
       - test_types_next:
           <<: *default-context
           typescript-version: next
-
-  typescript-next-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
           filters:
             branches:
-              only:
-                # #target-branch-reference
-                - master
-                - v6.x
-    jobs:
-      - test_types_next:
-          <<: *default-context
-          typescript-version: next
+              ignore: v5.x

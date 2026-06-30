@@ -5,6 +5,8 @@ import { type OverridableComponent, type OverrideProps } from '../OverridableCom
 import { type ListItemClasses } from './listItemClasses';
 import { type SlotProps } from '../utils/types';
 
+export interface ListItemRootSlotPropsOverrides {}
+
 export interface ListItemSecondaryActionSlotPropsOverrides {}
 
 /**
@@ -66,7 +68,13 @@ export interface ListItemOwnProps extends ListItemBaseProps {
    */
   slotProps?:
     | {
-        root?: React.HTMLAttributes<HTMLDivElement> | undefined;
+        root?:
+          | SlotProps<
+              React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
+              ListItemRootSlotPropsOverrides,
+              ListItemOwnerState
+            >
+          | undefined;
         secondaryAction?:
           | SlotProps<
               React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
