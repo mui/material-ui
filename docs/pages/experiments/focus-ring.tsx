@@ -63,6 +63,20 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
 
 const noop = () => {};
 
+// The ring renders on the ButtonBase root. For form controls (Checkbox/Radio/Switch)
+// `data-ring-target` sits on the inner <input>, so resolve to the SwitchBase root.
+const ringEl = (el: HTMLElement): HTMLElement =>
+  el.closest<HTMLElement>('.MuiButtonBase-root') ?? el;
+
+const isRingDisabled = (el: HTMLElement): boolean => {
+  const root = ringEl(el);
+  return (
+    root.classList.contains('Mui-disabled') ||
+    root.getAttribute('aria-disabled') === 'true' ||
+    (el as HTMLInputElement).disabled === true
+  );
+};
+
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <React.Fragment>
@@ -278,7 +292,6 @@ export default function FocusRing() {
   const [focused, setFocused] = React.useState<string | null>(null);
   const [ringIdx, setRingIdx] = React.useState(-1); // N1
   const [total, setTotal] = React.useState(0); // N1
-  const galleryRef = React.useRef<HTMLDivElement>(null);
 
   // N2 — a non-empty, valid JSON object overrides the selected preset.
   const custom = React.useMemo(() => {
@@ -310,23 +323,33 @@ export default function FocusRing() {
     customHelp = 'Overrides the preset above';
   }
 
-  // N1 — pointer-driven ring shim (experiment-only): toggles `.Mui-focusVisible`
-  // on a `[data-ring-target]` so reviewers can step through with the mouse.
+  // N1 — pointer-driven ring shim (experiment-only): forces `.Mui-focusVisible`
+  // on the ring-bearing root so reviewers can step through with the mouse.
+  // `data-ring-target` lives only in the gallery, so a document query is safe.
   const ringTargets = React.useCallback(
-    () => Array.from(galleryRef.current?.querySelectorAll<HTMLElement>('[data-ring-target]') ?? []),
+    () => Array.from(document.querySelectorAll<HTMLElement>('[data-ring-target]')),
     [],
+  );
+  // The walk steps over enabled targets only — disabled controls take no ring.
+  const walkTargets = React.useCallback(
+    () => ringTargets().filter((el) => !isRingDisabled(el)),
+    [ringTargets],
   );
   const applyRing = React.useCallback(
     (idx: number) => {
-      const targets = ringTargets();
-      targets.forEach((el, i) => el.classList.toggle('Mui-focusVisible', i === idx));
+      const targets = walkTargets();
+      ringTargets().forEach((el) => ringEl(el).classList.remove('Mui-focusVisible'));
+      const el = targets[idx];
+      if (el) {
+        ringEl(el).classList.add('Mui-focusVisible');
+      }
       setRingIdx(idx);
-      setFocused(targets[idx]?.getAttribute('data-ring-target') ?? null);
+      setFocused(el?.getAttribute('data-ring-target') ?? null);
     },
-    [ringTargets],
+    [walkTargets, ringTargets],
   );
   const step = (delta: number) => {
-    const targets = ringTargets();
+    const targets = walkTargets();
     if (targets.length === 0) {
       return;
     }
@@ -335,8 +358,8 @@ export default function FocusRing() {
   };
 
   React.useEffect(() => {
-    setTotal(ringTargets().length);
-  }, [ringTargets, preset, vars, mode, focusRingValue]);
+    setTotal(walkTargets().length);
+  }, [walkTargets, preset, vars, mode, focusRingValue]);
 
   return (
     <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
@@ -463,16 +486,17 @@ export default function FocusRing() {
         </Paper>
 
         <Box
-          ref={galleryRef}
           sx={{ flex: 1, minWidth: 0 }}
           onFocusCapture={(event) => {
             const target = event.target as HTMLElement;
             setFocused(target.getAttribute('data-ring-target'));
-            // Real keyboard focus wins: drop the pointer shim from every other target
-            // so there's never a double-ring.
+            // Real keyboard focus wins: drop the pointer shim from every ring root
+            // except the one being focused, so there's never a double-ring.
+            const focusedRing = target.closest('.MuiButtonBase-root');
             ringTargets().forEach((el) => {
-              if (el !== target) {
-                el.classList.remove('Mui-focusVisible');
+              const root = ringEl(el);
+              if (root !== focusedRing) {
+                root.classList.remove('Mui-focusVisible');
               }
             });
             setRingIdx(-1);
