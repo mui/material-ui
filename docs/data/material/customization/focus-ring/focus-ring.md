@@ -1,6 +1,6 @@
 # Focus ring
 
-<p class="description">Apply a consistent keyboard focus ring across Material UI components with a single theme option.</p>
+<p class="description">Apply a consistent keyboard focus ring across Material UI components with a single theme option.</p>
 
 ## Enabling the focus ring
 

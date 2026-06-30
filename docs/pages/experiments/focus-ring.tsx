@@ -183,7 +183,9 @@ function OuterRing() {
             <Checkbox
               defaultChecked
               slotProps={{
-                input: { 'data-ring-target': 'Checkbox' } as React.InputHTMLAttributes<HTMLInputElement>,
+                input: {
+                  'data-ring-target': 'Checkbox',
+                } as React.InputHTMLAttributes<HTMLInputElement>,
               }}
             />
           }
@@ -196,7 +198,9 @@ function OuterRing() {
             <Radio
               defaultChecked
               slotProps={{
-                input: { 'data-ring-target': 'Radio' } as React.InputHTMLAttributes<HTMLInputElement>,
+                input: {
+                  'data-ring-target': 'Radio',
+                } as React.InputHTMLAttributes<HTMLInputElement>,
               }}
             />
           }
@@ -209,7 +213,9 @@ function OuterRing() {
             <Switch
               defaultChecked
               slotProps={{
-                input: { 'data-ring-target': 'Switch' } as React.InputHTMLAttributes<HTMLInputElement>,
+                input: {
+                  'data-ring-target': 'Switch',
+                } as React.InputHTMLAttributes<HTMLInputElement>,
               }}
             />
           }
