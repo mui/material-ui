@@ -84,6 +84,14 @@ export default withDocsInfra({
           as: '*.js',
         },
       ],
+      // API page description JSON (imported only by generated API pages) → render
+      // the markdown to HTML at build time.
+      '**/translations/api-docs/**/*.json': [
+        {
+          loaders: [{ loader: '@mui/internal-markdown/apiPageTranslationLoader' }],
+          as: '*.js',
+        },
+      ],
     },
   },
   webpack: (
@@ -209,6 +217,13 @@ export default withDocsInfra({
                 type: 'asset/source',
               },
             ],
+          },
+          {
+            // API page description JSON (`translations/api-docs/**`, imported only by
+            // generated API pages) → render the markdown to HTML at build time.
+            test: /translations[\\/]api-docs[\\/].*\.json$/,
+            type: 'javascript/auto',
+            use: [{ loader: require.resolve('@mui/internal-markdown/apiPageTranslationLoader') }],
           },
           // required to transpile ../packages/
           {
