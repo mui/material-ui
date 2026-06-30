@@ -271,7 +271,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     secondaryAction: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**

@@ -6,13 +6,8 @@ packages:
   - test
   - test/*
 
-patchedDependencies:
-  styled-components: patches/styled-components.patch
-
-onlyBuiltDependencies:
-  - '@vvago/vale'
-
 engineStrict: true
+enablePrePostScripts: true
 updateNotifier: false
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
@@ -43,3 +38,21 @@ overrides:
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.2.6'
+  # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
+  caniuse-lite: '^1.0.30001792'
+  '@types/node': '20.19.39'
+  cross-fetch: '^4.1.0'
+  '@pigment-css/react': '0.0.31'
+  '@pigment-css/unplugin': '0.0.31'
+  '@pigment-css/nextjs-plugin': '0.0.31'
+  '@pigment-css/vite-plugin': '0.0.31'
+
+allowBuilds:
+  '@vvago/vale': true
+  esbuild: true
+  nx: true
+  sharp: true
+  unrs-resolver: true
+  '@mui/x-telemetry': false
+  core-js: false
+  core-js-pure: false

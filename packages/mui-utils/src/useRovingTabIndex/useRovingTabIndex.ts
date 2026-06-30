@@ -288,7 +288,6 @@ export function useRovingTabIndexRoot<Key = unknown>(
     (
       currentIndex: number,
       direction: 'next' | 'previous',
-      // eslint-disable-next-line @typescript-eslint/no-shadow
       wrap: boolean,
       isItemFocusableOverride?: (item: Item<Key>) => boolean,
     ) => {

@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import { TransitionGroup } from 'react-transition-group';
 import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
 import { act, createRenderer, screen } from '@mui/internal-test-utils';
 import Transition from './Transition';
@@ -177,6 +178,45 @@ describe('<Transition />', () => {
       setProps({ in: false });
       clock.tick(100);
       expect(screen.queryByTestId('target')).to.equal(null);
+    });
+
+    it('attaches the child ref in the same commit `in` turns true with unmountOnExit', () => {
+      // Regression for opening from unmounted: a parent passive effect that reads
+      // the child ref right after `in` flips must find it mounted, otherwise focus
+      // management like the vertical stepper demo crashes. See issue #48637.
+      let refWhenEffectRan: HTMLDivElement | null | undefined;
+      const onExited = spy();
+      function Wrapper() {
+        const [open, setOpen] = React.useState(false);
+        const nodeRef = React.useRef<HTMLDivElement>(null);
+        React.useEffect(() => {
+          if (open) {
+            refWhenEffectRan = nodeRef.current;
+          }
+        }, [open]);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setOpen(true)}>
+              open
+            </button>
+            <Transition in={open} unmountOnExit timeout={100} nodeRef={nodeRef} onExited={onExited}>
+              {(status) => (
+                <div ref={nodeRef} data-testid="target" data-status={status}>
+                  content
+                </div>
+              )}
+            </Transition>
+          </React.Fragment>
+        );
+      }
+      render(<Wrapper />);
+      expect(screen.queryByTestId('target')).to.equal(null);
+      act(() => {
+        screen.getByText('open').click();
+      });
+      expect(refWhenEffectRan).to.equal(screen.getByTestId('target'));
+      // The intermediate `exited` status during open must not fire `onExited`.
+      expect(onExited.callCount).to.equal(0);
     });
   });
 
@@ -948,6 +988,53 @@ describe('<Transition />', () => {
       expect(handlers.onEnter!.callCount).to.equal(0);
       // The child moves straight to entered.
       expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+    });
+  });
+
+  describe('react-transition-group public TransitionGroup interop', () => {
+    it('child added to an already-mounted TransitionGroup enters with isAppearing=false', async () => {
+      const handlers = { onEnter: spy(), onEntered: spy() };
+      let done: (() => void) | null = null;
+      const addEndListener = (_node: HTMLElement, next: () => void) => {
+        done = next;
+      };
+
+      function ChildWrapper() {
+        const [shouldRender, setShouldRender] = React.useState(false);
+        return (
+          <React.Fragment>
+            <button type="button" onClick={() => setShouldRender(true)}>
+              add
+            </button>
+            <TransitionGroup component={null}>
+              {shouldRender ? (
+                <TestHarness
+                  key="item"
+                  appear={false}
+                  timeout={null}
+                  addEndListener={addEndListener}
+                  handlers={handlers}
+                />
+              ) : null}
+            </TransitionGroup>
+          </React.Fragment>
+        );
+      }
+
+      const { user } = render(<ChildWrapper />);
+      await user.click(screen.getByRole('button', { name: 'add' }));
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entering');
+      expect(handlers.onEnter.callCount).to.equal(1);
+      expect(handlers.onEnter.args[0][0]).to.equal(false);
+
+      act(() => {
+        done!();
+      });
+
+      expect(screen.getByTestId('target')).to.have.attribute('data-status', 'entered');
+      expect(handlers.onEntered.callCount).to.equal(1);
+      expect(handlers.onEntered.args[0][0]).to.equal(false);
     });
   });
 
