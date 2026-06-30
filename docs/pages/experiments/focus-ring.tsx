@@ -9,11 +9,20 @@ import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Switch from '@mui/material/Switch';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
+import Chip from '@mui/material/Chip';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepButton from '@mui/material/StepButton';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import MenuList from '@mui/material/MenuList';
@@ -24,6 +33,18 @@ import ListItemText from '@mui/material/ListItemText';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import ButtonBase from '@mui/material/ButtonBase';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Table from '@mui/material/Table';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -37,6 +58,8 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
   twocolor: { label: 'two-color (C40)', value: { boxShadow: '0 0 0 4px gold' } },
   shadowonly: { label: 'box-shadow only', value: { outlineColor: 'transparent', boxShadow: '0 0 0 4px gold' } },
 };
+
+const noop = () => {};
 
 // Inner-ring bucket: same preset, but pulled inside (offset ≤ 0) so a scrollable
 // container can't clip it.
@@ -103,10 +126,11 @@ function OuterRing() {
           <StarIcon />
         </IconButton>
       </Row>
-      <Row label="Fab">
-        <Fab size="small" color="primary" aria-label="add" data-ring-target="Fab (elevation)">
-          <AddIcon />
-        </Fab>
+      <Row label="ButtonGroup">
+        <ButtonGroup variant="outlined">
+          <Button data-ring-target="ButtonGroup">One</Button>
+          <Button data-ring-target="ButtonGroup">Two</Button>
+        </ButtonGroup>
       </Row>
       <Row label="ToggleButton">
         <ToggleButtonGroup value="left" exclusive>
@@ -117,6 +141,49 @@ function OuterRing() {
             Right
           </ToggleButton>
         </ToggleButtonGroup>
+      </Row>
+      <Row label="Fab">
+        <Fab size="small" color="primary" aria-label="add" data-ring-target="Fab (elevation)">
+          <AddIcon />
+        </Fab>
+      </Row>
+      <Row label="Chip">
+        <Chip label="Clickable" onClick={noop} data-ring-target="Chip" />
+        <Chip label="Deletable" onDelete={noop} data-ring-target="Chip" />
+      </Row>
+      <Row label="Checkbox">
+        <FormControlLabel
+          control={<Checkbox defaultChecked slotProps={{ input: { 'data-ring-target': 'Checkbox' } }} />}
+          label="Checkbox"
+        />
+      </Row>
+      <Row label="Radio">
+        <FormControlLabel
+          control={<Radio defaultChecked slotProps={{ input: { 'data-ring-target': 'Radio' } }} />}
+          label="Radio"
+        />
+      </Row>
+      <Row label="Switch">
+        <FormControlLabel
+          control={<Switch defaultChecked slotProps={{ input: { 'data-ring-target': 'Switch' } }} />}
+          label="Switch"
+        />
+      </Row>
+      <Row label="Stepper">
+        <Stepper nonLinear activeStep={0} sx={{ minWidth: 260 }}>
+          <Step>
+            <StepButton data-ring-target="StepButton">One</StepButton>
+          </Step>
+          <Step>
+            <StepButton data-ring-target="StepButton">Two</StepButton>
+          </Step>
+        </Stepper>
+      </Row>
+      <Row label="Pagination">
+        <Pagination
+          count={3}
+          renderItem={(item) => <PaginationItem {...item} data-ring-target="PaginationItem" />}
+        />
       </Row>
       <Row label="CardActionArea">
         <Card variant="outlined" sx={{ width: 160 }}>
@@ -163,6 +230,48 @@ function InnerRing() {
             <ListItemText primary="List item" />
           </ListItemButton>
         </List>
+      </Row>
+      <Row label="AccordionSummary">
+        <Accordion disableGutters sx={{ width: 280 }}>
+          <AccordionSummary data-ring-target="AccordionSummary">Accordion header</AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body2">Details</Typography>
+          </AccordionDetails>
+        </Accordion>
+      </Row>
+      <Row label="BottomNavigation">
+        <BottomNavigation
+          showLabels
+          value={0}
+          sx={{ width: 320, border: 1, borderColor: 'divider', borderRadius: 1 }}
+        >
+          <BottomNavigationAction label="Star" icon={<StarIcon />} data-ring-target="BottomNavigationAction" />
+          <BottomNavigationAction label="Add" icon={<AddIcon />} data-ring-target="BottomNavigationAction" />
+        </BottomNavigation>
+      </Row>
+      <Row label="TableSortLabel">
+        <TableContainer component={Paper} variant="outlined" sx={{ width: 280 }}>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <TableSortLabel active direction="asc" data-ring-target="TableSortLabel">
+                    Name
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell>
+                  <TableSortLabel data-ring-target="TableSortLabel">Size</TableSortLabel>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>file.txt</TableCell>
+                <TableCell>12 KB</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Row>
     </Bucket>
   );
