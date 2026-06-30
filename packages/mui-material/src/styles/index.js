@@ -25,6 +25,7 @@ export function experimental_sx() {
   );
 }
 export { default as createTheme } from './createTheme';
+export { default as generateThemeCss } from './generateThemeCss';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
@@ -36,11 +37,6 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
-export {
-  default as CssThemeProvider,
-  useCssColorScheme,
-  CssColorSchemeContext,
-} from './CssThemeProvider';
 export { default as ThemeScope, ThemeScopeContext, useThemeScopeProps } from './ThemeScope';
 export { StyledEngineProvider } from '@mui/system';
 // The legacy utilities from @mui/styles

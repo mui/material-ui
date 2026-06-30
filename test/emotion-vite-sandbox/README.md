@@ -48,27 +48,18 @@ grep -r "@emotion" test/emotion-vite-sandbox/dist/
 
 ## Bundle size comparison
 
-Build all three sandboxes, then compare JavaScript output sizes to measure the overhead
-of each approach:
+Build both sandboxes, then compare JavaScript output sizes to measure the
+Emotion overhead:
 
 ```bash
 pnpm -F @mui-internal/noop-vite-sandbox build
-pnpm -F @mui-internal/css-theme-provider-vite-sandbox build
 pnpm -F @mui-internal/emotion-vite-sandbox build
 
 # Compare JS sizes
 ls -lh test/noop-vite-sandbox/dist/assets/*.js
-ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.js
 ls -lh test/emotion-vite-sandbox/dist/assets/*.js
 
 # Compare CSS sizes
 ls -lh test/noop-vite-sandbox/dist/assets/*.css
-ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.css
 ls -lh test/emotion-vite-sandbox/dist/assets/*.css
 ```
-
-## Relation to the TODO
-
-This sandbox maps to **§8 (Bundle size validation)** in `STYLING_V8_TODO.md`.
-It is the Emotion-path counterpart to `test/noop-vite-sandbox`, used to
-measure the JavaScript bundle delta between the two engines.

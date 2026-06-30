@@ -1,8 +1,9 @@
-import { styleSheetsToString } from '@mui/system';
+import { styleSheetsToString } from '@mui/system/cssVars';
 
 // Breakpoint-dependent component CSS cannot live in static .module.css files
 // because it must use the live theme breakpoints. Components register small
-// descriptors here; CssVarsInjector serializes them with the current theme.
+// descriptors here; static CSS generation and provider paths serialize them
+// with the current theme.
 export interface BreakpointStyleTheme {
   breakpoints?:
     | {
@@ -127,7 +128,7 @@ function scopeStyleSheets(theme: BreakpointStyleTheme, sheets: BreakpointStyleSh
   });
 }
 
-// Generate media rules from the live theme, then scope them for nested providers.
+// Generate media rules from the theme, then scope them for nested theme roots.
 // The layer matches static component CSS; descriptors should usually write CSS
 // vars so later static CSS can consume the generated responsive values.
 export function generateBreakpointStyleSheets(

@@ -4,8 +4,8 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useCurrentColorScheme, { type Mode, type SystemMode } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 
-// Inlined here so every consumer (createCssVarsProvider, CssThemeProvider, …)
-// gets the same string without duplicating it.
+// Inlined here so each color-scheme provider/hook gets the same string without
+// duplicating it.
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
 
@@ -48,7 +48,8 @@ export interface UseColorSchemeSetupResult<SupportedColorScheme extends string> 
 
 /**
  * Encapsulates the color-scheme management logic shared between
- * `CssVarsProvider` (from `createCssVarsProvider`) and `CssThemeProvider`:
+ * `CssVarsProvider` (from `createCssVarsProvider`) and standalone
+ * color-scheme hooks:
  *
  * 1. Reads/writes mode + colorScheme from `localStorage` via
  *    `useCurrentColorScheme`, including `'system'` (OS) preference handling.

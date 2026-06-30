@@ -1682,7 +1682,9 @@ importers:
         specifier: 0.12.7
         version: 0.12.7
 
-  test/css-theme-provider-vite-sandbox:
+  test/e2e: {}
+
+  test/noop-vite-sandbox:
     dependencies:
       '@mui/material':
         specifier: workspace:*
@@ -1718,8 +1720,6 @@ importers:
       vite:
         specifier: ^7.3.1
         version: 7.3.5(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
-
-  test/e2e: {}
 
   test/emotion-vite-sandbox:
     dependencies:
