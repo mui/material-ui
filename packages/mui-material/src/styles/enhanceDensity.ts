@@ -1,5 +1,6 @@
 import { Theme } from './createTheme';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
+import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 
 /**
  * Named density steps, surfaced as `--mui-density-*` CSS vars. Components wired
@@ -23,6 +24,17 @@ export interface DensityOptions {
 }
 
 type DensityKey = keyof DensityScale;
+
+/**
+ * PROTOTYPE-ONLY: explicit per-step px scales for the experiment page. Production
+ * scale is settled internally (RFC out-of-scope). `normal` is `undefined` → the
+ * spacing-derived `enhanceDensity` default.
+ */
+export const DENSITY_PRESETS: Record<string, Partial<DensityScale> | undefined> = {
+  compact: { xxs: '2px', xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '18px', xxl: '24px' },
+  normal: undefined,
+  comfort: { xxs: '6px', xs: '8px', sm: '12px', md: '16px', lg: '24px', xl: '32px', xxl: '40px' },
+};
 
 const densityKeys: DensityKey[] = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
@@ -120,9 +132,11 @@ export default function enhanceDensity<
           {
             // Sized-only: each size's `pad` shorthand (block inline) maps to its
             // own density step, so tuning the scale keeps the per-size matrix.
-            [pv('Button-small-pad')]: `${varRefs.xxs} ${varRefs.sm}`,
-            [pv('Button-medium-pad')]: `${varRefs.xs} ${varRefs.lg}`,
-            [pv('Button-large-pad')]: `${varRefs.sm} ${varRefs.xl}`,
+            // De-prefixed (Option A): emit through the same static map the styled
+            // fn reads, so names can't drift. Bare, unprefixed.
+            [buttonVars.smallPad]: `${varRefs.xxs} ${varRefs.sm}`,
+            [buttonVars.mediumPad]: `${varRefs.xs} ${varRefs.lg}`,
+            [buttonVars.largePad]: `${varRefs.sm} ${varRefs.xl}`,
           },
         ],
       },
