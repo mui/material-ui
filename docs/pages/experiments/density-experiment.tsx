@@ -66,12 +66,45 @@ function validateMapping(input: string): { valid: boolean; error: string | null 
   return { valid: true, error: null };
 }
 
+// Active preset's 7-step scale in px (for the legend + live preview).
+// compact/comfort = explicit; `normal` = spacing-derived (unit 8px = enhanceDensity default).
+const NORMAL_MULTIPLIER: Record<(typeof SCALE_KEYS)[number], number> = {
+  xxs: 0.5,
+  xs: 0.75,
+  sm: 1,
+  md: 1.5,
+  lg: 2,
+  xl: 3,
+  xxl: 4,
+};
+const SPACING_UNIT = 8;
+
+function presetScalePx(preset: Preset): Record<string, string> | null {
+  if (preset === 'unset') {
+    return null;
+  }
+  if (preset === 'normal') {
+    return Object.fromEntries(
+      SCALE_KEYS.map((k) => [k, `${NORMAL_MULTIPLIER[k] * SPACING_UNIT}px`]),
+    );
+  }
+  return (DENSITY_PRESETS[preset] ?? {}) as Record<string, string>;
+}
+
+// Resolved var string + px for a valid mapping value under the active scale —
+// e.g. `md` → { varStr: 'var(--mui-density-md)', px: '8px' } (compact).
+function resolvePreview(value: string, scalePx: Record<string, string> | null) {
+  const tokens = value.trim().split(/\s+/).filter(Boolean);
+  return { varStr: stepsToVar(value), px: scalePx ? tokens.map((t) => scalePx[t]).join(' ') : '' };
+}
+
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [component] = React.useState('Button');
   const [mapping, setMapping] = React.useState<Record<MappingKey, string>>(PREFILL);
 
   const mappingEnabled = preset !== 'unset';
+  const scalePx = presetScalePx(preset);
 
   const canvasTheme = React.useMemo(() => {
     if (preset === 'unset') {
@@ -153,12 +186,42 @@ export default function DensityExperiment() {
                 ⓘ pick a preset to enable steps
               </Typography>
             )}
+            {mappingEnabled && scalePx && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                component="p"
+                data-legend
+                sx={{ mt: 0.5 }}
+              >
+                {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
+              </Typography>
+            )}
+            {/* Single datalist shared by all fields — key typeahead. */}
+            <Box
+              component="datalist"
+              id="density-keys"
+              sx={{ display: 'none' }}
+            >
+              {SCALE_KEYS.map((k) => (
+                <option key={k} value={k}>
+                  {k}
+                </option>
+              ))}
+            </Box>
             <Stack spacing={1.5} sx={{ mt: 1.5 }}>
               {SIZES.map((size) => {
                 const key = `${size}Pad` as MappingKey;
                 const value = mapping[key];
                 const { valid, error } = validateMapping(value);
                 const showError = mappingEnabled && !valid;
+                const preview = resolvePreview(value, scalePx);
+                let helper = ' ';
+                if (showError) {
+                  helper = error ?? ' ';
+                } else if (mappingEnabled && valid) {
+                  helper = `${value.trim()} → ${preview.varStr} = ${preview.px}`;
+                }
                 return (
                   <TextField
                     key={key}
@@ -167,9 +230,14 @@ export default function DensityExperiment() {
                     value={value}
                     disabled={!mappingEnabled}
                     error={showError}
-                    helperText={showError ? error : ' '}
+                    helperText={helper}
                     onChange={(event) => setField(key, event.target.value)}
-                    slotProps={{ htmlInput: { 'data-mapping-field': key } }}
+                    slotProps={{
+                      htmlInput: {
+                        'data-mapping-field': key,
+                        list: 'density-keys',
+                      },
+                    }}
                   />
                 );
               })}
