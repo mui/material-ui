@@ -12,8 +12,9 @@ import { ThemeOptionsContext } from '../ThemeContext/ThemeContext';
 import { useDemoContext } from '../DemoContext/DemoContext';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
 import { DemoInstanceThemeProvider } from './DemoThemeProviders';
+import type * as RtlBundleModule from '../utils/rtlBundle';
 
-type RtlBundle = typeof import('../utils/rtlBundle');
+type RtlBundle = typeof RtlBundleModule;
 
 let rtlBundlePromise: Promise<RtlBundle> | undefined;
 function loadRtlBundle() {
