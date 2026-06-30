@@ -3,6 +3,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -271,12 +273,70 @@ function InnerRing() {
 export default function FocusRing() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+  const [vars, setVars] = React.useState(false); // N3
+  const [customJson, setCustomJson] = React.useState(''); // N2
   const [focused, setFocused] = React.useState<string | null>(null);
+  const [ringIdx, setRingIdx] = React.useState(-1); // N1
+  const [total, setTotal] = React.useState(0); // N1
+  const galleryRef = React.useRef<HTMLDivElement>(null);
+
+  // N2 — a non-empty, valid JSON object overrides the selected preset.
+  const custom = React.useMemo(() => {
+    const text = customJson.trim();
+    if (!text) {
+      return { value: undefined as boolean | React.CSSProperties | undefined, error: false, active: false };
+    }
+    try {
+      return { value: JSON.parse(text) as React.CSSProperties, error: false, active: true };
+    } catch {
+      return { value: undefined, error: true, active: true };
+    }
+  }, [customJson]);
+
+  const focusRingValue = custom.active && !custom.error ? custom.value : PRESETS[preset].value;
 
   const theme = React.useMemo(
-    () => createTheme({ palette: { mode }, focusRing: PRESETS[preset].value }),
-    [mode, preset],
+    () => createTheme({ cssVariables: vars, palette: { mode }, focusRing: focusRingValue }),
+    [vars, mode, focusRingValue],
   );
+
+  // N4 — the normalized, resolved ring object the gallery actually renders.
+  const resolved = JSON.stringify(theme.focusRing ?? null, null, 2);
+
+  let customHelp = 'Empty → use the preset above';
+  if (custom.error) {
+    customHelp = 'Invalid JSON';
+  } else if (custom.active) {
+    customHelp = 'Overrides the preset above';
+  }
+
+  // N1 — pointer-driven ring shim (experiment-only): toggles `.Mui-focusVisible`
+  // on a `[data-ring-target]` so reviewers can step through with the mouse.
+  const ringTargets = React.useCallback(
+    () => Array.from(galleryRef.current?.querySelectorAll<HTMLElement>('[data-ring-target]') ?? []),
+    [],
+  );
+  const applyRing = React.useCallback(
+    (idx: number) => {
+      const targets = ringTargets();
+      targets.forEach((el, i) => el.classList.toggle('Mui-focusVisible', i === idx));
+      setRingIdx(idx);
+      setFocused(targets[idx]?.getAttribute('data-ring-target') ?? null);
+    },
+    [ringTargets],
+  );
+  const step = (delta: number) => {
+    const targets = ringTargets();
+    if (targets.length === 0) {
+      return;
+    }
+    const base = ringIdx < 0 ? -1 : ringIdx;
+    applyRing((base + delta + targets.length) % targets.length);
+  };
+
+  React.useEffect(() => {
+    setTotal(ringTargets().length);
+  }, [ringTargets, preset, vars, mode, focusRingValue]);
 
   return (
     <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
@@ -308,27 +368,115 @@ export default function FocusRing() {
 
       {/* Two columns: sticky controls (left) + gallery (right). */}
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ p: 3, alignItems: 'flex-start' }}>
-        <Paper variant="outlined" sx={{ p: 2, minWidth: 210, position: { md: 'sticky' }, top: 16 }}>
-          <FormControl>
-            <FormLabel sx={{ typography: 'subtitle2', mb: 1 }}>Preset</FormLabel>
-            <RadioGroup value={preset} onChange={(event) => setPreset(event.target.value as Preset)}>
-              {(Object.keys(PRESETS) as Preset[]).map((p) => (
-                <FormControlLabel
-                  key={p}
-                  value={p}
-                  control={<Radio size="small" />}
-                  label={PRESETS[p].label}
-                />
-              ))}
-            </RadioGroup>
-          </FormControl>
+        <Paper
+          variant="outlined"
+          sx={{ p: 2, width: 260, flexShrink: 0, position: { md: 'sticky' }, top: 16 }}
+        >
+          <Stack spacing={2}>
+            <FormControl disabled={custom.active}>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1 }}>Preset</FormLabel>
+              <RadioGroup value={preset} onChange={(event) => setPreset(event.target.value as Preset)}>
+                {(Object.keys(PRESETS) as Preset[]).map((p) => (
+                  <FormControlLabel
+                    key={p}
+                    value={p}
+                    control={<Radio size="small" />}
+                    label={PRESETS[p].label}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+
+            <Divider />
+
+            {/* N3 — CSS vars on/off */}
+            <FormControlLabel
+              control={<Switch size="small" checked={vars} onChange={(_, v) => setVars(v)} />}
+              label={
+                <Typography variant="body2">
+                  CSS variables (<code>theme.vars</code>)
+                </Typography>
+              }
+            />
+
+            {/* N2 — custom JSON editor */}
+            <TextField
+              label="Custom focusRing (JSON)"
+              value={customJson}
+              onChange={(event) => setCustomJson(event.target.value)}
+              placeholder={'{ "outlineColor": "transparent", "boxShadow": "0 0 0 4px gold" }'}
+              error={custom.error}
+              helperText={customHelp}
+              multiline
+              minRows={3}
+              size="small"
+              slotProps={{ htmlInput: { style: { fontFamily: 'monospace', fontSize: 12 } } }}
+            />
+
+            <Divider />
+
+            {/* N1 — pointer toolbar (experiment-only shim) */}
+            <div>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1, display: 'block' }}>
+                Pointer walk (no keyboard)
+              </FormLabel>
+              <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                <Button size="small" variant="outlined" onClick={() => step(-1)}>
+                  ‹ Prev
+                </Button>
+                <Button size="small" variant="outlined" onClick={() => step(1)}>
+                  Next ›
+                </Button>
+                <Typography variant="caption" color="text.secondary">
+                  {ringIdx < 0 ? 0 : ringIdx + 1}/{total}
+                </Typography>
+              </Stack>
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
+                Experiment-only shim: forces <code>.Mui-focusVisible</code> so you can preview the ring
+                with the mouse. Real keyboard <kbd>Tab</kbd> stays the source of truth.
+              </Typography>
+            </div>
+
+            <Divider />
+
+            {/* N4 — resolved value */}
+            <div>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1, display: 'block' }}>
+                Resolved <code>theme.focusRing</code>
+              </FormLabel>
+              <Box
+                component="pre"
+                sx={{
+                  m: 0,
+                  p: 1,
+                  borderRadius: 1,
+                  bgcolor: 'action.hover',
+                  fontSize: 11,
+                  overflowX: 'auto',
+                  whiteSpace: 'pre-wrap',
+                }}
+              >
+                {resolved}
+              </Box>
+            </div>
+          </Stack>
         </Paper>
 
         <Box
+          ref={galleryRef}
           sx={{ flex: 1, minWidth: 0 }}
-          onFocusCapture={(event) =>
-            setFocused((event.target as HTMLElement).getAttribute('data-ring-target'))
-          }
+          onFocusCapture={(event) => {
+            const target = event.target as HTMLElement;
+            setFocused(target.getAttribute('data-ring-target'));
+            // Real keyboard focus wins: drop the pointer shim from every other target
+            // so there's never a double-ring.
+            ringTargets().forEach((el) => {
+              if (el !== target) {
+                el.classList.remove('Mui-focusVisible');
+              }
+            });
+            setRingIdx(-1);
+          }}
           onBlurCapture={() => setFocused(null)}
         >
           <ThemeProvider theme={theme}>
@@ -352,6 +500,20 @@ export default function FocusRing() {
             <Typography variant="body2" color="text.secondary">
               • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{' '}
               <code>disabled.focusVisible</code> at higher specificity, winning in that narrow state.
+            </Typography>
+            {/* N5 — extra edge callouts */}
+            <Typography variant="body2" color="text.secondary">
+              • <strong>
+                <code>overflow: hidden</code> clip:
+              </strong>{' '}
+              a standalone outer ring is clipped to nothing inside an <code>overflow: hidden</code>{' '}
+              ancestor (e.g. Card). The inner-ring families inset the ring (negative offset) so it
+              draws inside the box.
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              • <strong>Forced colors:</strong> in forced-colors mode the UA paints its own focus
+              indicator and <code>outline-color</code> is overridden by the system, so the curated
+              color is not guaranteed there — by design.
             </Typography>
           </Stack>
         </Box>
