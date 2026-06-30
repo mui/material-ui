@@ -38,10 +38,56 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
   shadowonly: { label: 'box-shadow only', value: { outlineColor: 'transparent', boxShadow: '0 0 0 4px gold' } },
 };
 
-function Gallery() {
+// Inner-ring bucket: same preset, but pulled inside (offset ≤ 0) so a scrollable
+// container can't clip it.
+function toInset(value: boolean | React.CSSProperties | undefined): boolean | React.CSSProperties | undefined {
+  if (value == null || value === false) {
+    return value;
+  }
+  return value === true ? { outlineOffset: -2 } : { ...value, outlineOffset: -2 };
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <Stack spacing={2.5} sx={{ flexWrap: 'wrap' }}>
-      <Stack direction="row" spacing={2} sx={{ alignItems: 'center', flexWrap: 'wrap', rowGap: 2 }}>
+    <React.Fragment>
+      <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
+        {label}
+      </Typography>
+      <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', flexWrap: 'wrap', rowGap: 1 }}>
+        {children}
+      </Stack>
+    </React.Fragment>
+  );
+}
+
+function Bucket({ title, hint, children }: { title: string; hint: string; children: React.ReactNode }) {
+  return (
+    <React.Fragment>
+      <Typography variant="overline" sx={{ fontWeight: 700 }}>
+        {title}
+      </Typography>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1.5 }}>
+        {hint}
+      </Typography>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '150px 1fr',
+          alignItems: 'center',
+          columnGap: 3,
+          rowGap: 2,
+        }}
+      >
+        {children}
+      </Box>
+    </React.Fragment>
+  );
+}
+
+function OuterRing() {
+  return (
+    <Bucket title="outer-ring" hint="Standalone — the ring sits OUTSIDE (outlineOffset +2), renders fully.">
+      <Row label="Button">
         <Button variant="text" data-ring-target="Button (text)">
           Text
         </Button>
@@ -51,25 +97,18 @@ function Gallery() {
         <Button variant="contained" data-ring-target="Button (contained — elevation)">
           Contained
         </Button>
+      </Row>
+      <Row label="IconButton">
         <IconButton aria-label="star" data-ring-target="IconButton">
           <StarIcon />
         </IconButton>
+      </Row>
+      <Row label="Fab">
         <Fab size="small" color="primary" aria-label="add" data-ring-target="Fab (elevation)">
           <AddIcon />
         </Fab>
-        <ButtonBase
-          data-ring-target="ButtonBase (bare)"
-          sx={{ px: 1.5, py: 1, border: '1px dashed', borderColor: 'divider', borderRadius: 1 }}
-        >
-          ButtonBase
-        </ButtonBase>
-      </Stack>
-
-      <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap', rowGap: 2, alignItems: 'flex-start' }}>
-        <Tabs value={0} sx={{ minHeight: 0 }}>
-          <Tab label="Tab one" data-ring-target="Tab" />
-          <Tab label="Tab two" data-ring-target="Tab" />
-        </Tabs>
+      </Row>
+      <Row label="ToggleButton">
         <ToggleButtonGroup value="left" exclusive>
           <ToggleButton value="left" data-ring-target="ToggleButton">
             Left
@@ -78,27 +117,54 @@ function Gallery() {
             Right
           </ToggleButton>
         </ToggleButtonGroup>
-      </Stack>
+      </Row>
+      <Row label="CardActionArea">
+        <Card variant="outlined" sx={{ width: 160 }}>
+          <CardActionArea data-ring-target="CardActionArea">
+            <Box sx={{ p: 2 }}>
+              <Typography variant="body2">Card</Typography>
+            </Box>
+          </CardActionArea>
+        </Card>
+      </Row>
+      <Row label="ButtonBase">
+        <ButtonBase
+          data-ring-target="ButtonBase (bare)"
+          sx={{ px: 1.5, py: 1, border: '1px dashed', borderColor: 'divider', borderRadius: 1 }}
+        >
+          ButtonBase
+        </ButtonBase>
+      </Row>
+    </Bucket>
+  );
+}
 
-      <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap', rowGap: 2, alignItems: 'flex-start' }}>
+function InnerRing() {
+  return (
+    <Bucket
+      title="inner-ring"
+      hint="Likely inside a scrollable / overflow-clipped container — the ring is INSET (outlineOffset −2) so it can't be clipped."
+    >
+      <Row label="Tab">
+        <Tabs value={0} sx={{ minHeight: 0 }}>
+          <Tab label="Tab one" data-ring-target="Tab" />
+          <Tab label="Tab two" data-ring-target="Tab" />
+        </Tabs>
+      </Row>
+      <Row label="MenuItem">
         <MenuList sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
           <MenuItem data-ring-target="MenuItem">Profile</MenuItem>
           <MenuItem data-ring-target="MenuItem">Settings</MenuItem>
         </MenuList>
-        <List sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, minWidth: 180 }}>
+      </Row>
+      <Row label="ListItemButton">
+        <List sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, minWidth: 200, py: 0 }}>
           <ListItemButton data-ring-target="ListItemButton">
-            <ListItemText primary="ListItemButton" />
+            <ListItemText primary="List item" />
           </ListItemButton>
         </List>
-        <Card variant="outlined" sx={{ width: 180 }}>
-          <CardActionArea data-ring-target="CardActionArea">
-            <Box sx={{ p: 2 }}>
-              <Typography variant="body2">CardActionArea</Typography>
-            </Box>
-          </CardActionArea>
-        </Card>
-      </Stack>
-    </Stack>
+      </Row>
+    </Bucket>
   );
 }
 
@@ -107,8 +173,12 @@ export default function FocusRing() {
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [focused, setFocused] = React.useState<string | null>(null);
 
-  const theme = React.useMemo(
+  const outerTheme = React.useMemo(
     () => createTheme({ palette: { mode }, focusRing: PRESETS[preset].value }),
+    [mode, preset],
+  );
+  const innerTheme = React.useMemo(
+    () => createTheme({ palette: { mode }, focusRing: toInset(PRESETS[preset].value) }),
     [mode, preset],
   );
 
@@ -142,10 +212,7 @@ export default function FocusRing() {
 
       {/* Two columns: sticky controls (left) + gallery (right). */}
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={{ p: 3, alignItems: 'flex-start' }}>
-        <Paper
-          variant="outlined"
-          sx={{ p: 2, minWidth: 210, position: { md: 'sticky' }, top: 16 }}
-        >
+        <Paper variant="outlined" sx={{ p: 2, minWidth: 210, position: { md: 'sticky' }, top: 16 }}>
           <FormControl>
             <FormLabel sx={{ typography: 'subtitle2', mb: 1 }}>Preset</FormLabel>
             <RadioGroup value={preset} onChange={(event) => setPreset(event.target.value as Preset)}>
@@ -161,19 +228,25 @@ export default function FocusRing() {
           </FormControl>
         </Paper>
 
-        <Box sx={{ flex: 1, minWidth: 0 }}>
-          <ThemeProvider theme={theme}>
-            <Paper
-              variant="outlined"
-              onFocusCapture={(event) =>
-                setFocused((event.target as HTMLElement).getAttribute('data-ring-target'))
-              }
-              onBlurCapture={() => setFocused(null)}
-              sx={{ p: 3, bgcolor: 'background.default' }}
-            >
-              <Gallery />
+        <Box
+          sx={{ flex: 1, minWidth: 0 }}
+          onFocusCapture={(event) =>
+            setFocused((event.target as HTMLElement).getAttribute('data-ring-target'))
+          }
+          onBlurCapture={() => setFocused(null)}
+        >
+          <Stack spacing={3}>
+            <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
+              <ThemeProvider theme={outerTheme}>
+                <OuterRing />
+              </ThemeProvider>
             </Paper>
-          </ThemeProvider>
+            <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
+              <ThemeProvider theme={innerTheme}>
+                <InnerRing />
+              </ThemeProvider>
+            </Paper>
+          </Stack>
 
           <Stack spacing={1} sx={{ mt: 3 }}>
             <Typography variant="subtitle2">Edge cases</Typography>
