@@ -61,7 +61,6 @@ Since then, the work has focused on the pieces that matter when a component move
 - **Performance:** Event Timeline now supports virtualization and lazy loading for large resource boards.
 - **Responsive behavior:** Scheduler now has a foundation for mobile-friendly layouts, including a mobile week view and responsive typography.
 - **Resource management:** The resource sidebar now uses Tree View patterns for hierarchy, keyboard navigation, and expand/collapse behavior.
-- **Customization:** The default event dialog can now be extended with your own fields without replacing the whole form.
 - **Accessibility:** ARIA semantics for Event Calendar and Event Timeline have been completed and documented.
 - **Public API cleanup:** Types, JSDoc, exported models, and internal leaks were tightened before the stable contract was set.
 
