@@ -1,6 +1,6 @@
 ---
-title: MUI X Scheduler is production-ready
-description: 'MUI X Scheduler is production-ready: calendar and timeline views, virtualization, lazy loading, responsive foundations, and what comes next.'
+title: MUI X Scheduler is production-ready
+description: 'MUI X Scheduler is production-ready: calendar and timeline views, virtualization, lazy loading, responsive foundations, and what comes next.'
 date: 2026-07-08T08:00:00.000Z
 authors: ['josefreitas', 'rita-codes', 'noraleonte']
 tags: ['MUI X', 'Product']
@@ -27,16 +27,16 @@ manualCard: false
   />
 </a>
 
-We are excited to announce that [MUI X Scheduler](/x/react-scheduler/) is production-ready.
+We are excited to announce that [MUI X Scheduler](/x/react-scheduler/) is production-ready.
 
-Scheduler brings production-ready calendar and timeline experiences to MUI X.
+Scheduler brings production-ready calendar and timeline experiences to MUI X.
 It includes date-first views for appointments and planning, resource-first views for operations and capacity, recurring events, drag-and-drop editing, and the foundations you need to fit scheduling into real products.
 
-Three months ago, when we introduced Scheduler in alpha with MUI X v9, we said the goal was to move quickly toward stable once the API, performance, accessibility, and responsive foundations were ready.
+Three months ago, when we introduced Scheduler in alpha with MUI X v9, we said the goal was to move quickly toward stable once the API, performance, accessibility, and responsive foundations were ready.
 This release closes that loop.
 It turns Scheduler from a promising new surface into a component you can confidently build on.
 
-For the full changelog, see the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
+For the full changelog, see the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
 
 ## Table of contents
 
@@ -48,12 +48,12 @@ For the full changelog, see the [MUI X releases](https://github.com/mui/mui-x/re
 - [Better layouts on small screens](#better-layouts-on-small-screens)
 - [Accessibility, localization, and API hardening](#accessibility-localization-and-api-hardening)
 - [What's next for the Scheduler components](#whats-next-for-the-scheduler-components)
-- [What's also new in MUI X](#whats-also-new-in-mui-x)
+- [What's also new in MUI X](#whats-also-new-in-mui-x)
 - [How to get involved](#how-to-get-involved)
 
 ## From alpha to stable
 
-Scheduler started in v9 alpha as a new way to build time- and resource-centric applications on top of MUI X.
+Scheduler started in v9 alpha as a new way to build time- and resource-centric applications on top of MUI X.
 The alpha shipped the core mental model: events, resources, recurrence, calendar views, and a Premium timeline for dense planning.
 
 Since then, the work has focused on the pieces that matter when a component moves from prototype to production:
@@ -87,7 +87,7 @@ It supports day, week, month, and agenda views for common scheduling use cases: 
   >
     <source src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-calendar.mp4" type="video/mp4" />
   </video>
-  <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
+  <figcaption>Event Calendar in MUI X Scheduler.</figcaption>
 </figure>
 
 Scheduler gives you the interaction primitives expected from a real calendar: drag to move, resize to adjust duration, edit recurring events as a full series or as individual occurrences, and attach events to resources that match your application's domain.
@@ -112,7 +112,7 @@ It puts time on one axis and resources on the other so users can answer operatio
   >
     <source src="/static/blog/introducing-mui-x-scheduler-v9-alpha/scheduler-timeline.mp4" type="video/mp4" />
   </video>
-  <figcaption>Event Timeline in MUI X Scheduler Premium.</figcaption>
+  <figcaption>Event Timeline in MUI X Scheduler Premium.</figcaption>
 </figure>
 
 This makes Scheduler useful for dispatching, workforce planning, project staffing, healthcare appointments, education timetables, manufacturing boards, and logistics workflows where the schedule is not just a calendar but an operating surface.
@@ -130,14 +130,14 @@ For the stable release, Event Timeline has two important foundations:
 - **Lazy loading** fetches events dynamically for the visible range, including when users navigate or switch views.
 
 Together, these changes make Scheduler better suited for real operations boards, where the relevant dataset may be much larger than the current viewport.
-They also bring Scheduler in line with the rest of MUI X: advanced components should support demanding data and interaction patterns without asking developers to rebuild the rendering engine themselves.
+They also bring Scheduler in line with the rest of MUI X: advanced components should support demanding data and interaction patterns without asking developers to rebuild the rendering engine themselves.
 
 ## Resource hierarchies and visibility
 
 Resource lists are rarely flat in real applications.
 Teams have departments, sites have rooms, fleets have categories, and project plans have nested ownership.
 
-Scheduler now uses MUI X Tree View patterns in the resource sidebar.
+Scheduler now uses MUI X Tree View patterns in the resource sidebar.
 That brings proper hierarchy semantics, arrow-key navigation, nested resource expansion and collapse, and checkbox-based visibility control.
 
 This matters for both usability and accessibility.
@@ -187,9 +187,9 @@ We will also keep investing in:
 - **Resource modeling:** richer resource relationships, visibility controls, and ergonomics for large hierarchies.
 - **Performance:** continued work on virtualization, lazy loading, and interaction smoothness for dense schedules.
 
-## What's also new in MUI X
+## What's also new in MUI X
 
-Scheduler is the headline, but the MUI X v9 minor releases have continued moving the rest of the stack forward since v9.0.0.
+Scheduler is the headline, but the MUI X v9 minor releases have continued moving the rest of the stack forward since v9.0.0.
 
 Charts also received several performance and visualization updates.
 WebGL rendering was added for Scatter and Bar charts, the same performance patterns were applied to Premium candlestick and heatmap rendering, radial line and radial bar charts were added, Bubble charts landed, and a progressive SVG renderer now paints large Scatter datasets in batched frames.
