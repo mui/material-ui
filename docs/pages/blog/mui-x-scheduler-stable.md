@@ -1,6 +1,6 @@
 ---
-title: MUI X Scheduler is now stable
-description: 'MUI X Scheduler is stable: production-ready calendar and timeline views, virtualization, lazy loading, responsive foundations, and what comes next.'
+title: MUI X Scheduler is production-ready
+description: 'MUI X Scheduler is production-ready: calendar and timeline views, virtualization, lazy loading, responsive foundations, and what comes next.'
 date: 2026-07-08T08:00:00.000Z
 authors: ['josefreitas', 'rita-codes', 'noraleonte']
 tags: ['MUI X', 'Product']
@@ -27,7 +27,7 @@ manualCard: false
   />
 </a>
 
-We are excited to announce that [MUI X Scheduler](/x/react-scheduler/) is now stable.
+We are excited to announce that [MUI X Scheduler](/x/react-scheduler/) is production-ready.
 
 Scheduler brings production-ready calendar and timeline experiences to MUI X.
 It includes date-first views for appointments and planning, resource-first views for operations and capacity, recurring events, drag-and-drop editing, and the foundations you need to fit scheduling into real products.
@@ -59,9 +59,9 @@ The alpha shipped the core mental model: events, resources, recurrence, calendar
 Since then, the work has focused on the pieces that matter when a component moves from prototype to production:
 
 - **Performance:** Event Timeline now supports virtualization and lazy loading for large resource boards.
-- **Responsive behavior:** Scheduler now has a foundation for mobile-friendly layouts, including a mobile week view and responsive typography.
+- **Responsive behavior:** Scheduler now has a foundation for mobile-friendly layouts, including experimental compact/touch week-view work and responsive typography.
 - **Resource management:** The resource sidebar now uses Tree View patterns for hierarchy, keyboard navigation, and expand/collapse behavior.
-- **Accessibility:** ARIA semantics for Event Calendar and Event Timeline have been completed and documented.
+- **Accessibility:** Event Calendar now has full ARIA grid semantics, and Event Timeline accessibility work has continued with clearer labels and documentation.
 - **Public API cleanup:** Types, JSDoc, exported models, and internal leaks were tightened before the stable contract was set.
 
 If you tried the alpha or beta, review the Scheduler sections in the release notes before upgrading.
@@ -147,7 +147,7 @@ Users can collapse parts of the resource tree to focus on the schedule they care
 
 Scheduler is a dense component by nature, so small screens require product-specific decisions rather than shrinking the desktop view until it becomes unusable.
 
-The stable milestone includes responsive groundwork: a mobile week view, responsive typography, and layout adjustments that make the calendar views behave better on smaller screens.
+The stable milestone includes responsive groundwork: experimental compact/touch week-view work, responsive typography, and layout adjustments that make the calendar views behave better on smaller screens.
 
 We're treating mobile Scheduler as an ongoing direction, not a one-time checkbox.
 The next iterations will continue improving day and week views, and explore a month-plus-agenda pattern that matches how many mobile calendar apps balance overview and detail.
@@ -155,7 +155,8 @@ The next iterations will continue improving day and week views, and explore a mo
 ## Accessibility, localization, and API hardening
 
 Stability also depends on the less visible work.
-We completed ARIA grid semantics across Event Calendar and Event Timeline, fixed accessible labels in the Agenda and "+N more" flows, added dedicated accessibility documentation, and tightened row and column indexing so screen readers have consistent context.
+Event Calendar now has full ARIA grid semantics, fixed accessible labels in the Agenda and "+N more" flows, and tighter row and column indexing so screen readers have consistent context.
+For Event Timeline, accessibility work continued through clearer labels and documentation, while deeper grid semantics remain an active area of improvement.
 
 Localization improved as well, including better locale handling for recurring labels and new or refined locale coverage.
 These details matter in scheduling, where weekday grammar, week starts, time format, and regional expectations are not cosmetic.
@@ -196,7 +197,7 @@ Radial bar charts also gained refinements such as percentage radius controls and
 
 Data Grid Pro added a new `multiSelect` column type, making multi-value filtering and editing flows easier to model directly in column definitions.
 
-Scheduler itself moved through beta with Timeline lazy loading, Timeline virtualization, responsive mobile week work, accessibility documentation, and localization updates.
+Scheduler itself moved through beta with Timeline lazy loading, Timeline virtualization, experimental compact/touch week-view work, accessibility documentation, and localization updates.
 
 You can read the release notes for the full list of changes:
 [v9.1.0](https://github.com/mui/mui-x/releases/tag/v9.1.0),
