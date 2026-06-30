@@ -138,8 +138,6 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
     viewportWidth: 1440,
     waitForSelector: '.MuiDataGrid-row:not(.MuiDataGrid-rowSkeleton) .MuiDataGrid-cell',
   },
-  // XTheming no longer renders an always-visible Data Grid (it now sits behind a
-  // tab, defaulting to the Charts preview), so it only needs the productX width.
 ];
 
 /**
