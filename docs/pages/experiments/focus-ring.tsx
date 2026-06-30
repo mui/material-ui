@@ -61,15 +61,6 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
 
 const noop = () => {};
 
-// Inner-ring bucket: same preset, but pulled inside (offset ≤ 0) so a scrollable
-// container can't clip it.
-function toInset(value: boolean | React.CSSProperties | undefined): boolean | React.CSSProperties | undefined {
-  if (value == null || value === false) {
-    return value;
-  }
-  return value === true ? { outlineOffset: -2 } : { ...value, outlineOffset: -2 };
-}
-
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <React.Fragment>
@@ -193,35 +184,6 @@ function OuterRing() {
           ButtonBase
         </ButtonBase>
       </Row>
-    </Bucket>
-  );
-}
-
-function InnerRing() {
-  return (
-    <Bucket
-      title="inner-ring"
-      hint="Likely inside a scrollable / overflow-clipped container — the ring is INSET (outlineOffset −2) so it can't be clipped."
-    >
-      <Row label="Tab">
-        <Tabs value={0} sx={{ minHeight: 0 }}>
-          <Tab label="Tab one" data-ring-target="Tab" />
-          <Tab label="Tab two" data-ring-target="Tab" />
-        </Tabs>
-      </Row>
-      <Row label="MenuItem">
-        <MenuList sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
-          <MenuItem data-ring-target="MenuItem">Profile</MenuItem>
-          <MenuItem data-ring-target="MenuItem">Settings</MenuItem>
-        </MenuList>
-      </Row>
-      <Row label="ListItemButton">
-        <List sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, minWidth: 200, py: 0 }}>
-          <ListItemButton data-ring-target="ListItemButton">
-            <ListItemText primary="List item" />
-          </ListItemButton>
-        </List>
-      </Row>
       <Row label="AccordionSummary">
         <Accordion disableGutters sx={{ width: 280 }}>
           <AccordionSummary data-ring-target="AccordionSummary">Accordion header</AccordionSummary>
@@ -229,25 +191,6 @@ function InnerRing() {
             <Typography variant="body2">Details</Typography>
           </AccordionDetails>
         </Accordion>
-      </Row>
-      <Row label="BottomNavigation">
-        <BottomNavigation
-          showLabels
-          value={0}
-          sx={{ width: 320, border: 1, borderColor: 'divider', borderRadius: 1 }}
-        >
-          <BottomNavigationAction label="Star" icon={<StarIcon />} data-ring-target="BottomNavigationAction" />
-          <BottomNavigationAction label="Add" icon={<AddIcon />} data-ring-target="BottomNavigationAction" />
-        </BottomNavigation>
-      </Row>
-      <Row label="CardActionArea">
-        <Card variant="outlined" sx={{ width: 160 }}>
-          <CardActionArea data-ring-target="CardActionArea">
-            <Box sx={{ p: 2 }}>
-              <Typography variant="body2">Card</Typography>
-            </Box>
-          </CardActionArea>
-        </Card>
       </Row>
       <Row label="TableSortLabel">
         <TableContainer component={Paper} variant="outlined" sx={{ width: 280 }}>
@@ -277,17 +220,61 @@ function InnerRing() {
   );
 }
 
+function InnerRing() {
+  return (
+    <Bucket
+      title="inner-ring"
+      hint="Likely inside a scrollable / overflow-clipped container — the ring is INSET (outlineOffset −2) so it can't be clipped."
+    >
+      <Row label="Tab">
+        <Tabs value={0} sx={{ minHeight: 0 }}>
+          <Tab label="Tab one" data-ring-target="Tab" />
+          <Tab label="Tab two" data-ring-target="Tab" />
+        </Tabs>
+      </Row>
+      <Row label="MenuItem">
+        <MenuList sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
+          <MenuItem data-ring-target="MenuItem">Profile</MenuItem>
+          <MenuItem data-ring-target="MenuItem">Settings</MenuItem>
+        </MenuList>
+      </Row>
+      <Row label="ListItemButton">
+        <List sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, minWidth: 200, py: 0 }}>
+          <ListItemButton data-ring-target="ListItemButton">
+            <ListItemText primary="List item" />
+          </ListItemButton>
+        </List>
+      </Row>
+      <Row label="BottomNavigation">
+        <BottomNavigation
+          showLabels
+          value={0}
+          sx={{ width: 320, border: 1, borderColor: 'divider', borderRadius: 1 }}
+        >
+          <BottomNavigationAction label="Star" icon={<StarIcon />} data-ring-target="BottomNavigationAction" />
+          <BottomNavigationAction label="Add" icon={<AddIcon />} data-ring-target="BottomNavigationAction" />
+        </BottomNavigation>
+      </Row>
+      <Row label="CardActionArea">
+        <Card variant="outlined" sx={{ width: 160 }}>
+          <CardActionArea data-ring-target="CardActionArea">
+            <Box sx={{ p: 2 }}>
+              <Typography variant="body2">Card</Typography>
+            </Box>
+          </CardActionArea>
+        </Card>
+      </Row>
+    </Bucket>
+  );
+}
+
 export default function FocusRing() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [focused, setFocused] = React.useState<string | null>(null);
 
-  const outerTheme = React.useMemo(
+  const theme = React.useMemo(
     () => createTheme({ palette: { mode }, focusRing: PRESETS[preset].value }),
-    [mode, preset],
-  );
-  const innerTheme = React.useMemo(
-    () => createTheme({ palette: { mode }, focusRing: toInset(PRESETS[preset].value) }),
     [mode, preset],
   );
 
@@ -344,18 +331,16 @@ export default function FocusRing() {
           }
           onBlurCapture={() => setFocused(null)}
         >
-          <Stack spacing={3}>
-            <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
-              <ThemeProvider theme={outerTheme}>
+          <ThemeProvider theme={theme}>
+            <Stack spacing={3}>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <OuterRing />
-              </ThemeProvider>
-            </Paper>
-            <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
-              <ThemeProvider theme={innerTheme}>
+              </Paper>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <InnerRing />
-              </ThemeProvider>
-            </Paper>
-          </Stack>
+              </Paper>
+            </Stack>
+          </ThemeProvider>
 
           <Stack spacing={1} sx={{ mt: 3 }}>
             <Typography variant="subtitle2">Edge cases</Typography>

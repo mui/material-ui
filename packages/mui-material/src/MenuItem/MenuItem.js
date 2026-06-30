@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import toPx from '../utils/toPx';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
@@ -106,6 +107,10 @@ const MenuItemRoot = styled(ButtonBase, {
     },
     [`&.${menuItemClasses.focusVisible}`]: {
       backgroundColor: (theme.vars || theme).palette.action.focus,
+      // Inset the focus ring: a scrolling Menu/MenuList clips a positive outline-offset.
+      ...((theme.vars || theme).focusRing && {
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+      }),
     },
     [`&.${menuItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,

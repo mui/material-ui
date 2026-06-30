@@ -3,8 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import ButtonBase from '../ButtonBase';
+import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import toPx from '../utils/toPx';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -61,6 +62,12 @@ const TabRoot = styled(ButtonBase, {
     whiteSpace: 'normal',
     textAlign: 'center',
     lineHeight: 1.25,
+    // Inset the focus ring: the Tabs scroller clips a positive outline-offset.
+    ...((theme.vars || theme).focusRing && {
+      [`&.${buttonBaseClasses.focusVisible}`]: {
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+      },
+    }),
     variants: [
       {
         props: ({ ownerState }) =>
