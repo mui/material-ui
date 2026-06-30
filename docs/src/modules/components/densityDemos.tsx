@@ -124,7 +124,7 @@ const demos: Record<string, React.ReactNode> = {
   ),
   IconButton: (
     <Stack spacing={2}>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
         <IconButton size="small">
           <DeleteIcon />
         </IconButton>
@@ -135,7 +135,7 @@ const demos: Record<string, React.ReactNode> = {
           <DeleteIcon />
         </IconButton>
       </Stack>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
         <IconButton size="small" color="primary">
           <DeleteIcon />
         </IconButton>
@@ -146,7 +146,7 @@ const demos: Record<string, React.ReactNode> = {
           <DeleteIcon />
         </IconButton>
       </Stack>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
         <IconButton size="small" edge="start">
           <DeleteIcon />
         </IconButton>
@@ -366,7 +366,7 @@ const demos: Record<string, React.ReactNode> = {
     </Stack>
   ),
   Tabs: (
-    <Stack spacing={2} alignItems="flex-start">
+    <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
       <Tabs value={0}>
         <Tab label="One" />
         <Tab label="Two" />
