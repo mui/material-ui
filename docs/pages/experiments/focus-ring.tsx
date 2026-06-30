@@ -185,15 +185,6 @@ function OuterRing() {
           renderItem={(item) => <PaginationItem {...item} data-ring-target="PaginationItem" />}
         />
       </Row>
-      <Row label="CardActionArea">
-        <Card variant="outlined" sx={{ width: 160 }}>
-          <CardActionArea data-ring-target="CardActionArea">
-            <Box sx={{ p: 2 }}>
-              <Typography variant="body2">Card</Typography>
-            </Box>
-          </CardActionArea>
-        </Card>
-      </Row>
       <Row label="ButtonBase">
         <ButtonBase
           data-ring-target="ButtonBase (bare)"
@@ -248,6 +239,15 @@ function InnerRing() {
           <BottomNavigationAction label="Star" icon={<StarIcon />} data-ring-target="BottomNavigationAction" />
           <BottomNavigationAction label="Add" icon={<AddIcon />} data-ring-target="BottomNavigationAction" />
         </BottomNavigation>
+      </Row>
+      <Row label="CardActionArea">
+        <Card variant="outlined" sx={{ width: 160 }}>
+          <CardActionArea data-ring-target="CardActionArea">
+            <Box sx={{ p: 2 }}>
+              <Typography variant="body2">Card</Typography>
+            </Box>
+          </CardActionArea>
+        </Card>
       </Row>
       <Row label="TableSortLabel">
         <TableContainer component={Paper} variant="outlined" sx={{ width: 280 }}>
