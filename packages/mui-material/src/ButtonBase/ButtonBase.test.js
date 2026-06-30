@@ -1598,4 +1598,49 @@ describe('<ButtonBase />', () => {
       },
     );
   });
+
+  describe('theme.focusRing', () => {
+    /** @param {boolean | React.CSSProperties} [focusRing] */
+    function focusRingButton(focusRing) {
+      render(
+        <ThemeProvider theme={createTheme({ focusRing })}>
+          <ButtonBase>Hello</ButtonBase>
+        </ThemeProvider>,
+      );
+      const button = screen.getByText('Hello');
+      simulatePointerDevice();
+      focusVisible(button);
+      return button;
+    }
+
+    it.skipIf(isJsdom())('renders the curated ring on focus-visible when focusRing is set', () => {
+      const button = focusRingButton(true);
+      expect(button).to.have.class(classes.focusVisible);
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('renders no ring when focusRing is unset (non-breaking)', () => {
+      const button = focusRingButton(undefined);
+      expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
+    });
+
+    it.skipIf(isJsdom())('an object recolors the ring but keeps the curated geometry', () => {
+      const button = focusRingButton({ outlineColor: 'rgb(255, 0, 0)' });
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineColor: 'rgb(255, 0, 0)',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('`outlineColor: transparent` removes the visible outline', () => {
+      const button = focusRingButton({ outlineColor: 'transparent' });
+      expect(button).toHaveComputedStyle({ outlineColor: 'rgba(0, 0, 0, 0)' });
+    });
+  });
 });

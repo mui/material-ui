@@ -211,4 +211,30 @@ describe('<Switch />', () => {
       expect(container.firstChild).to.have.class('test-class-name');
     });
   });
+
+  describe('theme.focusRing', () => {
+    it.skipIf(isJsdom())('root overflow is visible so the focus ring is not clipped when focusRing is set', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusRing: true })}>
+          <Switch />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        overflowX: 'visible',
+        overflowY: 'visible',
+      });
+    });
+
+    it.skipIf(isJsdom())('root overflow stays hidden when focusRing is unset', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme()}>
+          <Switch />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        overflowX: 'hidden',
+        overflowY: 'hidden',
+      });
+    });
+  });
 });

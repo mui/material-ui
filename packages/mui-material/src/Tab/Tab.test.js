@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  simulatePointerDevice,
+  focusVisible,
+  screen,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -291,6 +297,26 @@ describe('<Tab />', () => {
       // would warn about a non-button host with nativeButton omitted.
       expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
+    });
+  });
+
+  describe('theme.focusRing', () => {
+    it.skipIf(isJsdom())('insets the focus ring so a Tabs scroller cannot clip it', () => {
+      const theme = createTheme({
+        focusRing: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      expect(tab).toHaveComputedStyle({ outlineOffset: '-2px' });
     });
   });
 });

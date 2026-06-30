@@ -455,6 +455,70 @@ describe('createTheme', () => {
     });
   });
 
+  describe('focusRing', () => {
+    const CURATED = {
+      outlineStyle: 'solid',
+      outlineWidth: 2,
+      outlineOffset: 2,
+    };
+
+    it('`true` resolves to the curated ring using the palette primary color', () => {
+      const theme = createTheme({ cssVariables: false, focusRing: true });
+      expect(theme.focusRing).to.deep.equal({
+        ...CURATED,
+        outlineColor: theme.palette.primary.main,
+      });
+    });
+
+    it('an object merges over the curated default, keeping geometry', () => {
+      const theme = createTheme({ cssVariables: false, focusRing: { outlineColor: 'red' } });
+      expect(theme.focusRing).to.deep.equal({
+        ...CURATED,
+        outlineColor: 'red',
+      });
+    });
+
+    it('`outlineColor: transparent` removes the visible outline but keeps the object', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusRing: { outlineColor: 'transparent' },
+      });
+      expect(theme.focusRing.outlineColor).to.equal('transparent');
+      expect(theme.focusRing.outlineStyle).to.equal('solid');
+    });
+
+    it('a boxShadow is additive on top of the curated outline', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusRing: { boxShadow: '0 0 0 4px #fff' },
+      });
+      expect(theme.focusRing).to.deep.equal({
+        ...CURATED,
+        outlineColor: theme.palette.primary.main,
+        boxShadow: '0 0 0 4px #fff',
+      });
+    });
+
+    it('`false` and `undefined` leave focusRing off (non-breaking)', () => {
+      expect(createTheme({ cssVariables: false, focusRing: false }).focusRing).to.equal(false);
+      expect(createTheme({ cssVariables: false }).focusRing).to.equal(undefined);
+    });
+
+    it('vars theme: curated color is a scheme-reactive palette var, numbers become px', () => {
+      const theme = createTheme({ cssVariables: true, focusRing: true });
+      // scheme-reactive: resolves through the palette var, correct in dark mode
+      expect(theme.focusRing.outlineColor).to.equal('var(--mui-palette-primary-main)');
+      expect(theme.vars.focusRing.outlineColor).to.equal(
+        'var(--mui-focusRing-outlineColor, var(--mui-palette-primary-main))',
+      );
+      // numeric 2 surfaces as a `2px` fallback in the generated var
+      expect(theme.vars.focusRing.outlineWidth).to.equal('var(--mui-focusRing-outlineWidth, 2px)');
+      expect(theme.vars.focusRing.outlineOffset).to.equal(
+        'var(--mui-focusRing-outlineOffset, 2px)',
+      );
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = createTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');
