@@ -1,0 +1,3 @@
+<Sample theme={recolor} label="Recolor (merge)" />
+<Sample theme={twoColor} label="Two-color (C40)" />
+<Sample theme={outlineRemoved} label="Outline removed" />

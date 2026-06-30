@@ -1,11 +1,11 @@
-import { expect } from "chai";
-import { act, createRenderer, fireEvent, isJsdom, screen } from "@mui/internal-test-utils";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Switch, { switchClasses as classes } from "@mui/material/Switch";
-import FormControl from "@mui/material/FormControl";
-import describeConformance from "../../test/describeConformance";
+import { expect } from 'chai';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Switch, { switchClasses as classes } from '@mui/material/Switch';
+import FormControl from '@mui/material/FormControl';
+import describeConformance from '../../test/describeConformance';
 
-describe("<Switch />", () => {
+describe('<Switch />', () => {
   const { render } = createRenderer();
 
   function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
@@ -15,10 +15,10 @@ describe("<Switch />", () => {
   describeConformance(<Switch />, () => ({
     classes,
     render,
-    muiName: "MuiSwitch",
+    muiName: 'MuiSwitch',
     testDeepOverrides: [
-      { slotName: "track", slotClassName: classes.track },
-      { slotName: "input", slotClassName: classes.input },
+      { slotName: 'track', slotClassName: classes.track },
+      { slotName: 'input', slotClassName: classes.input },
     ],
     slots: {
       root: {
@@ -40,203 +40,203 @@ describe("<Switch />", () => {
     },
     refInstanceof: window.HTMLSpanElement,
     skip: [
-      "componentProp",
-      "themeDefaultProps",
-      "themeVariants",
+      'componentProp',
+      'themeDefaultProps',
+      'themeVariants',
       // Props are spread to the root's child but className is added to the root
       // We cannot use the standard mergeClassName test which relies on data-testid on the root
       // We should fix this when refactoring with Base UI
-      "mergeClassName",
+      'mergeClassName',
     ],
   }));
 
-  describe("styleSheet", () => {
-    it("should have the classes required for SwitchBase", () => {
-      expect(classes).to.include.all.keys(["root", "checked", "disabled"]);
+  describe('styleSheet', () => {
+    it('should have the classes required for SwitchBase', () => {
+      expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
     });
   });
 
-  it.skipIf(isJsdom())("disables CSS transitions when reduced motion is always", () => {
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
     const theme = createTheme({
       motion: {
-        reducedMotion: "always",
+        reducedMotion: 'always',
       },
     });
 
     const { container } = render(
       <ThemeProvider theme={theme}>
         <Switch />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     expect(container.querySelector(`.${classes.switchBase}`)).toHaveComputedStyle({
-      transitionDuration: "0s",
+      transitionDuration: '0s',
     });
     expect(container.querySelector(`.${classes.track}`)).toHaveComputedStyle({
-      transitionDuration: "0s",
+      transitionDuration: '0s',
     });
   });
 
-  it("should render an .thumb element inside the .switchBase element", () => {
+  it('should render an .thumb element inside the .switchBase element', () => {
     const { container } = render(
-      <Switch classes={{ thumb: "thumb", switchBase: "switch-base" }} />
+      <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
     );
 
-    expect(container.querySelector(".switch-base .thumb")).not.to.equal(null);
+    expect(container.querySelector('.switch-base .thumb')).not.to.equal(null);
   });
 
-  it("should render the track as the 2nd child", () => {
+  it('should render the track as the 2nd child', () => {
     const {
       container: { firstChild: root },
     } = render(<Switch />);
 
-    expect(root.childNodes[1]).to.have.property("tagName", "SPAN");
+    expect(root.childNodes[1]).to.have.property('tagName', 'SPAN');
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
   it('renders a `role="switch"` with the Unchecked state by default', () => {
     render(<Switch />);
 
-    expect(screen.getByRole("switch")).to.have.property("checked", false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('preserves `role="switch"` when input slotProps are provided as an object', () => {
-    render(<Switch slotProps={{ input: { "aria-label": "Dark mode" } }} />);
+    render(<Switch slotProps={{ input: { 'aria-label': 'Dark mode' } }} />);
 
-    expect(screen.getByRole("switch", { name: "Dark mode" })).to.have.property("checked", false);
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
   });
 
   it('preserves `role="switch"` when input slotProps are provided as a function', () => {
-    render(<Switch slotProps={{ input: () => ({ "aria-label": "Dark mode" }) }} />);
+    render(<Switch slotProps={{ input: () => ({ 'aria-label': 'Dark mode' }) }} />);
 
-    expect(screen.getByRole("switch", { name: "Dark mode" })).to.have.property("checked", false);
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
   });
 
-  it("renders a switch with the Checked state when checked", () => {
+  it('renders a switch with the Checked state when checked', () => {
     render(<Switch defaultChecked />);
 
-    expect(screen.getByRole("switch")).to.have.property("checked", true);
+    expect(screen.getByRole('switch')).to.have.property('checked', true);
   });
 
-  it("the switch can be disabled", () => {
+  it('the switch can be disabled', () => {
     render(<Switch disabled />);
 
-    expect(screen.getByRole("switch")).to.have.property("disabled", true);
+    expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
-  it("the switch can be readonly", () => {
+  it('the switch can be readonly', () => {
     render(<Switch readOnly />);
 
-    expect(screen.getByRole("switch")).to.have.property("readOnly", true);
+    expect(screen.getByRole('switch')).to.have.property('readOnly', true);
   });
 
-  it("renders a custom icon when provided", () => {
+  it('renders a custom icon when provided', () => {
     render(<Switch icon={<span data-testid="icon" />} />);
 
-    expect(screen.getByTestId("icon")).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
-  it("renders a custom checked icon when provided", () => {
+  it('renders a custom checked icon when provided', () => {
     render(<Switch defaultChecked checkedIcon={<span data-testid="icon" />} />);
 
-    expect(screen.getByTestId("icon")).toBeVisible();
+    expect(screen.getByTestId('icon')).toBeVisible();
   });
 
-  it("the Checked state changes after change events", () => {
+  it('the Checked state changes after change events', () => {
     render(<Switch defaultChecked />);
 
     // how a user would trigger it
     act(() => {
-      screen.getByRole("switch").click();
+      screen.getByRole('switch').click();
     });
-    fireEvent.change(screen.getByRole("switch"), { target: { checked: "" } });
+    fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
 
-    expect(screen.getByRole("switch")).to.have.property("checked", false);
+    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
-  it("should not show warnings when custom `type` is provided", () => {
+  it('should not show warnings when custom `type` is provided', () => {
     expect(() => render(<Switch type="submit" />)).not.toErrorDev();
   });
 
-  describe("with FormControl", () => {
-    describe("enabled", () => {
-      it("should not have the disabled class", () => {
+  describe('with FormControl', () => {
+    describe('enabled', () => {
+      it('should not have the disabled class', () => {
         render(
           <FormControl>
             <Switch />
-          </FormControl>
+          </FormControl>,
         );
 
-        expect(screen.getByRole("switch")).not.to.have.attribute("disabled");
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
 
-      it("should be overridden by props", () => {
+      it('should be overridden by props', () => {
         render(
           <FormControl>
             <Switch disabled />
-          </FormControl>
+          </FormControl>,
         );
 
-        expect(screen.getByRole("switch")).to.have.attribute("disabled");
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
     });
 
-    describe("disabled", () => {
-      it("should have the disabled class", () => {
+    describe('disabled', () => {
+      it('should have the disabled class', () => {
         render(
           <FormControl disabled>
             <Switch />
-          </FormControl>
+          </FormControl>,
         );
 
-        expect(screen.getByRole("switch")).to.have.attribute("disabled");
+        expect(screen.getByRole('switch')).to.have.attribute('disabled');
       });
 
-      it("should be overridden by props", () => {
+      it('should be overridden by props', () => {
         render(
           <FormControl disabled>
             <Switch disabled={false} />
-          </FormControl>
+          </FormControl>,
         );
 
-        expect(screen.getByRole("switch")).not.to.have.attribute("disabled");
+        expect(screen.getByRole('switch')).not.to.have.attribute('disabled');
       });
     });
   });
 
-  describe("mergeClassName", () => {
-    it("should merge the className", () => {
+  describe('mergeClassName', () => {
+    it('should merge the className', () => {
       const { container } = render(<Switch className="test-class-name" />);
 
-      expect(container.firstChild).to.have.class("test-class-name");
+      expect(container.firstChild).to.have.class('test-class-name');
     });
   });
 
-  describe("theme.focusRing", () => {
+  describe('theme.focusRing', () => {
     it.skipIf(isJsdom())(
-      "root overflow is visible so the focus ring is not clipped when focusRing is set",
+      'root overflow is visible so the focus ring is not clipped when focusRing is set',
       () => {
         const { container } = render(
           <ThemeProvider theme={createTheme({ focusRing: true })}>
             <Switch />
-          </ThemeProvider>
+          </ThemeProvider>,
         );
         expect(container.firstChild).toHaveComputedStyle({
-          overflowX: "visible",
-          overflowY: "visible",
+          overflowX: 'visible',
+          overflowY: 'visible',
         });
-      }
+      },
     );
 
-    it.skipIf(isJsdom())("root overflow stays hidden when focusRing is unset", () => {
+    it.skipIf(isJsdom())('root overflow stays hidden when focusRing is unset', () => {
       const { container } = render(
         <ThemeProvider theme={createTheme()}>
           <Switch />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
       expect(container.firstChild).toHaveComputedStyle({
-        overflowX: "hidden",
-        overflowY: "hidden",
+        overflowX: 'hidden',
+        overflowY: 'hidden',
       });
     });
   });

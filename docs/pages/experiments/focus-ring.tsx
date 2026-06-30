@@ -1,67 +1,67 @@
-"use client";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Paper from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import Checkbox from "@mui/material/Checkbox";
-import Switch from "@mui/material/Switch";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import IconButton from "@mui/material/IconButton";
-import Fab from "@mui/material/Fab";
-import Chip from "@mui/material/Chip";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepButton from "@mui/material/StepButton";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import MenuList from "@mui/material/MenuList";
-import MenuItem from "@mui/material/MenuItem";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import ButtonBase from "@mui/material/ButtonBase";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Table from "@mui/material/Table";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import AddIcon from "@mui/icons-material/Add";
-import StarIcon from "@mui/icons-material/Star";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+'use client';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Switch from '@mui/material/Switch';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import IconButton from '@mui/material/IconButton';
+import Fab from '@mui/material/Fab';
+import Chip from '@mui/material/Chip';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepButton from '@mui/material/StepButton';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import ButtonBase from '@mui/material/ButtonBase';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Table from '@mui/material/Table';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import AddIcon from '@mui/icons-material/Add';
+import StarIcon from '@mui/icons-material/Star';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-type Preset = "off" | "true" | "recolor" | "twocolor" | "shadowonly";
+type Preset = 'off' | 'true' | 'recolor' | 'twocolor' | 'shadowonly';
 
 const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSProperties | undefined }> =
   {
-    off: { label: "off", value: undefined },
-    true: { label: "true (curated)", value: true },
-    recolor: { label: "recolor", value: { outlineColor: "#9c27b0" } },
-    twocolor: { label: "two-color (C40)", value: { boxShadow: "0 0 0 4px gold" } },
+    off: { label: 'off', value: undefined },
+    true: { label: 'true (curated)', value: true },
+    recolor: { label: 'recolor', value: { outlineColor: '#9c27b0' } },
+    twocolor: { label: 'two-color (C40)', value: { boxShadow: '0 0 0 4px gold' } },
     shadowonly: {
-      label: "box-shadow only",
-      value: { outlineColor: "transparent", boxShadow: "0 0 0 4px gold" },
+      label: 'box-shadow only',
+      value: { outlineColor: 'transparent', boxShadow: '0 0 0 4px gold' },
     },
   };
 
@@ -70,13 +70,13 @@ const noop = () => {};
 // The ring renders on the ButtonBase root. For form controls (Checkbox/Radio/Switch)
 // `data-ring-target` sits on the inner <input>, so resolve to the SwitchBase root.
 const ringEl = (el: HTMLElement): HTMLElement =>
-  el.closest<HTMLElement>(".MuiButtonBase-root") ?? el;
+  el.closest<HTMLElement>('.MuiButtonBase-root') ?? el;
 
 const isRingDisabled = (el: HTMLElement): boolean => {
   const root = ringEl(el);
   return (
-    root.classList.contains("Mui-disabled") ||
-    root.getAttribute("aria-disabled") === "true" ||
+    root.classList.contains('Mui-disabled') ||
+    root.getAttribute('aria-disabled') === 'true' ||
     (el as HTMLInputElement).disabled === true
   );
 };
@@ -84,13 +84,13 @@ const isRingDisabled = (el: HTMLElement): boolean => {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <React.Fragment>
-      <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: "center" }}>
+      <Typography variant="body2" sx={{ fontWeight: 600, alignSelf: 'center' }}>
         {label}
       </Typography>
       <Stack
         direction="row"
         spacing={1.5}
-        sx={{ alignItems: "center", flexWrap: "wrap", rowGap: 1 }}
+        sx={{ alignItems: 'center', flexWrap: 'wrap', rowGap: 1 }}
       >
         {children}
       </Stack>
@@ -112,14 +112,14 @@ function Bucket({
       <Typography variant="overline" sx={{ fontWeight: 700 }}>
         {title}
       </Typography>
-      <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1.5 }}>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1.5 }}>
         {hint}
       </Typography>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "150px 1fr",
-          alignItems: "center",
+          display: 'grid',
+          gridTemplateColumns: '150px 1fr',
+          alignItems: 'center',
           columnGap: 3,
           rowGap: 2,
         }}
@@ -180,21 +180,38 @@ function OuterRing() {
       <Row label="Checkbox">
         <FormControlLabel
           control={
-            <Checkbox defaultChecked slotProps={{ input: { "data-ring-target": "Checkbox" } }} />
+            <Checkbox
+              defaultChecked
+              slotProps={{
+                input: { 'data-ring-target': 'Checkbox' } as React.InputHTMLAttributes<HTMLInputElement>,
+              }}
+            />
           }
           label="Checkbox"
         />
       </Row>
       <Row label="Radio">
         <FormControlLabel
-          control={<Radio defaultChecked slotProps={{ input: { "data-ring-target": "Radio" } }} />}
+          control={
+            <Radio
+              defaultChecked
+              slotProps={{
+                input: { 'data-ring-target': 'Radio' } as React.InputHTMLAttributes<HTMLInputElement>,
+              }}
+            />
+          }
           label="Radio"
         />
       </Row>
       <Row label="Switch">
         <FormControlLabel
           control={
-            <Switch defaultChecked slotProps={{ input: { "data-ring-target": "Switch" } }} />
+            <Switch
+              defaultChecked
+              slotProps={{
+                input: { 'data-ring-target': 'Switch' } as React.InputHTMLAttributes<HTMLInputElement>,
+              }}
+            />
           }
           label="Switch"
         />
@@ -218,7 +235,7 @@ function OuterRing() {
       <Row label="ButtonBase">
         <ButtonBase
           data-ring-target="ButtonBase (bare)"
-          sx={{ px: 1.5, py: 1, border: "1px dashed", borderColor: "divider", borderRadius: 1 }}
+          sx={{ px: 1.5, py: 1, border: '1px dashed', borderColor: 'divider', borderRadius: 1 }}
         >
           ButtonBase
         </ButtonBase>
@@ -272,7 +289,7 @@ function InnerRing() {
         </Tabs>
       </Row>
       <Row label="MenuItem">
-        <MenuList sx={{ border: "1px solid", borderColor: "divider", borderRadius: 1 }}>
+        <MenuList sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
           <MenuItem data-ring-target="MenuItem">Profile</MenuItem>
           <MenuItem data-ring-target="MenuItem">Settings</MenuItem>
         </MenuList>
@@ -280,8 +297,8 @@ function InnerRing() {
       <Row label="ListItemButton">
         <List
           sx={{
-            border: "1px solid",
-            borderColor: "divider",
+            border: '1px solid',
+            borderColor: 'divider',
             borderRadius: 1,
             minWidth: 200,
             py: 0,
@@ -296,7 +313,7 @@ function InnerRing() {
         <BottomNavigation
           showLabels
           value={0}
-          sx={{ width: 320, border: 1, borderColor: "divider", borderRadius: 1 }}
+          sx={{ width: 320, border: 1, borderColor: 'divider', borderRadius: 1 }}
         >
           <BottomNavigationAction
             label="Star"
@@ -324,10 +341,10 @@ function InnerRing() {
 }
 
 export default function FocusRing() {
-  const [preset, setPreset] = React.useState<Preset>("true");
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const [preset, setPreset] = React.useState<Preset>('true');
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [vars, setVars] = React.useState(false); // N3
-  const [customJson, setCustomJson] = React.useState(""); // N2
+  const [customJson, setCustomJson] = React.useState(''); // N2
   const [focused, setFocused] = React.useState<string | null>(null);
   const [ringIdx, setRingIdx] = React.useState(-1); // N1
   const [total, setTotal] = React.useState(0); // N1
@@ -353,43 +370,43 @@ export default function FocusRing() {
 
   const theme = React.useMemo(
     () => createTheme({ cssVariables: vars, palette: { mode }, focusRing: focusRingValue }),
-    [vars, mode, focusRingValue]
+    [vars, mode, focusRingValue],
   );
 
   // N4 — the normalized, resolved ring object the gallery actually renders.
   const resolved = JSON.stringify(theme.focusRing ?? null, null, 2);
 
-  let customHelp = "Empty → use the preset above";
+  let customHelp = 'Empty → use the preset above';
   if (custom.error) {
-    customHelp = "Invalid JSON";
+    customHelp = 'Invalid JSON';
   } else if (custom.active) {
-    customHelp = "Overrides the preset above";
+    customHelp = 'Overrides the preset above';
   }
 
   // N1 — pointer-driven ring shim (experiment-only): forces `.Mui-focusVisible`
   // on the ring-bearing root so reviewers can step through with the mouse.
   // `data-ring-target` lives only in the gallery, so a document query is safe.
   const ringTargets = React.useCallback(
-    () => Array.from(document.querySelectorAll<HTMLElement>("[data-ring-target]")),
-    []
+    () => Array.from(document.querySelectorAll<HTMLElement>('[data-ring-target]')),
+    [],
   );
   // The walk steps over enabled targets only — disabled controls take no ring.
   const walkTargets = React.useCallback(
     () => ringTargets().filter((el) => !isRingDisabled(el)),
-    [ringTargets]
+    [ringTargets],
   );
   const applyRing = React.useCallback(
     (idx: number) => {
       const targets = walkTargets();
-      ringTargets().forEach((el) => ringEl(el).classList.remove("Mui-focusVisible"));
+      ringTargets().forEach((el) => ringEl(el).classList.remove('Mui-focusVisible'));
       const el = targets[idx];
       if (el) {
-        ringEl(el).classList.add("Mui-focusVisible");
+        ringEl(el).classList.add('Mui-focusVisible');
       }
       setRingIdx(idx);
-      setFocused(el?.getAttribute("data-ring-target") ?? null);
+      setFocused(el?.getAttribute('data-ring-target') ?? null);
     },
-    [walkTargets, ringTargets]
+    [walkTargets, ringTargets],
   );
   const step = (delta: number) => {
     const targets = walkTargets();
@@ -405,16 +422,16 @@ export default function FocusRing() {
   }, [walkTargets, preset, vars, mode, focusRingValue]);
 
   return (
-    <Box sx={{ maxWidth: 1120, mx: "auto" }}>
+    <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
       {/* Header band — controls live outside the themed gallery, so they never pick up the ring. */}
-      <Box sx={{ px: 3, py: 2, borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ px: 3, py: 2, borderBottom: 1, borderColor: 'divider' }}>
         <Stack
           direction="row"
           spacing={2}
           sx={{
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            flexWrap: "wrap",
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            flexWrap: 'wrap',
             rowGap: 1,
           }}
         >
@@ -426,8 +443,8 @@ export default function FocusRing() {
               ⌨ Press Tab / Shift+Tab — the ring shows on <code>:focus-visible</code> (keyboard)
               only; clicks never show it.
             </Typography>
-            <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 0.5 }}>
-              Focused: <strong>{focused ?? "— (tab into the gallery)"}</strong>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+              Focused: <strong>{focused ?? '— (tab into the gallery)'}</strong>
             </Typography>
           </Box>
           <ToggleButtonGroup
@@ -444,17 +461,17 @@ export default function FocusRing() {
 
       {/* Two columns: sticky controls (left) + gallery (right). */}
       <Stack
-        direction={{ xs: "column", md: "row" }}
+        direction={{ xs: 'column', md: 'row' }}
         spacing={3}
-        sx={{ p: 3, alignItems: "flex-start" }}
+        sx={{ p: 3, alignItems: 'flex-start' }}
       >
         <Paper
           variant="outlined"
-          sx={{ p: 2, width: 260, flexShrink: 0, position: { md: "sticky" }, top: 16 }}
+          sx={{ p: 2, width: 260, flexShrink: 0, position: { md: 'sticky' }, top: 16 }}
         >
           <Stack spacing={2}>
             <FormControl disabled={custom.active}>
-              <FormLabel sx={{ typography: "subtitle2", mb: 1 }}>Preset</FormLabel>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1 }}>Preset</FormLabel>
               <RadioGroup
                 value={preset}
                 onChange={(event) => setPreset(event.target.value as Preset)}
@@ -493,17 +510,17 @@ export default function FocusRing() {
               multiline
               minRows={3}
               size="small"
-              slotProps={{ htmlInput: { style: { fontFamily: "monospace", fontSize: 12 } } }}
+              slotProps={{ htmlInput: { style: { fontFamily: 'monospace', fontSize: 12 } } }}
             />
 
             <Divider />
 
             {/* N1 — pointer toolbar (experiment-only shim) */}
             <div>
-              <FormLabel sx={{ typography: "subtitle2", mb: 1, display: "block" }}>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1, display: 'block' }}>
                 Pointer walk (no keyboard)
               </FormLabel>
-              <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                 <Button size="small" variant="outlined" onClick={() => step(-1)}>
                   ‹ Prev
                 </Button>
@@ -514,7 +531,7 @@ export default function FocusRing() {
                   {ringIdx < 0 ? 0 : ringIdx + 1}/{total}
                 </Typography>
               </Stack>
-              <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1 }}>
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
                 Experiment-only shim: forces <code>.Mui-focusVisible</code> so you can preview the
                 ring with the mouse. Real keyboard <kbd>Tab</kbd> stays the source of truth.
               </Typography>
@@ -524,7 +541,7 @@ export default function FocusRing() {
 
             {/* N4 — resolved value */}
             <div>
-              <FormLabel sx={{ typography: "subtitle2", mb: 1, display: "block" }}>
+              <FormLabel sx={{ typography: 'subtitle2', mb: 1, display: 'block' }}>
                 Resolved <code>theme.focusRing</code>
               </FormLabel>
               <Box
@@ -533,10 +550,10 @@ export default function FocusRing() {
                   m: 0,
                   p: 1,
                   borderRadius: 1,
-                  bgcolor: "action.hover",
+                  bgcolor: 'action.hover',
                   fontSize: 11,
-                  overflowX: "auto",
-                  whiteSpace: "pre-wrap",
+                  overflowX: 'auto',
+                  whiteSpace: 'pre-wrap',
                 }}
               >
                 {resolved}
@@ -549,14 +566,14 @@ export default function FocusRing() {
           sx={{ flex: 1, minWidth: 0 }}
           onFocusCapture={(event) => {
             const target = event.target as HTMLElement;
-            setFocused(target.getAttribute("data-ring-target"));
+            setFocused(target.getAttribute('data-ring-target'));
             // Real keyboard focus wins: drop the pointer shim from every ring root
             // except the one being focused, so there's never a double-ring.
-            const focusedRing = target.closest(".MuiButtonBase-root");
+            const focusedRing = target.closest('.MuiButtonBase-root');
             ringTargets().forEach((el) => {
               const root = ringEl(el);
               if (root !== focusedRing) {
-                root.classList.remove("Mui-focusVisible");
+                root.classList.remove('Mui-focusVisible');
               }
             });
             setRingIdx(-1);
@@ -565,10 +582,10 @@ export default function FocusRing() {
         >
           <ThemeProvider theme={theme}>
             <Stack spacing={3}>
-              <Paper variant="outlined" sx={{ p: 3, bgcolor: "background.default" }}>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <OuterRing />
               </Paper>
-              <Paper variant="outlined" sx={{ p: 3, bgcolor: "background.default" }}>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <InnerRing />
               </Paper>
             </Stack>
@@ -583,17 +600,17 @@ export default function FocusRing() {
               shows.
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{" "}
+              • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{' '}
               <code>disabled.focusVisible</code> at higher specificity, winning in that narrow
               state.
             </Typography>
             {/* N5 — extra edge callouts */}
             <Typography variant="body2" color="text.secondary">
-              •{" "}
+              •{' '}
               <strong>
                 <code>overflow: hidden</code> clip:
-              </strong>{" "}
-              a standalone outer ring is clipped to nothing inside an <code>overflow: hidden</code>{" "}
+              </strong>{' '}
+              a standalone outer ring is clipped to nothing inside an <code>overflow: hidden</code>{' '}
               ancestor (e.g. Card). The inner-ring families inset the ring (negative offset) so it
               draws inside the box.
             </Typography>

@@ -20,7 +20,7 @@ const outlineRemoved = createTheme({
 
 function Sample({ theme, label }: { theme: Theme; label: string }) {
   return (
-    <Stack spacing={1} alignItems="flex-start">
+    <Stack spacing={1} sx={{ alignItems: 'flex-start' }}>
       <Typography variant="caption" color="text.secondary">
         {label}
       </Typography>

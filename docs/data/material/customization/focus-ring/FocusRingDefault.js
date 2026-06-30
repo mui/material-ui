@@ -13,7 +13,7 @@ const theme = createTheme({ focusRing: true });
 export default function FocusRingDefault() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack spacing={2} alignItems="flex-start">
+      <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
         <Typography variant="body2" color="text.secondary">
           Press <kbd>Tab</kbd> to move focus — the ring shows on keyboard focus only.
         </Typography>
