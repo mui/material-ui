@@ -3,3 +3,5 @@ export * from './PaginationItem';
 
 export { default as paginationItemClasses } from './paginationItemClasses';
 export * from './paginationItemClasses';
+
+export { private_paginationItemVars } from './paginationItemVars';

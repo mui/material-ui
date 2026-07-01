@@ -29,6 +29,7 @@ import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
+import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -203,6 +204,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [fabVars.smallSize]: '40px',
     [fabVars.mediumSize]: '48px',
     [fabVars.largeSize]: '56px',
+  });
+  addRootOverride(enhanced.components, 'MuiPaginationItem', {
+    // Item box size = raw px per size.
+    [piVars.smallSize]: '26px',
+    [piVars.mediumSize]: '32px',
+    [piVars.largeSize]: '40px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

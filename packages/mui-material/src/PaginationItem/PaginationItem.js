@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
+import { private_paginationItemVars as vars } from './paginationItemVars';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -71,7 +72,10 @@ const PaginationItemEllipsis = styled('div', {
     borderRadius: 32 / 2,
     textAlign: 'center',
     boxSizing: 'border-box',
-    minWidth: 32,
+    // Density seam: item box size (raw px per size), shared with the page button.
+    '--_size': '32px',
+    '--comp-size': `var(${vars.mediumSize}, var(--_size))`,
+    minWidth: 'var(--comp-size, var(--_size))',
     padding: '0 6px',
     margin: '0 3px',
     color: (theme.vars || theme).palette.text.primary,
@@ -83,7 +87,8 @@ const PaginationItemEllipsis = styled('div', {
       {
         props: { size: 'small' },
         style: {
-          minWidth: 26,
+          '--_size': '26px',
+          '--comp-size': `var(${vars.smallSize}, var(--_size))`,
           borderRadius: 26 / 2,
           margin: '0 1px',
           padding: '0 4px',
@@ -92,7 +97,8 @@ const PaginationItemEllipsis = styled('div', {
       {
         props: { size: 'large' },
         style: {
-          minWidth: 40,
+          '--_size': '40px',
+          '--comp-size': `var(${vars.largeSize}, var(--_size))`,
           borderRadius: 40 / 2,
           padding: '0 10px',
           fontSize: theme.typography.pxToRem(15),
@@ -112,8 +118,11 @@ const PaginationItemPage = styled(ButtonBase, {
     borderRadius: 32 / 2,
     textAlign: 'center',
     boxSizing: 'border-box',
-    minWidth: 32,
-    height: 32,
+    // Density seam: item box size (raw px per size).
+    '--_size': '32px',
+    '--comp-size': `var(${vars.mediumSize}, var(--_size))`,
+    minWidth: 'var(--comp-size, var(--_size))',
+    height: 'var(--comp-size, var(--_size))',
     padding: '0 6px',
     margin: '0 3px',
     color: (theme.vars || theme).palette.text.primary,
@@ -161,8 +170,8 @@ const PaginationItemPage = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          minWidth: 26,
-          height: 26,
+          '--_size': '26px',
+          '--comp-size': `var(${vars.smallSize}, var(--_size))`,
           borderRadius: 26 / 2,
           margin: '0 1px',
           padding: '0 4px',
@@ -171,8 +180,8 @@ const PaginationItemPage = styled(ButtonBase, {
       {
         props: { size: 'large' },
         style: {
-          minWidth: 40,
-          height: 40,
+          '--_size': '40px',
+          '--comp-size': `var(${vars.largeSize}, var(--_size))`,
           borderRadius: 40 / 2,
           padding: '0 10px',
           fontSize: theme.typography.pxToRem(15),

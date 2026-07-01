@@ -5,6 +5,8 @@ import Stack from '@mui/material/Stack';
 import Button, { private_buttonVars } from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
 import Fab, { private_fabVars } from '@mui/material/Fab';
+import Pagination from '@mui/material/Pagination';
+import { private_paginationItemVars } from '@mui/material/PaginationItem';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -1149,6 +1151,38 @@ function FabMatrix({
   );
 }
 
+// Pagination family: the item box size per size (shared page/ellipsis).
+const PAGINATION_FIELDS: DensityField[] = [
+  { key: 'smallSize', cssVar: private_paginationItemVars.smallSize },
+  { key: 'mediumSize', cssVar: private_paginationItemVars.mediumSize },
+  { key: 'largeSize', cssVar: private_paginationItemVars.largeSize },
+];
+
+function PaginationMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        PAGINATION_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={2} sx={{ mt: 1 }}>
+      <Pagination count={5} size="small" sx={sx} />
+      <Pagination count={5} sx={sx} />
+      <Pagination count={5} size="large" sx={sx} />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1255,6 +1289,12 @@ const COMPONENT_DEFS = {
     fields: FAB_FIELDS,
     prefill: {}, // sizes = raw px, read off the theme
     renderMatrix: (args) => <FabMatrix {...args} />,
+  },
+  Pagination: {
+    canvasLabel: 'Pagination — item box size (small / medium / large)',
+    fields: PAGINATION_FIELDS,
+    prefill: {}, // sizes = raw px, read off the theme
+    renderMatrix: (args) => <PaginationMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',

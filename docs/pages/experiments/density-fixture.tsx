@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  PaginationItem: {
+    dense: {
+      ['--PaginationItem-small-size' as any]: '22px',
+      ['--PaginationItem-medium-size' as any]: '28px',
+      ['--PaginationItem-large-size' as any]: '34px',
+    },
+    loose: {
+      ['--PaginationItem-small-size' as any]: '34px',
+      ['--PaginationItem-medium-size' as any]: '44px',
+      ['--PaginationItem-large-size' as any]: '52px',
+    },
+  },
   Fab: {
     dense: {
       ['--Fab-small-size' as any]: '32px',

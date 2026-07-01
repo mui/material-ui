@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
+import Pagination from '@mui/material/Pagination';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -207,6 +208,13 @@ const demos: Record<string, React.ReactNode> = {
       <Fab color="primary">
         <InboxIcon />
       </Fab>
+    </Stack>
+  ),
+  PaginationItem: (
+    <Stack spacing={2}>
+      <Pagination count={5} size="small" />
+      <Pagination count={5} />
+      <Pagination count={5} size="large" />
     </Stack>
   ),
   ButtonGroup: (

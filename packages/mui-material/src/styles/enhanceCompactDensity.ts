@@ -29,6 +29,7 @@ import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
+import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -201,6 +202,12 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [fabVars.smallSize]: '36px',
     [fabVars.mediumSize]: '44px',
     [fabVars.largeSize]: '52px',
+  });
+  addRootOverride(enhanced.components, 'MuiPaginationItem', {
+    // Item box size = raw px per size.
+    [piVars.smallSize]: '22px',
+    [piVars.mediumSize]: '28px',
+    [piVars.largeSize]: '36px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.
