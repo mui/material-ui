@@ -12,6 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
+import { private_toggleButtonVars as vars } from './toggleButtonVars';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from '../ToggleButtonGroup/ToggleButtonGroupButtonContext';
 import isValueSelected from '../ToggleButtonGroup/isValueSelected';
@@ -45,7 +46,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
     borderRadius: (theme.vars || theme).shape.borderRadius,
-    padding: 11,
+    // Density seam: uniform padding over the per-size default (medium base;
+    // small/large variants below reroute + swap the default).
+    '--_pad': '11px',
+    '--comp-pad': `var(${vars.mediumPad}, var(--_pad))`,
+    padding: 'var(--comp-pad, var(--_pad))',
     border: `1px solid ${(theme.vars || theme).palette.divider}`,
     color: (theme.vars || theme).palette.action.active,
     [`&.${toggleButtonClasses.disabled}`]: {
@@ -125,14 +130,16 @@ const ToggleButtonRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          padding: 7,
+          '--_pad': '7px',
+          '--comp-pad': `var(${vars.smallPad}, var(--_pad))`,
           fontSize: theme.typography.pxToRem(13),
         },
       },
       {
         props: { size: 'large' },
         style: {
-          padding: 15,
+          '--_pad': '15px',
+          '--comp-pad': `var(${vars.largePad}, var(--_pad))`,
           fontSize: theme.typography.pxToRem(15),
         },
       },

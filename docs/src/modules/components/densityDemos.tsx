@@ -13,6 +13,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -172,6 +174,17 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Radio checked />
       <Radio checked size="small" />
+    </Stack>
+  ),
+  ToggleButton: (
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center', flexWrap: 'wrap' }} useFlexGap>
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <ToggleButtonGroup key={size} value="left" size={size} exclusive>
+          <ToggleButton value="left">L</ToggleButton>
+          <ToggleButton value="center">C</ToggleButton>
+          <ToggleButton value="right">R</ToggleButton>
+        </ToggleButtonGroup>
+      ))}
     </Stack>
   ),
   Breadcrumbs: (

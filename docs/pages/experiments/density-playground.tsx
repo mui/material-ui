@@ -39,7 +39,7 @@ import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/Ac
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButton, { private_toggleButtonVars } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tooltip, { private_tooltipVars } from '@mui/material/Tooltip';
 import PaddingIcon from '@mui/icons-material/Padding';
@@ -812,6 +812,45 @@ function BreadcrumbsMatrix({
   );
 }
 
+// ToggleButton family: uniform padding per size.
+const TOGGLE_BUTTON_FIELDS: DensityField[] = [
+  { key: 'smallPad', cssVar: private_toggleButtonVars.smallPad },
+  { key: 'mediumPad', cssVar: private_toggleButtonVars.mediumPad },
+  { key: 'largePad', cssVar: private_toggleButtonVars.largePad },
+];
+
+function ToggleButtonMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        TOGGLE_BUTTON_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <ToggleButtonGroup key={size} value="left" size={size} exclusive sx={sx}>
+          <ToggleButton value="left">
+            <span className="density-debug-text">{size} L</span>
+          </ToggleButton>
+          <ToggleButton value="center">
+            <span className="density-debug-text">C</span>
+          </ToggleButton>
+        </ToggleButtonGroup>
+      ))}
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -906,6 +945,12 @@ const COMPONENT_DEFS = {
     fields: RADIO_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: (args) => <RadioMatrix {...args} />,
+  },
+  ToggleButton: {
+    canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',
+    fields: TOGGLE_BUTTON_FIELDS,
+    prefill: { smallPad: 'sm', mediumPad: 'md', largePad: 'lg' },
+    renderMatrix: (args) => <ToggleButtonMatrix {...args} />,
   },
   Breadcrumbs: {
     canvasLabel: 'Breadcrumbs — separator inline gap',

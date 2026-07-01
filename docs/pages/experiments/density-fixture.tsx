@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Breadcrumbs-separatorGap' as any]: '4px' },
     loose: { ['--Breadcrumbs-separatorGap' as any]: '16px' },
   },
+  ToggleButton: {
+    dense: {
+      ['--ToggleButton-small-pad' as any]: '4px',
+      ['--ToggleButton-medium-pad' as any]: '7px',
+      ['--ToggleButton-large-pad' as any]: '10px',
+    },
+    loose: {
+      ['--ToggleButton-small-pad' as any]: '12px',
+      ['--ToggleButton-medium-pad' as any]: '16px',
+      ['--ToggleButton-large-pad' as any]: '22px',
+    },
+  },
   CardContent: {
     dense: {
       ['--CardContent-pad' as any]: '8px',
