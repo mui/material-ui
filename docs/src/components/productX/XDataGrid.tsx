@@ -436,7 +436,6 @@ function XDataGridDemo({
   const [filterPanelTarget, setFilterPanelTarget] = React.useState<HTMLElement | null>(null);
   const gridApiRef = useGridApiRef();
   const handlePrompt = React.useCallback(async () => aiAssistantResponse, []);
-  const firstRowId = gridRows[0]?.id;
 
   React.useEffect(() => {
     const panelAnchor = document.querySelector<HTMLElement>(
@@ -554,7 +553,7 @@ function XDataGridDemo({
     return () => {
       timeoutIds.forEach(clearTimeout);
     };
-  }, [demo, loading, firstRowId, gridApiRef, cellRangeSelectionModel, cellRangeFocusId]);
+  }, [demo, loading, gridApiRef, cellRangeSelectionModel, cellRangeFocusId]);
 
   return (
     <GridChartsIntegrationContextProvider>
