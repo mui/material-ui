@@ -30,6 +30,7 @@ import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
+import { private_snackbarContentVars as scVars } from '../SnackbarContent/snackbarContentVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -210,6 +211,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [piVars.smallSize]: '26px',
     [piVars.mediumSize]: '32px',
     [piVars.largeSize]: '40px',
+  });
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', {
+    [scVars.blockPad]: d.xs,
+    [scVars.inlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

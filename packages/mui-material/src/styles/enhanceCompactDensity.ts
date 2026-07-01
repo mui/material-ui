@@ -30,6 +30,7 @@ import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
+import { private_snackbarContentVars as scVars } from '../SnackbarContent/snackbarContentVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -208,6 +209,10 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [piVars.smallSize]: '22px',
     [piVars.mediumSize]: '28px',
     [piVars.largeSize]: '36px',
+  });
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', {
+    [scVars.blockPad]: d.xs,
+    [scVars.inlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

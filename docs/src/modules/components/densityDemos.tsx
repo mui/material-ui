@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
+import SnackbarContent from '@mui/material/SnackbarContent';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -216,6 +217,17 @@ const demos: Record<string, React.ReactNode> = {
       <Pagination count={5} />
       <Pagination count={5} size="large" />
     </Stack>
+  ),
+  SnackbarContent: (
+    <SnackbarContent
+      message="Something happened"
+      action={
+        <Button color="secondary" size="small">
+          Undo
+        </Button>
+      }
+      sx={{ width: 320 }}
+    />
   ),
   ButtonGroup: (
     <ButtonGroup variant="outlined">

@@ -7,6 +7,7 @@ import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup'
 import Fab, { private_fabVars } from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import { private_paginationItemVars } from '@mui/material/PaginationItem';
+import SnackbarContent, { private_snackbarContentVars } from '@mui/material/SnackbarContent';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -1183,6 +1184,38 @@ function PaginationMatrix({
   );
 }
 
+// SnackbarContent family: root block/inline padding (no size axis).
+const SNACKBAR_FIELDS: DensityField[] = [
+  { key: 'blockPad', cssVar: private_snackbarContentVars.blockPad },
+  { key: 'inlinePad', cssVar: private_snackbarContentVars.inlinePad },
+];
+
+function SnackbarMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        SNACKBAR_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <SnackbarContent
+      message={<span className="density-debug-text">Something happened</span>}
+      action={
+        <Button color="secondary" size="small">
+          Undo
+        </Button>
+      }
+      sx={{ mt: 1, width: 320, ...sx }}
+    />
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1295,6 +1328,12 @@ const COMPONENT_DEFS = {
     fields: PAGINATION_FIELDS,
     prefill: {}, // sizes = raw px, read off the theme
     renderMatrix: (args) => <PaginationMatrix {...args} />,
+  },
+  SnackbarContent: {
+    canvasLabel: 'SnackbarContent — root padding',
+    fields: SNACKBAR_FIELDS,
+    prefill: { blockPad: 'xs', inlinePad: 'lg' },
+    renderMatrix: (args) => <SnackbarMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
