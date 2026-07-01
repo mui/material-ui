@@ -128,6 +128,22 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  Dialog: {
+    dense: {
+      ['--DialogTitle-blockPad' as any]: '10px',
+      ['--DialogTitle-inlinePad' as any]: '16px',
+      ['--DialogContent-blockPad' as any]: '12px',
+      ['--DialogContent-inlinePad' as any]: '16px',
+      ['--DialogActions-pad' as any]: '4px',
+    },
+    loose: {
+      ['--DialogTitle-blockPad' as any]: '24px',
+      ['--DialogTitle-inlinePad' as any]: '32px',
+      ['--DialogContent-blockPad' as any]: '28px',
+      ['--DialogContent-inlinePad' as any]: '32px',
+      ['--DialogActions-pad' as any]: '16px',
+    },
+  },
   BottomNavigation: {
     dense: {
       ['--BottomNavigation-height' as any]: '44px',

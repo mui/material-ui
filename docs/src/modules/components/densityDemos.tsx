@@ -22,6 +22,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Paper from '@mui/material/Paper';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -219,6 +223,18 @@ const demos: Record<string, React.ReactNode> = {
       <Pagination count={5} />
       <Pagination count={5} size="large" />
     </Stack>
+  ),
+  Dialog: (
+    // The dialog surface (Paper) with its 3 slots — no modal/portal so it renders
+    // inline in the scope; density lives in the title/content/actions padding.
+    <Paper sx={{ width: 320 }}>
+      <DialogTitle>Dialog title</DialogTitle>
+      <DialogContent>Dialog content body text goes here.</DialogContent>
+      <DialogActions>
+        <Button>Cancel</Button>
+        <Button>OK</Button>
+      </DialogActions>
+    </Paper>
   ),
   BottomNavigation: (
     <BottomNavigation value={0} showLabels sx={{ width: 400 }}>

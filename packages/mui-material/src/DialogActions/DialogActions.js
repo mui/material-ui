@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
+import { private_dialogActionsVars as vars } from './dialogActionsVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableSpacing } = ownerState;
@@ -28,7 +29,10 @@ const DialogActionsRoot = styled('div', {
 })({
   display: 'flex',
   alignItems: 'center',
-  padding: 8,
+  // Density seam: action-bar padding.
+  '--_pad': '8px',
+  '--comp-pad': `var(${vars.pad}, var(--_pad))`,
+  padding: 'var(--comp-pad, var(--_pad))',
   justifyContent: 'flex-end',
   flex: '0 0 auto',
   variants: [

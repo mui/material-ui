@@ -41,6 +41,10 @@ import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
 import Radio, { private_radioVars } from '@mui/material/Radio';
 import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import DialogTitle, { private_dialogTitleVars } from '@mui/material/DialogTitle';
+import DialogContent, { private_dialogContentVars } from '@mui/material/DialogContent';
+import DialogActions, { private_dialogActionsVars } from '@mui/material/DialogActions';
 import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
 import Select, { private_selectVars } from '@mui/material/Select';
@@ -1251,6 +1255,44 @@ function BottomNavigationMatrix({
   );
 }
 
+// Dialog family: title + content block/inline padding + actions padding.
+const DIALOG_FIELDS: DensityField[] = [
+  { key: 'titleBlockPad', cssVar: private_dialogTitleVars.blockPad },
+  { key: 'titleInlinePad', cssVar: private_dialogTitleVars.inlinePad },
+  { key: 'contentBlockPad', cssVar: private_dialogContentVars.blockPad },
+  { key: 'contentInlinePad', cssVar: private_dialogContentVars.inlinePad },
+  { key: 'actionsPad', cssVar: private_dialogActionsVars.pad },
+];
+
+function DialogMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        DIALOG_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Paper sx={{ mt: 1, width: 320, ...sx }}>
+      <DialogTitle>
+        <span className="density-debug-text">Dialog title</span>
+      </DialogTitle>
+      <DialogContent>
+        <span className="density-debug-text">Dialog content body text goes here.</span>
+      </DialogContent>
+      <DialogActions>
+        <Button>Cancel</Button>
+        <Button>OK</Button>
+      </DialogActions>
+    </Paper>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1375,6 +1417,18 @@ const COMPONENT_DEFS = {
     fields: BOTTOM_NAV_FIELDS,
     prefill: { inlinePad: 'md' }, // height raw px off theme
     renderMatrix: (args) => <BottomNavigationMatrix {...args} />,
+  },
+  Dialog: {
+    canvasLabel: 'Dialog — title / content / actions padding',
+    fields: DIALOG_FIELDS,
+    prefill: {
+      titleBlockPad: 'lg',
+      titleInlinePad: 'xl',
+      contentBlockPad: 'lg',
+      contentInlinePad: 'xl',
+      actionsPad: 'sm',
+    },
+    renderMatrix: (args) => <DialogMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
