@@ -2,6 +2,7 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
 import { private_listVars as listVars } from '../List/listVars';
+import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
 
 const scale: DensityScale = {
   xxs: '2px',
@@ -33,6 +34,19 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // Menu/list vertical breathing (spacing token).
     [listVars.blockPad]: d.sm,
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
+      // Regular (pointer) tooltip only — `touch` stays at its literals.
+      // Padding + anchor offset = density steps (spacing). Arrow = raw px (sizing).
+      [tooltipVars.blockPad]: d.xxs,
+      [tooltipVars.inlinePad]: d.sm,
+      [tooltipVars.offset]: d.lg,
+      [tooltipVars.arrowSize]: '10px',
+    },
+    'tooltip',
+  );
   enhanced.typography = {
     ...enhanced.typography,
     button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.5 },

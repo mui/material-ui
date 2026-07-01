@@ -90,9 +90,13 @@ export function applyDensity<T extends EnhanceableTheme>(
 }
 
 /**
- * Attach a `styleOverrides.root` object to a component slot, preserving any
- * existing root overrides (array-wrapped). Presets use this to add their
+ * Attach a `styleOverrides` object to a component slot, preserving any existing
+ * overrides for that slot (array-wrapped). Presets use this to add their
  * component-var → density-step assignments after `applyDensity`.
+ *
+ * Defaults to the `root` slot (Button, MenuItem, …). Pass `slot` for components
+ * whose density seams live on a non-root slot — e.g. Tooltip has no `root` slot,
+ * so its tokens land on `tooltip` (the bubble, ancestor of the arrow).
  *
  * **Mutates `components` in place** — pass the enhanced theme's `components`
  * (fresh, owned by `applyDensity`), never a theme's shared `components`.
@@ -100,14 +104,15 @@ export function applyDensity<T extends EnhanceableTheme>(
 export function addRootOverride(
   components: NonNullable<EnhanceableTheme['components']>,
   name: string,
-  root: Record<string, string>,
+  overrides: Record<string, string>,
+  slot: string = 'root',
 ): void {
-  const slot = (components as any)[name];
+  const component = (components as any)[name];
   (components as any)[name] = {
-    ...slot,
+    ...component,
     styleOverrides: {
-      ...slot?.styleOverrides,
-      root: [slot?.styleOverrides?.root, root],
+      ...component?.styleOverrides,
+      [slot]: [component?.styleOverrides?.[slot], overrides],
     },
   };
 }

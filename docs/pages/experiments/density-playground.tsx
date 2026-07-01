@@ -22,7 +22,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip, { private_tooltipVars } from '@mui/material/Tooltip';
 import PaddingIcon from '@mui/icons-material/Padding';
 import TitleIcon from '@mui/icons-material/Title';
 import {
@@ -47,26 +47,32 @@ type MappingKey = `${Size}Pad`;
 // layout-safe (absolute ::before + pointer-events:none), never touches the
 // components' real styles. The label span sits above the padding overlay
 // (z-index) so text stays crisp; its blue fill only shows in text mode.
+// The padding-ring overlay: `inset:0` sizes it to the element's padding-box;
+// `padding:inherit` shrinks its content-box to the element's content box, and
+// the `exclude` mask knocks that center out → green fills only the padding ring.
+const PADDING_RING = {
+  content: '""',
+  position: 'absolute',
+  inset: 0,
+  padding: 'inherit',
+  boxSizing: 'border-box',
+  borderRadius: 'inherit',
+  backgroundColor: 'rgba(46, 204, 64, 0.5)', // padding = green (DevTools convention)
+  pointerEvents: 'none',
+  WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+  WebkitMaskComposite: 'xor',
+  mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+  maskComposite: 'exclude',
+} as const;
+
 const DEBUG_SX = {
   '& .density-debug-text': { position: 'relative', zIndex: 1, borderRadius: '2px' },
-  '&[data-debug-padding] .MuiButtonBase-root': { position: 'relative' },
-  '&[data-debug-padding] .MuiButtonBase-root::before': {
-    content: '""',
-    position: 'absolute',
-    inset: 0,
-    // `inset:0` sizes the overlay to the button's padding-box; `padding:inherit`
-    // then shrinks its content-box to the button's content box, and the
-    // `exclude` mask knocks that center out → green fills only the padding ring.
-    padding: 'inherit',
-    boxSizing: 'border-box',
-    borderRadius: 'inherit',
-    backgroundColor: 'rgba(46, 204, 64, 0.5)', // padding = green (DevTools convention)
-    pointerEvents: 'none',
-    WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-    WebkitMaskComposite: 'xor',
-    mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-    maskComposite: 'exclude',
+  // Padding ring on ButtonBase (Button/MenuItem) + the Tooltip bubble.
+  '&[data-debug-padding] .MuiButtonBase-root, &[data-debug-padding] .MuiTooltip-tooltip': {
+    position: 'relative',
   },
+  '&[data-debug-padding] .MuiButtonBase-root::before': PADDING_RING,
+  '&[data-debug-padding] .MuiTooltip-tooltip::before': PADDING_RING,
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
   },
@@ -278,6 +284,60 @@ function MenuMatrix({
   );
 }
 
+// Tooltip density tokens (regular/pointer only — `touch` is out of scope).
+// Padding + anchor offset are spacing (prefill density keys); arrow size ships
+// as raw px per preset (read live off the theme), like MenuItem min-height.
+const TOOLTIP_FIELDS: DensityField[] = [
+  { key: 'blockPad', cssVar: private_tooltipVars.blockPad },
+  { key: 'inlinePad', cssVar: private_tooltipVars.inlinePad },
+  { key: 'offset', cssVar: private_tooltipVars.offset },
+  { key: 'arrowSize', cssVar: private_tooltipVars.arrowSize },
+];
+
+function TooltipMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  // Element-level tokens win over the preset. All four land on the bubble
+  // (`tooltip` slot); the arrow inherits `--comp-arrowSize` from it.
+  const tooltipSx = mappingEnabled
+    ? Object.fromEntries(
+        TOOLTIP_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  // Force open + inline (no portal) so the bubble sits inside the debug scope
+  // and picks up the padding-ring / text-box overlays.
+  const slotProps = {
+    popper: { disablePortal: true },
+    tooltip: { sx: tooltipSx },
+  } as const;
+  return (
+    <Stack direction="row" spacing={14} sx={{ mt: 1, mb: 8, minHeight: 140, alignItems: 'flex-start' }}>
+      <Tooltip
+        title={<span className="density-debug-text">Default tooltip</span>}
+        open
+        placement="bottom"
+        slotProps={slotProps}
+      >
+        <Button variant="outlined">Default</Button>
+      </Tooltip>
+      <Tooltip
+        title={<span className="density-debug-text">Arrow tooltip</span>}
+        arrow
+        open
+        placement="bottom"
+        slotProps={slotProps}
+      >
+        <Button variant="outlined">Arrow</Button>
+      </Tooltip>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -299,6 +359,17 @@ const COMPONENT_DEFS = {
     },
     renderMatrix: (args) => <MenuMatrix {...args} />,
   },
+  Tooltip: {
+    canvasLabel: 'Tooltip — pointer (default + arrow); touch out of scope',
+    fields: TOOLTIP_FIELDS,
+    // Spacing tokens prefill density keys; arrow size (raw px) reads off the theme.
+    prefill: {
+      blockPad: 'xxs',
+      inlinePad: 'sm',
+      offset: 'lg',
+    },
+    renderMatrix: (args) => <TooltipMatrix {...args} />,
+  },
 } satisfies Record<string, DensityComponentDef>;
 
 type ComponentName = keyof typeof COMPONENT_DEFS;
@@ -312,12 +383,16 @@ const COMPONENTS = Object.keys(COMPONENT_DEFS) as ComponentName[];
 function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
   const components = (theme as { components?: Record<string, any> })?.components ?? {};
   for (const name of Object.keys(components)) {
-    const root = components[name]?.styleOverrides?.root;
-    const layers = Array.isArray(root) ? root : [root];
-    for (let i = layers.length - 1; i >= 0; i -= 1) {
-      const layer = layers[i];
-      if (layer && typeof layer === 'object' && cssVar in layer) {
-        return layer[cssVar] as string;
+    // Scan every slot's overrides, not just `root` — Tooltip's tokens land on
+    // the `tooltip` slot (it has no root slot).
+    const styleOverrides = components[name]?.styleOverrides ?? {};
+    for (const slot of Object.keys(styleOverrides)) {
+      const layers = Array.isArray(styleOverrides[slot]) ? styleOverrides[slot] : [styleOverrides[slot]];
+      for (let i = layers.length - 1; i >= 0; i -= 1) {
+        const layer = layers[i];
+        if (layer && typeof layer === 'object' && cssVar in layer) {
+          return layer[cssVar] as string;
+        }
       }
     }
   }

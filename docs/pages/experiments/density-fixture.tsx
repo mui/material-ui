@@ -46,6 +46,20 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--MenuItem-dense-inlinePad' as any]: '20px',
     },
   },
+  Tooltip: {
+    dense: {
+      ['--Tooltip-blockPad' as any]: '2px',
+      ['--Tooltip-inlinePad' as any]: '6px',
+      ['--Tooltip-offset' as any]: '10px',
+      ['--Tooltip-arrowSize' as any]: '9px',
+    },
+    loose: {
+      ['--Tooltip-blockPad' as any]: '8px',
+      ['--Tooltip-inlinePad' as any]: '16px',
+      ['--Tooltip-offset' as any]: '20px',
+      ['--Tooltip-arrowSize' as any]: '16px',
+    },
+  },
 };
 
 export default function DensityFixture() {
