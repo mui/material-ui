@@ -1,12 +1,20 @@
-import { applyDensity, DensityConfig, EnhanceableTheme } from './densityScale';
+import { applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 
-// Compact preset data — scale (7 steps) + button typography. No logic beyond
-// the wrapper; if logic creeps in here, the preset split has drifted.
-const compact: DensityConfig = {
-  scale: { xxs: '2px', xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '18px', xxl: '24px' },
-  typography: { button: { fontSize: '0.8125rem', lineHeight: 1.5 } },
+const scale: DensityScale = {
+  xxs: '2px',
+  xs: '4px',
+  sm: '6px',
+  md: '8px',
+  lg: '12px',
+  xl: '18px',
+  xxl: '24px',
 };
 
 export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme: T) {
-  return applyDensity(theme, compact);
+  const enhanced = applyDensity(theme, scale);
+  enhanced.typography = {
+    ...enhanced.typography,
+    button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.5 },
+  };
+  return enhanced;
 }

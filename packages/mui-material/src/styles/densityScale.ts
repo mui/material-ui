@@ -15,25 +15,6 @@ export interface DensityScale {
   xxl: string;
 }
 
-/**
- * Per-variant typography reflow applied alongside the scale. Handled here (not
- * via component vars) so every family that renders `theme.typography.<variant>`
- * tracks the preset. Currently only `button` is reflowed.
- */
-export interface DensityTypographyVariant {
-  fontSize?: string | undefined;
-  lineHeight?: number | string | undefined;
-}
-
-export interface DensityTypography {
-  button?: DensityTypographyVariant | undefined;
-}
-
-export interface DensityConfig {
-  scale: DensityScale;
-  typography?: DensityTypography | undefined;
-}
-
 export type DensityKey = keyof DensityScale;
 
 export const DENSITY_KEYS: DensityKey[] = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
@@ -59,18 +40,17 @@ const cssVar = (key: DensityKey) => `--mui-density-${key}`;
  *    through injected `styleOverrides.root`. The mapping is identical across
  *    presets — only the scale values differ — so it lives here once.
  *
- * Also merges `config.typography` into `theme.typography.button`.
+ * Typography reflow is NOT handled here — each preset applies its own (or none,
+ * for `normal`) after calling this.
  *
  * @param themeInput - The created theme to enhance.
- * @param config - The preset's scale + typography.
+ * @param scale - The preset's 7-step scale.
  * @returns The enhanced theme.
  */
 export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
-  config: DensityConfig,
+  scale: DensityScale,
 ): T & { density: DensityScale } {
-  const { scale, typography } = config;
-
   const rootVars = DENSITY_KEYS.reduce<Record<string, string>>((acc, key) => {
     acc[cssVar(key)] = scale[key];
     return acc;
@@ -84,13 +64,6 @@ export function applyDensity<T extends EnhanceableTheme>(
   const theme = { ...themeInput } as T & { density: DensityScale };
   theme.density = scale;
   theme.vars = { ...themeInput.vars, density: varRefs };
-
-  if (typography) {
-    theme.typography = { ...themeInput.typography };
-    (Object.keys(typography) as (keyof DensityTypography)[]).forEach((variant) => {
-      theme.typography![variant] = { ...themeInput.typography?.[variant], ...typography[variant] };
-    });
-  }
 
   const c = themeInput.components;
   const existingBaseline = c?.MuiCssBaseline?.styleOverrides;
