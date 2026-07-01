@@ -13,8 +13,8 @@
 export const private_menuItemVars = {
   minHeight: '--MenuItem-minHeight',
   denseMinHeight: '--MenuItem-dense-minHeight',
-  blockPad: '--MenuItem-block-pad',
-  denseBlockPad: '--MenuItem-dense-block-pad',
-  inlinePad: '--MenuItem-inline-pad',
-  denseInlinePad: '--MenuItem-dense-inline-pad',
+  blockPad: '--MenuItem-blockPad',
+  denseBlockPad: '--MenuItem-dense-blockPad',
+  inlinePad: '--MenuItem-inlinePad',
+  denseInlinePad: '--MenuItem-dense-inlinePad',
 } as const;
