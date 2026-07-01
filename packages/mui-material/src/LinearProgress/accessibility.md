@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 44    |
-| 🚩 Unverified         | 7/11  |
+| 🚩 Flagged            | 7/11  |
 
 ## Known gaps
 
@@ -22,7 +22,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The bar carries an author-supplied accessible name, so it can be referenced by name rather than only by shape, color, or position.
 - Instructions in the surrounding content must not rely on a sensory characteristic alone (for example, "wait for the moving bar at the top").
@@ -36,7 +36,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The root is a block element with no intrinsic or minimum width and a fixed `4px` height, so it takes the width of its container and reflows without adding horizontal scrolling. Overflow at 320 CSS pixels comes from the surrounding layout, such as a fixed-width wrapper.
 
@@ -49,7 +49,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - The determinate fill has to contrast `3:1` with the track for the proportion to be perceivable. For a named `color`, the track is a tint of the bar color (`getColorShade`: `lighten(main, 0.62)` in light mode, `darken(main, 0.5)` in dark mode) and the fill is `palette[color].main`. (`color="inherit"` differs: the fill is `currentColor` and the track is a `currentColor` overlay at `0.3` opacity.)
 - Measured against the default theme (the rendered track colors, whose channels MUI truncates), the light-mode fill-vs-track ratio is about `2.70:1` for `primary` and `error`, `2.02:1` for `warning`, `2.35:1` for `info`, and `2.98:1` for `success`; only `secondary` (`3.28:1`) reaches `3:1`. In dark mode the lighter dark-palette mains lift every color above `3:1` except `error` (`2.77:1`): `primary` `3.50`, `warning` `3.43`, `info` `3.24`, `success` `3.22`, `secondary` `3.20`.
@@ -65,7 +65,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.2.2 Pause, Stop, Hide · A
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
 
 - The `indeterminate`, `query`, and `buffer` variants run infinite CSS animations that start automatically and last more than five seconds, and the component provides no control to pause, stop, or hide them.
 - 2.2.2's sufficient techniques call for an in-page control to pause, stop, or hide the motion, or for it to stop within five seconds; the component provides neither. Conformance therefore rests with the author: a loader that fills the viewport is exempt because the motion is essential, and a bar removed once loading finishes avoids the "in parallel with other content" trigger.
@@ -81,7 +81,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.3.1 Three Flashes or Below Threshold · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - The animations are smooth translations; the `buffer` dashed layer pulses opacity once every three seconds, well below the three-flashes-per-second threshold. Nothing flashes.
 
@@ -94,7 +94,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - For a given set of props the component produces a stable role and value, the precondition for consistent identification; the name comes from the author.
 - Consistency is a cross-page property. Confirm that progress bars with the same function share a name and presentation, and that one name is not reused for different functions.
@@ -108,7 +108,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 4.1.3 Status Messages · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
 
 - `role="progressbar"` is not a live region, so updating `aria-valuenow` is not announced while focus is elsewhere. The component adds no `aria-live` region.
 - To announce determinate progress, the surrounding application supplies a polite live region (the W3C `ARIA25` pattern). Announcement is an advisory technique, not an automatic failure, and assistive-technology behavior for progressbar values varies.
@@ -209,4 +209,4 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - **Component version.** `@mui/material` 9.1.2.
 - **Scope.** The LinearProgress component in isolation, rendered through its documented API.
 - **Automated.** axe-core via the Playwright harness (results in [`progress.a11y.json`](../../../../docs/data/material/components/progress/progress.a11y.json)), plus component unit tests.
-- **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
+- **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
