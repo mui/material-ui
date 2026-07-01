@@ -306,19 +306,46 @@ type Selection = 'All' | ComponentName;
 
 const COMPONENTS = Object.keys(COMPONENT_DEFS) as ComponentName[];
 
-const initialMapping = () =>
-  Object.fromEntries(COMPONENTS.map((c) => [c, { ...COMPONENT_DEFS[c].prefill }])) as unknown as Record<
-    ComponentName,
-    Record<string, string>
-  >;
+// Read the value a preset assigned to a token, straight off the enhanced theme's
+// component overrides (the same `addRootOverride` output). Single source of truth
+// for raw-px sizing defaults — can't drift from what `enhance*Density` ships.
+function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
+  const components = (theme as { components?: Record<string, any> })?.components ?? {};
+  for (const name of Object.keys(components)) {
+    const root = components[name]?.styleOverrides?.root;
+    const layers = Array.isArray(root) ? root : [root];
+    for (let i = layers.length - 1; i >= 0; i -= 1) {
+      const layer = layers[i];
+      if (layer && typeof layer === 'object' && cssVar in layer) {
+        return layer[cssVar] as string;
+      }
+    }
+  }
+  return undefined;
+}
+
+// Canonical mapping for the active preset: spacing tokens prefill with their
+// density key (preset-independent), sizing tokens with the preset's raw px read
+// live off the theme. Empty when the preset didn't set a token (e.g. `unset`).
+const buildMapping = (theme: unknown) =>
+  Object.fromEntries(
+    COMPONENTS.map((c) => [
+      c,
+      Object.fromEntries(
+        COMPONENT_DEFS[c].fields.map((field) => [
+          field.key,
+          (COMPONENT_DEFS[c].prefill as Record<string, string>)[field.key] ??
+            themeTokenValue(theme, field.cssVar) ??
+            '',
+        ]),
+      ),
+    ]),
+  ) as Record<ComponentName, Record<string, string>>;
 
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
-  const [mapping, setMapping] = React.useState<Record<ComponentName, Record<string, string>>>(
-    initialMapping,
-  );
 
   const mappingEnabled = preset !== 'unset';
   const visibleComponents: ComponentName[] = selection === 'All' ? COMPONENTS : [selection];
@@ -327,6 +354,17 @@ export default function DensityExperiment() {
     const base = createTheme({ cssVariables: true });
     return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
+
+  const [mapping, setMapping] = React.useState<Record<ComponentName, Record<string, string>>>(() =>
+    buildMapping(canvasTheme),
+  );
+
+  // Re-sync the mapping to the active preset's canonical values (incl. its raw-px
+  // sizing) whenever the preset changes, so fields default to what enhanceDensity
+  // ships rather than going stale/empty.
+  React.useEffect(() => {
+    setMapping(buildMapping(canvasTheme));
+  }, [canvasTheme]);
 
   // Active scale in px straight off the enhanced theme — single source of truth
   // for the legend + preview, so it can't drift from what the preset applied.
@@ -338,7 +376,7 @@ export default function DensityExperiment() {
   const setField = (comp: ComponentName, key: string, value: string) =>
     setMapping((m) => ({ ...m, [comp]: { ...m[comp], [key]: value } }));
 
-  const resetMapping = () => setMapping(initialMapping());
+  const resetMapping = () => setMapping(buildMapping(canvasTheme));
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
