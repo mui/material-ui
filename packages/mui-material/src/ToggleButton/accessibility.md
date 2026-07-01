@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
-| 🚩 Unverified         | 14/24 |
+| 🚩 Flagged            | 14/24 |
 
 ## Known gaps
 
@@ -23,7 +23,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The Toggle Button is one control. Its children render in DOM order; a decorative MUI icon is `aria-hidden`, leaving the label (text or `aria-label`) as the exposed content.
 - Order carries meaning only across several toggles, which the surrounding layout (often a `ToggleButtonGroup`) sets. Confirm that reading order matches the visual order.
@@ -38,7 +38,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - A toggle with text or an `aria-label` can be identified by name, not only by shape, color, or position.
 - Instructions in the surrounding content must not rely on color, shape, or position alone (for example, "the highlighted button").
@@ -52,7 +52,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.4 Resize Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Typography is set in rem and em, so the label and toggle scale with browser zoom or font size rather than staying pixel-fixed.
 - A fixed-pixel container in the surrounding layout could clip at 200%.
@@ -66,7 +66,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - A text label is live CSS text; the component never renders it as an image.
 - This fails only if an image of text, or an icon font spelling words, is passed as the children. Use real text or an icon with an `aria-label`.
@@ -80,7 +80,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - A toggle sizes to its content, so it reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a wide `ToggleButtonGroup` that does not wrap.
 
@@ -93,7 +93,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The Toggle Button is an ordinary focusable element and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to a toggle beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -107,7 +107,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The component produces one stable accessible name per set of props, the precondition for consistent identification.
 - Consistency is a cross-page property. Confirm that toggles with the same function share a label and icon, and that one label is not reused for different functions.
@@ -152,7 +152,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - A toggle's purpose comes from its label or icon, not color, so the control itself is not identified by color alone.
 - The pressed state is the gap. For `standard`, selecting darkens the label from `action.active` to `text.primary`, a clear lightness change. For the color variants the selected label switches to `color.main`, which is almost the same lightness as the unselected `action.active` (in grayscale `primary` differs by about 0.0003, `error` by 0.017), and the only other cue is a roughly 1.1:1 fill, so a `primary`/`error`/`info`/`success` toggle's pressed state is conveyed almost entirely by hue.
@@ -182,7 +182,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - The label or icon identifies the control, so WCAG does not require the `divider` border to reach 3:1. The pieces that do need 3:1 are the focus indicator and the visual cue that marks the pressed state.
 - The focus indicator is the ripple; `disableRipple`/`disableFocusRipple` remove it, so it can be absent entirely. The selected-state fill (`action.selectedOpacity`, 0.08) is faint and untested against the unselected state. Disabled toggles are exempt.
@@ -197,7 +197,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.12 Text Spacing · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - A text label wraps when `white-space: normal` is set and the toggle height comes from padding, not a fixed height, so the WCAG text-spacing values grow the toggle without clipping.
 - No axe-core rule covers this (`avoid-inline-spacing` only inspects inline `style`, but `sx` compiles to a class); a `ToggleButtonA11yTextSpacing` screenshot guards the rendered spacing layout against regressions. Inject the spacing values through a stylesheet to check for clipping.
@@ -281,13 +281,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.1.2 No Keyboard Trap · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - A single focusable control that installs no focus-capturing loop. <kbd>Tab</kbd> moves in and out, and a disabled toggle leaves the tab order (the `disabled` attribute on native buttons, `tabIndex=-1` on non-native).
 
 #### 2.4.3 Focus Order · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The component sits in natural DOM order with no positive `tabIndex`, and a disabled toggle leaves the order, so it is one correct focus stop.
 - Order across toggles is the surrounding layout's responsibility.
@@ -307,13 +307,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.1 On Focus · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - Focus triggers only the focus-visible ripple and `onFocus` callbacks. There is no navigation, dialog, or focus move, so focus alone changes no context.
 
 #### 3.2.2 On Input · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Toggling the pressed state (`selected`, exposed as `aria-pressed`) changes no context on its own.
 - Whether an author's `onChange` handler couples that change to navigation or a new window without warning is an author decision.
