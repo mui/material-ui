@@ -14,6 +14,7 @@ import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import { private_selectVars as selVars } from '../Select/selectVars';
 import { private_alertVars as alertVars } from '../Alert/alertVars';
+import { private_chipVars as chipVars } from '../Chip/chipVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -145,6 +146,13 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [alertVars.blockPad]: d.xs,
     [alertVars.inlinePad]: d.lg,
     [alertVars.iconGap]: d.md,
+  });
+  addRootOverride(enhanced.components, 'MuiChip', {
+    // Height = raw px (drives avatar/icon/deleteIcon via calc); label padInline = steps.
+    [chipVars.mediumHeight]: '36px',
+    [chipVars.smallHeight]: '28px',
+    [chipVars.mediumPadInline]: d.md,
+    [chipVars.smallPadInline]: d.sm,
   });
   enhanced.typography = {
     ...enhanced.typography,

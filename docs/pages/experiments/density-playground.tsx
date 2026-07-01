@@ -29,6 +29,8 @@ import CardContent, { private_cardContentVars } from '@mui/material/CardContent'
 import Select, { private_selectVars } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
+import Chip, { private_chipVars } from '@mui/material/Chip';
+import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -661,6 +663,39 @@ function AlertMatrix({
   );
 }
 
+// Chip family: height (per size — drives avatar/icon/deleteIcon via calc) +
+// label inline padding (per size). Height = raw px; padInline = density keys.
+const CHIP_FIELDS: DensityField[] = [
+  { key: 'mediumHeight', cssVar: private_chipVars.mediumHeight },
+  { key: 'smallHeight', cssVar: private_chipVars.smallHeight },
+  { key: 'mediumPadInline', cssVar: private_chipVars.mediumPadInline },
+  { key: 'smallPadInline', cssVar: private_chipVars.smallPadInline },
+];
+
+function ChipMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  // Chip tokens on a wrapping Box (ancestor); each Chip inherits them.
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        CHIP_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400, ...sx }}>
+      <Chip avatar={<Avatar>A</Avatar>} label="Avatar" />
+      <Chip icon={<InboxIcon />} label="Icon" onDelete={() => {}} />
+      <Chip label="Outlined" variant="outlined" onDelete={() => {}} />
+      <Chip label="Small" size="small" onDelete={() => {}} />
+    </Box>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -767,6 +802,12 @@ const COMPONENT_DEFS = {
     fields: ALERT_FIELDS,
     prefill: { blockPad: 'xs', inlinePad: 'lg', iconGap: 'md' },
     renderMatrix: (args) => <AlertMatrix {...args} />,
+  },
+  Chip: {
+    canvasLabel: 'Chip — height (drives avatar/icon) + label inline padding',
+    fields: CHIP_FIELDS,
+    prefill: { mediumPadInline: 'md', smallPadInline: 'sm' }, // heights = raw px, read off theme
+    renderMatrix: (args) => <ChipMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

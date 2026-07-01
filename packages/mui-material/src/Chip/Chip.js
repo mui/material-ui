@@ -14,6 +14,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
+import { private_chipVars as vars } from './chipVars';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -73,7 +74,11 @@ const ChipRoot = styled('div', {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 32,
+      // Density seam: height drives avatar/icon/deleteIcon via `calc(height -
+      // inset)` (the insets reproduce today's medium dims). Size variants route
+      // the per-size public token over `--_height`.
+      '--_height': '32px',
+      height: 'var(--comp-height, var(--_height))',
       lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
@@ -96,19 +101,20 @@ const ChipRoot = styled('div', {
       [`& .${chipClasses.avatar}`]: {
         marginLeft: 5,
         marginRight: -6,
-        width: 24,
-        height: 24,
+        width: 'calc(var(--comp-height, var(--_height)) - 8px)',
+        height: 'calc(var(--comp-height, var(--_height)) - 8px)',
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
         marginLeft: 5,
         marginRight: -6,
+        fontSize: 'calc(var(--comp-height, var(--_height)) - 8px)',
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: 22,
+        fontSize: 'calc(var(--comp-height, var(--_height)) - 10px)',
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
@@ -116,6 +122,15 @@ const ChipRoot = styled('div', {
         },
       },
       variants: [
+        {
+          // Route the per-size public height token over the internal default.
+          props: { size: 'small' },
+          style: { '--comp-height': `var(${vars.smallHeight}, var(--_height))` },
+        },
+        {
+          props: { size: 'medium' },
+          style: { '--comp-height': `var(${vars.mediumHeight}, var(--_height))` },
+        },
         {
           props: {
             color: 'primary',
@@ -141,21 +156,21 @@ const ChipRoot = styled('div', {
         {
           props: { size: 'small' },
           style: {
-            height: 24,
+            '--_height': '24px', // small default; medium default lives in base
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
               marginRight: -4,
-              width: 18,
-              height: 18,
+              width: 'calc(var(--comp-height, var(--_height)) - 6px)',
+              height: 'calc(var(--comp-height, var(--_height)) - 6px)',
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: 18,
+              fontSize: 'calc(var(--comp-height, var(--_height)) - 6px)',
               marginLeft: 4,
               marginRight: -4,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 16,
+              fontSize: 'calc(var(--comp-height, var(--_height)) - 8px)',
               marginRight: 4,
               marginLeft: -4,
             },
@@ -328,30 +343,32 @@ const ChipLabel = styled('span', {
 })({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  paddingLeft: 12,
-  paddingRight: 12,
+  // Density seam: inline padding over the per-(variant,size) default; size
+  // variants route the per-size public token, variant/size specialize `--_*`.
+  '--_padInline': '12px',
+  paddingLeft: 'var(--comp-padInline, var(--_padInline))',
+  paddingRight: 'var(--comp-padInline, var(--_padInline))',
   whiteSpace: 'nowrap',
   variants: [
     {
+      props: { size: 'small' },
+      style: { '--comp-padInline': `var(${vars.smallPadInline}, var(--_padInline))` },
+    },
+    {
+      props: { size: 'medium' },
+      style: { '--comp-padInline': `var(${vars.mediumPadInline}, var(--_padInline))` },
+    },
+    {
       props: { variant: 'outlined' },
-      style: {
-        paddingLeft: 11,
-        paddingRight: 11,
-      },
+      style: { '--_padInline': '11px' }, // medium outlined default
     },
     {
       props: { size: 'small' },
-      style: {
-        paddingLeft: 8,
-        paddingRight: 8,
-      },
+      style: { '--_padInline': '8px' }, // small filled default
     },
     {
       props: { size: 'small', variant: 'outlined' },
-      style: {
-        paddingLeft: 7,
-        paddingRight: 7,
-      },
+      style: { '--_padInline': '7px' }, // small outlined default
     },
   ],
 });

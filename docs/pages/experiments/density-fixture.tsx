@@ -128,6 +128,20 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Select-minHeight' as any]: '16px' },
     loose: { ['--Select-minHeight' as any]: '40px' },
   },
+  Chip: {
+    dense: {
+      ['--Chip-medium-height' as any]: '26px',
+      ['--Chip-small-height' as any]: '20px',
+      ['--Chip-medium-padInline' as any]: '8px',
+      ['--Chip-small-padInline' as any]: '6px',
+    },
+    loose: {
+      ['--Chip-medium-height' as any]: '40px',
+      ['--Chip-small-height' as any]: '32px',
+      ['--Chip-medium-padInline' as any]: '16px',
+      ['--Chip-small-padInline' as any]: '12px',
+    },
+  },
   Alert: {
     dense: {
       ['--Alert-blockPad' as any]: '2px',

@@ -19,6 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
+import Chip from '@mui/material/Chip';
+import Avatar from '@mui/material/Avatar';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -157,6 +159,16 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
+    </Stack>
+  ),
+  Chip: (
+    <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 1, width: 380 }}>
+      <Chip label="Plain" />
+      <Chip avatar={<Avatar>A</Avatar>} label="Avatar" />
+      <Chip icon={<InboxIcon />} label="Icon" onDelete={() => {}} />
+      <Chip label="Outlined" variant="outlined" onDelete={() => {}} />
+      <Chip label="Small" size="small" onDelete={() => {}} />
+      <Chip label="Small outlined" size="small" variant="outlined" />
     </Stack>
   ),
   Alert: (
