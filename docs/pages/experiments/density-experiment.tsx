@@ -307,7 +307,7 @@ export default function DensityExperiment() {
                     if (showError) {
                       helper = error ?? ' ';
                     } else if (mappingEnabled && valid) {
-                      helper = `${value.trim()} → ${preview.varStr} = ${preview.px}`;
+                      helper = preview.px;
                     }
                     return (
                       <TextField
