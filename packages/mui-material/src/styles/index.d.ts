@@ -9,12 +9,10 @@ export {
   CssThemeVariables,
 } from './createTheme';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
-export {
-  default as enhanceDensity,
-  DENSITY_PRESETS,
-  DensityScale,
-  DensityOptions,
-} from './enhanceDensity';
+export { default as enhanceCompactDensity } from './enhanceCompactDensity';
+export { default as enhanceNormalDensity } from './enhanceNormalDensity';
+export { default as enhanceComfortDensity } from './enhanceComfortDensity';
+export { DensityScale, DensityConfig, DensityTypography } from './densityScale';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
 export { ZIndex } from './zIndex';

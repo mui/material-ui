@@ -14,7 +14,13 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import { createTheme, ThemeProvider, enhanceDensity, DENSITY_PRESETS } from '@mui/material/styles';
+import {
+  createTheme,
+  ThemeProvider,
+  enhanceCompactDensity,
+  enhanceNormalDensity,
+  enhanceComfortDensity,
+} from '@mui/material/styles';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
 const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
@@ -59,30 +65,12 @@ function validateMapping(input: string): { valid: boolean; error: string | null 
   return { valid: true, error: null };
 }
 
-// Active preset's 7-step scale in px (for the legend + live preview).
-// compact/comfort = explicit; `normal` = spacing-derived (unit 8px = enhanceDensity default).
-const NORMAL_MULTIPLIER: Record<(typeof SCALE_KEYS)[number], number> = {
-  xxs: 0.5,
-  xs: 0.75,
-  sm: 1,
-  md: 1.5,
-  lg: 2,
-  xl: 3,
-  xxl: 4,
-};
-const SPACING_UNIT = 8;
-
-function presetScalePx(preset: Preset): Record<string, string> | null {
-  if (preset === 'unset') {
-    return null;
-  }
-  if (preset === 'normal') {
-    return Object.fromEntries(
-      SCALE_KEYS.map((k) => [k, `${NORMAL_MULTIPLIER[k] * SPACING_UNIT}px`]),
-    );
-  }
-  return (DENSITY_PRESETS[preset] ?? {}) as Record<string, string>;
-}
+// Each preset maps to its `enhance*Density` fn; `unset` applies none.
+const PRESET_FN = {
+  compact: enhanceCompactDensity,
+  normal: enhanceNormalDensity,
+  comfort: enhanceComfortDensity,
+} as const;
 
 // Resolved var string + px for a valid mapping value under the active scale —
 // e.g. `md` → { varStr: 'var(--mui-density-md)', px: '8px' } (compact).
@@ -180,17 +168,19 @@ export default function DensityExperiment() {
   );
 
   const mappingEnabled = preset !== 'unset';
-  const scalePx = presetScalePx(preset);
   const visibleComponents: ComponentName[] = selection === 'All' ? COMPONENTS : [selection];
 
   const canvasTheme = React.useMemo(() => {
-    if (preset === 'unset') {
-      return createTheme({ cssVariables: true });
-    }
-    return enhanceDensity(createTheme({ cssVariables: true }), {
-      scale: DENSITY_PRESETS[preset],
-    });
+    const base = createTheme({ cssVariables: true });
+    return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
+
+  // Active scale in px straight off the enhanced theme — single source of truth
+  // for the legend + preview, so it can't drift from what the preset applied.
+  const scalePx =
+    preset === 'unset'
+      ? null
+      : (canvasTheme as unknown as { density: Record<string, string> }).density;
 
   const setField = (comp: ComponentName, key: string, value: string) =>
     setMapping((m) => ({ ...m, [comp]: { ...m[comp], [key]: value } }));
