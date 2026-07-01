@@ -31,6 +31,8 @@ import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_snackbarContentVars as scVars } from '../SnackbarContent/snackbarContentVars';
+import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
+import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -213,6 +215,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
     [scVars.blockPad]: d.xs,
     [scVars.inlinePad]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiBottomNavigation', {
+    [bnVars.height]: '64px',
+  });
+  addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
+    [bnaVars.inlinePad]: d.md,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

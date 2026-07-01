@@ -8,6 +8,10 @@ import Fab, { private_fabVars } from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import { private_paginationItemVars } from '@mui/material/PaginationItem';
 import SnackbarContent, { private_snackbarContentVars } from '@mui/material/SnackbarContent';
+import BottomNavigation, { private_bottomNavigationVars } from '@mui/material/BottomNavigation';
+import BottomNavigationAction, {
+  private_bottomNavigationActionVars,
+} from '@mui/material/BottomNavigationAction';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -1216,6 +1220,37 @@ function SnackbarMatrix({
   );
 }
 
+// BottomNavigation family: bar height + action inline padding.
+const BOTTOM_NAV_FIELDS: DensityField[] = [
+  { key: 'height', cssVar: private_bottomNavigationVars.height },
+  { key: 'inlinePad', cssVar: private_bottomNavigationActionVars.inlinePad },
+];
+
+function BottomNavigationMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        BOTTOM_NAV_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400, ...sx }}>
+      <BottomNavigationAction label="Recents" icon={<InboxIcon />} />
+      <BottomNavigationAction label="Favorites" icon={<InboxIcon />} />
+      <BottomNavigationAction label="Nearby" icon={<InboxIcon />} />
+    </BottomNavigation>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1334,6 +1369,12 @@ const COMPONENT_DEFS = {
     fields: SNACKBAR_FIELDS,
     prefill: { blockPad: 'xs', inlinePad: 'lg' },
     renderMatrix: (args) => <SnackbarMatrix {...args} />,
+  },
+  BottomNavigation: {
+    canvasLabel: 'BottomNavigation — bar height + action inline padding',
+    fields: BOTTOM_NAV_FIELDS,
+    prefill: { inlinePad: 'md' }, // height raw px off theme
+    renderMatrix: (args) => <BottomNavigationMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',

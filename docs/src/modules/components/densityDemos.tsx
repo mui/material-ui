@@ -6,6 +6,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import SnackbarContent from '@mui/material/SnackbarContent';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -217,6 +219,13 @@ const demos: Record<string, React.ReactNode> = {
       <Pagination count={5} />
       <Pagination count={5} size="large" />
     </Stack>
+  ),
+  BottomNavigation: (
+    <BottomNavigation value={0} showLabels sx={{ width: 400 }}>
+      <BottomNavigationAction label="Recents" icon={<InboxIcon />} />
+      <BottomNavigationAction label="Favorites" icon={<InboxIcon />} />
+      <BottomNavigationAction label="Nearby" icon={<InboxIcon />} />
+    </BottomNavigation>
   ),
   SnackbarContent: (
     <SnackbarContent

@@ -128,6 +128,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  BottomNavigation: {
+    dense: {
+      ['--BottomNavigation-height' as any]: '44px',
+      ['--BottomNavigationAction-inlinePad' as any]: '8px',
+    },
+    loose: {
+      ['--BottomNavigation-height' as any]: '72px',
+      ['--BottomNavigationAction-inlinePad' as any]: '20px',
+    },
+  },
   SnackbarContent: {
     dense: {
       ['--SnackbarContent-blockPad' as any]: '2px',
