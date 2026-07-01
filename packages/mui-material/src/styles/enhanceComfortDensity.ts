@@ -12,6 +12,7 @@ import { private_tabVars as tabVars } from '../Tab/tabVars';
 import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
+import { private_selectVars as selVars } from '../Select/selectVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -133,6 +134,10 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     // No size axis: base pad + larger last-child bottom pad.
     [ccVars.pad]: d.lg,
     [ccVars.padBottom]: d.xl,
+  });
+  addRootOverride(enhanced.components, 'MuiSelect', {
+    // Content-box floor (raw px); real padding comes from the input variant.
+    [selVars.minHeight]: '28px',
   });
   enhanced.typography = {
     ...enhanced.typography,

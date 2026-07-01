@@ -18,6 +18,7 @@ import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
+import { private_selectVars as vars } from './selectVars';
 import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
 import {
   canCycleRepeatedCharacter,
@@ -88,8 +89,11 @@ const SelectSelect = styled(StyledSelectSelect, {
 })({
   // Win specificity over the input base
   [`&.${selectClasses.select}`]: {
+    // Density seam over the `1.4375em` line-height floor (raw px per preset).
+    '--_minHeight': '1.4375em',
+    '--comp-minHeight': `var(${vars.minHeight}, var(--_minHeight))`,
     height: 'auto', // Resets for multiple select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
+    minHeight: 'var(--comp-minHeight, var(--_minHeight))', // Required for select\text-field height consistency
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',

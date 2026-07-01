@@ -124,6 +124,10 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--CardContent-padBottom' as any]: '40px',
     },
   },
+  Select: {
+    dense: { ['--Select-minHeight' as any]: '16px' },
+    loose: { ['--Select-minHeight' as any]: '40px' },
+  },
   Tab: {
     dense: {
       ['--Tab-minHeight' as any]: '40px',

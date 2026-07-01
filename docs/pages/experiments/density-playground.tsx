@@ -9,7 +9,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Select from '@mui/material/Select';
 import MenuItem, { private_menuItemVars } from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
@@ -27,6 +26,8 @@ import Tab, { private_tabVars } from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
+import Select, { private_selectVars } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -599,6 +600,34 @@ function CardContentMatrix({
   );
 }
 
+// Select family: the content-box min-height floor (raw px). The visible density
+// mostly comes from the underlying OutlinedInput padding (tokenized separately).
+const SELECT_FIELDS: DensityField[] = [{ key: 'minHeight', cssVar: private_selectVars.minHeight }];
+
+function SelectMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        SELECT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <FormControl sx={{ mt: 1, width: 220, ...sx }}>
+      <InputLabel id="pg-select-label">Age</InputLabel>
+      <Select labelId="pg-select-label" value={10} label="Age">
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+      </Select>
+    </FormControl>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -693,6 +722,12 @@ const COMPONENT_DEFS = {
     fields: CARD_CONTENT_FIELDS,
     prefill: { pad: 'lg', padBottom: 'xl' },
     renderMatrix: (args) => <CardContentMatrix {...args} />,
+  },
+  Select: {
+    canvasLabel: 'Select — content-box floor (padding via its OutlinedInput)',
+    fields: SELECT_FIELDS,
+    prefill: {}, // minHeight = raw px, read off the theme
+    renderMatrix: (args) => <SelectMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

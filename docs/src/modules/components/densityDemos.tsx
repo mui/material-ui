@@ -15,6 +15,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -154,6 +157,15 @@ const demos: Record<string, React.ReactNode> = {
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
     </Stack>
+  ),
+  Select: (
+    <FormControl sx={{ width: 200 }}>
+      <InputLabel id="density-select-label">Age</InputLabel>
+      <Select labelId="density-select-label" value={10} label="Age">
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+      </Select>
+    </FormControl>
   ),
   CardContent: (
     <Card variant="outlined" sx={{ width: 240 }}>
