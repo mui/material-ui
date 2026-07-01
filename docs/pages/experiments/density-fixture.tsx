@@ -60,6 +60,24 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Tooltip-arrowSize' as any]: '16px',
     },
   },
+  OutlinedInput: {
+    dense: {
+      ['--OutlinedInput-medium-blockPad' as any]: '10px',
+      ['--OutlinedInput-small-blockPad' as any]: '5px',
+      ['--OutlinedInput-medium-inlinePad' as any]: '10px',
+      ['--OutlinedInput-small-inlinePad' as any]: '8px',
+      ['--InputAdornment-medium-gap' as any]: '4px',
+      ['--InputAdornment-small-gap' as any]: '2px',
+    },
+    loose: {
+      ['--OutlinedInput-medium-blockPad' as any]: '24px',
+      ['--OutlinedInput-small-blockPad' as any]: '16px',
+      ['--OutlinedInput-medium-inlinePad' as any]: '20px',
+      ['--OutlinedInput-small-inlinePad' as any]: '16px',
+      ['--InputAdornment-medium-gap' as any]: '14px',
+      ['--InputAdornment-small-gap' as any]: '10px',
+    },
+  },
 };
 
 export default function DensityFixture() {

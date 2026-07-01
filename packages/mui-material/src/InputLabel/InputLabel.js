@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
+import { private_inputLabelVars as vars } from './inputLabelVars';
 import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
@@ -145,7 +146,9 @@ const InputLabelRoot = styled(FormLabel, {
           // see comment above on filled.zIndex
           zIndex: 1,
           pointerEvents: 'none',
-          transform: 'translate(14px, 16px) scale(1)',
+          // Resting-Y is a seam set by OutlinedInput (via `:has(~ &)`) so the
+          // label tracks the input's block padding under density; default 16px.
+          transform: `translate(14px, var(${vars.y}, 16px)) scale(1)`,
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -155,7 +158,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(14px, 9px) scale(1)',
+          transform: `translate(14px, var(${vars.y}, 9px)) scale(1)`,
         },
       },
       {

@@ -7,6 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -78,6 +80,30 @@ const demos: Record<string, React.ReactNode> = {
         </Tooltip>
       </Stack>
     </Box>
+  ),
+  OutlinedInput: (
+    // Labelled outlined fields, one per token group: size axis (medium/small) +
+    // start/end adornment. Each floating label exercises the `:has()` bridge.
+    <Stack spacing={3} sx={{ width: 260 }}>
+      {/* Empty + unfocused → resting label, centered on the block padding (the
+          `--InputLabel-y` bridge crux). */}
+      <TextField label="Medium" variant="outlined" />
+      <TextField label="Small" variant="outlined" size="small" />
+      <TextField
+        label="Start adornment"
+        variant="outlined"
+        slotProps={{
+          input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+        }}
+      />
+      <TextField
+        label="End adornment"
+        variant="outlined"
+        slotProps={{
+          input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
+        }}
+      />
+    </Stack>
   ),
 };
 

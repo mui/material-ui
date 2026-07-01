@@ -104,7 +104,7 @@ export function applyDensity<T extends EnhanceableTheme>(
 export function addRootOverride(
   components: NonNullable<EnhanceableTheme['components']>,
   name: string,
-  overrides: Record<string, string>,
+  overrides: Record<string, unknown>,
   slot: string = 'root',
 ): void {
   const component = (components as any)[name];

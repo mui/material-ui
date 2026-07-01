@@ -18,6 +18,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
+import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputAdornment';
+import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -338,6 +340,62 @@ function TooltipMatrix({
   );
 }
 
+// OutlinedInput family: input block/inline padding (per size) + adornment gap
+// (per size). All spacing → prefill density keys. The label resting-Y is a
+// derived bridge (not a direct field).
+const OUTLINED_INPUT_FIELDS: DensityField[] = [
+  { key: 'mediumBlockPad', cssVar: private_outlinedInputVars.mediumBlockPad },
+  { key: 'smallBlockPad', cssVar: private_outlinedInputVars.smallBlockPad },
+  { key: 'mediumInlinePad', cssVar: private_outlinedInputVars.mediumInlinePad },
+  { key: 'smallInlinePad', cssVar: private_outlinedInputVars.smallInlinePad },
+  { key: 'mediumGap', cssVar: private_inputAdornmentVars.mediumGap },
+  { key: 'smallGap', cssVar: private_inputAdornmentVars.smallGap },
+];
+
+function OutlinedInputMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  // Tokens go on the TextField (ancestor of label + input + adornment) so the
+  // `:has(~ &)` label bridge sees them — element-level on the input root can't
+  // reach the sibling label.
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        OUTLINED_INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="outlined" sx={sx} />
+      <TextField
+        label={<span className="density-debug-text">Small</span>}
+        variant="outlined"
+        size="small"
+        sx={sx}
+      />
+      <TextField
+        label={<span className="density-debug-text">Start adornment</span>}
+        variant="outlined"
+        sx={sx}
+        slotProps={{ input: { startAdornment: <InputAdornment position="start">$</InputAdornment> } }}
+      />
+      <TextField
+        label={<span className="density-debug-text">End adornment</span>}
+        variant="outlined"
+        sx={sx}
+        slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+      />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -369,6 +427,20 @@ const COMPONENT_DEFS = {
       offset: 'lg',
     },
     renderMatrix: (args) => <TooltipMatrix {...args} />,
+  },
+  OutlinedInput: {
+    canvasLabel: 'OutlinedInput — size axis + adornments (label bridge)',
+    fields: OUTLINED_INPUT_FIELDS,
+    // All spacing → density keys (match the preset assignment).
+    prefill: {
+      mediumBlockPad: 'md',
+      smallBlockPad: 'sm',
+      mediumInlinePad: 'lg',
+      smallInlinePad: 'md',
+      mediumGap: 'sm',
+      smallGap: 'xxs',
+    },
+    renderMatrix: (args) => <OutlinedInputMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

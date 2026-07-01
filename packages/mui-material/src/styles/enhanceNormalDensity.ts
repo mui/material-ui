@@ -3,6 +3,10 @@ import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
 import { private_listVars as listVars } from '../List/listVars';
 import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
+import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedInputVars';
+import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
+import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
+import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
 // typography — no reflow — so only the padding→step assignment below.
@@ -49,5 +53,28 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     'tooltip',
   );
+  addRootOverride(enhanced.components, 'MuiOutlinedInput', {
+    // Padding = density steps (block < inline, keeping the 16.5/14 feel).
+    [oiVars.mediumBlockPad]: d.md,
+    [oiVars.smallBlockPad]: d.sm,
+    [oiVars.mediumInlinePad]: d.lg,
+    [oiVars.smallInlinePad]: d.md,
+    // The label is a preceding sibling — it can't read the input root's token,
+    // so derive `--InputLabel-y` from the density step (inherited from :root),
+    // matching the component's -0.5/+0.5 per-size rounding.
+    [`.${inputLabelClasses.root}:has(~ &)`]: { [ilVars.y]: `calc(${d.md} - 0.5px)` },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: { [`.${inputLabelClasses.root}:has(~ &)`]: { [ilVars.y]: `calc(${d.sm} + 0.5px)` } },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiInputAdornment', {
+    [iaVars.smallGap]: d.xxs,
+    [iaVars.mediumGap]: d.sm,
+    [iaVars.smallMarginTop]: d.md,
+    [iaVars.mediumMarginTop]: d.lg,
+  });
   return enhanced;
 }

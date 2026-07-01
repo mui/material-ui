@@ -3,3 +3,5 @@ export * from './OutlinedInput';
 
 export { default as outlinedInputClasses } from './outlinedInputClasses';
 export * from './outlinedInputClasses';
+
+export { private_outlinedInputVars } from './outlinedInputVars';
