@@ -50,21 +50,7 @@ const InputAdornmentRoot = styled('div', {
     alignItems: 'center',
     whiteSpace: 'nowrap',
     color: (theme.vars || theme).palette.action.active,
-    // Internal defaults (Material literals). `size` is read from FormControl with no
-    // default (can be undefined) -> medium routing lives in base, not a `{ size: 'medium' }` variant.
-    '--_gap': '8px',
-    '--_marginTop': '16px',
-    '--InputAdornment-gap': 'var(--InputAdornment-medium-gap, var(--_gap))',
-    '--InputAdornment-marginTop': 'var(--InputAdornment-medium-marginTop, var(--_marginTop))',
     variants: [
-      // Built-in size routing — exposes the public sized token over the internal default.
-      {
-        props: { size: 'small' },
-        style: {
-          '--InputAdornment-gap': 'var(--InputAdornment-small-gap, var(--_gap))',
-          '--InputAdornment-marginTop': 'var(--InputAdornment-small-marginTop, var(--_marginTop))',
-        },
-      },
       {
         props: {
           variant: 'filled',
@@ -72,7 +58,7 @@ const InputAdornmentRoot = styled('div', {
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
-              marginTop: 'var(--InputAdornment-marginTop, var(--_marginTop))',
+              marginTop: 16,
             },
         },
       },
@@ -81,7 +67,7 @@ const InputAdornmentRoot = styled('div', {
           position: 'start',
         },
         style: {
-          marginRight: 'var(--InputAdornment-gap, var(--_gap))',
+          marginRight: 8,
         },
       },
       {
@@ -89,7 +75,7 @@ const InputAdornmentRoot = styled('div', {
           position: 'end',
         },
         style: {
-          marginLeft: 'var(--InputAdornment-gap, var(--_gap))',
+          marginLeft: 8,
         },
       },
       {

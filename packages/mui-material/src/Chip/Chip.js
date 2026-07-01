@@ -73,11 +73,7 @@ const ChipRoot = styled('div', {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      // Agnostic seam: the styled root reads `--Chip-height`; `--_height` is the
-      // universal default (today's medium height). Size variants route the public
-      // sized token over it.
-      '--_height': '32px',
-      height: 'var(--Chip-height, var(--_height))',
+      height: 32,
       lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
@@ -97,27 +93,22 @@ const ChipRoot = styled('div', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      // Density adapter: avatar/icon/deleteIcon scale with the
-      // chip height. Each is `calc(var(--Chip-height) - inset)` where the inset
-      // reproduces today's medium size (height 32: avatar/icon 24, deleteIcon 22);
-      // the small variant overrides the inset for height 24.
       [`& .${chipClasses.avatar}`]: {
         marginLeft: 5,
         marginRight: -6,
-        width: 'calc(var(--Chip-height, var(--_height)) - 8px)',
-        height: 'calc(var(--Chip-height, var(--_height)) - 8px)',
+        width: 24,
+        height: 24,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
         marginLeft: 5,
         marginRight: -6,
-        fontSize: 'calc(var(--Chip-height, var(--_height)) - 8px)',
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: 'calc(var(--Chip-height, var(--_height)) - 10px)',
+        fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
@@ -125,16 +116,6 @@ const ChipRoot = styled('div', {
         },
       },
       variants: [
-        // Built-in size routing (CSS, deduped) — exposes the public sized token
-        // over the internal default. Custom sizes are routed inline instead.
-        {
-          props: { size: 'small' },
-          style: { '--Chip-height': 'var(--Chip-small-height, var(--_height))' },
-        },
-        {
-          props: { size: 'medium' },
-          style: { '--Chip-height': 'var(--Chip-medium-height, var(--_height))' },
-        },
         {
           props: {
             color: 'primary',
@@ -160,21 +141,21 @@ const ChipRoot = styled('div', {
         {
           props: { size: 'small' },
           style: {
-            '--_height': '24px', // small default; medium default lives in base
+            height: 24,
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
               marginRight: -4,
-              width: 'calc(var(--Chip-height, var(--_height)) - 6px)',
-              height: 'calc(var(--Chip-height, var(--_height)) - 6px)',
+              width: 18,
+              height: 18,
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: 'calc(var(--Chip-height, var(--_height)) - 6px)',
+              fontSize: 18,
               marginLeft: 4,
               marginRight: -4,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 'calc(var(--Chip-height, var(--_height)) - 8px)',
+              fontSize: 16,
               marginRight: 4,
               marginLeft: -4,
             },
@@ -219,9 +200,7 @@ const ChipRoot = styled('div', {
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-                  (theme.vars || theme).palette.action.focusOpacity
-                }`,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
               ),
             },
           },
@@ -247,17 +226,13 @@ const ChipRoot = styled('div', {
             '&:hover': {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-                  (theme.vars || theme).palette.action.hoverOpacity
-                }`,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
               ),
             },
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-                  (theme.vars || theme).palette.action.focusOpacity
-                }`,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
               ),
             },
             '&:active': {
@@ -353,40 +328,29 @@ const ChipLabel = styled('span', {
 })({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  // Agnostic seam: the label reads `--Chip-padInline` on both sides; `--_padInline`
-  // is the universal default (today's medium filled inline padding). Variants
-  // specialize the default per (variant, size) and size variants route the public
-  // sized token over it.
-  '--_padInline': '12px',
-  paddingLeft: 'var(--Chip-padInline, var(--_padInline))',
-  paddingRight: 'var(--Chip-padInline, var(--_padInline))',
+  paddingLeft: 12,
+  paddingRight: 12,
   whiteSpace: 'nowrap',
   variants: [
-    // Built-in size routing (CSS, deduped). Custom sizes are routed inline.
-    {
-      props: { size: 'small' },
-      style: { '--Chip-padInline': 'var(--Chip-small-padInline, var(--_padInline))' },
-    },
-    {
-      props: { size: 'medium' },
-      style: { '--Chip-padInline': 'var(--Chip-medium-padInline, var(--_padInline))' },
-    },
     {
       props: { variant: 'outlined' },
       style: {
-        '--_padInline': '11px', // medium outlined default
+        paddingLeft: 11,
+        paddingRight: 11,
       },
     },
     {
       props: { size: 'small' },
       style: {
-        '--_padInline': '8px', // small filled default
+        paddingLeft: 8,
+        paddingRight: 8,
       },
     },
     {
       props: { size: 'small', variant: 'outlined' },
       style: {
-        '--_padInline': '7px', // small outlined default
+        paddingLeft: 7,
+        paddingRight: 7,
       },
     },
   ],
@@ -478,21 +442,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // Material UI layer: built-in sizes route the public sized tokens via variants
-  // (deduped CSS). A custom size has no such variant, so route it inline on the
-  // root — the tokens inherit down to the label. The `--_*` defaults live in the
-  // variants.
-  const densityVars =
-    size === 'small' || size === 'medium'
-      ? undefined
-      : {
-          '--Chip-height': `var(--Chip-${size}-height, var(--_height))`,
-          // padInline is consumed on the label (a child); the root doesn't own
-          // `--_padInline`, so a cross-element route must fall back to a literal,
-          // never the internal var (else a missing token resolves to invalid -> 0).
-          '--Chip-padInline': `var(--Chip-${size}-padInline, 12px)`,
-        };
-
   const moreProps =
     component === ButtonBase
       ? {
@@ -560,7 +509,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       disabled: clickable && disabled ? true : undefined,
       tabIndex: skipFocusWhenDisabled && disabled ? -1 : tabIndex,
       ...moreProps,
-      ...(densityVars && { style: densityVars }),
     },
     getSlotProps: (handlers) => ({
       ...handlers,

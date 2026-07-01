@@ -31,21 +31,15 @@ const ToolbarRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    // Gutter default (the responsive sm bump is set in the gutters variant).
-    // Only the `dense` minHeight is tokenized; the `regular` height stays driven
-    // by the public `theme.mixins.toolbar` so existing customization keeps working.
-    '--_minHeight': '48px',
-    '--_padInline': theme.spacing(2),
     variants: [
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          // Gutters are shared across variants -> base token (no size layer),
-          // consumed directly with the internal default as fallback.
-          paddingLeft: 'var(--Toolbar-padInline, var(--_padInline))',
-          paddingRight: 'var(--Toolbar-padInline, var(--_padInline))',
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
           [theme.breakpoints.up('sm')]: {
-            '--_padInline': theme.spacing(3),
+            paddingLeft: theme.spacing(3),
+            paddingRight: theme.spacing(3),
           },
         },
       },
@@ -54,9 +48,7 @@ const ToolbarRoot = styled('div', {
           variant: 'dense',
         },
         style: {
-          '--_minHeight': '48px',
-          '--Toolbar-minHeight': 'var(--Toolbar-dense-minHeight, var(--_minHeight))',
-          minHeight: 'var(--Toolbar-minHeight, var(--_minHeight))',
+          minHeight: 48,
         },
       },
       {

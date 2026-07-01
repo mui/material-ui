@@ -65,13 +65,8 @@ const ListItemButtonRoot = styled(ButtonBase, {
     minWidth: 0,
     boxSizing: 'border-box',
     textAlign: 'left',
-    // Density adapter: `dense` is the compactness axis (boolean). Default state =
-    // plain seam `--ListItemButton-<key>` over `--_<key>`; the `dense` variant
-    // re-routes the seam to `--ListItemButton-dense-<key>`.
-    '--_padBlock': '8px',
-    '--_padInline': '16px',
-    paddingTop: 'var(--ListItemButton-padBlock, var(--_padBlock))',
-    paddingBottom: 'var(--ListItemButton-padBlock, var(--_padBlock))',
+    paddingTop: 8,
+    paddingBottom: 8,
     ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -91,18 +86,14 @@ const ListItemButtonRoot = styled(ButtonBase, {
       [`&.${listItemButtonClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-            (theme.vars || theme).palette.action.focusOpacity
-          }`,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
         ),
       },
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        `${(theme.vars || theme).palette.action.selectedOpacity} + ${
-          (theme.vars || theme).palette.action.hoverOpacity
-        }`,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
@@ -137,23 +128,15 @@ const ListItemButtonRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          // gutters owns the inline axis (default state = plain seam).
-          paddingLeft: 'var(--ListItemButton-padInline, var(--_padInline))',
-          paddingRight: 'var(--ListItemButton-padInline, var(--_padInline))',
+          paddingLeft: 16,
+          paddingRight: 16,
         },
       },
       {
         props: ({ ownerState }) => ownerState.dense,
         style: {
-          '--_padBlock': '4px', // dense default; routes the dense block token
-          '--ListItemButton-padBlock': 'var(--ListItemButton-dense-padBlock, var(--_padBlock))',
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.dense && !ownerState.disableGutters,
-        style: {
-          // gutters + dense: re-route inline to the dense token (block already routed above).
-          '--ListItemButton-padInline': 'var(--ListItemButton-dense-padInline, var(--_padInline))',
+          paddingTop: 4,
+          paddingBottom: 4,
         },
       },
     ],

@@ -50,16 +50,6 @@ const RadioRoot = styled(SwitchBase, {
       color: (theme.vars || theme).palette.action.disabled,
     },
     variants: [
-      // Density: route the per-size public token into SwitchBase's seam. Default
-      // 9px both sizes (pixel-identical); size enables per-size density tuning.
-      {
-        props: { size: 'small' },
-        style: { '--SwitchBase-pad': 'var(--Radio-small-pad, var(--_pad))' },
-      },
-      {
-        props: { size: 'medium' },
-        style: { '--SwitchBase-pad': 'var(--Radio-medium-pad, var(--_pad))' },
-      },
       {
         props: { color: 'default', disabled: false, disableRipple: false },
         style: {

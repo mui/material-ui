@@ -58,38 +58,26 @@ export const ListItemRoot = styled('div', {
     width: '100%',
     boxSizing: 'border-box',
     textAlign: 'left',
-    // Density adapter: `dense` is the compactness axis (boolean). Default state =
-    // plain seam `--ListItem-<key>` over `--_<key>`; the `dense` variant re-routes
-    // the seam to `--ListItem-dense-<key>`.
-    '--_padBlock': '8px',
-    '--_padInline': '16px',
     variants: [
       {
         props: ({ ownerState }) => !ownerState.disablePadding,
         style: {
-          paddingTop: 'var(--ListItem-padBlock, var(--_padBlock))',
-          paddingBottom: 'var(--ListItem-padBlock, var(--_padBlock))',
+          paddingTop: 8,
+          paddingBottom: 8,
         },
       },
       {
         props: ({ ownerState }) => !ownerState.disablePadding && ownerState.dense,
         style: {
-          '--_padBlock': '4px',
-          '--ListItem-padBlock': 'var(--ListItem-dense-padBlock, var(--_padBlock))',
+          paddingTop: 4,
+          paddingBottom: 4,
         },
       },
       {
         props: ({ ownerState }) => !ownerState.disablePadding && !ownerState.disableGutters,
         style: {
-          paddingLeft: 'var(--ListItem-padInline, var(--_padInline))',
-          paddingRight: 'var(--ListItem-padInline, var(--_padInline))',
-        },
-      },
-      {
-        props: ({ ownerState }) =>
-          !ownerState.disablePadding && !ownerState.disableGutters && ownerState.dense,
-        style: {
-          '--ListItem-padInline': 'var(--ListItem-dense-padInline, var(--_padInline))',
+          paddingLeft: 16,
+          paddingRight: 16,
         },
       },
       {

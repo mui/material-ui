@@ -42,12 +42,7 @@ const ListSubheaderRoot = styled('li', {
 })(
   memoTheme(({ theme }) => ({
     boxSizing: 'border-box',
-    // Internal defaults (Material literals). Base tokens: ListSubheader has no
-    // size prop, so per-size tuning is meaningless — density tunes these directly.
-    '--_height': '48px',
-    '--_padInline': '16px',
-    '--_inset': '72px',
-    lineHeight: 'var(--ListSubheader-height, var(--_height))',
+    lineHeight: '48px',
     listStyle: 'none',
     color: (theme.vars || theme).palette.text.secondary,
     fontFamily: theme.typography.fontFamily,
@@ -73,14 +68,14 @@ const ListSubheaderRoot = styled('li', {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          paddingLeft: 'var(--ListSubheader-padInline, var(--_padInline))',
-          paddingRight: 'var(--ListSubheader-padInline, var(--_padInline))',
+          paddingLeft: 16,
+          paddingRight: 16,
         },
       },
       {
         props: ({ ownerState }) => ownerState.inset,
         style: {
-          paddingLeft: 'var(--ListSubheader-inset, var(--_inset))',
+          paddingLeft: 72,
         },
       },
       {

@@ -40,16 +40,8 @@ const ListItemTextRoot = styled('div', {
 })({
   flex: '1 1 auto',
   minWidth: 0,
-  // Density adapter: each spacing literal becomes
-  // `var(--seam, var(--_<key>))`, tokenized in place. The compactness dimension
-  // is `dense` (boolean) — default state = plain seam `--ListItemText-<key>` over
-  // `--_<key>`; the dense variant re-routes the seam to its own token.
-  // `marginBlock` (top+bottom move together) varies by `multiline`, so its literal
-  // default is set per (dense × multiline) cell while routing keys on dense only.
-  // `insetPad` is the inset indentation.
-  '--_marginBlock': '4px',
-  marginTop: 'var(--ListItemText-marginBlock, var(--_marginBlock))',
-  marginBottom: 'var(--ListItemText-marginBlock, var(--_marginBlock))',
+  marginTop: 4,
+  marginBottom: 4,
   // Combine this and the below selector once https://github.com/emotion-js/emotion/issues/3366 is solved
   [`.${typographyClasses.root}:where(& .${listItemTextClasses.primary})`]: {
     display: 'block',
@@ -59,28 +51,16 @@ const ListItemTextRoot = styled('div', {
   },
   variants: [
     {
-      props: ({ ownerState }) => ownerState.dense,
-      style: {
-        '--ListItemText-marginBlock': 'var(--ListItemText-dense-marginBlock, var(--_marginBlock))',
-      },
-    },
-    {
       props: ({ ownerState }) => ownerState.primary && ownerState.secondary,
       style: {
-        '--_marginBlock': '6px',
+        marginTop: 6,
+        marginBottom: 6,
       },
     },
     {
       props: ({ ownerState }) => ownerState.inset,
       style: {
-        '--_insetPad': '56px',
-        paddingLeft: 'var(--ListItemText-insetPad, var(--_insetPad))',
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.inset && ownerState.dense,
-      style: {
-        '--ListItemText-insetPad': 'var(--ListItemText-dense-insetPad, var(--_insetPad))',
+        paddingLeft: 56,
       },
     },
   ],

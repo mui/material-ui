@@ -21,11 +21,9 @@ const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
 })({
-  '--_pad': '16px',
-  '--_padBottom': '24px',
-  padding: 'var(--CardContent-pad, var(--_pad))',
+  padding: 16,
   '&:last-child': {
-    paddingBottom: 'var(--CardContent-padBottom, var(--_padBottom))',
+    paddingBottom: 24,
   },
 });
 

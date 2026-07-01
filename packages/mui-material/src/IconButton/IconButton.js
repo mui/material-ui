@@ -15,9 +15,6 @@ import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { getTransitionStyles } from '../transitions/utils';
 
-// Built-in sizes route padding via variants; any other size routes inline.
-const iconButtonSizes = ['small', 'medium', 'large'];
-
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, color, edge, size, loading } = ownerState;
 
@@ -56,31 +53,13 @@ const IconButtonRoot = styled(ButtonBase, {
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
-    // is the universal default (today's medium padding); size variants specialize
-    // it, so a custom size still gets a sane value.
-    '--_pad': '8px',
-    padding: 'var(--IconButton-pad, var(--_pad))',
+    padding: 8,
     borderRadius: '50%',
     color: (theme.vars || theme).palette.action.active,
     ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
     variants: [
-      // Built-in size routing (CSS, deduped) — exposes the public sized token
-      // over the internal default. Custom sizes are routed inline instead.
-      {
-        props: { size: 'small' },
-        style: { '--IconButton-pad': 'var(--IconButton-small-pad, var(--_pad))' },
-      },
-      {
-        props: { size: 'medium' },
-        style: { '--IconButton-pad': 'var(--IconButton-medium-pad, var(--_pad))' },
-      },
-      {
-        props: { size: 'large' },
-        style: { '--IconButton-pad': 'var(--IconButton-large-pad, var(--_pad))' },
-      },
       {
         props: (props) => !props.disableRipple,
         style: {
@@ -146,14 +125,14 @@ const IconButtonRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          '--_pad': '5px',
+          padding: 5,
           fontSize: theme.typography.pxToRem(18),
         },
       },
       {
         props: { size: 'large' },
         style: {
-          '--_pad': '12px',
+          padding: 12,
           fontSize: theme.typography.pxToRem(28),
         },
       },
@@ -220,14 +199,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // Material UI layer: built-in sizes route the public sized token via variants
-  // (deduped CSS). A custom size has no such variant, so route it inline — the
-  // token name carries the runtime size string, keeping custom sizes tunable for
-  // free. The `--_pad` default lives in the variants.
-  const densityVars = iconButtonSizes.includes(size)
-    ? undefined
-    : { '--IconButton-pad': `var(--IconButton-${size}-pad, var(--_pad))` };
-
   return (
     <IconButtonRoot
       id={loading ? loadingId : idProp}
@@ -238,7 +209,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       disabled={disabled || loading}
       ref={ref}
       {...other}
-      style={{ ...densityVars, ...other.style }}
       ownerState={ownerState}
     >
       {typeof loading === 'boolean' && (
@@ -358,10 +328,6 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

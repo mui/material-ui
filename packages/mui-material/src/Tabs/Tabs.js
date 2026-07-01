@@ -77,10 +77,7 @@ const TabsRoot = styled('div', {
 })(
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
-    // Density adapter: base token, 48px literal fallback keeps the
-    // default pixel-identical. Tabs is the Tab's parent, so it can't read the
-    // child's `--Tab-minHeight` — it carries its own seam.
-    minHeight: 'var(--Tabs-minHeight, 48px)',
+    minHeight: 48,
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
     display: 'flex',
