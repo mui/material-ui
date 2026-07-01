@@ -77,9 +77,9 @@ const MenuItemRoot = styled(ButtonBase, {
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
-    minHeight: 'var(--comp-minHeight)',
-    paddingTop: 'var(--comp-blockPad)',
-    paddingBottom: 'var(--comp-blockPad)',
+    minHeight: 'var(--comp-minHeight, var(--_minHeight))',
+    paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
+    paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
     '&:hover': {
@@ -144,8 +144,8 @@ const MenuItemRoot = styled(ButtonBase, {
         style: {
           '--_inlinePad': '16px',
           [`--comp-inlinePad`]: `var(${menuItemVars.inlinePad}, var(--_inlinePad))`,
-          paddingLeft: 'var(--comp-inlinePad)',
-          paddingRight: 'var(--comp-inlinePad)',
+          paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
+          paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
         },
       },
       {

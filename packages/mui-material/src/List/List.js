@@ -42,13 +42,13 @@ const ListRoot = styled('ul', {
       props: ({ ownerState }) => !ownerState.disablePadding,
       style: {
         // Density seam: `--List-blockPad` (spacing token) over the literal
-        // default via the agnostic `--comp-listBlockPad`. Same map read by the
+        // default via the agnostic `--comp-blockPad`. Same map read by the
         // `enhance*Density` presets. The `subheader` variant below still forces
         // `paddingTop: 0` (unchanged).
-        '--_listBlockPad': '8px',
-        [`--comp-listBlockPad`]: `var(${listVars.blockPad}, var(--_listBlockPad))`,
-        paddingTop: 'var(--comp-listBlockPad)',
-        paddingBottom: 'var(--comp-listBlockPad)',
+        '--_blockPad': '8px',
+        [`--comp-blockPad`]: `var(${listVars.blockPad}, var(--_blockPad))`,
+        paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
+        paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
       },
     },
     {

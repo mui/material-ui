@@ -81,29 +81,36 @@ const PRESET_LABEL: Record<Preset, string> = {
 
 const buttonVar = (size: Size) => private_buttonVars[`${size}Pad` as MappingKey];
 
-// Keys-only → density-var string. The validator guarantees each token ∈ SCALE_KEYS.
-// 1 step → applies to all sides; 2 steps → `block inline`.
-const stepsToVar = (input: string) =>
-  input
-    .trim()
-    .split(/\s+/)
-    .map((t) => `var(--mui-density-${t})`)
+const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);
+const tokenize = (input: string) => input.trim().split(/\s+/).filter(Boolean);
+
+// A mapping input is ANY valid CSS value. A density key (`xxs`…`xxl`) is sugar
+// for `var(--mui-density-<key>)`; anything else passes through verbatim as raw
+// CSS (`12px`, `2rem`, `auto`). 1 token → all sides; 2 → `block inline`.
+const resolveValue = (input: string) =>
+  tokenize(input)
+    .map((t) => (isDensityKey(t) ? `var(--mui-density-${t})` : t))
     .join(' ');
 
-function validateMapping(input: string): { valid: boolean; error: string | null } {
-  const tokens = input.trim().split(/\s+/).filter(Boolean);
+// Empty = inert (no override, no error). >2 tokens = error. Otherwise ok — raw
+// values are first-class, never rejected as "not a density key".
+function parseMapping(input: string): { state: 'empty' | 'ok' | 'error'; error?: string } {
+  const tokens = tokenize(input);
   if (tokens.length === 0) {
-    return { valid: false, error: 'enter 1–2 density steps' };
+    return { state: 'empty' };
   }
   if (tokens.length > 2) {
-    return { valid: false, error: 'max 2 steps (block inline)' };
+    return { state: 'error', error: 'max 2 values (block inline)' };
   }
-  const bad = tokens.find((t) => !(SCALE_KEYS as readonly string[]).includes(t));
-  if (bad) {
-    return { valid: false, error: `"${bad}" is not a density key` };
-  }
-  return { valid: true, error: null };
+  return { state: 'ok' };
 }
+
+// Human-readable resolved value: keys show their px (from the active scale),
+// raw values echo as typed.
+const previewText = (input: string, scalePx: Record<string, string> | null) =>
+  tokenize(input)
+    .map((t) => (isDensityKey(t) ? (scalePx?.[t] ?? t) : t))
+    .join(' ');
 
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
 const PRESET_FN = {
@@ -111,13 +118,6 @@ const PRESET_FN = {
   normal: enhanceNormalDensity,
   comfort: enhanceComfortDensity,
 } as const;
-
-// Resolved var string + px for a valid mapping value under the active scale —
-// e.g. `md` → { varStr: 'var(--mui-density-md)', px: '8px' } (compact).
-function resolvePreview(value: string, scalePx: Record<string, string> | null) {
-  const tokens = value.trim().split(/\s+/).filter(Boolean);
-  return { varStr: stepsToVar(value), px: scalePx ? tokens.map((t) => scalePx[t]).join(' ') : '' };
-}
 
 // ---------------------------------------------------------------------------
 // Density-component registry. Only Button is de-prefixed/wired in this
@@ -146,11 +146,14 @@ function ButtonMatrix({
     <Stack spacing={4} sx={{ mt: 1 }}>
       {SIZES.map((size) => {
         const key = `${size}Pad`;
-        const { valid } = validateMapping(mapping[key] ?? '');
+        const value = mapping[key] ?? '';
         // TO5/TO6: element-level token wins over the preset's styleOverride.
-        // At `unset` (or invalid input) emit NO token → falls back to the literal
+        // At `unset`/empty/invalid emit NO token → falls back to the literal
         // `--_pad` default (unset) or the preset's own mapping.
-        const sx = mappingEnabled && valid ? { [buttonVar(size)]: stepsToVar(mapping[key]) } : undefined;
+        const sx =
+          mappingEnabled && parseMapping(value).state === 'ok'
+            ? { [buttonVar(size)]: resolveValue(value) }
+            : undefined;
         return (
           <Box key={size} data-size-section={size}>
             <Divider textAlign="left" sx={{ mb: 1.5 }}>
@@ -179,42 +182,50 @@ function ButtonMatrix({
   );
 }
 
-// The Menu family's density-step tokens (spacing only): the List container's
-// block padding + MenuItem's block/inline padding, keyed by the `dense` axis.
-// Field key === mapping-state key. min-height is NOT here — heights use raw px
-// (set per preset), not density steps — so it isn't interactively remappable.
+// The Menu family's density tokens: List container block padding + MenuItem
+// block/inline padding + min-height, keyed by the `dense` axis. Field key ===
+// mapping-state key. Sizing tokens (`minHeight`) accept raw px like any other —
+// a density key is just sugar; heights ship as raw px per preset.
 const MENU_FIELDS: DensityField[] = [
   { key: 'listBlockPad', cssVar: private_listVars.blockPad },
   { key: 'blockPad', cssVar: private_menuItemVars.blockPad },
   { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad },
+  { key: 'minHeight', cssVar: private_menuItemVars.minHeight },
   { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad },
   { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad },
+  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight },
 ];
 
 function MenuDemoItems({ itemSx }: { itemSx: Record<string, string> | undefined }) {
   return (
     <React.Fragment>
-      <MenuItem sx={itemSx}>Default item</MenuItem>
+      <MenuItem sx={itemSx}>
+        <span className="density-debug-text">Default item</span>
+      </MenuItem>
       <MenuItem selected sx={itemSx}>
-        Selected item
+        <span className="density-debug-text">Selected item</span>
       </MenuItem>
       <MenuItem sx={itemSx}>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
-        <ListItemText>With icon</ListItemText>
+        <ListItemText>
+          <span className="density-debug-text">With icon</span>
+        </ListItemText>
       </MenuItem>
       <MenuItem divider sx={itemSx}>
-        With divider
+        <span className="density-debug-text">With divider</span>
       </MenuItem>
       <MenuItem dense sx={itemSx}>
-        Dense item
+        <span className="density-debug-text">Dense item</span>
       </MenuItem>
       <MenuItem dense sx={itemSx}>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Dense + icon</ListItemText>
+        <ListItemText>
+          <span className="density-debug-text">Dense + icon</span>
+        </ListItemText>
       </MenuItem>
     </React.Fragment>
   );
@@ -230,17 +241,18 @@ function MenuMatrix({
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   // Element-level tokens win over the preset's styleOverride. `--List-blockPad`
   // goes on the list root; `--MenuItem-*` on each item (regular reads plain,
-  // dense reads `dense-*` — unused set is inert). At `unset`/invalid emit none.
-  const valid = (key: string) => validateMapping(mapping[key] ?? '').valid;
+  // dense reads `dense-*` — unused set is inert). Empty/invalid → emit none, so
+  // the preset's own value shows through (e.g. blank min-height keeps the preset px).
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
   const listSx =
-    mappingEnabled && valid('listBlockPad')
-      ? { [private_listVars.blockPad]: stepsToVar(mapping.listBlockPad) }
+    mappingEnabled && active('listBlockPad')
+      ? { [private_listVars.blockPad]: resolveValue(mapping.listBlockPad) }
       : undefined;
   const itemSx = mappingEnabled
     ? Object.fromEntries(
-        MENU_FIELDS.filter((f) => f.key !== 'listBlockPad' && valid(f.key)).map((f) => [
+        MENU_FIELDS.filter((f) => f.key !== 'listBlockPad' && active(f.key)).map((f) => [
           f.cssVar,
-          stepsToVar(mapping[f.key]),
+          resolveValue(mapping[f.key]),
         ]),
       )
     : undefined;
@@ -423,14 +435,13 @@ export default function DensityExperiment() {
                 <Stack spacing={1.5} sx={{ mt: 1 }}>
                   {COMPONENT_DEFS[comp].fields.map((field) => {
                     const value = mapping[comp][field.key] ?? '';
-                    const { valid, error } = validateMapping(value);
-                    const showError = mappingEnabled && !valid;
-                    const preview = resolvePreview(value, scalePx);
+                    const parsed = parseMapping(value);
+                    const showError = mappingEnabled && parsed.state === 'error';
                     let helper = ' ';
                     if (showError) {
-                      helper = error ?? ' ';
-                    } else if (mappingEnabled && valid) {
-                      helper = preview.px;
+                      helper = parsed.error ?? ' ';
+                    } else if (mappingEnabled && parsed.state === 'ok') {
+                      helper = previewText(value, scalePx); // key → px · raw → as typed
                     }
                     return (
                       <TextField
@@ -438,6 +449,7 @@ export default function DensityExperiment() {
                         size="small"
                         label={field.cssVar}
                         value={value}
+                        placeholder="density key or CSS value"
                         disabled={!mappingEnabled}
                         error={showError}
                         helperText={helper}
