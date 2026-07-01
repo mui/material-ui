@@ -25,6 +25,8 @@ import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import { private_tableCellVars as tcVars } from '../TableCell/tableCellVars';
 import { private_autocompleteVars as acVars } from '../Autocomplete/autocompleteVars';
+import { private_stepVars as stepVars } from '../Step/stepVars';
+import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -181,6 +183,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [acVars.optionMinHeight]: '44px',
     [acVars.optionBlockPad]: d.xs,
     [acVars.optionInlinePad]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiStep', {
+    [stepVars.inlinePad]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiStepLabel', {
+    [slVars.iconGap]: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

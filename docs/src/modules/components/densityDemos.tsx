@@ -34,6 +34,9 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -196,6 +199,19 @@ const demos: Record<string, React.ReactNode> = {
       <Button>Two</Button>
       <Button>Three</Button>
     </ButtonGroup>
+  ),
+  Stepper: (
+    <Stepper activeStep={1} sx={{ width: 360 }}>
+      <Step>
+        <StepLabel>One</StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>Two</StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>Three</StepLabel>
+      </Step>
+    </Stepper>
   ),
   Autocomplete: (
     // Open + inline so the option list (the density lever) renders in the scope.

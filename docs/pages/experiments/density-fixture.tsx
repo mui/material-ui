@@ -132,6 +132,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
     loose: { ['--ButtonGroup-minWidth' as any]: '56px' },
   },
+  Stepper: {
+    dense: {
+      ['--Step-inlinePad' as any]: '4px',
+      ['--StepLabel-iconGap' as any]: '4px',
+    },
+    loose: {
+      ['--Step-inlinePad' as any]: '16px',
+      ['--StepLabel-iconGap' as any]: '16px',
+    },
+  },
   Autocomplete: {
     dense: {
       ['--Autocomplete-option-minHeight' as any]: '32px',

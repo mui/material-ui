@@ -41,6 +41,9 @@ import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Badge, { private_badgeVars } from '@mui/material/Badge';
+import Stepper from '@mui/material/Stepper';
+import Step, { private_stepVars } from '@mui/material/Step';
+import StepLabel, { private_stepLabelVars } from '@mui/material/StepLabel';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary, { private_accordionSummaryVars } from '@mui/material/AccordionSummary';
 import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/AccordionDetails';
@@ -1028,6 +1031,46 @@ function AutocompleteMatrix({
   );
 }
 
+// Stepper family: Step horizontal gutter + StepLabel icon→label gap.
+const STEPPER_FIELDS: DensityField[] = [
+  { key: 'inlinePad', cssVar: private_stepVars.inlinePad },
+  { key: 'iconGap', cssVar: private_stepLabelVars.iconGap },
+];
+
+function StepperMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        STEPPER_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stepper activeStep={1} sx={{ mt: 1, width: 360, ...sx }}>
+      <Step>
+        <StepLabel>
+          <span className="density-debug-text">One</span>
+        </StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>
+          <span className="density-debug-text">Two</span>
+        </StepLabel>
+      </Step>
+      <Step>
+        <StepLabel>
+          <span className="density-debug-text">Three</span>
+        </StepLabel>
+      </Step>
+    </Stepper>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1146,6 +1189,12 @@ const COMPONENT_DEFS = {
     fields: AUTOCOMPLETE_FIELDS,
     prefill: { optionBlockPad: 'xs', optionInlinePad: 'lg' }, // minHeight raw px off theme
     renderMatrix: (args) => <AutocompleteMatrix {...args} />,
+  },
+  Stepper: {
+    canvasLabel: 'Stepper — step gutter + icon→label gap',
+    fields: STEPPER_FIELDS,
+    prefill: { inlinePad: 'sm', iconGap: 'sm' },
+    renderMatrix: (args) => <StepperMatrix {...args} />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
