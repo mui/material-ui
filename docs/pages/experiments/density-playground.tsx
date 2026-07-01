@@ -33,6 +33,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
+import Badge, { private_badgeVars } from '@mui/material/Badge';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary, { private_accordionSummaryVars } from '@mui/material/AccordionSummary';
 import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/AccordionDetails';
@@ -874,6 +875,38 @@ function AvatarMatrix({
   );
 }
 
+// Badge family: bubble size + padding, per state (standard / dot).
+const BADGE_FIELDS: DensityField[] = [
+  { key: 'standardSize', cssVar: private_badgeVars.standardSize },
+  { key: 'standardPad', cssVar: private_badgeVars.standardPad },
+  { key: 'dotSize', cssVar: private_badgeVars.dotSize },
+];
+
+function BadgeMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        BADGE_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'center' }}>
+      <Badge badgeContent={4} color="primary" sx={sx}>
+        <InboxIcon />
+      </Badge>
+      <Badge variant="dot" color="primary" sx={sx}>
+        <InboxIcon />
+      </Badge>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -974,6 +1007,12 @@ const COMPONENT_DEFS = {
     fields: AVATAR_FIELDS,
     prefill: {}, // size = raw px, read off the theme
     renderMatrix: (args) => <AvatarMatrix {...args} />,
+  },
+  Badge: {
+    canvasLabel: 'Badge — bubble size + padding (standard / dot)',
+    fields: BADGE_FIELDS,
+    prefill: { standardPad: '0 xs' }, // sizes = raw px, read off the theme
+    renderMatrix: (args) => <BadgeMatrix {...args} />,
   },
   ToggleButton: {
     canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',

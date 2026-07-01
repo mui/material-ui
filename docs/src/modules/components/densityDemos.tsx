@@ -24,6 +24,7 @@ import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Accordion from '@mui/material/Accordion';
@@ -180,6 +181,16 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Avatar>A</Avatar>
       <Avatar>B</Avatar>
+    </Stack>
+  ),
+  Badge: (
+    <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>
+      <Badge badgeContent={4} color="primary">
+        <InboxIcon />
+      </Badge>
+      <Badge variant="dot" color="primary">
+        <InboxIcon />
+      </Badge>
     </Stack>
   ),
   ToggleButton: (

@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  Badge: {
+    dense: {
+      ['--Badge-standard-size' as any]: '16px',
+      ['--Badge-standard-pad' as any]: '0 4px',
+      ['--Badge-dot-size' as any]: '4px',
+    },
+    loose: {
+      ['--Badge-standard-size' as any]: '26px',
+      ['--Badge-standard-pad' as any]: '0 10px',
+      ['--Badge-dot-size' as any]: '10px',
+    },
+  },
   Breadcrumbs: {
     dense: { ['--Breadcrumbs-separatorGap' as any]: '4px' },
     loose: { ['--Breadcrumbs-separatorGap' as any]: '16px' },

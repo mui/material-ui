@@ -21,6 +21,7 @@ import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
+import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -156,6 +157,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(enhanced.components, 'MuiAvatar', {
     // Square size = raw px (sizing).
     [avVars.size]: '40px',
+  });
+  addRootOverride(enhanced.components, 'MuiBadge', {
+    // Bubble size = raw px; standard padding = '0 <step>'.
+    [badgeVars.standardSize]: '20px',
+    [badgeVars.dotSize]: '6px',
+    [badgeVars.standardPad]: `0 `,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.
