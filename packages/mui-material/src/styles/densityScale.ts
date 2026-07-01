@@ -54,13 +54,16 @@ export const densityVars: DensityScale = DENSITY_KEYS.reduce((acc, key) => {
 export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
   scale: DensityScale,
-): T & { density: DensityScale } {
+): T & { density: DensityScale; components: NonNullable<EnhanceableTheme['components']> } {
   const rootVars = DENSITY_KEYS.reduce<Record<string, string>>((acc, key) => {
     acc[cssVar(key)] = scale[key];
     return acc;
   }, {});
 
-  const theme = { ...themeInput } as T & { density: DensityScale };
+  const theme = { ...themeInput } as T & {
+    density: DensityScale;
+    components: NonNullable<EnhanceableTheme['components']>;
+  };
   theme.density = scale;
   theme.vars = { ...themeInput.vars, density: densityVars };
 
@@ -87,24 +90,24 @@ export function applyDensity<T extends EnhanceableTheme>(
 }
 
 /**
- * Append a `styleOverrides.root` object to a component slot, preserving any
- * existing root overrides (array-wrapped). Presets use this to attach their
+ * Attach a `styleOverrides.root` object to a component slot, preserving any
+ * existing root overrides (array-wrapped). Presets use this to add their
  * component-var → density-step assignments after `applyDensity`.
+ *
+ * **Mutates `components` in place** — pass the enhanced theme's `components`
+ * (fresh, owned by `applyDensity`), never a theme's shared `components`.
  */
-export function addRootOverride<C extends EnhanceableTheme['components']>(
-  components: C,
+export function addRootOverride(
+  components: NonNullable<EnhanceableTheme['components']>,
   name: string,
   root: Record<string, string>,
-): C {
-  const existing = (components as any)?.[name];
-  return {
-    ...components,
-    [name]: {
-      ...existing,
-      styleOverrides: {
-        ...existing?.styleOverrides,
-        root: [existing?.styleOverrides?.root, root],
-      },
+): void {
+  const slot = (components as any)[name];
+  (components as any)[name] = {
+    ...slot,
+    styleOverrides: {
+      ...slot?.styleOverrides,
+      root: [slot?.styleOverrides?.root, root],
     },
-  } as C;
+  };
 }

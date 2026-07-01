@@ -13,7 +13,7 @@ const scale: DensityScale = {
 
 export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
-  enhanced.components = addRootOverride(enhanced.components, 'MuiButton', {
+  addRootOverride(enhanced.components, 'MuiButton', {
     [buttonVars.smallPad]: `${d.xxs} ${d.sm}`,
     [buttonVars.mediumPad]: `${d.xs} ${d.lg}`,
     [buttonVars.largePad]: `${d.sm} ${d.xl}`,
