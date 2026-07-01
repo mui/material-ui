@@ -30,9 +30,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open a demo with a row of buttons (`BasicButtons`).
-2. Press <kbd>Tab</kbd> repeatedly and note the order the buttons receive focus.
-3. Compare that order to the visual left-to-right order.
+1. In a UI with a series of buttons, press <kbd>Tab</kbd> repeatedly and note the order the buttons receive focus.
+2. Compare that order to the visual left-to-right order.
 
 **Pass:** focus order matches the visual order. Watch for `Stack` or flex layouts that reorder buttons visually without changing the DOM.
 
@@ -59,7 +58,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
+1. In a UI with buttons, set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
 2. Confirm labels are fully visible and buttons still work.
 
 **Pass:** nothing is clipped or cut off at 200%.
@@ -73,7 +72,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open any button demo and confirm the label is selectable text, not an image.
+1. Select a button's label with the mouse (or zoom in) and confirm it behaves like real text (selectable, stays crisp), not an image.
 
 **Pass:** no button renders its label as an image of text (a logo with an accessible name is exempt).
 
@@ -85,7 +84,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+1. In a UI with buttons, set the window (or the DevTools device toolbar) to 320 CSS pixels wide.
 2. Confirm there is no sideways scrolling and all button text is reachable.
 
 **Pass:** content reflows with no horizontal scroll, and long labels wrap.
@@ -127,9 +126,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LoadingButtonsTransition` with a screen reader running (NVDA with Chrome, or VoiceOver with Safari).
-2. The demo starts in the loading state; toggle the switch off to enable the buttons, then click one to start loading. Press <kbd>Tab</kbd> to move focus away from it.
-3. Listen for whether the loading change is announced.
+1. With a screen reader running (NVDA with Chrome, or VoiceOver with Safari), activate a button that enters the `loading` state for a background task.
+2. Press <kbd>Tab</kbd> to move focus away from it, then listen for whether the loading change is announced.
 
 **Pass:** the change is announced without the user moving focus to it. It is not, because the component adds no live region; wrap the status in `role="status"` to fix it.
 
@@ -145,9 +143,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ButtonA11ySemanticStates` with a screen reader running (NVDA with Chrome, or VoiceOver with Safari).
-2. <kbd>Tab</kbd> to each button and confirm it announces the visible label, and does not read out the icon.
-3. For any icon-only button in the product, confirm it has an `aria-label` describing the action.
+1. With a screen reader running (NVDA with Chrome, or VoiceOver with Safari), <kbd>Tab</kbd> to buttons that carry a start or end icon and confirm each announces the visible label, not the icon.
+2. For any icon-only button in the product, confirm it has an `aria-label` describing the action.
 
 **Pass:** every button's announced name matches its purpose, and decorative icons are silent.
 
@@ -160,8 +157,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ButtonA11ySemanticStates` and `ButtonA11yNonNative` with a screen reader running.
-2. Confirm the plain button announces "button", the `href` one announces "link", the disabled one announces its disabled state, and the custom one announces "button".
+1. With a screen reader running, focus a plain button, an `href` button, a disabled button, and a non-native (`role="button"`) button.
+2. Confirm the plain button announces "button", the `href` one announces "link", the disabled one announces its disabled state, and the non-native one announces "button".
 
 **Pass:** role and state match the visual presentation for every variant.
 
@@ -174,9 +171,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ColorButtons` or `ButtonA11yColorMatrix`.
-2. Turn on a grayscale view (in Chrome DevTools: Rendering tab, Emulate vision deficiencies, Achromatopsia).
-3. Confirm each button can still be told apart and understood from its text.
+1. In a UI with buttons of different colors, turn on a grayscale view (in Chrome DevTools: Rendering tab, Emulate vision deficiencies, Achromatopsia).
+2. Confirm each button can still be told apart and understood from its text.
 
 **Pass:** meaning/purpose of the Button can be understood without color.
 
@@ -191,7 +187,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ButtonA11yColorMatrix`. With a contrast checker (the color picker in browser DevTools shows a ratio), check each label against its background.
+1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each button's label against its background, across the color and variant combinations in use.
 2. Repeat with the pointer hovering and held down, since `:hover` and `:active` change the background.
 3. Check any custom theme colors the product uses.
 
@@ -207,7 +203,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `OutlinedButtons`. With a contrast checker, measure the button border against the page behind it.
+1. With a contrast checker, measure an `outlined` button's border against the page behind it.
 2. Press <kbd>Tab</kbd> to a button so its focus indicator shows, and measure the indicator against the colors next to it.
 3. If a button has a meaningful icon, measure it against its background.
 
@@ -221,9 +217,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ButtonA11yTextSpacing` and a button with a long label.
-2. Apply the WCAG text-spacing values. The quickest way is to run this in the DevTools console: `document.head.insertAdjacentHTML('beforeend','<style>*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}</style>')`.
-3. Look for cut-off, clipped, or overlapping label text.
+1. On a button with a long label, apply the WCAG text-spacing values. The quickest way is to run this in the DevTools console: `document.head.insertAdjacentHTML('beforeend','<style>*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}</style>')`.
+2. Look for cut-off, clipped, or overlapping label text.
 
 **Pass:** all label text stays visible and the button still works.
 
@@ -264,7 +259,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ContainedButtons`, `OutlinedButtons`, and `TextButtons`. Press <kbd>Tab</kbd> to move to each button.
+1. Press <kbd>Tab</kbd> to move focus across `contained`, `outlined`, and `text` buttons.
 2. Confirm a clear focus indicator appears, and that it looks different from the hover style.
 3. Click a button with the mouse and confirm the indicator does not appear (it is keyboard-only).
 4. <kbd>Tab</kbd> to `text` and `outlined` buttons that set `disableRipple` or `disableFocusRipple`; for `contained`, test a button that combines one of those props with `disableElevation`.
@@ -295,7 +290,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `InputFileUpload` and read the upload button's label.
+1. For a file-upload button (`component="label"` wrapping a hidden `<input type="file">`), read the upload button's label.
 
 **Pass:** the label clearly tells the user what to upload, not just "Upload".
 
@@ -308,9 +303,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ButtonA11ySemanticStates`, `ButtonA11yNonNative`, and `LoadingButtons` with a screen reader running.
-2. <kbd>Tab</kbd> to each variant and confirm the announced name, role, and disabled state are correct.
-3. Toggle loading and confirm the busy or disabled change is announced.
+1. With a screen reader running, <kbd>Tab</kbd> to each button variant in use (native, `href` link, non-native `role="button"`, disabled, loading).
+2. Confirm the announced name, role, and disabled state are correct for each.
+3. Toggle `loading` and confirm the busy or disabled change is announced.
 
 **Pass:** name, role, and state are correct for every variant, and state changes are announced.
 
