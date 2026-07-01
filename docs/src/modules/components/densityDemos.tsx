@@ -12,6 +12,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -163,6 +164,12 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
+    </Stack>
+  ),
+  Radio: (
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Radio checked />
+      <Radio checked size="small" />
     </Stack>
   ),
   Accordion: (

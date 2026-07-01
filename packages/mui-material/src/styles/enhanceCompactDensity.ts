@@ -17,6 +17,7 @@ import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
 import { private_accordionSummaryVars as asVars } from '../AccordionSummary/accordionSummaryVars';
 import { private_accordionDetailsVars as adVars } from '../AccordionDetails/accordionDetailsVars';
+import { private_radioVars as radioVars } from '../Radio/radioVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -133,6 +134,11 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // Touch-target padding (9px both sizes today) = density steps.
     [cbVars.mediumPad]: d.sm,
     [cbVars.smallPad]: d.xs,
+  });
+  addRootOverride(enhanced.components, 'MuiRadio', {
+    // Touch-target padding via SwitchBase (mirrors Checkbox).
+    [radioVars.mediumPad]: d.sm,
+    [radioVars.smallPad]: d.xs,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

@@ -114,6 +114,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Checkbox-small-pad' as any]: '12px',
     },
   },
+  Radio: {
+    dense: {
+      ['--Radio-medium-pad' as any]: '4px',
+      ['--Radio-small-pad' as any]: '2px',
+    },
+    loose: {
+      ['--Radio-medium-pad' as any]: '14px',
+      ['--Radio-small-pad' as any]: '12px',
+    },
+  },
   CardContent: {
     dense: {
       ['--CardContent-pad' as any]: '8px',

@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button, { private_buttonVars } from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -24,6 +23,7 @@ import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
+import Radio, { private_radioVars } from '@mui/material/Radio';
 import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
 import Select, { private_selectVars } from '@mui/material/Select';
@@ -751,6 +751,33 @@ function AccordionMatrix({
   );
 }
 
+// Radio family: touch-target padding per size (via SwitchBase, like Checkbox).
+const RADIO_FIELDS: DensityField[] = [
+  { key: 'mediumPad', cssVar: private_radioVars.mediumPad },
+  { key: 'smallPad', cssVar: private_radioVars.smallPad },
+];
+
+function RadioMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        RADIO_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+      <Radio checked sx={sx} />
+      <Radio checked size="small" sx={sx} />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -839,6 +866,12 @@ const COMPONENT_DEFS = {
     fields: CHECKBOX_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: (args) => <CheckboxMatrix {...args} />,
+  },
+  Radio: {
+    canvasLabel: 'Radio — touch-target padding (medium + small)',
+    fields: RADIO_FIELDS,
+    prefill: { mediumPad: 'sm', smallPad: 'xs' },
+    renderMatrix: (args) => <RadioMatrix {...args} />,
   },
   CardContent: {
     canvasLabel: 'CardContent — padding + last-child bottom padding',
