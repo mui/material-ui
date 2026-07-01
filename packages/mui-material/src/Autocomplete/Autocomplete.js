@@ -22,6 +22,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
+import { private_autocompleteVars as vars } from './autocompleteVars';
 import capitalize from '../utils/capitalize';
 import useSlot from '../utils/useSlot';
 
@@ -335,21 +336,30 @@ const AutocompleteListbox = styled('ul', {
     isolation: 'isolate', // Prevent overlap with iOS overlay scrollbars.
     position: 'relative',
     [`& .${autocompleteClasses.option}`]: {
-      minHeight: 48,
+      // Density seams (mirrors MenuItem): min-height (raw px; ≥sm collapses to
+      // `auto` via the seam fallback so a preset's token still wins) + block/
+      // inline padding.
+      '--_minHeight': '48px',
+      '--_blockPad': '6px',
+      '--_inlinePad': '16px',
+      '--comp-minHeight': `var(${vars.optionMinHeight}, var(--_minHeight))`,
+      '--comp-blockPad': `var(${vars.optionBlockPad}, var(--_blockPad))`,
+      '--comp-inlinePad': `var(${vars.optionInlinePad}, var(--_inlinePad))`,
+      minHeight: 'var(--comp-minHeight, var(--_minHeight))',
       display: 'flex',
       overflow: 'hidden',
       justifyContent: 'flex-start',
       alignItems: 'center',
       cursor: 'pointer',
-      paddingTop: 6,
+      paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
       boxSizing: 'border-box',
       outline: '0',
       WebkitTapHighlightColor: 'transparent',
-      paddingBottom: 6,
-      paddingLeft: 16,
-      paddingRight: 16,
+      paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
+      paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
+      paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
       [theme.breakpoints.up('sm')]: {
-        minHeight: 'auto',
+        '--comp-minHeight': `var(${vars.optionMinHeight}, auto)`,
       },
       [`&.${autocompleteClasses.focused}`]: {
         backgroundColor: (theme.vars || theme).palette.action.hover,

@@ -9,6 +9,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -195,6 +196,16 @@ const demos: Record<string, React.ReactNode> = {
       <Button>Two</Button>
       <Button>Three</Button>
     </ButtonGroup>
+  ),
+  Autocomplete: (
+    // Open + inline so the option list (the density lever) renders in the scope.
+    <Autocomplete
+      open
+      disablePortal
+      options={['Apple', 'Banana', 'Cherry']}
+      sx={{ width: 260 }}
+      renderInput={(params) => <TextField {...params} label="Fruit" />}
+    />
   ),
   TableCell: (
     <Stack spacing={2} sx={{ width: 320 }}>

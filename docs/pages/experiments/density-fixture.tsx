@@ -132,6 +132,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
     loose: { ['--ButtonGroup-minWidth' as any]: '56px' },
   },
+  Autocomplete: {
+    dense: {
+      ['--Autocomplete-option-minHeight' as any]: '32px',
+      ['--Autocomplete-option-blockPad' as any]: '3px',
+      ['--Autocomplete-option-inlinePad' as any]: '10px',
+    },
+    loose: {
+      ['--Autocomplete-option-minHeight' as any]: '60px',
+      ['--Autocomplete-option-blockPad' as any]: '12px',
+      ['--Autocomplete-option-inlinePad' as any]: '28px',
+    },
+  },
   TableCell: {
     dense: {
       ['--TableCell-medium-blockPad' as any]: '8px',

@@ -24,6 +24,7 @@ import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import { private_tableCellVars as tcVars } from '../TableCell/tableCellVars';
+import { private_autocompleteVars as acVars } from '../Autocomplete/autocompleteVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -172,6 +173,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [tcVars.mediumBlockPad]: d.lg,
     [tcVars.smallBlockPad]: d.xs,
     [tcVars.inlinePad]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiAutocomplete', {
+    // Option list (mirrors MenuItem): minHeight raw px, block/inline pad steps.
+    [acVars.optionMinHeight]: '56px',
+    [acVars.optionBlockPad]: d.xs,
+    [acVars.optionInlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

@@ -22,6 +22,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
+import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
 import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputAdornment';
 import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
 import { private_filledInputVars } from '@mui/material/FilledInput';
@@ -992,6 +993,41 @@ function TableCellMatrix({
   );
 }
 
+// Autocomplete family: the option list geometry (mirrors MenuItem). The input's
+// density comes from its variant (tokenized separately).
+const AUTOCOMPLETE_FIELDS: DensityField[] = [
+  { key: 'optionMinHeight', cssVar: private_autocompleteVars.optionMinHeight },
+  { key: 'optionBlockPad', cssVar: private_autocompleteVars.optionBlockPad },
+  { key: 'optionInlinePad', cssVar: private_autocompleteVars.optionInlinePad },
+];
+
+function AutocompleteMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        AUTOCOMPLETE_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Autocomplete
+      open
+      disablePortal
+      options={['Apple', 'Banana', 'Cherry']}
+      sx={{ mt: 1, width: 260, ...sx }}
+      renderInput={(params) => <TextField {...params} label="Fruit" />}
+    />
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1104,6 +1140,12 @@ const COMPONENT_DEFS = {
     fields: TABLE_CELL_FIELDS,
     prefill: { mediumBlockPad: 'lg', smallBlockPad: 'xs', inlinePad: 'lg' },
     renderMatrix: (args) => <TableCellMatrix {...args} />,
+  },
+  Autocomplete: {
+    canvasLabel: 'Autocomplete — option list min-height + padding (open)',
+    fields: AUTOCOMPLETE_FIELDS,
+    prefill: { optionBlockPad: 'xs', optionInlinePad: 'lg' }, // minHeight raw px off theme
+    renderMatrix: (args) => <AutocompleteMatrix {...args} />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
