@@ -2,3 +2,5 @@ export { default } from './FilledInput';
 
 export { default as filledInputClasses } from './filledInputClasses';
 export * from './filledInputClasses';
+
+export { private_filledInputVars } from './filledInputVars';

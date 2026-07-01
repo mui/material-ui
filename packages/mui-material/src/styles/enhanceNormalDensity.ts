@@ -6,6 +6,7 @@ import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
 import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedInputVars';
 import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
+import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -75,6 +76,31 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [iaVars.mediumGap]: d.sm,
     [iaVars.smallMarginTop]: d.md,
     [iaVars.mediumMarginTop]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiFilledInput', {
+    // Box padding = density steps; the label rest/shrink Y are tuned raw px
+    // (no clean formula from topPad), set on the sibling label via `:has(~ &)`.
+    [fiVars.mediumTopPad]: d.xl,
+    [fiVars.smallTopPad]: d.lg,
+    [fiVars.mediumBottomPad]: d.sm,
+    [fiVars.smallBottomPad]: d.xxs,
+    [fiVars.mediumInlinePad]: d.md,
+    [fiVars.smallInlinePad]: d.md,
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      [ilVars.filledRestY]: '15px',
+      [ilVars.filledShrinkY]: '7px',
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            [ilVars.filledRestY]: '10px',
+            [ilVars.filledShrinkY]: '4px',
+          },
+        },
+      },
+    ],
   });
   return enhanced;
 }

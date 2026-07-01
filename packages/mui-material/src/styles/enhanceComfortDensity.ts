@@ -6,6 +6,7 @@ import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
 import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedInputVars';
 import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
+import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -73,6 +74,31 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [iaVars.mediumGap]: d.sm,
     [iaVars.smallMarginTop]: d.md,
     [iaVars.mediumMarginTop]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiFilledInput', {
+    // Box padding = density steps; the label rest/shrink Y are tuned raw px
+    // (no clean formula from topPad), set on the sibling label via `:has(~ &)`.
+    [fiVars.mediumTopPad]: d.xl,
+    [fiVars.smallTopPad]: d.lg,
+    [fiVars.mediumBottomPad]: d.sm,
+    [fiVars.smallBottomPad]: d.xxs,
+    [fiVars.mediumInlinePad]: d.md,
+    [fiVars.smallInlinePad]: d.md,
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      [ilVars.filledRestY]: '20px',
+      [ilVars.filledShrinkY]: '9px',
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            [ilVars.filledRestY]: '15px',
+            [ilVars.filledShrinkY]: '5px',
+          },
+        },
+      },
+    ],
   });
   enhanced.typography = {
     ...enhanced.typography,

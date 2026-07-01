@@ -105,6 +105,15 @@ const demos: Record<string, React.ReactNode> = {
       />
     </Stack>
   ),
+  FilledInput: (
+    // Empty (resting label, inside the box) + valued (shrunk label, in the top
+    // strip) exercise both Y seams of the two-value label bridge.
+    <Stack spacing={3} sx={{ width: 260 }}>
+      <TextField label="Medium" variant="filled" />
+      <TextField label="Small" variant="filled" size="small" />
+      <TextField label="Filled value" variant="filled" defaultValue="Value" />
+    </Stack>
+  ),
 };
 
 export default demos;

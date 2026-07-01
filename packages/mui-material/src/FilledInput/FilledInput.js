@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import { private_filledInputVars as vars } from './filledInputVars';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -157,26 +158,52 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.startAdornment,
           style: {
-            paddingLeft: 12,
+            '--_inlinePad': '12px',
+            '--comp-inlinePad': `var(${vars.mediumInlinePad}, var(--_inlinePad))`,
+            paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
+          },
+        },
+        {
+          props: ({ ownerState, size }) => ownerState.startAdornment && size === 'small',
+          style: {
+            '--comp-inlinePad': `var(${vars.smallInlinePad}, var(--_inlinePad))`,
           },
         },
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 12,
+            '--_inlinePad': '12px',
+            '--comp-inlinePad': `var(${vars.mediumInlinePad}, var(--_inlinePad))`,
+            paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
+          },
+        },
+        {
+          props: ({ ownerState, size }) => ownerState.endAdornment && size === 'small',
+          style: {
+            '--comp-inlinePad': `var(${vars.smallInlinePad}, var(--_inlinePad))`,
           },
         },
         {
           props: ({ ownerState }) => ownerState.multiline,
           style: {
-            padding: '25px 12px 8px',
+            '--_topPad': '25px',
+            '--_bottomPad': '8px',
+            '--_inlinePad': '12px',
+            '--comp-topPad': `var(${vars.mediumTopPad}, var(--_topPad))`,
+            '--comp-bottomPad': `var(${vars.mediumBottomPad}, var(--_bottomPad))`,
+            '--comp-inlinePad': `var(${vars.mediumInlinePad}, var(--_inlinePad))`,
+            padding:
+              'var(--comp-topPad, var(--_topPad)) var(--comp-inlinePad, var(--_inlinePad)) var(--comp-bottomPad, var(--_bottomPad))',
           },
         },
         {
           props: ({ ownerState, size }) => ownerState.multiline && size === 'small',
           style: {
-            paddingTop: 21,
-            paddingBottom: 4,
+            '--_topPad': '21px',
+            '--_bottomPad': '4px',
+            '--comp-topPad': `var(${vars.smallTopPad}, var(--_topPad))`,
+            '--comp-bottomPad': `var(${vars.smallBottomPad}, var(--_bottomPad))`,
+            '--comp-inlinePad': `var(${vars.smallInlinePad}, var(--_inlinePad))`,
           },
         },
         {
@@ -205,10 +232,19 @@ const FilledInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(
   memoTheme(({ theme }) => ({
-    paddingTop: 25,
-    paddingRight: 12,
-    paddingBottom: 8,
-    paddingLeft: 12,
+    // Box height = top/bottom padding, tokenized per size (base medium / small
+    // variant). The with-label defaults are the Material px (25/8 medium, 21/4
+    // small); `hiddenLabel` keeps its own literals below (out of scope).
+    '--_topPad': '25px',
+    '--_bottomPad': '8px',
+    '--_inlinePad': '12px',
+    '--comp-topPad': `var(${vars.mediumTopPad}, var(--_topPad))`,
+    '--comp-bottomPad': `var(${vars.mediumBottomPad}, var(--_bottomPad))`,
+    '--comp-inlinePad': `var(${vars.mediumInlinePad}, var(--_inlinePad))`,
+    paddingTop: 'var(--comp-topPad, var(--_topPad))',
+    paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
+    paddingBottom: 'var(--comp-bottomPad, var(--_bottomPad))',
+    paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
     '&:-webkit-autofill': {
       ...(!theme.vars && {
         WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -230,8 +266,11 @@ const FilledInputInput = styled(InputBaseInput, {
           size: 'small',
         },
         style: {
-          paddingTop: 21,
-          paddingBottom: 4,
+          '--_topPad': '21px',
+          '--_bottomPad': '4px',
+          '--comp-topPad': `var(${vars.smallTopPad}, var(--_topPad))`,
+          '--comp-bottomPad': `var(${vars.smallBottomPad}, var(--_bottomPad))`,
+          '--comp-inlinePad': `var(${vars.smallInlinePad}, var(--_inlinePad))`,
         },
       },
       {

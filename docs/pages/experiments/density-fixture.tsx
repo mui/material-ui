@@ -78,6 +78,22 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--InputAdornment-small-gap' as any]: '10px',
     },
   },
+  FilledInput: {
+    dense: {
+      ['--FilledInput-medium-topPad' as any]: '18px',
+      ['--FilledInput-medium-bottomPad' as any]: '4px',
+      ['--FilledInput-medium-inlinePad' as any]: '8px',
+      ['--FilledInputLabel-restY' as any]: '11px',
+      ['--FilledInputLabel-shrinkY' as any]: '5px',
+    },
+    loose: {
+      ['--FilledInput-medium-topPad' as any]: '34px',
+      ['--FilledInput-medium-bottomPad' as any]: '12px',
+      ['--FilledInput-medium-inlinePad' as any]: '16px',
+      ['--FilledInputLabel-restY' as any]: '22px',
+      ['--FilledInputLabel-shrinkY' as any]: '10px',
+    },
+  },
 };
 
 export default function DensityFixture() {

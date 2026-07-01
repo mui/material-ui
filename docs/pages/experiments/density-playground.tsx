@@ -20,6 +20,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputAdornment';
 import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
+import { private_filledInputVars } from '@mui/material/FilledInput';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -396,6 +397,53 @@ function OutlinedInputMatrix({
   );
 }
 
+// FilledInput family: box top/bottom/inline padding (per size). All spacing →
+// prefill density keys. The label rest/shrink Y follow the active preset (tuned
+// raw px, not editable here).
+const FILLED_INPUT_FIELDS: DensityField[] = [
+  { key: 'mediumTopPad', cssVar: private_filledInputVars.mediumTopPad },
+  { key: 'smallTopPad', cssVar: private_filledInputVars.smallTopPad },
+  { key: 'mediumBottomPad', cssVar: private_filledInputVars.mediumBottomPad },
+  { key: 'smallBottomPad', cssVar: private_filledInputVars.smallBottomPad },
+  { key: 'mediumInlinePad', cssVar: private_filledInputVars.mediumInlinePad },
+  { key: 'smallInlinePad', cssVar: private_filledInputVars.smallInlinePad },
+];
+
+function FilledInputMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        FILLED_INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="filled" sx={sx} />
+      <TextField
+        label={<span className="density-debug-text">Small</span>}
+        variant="filled"
+        size="small"
+        sx={sx}
+      />
+      <TextField
+        label={<span className="density-debug-text">Filled value</span>}
+        variant="filled"
+        defaultValue="Value"
+        sx={sx}
+      />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -441,6 +489,19 @@ const COMPONENT_DEFS = {
       smallGap: 'xxs',
     },
     renderMatrix: (args) => <OutlinedInputMatrix {...args} />,
+  },
+  FilledInput: {
+    canvasLabel: 'FilledInput — size axis (box padding); label follows preset',
+    fields: FILLED_INPUT_FIELDS,
+    prefill: {
+      mediumTopPad: 'xl',
+      smallTopPad: 'lg',
+      mediumBottomPad: 'sm',
+      smallBottomPad: 'xxs',
+      mediumInlinePad: 'md',
+      smallInlinePad: 'md',
+    },
+    renderMatrix: (args) => <FilledInputMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
