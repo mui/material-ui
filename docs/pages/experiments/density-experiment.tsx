@@ -284,14 +284,6 @@ export default function DensityExperiment() {
                 {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
               </Typography>
             )}
-            {/* Single datalist shared by all fields — key typeahead. */}
-            <Box component="datalist" id="density-keys" sx={{ display: 'none' }}>
-              {SCALE_KEYS.map((k) => (
-                <option key={k} value={k}>
-                  {k}
-                </option>
-              ))}
-            </Box>
             {visibleComponents.map((comp) => (
               <Box key={comp} sx={{ mt: 2 }} data-mapping-group={comp}>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'medium' }}>
@@ -322,7 +314,6 @@ export default function DensityExperiment() {
                         slotProps={{
                           htmlInput: {
                             'data-mapping-field': `${comp}-${field.key}`,
-                            list: 'density-keys',
                           },
                         }}
                       />
