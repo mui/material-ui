@@ -13,6 +13,7 @@ import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import { private_selectVars as selVars } from '../Select/selectVars';
+import { private_alertVars as alertVars } from '../Alert/alertVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -140,6 +141,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(enhanced.components, 'MuiSelect', {
     // Content-box floor (raw px); real padding comes from the input variant.
     [selVars.minHeight]: '23px',
+  });
+  addRootOverride(enhanced.components, 'MuiAlert', {
+    // No size axis: root padding + icon gap (spacing steps).
+    [alertVars.blockPad]: d.xs,
+    [alertVars.inlinePad]: d.lg,
+    [alertVars.iconGap]: d.md,
   });
   return enhanced;
 }

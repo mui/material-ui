@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
+import Alert from '@mui/material/Alert';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -156,6 +157,14 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
+    </Stack>
+  ),
+  Alert: (
+    <Stack spacing={2} sx={{ width: 360 }}>
+      <Alert severity="info">Info alert — icon gap + root padding.</Alert>
+      <Alert severity="success" onClose={() => {}}>
+        Success alert with a close action.
+      </Alert>
     </Stack>
   ),
   Select: (

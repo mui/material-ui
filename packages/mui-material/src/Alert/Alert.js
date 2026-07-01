@@ -11,6 +11,7 @@ import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
+import { private_alertVars as vars } from './alertVars';
 import IconButton from '../IconButton';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
@@ -45,9 +46,17 @@ const AlertRoot = styled(Paper, {
     const getBackgroundColor = theme.palette.mode === 'light' ? theme.lighten : theme.darken;
     return {
       ...theme.typography.body2,
+      // Density seams (no size axis): root block/inline padding + the icon gap
+      // (`--comp-iconGap`, consumed by the Icon slot child below).
+      '--_blockPad': '6px',
+      '--_inlinePad': '16px',
+      '--_iconGap': '12px',
+      '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
+      '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
+      '--comp-iconGap': `var(${vars.iconGap}, var(--_iconGap))`,
       backgroundColor: 'transparent',
       display: 'flex',
-      padding: '6px 16px',
+      padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
       variants: [
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter(['light']))
@@ -112,7 +121,8 @@ const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
 })({
-  marginRight: 12,
+  // Icon→message gap (inherits `--comp-iconGap` from the Alert root).
+  marginRight: 'var(--comp-iconGap, var(--_iconGap))',
   padding: '7px 0',
   display: 'flex',
   fontSize: 22,

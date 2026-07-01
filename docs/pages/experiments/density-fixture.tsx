@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Select-minHeight' as any]: '16px' },
     loose: { ['--Select-minHeight' as any]: '40px' },
   },
+  Alert: {
+    dense: {
+      ['--Alert-blockPad' as any]: '2px',
+      ['--Alert-inlinePad' as any]: '10px',
+      ['--Alert-iconGap' as any]: '6px',
+    },
+    loose: {
+      ['--Alert-blockPad' as any]: '14px',
+      ['--Alert-inlinePad' as any]: '28px',
+      ['--Alert-iconGap' as any]: '20px',
+    },
+  },
   Tab: {
     dense: {
       ['--Tab-minHeight' as any]: '40px',

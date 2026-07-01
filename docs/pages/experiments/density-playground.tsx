@@ -28,6 +28,7 @@ import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
 import Select, { private_selectVars } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import Alert, { private_alertVars } from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -628,6 +629,38 @@ function SelectMatrix({
   );
 }
 
+// Alert family: root block/inline padding + icon→message gap (no size axis).
+const ALERT_FIELDS: DensityField[] = [
+  { key: 'blockPad', cssVar: private_alertVars.blockPad },
+  { key: 'inlinePad', cssVar: private_alertVars.inlinePad },
+  { key: 'iconGap', cssVar: private_alertVars.iconGap },
+];
+
+function AlertMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        ALERT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={2} sx={{ mt: 1, width: 380 }}>
+      <Alert severity="info" sx={sx}>
+        <span className="density-debug-text">Info alert — icon gap + root padding.</span>
+      </Alert>
+      <Alert severity="success" onClose={() => {}} sx={sx}>
+        <span className="density-debug-text">Success alert with a close action.</span>
+      </Alert>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -728,6 +761,12 @@ const COMPONENT_DEFS = {
     fields: SELECT_FIELDS,
     prefill: {}, // minHeight = raw px, read off the theme
     renderMatrix: (args) => <SelectMatrix {...args} />,
+  },
+  Alert: {
+    canvasLabel: 'Alert — root padding + icon gap',
+    fields: ALERT_FIELDS,
+    prefill: { blockPad: 'xs', inlinePad: 'lg', iconGap: 'md' },
+    renderMatrix: (args) => <AlertMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
