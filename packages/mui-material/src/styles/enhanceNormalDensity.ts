@@ -5,7 +5,7 @@ import { applyDensity, DensityConfig, EnhanceableTheme } from './densityScale';
 // split has drifted.
 const normal: DensityConfig = {
   scale: { xxs: '4px', xs: '6px', sm: '8px', md: '12px', lg: '16px', xl: '24px', xxl: '32px' },
-  typography: { fontSize: '0.875rem', lineHeight: 1.75 },
+  typography: { button: { fontSize: '0.875rem', lineHeight: 1.75 } },
 };
 
 export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: T) {

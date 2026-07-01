@@ -16,13 +16,17 @@ export interface DensityScale {
 }
 
 /**
- * Button typography reflow applied alongside the scale. Handled here (not via
- * component vars) so every family that renders `theme.typography.button` tracks
- * the preset.
+ * Per-variant typography reflow applied alongside the scale. Handled here (not
+ * via component vars) so every family that renders `theme.typography.<variant>`
+ * tracks the preset. Currently only `button` is reflowed.
  */
-export interface DensityTypography {
+export interface DensityTypographyVariant {
   fontSize?: string | undefined;
   lineHeight?: number | string | undefined;
+}
+
+export interface DensityTypography {
+  button?: DensityTypographyVariant | undefined;
 }
 
 export interface DensityConfig {
@@ -82,10 +86,10 @@ export function applyDensity<T extends EnhanceableTheme>(
   theme.vars = { ...themeInput.vars, density: varRefs };
 
   if (typography) {
-    theme.typography = {
-      ...themeInput.typography,
-      button: { ...themeInput.typography?.button, ...typography },
-    };
+    theme.typography = { ...themeInput.typography };
+    (Object.keys(typography) as (keyof DensityTypography)[]).forEach((variant) => {
+      theme.typography![variant] = { ...themeInput.typography?.[variant], ...typography[variant] };
+    });
   }
 
   const c = themeInput.components;
