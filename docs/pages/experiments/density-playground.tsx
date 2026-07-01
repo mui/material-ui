@@ -48,9 +48,18 @@ const DEBUG_SX = {
     content: '""',
     position: 'absolute',
     inset: 0,
+    // `inset:0` sizes the overlay to the button's padding-box; `padding:inherit`
+    // then shrinks its content-box to the button's content box, and the
+    // `exclude` mask knocks that center out → green fills only the padding ring.
+    padding: 'inherit',
+    boxSizing: 'border-box',
     borderRadius: 'inherit',
-    backgroundColor: 'rgba(46, 204, 64, 0.28)', // padding = green (DevTools convention)
+    backgroundColor: 'rgba(46, 204, 64, 0.5)', // padding = green (DevTools convention)
     pointerEvents: 'none',
+    WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+    WebkitMaskComposite: 'xor',
+    mask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+    maskComposite: 'exclude',
   },
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
