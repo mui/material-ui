@@ -27,6 +27,7 @@ import { private_tableCellVars as tcVars } from '../TableCell/tableCellVars';
 import { private_autocompleteVars as acVars } from '../Autocomplete/autocompleteVars';
 import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
+import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -187,6 +188,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   addRootOverride(enhanced.components, 'MuiStepLabel', {
     [slVars.iconGap]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiToolbar', {
+    // Gutter inline pad (steps); dense bar min-height (raw px).
+    [toolbarVars.inlinePad]: d.lg,
+    [toolbarVars.wideInlinePad]: d.xl,
+    [toolbarVars.denseMinHeight]: '56px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

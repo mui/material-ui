@@ -34,6 +34,8 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -199,6 +201,20 @@ const demos: Record<string, React.ReactNode> = {
       <Button>Two</Button>
       <Button>Three</Button>
     </ButtonGroup>
+  ),
+  Toolbar: (
+    <Stack spacing={2} sx={{ width: 400 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Regular</Typography>
+        </Toolbar>
+      </AppBar>
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h6">Dense</Typography>
+        </Toolbar>
+      </AppBar>
+    </Stack>
   ),
   Stepper: (
     <Stepper activeStep={1} sx={{ width: 360 }}>

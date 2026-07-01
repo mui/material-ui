@@ -41,6 +41,8 @@ import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Badge, { private_badgeVars } from '@mui/material/Badge';
+import AppBar from '@mui/material/AppBar';
+import Toolbar, { private_toolbarVars } from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
 import Step, { private_stepVars } from '@mui/material/Step';
 import StepLabel, { private_stepLabelVars } from '@mui/material/StepLabel';
@@ -1071,6 +1073,46 @@ function StepperMatrix({
   );
 }
 
+// Toolbar (AppBar) family: gutter inline padding (base + ≥sm) + dense min-height.
+const TOOLBAR_FIELDS: DensityField[] = [
+  { key: 'inlinePad', cssVar: private_toolbarVars.inlinePad },
+  { key: 'wideInlinePad', cssVar: private_toolbarVars.wideInlinePad },
+  { key: 'denseMinHeight', cssVar: private_toolbarVars.denseMinHeight },
+];
+
+function ToolbarMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        TOOLBAR_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={2} sx={{ mt: 1, width: 420 }}>
+      <AppBar position="static">
+        <Toolbar sx={sx}>
+          <Typography variant="h6">
+            <span className="density-debug-text">Regular</span>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <AppBar position="static">
+        <Toolbar variant="dense" sx={sx}>
+          <Typography variant="h6">
+            <span className="density-debug-text">Dense</span>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1195,6 +1237,12 @@ const COMPONENT_DEFS = {
     fields: STEPPER_FIELDS,
     prefill: { inlinePad: 'sm', iconGap: 'sm' },
     renderMatrix: (args) => <StepperMatrix {...args} />,
+  },
+  Toolbar: {
+    canvasLabel: 'AppBar/Toolbar — gutter padding + dense min-height',
+    fields: TOOLBAR_FIELDS,
+    prefill: { inlinePad: 'lg', wideInlinePad: 'xl' }, // denseMinHeight raw px off theme
+    renderMatrix: (args) => <ToolbarMatrix {...args} />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',

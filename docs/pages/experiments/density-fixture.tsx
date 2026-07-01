@@ -132,6 +132,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
     loose: { ['--ButtonGroup-minWidth' as any]: '56px' },
   },
+  Toolbar: {
+    dense: {
+      ['--Toolbar-inlinePad' as any]: '8px',
+      ['--Toolbar-wideInlinePad' as any]: '12px',
+      ['--Toolbar-denseMinHeight' as any]: '40px',
+    },
+    loose: {
+      ['--Toolbar-inlinePad' as any]: '24px',
+      ['--Toolbar-wideInlinePad' as any]: '40px',
+      ['--Toolbar-denseMinHeight' as any]: '56px',
+    },
+  },
   Stepper: {
     dense: {
       ['--Step-inlinePad' as any]: '4px',
