@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem, { private_menuItemVars } from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -177,20 +177,55 @@ function ButtonMatrix({
   );
 }
 
-function MenuItemMatrix() {
+// MenuItem's density tokens (single-value each), keyed by the `dense` axis
+// rather than Button's small/medium/large. Field key === mapping-state key.
+const MENUITEM_FIELDS: DensityField[] = [
+  { key: 'minHeight', cssVar: private_menuItemVars.minHeight },
+  { key: 'blockPad', cssVar: private_menuItemVars.blockPad },
+  { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad },
+  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight },
+  { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad },
+  { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad },
+];
+
+function MenuItemMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  // Element-level tokens win over the preset's styleOverride, so set every valid
+  // token on each item (regular items read the plain tokens, dense read the
+  // `dense-*` ones — the unused set is inert). At `unset`/invalid emit none →
+  // falls back to the literal defaults / preset mapping.
+  const itemSx = mappingEnabled
+    ? Object.fromEntries(
+        MENUITEM_FIELDS.filter((f) => validateMapping(mapping[f.key] ?? '').valid).map((f) => [
+          f.cssVar,
+          stepsToVar(mapping[f.key]),
+        ]),
+      )
+    : undefined;
   return (
     <MenuList sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider' }}>
-      <MenuItem>Default item</MenuItem>
-      <MenuItem selected>Selected item</MenuItem>
-      <MenuItem>
+      <MenuItem sx={itemSx}>Default item</MenuItem>
+      <MenuItem selected sx={itemSx}>
+        Selected item
+      </MenuItem>
+      <MenuItem sx={itemSx}>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>With icon</ListItemText>
       </MenuItem>
-      <MenuItem divider>With divider</MenuItem>
-      <MenuItem dense>Dense item</MenuItem>
-      <MenuItem dense>
+      <MenuItem divider sx={itemSx}>
+        With divider
+      </MenuItem>
+      <MenuItem dense sx={itemSx}>
+        Dense item
+      </MenuItem>
+      <MenuItem dense sx={itemSx}>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
@@ -209,13 +244,18 @@ const COMPONENT_DEFS = {
     renderMatrix: (args) => <ButtonMatrix {...args} />,
   },
   MenuItem: {
-    canvasLabel: 'MenuItem (default + dense) — preset-driven',
-    // Preset-driven only: MenuItem reflows via enhance*Density's MuiMenuItem
-    // mapping; no per-element mapping inputs (its dense axis differs from
-    // Button's sized pads). Flip the preset to see it reflow.
-    fields: [],
-    prefill: {},
-    renderMatrix: () => <MenuItemMatrix />,
+    canvasLabel: 'MenuItem (default + dense)',
+    fields: MENUITEM_FIELDS,
+    // Canonical prefill matches enhanceDensity's own MuiMenuItem assignment.
+    prefill: {
+      minHeight: 'xl',
+      blockPad: 'xs',
+      inlinePad: 'lg',
+      denseMinHeight: 'lg',
+      denseBlockPad: 'xxs',
+      denseInlinePad: 'md',
+    },
+    renderMatrix: (args) => <MenuItemMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
