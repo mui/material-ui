@@ -1,5 +1,6 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import { private_buttonVars as buttonVars } from '../Button/buttonVars';
+import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
 
 const scale: DensityScale = {
   xxs: '2px',
@@ -17,6 +18,14 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [buttonVars.smallPad]: `${d.xxs} ${d.sm}`,
     [buttonVars.mediumPad]: `${d.xs} ${d.lg}`,
     [buttonVars.largePad]: `${d.sm} ${d.xl}`,
+  });
+  addRootOverride(enhanced.components, 'MuiMenuItem', {
+    [menuItemVars.minHeight]: d.xl,
+    [menuItemVars.denseMinHeight]: d.lg,
+    [menuItemVars.blockPad]: d.xs,
+    [menuItemVars.denseBlockPad]: d.xxs,
+    [menuItemVars.inlinePad]: d.lg,
+    [menuItemVars.denseInlinePad]: d.md,
   });
   enhanced.typography = {
     ...enhanced.typography,

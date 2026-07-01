@@ -20,6 +20,7 @@ import { listItemTextClasses } from '../ListItemText';
 import { useMenuListContext } from '../MenuList/MenuListContext';
 import { useSelectFocusSource } from '../Select/utils';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
+import { private_menuItemVars as menuItemVars } from './menuItemVars';
 
 export const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -61,14 +62,24 @@ const MenuItemRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
+    // Material UI layer: internal sized tokens are the static, unprefixed
+    // `private_menuItemVars` map, imported here and by the `enhance*Density`
+    // presets so emitted and targeted names can't drift. Density axis is the
+    // `dense` boolean: the base routes the non-dense public token over the
+    // internal default (`--_<key>`) into the agnostic seam (`--comp-<key>`);
+    // the `dense` variant swaps in the `dense` default + dense public token.
+    '--_minHeight': '48px',
+    '--_blockPad': '6px',
+    [`--comp-minHeight`]: `var(${menuItemVars.minHeight}, var(--_minHeight))`,
+    [`--comp-blockPad`]: `var(${menuItemVars.blockPad}, var(--_blockPad))`,
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     position: 'relative',
     textDecoration: 'none',
-    minHeight: 48,
-    paddingTop: 6,
-    paddingBottom: 6,
+    minHeight: 'var(--comp-minHeight)',
+    paddingTop: 'var(--comp-blockPad)',
+    paddingBottom: 'var(--comp-blockPad)',
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
     '&:hover': {
@@ -131,8 +142,16 @@ const MenuItemRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          '--_inlinePad': '16px',
+          [`--comp-inlinePad`]: `var(${menuItemVars.inlinePad}, var(--_inlinePad))`,
+          paddingLeft: 'var(--comp-inlinePad)',
+          paddingRight: 'var(--comp-inlinePad)',
+        },
+      },
+      {
+        props: ({ ownerState }) => !ownerState.disableGutters && ownerState.dense,
+        style: {
+          [`--comp-inlinePad`]: `var(${menuItemVars.denseInlinePad}, var(--_inlinePad))`,
         },
       },
       {
@@ -153,9 +172,11 @@ const MenuItemRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => ownerState.dense,
         style: {
-          minHeight: 32, // https://m2.material.io/components/menus#specs > Dense
-          paddingTop: 4,
-          paddingBottom: 4,
+          // https://m2.material.io/components/menus#specs > Dense
+          '--_minHeight': '32px',
+          '--_blockPad': '4px',
+          [`--comp-minHeight`]: `var(${menuItemVars.denseMinHeight}, var(--_minHeight))`,
+          [`--comp-blockPad`]: `var(${menuItemVars.denseBlockPad}, var(--_blockPad))`,
           ...theme.typography.body2,
           [`& .${listItemIconClasses.root} svg`]: {
             fontSize: '1.25rem',
