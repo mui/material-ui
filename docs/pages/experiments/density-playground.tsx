@@ -11,6 +11,10 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -173,6 +177,29 @@ function ButtonMatrix({
   );
 }
 
+function MenuItemMatrix() {
+  return (
+    <MenuList sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider' }}>
+      <MenuItem>Default item</MenuItem>
+      <MenuItem selected>Selected item</MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <InboxIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>With icon</ListItemText>
+      </MenuItem>
+      <MenuItem divider>With divider</MenuItem>
+      <MenuItem dense>Dense item</MenuItem>
+      <MenuItem dense>
+        <ListItemIcon>
+          <InboxIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>Dense + icon</ListItemText>
+      </MenuItem>
+    </MenuList>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -180,6 +207,15 @@ const COMPONENT_DEFS = {
     fields: SIZES.map((size) => ({ key: `${size}Pad`, cssVar: buttonVar(size) })),
     prefill: { smallPad: 'xxs sm', mediumPad: 'xs lg', largePad: 'sm xl' },
     renderMatrix: (args) => <ButtonMatrix {...args} />,
+  },
+  MenuItem: {
+    canvasLabel: 'MenuItem (default + dense) — preset-driven',
+    // Preset-driven only: MenuItem reflows via enhance*Density's MuiMenuItem
+    // mapping; no per-element mapping inputs (its dense axis differs from
+    // Button's sized pads). Flip the preset to see it reflow.
+    fields: [],
+    prefill: {},
+    renderMatrix: () => <MenuItemMatrix />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

@@ -28,6 +28,24 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Button-large-pad' as any]: '16px 30px',
     },
   },
+  MenuItem: {
+    dense: {
+      ['--MenuItem-minHeight' as any]: '36px',
+      ['--MenuItem-blockPad' as any]: '3px',
+      ['--MenuItem-inlinePad' as any]: '10px',
+      ['--MenuItem-dense-minHeight' as any]: '26px',
+      ['--MenuItem-dense-blockPad' as any]: '2px',
+      ['--MenuItem-dense-inlinePad' as any]: '8px',
+    },
+    loose: {
+      ['--MenuItem-minHeight' as any]: '60px',
+      ['--MenuItem-blockPad' as any]: '12px',
+      ['--MenuItem-inlinePad' as any]: '28px',
+      ['--MenuItem-dense-minHeight' as any]: '44px',
+      ['--MenuItem-dense-blockPad' as any]: '8px',
+      ['--MenuItem-dense-inlinePad' as any]: '20px',
+    },
+  },
 };
 
 export default function DensityFixture() {
