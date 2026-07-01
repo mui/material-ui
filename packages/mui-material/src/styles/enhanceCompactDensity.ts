@@ -1,6 +1,7 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
+import { private_listVars as listVars } from '../List/listVars';
 
 const scale: DensityScale = {
   xxs: '2px',
@@ -27,6 +28,10 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [menuItemVars.denseBlockPad]: d.xxs,
     [menuItemVars.inlinePad]: d.lg,
     [menuItemVars.denseInlinePad]: d.md,
+  });
+  addRootOverride(enhanced.components, 'MuiList', {
+    // Menu/list vertical breathing (spacing token).
+    [listVars.blockPad]: d.sm,
   });
   enhanced.typography = {
     ...enhanced.typography,

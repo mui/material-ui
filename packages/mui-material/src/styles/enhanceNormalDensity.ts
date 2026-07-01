@@ -1,6 +1,7 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
+import { private_listVars as listVars } from '../List/listVars';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
 // typography — no reflow — so only the padding→step assignment below.
@@ -29,6 +30,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [menuItemVars.denseBlockPad]: d.xxs,
     [menuItemVars.inlinePad]: d.lg,
     [menuItemVars.denseInlinePad]: d.md,
+  });
+  addRootOverride(enhanced.components, 'MuiList', {
+    // Menu/list vertical breathing (spacing token).
+    [listVars.blockPad]: d.sm,
   });
   return enhanced;
 }

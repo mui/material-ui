@@ -12,6 +12,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Select from '@mui/material/Select';
 import MenuItem, { private_menuItemVars } from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import Menu from '@mui/material/Menu';
+import { private_listVars } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -177,38 +179,21 @@ function ButtonMatrix({
   );
 }
 
-// MenuItem's density-step tokens (spacing only), keyed by the `dense` axis
-// rather than Button's small/medium/large. Field key === mapping-state key.
-// min-height is NOT here — heights use raw px (set per preset), not density
-// steps — so it isn't interactively remappable.
-const MENUITEM_FIELDS: DensityField[] = [
+// The Menu family's density-step tokens (spacing only): the List container's
+// block padding + MenuItem's block/inline padding, keyed by the `dense` axis.
+// Field key === mapping-state key. min-height is NOT here — heights use raw px
+// (set per preset), not density steps — so it isn't interactively remappable.
+const MENU_FIELDS: DensityField[] = [
+  { key: 'listBlockPad', cssVar: private_listVars.blockPad },
   { key: 'blockPad', cssVar: private_menuItemVars.blockPad },
   { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad },
   { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad },
   { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad },
 ];
 
-function MenuItemMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  // Element-level tokens win over the preset's styleOverride, so set every valid
-  // token on each item (regular items read the plain tokens, dense read the
-  // `dense-*` ones — the unused set is inert). At `unset`/invalid emit none →
-  // falls back to the literal defaults / preset mapping.
-  const itemSx = mappingEnabled
-    ? Object.fromEntries(
-        MENUITEM_FIELDS.filter((f) => validateMapping(mapping[f.key] ?? '').valid).map((f) => [
-          f.cssVar,
-          stepsToVar(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function MenuDemoItems({ itemSx }: { itemSx: Record<string, string> | undefined }) {
   return (
-    <MenuList sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider' }}>
+    <React.Fragment>
       <MenuItem sx={itemSx}>Default item</MenuItem>
       <MenuItem selected sx={itemSx}>
         Selected item
@@ -231,7 +216,53 @@ function MenuItemMatrix({
         </ListItemIcon>
         <ListItemText>Dense + icon</ListItemText>
       </MenuItem>
-    </MenuList>
+    </React.Fragment>
+  );
+}
+
+function MenuMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  // Element-level tokens win over the preset's styleOverride. `--List-blockPad`
+  // goes on the list root; `--MenuItem-*` on each item (regular reads plain,
+  // dense reads `dense-*` — unused set is inert). At `unset`/invalid emit none.
+  const valid = (key: string) => validateMapping(mapping[key] ?? '').valid;
+  const listSx =
+    mappingEnabled && valid('listBlockPad')
+      ? { [private_listVars.blockPad]: stepsToVar(mapping.listBlockPad) }
+      : undefined;
+  const itemSx = mappingEnabled
+    ? Object.fromEntries(
+        MENU_FIELDS.filter((f) => f.key !== 'listBlockPad' && valid(f.key)).map((f) => [
+          f.cssVar,
+          stepsToVar(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <MenuList sx={{ ...listSx, width: 240, border: '1px solid', borderColor: 'divider' }}>
+        <MenuDemoItems itemSx={itemSx} />
+      </MenuList>
+      <div>
+        <Button variant="outlined" onClick={(event) => setAnchorEl(event.currentTarget)}>
+          Open menu
+        </Button>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={() => setAnchorEl(null)}
+          slotProps={{ list: { sx: listSx } }}
+        >
+          <MenuDemoItems itemSx={itemSx} />
+        </Menu>
+      </div>
+    </Stack>
   );
 }
 
@@ -243,17 +274,18 @@ const COMPONENT_DEFS = {
     prefill: { smallPad: 'xxs sm', mediumPad: 'xs lg', largePad: 'sm xl' },
     renderMatrix: (args) => <ButtonMatrix {...args} />,
   },
-  MenuItem: {
-    canvasLabel: 'MenuItem (default + dense)',
-    fields: MENUITEM_FIELDS,
-    // Canonical prefill matches enhanceDensity's own MuiMenuItem spacing mapping.
+  Menu: {
+    canvasLabel: 'Menu — static list + popover (default + dense)',
+    fields: MENU_FIELDS,
+    // Canonical prefill matches enhanceDensity's own MuiList/MuiMenuItem mapping.
     prefill: {
+      listBlockPad: 'sm',
       blockPad: 'xs',
       inlinePad: 'lg',
       denseBlockPad: 'xxs',
       denseInlinePad: 'md',
     },
-    renderMatrix: (args) => <MenuItemMatrix {...args} />,
+    renderMatrix: (args) => <MenuMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
