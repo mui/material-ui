@@ -165,10 +165,9 @@ const MenuItemRoot = styled(ButtonBase, {
         props: ({ ownerState }) => !ownerState.dense,
         style: {
           [theme.breakpoints.up('sm')]: {
-            // The ≥sm auto-collapse rides on the internal default, not a hard
-            // `min-height`, so the seam still consumes `--MenuItem-minHeight`
-            // when a preset sets it (unset → auto, as today).
-            '--_minHeight': 'auto',
+            // ≥sm non-dense collapses to `auto` (as today), expressed as the
+            // seam's fallback so a preset's `--MenuItem-minHeight` still wins.
+            [`--comp-minHeight`]: `var(${menuItemVars.minHeight}, auto)`,
           },
         },
       },
