@@ -142,11 +142,7 @@ describe('<Select />', () => {
       const handleMouseDown = spy();
 
       render(
-        <Select
-          value="one"
-          onMouseDown={handleMouseDown}
-          SelectDisplayProps={{ ref: () => {} }}
-        >
+        <Select value="one" onMouseDown={handleMouseDown} SelectDisplayProps={{ ref: () => {} }}>
           <MenuItem value="one">One</MenuItem>
           <MenuItem value="two">Two</MenuItem>
         </Select>,
