@@ -114,6 +114,14 @@ const demos: Record<string, React.ReactNode> = {
       <TextField label="Filled value" variant="filled" defaultValue="Value" />
     </Stack>
   ),
+  Input: (
+    // Standard fields, label floats above (no bridge). Empty → input top/bottom
+    // padding is the whole density lever.
+    <Stack spacing={3} sx={{ width: 260 }}>
+      <TextField label="Medium" variant="standard" />
+      <TextField label="Small" variant="standard" size="small" />
+    </Stack>
+  ),
 };
 
 export default demos;

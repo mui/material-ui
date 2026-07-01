@@ -21,6 +21,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputAdornment';
 import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
 import { private_filledInputVars } from '@mui/material/FilledInput';
+import { private_inputVars } from '@mui/material/Input';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -444,6 +445,40 @@ function FilledInputMatrix({
   );
 }
 
+// Input (standard) family: input top/bottom padding (top per size, bottom
+// shared). Inline is 0; the label floats above (no bridge).
+const INPUT_FIELDS: DensityField[] = [
+  { key: 'mediumTopPad', cssVar: private_inputVars.mediumTopPad },
+  { key: 'smallTopPad', cssVar: private_inputVars.smallTopPad },
+  { key: 'bottomPad', cssVar: private_inputVars.bottomPad },
+];
+
+function InputMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={3} sx={{ mt: 1, width: 260, alignItems: 'flex-start' }}>
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="standard" sx={sx} />
+      <TextField
+        label={<span className="density-debug-text">Small</span>}
+        variant="standard"
+        size="small"
+        sx={sx}
+      />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -502,6 +537,16 @@ const COMPONENT_DEFS = {
       smallInlinePad: 'md',
     },
     renderMatrix: (args) => <FilledInputMatrix {...args} />,
+  },
+  Input: {
+    canvasLabel: 'Input (standard) — size axis (input top/bottom padding)',
+    fields: INPUT_FIELDS,
+    prefill: {
+      mediumTopPad: 'xs',
+      smallTopPad: 'xxs',
+      bottomPad: 'xs',
+    },
+    renderMatrix: (args) => <InputMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

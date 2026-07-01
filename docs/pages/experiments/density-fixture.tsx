@@ -94,6 +94,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--FilledInputLabel-shrinkY' as any]: '10px',
     },
   },
+  Input: {
+    dense: {
+      ['--Input-medium-topPad' as any]: '2px',
+      ['--Input-bottomPad' as any]: '2px',
+    },
+    loose: {
+      ['--Input-medium-topPad' as any]: '12px',
+      ['--Input-bottomPad' as any]: '12px',
+    },
+  },
 };
 
 export default function DensityFixture() {

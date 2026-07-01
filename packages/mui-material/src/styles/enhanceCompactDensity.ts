@@ -7,6 +7,7 @@ import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedIn
 import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
 import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
+import { private_inputVars as inVars } from '../Input/inputVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -99,6 +100,12 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         },
       },
     ],
+  });
+  addRootOverride(enhanced.components, 'MuiInput', {
+    // Standard input padding = density steps (tiny; block only, inline stays 0).
+    [inVars.mediumTopPad]: d.xs,
+    [inVars.smallTopPad]: d.xxs,
+    [inVars.bottomPad]: d.xs,
   });
   enhanced.typography = {
     ...enhanced.typography,
