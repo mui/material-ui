@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 44    |
-| 🚩 Unverified         | 6/11  |
+| 🚩 Flagged            | 6/11  |
 
 ## Known gaps
 
@@ -21,7 +21,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The component renders a single child (the `<img>`, the initials text, or one icon) in DOM order, so within one avatar there is no sequence whose order conveys meaning.
 - Order matters only across several avatars (a row, a list, or an `AvatarGroup`), which the surrounding layout controls. Confirm that the reading order of a group of avatars matches their visual order.
@@ -35,7 +35,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - An avatar is identified by its image `alt`, its initials, or an author-supplied label, not by its shape (`variant`), color, size, or position, so it can be referenced without relying on a sensory characteristic.
 - Instructions in the surrounding content must not point to an avatar by shape or position alone (for example, "click the round picture on the left").
@@ -49,7 +49,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.4 Resize Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under full-page browser zoom, the default scaling mechanism, the box and the text scale together, so initials stay fully visible.
 
@@ -77,7 +77,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - The avatar is a fixed 40px box that establishes no horizontal layout, so at a 320 CSS pixel width (or 400% zoom) it cannot force two-dimensional scrolling; it scales and wraps with its container.
 
@@ -127,7 +127,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Color is decorative only: the default gray background and the hash-derived `stringToColor` background in `BackgroundLetterAvatars` are aesthetic, so the component never uses color alone to convey meaning.
 - The avatar's information is carried by the image, initials, or icon, not by the background hue, so nothing is lost when color is removed.
@@ -162,7 +162,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
 
 - Meaningful icon-child avatars fall short: when an icon is the avatar's sole, unlabeled content (`IconAvatars`), it is a graphical object required to understand the content which requires `3:1`. The component's `colorDefault` renders a white icon on `grey[400]`/`#bdbdbd` (`1.9:1`), and author backgrounds vary, for example `green[500]`/`#4caf50` = `2.78:1` fails, while `pink[500]`/`#e91e63` = `4.35:1` passes. So the default and low-contrast author backgrounds are below `3:1`.
 - Exemptions: the colored circle or square is a decorative graphical object, and the `Person` fallback is a decorative placeholder. The default avatar is non-interactive so the user-interface-component part of this criterion does not apply.
