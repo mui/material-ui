@@ -58,7 +58,7 @@ const IconButtonRoot = styled(ButtonBase, {
     fontSize: theme.typography.pxToRem(24),
     // Agnostic layer: the only spacing surface the styled root reads. `--_pad`
     // is the universal default (today's medium padding); size variants specialize
-    // it, so a custom size still gets a sane value. See docs/adr/0001.
+    // it, so a custom size still gets a sane value.
     '--_pad': '8px',
     padding: 'var(--IconButton-pad, var(--_pad))',
     borderRadius: '50%',
@@ -223,7 +223,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   // Material UI layer: built-in sizes route the public sized token via variants
   // (deduped CSS). A custom size has no such variant, so route it inline — the
   // token name carries the runtime size string, keeping custom sizes tunable for
-  // free. The `--_pad` default lives in the variants. See docs/adr/0001.
+  // free. The `--_pad` default lives in the variants.
   const densityVars = iconButtonSizes.includes(size)
     ? undefined
     : { '--IconButton-pad': `var(--IconButton-${size}-pad, var(--_pad))` };

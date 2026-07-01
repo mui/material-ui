@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention, import/prefer-default-export */
 /**
- * Button density token identities (ADR-0003) — the Material UI layer's internal
+ * Button density token identities — the Material UI layer's internal
  * designer knobs (`private_*` per the density RFC). Static, unprefixed literals
  * imported by both the styled component AND `enhanceDensity`, so the emitted and
  * targeted names can't drift. The agnostic seam (`--comp-pad`) and internal

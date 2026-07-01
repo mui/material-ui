@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import demos from 'docs/src/modules/components/densityDemos';
 
-// Local verification fixture for the CSS-var density adapter (docs/adr/0001).
+// Local verification fixture for the CSS-var density adapter.
 // Used by scripts/density-screenshots. Renders one component's load-bearing
 // matrix (shared `demos`) inside #density-scope; the harness sets `level`
 // (default | dense | loose), which the scope translates into per-component

@@ -17,7 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider, enhanceDensity, DensityScale } from '@mui/material/styles';
 import demos from 'docs/src/modules/components/densityDemos';
 
-// Client-facing showcase for the CSS-var density adapter (docs/adr/0001).
+// Client-facing showcase for the CSS-var density adapter.
 // Three presets each map to one `enhanceDensity(theme, { scale })` call — the
 // only knob is the 7-step density scale. Flip a preset -> the whole gallery
 // reflows because every component pulls its sized tokens from `--mui-density-*`.

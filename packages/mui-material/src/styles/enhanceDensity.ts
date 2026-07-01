@@ -62,7 +62,7 @@ const cssVar = (key: DensityKey) => `--mui-density-${key}`;
  *    `styleOverrides.root` (e.g. `--Button-medium-pad: var(--mui-density-xs) var(--mui-density-lg)`).
  *
  * `createTheme` is left untouched; without this function components render their
- * literal-px defaults. See `docs/adr/0001-css-var-density-adapter.md`.
+ * literal-px defaults.
  *
  * @param themeInput - The created theme to enhance.
  * @param options - Override the density scale.
@@ -96,7 +96,7 @@ export default function enhanceDensity<
     return acc;
   }, {} as DensityScale);
 
-  // Public token name, prefix-guarded to match the component resolver (ADR-0003):
+  // Public token name, prefix-guarded to match the component resolver:
   // prefixed when the theme has a cssVarPrefix, bare otherwise. Only the converted
   // components (Button, OutlinedInput, InputLabel) use it; the rest stay unprefixed.
   const prefix = (themeInput as any).cssVarPrefix;

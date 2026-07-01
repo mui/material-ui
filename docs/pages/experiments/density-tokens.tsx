@@ -18,7 +18,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-// Density experiment — CSS-var adapter (docs/adr/0001-css-var-density-adapter.md).
+// Density experiment — CSS-var adapter.
 // Agnostic layer: Button consumes `var(--Button-pad, var(--_pad))`. Material UI
 // layer sets the (variant, size) literal default `--_pad` and the built-in-size
 // routing `--Button-pad: var(--Button-<size>-pad, var(--_pad))` in `variants`

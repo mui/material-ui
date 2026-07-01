@@ -1,5 +1,5 @@
 /**
- * Density token name resolution (ADR-0003). The prefix tracks the css-var
+ * Density token name resolution. The prefix tracks the css-var
  * feature: a theme created with `cssVariables` carries `cssVarPrefix` (default
  * `mui`), so tokens resolve to `--mui-Button-pad`; a plain `createTheme()` has
  * no prefix, so they resolve to `--Button-pad`. The component internals and the

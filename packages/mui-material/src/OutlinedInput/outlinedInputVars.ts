@@ -1,7 +1,7 @@
 import { makeComponentVars } from '../styles/tokenAccess';
 
 /**
- * OutlinedInput density token identities (ADR-0003) — the Material UI layer's
+ * OutlinedInput density token identities — the Material UI layer's
  * public sized knobs (block + inline padding, prefixed via
  * `getOutlinedInputVars`). The agnostic seams (`--comp-padBlock`,
  * `--comp-padInline`, and the `--comp-labelY` the `:has` bridge drives on the

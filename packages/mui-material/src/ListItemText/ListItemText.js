@@ -40,7 +40,7 @@ const ListItemTextRoot = styled('div', {
 })({
   flex: '1 1 auto',
   minWidth: 0,
-  // Density adapter (docs/adr/0001): each spacing literal becomes
+  // Density adapter: each spacing literal becomes
   // `var(--seam, var(--_<key>))`, tokenized in place. The compactness dimension
   // is `dense` (boolean) — default state = plain seam `--ListItemText-<key>` over
   // `--_<key>`; the dense variant re-routes the seam to its own token.

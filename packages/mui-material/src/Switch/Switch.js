@@ -52,7 +52,7 @@ const SwitchRoot = styled('span', {
     ];
   },
 })({
-  // Density (docs/adr/0001): Switch geometry is interlocked, so the knobs are the
+  // Density: Switch geometry is interlocked, so the knobs are the
   // dims (width/height/thumbSize/touchSize) + the track gutter (pad); the thumb's
   // touch padding and travel are *derived* so the thumb stays centered on the track.
   //   SwitchBase pad = (touchSize - thumbSize) / 2   (centers thumb in the button)

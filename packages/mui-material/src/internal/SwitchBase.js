@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState) => {
 const SwitchBaseRoot = styled(ButtonBase, {
   name: 'MuiSwitchBase',
 })({
-  // Density adapter (docs/adr/0001): SwitchBase is the agnostic layer shared by
+  // Density adapter: SwitchBase is the agnostic layer shared by
   // Checkbox/Radio (and the Switch thumb). It consumes one seam; the Material
   // layer (Checkbox/Radio) routes its per-size public token into --SwitchBase-pad.
   '--_pad': '9px',

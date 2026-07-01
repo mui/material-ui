@@ -75,7 +75,7 @@ const ChipRoot = styled('div', {
       justifyContent: 'center',
       // Agnostic seam: the styled root reads `--Chip-height`; `--_height` is the
       // universal default (today's medium height). Size variants route the public
-      // sized token over it. See docs/adr/0001.
+      // sized token over it.
       '--_height': '32px',
       height: 'var(--Chip-height, var(--_height))',
       lineHeight: 1.5,
@@ -97,7 +97,7 @@ const ChipRoot = styled('div', {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
-      // Density adapter (docs/adr/0001): avatar/icon/deleteIcon scale with the
+      // Density adapter: avatar/icon/deleteIcon scale with the
       // chip height. Each is `calc(var(--Chip-height) - inset)` where the inset
       // reproduces today's medium size (height 32: avatar/icon 24, deleteIcon 22);
       // the small variant overrides the inset for height 24.
@@ -356,7 +356,7 @@ const ChipLabel = styled('span', {
   // Agnostic seam: the label reads `--Chip-padInline` on both sides; `--_padInline`
   // is the universal default (today's medium filled inline padding). Variants
   // specialize the default per (variant, size) and size variants route the public
-  // sized token over it. See docs/adr/0001.
+  // sized token over it.
   '--_padInline': '12px',
   paddingLeft: 'var(--Chip-padInline, var(--_padInline))',
   paddingRight: 'var(--Chip-padInline, var(--_padInline))',
@@ -481,7 +481,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   // Material UI layer: built-in sizes route the public sized tokens via variants
   // (deduped CSS). A custom size has no such variant, so route it inline on the
   // root — the tokens inherit down to the label. The `--_*` defaults live in the
-  // variants. See docs/adr/0001.
+  // variants.
   const densityVars =
     size === 'small' || size === 'medium'
       ? undefined

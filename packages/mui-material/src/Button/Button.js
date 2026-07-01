@@ -95,7 +95,7 @@ const ButtonRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => {
     // Material UI layer: the internal sized tokens are the static, unprefixed
-    // `private_buttonVars` map (ADR-0003), imported here and by `enhanceDensity`
+    // `private_buttonVars` map, imported here and by `enhanceDensity`
     // so emitted and targeted names can't drift. The agnostic seam (`--comp-pad`)
     // and internal default (`--_pad`) are literal and unprefixed.
     const inheritContainedBackgroundColor =

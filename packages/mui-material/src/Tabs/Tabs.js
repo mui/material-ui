@@ -77,7 +77,7 @@ const TabsRoot = styled('div', {
 })(
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
-    // Density adapter (docs/adr/0001): base token, 48px literal fallback keeps the
+    // Density adapter: base token, 48px literal fallback keeps the
     // default pixel-identical. Tabs is the Tab's parent, so it can't read the
     // child's `--Tab-minHeight` — it carries its own seam.
     minHeight: 'var(--Tabs-minHeight, 48px)',

@@ -43,7 +43,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-// Shared density demo matrices for the CSS-var density adapter (docs/adr/0001).
+// Shared density demo matrices for the CSS-var density adapter.
 // Consumed by both the screenshot fixture (density-fixture) and the client
 // showcase (density-showcase). Each entry renders one component's load-bearing
 // size/variant matrix. `level=default` (no token overrides) must stay

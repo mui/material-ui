@@ -49,10 +49,10 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
     // Material UI layer: public sized tokens honor cssVarPrefix (default "mui").
     // Agnostic seams (`--comp-padBlock`, `--comp-padInline`, `--comp-labelY`) and
-    // internal `--_*` defaults are literal and unprefixed. See ADR-0003.
+    // internal `--_*` defaults are literal and unprefixed.
     const v = getOutlinedInputVars(theme);
     return {
-      // Density adapter (docs/adr/0001): each padding literal becomes
+      // Density adapter: each padding literal becomes
       // `var(--seam, var(--_<key>))`, tokenized in place. Both axes are sized —
       // each seam routes the per-size public token (block + inline). The internal
       // defaults live in the variants that consume them (below), like Button's

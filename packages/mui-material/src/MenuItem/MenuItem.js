@@ -61,7 +61,7 @@ const MenuItemRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
-    // Density adapter (docs/adr/0001): `dense` is the compactness axis (boolean).
+    // Density adapter: `dense` is the compactness axis (boolean).
     // The default (non-dense) state is the plain seam `--MenuItem-<key>` over the
     // internal default `--_<key>`; the `dense` variant re-routes the seam to the
     // `--MenuItem-dense-<key>` token. Block + min-height live on the root
