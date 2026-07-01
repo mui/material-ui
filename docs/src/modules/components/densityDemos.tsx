@@ -22,6 +22,8 @@ import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -171,6 +173,17 @@ const demos: Record<string, React.ReactNode> = {
       <Radio checked />
       <Radio checked size="small" />
     </Stack>
+  ),
+  Breadcrumbs: (
+    <Breadcrumbs>
+      <Link underline="hover" color="inherit" href="#">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        Catalog
+      </Link>
+      <Typography color="text.primary">Current</Typography>
+    </Breadcrumbs>
   ),
   Accordion: (
     <Box sx={{ width: 340 }}>

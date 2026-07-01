@@ -11,6 +11,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
+import { private_breadcrumbsVars as vars } from './breadcrumbsVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -51,8 +52,11 @@ const BreadcrumbsSeparator = styled('li', {
 })({
   display: 'flex',
   userSelect: 'none',
-  marginLeft: 8,
-  marginRight: 8,
+  // Density seam: separator inline gap over the 8px default.
+  '--_separatorGap': '8px',
+  '--comp-separatorGap': `var(${vars.separatorGap}, var(--_separatorGap))`,
+  marginLeft: 'var(--comp-separatorGap, var(--_separatorGap))',
+  marginRight: 'var(--comp-separatorGap, var(--_separatorGap))',
 });
 
 function insertSeparators(items, className, separator, ownerState) {

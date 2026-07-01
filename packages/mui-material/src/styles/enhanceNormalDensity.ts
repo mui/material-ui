@@ -18,6 +18,7 @@ import { private_chipVars as chipVars } from '../Chip/chipVars';
 import { private_accordionSummaryVars as asVars } from '../AccordionSummary/accordionSummaryVars';
 import { private_accordionDetailsVars as adVars } from '../AccordionDetails/accordionDetailsVars';
 import { private_radioVars as radioVars } from '../Radio/radioVars';
+import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -141,6 +142,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // Touch-target padding via SwitchBase (mirrors Checkbox).
     [radioVars.mediumPad]: d.sm,
     [radioVars.smallPad]: d.xs,
+  });
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', {
+    [bcVars.separatorGap]: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

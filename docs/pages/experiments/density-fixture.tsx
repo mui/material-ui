@@ -124,6 +124,10 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Radio-small-pad' as any]: '12px',
     },
   },
+  Breadcrumbs: {
+    dense: { ['--Breadcrumbs-separatorGap' as any]: '4px' },
+    loose: { ['--Breadcrumbs-separatorGap' as any]: '16px' },
+  },
   CardContent: {
     dense: {
       ['--CardContent-pad' as any]: '8px',

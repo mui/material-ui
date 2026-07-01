@@ -24,6 +24,8 @@ import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
 import Radio, { private_radioVars } from '@mui/material/Radio';
+import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
 import Select, { private_selectVars } from '@mui/material/Select';
@@ -778,6 +780,38 @@ function RadioMatrix({
   );
 }
 
+// Breadcrumbs family: the separator inline gap (single token, no size axis).
+const BREADCRUMBS_FIELDS: DensityField[] = [
+  { key: 'separatorGap', cssVar: private_breadcrumbsVars.separatorGap },
+];
+
+function BreadcrumbsMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx =
+    mappingEnabled && active('separatorGap')
+      ? { [private_breadcrumbsVars.separatorGap]: resolveValue(mapping.separatorGap) }
+      : undefined;
+  return (
+    <Breadcrumbs sx={{ mt: 1, ...sx }}>
+      <Link underline="hover" color="inherit" href="#">
+        <span className="density-debug-text">Home</span>
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        <span className="density-debug-text">Catalog</span>
+      </Link>
+      <Typography color="text.primary">
+        <span className="density-debug-text">Current</span>
+      </Typography>
+    </Breadcrumbs>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -872,6 +906,12 @@ const COMPONENT_DEFS = {
     fields: RADIO_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: (args) => <RadioMatrix {...args} />,
+  },
+  Breadcrumbs: {
+    canvasLabel: 'Breadcrumbs — separator inline gap',
+    fields: BREADCRUMBS_FIELDS,
+    prefill: { separatorGap: 'sm' },
+    renderMatrix: (args) => <BreadcrumbsMatrix {...args} />,
   },
   CardContent: {
     canvasLabel: 'CardContent — padding + last-child bottom padding',
