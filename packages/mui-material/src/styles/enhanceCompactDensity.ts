@@ -8,6 +8,8 @@ import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
 import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
 import { private_inputVars as inVars } from '../Input/inputVars';
+import { private_tabVars as tabVars } from '../Tab/tabVars';
+import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -106,6 +108,19 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [inVars.mediumTopPad]: d.xs,
     [inVars.smallTopPad]: d.xxs,
     [inVars.bottomPad]: d.xs,
+  });
+  addRootOverride(enhanced.components, 'MuiTab', {
+    // Spacing = steps; min-heights = raw px (paired with MuiTabs below).
+    [tabVars.minHeight]: '40px',
+    [tabVars.iconLabelMinHeight]: '60px',
+    [tabVars.blockPad]: d.sm,
+    [tabVars.iconLabelBlockPad]: d.xs,
+    [tabVars.inlinePad]: d.lg,
+    [tabVars.iconStackGap]: d.xs,
+    [tabVars.iconInlineGap]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiTabs', {
+    [tabsVars.minHeight]: '40px', // == MuiTab minHeight (the pairing)
   });
   enhanced.typography = {
     ...enhanced.typography,

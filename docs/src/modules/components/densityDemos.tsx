@@ -9,6 +9,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -120,6 +122,26 @@ const demos: Record<string, React.ReactNode> = {
     <Stack spacing={3} sx={{ width: 260 }}>
       <TextField label="Medium" variant="standard" />
       <TextField label="Small" variant="standard" size="small" />
+    </Stack>
+  ),
+  Tab: (
+    // Text tabs (default state → block/inline pad + Tab/Tabs minHeight pairing),
+    // icon-top tabs (icon+label state → iconLabel block/minHeight + stackGap),
+    // icon-start tabs (inlineGap).
+    <Stack spacing={2} sx={{ width: 420 }}>
+      <Tabs value={0}>
+        <Tab label="One" />
+        <Tab label="Two" />
+        <Tab label="Three" />
+      </Tabs>
+      <Tabs value={0}>
+        <Tab icon={<InboxIcon />} label="Top" iconPosition="top" />
+        <Tab icon={<InboxIcon />} label="Top" iconPosition="top" />
+      </Tabs>
+      <Tabs value={0}>
+        <Tab icon={<InboxIcon />} label="Start" iconPosition="start" />
+        <Tab icon={<InboxIcon />} label="Start" iconPosition="start" />
+      </Tabs>
     </Stack>
   ),
 };

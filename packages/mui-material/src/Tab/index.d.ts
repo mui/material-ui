@@ -3,3 +3,5 @@ export * from './Tab';
 
 export { default as tabClasses } from './tabClasses';
 export * from './tabClasses';
+
+export { private_tabVars } from './tabVars';

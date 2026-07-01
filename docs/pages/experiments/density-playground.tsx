@@ -22,6 +22,8 @@ import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputA
 import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
 import { private_filledInputVars } from '@mui/material/FilledInput';
 import { private_inputVars } from '@mui/material/Input';
+import Tabs, { private_tabsVars } from '@mui/material/Tabs';
+import Tab, { private_tabVars } from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -479,6 +481,54 @@ function InputMatrix({
   );
 }
 
+// Tabs family: Tab default + icon+label states (block pad + min-height each) +
+// shared inline pad + icon gaps (stack/inline), plus the paired Tabs-root
+// min-height. Spacing → density keys; min-heights → raw px (read off the theme).
+const TAB_FIELDS: DensityField[] = [
+  { key: 'minHeight', cssVar: private_tabVars.minHeight },
+  { key: 'tabsMinHeight', cssVar: private_tabsVars.minHeight },
+  { key: 'iconLabelMinHeight', cssVar: private_tabVars.iconLabelMinHeight },
+  { key: 'blockPad', cssVar: private_tabVars.blockPad },
+  { key: 'iconLabelBlockPad', cssVar: private_tabVars.iconLabelBlockPad },
+  { key: 'inlinePad', cssVar: private_tabVars.inlinePad },
+  { key: 'iconStackGap', cssVar: private_tabVars.iconStackGap },
+  { key: 'iconInlineGap', cssVar: private_tabVars.iconInlineGap },
+];
+
+function TabsMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  // Tokens on each Tabs instance (ancestor of its Tab children, which inherit).
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        TAB_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  const lbl = (t: string) => <span className="density-debug-text">{t}</span>;
+  return (
+    <Stack spacing={3} sx={{ mt: 1, width: 460 }}>
+      <Tabs value={0} sx={sx}>
+        <Tab label={lbl('One')} />
+        <Tab label={lbl('Two')} />
+        <Tab label={lbl('Three')} />
+      </Tabs>
+      <Tabs value={0} sx={sx}>
+        <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
+        <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
+      </Tabs>
+      <Tabs value={0} sx={sx}>
+        <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
+        <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
+      </Tabs>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -547,6 +597,20 @@ const COMPONENT_DEFS = {
       bottomPad: 'xs',
     },
     renderMatrix: (args) => <InputMatrix {...args} />,
+  },
+  Tabs: {
+    canvasLabel: 'Tabs — text / icon-top / icon-start (Tab+Tabs minHeight paired)',
+    fields: TAB_FIELDS,
+    // Spacing → density keys; min-heights (minHeight/tabsMinHeight/iconLabelMinHeight)
+    // read raw px off the theme.
+    prefill: {
+      blockPad: 'sm',
+      iconLabelBlockPad: 'xs',
+      inlinePad: 'lg',
+      iconStackGap: 'xs',
+      iconInlineGap: 'sm',
+    },
+    renderMatrix: (args) => <TabsMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

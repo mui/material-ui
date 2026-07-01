@@ -8,6 +8,8 @@ import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
 import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
 import { private_inputVars as inVars } from '../Input/inputVars';
+import { private_tabVars as tabVars } from '../Tab/tabVars';
+import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -108,6 +110,19 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [inVars.mediumTopPad]: d.xs,
     [inVars.smallTopPad]: d.xxs,
     [inVars.bottomPad]: d.xs,
+  });
+  addRootOverride(enhanced.components, 'MuiTab', {
+    // Spacing = steps; min-heights = raw px (paired with MuiTabs below).
+    [tabVars.minHeight]: '48px',
+    [tabVars.iconLabelMinHeight]: '72px',
+    [tabVars.blockPad]: d.sm,
+    [tabVars.iconLabelBlockPad]: d.xs,
+    [tabVars.inlinePad]: d.lg,
+    [tabVars.iconStackGap]: d.xs,
+    [tabVars.iconInlineGap]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiTabs', {
+    [tabsVars.minHeight]: '48px', // == MuiTab minHeight (the pairing)
   });
   return enhanced;
 }

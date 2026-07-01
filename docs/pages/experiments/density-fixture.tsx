@@ -104,6 +104,28 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Input-bottomPad' as any]: '12px',
     },
   },
+  Tab: {
+    dense: {
+      ['--Tab-minHeight' as any]: '40px',
+      ['--Tabs-minHeight' as any]: '40px',
+      ['--Tab-iconLabel-minHeight' as any]: '60px',
+      ['--Tab-blockPad' as any]: '8px',
+      ['--Tab-iconLabel-blockPad' as any]: '6px',
+      ['--Tab-inlinePad' as any]: '12px',
+      ['--Tab-icon-stackGap' as any]: '4px',
+      ['--Tab-icon-inlineGap' as any]: '6px',
+    },
+    loose: {
+      ['--Tab-minHeight' as any]: '60px',
+      ['--Tabs-minHeight' as any]: '60px',
+      ['--Tab-iconLabel-minHeight' as any]: '88px',
+      ['--Tab-blockPad' as any]: '16px',
+      ['--Tab-iconLabel-blockPad' as any]: '12px',
+      ['--Tab-inlinePad' as any]: '28px',
+      ['--Tab-icon-stackGap' as any]: '10px',
+      ['--Tab-icon-inlineGap' as any]: '12px',
+    },
+  },
 };
 
 export default function DensityFixture() {

@@ -191,7 +191,9 @@ describe('<Tab />', () => {
       expect(wrapper).to.have.class('test-icon');
     });
 
-    it('should have bottom margin when passed together with label', () => {
+    // The icon gap is now a CSS var (`var(--comp-iconStackGap, …)`); jsdom can't
+    // resolve custom properties, so this only asserts in a real browser.
+    it.skipIf(isJsdom())('should have bottom margin when passed together with label', () => {
       render(
         <Tabs value={0}>
           <Tab value={0} icon={<div />} label="foo" />
