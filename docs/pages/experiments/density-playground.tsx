@@ -73,9 +73,9 @@ const DEBUG_SX = {
 } as const;
 
 const PRESET_LABEL: Record<Preset, string> = {
-  unset: 'unset — no fn · today · 0-diff',
+  unset: 'none',
   compact: 'compact',
-  normal: 'normal — default density scale',
+  normal: 'normal',
   comfort: 'comfort',
 };
 
