@@ -8,6 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
+import { private_avatarVars as vars } from './avatarVars';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -41,8 +42,11 @@ const AvatarRoot = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
-    width: 40,
-    height: 40,
+    // Density seam: square size (raw px per preset) over the 40px default.
+    '--_size': '40px',
+    '--comp-size': `var(${vars.size}, var(--_size))`,
+    width: 'var(--comp-size, var(--_size))',
+    height: 'var(--comp-size, var(--_size))',
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(20),
     lineHeight: 1,

@@ -176,6 +176,12 @@ const demos: Record<string, React.ReactNode> = {
       <Radio checked size="small" />
     </Stack>
   ),
+  Avatar: (
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Avatar>A</Avatar>
+      <Avatar>B</Avatar>
+    </Stack>
+  ),
   ToggleButton: (
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center', flexWrap: 'wrap' }} useFlexGap>
       {(['small', 'medium', 'large'] as const).map((size) => (

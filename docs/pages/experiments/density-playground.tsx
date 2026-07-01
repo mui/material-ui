@@ -32,7 +32,7 @@ import Select, { private_selectVars } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
-import Avatar from '@mui/material/Avatar';
+import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary, { private_accordionSummaryVars } from '@mui/material/AccordionSummary';
 import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/AccordionDetails';
@@ -851,6 +851,29 @@ function ToggleButtonMatrix({
   );
 }
 
+// Avatar family: the square size (raw px; no size prop).
+const AVATAR_FIELDS: DensityField[] = [{ key: 'size', cssVar: private_avatarVars.size }];
+
+function AvatarMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx =
+    mappingEnabled && active('size')
+      ? { [private_avatarVars.size]: resolveValue(mapping.size) }
+      : undefined;
+  return (
+    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+      <Avatar sx={sx}>A</Avatar>
+      <Avatar sx={sx}>B</Avatar>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -945,6 +968,12 @@ const COMPONENT_DEFS = {
     fields: RADIO_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: (args) => <RadioMatrix {...args} />,
+  },
+  Avatar: {
+    canvasLabel: 'Avatar — square size (raw px)',
+    fields: AVATAR_FIELDS,
+    prefill: {}, // size = raw px, read off the theme
+    renderMatrix: (args) => <AvatarMatrix {...args} />,
   },
   ToggleButton: {
     canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',

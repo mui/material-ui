@@ -20,6 +20,7 @@ import { private_accordionDetailsVars as adVars } from '../AccordionDetails/acco
 import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
+import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -151,6 +152,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [tbVars.smallPad]: d.sm,
     [tbVars.mediumPad]: d.md,
     [tbVars.largePad]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiAvatar', {
+    // Square size = raw px (sizing).
+    [avVars.size]: '40px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.
