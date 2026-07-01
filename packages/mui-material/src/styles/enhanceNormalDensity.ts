@@ -15,6 +15,8 @@ import { private_cardContentVars as ccVars } from '../CardContent/cardContentVar
 import { private_selectVars as selVars } from '../Select/selectVars';
 import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
+import { private_accordionSummaryVars as asVars } from '../AccordionSummary/accordionSummaryVars';
+import { private_accordionDetailsVars as adVars } from '../AccordionDetails/accordionDetailsVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -155,6 +157,19 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [chipVars.smallHeight]: '24px',
     [chipVars.mediumPadInline]: d.md,
     [chipVars.smallPadInline]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiAccordionSummary', {
+    // min-heights raw px; inline pad + content block margin = steps.
+    [asVars.minHeight]: '48px',
+    [asVars.expandedMinHeight]: '64px',
+    [asVars.inlinePad]: d.lg,
+    [asVars.marginBlock]: d.md,
+    [asVars.expandedMarginBlock]: d.lg,
+  });
+  addRootOverride(enhanced.components, 'MuiAccordionDetails', {
+    [adVars.topPad]: d.sm,
+    [adVars.inlinePad]: d.lg,
+    [adVars.bottomPad]: d.lg,
   });
   return enhanced;
 }

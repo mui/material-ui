@@ -31,6 +31,10 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary, { private_accordionSummaryVars } from '@mui/material/AccordionSummary';
+import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -696,6 +700,57 @@ function ChipMatrix({
   );
 }
 
+// Accordion family: Summary collapsed/expanded min-height + inline pad +
+// content block margin; Details top/inline/bottom padding. min-heights = raw px,
+// the rest = density keys.
+const ACCORDION_FIELDS: DensityField[] = [
+  { key: 'minHeight', cssVar: private_accordionSummaryVars.minHeight },
+  { key: 'expandedMinHeight', cssVar: private_accordionSummaryVars.expandedMinHeight },
+  { key: 'inlinePad', cssVar: private_accordionSummaryVars.inlinePad },
+  { key: 'marginBlock', cssVar: private_accordionSummaryVars.marginBlock },
+  { key: 'expandedMarginBlock', cssVar: private_accordionSummaryVars.expandedMarginBlock },
+  { key: 'detailsTopPad', cssVar: private_accordionDetailsVars.topPad },
+  { key: 'detailsInlinePad', cssVar: private_accordionDetailsVars.inlinePad },
+  { key: 'detailsBottomPad', cssVar: private_accordionDetailsVars.bottomPad },
+];
+
+function AccordionMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  // Tokens on the Accordion (ancestor of Summary + Details, which inherit).
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        ACCORDION_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Box sx={{ mt: 1, width: 360 }}>
+      <Accordion defaultExpanded sx={sx}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <span className="density-debug-text">Expanded summary</span>
+        </AccordionSummary>
+        <AccordionDetails>
+          <span className="density-debug-text">Details content padding.</span>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion sx={sx}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <span className="density-debug-text">Collapsed summary</span>
+        </AccordionSummary>
+        <AccordionDetails>Hidden.</AccordionDetails>
+      </Accordion>
+    </Box>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -808,6 +863,20 @@ const COMPONENT_DEFS = {
     fields: CHIP_FIELDS,
     prefill: { mediumPadInline: 'md', smallPadInline: 'sm' }, // heights = raw px, read off theme
     renderMatrix: (args) => <ChipMatrix {...args} />,
+  },
+  Accordion: {
+    canvasLabel: 'Accordion — summary min-height/margin/pad + details padding',
+    fields: ACCORDION_FIELDS,
+    // Spacing → density keys; min-heights read raw px off the theme.
+    prefill: {
+      inlinePad: 'lg',
+      marginBlock: 'md',
+      expandedMarginBlock: 'lg',
+      detailsTopPad: 'sm',
+      detailsInlinePad: 'lg',
+      detailsBottomPad: 'lg',
+    },
+    renderMatrix: (args) => <AccordionMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

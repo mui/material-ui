@@ -12,6 +12,7 @@ import { getTransitionStyles } from '../transitions/utils';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
+import { private_accordionSummaryVars as vars } from './accordionSummaryVars';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -34,8 +35,15 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   memoTheme(({ theme }) => ({
     display: 'flex',
     width: '100%',
-    minHeight: 48,
-    padding: theme.spacing(0, 2),
+    // Density seams: collapsed/expanded min-height (raw px) + inline padding.
+    '--_minHeight': '48px',
+    '--_expandedMinHeight': '64px',
+    '--_inlinePad': '16px',
+    '--comp-minHeight': `var(${vars.minHeight}, var(--_minHeight))`,
+    '--comp-expandedMinHeight': `var(${vars.expandedMinHeight}, var(--_expandedMinHeight))`,
+    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
+    minHeight: 'var(--comp-minHeight, var(--_minHeight))',
+    padding: '0 var(--comp-inlinePad, var(--_inlinePad))',
     ...getTransitionStyles(theme, ['min-height', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -53,7 +61,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
         props: (props) => !props.disableGutters,
         style: {
           [`&.${accordionSummaryClasses.expanded}`]: {
-            minHeight: 64,
+            minHeight: 'var(--comp-expandedMinHeight, var(--_expandedMinHeight))',
           },
         },
       },
@@ -69,7 +77,13 @@ const AccordionSummaryContent = styled('span', {
     display: 'flex',
     textAlign: 'start',
     flexGrow: 1,
-    margin: '12px 0',
+    // Content block margin (inherits the seams from the summary root). Must
+    // reduce with min-height or it binds the header height instead.
+    '--_marginBlock': '12px',
+    '--_expandedMarginBlock': '20px',
+    '--comp-marginBlock': `var(${vars.marginBlock}, var(--_marginBlock))`,
+    '--comp-expandedMarginBlock': `var(${vars.expandedMarginBlock}, var(--_expandedMarginBlock))`,
+    margin: 'var(--comp-marginBlock, var(--_marginBlock)) 0',
     variants: [
       {
         props: (props) => !props.disableGutters,
@@ -78,7 +92,7 @@ const AccordionSummaryContent = styled('span', {
             duration: theme.transitions.duration.shortest,
           }),
           [`&.${accordionSummaryClasses.expanded}`]: {
-            margin: '20px 0',
+            margin: 'var(--comp-expandedMarginBlock, var(--_expandedMarginBlock)) 0',
           },
         },
       },

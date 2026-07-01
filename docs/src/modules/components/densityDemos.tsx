@@ -21,7 +21,11 @@ import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import InboxIcon from '@mui/icons-material/Inbox';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // Force the tooltip open + inline (no portal) so it renders inside
 // `#density-scope` and lands in the scoped screenshot; snap the transition so
@@ -160,6 +164,18 @@ const demos: Record<string, React.ReactNode> = {
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
     </Stack>
+  ),
+  Accordion: (
+    <Box sx={{ width: 340 }}>
+      <Accordion defaultExpanded>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>Expanded summary</AccordionSummary>
+        <AccordionDetails>Details content with top/inline/bottom padding.</AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>Collapsed summary</AccordionSummary>
+        <AccordionDetails>Hidden details.</AccordionDetails>
+      </Accordion>
+    </Box>
   ),
   Chip: (
     <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 1, width: 380 }}>

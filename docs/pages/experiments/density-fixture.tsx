@@ -128,6 +128,28 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Select-minHeight' as any]: '16px' },
     loose: { ['--Select-minHeight' as any]: '40px' },
   },
+  Accordion: {
+    dense: {
+      ['--AccordionSummary-minHeight' as any]: '40px',
+      ['--AccordionSummary-expandedMinHeight' as any]: '48px',
+      ['--AccordionSummary-inlinePad' as any]: '12px',
+      ['--AccordionSummary-marginBlock' as any]: '8px',
+      ['--AccordionSummary-expandedMarginBlock' as any]: '12px',
+      ['--AccordionDetails-topPad' as any]: '4px',
+      ['--AccordionDetails-inlinePad' as any]: '12px',
+      ['--AccordionDetails-bottomPad' as any]: '12px',
+    },
+    loose: {
+      ['--AccordionSummary-minHeight' as any]: '64px',
+      ['--AccordionSummary-expandedMinHeight' as any]: '88px',
+      ['--AccordionSummary-inlinePad' as any]: '28px',
+      ['--AccordionSummary-marginBlock' as any]: '20px',
+      ['--AccordionSummary-expandedMarginBlock' as any]: '28px',
+      ['--AccordionDetails-topPad' as any]: '16px',
+      ['--AccordionDetails-inlinePad' as any]: '28px',
+      ['--AccordionDetails-bottomPad' as any]: '28px',
+    },
+  },
   Chip: {
     dense: {
       ['--Chip-medium-height' as any]: '26px',
