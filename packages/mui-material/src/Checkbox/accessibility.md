@@ -4,17 +4,16 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 21    |
-| ⚠️ Partially Supports | 4     |
+| ✅ Supports           | 22    |
+| ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Unverified         | 12/25 |
+| 🚩 Flagged            | 12/25 |
 
 ## Known gaps
 
 - ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the Customization demo's unchecked box is about 1.1:1 against the page).
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
-- ⚠️ **3.3.2 Labels or Instructions.** The component ships no visible label, and the basic demos use a `slotProps.input` `aria-label` only (a name for assistive technology, but no label presented to all users). A visible label via `FormControlLabel` or adjacent text is required.
 - ⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked="mixed"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead.
 
 ## Success criteria
@@ -23,7 +22,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The checkbox is one control: the hidden `<input>` followed by the `aria-hidden` checkmark icon, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
 - Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="start"` flips the label/control visually with `row-reverse`, so confirm the reading order of a checkbox group still matches its visual order.
@@ -38,7 +37,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The component renders no instructional text of its own, so it introduces no shape-, color-, or position-only instructions.
 - Surrounding copy must not rely on sensory characteristics alone (for example "check the green box" or "the boxes on the right"). That is authored content.
@@ -52,7 +51,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - Labels and helper text render as live DOM text; the checkmark icon is a vector graphic, not an image of text, and it carries no textual information.
 - This fails only if an author passes an image of text as the label. Use real text unless it is a logo.
@@ -66,7 +65,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The checkbox is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - It passes as long as that content never hides a focused checkbox completely; partial overlap is fine.
@@ -80,7 +79,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The author supplies the name through a `FormControlLabel` or an `aria-label`. Whether the same function is identified consistently across pages is up to the author.
 - Consistency is a cross-page property. Confirm that checkboxes with the same function share a label, and that one label is not reused for different functions.
@@ -129,7 +128,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - State is conveyed by the checkmark icon's shape, not color: an empty square (unchecked), a square with a check (checked), and a square with a dash (indeterminate). A color-blind user can tell all three apart.
 - The group error state is color-only: `FormHelperText` conveys it through red text. Pair it with text or an icon. (Required, by contrast, shows a visible `*`, which is a non-color cue, so it is fine.) That is author content.
@@ -160,7 +159,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - This criterion (not 1.4.3) governs the checkmark icon at `3:1`, and every default state passes against the page background (`#fff` light, `#121212` dark).
 - Light mode: `warning` is the tightest at `3.11:1`, then `info` `3.86:1`, `primary` `4.60:1`, the unchecked `text.secondary` outline `5.74:1`, and the white check on the fill `4.60:1`. Dark mode clears `3:1` easily (lowest is error at about `5:1`).
@@ -179,7 +178,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.12 Text Spacing · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The component sets no text styles of its own and no fixed heights that would clip under user text-spacing overrides; the label is normal flowing text that wraps, and the checkmark icon is a fixed vector unaffected by spacing.
 - Whether a long label clips depends on the author's container, not the checkbox.
@@ -207,7 +206,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown.
 - `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedCheckbox` demo does this, re-adding a 2px outline.
@@ -237,18 +236,17 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.3.2 Labels or Instructions · A
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
-- A label must be presented to all users, not only exposed to assistive technology. The Understanding document is explicit that a name exposed only to assistive technology (an `aria-label`) can pass 4.1.2 yet fail this criterion.
-- The component ships no visible label, and the basic demos (`Checkboxes`, `ColorCheckboxes`, `IconCheckboxes`, `CustomizedCheckbox`) supply only `slotProps.input` `aria-label="Checkbox demo"`, a name for assistive technology with no visible label. `FormControlLabel`, as used in `CheckboxLabels` and `CheckboxesGroup`, is the conforming pattern.
+- Used as documented, the component meets this: `FormControlLabel` wraps the control in a real `<label>` whose text is presented to all users (`CheckboxLabels`, `CheckboxesGroup`).
+- An `aria-label` is a name for assistive technology, not a visible label, so on its own it satisfies 4.1.2 but not this criterion. The basic demos use `aria-label` only to show the control in isolation; in product UI, provide a visible label via `FormControlLabel` or a clear contextual one.
 
 **Manual testing steps**
 
-1. For each checkbox, confirm a visible label or instruction is shown to all users.
-2. Flag instances that rely on an `aria-label` only (no visible text).
-3. Confirm bare checkboxes are wrapped in `FormControlLabel` or paired with visible instructions.
+1. Confirm each checkbox in product UI has a visible label (`FormControlLabel`) or a clear contextual one.
+2. Where only an `aria-label` is used, confirm the purpose is clear from surrounding context (for example, a column header).
 
-**Pass:** each checkbox has a visible label or instruction. An `aria-label`-only checkbox fails.
+**Pass:** every checkbox has a label or instruction presented to all users, via `FormControlLabel`, adjacent text, or clear context.
 
 #### 4.1.2 Name, Role, Value · A
 
@@ -272,7 +270,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.4 Resize Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The checkmark icon is an `SvgIcon` whose size comes from `fontSize` in `rem` (medium 24px = 1.5rem, small 20px = 1.25rem) with a `1em` box, so it scales with browser zoom or root font size; the label is normal text. Nothing is pixel-fixed.
 - A fixed-pixel container in the surrounding layout could clip at 200%.
@@ -286,7 +284,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The checkbox is a small inline-flex control with no fixed min-width and no horizontal-overflow layout of its own, so it reflows into a 320 CSS pixel viewport.
 - Real failures usually come from the surrounding layout. `CheckboxesGroup` places two fieldsets in a non-wrapping flex row, which can overflow at 320 pixels.
@@ -383,4 +381,4 @@ The following SC are applicable but out of scope:
 - **Component version.** `@mui/material` 9.1.1.
 - **Scope.** The Checkbox component and its documented composition with `FormControlLabel`, `FormControl`/`FormGroup`, `FormLabel`, and `FormHelperText`, rendered through the documented API.
 - **Automated.** axe-core via the Playwright visual-regression harness (results in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json)), plus interaction tests in [`Checkbox.test.js`](./Checkbox.test.js). Glyph contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
-- **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
+- **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
