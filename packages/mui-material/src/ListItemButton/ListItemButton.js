@@ -12,6 +12,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import { private_listItemButtonVars as vars } from './listItemButtonVars';
 import { getTransitionStyles } from '../transitions/utils';
 
 export const overridesResolver = (props, styles) => {
@@ -65,8 +66,12 @@ const ListItemButtonRoot = styled(ButtonBase, {
     minWidth: 0,
     boxSizing: 'border-box',
     textAlign: 'left',
-    paddingTop: 8,
-    paddingBottom: 8,
+    // Density seams (mirrors MenuItem dense axis): block padding over the default;
+    // `dense`/`gutters` variants reroute below.
+    '--_blockPad': '8px',
+    '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
+    paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
+    paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
     ...getTransitionStyles(theme, 'background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -128,15 +133,17 @@ const ListItemButtonRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          paddingLeft: 16,
-          paddingRight: 16,
+          '--_inlinePad': '16px',
+          '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
+          paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
+          paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
         },
       },
       {
         props: ({ ownerState }) => ownerState.dense,
         style: {
-          paddingTop: 4,
-          paddingBottom: 4,
+          '--_blockPad': '4px',
+          '--comp-blockPad': `var(${vars.denseBlockPad}, var(--_blockPad))`,
         },
       },
     ],

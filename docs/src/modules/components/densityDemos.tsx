@@ -10,6 +10,8 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Tooltip from '@mui/material/Tooltip';
@@ -223,6 +225,19 @@ const demos: Record<string, React.ReactNode> = {
       <Pagination count={5} />
       <Pagination count={5} size="large" />
     </Stack>
+  ),
+  ListItemButton: (
+    <List sx={{ width: 240, border: '1px solid', borderColor: 'divider' }}>
+      <ListItemButton>
+        <ListItemText primary="Regular item" />
+      </ListItemButton>
+      <ListItemButton selected>
+        <ListItemText primary="Selected item" />
+      </ListItemButton>
+      <ListItemButton dense>
+        <ListItemText primary="Dense item" />
+      </ListItemButton>
+    </List>
   ),
   Dialog: (
     // The dialog surface (Paper) with its 3 slots — no modal/portal so it renders

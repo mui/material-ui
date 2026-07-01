@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  ListItemButton: {
+    dense: {
+      ['--ListItemButton-blockPad' as any]: '4px',
+      ['--ListItemButton-dense-blockPad' as any]: '2px',
+      ['--ListItemButton-inlinePad' as any]: '10px',
+    },
+    loose: {
+      ['--ListItemButton-blockPad' as any]: '14px',
+      ['--ListItemButton-dense-blockPad' as any]: '8px',
+      ['--ListItemButton-inlinePad' as any]: '28px',
+    },
+  },
   Dialog: {
     dense: {
       ['--DialogTitle-blockPad' as any]: '10px',

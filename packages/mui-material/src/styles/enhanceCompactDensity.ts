@@ -36,6 +36,7 @@ import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigati
 import { private_dialogTitleVars as dtVars } from '../DialogTitle/dialogTitleVars';
 import { private_dialogContentVars as dcVars } from '../DialogContent/dialogContentVars';
 import { private_dialogActionsVars as daVars } from '../DialogActions/dialogActionsVars';
+import { private_listItemButtonVars as libVars } from '../ListItemButton/listItemButtonVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -235,6 +236,11 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
     [daVars.pad]: d.sm,
+  });
+  addRootOverride(enhanced.components, 'MuiListItemButton', {
+    [libVars.blockPad]: d.sm,
+    [libVars.denseBlockPad]: d.xxs,
+    [libVars.inlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

@@ -25,7 +25,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem, { private_menuItemVars } from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
-import { private_listVars } from '@mui/material/List';
+import ListItemButton, { private_listItemButtonVars } from '@mui/material/ListItemButton';
+import List, { private_listVars } from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -1293,6 +1294,44 @@ function DialogMatrix({
   );
 }
 
+// ListItemButton family: block padding (+ dense) + gutters inline padding.
+const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
+  { key: 'blockPad', cssVar: private_listItemButtonVars.blockPad },
+  { key: 'denseBlockPad', cssVar: private_listItemButtonVars.denseBlockPad },
+  { key: 'inlinePad', cssVar: private_listItemButtonVars.inlinePad },
+];
+
+function ListItemButtonMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        LIST_ITEM_BUTTON_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <List sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider', ...sx }}>
+      <ListItemButton>
+        <ListItemText primary={<span className="density-debug-text">Regular item</span>} />
+      </ListItemButton>
+      <ListItemButton selected>
+        <ListItemText primary={<span className="density-debug-text">Selected item</span>} />
+      </ListItemButton>
+      <ListItemButton dense>
+        <ListItemText primary={<span className="density-debug-text">Dense item</span>} />
+      </ListItemButton>
+    </List>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1429,6 +1468,12 @@ const COMPONENT_DEFS = {
       actionsPad: 'sm',
     },
     renderMatrix: (args) => <DialogMatrix {...args} />,
+  },
+  ListItemButton: {
+    canvasLabel: 'ListItemButton — block padding (+ dense) + gutters',
+    fields: LIST_ITEM_BUTTON_FIELDS,
+    prefill: { blockPad: 'sm', denseBlockPad: 'xxs', inlinePad: 'lg' },
+    renderMatrix: (args) => <ListItemButtonMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
