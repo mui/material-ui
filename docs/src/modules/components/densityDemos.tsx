@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -182,6 +183,13 @@ const demos: Record<string, React.ReactNode> = {
       <Avatar>A</Avatar>
       <Avatar>B</Avatar>
     </Stack>
+  ),
+  ButtonGroup: (
+    <ButtonGroup variant="outlined">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </ButtonGroup>
   ),
   Badge: (
     <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>

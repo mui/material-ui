@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button, { private_buttonVars } from '@mui/material/Button';
+import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
 import CssBaseline from '@mui/material/CssBaseline';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
@@ -907,6 +908,38 @@ function BadgeMatrix({
   );
 }
 
+// ButtonGroup family: the grouped-button min-width floor (raw px).
+const BUTTON_GROUP_FIELDS: DensityField[] = [
+  { key: 'minWidth', cssVar: private_buttonGroupVars.minWidth },
+];
+
+function ButtonGroupMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx =
+    mappingEnabled && active('minWidth')
+      ? { [private_buttonGroupVars.minWidth]: resolveValue(mapping.minWidth) }
+      : undefined;
+  return (
+    <ButtonGroup variant="outlined" sx={{ mt: 1, ...sx }}>
+      <Button>
+        <span className="density-debug-text">One</span>
+      </Button>
+      <Button>
+        <span className="density-debug-text">Two</span>
+      </Button>
+      <Button>
+        <span className="density-debug-text">Three</span>
+      </Button>
+    </ButtonGroup>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1007,6 +1040,12 @@ const COMPONENT_DEFS = {
     fields: AVATAR_FIELDS,
     prefill: {}, // size = raw px, read off the theme
     renderMatrix: (args) => <AvatarMatrix {...args} />,
+  },
+  ButtonGroup: {
+    canvasLabel: 'ButtonGroup — grouped-button min-width floor',
+    fields: BUTTON_GROUP_FIELDS,
+    prefill: {}, // minWidth = raw px, read off the theme
+    renderMatrix: (args) => <ButtonGroupMatrix {...args} />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',

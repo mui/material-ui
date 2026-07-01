@@ -22,6 +22,7 @@ import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVar
 import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
+import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -160,7 +161,10 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     // Bubble size = raw px; standard padding = '0 <step>'.
     [badgeVars.standardSize]: '24px',
     [badgeVars.dotSize]: '8px',
-    [badgeVars.standardPad]: `0 `,
+    [badgeVars.standardPad]: `0 ${d.xs}`,
+  });
+  addRootOverride(enhanced.components, 'MuiButtonGroup', {
+    [bgVars.minWidth]: '48px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

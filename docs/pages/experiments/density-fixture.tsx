@@ -128,6 +128,10 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  ButtonGroup: {
+    dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
+    loose: { ['--ButtonGroup-minWidth' as any]: '56px' },
+  },
   Badge: {
     dense: {
       ['--Badge-standard-size' as any]: '16px',
