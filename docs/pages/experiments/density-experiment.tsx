@@ -33,13 +33,6 @@ const PRESET_LABEL: Record<Preset, string> = {
   comfort: 'comfort',
 };
 
-// Canonical Button prefill (matches enhanceDensity's own assignment).
-const PREFILL: Record<MappingKey, string> = {
-  smallPad: 'xxs sm',
-  mediumPad: 'xs lg',
-  largePad: 'sm xl',
-};
-
 const buttonVar = (size: Size) => private_buttonVars[`${size}Pad` as MappingKey];
 
 // Keys-only → density-var string. The validator guarantees each token ∈ SCALE_KEYS.
@@ -98,13 +91,97 @@ function resolvePreview(value: string, scalePx: Record<string, string> | null) {
   return { varStr: stepsToVar(value), px: scalePx ? tokens.map((t) => scalePx[t]).join(' ') : '' };
 }
 
+// ---------------------------------------------------------------------------
+// Density-component registry. Only Button is de-prefixed/wired in this
+// prototype; add entries here as more families gain a static `private_*Vars`
+// map — the dropdown, canvas and mapping controls all iterate this registry.
+// ---------------------------------------------------------------------------
+interface DensityField {
+  key: string; // mapping-state key, e.g. 'smallPad'
+  cssVar: string; // e.g. '--Button-small-pad'
+}
+interface DensityComponentDef {
+  canvasLabel: string;
+  fields: DensityField[];
+  prefill: Record<string, string>;
+  renderMatrix: (args: { mapping: Record<string, string>; mappingEnabled: boolean }) => React.ReactNode;
+}
+
+function ButtonMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  return (
+    <Stack spacing={4} sx={{ mt: 1 }}>
+      {SIZES.map((size) => {
+        const key = `${size}Pad`;
+        const { valid } = validateMapping(mapping[key] ?? '');
+        // TO5/TO6: element-level token wins over the preset's styleOverride.
+        // At `unset` (or invalid input) emit NO token → falls back to the literal
+        // `--_pad` default (unset) or the preset's own mapping.
+        const sx = mappingEnabled && valid ? { [buttonVar(size)]: stepsToVar(mapping[key]) } : undefined;
+        return (
+          <Box key={size} data-size-section={size}>
+            <Divider textAlign="left" sx={{ mb: 1.5 }}>
+              <Typography variant="caption" color="text.secondary">
+                {size}
+              </Typography>
+            </Divider>
+            <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+              {VARIANTS.map((variant) => (
+                <Button
+                  key={variant}
+                  variant={variant}
+                  size={size}
+                  color="primary"
+                  sx={sx}
+                  data-cell={`${variant}-${size}`}
+                >
+                  {variant}
+                </Button>
+              ))}
+            </Stack>
+          </Box>
+        );
+      })}
+    </Stack>
+  );
+}
+
+const COMPONENT_DEFS = {
+  Button: {
+    canvasLabel: 'Button (color="primary")',
+    // Canonical prefill matches enhanceDensity's own Button assignment.
+    fields: SIZES.map((size) => ({ key: `${size}Pad`, cssVar: buttonVar(size) })),
+    prefill: { smallPad: 'xxs sm', mediumPad: 'xs lg', largePad: 'sm xl' },
+    renderMatrix: (args) => <ButtonMatrix {...args} />,
+  },
+} satisfies Record<string, DensityComponentDef>;
+
+type ComponentName = keyof typeof COMPONENT_DEFS;
+type Selection = 'All' | ComponentName;
+
+const COMPONENTS = Object.keys(COMPONENT_DEFS) as ComponentName[];
+
+const initialMapping = () =>
+  Object.fromEntries(COMPONENTS.map((c) => [c, { ...COMPONENT_DEFS[c].prefill }])) as unknown as Record<
+    ComponentName,
+    Record<string, string>
+  >;
+
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
-  const [component] = React.useState('Button');
-  const [mapping, setMapping] = React.useState<Record<MappingKey, string>>(PREFILL);
+  const [selection, setSelection] = React.useState<Selection>('All');
+  const [mapping, setMapping] = React.useState<Record<ComponentName, Record<string, string>>>(
+    initialMapping,
+  );
 
   const mappingEnabled = preset !== 'unset';
   const scalePx = presetScalePx(preset);
+  const visibleComponents: ComponentName[] = selection === 'All' ? COMPONENTS : [selection];
 
   const canvasTheme = React.useMemo(() => {
     if (preset === 'unset') {
@@ -115,10 +192,10 @@ export default function DensityExperiment() {
     });
   }, [preset]);
 
-  const setField = (key: MappingKey, value: string) =>
-    setMapping((m) => ({ ...m, [key]: value }));
+  const setField = (comp: ComponentName, key: string, value: string) =>
+    setMapping((m) => ({ ...m, [comp]: { ...m[comp], [key]: value } }));
 
-  const resetMapping = () => setMapping(PREFILL);
+  const resetMapping = () => setMapping(initialMapping());
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
@@ -172,14 +249,24 @@ export default function DensityExperiment() {
             <FormLabel id="component-label" sx={{ mb: 0.5 }}>
               Component
             </FormLabel>
-            <Select aria-labelledby="component-label" value={component} disabled>
-              <MenuItem value="Button">Button</MenuItem>
+            <Select
+              aria-labelledby="component-label"
+              value={selection}
+              onChange={(event) => setSelection(event.target.value as Selection)}
+              slotProps={{ input: { 'data-component-select': true } as Record<string, unknown> }}
+            >
+              <MenuItem value="All">All</MenuItem>
+              {COMPONENTS.map((c) => (
+                <MenuItem key={c} value={c}>
+                  {c}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
           <Box component="section" sx={{ opacity: mappingEnabled ? 1 : 0.5 }}>
             <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
-              Vars mapping · {component}
+              Vars mapping
             </Typography>
             {!mappingEnabled && (
               <Typography variant="caption" color="text.secondary">
@@ -198,56 +285,58 @@ export default function DensityExperiment() {
               </Typography>
             )}
             {/* Single datalist shared by all fields — key typeahead. */}
-            <Box
-              component="datalist"
-              id="density-keys"
-              sx={{ display: 'none' }}
-            >
+            <Box component="datalist" id="density-keys" sx={{ display: 'none' }}>
               {SCALE_KEYS.map((k) => (
                 <option key={k} value={k}>
                   {k}
                 </option>
               ))}
             </Box>
-            <Stack spacing={1.5} sx={{ mt: 1.5 }}>
-              {SIZES.map((size) => {
-                const key = `${size}Pad` as MappingKey;
-                const value = mapping[key];
-                const { valid, error } = validateMapping(value);
-                const showError = mappingEnabled && !valid;
-                const preview = resolvePreview(value, scalePx);
-                let helper = ' ';
-                if (showError) {
-                  helper = error ?? ' ';
-                } else if (mappingEnabled && valid) {
-                  helper = `${value.trim()} → ${preview.varStr} = ${preview.px}`;
-                }
-                return (
-                  <TextField
-                    key={key}
-                    size="small"
-                    label={buttonVar(size)}
-                    value={value}
-                    disabled={!mappingEnabled}
-                    error={showError}
-                    helperText={helper}
-                    onChange={(event) => setField(key, event.target.value)}
-                    slotProps={{
-                      htmlInput: {
-                        'data-mapping-field': key,
-                        list: 'density-keys',
-                      },
-                    }}
-                  />
-                );
-              })}
-            </Stack>
+            {visibleComponents.map((comp) => (
+              <Box key={comp} sx={{ mt: 2 }} data-mapping-group={comp}>
+                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'medium' }}>
+                  {comp}
+                </Typography>
+                <Stack spacing={1.5} sx={{ mt: 1 }}>
+                  {COMPONENT_DEFS[comp].fields.map((field) => {
+                    const value = mapping[comp][field.key] ?? '';
+                    const { valid, error } = validateMapping(value);
+                    const showError = mappingEnabled && !valid;
+                    const preview = resolvePreview(value, scalePx);
+                    let helper = ' ';
+                    if (showError) {
+                      helper = error ?? ' ';
+                    } else if (mappingEnabled && valid) {
+                      helper = `${value.trim()} → ${preview.varStr} = ${preview.px}`;
+                    }
+                    return (
+                      <TextField
+                        key={field.key}
+                        size="small"
+                        label={field.cssVar}
+                        value={value}
+                        disabled={!mappingEnabled}
+                        error={showError}
+                        helperText={helper}
+                        onChange={(event) => setField(comp, field.key, event.target.value)}
+                        slotProps={{
+                          htmlInput: {
+                            'data-mapping-field': `${comp}-${field.key}`,
+                            list: 'density-keys',
+                          },
+                        }}
+                      />
+                    );
+                  })}
+                </Stack>
+              </Box>
+            ))}
             <Button
               size="small"
               variant="outlined"
               onClick={resetMapping}
               disabled={!mappingEnabled}
-              sx={{ mt: 1 }}
+              sx={{ mt: 2 }}
             >
               Reset mapping
             </Button>
@@ -258,44 +347,15 @@ export default function DensityExperiment() {
         <ThemeProvider theme={canvasTheme}>
           <CssBaseline />
           <Box id="density-canvas" sx={{ p: 4, flexGrow: 1 }}>
-            <Typography variant="overline" color="text.secondary">
-              {component} (color=&quot;primary&quot;)
-            </Typography>
-            <Stack spacing={4} sx={{ mt: 1 }}>
-              {SIZES.map((size) => {
-                const key = `${size}Pad` as MappingKey;
-                const { valid } = validateMapping(mapping[key]);
-                // TO5/TO6: element-level token wins over the preset's styleOverride.
-                // At `unset` (or invalid input) emit NO token → falls back to the
-                // literal `--_pad` default (unset) or the preset's own mapping.
-                const sx =
-                  mappingEnabled && valid
-                    ? { [buttonVar(size)]: stepsToVar(mapping[key]) }
-                    : undefined;
-                return (
-                  <Box key={size} data-size-section={size}>
-                    <Divider textAlign="left" sx={{ mb: 1.5 }}>
-                      <Typography variant="caption" color="text.secondary">
-                        {size}
-                      </Typography>
-                    </Divider>
-                    <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
-                      {VARIANTS.map((variant) => (
-                        <Button
-                          key={variant}
-                          variant={variant}
-                          size={size}
-                          color="primary"
-                          sx={sx}
-                          data-cell={`${variant}-${size}`}
-                        >
-                          {variant}
-                        </Button>
-                      ))}
-                    </Stack>
-                  </Box>
-                );
-              })}
+            <Stack spacing={6}>
+              {visibleComponents.map((comp) => (
+                <Box key={comp} data-canvas-component={comp}>
+                  <Typography variant="overline" color="text.secondary">
+                    {COMPONENT_DEFS[comp].canvasLabel}
+                  </Typography>
+                  {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
+                </Box>
+              ))}
             </Stack>
           </Box>
         </ThemeProvider>
