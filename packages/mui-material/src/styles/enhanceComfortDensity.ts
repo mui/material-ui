@@ -28,6 +28,7 @@ import { private_autocompleteVars as acVars } from '../Autocomplete/autocomplete
 import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
+import { private_fabVars as fabVars } from '../Fab/fabVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 const scale: DensityScale = {
@@ -194,6 +195,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [toolbarVars.inlinePad]: d.lg,
     [toolbarVars.wideInlinePad]: d.xl,
     [toolbarVars.denseMinHeight]: '56px',
+  });
+  addRootOverride(enhanced.components, 'MuiFab', {
+    // Circular size = raw px per size (button-like action).
+    [fabVars.smallSize]: '44px',
+    [fabVars.mediumSize]: '52px',
+    [fabVars.largeSize]: '64px',
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

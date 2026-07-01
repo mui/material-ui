@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
+import { private_fabVars as vars } from './fabVars';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -59,8 +60,12 @@ const FabRoot = styled(ButtonBase, {
     borderRadius: '50%',
     padding: 0,
     minWidth: 0,
-    width: 56,
-    height: 56,
+    // Density seam: circular size (raw px) per size; base = large. Small/medium
+    // variants reroute + swap the default below.
+    '--_size': '56px',
+    '--comp-size': `var(${vars.largeSize}, var(--_size))`,
+    width: 'var(--comp-size, var(--_size))',
+    height: 'var(--comp-size, var(--_size))',
     zIndex: (theme.vars || theme).zIndex.fab,
     boxShadow: (theme.vars || theme).shadows[6],
     '&:active': {
@@ -85,15 +90,15 @@ const FabRoot = styled(ButtonBase, {
       {
         props: { size: 'small' },
         style: {
-          width: 40,
-          height: 40,
+          '--_size': '40px',
+          '--comp-size': `var(${vars.smallSize}, var(--_size))`,
         },
       },
       {
         props: { size: 'medium' },
         style: {
-          width: 48,
-          height: 48,
+          '--_size': '48px',
+          '--comp-size': `var(${vars.mediumSize}, var(--_size))`,
         },
       },
       {

@@ -128,6 +128,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--Avatar-size' as any]: '28px' },
     loose: { ['--Avatar-size' as any]: '56px' },
   },
+  Fab: {
+    dense: {
+      ['--Fab-small-size' as any]: '32px',
+      ['--Fab-medium-size' as any]: '40px',
+      ['--Fab-large-size' as any]: '48px',
+    },
+    loose: {
+      ['--Fab-small-size' as any]: '48px',
+      ['--Fab-medium-size' as any]: '56px',
+      ['--Fab-large-size' as any]: '64px',
+    },
+  },
   ButtonGroup: {
     dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
     loose: { ['--ButtonGroup-minWidth' as any]: '56px' },

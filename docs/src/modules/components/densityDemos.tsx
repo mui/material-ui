@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Fab from '@mui/material/Fab';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -193,6 +194,19 @@ const demos: Record<string, React.ReactNode> = {
     <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Avatar>A</Avatar>
       <Avatar>B</Avatar>
+    </Stack>
+  ),
+  Fab: (
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Fab size="small" color="primary">
+        <InboxIcon />
+      </Fab>
+      <Fab size="medium" color="primary">
+        <InboxIcon />
+      </Fab>
+      <Fab color="primary">
+        <InboxIcon />
+      </Fab>
     </Stack>
   ),
   ButtonGroup: (

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button, { private_buttonVars } from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
+import Fab, { private_fabVars } from '@mui/material/Fab';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -1113,6 +1114,41 @@ function ToolbarMatrix({
   );
 }
 
+// Fab family: circular size per size (raw px).
+const FAB_FIELDS: DensityField[] = [
+  { key: 'smallSize', cssVar: private_fabVars.smallSize },
+  { key: 'mediumSize', cssVar: private_fabVars.mediumSize },
+  { key: 'largeSize', cssVar: private_fabVars.largeSize },
+];
+
+function FabMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        FAB_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
+      )
+    : undefined;
+  return (
+    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+      <Fab size="small" color="primary" sx={sx}>
+        <InboxIcon />
+      </Fab>
+      <Fab size="medium" color="primary" sx={sx}>
+        <InboxIcon />
+      </Fab>
+      <Fab color="primary" sx={sx}>
+        <InboxIcon />
+      </Fab>
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1213,6 +1249,12 @@ const COMPONENT_DEFS = {
     fields: AVATAR_FIELDS,
     prefill: {}, // size = raw px, read off the theme
     renderMatrix: (args) => <AvatarMatrix {...args} />,
+  },
+  Fab: {
+    canvasLabel: 'Fab — circular size (small / medium / large)',
+    fields: FAB_FIELDS,
+    prefill: {}, // sizes = raw px, read off the theme
+    renderMatrix: (args) => <FabMatrix {...args} />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
