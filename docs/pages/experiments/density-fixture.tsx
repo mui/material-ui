@@ -132,6 +132,18 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
     dense: { ['--ButtonGroup-minWidth' as any]: '28px' },
     loose: { ['--ButtonGroup-minWidth' as any]: '56px' },
   },
+  TableCell: {
+    dense: {
+      ['--TableCell-medium-blockPad' as any]: '8px',
+      ['--TableCell-small-blockPad' as any]: '3px',
+      ['--TableCell-inlinePad' as any]: '10px',
+    },
+    loose: {
+      ['--TableCell-medium-blockPad' as any]: '24px',
+      ['--TableCell-small-blockPad' as any]: '12px',
+      ['--TableCell-inlinePad' as any]: '24px',
+    },
+  },
   Badge: {
     dense: {
       ['--Badge-standard-size' as any]: '16px',

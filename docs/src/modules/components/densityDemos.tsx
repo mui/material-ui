@@ -28,6 +28,11 @@ import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -190,6 +195,26 @@ const demos: Record<string, React.ReactNode> = {
       <Button>Two</Button>
       <Button>Three</Button>
     </ButtonGroup>
+  ),
+  TableCell: (
+    <Stack spacing={2} sx={{ width: 320 }}>
+      {(['medium', 'small'] as const).map((size) => (
+        <Table key={size} size={size}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Value</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Row one</TableCell>
+              <TableCell align="right">42</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      ))}
+    </Stack>
   ),
   Badge: (
     <Stack direction="row" spacing={4} sx={{ alignItems: 'center' }}>

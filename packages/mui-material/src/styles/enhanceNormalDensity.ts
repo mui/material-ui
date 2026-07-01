@@ -23,6 +23,7 @@ import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButton
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
+import { private_tableCellVars as tcVars } from '../TableCell/tableCellVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -167,6 +168,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
     [bgVars.minWidth]: '40px',
+  });
+  addRootOverride(enhanced.components, 'MuiTableCell', {
+    // Block pad per size (steps); inline pad shared.
+    [tcVars.mediumBlockPad]: d.lg,
+    [tcVars.smallBlockPad]: d.xs,
+    [tcVars.inlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base pad + larger last-child bottom pad.

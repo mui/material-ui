@@ -2,3 +2,5 @@ export { default } from './TableCell';
 
 export { default as tableCellClasses } from './tableCellClasses';
 export * from './tableCellClasses';
+
+export { private_tableCellVars } from './tableCellVars';

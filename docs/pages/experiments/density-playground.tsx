@@ -4,6 +4,11 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button, { private_buttonVars } from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableBody from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell, { private_tableCellVars } from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
@@ -940,6 +945,53 @@ function ButtonGroupMatrix({
   );
 }
 
+// TableCell family: block padding per size (medium/small) + shared inline pad.
+const TABLE_CELL_FIELDS: DensityField[] = [
+  { key: 'mediumBlockPad', cssVar: private_tableCellVars.mediumBlockPad },
+  { key: 'smallBlockPad', cssVar: private_tableCellVars.smallBlockPad },
+  { key: 'inlinePad', cssVar: private_tableCellVars.inlinePad },
+];
+
+function TableCellMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        TABLE_CELL_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack spacing={2} sx={{ mt: 1, width: 320 }}>
+      {(['medium', 'small'] as const).map((size) => (
+        <Table key={size} size={size} sx={sx}>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <span className="density-debug-text">{size} name</span>
+              </TableCell>
+              <TableCell align="right">Value</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Row one</TableCell>
+              <TableCell align="right">42</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      ))}
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -1046,6 +1098,12 @@ const COMPONENT_DEFS = {
     fields: BUTTON_GROUP_FIELDS,
     prefill: {}, // minWidth = raw px, read off the theme
     renderMatrix: (args) => <ButtonGroupMatrix {...args} />,
+  },
+  TableCell: {
+    canvasLabel: 'TableCell — block padding per size + inline padding',
+    fields: TABLE_CELL_FIELDS,
+    prefill: { mediumBlockPad: 'lg', smallBlockPad: 'xs', inlinePad: 'lg' },
+    renderMatrix: (args) => <TableCellMatrix {...args} />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
