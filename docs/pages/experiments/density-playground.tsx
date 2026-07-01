@@ -14,6 +14,11 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Tooltip from '@mui/material/Tooltip';
+import PaddingIcon from '@mui/icons-material/Padding';
+import TitleIcon from '@mui/icons-material/Title';
 import {
   createTheme,
   ThemeProvider,
@@ -31,6 +36,26 @@ const VARIANTS = ['text', 'outlined', 'contained'] as const;
 type Preset = (typeof PRESETS)[number];
 type Size = (typeof SIZES)[number];
 type MappingKey = `${Size}Pad`;
+
+// Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
+// layout-safe (absolute ::before + pointer-events:none), never touches the
+// components' real styles. The label span sits above the padding overlay
+// (z-index) so text stays crisp; its blue fill only shows in text mode.
+const DEBUG_SX = {
+  '& .density-debug-text': { position: 'relative', zIndex: 1, borderRadius: '2px' },
+  '&[data-debug-padding] .MuiButtonBase-root': { position: 'relative' },
+  '&[data-debug-padding] .MuiButtonBase-root::before': {
+    content: '""',
+    position: 'absolute',
+    inset: 0,
+    borderRadius: 'inherit',
+    backgroundColor: 'rgba(46, 204, 64, 0.28)', // padding = green (DevTools convention)
+    pointerEvents: 'none',
+  },
+  '&[data-debug-text] .density-debug-text': {
+    backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
+  },
+} as const;
 
 const PRESET_LABEL: Record<Preset, string> = {
   unset: 'unset — no fn · today · 0-diff',
@@ -128,7 +153,7 @@ function ButtonMatrix({
                   sx={sx}
                   data-cell={`${variant}-${size}`}
                 >
-                  {variant}
+                  <span className="density-debug-text">{variant}</span>
                 </Button>
               ))}
             </Stack>
@@ -163,6 +188,7 @@ const initialMapping = () =>
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
+  const [debug, setDebug] = React.useState<string[]>([]);
   const [mapping, setMapping] = React.useState<Record<ComponentName, Record<string, string>>>(
     initialMapping,
   );
@@ -324,22 +350,63 @@ export default function DensityExperiment() {
           </Box>
         </Box>
 
-        {/* CANVAS — wrapped in the density-enhanced theme. */}
-        <ThemeProvider theme={canvasTheme}>
-          <CssBaseline />
-          <Box id="density-canvas" sx={{ p: 4, flexGrow: 1 }}>
-            <Stack spacing={6}>
-              {visibleComponents.map((comp) => (
-                <Box key={comp} data-canvas-component={comp}>
-                  <Typography variant="overline" color="text.secondary">
-                    {COMPONENT_DEFS[comp].canvasLabel}
-                  </Typography>
-                  {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
-                </Box>
-              ))}
-            </Stack>
+        {/* RIGHT COLUMN — debug toolbar (plain theme) + themed canvas. */}
+        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <Box
+            sx={{
+              px: 4,
+              py: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+            }}
+          >
+            <Typography variant="overline" color="text.secondary">
+              Visual debug
+            </Typography>
+            <ToggleButtonGroup
+              size="small"
+              value={debug}
+              onChange={(_event, next: string[]) => setDebug(next)}
+              aria-label="visual debug overlays"
+            >
+              <ToggleButton value="padding" aria-label="highlight padding" data-debug-toggle="padding">
+                <Tooltip title="Padding highlight">
+                  <PaddingIcon fontSize="small" />
+                </Tooltip>
+              </ToggleButton>
+              <ToggleButton value="text" aria-label="highlight text box" data-debug-toggle="text">
+                <Tooltip title="Text bounding box">
+                  <TitleIcon fontSize="small" />
+                </Tooltip>
+              </ToggleButton>
+            </ToggleButtonGroup>
           </Box>
-        </ThemeProvider>
+
+          {/* CANVAS — wrapped in the density-enhanced theme. */}
+          <ThemeProvider theme={canvasTheme}>
+            <CssBaseline />
+            <Box
+              id="density-canvas"
+              data-debug-padding={debug.includes('padding') ? '' : undefined}
+              data-debug-text={debug.includes('text') ? '' : undefined}
+              sx={{ p: 4, flexGrow: 1, ...DEBUG_SX }}
+            >
+              <Stack spacing={6}>
+                {visibleComponents.map((comp) => (
+                  <Box key={comp} data-canvas-component={comp}>
+                    <Typography variant="overline" color="text.secondary">
+                      {COMPONENT_DEFS[comp].canvasLabel}
+                    </Typography>
+                    {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+          </ThemeProvider>
+        </Box>
       </Box>
     </Box>
   );
