@@ -379,54 +379,106 @@ export default function DensityExperiment() {
   const resetMapping = () => setMapping(buildMapping(canvasTheme));
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Head title="Density — experiment" description="enhanceDensity preset × token mapping" />
-      <Box sx={{ px: 3, py: 2, borderBottom: '1px solid', borderColor: 'divider' }}>
-        <Typography variant="h5" component="h1">
-          Density — experiment
+    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
+      <Head title="Density — playground" description="enhanceDensity preset × token mapping" />
+
+      {/* Title row — compact, single line. */}
+      <Box
+        sx={{
+          px: 3,
+          py: 0.75,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 1.5,
+        }}
+      >
+        <Typography variant="subtitle2" component="h1">
+          Density — playground
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="caption" color="text.secondary">
           Flip the preset · pick a component · remap its tokens to density steps
         </Typography>
       </Box>
 
-      <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-        {/* CONTROLS — outside the themed scope, so they don't pick up density. */}
+      {/* Control bar — full width: preset (left) · visual debug (right). */}
+      <Box
+        sx={{
+          px: 3,
+          py: 1,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 2,
+          flexWrap: 'wrap',
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Typography variant="overline" color="text.secondary" component="span" id="preset-label">
+            enhanceDensity
+          </Typography>
+          <RadioGroup
+            row
+            aria-labelledby="preset-label"
+            value={preset}
+            onChange={(event) => setPreset(event.target.value as Preset)}
+          >
+            {PRESETS.map((p) => (
+              <FormControlLabel
+                key={p}
+                value={p}
+                control={<Radio size="small" />}
+                label={PRESET_LABEL[p]}
+                slotProps={{ typography: { variant: 'body2' } }}
+              />
+            ))}
+          </RadioGroup>
+        </Box>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Typography variant="overline" color="text.secondary">
+            Visual debug
+          </Typography>
+          <ToggleButtonGroup
+            size="small"
+            value={debug}
+            onChange={(_event, next: string[]) => setDebug(next)}
+            aria-label="visual debug overlays"
+          >
+            <ToggleButton value="padding" aria-label="highlight padding" data-debug-toggle="padding">
+              <Tooltip title="Padding highlight">
+                <PaddingIcon fontSize="small" />
+              </Tooltip>
+            </ToggleButton>
+            <ToggleButton value="text" aria-label="highlight text box" data-debug-toggle="text">
+              <Tooltip title="Text bounding box">
+                <TitleIcon fontSize="small" />
+              </Tooltip>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+      </Box>
+
+      {/* Content — sidebar (fixed Component + scrollable mapping) · scrollable canvas. */}
+      <Box sx={{ flex: 1, minHeight: 0, display: 'flex' }}>
         <Box
           component="aside"
           sx={{
-            position: 'sticky',
-            top: 0,
-            alignSelf: 'flex-start',
             width: 320,
             flexShrink: 0,
-            p: 3,
             borderRight: '1px solid',
             borderColor: 'divider',
             display: 'flex',
             flexDirection: 'column',
-            gap: 3,
+            overflow: 'hidden',
           }}
         >
-          <FormControl>
-            <FormLabel id="preset-label">enhanceDensity preset</FormLabel>
-            <RadioGroup
-              aria-labelledby="preset-label"
-              value={preset}
-              onChange={(event) => setPreset(event.target.value as Preset)}
-            >
-              {PRESETS.map((p) => (
-                <FormControlLabel
-                  key={p}
-                  value={p}
-                  control={<Radio size="small" />}
-                  label={PRESET_LABEL[p]}
-                />
-              ))}
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl fullWidth size="small">
+          <FormControl fullWidth size="small" sx={{ p: 3, pb: 1.5, flexShrink: 0 }}>
             <FormLabel id="component-label" sx={{ mb: 0.5 }}>
               Component
             </FormLabel>
@@ -445,7 +497,10 @@ export default function DensityExperiment() {
             </Select>
           </FormControl>
 
-          <Box component="section" sx={{ opacity: mappingEnabled ? 1 : 0.5 }}>
+          <Box
+            component="section"
+            sx={{ flex: 1, minHeight: 0, overflowY: 'auto', px: 3, pb: 3, opacity: mappingEnabled ? 1 : 0.5 }}
+          >
             <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
               Vars mapping
             </Typography>
@@ -515,63 +570,27 @@ export default function DensityExperiment() {
           </Box>
         </Box>
 
-        {/* RIGHT COLUMN — debug toolbar (plain theme) + themed canvas. */}
-        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+        {/* CANVAS — density-enhanced theme; scrolls independently. */}
+        <ThemeProvider theme={canvasTheme}>
+          <CssBaseline />
           <Box
-            sx={{
-              px: 4,
-              py: 1.5,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1.5,
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-            }}
+            id="density-canvas"
+            data-debug-padding={debug.includes('padding') ? '' : undefined}
+            data-debug-text={debug.includes('text') ? '' : undefined}
+            sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
           >
-            <Typography variant="overline" color="text.secondary">
-              Visual debug
-            </Typography>
-            <ToggleButtonGroup
-              size="small"
-              value={debug}
-              onChange={(_event, next: string[]) => setDebug(next)}
-              aria-label="visual debug overlays"
-            >
-              <ToggleButton value="padding" aria-label="highlight padding" data-debug-toggle="padding">
-                <Tooltip title="Padding highlight">
-                  <PaddingIcon fontSize="small" />
-                </Tooltip>
-              </ToggleButton>
-              <ToggleButton value="text" aria-label="highlight text box" data-debug-toggle="text">
-                <Tooltip title="Text bounding box">
-                  <TitleIcon fontSize="small" />
-                </Tooltip>
-              </ToggleButton>
-            </ToggleButtonGroup>
+            <Stack spacing={6}>
+              {visibleComponents.map((comp) => (
+                <Box key={comp} data-canvas-component={comp}>
+                  <Typography variant="overline" color="text.secondary">
+                    {COMPONENT_DEFS[comp].canvasLabel}
+                  </Typography>
+                  {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
+                </Box>
+              ))}
+            </Stack>
           </Box>
-
-          {/* CANVAS — wrapped in the density-enhanced theme. */}
-          <ThemeProvider theme={canvasTheme}>
-            <CssBaseline />
-            <Box
-              id="density-canvas"
-              data-debug-padding={debug.includes('padding') ? '' : undefined}
-              data-debug-text={debug.includes('text') ? '' : undefined}
-              sx={{ p: 4, flexGrow: 1, ...DEBUG_SX }}
-            >
-              <Stack spacing={6}>
-                {visibleComponents.map((comp) => (
-                  <Box key={comp} data-canvas-component={comp}>
-                    <Typography variant="overline" color="text.secondary">
-                      {COMPONENT_DEFS[comp].canvasLabel}
-                    </Typography>
-                    {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
-                  </Box>
-                ))}
-              </Stack>
-            </Box>
-          </ThemeProvider>
-        </Box>
+        </ThemeProvider>
       </Box>
     </Box>
   );
