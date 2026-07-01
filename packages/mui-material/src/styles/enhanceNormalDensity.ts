@@ -22,8 +22,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [buttonVars.largePad]: `${d.sm} ${d.xl}`,
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
-    [menuItemVars.minHeight]: d.xl,
-    [menuItemVars.denseMinHeight]: d.lg,
+    // Height = raw px (density steps are spacing-only). Padding = density steps.
+    [menuItemVars.minHeight]: '44px',
+    [menuItemVars.denseMinHeight]: '32px',
     [menuItemVars.blockPad]: d.xs,
     [menuItemVars.denseBlockPad]: d.xxs,
     [menuItemVars.inlinePad]: d.lg,

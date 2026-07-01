@@ -177,13 +177,13 @@ function ButtonMatrix({
   );
 }
 
-// MenuItem's density tokens (single-value each), keyed by the `dense` axis
+// MenuItem's density-step tokens (spacing only), keyed by the `dense` axis
 // rather than Button's small/medium/large. Field key === mapping-state key.
+// min-height is NOT here — heights use raw px (set per preset), not density
+// steps — so it isn't interactively remappable.
 const MENUITEM_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_menuItemVars.minHeight },
   { key: 'blockPad', cssVar: private_menuItemVars.blockPad },
   { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad },
-  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight },
   { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad },
   { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad },
 ];
@@ -246,12 +246,10 @@ const COMPONENT_DEFS = {
   MenuItem: {
     canvasLabel: 'MenuItem (default + dense)',
     fields: MENUITEM_FIELDS,
-    // Canonical prefill matches enhanceDensity's own MuiMenuItem assignment.
+    // Canonical prefill matches enhanceDensity's own MuiMenuItem spacing mapping.
     prefill: {
-      minHeight: 'xl',
       blockPad: 'xs',
       inlinePad: 'lg',
-      denseMinHeight: 'lg',
       denseBlockPad: 'xxs',
       denseInlinePad: 'md',
     },
