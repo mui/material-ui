@@ -6,6 +6,7 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getCardContentUtilityClass } from './cardContentClasses';
+import { private_cardContentVars as vars } from './cardContentVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -21,9 +22,14 @@ const CardContentRoot = styled('div', {
   name: 'MuiCardContent',
   slot: 'Root',
 })({
-  padding: 16,
+  // Density seams over the literal defaults (no size axis).
+  '--_pad': '16px',
+  '--_padBottom': '24px',
+  '--comp-pad': `var(${vars.pad}, var(--_pad))`,
+  '--comp-padBottom': `var(${vars.padBottom}, var(--_padBottom))`,
+  padding: 'var(--comp-pad, var(--_pad))',
   '&:last-child': {
-    paddingBottom: 24,
+    paddingBottom: 'var(--comp-padBottom, var(--_padBottom))',
   },
 });
 

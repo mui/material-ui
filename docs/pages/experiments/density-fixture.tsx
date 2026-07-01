@@ -114,6 +114,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Checkbox-small-pad' as any]: '12px',
     },
   },
+  CardContent: {
+    dense: {
+      ['--CardContent-pad' as any]: '8px',
+      ['--CardContent-padBottom' as any]: '12px',
+    },
+    loose: {
+      ['--CardContent-pad' as any]: '32px',
+      ['--CardContent-padBottom' as any]: '40px',
+    },
+  },
   Tab: {
     dense: {
       ['--Tab-minHeight' as any]: '40px',

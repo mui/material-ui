@@ -12,6 +12,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -151,6 +154,16 @@ const demos: Record<string, React.ReactNode> = {
       <Checkbox defaultChecked />
       <Checkbox defaultChecked size="small" />
     </Stack>
+  ),
+  CardContent: (
+    <Card variant="outlined" sx={{ width: 240 }}>
+      <CardContent>
+        <Typography variant="h6">Card title</Typography>
+        <Typography variant="body2" color="text.secondary">
+          Body content with the last-child bottom padding.
+        </Typography>
+      </CardContent>
+    </Card>
   ),
 };
 

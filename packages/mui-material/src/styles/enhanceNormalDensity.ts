@@ -11,6 +11,7 @@ import { private_inputVars as inVars } from '../Input/inputVars';
 import { private_tabVars as tabVars } from '../Tab/tabVars';
 import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
+import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -129,6 +130,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // Touch-target padding (9px both sizes today) = density steps.
     [cbVars.mediumPad]: d.sm,
     [cbVars.smallPad]: d.xs,
+  });
+  addRootOverride(enhanced.components, 'MuiCardContent', {
+    // No size axis: base pad + larger last-child bottom pad.
+    [ccVars.pad]: d.lg,
+    [ccVars.padBottom]: d.xl,
   });
   return enhanced;
 }

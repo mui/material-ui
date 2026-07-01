@@ -25,6 +25,8 @@ import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
+import Card from '@mui/material/Card';
+import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -561,6 +563,42 @@ function CheckboxMatrix({
   );
 }
 
+// CardContent family: base padding + last-child bottom padding (no size axis).
+const CARD_CONTENT_FIELDS: DensityField[] = [
+  { key: 'pad', cssVar: private_cardContentVars.pad },
+  { key: 'padBottom', cssVar: private_cardContentVars.padBottom },
+];
+
+function CardContentMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        CARD_CONTENT_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Card variant="outlined" sx={{ mt: 1, width: 260 }}>
+      <CardContent sx={sx}>
+        <Typography variant="h6">
+          <span className="density-debug-text">Card title</span>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <span className="density-debug-text">Body content with last-child bottom padding.</span>
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -649,6 +687,12 @@ const COMPONENT_DEFS = {
     fields: CHECKBOX_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: (args) => <CheckboxMatrix {...args} />,
+  },
+  CardContent: {
+    canvasLabel: 'CardContent — padding + last-child bottom padding',
+    fields: CARD_CONTENT_FIELDS,
+    prefill: { pad: 'lg', padBottom: 'xl' },
+    renderMatrix: (args) => <CardContentMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
