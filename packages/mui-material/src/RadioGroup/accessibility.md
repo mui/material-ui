@@ -6,18 +6,18 @@ RadioGroup coordinates a set of [Radio](../Radio/accessibility.md) children, so 
 
 | Result                  | Count |
 | :---------------------- | :---- |
-| ✅ Supports             | 6     |
-| ⚠️ Partially Supports   | 1     |
+| ✅ Supports             | 7     |
+| ⚠️ Partially Supports   | 0     |
 | ❌ Does Not Support     | 0     |
 | ➖ Not Applicable       | 30    |
 | ↗ Inherited (see Radio) | 18    |
-| 🚩 Unverified           | 3/7   |
+| 🚩 Flagged              | 3/7   |
 
-The first three rows and Not Applicable count the 7 group-level criteria plus the 30 that do not apply; Inherited adds the 18 item-level criteria rated in Radio (7 + 30 + 18 = 55). Unverified is the ratio of flagged to applicable group-level criteria; inherited criteria are excluded.
+The first three rows and Not Applicable count the 7 group-level criteria plus the 30 that do not apply; Inherited adds the 18 item-level criteria rated in Radio (7 + 30 + 18 = 55). Flagged is the ratio of source-assessed to applicable group-level criteria; inherited criteria are excluded.
 
 ## Known gaps
 
-- ⚠️ **3.3.2 Labels or Instructions.** The group ships no label of its own. `role="radiogroup"` requires an accessible name, but `UseRadioGroup` renders a group with no `FormLabel` and no `aria-labelledby`, so the question is unlabeled. Pair the group with a `FormLabel` referenced by `aria-labelledby`.
+No group-level gaps. The inherited item-level gaps (1.4.11 Non-text Contrast, 2.4.7 Focus Visible) are covered in the [Radio report](../Radio/accessibility.md).
 
 ## Success criteria
 
@@ -25,16 +25,16 @@ The first three rows and Not Applicable count the 7 group-level criteria plus th
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
-- Which option is selected is shown by the filled dot inside one circle, a shape difference, not color, so a color-blind user can tell the selected option from the rest.
-- A group error shown only through red `FormHelperText` is color-only. Pair it with text or an icon. That is author content.
+- State is conveyed by the dot's presence and not color - an empty circle (unchecked) and a circle with a filled dot (checked)
+- The group error state is color-only: `FormHelperText` conveys it through red text. The author is responsible for associating it with error text.
 
 **Manual testing steps**
 
-1. Open `RadioButtonsGroup`, select an option, and view the group in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia).
+1. Render a `RadioGroup` with a `FormLabel` and several `Radio` options, select one, and view the group in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia).
 2. Confirm the selected option is still identifiable by its dot.
-3. Render an error `FormHelperText` (as in `ErrorRadios`) in grayscale and confirm "error" is still perceivable.
+3. Render the group with an error `FormHelperText` in grayscale and confirm "error" is still perceivable.
 
 **Pass:** the selected option is distinguishable by the dot, and any error state is conveyed by more than color.
 
@@ -49,14 +49,14 @@ The first three rows and Not Applicable count the 7 group-level criteria plus th
 
 **Manual testing steps**
 
-1. Open `RadioButtonsGroup` and inspect the accessibility tree: confirm a `radiogroup` node named by the `FormLabel`, containing the `radio` options.
-2. Open `UseRadioGroup` and confirm the `radiogroup` is present but unnamed.
+1. Render a `RadioGroup` whose `aria-labelledby` points to a `FormLabel`, and inspect the accessibility tree: confirm a `radiogroup` node named by the `FormLabel`, containing the `radio` options.
+2. Render a `RadioGroup` with no `FormLabel` or `aria-labelledby` and confirm the `radiogroup` is present but unnamed.
 
 **Pass:** the radios are exposed as one `radiogroup`, and the name and any description are set by the author.
 
 #### 2.4.6 Headings and Labels · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The group's label comes from a `FormLabel` referenced by `aria-labelledby`, the documented pattern in `RadioButtonsGroup` and `RowRadioButtonsGroup`. axe-core covers that the reference resolves; whether the wording describes the question is a manual review.
 - A vague group label ("Choose one") would fail, and the component cannot enforce wording.
@@ -70,15 +70,15 @@ The first three rows and Not Applicable count the 7 group-level criteria plus th
 
 #### 3.3.2 Labels or Instructions · A
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
-- A radio group is a data-entry question, so it needs a label or instructions presented to all users. The conforming pattern pairs `RadioGroup` with a `FormLabel` referenced by `aria-labelledby`, as `RadioButtonsGroup`, `ControlledRadioButtonsGroup`, and `RowRadioButtonsGroup` do.
-- The component supplies no group label itself, and `UseRadioGroup` ships a group with no `FormLabel` and no `aria-labelledby`, a reachable failure that nothing catches (no axe rule flags an unnamed `radiogroup`). Add a visible `FormLabel` for every group.
+- A radio group is a data-entry question, so it needs a label or instructions presented to all users. The component supports this through a `FormLabel` referenced by `aria-labelledby`, the documented pattern in `RadioButtonsGroup`, `ControlledRadioButtonsGroup`, and `RowRadioButtonsGroup`.
+- The label text itself is author content and should use`FormLabel`.
 
 **Manual testing steps**
 
 1. For each radio group, confirm a visible question or instruction is shown to all users.
-2. Flag any `RadioGroup` with no `FormLabel` (such as `UseRadioGroup`).
+2. Flag any `RadioGroup` with no `FormLabel`.
 
 **Pass:** every group has a visible label or instruction. A group with no visible label fails.
 
@@ -91,7 +91,7 @@ The first three rows and Not Applicable count the 7 group-level criteria plus th
 
 **Manual testing steps**
 
-1. Open `ControlledRadioButtonsGroup` and inspect the `radiogroup`: confirm its role, its name from the `FormLabel`, and that the selected `radio` reads as checked.
+1. Render a controlled `RadioGroup` with a `FormLabel` and inspect the `radiogroup`: confirm its role, its name from the `FormLabel`, and that the selected `radio` reads as checked.
 2. Select a different option with a screen reader running and confirm the new value is announced.
 
 **Pass:** the group exposes its `radiogroup` role, an author-supplied name, and the current selected value with change notification.
@@ -114,30 +114,30 @@ The first three rows and Not Applicable count the 7 group-level criteria plus th
 
 ## Inherited from Radio
 
-These item-level criteria are rated once in the [Radio report](../Radio/accessibility.md); the grouping does not change them. They are not re-rated here and do not count toward the Unverified ratio.
+These item-level criteria are rated once in the [Radio report](../Radio/accessibility.md); the grouping does not change them. They are not re-rated here and do not count toward the Flagged ratio.
 
-- [**1.1.1 Non-text Content (A)**](../Radio/accessibility.md). Each option's dot and circle, and its label-derived name.
-- [**1.3.2 Meaningful Sequence (A)**](../Radio/accessibility.md). Each option's input-then-label source order.
-- [**1.3.3 Sensory Characteristics (A)**](../Radio/accessibility.md). Each option's reliance on its label, not sensory cues.
-- [**1.4.3 Contrast (Minimum) (AA)**](../Radio/accessibility.md). Each option's label and helper text.
-- [**1.4.4 Resize Text (AA)**](../Radio/accessibility.md). Each option's rem-sized icon and text.
-- [**1.4.5 Images of Text (AA)**](../Radio/accessibility.md). Each option's text label.
-- [**1.4.10 Reflow (AA)**](../Radio/accessibility.md). Each option's inline-flex layout.
-- [**1.4.11 Non-text Contrast (AA)**](../Radio/accessibility.md). Each option's dot and circle at 3:1.
-- [**1.4.12 Text Spacing (AA)**](../Radio/accessibility.md). Each option's label under spacing overrides.
-- [**2.1.2 No Keyboard Trap (A)**](../Radio/accessibility.md). Each option as a native input.
-- [**2.4.7 Focus Visible (AA)**](../Radio/accessibility.md). Each option's focus ripple.
-- [**2.4.11 Focus Not Obscured (Minimum) (AA)**](../Radio/accessibility.md). Each option's focus visibility.
-- [**2.5.2 Pointer Cancellation (A)**](../Radio/accessibility.md). Each option activating on pointer-up.
-- [**2.5.3 Label in Name (A)**](../Radio/accessibility.md). Each option's accessible name containing its label.
-- [**2.5.8 Target Size (Minimum) (AA)**](../Radio/accessibility.md). Each option's padded 42px target.
-- [**3.2.1 On Focus (A)**](../Radio/accessibility.md). Each option changing nothing on focus.
-- [**3.2.2 On Input (A)**](../Radio/accessibility.md). Each option changing only its value on selection.
-- [**3.2.4 Consistent Identification (AA)**](../Radio/accessibility.md). Each option's stable label.
+- **1.1.1 Non-text Content (A).** Each option's dot and circle, and its label-derived name.
+- **1.3.2 Meaningful Sequence (A).** Each option's input-then-label source order.
+- **1.3.3 Sensory Characteristics (A).** Each option's reliance on its label, not sensory cues.
+- **1.4.3 Contrast (Minimum) (AA).** Each option's label and helper text.
+- **1.4.4 Resize Text (AA).** Each option's rem-sized icon and text.
+- **1.4.5 Images of Text (AA).** Each option's text label.
+- **1.4.10 Reflow (AA).** Each option's inline-flex layout.
+- **1.4.11 Non-text Contrast (AA).** Each option's dot and circle at 3:1.
+- **1.4.12 Text Spacing (AA).** Each option's label under spacing overrides.
+- **2.1.2 No Keyboard Trap (A).** Each option as a native input.
+- **2.4.7 Focus Visible (AA).** Each option's focus ripple.
+- **2.4.11 Focus Not Obscured (Minimum) (AA).** Each option's focus visibility.
+- **2.5.2 Pointer Cancellation (A).** Each option activating on pointer-up.
+- **2.5.3 Label in Name (A).** Each option's accessible name containing its label.
+- **2.5.8 Target Size (Minimum) (AA).** Each option's padded 42px target.
+- **3.2.1 On Focus (A).** Each option changing nothing on focus.
+- **3.2.2 On Input (A).** Each option changing only its value on selection.
+- **3.2.4 Consistent Identification (AA).** Each option's stable label.
 
 ## Not applicable
 
-- **1.3.5 Identify Input Purpose (AA).** Covers inputs that collect information about the user through `autocomplete`. A radio choice is not one of those input purposes.
+- **1.3.5 Identify Input Purpose (AA).** Covers fields that autofill the user's own data through `autocomplete`. Those purposes map to text-entry and `select` controls (`sex`, for example, is free-form text), not radio buttons, so even a "Gender" radio group is outside this criterion.
 - **1.4.13 Content on Hover or Focus (AA).** The group shows no additional content on hover or focus; a `Tooltip` wrapper would own this.
 - **2.1.4 Character Key Shortcuts (A).** The only keys are <kbd>Space</kbd> and the arrow keys, and only while focused. There is no single-character shortcut.
 - **2.2.2 Pause, Stop, Hide (A).** No auto-starting moving, blinking, or auto-updating content.
@@ -174,4 +174,4 @@ The following SC are applicable but out of scope:
 - **Component version.** `@mui/material` 9.1.2.
 - **Scope.** The RadioGroup component coordinating two or more `Radio` children, with `FormControl`/`FormLabel` for the group's name and `FormHelperText`, rendered through the documented API. Each radio's item-level conformance is inherited from the [Radio report](../Radio/accessibility.md).
 - **Automated.** axe-core via the Playwright visual-regression harness (results in [`radio-buttons.a11y.json`](../../../../docs/data/material/components/radio-buttons/radio-buttons.a11y.json)), plus interaction tests in [`RadioGroup.test.js`](./RadioGroup.test.js). The arrow-key navigation and roving tab-order test runs in the browser project only, since jsdom does not implement native radio-group navigation.
-- **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
+- **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.

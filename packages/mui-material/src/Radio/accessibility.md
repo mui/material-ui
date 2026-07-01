@@ -4,17 +4,16 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 | Result                | Count |
 | :-------------------- | :---- |
-| ✅ Supports           | 22    |
-| ⚠️ Partially Supports | 3     |
+| ✅ Supports           | 23    |
+| ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Unverified         | 12/25 |
+| 🚩 Flagged            | 12/25 |
 
 ## Known gaps
 
 - ⚠️ **1.4.11 Non-text Contrast.** The default dot and circle clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the `CustomizedRadios` unchecked circle is about 1.1:1 against the page).
-- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
-- ⚠️ **3.3.2 Labels or Instructions.** The component ships no visible label, and the basic demos use a `slotProps.input` `aria-label` only (a name for assistive technology, but no label presented to all users). A visible label via `FormControlLabel` or adjacent text is required.
+- ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the focus ripple, leaving none unless the author adds `.Mui-focusVisible` styling.
 
 ## Success criteria
 
@@ -22,14 +21,14 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
-- The radio is one control: the hidden `<input>` followed by the `aria-hidden` dot and circle, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
-- Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="bottom"` or `"start"` flips the label and control visually, so confirm the reading order of a group like `FormControlLabelPlacement` still matches its visual order.
+- The radio is one control: the hidden `<input>` followed by the `aria-hidden` dot and circle, with `FormControlLabel` placing the label and control in source order, so the reading order matches the visual order.
+- Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="bottom"` flips the label and control vertically, so confirm the reading order of a group like `FormControlLabelPlacement` still matches its visual order.
 
 **Manual testing steps**
 
-1. Open `RadioButtonsGroup` and press <kbd>Tab</kbd> and the arrow keys through the options, noting the focus order.
+1. Render a `RadioGroup` with several labeled `Radio` options, then press <kbd>Tab</kbd> and the arrow keys through them, noting the focus order.
 2. Compare that order to the visual top-to-bottom order.
 3. Watch for `labelPlacement` or flex layouts that reorder a row visually without changing the DOM.
 
@@ -37,10 +36,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
-- The component renders no instructional text of its own, so it introduces no shape-, color-, or position-only instructions.
-- Surrounding copy must not rely on sensory characteristics alone (for example "select the green option" or "the option on the right"). That is authored content.
+- The component renders no instructional text of its own.
+- The author is responsible for ensuring surrounding copy does not rely on sensory characteristics alone (for example "select the green option" or "the option on the right").
 
 **Manual testing steps**
 
@@ -51,10 +50,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.4 Resize Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
-- The dot and circle are an `SvgIcon` whose size comes from `fontSize` in `rem` (medium 24px = 1.5rem, small 20px = 1.25rem) with a `1em` box, so they scale with browser zoom or root font size; the label is normal text. Nothing is pixel-fixed.
-- A fixed-pixel container in the surrounding layout could clip at 200%.
+- The dot and circle are an `SvgIcon` whose size comes from `fontSize` in `rem` (medium 24px = 1.5rem, small 20px = 1.25rem) with a `1em` box, so they scale with browser zoom or root font size; the label is normal text. No pixel units are used.
+- A fixed-pixel container in the surrounding layout could cause clipping at 200%.
 
 **Manual testing steps**
 
@@ -65,9 +64,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
-- Labels and helper text render as live DOM text; the dot and circle are vector graphics, not images of text, and they carry no textual information.
+- Labels and helper text render as live DOM text; the dot and circle are vector graphics without any textual information.
 - This fails only if an author passes an image of text as the label, or supplies an `icon`/`checkedIcon` that is an image of text. Use real text unless it is a logo.
 
 **Manual testing steps**
@@ -79,10 +78,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The radio is a small inline-flex control with no fixed min-width and no horizontal-overflow layout of its own, so it reflows into a 320 CSS pixel viewport.
-- Real failures usually come from the surrounding layout. A `row` group like `RowRadioButtonsGroup` that does not wrap can overflow at 320 pixels.
+- Real failures usually come from the surrounding layout, such as a wide non-wrapping row of labeled radios or a fixed-width container (a default `row` group still wraps, since `FormGroup` keeps `flex-wrap: wrap`).
 
 **Manual testing steps**
 
@@ -93,7 +92,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The radio is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to a radio beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -107,9 +106,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
-- The component exposes whatever name the author supplies, stably per props, which is the precondition for consistent identification.
+- The component exposes whatever name the author supplies.
 - Consistency is a cross-page property. Confirm that radios with the same function share a label, and that one label is not reused for different functions.
 
 **Manual testing steps**
@@ -118,6 +117,21 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 2. Compare their labels.
 
 **Pass:** the same function uses the same label, and no label is reused for different functions.
+
+#### 3.3.2 Labels or Instructions · A
+
+`🚩` · `✅ Supports` · `○ Author`
+
+- A visible label or instruction is the author's content to supply; the component renders a real `<label>` when wrapped in `FormControlLabel`, which is the recommended composition for the radio component.
+- `aria-label`-only radios would fail this SC in a real-world use-case.
+
+**Manual testing steps**
+
+1. For each radio, confirm a visible label or instruction is shown to all users.
+2. Flag instances that rely on an `aria-label` only (no visible text).
+3. Confirm bare radios are wrapped in `FormControlLabel` or paired with visible instructions.
+
+**Pass:** each radio has a visible label or instruction.
 
 ### 🔁 Hybrid
 
@@ -146,21 +160,19 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 **Manual testing steps**
 
 1. Render `<FormControlLabel control={<Radio required />} label="Express" />` and confirm `role=radio`, the name, `required`, and the wrapping `<label>`.
-2. In `ErrorRadios`, confirm the error `FormHelperText` is not tied to the group (no `aria-describedby`).
 
 **Pass:** role, state, and label association are programmatically determinable, and any helper or error text is tied to the control via author-supplied `aria-describedby`.
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
-- State is conveyed by the dot's presence, not color: an empty circle (unchecked) and a circle with a filled dot (checked). A color-blind user can tell the two apart.
-- The group error state is color-only: `FormHelperText` conveys it through red text. Pair it with text or an icon. That is author content.
+- State is conveyed by the dot's presence and not color - an empty circle (unchecked) and a circle with a filled dot (checked)
+- The group error state is color-only: `FormHelperText` conveys it through red text. The author is responsible for associating it with error text.
 
 **Manual testing steps**
 
 1. Render a checked and an unchecked radio and view in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia); confirm the dot still distinguishes them.
-2. Render an error `FormHelperText` in grayscale and confirm "error" is still perceivable without the red.
 
 **Pass:** checked and unchecked are distinguishable by the dot, and any error state is conveyed by more than color.
 
@@ -175,31 +187,29 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 1. Measure the label and helper text against the real background in light and dark themes.
 2. Pay attention to light-mode error text (`#d32f2f`, about `5:1`) on any non-white background.
-3. Re-check any custom label color.
 
 **Pass:** label and helper or error text meet `4.5:1` (`3:1` for large text) against the actual background.
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - This criterion, not 1.4.3, governs the dot and circle at 3:1, and every default state passes against the default page background (`#fff` light, `#121212` dark). In light mode `warning` is the tightest at `3.11:1`, `info` `3.86:1`, the default `primary` dot `4.60:1`, and the unchecked `text.secondary` circle `5.74:1`; dark mode clears `3:1` with room to spare (`error`, the lowest, is about `5:1`). `warning.main` is tuned in the palette as "closest to orange[800] that pass 3:1", so a colored container behind the radio eats its small headroom first. Disabled (`action.disabled`, about `1.9:1`) is exempt.
-- The gaps are the focus indicator and customization. The keyboard focus indicator's contrast is untested, and `disableRipple`/`disableFocusRipple` removes it. Custom icons can fall below 3:1: the `CustomizedRadios` unchecked circle is `#f5f8fa` with a faint inset border, about `1.1:1` against the page.
 
 **Manual testing steps**
 
 1. Measure the unchecked circle and each checked color (`primary` through `warning`) against the background; confirm `3:1`, checking `warning` specifically.
 2. Measure the keyboard focus indicator against the colors next to it.
-3. Audit any custom icons (the `CustomizedRadios` unchecked circle is a known fail) and treat disabled as exempt.
+3. Audit any custom `icon`/`checkedIcon` (a low-contrast custom icon is a common fail) and treat disabled as exempt.
 
 **Pass:** the dot and circle in every active state and the focus indicator are `3:1` against adjacent colors; disabled is exempt.
 
 #### 1.4.12 Text Spacing · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The component sets no text styles of its own and no fixed heights that would clip under user text-spacing overrides; the label is normal flowing text that wraps, and the dot and circle are fixed vectors unaffected by spacing.
-- Whether a long label clips depends on the author's container, not the radio.
+- Whether a long label clips depends on the author's container.
 
 **Manual testing steps**
 
@@ -212,7 +222,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- The component renders whatever label the author supplies; descriptiveness is a content decision. This criterion does not require a label to exist, only that any provided label describes its purpose. axe-core covers that a name is present; whether it is descriptive is a manual review. The group's own legend is rated in the [RadioGroup report](../RadioGroup/accessibility.md).
+- The component renders whatever label the author supplies. This criterion does not require a label to exist, only that any provided label describes its purpose. axe-core covers that a name is present; whether it is descriptive is a manual review. The group's own legend is rated in the [RadioGroup report](../RadioGroup/accessibility.md).
 - A vague label ("Option 1") would fail, and the component cannot enforce wording.
 
 **Manual testing steps**
@@ -224,18 +234,17 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
-- `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown.
-- `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedRadios` demo does this, re-adding a 2px outline.
+- The focus ripple serves as focus visible indicator
+- `disableRipple` or `disableFocusRipple` removes the focus indicator (the focus ripple), relying on the author to add it with `.Mui-focusVisible` styles.
 
 **Manual testing steps**
 
 1. Press <kbd>Tab</kbd> to a default `<Radio />` and confirm a visible focus indicator appears.
-2. Press <kbd>Tab</kbd> to a `<Radio disableRipple />` (or `disableFocusRipple`) with no custom styles and confirm none appears.
-3. Click with the mouse and confirm the indicator is keyboard-only.
+2. Click with the mouse and confirm the indicator is keyboard-only.
 
-**Pass:** every keyboard-focused radio shows a visible indicator, including `disableRipple` via author-supplied styles. Today a bare `disableRipple` radio shows none.
+**Pass:** every keyboard-focused radio shows a visible indicator, including `disableRipple` via author-supplied styles.
 
 #### 2.5.3 Label in Name · A
 
@@ -252,27 +261,12 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Pass:** the accessible name contains the visible label text.
 
-#### 3.3.2 Labels or Instructions · A
-
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
-
-- A label must be presented to all users, not only exposed to assistive technology. The Understanding document is explicit that a name exposed only to assistive technology (an `aria-label`) can pass 4.1.2 yet fail this criterion.
-- The component ships no visible label, and the basic demos (`RadioButtons`, `ColorRadioButtons`, `SizeRadioButtons`) supply only `slotProps.input` `aria-label`, a name for assistive technology with no visible label. `FormControlLabel`, as used in `RadioButtonsGroup` and `RowRadioButtonsGroup`, is the conforming pattern.
-
-**Manual testing steps**
-
-1. For each radio, confirm a visible label or instruction is shown to all users.
-2. Flag instances that rely on an `aria-label` only (no visible text).
-3. Confirm bare radios are wrapped in `FormControlLabel` or paired with visible instructions.
-
-**Pass:** each radio has a visible label or instruction. An `aria-label`-only radio fails.
-
 #### 4.1.2 Name, Role, Value · A
 
 `✅ Supports` · `◐ Shared`
 
 - Role, checked, and disabled are met natively: the native `<input type="radio">` exposes `role=radio`, the checked state, the value, and change notification with no ARIA needed; `disabled` maps to native `disabled` and `required` to native `required`. Unlike a checkbox, a radio has no `indeterminate` state, so it sets no `aria-checked` and raises no ARIA-in-HTML conflict. Covered by axe-core and unit tests.
-- The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. The group's name, role, and selected value are rated in the [RadioGroup report](../RadioGroup/accessibility.md). One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a radio and is not exposed to assistive technology. Use `disabled` if that state must be conveyed.
+- The individual radio's name relies on author-supplied `FormControlLabel` or `aria-label`. The group's name, role, and selected value are rated in the [RadioGroup report](../RadioGroup/accessibility.md).
 
 **Manual testing steps**
 
@@ -288,7 +282,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `● Component`
 
-- The native `<input type="radio">` is the single focusable control (the root span is `role: undefined`, `tabIndex: null`), so the browser provides <kbd>Tab</kbd> focus and <kbd>Space</kbd> selection with no timing or path dependence, matching the [APG radio pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/). Disabled leaves the tab order. Arrow-key movement between grouped radios is rated in the [RadioGroup report](../RadioGroup/accessibility.md).
+- The native `<input type="radio">` is the single focusable control (the root span is `role: undefined`, `tabIndex: null`), so the browser provides <kbd>Tab</kbd> focus and <kbd>Space</kbd> selection with no timing or path dependence, matching the [APG radio pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/). Disabled leaves the tab order. Arrow-key movement between grouped radios is covered in the [RadioGroup report](../RadioGroup/accessibility.md).
 - Covered by unit tests.
 
 #### 2.1.2 No Keyboard Trap · A
@@ -332,7 +326,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Not applicable
 
-- **1.3.5 Identify Input Purpose (AA).** Covers inputs that collect information about the user through `autocomplete`. A radio choice is not one of those input purposes.
+- **1.3.5 Identify Input Purpose (AA).** Covers fields that autofill the user's own data through `autocomplete`. Those purposes map to text-entry and `select` controls (`sex`, for example, is free-form text), not radio buttons, so even a "Gender" radio group is outside this criterion.
 - **1.4.13 Content on Hover or Focus (AA).** Needs additional content such as a tooltip or popover. The radio only restyles itself; a `Tooltip` wrapper would own this.
 - **2.1.4 Character Key Shortcuts (A).** The only keys are <kbd>Space</kbd> and the arrow keys, and only while focused. There is no single-character shortcut.
 - **2.2.2 Pause, Stop, Hide (A).** No auto-starting moving, blinking, or auto-updating content.
@@ -355,8 +349,6 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Level AAA
 
-The following SC are applicable but out of scope:
-
 - **2.3.3 Animation from Interactions.** The ripple's `scale()` animation honors `prefers-reduced-motion` when the theme sets `motion.reducedMotion` to `system` (follows the OS) or `always`; `disableRipple` also removes it. The default is `never`, so OS reduced-motion is not honored by default. `🚩`
 - **2.4.13 Focus Appearance.** The focus ripple is unlikely to meet the area and 3:1 thresholds, and `disableRipple` removes it. `🚩`
 - **2.5.5 Target Size (Enhanced), 44 px.** Default sizes (42px medium, 38px small) are below 44px. `🚩`
@@ -369,4 +361,4 @@ The following SC are applicable but out of scope:
 - **Component version.** `@mui/material` 9.1.2.
 - **Scope.** The Radio component and its documented composition with `FormControlLabel`, `FormControl`/`FormLabel`, and `FormHelperText`, rendered through the documented API. Group-level coordination (the `radiogroup` role, arrow-key navigation, and the group's name) is rated in the [RadioGroup report](../RadioGroup/accessibility.md).
 - **Automated.** axe-core via the Playwright visual-regression harness (results in [`radio-buttons.a11y.json`](../../../../docs/data/material/components/radio-buttons/radio-buttons.a11y.json)), plus interaction tests in [`Radio.test.js`](./Radio.test.js). Dot and circle contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
-- **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
+- **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
