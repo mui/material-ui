@@ -1,4 +1,5 @@
-import { applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
+import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
+import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 
 const scale: DensityScale = {
   xxs: '2px',
@@ -12,6 +13,11 @@ const scale: DensityScale = {
 
 export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
+  enhanced.components = addRootOverride(enhanced.components, 'MuiButton', {
+    [buttonVars.smallPad]: `${d.xxs} ${d.sm}`,
+    [buttonVars.mediumPad]: `${d.xs} ${d.lg}`,
+    [buttonVars.largePad]: `${d.sm} ${d.xl}`,
+  });
   enhanced.typography = {
     ...enhanced.typography,
     button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.5 },

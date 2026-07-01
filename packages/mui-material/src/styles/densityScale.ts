@@ -1,9 +1,8 @@
 import { Theme } from './createTheme';
-import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 
 /**
- * Named density steps, surfaced as `--mui-density-*` CSS vars. Components wired
- * by the `enhance*Density` presets pull their spacing tokens from these.
+ * Named density steps, surfaced as `--mui-density-*` CSS vars. Presets assign a
+ * component's sized tokens to these steps (via `densityVars` + `addRootOverride`).
  */
 export interface DensityScale {
   xxs: string;
@@ -29,19 +28,24 @@ export type EnhanceableTheme = {
 const cssVar = (key: DensityKey) => `--mui-density-${key}`;
 
 /**
+ * `var(--mui-density-*)` reference for each step. Presets read these to point a
+ * component var at a chosen step, e.g. `[buttonVars.mediumPad]: `${densityVars.xs} ${densityVars.lg}``.
+ */
+export const densityVars: DensityScale = DENSITY_KEYS.reduce((acc, key) => {
+  acc[key] = `var(${cssVar(key)})`;
+  return acc;
+}, {} as DensityScale);
+
+/**
  * PRIVATE density core shared by the three `enhance*Density` presets. Not
  * re-exported from the styles barrel — presets are the public surface.
  *
- * Does both jobs in one call (mirroring `enhanceHighContrast`):
- * 1. **Emits** the scale as `--mui-density-*` CSS vars at `:root` (via
- *    `MuiCssBaseline` — requires `<CssBaseline />`) and exposes it on
- *    `theme.density` / `theme.vars.density`.
- * 2. **Maps** each family's sized tokens (`private_*Vars`) to density steps
- *    through injected `styleOverrides.root`. The mapping is identical across
- *    presets — only the scale values differ — so it lives here once.
- *
- * Typography reflow is NOT handled here — each preset applies its own (or none,
- * for `normal`) after calling this.
+ * **Scale emission only.** Emits the scale as `--mui-density-*` CSS vars at
+ * `:root` (via `MuiCssBaseline` — requires `<CssBaseline />`) and exposes it on
+ * `theme.density` / `theme.vars.density`. It is **component-agnostic**: it does
+ * NOT touch any `Mui*` component. Each preset maps component vars → density
+ * steps itself (`addRootOverride`), so a preset can point the same token at a
+ * different step than its siblings.
  *
  * @param themeInput - The created theme to enhance.
  * @param scale - The preset's 7-step scale.
@@ -56,14 +60,9 @@ export function applyDensity<T extends EnhanceableTheme>(
     return acc;
   }, {});
 
-  const varRefs = DENSITY_KEYS.reduce((acc, key) => {
-    acc[key] = `var(${cssVar(key)})`;
-    return acc;
-  }, {} as DensityScale);
-
   const theme = { ...themeInput } as T & { density: DensityScale };
   theme.density = scale;
-  theme.vars = { ...themeInput.vars, density: varRefs };
+  theme.vars = { ...themeInput.vars, density: densityVars };
 
   const c = themeInput.components;
   const existingBaseline = c?.MuiCssBaseline?.styleOverrides;
@@ -82,25 +81,30 @@ export function applyDensity<T extends EnhanceableTheme>(
         },
       },
     },
-    MuiButton: {
-      ...c?.MuiButton,
-      styleOverrides: {
-        ...c?.MuiButton?.styleOverrides,
-        root: [
-          c?.MuiButton?.styleOverrides?.root,
-          {
-            // Sized-only: each size's `pad` shorthand (block inline) maps to its
-            // own density step, so tuning the scale keeps the per-size matrix.
-            // Emit through the same static map the styled fn reads — names can't
-            // drift. Bare, unprefixed.
-            [buttonVars.smallPad]: `${varRefs.xxs} ${varRefs.sm}`,
-            [buttonVars.mediumPad]: `${varRefs.xs} ${varRefs.lg}`,
-            [buttonVars.largePad]: `${varRefs.sm} ${varRefs.xl}`,
-          },
-        ],
-      },
-    },
   };
 
   return theme;
+}
+
+/**
+ * Append a `styleOverrides.root` object to a component slot, preserving any
+ * existing root overrides (array-wrapped). Presets use this to attach their
+ * component-var → density-step assignments after `applyDensity`.
+ */
+export function addRootOverride<C extends EnhanceableTheme['components']>(
+  components: C,
+  name: string,
+  root: Record<string, string>,
+): C {
+  const existing = (components as any)?.[name];
+  return {
+    ...components,
+    [name]: {
+      ...existing,
+      styleOverrides: {
+        ...existing?.styleOverrides,
+        root: [existing?.styleOverrides?.root, root],
+      },
+    },
+  } as C;
 }

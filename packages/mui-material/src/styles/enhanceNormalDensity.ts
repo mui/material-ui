@@ -1,7 +1,8 @@
-import { applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
+import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
+import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
-// typography — no reflow, so nothing beyond the scale.
+// typography — no reflow — so only the padding→step assignment below.
 const scale: DensityScale = {
   xxs: '4px',
   xs: '6px',
@@ -13,5 +14,11 @@ const scale: DensityScale = {
 };
 
 export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: T) {
-  return applyDensity(theme, scale);
+  const enhanced = applyDensity(theme, scale);
+  enhanced.components = addRootOverride(enhanced.components, 'MuiButton', {
+    [buttonVars.smallPad]: `${d.xxs} ${d.sm}`,
+    [buttonVars.mediumPad]: `${d.xs} ${d.lg}`,
+    [buttonVars.largePad]: `${d.sm} ${d.xl}`,
+  });
+  return enhanced;
 }
