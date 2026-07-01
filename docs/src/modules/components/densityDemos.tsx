@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Checkbox from '@mui/material/Checkbox';
 import InboxIcon from '@mui/icons-material/Inbox';
 
 // Force the tooltip open + inline (no portal) so it renders inside
@@ -142,6 +143,13 @@ const demos: Record<string, React.ReactNode> = {
         <Tab icon={<InboxIcon />} label="Start" iconPosition="start" />
         <Tab icon={<InboxIcon />} label="Start" iconPosition="start" />
       </Tabs>
+    </Stack>
+  ),
+  Checkbox: (
+    // Touch-target padding around the icon (medium + small).
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Checkbox defaultChecked />
+      <Checkbox defaultChecked size="small" />
     </Stack>
   ),
 };

@@ -24,6 +24,7 @@ import { private_filledInputVars } from '@mui/material/FilledInput';
 import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
+import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -529,6 +530,37 @@ function TabsMatrix({
   );
 }
 
+// Checkbox family: the touch-target padding around the icon, per size (via
+// SwitchBase). All spacing → density keys.
+const CHECKBOX_FIELDS: DensityField[] = [
+  { key: 'mediumPad', cssVar: private_checkboxVars.mediumPad },
+  { key: 'smallPad', cssVar: private_checkboxVars.smallPad },
+];
+
+function CheckboxMatrix({
+  mapping,
+  mappingEnabled,
+}: {
+  mapping: Record<string, string>;
+  mappingEnabled: boolean;
+}) {
+  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
+  const sx = mappingEnabled
+    ? Object.fromEntries(
+        CHECKBOX_FIELDS.filter((f) => active(f.key)).map((f) => [
+          f.cssVar,
+          resolveValue(mapping[f.key]),
+        ]),
+      )
+    : undefined;
+  return (
+    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+      <Checkbox defaultChecked sx={sx} />
+      <Checkbox defaultChecked size="small" sx={sx} />
+    </Stack>
+  );
+}
+
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
@@ -611,6 +643,12 @@ const COMPONENT_DEFS = {
       iconInlineGap: 'sm',
     },
     renderMatrix: (args) => <TabsMatrix {...args} />,
+  },
+  Checkbox: {
+    canvasLabel: 'Checkbox — touch-target padding (medium + small)',
+    fields: CHECKBOX_FIELDS,
+    prefill: { mediumPad: 'sm', smallPad: 'xs' },
+    renderMatrix: (args) => <CheckboxMatrix {...args} />,
   },
 } satisfies Record<string, DensityComponentDef>;
 

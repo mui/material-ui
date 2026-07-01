@@ -104,6 +104,16 @@ const scopes: Record<string, Record<string, React.CSSProperties>> = {
       ['--Input-bottomPad' as any]: '12px',
     },
   },
+  Checkbox: {
+    dense: {
+      ['--Checkbox-medium-pad' as any]: '4px',
+      ['--Checkbox-small-pad' as any]: '2px',
+    },
+    loose: {
+      ['--Checkbox-medium-pad' as any]: '14px',
+      ['--Checkbox-small-pad' as any]: '12px',
+    },
+  },
   Tab: {
     dense: {
       ['--Tab-minHeight' as any]: '40px',

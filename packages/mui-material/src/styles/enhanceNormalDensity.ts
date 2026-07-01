@@ -10,6 +10,7 @@ import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVar
 import { private_inputVars as inVars } from '../Input/inputVars';
 import { private_tabVars as tabVars } from '../Tab/tabVars';
 import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
+import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
@@ -123,6 +124,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiTabs', {
     [tabsVars.minHeight]: '48px', // == MuiTab minHeight (the pairing)
+  });
+  addRootOverride(enhanced.components, 'MuiCheckbox', {
+    // Touch-target padding (9px both sizes today) = density steps.
+    [cbVars.mediumPad]: d.sm,
+    [cbVars.smallPad]: d.xs,
   });
   return enhanced;
 }
