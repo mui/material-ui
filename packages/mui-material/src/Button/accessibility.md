@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 28    |
-| 🚩 Unverified         | 17/27 |
+| 🚩 Flagged            | 17/27 |
 
 ## Known gaps
 
@@ -23,7 +23,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The button is one control. Its slots render in DOM order (start icon, label, end icon); decorative MUI icons are `aria-hidden`, leaving the single label as the exposed content. Custom icon nodes are not hidden automatically.
 - Order carries meaning only across several controls, which the surrounding layout sets. Confirm that reading order matches the visual order of any button group.
@@ -38,7 +38,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - A button with text or an `aria-label` can be identified by name, not only by shape, color, or position.
 - Instructions in the surrounding content must not rely on color, shape, or position alone (for example, "press the green button").
@@ -52,7 +52,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.4 Resize Text · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Typography is set in rem and em, so the label and button scale with browser zoom or font size rather than staying pixel-fixed.
 - A fixed-pixel container in the surrounding layout could clip at 200%.
@@ -79,7 +79,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.10 Reflow · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Labels wrap by default (the component sets no `white-space`), so a button reflows on its own. Horizontal overflow at 320 CSS pixels comes from the surrounding layout, such as a fixed-width button or a non-wrapping row.
 
@@ -92,7 +92,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The button is an ordinary focusable element and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to the button beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -106,7 +106,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩 Unverified` · `✅ Supports` · `○ Author`
+`🚩` · `✅ Supports` · `○ Author`
 
 - The component produces one stable accessible name per set of props, the precondition for consistent identification.
 - Consistency is a cross-page property. Confirm that buttons with the same function share a label and icon, and that one label is not reused for different functions.
@@ -120,7 +120,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 4.1.3 Status Messages · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `◐ Shared`
+`🚩` · `⚠️ Partially Supports` · `◐ Shared`
 
 - The `loading` state renders a `CircularProgress` with `role="progressbar"` named by the button, but the component adds no `aria-live` or `role="status"` region, so the change may go unannounced when focus is elsewhere.
 - This applies only when `loading` is toggled for a background task. Add a live region in the surrounding application if the result must be announced.
@@ -167,7 +167,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.1 Use of Color · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - A button's purpose comes from its label or icon, and focus, disabled, and loading are shown without relying on color, so the component does not use color alone.
 - Two buttons can still be distinguished by palette alone (for example, `error` against `success`). Confirm in grayscale that meaning survives.
@@ -199,7 +199,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.11 Non-text Contrast · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - The focus indicator, the `outlined` border, and any meaningful icon each need `3:1` against adjacent colors.
 - The indicator is the ripple for `text`/`outlined` and a box-shadow for `contained`; `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the box-shadow, so it can be absent entirely.
@@ -215,7 +215,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.12 Text Spacing · AA
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Labels wrap and the button height comes from padding, not a fixed height, so the WCAG text-spacing values grow the button without clipping.
 
@@ -257,7 +257,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.7 Focus Visible · AA
 
-`🚩 Unverified` · `⚠️ Partially Supports` · `● Component`
+`🚩` · `⚠️ Partially Supports` · `● Component`
 
 - Keyboard focus shows the `.Mui-focusVisible` indicator (suppressed for mouse); `contained` adds a box-shadow on focus.
 - `disableRipple`/`disableFocusRipple` remove the ripple and `disableElevation` the `contained` box-shadow, so `text`/`outlined` lose the indicator with either ripple prop, and `contained` only when a ripple prop and `disableElevation` are both set.
@@ -273,7 +273,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.5.3 Label in Name · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The visible text is the accessible name: the children become the name, decorative MUI icons are hidden (a custom icon node is not, unless the author hides it), and `loadingPosition="center"` keeps the label in the name despite `color: transparent`.
 - An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
@@ -325,20 +325,20 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.1.2 No Keyboard Trap · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - A single focusable control that installs no focus-capturing loop. <kbd>Tab</kbd> moves in and out, and a disabled button leaves the tab order (the `disabled` attribute on native buttons, `tabIndex=-1` on non-native).
 
 #### 2.4.3 Focus Order · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - The component sits in natural DOM order with no positive `tabIndex`, and disabled or loading buttons leave the order, so it is one correct focus stop.
 - Order across controls is the surrounding layout's responsibility.
 
 #### 2.5.2 Pointer Cancellation · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
 
@@ -351,13 +351,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.1 On Focus · A
 
-`🚩 Unverified` · `✅ Supports` · `● Component`
+`🚩` · `✅ Supports` · `● Component`
 
 - Focus triggers only the focus-visible ripple and `onFocus` callbacks. There is no navigation, dialog, or focus move, so focus alone changes no context.
 
 #### 3.2.2 On Input · A
 
-`🚩 Unverified` · `✅ Supports` · `◐ Shared`
+`🚩` · `✅ Supports` · `◐ Shared`
 
 - Toggling the button's setting (`loading` to disabled, or an `aria-pressed` toggle) changes no context on its own.
 - Whether an author's handler couples that change to navigation or a new window without warning is an author decision.
@@ -397,4 +397,4 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - **Component version.** `@mui/material` 9.1.1.
 - **Scope.** The Button component in isolation, rendered through its documented API.
 - **Automated.** axe-core via Playwright test harness (results in [`buttons.a11y.json`](../../../../docs/data/material/components/buttons/buttons.a11y.json)), plus interaction tests in `ButtonBase.test.js` and `Button.test.js`.
-- **Assistive-technology review.** Not yet performed. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
+- **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.

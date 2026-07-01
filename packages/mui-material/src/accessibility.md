@@ -35,7 +35,7 @@ Whether the component meets the applicable Success Criterion. [VPAT](https://www
 | ❌     | Does Not Support   | Most functionality fails.                       |
 | ➖     | Not Applicable     | The criterion does not apply to this component. |
 
-`🚩 Unverified` prefixes a rating that is assessed from the component's source but not yet confirmed by a test or recorded review. It not imply a defect.
+A criterion is **flagged** (`🚩`, shown first in its status line) when its rating is assessed from the component's source but not yet confirmed by a test or recorded review. The flag concerns evidence, not conformance, and does not imply a defect.
 
 ## Responsibility
 
