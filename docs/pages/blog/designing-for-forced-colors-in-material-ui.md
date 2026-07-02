@@ -3,7 +3,7 @@ title: Windows High Contrast mode support in Material UI
 description: Learn how Windows High Contrast maps to CSS system colors and why Material UI uses an opt-in theme enhancer for forced-colors support.
 date: 2026-07-01T00:00:00.000Z
 authors: ['silviuaavram']
-tags: ['Material UI', 'Accessibility', 'Guide']
+tags: ['Material UI', 'Accessibility', 'Guide']
 manualCard: false
 ---
 
