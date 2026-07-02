@@ -76,24 +76,6 @@ describe('<Checkbox />', () => {
     expect(handleChange.getCall(1).args[0].target).to.have.property('checked', false);
   });
 
-  it('toggles the checked state with the Space key (WCAG 2.1.1)', async () => {
-    const handleChange = spy();
-    const { user } = render(<Checkbox onChange={handleChange} />);
-    const checkbox = screen.getByRole('checkbox');
-
-    await act(async () => {
-      checkbox.focus();
-    });
-
-    await user.keyboard('[Space]');
-    expect(checkbox).to.have.property('checked', true);
-    expect(handleChange.callCount).to.equal(1);
-
-    await user.keyboard('[Space]');
-    expect(checkbox).to.have.property('checked', false);
-    expect(handleChange.callCount).to.equal(2);
-  });
-
   describe('prop: readOnly', () => {
     it('prevents interaction', async () => {
       const changeSpy = spy();
@@ -276,8 +258,110 @@ describe('<Checkbox />', () => {
 
   // Deterministic checks for the WCAG success criteria the report rates as
   // automatable. See packages/mui-material/src/Checkbox/accessibility.md.
-  describe('WCAG conformance', () => {
-    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.1 Keyboard: toggles the checked state with the Space key', async () => {
+      const handleChange = spy();
+      const { user } = render(<Checkbox onChange={handleChange} />);
+      const checkbox = screen.getByRole('checkbox');
+
+      await user.tab();
+      expect(checkbox).toHaveFocus();
+
+      await user.keyboard('[Space]');
+      expect(checkbox).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+
+      await user.keyboard('[Space]');
+      expect(checkbox).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(2);
+    });
+
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the checkbox', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">before</button>
+          <Checkbox />
+          <button type="button">after</button>
+        </React.Fragment>,
+      );
+      const checkbox = screen.getByRole('checkbox');
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'before' })).toHaveFocus();
+
+      await user.tab();
+      expect(checkbox).toHaveFocus();
+
+      // Tab moves focus back out of the checkbox; it is never captured.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'after' })).toHaveFocus();
+
+      // Shift+Tab moves back onto it.
+      await user.tab({ shift: true });
+      expect(checkbox).toHaveFocus();
+    });
+
+    describe('2.4.3 Focus Order', () => {
+      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">first</button>
+            <Checkbox />
+            <button type="button">last</button>
+          </React.Fragment>,
+        );
+        const checkbox = screen.getByRole('checkbox');
+        expect(checkbox).to.have.property('tabIndex', 0);
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'first' })).toHaveFocus();
+        await user.tab();
+        expect(checkbox).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'last' })).toHaveFocus();
+      });
+
+      it('removes a disabled checkbox from the tab order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Checkbox disabled />
+            <button type="button">after</button>
+          </React.Fragment>,
+        );
+
+        // Tab skips the disabled checkbox and lands on the next control.
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'after' })).toHaveFocus();
+      });
+    });
+
+    it('2.5.2 Pointer Cancellation: activates on click, but not when released off the target', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Checkbox onChange={handleChange} />
+          <div data-testid="outside" />
+        </React.Fragment>,
+      );
+      const checkbox = screen.getByRole('checkbox');
+
+      // Press on the checkbox, move away, then release: nothing runs on the down
+      // event, and releasing off the target cancels the activation.
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: checkbox },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
+      expect(checkbox).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+
+      // A full click (press and release over the target) activates.
+      await user.click(checkbox);
+      expect(checkbox).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('2.5.3 Label in Name: exposes an accessible name matching the visible label', () => {
       render(<FormControlLabel control={<Checkbox />} label="Remember me" />);
       // getByRole with `name` only resolves if the accessible name matches the visible label.
       expect(screen.getByRole('checkbox', { name: 'Remember me' })).to.have.property(
@@ -286,70 +370,14 @@ describe('<Checkbox />', () => {
       );
     });
 
-    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
-      const { user } = render(
-        <React.Fragment>
-          <button type="button">before</button>
-          <Checkbox />
-          <button type="button">after</button>
-        </React.Fragment>,
-      );
-      const before = screen.getByRole('button', { name: 'before' });
-      const after = screen.getByRole('button', { name: 'after' });
-      const checkbox = screen.getByRole('checkbox');
-
-      before.focus();
-      await user.tab();
-      expect(document.activeElement).to.equal(checkbox);
-      await user.tab();
-      expect(document.activeElement).to.equal(after);
-      await user.tab({ shift: true });
-      expect(document.activeElement).to.equal(checkbox);
-    });
-
-    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
-      const { user } = render(
-        <React.Fragment>
-          <button type="button">first</button>
-          <Checkbox />
-          <button type="button">last</button>
-        </React.Fragment>,
-      );
-      const first = screen.getByRole('button', { name: 'first' });
-      const checkbox = screen.getByRole('checkbox');
-      const last = screen.getByRole('button', { name: 'last' });
-
-      first.focus();
-      await user.tab();
-      expect(document.activeElement).to.equal(checkbox);
-      await user.tab();
-      expect(document.activeElement).to.equal(last);
-    });
-
-    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
-      const handleChange = spy();
-      const { user } = render(<Checkbox onChange={handleChange} />);
-      const checkbox = screen.getByRole('checkbox');
-
-      // Press without releasing: the down-event must not toggle.
-      await user.pointer({ keys: '[MouseLeft>]', target: checkbox });
-      expect(checkbox).to.have.property('checked', false);
-      expect(handleChange.callCount).to.equal(0);
-
-      // Releasing over the target completes the activation.
-      await user.pointer({ keys: '[/MouseLeft]', target: checkbox });
-      expect(checkbox).to.have.property('checked', true);
-      expect(handleChange.callCount).to.equal(1);
-    });
-
-    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
+    it('3.2.1 On Focus: moving keyboard focus to the checkbox does not activate it', async () => {
       const handleChange = spy();
       const { user } = render(<Checkbox onChange={handleChange} />);
       const checkbox = screen.getByRole('checkbox');
 
       await user.tab();
 
-      expect(document.activeElement).to.equal(checkbox);
+      expect(checkbox).toHaveFocus();
       expect(checkbox).to.have.property('checked', false);
       expect(handleChange.callCount).to.equal(0);
     });

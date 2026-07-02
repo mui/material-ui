@@ -12,7 +12,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 ## Known gaps
 
-- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (the Customization demo's unchecked box is about 1.1:1 against the page).
+- ⚠️ **1.4.11 Non-text Contrast.** The default checkmark icons clear 3:1 (`warning` is the tightest at 3.11:1), but the keyboard focus indicator is untested and `disableRipple`/`disableFocusRipple` or custom icons can drop below 3:1 (a faint custom unchecked box can be about 1.1:1 against the page).
 - ⚠️ **2.4.7 Focus Visible.** `disableRipple`/`disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styling.
 - ⚠️ **4.1.2 Name, Role, Value.** The `indeterminate` state sets `aria-checked="mixed"` on the native checkbox, which ARIA in HTML disallows because the native `.checked` is `false` (axe `aria-conditional-attr` flags it). The conforming fix is to set the native `.indeterminate` property instead.
 
@@ -29,7 +29,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `CheckboxesGroup` and press <kbd>Tab</kbd> through the rows, noting the focus order.
+1. In a group of checkboxes (`Checkbox` + `FormControlLabel` inside a `FormGroup`), press <kbd>Tab</kbd> through the rows and note the focus order.
 2. Compare that order to the visual top-to-bottom order.
 3. Watch for `labelPlacement` or flex layouts that reorder the row visually without changing the DOM.
 
@@ -103,8 +103,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `<FormControlLabel control={<Checkbox />} label="Subscribe" />` and confirm the accessibility tree shows `role=checkbox` named "Subscribe".
-2. Render a bare `<Checkbox />` and confirm it has an empty name, the failure mode authors must avoid.
+1. In the accessibility tree, inspect a labelled checkbox (`Checkbox` inside a `FormControlLabel`) and confirm it shows `role=checkbox` with the visible label as its name.
+2. Inspect a bare `<Checkbox />` with no label and confirm its name is empty, the failure mode authors must avoid.
 3. Confirm the checkmark icon's SVG is `aria-hidden`.
 
 **Pass:** every checkbox exposes a non-empty accessible name and the checkmark icon stays `aria-hidden`.
@@ -120,9 +120,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `<FormControlLabel control={<Checkbox required />} label="Accept terms" />` and confirm `role=checkbox`, the name, `required`, and the wrapping `<label>`.
+1. For a required labelled checkbox (`Checkbox required` inside a `FormControlLabel`), confirm `role=checkbox`, the name, `required`, and the wrapping `<label>`.
 2. Toggle indeterminate and confirm `aria-checked` cycles `true`/`false`/`mixed`.
-3. In `CheckboxesGroup`, confirm the `<fieldset>`/`<legend>` name is exposed but the error and required constraint are not (no `aria-describedby`/`aria-invalid`).
+3. In a fieldset group (`FormControl component="fieldset"` + `FormLabel component="legend"` around a `FormGroup`), confirm the `<fieldset>`/`<legend>` name is exposed but any error or required constraint is not (no `aria-describedby`/`aria-invalid`).
 
 **Pass:** role, states, label association, and group name are programmatically determinable, and any helper/error text is tied to the control via author-supplied `aria-describedby`.
 
@@ -135,8 +135,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render unchecked, checked, and indeterminate and view in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia); confirm all three remain distinguishable.
-2. Render an error `FormHelperText` in grayscale and confirm "error" is still perceivable without the red.
+1. View unchecked, checked, and indeterminate checkboxes in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia); confirm all three remain distinguishable.
+2. View a checkbox with an error `FormHelperText` in grayscale and confirm "error" is still perceivable without the red.
 
 **Pass:** the three states are distinguishable by shape, and any error state is conveyed by more than color.
 
@@ -165,14 +165,14 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 - Light mode: `warning` is the tightest at `3.11:1`, then `info` `3.86:1`, `primary` `4.60:1`, the unchecked `text.secondary` outline `5.74:1`, and the white check on the fill `4.60:1`. Dark mode clears `3:1` easily (lowest is error at about `5:1`).
 - `warning.main` is tuned to just clear `3:1`, so a colored container behind the checkbox can push it under.
 - The keyboard focus indicator's contrast is untested, and `disableRipple`/`disableFocusRipple` removes it.
-- Custom icons can fall below `3:1`: the `CustomizedCheckbox` unchecked box is about `1.1:1` against the page (`1.5:1` at its border).
+- Custom icons can fall below `3:1`: a faint custom unchecked box (for example a `#f5f8fa` fill) measures about `1.1:1` against the page (`1.5:1` at its border).
 - Disabled (`action.disabled`, about `1.9:1`) is exempt.
 
 **Manual testing steps**
 
 1. Measure the unchecked outline and each checked color (`primary` through `warning`) against the background; confirm `3:1`, checking `warning` specifically.
 2. Measure the keyboard focus indicator against the colors next to it.
-3. Audit any custom icons (the Blueprint unchecked box is a known fail) and treat disabled as exempt.
+3. Audit any custom icons against `3:1` (a faint custom unchecked box is a common fail); treat disabled as exempt.
 
 **Pass:** the indicator in every active state (unchecked outline, checked fill, indeterminate dash) and the focus indicator are `3:1` against adjacent colors; disabled is exempt.
 
@@ -209,7 +209,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `🚩` · `⚠️ Partially Supports` · `● Component`
 
 - `ButtonBase` removes the user-agent outline (`outline: 0`). In the default configuration keyboard focus adds the `.Mui-focusVisible` class plus a centered focus ripple, so an indicator is shown.
-- `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles. The `CustomizedCheckbox` demo does this, re-adding a 2px outline.
+- `disableRipple` or `disableFocusRipple` removes the default focus indicator (the focus ripple), leaving none unless the author adds `.Mui-focusVisible` styles (for example, a 2px outline).
 
 **Manual testing steps**
 
@@ -223,12 +223,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- With `FormControlLabel` and a string label, the accessible name equals the visible text, so the name contains the label. The required `*` is symbolic punctuation, not part of the label, so it is correctly excluded from the name; native `required` conveys that state instead. A `getByRole('checkbox', { name })` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms the accessible name matches the visible label.
+- With `FormControlLabel` and a string label, the accessible name equals the visible text, so the name contains the label. The required `*` is symbolic punctuation, not part of the label, so it is correctly excluded from the name; native `required` conveys that state instead.
 - A `slotProps.input` `aria-label` that differs from the visible text breaks this. Keep the visible words in the name.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (the accessible name matches the visible label).
 
 **Manual testing steps**
 
-1. Render `<FormControlLabel control={<Checkbox />} label="Remember me" />` and confirm the accessible name contains "Remember me".
+1. For a labelled checkbox (`Checkbox` inside a `FormControlLabel` reading "Remember me"), confirm the accessible name contains "Remember me".
 2. If an `aria-label` is set, confirm it includes the visible text.
 3. Try a voice command speaking the visible label and confirm it activates the checkbox.
 
@@ -238,8 +239,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `🚩` · `✅ Supports` · `◐ Shared`
 
-- Used as documented, the component meets this: `FormControlLabel` wraps the control in a real `<label>` whose text is presented to all users (`CheckboxLabels`, `CheckboxesGroup`).
-- An `aria-label` is a name for assistive technology, not a visible label, so on its own it satisfies 4.1.2 but not this criterion. The basic demos use `aria-label` only to show the control in isolation; in product UI, provide a visible label via `FormControlLabel` or a clear contextual one.
+- Used as documented, the component meets this: `FormControlLabel` wraps the control in a real `<label>` whose text is presented to all users.
+- An `aria-label` is a name for assistive technology, not a visible label, so on its own it satisfies 4.1.2 but not this criterion. Using `aria-label` alone is fine for a control shown in isolation; in product UI, provide a visible label via `FormControlLabel` or a clear contextual one.
 
 **Manual testing steps**
 
@@ -252,17 +253,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `⚠️ Partially Supports` · `◐ Shared`
 
-- Role, checked, and disabled are met natively: the native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed, and `disabled` maps to native `disabled`. axe-core (`aria-allowed-attr`, `aria-valid-attr-value`, `label`, `nested-interactive`) and unit tests in [`Checkbox.test.js`](./Checkbox.test.js) (role resolves, `checked` flips on click, `disabled` through `FormControl`) confirm them.
-- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native input, which ARIA in HTML disallows because the native `.checked` stays `false`. axe `aria-conditional-attr` records the violation on `IndeterminateCheckbox` in `checkboxes.a11y.json`.
+- Role, checked, and disabled are met natively: the native `<input type="checkbox">` exposes `role=checkbox`, the checked state, and change notification with no ARIA needed, and `disabled` maps to native `disabled`. axe-core (`aria-allowed-attr`, `aria-valid-attr-value`, `label`, `nested-interactive`) confirms them.
+- The `indeterminate` state is the failing part: it sets `aria-checked="mixed"` on the native input, which ARIA in HTML disallows because the native `.checked` stays `false`. axe `aria-conditional-attr` records the violation in `checkboxes.a11y.json`.
 - Major screen readers do announce "mixed" (and it is unit-tested), but a `mixed` state on a native checkbox is not guaranteed across browsers.
 - The conforming fix is the native `.indeterminate` property instead of `aria-checked`; the component currently avoids `.indeterminate`, citing cross-browser inconsistency.
 - The name is the shared part: it comes from the author's `FormControlLabel` or `aria-label`. One caveat: `readOnly` sets the native `readonly` attribute, which has no effect on a checkbox and is not exposed to assistive technology, so a read-only checkbox is not announced as such. Use `disabled` or `aria-readonly` if that state must be conveyed.
+- Confirmed by unit tests in [`./Checkbox.test.js`](./Checkbox.test.js) (role, `checked`, and `disabled` are exposed).
 
 **Manual testing steps**
 
-1. Render a labeled checkbox and confirm `role=checkbox` with a non-empty name in the accessibility tree.
+1. Inspect a labelled checkbox (`Checkbox` inside a `FormControlLabel`) and confirm `role=checkbox` with a non-empty name in the accessibility tree.
 2. Toggle it with a screen reader running and confirm the state change is announced.
-3. Render `indeterminate` and confirm "mixed" or partially checked is announced.
+3. With `indeterminate` set, confirm "mixed" or partially checked is announced.
 
 **Pass:** the role, the checked/unchecked/mixed/disabled state with change notification, and an author-supplied accessible name are all programmatically determinable.
 
@@ -277,7 +279,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Set browser zoom to 200% and confirm the checkbox, label, and helper text are fully visible and the control still toggles.
+1. In a UI with checkboxes, set browser zoom to 200% and confirm the checkboxes, labels, and helper text are fully visible and still toggle.
 2. Test a long label inside a constrained-width container.
 
 **Pass:** nothing is clipped or cut off at 200%.
@@ -287,11 +289,11 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `🚩` · `✅ Supports` · `◐ Shared`
 
 - The checkbox is a small inline-flex control with no fixed min-width and no horizontal-overflow layout of its own, so it reflows into a 320 CSS pixel viewport.
-- Real failures usually come from the surrounding layout. `CheckboxesGroup` places two fieldsets in a non-wrapping flex row, which can overflow at 320 pixels.
+- Real failures usually come from the surrounding layout, such as a wide non-wrapping row of checkboxes overflowing at 320 pixels.
 
 **Manual testing steps**
 
-1. Set the viewport to 320 CSS pixels wide (or 400% zoom at 1280px) and confirm checkbox rows stack with no horizontal scrollbar.
+1. In a UI with checkboxes, set the viewport to 320 CSS pixels wide (or 400% zoom at 1280px) and confirm checkbox rows stack with no horizontal scrollbar.
 2. Confirm any multi-column group collapses to one column.
 
 **Pass:** content reflows to one column with no two-dimensional scrolling and no loss of function.
@@ -301,26 +303,29 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `● Component`
 
 - The native `<input type="checkbox">` is the single focusable control (the root span is `role: undefined`, `tabIndex: null`), so the browser provides <kbd>Tab</kbd> focus and <kbd>Space</kbd> toggle with no timing or path dependence, matching the [APG checkbox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/). Disabled leaves the tab order.
-- Confirmed by a <kbd>Space</kbd>-key toggle test in [`Checkbox.test.js`](./Checkbox.test.js): focus the input, press <kbd>Space</kbd>, and assert `checked` flips and `onChange` fires on each press.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (<kbd>Space</kbd> toggles the checked state).
 
 #### 2.1.2 No Keyboard Trap · A
 
 `✅ Supports` · `● Component`
 
-- A single native input with standard <kbd>Tab</kbd> in and out. It installs no focus-capturing handlers and no containment logic, so focus cannot be trapped. A `user.tab()` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms focus enters and leaves with <kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd>.
+- A single native input with standard <kbd>Tab</kbd> in and out. It installs no focus-capturing handlers and no containment logic, so focus cannot be trapped.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (<kbd>Tab</kbd> is not intercepted, and focus moves away freely).
 
 #### 2.4.3 Focus Order · A
 
 `✅ Supports` · `◐ Shared`
 
-- The checkbox is one focusable element in natural DOM order, with no positive `tabIndex` and no reordering, so it is one correct focus stop. A `user.tab()` test in [`Checkbox.test.js`](./Checkbox.test.js) confirms it takes a single tab stop in DOM order; whether that order preserves meaning in a given layout stays a manual check.
+- The checkbox is one focusable element in natural DOM order, with no positive `tabIndex` and no reordering, and a disabled checkbox leaves the order, so it is one correct focus stop. Whether that order preserves meaning in a given layout stays a manual check.
 - Order across controls, and group order, is the surrounding layout's responsibility.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (default `tabIndex` is `0`; a disabled checkbox leaves the order).
 
 #### 2.5.2 Pointer Cancellation · A
 
 `✅ Supports` · `● Component`
 
-- Toggling runs on the native input's `click`, fired on pointer-up over the target. Nothing toggles on the down event (the ripple starts there but is decorative), and releasing off the control cancels. A pointer test in [`Checkbox.test.js`](./Checkbox.test.js) confirms mouse-down alone does not toggle and a release over the target does.
+- Toggling runs on the native input's `click`, fired on pointer-up over the target. Nothing toggles on the down event (the ripple starts there but is decorative), and releasing off the control cancels.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (releasing off the target does not toggle; `click` does).
 
 #### 2.5.8 Target Size (Minimum) · AA
 
@@ -333,14 +338,16 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `● Component`
 
-- Focusing the input only moves focus and shows the focus indicator. There is no navigation, dialog, or content change on focus, and the component registers no `onFocus` side effects. A focus test in [`Checkbox.test.js`](./Checkbox.test.js) confirms focusing fires no `onChange` and changes no state.
+- Focusing the input only moves focus and shows the focus indicator. There is no navigation, dialog, or content change on focus, and the component registers no `onFocus` side effects.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (focusing the checkbox does not activate it).
 
 #### 3.2.2 On Input · A
 
 `✅ Supports` · `◐ Shared`
 
-- Toggling only flips the checked or indeterminate state and fires `onChange`; per the Understanding document, changing a control's value is not a change of context. `readOnly` short-circuits the change. The click-toggle test in [`Checkbox.test.js`](./Checkbox.test.js) confirms toggling updates the value and fires `onChange` with no context change.
+- Toggling only flips the checked or indeterminate state and fires `onChange`; per the Understanding document, changing a control's value is not a change of context. `readOnly` short-circuits the change.
 - An author `onChange` that navigates or submits without warning would be an author-side failure.
+- Confirmed by a unit test in [`./Checkbox.test.js`](./Checkbox.test.js) (toggling changes only the checked value).
 
 ## Not applicable
 
@@ -380,5 +387,5 @@ The following SC are applicable but out of scope:
 - **Standard.** WCAG 2.2, Level A and AA.
 - **Component version.** `@mui/material` 9.1.1.
 - **Scope.** The Checkbox component and its documented composition with `FormControlLabel`, `FormControl`/`FormGroup`, `FormLabel`, and `FormHelperText`, rendered through the documented API.
-- **Automated.** axe-core via the Playwright visual-regression harness (results in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json)), plus interaction tests in [`Checkbox.test.js`](./Checkbox.test.js). Glyph contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
+- **Automated.** axe-core via the Playwright visual-regression harness (results in [`checkboxes.a11y.json`](../../../../docs/data/material/components/checkboxes/checkboxes.a11y.json)), plus interaction tests in [`Checkbox.test.js`](./Checkbox.test.js). Checkmark icon contrast is computed from the theme tokens, since no axe rule covers non-text contrast.
 - **Assistive-technology review.** Not yet performed. Flagged criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
