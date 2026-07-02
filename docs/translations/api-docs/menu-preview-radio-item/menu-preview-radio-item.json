@@ -1,0 +1,36 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the component." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "className": { "description": "CSS class applied to the element." },
+    "closeOnClick": { "description": "Whether to close the menu when the item is clicked." },
+    "component": { "description": "The component used for the root node." },
+    "dense": {
+      "description": "If <code>true</code>, compact vertical padding designed for keyboard and mouse input is used."
+    },
+    "disabled": { "description": "Whether the component should ignore user interaction." },
+    "disableGutters": {
+      "description": "If <code>true</code>, the left and right padding is removed."
+    },
+    "divider": {
+      "description": "If <code>true</code>, a 1px light border is added to the bottom of the menu item."
+    },
+    "label": {
+      "description": "Overrides the text label to use when the item is matched during keyboard text navigation."
+    },
+    "nativeButton": {
+      "description": "Whether the component is rendered as a native button.<br>By default, this is inferred from the root slot and <code>component</code> prop."
+    },
+    "selected": { "description": "If <code>true</code>, the component is selected." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
+    "style": { "description": "Styles applied to the root element." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "value": { "description": "Value of the radio item." }
+  },
+  "classDescriptions": {},
+  "slotDescriptions": { "root": "The component that renders the root." }
+}

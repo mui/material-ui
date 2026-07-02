@@ -12,6 +12,7 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenuUtilityClass } from './menuClasses';
 import useSlot from '../utils/useSlot';
+import { menuListStyles, menuPaperStyles } from './menuStyles';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -44,22 +45,12 @@ const MenuRoot = styled(Popover, {
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
-})({
-  // specZ: The maximum height of a simple menu should be one or more rows less than the view
-  // height. This ensures a tappable area outside of the simple menu with which to dismiss
-  // the menu.
-  maxHeight: 'calc(100% - 96px)',
-  // Add iOS momentum scrolling for iOS < 13.0
-  WebkitOverflowScrolling: 'touch',
-});
+})(menuPaperStyles);
 
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
-})({
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-});
+})(menuListStyles);
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiMenu' });

@@ -1,0 +1,24 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "closeParentOnEsc": { "type": { "name": "bool" }, "default": "false" },
+    "defaultOpen": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "highlightItemOnHover": { "type": { "name": "bool" }, "default": "true" },
+    "loopFocus": { "type": { "name": "bool" }, "default": "true" },
+    "onOpenChange": { "type": { "name": "func" } },
+    "onOpenChangeComplete": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'vertical'"
+    }
+  },
+  "name": "MenuPreviewSubmenuRoot",
+  "imports": ["import MenuPreviewSubmenuRoot from '@mui/material/MenuPreviewSubmenuRoot';"],
+  "classes": [],
+  "muiName": "MuiMenuPreviewSubmenuRoot",
+  "filename": "/packages/mui-material/src/MenuPreviewSubmenuRoot/MenuPreviewSubmenuRoot.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}
