@@ -2,23 +2,29 @@
 status: accepted
 ---
 
-# Focus-ring model: auto-on a11y fallback + tri-state `theme.focusVisible`
+# Focus-ring model: v1 opt-in `theme.focusVisible`, auto-on fallback deferred
 
-The focus ring is exposed as **two features sharing one renderer**, controlled by `theme.focusVisible` plus the resolved `disableRipple`:
+v1 ships **one opt-in feature**: `theme.focusVisible` renders a curated keyboard focus ring across ButtonBase and its derived components. The **auto-on a11y fallback** (render a ring whenever `disableRipple` removes the only indicator) is a **separate follow-up RFC**, not part of v1.
 
-- **Feature 1 — a11y fallback (on by default).** When `disableRipple` is true (any source: theme `defaultProps` or per-instance), ButtonBase renders a focus ring. This is a **default behavior change**: today `disableRipple` removes the only keyboard-focus indicator for ripple-pulse components (Button, IconButton, Fab, Tab, …), failing WCAG 2.4.7. The fallback uses default ring values (`outlineColor: palette.primary.main`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineStyle: 'solid'`). It does not key off `focusRipple`.
-- **Feature 2 — opt-in theme.** `theme.focusVisible` is tri-state: `undefined` ⇒ feature 1 only; an **object** ⇒ ring appears regardless of ripple state (object presence is the opt-in, fields fill from defaults); **`false`** ⇒ hard kill-switch, no ring at all including the fallback. The object is typed as the outline subset of `React.CSSProperties` (`outlineColor`/`outlineWidth`/`outlineOffset`/`outlineStyle`) and is spread directly onto the `Mui-focusVisible` styles — no field-name mapping.
+`theme.focusVisible` is:
 
-When both apply, feature 2's values win (the fallback is just the themed ring with defaults).
+| Value | v1 behavior |
+|---|---|
+| `undefined` | No ring (default, non-breaking) |
+| `true` | Curated outline ring, resolved at `createTheme` time |
+| object | Merged over the curated default (partial override) |
+| `false` | Reserved kill-switch — same as `undefined` today, meaningful once the fallback lands |
+
+The value is normalized once (`true` → curated object, object → merged over it) so components read a resolved object and never the boolean. Curated default: `{ outlineStyle: 'solid', outlineColor: palette.primary.main, outlineWidth: 2, outlineOffset: 2 }`.
 
 ## Why this shape
 
-- **Auto-on, not opt-in, for feature 1:** a safety-net that must be explicitly enabled would not be a safety-net — most teams that set `disableRipple` would never know they removed their focus indicator.
-- **Object-presence opt-in for feature 2:** lets us distinguish "user wants rings (even with ripple on)" from "user inherited defaults," which a always-present defaulted key could not.
-- **`false` kill-switch:** an honest, discoverable escape for teams with their own focus design who want neither ripple nor the auto ring. (Per-style overrides via `styleOverrides` remain available for "different ring, not no ring.")
+- **Opt-in, not auto-on, for v1:** auto-restoring the ring when `disableRipple` is set is a **default rendering change** for every app that disables the ripple — it needs its own RFC, release-note callout, and visual-regression pass. Shipping it inside the opt-in key would couple two decisions. So v1 is purely additive: an unconfigured theme renders exactly as today.
+- **`false` reserved now, not repurposed later:** today `undefined` and `false` both mean "no ring". They diverge only when the fallback lands — at that point `undefined` starts to mean "ring whenever `disableRipple`", a **visual change** for apps that already hand-rolled a ring (they would get a double ring). `false` is the escape they set now to stay opted out through that transition. Reserving it in v1 keeps the future non-breaking.
 
 ## Consequences
 
-- Shipping this changes default rendering for any app that sets `disableRipple` — they gain a visible outline on keyboard focus. Intended, but a visual change to call out in release notes.
-- Components whose focus indicator is a background tint (`palette.action.focus`: MenuItem, Chip, ListItemButton, …) get the ring **additively** on top of the tint when `disableRipple` is set app-wide.
-- Scope is ButtonBase and its derived components; other focusable components (TextField, Checkbox, …) are out of scope for the experiment.
+- v1 is non-breaking: no app changes rendering unless it sets `theme.focusVisible`.
+- Scope is defined by mechanism — every component that renders `ButtonBase` (Button, IconButton, Fab, Tab, MenuItem, ListItemButton, Chip when clickable/deletable, Checkbox/Radio/Switch via SwitchBase, …), plus Slider's thumb and Link, which carry `.Mui-focusVisible` and are wired explicitly. Non-`.Mui-focusVisible` inputs (TextField/InputBase) stay out of scope.
+- Components whose keyboard indicator is a background tint (`palette.action.focus`: MenuItem, Chip, ListItemButton, …) get the ring **additively** on top of the tint. Excluding a component is a `styleOverrides` recipe (`&.Mui-focusVisible { outlineColor: 'transparent' }` — keeps the forced-colors fallback; `outline: 0` would kill it).
+- The auto-on fallback ADR supersedes the deferred half of this record when it lands.

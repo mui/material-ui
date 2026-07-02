@@ -958,13 +958,20 @@ export default function createThemeWithVars(options = {}, ...args) {
   // In the vars theme the curated default color must be the palette var, not a resolved
   // hex: `focusVisible` is top-level so its var is emitted once at `:root` — a hex would
   // freeze the light-mode color in dark. A user-provided `outlineColor` still wins.
-  if (options.focusVisible != null && options.focusVisible !== false) {
+  // Resolve the raw input from options AND merge args (mirrors createThemeNoVars) so
+  // `createTheme({ cssVariables: true }, { focusVisible: true })` is normalized too;
+  // reading the already-normalized `theme.focusVisible` would re-bake the hex color.
+  const focusVisibleInput = args.reduce(
+    (acc, argument) => (argument && 'focusVisible' in argument ? argument.focusVisible : acc),
+    options.focusVisible,
+  );
+  if (focusVisibleInput != null && focusVisibleInput !== false) {
     theme.focusVisible = {
       outlineStyle: 'solid',
       outlineColor: `var(--${cssVarPrefix}-palette-primary-main)`,
       outlineWidth: 2,
       outlineOffset: 2,
-      ...(options.focusVisible === true ? null : options.focusVisible),
+      ...(focusVisibleInput === true ? null : focusVisibleInput),
     };
   }
 
