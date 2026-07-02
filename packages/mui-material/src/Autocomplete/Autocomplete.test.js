@@ -93,7 +93,7 @@ describe('<Autocomplete />', () => {
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
-        noOptionsContainer: { expectedClassName: classes.noOptionsContainer },
+        status: { expectedClassName: classes.status },
       },
       only: [
         'slotsProp',
@@ -232,6 +232,26 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should render the loading message in the status container', () => {
+      const view = render(
+        <Autocomplete
+          open
+          options={['one']}
+          loadingText="Fetching options"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      view.setProps({ options: [], loading: true });
+
+      expect(status).to.have.text('Fetching options');
     });
 
     it('should show supplied options to the "options" prop even when loading', () => {

@@ -23,7 +23,7 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AutocompletePaperSlotPropsOverrides {}
 export interface AutocompletePopperSlotPropsOverrides {}
-export interface AutocompleteNoOptionsContainerSlotPropsOverrides {}
+export interface AutocompleteStatusSlotPropsOverrides {}
 
 export {
   AutocompleteChangeDetails,
@@ -138,10 +138,10 @@ export interface AutocompleteSlots {
    */
   listbox: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
-   * The component used to render the "no options" container.
+   * The component used to render the status message container.
    * @default 'div'
    */
-  noOptionsContainer: React.ElementType;
+  status: React.ElementType;
   /**
    * The component used to render the body of the popup.
    * @default Paper
@@ -191,9 +191,9 @@ export type AutocompleteSlotsAndSlotProps<
       {},
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
-    noOptionsContainer: SlotProps<
+    status: SlotProps<
       'div',
-      AutocompleteNoOptionsContainerSlotPropsOverrides,
+      AutocompleteStatusSlotPropsOverrides,
       AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>
     >;
     paper: SlotProps<

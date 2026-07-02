@@ -59,7 +59,7 @@ const useUtilityClasses = (ownerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
-    noOptionsContainer: ['noOptionsContainer'],
+    status: ['status'],
     option: ['option'],
     groupLabel: ['groupLabel'],
     groupUl: ['groupUl'],
@@ -313,9 +313,9 @@ const AutocompleteLoading = styled('div', {
   })),
 );
 
-const AutocompleteNoOptionsContainer = styled('div', {
+const AutocompleteStatus = styled('div', {
   name: 'MuiAutocomplete',
-  slot: 'NoOptionsContainer',
+  slot: 'Status',
 })({});
 
 const AutocompleteNoOptions = styled('div', {
@@ -610,11 +610,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.paper,
   });
 
-  const [NoOptionsSlot, noOptionsProps] = useSlot('noOptionsContainer', {
-    elementType: AutocompleteNoOptionsContainer,
+  const [StatusSlot, statusProps] = useSlot('status', {
+    elementType: AutocompleteStatus,
     externalForwardedProps,
     ownerState,
-    className: classes.noOptionsContainer,
+    className: classes.status,
     additionalProps: {
       role: 'status',
       'aria-live': 'polite',
@@ -809,12 +809,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {anchorEl && hasPopupContent ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
-            {loading && renderedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
-            <NoOptionsSlot {...noOptionsProps}>
+            <StatusSlot {...statusProps}>
+              {loading && renderedOptions.length === 0 ? (
+                <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                  {loadingText}
+                </AutocompleteLoading>
+              ) : null}
               {renderedOptions.length === 0 && !freeSolo && !loading ? (
                 <AutocompleteNoOptions
                   className={classes.noOptions}
@@ -827,7 +827,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                   {noOptionsText}
                 </AutocompleteNoOptions>
               ) : null}
-            </NoOptionsSlot>
+            </StatusSlot>
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
@@ -1251,7 +1251,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    noOptionsContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -1264,11 +1264,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     clearIndicator: PropTypes.elementType,
     listbox: PropTypes.elementType,
-    noOptionsContainer: PropTypes.elementType,
     paper: PropTypes.elementType,
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
+    status: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

@@ -48,8 +48,8 @@ export interface AutocompleteClasses {
   loading: string;
   /** Styles applied to the no option wrapper. */
   noOptions: string;
-  /** Styles applied to the no option container. */
-  noOptionsContainer: string;
+  /** Styles applied to the status message container. */
+  status: string;
   /** Styles applied to the option elements. */
   option: string;
   /** Styles applied to the group's label elements. */
@@ -88,7 +88,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('MuiAuto
   'listbox',
   'loading',
   'noOptions',
-  'noOptionsContainer',
+  'status',
   'option',
   'groupLabel',
   'groupUl',
