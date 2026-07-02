@@ -195,7 +195,7 @@ importers:
         specifier: 10.2.4
         version: 10.2.4
       nx:
-        specifier: ^22.7.5
+        specifier: 22.7.5
         version: 22.7.5
       pkg-pr-new:
         specifier: 0.0.71
