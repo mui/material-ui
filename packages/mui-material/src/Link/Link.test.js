@@ -113,5 +113,21 @@ describe('<Link />', () => {
         outlineOffset: '2px',
       });
     });
+
+    it.skipIf(isJsdom())('curated ring replaces the button variant outline: auto', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Link component="button">Home</Link>
+        </ThemeProvider>,
+      );
+      const button = container.querySelector('button');
+      focusVisible(button);
+      expect(button).to.have.class(classes.focusVisible);
+      expect(button).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
   });
 });
