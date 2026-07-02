@@ -1,19 +1,17 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import PivotTableChartRoundedIcon from '@mui/icons-material/PivotTableChartRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
+import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+import ViewTimelineRoundedIcon from '@mui/icons-material/ViewTimelineRounded';
 import { visuallyHidden } from '@mui/utils';
 import { Highlighter } from '@mui/internal-core-docs/AppLayout';
 import { Link } from '@mui/internal-core-docs/Link';
 import { ROUTES } from '@mui/internal-core-docs/constants';
-
-const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
 function ComponentItem({
   label,
@@ -28,6 +26,24 @@ function ComponentItem({
   description?: React.ReactNode;
   href: string;
 }) {
+  const viewDocsContent = (
+    <React.Fragment>
+      <span>View the docs</span>{' '}
+      <Box component="span" sx={visuallyHidden}>
+        {label}
+      </Box>
+      <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+    </React.Fragment>
+  );
+  const viewDocsSx = {
+    color: 'primary',
+    display: 'inline-flex',
+    alignItems: 'center',
+    fontWeight: 'semiBold',
+    '& > svg': { transition: '0.2s' },
+    '&:hover > svg': { transform: 'translateX(2px)' },
+  };
+
   return (
     <Box
       component="span"
@@ -35,13 +51,14 @@ function ComponentItem({
         flexGrow: 1,
         display: 'flex',
         p: 2,
-        flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { md: 'center' },
-        gap: 2.5,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: 1.5,
+        minWidth: 0,
       }}
     >
       {icon}
-      <div>
+      <Box component="span" sx={{ minWidth: 0 }}>
         <Typography
           component="span"
           variant="body2"
@@ -65,22 +82,11 @@ function ComponentItem({
           onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
             event.stopPropagation();
           }}
-          sx={{
-            color: 'primary',
-            display: 'inline-flex',
-            alignItems: 'center',
-            fontWeight: 'semiBold',
-            '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(2px)' },
-          }}
+          sx={viewDocsSx}
         >
-          <span>View the docs</span>{' '}
-          <Box component="span" sx={visuallyHidden}>
-            {label}
-          </Box>
-          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+          {viewDocsContent}
         </Link>
-      </div>
+      </Box>
     </Box>
   );
 }
@@ -90,76 +96,95 @@ export default function XComponentsSwitcher(props: {
   setComponentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { componentIndex, setComponentIndex } = props;
-  const componentElement = [
-    <ComponentItem
-      name="Data Grid"
-      label="Fast, feature-rich data table."
-      description="Fast, feature-rich data table."
-      icon={<PivotTableChartRoundedIcon />}
-      href={ROUTES.dataGridOverview}
-    />,
-    <ComponentItem
-      name="Date and Time Pickers"
-      description="A suite of components for selecting dates, times, and ranges."
-      label="A suite of components for selecting dates, times, and ranges."
-      icon={<CalendarMonthRoundedIcon />}
-      href={ROUTES.datePickersOverview}
-    />,
-    <ComponentItem
-      name="Charts"
-      description="Data visualization graphs, including bar, line, pie, scatter, and more."
-      label="Data visualization graphs, including bar, line, pie, scatter, and more."
-      icon={<BarChartRoundedIcon />}
-      href={ROUTES.chartsOverview}
-    />,
-    <ComponentItem
-      name="Tree View"
-      description="Display hierarchical data, such as a file system navigator."
-      label="Display hierarchical data, such as a file system navigator."
-      icon={<AccountTreeRounded />}
-      href={ROUTES.treeViewOverview}
-    />,
+  const componentElements = [
+    {
+      element: (
+        <ComponentItem
+          name="Data Grid"
+          label="Fast, feature-rich data table."
+          description="Fast, feature-rich data table."
+          icon={<PivotTableChartRoundedIcon />}
+          href={ROUTES.dataGridOverview}
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Charts"
+          description="Data visualization graphs, including bar, line, pie, scatter, and more."
+          label="Data visualization graphs, including bar, line, pie, scatter, and more."
+          icon={<BarChartRoundedIcon />}
+          href={ROUTES.chartsOverview}
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Event Calendar"
+          description="Schedule meetings, deadlines, and recurring work in calendar views."
+          label="Schedule meetings, deadlines, and recurring work in calendar views."
+          icon={<EventAvailableRoundedIcon />}
+          href="/x/react-scheduler/event-calendar/views/"
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Event Timeline"
+          description="Plan resource-based work across horizontal timelines."
+          label="Plan resource-based work across horizontal timelines."
+          icon={<ViewTimelineRoundedIcon />}
+          href="/x/react-scheduler/event-timeline/views/"
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Tree View"
+          description="Display hierarchical data, such as a file system navigator."
+          label="Display hierarchical data, such as a file system navigator."
+          icon={<AccountTreeRounded />}
+          href={ROUTES.treeViewOverview}
+        />
+      ),
+    },
+    {
+      element: (
+        <ComponentItem
+          name="Date and Time Pickers"
+          description="A suite of components for selecting dates, times, and ranges."
+          label="A suite of components for selecting dates, times, and ranges."
+          icon={<CalendarMonthRoundedIcon />}
+          href={ROUTES.datePickersOverview}
+        />
+      ),
+    },
   ];
+
   return (
-    <React.Fragment>
-      <Box
-        sx={{ display: { md: 'none' }, maxWidth: 'calc(100vw - 40px)', '& > div': { pr: '32%' } }}
-      >
-        <SwipeableViews
-          index={componentIndex}
-          resistance
-          enableMouseEvents
-          onChangeIndex={(index) => setComponentIndex(index)}
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+        gap: 1,
+        maxWidth: 500,
+      }}
+    >
+      {componentElements.map(({ element }, index) => (
+        <Highlighter
+          key={index}
+          disableBorder
+          onClick={() => setComponentIndex(index)}
+          selected={componentIndex === index}
+          sx={{ minWidth: 0, height: 'auto', alignItems: 'flex-start' }}
         >
-          {componentElement.map((element, index) => (
-            <Highlighter
-              key={index}
-              disableBorder
-              onClick={() => setComponentIndex(index)}
-              selected={componentIndex === index}
-              sx={{
-                width: '100%',
-                transition: '0.3s',
-                transform: componentIndex !== index ? 'scale(0.9)' : 'scale(1)',
-              }}
-            >
-              {element}
-            </Highlighter>
-          ))}
-        </SwipeableViews>
-      </Box>
-      <Stack spacing={1} useFlexGap sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
-        {componentElement.map((element, index) => (
-          <Highlighter
-            key={index}
-            disableBorder
-            onClick={() => setComponentIndex(index)}
-            selected={componentIndex === index}
-          >
-            {element}
-          </Highlighter>
-        ))}
-      </Stack>
-    </React.Fragment>
+          {element}
+        </Highlighter>
+      ))}
+    </Box>
   );
 }

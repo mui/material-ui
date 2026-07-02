@@ -1,4 +1,5 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -9,6 +10,17 @@ import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
 import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
 import XChartsDemo from 'docs/src/components/productX/XChartsDemo';
+
+const XEventCalendarDemo = dynamic(() => import('docs/src/components/productX/XSchedulerDemo'), {
+  ssr: false,
+});
+const XEventTimelineDemo = dynamic(
+  () =>
+    import('docs/src/components/productX/XSchedulerDemo').then(
+      (module) => module.XEventTimelineDemo,
+    ),
+  { ssr: false },
+);
 
 export default function XComponents() {
   const [componentIndex, setComponentIndex] = React.useState(0);
@@ -36,9 +48,11 @@ export default function XComponents() {
         >
           <React.Fragment>
             {componentIndex === 0 && <XGridFullDemo />}
-            {componentIndex === 1 && <XDateRangeDemo />}
-            {componentIndex === 2 && <XChartsDemo />}
-            {componentIndex === 3 && <XTreeViewDemo />}
+            {componentIndex === 1 && <XChartsDemo />}
+            {componentIndex === 2 && <XEventCalendarDemo />}
+            {componentIndex === 3 && <XEventTimelineDemo />}
+            {componentIndex === 4 && <XTreeViewDemo />}
+            {componentIndex === 5 && <XDateRangeDemo />}
           </React.Fragment>
         </Grid>
       </Grid>
