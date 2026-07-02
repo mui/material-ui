@@ -294,7 +294,6 @@ export default function HighContrastShowcase() {
 
           <Section title="Autocomplete">
             <Autocomplete
-              open
               disablePortal
               options={autocompleteOptions}
               defaultValue={autocompleteOptions[1]}
@@ -305,7 +304,7 @@ export default function HighContrastShowcase() {
               sx={{ maxWidth: 320 }}
             />
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-              Shows disabled and selected option styling.
+              Open the menu to compare the fixed disabled and selected option styles.
             </Typography>
           </Section>
 
