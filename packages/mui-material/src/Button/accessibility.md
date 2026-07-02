@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 28    |
-| 🚩 Flagged            | 17/27 |
+| 🚩 Flagged            | 12/27 |
 
 ## Known gaps
 
@@ -320,22 +320,25 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.1.2 No Keyboard Trap · A
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - A single focusable control that installs no focus-capturing loop. <kbd>Tab</kbd> moves in and out, and a disabled button leaves the tab order (the `disabled` attribute on native buttons, `tabIndex=-1` on non-native).
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (<kbd>Tab</kbd> is not intercepted, and focus moves away freely).
 
 #### 2.4.3 Focus Order · A
 
-`🚩` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - The component sits in natural DOM order with no positive `tabIndex`, and disabled or loading buttons leave the order, so it is one correct focus stop.
 - Order across controls is the surrounding layout's responsibility.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (default `tabIndex` is `0`; disabled and loading buttons leave the order).
 
 #### 2.5.2 Pointer Cancellation · A
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (`mousedown` does not activate; `click` does).
 
 #### 2.5.8 Target Size (Minimum) · AA
 
@@ -346,16 +349,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.1 On Focus · A
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - Focus triggers only the focus-visible ripple and `onFocus` callbacks. There is no navigation, dialog, or focus move, so focus alone changes no context.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (focusing the button does not activate it).
 
 #### 3.2.2 On Input · A
 
-`🚩` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - Toggling the button's setting (`loading` to disabled, or an `aria-pressed` toggle) changes no context on its own.
 - Whether an author's handler couples that change to navigation or a new window without warning is an author decision.
+- Confirmed by a unit test in [`./Button.test.js`](./Button.test.js) (toggling `aria-pressed` or `loading` does not activate the button).
 
 ## Not applicable
 
