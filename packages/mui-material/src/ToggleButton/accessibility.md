@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
-| 🚩 Flagged            | 14/24 |
+| 🚩 Flagged            | 10/24 |
 
 ## Known gaps
 
@@ -30,9 +30,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open a demo with a row of toggles (`ToggleButtons`).
-2. Press <kbd>Tab</kbd> repeatedly and note the order the toggles receive focus.
-3. Compare that order to the visual left-to-right order.
+1. In a UI with a series of toggle buttons (typically a `ToggleButtonGroup`), press <kbd>Tab</kbd> repeatedly and note the order the toggles receive focus.
+2. Compare that order to the visual left-to-right order.
 
 **Pass:** focus order matches the visual order. Watch for layouts that reorder toggles visually without changing the DOM.
 
@@ -59,7 +58,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the Toggle Button demos and set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
+1. In a UI with toggle buttons, set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>).
 2. Confirm labels are fully visible and toggles still work.
 
 **Pass:** nothing is clipped or cut off at 200%.
@@ -73,8 +72,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open a toggle with a text label and try to select the text with the mouse, or zoom in.
-2. Confirm it behaves like real text (selectable, stays crisp), not a picture.
+1. Select a toggle button's label with the mouse (or zoom in) and confirm it behaves like real text (selectable, stays crisp), not a picture.
 
 **Pass:** labels are live text. No toggle uses an image of text.
 
@@ -86,7 +84,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the Toggle Button demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+1. In a UI with toggle buttons, set the window (or the DevTools device toolbar) to 320 CSS pixels wide.
 2. Confirm there is no sideways scrolling and all toggles are reachable.
 
 **Pass:** content reflows with no horizontal scroll.
@@ -130,9 +128,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ToggleButtonA11ySemanticStates` with a screen reader running (NVDA with Chrome, or VoiceOver with Safari).
-2. <kbd>Tab</kbd> to each toggle and confirm it announces the visible label or `aria-label`, and does not read out the icon.
-3. For any icon-only toggle in the product, confirm it has an `aria-label` describing the action.
+1. With a screen reader running (NVDA with Chrome, or VoiceOver with Safari), <kbd>Tab</kbd> to toggle buttons that carry an icon and confirm each announces the visible label or `aria-label`, not the icon.
+2. For any icon-only toggle in the product, confirm it has an `aria-label` describing the action.
 
 **Pass:** every toggle's announced name matches its purpose, and decorative icons are silent.
 
@@ -145,8 +142,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ToggleButtonA11ySemanticStates` and `ToggleButtonA11yNonNative` with a screen reader running.
-2. Confirm the plain toggle announces "button", the selected one announces its pressed state, the disabled one announces its disabled state, and the custom one announces "button".
+1. With a screen reader running, focus a selected toggle, an unselected toggle, a disabled toggle, and a non-native (`role="button"`) toggle.
+2. Confirm the unselected toggle announces "button", the selected one announces its pressed state, the disabled one announces its disabled state, and the non-native one announces "button".
 
 **Pass:** role and state match the visual presentation for every variant.
 
@@ -159,9 +156,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ColorToggleButton` or `ToggleButtonA11yColorMatrix`.
-2. Turn on a grayscale view (in Chrome DevTools: Rendering tab, Emulate vision deficiencies, Achromatopsia).
-3. Confirm each toggle can still be told apart, and that a selected toggle is still distinguishable from an unselected one.
+1. In a UI with color-variant toggle buttons (a `ToggleButtonGroup` with a `color`), turn on a grayscale view (in Chrome DevTools: Rendering tab, Emulate vision deficiencies, Achromatopsia).
+2. Confirm each toggle can still be told apart, and that a selected toggle is still distinguishable from an unselected one.
 
 **Pass:** the control's meaning survives without color. The `standard` selected state stays distinguishable; the color variants do not, since their pressed cue is hue-dominant.
 
@@ -174,7 +170,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ToggleButtonA11yColorMatrix`. With a contrast checker (the color picker in browser DevTools shows a ratio), check each selected label against its background.
+1. With a contrast checker (the color picker in browser DevTools shows a ratio), check each selected toggle's label against its background, across the color variants in use.
 2. Repeat with the pointer hovering, since `:hover` changes the background.
 3. Check any custom theme colors the product uses.
 
@@ -189,7 +185,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ToggleButtons`. Press <kbd>Tab</kbd> to a toggle so its focus indicator shows, and measure the indicator against the colors next to it.
+1. Press <kbd>Tab</kbd> to a toggle so its focus indicator shows, and measure the indicator against the colors next to it.
 2. Measure a selected toggle's fill (and any meaningful icon) against the unselected state and the background.
 3. Set `disableRipple` or `disableFocusRipple` on a toggle (no demo ships these) and repeat: the focus indicator should be gone.
 
@@ -204,9 +200,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `ToggleButtonA11yTextSpacing`.
-2. Apply the WCAG text-spacing values. The quickest way is to run this in the DevTools console: `document.head.insertAdjacentHTML('beforeend','<style>*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}</style>')`.
-3. Look for cut-off, clipped, or overlapping label text.
+1. On a toggle button with a long label, apply the WCAG text-spacing values. The quickest way is to run this in the DevTools console: `document.head.insertAdjacentHTML('beforeend','<style>*{line-height:1.5!important;letter-spacing:.12em!important;word-spacing:.16em!important}</style>')`.
+2. Look for cut-off, clipped, or overlapping label text.
 
 **Pass:** all label text stays visible and the toggle still works.
 
@@ -229,11 +224,12 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `⚠️ Partially Supports` · `● Component`
 
 - Keyboard focus shows the `.Mui-focusVisible` ripple (suppressed for mouse). The component sets no other focus style.
-- `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this). [`ToggleButton.test.js`](./ToggleButton.test.js) confirms a keyboard-focused toggle renders no ripple under `disableRipple`.
+- `disableRipple` removes every ripple and `disableFocusRipple` removes the focus ripple, so either prop leaves the toggle with no visible focus indicator (the `disableRipple` prop documents this).
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (no focus ripple under `disableRipple`).
 
 **Manual testing steps**
 
-1. Open `ToggleButtons` and `StandaloneToggleButton`. Press <kbd>Tab</kbd> to move to each toggle.
+1. Press <kbd>Tab</kbd> to move focus across toggle buttons (standalone and within a `ToggleButtonGroup`).
 2. Confirm a clear focus indicator appears, and that it looks different from the selected style.
 3. Click a toggle with the mouse and confirm the indicator does not appear (it is keyboard-only).
 4. Set `disableRipple` or `disableFocusRipple` on a toggle (no demo ships these) and <kbd>Tab</kbd> to it.
@@ -244,8 +240,9 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- When a toggle has a visible text label, that text is the accessible name (the children become the name). An icon-only toggle has no visible text, so its `aria-label` is the name. [`ToggleButton.test.js`](./ToggleButton.test.js) confirms the accessible name contains the visible label.
+- When a toggle has a visible text label, that text is the accessible name (the children become the name). An icon-only toggle has no visible text, so its `aria-label` is the name.
 - An `aria-label` that omits or reorders the visible words breaks this. Compare the visible text to the computed name.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (the accessible name contains the visible label).
 
 **Manual testing steps**
 
@@ -259,13 +256,14 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `◐ Shared`
 
-- A native `<button>` (or `role="button"` for a non-native host) sets the role; `aria-pressed` reflects `selected` for the on/off state, the W3C-prescribed mechanism for a toggle button (distinct from a switch's `aria-checked`); `disabled` sets state. axe-core `button-name` (with `aria-command-name` covering the non-native host), the other `aria-*` rules, and `nested-interactive` all pass; [`ToggleButton.test.js`](./ToggleButton.test.js) also unit-tests that `aria-pressed` reflects and flips with `selected`.
+- A native `<button>` (or `role="button"` for a non-native host) sets the role; `aria-pressed` reflects `selected` for the on/off state, the W3C-prescribed mechanism for a toggle button (distinct from a switch's `aria-checked`); `disabled` sets state. axe-core `button-name` (with `aria-command-name` covering the non-native host), the other `aria-*` rules, and `nested-interactive` all pass.
 - axe-core covers the mechanical layer (a name is present, `aria-pressed` is a valid and permitted value). Whether the name is meaningful, and whether the pressed state matches the visual state and is announced on change, needs an assistive-technology review.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (`aria-pressed` reflects `selected`).
 
 **Manual testing steps**
 
-1. Open `ToggleButtonA11ySemanticStates`, `ToggleButtonA11yNonNative`, and `ToggleButtonsMultiple` with a screen reader running.
-2. <kbd>Tab</kbd> to each toggle and confirm the announced name, role, and pressed or disabled state are correct.
+1. With a screen reader running, <kbd>Tab</kbd> to each toggle variant in use (native, non-native `role="button"`, selected, unselected, disabled), typically within a `ToggleButtonGroup`.
+2. Confirm the announced name, role, and pressed or disabled state are correct.
 3. Activate a toggle and confirm the pressed/not-pressed change is announced.
 
 **Pass:** name, role, and state are correct for every variant, and state changes are announced.
@@ -281,22 +279,25 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.1.2 No Keyboard Trap · A
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - A single focusable control that installs no focus-capturing loop. <kbd>Tab</kbd> moves in and out, and a disabled toggle leaves the tab order (the `disabled` attribute on native buttons, `tabIndex=-1` on non-native).
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (<kbd>Tab</kbd> is not intercepted, and focus moves away freely).
 
 #### 2.4.3 Focus Order · A
 
-`🚩` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - The component sits in natural DOM order with no positive `tabIndex`, and a disabled toggle leaves the order, so it is one correct focus stop.
 - Order across toggles is the surrounding layout's responsibility.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (default `tabIndex` is `0`; a disabled toggle leaves the order).
 
 #### 2.5.2 Pointer Cancellation · A
 
 `✅ Supports` · `● Component`
 
-- Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event. [`ToggleButton.test.js`](./ToggleButton.test.js) confirms `onChange` fires on click but not on `mouseDown` alone.
+- Activation runs on `click`, fired on pointer-up over the target. `onMouseDown` only starts the ripple, and releasing off the target cancels, so nothing runs on the down event.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (a pointer released off the target does not activate; `click` does).
 
 #### 2.5.8 Target Size (Minimum) · AA
 
@@ -307,16 +308,18 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.1 On Focus · A
 
-`🚩` · `✅ Supports` · `● Component`
+`✅ Supports` · `● Component`
 
 - Focus triggers only the focus-visible ripple and `onFocus` callbacks. There is no navigation, dialog, or focus move, so focus alone changes no context.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (focusing the toggle does not activate it).
 
 #### 3.2.2 On Input · A
 
-`🚩` · `✅ Supports` · `◐ Shared`
+`✅ Supports` · `◐ Shared`
 
 - Toggling the pressed state (`selected`, exposed as `aria-pressed`) changes no context on its own.
 - Whether an author's `onChange` handler couples that change to navigation or a new window without warning is an author decision.
+- Confirmed by a unit test in [`./ToggleButton.test.js`](./ToggleButton.test.js) (the pressed state does not activate the toggle on its own).
 
 ## Not applicable
 
