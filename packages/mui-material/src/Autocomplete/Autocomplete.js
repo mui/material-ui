@@ -23,6 +23,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
+import toPx from '../utils/toPx';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -364,6 +365,12 @@ const AutocompleteListbox = styled('ul', {
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
         backgroundColor: (theme.vars || theme).palette.action.focus,
+        // Options are plain <li> (not ButtonBase), so add the curated ring here — keyed to the
+        // keyboard-navigation state. Inset it: the listbox scrolls and would clip a +offset.
+        ...((theme.vars || theme).focusVisible && {
+          ...(theme.vars || theme).focusVisible,
+          outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
+        }),
       },
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(

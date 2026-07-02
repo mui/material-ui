@@ -120,13 +120,13 @@ function createThemeNoVars(options = {}, ...args) {
 
   // Normalize the opt-in focus ring once: `true` → curated default, object → merged
   // over it. Components then read a resolved object and never the boolean.
-  if (muiTheme.focusRing != null && muiTheme.focusRing !== false) {
-    muiTheme.focusRing = {
+  if (muiTheme.focusVisible != null && muiTheme.focusVisible !== false) {
+    muiTheme.focusVisible = {
       outlineStyle: 'solid',
       outlineColor: palette.primary.main,
       outlineWidth: 2,
       outlineOffset: 2,
-      ...(muiTheme.focusRing === true ? null : muiTheme.focusRing),
+      ...(muiTheme.focusVisible === true ? null : muiTheme.focusVisible),
     };
   }
 

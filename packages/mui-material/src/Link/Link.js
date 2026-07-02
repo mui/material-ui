@@ -156,6 +156,14 @@ const LinkRoot = styled(Typography, {
             },
           },
         },
+        {
+          // Opt-in curated ring: `theme.focusVisible` wins over the browser default
+          // (and the button variant's `outline: auto`) on keyboard focus.
+          props: () => Boolean((theme.vars || theme).focusVisible),
+          style: {
+            [`&.${linkClasses.focusVisible}`]: (theme.vars || theme).focusVisible,
+          },
+        },
       ],
     };
   }),

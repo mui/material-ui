@@ -8,9 +8,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const theme = createTheme({ focusRing: true });
+const theme = createTheme({ focusVisible: true });
 
-export default function FocusRingDefault() {
+export default function FocusVisibleDefault() {
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>

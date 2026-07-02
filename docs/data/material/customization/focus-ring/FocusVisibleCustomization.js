@@ -6,17 +6,17 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 // Merge over the curated default: recolor only, geometry is kept.
-const recolor = createTheme({ focusRing: { outlineColor: '#9c27b0' } });
+const recolor = createTheme({ focusVisible: { outlineColor: '#9c27b0' } });
 
 // Two-color ring (WCAG technique C40): the curated outline plus an additive
 // box-shadow in a contrasting color, so it stays visible on any background.
 const twoColor = createTheme({
-  focusRing: { boxShadow: '0 0 0 4px rgba(0, 0, 0, 0.4)' },
+  focusVisible: { boxShadow: '0 0 0 4px rgba(0, 0, 0, 0.4)' },
 });
 
 // Remove the outline and supply your own indicator.
 const outlineRemoved = createTheme({
-  focusRing: { outlineColor: 'transparent', boxShadow: '0 0 0 3px #1976d2' },
+  focusVisible: { outlineColor: 'transparent', boxShadow: '0 0 0 3px #1976d2' },
 });
 
 function Sample({ theme, label }) {
@@ -77,7 +77,7 @@ Sample.propTypes = {
     darken: PropTypes.func.isRequired,
     defaultColorScheme: PropTypes.oneOf(['dark', 'light']).isRequired,
     direction: PropTypes.oneOf(['ltr', 'rtl']).isRequired,
-    focusRing: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.object]),
+    focusVisible: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.object]),
     generateSpacing: PropTypes.func.isRequired,
     generateStyleSheets: PropTypes.func.isRequired,
     generateThemeVars: PropTypes.func.isRequired,
@@ -628,7 +628,7 @@ Sample.propTypes = {
   }).isRequired,
 };
 
-export default function FocusRingCustomization() {
+export default function FocusVisibleCustomization() {
   return (
     <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap', gap: 3 }}>
       <Sample theme={recolor} label="Recolor (merge)" />

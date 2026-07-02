@@ -42,9 +42,9 @@ const CardActionAreaRoot = styled(ButtonBase, {
       opacity: (theme.vars || theme).palette.action.focusOpacity,
     },
     // Inset the focus ring: Card sets overflow:hidden, which clips a positive outline-offset.
-    ...((theme.vars || theme).focusRing && {
+    ...((theme.vars || theme).focusVisible && {
       [`&.${cardActionAreaClasses.focusVisible}`]: {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
       },
     }),
   })),

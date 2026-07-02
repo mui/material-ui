@@ -308,10 +308,10 @@ describe('<Tab />', () => {
     });
   });
 
-  describe('theme.focusRing', () => {
+  describe('theme.focusVisible', () => {
     it.skipIf(isJsdom())('insets the focus ring so a Tabs scroller cannot clip it', () => {
       const theme = createTheme({
-        focusRing: true,
+        focusVisible: true,
         components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
       });
       render(

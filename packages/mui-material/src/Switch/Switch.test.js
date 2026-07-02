@@ -212,12 +212,12 @@ describe('<Switch />', () => {
     });
   });
 
-  describe('theme.focusRing', () => {
+  describe('theme.focusVisible', () => {
     it.skipIf(isJsdom())(
-      'root overflow is visible so the focus ring is not clipped when focusRing is set',
+      'root overflow is visible so the focus ring is not clipped when focusVisible is set',
       () => {
         const { container } = render(
-          <ThemeProvider theme={createTheme({ focusRing: true })}>
+          <ThemeProvider theme={createTheme({ focusVisible: true })}>
             <Switch />
           </ThemeProvider>,
         );
@@ -228,7 +228,7 @@ describe('<Switch />', () => {
       },
     );
 
-    it.skipIf(isJsdom())('root overflow stays hidden when focusRing is unset', () => {
+    it.skipIf(isJsdom())('root overflow stays hidden when focusVisible is unset', () => {
       const { container } = render(
         <ThemeProvider theme={createTheme()}>
           <Switch />

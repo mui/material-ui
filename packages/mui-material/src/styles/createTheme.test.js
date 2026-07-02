@@ -455,7 +455,7 @@ describe('createTheme', () => {
     });
   });
 
-  describe('focusRing', () => {
+  describe('focusVisible', () => {
     const CURATED = {
       outlineStyle: 'solid',
       outlineWidth: 2,
@@ -463,16 +463,16 @@ describe('createTheme', () => {
     };
 
     it('`true` resolves to the curated ring using the palette primary color', () => {
-      const theme = createTheme({ cssVariables: false, focusRing: true });
-      expect(theme.focusRing).to.deep.equal({
+      const theme = createTheme({ cssVariables: false, focusVisible: true });
+      expect(theme.focusVisible).to.deep.equal({
         ...CURATED,
         outlineColor: theme.palette.primary.main,
       });
     });
 
     it('an object merges over the curated default, keeping geometry', () => {
-      const theme = createTheme({ cssVariables: false, focusRing: { outlineColor: 'red' } });
-      expect(theme.focusRing).to.deep.equal({
+      const theme = createTheme({ cssVariables: false, focusVisible: { outlineColor: 'red' } });
+      expect(theme.focusVisible).to.deep.equal({
         ...CURATED,
         outlineColor: 'red',
       });
@@ -481,40 +481,44 @@ describe('createTheme', () => {
     it('`outlineColor: transparent` removes the visible outline but keeps the object', () => {
       const theme = createTheme({
         cssVariables: false,
-        focusRing: { outlineColor: 'transparent' },
+        focusVisible: { outlineColor: 'transparent' },
       });
-      expect(theme.focusRing.outlineColor).to.equal('transparent');
-      expect(theme.focusRing.outlineStyle).to.equal('solid');
+      expect(theme.focusVisible.outlineColor).to.equal('transparent');
+      expect(theme.focusVisible.outlineStyle).to.equal('solid');
     });
 
     it('a boxShadow is additive on top of the curated outline', () => {
       const theme = createTheme({
         cssVariables: false,
-        focusRing: { boxShadow: '0 0 0 4px #fff' },
+        focusVisible: { boxShadow: '0 0 0 4px #fff' },
       });
-      expect(theme.focusRing).to.deep.equal({
+      expect(theme.focusVisible).to.deep.equal({
         ...CURATED,
         outlineColor: theme.palette.primary.main,
         boxShadow: '0 0 0 4px #fff',
       });
     });
 
-    it('`false` and `undefined` leave focusRing off (non-breaking)', () => {
-      expect(createTheme({ cssVariables: false, focusRing: false }).focusRing).to.equal(false);
-      expect(createTheme({ cssVariables: false }).focusRing).to.equal(undefined);
+    it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
+      expect(createTheme({ cssVariables: false, focusVisible: false }).focusVisible).to.equal(
+        false,
+      );
+      expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
     });
 
     it('vars theme: curated color is a scheme-reactive palette var, numbers become px', () => {
-      const theme = createTheme({ cssVariables: true, focusRing: true });
+      const theme = createTheme({ cssVariables: true, focusVisible: true });
       // scheme-reactive: resolves through the palette var, correct in dark mode
-      expect(theme.focusRing.outlineColor).to.equal('var(--mui-palette-primary-main)');
-      expect(theme.vars.focusRing.outlineColor).to.equal(
-        'var(--mui-focusRing-outlineColor, var(--mui-palette-primary-main))',
+      expect(theme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
+      expect(theme.vars.focusVisible.outlineColor).to.equal(
+        'var(--mui-focusVisible-outlineColor, var(--mui-palette-primary-main))',
       );
       // numeric 2 surfaces as a `2px` fallback in the generated var
-      expect(theme.vars.focusRing.outlineWidth).to.equal('var(--mui-focusRing-outlineWidth, 2px)');
-      expect(theme.vars.focusRing.outlineOffset).to.equal(
-        'var(--mui-focusRing-outlineOffset, 2px)',
+      expect(theme.vars.focusVisible.outlineWidth).to.equal(
+        'var(--mui-focusVisible-outlineWidth, 2px)',
+      );
+      expect(theme.vars.focusVisible.outlineOffset).to.equal(
+        'var(--mui-focusVisible-outlineOffset, 2px)',
       );
     });
   });

@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions, FocusRing } from '@mui/material/styles';
+import { createTheme, ThemeOptions, FocusVisible } from '@mui/material/styles';
 import { buttonClasses } from '@mui/material/Button';
 
 const theme = createTheme();
@@ -318,28 +318,28 @@ const theme = createTheme();
   });
 }
 
-// focusRing theme key
+// focusVisible theme key
 {
-  createTheme({ focusRing: true });
-  createTheme({ focusRing: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
-  createTheme({ focusRing: { outlineColor: 'red' } });
-  createTheme({ focusRing: { outlineStyle: 'dashed' } });
-  createTheme({ focusRing: { boxShadow: '0 0 0 4px #fff' } });
-  createTheme({ focusRing: { boxShadow: '0 0 0 4px #fff', outlineColor: 'transparent' } });
-  createTheme({ focusRing: false });
-  createTheme({ focusRing: undefined });
+  createTheme({ focusVisible: true });
+  createTheme({ focusVisible: { outlineColor: 'red', outlineWidth: 2, outlineOffset: 3 } });
+  createTheme({ focusVisible: { outlineColor: 'red' } });
+  createTheme({ focusVisible: { outlineStyle: 'dashed' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff' } });
+  createTheme({ focusVisible: { boxShadow: '0 0 0 4px #fff', outlineColor: 'transparent' } });
+  createTheme({ focusVisible: false });
+  createTheme({ focusVisible: undefined });
 
   // Resolved theme always exposes the merged object (never the boolean).
-  const focusRing: FocusRing | false | undefined = theme.focusRing;
-  createTheme({ focusRing });
+  const focusVisible: FocusVisible | false | undefined = theme.focusVisible;
+  createTheme({ focusVisible });
 
   createTheme({
     // @ts-expect-error outlineWidth must be a number or string
-    focusRing: { outlineWidth: true },
+    focusVisible: { outlineWidth: true },
   });
 
   createTheme({
-    // @ts-expect-error focusRing must be a boolean or a CSS properties object
-    focusRing: 'solid',
+    // @ts-expect-error focusVisible must be a boolean or a CSS properties object
+    focusVisible: 'solid',
   });
 }

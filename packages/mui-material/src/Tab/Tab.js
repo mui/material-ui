@@ -63,9 +63,9 @@ const TabRoot = styled(ButtonBase, {
     textAlign: 'center',
     lineHeight: 1.25,
     // Inset the focus ring: the Tabs scroller clips a positive outline-offset.
-    ...((theme.vars || theme).focusRing && {
+    ...((theme.vars || theme).focusVisible && {
       [`&.${buttonBaseClasses.focusVisible}`]: {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
       },
     }),
     variants: [

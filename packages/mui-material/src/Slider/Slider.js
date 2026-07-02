@@ -281,6 +281,9 @@ export const SliderThumb = styled('span', {
         boxShadow: 'none',
       },
     },
+    ...((theme.vars || theme).focusVisible && {
+      [`&.${sliderClasses.focusVisible}`]: (theme.vars || theme).focusVisible,
+    }),
     variants: [
       {
         props: { size: 'small' },

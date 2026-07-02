@@ -9,7 +9,9 @@ describe('toPx', () => {
 
   it('passes strings through unchanged (already-unit values, CSS vars, calc)', () => {
     expect(toPx('2px')).to.equal('2px');
-    expect(toPx('var(--mui-focusRing-outlineWidth)')).to.equal('var(--mui-focusRing-outlineWidth)');
+    expect(toPx('var(--mui-focusVisible-outlineWidth)')).to.equal(
+      'var(--mui-focusVisible-outlineWidth)',
+    );
     expect(toPx('calc(1px + 1px)')).to.equal('calc(1px + 1px)');
   });
 });

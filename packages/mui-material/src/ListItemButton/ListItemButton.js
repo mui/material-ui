@@ -107,8 +107,8 @@ const ListItemButtonRoot = styled(ButtonBase, {
     [`&.${listItemButtonClasses.focusVisible}`]: {
       backgroundColor: (theme.vars || theme).palette.action.focus,
       // Inset the focus ring: a scrolling List (drawers, long lists) clips a positive outline-offset.
-      ...((theme.vars || theme).focusRing && {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+      ...((theme.vars || theme).focusVisible && {
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
       }),
     },
     [`&.${listItemButtonClasses.disabled}`]: {

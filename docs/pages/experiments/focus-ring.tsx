@@ -6,6 +6,12 @@ import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
+import Link from '@mui/material/Link';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -67,10 +73,13 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
 
 const noop = () => {};
 
-// The ring renders on the ButtonBase root. For form controls (Checkbox/Radio/Switch)
-// `data-ring-target` sits on the inner <input>, so resolve to the SwitchBase root.
+// Resolve the element that carries `.Mui-focusVisible`. ButtonBase controls carry it on
+// the root (form controls put `data-ring-target` on the inner <input>); Slider carries it
+// on the thumb while focus lands on the thumb's inner <input>; Link carries it on itself.
 const ringEl = (el: HTMLElement): HTMLElement =>
-  el.closest<HTMLElement>('.MuiButtonBase-root') ?? el;
+  el.closest<HTMLElement>('.MuiButtonBase-root') ??
+  el.closest<HTMLElement>('.MuiSlider-thumb') ??
+  el;
 
 const isRingDisabled = (el: HTMLElement): boolean => {
   const root = ringEl(el);
@@ -342,11 +351,72 @@ function InnerRing() {
           </CardActionArea>
         </Card>
       </Row>
+      <Row label="Select">
+        {/* Trigger is InputBase (no ring); its dropdown items are MenuItem (ButtonBase) → inset ring. */}
+        <FormControl size="small" sx={{ minWidth: 160 }}>
+          <InputLabel id="fv-select-label">Select</InputLabel>
+          <Select
+            labelId="fv-select-label"
+            label="Select"
+            defaultValue="a"
+            MenuProps={{ disablePortal: true }}
+          >
+            <MenuItem value="a">Option A</MenuItem>
+            <MenuItem value="b">Option B</MenuItem>
+            <MenuItem value="c">Option C</MenuItem>
+          </Select>
+        </FormControl>
+      </Row>
+      <Row label="Autocomplete">
+        {/* Input is InputBase (no ring); options are plain <li> → curated inset ring on keyboard nav. */}
+        <Autocomplete
+          disablePortal
+          options={['Apple', 'Banana', 'Cherry']}
+          sx={{ width: 220 }}
+          renderInput={(params) => <TextField {...params} label="Autocomplete" size="small" />}
+        />
+      </Row>
     </Bucket>
   );
 }
 
-export default function FocusRing() {
+function OwnFocus() {
+  return (
+    <Bucket
+      title="own focus (non-ButtonBase)"
+      hint="Not ButtonBase — the ring comes from each component's own focus-visible state (Slider thumb, Link, Breadcrumb links), not the shared ButtonBase rule."
+    >
+      <Row label="Slider">
+        <Slider
+          defaultValue={40}
+          aria-label="Volume"
+          sx={{ width: 200 }}
+          slotProps={{
+            input: { 'data-ring-target': 'Slider' } as React.InputHTMLAttributes<HTMLInputElement>,
+          }}
+        />
+      </Row>
+      <Row label="Link">
+        <Link href="#link" data-ring-target="Link">
+          Text link
+        </Link>
+      </Row>
+      <Row label="Breadcrumbs">
+        <Breadcrumbs>
+          <Link href="#link" data-ring-target="Breadcrumbs link">
+            Home
+          </Link>
+          <Link href="#link" data-ring-target="Breadcrumbs link">
+            Catalog
+          </Link>
+          <Typography color="text.primary">Item</Typography>
+        </Breadcrumbs>
+      </Row>
+    </Bucket>
+  );
+}
+
+export default function FocusVisible() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [vars, setVars] = React.useState(false); // N3
@@ -372,15 +442,15 @@ export default function FocusRing() {
     }
   }, [customJson]);
 
-  const focusRingValue = custom.active && !custom.error ? custom.value : PRESETS[preset].value;
+  const focusVisibleValue = custom.active && !custom.error ? custom.value : PRESETS[preset].value;
 
   const theme = React.useMemo(
-    () => createTheme({ cssVariables: vars, palette: { mode }, focusRing: focusRingValue }),
-    [vars, mode, focusRingValue],
+    () => createTheme({ cssVariables: vars, palette: { mode }, focusVisible: focusVisibleValue }),
+    [vars, mode, focusVisibleValue],
   );
 
   // N4 — the normalized, resolved ring object the gallery actually renders.
-  const resolved = JSON.stringify(theme.focusRing ?? null, null, 2);
+  const resolved = JSON.stringify(theme.focusVisible ?? null, null, 2);
 
   let customHelp = 'Empty → use the preset above';
   if (custom.error) {
@@ -425,7 +495,7 @@ export default function FocusRing() {
 
   React.useEffect(() => {
     setTotal(walkTargets().length);
-  }, [walkTargets, preset, vars, mode, focusRingValue]);
+  }, [walkTargets, preset, vars, mode, focusVisibleValue]);
 
   return (
     <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
@@ -443,7 +513,7 @@ export default function FocusRing() {
         >
           <Box sx={{ minWidth: 0 }}>
             <Typography variant="h5">
-              Focus ring — <code>theme.focusRing</code>
+              Focus visible — <code>theme.focusVisible</code>
             </Typography>
             <Typography variant="body2" color="text.secondary">
               ⌨ Press Tab / Shift+Tab — the ring shows on <code>:focus-visible</code> (keyboard)
@@ -507,7 +577,7 @@ export default function FocusRing() {
 
             {/* N2 — custom JSON editor */}
             <TextField
-              label="Custom focusRing (JSON)"
+              label="Custom focusVisible (JSON)"
               value={customJson}
               onChange={(event) => setCustomJson(event.target.value)}
               placeholder={'{ "outlineColor": "transparent", "boxShadow": "0 0 0 4px gold" }'}
@@ -548,7 +618,7 @@ export default function FocusRing() {
             {/* N4 — resolved value */}
             <div>
               <FormLabel sx={{ typography: 'subtitle2', mb: 1, display: 'block' }}>
-                Resolved <code>theme.focusRing</code>
+                Resolved <code>theme.focusVisible</code>
               </FormLabel>
               <Box
                 component="pre"
@@ -575,7 +645,7 @@ export default function FocusRing() {
             setFocused(target.getAttribute('data-ring-target'));
             // Real keyboard focus wins: drop the pointer shim from every ring root
             // except the one being focused, so there's never a double-ring.
-            const focusedRing = target.closest('.MuiButtonBase-root');
+            const focusedRing = ringEl(target);
             ringTargets().forEach((el) => {
               const root = ringEl(el);
               if (root !== focusedRing) {
@@ -593,6 +663,9 @@ export default function FocusRing() {
               </Paper>
               <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <InnerRing />
+              </Paper>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
+                <OwnFocus />
               </Paper>
             </Stack>
           </ThemeProvider>

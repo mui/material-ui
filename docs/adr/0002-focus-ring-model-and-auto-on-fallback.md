@@ -2,12 +2,12 @@
 status: accepted
 ---
 
-# Focus-ring model: auto-on a11y fallback + tri-state `theme.focusRing`
+# Focus-ring model: auto-on a11y fallback + tri-state `theme.focusVisible`
 
-The focus ring is exposed as **two features sharing one renderer**, controlled by `theme.focusRing` plus the resolved `disableRipple`:
+The focus ring is exposed as **two features sharing one renderer**, controlled by `theme.focusVisible` plus the resolved `disableRipple`:
 
 - **Feature 1 — a11y fallback (on by default).** When `disableRipple` is true (any source: theme `defaultProps` or per-instance), ButtonBase renders a focus ring. This is a **default behavior change**: today `disableRipple` removes the only keyboard-focus indicator for ripple-pulse components (Button, IconButton, Fab, Tab, …), failing WCAG 2.4.7. The fallback uses default ring values (`outlineColor: palette.primary.main`, `outlineWidth: 2`, `outlineOffset: 2`, `outlineStyle: 'solid'`). It does not key off `focusRipple`.
-- **Feature 2 — opt-in theme.** `theme.focusRing` is tri-state: `undefined` ⇒ feature 1 only; an **object** ⇒ ring appears regardless of ripple state (object presence is the opt-in, fields fill from defaults); **`false`** ⇒ hard kill-switch, no ring at all including the fallback. The object is typed as the outline subset of `React.CSSProperties` (`outlineColor`/`outlineWidth`/`outlineOffset`/`outlineStyle`) and is spread directly onto the `Mui-focusVisible` styles — no field-name mapping.
+- **Feature 2 — opt-in theme.** `theme.focusVisible` is tri-state: `undefined` ⇒ feature 1 only; an **object** ⇒ ring appears regardless of ripple state (object presence is the opt-in, fields fill from defaults); **`false`** ⇒ hard kill-switch, no ring at all including the fallback. The object is typed as the outline subset of `React.CSSProperties` (`outlineColor`/`outlineWidth`/`outlineOffset`/`outlineStyle`) and is spread directly onto the `Mui-focusVisible` styles — no field-name mapping.
 
 When both apply, feature 2's values win (the fallback is just the themed ring with defaults).
 

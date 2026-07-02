@@ -56,8 +56,8 @@ const SwitchRoot = styled('span', {
     display: 'inline-flex',
     width: 34 + 12 * 2,
     height: 14 + 12 * 2,
-    // `theme.focusRing` outlines the SwitchBase; the default `hidden` would clip it.
-    overflow: (theme.vars || theme).focusRing ? 'visible' : 'hidden',
+    // `theme.focusVisible` outlines the SwitchBase; the default `hidden` would clip it.
+    overflow: (theme.vars || theme).focusVisible ? 'visible' : 'hidden',
     padding: 12,
     boxSizing: 'border-box',
     position: 'relative',

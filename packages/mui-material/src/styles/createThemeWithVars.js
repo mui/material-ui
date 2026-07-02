@@ -956,15 +956,15 @@ export default function createThemeWithVars(options = {}, ...args) {
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
 
   // In the vars theme the curated default color must be the palette var, not a resolved
-  // hex: `focusRing` is top-level so its var is emitted once at `:root` — a hex would
+  // hex: `focusVisible` is top-level so its var is emitted once at `:root` — a hex would
   // freeze the light-mode color in dark. A user-provided `outlineColor` still wins.
-  if (options.focusRing != null && options.focusRing !== false) {
-    theme.focusRing = {
+  if (options.focusVisible != null && options.focusVisible !== false) {
+    theme.focusVisible = {
       outlineStyle: 'solid',
       outlineColor: `var(--${cssVarPrefix}-palette-primary-main)`,
       outlineWidth: 2,
       outlineOffset: 2,
-      ...(options.focusRing === true ? null : options.focusRing),
+      ...(options.focusVisible === true ? null : options.focusVisible),
     };
   }
 

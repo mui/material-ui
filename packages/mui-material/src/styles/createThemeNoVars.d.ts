@@ -41,7 +41,7 @@ export interface CssThemeVariables {}
  * over the curated default (`solid` style, `palette.primary.main` color, `2px` width, `2px`
  * offset); set `outlineColor: 'transparent'` to drop the outline for a box-shadow-only ring.
  */
-export type FocusRing = React.CSSProperties;
+export type FocusVisible = React.CSSProperties;
 
 type CssVarsOptions = CssThemeVariables extends {
   enabled: true;
@@ -62,7 +62,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
     | ((palette: Palette) => TypographyVariantsOptions)
     | undefined;
   zIndex?: ZIndexOptions | undefined;
-  focusRing?: boolean | FocusRing | undefined;
+  focusVisible?: boolean | FocusVisible | undefined;
   unstable_strictMode?: boolean | undefined;
   unstable_sxConfig?: SxConfig | undefined;
   modularCssLayers?: boolean | string | undefined;
@@ -77,7 +77,7 @@ export interface BaseTheme extends SystemTheme {
   transitions: Transitions;
   typography: TypographyVariants;
   zIndex: ZIndex;
-  focusRing?: FocusRing | false | undefined;
+  focusVisible?: FocusVisible | false | undefined;
   unstable_strictMode?: boolean | undefined;
   applyStyles: ApplyStyles<SupportedColorScheme>;
 }

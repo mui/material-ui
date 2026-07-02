@@ -108,8 +108,8 @@ const MenuItemRoot = styled(ButtonBase, {
     [`&.${menuItemClasses.focusVisible}`]: {
       backgroundColor: (theme.vars || theme).palette.action.focus,
       // Inset the focus ring: a scrolling Menu/MenuList clips a positive outline-offset.
-      ...((theme.vars || theme).focusRing && {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusRing.outlineWidth)})`,
+      ...((theme.vars || theme).focusVisible && {
+        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
       }),
     },
     [`&.${menuItemClasses.disabled}`]: {

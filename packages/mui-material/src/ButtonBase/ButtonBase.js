@@ -70,10 +70,10 @@ export const ButtonBaseRoot = styled('button', {
     '@media print': {
       colorAdjust: 'exact',
     },
-    // Opt-in keyboard focus ring. `theme.focusRing` is normalized to the resolved
+    // Opt-in keyboard focus ring. `theme.focusVisible` is normalized to the resolved
     // ring object at theme creation, so a truthy value here is ready to spread.
-    ...((theme.vars || theme).focusRing && {
-      [`&.${buttonBaseClasses.focusVisible}`]: (theme.vars || theme).focusRing,
+    ...((theme.vars || theme).focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible}`]: (theme.vars || theme).focusVisible,
     }),
   })),
 );
