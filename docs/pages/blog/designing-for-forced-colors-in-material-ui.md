@@ -1,13 +1,13 @@
 ---
-title: Windows High Contrast mode support in Material UI
-description: Learn how Windows High Contrast maps to CSS system colors and why Material UI uses an opt-in theme enhancer for forced-colors support.
+title: Windows High Contrast mode support in Material UI
+description: Learn how Windows High Contrast maps to CSS system colors and why Material UI uses an opt-in theme enhancer for forced-colors support.
 date: 2026-07-01T00:00:00.000Z
 authors: ['silviuaavram']
-tags: ['Material UI', 'Accessibility', 'Guide']
+tags: ['Material UI', 'Accessibility', 'Guide']
 manualCard: false
 ---
 
-This post walks through how Windows High Contrast mode maps to the CSS `forced-colors` model, what gaps we found in Material UI components, which implementation paths we considered, and why we chose an opt-in theme enhancer.
+This post walks through how Windows High Contrast mode maps to the CSS `forced-colors` model, what gaps we found in Material UI components, which implementation paths we considered, and why we chose an opt-in theme enhancer.
 
 ## Windows High Contrast mode
 
@@ -44,7 +44,7 @@ Here, we're using a pair of system colors to style a menu item's selected state.
 
 Another useful CSS feature is the [forced-color-adjust](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/forced-color-adjust) property. It can opt an element out of automatic forced-color adjustment.
 
-This is a sharp tool. When `forced-color-adjust: none` is used, the browser stops protecting that element's colors, so the author becomes responsible for the contrast of the element and its children. In Material UI, that made sense for selected and active states where we wanted to pair colors like `SelectedItem` with `SelectedItemText` or `Highlight` with `HighlightText`.
+This is a sharp tool. When `forced-color-adjust: none` is used, the browser stops protecting that element's colors, so the author becomes responsible for the contrast of the element and its children. In Material UI, that made sense for selected and active states where we wanted to pair colors like `SelectedItem` with `SelectedItemText` or `Highlight` with `HighlightText`.
 
 ## Chrome DevTools Emulation
 
@@ -53,11 +53,11 @@ Some useful Chrome DevTools features for testing forced colors are found in the 
 - `forced-colors`: when set to `active`, it emulates forced colors inside the browser.
 - `prefers-color-scheme`: forces either `light` or `dark`, which is useful because forced colors should work in both color schemes.
 
-## Forced Colors with Material UI Components
+## Forced Colors with Material UI Components
 
 ### The problem
 
-Material UI components generally behaved well in forced colors, but there were some corner cases that we missed.
+Material UI components generally behaved well in forced colors, but there were some corner cases that we missed.
 
 The fixes fall into a few groups:
 
@@ -66,7 +66,7 @@ The fixes fall into a few groups:
 - Disabled controls: `Checkbox`, `Radio`, `Slider`, and `Switch`.
 - Feedback, focus, and overlays: `LinearProgress`, `ButtonBase`, `Tooltip`, `AccordionSummary`, and `ToggleButton`.
 
-If these cases are not visible in forced colors, users can lose access to state: disabled, selected, focused, invalid, or in progress. The tricky part was not finding a way to style them. Material UI has many styling entry points. The real challenge was choosing the right level of the system.
+If these cases are not visible in forced colors, users can lose access to state: disabled, selected, focused, invalid, or in progress. The tricky part was not finding a way to style them. Material UI has many styling entry points. The real challenge was choosing the right level of the system.
 
 The following demo shows these affected states side by side.
 In Chrome, open DevTools > More tools > Rendering, then set `forced-colors` to `active` and `prefers-color-scheme` to `light` or `dark`.
@@ -93,7 +93,7 @@ We considered the options along three dimensions: scope, user effort, and update
 </Button>
 ```
 
-This is the quickest way to patch a local styling issue. It's great for app-specific edge cases, but it would push the responsibility to every Material UI user and every component instance. That is not enough for a library-level accessibility fix.
+This is the quickest way to patch a local styling issue. It's great for app-specific edge cases, but it would push the responsibility to every Material UI user and every component instance. That is not enough for a library-level accessibility fix.
 
 #### The `styled()` wrappers
 
@@ -110,7 +110,7 @@ const AppButton = styled(Button)(() => ({
 }));
 ```
 
-This is a step up from `sx` because the fix can be reused between component instances. But it still creates a userland wrapper that app teams need to adopt everywhere. It also fragments the fix across applications instead of solving it in Material UI.
+This is a step up from `sx` because the fix can be reused between component instances. But it still creates a userland wrapper that app teams need to adopt everywhere. It also fragments the fix across applications instead of solving it in Material UI.
 
 #### Global CSS / `GlobalStyles`
 
@@ -129,7 +129,7 @@ This is a step up from `sx` because the fix can be reused between component inst
 />
 ```
 
-Global CSS can cover a broad surface area, but it is selector-based. That makes it more brittle around class names, slots, specificity, and composition. It can be useful as a temporary app-level patch, but it is not the most maintainable way for Material UI to encode component-aware state fixes.
+Global CSS can cover a broad surface area, but it is selector-based. That makes it more brittle around class names, slots, specificity, and composition. It can be useful as a temporary app-level patch, but it is not the most maintainable way for Material UI to encode component-aware state fixes.
 
 #### Theme `components.styleOverrides`
 
@@ -160,7 +160,7 @@ const theme = createTheme({
 });
 ```
 
-For application teams, this is probably the best centralized option. It is component-aware, lives in the theme, and avoids repeated `sx` or wrapper code. It also matches the mechanism Material UI already uses for component customization.
+For application teams, this is probably the best centralized option. It is component-aware, lives in the theme, and avoids repeated `sx` or wrapper code. It also matches the mechanism Material UI already uses for component customization.
 
 #### Built-in styles inside components
 
@@ -187,7 +187,7 @@ This would make the fix automatic, which is attractive for accessibility. But th
 
 #### Theme Enhancer
 
-To avoid breaking changes and still deliver a Material UI-owned fix, we considered a fully opt-in theme enhancer. The proposed API was intentionally small:
+To avoid breaking changes and still deliver a Material UI-owned fix, we considered a fully opt-in theme enhancer. The proposed API was intentionally small:
 
 ```js
 const userTheme = createTheme({
@@ -198,7 +198,7 @@ const enhancedTheme = enhance(userTheme, {
 });
 ```
 
-This gives Material UI a central place to provide the required `styleOverrides`, while giving users explicit control over when those overrides are added.
+This gives Material UI a central place to provide the required `styleOverrides`, while giving users explicit control over when those overrides are added.
 
 ### The solution
 
@@ -245,4 +245,4 @@ MuiFormLabel: {
 
 Forced colors are not just another dark mode. They are a user-controlled accessibility mode where the browser and operating system intentionally reduce the color palette. Supporting that mode well means respecting system colors, using `forced-color-adjust` carefully, and making component states visible without asking every app team to rediscover the same fixes.
 
-The `enhanceHighContrast` feature is part of Material UI's effort to improve accessibility and encourage accessible UX in web apps. We look forward to feedback as we continue improving support for Windows High Contrast mode and forced colors.
+The `enhanceHighContrast` feature is part of Material UI's effort to improve accessibility and encourage accessible UX in web apps. We look forward to feedback as we continue improving support for Windows High Contrast mode and forced colors.
