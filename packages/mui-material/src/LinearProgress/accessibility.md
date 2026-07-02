@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 44    |
-| 🚩 Flagged            | 7/11  |
+| 🚩 Flagged            | 5/11  |
 
 ## Known gaps
 
@@ -22,7 +22,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The bar carries an author-supplied accessible name, so it can be referenced by name rather than only by shape, color, or position.
 - Instructions in the surrounding content must not rely on a sensory characteristic alone (for example, "wait for the moving bar at the top").
@@ -42,7 +42,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the LinearProgress demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+1. In a UI with a progress bar, set the window (or the DevTools device toolbar) to 320 CSS pixels wide.
 2. Confirm the bar reflows to the container width with no sideways scrolling.
 
 **Pass:** content reflows with no horizontal scroll.
@@ -57,7 +57,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LinearProgressA11yColorMatrix`. With a contrast checker (the color picker in browser DevTools shows a ratio), measure each bar's fill color against its track color.
+1. With a contrast checker (the color picker in browser DevTools shows a ratio), measure a determinate bar's fill color against its track color, across the colors in use.
 2. Repeat for the `buffer` variant, which has three regions: the fill, the buffered shade, and the dashed track.
 3. Check any custom theme colors the application uses.
 
@@ -87,14 +87,13 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LinearBuffer` and `LinearIndeterminate`.
-2. Watch for any part that flashes more than three times in any one second.
+1. Watch a running `buffer` and `indeterminate` progress bar for any part that flashes more than three times in any one second.
 
 **Pass:** no part flashes more than three times per second.
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - For a given set of props the component produces a stable role and value, the precondition for consistent identification; the name comes from the author.
 - Consistency is a cross-page property. Confirm that progress bars with the same function share a name and presentation, and that one name is not reused for different functions.
@@ -115,7 +114,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LinearWithValueLabel` with a screen reader running (NVDA with Chrome, or VoiceOver with Safari).
+1. With a screen reader running (NVDA with Chrome, or VoiceOver with Safari), start a background task tracked by a `determinate` progress bar.
 2. Move focus away from the bar and let the value change.
 3. Listen for whether the change is announced.
 
@@ -132,7 +131,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab) on `LinearDeterminate` and `LinearIndeterminate`.
+1. In the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab), inspect a `determinate` and an `indeterminate` progress bar.
 2. Confirm the determinate bar exposes a value (now, min, max) and the indeterminate bar exposes the role with no value.
 
 **Pass:** role and value match the variant.
@@ -161,7 +160,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LinearProgressA11ySemanticStates` and `LinearWithValueLabel` with a screen reader running.
+1. With a screen reader running, focus a named progress bar of each variant (`indeterminate`, `query`, `determinate`, `buffer`), including one labelled by a visible text label via `aria-labelledby`.
 2. Confirm each bar announces a name, the determinate ones announce a value or percentage, and the indeterminate ones announce a busy or indeterminate state.
 
 **Pass:** name, role, and value are correct for every variant.
