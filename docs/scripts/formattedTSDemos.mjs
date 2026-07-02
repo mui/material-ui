@@ -7,7 +7,7 @@
 
 import path from 'node:path';
 import fs from 'node:fs';
-import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import babel from '@babel/core';
 import prettier from 'prettier';
 import {
@@ -18,12 +18,9 @@ import { createTypeScriptProjectBuilder } from '@mui/internal-api-docs-builder';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { fixBabelGeneratorIssues, fixLineEndings } from '@mui/internal-docs-utils';
-
-const require = createRequire(import.meta.url);
-
-// `coreTypeScriptProjects.js` is authored with `export default` but resolves as CommonJS, which a
-// native-ESM default import wraps awkwardly. Require it through createRequire and read `.default`.
-const CORE_TYPESCRIPT_PROJECTS = require('../../scripts/coreTypeScriptProjects.js').default;
+// This docs-package script reuses a root-package config; `@mui/monorepo` isn't self-resolvable under tsx.
+// eslint-disable-next-line import/no-relative-packages
+import CORE_TYPESCRIPT_PROJECTS from '../../scripts/coreTypeScriptProjects.mjs';
 
 /**
  * List of demos or folders to ignore when transpiling.
@@ -96,7 +93,7 @@ async function transpileFile(tsxPath, project) {
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
-          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          fileURLToPath(import.meta.resolve('docs/src/modules/utils/babel-plugin-jsx-preview')),
           { maxLines: 16, outputFilename: `${tsxPath}.preview` },
         ],
       ]);
