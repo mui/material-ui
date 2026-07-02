@@ -150,33 +150,22 @@ describe('<Radio />', () => {
     expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
   });
 
-  it('selects the radio with the Space key (WCAG 2.1.1 Keyboard)', async () => {
-    const handleChange = spy();
-    const { user } = render(<Radio value="a" onChange={handleChange} />);
-    const radio = screen.getByRole('radio');
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.1 Keyboard: Space selects the focused radio', async () => {
+      const handleChange = spy();
+      const { user } = render(<Radio value="a" onChange={handleChange} />);
+      const radio = screen.getByRole('radio');
 
-    await act(async () => {
-      radio.focus();
+      await act(async () => {
+        radio.focus();
+      });
+
+      await user.keyboard('[Space]');
+      expect(radio).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
     });
 
-    await user.keyboard('[Space]');
-    expect(radio).to.have.property('checked', true);
-    expect(handleChange.callCount).to.equal(1);
-  });
-
-  // Deterministic checks for the WCAG success criteria the report rates as
-  // automatable. See packages/mui-material/src/Radio/accessibility.md.
-  describe('WCAG conformance', () => {
-    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
-      render(<FormControlLabel control={<Radio />} label="Express delivery" />);
-      // getByRole with `name` only resolves if the accessible name matches the visible label.
-      expect(screen.getByRole('radio', { name: 'Express delivery' })).to.have.property(
-        'checked',
-        false,
-      );
-    });
-
-    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the radio', async () => {
       const { user } = render(
         <React.Fragment>
           <button type="button">before</button>
@@ -197,7 +186,7 @@ describe('<Radio />', () => {
       expect(document.activeElement).to.equal(radio);
     });
 
-    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
+    it('2.4.3 Focus Order: is a single tab stop in DOM order', async () => {
       const { user } = render(
         <React.Fragment>
           <button type="button">first</button>
@@ -216,7 +205,7 @@ describe('<Radio />', () => {
       expect(document.activeElement).to.equal(last);
     });
 
-    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
+    it('2.5.2 Pointer Cancellation: activates on the pointer up-event, not the down-event', async () => {
       const handleChange = spy();
       const { user } = render(<Radio value="a" onChange={handleChange} />);
       const radio = screen.getByRole('radio');
@@ -232,7 +221,16 @@ describe('<Radio />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
+    it('2.5.3 Label in Name: the accessible name matches the visible label', () => {
+      render(<FormControlLabel control={<Radio />} label="Express delivery" />);
+      // getByRole with `name` only resolves if the accessible name matches the visible label.
+      expect(screen.getByRole('radio', { name: 'Express delivery' })).to.have.property(
+        'checked',
+        false,
+      );
+    });
+
+    it('3.2.1 On Focus: moving focus to the radio changes no context or state', async () => {
       const handleChange = spy();
       const { user } = render(<Radio value="a" onChange={handleChange} />);
       const radio = screen.getByRole('radio');
@@ -244,7 +242,7 @@ describe('<Radio />', () => {
       expect(handleChange.callCount).to.equal(0);
     });
 
-    it('changes only its value on selection, firing onChange (3.2.2 On Input)', async () => {
+    it('3.2.2 On Input: selecting changes only the value and fires onChange', async () => {
       const handleChange = spy();
       const { user } = render(<Radio value="a" onChange={handleChange} />);
       const radio = screen.getByRole('radio');

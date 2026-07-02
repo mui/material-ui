@@ -19,12 +19,6 @@ describe('<RadioGroup />', () => {
     skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
 
-  it('the root component has the radiogroup role', () => {
-    const { container } = render(<RadioGroup value="" />);
-
-    expect(container.firstChild).to.have.attribute('role', 'radiogroup');
-  });
-
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
     const { container } = render(<RadioGroup value="" onBlur={handleBlur} />);
@@ -77,21 +71,6 @@ describe('<RadioGroup />', () => {
     fireEvent.click(radios[1]);
 
     expect(radios[1].checked).to.equal(true);
-  });
-
-  it('should have a default name', () => {
-    render(
-      <RadioGroup>
-        <Radio value="zero" />
-        <Radio value="one" />
-      </RadioGroup>,
-    );
-
-    const [arbitraryRadio, ...radios] = screen.getAllByRole('radio');
-    // `name` **property** will always be a string even if the **attribute** is omitted
-    expect(arbitraryRadio.name).not.to.equal('');
-    // all input[type="radio"] have the same name
-    expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
 
   it('should support number value', () => {
@@ -423,11 +402,32 @@ describe('<RadioGroup />', () => {
     expect(radiogroup).not.to.have.class(classes.error);
   });
 
-  // Browser-only: native radio arrow-key navigation and roving tab order are not
-  // implemented by jsdom. See packages/mui-material/src/RadioGroup/accessibility.md.
-  describe('WCAG conformance', () => {
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('exposes the radiogroup role on the root', () => {
+        const { container } = render(<RadioGroup value="" />);
+
+        expect(container.firstChild).to.have.attribute('role', 'radiogroup');
+      });
+
+      it('shares one generated name across all radios', () => {
+        render(
+          <RadioGroup>
+            <Radio value="zero" />
+            <Radio value="one" />
+          </RadioGroup>,
+        );
+
+        const [arbitraryRadio, ...radios] = screen.getAllByRole('radio');
+        // `name` **property** will always be a string even if the **attribute** is omitted
+        expect(arbitraryRadio.name).not.to.equal('');
+        // all input[type="radio"] have the same name
+        expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
+      });
+    });
+
     it.skipIf(isJsdom())(
-      'roves selection with the arrow keys as a single tab stop (WCAG 2.1.1, 2.4.3)',
+      '2.1.1 Keyboard, 2.4.3 Focus Order: arrow keys rove selection as a single tab stop',
       async () => {
         const { user } = render(
           <React.Fragment>
