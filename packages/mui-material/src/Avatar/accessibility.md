@@ -66,7 +66,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - Letter/initials children and the `alt[0]` fallback are live, CSS-styled DOM text, not images of text.
 - The only risk is an author deliberately passing a bitmap of text as the avatar image.
-- Confirmed by a unit test in `Avatar.test.js` (initials render as a text node, not an `<img>`).
+- Confirmed by a unit test in [`./Avatar.test.js`](./Avatar.test.js).
 
 **Manual testing steps**
 
@@ -113,7 +113,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 - The only relationship (image-to-name) is conveyed natively via `<img>` and `alt` text.
 - If an author builds meaning by composing the avatar with surrounding content (for example, a name and avatar in a list item), conveying that structure is the author's responsibility.
-- Confirmed by unit tests in `Avatar.test.js` (the root exposes no role; the `Person` fallback and `SvgIcon` children are `aria-hidden`).
+- Confirmed by unit tests in [`./Avatar.test.js`](./Avatar.test.js).
 
 **Manual testing steps**
 
@@ -183,7 +183,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `✅ Supports` · `● Component`
 
 - An avatar holds 1 to 2 character initials (or the `alt[0]` fallback) in a fixed 40px box with `overflow: hidden`, so the only text-legibility risk is clipping. The four spacing overrides do not enlarge one or two initials enough to overflow the box, so nothing is clipped.
-- Confirmed by a Playwright regression test (`test/regressions/index.test.js`): the `OP` initials stay within the box after the four text-spacing overrides.
+- Confirmed by a Playwright regression test in `test/regressions/index.test.js`.
 
 **Manual testing steps**
 
