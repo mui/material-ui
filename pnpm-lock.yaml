@@ -82,7 +82,7 @@ importers:
         version: 1.0.9-canary.78(@types/node@20.19.39)(esbuild@0.28.1)(jiti@2.6.1)(rolldown@1.0.3)(rollup@4.62.2)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
       '@mui/internal-code-infra':
         specifier: 0.0.4-canary.74
-        version: 0.0.4-canary.74(@next/eslint-plugin-next@16.2.7)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260514.1)(eslint@10.3.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.15)(prettier@3.8.3)(stylelint@17.11.0(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.8)
+        version: 0.0.4-canary.74(@next/eslint-plugin-next@16.2.7)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260514.1)(eslint@10.3.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.16)(prettier@3.8.3)(stylelint@17.11.0(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.8)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -6624,6 +6624,7 @@ packages:
   conventional-changelog-core@5.0.1:
     resolution: {integrity: sha512-Rvi5pH+LvgsqGwZPZ3Cq/tz4ty7mjijhr3qR4m9IBXNbxGGYgTVVO+duXzz9aArmHxFtwZ+LRkrNIMDQzgoY4A==}
     engines: {node: '>=14'}
+    deprecated: Deprecated and no longer maintained. Please use conventional-changelog instead.
 
   conventional-changelog-preset-loader@3.0.0:
     resolution: {integrity: sha512-qy9XbdSLmVnwnvzEisjxdDiLA4OmV3o8db+Zdg4WiFw14fP3B6XNz98X0swPPpkTd/pc1K7+adKgEDM1JCUMiA==}
@@ -13810,7 +13811,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@9.0.0': {}
 
-  '@mui/internal-babel-plugin-display-name@1.0.4-canary.21(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))':
+  '@mui/internal-babel-plugin-display-name@1.0.4-canary.21(@babel/core@7.29.6)(@babel/preset-react@7.28.5(@babel/core@7.29.6))':
     dependencies:
       '@babel/core': 7.29.6
       '@babel/helper-module-imports': 7.29.7
@@ -13827,15 +13828,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.28(@babel/core@7.29.0)':
+  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.28(@babel/core@7.29.6)':
     dependencies:
-      '@babel/core': 7.29.0
+      '@babel/core': 7.29.6
       '@babel/helper-module-imports': 7.29.7
       find-package-json: 1.2.0
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.38(@babel/core@7.29.0)':
+  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.38(@babel/core@7.29.6)':
     dependencies:
       '@babel/core': 7.29.6
       resolve: 1.22.12
@@ -13869,7 +13870,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.4-canary.74(@next/eslint-plugin-next@16.2.7)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260514.1)(eslint@10.3.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.15)(prettier@3.8.3)(stylelint@17.11.0(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.8)':
+  '@mui/internal-code-infra@0.0.4-canary.74(@next/eslint-plugin-next@16.2.7)(@types/node@20.19.39)(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript-eslint/parser@8.61.0(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260514.1)(eslint@10.3.0(jiti@2.6.1))(jest-diff@30.2.0)(postcss@8.5.16)(prettier@3.8.3)(stylelint@17.11.0(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.8)':
     dependencies:
       '@argos-ci/core': 6.0.0
       '@babel/cli': 7.28.6(@babel/core@7.29.6)
@@ -13885,9 +13886,9 @@ snapshots:
       '@eslint/json': 1.2.0
       '@inquirer/confirm': 6.0.13(@types/node@20.19.39)
       '@inquirer/select': 5.1.5(@types/node@20.19.39)
-      '@mui/internal-babel-plugin-display-name': 1.0.4-canary.21(@babel/core@7.29.0)(@babel/preset-react@7.28.5(@babel/core@7.29.0))
-      '@mui/internal-babel-plugin-minify-errors': 2.0.8-canary.28(@babel/core@7.29.0)
-      '@mui/internal-babel-plugin-resolve-imports': 2.0.7-canary.38(@babel/core@7.29.0)
+      '@mui/internal-babel-plugin-display-name': 1.0.4-canary.21(@babel/core@7.29.6)(@babel/preset-react@7.28.5(@babel/core@7.29.6))
+      '@mui/internal-babel-plugin-minify-errors': 2.0.8-canary.28(@babel/core@7.29.6)
+      '@mui/internal-babel-plugin-resolve-imports': 2.0.7-canary.38(@babel/core@7.29.6)
       '@napi-rs/keyring': 1.3.0
       '@next/eslint-plugin-next': 16.2.7
       '@octokit/auth-action': 6.0.2
