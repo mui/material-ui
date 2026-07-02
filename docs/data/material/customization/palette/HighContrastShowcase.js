@@ -132,7 +132,7 @@ export default function HighContrastShowcase() {
               light or dark. Then toggle the enhancer to compare the fix.
             </Typography>
           </div>
-          <Stack sx={{ gap: 1, alignItems: { sm: 'flex-end' } }}>
+          <Stack sx={{ gap: 1, alignItems: { sm: 'flex-start' } }}>
             <FormControlLabel
               control={
                 <Switch
