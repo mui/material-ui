@@ -28,8 +28,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render a row of avatars (`GroupAvatars`, or several `<Avatar>` in a `Stack`).
-2. Inspect the DOM or accessibility tree order and compare it to the visual left-to-right order.
+1. In a UI with a row of avatars (an `AvatarGroup`, or avatars in a list), inspect the DOM or accessibility tree order.
+2. Compare it to the visual left-to-right order.
 
 **Pass:** reading order matches visual order. A `Stack` or flex layout that visually reorders avatars without changing the DOM would fail.
 
@@ -51,13 +51,12 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `🚩` · `✅ Supports` · `● Component`
 
-- The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under full-page browser zoom, the default scaling mechanism, the box and the text scale together, so initials stay fully visible.
+- The container is a fixed 40px square with text in rem (`pxToRem(20)`) and `overflow: hidden`. Under full-page browser zoom (the default scaling mechanism), the box and the text scale together, so initials stay fully visible.
 
 **Manual testing steps**
 
-1. Open `LetterAvatars` and `FallbackAvatars`.
-2. Set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>) and confirm the box and initials scale together with nothing clipped.
-3. Optional: compare against text-only resize (Firefox "Zoom Text Only") to see the px box not scaling; long initials there are an author concern.
+1. In a UI with letter avatars, set browser zoom to 200% (<kbd>Ctrl</kbd> or <kbd>Cmd</kbd> and <kbd>+</kbd>) and confirm the box and initials scale together with nothing clipped.
+2. Optional: compare against text-only resize (Firefox "Zoom Text Only") to see the px box not scaling; long initials there are an author concern.
 
 **Pass:** initials and fallback text stay fully visible at 200% page zoom. The container scales with the page.
 
@@ -71,7 +70,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `LetterAvatars` and `FallbackAvatars` and confirm the initials are selectable text, not an `<img>`.
+1. Select a letter avatar's initials with the mouse (or zoom in) and confirm they behave like real text (selectable, stay crisp), not an image.
 
 **Pass:** avatar initials and fallback are real text; the component renders no image of text.
 
@@ -83,7 +82,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open the Avatar demos and set the window, or the DevTools device toolbar, to 320 CSS pixels wide.
+1. In a UI with avatars, set the window (or the DevTools device toolbar) to 320 CSS pixels wide.
 2. Confirm there is no horizontal scrolling and every avatar stays visible.
 
 **Pass:** content reflows with no two-dimensional scrolling. A single 40px avatar never triggers it.
@@ -101,11 +100,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `ImageAvatars` (with `src` and `alt`) and inspect the DOM: confirm a native `<img>` with the author's `alt`.
-2. Run a screen reader (VoiceOver with Safari, or NVDA with Chrome) over `ImageAvatars` and confirm the `alt` is announced.
-3. Render the same avatar with `alt` omitted and confirm the `<img>` has no `alt` (filename risk).
-4. Render `IconAvatars` and `FallbackAvatars` and confirm the `SvgIcon` and `Person` are `aria-hidden` and silent.
-5. Render a decorative image avatar with `alt=""` and confirm assistive technology ignores it.
+1. With a screen reader running (VoiceOver with Safari, or NVDA with Chrome), focus an image avatar (`src` and `alt`) and confirm it renders a native `<img>` whose `alt` is announced.
+2. For any informative image avatar in the product, confirm it has a meaningful `alt`; without one, a screen reader may announce the image filename.
+3. Confirm an icon-only avatar and the `Person` fallback are `aria-hidden` and silent.
+4. Confirm a decorative image avatar with `alt=""` is ignored by assistive technology.
 
 **Pass:** every informative avatar exposes a text alternative (`img` `alt` or an author-provided label); decorative and no-image avatars are silent. The component does its part; an informative avatar with no `alt` is an authoring failure.
 
@@ -119,8 +117,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `ImageAvatars` and inspect the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab): confirm the `img` exposes `role="img"` with the `alt` as its name.
-2. Render `LetterAvatars` and `IconAvatars` and confirm the root div is generic (no spurious role) and decorative icons are `aria-hidden`.
+1. Inspect an image avatar in the accessibility tree (in Chrome DevTools: Elements panel, Accessibility tab): confirm the `img` exposes `role="img"` with the `alt` as its name.
+2. Confirm a letter or icon avatar's root div is generic (no spurious role) and its decorative icon is `aria-hidden`.
 3. Confirm no grouping, heading, or list semantics are implied by the avatar alone that would need programmatic encoding.
 
 **Pass:** the image-to-name relationship is programmatically available via native `img` and `alt`.
@@ -135,9 +133,8 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Render `BackgroundLetterAvatars` and `LetterAvatars` and confirm the identifying content is the initials or icon, not the hue.
-2. Simulate grayscale or color-blindness (in Chrome DevTools: Rendering tab, Emulate vision deficiencies) and confirm no information is lost when color is removed.
-3. Confirm the component does not use color alone to distinguish any state.
+1. In a UI with color-backed avatars, turn on a grayscale view (in Chrome DevTools: Rendering tab, Emulate vision deficiencies) and confirm the identifying content is the initials or icon, not the hue.
+2. Confirm no information is lost when color is removed, and that the component does not use color alone to distinguish any state.
 
 **Pass:** no information conveyed by the avatar is lost in grayscale; any color-coded meaning an author adds is paired with a non-color cue.
 
@@ -146,32 +143,35 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 `⚠️ Partially Supports` · `◐ Shared`
 
 - Default letter avatars fail: `colorDefault` sets the text color to `background.default` (`#fff` in the light theme) on `backgroundColor` `grey[400]` `#bdbdbd`, about `1.9:1`. The children text is 20px at the inherited weight 400, so it is not WCAG large text and the `4.5:1` threshold applies; at `1.9:1` it fails even the `3:1` large-text threshold. This affects `<Avatar>H</Avatar>`, the `alt[0]` fallback, and any default-palette letter avatar.
-- Colored demos fail too: `LetterAvatars` renders white "N" on `deepOrange[500]` `#ff5722` = `3.16:1`, below `4.5:1`; only its white "OP" on `deepPurple[500]` passes at `7.3:1`. `BackgroundLetterAvatars` compounds the risk: `bgcolor` is an arbitrary `stringToColor` hash with white text, so contrast is unguaranteed and often below `4.5:1`. In the three names, "Tim Neutkens" (`#fd7e97`) renders at `2.44:1` (failing the `3:1` min) and "Jed Watson" (`#1f6cfa`) reaches only `4.58:1`.
+- Colored demos fail too: `LetterAvatars` renders white "N" on `deepOrange[500]` `#ff5722` = `3.16:1`, below `4.5:1`; only its white "OP" on `deepPurple[500]` passes, at `7.3:1`.
+- `BackgroundLetterAvatars` compounds the risk: `bgcolor` is an arbitrary `stringToColor` hash with white text, so contrast is unguaranteed. Of its three names, "Tim Neutkens" (`#fd7e97`) is `2.44:1` (below even the `3:1` min) and "Jed Watson" (`#1f6cfa`) reaches only `4.58:1`.
 - A working photographic `<img>` is exempt (it's not text), and the dark-theme default (`grey[600]` `#757575` on `#121212`, about `4.1:1`) is also below `4.5:1`. Icons are non-text and are out of scope here. Authors must override `bgcolor`/`color` to reach `4.5:1` for letter avatars.
 - axe-core `color-contrast` flags the low-contrast letter demos.
 
 **Manual testing steps**
 
-1. Render the default gray `LetterAvatars` (`<Avatar>H</Avatar>`) and measure foreground against background with a contrast tool (the color picker in browser DevTools shows a ratio): expect about 1.9:1.
-2. Confirm the children font is 20px at weight 400 (not large text), so `4.5:1` applies.
-3. Render `LetterAvatars` ("N" on `deepOrange[500]`) and `BackgroundLetterAvatars` across several names and measure each background against the white text.
-4. Render `ImageAvatars` and confirm a working image is exempt (no text on background).
+1. With a contrast tool (the color picker in browser DevTools shows a ratio), measure a default gray letter avatar's initials against its background: expect about 1.9:1.
+2. Confirm the initials are 20px at weight 400 (not large text), so `4.5:1` applies.
+3. Measure letter avatars on custom `bgcolor` values (for example `deepOrange[500]`, or a `stringToColor`-derived color) against the white text.
+4. Confirm a working image avatar is exempt (no text on background).
 5. Repeat in the dark theme (`grey[600]` on `#121212`).
 
-**Pass:** all letter, initial, and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default gray letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
+**Pass:** all letter and fallback text meets `4.5:1` (or `3:1` if it's sized to qualify as large text). The default gray letter avatar, the `deepOrange[500]` example, and arbitrary `stringToColor` backgrounds do not meet this without author color overrides.
 
 #### 1.4.11 Non-text Contrast · AA
 
 `🚩` · `⚠️ Partially Supports` · `◐ Shared`
 
-- Meaningful icon-child avatars fall short: when an icon is the avatar's sole, unlabeled content (`IconAvatars`), it is a graphical object required to understand the content which requires `3:1`. The component's `colorDefault` renders a white icon on `grey[400]`/`#bdbdbd` (`1.9:1`), and author backgrounds vary, for example `green[500]`/`#4caf50` = `2.78:1` fails, while `pink[500]`/`#e91e63` = `4.35:1` passes. So the default and low-contrast author backgrounds are below `3:1`.
+- Meaningful icon-child avatars fall short: when an icon is the avatar's sole, unlabeled content (`IconAvatars`), it is a graphical object required to understand the content, so it needs `3:1`. The component's `colorDefault` renders a white icon on `grey[400]`/`#bdbdbd` (`1.9:1`), and author backgrounds vary, for example `green[500]`/`#4caf50` = `2.78:1` fails, while `pink[500]`/`#e91e63` = `4.35:1` passes. So the default and low-contrast author backgrounds are below `3:1`.
 - Exemptions: the colored circle or square is a decorative graphical object, and the `Person` fallback is a decorative placeholder. The default avatar is non-interactive so the user-interface-component part of this criterion does not apply.
-- Under `@media (forced-colors: active)` the component sets `1px solid ButtonBorder` so the shape stays visible in Windows High Contrast Mode. A meaningful icon avatar needs both a `≥3:1` foreground/background here and an accessible name under 1.1.1 (icon children default to `aria-hidden`). This is Partially Supports, because the `1.9:1` shortfall comes from the default `colorDefault`, whereas the missing name is an author responsibility.
+- Under `@media (forced-colors: active)` the component sets `1px solid ButtonBorder`, so the shape stays visible in Windows High Contrast Mode.
+- A meaningful icon avatar needs both a `≥3:1` foreground/background and an accessible name (1.1.1, since icon children default to `aria-hidden`).
+- Rated Partially Supports because the `1.9:1` shortfall comes from the component's own `colorDefault`, whereas the missing name is an author responsibility.
 
 **Manual testing steps**
 
-1. Render `IconAvatars` (Folder on default gray, Pageview on `pink[500]`, Assignment on `green[500]`) and measure each icon's foreground against its background: expect the default and `green[500]` below 3:1.
-2. Render `VariantAvatars` (circular, rounded, square) and confirm the colored shape itself is decorative, not an information-bearing graphic.
+1. In a UI with icon avatars on different backgrounds, measure each icon against its background: a white icon on the default gray (about 1.9:1) or on `green[500]` (2.78:1) falls below 3:1.
+2. Confirm the colored circle or square itself is decorative, not an information-bearing graphic.
 3. Enable Windows High Contrast / forced-colors and confirm the `1px` `ButtonBorder` keeps the avatar boundary visible.
 
 **Pass:** any icon that conveys meaning meets `3:1` against its background; the decorative container shape and `Person` placeholder are exempt, and the boundary stays visible in forced-colors mode.
@@ -182,15 +182,14 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 `✅ Supports` · `● Component`
 
-- An avatar holds 1 to 2 character initials (or the `alt[0]` fallback) in a fixed 40px box with `overflow: hidden`, so the only risk to text legibility is clipping. Increasing text spacing would overflow the content but not clip it.
+- An avatar holds 1 to 2 character initials (or the `alt[0]` fallback) in a fixed 40px box with `overflow: hidden`, so the only text-legibility risk is clipping. The four spacing overrides do not enlarge one or two initials enough to overflow the box, so nothing is clipped.
 - Confirmed by a Playwright regression test (`test/regressions/index.test.js`): the `OP` initials stay within the box after the four text-spacing overrides.
 
 **Manual testing steps**
 
-1. Render `LetterAvatars` ("OP") and `FallbackAvatars`.
-2. Apply the WCAG text-spacing values to the text: line-height 1.5, letter-spacing 0.12em, word-spacing 0.16em (paragraph spacing 2em does nothing here, with no paragraphs).
-3. Confirm the 1 to 2 character initials stay fully visible inside the 40px circle.
-4. Repeat with `SizeAvatars` to gauge sensitivity at other fixed sizes.
+1. On a two-character letter avatar, apply the WCAG text-spacing values: line-height 1.5, letter-spacing 0.12em, word-spacing 0.16em (paragraph spacing 2em does nothing here, with no paragraphs).
+2. Confirm the initials stay fully visible inside the 40px circle.
+3. Repeat at other avatar sizes to gauge sensitivity.
 
 **Pass:** documented initials and fallback text stay fully visible after applying the four overrides. Long author-supplied strings that already overflow at default spacing are out of scope.
 
@@ -220,7 +219,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 ## Scope and test environment
 
 - **Standard.** WCAG 2.2, Level A and AA.
-- **Component version.** `@mui/material` 9.1.1.
+- **Component version.** `@mui/material` 9.1.2.
 - **Scope.** The Avatar component in isolation, rendered through its documented API. `AvatarGroup` is a separate component and is out of scope.
 - **Automated.** axe-core via the Playwright regression harness (results in [`avatars.a11y.json`](../../../../docs/data/material/components/avatars/avatars.a11y.json)), a text-spacing clip test in the same harness, and unit tests in `Avatar.test.js`.
 - **Assistive-technology review.** Spot checked but not audited. `🚩` criteria are assessed from source pending a review with NVDA, JAWS, and VoiceOver.
