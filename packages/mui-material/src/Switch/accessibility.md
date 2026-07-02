@@ -28,7 +28,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `SwitchesGroup` and press <kbd>Tab</kbd> through the rows, noting the focus order.
+1. In a group of switches (`FormGroup` with `FormControlLabel` rows), press <kbd>Tab</kbd> through them and note the focus order.
 2. Compare that order to the visual top-to-bottom order.
 3. Watch for `labelPlacement` or flex layouts that reorder the row visually without changing the DOM.
 
@@ -159,7 +159,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 **Manual testing steps**
 
 1. Render `<FormControlLabel control={<Switch required />} label="Email alerts" />` and confirm `role=switch`, the name, `required`, and the wrapping `<label>`.
-2. In `SwitchesGroup`, confirm the `<fieldset>`/`<legend>` name is exposed but the helper text is not tied to the control (no `aria-describedby`).
+2. In a switch group (`FormControl component="fieldset"` with a `FormLabel component="legend"`), confirm the `<fieldset>`/`<legend>` name is exposed but any helper text is not tied to the control (no `aria-describedby`).
 
 **Pass:** role, state, label association, and group name are programmatically determinable, and any helper text is tied to the control via author-supplied `aria-describedby`.
 
@@ -172,7 +172,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `BasicSwitches` (which shows on and off) and view in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia); confirm the two states stay distinguishable by thumb position.
+1. View an on switch and an off switch in grayscale (DevTools Rendering, Emulate vision deficiencies, Achromatopsia) and confirm the two states stay distinguishable by thumb position.
 2. Render an error `FormHelperText` in grayscale and confirm "error" is still perceivable without the red.
 
 **Pass:** on and off are distinguishable by thumb position, and any error state is conveyed by more than color.
@@ -202,7 +202,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Open `BasicSwitches` and `ColorSwitches`. With a contrast checker, measure the off-state thumb against the track, the track against the page, and each checked thumb against its track.
+1. With a contrast checker, measure the off-state thumb against the track, the track against the page, and each checked color's thumb against its track.
 2. Press <kbd>Tab</kbd> to a switch and measure the keyboard focus indicator against the colors next to it.
 
 **Pass:** the thumb against the track, the track against the page, and the focus indicator are each at least `3:1`; disabled is exempt. Today the default thumb and track are the known failures.
