@@ -8,12 +8,12 @@ v1 ships **one opt-in feature**: `theme.focusVisible` renders a curated keyboard
 
 `theme.focusVisible` is:
 
-| Value | v1 behavior |
-|---|---|
-| `undefined` | No ring (default, non-breaking) |
-| `true` | Curated outline ring, resolved at `createTheme` time |
-| object | Merged over the curated default (partial override) |
-| `false` | Reserved kill-switch — same as `undefined` today, meaningful once the fallback lands |
+| Value       | v1 behavior                                                                          |
+| :---------- | :----------------------------------------------------------------------------------- |
+| `undefined` | No ring (default, non-breaking)                                                      |
+| `true`      | Curated outline ring, resolved at `createTheme` time                                 |
+| object      | Merged over the curated default (partial override)                                   |
+| `false`     | Reserved kill-switch — same as `undefined` today, meaningful once the fallback lands |
 
 The value is normalized once (`true` → curated object, object → merged over it) so components read a resolved object and never the boolean. Curated default: `{ outlineStyle: 'solid', outlineColor: palette.primary.main, outlineWidth: 2, outlineOffset: 2 }`.
 
