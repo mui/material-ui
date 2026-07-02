@@ -169,6 +169,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/12778398',
     github: 'bernardobelchior',
   },
+  silviuaavram: {
+    name: 'Silviu Alexandru Avram',
+    avatar: 'https://avatars.githubusercontent.com/u/11275392',
+    github: 'silviuaavram',
+  },
 };
 
 const classes = {

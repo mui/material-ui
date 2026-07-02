@@ -68,6 +68,8 @@ const ALLOWED_TAGS = [
   'Joy UI',
   'MUI X',
   'Toolpad',
+  // Subject tags
+  'Accessibility',
 ];
 
 export const getAllBlogPosts = () => {
