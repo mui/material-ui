@@ -15,10 +15,6 @@ on:
 permissions: {}
 
 jobs:
-  continuous-releases:
-    name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@2cf5fd6323dcc09a25dd287dca00cb5edb5bdd14 # master
-
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -53,6 +49,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
+      - name: Publish packages to pkg.pr.new and npm dry-run
+        uses: mui/mui-public/.github/actions/ci-publish@963630fef652d2ac707df1af5041d49a7b574889 # master
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          npm-dry-run: true
       - name: Build docs
         run: pnpm docs:build
         env:
