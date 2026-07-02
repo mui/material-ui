@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
+import { createRenderer, isJsdom, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
@@ -97,12 +97,6 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="switch"` with the Unchecked state by default', () => {
-    render(<Switch />);
-
-    expect(screen.getByRole('switch')).to.have.property('checked', false);
-  });
-
   it('preserves `role="switch"` when input slotProps are provided as an object', () => {
     render(<Switch slotProps={{ input: { 'aria-label': 'Dark mode' } }} />);
 
@@ -113,18 +107,6 @@ describe('<Switch />', () => {
     render(<Switch slotProps={{ input: () => ({ 'aria-label': 'Dark mode' }) }} />);
 
     expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
-  });
-
-  it('renders a switch with the Checked state when checked', () => {
-    render(<Switch defaultChecked />);
-
-    expect(screen.getByRole('switch')).to.have.property('checked', true);
-  });
-
-  it('the switch can be disabled', () => {
-    render(<Switch disabled />);
-
-    expect(screen.getByRole('switch')).to.have.property('disabled', true);
   });
 
   it('the switch can be readonly', () => {
@@ -143,18 +125,6 @@ describe('<Switch />', () => {
     render(<Switch defaultChecked checkedIcon={<span data-testid="icon" />} />);
 
     expect(screen.getByTestId('icon')).toBeVisible();
-  });
-
-  it('the Checked state changes after change events', () => {
-    render(<Switch defaultChecked />);
-
-    // how a user would trigger it
-    act(() => {
-      screen.getByRole('switch').click();
-    });
-    fireEvent.change(screen.getByRole('switch'), { target: { checked: '' } });
-
-    expect(screen.getByRole('switch')).to.have.property('checked', false);
   });
 
   it('should not show warnings when custom `type` is provided', () => {
@@ -215,17 +185,14 @@ describe('<Switch />', () => {
     });
   });
 
-  // Deterministic checks for the WCAG success criteria the report rates as
-  // automatable. See packages/mui-material/src/Switch/accessibility.md.
-  describe('WCAG conformance', () => {
-    it('toggles the checked state with the Space key (2.1.1 Keyboard)', async () => {
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.1 Keyboard: toggles the checked state with the Space key', async () => {
       const handleChange = spy();
       const { user } = render(<Switch onChange={handleChange} />);
       const switchControl = screen.getByRole('switch');
 
-      await act(async () => {
-        switchControl.focus();
-      });
+      await user.tab();
+      expect(switchControl).toHaveFocus();
 
       await user.keyboard('[Space]');
       expect(switchControl).to.have.property('checked', true);
@@ -236,78 +203,138 @@ describe('<Switch />', () => {
       expect(handleChange.callCount).to.equal(2);
     });
 
-    it('does not trap keyboard focus (2.1.2 No Keyboard Trap)', async () => {
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the switch', async () => {
       const { user } = render(
         <React.Fragment>
-          <button type="button">before</button>
+          <button type="button">Before</button>
           <Switch />
-          <button type="button">after</button>
+          <button type="button">After</button>
         </React.Fragment>,
       );
-      const before = screen.getByRole('button', { name: 'before' });
-      const after = screen.getByRole('button', { name: 'after' });
-      const switchControl = screen.getByRole('switch');
 
-      before.focus();
       await user.tab();
-      expect(document.activeElement).to.equal(switchControl);
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
       await user.tab();
-      expect(document.activeElement).to.equal(after);
+      expect(screen.getByRole('switch')).toHaveFocus();
+
+      // Tab moves focus back out of the switch — it is never captured.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+      // Shift+Tab moves back onto it.
       await user.tab({ shift: true });
-      expect(document.activeElement).to.equal(switchControl);
+      expect(screen.getByRole('switch')).toHaveFocus();
     });
 
-    it('is a single tab stop in DOM order (2.4.3 Focus Order)', async () => {
+    describe('2.4.3 Focus Order', () => {
+      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">Before</button>
+            <Switch />
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+        expect(screen.getByRole('switch')).to.have.property('tabIndex', 0);
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('switch')).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+
+      it('removes a disabled switch from the tab order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Switch disabled />
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+
+        // Tab skips the disabled switch and lands on the next control.
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+    });
+
+    it('2.5.2 Pointer Cancellation: activates on click, but not when released off the target', async () => {
+      const handleChange = spy();
       const { user } = render(
         <React.Fragment>
-          <button type="button">first</button>
-          <Switch />
-          <button type="button">last</button>
+          <Switch onChange={handleChange} />
+          <div data-testid="outside" />
         </React.Fragment>,
       );
-      const first = screen.getByRole('button', { name: 'first' });
-      const switchControl = screen.getByRole('switch');
-      const last = screen.getByRole('button', { name: 'last' });
-
-      first.focus();
-      await user.tab();
-      expect(document.activeElement).to.equal(switchControl);
-      await user.tab();
-      expect(document.activeElement).to.equal(last);
-    });
-
-    it('activates on the pointer up-event, not the down-event (2.5.2 Pointer Cancellation)', async () => {
-      const handleChange = spy();
-      const { user } = render(<Switch onChange={handleChange} />);
       const switchControl = screen.getByRole('switch');
 
-      // Press without releasing: the down-event must not toggle.
-      await user.pointer({ keys: '[MouseLeft>]', target: switchControl });
+      // Press on the switch, move away, then release: nothing runs on the down
+      // event, and releasing off the target cancels the activation.
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: switchControl },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
       expect(switchControl).to.have.property('checked', false);
       expect(handleChange.callCount).to.equal(0);
 
-      // Releasing over the target completes the activation.
-      await user.pointer({ keys: '[/MouseLeft]', target: switchControl });
+      // A full click — press and release over the target — activates.
+      await user.click(switchControl);
       expect(switchControl).to.have.property('checked', true);
       expect(handleChange.callCount).to.equal(1);
     });
 
-    it('exposes an accessible name matching the visible label (2.5.3 Label in Name)', () => {
+    it('2.5.3 Label in Name: the accessible name contains the visible label', () => {
       render(<FormControlLabel control={<Switch />} label="Dark mode" />);
       // getByRole with `name` only resolves if the accessible name matches the visible label.
       expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
     });
 
-    it('does not change context or state on focus (3.2.1 On Focus)', async () => {
+    it('3.2.1 On Focus: moving keyboard focus to the switch does not change its state', async () => {
       const handleChange = spy();
       const { user } = render(<Switch onChange={handleChange} />);
       const switchControl = screen.getByRole('switch');
 
       await user.tab();
 
-      expect(document.activeElement).to.equal(switchControl);
+      expect(switchControl).toHaveFocus();
+      // Focus alone changes no context.
       expect(switchControl).to.have.property('checked', false);
       expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('3.2.2 On Input: state changes only from explicit activation, never on its own', async () => {
+      const handleChange = spy();
+      const { user } = render(<Switch onChange={handleChange} />);
+      const switchControl = screen.getByRole('switch');
+
+      // Rendering does not toggle the switch on its own.
+      expect(switchControl).to.have.property('checked', false);
+      expect(handleChange.callCount).to.equal(0);
+
+      // Toggling flips the value and fires onChange; per WCAG a value change is not a change of context.
+      await user.click(switchControl);
+      expect(switchControl).to.have.property('checked', true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('exposes role="switch" and the unchecked state by default', () => {
+        render(<Switch />);
+        expect(screen.getByRole('switch')).to.have.property('checked', false);
+      });
+
+      it('reflects the checked state', () => {
+        render(<Switch defaultChecked />);
+        expect(screen.getByRole('switch')).to.have.property('checked', true);
+      });
+
+      it('reflects the disabled state', () => {
+        render(<Switch disabled />);
+        expect(screen.getByRole('switch')).to.have.property('disabled', true);
+      });
     });
   });
 });
