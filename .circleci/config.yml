@@ -278,9 +278,9 @@ jobs:
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
-          # package.json/pnpm-lock.yaml. Exclude those so this check still verifies the a11y
-          # results on every job without tripping over the pinned dependencies.
-          command: git add -A -- . ':(exclude)package.json' ':(exclude)pnpm-lock.yaml' && git diff --exit-code --staged
+          # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
+          # this check still verifies the a11y results without tripping on the pinned deps.
+          command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
