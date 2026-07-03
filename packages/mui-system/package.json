@@ -82,10 +82,8 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    ".": "./src/index.js",
-    "./createTheme": "./src/createTheme/index.js",
-    "./RtlProvider": "./src/RtlProvider/index.js",
-    "./styleFunctionSx": "./src/styleFunctionSx/index.js",
+    ".": "./src/index.ts",
+    "./RtlProvider": "./src/RtlProvider/index.tsx",
     "./*": "./src/*/index.ts"
   }
 }
