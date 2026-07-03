@@ -5,7 +5,7 @@ import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, reactMajor, screen } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
-import Collapse from '@mui/material/Collapse';
+import Collapse, { collapseClasses } from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
@@ -450,5 +450,21 @@ describe('<Accordion />', () => {
     );
 
     expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('2.4.3 Focus Order: a collapsed panel is hidden, removing its content from the tab order', () => {
+      const { container } = render(
+        <Accordion>
+          <AccordionSummary>Summary</AccordionSummary>
+          Details
+        </Accordion>,
+      );
+
+      // Collapse applies its `hidden` class (visibility: hidden) when fully
+      // collapsed, so the panel and any focusable content it holds leave the
+      // tab order until the accordion is expanded.
+      expect(container.querySelector(`.${collapseClasses.hidden}`)).not.to.equal(null);
+    });
   });
 });
