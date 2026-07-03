@@ -9,7 +9,8 @@ import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 // https://github.com/mui/material-ui/issues/45270
 // The endAdornment sits left of the chevron (not over it) and the value clears
-// both, across variants and with a start adornment present.
+// both, across variants, with a start adornment present, and when a long value
+// in a narrow field must clip without overlapping the chevron/adornment.
 const variants = ['outlined', 'filled', 'standard'];
 
 const endAdornment = (
@@ -52,6 +53,18 @@ export default function SelectEndAdornment() {
           endAdornment={endAdornment}
         >
           <MenuItem value="Twenty">Twenty</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="outlined" sx={{ width: 140 }}>
+        <InputLabel id="select-overflow-label">Label</InputLabel>
+        <Select
+          labelId="select-overflow-label"
+          id="select-overflow"
+          label="Label"
+          value="Twenty"
+          endAdornment={endAdornment}
+        >
+          <MenuItem value="Twenty">Twenty thousand and twenty two</MenuItem>
         </Select>
       </FormControl>
     </Box>
