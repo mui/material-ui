@@ -1,5 +1,44 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.2.0
+
+<!-- generated comparing v9.1.2..master -->
+
+_Jul 2, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+- ⚙️ Add support for [`data-*` attributes on `slotProps`](https://mui.com/material-ui/guides/typescript/#allowing-data-attributes-on-slotprops).
+
+### `@mui/material@9.1.3`
+
+- [l10n] Add missing MuiPagination localization to zh-CN locale (#48741) @greymoth-jp
+- [select] Guard display ref during mouse down (#48744) @michelengelen
+
+### `@mui/utils@9.1.3`
+
+- [utils] Add opt-in `DataAttributesOverrides` augmentation for slot props (#48554) @LukasTy
+
+### Docs
+
+- [docs] Improve Icon Dialog responsiveness on small screens (#48639) @Prakash1185
+- [docs] Fix invalid UTF-8 in skill references (#48739) @mturac
+
+### Core
+
+- [code-infra] Resolve Renovate dashboard warnings (#48700) @Sushantplive
+- [code-infra] Validate npm publishing through dry run (#48691) @brijeshb42
+- [code-infra] Run prettier after renovate update (#48754) @Janpot
+- [code-infra] Fix 'A11y results committed?' check on react-pinned nightly jobs (#48740) @Janpot
+- [core] Remove leftover Joy UI references (#48719) @siriwatknp
+- [code-infra] Bump react-router to 7.15.1 (#48725) @Janpot
+- [docs-infra] Drive docs analytics IDs via ANALYTICS_ENV (#48694) @Janpot
+- [docs-infra] Pre-render API page descriptions (#48693) @brijeshb42
+- [code-infra][icons-material] Build lib/package.json with code-infra --no-expand (#48689) @Janpot
+- [code-infra] Fix react@18/next nightly workflow (#48635) @Janpot
+
+All contributors of this release in alphabetical order: @brijeshb42, @greymoth-jp, @Janpot, @LukasTy, @michelengelen, @mturac, @Prakash1185, @siriwatknp, @Sushantplive
+
 ## 9.1.2
 
 <!-- generated comparing v9.1.1..master -->
@@ -20,7 +59,7 @@ A big thanks to the 5 contributors who made this release possible.
 ### Docs
 
 - Fix typos in release instructions (#48687) @brijeshb42
-- Update @mui/x-* packages to latest (#48661) @Janpot
+- Update @mui/x-\* packages to latest (#48661) @Janpot
 
 ### Core
 
@@ -28,11 +67,10 @@ A big thanks to the 5 contributors who made this release possible.
 - [code-infra] Bump to latest code-infra packages (#48672) @brijeshb42
 - [code-infra] Resolve remaining minimatch advisory (#48662) @Janpot
 - [code-infra] Bump nx to resolve minimatch advisory (#48658) @Janpot
-- [core] Drop @babel/* pnpm overrides (#48710) @Janpot
+- [core] Drop @babel/\* pnpm overrides (#48710) @Janpot
 - [docs-infra] Revert "Pin StackBlitz demo vite to v7 and plugin-react to v5" (#48709) @Janpot
 - [docs-infra] Fix code-block copy button broken on direct page load (#48653) @brijeshb42
 - [test] Stabilize Data Grid demo data in Argos screenshots (#48654) @LukasTy
-
 
 All contributors of this release in alphabetical order: @brijeshb42, @Janpot, @LukasTy, @mj12albert, @siriwatknp
 
