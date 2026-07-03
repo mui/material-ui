@@ -4,18 +4,18 @@
 
 <!-- generated comparing v9.1.2..master -->
 
-_Jul 2, 2026_
+_Jul 3, 2026_
 
 A big thanks to the 9 contributors who made this release possible.
 
 - ⚙️ Add support for [`data-*` attributes on `slotProps`](https://mui.com/material-ui/guides/typescript/#allowing-data-attributes-on-slotprops).
 
-### `@mui/material@9.1.3`
+### `@mui/material@9.2.0`
 
 - [l10n] Add missing MuiPagination localization to zh-CN locale (#48741) @greymoth-jp
 - [select] Guard display ref during mouse down (#48744) @michelengelen
 
-### `@mui/utils@9.1.3`
+### `@mui/utils@9.2.0`
 
 - [utils] Add opt-in `DataAttributesOverrides` augmentation for slot props (#48554) @LukasTy
 
