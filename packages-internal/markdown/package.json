@@ -9,6 +9,7 @@
   "exports": {
     ".": "./index.mjs",
     "./loader": "./loader.mjs",
+    "./apiPageTranslationLoader": "./apiPageTranslationLoader.mjs",
     "./prism": {
       "types": "./prism.d.mts",
       "require": null,

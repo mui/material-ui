@@ -37,6 +37,12 @@ export default defineConfig({
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
+    // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
+    // `useDemoData`) render identical rows on every load. Without this the
+    // generated data is random per page visit and churns the Argos baseline.
+    // Mirrors mui-x's regression bundle, which replaces the same token.
+    __DISABLE_CHANCE_RANDOM__: 'true',
   },
   resolve: {
     alias: [

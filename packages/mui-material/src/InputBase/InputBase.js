@@ -351,6 +351,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   // We need to book keep the focused state manually.
   React.useEffect(() => {
     if (!muiFormControl && disabled && focused) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocused(false);
       if (onBlur) {
         onBlur();
