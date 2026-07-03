@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Flagged            | 12/25 |
+| 🚩 Flagged            | 6/25  |
 
 ## Known gaps
 
@@ -21,7 +21,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The switch is one control: the hidden `<input>` followed by the `thumb` and `track` spans, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
 - Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="start"` flips the label and control visually with `row-reverse`, so confirm the reading order of a switch group still matches its visual order.
@@ -36,7 +36,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component renders no instructional text of its own, so it introduces no shape, color, or position-only instructions.
 - Surrounding copy must not rely on sensory characteristics alone (for example "turn on the green switch" or "the switch on the right"). That is authored content.
@@ -64,7 +64,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - Labels and helper text render as live DOM text; the default thumb and track are styled spans, not images of text, and carry no textual information.
 - The label and any custom `icon`/`checkedIcon` content are the author's: this fails only if one of them is an image of text. Use real text unless it is a logo.
@@ -92,7 +92,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The switch is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to a switch beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -106,7 +106,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component relies on an author supplied name
 - Consistency is a cross-page property. Confirm that switches with the same function share a label, and that one label is not reused for different functions.
@@ -120,7 +120,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.3.2 Labels or Instructions · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - A visible label or instruction is the author's content to supply; the component renders a real `<label>` when wrapped in `FormControlLabel` (as in `SwitchLabels` and `SwitchesGroup`), the conforming pattern for a production switch.
 - An `aria-label` gives a programmatic name (4.1.2) but is not presented to all users, so an `aria-label`-only switch (the form the isolation demos take) still needs a visible label in production.
