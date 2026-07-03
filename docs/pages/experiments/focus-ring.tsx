@@ -452,8 +452,13 @@ export default function FocusVisible() {
         palette: { mode },
         focusVisible: focusVisibleValue,
         // N6 — opt into the flat look: no ripple, so keyboard focus relies entirely on the ring.
+        // ButtonGroup re-broadcasts its own `disableRipple` (default false) to child buttons via
+        // context, which shadows the MuiButtonBase default — so set it on MuiButtonGroup too.
         ...(disableRipple && {
-          components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          components: {
+            MuiButtonBase: { defaultProps: { disableRipple: true } },
+            MuiButtonGroup: { defaultProps: { disableRipple: true } },
+          },
         }),
       }),
     [vars, mode, focusVisibleValue, disableRipple],
@@ -586,26 +591,20 @@ export default function FocusVisible() {
             />
 
             {/* N6 — disable ripple app-wide via MuiButtonBase defaultProps */}
-            <div>
-              <FormControlLabel
-                control={
-                  <Switch
-                    size="small"
-                    checked={disableRipple}
-                    onChange={(_, v) => setDisableRipple(v)}
-                  />
-                }
-                label={
-                  <Typography variant="body2">
-                    Disable ripple (<code>MuiButtonBase</code>)
-                  </Typography>
-                }
-              />
-              <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
-                Ripple is Material&apos;s default keyboard cue. Off + preset <code>off</code> = no
-                keyboard indicator (WCAG 2.4.7); turn the ring on to restore it.
-              </Typography>
-            </div>
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  checked={disableRipple}
+                  onChange={(_, v) => setDisableRipple(v)}
+                />
+              }
+              label={
+                <Typography variant="body2">
+                  Disable ripple (<code>MuiButtonBase</code>)
+                </Typography>
+              }
+            />
 
             {/* N2 — custom JSON editor */}
             <TextField
