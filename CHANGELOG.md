@@ -31,11 +31,11 @@ A big thanks to the 9 contributors who made this release possible.
 - [code-infra] Run prettier after renovate update (#48754) @Janpot
 - [code-infra] Fix 'A11y results committed?' check on react-pinned nightly jobs (#48740) @Janpot
 - [core] Remove leftover Joy UI references (#48719) @siriwatknp
-- [core] Bump react-router to 7.15.1 (#48725) @Janpot
+- [code-infra] Bump react-router to 7.15.1 (#48725) @Janpot
 - [docs-infra] Drive docs analytics IDs via ANALYTICS_ENV (#48694) @Janpot
 - [docs-infra] Pre-render API page descriptions (#48693) @brijeshb42
 - [code-infra][icons-material] Build lib/package.json with code-infra --no-expand (#48689) @Janpot
-- [test] Fix react@18/next nightly workflow (#48635) @Janpot
+- [code-infra] Fix react@18/next nightly workflow (#48635) @Janpot
 
 All contributors of this release in alphabetical order: @brijeshb42, @greymoth-jp, @Janpot, @LukasTy, @michelengelen, @mturac, @Prakash1185, @siriwatknp, @Sushantplive
 
