@@ -306,8 +306,11 @@ function useAutocomplete(props) {
       return;
     }
 
-    // Only reset the input's value when freeSolo if the component's value changes.
-    if (freeSolo && !valueChange) {
+    // In freeSolo mode, only reset the input after a real value change.
+    // Also prevent the initial default value of `null` from clearing controlled values.
+    const shouldSkipFreeSoloReset =
+      freeSolo && (!valueChange || (value == null && previousProps.value === undefined));
+    if (shouldSkipFreeSoloReset) {
       return;
     }
 
@@ -327,6 +330,7 @@ function useAutocomplete(props) {
   // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
     if (multiple && focusedItem > value.length - 1) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFocusedItem(-1);
       focusItem(-1);
     }
@@ -370,6 +374,12 @@ function useAutocomplete(props) {
 
   const syncHighlightedIndexToDOM = useEventCallback(
     ({ index, reason, preserveScroll = false }) => {
+      // React can clear refs before pending passive effects run during unmount.
+      // If both refs are gone, there is no DOM left to sync.
+      if (inputRef.current == null && listboxRef.current == null) {
+        return;
+      }
+
       // does the index exist?
       if (index === -1) {
         inputRef.current.removeAttribute('aria-activedescendant');
@@ -1006,14 +1016,16 @@ function useAutocomplete(props) {
           }
           break;
         case 'Enter': {
-          // In freeSolo, only select the highlighted option if the user hasn't
-          // typed new text (inputPristine) or explicitly interacted with an option
-          // (keyboard, mouse, or touch — any non-null reason). This lets typed
-          // text win over a programmatic highlight (reason=null, e.g. from
-          // syncHighlightedIndex matching a previous value) while still honoring
-          // deliberate user interactions like hovering a suggestion then pressing Enter.
-          const shouldSelectHighlighted =
-            !freeSolo || inputPristine || highlightReasonRef.current !== null;
+          // In freeSolo, once the user has typed new text, Enter should commit that text instead
+          // of treating a programmatic highlight as an intentional selection. Programmatic
+          // highlights include autoHighlight and syncHighlightedIndex matching a previous value.
+          const hasProgrammaticHighlight =
+            popupOpen && highlightedIndexRef.current !== -1 && highlightReasonRef.current === null;
+          const shouldCommitFreeSoloOverProgrammaticHighlight =
+            freeSolo && !inputPristine && hasProgrammaticHighlight;
+          const shouldSelectHighlighted = !freeSolo || inputPristine || !hasProgrammaticHighlight;
+          const shouldPreventSubmitAfterFreeSoloCommit =
+            shouldCommitFreeSoloOverProgrammaticHighlight && !touchScrolledRef.current;
 
           if (
             highlightedIndexRef.current !== -1 &&
@@ -1043,8 +1055,8 @@ function useAutocomplete(props) {
               );
             }
           } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
-            if (multiple) {
-              // Allow people to add new values before they submit the form.
+            if (multiple || shouldPreventSubmitAfterFreeSoloCommit) {
+              // Allow people to commit the freeSolo value before they submit the form.
               event.preventDefault();
             }
             selectNewValue(event, inputValue, 'createOption', 'freeSolo');

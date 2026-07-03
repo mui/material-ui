@@ -50,7 +50,6 @@ export default function Header(props: HeaderProps) {
                     color: 'common.white',
                   },
                 }}
-                rel="noopener noreferrer"
                 target="_blank"
               >
                 Go to docs

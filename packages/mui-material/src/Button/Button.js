@@ -16,6 +16,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -103,12 +104,9 @@ const ButtonRoot = styled(ButtonBase, {
       padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create(
-        ['background-color', 'box-shadow', 'border-color', 'color'],
-        {
-          duration: theme.transitions.duration.short,
-        },
-      ),
+      ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
+        duration: theme.transitions.duration.short,
+      }),
       '&:hover': {
         textDecoration: 'none',
       },
@@ -308,12 +306,9 @@ const ButtonRoot = styled(ButtonBase, {
             loadingPosition: 'center',
           },
           style: {
-            transition: theme.transitions.create(
-              ['background-color', 'box-shadow', 'border-color'],
-              {
-                duration: theme.transitions.duration.short,
-              },
-            ),
+            ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color'], {
+              duration: theme.transitions.duration.short,
+            }),
             [`&.${buttonClasses.loading}`]: {
               color: 'transparent',
             },
@@ -352,7 +347,7 @@ const ButtonStartIcon = styled('span', {
     {
       props: { loadingPosition: 'start', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...getTransitionStyles(theme, ['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,
@@ -390,7 +385,7 @@ const ButtonEndIcon = styled('span', {
     {
       props: { loadingPosition: 'end', loading: true },
       style: {
-        transition: theme.transitions.create(['opacity'], {
+        ...getTransitionStyles(theme, ['opacity'], {
           duration: theme.transitions.duration.short,
         }),
         opacity: 0,

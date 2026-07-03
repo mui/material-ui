@@ -430,7 +430,7 @@ function createRender(context) {
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
         '<span class="MuiCode-copy-label">Copy</span>',
         '<span class="MuiCode-copied-label">Copied</span>',
-        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+        '<span class="MuiCode-copyKeypress"><span>(or</span> <span class="MuiCode-copyKeypressKey" role="img" aria-label="Ctrl or CMD"></span>C<span>)</span></span></button></div>',
       ].join('')}\n`;
     };
 

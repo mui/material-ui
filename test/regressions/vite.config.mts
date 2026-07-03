@@ -1,8 +1,12 @@
+import { resolve } from 'path';
+import { fileURLToPath } from 'url';
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 // eslint-disable-next-line import/no-relative-packages
 import { alias } from '../../vitest.shared.mts';
+
+const stubsDir = resolve(fileURLToPath(new URL('.', import.meta.url)), 'stubs');
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -33,9 +37,27 @@ export default defineConfig({
   ],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
+    // Seed `@mui/x-data-grid-generator`'s Chance instances deterministically so
+    // the Data Grid composites (XHero/XGridFullDemo/XDataGrid/XTheming via
+    // `useDemoData`) render identical rows on every load. Without this the
+    // generated data is random per page visit and churns the Argos baseline.
+    // Mirrors mui-x's regression bundle, which replaces the same token.
+    __DISABLE_CHANCE_RANDOM__: 'true',
   },
   resolve: {
-    alias,
+    alias: [
+      // The existing `alias` from vitest.shared.mts is an object map; spread
+      // it as { find, replacement } entries so the next/* regex aliases below
+      // coexist with it.
+      ...Object.entries(alias).map(([find, replacement]) => ({ find, replacement })),
+      // Stub `next/*` modules so docs composites under `docs/src/components/`
+      // that transitively import `next/router` (via `@mui/internal-core-docs/Link`)
+      // render outside the Next.js docs host. See `stubs/next-router.ts` for
+      // the rationale.
+      { find: /^next\/router$/, replacement: `${stubsDir}/next-router.ts` },
+      { find: /^next\/link$/, replacement: `${stubsDir}/next-link.tsx` },
+      { find: /^next\/head$/, replacement: `${stubsDir}/next-head.tsx` },
+    ],
   },
   optimizeDeps: {
     esbuildOptions: {

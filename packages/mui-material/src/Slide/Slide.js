@@ -10,6 +10,7 @@ import isLayoutSupported from '../utils/isLayoutSupported';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import { useTheme } from '../zero-styled';
+import useReducedMotion from '../transitions/useReducedMotion';
 import {
   normalizedTransitionCallback,
   reflow,
@@ -19,6 +20,7 @@ import {
 import { ownerWindow } from '../utils';
 
 const hiddenStyles = { visibility: 'hidden' };
+const DEFAULT_TRANSLATE_OPTIONS = {};
 
 /**
  * Detects SwipeableDrawer's active-swipe `translate(x, y)` transform.
@@ -29,7 +31,12 @@ function isGestureTranslate(transform) {
 }
 
 // Move the node off-screen. Later we reset transform to `none` to slide it in.
-function getTranslateValue(direction, node, resolvedContainer, options = {}) {
+function getTranslateValue(
+  direction,
+  node,
+  resolvedContainer,
+  options = DEFAULT_TRANSLATE_OPTIONS,
+) {
   const { resetInlineTransform = true } = options;
   const containerRect = resolvedContainer && resolvedContainer.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
@@ -120,6 +127,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     container: containerProp,
+    disablePrefersReducedMotion = false,
     direction = 'down',
     easing: easingProp = defaultEasing,
     in: inProp,
@@ -133,6 +141,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     timeout = defaultTimeout,
     ...other
   } = props;
+  const reducedMotion = useReducedMotion(theme.motion.reducedMotion, disablePrefersReducedMotion);
 
   const childrenRef = React.useRef(null);
   const preserveInlineTransformRef = React.useRef(false);
@@ -140,7 +149,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEnter = normalizedTransitionCallback(childrenRef, (node, isAppearing) => {
     setTranslateValue(direction, node, containerProp);
-    reflow(node);
+    if (!reducedMotion.shouldReduceMotion) {
+      reflow(node);
+    }
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -154,8 +165,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'enter',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     node.style.transform = 'none';
     if (onEntering) {
@@ -173,8 +192,16 @@ const Slide = React.forwardRef(function Slide(props, ref) {
         mode: 'exit',
       },
     );
+    const transitionTiming = reducedMotion.getTransitionTiming({
+      duration: transitionProps.duration,
+      delay: transitionProps.delay,
+    });
 
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', {
+      duration: transitionTiming.duration,
+      easing: transitionProps.easing,
+      delay: transitionTiming.delay,
+    });
 
     const preserveInlineTransform = isGestureTranslate(node.style.transform);
     preserveInlineTransformRef.current = preserveInlineTransform;
@@ -200,11 +227,11 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     }
   });
 
-  const handleAddEndListener = (next) => {
-    if (addEndListener) {
-      addEndListener(childrenRef.current, next);
-    }
-  };
+  const handleAddEndListener = addEndListener
+    ? (next) => {
+        addEndListener(childrenRef.current, next);
+      }
+    : undefined;
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
@@ -252,6 +279,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       addEndListener={handleAddEndListener}
       appear={appear}
       in={inProp}
+      reduceMotion={reducedMotion.shouldReduceMotion}
       timeout={timeout}
       {...other}
     >
@@ -354,6 +382,11 @@ Slide.propTypes /* remove-proptypes */ = {
    * @default 'down'
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
+  /**
+   * If `true`, the transition ignores `theme.motion.reducedMotion` and keeps its normal timing.
+   * @default false
+   */
+  disablePrefersReducedMotion: PropTypes.bool,
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
