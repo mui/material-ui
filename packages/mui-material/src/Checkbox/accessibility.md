@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 3     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Flagged            | 12/25 |
+| 🚩 Flagged            | 7/25  |
 
 ## Known gaps
 
@@ -22,7 +22,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The checkbox is one control: the hidden `<input>` followed by the `aria-hidden` checkmark icon, with `FormControlLabel` placing the label and control in source order, so the exposed reading order matches the visual order. The component applies no CSS reordering to itself.
 - Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="start"` flips the label/control visually with `row-reverse`, so confirm the reading order of a checkbox group still matches its visual order.
@@ -37,7 +37,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component renders no instructional text of its own, so it introduces no shape-, color-, or position-only instructions.
 - Surrounding copy must not rely on sensory characteristics alone (for example "check the green box" or "the boxes on the right"). That is authored content.
@@ -51,7 +51,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - Labels and helper text render as live DOM text; the checkmark icon is a vector graphic, not an image of text, and it carries no textual information.
 - This fails only if an author passes an image of text as the label. Use real text unless it is a logo.
@@ -65,7 +65,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The checkbox is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - It passes as long as that content never hides a focused checkbox completely; partial overlap is fine.
@@ -79,7 +79,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The author supplies the name through a `FormControlLabel` or an `aria-label`. Whether the same function is identified consistently across pages is up to the author.
 - Consistency is a cross-page property. Confirm that checkboxes with the same function share a label, and that one label is not reused for different functions.
@@ -103,7 +103,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. In the accessibility tree, inspect a labelled checkbox (`Checkbox` inside a `FormControlLabel`) and confirm it shows `role=checkbox` with the visible label as its name.
+1. In the accessibility tree, inspect alabelledcheckbox (`Checkbox` inside a `FormControlLabel`) and confirm it shows `role=checkbox` with the visible label as its name.
 2. Inspect a bare `<Checkbox />` with no label and confirm its name is empty, the failure mode authors must avoid.
 3. Confirm the checkmark icon's SVG is `aria-hidden`.
 
@@ -120,7 +120,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. For a required labelled checkbox (`Checkbox required` inside a `FormControlLabel`), confirm `role=checkbox`, the name, `required`, and the wrapping `<label>`.
+1. For a requiredlabelledcheckbox (`Checkbox required` inside a `FormControlLabel`), confirm `role=checkbox`, the name, `required`, and the wrapping `<label>`.
 2. Toggle indeterminate and confirm `aria-checked` cycles `true`/`false`/`mixed`.
 3. In a fieldset group (`FormControl component="fieldset"` + `FormLabel component="legend"` around a `FormGroup`), confirm the `<fieldset>`/`<legend>` name is exposed but any error or required constraint is not (no `aria-describedby`/`aria-invalid`).
 
@@ -229,7 +229,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. For a labelled checkbox (`Checkbox` inside a `FormControlLabel` reading "Remember me"), confirm the accessible name contains "Remember me".
+1. For alabelledcheckbox (`Checkbox` inside a `FormControlLabel` reading "Remember me"), confirm the accessible name contains "Remember me".
 2. If an `aria-label` is set, confirm it includes the visible text.
 3. Try a voice command speaking the visible label and confirm it activates the checkbox.
 
@@ -262,7 +262,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. Inspect a labelled checkbox (`Checkbox` inside a `FormControlLabel`) and confirm `role=checkbox` with a non-empty name in the accessibility tree.
+1. Inspect alabelledcheckbox (`Checkbox` inside a `FormControlLabel`) and confirm `role=checkbox` with a non-empty name in the accessibility tree.
 2. Toggle it with a screen reader running and confirm the state change is announced.
 3. With `indeterminate` set, confirm "mixed" or partially checked is announced.
 
