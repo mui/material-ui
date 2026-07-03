@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 2     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 30    |
-| 🚩 Flagged            | 12/25 |
+| 🚩 Flagged            | 6/25  |
 
 ## Known gaps
 
@@ -21,7 +21,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The radio is one control: the hidden `<input>` followed by the `aria-hidden` dot and circle, with `FormControlLabel` placing the label and control in source order, so the reading order matches the visual order.
 - Order carries meaning only across several controls, which the surrounding layout sets. `labelPlacement="bottom"` flips the label and control vertically, so confirm the reading order of a group like `FormControlLabelPlacement` still matches its visual order.
@@ -36,7 +36,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component renders no instructional text of its own.
 - The author is responsible for ensuring surrounding copy does not rely on sensory characteristics alone (for example "select the green option" or "the option on the right").
@@ -64,7 +64,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - Labels and helper text render as live DOM text; the dot and circle are vector graphics without any textual information.
 - This fails only if an author passes an image of text as the label, or supplies an `icon`/`checkedIcon` that is an image of text. Use real text unless it is a logo.
@@ -92,7 +92,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The radio is an ordinary focusable control and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to a radio beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -106,7 +106,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component exposes whatever name the author supplies.
 - Consistency is a cross-page property. Confirm that radios with the same function share a label, and that one label is not reused for different functions.
@@ -120,10 +120,10 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.3.2 Labels or Instructions · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - A visible label or instruction is the author's content to supply; the component renders a real `<label>` when wrapped in `FormControlLabel`, which is the recommended composition for the radio component.
-- `aria-label`-only radios would fail this SC in a real-world use-case.
+- `aria-label`-only radios would fail this SC in a real-world use case.
 
 **Manual testing steps**
 
