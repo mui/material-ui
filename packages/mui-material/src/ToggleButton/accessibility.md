@@ -8,7 +8,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 | ⚠️ Partially Supports | 4     |
 | ❌ Does Not Support   | 0     |
 | ➖ Not Applicable     | 31    |
-| 🚩 Flagged            | 10/24 |
+| 🚩 Flagged            | 5/24  |
 
 ## Known gaps
 
@@ -23,7 +23,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.2 Meaningful Sequence · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The Toggle Button is one control. Its children render in DOM order; a decorative MUI icon is `aria-hidden`, leaving the label (text or `aria-label`) as the exposed content.
 - Order carries meaning only across several toggles, which the surrounding layout (often a `ToggleButtonGroup`) sets. Confirm that reading order matches the visual order.
@@ -37,7 +37,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.3.3 Sensory Characteristics · A
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - A toggle with text or an `aria-label` can be identified by name, not only by shape, color, or position.
 - Instructions in the surrounding content must not rely on color, shape, or position alone (for example, "the highlighted button").
@@ -65,7 +65,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 1.4.5 Images of Text · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - A text label is live CSS text; the component never renders it as an image.
 - This fails only if an image of text, or an icon font spelling words, is passed as the children. Use real text or an icon with an `aria-label`.
@@ -91,7 +91,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 2.4.11 Focus Not Obscured (Minimum) · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The Toggle Button is an ordinary focusable element and never places itself behind other content. Obscuring comes from sticky headers, banners, or overlays in the surrounding layout.
 - Confirm by moving focus to a toggle beneath any sticky or overlay content at several scroll positions. At least part of it must stay visible.
@@ -105,7 +105,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 #### 3.2.4 Consistent Identification · AA
 
-`🚩` · `✅ Supports` · `○ Author`
+`✅ Supports` · `○ Author`
 
 - The component produces one stable accessible name per set of props, the precondition for consistent identification.
 - Consistency is a cross-page property. Confirm that toggles with the same function share a label and icon, and that one label is not reused for different functions.
