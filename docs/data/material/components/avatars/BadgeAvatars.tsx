@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -46,16 +47,28 @@ export default function BadgeAvatars() {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
       >
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar alt="Remy Sharp, online" src="/static/images/avatar/1.jpg" />
       </StyledBadge>
       <Badge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        badgeContent={
-          <SmallAvatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        }
+        badgeContent={2}
+        color="primary"
       >
-        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+        <Avatar
+          alt="Travis Howard, 2 unread messages"
+          src="/static/images/avatar/2.jpg"
+        />
+      </Badge>
+      <Badge
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        badgeContent={<SmallAvatar alt="" src="/static/images/avatar/1.jpg" />}
+      >
+        <InsertDriveFileIcon
+          color="action"
+          fontSize="large"
+          titleAccess="Q4 budget spreadsheet, last edited by Remy Sharp"
+        />
       </Badge>
     </Stack>
   );

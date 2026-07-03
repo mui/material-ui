@@ -90,7 +90,12 @@ function getCache(injectFirst?: boolean, enableCssLayer?: boolean) {
     }
     const emotionCache = createEmotionCache(
       {
-        key: 'css',
+        // Use a dedicated key for the cascade-layer cache so its generated class
+        // names (e.g. `mui-fyswvn`) can never collide with identically-hashed
+        // UNLAYERED classes from the default/`injectFirst` cache (key `css`).
+        // A collision lets an unlayered `.css-xxx` rule beat the layered one,
+        // defeating MUI's own styles.
+        key: enableCssLayer ? 'mui' : 'css',
         insertionPoint: injectFirst ? insertionPoint : undefined,
       },
       MyStyleSheet,

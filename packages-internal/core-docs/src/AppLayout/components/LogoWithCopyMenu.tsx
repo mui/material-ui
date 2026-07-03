@@ -12,8 +12,8 @@ import { Link } from '../../Link';
 import {
   type RootSvgProps,
   MuiLogomarkIcon,
-  muiSvgLogoString,
-  muiSvgWordmarkString,
+  muiSvgLogomarkString,
+  muiSvgLogotypeString,
 } from '../../svgIcons';
 
 interface LogoWithCopyMenuProps {
@@ -25,8 +25,8 @@ interface LogoWithCopyMenuProps {
 
 export function LogoWithCopyMenu({
   logo: LogoSvg = MuiLogomarkIcon,
-  logomarkSvgString = muiSvgLogoString,
-  logotypeSvgString = muiSvgWordmarkString,
+  logomarkSvgString = muiSvgLogomarkString,
+  logotypeSvgString = muiSvgLogotypeString,
   marginLeft,
 }: LogoWithCopyMenuProps) {
   const [contextMenu, setContextMenu] = React.useState<{

@@ -2,7 +2,7 @@
   "name": "@mui-internal/tests",
   "private": true,
   "scripts": {
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsgo -p tsconfig.json"
   },
   "devDependencies": {
     "@babel/runtime": "7.29.2",
@@ -28,7 +28,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-is": "19.2.6",
-    "react-router": "7.15.0",
+    "react-router": "7.15.1",
     "react-window": "2.2.7",
     "sinon": "22.0.0",
     "styled-components": "6.4.1",

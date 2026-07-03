@@ -15,10 +15,6 @@ on:
 permissions: {}
 
 jobs:
-  continuous-releases:
-    name: Continuous releases
-    uses: mui/mui-public/.github/workflows/ci-base.yml@fb2e995849648cc3f6e43ed4ad10b7bad0750d7c # master
-
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -53,6 +49,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
+      - name: Publish packages to pkg.pr.new and npm dry-run
+        uses: mui/mui-public/.github/actions/ci-publish@963630fef652d2ac707df1af5041d49a7b574889 # master
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          npm-dry-run: true
       - name: Build docs
         run: pnpm docs:build
         env:
@@ -64,9 +65,6 @@ jobs:
       # - run: pnpm release:changelog
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check docs links
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: pnpm docs:link-check
       - name: Debug export-detail.json on when pnpm docs:build fails with EMFILE error
         if: failure()
         run: cat ./docs/.next/export-detail.json || true
