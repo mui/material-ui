@@ -160,7 +160,7 @@ Rated against WCAG 2.2 Level A and AA. See the [reports legend](../accessibility
 
 **Manual testing steps**
 
-1. With a screen reader running, focus a named progress bar of each variant (`indeterminate`, `query`, `determinate`, `buffer`), including one labelled by a visible text label via `aria-labelledby`.
+1. With a screen reader running, focus a named progress bar of each variant (`indeterminate`, `query`, `determinate`, `buffer`), including one labeled by a visible text label via `aria-labelledby`.
 2. Confirm each bar announces a name, the determinate ones announce a value or percentage, and the indeterminate ones announce a busy or indeterminate state.
 
 **Pass:** name, role, and value are correct for every variant.
