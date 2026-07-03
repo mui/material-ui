@@ -156,6 +156,38 @@ describe('<ButtonGroup />', () => {
     expect(container.querySelector('.touchRipple')).to.equal(null);
   });
 
+  it('applies a global disableRipple (MuiButtonBase.defaultProps) to grouped buttons', async () => {
+    const { container } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+        })}
+      >
+        <ButtonGroup>
+          <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        </ButtonGroup>
+      </ThemeProvider>,
+    );
+    await ripple.startTouch(screen.getByRole('button'));
+    expect(container.querySelector('.touchRipple')).to.equal(null);
+  });
+
+  it('explicit disableRipple on ButtonGroup overrides the global default', async () => {
+    const { container } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+        })}
+      >
+        <ButtonGroup disableRipple={false}>
+          <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
+        </ButtonGroup>
+      </ThemeProvider>,
+    );
+    await ripple.startTouch(screen.getByRole('button'));
+    expect(container.querySelector('.touchRipple')).not.to.equal(null);
+  });
+
   it('should not be fullWidth by default', () => {
     const { container } = render(
       <ButtonGroup>
@@ -204,8 +236,9 @@ describe('<ButtonGroup />', () => {
     expect(context.variant).to.equal('contained');
     expect(context.size).to.equal('large');
     expect(context.fullWidth).to.equal(false);
-    expect(context.disableRipple).to.equal(false);
-    expect(context.disableFocusRipple).to.equal(false);
+    // Unset ripple flags are not forwarded, so each child resolves its own default (#32970).
+    expect(context.disableRipple).to.equal(undefined);
+    expect(context.disableFocusRipple).to.equal(undefined);
     expect(context.disableElevation).to.equal(false);
     expect(context.disabled).to.equal(false);
     expect(context.color).to.equal('primary');
