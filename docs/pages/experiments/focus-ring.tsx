@@ -420,6 +420,7 @@ export default function FocusVisible() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [vars, setVars] = React.useState(false); // N3
+  const [disableRipple, setDisableRipple] = React.useState(false); // N6
   const [customJson, setCustomJson] = React.useState(''); // N2
   const [focused, setFocused] = React.useState<string | null>(null);
   const [ringIdx, setRingIdx] = React.useState(-1); // N1
@@ -445,8 +446,17 @@ export default function FocusVisible() {
   const focusVisibleValue = custom.active && !custom.error ? custom.value : PRESETS[preset].value;
 
   const theme = React.useMemo(
-    () => createTheme({ cssVariables: vars, palette: { mode }, focusVisible: focusVisibleValue }),
-    [vars, mode, focusVisibleValue],
+    () =>
+      createTheme({
+        cssVariables: vars,
+        palette: { mode },
+        focusVisible: focusVisibleValue,
+        // N6 — opt into the flat look: no ripple, so keyboard focus relies entirely on the ring.
+        ...(disableRipple && {
+          components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+        }),
+      }),
+    [vars, mode, focusVisibleValue, disableRipple],
   );
 
   // N4 — the normalized, resolved ring object the gallery actually renders.
@@ -495,7 +505,7 @@ export default function FocusVisible() {
 
   React.useEffect(() => {
     setTotal(walkTargets().length);
-  }, [walkTargets, preset, vars, mode, focusVisibleValue]);
+  }, [walkTargets, preset, vars, mode, focusVisibleValue, disableRipple]);
 
   return (
     <Box sx={{ maxWidth: 1120, mx: 'auto' }}>
@@ -574,6 +584,28 @@ export default function FocusVisible() {
                 </Typography>
               }
             />
+
+            {/* N6 — disable ripple app-wide via MuiButtonBase defaultProps */}
+            <div>
+              <FormControlLabel
+                control={
+                  <Switch
+                    size="small"
+                    checked={disableRipple}
+                    onChange={(_, v) => setDisableRipple(v)}
+                  />
+                }
+                label={
+                  <Typography variant="body2">
+                    Disable ripple (<code>MuiButtonBase</code>)
+                  </Typography>
+                }
+              />
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                Ripple is Material&apos;s default keyboard cue. Off + preset <code>off</code> = no
+                keyboard indicator (WCAG 2.4.7); turn the ring on to restore it.
+              </Typography>
+            </div>
 
             {/* N2 — custom JSON editor */}
             <TextField
