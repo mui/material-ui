@@ -10,23 +10,23 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@mui/material": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "esbuild": "0.25.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-is": "18.2.0"
+    "esbuild": "0.28.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-is": "18.3.1"
   },
   "devDependencies": {
     "concurrently": "10.0.3",
-    "playwright": "1.55.1",
-    "serve": "14.2.4"
+    "playwright": "1.61.1",
+    "serve": "14.2.6"
   },
   "pnpm": {
     "overrides": {
