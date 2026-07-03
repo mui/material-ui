@@ -15,12 +15,6 @@ export default function ValidationTextFields() {
           id="outlined-error"
           label="Error"
           defaultValue="Hello World"
-        />
-        <TextField
-          error
-          id="outlined-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
           helperText="Incorrect entry."
         />
       </div>
@@ -28,13 +22,6 @@ export default function ValidationTextFields() {
         <TextField
           error
           id="filled-error"
-          label="Error"
-          defaultValue="Hello World"
-          variant="filled"
-        />
-        <TextField
-          error
-          id="filled-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
@@ -45,13 +32,6 @@ export default function ValidationTextFields() {
         <TextField
           error
           id="standard-error"
-          label="Error"
-          defaultValue="Hello World"
-          variant="standard"
-        />
-        <TextField
-          error
-          id="standard-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."

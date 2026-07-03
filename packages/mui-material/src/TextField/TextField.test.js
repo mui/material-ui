@@ -116,12 +116,6 @@ describe('<TextField />', () => {
   });
 
   describe('with a label', () => {
-    it('label the input', () => {
-      render(<TextField label="Foo bar" variant="standard" />);
-
-      expect(screen.getByRole('textbox')).toHaveAccessibleName('Foo bar');
-    });
-
     it('should apply the className to the label', () => {
       const { container } = render(
         <TextField
@@ -154,18 +148,6 @@ describe('<TextField />', () => {
       );
 
       expect(getDescriptionOf(screen.getByRole('textbox'))).to.have.class('foo');
-    });
-
-    it('has an accessible description', () => {
-      render(
-        <TextField
-          helperText="Foo bar"
-          slotProps={{ formHelperText: { className: 'foo' } }}
-          variant="standard"
-        />,
-      );
-
-      expect(screen.getByRole('textbox')).toHaveAccessibleDescription('Foo bar');
     });
   });
 
@@ -422,6 +404,157 @@ describe('<TextField />', () => {
 
       fireAnimationStart(screen.getByTestId('htmlInput'), 'mui-auto-fill-cancel');
       expect(screen.getByTestId('label').getAttribute('data-shrink')).to.equal('false');
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('links the helper text to the input as its accessible description', () => {
+        render(<TextField label="Email" helperText="We never share it." />);
+
+        expect(screen.getByRole('textbox')).toHaveAccessibleDescription('We never share it.');
+      });
+
+      it('maps required to the native required attribute', () => {
+        render(<TextField label="Email" required />);
+
+        expect(screen.getByRole('textbox')).to.have.attribute('required');
+      });
+    });
+
+    it("1.3.5 Identify Input Purpose: forwards autoComplete to the input's autocomplete attribute", () => {
+      render(<TextField label="Email" autoComplete="email" />);
+
+      expect(screen.getByRole('textbox')).to.have.attribute('autocomplete', 'email');
+    });
+
+    it('2.1.1 Keyboard: accepts typed characters and reports them through onChange', async () => {
+      const handleChange = spy();
+      function ControlledField() {
+        const [value, setValue] = React.useState('');
+        return (
+          <TextField
+            label="Name"
+            value={value}
+            onChange={(event) => {
+              handleChange();
+              setValue(event.target.value);
+            }}
+          />
+        );
+      }
+      const { user } = render(<ControlledField />);
+      const input = screen.getByRole('textbox');
+
+      await user.click(input);
+      await user.keyboard('Ada');
+
+      expect(input).to.have.property('value', 'Ada');
+      expect(handleChange.callCount).to.equal(3);
+    });
+
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the field', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">Before</button>
+          <TextField label="Name" />
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
+      await user.tab();
+      expect(screen.getByRole('textbox')).toHaveFocus();
+
+      // Tab moves focus back out of the field — it is never captured.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+      // Shift+Tab moves back onto it.
+      await user.tab({ shift: true });
+      expect(screen.getByRole('textbox')).toHaveFocus();
+    });
+
+    it('2.4.3 Focus Order: is a single tab stop in natural DOM order', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">Before</button>
+          <TextField label="Name" />
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+      expect(screen.getByRole('textbox')).to.have.property('tabIndex', 0);
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+      await user.tab();
+      expect(screen.getByRole('textbox')).toHaveFocus();
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+    });
+
+    it('2.5.3 Label in Name: the accessible name is the visible label', () => {
+      render(<TextField label="Foo bar" />);
+
+      // getByRole with `name` only resolves if the accessible name matches the label.
+      expect(screen.getByRole('textbox', { name: 'Foo bar' })).not.to.equal(null);
+    });
+
+    it('3.2.1 On Focus: moving focus to the field changes no value or context', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <TextField label="Name" defaultValue="Ada" onChange={handleChange} />,
+      );
+      const input = screen.getByRole('textbox');
+
+      await user.tab();
+
+      expect(input).toHaveFocus();
+      // Focus alone changes nothing.
+      expect(input).to.have.property('value', 'Ada');
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('3.2.2 On Input: typing updates the value without changing context', async () => {
+      const handleChange = spy();
+      const { user } = render(<TextField label="Name" onChange={handleChange} />);
+      const input = screen.getByRole('textbox');
+
+      await user.click(input);
+      await user.keyboard('x');
+
+      // Editing fires onChange and updates the value; it triggers no navigation
+      // or other change of context on its own.
+      expect(input).to.have.property('value', 'x');
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    describe('3.3.1 Error Identification', () => {
+      it('exposes the error state through aria-invalid and links the message', () => {
+        render(<TextField label="Email" error helperText="Incorrect entry." />);
+        const input = screen.getByRole('textbox');
+
+        expect(input).to.have.attribute('aria-invalid', 'true');
+        expect(input).toHaveAccessibleDescription('Incorrect entry.');
+      });
+
+      it('marks a valid field as not invalid', () => {
+        render(<TextField label="Email" helperText="We never share it." />);
+
+        expect(screen.getByRole('textbox')).to.have.attribute('aria-invalid', 'false');
+      });
+    });
+
+    it('4.1.2 Name, Role, Value: exposes the textbox role, name, and invalid state', () => {
+      render(<TextField label="Email" error />);
+
+      // getByRole asserts role + name; aria-invalid exposes the value state.
+      expect(screen.getByRole('textbox', { name: 'Email' })).to.have.attribute(
+        'aria-invalid',
+        'true',
+      );
     });
   });
 });
