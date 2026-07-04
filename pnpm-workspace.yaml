@@ -14,6 +14,8 @@ minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@mui/*'
   - '@base-ui/*'
+  # Renovate security update: @babel/core@7.29.6
+  - '@babel/core@7.29.6'
 trustPolicy: no-downgrade
 # Skip trust-policy checks for packages published more than 365 days ago.
 # Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
@@ -40,12 +42,6 @@ overrides:
   'docs>react-is': '19.2.6'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
   caniuse-lite: '^1.0.30001792'
-  '@babel/core': '7.29.0'
-  '@babel/plugin-transform-runtime': '^7.29.0'
-  '@babel/preset-env': '^7.29.5'
-  '@babel/preset-react': '^7.28.5'
-  '@babel/preset-typescript': '^7.28.5'
-  '@babel/runtime': '^7.29.2'
   '@types/node': '20.19.39'
   cross-fetch: '^4.1.0'
   '@pigment-css/react': '0.0.31'
