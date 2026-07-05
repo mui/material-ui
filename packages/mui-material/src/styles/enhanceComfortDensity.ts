@@ -4,7 +4,6 @@ import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
-import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
@@ -463,10 +462,34 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     ],
   });
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
-    // Item box size = raw px per size.
-    [piVars.smallSize]: '30px',
-    [piVars.mediumSize]: '36px',
-    [piVars.largeSize]: '44px',
+    // Item box size = raw px per size: min-width on every item, height only on the
+    // button items (ellipsis keeps master's auto height).
+    variants: [
+      { props: { size: 'small' }, style: { minWidth: '30px' } },
+      { props: { size: 'medium' }, style: { minWidth: '36px' } },
+      { props: { size: 'large' }, style: { minWidth: '44px' } },
+      {
+        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+          ownerState.type !== 'start-ellipsis' &&
+          ownerState.type !== 'end-ellipsis' &&
+          ownerState.size === 'small',
+        style: { height: '30px' },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+          ownerState.type !== 'start-ellipsis' &&
+          ownerState.type !== 'end-ellipsis' &&
+          ownerState.size === 'medium',
+        style: { height: '36px' },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+          ownerState.type !== 'start-ellipsis' &&
+          ownerState.type !== 'end-ellipsis' &&
+          ownerState.size === 'large',
+        style: { height: '44px' },
+      },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
     // No size axis: root padding (block/inline steps).

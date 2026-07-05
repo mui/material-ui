@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
-import { private_paginationItemVars } from '@mui/material/PaginationItem';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import BottomNavigation, { private_bottomNavigationVars } from '@mui/material/BottomNavigation';
 import BottomNavigationAction, {
@@ -888,9 +887,9 @@ function FabMatrix() {
 
 // Pagination family: the item box size per size (shared page/ellipsis).
 const PAGINATION_FIELDS: DensityField[] = [
-  { key: 'smallSize', cssVar: private_paginationItemVars.smallSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeSmall' },
-  { key: 'mediumSize', cssVar: private_paginationItemVars.mediumSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-root:not(.MuiPaginationItem-sizeSmall):not(.MuiPaginationItem-sizeLarge)' },
-  { key: 'largeSize', cssVar: private_paginationItemVars.largeSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeLarge' },
+  { key: 'smallSize', cssVar: '--PaginationItem-small-size', prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeSmall' },
+  { key: 'mediumSize', cssVar: '--PaginationItem-medium-size', prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-root:not(.MuiPaginationItem-sizeSmall):not(.MuiPaginationItem-sizeLarge)' },
+  { key: 'largeSize', cssVar: '--PaginationItem-large-size', prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeLarge' },
 ];
 
 function PaginationMatrix() {
