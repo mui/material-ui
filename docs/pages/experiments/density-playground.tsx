@@ -49,7 +49,7 @@ import CardContent, { private_cardContentVars } from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
 import Rating from '@mui/material/Rating';
-import Select, { private_selectVars } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
@@ -545,7 +545,7 @@ function RatingMatrix() {
 // Select family: the content-box min-height floor (raw px). The visible density
 // mostly comes from the underlying OutlinedInput padding (tokenized separately).
 const SELECT_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_selectVars.minHeight, prop: 'minHeight', selector: '.MuiSelect-select' },
+  { key: 'minHeight', cssVar: '--Select-minHeight', prop: 'minHeight', selector: '.MuiSelect-select' },
 ];
 
 function SelectMatrix() {

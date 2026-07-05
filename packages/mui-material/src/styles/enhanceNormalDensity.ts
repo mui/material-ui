@@ -3,7 +3,6 @@ import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
-import { private_selectVars as selVars } from '../Select/selectVars';
 import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
 import { private_accordionSummaryVars as asVars } from '../AccordionSummary/accordionSummaryVars';
@@ -466,10 +465,15 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     [ccVars.pad]: d.lg,
     [ccVars.padBottom]: d.xl,
   });
-  addRootOverride(enhanced.components, 'MuiSelect', {
-    // Content-box floor (raw px); real padding comes from the input variant.
-    [selVars.minHeight]: '23px',
-  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSelect',
+    {
+      // Content-box floor (raw px); real padding comes from the input variant.
+      minHeight: '23px',
+    },
+    'select',
+  );
   addRootOverride(enhanced.components, 'MuiAlert', {
     // No size axis: root padding + icon gap (spacing steps).
     [alertVars.blockPad]: d.xs,
