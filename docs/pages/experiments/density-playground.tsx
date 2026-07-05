@@ -161,9 +161,9 @@ const previewText = (input: string, scalePx: Record<string, string> | null) =>
 // '--Button-small-pad' → 'Button small padding', '--MenuItem-dense-blockPad' →
 // 'Menu item dense block padding'. Split on `-` + camelCase, lowercase, cap the
 // component word, expand `pad` → `padding`.
-const fieldLabel = (cssVar: string) => {
-  const words = cssVar
-    .replace(/^--/, '')
+const fieldLabel = (label: string) => {
+  const words = label
+    .replace(/^--_?/, '')
     .split('-')
     .flatMap((seg) => seg.replace(/([a-z])([A-Z])/g, '$1 $2').split(' '))
     .map((w) => w.toLowerCase());
@@ -187,14 +187,25 @@ const PRESET_FN = {
 // ---------------------------------------------------------------------------
 interface DensityField {
   key: string; // mapping-state key, e.g. 'smallPad'
-  cssVar: string; // token identity — raw-px placeholder lookup + var-mode override target
+  label: string; // token identity — raw-px placeholder lookup + var-mode override target
   selector: string; // canvas-relative selector the preset emits on (no `#density-canvas` prefix)
   // The real CSS property (or properties) to override in-scope — the emitted-override
   // model writes the property directly, so it survives the source's seam removal.
-  // Omit → var-mode: write `cssVar` instead, letting the source's own seam route it.
+  // Omit → var-mode: write `label` instead, letting the source's own seam route it.
   // Used for calc-coupling children (Chip height) and multi-route/media fields with
   // no discriminating class (Tab icon gaps, Toolbar gutters, Step gutter, Tooltip offset/arrow).
   prop?: string | string[];
+  // How to read this field's active-preset default off the enhanced theme, for
+  // fields whose value is an emitted CSS property (or var) on a `variants` entry
+  // rather than a `--Component-*` token (which `themeTokenValue` scans directly).
+  // `sample` is the ownerState the preset's variant matcher is evaluated against;
+  // `nested` is a selector key the value sits under (e.g. `& .MuiAutocomplete-option`).
+  resolve?: {
+    mui: string;
+    slot?: string;
+    sample?: Record<string, unknown>;
+    nested?: string;
+  };
 }
 interface DensityComponentDef {
   canvasLabel: string;
@@ -242,45 +253,47 @@ function ButtonMatrix() {
 const MENU_FIELDS: DensityField[] = [
   {
     key: 'listBlockPad',
-    cssVar: '--List-blockPad',
+    label: '--List-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiList-padding',
   },
   {
     key: 'blockPad',
-    cssVar: '--MenuItem-blockPad',
+    label: '--MenuItem-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)',
   },
   {
     key: 'inlinePad',
-    cssVar: '--MenuItem-inlinePad',
+    label: '--MenuItem-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiMenuItem-gutters:not(.MuiMenuItem-dense)',
   },
   {
     key: 'minHeight',
-    cssVar: '--MenuItem-minHeight',
+    label: '--MenuItem-minHeight',
     prop: 'minHeight',
     selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)',
+    resolve: { mui: 'MuiMenuItem', sample: { dense: false } },
   },
   {
     key: 'denseBlockPad',
-    cssVar: '--MenuItem-dense-blockPad',
+    label: '--MenuItem-dense-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiMenuItem-dense',
   },
   {
     key: 'denseInlinePad',
-    cssVar: '--MenuItem-dense-inlinePad',
+    label: '--MenuItem-dense-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiMenuItem-gutters.MuiMenuItem-dense',
   },
   {
     key: 'denseMinHeight',
-    cssVar: '--MenuItem-dense-minHeight',
+    label: '--MenuItem-dense-minHeight',
     prop: 'minHeight',
     selector: '.MuiMenuItem-dense',
+    resolve: { mui: 'MuiMenuItem', sample: { dense: true } },
   },
 ];
 
@@ -346,21 +359,21 @@ function MenuMatrix() {
 const TOOLTIP_FIELDS: DensityField[] = [
   {
     key: 'blockPad',
-    cssVar: '--Tooltip-blockPad',
+    label: '--Tooltip-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiTooltip-tooltip',
   },
   {
     key: 'inlinePad',
-    cssVar: '--Tooltip-inlinePad',
+    label: '--Tooltip-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiTooltip-tooltip',
   },
   // Offset is emitted as per-placement margins by the preset (4 placements, no
-  // discriminating class) — the synthetic cssVar is label/placeholder only.
-  { key: 'offset', cssVar: '--Tooltip-offset', selector: '.MuiTooltip-tooltip' },
+  // discriminating class) — the synthetic label is label/placeholder only.
+  { key: 'offset', label: '--Tooltip-offset', selector: '.MuiTooltip-tooltip' },
   // Calc-coupled: the arrow's width + height (calc) both derive from this real var.
-  { key: 'arrowSize', cssVar: '--_arrowSize', selector: '.MuiTooltip-tooltip' },
+  { key: 'arrowSize', label: '--_arrowSize', selector: '.MuiTooltip-tooltip' },
 ];
 
 function TooltipMatrix() {
@@ -403,39 +416,39 @@ function TooltipMatrix() {
 const OUTLINED_INPUT_FIELDS: DensityField[] = [
   {
     key: 'mediumBlockPad',
-    cssVar: '--OutlinedInput-medium-blockPad',
+    label: '--OutlinedInput-medium-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input',
   },
   {
     key: 'smallBlockPad',
-    cssVar: '--OutlinedInput-small-blockPad',
+    label: '--OutlinedInput-small-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input',
   },
   {
     key: 'mediumInlinePad',
-    cssVar: '--OutlinedInput-medium-inlinePad',
+    label: '--OutlinedInput-medium-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input',
   },
   {
     key: 'smallInlinePad',
-    cssVar: '--OutlinedInput-small-inlinePad',
+    label: '--OutlinedInput-small-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input',
   },
   // Gap = start marginRight / end marginLeft (one token, no per-side discriminating
-  // class) — the preset emits the real margins per position; the synthetic cssVar
+  // class) — the preset emits the real margins per position; the synthetic label
   // is label/placeholder only.
   {
     key: 'mediumGap',
-    cssVar: '--InputAdornment-medium-gap',
+    label: '--InputAdornment-medium-gap',
     selector: '.MuiInputAdornment-root:not(.MuiInputAdornment-sizeSmall)',
   },
   {
     key: 'smallGap',
-    cssVar: '--InputAdornment-small-gap',
+    label: '--InputAdornment-small-gap',
     selector: '.MuiInputAdornment-sizeSmall',
   },
 ];
@@ -471,37 +484,37 @@ function OutlinedInputMatrix() {
 const FILLED_INPUT_FIELDS: DensityField[] = [
   {
     key: 'mediumTopPad',
-    cssVar: '--FilledInput-medium-topPad',
+    label: '--FilledInput-medium-topPad',
     prop: 'paddingTop',
     selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
   },
   {
     key: 'smallTopPad',
-    cssVar: '--FilledInput-small-topPad',
+    label: '--FilledInput-small-topPad',
     prop: 'paddingTop',
     selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
   },
   {
     key: 'mediumBottomPad',
-    cssVar: '--FilledInput-medium-bottomPad',
+    label: '--FilledInput-medium-bottomPad',
     prop: 'paddingBottom',
     selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
   },
   {
     key: 'smallBottomPad',
-    cssVar: '--FilledInput-small-bottomPad',
+    label: '--FilledInput-small-bottomPad',
     prop: 'paddingBottom',
     selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
   },
   {
     key: 'mediumInlinePad',
-    cssVar: '--FilledInput-medium-inlinePad',
+    label: '--FilledInput-medium-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
   },
   {
     key: 'smallInlinePad',
-    cssVar: '--FilledInput-small-inlinePad',
+    label: '--FilledInput-small-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
   },
@@ -530,19 +543,19 @@ function FilledInputMatrix() {
 const INPUT_FIELDS: DensityField[] = [
   {
     key: 'mediumTopPad',
-    cssVar: '--Input-medium-topPad',
+    label: '--Input-medium-topPad',
     prop: 'paddingTop',
     selector: '.MuiInput-root:not(.MuiInputBase-sizeSmall) .MuiInput-input',
   },
   {
     key: 'smallTopPad',
-    cssVar: '--Input-small-topPad',
+    label: '--Input-small-topPad',
     prop: 'paddingTop',
     selector: '.MuiInputBase-sizeSmall .MuiInput-input',
   },
   {
     key: 'bottomPad',
-    cssVar: '--Input-bottomPad',
+    label: '--Input-bottomPad',
     prop: 'paddingBottom',
     selector: '.MuiInput-input',
   },
@@ -567,38 +580,41 @@ function InputMatrix() {
 const TAB_FIELDS: DensityField[] = [
   {
     key: 'minHeight',
-    cssVar: '--Tab-minHeight',
+    label: '--Tab-minHeight',
     prop: 'minHeight',
     selector: '.MuiTab-root:not(.MuiTab-labelIcon)',
+    resolve: { mui: 'MuiTab' },
   },
   {
     key: 'tabsMinHeight',
-    cssVar: '--Tabs-minHeight',
+    label: '--Tabs-minHeight',
     prop: 'minHeight',
     selector: '.MuiTabs-root',
+    resolve: { mui: 'MuiTabs' },
   },
   {
     key: 'iconLabelMinHeight',
-    cssVar: '--Tab-iconLabel-minHeight',
+    label: '--Tab-iconLabel-minHeight',
     prop: 'minHeight',
     selector: '.MuiTab-root.MuiTab-labelIcon',
+    resolve: { mui: 'MuiTab', sample: { icon: true, label: true } },
   },
   {
     key: 'blockPad',
-    cssVar: '--Tab-blockPad',
+    label: '--Tab-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiTab-root:not(.MuiTab-labelIcon)',
   },
   {
     key: 'iconLabelBlockPad',
-    cssVar: '--Tab-iconLabel-blockPad',
+    label: '--Tab-iconLabel-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiTab-root.MuiTab-labelIcon',
   },
-  { key: 'inlinePad', cssVar: '--Tab-inlinePad', prop: 'paddingInline', selector: '.MuiTab-root' },
+  { key: 'inlinePad', label: '--Tab-inlinePad', prop: 'paddingInline', selector: '.MuiTab-root' },
   // var-mode: one gap var → icon margin per iconPosition (top/bottom, start/end; no class).
-  { key: 'iconStackGap', cssVar: '--Tab-icon-stackGap', selector: '.MuiTab-root' },
-  { key: 'iconInlineGap', cssVar: '--Tab-icon-inlineGap', selector: '.MuiTab-root' },
+  { key: 'iconStackGap', label: '--Tab-icon-stackGap', selector: '.MuiTab-root' },
+  { key: 'iconInlineGap', label: '--Tab-icon-inlineGap', selector: '.MuiTab-root' },
 ];
 
 function TabsMatrix() {
@@ -627,13 +643,13 @@ function TabsMatrix() {
 const CHECKBOX_FIELDS: DensityField[] = [
   {
     key: 'mediumPad',
-    cssVar: '--Checkbox-medium-pad',
+    label: '--Checkbox-medium-pad',
     prop: 'padding',
     selector: '.MuiCheckbox-root.MuiCheckbox-sizeMedium',
   },
   {
     key: 'smallPad',
-    cssVar: '--Checkbox-small-pad',
+    label: '--Checkbox-small-pad',
     prop: 'padding',
     selector: '.MuiCheckbox-root.MuiCheckbox-sizeSmall',
   },
@@ -651,34 +667,34 @@ function CheckboxMatrix() {
 // Card family: CardContent padding (+ last-child), CardActions/CardHeader padding
 // + gaps — all preset-reflowed via emitted overrides (no size axis).
 const CARD_FIELDS: DensityField[] = [
-  { key: 'pad', cssVar: '--CardContent-pad', prop: 'padding', selector: '.MuiCardContent-root' },
+  { key: 'pad', label: '--CardContent-pad', prop: 'padding', selector: '.MuiCardContent-root' },
   {
     key: 'padBottom',
-    cssVar: '--CardContent-padBottom',
+    label: '--CardContent-padBottom',
     prop: 'paddingBottom',
     selector: '.MuiCardContent-root:last-child',
   },
   {
     key: 'actionsPad',
-    cssVar: '--CardActions-pad',
+    label: '--CardActions-pad',
     prop: 'padding',
     selector: '.MuiCardActions-root',
   },
   {
     key: 'actionsGap',
-    cssVar: '--CardActions-childGap',
+    label: '--CardActions-childGap',
     prop: 'marginLeft',
     selector: '.MuiCardActions-spacing > :not(:first-of-type)',
   },
   {
     key: 'headerPad',
-    cssVar: '--CardHeader-pad',
+    label: '--CardHeader-pad',
     prop: 'padding',
     selector: '.MuiCardHeader-root',
   },
   {
     key: 'headerAvatarGap',
-    cssVar: '--CardHeader-avatarGap',
+    label: '--CardHeader-avatarGap',
     prop: 'marginRight',
     selector: '.MuiCardHeader-avatar',
   },
@@ -720,9 +736,10 @@ function RatingMatrix() {
 const SELECT_FIELDS: DensityField[] = [
   {
     key: 'minHeight',
-    cssVar: '--Select-minHeight',
+    label: '--Select-minHeight',
     prop: 'minHeight',
     selector: '.MuiSelect-select',
+    resolve: { mui: 'MuiSelect', slot: 'select' },
   },
 ];
 
@@ -740,15 +757,15 @@ function SelectMatrix() {
 
 // Alert family: root block/inline padding + icon→message gap (no size axis).
 const ALERT_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: '--Alert-blockPad', prop: 'paddingBlock', selector: '.MuiAlert-root' },
+  { key: 'blockPad', label: '--Alert-blockPad', prop: 'paddingBlock', selector: '.MuiAlert-root' },
   {
     key: 'inlinePad',
-    cssVar: '--Alert-inlinePad',
+    label: '--Alert-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiAlert-root',
   },
   // iconGap drives the icon's marginRight (child element).
-  { key: 'iconGap', cssVar: '--Alert-iconGap', prop: 'marginRight', selector: '.MuiAlert-icon' },
+  { key: 'iconGap', label: '--Alert-iconGap', prop: 'marginRight', selector: '.MuiAlert-icon' },
 ];
 
 function AlertMatrix() {
@@ -770,17 +787,27 @@ const CHIP_FIELDS: DensityField[] = [
   // Calc-coupled var-mode: the single `--_height` (scoped per size) drives
   // avatar/icon/deleteIcon dims via calc — write the var so the derived children
   // scale too (writing `height` would move only the box).
-  { key: 'mediumHeight', cssVar: '--_height', selector: '.MuiChip-root.MuiChip-sizeMedium' },
-  { key: 'smallHeight', cssVar: '--_height', selector: '.MuiChip-root.MuiChip-sizeSmall' },
+  {
+    key: 'mediumHeight',
+    label: '--_height',
+    selector: '.MuiChip-root.MuiChip-sizeMedium',
+    resolve: { mui: 'MuiChip', sample: { size: 'medium' } },
+  },
+  {
+    key: 'smallHeight',
+    label: '--_height',
+    selector: '.MuiChip-root.MuiChip-sizeSmall',
+    resolve: { mui: 'MuiChip', sample: { size: 'small' } },
+  },
   {
     key: 'mediumPadInline',
-    cssVar: '--Chip-medium-padInline',
+    label: '--Chip-medium-padInline',
     prop: 'paddingInline',
     selector: '.MuiChip-sizeMedium .MuiChip-label',
   },
   {
     key: 'smallPadInline',
-    cssVar: '--Chip-small-padInline',
+    label: '--Chip-small-padInline',
     prop: 'paddingInline',
     selector: '.MuiChip-sizeSmall .MuiChip-label',
   },
@@ -803,49 +830,51 @@ function ChipMatrix() {
 const ACCORDION_FIELDS: DensityField[] = [
   {
     key: 'minHeight',
-    cssVar: '--AccordionSummary-minHeight',
+    label: '--AccordionSummary-minHeight',
     prop: 'minHeight',
     selector: '.MuiAccordionSummary-root:not(.Mui-expanded)',
+    resolve: { mui: 'MuiAccordionSummary' },
   },
   {
     key: 'expandedMinHeight',
-    cssVar: '--AccordionSummary-expandedMinHeight',
+    label: '--AccordionSummary-expandedMinHeight',
     prop: 'minHeight',
     selector: '.MuiAccordionSummary-root.Mui-expanded',
+    resolve: { mui: 'MuiAccordionSummary', sample: { disableGutters: false }, nested: '&.Mui-expanded' },
   },
   {
     key: 'inlinePad',
-    cssVar: '--AccordionSummary-inlinePad',
+    label: '--AccordionSummary-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiAccordionSummary-root',
   },
   {
     key: 'marginBlock',
-    cssVar: '--AccordionSummary-marginBlock',
+    label: '--AccordionSummary-marginBlock',
     prop: 'marginBlock',
     selector: '.MuiAccordionSummary-content:not(.Mui-expanded)',
   },
   {
     key: 'expandedMarginBlock',
-    cssVar: '--AccordionSummary-expandedMarginBlock',
+    label: '--AccordionSummary-expandedMarginBlock',
     prop: 'marginBlock',
     selector: '.MuiAccordionSummary-content.Mui-expanded',
   },
   {
     key: 'detailsTopPad',
-    cssVar: '--AccordionDetails-topPad',
+    label: '--AccordionDetails-topPad',
     prop: 'paddingTop',
     selector: '.MuiAccordionDetails-root',
   },
   {
     key: 'detailsInlinePad',
-    cssVar: '--AccordionDetails-inlinePad',
+    label: '--AccordionDetails-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiAccordionDetails-root',
   },
   {
     key: 'detailsBottomPad',
-    cssVar: '--AccordionDetails-bottomPad',
+    label: '--AccordionDetails-bottomPad',
     prop: 'paddingBottom',
     selector: '.MuiAccordionDetails-root',
   },
@@ -876,13 +905,13 @@ function AccordionMatrix() {
 const RADIO_FIELDS: DensityField[] = [
   {
     key: 'mediumPad',
-    cssVar: '--Radio-medium-pad',
+    label: '--Radio-medium-pad',
     prop: 'padding',
     selector: '.MuiRadio-root:not(.MuiRadio-sizeSmall)',
   },
   {
     key: 'smallPad',
-    cssVar: '--Radio-small-pad',
+    label: '--Radio-small-pad',
     prop: 'padding',
     selector: '.MuiRadio-root.MuiRadio-sizeSmall',
   },
@@ -901,7 +930,7 @@ function RadioMatrix() {
 const BREADCRUMBS_FIELDS: DensityField[] = [
   {
     key: 'separatorGap',
-    cssVar: '--Breadcrumbs-separatorGap',
+    label: '--Breadcrumbs-separatorGap',
     prop: 'marginInline',
     selector: '.MuiBreadcrumbs-separator',
   },
@@ -927,19 +956,19 @@ function BreadcrumbsMatrix() {
 const TOGGLE_BUTTON_FIELDS: DensityField[] = [
   {
     key: 'smallPad',
-    cssVar: '--ToggleButton-small-pad',
+    label: '--ToggleButton-small-pad',
     prop: 'padding',
     selector: '.MuiToggleButton-root.MuiToggleButton-sizeSmall',
   },
   {
     key: 'mediumPad',
-    cssVar: '--ToggleButton-medium-pad',
+    label: '--ToggleButton-medium-pad',
     prop: 'padding',
     selector: '.MuiToggleButton-root.MuiToggleButton-sizeMedium',
   },
   {
     key: 'largePad',
-    cssVar: '--ToggleButton-large-pad',
+    label: '--ToggleButton-large-pad',
     prop: 'padding',
     selector: '.MuiToggleButton-root.MuiToggleButton-sizeLarge',
   },
@@ -964,7 +993,13 @@ function ToggleButtonMatrix() {
 
 // Avatar family: the square size (raw px; no size prop).
 const AVATAR_FIELDS: DensityField[] = [
-  { key: 'size', cssVar: '--Avatar-size', prop: ['width', 'height'], selector: '.MuiAvatar-root' },
+  {
+    key: 'size',
+    label: '--Avatar-size',
+    prop: ['width', 'height'],
+    selector: '.MuiAvatar-root',
+    resolve: { mui: 'MuiAvatar' },
+  },
 ];
 
 function AvatarMatrix() {
@@ -980,21 +1015,23 @@ function AvatarMatrix() {
 const BADGE_FIELDS: DensityField[] = [
   {
     key: 'standardSize',
-    cssVar: '--Badge-standard-size',
+    label: '--Badge-standard-size',
     prop: ['minWidth', 'height'],
     selector: '.MuiBadge-badge.MuiBadge-standard',
+    resolve: { mui: 'MuiBadge', slot: 'badge', sample: { variant: 'standard' } },
   },
   {
     key: 'standardPad',
-    cssVar: '--Badge-standard-pad',
+    label: '--Badge-standard-pad',
     prop: 'padding',
     selector: '.MuiBadge-badge.MuiBadge-standard',
   },
   {
     key: 'dotSize',
-    cssVar: '--Badge-dot-size',
+    label: '--Badge-dot-size',
     prop: ['minWidth', 'height'],
     selector: '.MuiBadge-badge.MuiBadge-dot',
+    resolve: { mui: 'MuiBadge', slot: 'badge', sample: { variant: 'dot' } },
   },
 ];
 
@@ -1015,9 +1052,10 @@ function BadgeMatrix() {
 const BUTTON_GROUP_FIELDS: DensityField[] = [
   {
     key: 'minWidth',
-    cssVar: '--ButtonGroup-minWidth',
+    label: '--ButtonGroup-minWidth',
     prop: 'minWidth',
     selector: '.MuiButtonGroup-grouped',
+    resolve: { mui: 'MuiButtonGroup', nested: '& .MuiButtonGroup-grouped' },
   },
 ];
 
@@ -1041,19 +1079,19 @@ function ButtonGroupMatrix() {
 const TABLE_CELL_FIELDS: DensityField[] = [
   {
     key: 'mediumBlockPad',
-    cssVar: '--TableCell-medium-blockPad',
+    label: '--TableCell-medium-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiTableCell-root.MuiTableCell-sizeMedium',
   },
   {
     key: 'smallBlockPad',
-    cssVar: '--TableCell-small-blockPad',
+    label: '--TableCell-small-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiTableCell-root.MuiTableCell-sizeSmall',
   },
   {
     key: 'inlinePad',
-    cssVar: '--TableCell-inlinePad',
+    label: '--TableCell-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiTableCell-root',
   },
@@ -1089,19 +1127,20 @@ function TableCellMatrix() {
 const AUTOCOMPLETE_FIELDS: DensityField[] = [
   {
     key: 'optionMinHeight',
-    cssVar: '--Autocomplete-option-minHeight',
+    label: '--Autocomplete-option-minHeight',
     prop: 'minHeight',
     selector: '.MuiAutocomplete-option',
+    resolve: { mui: 'MuiAutocomplete', slot: 'listbox', nested: '& .MuiAutocomplete-option' },
   },
   {
     key: 'optionBlockPad',
-    cssVar: '--Autocomplete-option-blockPad',
+    label: '--Autocomplete-option-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiAutocomplete-option',
   },
   {
     key: 'optionInlinePad',
-    cssVar: '--Autocomplete-option-inlinePad',
+    label: '--Autocomplete-option-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiAutocomplete-option',
   },
@@ -1122,10 +1161,10 @@ function AutocompleteMatrix() {
 // Stepper family: Step horizontal gutter + StepLabel icon→label gap.
 const STEPPER_FIELDS: DensityField[] = [
   // var-mode: one gutter var → first step padding-left / last step padding-right (no class).
-  { key: 'inlinePad', cssVar: '--Step-inlinePad', selector: '.MuiStep-root' },
+  { key: 'inlinePad', label: '--Step-inlinePad', selector: '.MuiStep-root' },
   {
     key: 'iconGap',
-    cssVar: '--StepLabel-iconGap',
+    label: '--StepLabel-iconGap',
     prop: 'paddingRight',
     selector: '.MuiStepLabel-iconContainer',
   },
@@ -1156,14 +1195,15 @@ function StepperMatrix() {
 // Toolbar (AppBar) family: gutter inline padding (base + ≥sm) + dense min-height.
 const TOOLBAR_FIELDS: DensityField[] = [
   // Gutter padding is emitted base + ≥sm on the one `.gutters` class (the media
-  // bump has no discriminating selector) — synthetic cssVar is label/placeholder only.
-  { key: 'inlinePad', cssVar: '--Toolbar-inlinePad', selector: '.MuiToolbar-gutters' },
-  { key: 'wideInlinePad', cssVar: '--Toolbar-wideInlinePad', selector: '.MuiToolbar-gutters' },
+  // bump has no discriminating selector) — synthetic label is label/placeholder only.
+  { key: 'inlinePad', label: '--Toolbar-inlinePad', selector: '.MuiToolbar-gutters' },
+  { key: 'wideInlinePad', label: '--Toolbar-wideInlinePad', selector: '.MuiToolbar-gutters' },
   {
     key: 'denseMinHeight',
-    cssVar: '--Toolbar-denseMinHeight',
+    label: '--Toolbar-denseMinHeight',
     prop: 'minHeight',
     selector: '.MuiToolbar-dense',
+    resolve: { mui: 'MuiToolbar', sample: { variant: 'dense' } },
   },
 ];
 
@@ -1192,21 +1232,24 @@ function ToolbarMatrix() {
 const FAB_FIELDS: DensityField[] = [
   {
     key: 'smallSize',
-    cssVar: '--Fab-small-size',
+    label: '--Fab-small-size',
     prop: ['width', 'height'],
     selector: '.MuiFab-root.MuiFab-sizeSmall',
+    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'small' } },
   },
   {
     key: 'mediumSize',
-    cssVar: '--Fab-medium-size',
+    label: '--Fab-medium-size',
     prop: ['width', 'height'],
     selector: '.MuiFab-root.MuiFab-sizeMedium',
+    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'medium' } },
   },
   {
     key: 'largeSize',
-    cssVar: '--Fab-large-size',
+    label: '--Fab-large-size',
     prop: ['width', 'height'],
     selector: '.MuiFab-root.MuiFab-sizeLarge',
+    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'large' } },
   },
 ];
 
@@ -1230,22 +1273,25 @@ function FabMatrix() {
 const PAGINATION_FIELDS: DensityField[] = [
   {
     key: 'smallSize',
-    cssVar: '--PaginationItem-small-size',
+    label: '--PaginationItem-small-size',
     prop: ['minWidth', 'height'],
     selector: '.MuiPaginationItem-sizeSmall',
+    resolve: { mui: 'MuiPaginationItem', sample: { size: 'small' } },
   },
   {
     key: 'mediumSize',
-    cssVar: '--PaginationItem-medium-size',
+    label: '--PaginationItem-medium-size',
     prop: ['minWidth', 'height'],
     selector:
       '.MuiPaginationItem-root:not(.MuiPaginationItem-sizeSmall):not(.MuiPaginationItem-sizeLarge)',
+    resolve: { mui: 'MuiPaginationItem', sample: { size: 'medium' } },
   },
   {
     key: 'largeSize',
-    cssVar: '--PaginationItem-large-size',
+    label: '--PaginationItem-large-size',
     prop: ['minWidth', 'height'],
     selector: '.MuiPaginationItem-sizeLarge',
+    resolve: { mui: 'MuiPaginationItem', sample: { size: 'large' } },
   },
 ];
 
@@ -1263,13 +1309,13 @@ function PaginationMatrix() {
 const SNACKBAR_FIELDS: DensityField[] = [
   {
     key: 'blockPad',
-    cssVar: '--SnackbarContent-blockPad',
+    label: '--SnackbarContent-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiSnackbarContent-root',
   },
   {
     key: 'inlinePad',
-    cssVar: '--SnackbarContent-inlinePad',
+    label: '--SnackbarContent-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiSnackbarContent-root',
   },
@@ -1293,13 +1339,14 @@ function SnackbarMatrix() {
 const BOTTOM_NAV_FIELDS: DensityField[] = [
   {
     key: 'height',
-    cssVar: '--BottomNavigation-height',
+    label: '--BottomNavigation-height',
     prop: 'height',
     selector: '.MuiBottomNavigation-root',
+    resolve: { mui: 'MuiBottomNavigation' },
   },
   {
     key: 'inlinePad',
-    cssVar: '--BottomNavigationAction-inlinePad',
+    label: '--BottomNavigationAction-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiBottomNavigationAction-root',
   },
@@ -1319,31 +1366,31 @@ function BottomNavigationMatrix() {
 const DIALOG_FIELDS: DensityField[] = [
   {
     key: 'titleBlockPad',
-    cssVar: '--DialogTitle-blockPad',
+    label: '--DialogTitle-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiDialogTitle-root',
   },
   {
     key: 'titleInlinePad',
-    cssVar: '--DialogTitle-inlinePad',
+    label: '--DialogTitle-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiDialogTitle-root',
   },
   {
     key: 'contentBlockPad',
-    cssVar: '--DialogContent-blockPad',
+    label: '--DialogContent-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiDialogContent-root',
   },
   {
     key: 'contentInlinePad',
-    cssVar: '--DialogContent-inlinePad',
+    label: '--DialogContent-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiDialogContent-root',
   },
   {
     key: 'actionsPad',
-    cssVar: '--DialogActions-pad',
+    label: '--DialogActions-pad',
     prop: 'padding',
     selector: '.MuiDialogActions-root',
   },
@@ -1370,19 +1417,19 @@ function DialogMatrix() {
 const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
   {
     key: 'blockPad',
-    cssVar: '--ListItemButton-blockPad',
+    label: '--ListItemButton-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiListItemButton-root:not(.MuiListItemButton-dense)',
   },
   {
     key: 'denseBlockPad',
-    cssVar: '--ListItemButton-dense-blockPad',
+    label: '--ListItemButton-dense-blockPad',
     prop: 'paddingBlock',
     selector: '.MuiListItemButton-dense',
   },
   {
     key: 'inlinePad',
-    cssVar: '--ListItemButton-inlinePad',
+    label: '--ListItemButton-inlinePad',
     prop: 'paddingInline',
     selector: '.MuiListItemButton-gutters',
   },
@@ -1410,7 +1457,7 @@ const COMPONENT_DEFS = {
     // Canonical prefill matches enhanceDensity's own Button assignment.
     fields: SIZES.map((size) => ({
       key: `${size}Pad`,
-      cssVar: `--Button-${size}-pad`,
+      label: `--Button-${size}-pad`,
       prop: 'padding',
       selector: `.MuiButton-size${size[0].toUpperCase()}${size.slice(1)}`,
     })),
@@ -1663,7 +1710,7 @@ const COMPONENTS = Object.keys(COMPONENT_DEFS) as ComponentName[];
 // Read the value a preset assigned to a token, straight off the enhanced theme's
 // component overrides (the same `addRootOverride` output). Single source of truth
 // for raw-px sizing defaults — can't drift from what `enhance*Density` ships.
-function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
+function themeTokenValue(theme: unknown, label: string): string | undefined {
   const components = (theme as { components?: Record<string, any> })?.components ?? {};
   for (const name of Object.keys(components)) {
     // Scan every slot's overrides, not just `root` — Tooltip's tokens land on
@@ -1675,8 +1722,8 @@ function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
         : [styleOverrides[slot]];
       for (let i = layers.length - 1; i >= 0; i -= 1) {
         const layer = layers[i];
-        if (layer && typeof layer === 'object' && cssVar in layer) {
-          return layer[cssVar] as string;
+        if (layer && typeof layer === 'object' && label in layer) {
+          return layer[label] as string;
         }
       }
     }
@@ -1692,12 +1739,72 @@ const emptyMapping = () =>
     Record<string, string>
   >;
 
+// Flatten `addRootOverride`'s nested `[prev, overrides]` layer arrays into a flat
+// list of style-layer objects (skipping the `null` seeds), preserving apply order.
+const flattenLayers = (node: unknown): Record<string, any>[] => {
+  if (Array.isArray(node)) {
+    return node.flatMap(flattenLayers);
+  }
+  return node && typeof node === 'object' ? [node as Record<string, any>] : [];
+};
+
+// Does a preset `variants[].props` matcher match a sample ownerState? Objects
+// match by subset-equality; functions are called `({ ownerState })`, mirroring MUI.
+const matchesSample = (matcher: unknown, sample: Record<string, unknown>): boolean => {
+  if (typeof matcher === 'function') {
+    try {
+      return Boolean((matcher as (arg: unknown) => unknown)({ ownerState: sample }));
+    } catch {
+      return false;
+    }
+  }
+  if (matcher && typeof matcher === 'object') {
+    return Object.entries(matcher as Record<string, unknown>).every(([k, v]) => sample[k] === v);
+  }
+  return false;
+};
+
+// Resolve a field's active-preset default off the enhanced theme's emitted
+// `styleOverrides` — reading the CSS property (`field.prop`) or, for var-mode
+// fields, the token (`field.label`) from the base layer + every variant matching
+// `resolve.sample`, last write wins (same order MUI applies them).
+const resolveThemeProp = (theme: unknown, field: DensityField): string | undefined => {
+  const { resolve } = field;
+  if (!resolve) {
+    return undefined;
+  }
+  const key = Array.isArray(field.prop) ? field.prop[0] : (field.prop ?? field.label);
+  const components = (theme as { components?: Record<string, any> })?.components ?? {};
+  const layers = flattenLayers(components[resolve.mui]?.styleOverrides?.[resolve.slot ?? 'root']);
+  const sample = resolve.sample ?? {};
+  let found: unknown;
+  for (const layer of layers) {
+    const styleSources: Record<string, any>[] = [layer];
+    if (Array.isArray(layer.variants)) {
+      for (const variant of layer.variants) {
+        if (variant && matchesSample(variant.props, sample)) {
+          styleSources.push(variant.style ?? {});
+        }
+      }
+    }
+    for (const style of styleSources) {
+      const target = resolve.nested ? style?.[resolve.nested] : style;
+      if (target && typeof target === 'object' && key in target) {
+        found = target[key];
+      }
+    }
+  }
+  return typeof found === 'string' ? found : undefined;
+};
+
 // The value the active preset assigns a field — shown as the input placeholder.
-// Spacing prefills its density key (preset-independent); sizing reads the raw px
-// straight off the enhanced theme so it can't drift from what the preset ships.
+// Spacing prefills its density key (preset-independent); sizing/variant values
+// resolve off the enhanced theme (via `resolve` or a direct token scan) so they
+// can't drift from what the preset ships.
 const canonicalValue = (theme: unknown, comp: ComponentName, field: DensityField) =>
   (COMPONENT_DEFS[comp].prefill as Record<string, string>)[field.key] ??
-  themeTokenValue(theme, field.cssVar) ??
+  resolveThemeProp(theme, field) ??
+  themeTokenValue(theme, field.label) ??
   '';
 
 export default function DensityExperiment() {
@@ -1751,7 +1858,7 @@ export default function DensityExperiment() {
             rules[selector][p] = value;
           }
         } else {
-          rules[selector][field.cssVar] = value;
+          rules[selector][field.label] = value;
         }
       }
     }
@@ -1962,7 +2069,7 @@ export default function DensityExperiment() {
                       <TextField
                         key={field.key}
                         size="small"
-                        label={fieldLabel(field.cssVar)}
+                        label={fieldLabel(field.label)}
                         value={value}
                         placeholder={canon || 'density key or CSS value'}
                         disabled={!mappingEnabled}
