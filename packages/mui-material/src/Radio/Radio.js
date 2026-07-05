@@ -10,7 +10,6 @@ import createChainedFunction from '../utils/createChainedFunction';
 import useFormControl from '../FormControl/useFormControl';
 import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import { private_radioVars as vars } from './radioVars';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -51,15 +50,6 @@ const RadioRoot = styled(SwitchBase, {
       color: (theme.vars || theme).palette.action.disabled,
     },
     variants: [
-      {
-        // Route the per-size touch-target padding token into SwitchBase's seam.
-        props: { size: 'medium' },
-        style: { '--comp-pad': `var(${vars.mediumPad}, var(--_pad))` },
-      },
-      {
-        props: { size: 'small' },
-        style: { '--comp-pad': `var(${vars.smallPad}, var(--_pad))` },
-      },
       {
         props: { color: 'default', disabled: false, disableRipple: false },
         style: {

@@ -2,7 +2,6 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
-import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
@@ -370,9 +369,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     ],
   });
   addRootOverride(enhanced.components, 'MuiRadio', {
-    // Touch-target padding via SwitchBase (mirrors Checkbox).
-    [radioVars.mediumPad]: d.sm,
-    [radioVars.smallPad]: d.xs,
+    // Touch-target padding per size (9px both sizes today) = density steps.
+    variants: [
+      { props: { size: 'medium' }, style: { padding: d.sm } },
+      { props: { size: 'small' }, style: { padding: d.xs } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiBreadcrumbs', {
     [bcVars.separatorGap]: d.sm,

@@ -37,7 +37,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
-import Radio, { private_radioVars } from '@mui/material/Radio';
+import Radio from '@mui/material/Radio';
 import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -639,8 +639,8 @@ function AccordionMatrix() {
 
 // Radio family: touch-target padding per size (via SwitchBase, like Checkbox).
 const RADIO_FIELDS: DensityField[] = [
-  { key: 'mediumPad', cssVar: private_radioVars.mediumPad, prop: 'padding', selector: '.MuiRadio-root:not(.MuiRadio-sizeSmall)' },
-  { key: 'smallPad', cssVar: private_radioVars.smallPad, prop: 'padding', selector: '.MuiRadio-root.MuiRadio-sizeSmall' },
+  { key: 'mediumPad', cssVar: '--Radio-medium-pad', prop: 'padding', selector: '.MuiRadio-root:not(.MuiRadio-sizeSmall)' },
+  { key: 'smallPad', cssVar: '--Radio-small-pad', prop: 'padding', selector: '.MuiRadio-root.MuiRadio-sizeSmall' },
 ];
 
 function RadioMatrix() {
