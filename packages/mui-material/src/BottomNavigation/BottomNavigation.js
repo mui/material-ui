@@ -8,7 +8,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getBottomNavigationUtilityClass } from './bottomNavigationClasses';
-import { private_bottomNavigationVars as vars } from './bottomNavigationVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -27,10 +26,7 @@ const BottomNavigationRoot = styled('div', {
   memoTheme(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
-    // Density seam: bar height (raw px per preset).
-    '--_height': '56px',
-    '--comp-height': `var(${vars.height}, var(--_height))`,
-    height: 'var(--comp-height, var(--_height))',
+    height: 56,
     backgroundColor: (theme.vars || theme).palette.background.paper,
   })),
 );

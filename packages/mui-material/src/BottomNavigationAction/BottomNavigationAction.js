@@ -12,7 +12,6 @@ import { getTransitionStyles } from '../transitions/utils';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
-import { private_bottomNavigationActionVars as vars } from './bottomNavigationActionVars';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
@@ -39,10 +38,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     ...getTransitionStyles(theme, ['color', 'padding-top'], {
       duration: theme.transitions.duration.short,
     }),
-    // Density seam: inline padding (0 block / 12 inline).
-    '--_inlinePad': '12px',
-    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-    padding: '0px var(--comp-inlinePad, var(--_inlinePad))',
+    padding: '0px 12px',
     minWidth: 80,
     maxWidth: 168,
     color: (theme.vars || theme).palette.text.secondary,

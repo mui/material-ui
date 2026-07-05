@@ -7,10 +7,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import SnackbarContent from '@mui/material/SnackbarContent';
-import BottomNavigation, { private_bottomNavigationVars } from '@mui/material/BottomNavigation';
-import BottomNavigationAction, {
-  private_bottomNavigationActionVars,
-} from '@mui/material/BottomNavigationAction';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -924,8 +922,8 @@ function SnackbarMatrix() {
 
 // BottomNavigation family: bar height + action inline padding.
 const BOTTOM_NAV_FIELDS: DensityField[] = [
-  { key: 'height', cssVar: private_bottomNavigationVars.height, prop: 'height', selector: '.MuiBottomNavigation-root' },
-  { key: 'inlinePad', cssVar: private_bottomNavigationActionVars.inlinePad, prop: 'paddingInline', selector: '.MuiBottomNavigationAction-root' },
+  { key: 'height', cssVar: '--BottomNavigation-height', prop: 'height', selector: '.MuiBottomNavigation-root' },
+  { key: 'inlinePad', cssVar: '--BottomNavigationAction-inlinePad', prop: 'paddingInline', selector: '.MuiBottomNavigationAction-root' },
 ];
 
 function BottomNavigationMatrix() {

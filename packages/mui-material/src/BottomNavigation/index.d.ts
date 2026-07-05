@@ -3,5 +3,3 @@ export * from './BottomNavigation';
 
 export { default as bottomNavigationClasses } from './bottomNavigationClasses';
 export * from './bottomNavigationClasses';
-
-export { private_bottomNavigationVars } from './bottomNavigationVars';

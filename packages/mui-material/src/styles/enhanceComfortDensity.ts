@@ -4,8 +4,6 @@ import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
-import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
-import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 
@@ -497,10 +495,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     padding: `${d.xs} ${d.lg}`,
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigation', {
-    [bnVars.height]: '64px',
+    height: '64px',
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
-    [bnaVars.inlinePad]: d.md,
+    // Inline padding only; block padding stays master's 0.
+    paddingLeft: d.md,
+    paddingRight: d.md,
   });
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
     padding: `${d.lg} ${d.xl}`,
