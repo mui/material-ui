@@ -3,7 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import SnackbarContent from '@mui/material/SnackbarContent';
@@ -732,7 +732,7 @@ function BadgeMatrix() {
 
 // ButtonGroup family: the grouped-button min-width floor (raw px).
 const BUTTON_GROUP_FIELDS: DensityField[] = [
-  { key: 'minWidth', cssVar: private_buttonGroupVars.minWidth, prop: 'minWidth', selector: '.MuiButtonGroup-grouped' },
+  { key: 'minWidth', cssVar: '--ButtonGroup-minWidth', prop: 'minWidth', selector: '.MuiButtonGroup-grouped' },
 ];
 
 function ButtonGroupMatrix() {

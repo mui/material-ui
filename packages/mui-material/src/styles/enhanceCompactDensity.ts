@@ -2,7 +2,7 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
-import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
@@ -390,7 +390,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     'badge',
   );
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
-    [bgVars.minWidth]: '32px',
+    // Grouped-button min-width floor = raw px (sizing).
+    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '32px' },
   });
   addRootOverride(enhanced.components, 'MuiTableCell', {
     // Block pad per size (steps); inline pad shared. Re-assert the frozen

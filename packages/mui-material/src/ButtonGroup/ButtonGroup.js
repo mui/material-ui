@@ -10,7 +10,6 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
-import { private_buttonGroupVars as vars } from './buttonGroupVars';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 
@@ -225,11 +224,8 @@ const ButtonGroupRoot = styled('div', {
           },
         })),
     ],
-    // Density seam: grouped-button min-width floor (raw px per preset).
-    '--_minWidth': '40px',
-    '--comp-minWidth': `var(${vars.minWidth}, var(--_minWidth))`,
     [`& .${buttonGroupClasses.grouped}`]: {
-      minWidth: 'var(--comp-minWidth, var(--_minWidth))',
+      minWidth: 40,
     },
   })),
 );
