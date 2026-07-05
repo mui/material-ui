@@ -66,7 +66,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import ToggleButton, { private_toggleButtonVars } from '@mui/material/ToggleButton';
+import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tooltip from '@mui/material/Tooltip';
 import PaddingIcon from '@mui/icons-material/Padding';
@@ -675,9 +675,9 @@ function BreadcrumbsMatrix() {
 
 // ToggleButton family: uniform padding per size.
 const TOGGLE_BUTTON_FIELDS: DensityField[] = [
-  { key: 'smallPad', cssVar: private_toggleButtonVars.smallPad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeSmall' },
-  { key: 'mediumPad', cssVar: private_toggleButtonVars.mediumPad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeMedium' },
-  { key: 'largePad', cssVar: private_toggleButtonVars.largePad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeLarge' },
+  { key: 'smallPad', cssVar: '--ToggleButton-small-pad', prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeSmall' },
+  { key: 'mediumPad', cssVar: '--ToggleButton-medium-pad', prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeMedium' },
+  { key: 'largePad', cssVar: '--ToggleButton-large-pad', prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeLarge' },
 ];
 
 function ToggleButtonMatrix() {

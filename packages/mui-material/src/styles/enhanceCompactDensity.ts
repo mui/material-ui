@@ -3,7 +3,6 @@ import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
-import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
@@ -377,9 +376,12 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [bcVars.separatorGap]: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiToggleButton', {
-    [tbVars.smallPad]: d.sm,
-    [tbVars.mediumPad]: d.md,
-    [tbVars.largePad]: d.lg,
+    // Emit uniform padding directly on the size variants ToggleButton ships (no seam).
+    variants: [
+      { props: { size: 'small' }, style: { padding: d.sm } },
+      { props: { size: 'medium' }, style: { padding: d.md } },
+      { props: { size: 'large' }, style: { padding: d.lg } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiAvatar', {
     // Square size = raw px (sizing).
