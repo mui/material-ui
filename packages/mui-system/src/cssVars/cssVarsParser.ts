@@ -87,6 +87,10 @@ const getCssValue = (keys: string[], value: string | number) => {
       // CSS property that are unitless
       return value;
     }
+    if (keys[0] === 'transitions' && keys[1] === 'duration') {
+      // transition duration is in ms, unit is required
+      return `${value}ms`;
+    }
     const lastKey = keys[keys.length - 1];
     if (lastKey.toLowerCase().includes('opacity')) {
       // opacity values are unitless

@@ -122,6 +122,7 @@ export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
 export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
 export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export * from './cssVars';
+export { default as styleSheetsToString } from './cssVars/styleSheetsToString';
 
 export { default as responsivePropType } from './responsivePropType';
 

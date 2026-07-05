@@ -1,0 +1,269 @@
+'use client';
+import * as React from 'react';
+import type {} from '@mui/material/themeCssVarsAugmentation';
+import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
+import Slider from '@mui/material/Slider';
+
+// ---------- Themes ----------------------------------------------------------
+
+const themes = [
+  createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
+    },
+  }),
+  createTheme({
+    cssVariables: { colorSchemeSelector: 'data' },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
+    },
+  }),
+];
+
+const themeNames = ['Blue (default)', 'Green', 'Red'];
+
+const innerThemes = [
+  createTheme({
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
+    colorSchemes: { light: true, dark: true },
+  }),
+  createTheme({
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
+      dark: { palette: { primary: { main: '#66bb6a' }, secondary: { main: '#f48fb1' } } },
+    },
+  }),
+  createTheme({
+    cssVariables: {
+      rootSelector: '.inner-theme-scope',
+      colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
+    },
+    colorSchemes: {
+      light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
+      dark: { palette: { primary: { main: '#ef9a9a' }, secondary: { main: '#ffcc02' } } },
+    },
+  }),
+];
+
+// ---------- ScopedThemeProvider --------------------------------------------
+
+// Wraps children in a container with scoped --mui-palette-* overrides.
+// disableNestedContext forces GlobalStyles injection (otherwise
+// createCssVarsProvider skips it when cssVarPrefix matches the outer provider).
+// colorSchemeNode={null} + storageWindow={null}: outer provider owns the DOM
+// attribute and localStorage; inner provider only injects CSS.
+function ScopedThemeProvider({
+  theme,
+  children,
+}: {
+  theme: ReturnType<typeof createTheme>;
+  children: React.ReactNode;
+}) {
+  const { colorScheme } = useColorScheme();
+  return (
+    <div className="inner-theme-scope" data-mui-color-scheme={colorScheme}>
+      <ThemeProvider theme={theme} colorSchemeNode={null} storageWindow={null} disableNestedContext>
+        {children}
+      </ThemeProvider>
+    </div>
+  );
+}
+
+// ---------- InnerSection ----------------------------------------------------
+
+interface InnerSectionProps {
+  innerThemeIndex: number;
+  setInnerThemeIndex: (i: number) => void;
+}
+
+function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps) {
+  const [value, setValue] = React.useState<number>(40);
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+        {themeNames.map((name, i) => (
+          <button
+            key={name}
+            type="button"
+            onClick={() => setInnerThemeIndex(i)}
+            style={{ fontWeight: i === innerThemeIndex ? 700 : 400 }}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ maxWidth: 500 }}>
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns inner secondary color via plain CSS:
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="inner-custom-slider"
+          aria-label="Inner custom class slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      <div style={{ maxWidth: 500, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track turns inner secondary + thumb grows larger (Emotion: applied at
+          runtime):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          sx={{
+            color: 'secondary.main',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
+          }}
+          aria-label="Inner sx override slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+    </div>
+  );
+}
+
+// ---------- useMounted guard (avoid SSR hydration mismatch) ----------------
+
+function useMounted() {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => setMounted(true), []);
+  return mounted;
+}
+
+// ---------- Page ------------------------------------------------------------
+
+function Page({
+  themeIndex,
+  setThemeIndex,
+}: {
+  themeIndex: number;
+  setThemeIndex: (i: number) => void;
+}) {
+  const { mode, setMode } = useColorScheme();
+  const mounted = useMounted();
+  const [value, setValue] = React.useState<number>(40);
+  const [innerThemeIndex, setInnerThemeIndex] = React.useState(0);
+
+  return (
+    <div
+      style={{
+        padding: 32,
+        maxWidth: 760,
+        margin: '0 auto',
+        minHeight: '100vh',
+        background: 'var(--mui-palette-background-default)',
+        color: 'var(--mui-palette-text-primary)',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <h1 style={{ marginTop: 0 }}>Emotion + Slider</h1>
+      <p style={{ color: 'var(--mui-palette-text-secondary)', marginTop: 0 }}>
+        Verifies Slider works with the Emotion path. Engine: <code>@mui/styled-engine</code>{' '}
+        (Emotion).
+      </p>
+
+      {/* Theme switcher + dark mode toggle */}
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
+        {themeNames.map((name, i) => (
+          <button
+            key={name}
+            type="button"
+            onClick={() => setThemeIndex(i)}
+            style={{ fontWeight: i === themeIndex ? 700 : 400 }}
+          >
+            {name}
+          </button>
+        ))}
+        <button type="button" onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+          {mounted ? `Switch to ${mode === 'light' ? 'dark' : 'light'} mode` : 'Toggle mode'}
+        </button>
+      </div>
+
+      {/* ── className ────────────────────────────────────────────── */}
+      <div style={{ maxWidth: 500 }}>
+        <p style={{ marginBottom: 4 }}>
+          className override — thumb turns secondary color via plain CSS:
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          className="custom-slider"
+          aria-label="Custom class slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      {/* ── sx prop ──────────────────────────────────────────────── */}
+      <div style={{ maxWidth: 500, marginTop: 32 }}>
+        <p style={{ marginBottom: 4 }}>
+          sx override — track turns secondary + thumb grows larger (Emotion: applied at runtime):
+        </p>
+        <Slider
+          value={value}
+          onChange={(_, v) => setValue(v as number)}
+          sx={{
+            color: 'var(--mui-palette-secondary-main)',
+            '& .MuiSlider-thumb': { width: 28, height: 28 },
+          }}
+          aria-label="sx override slider"
+        />
+        <p style={{ marginTop: 4, color: 'var(--mui-palette-text-secondary)' }}>Value: {value}</p>
+      </div>
+
+      {/* ── nested ThemeProvider ─────────────────────────────── */}
+      <div
+        style={{
+          marginTop: 48,
+          padding: 24,
+          border: '2px dashed var(--mui-palette-divider)',
+          borderRadius: 8,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Nested scoped theme (same --mui-palette-* names)</h2>
+        <ScopedThemeProvider theme={innerThemes[innerThemeIndex]}>
+          <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
+        </ScopedThemeProvider>
+      </div>
+
+      <style>{`
+        .custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--mui-palette-secondary-main, #9c27b0);
+        }
+        .inner-custom-slider .MuiSlider-thumb {
+          width: 24px;
+          height: 24px;
+          background: var(--mui-palette-secondary-main, #9c27b0);
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default function EmotionSlider() {
+  const [themeIndex, setThemeIndex] = React.useState(0);
+  return (
+    <ThemeProvider theme={themes[themeIndex]}>
+      <Page themeIndex={themeIndex} setThemeIndex={setThemeIndex} />
+    </ThemeProvider>
+  );
+}

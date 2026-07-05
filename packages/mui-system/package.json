@@ -85,6 +85,7 @@
     ".": "./src/index.js",
     "./createTheme": "./src/createTheme/index.js",
     "./RtlProvider": "./src/RtlProvider/index.js",
+    "./cssVars/useColorSchemeSetup": "./src/cssVars/useColorSchemeSetup.ts",
     "./styleFunctionSx": "./src/styleFunctionSx/index.js",
     "./*": "./src/*/index.ts"
   }

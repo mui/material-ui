@@ -8,6 +8,11 @@ export {
   Theme,
   CssThemeVariables,
 } from './createTheme';
+export {
+  default as generateThemeCss,
+  GenerateThemeCssOptions,
+  GenerateThemeCssTheme,
+} from './generateThemeCss';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';
@@ -82,6 +87,13 @@ export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
+export {
+  default as ThemeScope,
+  ThemeScopeProps,
+  ThemeScopeContext,
+  ThemeScopeContextValue,
+  useThemeScopeProps,
+} from './ThemeScope';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';

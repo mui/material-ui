@@ -25,7 +25,8 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat",
+    "build": "code-infra build --tsgo --flat --copy \"src/**/*.css\" --copy \"default-theme.css\"",
+    "build:theme-css": "esbuild scripts/buildDefaultThemeCss.mts --bundle --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildDefaultThemeCss.mjs && OUTFILE=default-theme.css node /tmp/buildDefaultThemeCss.mjs",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsgo -p tsconfig.json",
@@ -35,6 +36,7 @@
   "dependencies": {
     "@babel/runtime": "^7.29.2",
     "@mui/core-downloads-tracker": "workspace:^",
+    "@mui/private-theming": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -83,7 +85,9 @@
       "optional": true
     }
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "publishConfig": {
     "access": "public",
     "directory": "build"
@@ -99,6 +103,7 @@
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",
+    "./colorScheme": "./src/colorScheme/index.ts",
     "./ClickAwayListener": "./src/ClickAwayListener/index.ts",
     "./darkScrollbar": "./src/darkScrollbar/index.ts",
     "./DefaultPropsProvider": "./src/DefaultPropsProvider/index.ts",
@@ -116,6 +121,7 @@
     "./transitions": "./src/transitions/index.ts",
     "./useLazyRipple": "./src/useLazyRipple/index.ts",
     "./version": "./src/version/index.ts",
+    "./default-theme.css": "./default-theme.css",
     "./*": "./src/*/index.js"
   },
   "pigment-css": {

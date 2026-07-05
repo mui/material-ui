@@ -151,6 +151,10 @@ Now you should see the autocomplete and syntax highlighting features when using 
 
 ## Extend Material UI classes
 
+:::info
+Instead of copying this snippet, install the [`@mui/tailwind`](/material-ui/integrations/tailwindcss/tailwindcss-components/) package which ships the same token mapping alongside MUI state variants (`mui-disabled:`, `mui-selected:`, and more) and MUI-aligned breakpoints in a single import.
+:::
+
 If you want to use Material UI theme tokens in your Tailwind CSS classes, copy the snippet below into your CSS file.
 
 ```css title="global.css"

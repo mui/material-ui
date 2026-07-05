@@ -11,3 +11,4 @@ export type { ExtractTypographyTokens } from './prepareTypographyVars';
 export { default as createCssVarsTheme } from './createCssVarsTheme';
 export { createGetColorSchemeSelector } from './getColorSchemeSelector';
 export type { StorageManager } from './localStorageManager';
+export { default as styleSheetsToString } from './styleSheetsToString';

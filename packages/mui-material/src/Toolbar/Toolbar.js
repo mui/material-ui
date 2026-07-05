@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { registerBreakpointStyles } from '../styles/BreakpointStylesRegistry';
 import { getToolbarUtilityClass } from './toolbarClasses';
+import cssModules from './Toolbar.module.css';
+import toolbarBreakpointStyles from './Toolbar.breakpoints';
+
+registerBreakpointStyles('MuiToolbar', toolbarBreakpointStyles);
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableGutters, variant } = ownerState;
@@ -15,7 +19,7 @@ const useUtilityClasses = (ownerState) => {
     root: ['root', !disableGutters && 'gutters', variant],
   };
 
-  return composeClasses(slots, getToolbarUtilityClass, classes);
+  return composeClasses(slots, getToolbarUtilityClass, classes, cssModules);
 };
 
 const ToolbarRoot = styled('div', {
@@ -26,40 +30,7 @@ const ToolbarRoot = styled('div', {
 
     return [styles.root, !ownerState.disableGutters && styles.gutters, styles[ownerState.variant]];
   },
-})(
-  memoTheme(({ theme }) => ({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    variants: [
-      {
-        props: ({ ownerState }) => !ownerState.disableGutters,
-        style: {
-          paddingLeft: theme.spacing(2),
-          paddingRight: theme.spacing(2),
-          [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(3),
-            paddingRight: theme.spacing(3),
-          },
-        },
-      },
-      {
-        props: {
-          variant: 'dense',
-        },
-        style: {
-          minHeight: 48,
-        },
-      },
-      {
-        props: {
-          variant: 'regular',
-        },
-        style: theme.mixins.toolbar,
-      },
-    ],
-  })),
-);
+})();
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiToolbar' });
