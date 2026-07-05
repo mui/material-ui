@@ -6,7 +6,7 @@ import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVar
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
-import { private_autocompleteVars as acVars } from '../Autocomplete/autocompleteVars';
+import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
@@ -406,12 +406,22 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    // Option list (mirrors MenuItem): minHeight raw px, block/inline pad steps.
-    [acVars.optionMinHeight]: '44px',
-    [acVars.optionBlockPad]: d.xs,
-    [acVars.optionInlinePad]: d.lg,
-  });
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      // Option list (mirrors MenuItem) renders in a Popper → emit on the listbox
+      // slot: minHeight raw px, block/inline pad steps.
+      [`& .${autocompleteClasses.option}`]: {
+        minHeight: '44px',
+        paddingTop: d.xs,
+        paddingBottom: d.xs,
+        paddingLeft: d.lg,
+        paddingRight: d.lg,
+      },
+    },
+    'listbox',
+  );
   addRootOverride(enhanced.components, 'MuiStep', {
     [stepVars.inlinePad]: d.sm,
   });

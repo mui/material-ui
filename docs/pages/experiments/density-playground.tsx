@@ -32,7 +32,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
-import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -787,9 +787,9 @@ function TableCellMatrix() {
 // Autocomplete family: the option list geometry (mirrors MenuItem). The input's
 // density comes from its variant (tokenized separately).
 const AUTOCOMPLETE_FIELDS: DensityField[] = [
-  { key: 'optionMinHeight', cssVar: private_autocompleteVars.optionMinHeight, prop: 'minHeight', selector: '.MuiAutocomplete-option' },
-  { key: 'optionBlockPad', cssVar: private_autocompleteVars.optionBlockPad, prop: 'paddingBlock', selector: '.MuiAutocomplete-option' },
-  { key: 'optionInlinePad', cssVar: private_autocompleteVars.optionInlinePad, prop: 'paddingInline', selector: '.MuiAutocomplete-option' },
+  { key: 'optionMinHeight', cssVar: '--Autocomplete-option-minHeight', prop: 'minHeight', selector: '.MuiAutocomplete-option' },
+  { key: 'optionBlockPad', cssVar: '--Autocomplete-option-blockPad', prop: 'paddingBlock', selector: '.MuiAutocomplete-option' },
+  { key: 'optionInlinePad', cssVar: '--Autocomplete-option-inlinePad', prop: 'paddingInline', selector: '.MuiAutocomplete-option' },
 ];
 
 function AutocompleteMatrix() {
