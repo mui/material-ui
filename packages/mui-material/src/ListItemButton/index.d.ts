@@ -3,5 +3,3 @@ export * from './ListItemButton';
 
 export { default as listItemButtonClasses } from './listItemButtonClasses';
 export * from './listItemButtonClasses';
-
-export { private_listItemButtonVars } from './listItemButtonVars';

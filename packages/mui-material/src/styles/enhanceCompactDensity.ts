@@ -14,7 +14,6 @@ import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
-import { private_listItemButtonVars as libVars } from '../ListItemButton/listItemButtonVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 
@@ -464,9 +463,12 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     padding: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiListItemButton', {
-    [libVars.blockPad]: d.sm,
-    [libVars.denseBlockPad]: d.xxs,
-    [libVars.inlinePad]: d.lg,
+    // Density axis is the `dense` boolean; inline pad only when gutters are on.
+    variants: [
+      { props: { dense: false }, style: { paddingTop: d.sm, paddingBottom: d.sm } },
+      { props: { dense: true }, style: { paddingTop: d.xxs, paddingBottom: d.xxs } },
+      { props: { disableGutters: false }, style: { paddingLeft: d.lg, paddingRight: d.lg } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base padding + larger last-child bottom padding.

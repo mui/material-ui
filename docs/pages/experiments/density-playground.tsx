@@ -26,7 +26,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
-import ListItemButton, { private_listItemButtonVars } from '@mui/material/ListItemButton';
+import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -967,9 +967,9 @@ function DialogMatrix() {
 
 // ListItemButton family: block padding (+ dense) + gutters inline padding.
 const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_listItemButtonVars.blockPad, prop: 'paddingBlock', selector: '.MuiListItemButton-root:not(.MuiListItemButton-dense)' },
-  { key: 'denseBlockPad', cssVar: private_listItemButtonVars.denseBlockPad, prop: 'paddingBlock', selector: '.MuiListItemButton-dense' },
-  { key: 'inlinePad', cssVar: private_listItemButtonVars.inlinePad, prop: 'paddingInline', selector: '.MuiListItemButton-gutters' },
+  { key: 'blockPad', cssVar: '--ListItemButton-blockPad', prop: 'paddingBlock', selector: '.MuiListItemButton-root:not(.MuiListItemButton-dense)' },
+  { key: 'denseBlockPad', cssVar: '--ListItemButton-dense-blockPad', prop: 'paddingBlock', selector: '.MuiListItemButton-dense' },
+  { key: 'inlinePad', cssVar: '--ListItemButton-inlinePad', prop: 'paddingInline', selector: '.MuiListItemButton-gutters' },
 ];
 
 function ListItemButtonMatrix() {
