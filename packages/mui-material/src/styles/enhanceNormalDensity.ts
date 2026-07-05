@@ -4,7 +4,6 @@ import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
-import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
@@ -457,10 +456,13 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     ],
   });
   addRootOverride(enhanced.components, 'MuiFab', {
-    // Circular size = raw px per size (button-like action).
-    [fabVars.smallSize]: '40px',
-    [fabVars.mediumSize]: '48px',
-    [fabVars.largeSize]: '56px',
+    // Circular size = raw px per size (button-like action). Scoped to circular so
+    // the extended variant (auto width + literal height) stays frozen at master.
+    variants: [
+      { props: { variant: 'circular', size: 'small' }, style: { width: '40px', height: '40px' } },
+      { props: { variant: 'circular', size: 'medium' }, style: { width: '48px', height: '48px' } },
+      { props: { variant: 'circular', size: 'large' }, style: { width: '56px', height: '56px' } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
     // Item box size = raw px per size.

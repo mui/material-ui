@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
-import Fab, { private_fabVars } from '@mui/material/Fab';
+import Fab from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import { private_paginationItemVars } from '@mui/material/PaginationItem';
 import SnackbarContent from '@mui/material/SnackbarContent';
@@ -865,9 +865,9 @@ function ToolbarMatrix() {
 
 // Fab family: circular size per size (raw px).
 const FAB_FIELDS: DensityField[] = [
-  { key: 'smallSize', cssVar: private_fabVars.smallSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeSmall' },
-  { key: 'mediumSize', cssVar: private_fabVars.mediumSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeMedium' },
-  { key: 'largeSize', cssVar: private_fabVars.largeSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeLarge' },
+  { key: 'smallSize', cssVar: '--Fab-small-size', prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeSmall' },
+  { key: 'mediumSize', cssVar: '--Fab-medium-size', prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeMedium' },
+  { key: 'largeSize', cssVar: '--Fab-large-size', prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeLarge' },
 ];
 
 function FabMatrix() {
