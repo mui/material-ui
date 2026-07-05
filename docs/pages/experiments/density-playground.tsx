@@ -34,7 +34,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
-import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
@@ -429,9 +428,9 @@ function FilledInputMatrix() {
 // Input (standard) family: input top/bottom padding (top per size, bottom
 // shared). Inline is 0; the label floats above (no bridge).
 const INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumTopPad', cssVar: private_inputVars.mediumTopPad, prop: 'paddingTop', selector: '.MuiInput-root:not(.MuiInputBase-sizeSmall) .MuiInput-input' },
-  { key: 'smallTopPad', cssVar: private_inputVars.smallTopPad, prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiInput-input' },
-  { key: 'bottomPad', cssVar: private_inputVars.bottomPad, prop: 'paddingBottom', selector: '.MuiInput-input' },
+  { key: 'mediumTopPad', cssVar: '--Input-medium-topPad', prop: 'paddingTop', selector: '.MuiInput-root:not(.MuiInputBase-sizeSmall) .MuiInput-input' },
+  { key: 'smallTopPad', cssVar: '--Input-small-topPad', prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiInput-input' },
+  { key: 'bottomPad', cssVar: '--Input-bottomPad', prop: 'paddingBottom', selector: '.MuiInput-input' },
 ];
 
 function InputMatrix() {

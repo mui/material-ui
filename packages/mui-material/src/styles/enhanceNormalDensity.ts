@@ -1,6 +1,5 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
-import { private_inputVars as inVars } from '../Input/inputVars';
 import { private_tabVars as tabVars } from '../Tab/tabVars';
 import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
@@ -299,12 +298,27 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     'input',
   );
-  addRootOverride(enhanced.components, 'MuiInput', {
-    // Standard input padding = density steps (tiny; block only, inline stays 0).
-    [inVars.mediumTopPad]: d.xs,
-    [inVars.smallTopPad]: d.xxs,
-    [inVars.bottomPad]: d.xs,
-  });
+  addRootOverride(
+    enhanced.components,
+    'MuiInputBase',
+    {
+      // Standard input box padding (block only; inline stays 0). Emitted on the
+      // base key so standard Input inherits it via the cascade; Outlined/Filled
+      // override on their own keys (win by injection order). Multiline box padding
+      // lives on the InputBase root (left at master) — reset the input to 0 as
+      // master does.
+      paddingTop: d.xs,
+      paddingBottom: d.xs,
+      variants: [
+        { props: { size: 'small' }, style: { paddingTop: d.xxs } },
+        {
+          props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+          style: { paddingTop: 0, paddingBottom: 0 },
+        },
+      ],
+    },
+    'input',
+  );
   addRootOverride(enhanced.components, 'MuiTab', {
     // Spacing = steps; min-heights = raw px (paired with MuiTabs below).
     [tabVars.minHeight]: '48px',

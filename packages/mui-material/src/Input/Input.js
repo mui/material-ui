@@ -12,7 +12,6 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
-import { private_inputVars as vars } from './inputVars';
 import { getTransitionStyles } from '../transitions/utils';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
@@ -139,34 +138,7 @@ const InputInput = styled(InputBaseInput, {
   name: 'MuiInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})({
-  // Standard-only density seam over the InputBase baseline padding (`4px 0 5px`;
-  // small top `1px`). Tokenized here — not on the shared baseline — so the
-  // literal stays the zero-diff fallback for Filled/Outlined. Inline stays 0;
-  // multiline resets to 0 (as today).
-  '--_topPad': '4px',
-  '--_bottomPad': '5px',
-  '--comp-topPad': `var(${vars.mediumTopPad}, var(--_topPad))`,
-  '--comp-bottomPad': `var(${vars.bottomPad}, var(--_bottomPad))`,
-  paddingTop: 'var(--comp-topPad, var(--_topPad))',
-  paddingBottom: 'var(--comp-bottomPad, var(--_bottomPad))',
-  variants: [
-    {
-      props: { size: 'small' },
-      style: {
-        '--_topPad': '1px',
-        '--comp-topPad': `var(${vars.smallTopPad}, var(--_topPad))`,
-      },
-    },
-    {
-      props: ({ ownerState }) => ownerState.multiline,
-      style: {
-        paddingTop: 0,
-        paddingBottom: 0,
-      },
-    },
-  ],
-});
+})({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
