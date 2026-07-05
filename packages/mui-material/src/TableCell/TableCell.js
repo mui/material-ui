@@ -10,7 +10,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
-import { private_tableCellVars as vars } from './tableCellVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, align, padding, size, stickyHeader } = ownerState;
@@ -60,13 +59,7 @@ const TableCellRoot = styled('td', {
         : theme.darken(theme.alpha(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    // Density seams: block padding per size (medium base; small variant reroutes),
-    // inline padding shared. Checkbox/none affordances stay literal below.
-    '--_blockPad': '16px',
-    '--_inlinePad': '16px',
-    '--comp-blockPad': `var(${vars.mediumBlockPad}, var(--_blockPad))`,
-    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-    padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
+    padding: 16,
     variants: [
       {
         props: {
@@ -101,8 +94,7 @@ const TableCellRoot = styled('td', {
           size: 'small',
         },
         style: {
-          '--_blockPad': '6px',
-          '--comp-blockPad': `var(${vars.smallBlockPad}, var(--_blockPad))`,
+          padding: '6px 16px',
           [`&.${tableCellClasses.paddingCheckbox}`]: {
             width: 24, // prevent the checkbox column from growing
             padding: '0 12px 0 16px',

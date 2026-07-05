@@ -16,7 +16,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
-import TableCell, { private_tableCellVars } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -754,9 +754,9 @@ function ButtonGroupMatrix() {
 
 // TableCell family: block padding per size (medium/small) + shared inline pad.
 const TABLE_CELL_FIELDS: DensityField[] = [
-  { key: 'mediumBlockPad', cssVar: private_tableCellVars.mediumBlockPad, prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeMedium' },
-  { key: 'smallBlockPad', cssVar: private_tableCellVars.smallBlockPad, prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeSmall' },
-  { key: 'inlinePad', cssVar: private_tableCellVars.inlinePad, prop: 'paddingInline', selector: '.MuiTableCell-root' },
+  { key: 'mediumBlockPad', cssVar: '--TableCell-medium-blockPad', prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeMedium' },
+  { key: 'smallBlockPad', cssVar: '--TableCell-small-blockPad', prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeSmall' },
+  { key: 'inlinePad', cssVar: '--TableCell-inlinePad', prop: 'paddingInline', selector: '.MuiTableCell-root' },
 ];
 
 function TableCellMatrix() {

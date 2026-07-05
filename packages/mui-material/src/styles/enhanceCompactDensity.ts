@@ -6,7 +6,6 @@ import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVar
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
-import { private_tableCellVars as tcVars } from '../TableCell/tableCellVars';
 import { private_autocompleteVars as acVars } from '../Autocomplete/autocompleteVars';
 import { private_stepVars as stepVars } from '../Step/stepVars';
 import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
@@ -396,10 +395,14 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [bgVars.minWidth]: '32px',
   });
   addRootOverride(enhanced.components, 'MuiTableCell', {
-    // Block pad per size (steps); inline pad shared.
-    [tcVars.mediumBlockPad]: d.lg,
-    [tcVars.smallBlockPad]: d.xs,
-    [tcVars.inlinePad]: d.lg,
+    // Block pad per size (steps); inline pad shared. Re-assert the frozen
+    // checkbox/none affordances the size padding would otherwise clobber.
+    variants: [
+      { props: { size: 'medium' }, style: { padding: `${d.lg} ${d.lg}` } },
+      { props: { size: 'small' }, style: { padding: `${d.xs} ${d.lg}` } },
+      { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
+      { props: { padding: 'none' }, style: { padding: 0 } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
     // Option list (mirrors MenuItem): minHeight raw px, block/inline pad steps.
