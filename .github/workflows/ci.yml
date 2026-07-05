@@ -28,12 +28,12 @@ jobs:
       pull-requests: write
     steps:
       - run: echo '${{ github.actor }}'
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@91ab88e2619ed1f46221f0ba42d1492c02baf788 # v6.0.6
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
       - name: Use Node.js
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
@@ -41,7 +41,7 @@ jobs:
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
         with:
           path: docs/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('docs/**/*.js', 'docs/**/*.ts', 'docs/**/*.tsx', 'docs/**/*.jsx', 'docs/**/*.json', 'docs/**/*.md', 'docs/**/*.mdx') }}
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Publish packages to pkg.pr.new and npm dry-run
-        uses: mui/mui-public/.github/actions/ci-publish@963630fef652d2ac707df1af5041d49a7b574889 # master
+        uses: mui/mui-public/.github/actions/ci-publish@9033c846aecf0e1454f13486af685d93269456e9 # master
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           npm-dry-run: true
@@ -74,7 +74,7 @@ jobs:
         run: |
           VERSION=$(node -p "(require('./package.json').config && require('./package.json').config.valeVersion) || ''")
           echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
-      - uses: vale-cli/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
+      - uses: vale-cli/vale-action@85f9f7f2c5f449ac0ae5b66662961bae3f77ca6a # 2.1.2
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
