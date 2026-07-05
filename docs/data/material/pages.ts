@@ -271,6 +271,11 @@ const pages: MuiPage[] = [
         newFeature: true,
       },
       {
+        pathname: '/material-ui/integrations/tailwindcss/tailwindcss-components',
+        title: 'Using the @mui/tailwind package',
+        newFeature: true,
+      },
+      {
         pathname: '/material-ui/integrations/nextjs',
         title: 'Next.js integration',
         newFeature: true,

@@ -26,6 +26,8 @@
       "@mui/internal-markdown/prism": ["./packages-internal/markdown/prism.mjs"],
       "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
+      "@mui/tailwind": ["./packages/mui-tailwind/src/preset.js"],
+      "@mui/tailwind/*": ["./packages/mui-tailwind/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
       "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
       "@mui/system": ["./packages/mui-system/src"],

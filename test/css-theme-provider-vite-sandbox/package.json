@@ -1,0 +1,26 @@
+{
+  "name": "@mui-internal/css-theme-provider-vite-sandbox",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mui/material": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "@mui/styled-engine-noop": "workspace:*",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "^6.0.3",
+    "vite": "^7.3.1"
+  }
+}

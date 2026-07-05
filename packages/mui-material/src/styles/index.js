@@ -36,6 +36,12 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
+export {
+  default as CssThemeProvider,
+  useCssColorScheme,
+  CssColorSchemeContext,
+} from './CssThemeProvider';
+export { default as ThemeScope, ThemeScopeContext, useThemeScopeProps } from './ThemeScope';
 export { StyledEngineProvider } from '@mui/system';
 // The legacy utilities from @mui/styles
 // These are just empty functions that throws when invoked
