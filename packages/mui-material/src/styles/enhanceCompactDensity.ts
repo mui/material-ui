@@ -1,7 +1,6 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
-import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
@@ -457,10 +456,37 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [libVars.inlinePad]: d.lg,
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
-    // No size axis: base pad + larger last-child bottom pad.
-    [ccVars.pad]: d.lg,
-    [ccVars.padBottom]: d.xl,
+    // No size axis: base padding + larger last-child bottom padding.
+    padding: d.lg,
+    '&:last-child': { paddingBottom: d.xl },
   });
+  addRootOverride(enhanced.components, 'MuiCardActions', {
+    // No size axis: root padding + inter-child gap (spacing variant) = steps.
+    padding: d.sm,
+    variants: [
+      {
+        props: { disableSpacing: false },
+        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.sm } },
+      },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiCardHeader', {
+    // Root padding = step (no size axis).
+    padding: d.lg,
+  });
+  // Avatar→content gap on the avatar slot.
+  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: d.lg }, 'avatar');
+  // Action negative pulls counteract the control's own box; scale with density.
+  addRootOverride(
+    enhanced.components,
+    'MuiCardHeader',
+    {
+      marginTop: `calc(${d.xxs} * -1)`,
+      marginRight: `calc(${d.sm} * -1)`,
+      marginBottom: `calc(${d.xxs} * -1)`,
+    },
+    'action',
+  );
   addRootOverride(
     enhanced.components,
     'MuiSelect',

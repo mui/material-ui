@@ -45,7 +45,7 @@ import DialogTitle, { private_dialogTitleVars } from '@mui/material/DialogTitle'
 import DialogContent, { private_dialogContentVars } from '@mui/material/DialogContent';
 import DialogActions, { private_dialogActionsVars } from '@mui/material/DialogActions';
 import Card from '@mui/material/Card';
-import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
+import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
 import Rating from '@mui/material/Rating';
@@ -498,13 +498,11 @@ function CheckboxMatrix() {
   );
 }
 
-// Card family: CardContent padding (+ last-child) — tokenized; CardActions/CardHeader
-// padding + gaps are stubs (not yet tokenized in source; no size axis).
+// Card family: CardContent padding (+ last-child), CardActions/CardHeader padding
+// + gaps — all preset-reflowed via emitted overrides (no size axis).
 const CARD_FIELDS: DensityField[] = [
-  { key: 'pad', cssVar: private_cardContentVars.pad, prop: 'padding', selector: '.MuiCardContent-root' },
-  { key: 'padBottom', cssVar: private_cardContentVars.padBottom, prop: 'paddingBottom', selector: '.MuiCardContent-root:last-child' },
-  // Stub — CardActions/CardHeader not yet tokenized in source (no preset reflow yet);
-  // the direct-property override still applies over today's literals.
+  { key: 'pad', cssVar: '--CardContent-pad', prop: 'padding', selector: '.MuiCardContent-root' },
+  { key: 'padBottom', cssVar: '--CardContent-padBottom', prop: 'paddingBottom', selector: '.MuiCardContent-root:last-child' },
   { key: 'actionsPad', cssVar: '--CardActions-pad', prop: 'padding', selector: '.MuiCardActions-root' },
   { key: 'actionsGap', cssVar: '--CardActions-childGap', prop: 'marginLeft', selector: '.MuiCardActions-spacing > :not(:first-of-type)' },
   { key: 'headerPad', cssVar: '--CardHeader-pad', prop: 'padding', selector: '.MuiCardHeader-root' },
@@ -1197,7 +1195,7 @@ const COMPONENT_DEFS = {
       headerPad: 'lg',
       headerAvatarGap: 'lg',
     },
-    note: 'CardActions/CardHeader — stub: manual override only, no preset reflow until source is tokenized.',
+    note: 'CardContent/CardActions/CardHeader padding + gaps reflow via the preset; no size axis.',
     renderMatrix: () => <CardMatrix />,
   },
   Rating: {
