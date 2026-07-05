@@ -47,7 +47,7 @@
     "@mui/x-license": "9.8.0",
     "@mui/x-tree-view": "9.8.0",
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "^10.0.3",
+    "@react-spring/web": "^10.1.2",
     "@tailwindcss/postcss": "^4.2.4",
     "@tanstack/react-query": "^5.100.9",
     "@tanstack/react-virtual": "^3.13.24",
