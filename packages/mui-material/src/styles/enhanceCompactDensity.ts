@@ -7,7 +7,6 @@ import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
-import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
@@ -431,10 +430,22 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   // paddingRight:0 stay frozen (higher-specificity class + own variant literals).
   addRootOverride(enhanced.components, 'MuiStepLabel', { paddingRight: d.sm }, 'iconContainer');
   addRootOverride(enhanced.components, 'MuiToolbar', {
-    // Gutter inline pad (steps); dense bar min-height (raw px).
-    [toolbarVars.inlinePad]: d.lg,
-    [toolbarVars.wideInlinePad]: d.xl,
-    [toolbarVars.denseMinHeight]: '40px',
+    // Gutter inline pad (steps, incl the sm-breakpoint bump); dense bar min-height
+    // (raw px). Regular min-height (theme.mixins.toolbar) stays frozen.
+    variants: [
+      {
+        props: { disableGutters: false },
+        style: {
+          paddingLeft: d.lg,
+          paddingRight: d.lg,
+          [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up('sm')]: {
+            paddingLeft: d.xl,
+            paddingRight: d.xl,
+          },
+        },
+      },
+      { props: { variant: 'dense' }, style: { minHeight: '40px' } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiFab', {
     // Circular size = raw px per size (button-like action).

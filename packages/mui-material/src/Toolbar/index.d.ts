@@ -3,5 +3,3 @@ export * from './Toolbar';
 
 export { default as toolbarClasses } from './toolbarClasses';
 export * from './toolbarClasses';
-
-export { private_toolbarVars } from './toolbarVars';

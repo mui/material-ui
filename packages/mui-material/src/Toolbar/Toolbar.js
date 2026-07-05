@@ -7,7 +7,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getToolbarUtilityClass } from './toolbarClasses';
-import { private_toolbarVars as vars } from './toolbarVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableGutters, variant } = ownerState;
@@ -36,14 +35,11 @@ const ToolbarRoot = styled('div', {
       {
         props: ({ ownerState }) => !ownerState.disableGutters,
         style: {
-          // Density seam: gutter inline padding (16 base / 24 ≥sm).
-          '--_inlinePad': theme.spacing(2),
-          '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-          paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
-          paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
+          paddingLeft: theme.spacing(2),
+          paddingRight: theme.spacing(2),
           [theme.breakpoints.up('sm')]: {
-            '--_inlinePad': theme.spacing(3),
-            '--comp-inlinePad': `var(${vars.wideInlinePad}, var(--_inlinePad))`,
+            paddingLeft: theme.spacing(3),
+            paddingRight: theme.spacing(3),
           },
         },
       },
@@ -52,10 +48,7 @@ const ToolbarRoot = styled('div', {
           variant: 'dense',
         },
         style: {
-          // Dense bar min-height (raw px). Regular height stays the mixin below.
-          '--_minHeight': '48px',
-          '--comp-minHeight': `var(${vars.denseMinHeight}, var(--_minHeight))`,
-          minHeight: 'var(--comp-minHeight, var(--_minHeight))',
+          minHeight: 48,
         },
       },
       {

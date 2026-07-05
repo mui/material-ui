@@ -56,7 +56,7 @@ import Chip from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Badge, { private_badgeVars } from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
-import Toolbar, { private_toolbarVars } from '@mui/material/Toolbar';
+import Toolbar from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -835,11 +835,11 @@ function StepperMatrix() {
 
 // Toolbar (AppBar) family: gutter inline padding (base + ≥sm) + dense min-height.
 const TOOLBAR_FIELDS: DensityField[] = [
-  // var-mode: inlinePad/wideInlinePad collapse to the same (padding-inline, .gutters);
-  // they differ only by a ≥sm media query, which a class selector can't encode.
-  { key: 'inlinePad', cssVar: private_toolbarVars.inlinePad, selector: '.MuiToolbar-gutters' },
-  { key: 'wideInlinePad', cssVar: private_toolbarVars.wideInlinePad, selector: '.MuiToolbar-gutters' },
-  { key: 'denseMinHeight', cssVar: private_toolbarVars.denseMinHeight, prop: 'minHeight', selector: '.MuiToolbar-dense' },
+  // Gutter padding is emitted base + ≥sm on the one `.gutters` class (the media
+  // bump has no discriminating selector) — synthetic cssVar is label/placeholder only.
+  { key: 'inlinePad', cssVar: '--Toolbar-inlinePad', selector: '.MuiToolbar-gutters' },
+  { key: 'wideInlinePad', cssVar: '--Toolbar-wideInlinePad', selector: '.MuiToolbar-gutters' },
+  { key: 'denseMinHeight', cssVar: '--Toolbar-denseMinHeight', prop: 'minHeight', selector: '.MuiToolbar-dense' },
 ];
 
 function ToolbarMatrix() {
