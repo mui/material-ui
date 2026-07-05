@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.mjs",
@@ -9,6 +9,7 @@
   "exports": {
     ".": "./index.mjs",
     "./loader": "./loader.mjs",
+    "./apiPageTranslationLoader": "./apiPageTranslationLoader.mjs",
     "./prism": {
       "types": "./prism.d.mts",
       "require": null,
@@ -25,9 +26,9 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "es-toolkit": "^1.46.1",
-    "marked": "^18.0.3",
+    "marked": "^18.0.5",
     "prismjs": "^1.30.0"
   },
   "devDependencies": {

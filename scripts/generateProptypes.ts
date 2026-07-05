@@ -19,7 +19,8 @@ import {
 } from '@mui/internal-scripts/typescript-to-proptypes';
 import { createTypeScriptProjectBuilder, TypeScriptProject } from '@mui/internal-api-docs-builder';
 
-import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';
+// eslint-disable-next-line import/extensions -- explicit .mjs extension required for tsx to resolve the ESM module
+import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects.mjs';
 
 const useExternalPropsFromInputBase = [
   'autoComplete',
@@ -200,7 +201,7 @@ async function generateProptypes(
   const sourceContent = await fs.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
   // If the component inherits the props from some unstyled components
-  // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
+  // we don't want to add those propTypes again in the Material UI propTypes
   const unstyledFile = getUnstyledFilename(tsFile, true);
   const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 

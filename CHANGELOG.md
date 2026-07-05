@@ -1,5 +1,117 @@
 # [Versions](https://mui.com/material-ui/getting-started/versions/)
 
+## 9.2.0
+
+<!-- generated comparing v9.1.2..master -->
+
+_Jul 3, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+- ⚙️ Add support for [`data-*` attributes on `slotProps`](https://mui.com/material-ui/guides/typescript/#allowing-data-attributes-on-slotprops).
+
+### `@mui/material@9.2.0`
+
+- [l10n] Add missing MuiPagination localization to zh-CN locale (#48741) @greymoth-jp
+- [select] Guard display ref during mouse down (#48744) @michelengelen
+
+### `@mui/utils@9.2.0`
+
+- [utils] Add opt-in `DataAttributesOverrides` augmentation for slot props (#48554) @LukasTy
+
+### Docs
+
+- [docs] Improve Icon Dialog responsiveness on small screens (#48639) @Prakash1185
+- [docs] Fix invalid UTF-8 in skill references (#48739) @mturac
+
+### Core
+
+- [code-infra] Resolve Renovate dashboard warnings (#48700) @Sushantplive
+- [code-infra] Validate npm publishing through dry run (#48691) @brijeshb42
+- [code-infra] Run prettier after renovate update (#48754) @Janpot
+- [code-infra] Fix 'A11y results committed?' check on react-pinned nightly jobs (#48740) @Janpot
+- [core] Remove leftover Joy UI references (#48719) @siriwatknp
+- [code-infra] Bump react-router to 7.15.1 (#48725) @Janpot
+- [docs-infra] Drive docs analytics IDs via ANALYTICS_ENV (#48694) @Janpot
+- [docs-infra] Pre-render API page descriptions (#48693) @brijeshb42
+- [code-infra][icons-material] Build lib/package.json with code-infra --no-expand (#48689) @Janpot
+- [code-infra] Fix react@18/next nightly workflow (#48635) @Janpot
+
+All contributors of this release in alphabetical order: @brijeshb42, @greymoth-jp, @Janpot, @LukasTy, @michelengelen, @mturac, @Prakash1185, @siriwatknp, @Sushantplive
+
+## 9.1.2
+
+<!-- generated comparing v9.1.1..master -->
+
+_Jun 23, 2026_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@9.1.2`
+
+- [autocomplete] Don't submit forms when committing `freeSolo` value with Enter key (#48679) @mj12albert
+- [transitions] Fix RTG import in ESM (#48645) @mj12albert
+
+### `@mui/system@9.1.2`
+
+- [InitColorSchemeScript] Fix script tag warning in Next.js 16 dev mode (#48671) @siriwatknp
+
+### Docs
+
+- Fix typos in release instructions (#48687) @brijeshb42
+- Update @mui/x-\* packages to latest (#48661) @Janpot
+
+### Core
+
+- [code-infra] Convert leaf @mui/system .js+.d.ts pairs to TypeScript (part 1) (#48578) @Janpot
+- [code-infra] Bump to latest code-infra packages (#48672) @brijeshb42
+- [code-infra] Resolve remaining minimatch advisory (#48662) @Janpot
+- [code-infra] Bump nx to resolve minimatch advisory (#48658) @Janpot
+- [core] Drop @babel/\* pnpm overrides (#48710) @Janpot
+- [docs-infra] Revert "Pin StackBlitz demo vite to v7 and plugin-react to v5" (#48709) @Janpot
+- [docs-infra] Fix code-block copy button broken on direct page load (#48653) @brijeshb42
+- [test] Stabilize Data Grid demo data in Argos screenshots (#48654) @LukasTy
+
+All contributors of this release in alphabetical order: @brijeshb42, @Janpot, @LukasTy, @mj12albert, @siriwatknp
+
+## 9.1.1
+
+<!-- generated comparing v9.1.0..master -->
+
+_Jun 11, 2026_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@9.1.1`
+
+- [Autocomplete] Update fullWidth prop documentation (#48626) @vipin8797
+- [ButtonBase] Fix focus ripple lingering after blur (#48650) @siriwatknp
+- [InitColorSchemeScript] Server-render in tests for React 19.3 (#48604) @Janpot
+- [Transition] Mount child in same commit when opening from unmounted (#48649) @siriwatknp
+
+### `@mui/styled-engine@9.1.1`
+
+- [styled-engine] Prevent enableCssLayer styles from being overridden by unlayered styles (#48603) @Janpot
+
+### Docs
+
+- Send SOURCE to Brevo on newsletter subscribe (#48633) @aemartos
+- fix TypeScript heading capitalization (#48619) @ifer47
+- Remove outdated security section (#48628) @oliviertassinari
+- [legal] Update EULA links on website (#48642) @rluzists1
+
+### Core
+
+- Update dependencies to resolve Dependabot security alerts (#48641) @Janpot
+- [core-docs] Pin StackBlitz demo vite to v7 and plugin-react to v5 (#48643) @Janpot
+- [code-infra] Port codebase to use tsgo (#48616) @brijeshb42
+- [docs-infra] Fix immutable cache headers for /\_next/static assets (#48655) @brijeshb42
+- [docs-infra] Run link checker during docs build instead of as separate CI step (#48634) @Janpot
+- [docs-infra] Support turbopack for docs (#48569) @brijeshb42
+- [test] Cover docs landing-page composites with Argos (#48589) @LukasTy
+
+All contributors of this release in alphabetical order: @aemartos, @brijeshb42, @ifer47, @Janpot, @LukasTy, @oliviertassinari, @rluzists1, @siriwatknp, @vipin8797
+
 ## 9.1.0
 
 <!-- generated comparing v9.0.1..master -->

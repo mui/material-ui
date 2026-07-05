@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "9.0.0",
+  "version": "9.1.1",
   "author": "MUI Team",
   "description": "Utility types for Material UI.",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2"
+    "@babel/runtime": "^7.29.7"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",

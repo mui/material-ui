@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "9.1.0",
+  "version": "9.2.0",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "license": "MIT",
@@ -29,7 +29,7 @@
   "scripts": {
     "build": "rimraf build && shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:pkg-json",
     "build:pkg-json": "node ./scripts/merge-package-json.mjs",
-    "build:lib": "code-infra build --flat --hasLargeFiles --skipMainCheck --buildTypes false",
+    "build:lib": "code-infra build --flat --hasLargeFiles --skipMainCheck --buildTypes false --no-expand",
     "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib && rimraf build",
     "build:copy-files": "shx cp README.md ../../CHANGELOG.md ../../LICENSE build",
     "build:typings": "node ./scripts/create-typings.mjs",
@@ -41,7 +41,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"ZoomOutTwoTone\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2"
+    "@babel/runtime": "^7.29.7"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
