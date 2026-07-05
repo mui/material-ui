@@ -76,7 +76,7 @@
     "clean": "pnpm -r exec rm -rf build"
   },
   "dependencies": {
-    "@netlify/functions": "^5.2.0",
+    "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^4.7.2",
     "@vitest/eslint-plugin": "^1.6.16",
     "babel-plugin-transform-import-meta": "^2.3.3",
