@@ -34,9 +34,9 @@
     "@mui/material-v5": "npm:@mui/material@5.18.0",
     "jscodeshift": "^17.1.2",
     "jscodeshift-add-imports": "^1.0.11",
-    "postcss": "^8.5.14",
+    "postcss": "^8.5.16",
     "postcss-cli": "^11.0.1",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.3"
   },
   "devDependencies": {
     "@material-ui/core": "^4.12.4",
