@@ -12,10 +12,10 @@
     "directory": "packages-internal/api-docs-builder"
   },
   "dependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/preset-typescript": "^7.28.5",
-    "@babel/traverse": "^7.29.0",
-    "@babel/types": "^7.29.0",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-typescript": "^7.29.7",
+    "@babel/traverse": "^7.29.7",
+    "@babel/types": "^7.29.7",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "doctrine": "^3.0.0",

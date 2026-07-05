@@ -18,8 +18,8 @@
     "link-check": "tsx ./scripts/reportBrokenLinks.mts"
   },
   "dependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/runtime": "^7.29.2",
+    "@babel/core": "^7.29.7",
+    "@babel/runtime": "^7.29.7",
     "@base-ui/react": "catalog:docs",
     "@docsearch/react": "^3.9.0",
     "@emotion/cache": "catalog:docs",
@@ -100,8 +100,8 @@
     "webpack-bundle-analyzer": "^5.3.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-constant-elements": "7.27.1",
-    "@babel/preset-typescript": "7.28.5",
+    "@babel/plugin-transform-react-constant-elements": "7.29.7",
+    "@babel/preset-typescript": "7.29.7",
     "@mui/internal-api-docs-builder": "workspace:^",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
