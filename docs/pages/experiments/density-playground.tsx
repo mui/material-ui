@@ -58,8 +58,8 @@ import Badge, { private_badgeVars } from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar, { private_toolbarVars } from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
-import Step, { private_stepVars } from '@mui/material/Step';
-import StepLabel, { private_stepLabelVars } from '@mui/material/StepLabel';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -807,8 +807,8 @@ function AutocompleteMatrix() {
 // Stepper family: Step horizontal gutter + StepLabel icon→label gap.
 const STEPPER_FIELDS: DensityField[] = [
   // var-mode: one gutter var → first step padding-left / last step padding-right (no class).
-  { key: 'inlinePad', cssVar: private_stepVars.inlinePad, selector: '.MuiStep-root' },
-  { key: 'iconGap', cssVar: private_stepLabelVars.iconGap, prop: 'paddingRight', selector: '.MuiStepLabel-iconContainer' },
+  { key: 'inlinePad', cssVar: '--Step-inlinePad', selector: '.MuiStep-root' },
+  { key: 'iconGap', cssVar: '--StepLabel-iconGap', prop: 'paddingRight', selector: '.MuiStepLabel-iconContainer' },
 ];
 
 function StepperMatrix() {

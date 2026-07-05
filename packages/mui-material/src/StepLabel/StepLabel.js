@@ -10,7 +10,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
-import { private_stepLabelVars as vars } from './stepLabelVars';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -123,11 +122,7 @@ const StepLabelIconContainer = styled('span', {
 })({
   flexShrink: 0,
   display: 'flex',
-  // Density seam: icon→label gap over the 8px default (position overrides below
-  // stay literal).
-  '--_iconGap': '8px',
-  '--comp-iconGap': `var(${vars.iconGap}, var(--_iconGap))`,
-  paddingRight: 'var(--comp-iconGap, var(--_iconGap))',
+  paddingRight: 8,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     paddingRight: 0,
   },

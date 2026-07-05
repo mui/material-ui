@@ -9,7 +9,6 @@ import StepContext from './StepContext';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getStepUtilityClass } from './stepClasses';
-import { private_stepVars as vars } from './stepVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, alternativeLabel, completed } = ownerState;
@@ -35,20 +34,17 @@ const StepRoot = styled('li', {
     ];
   },
 })({
-  // Density seam: horizontal step gutter over the 8px default.
-  '--_inlinePad': '8px',
-  '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
   variants: [
     {
       props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
       style: {
-        paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
+        paddingLeft: 8,
       },
     },
     {
       props: { orientation: 'horizontal', alternativeLabel: false, last: true },
       style: {
-        paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
+        paddingRight: 8,
       },
     },
     {

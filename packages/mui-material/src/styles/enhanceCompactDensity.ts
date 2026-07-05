@@ -7,8 +7,6 @@ import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
-import { private_stepVars as stepVars } from '../Step/stepVars';
-import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
@@ -416,12 +414,22 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     },
     'listbox',
   );
+  // Horizontal step gutter: paddingLeft (first) / paddingRight (last) = step.
   addRootOverride(enhanced.components, 'MuiStep', {
-    [stepVars.inlinePad]: d.sm,
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
+        style: { paddingLeft: d.sm },
+      },
+      {
+        props: { orientation: 'horizontal', alternativeLabel: false, last: true },
+        style: { paddingRight: d.sm },
+      },
+    ],
   });
-  addRootOverride(enhanced.components, 'MuiStepLabel', {
-    [slVars.iconGap]: d.sm,
-  });
+  // Icon→label gap on the iconContainer slot (step); alternativeLabel/vertical
+  // paddingRight:0 stay frozen (higher-specificity class + own variant literals).
+  addRootOverride(enhanced.components, 'MuiStepLabel', { paddingRight: d.sm }, 'iconContainer');
   addRootOverride(enhanced.components, 'MuiToolbar', {
     // Gutter inline pad (steps); dense bar min-height (raw px).
     [toolbarVars.inlinePad]: d.lg,
