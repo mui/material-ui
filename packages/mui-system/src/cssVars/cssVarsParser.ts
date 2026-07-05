@@ -97,6 +97,16 @@ const getCssValue = (keys: string[], value: string | number) => {
   return value;
 };
 
+// Stylis (the CSS preprocessor used by Emotion) treats `//` outside of `url(...)`
+// tokens and quoted strings as a single-line comment, which discards the rest of
+// the rule. `//` inside `url(...)` or quotes is parsed correctly and is safe.
+function containsUnsafeDoubleSlash(value: string) {
+  return value
+    .replace(/url\([^)]*\)/g, '')
+    .replace(/(['"])(?:(?!\1).)*\1/g, '')
+    .includes('//');
+}
+
 /**
  * a function that parse theme and return { css, vars }
  *
@@ -138,10 +148,11 @@ export default function cssVarsParser<T extends Record<string, any>>(
     (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
         if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
-          if (typeof value === 'string' && value.includes('//')) {
-            // Stylis (the CSS preprocessor used by Emotion) treats `//` as a single-line
-            // comment, which corrupts the entire generated :root {} block when such a value
-            // is serialized as a CSS variable, making every variable undefined.
+          if (typeof value === 'string' && containsUnsafeDoubleSlash(value)) {
+            // A bare `//` is treated as a single-line comment by Stylis (the CSS
+            // preprocessor used by Emotion), which corrupts the entire generated
+            // :root {} block when such a value is serialized as a CSS variable,
+            // making every variable undefined.
             if (process.env.NODE_ENV !== 'production') {
               console.error(
                 `MUI: The theme key \`${keys.join('.')}\` with value \`${value}\` contains \`//\` which is treated as a comment by the CSS preprocessor and cannot be used as a CSS variable value.\n` +

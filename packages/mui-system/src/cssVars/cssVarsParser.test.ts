@@ -407,13 +407,13 @@ describe('cssVarsParser', () => {
     expect(vars).to.deep.equal({});
   });
 
-  it('warns and skips string values containing "//" to avoid stylis comment corruption', () => {
+  it('warns and skips string values with a bare "//" that stylis treats as a comment', () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const { css, vars } = cssVarsParser({
       palette: {
         primary: {
           main: '#ff5252',
-          image: 'url(https://example.com/image.png)',
+          image: 'https://example.com/image.png',
           dark: '#b71c1c',
         },
       },
@@ -435,6 +435,22 @@ describe('cssVarsParser', () => {
     errorSpy.mockRestore();
   });
 
+  it('keeps values where "//" only appears inside url() or quoted strings', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { css } = cssVarsParser({
+      backgroundImage: 'url(https://example.com/image.png)',
+      backgroundImageQuoted: 'url("https://example.com/image.png")',
+      content: '"https://example.com"',
+    });
+    expect(css).to.deep.equal({
+      '--backgroundImage': 'url(https://example.com/image.png)',
+      '--backgroundImageQuoted': 'url("https://example.com/image.png")',
+      '--content': '"https://example.com"',
+    });
+    expect(errorSpy.mock.calls).to.have.length(0);
+    errorSpy.mockRestore();
+  });
+
   it('does not warn when the key is excluded via `shouldSkipGeneratingVar`', () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const { css } = cssVarsParser(
@@ -442,7 +458,7 @@ describe('cssVarsParser', () => {
         palette: {
           primary: {
             main: '#ff5252',
-            image: 'url(https://example.com/image.png)',
+            image: 'https://example.com/image.png',
           },
         },
       },
