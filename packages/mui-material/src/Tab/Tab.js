@@ -11,7 +11,6 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import { useRovingTabIndexContext, useRovingTabIndexItem } from '../utils/useRovingTabIndex';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
-import { private_tabVars as vars } from './tabVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -52,26 +51,12 @@ const TabRoot = styled(ButtonBase, {
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.button,
-    // Density seams (three-layer). Default state: block/inline pad + min-height.
-    // Icon gaps split stack (top/bottom) vs inline (start/end). min-height is
-    // raw px per preset (paired with Tabs); the icon+label variant below swaps
-    // in its own block pad + min-height defaults + tokens.
-    '--_blockPad': '12px',
-    '--_inlinePad': '16px',
-    '--_minHeight': '48px',
-    '--_iconStackGap': '6px',
-    '--_iconInlineGap': theme.spacing(1),
-    '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
-    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-    '--comp-minHeight': `var(${vars.minHeight}, var(--_minHeight))`,
-    '--comp-iconStackGap': `var(${vars.iconStackGap}, var(--_iconStackGap))`,
-    '--comp-iconInlineGap': `var(${vars.iconInlineGap}, var(--_iconInlineGap))`,
     maxWidth: 360,
     minWidth: 90,
     position: 'relative',
-    minHeight: 'var(--comp-minHeight, var(--_minHeight))',
+    minHeight: 48,
     flexShrink: 0,
-    padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
+    padding: '12px 16px',
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
@@ -97,12 +82,9 @@ const TabRoot = styled(ButtonBase, {
       {
         props: ({ ownerState }) => ownerState.icon && ownerState.label,
         style: {
-          // Second density state: its own min-height + block-pad tokens/defaults;
-          // the base `min-height`/`padding` declarations re-resolve via the seam.
-          '--_minHeight': '72px',
-          '--_blockPad': '9px',
-          '--comp-minHeight': `var(${vars.iconLabelMinHeight}, var(--_minHeight))`,
-          '--comp-blockPad': `var(${vars.iconLabelBlockPad}, var(--_blockPad))`,
+          minHeight: 72,
+          paddingTop: 9,
+          paddingBottom: 9,
         },
       },
       {
@@ -110,7 +92,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'top',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginBottom: 'var(--comp-iconStackGap, var(--_iconStackGap))',
+            marginBottom: 6,
           },
         },
       },
@@ -119,7 +101,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'bottom',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginTop: 'var(--comp-iconStackGap, var(--_iconStackGap))',
+            marginTop: 6,
           },
         },
       },
@@ -128,7 +110,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'start',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginRight: 'var(--comp-iconInlineGap, var(--_iconInlineGap))',
+            marginRight: theme.spacing(1),
           },
         },
       },
@@ -137,7 +119,7 @@ const TabRoot = styled(ButtonBase, {
           ownerState.icon && ownerState.label && iconPosition === 'end',
         style: {
           [`& > .${tabClasses.icon}`]: {
-            marginLeft: 'var(--comp-iconInlineGap, var(--_iconInlineGap))',
+            marginLeft: theme.spacing(1),
           },
         },
       },

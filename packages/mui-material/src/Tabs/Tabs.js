@@ -17,7 +17,6 @@ import ScrollbarSize from './ScrollbarSize';
 import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
-import { private_tabsVars as vars } from './tabsVars';
 import ownerWindow from '../utils/ownerWindow';
 import isLayoutSupported from '../utils/isLayoutSupported';
 import useSlot from '../utils/useSlot';
@@ -78,11 +77,7 @@ const TabsRoot = styled('div', {
 })(
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
-    // Density seam: strip min-height (raw px per preset), paired with Tab's
-    // default min-height so the strip never mismatches its tabs.
-    '--_minHeight': '48px',
-    '--comp-minHeight': `var(${vars.minHeight}, var(--_minHeight))`,
-    minHeight: 'var(--comp-minHeight, var(--_minHeight))',
+    minHeight: 48,
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
     display: 'flex',

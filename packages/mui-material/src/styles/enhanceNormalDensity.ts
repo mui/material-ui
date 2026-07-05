@@ -1,7 +1,6 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
-import { private_tabVars as tabVars } from '../Tab/tabVars';
-import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
+import tabClasses from '../Tab/tabClasses';
 import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import { private_selectVars as selVars } from '../Select/selectVars';
@@ -320,17 +319,54 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'input',
   );
   addRootOverride(enhanced.components, 'MuiTab', {
-    // Spacing = steps; min-heights = raw px (paired with MuiTabs below).
-    [tabVars.minHeight]: '48px',
-    [tabVars.iconLabelMinHeight]: '72px',
-    [tabVars.blockPad]: d.sm,
-    [tabVars.iconLabelBlockPad]: d.xs,
-    [tabVars.inlinePad]: d.lg,
-    [tabVars.iconStackGap]: d.xs,
-    [tabVars.iconInlineGap]: d.sm,
+    // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
+    minHeight: '48px',
+    paddingTop: d.sm,
+    paddingBottom: d.sm,
+    paddingLeft: d.lg,
+    paddingRight: d.lg,
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { icon?: unknown; label?: unknown } }) =>
+          ownerState.icon && ownerState.label,
+        style: { minHeight: '72px', paddingTop: d.xs, paddingBottom: d.xs },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
+        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
+        style: { [`& > .${tabClasses.icon}`]: { marginBottom: d.xs } },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
+        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
+        style: { [`& > .${tabClasses.icon}`]: { marginTop: d.xs } },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
+        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
+        style: { [`& > .${tabClasses.icon}`]: { marginRight: d.sm } },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
+        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
+        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.sm } },
+      },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiTabs', {
-    [tabsVars.minHeight]: '48px', // == MuiTab minHeight (the pairing)
+    minHeight: '48px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
     // Touch-target padding (9px both sizes today) = density steps.

@@ -34,8 +34,8 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
-import Tabs, { private_tabsVars } from '@mui/material/Tabs';
-import Tab, { private_tabVars } from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
 import Radio, { private_radioVars } from '@mui/material/Radio';
 import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
@@ -450,15 +450,15 @@ function InputMatrix() {
 // shared inline pad + icon gaps (stack/inline), plus the paired Tabs-root
 // min-height. Spacing → density keys; min-heights → raw px (read off the theme).
 const TAB_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_tabVars.minHeight, prop: 'minHeight', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
-  { key: 'tabsMinHeight', cssVar: private_tabsVars.minHeight, prop: 'minHeight', selector: '.MuiTabs-root' },
-  { key: 'iconLabelMinHeight', cssVar: private_tabVars.iconLabelMinHeight, prop: 'minHeight', selector: '.MuiTab-root.MuiTab-labelIcon' },
-  { key: 'blockPad', cssVar: private_tabVars.blockPad, prop: 'paddingBlock', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
-  { key: 'iconLabelBlockPad', cssVar: private_tabVars.iconLabelBlockPad, prop: 'paddingBlock', selector: '.MuiTab-root.MuiTab-labelIcon' },
-  { key: 'inlinePad', cssVar: private_tabVars.inlinePad, prop: 'paddingInline', selector: '.MuiTab-root' },
+  { key: 'minHeight', cssVar: '--Tab-minHeight', prop: 'minHeight', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
+  { key: 'tabsMinHeight', cssVar: '--Tabs-minHeight', prop: 'minHeight', selector: '.MuiTabs-root' },
+  { key: 'iconLabelMinHeight', cssVar: '--Tab-iconLabel-minHeight', prop: 'minHeight', selector: '.MuiTab-root.MuiTab-labelIcon' },
+  { key: 'blockPad', cssVar: '--Tab-blockPad', prop: 'paddingBlock', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
+  { key: 'iconLabelBlockPad', cssVar: '--Tab-iconLabel-blockPad', prop: 'paddingBlock', selector: '.MuiTab-root.MuiTab-labelIcon' },
+  { key: 'inlinePad', cssVar: '--Tab-inlinePad', prop: 'paddingInline', selector: '.MuiTab-root' },
   // var-mode: one gap var → icon margin per iconPosition (top/bottom, start/end; no class).
-  { key: 'iconStackGap', cssVar: private_tabVars.iconStackGap, selector: '.MuiTab-root' },
-  { key: 'iconInlineGap', cssVar: private_tabVars.iconInlineGap, selector: '.MuiTab-root' },
+  { key: 'iconStackGap', cssVar: '--Tab-icon-stackGap', selector: '.MuiTab-root' },
+  { key: 'iconInlineGap', cssVar: '--Tab-icon-inlineGap', selector: '.MuiTab-root' },
 ];
 
 function TabsMatrix() {
