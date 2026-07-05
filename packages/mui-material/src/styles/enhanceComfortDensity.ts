@@ -14,9 +14,6 @@ import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
-import { private_dialogTitleVars as dtVars } from '../DialogTitle/dialogTitleVars';
-import { private_dialogContentVars as dcVars } from '../DialogContent/dialogContentVars';
-import { private_dialogActionsVars as daVars } from '../DialogActions/dialogActionsVars';
 import { private_listItemButtonVars as libVars } from '../ListItemButton/listItemButtonVars';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
@@ -455,15 +452,16 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [bnaVars.inlinePad]: d.md,
   });
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
-    [dtVars.blockPad]: d.lg,
-    [dtVars.inlinePad]: d.xl,
+    padding: `${d.lg} ${d.xl}`,
   });
   addRootOverride(enhanced.components, 'MuiDialogContent', {
-    [dcVars.blockPad]: d.lg,
-    [dcVars.inlinePad]: d.xl,
+    // Base block/inline padding; re-assert the frozen dividers literal the base
+    // padding would otherwise clobber.
+    padding: `${d.lg} ${d.xl}`,
+    variants: [{ props: { dividers: true }, style: { padding: '16px 24px' } }],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
-    [daVars.pad]: d.sm,
+    padding: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     [libVars.blockPad]: d.sm,

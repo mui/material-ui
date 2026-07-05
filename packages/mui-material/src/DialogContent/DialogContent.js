@@ -7,7 +7,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
-import { private_dialogContentVars as vars } from './dialogContentVars';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -34,12 +33,7 @@ const DialogContentRoot = styled('div', {
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
     overflowY: 'auto',
-    // Density seams: block/inline padding (dividers variant stays literal below).
-    '--_blockPad': '20px',
-    '--_inlinePad': '24px',
-    '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
-    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-    padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
+    padding: '20px 24px',
     variants: [
       {
         props: ({ ownerState }) => ownerState.dividers,

@@ -7,7 +7,6 @@ import Typography from '../Typography';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
-import { private_dialogTitleVars as vars } from './dialogTitleVars';
 import DialogContext from '../Dialog/DialogContext';
 
 const useUtilityClasses = (ownerState) => {
@@ -24,12 +23,7 @@ const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
 })({
-  // Density seams: block/inline padding.
-  '--_blockPad': '16px',
-  '--_inlinePad': '24px',
-  '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
-  '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-  padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
+  padding: '16px 24px',
   flex: '0 0 auto',
 });
 

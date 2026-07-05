@@ -41,9 +41,9 @@ import Radio from '@mui/material/Radio';
 import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import DialogTitle, { private_dialogTitleVars } from '@mui/material/DialogTitle';
-import DialogContent, { private_dialogContentVars } from '@mui/material/DialogContent';
-import DialogActions, { private_dialogActionsVars } from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -941,11 +941,11 @@ function BottomNavigationMatrix() {
 
 // Dialog family: title + content block/inline padding + actions padding.
 const DIALOG_FIELDS: DensityField[] = [
-  { key: 'titleBlockPad', cssVar: private_dialogTitleVars.blockPad, prop: 'paddingBlock', selector: '.MuiDialogTitle-root' },
-  { key: 'titleInlinePad', cssVar: private_dialogTitleVars.inlinePad, prop: 'paddingInline', selector: '.MuiDialogTitle-root' },
-  { key: 'contentBlockPad', cssVar: private_dialogContentVars.blockPad, prop: 'paddingBlock', selector: '.MuiDialogContent-root' },
-  { key: 'contentInlinePad', cssVar: private_dialogContentVars.inlinePad, prop: 'paddingInline', selector: '.MuiDialogContent-root' },
-  { key: 'actionsPad', cssVar: private_dialogActionsVars.pad, prop: 'padding', selector: '.MuiDialogActions-root' },
+  { key: 'titleBlockPad', cssVar: '--DialogTitle-blockPad', prop: 'paddingBlock', selector: '.MuiDialogTitle-root' },
+  { key: 'titleInlinePad', cssVar: '--DialogTitle-inlinePad', prop: 'paddingInline', selector: '.MuiDialogTitle-root' },
+  { key: 'contentBlockPad', cssVar: '--DialogContent-blockPad', prop: 'paddingBlock', selector: '.MuiDialogContent-root' },
+  { key: 'contentInlinePad', cssVar: '--DialogContent-inlinePad', prop: 'paddingInline', selector: '.MuiDialogContent-root' },
+  { key: 'actionsPad', cssVar: '--DialogActions-pad', prop: 'padding', selector: '.MuiDialogActions-root' },
 ];
 
 function DialogMatrix() {
