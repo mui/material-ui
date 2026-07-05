@@ -10,7 +10,6 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-import { private_checkboxVars as vars } from './checkboxVars';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -56,15 +55,6 @@ const CheckboxRoot = styled(SwitchBase, {
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
     variants: [
-      {
-        // Route the per-size touch-target padding token into SwitchBase's seam.
-        props: { size: 'medium' },
-        style: { '--comp-pad': `var(${vars.mediumPad}, var(--_pad))` },
-      },
-      {
-        props: { size: 'small' },
-        style: { '--comp-pad': `var(${vars.smallPad}, var(--_pad))` },
-      },
       {
         props: { color: 'default', disableRipple: false },
         style: {

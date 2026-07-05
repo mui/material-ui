@@ -2,5 +2,3 @@ export { default } from './Checkbox';
 
 export { default as checkboxClasses } from './checkboxClasses';
 export * from './checkboxClasses';
-
-export { private_checkboxVars } from './checkboxVars';

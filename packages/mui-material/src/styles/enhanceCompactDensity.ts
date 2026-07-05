@@ -1,7 +1,6 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
-import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
@@ -365,9 +364,11 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     minHeight: '40px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
-    // Touch-target padding (9px both sizes today) = density steps.
-    [cbVars.mediumPad]: d.sm,
-    [cbVars.smallPad]: d.xs,
+    // Touch-target padding per size (9px both sizes today) = density steps.
+    variants: [
+      { props: { size: 'medium' }, style: { padding: d.sm } },
+      { props: { size: 'small' }, style: { padding: d.xs } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiRadio', {
     // Touch-target padding via SwitchBase (mirrors Checkbox).

@@ -36,7 +36,7 @@ import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomple
 import InputAdornment from '@mui/material/InputAdornment';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Checkbox, { private_checkboxVars } from '@mui/material/Checkbox';
+import Checkbox from '@mui/material/Checkbox';
 import Radio, { private_radioVars } from '@mui/material/Radio';
 import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -485,8 +485,8 @@ function TabsMatrix() {
 // Checkbox family: the touch-target padding around the icon, per size (via
 // SwitchBase). All spacing → density keys.
 const CHECKBOX_FIELDS: DensityField[] = [
-  { key: 'mediumPad', cssVar: private_checkboxVars.mediumPad, prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeMedium' },
-  { key: 'smallPad', cssVar: private_checkboxVars.smallPad, prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeSmall' },
+  { key: 'mediumPad', cssVar: '--Checkbox-medium-pad', prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeMedium' },
+  { key: 'smallPad', cssVar: '--Checkbox-small-pad', prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeSmall' },
 ];
 
 function CheckboxMatrix() {
