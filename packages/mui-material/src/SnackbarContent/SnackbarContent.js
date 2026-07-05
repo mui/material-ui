@@ -9,7 +9,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
-import { private_snackbarContentVars as vars } from './snackbarContentVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -41,12 +40,7 @@ const SnackbarContentRoot = styled(Paper, {
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
-      // Density seams: root block/inline padding (no size axis).
-      '--_blockPad': '6px',
-      '--_inlinePad': '16px',
-      '--comp-blockPad': `var(${vars.blockPad}, var(--_blockPad))`,
-      '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-      padding: 'var(--comp-blockPad, var(--_blockPad)) var(--comp-inlinePad, var(--_inlinePad))',
+      padding: '6px 16px',
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
         flexGrow: 'initial',

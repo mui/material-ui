@@ -13,7 +13,6 @@ import { private_stepLabelVars as slVars } from '../StepLabel/stepLabelVars';
 import { private_toolbarVars as toolbarVars } from '../Toolbar/toolbarVars';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
 import { private_paginationItemVars as piVars } from '../PaginationItem/paginationItemVars';
-import { private_snackbarContentVars as scVars } from '../SnackbarContent/snackbarContentVars';
 import { private_bottomNavigationVars as bnVars } from '../BottomNavigation/bottomNavigationVars';
 import { private_bottomNavigationActionVars as bnaVars } from '../BottomNavigationAction/bottomNavigationActionVars';
 import { private_dialogTitleVars as dtVars } from '../DialogTitle/dialogTitleVars';
@@ -433,8 +432,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [piVars.largeSize]: '36px',
   });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
-    [scVars.blockPad]: d.xs,
-    [scVars.inlinePad]: d.lg,
+    // No size axis: root padding (block/inline steps).
+    padding: `${d.xs} ${d.lg}`,
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigation', {
     [bnVars.height]: '48px',

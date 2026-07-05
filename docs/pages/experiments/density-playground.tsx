@@ -7,7 +7,7 @@ import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup'
 import Fab, { private_fabVars } from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
 import { private_paginationItemVars } from '@mui/material/PaginationItem';
-import SnackbarContent, { private_snackbarContentVars } from '@mui/material/SnackbarContent';
+import SnackbarContent from '@mui/material/SnackbarContent';
 import BottomNavigation, { private_bottomNavigationVars } from '@mui/material/BottomNavigation';
 import BottomNavigationAction, {
   private_bottomNavigationActionVars,
@@ -905,8 +905,8 @@ function PaginationMatrix() {
 
 // SnackbarContent family: root block/inline padding (no size axis).
 const SNACKBAR_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_snackbarContentVars.blockPad, prop: 'paddingBlock', selector: '.MuiSnackbarContent-root' },
-  { key: 'inlinePad', cssVar: private_snackbarContentVars.inlinePad, prop: 'paddingInline', selector: '.MuiSnackbarContent-root' },
+  { key: 'blockPad', cssVar: '--SnackbarContent-blockPad', prop: 'paddingBlock', selector: '.MuiSnackbarContent-root' },
+  { key: 'inlinePad', cssVar: '--SnackbarContent-inlinePad', prop: 'paddingInline', selector: '.MuiSnackbarContent-root' },
 ];
 
 function SnackbarMatrix() {
