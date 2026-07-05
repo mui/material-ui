@@ -381,8 +381,8 @@ importers:
         specifier: ^1.11.21
         version: 1.11.21
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
       feed:
         specifier: ^5.2.1
         version: 5.2.1
@@ -601,8 +601,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
@@ -669,8 +669,8 @@ importers:
         specifier: workspace:^
         version: link:../../docs
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
     devDependencies:
       '@types/chai':
         specifier: 5.2.3
@@ -742,8 +742,8 @@ importers:
         specifier: ^3.1.3
         version: 3.2.3
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
       fg-loadcss:
         specifier: ^3.1.0
         version: 3.1.0
@@ -827,8 +827,8 @@ importers:
         specifier: ^7.29.7
         version: 7.29.7
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
       marked:
         specifier: ^18.0.5
         version: 18.0.5
@@ -867,8 +867,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       es-toolkit:
-        specifier: ^1.46.1
-        version: 1.46.1
+        specifier: ^1.49.0
+        version: 1.49.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -7006,6 +7006,9 @@ packages:
 
   es-toolkit@1.46.1:
     resolution: {integrity: sha512-5eNtXOs3tbfxXOj04tjjseeWkRWaoCjdEI+96DgwzZoe6c9juL49pXlzAFTI72aWC9Y8p7168g6XIKjh7k6pyQ==}
+
+  es-toolkit@1.49.0:
+    resolution: {integrity: sha512-G5iZ6Pc/FNRY/soKZHC+TxGDD83rHUDXxzaWhGCX44vAv/tMs56WMusnm/KMNK+luUPsgA9U28cGr4RDlSzL2g==}
 
   esbuild@0.28.1:
     resolution: {integrity: sha512-HrJrvZv5ayxBzPfwphOoNzkzOIIlifzk0KJrGK2c8R4+LKpMtpYLQeUdjnwjWv/LZlkH2laZk+4w78pi99D4Vw==}
@@ -13682,7 +13685,7 @@ snapshots:
       clipboardy: 5.3.1
       content-type: 2.0.0
       env-ci: 11.2.0
-      es-toolkit: 1.46.1
+      es-toolkit: 1.49.0
       eslint: 10.3.0(jiti@2.6.1)
       eslint-config-prettier: 10.1.8(eslint@10.3.0(jiti@2.6.1))
       eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import@2.32.0)(eslint@10.3.0(jiti@2.6.1))
@@ -13769,7 +13772,7 @@ snapshots:
       chai: 6.2.2
       chai-dom: 1.12.1(chai@6.2.2)
       dom-accessibility-api: 0.7.1
-      es-toolkit: 1.46.1
+      es-toolkit: 1.49.0
       format-util: 1.0.5
       prop-types: 15.8.1
       react: 19.2.6
@@ -17438,6 +17441,8 @@ snapshots:
       is-symbol: 1.1.1
 
   es-toolkit@1.46.1: {}
+
+  es-toolkit@1.49.0: {}
 
   esbuild@0.28.1:
     optionalDependencies:
