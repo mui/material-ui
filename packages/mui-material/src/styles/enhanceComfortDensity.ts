@@ -2,7 +2,6 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
-import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
@@ -363,9 +362,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { size: 'small' }, style: { padding: d.xs } },
     ],
   });
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', {
-    [bcVars.separatorGap]: d.sm,
-  });
+  // Separator inline margins (spacing step) on the separator slot.
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginLeft: d.sm, marginRight: d.sm }, 'separator');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     // Emit uniform padding directly on the size variants ToggleButton ships (no seam).
     variants: [

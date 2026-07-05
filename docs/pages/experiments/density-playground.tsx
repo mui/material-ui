@@ -38,7 +38,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
-import Breadcrumbs, { private_breadcrumbsVars } from '@mui/material/Breadcrumbs';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -654,7 +654,7 @@ function RadioMatrix() {
 
 // Breadcrumbs family: the separator inline gap (single token, no size axis).
 const BREADCRUMBS_FIELDS: DensityField[] = [
-  { key: 'separatorGap', cssVar: private_breadcrumbsVars.separatorGap, prop: 'marginInline', selector: '.MuiBreadcrumbs-separator' },
+  { key: 'separatorGap', cssVar: '--Breadcrumbs-separatorGap', prop: 'marginInline', selector: '.MuiBreadcrumbs-separator' },
 ];
 
 function BreadcrumbsMatrix() {
