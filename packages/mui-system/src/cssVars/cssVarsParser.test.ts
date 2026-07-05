@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { vi } from 'vitest';
 import cssVarsParser, { assignNestedKeys, walkObjectDeep } from './cssVarsParser';
 
 describe('cssVarsParser', () => {
@@ -404,5 +405,51 @@ describe('cssVarsParser', () => {
     });
     expect(css).to.deep.equal({});
     expect(vars).to.deep.equal({});
+  });
+
+  it('warns and skips string values containing "//" to avoid stylis comment corruption', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { css, vars } = cssVarsParser({
+      palette: {
+        primary: {
+          main: '#ff5252',
+          image: 'url(https://example.com/image.png)',
+          dark: '#b71c1c',
+        },
+      },
+    });
+    expect(css).to.deep.equal({
+      '--palette-primary-main': '#ff5252',
+      '--palette-primary-dark': '#b71c1c',
+    });
+    expect(vars).to.deep.equal({
+      palette: {
+        primary: {
+          main: 'var(--palette-primary-main)',
+          dark: 'var(--palette-primary-dark)',
+        },
+      },
+    });
+    expect(errorSpy.mock.calls[0][0]).to.include('palette.primary.image');
+    expect(errorSpy.mock.calls[0][0]).to.include('//');
+    errorSpy.mockRestore();
+  });
+
+  it('does not warn when the key is excluded via `shouldSkipGeneratingVar`', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { css } = cssVarsParser(
+      {
+        palette: {
+          primary: {
+            main: '#ff5252',
+            image: 'url(https://example.com/image.png)',
+          },
+        },
+      },
+      { shouldSkipGeneratingVar: (keys) => keys.includes('image') },
+    );
+    expect(css).to.deep.equal({ '--palette-primary-main': '#ff5252' });
+    expect(errorSpy.mock.calls).to.have.length(0);
+    errorSpy.mockRestore();
   });
 });
