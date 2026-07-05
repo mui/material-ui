@@ -2,7 +2,6 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
-import { private_chipVars as chipVars } from '../Chip/chipVars';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
@@ -477,13 +476,25 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   // Icon→message gap on the icon slot (child element).
   addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
+  // Height (raw px) drives avatar/icon/deleteIcon via calc off `--Chip-height`.
   addRootOverride(enhanced.components, 'MuiChip', {
-    // Height = raw px (drives avatar/icon/deleteIcon via calc); label padInline = steps.
-    [chipVars.mediumHeight]: '36px',
-    [chipVars.smallHeight]: '28px',
-    [chipVars.mediumPadInline]: d.md,
-    [chipVars.smallPadInline]: d.sm,
+    variants: [
+      { props: { size: 'medium' }, style: { '--Chip-height': '36px' } },
+      { props: { size: 'small' }, style: { '--Chip-height': '28px' } },
+    ],
   });
+  // Label inline padding = density steps, unified per size on the label slot.
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      variants: [
+        { props: { size: 'medium' }, style: { paddingInline: d.md } },
+        { props: { size: 'small' }, style: { paddingInline: d.sm } },
+      ],
+    },
+    'label',
+  );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
     // Collapsed min-height raw px; inline padding = step.
     minHeight: '56px',

@@ -52,7 +52,7 @@ import Rating from '@mui/material/Rating';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
-import Chip, { private_chipVars } from '@mui/material/Chip';
+import Chip from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Badge, { private_badgeVars } from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
@@ -584,12 +584,13 @@ function AlertMatrix() {
 // Chip family: height (per size — drives avatar/icon/deleteIcon via calc) +
 // label inline padding (per size). Height = raw px; padInline = density keys.
 const CHIP_FIELDS: DensityField[] = [
-  // var-mode: height drives avatar/icon/deleteIcon dims via calc — write the var
-  // so the derived children scale too (writing `height` would move only the box).
-  { key: 'mediumHeight', cssVar: private_chipVars.mediumHeight, selector: '.MuiChip-root.MuiChip-sizeMedium' },
-  { key: 'smallHeight', cssVar: private_chipVars.smallHeight, selector: '.MuiChip-root.MuiChip-sizeSmall' },
-  { key: 'mediumPadInline', cssVar: private_chipVars.mediumPadInline, prop: 'paddingInline', selector: '.MuiChip-sizeMedium .MuiChip-label' },
-  { key: 'smallPadInline', cssVar: private_chipVars.smallPadInline, prop: 'paddingInline', selector: '.MuiChip-sizeSmall .MuiChip-label' },
+  // Calc-coupled var-mode: the single `--Chip-height` (scoped per size) drives
+  // avatar/icon/deleteIcon dims via calc — write the var so the derived children
+  // scale too (writing `height` would move only the box).
+  { key: 'mediumHeight', cssVar: '--Chip-height', selector: '.MuiChip-root.MuiChip-sizeMedium' },
+  { key: 'smallHeight', cssVar: '--Chip-height', selector: '.MuiChip-root.MuiChip-sizeSmall' },
+  { key: 'mediumPadInline', cssVar: '--Chip-medium-padInline', prop: 'paddingInline', selector: '.MuiChip-sizeMedium .MuiChip-label' },
+  { key: 'smallPadInline', cssVar: '--Chip-small-padInline', prop: 'paddingInline', selector: '.MuiChip-sizeSmall .MuiChip-label' },
 ];
 
 function ChipMatrix() {
