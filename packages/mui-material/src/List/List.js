@@ -7,7 +7,6 @@ import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
-import { private_listVars as listVars } from './listVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disablePadding, dense, subheader } = ownerState;
@@ -41,14 +40,8 @@ const ListRoot = styled('ul', {
     {
       props: ({ ownerState }) => !ownerState.disablePadding,
       style: {
-        // Density seam: `--List-blockPad` (spacing token) over the literal
-        // default via the agnostic `--comp-blockPad`. Same map read by the
-        // `enhance*Density` presets. The `subheader` variant below still forces
-        // `paddingTop: 0` (unchanged).
-        '--_blockPad': '8px',
-        [`--comp-blockPad`]: `var(${listVars.blockPad}, var(--_blockPad))`,
-        paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
-        paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
+        paddingTop: 8,
+        paddingBottom: 8,
       },
     },
     {

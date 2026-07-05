@@ -23,11 +23,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import MenuItem, { private_menuItemVars } from '@mui/material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
 import ListItemButton, { private_listItemButtonVars } from '@mui/material/ListItemButton';
-import List, { private_listVars } from '@mui/material/List';
+import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -246,13 +246,13 @@ function ButtonMatrix() {
 // mapping-state key. Sizing tokens (`minHeight`) accept raw px like any other —
 // a density key is just sugar; heights ship as raw px per preset.
 const MENU_FIELDS: DensityField[] = [
-  { key: 'listBlockPad', cssVar: private_listVars.blockPad, prop: 'paddingBlock', selector: '.MuiList-padding' },
-  { key: 'blockPad', cssVar: private_menuItemVars.blockPad, prop: 'paddingBlock', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
-  { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad, prop: 'paddingInline', selector: '.MuiMenuItem-gutters:not(.MuiMenuItem-dense)' },
-  { key: 'minHeight', cssVar: private_menuItemVars.minHeight, prop: 'minHeight', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
-  { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad, prop: 'paddingBlock', selector: '.MuiMenuItem-dense' },
-  { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad, prop: 'paddingInline', selector: '.MuiMenuItem-gutters.MuiMenuItem-dense' },
-  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight, prop: 'minHeight', selector: '.MuiMenuItem-dense' },
+  { key: 'listBlockPad', cssVar: '--List-blockPad', prop: 'paddingBlock', selector: '.MuiList-padding' },
+  { key: 'blockPad', cssVar: '--MenuItem-blockPad', prop: 'paddingBlock', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
+  { key: 'inlinePad', cssVar: '--MenuItem-inlinePad', prop: 'paddingInline', selector: '.MuiMenuItem-gutters:not(.MuiMenuItem-dense)' },
+  { key: 'minHeight', cssVar: '--MenuItem-minHeight', prop: 'minHeight', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
+  { key: 'denseBlockPad', cssVar: '--MenuItem-dense-blockPad', prop: 'paddingBlock', selector: '.MuiMenuItem-dense' },
+  { key: 'denseInlinePad', cssVar: '--MenuItem-dense-inlinePad', prop: 'paddingInline', selector: '.MuiMenuItem-gutters.MuiMenuItem-dense' },
+  { key: 'denseMinHeight', cssVar: '--MenuItem-dense-minHeight', prop: 'minHeight', selector: '.MuiMenuItem-dense' },
 ];
 
 function MenuDemoItems() {

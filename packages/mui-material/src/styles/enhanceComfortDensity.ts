@@ -1,6 +1,4 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
-import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
-import { private_listVars as listVars } from '../List/listVars';
 import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
 import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedInputVars';
 import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
@@ -60,16 +58,20 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     // Height = raw px (density steps are spacing-only). Padding = density steps.
-    [menuItemVars.minHeight]: '56px',
-    [menuItemVars.denseMinHeight]: '40px',
-    [menuItemVars.blockPad]: d.xs,
-    [menuItemVars.denseBlockPad]: d.xxs,
-    [menuItemVars.inlinePad]: d.lg,
-    [menuItemVars.denseInlinePad]: d.md,
+    // Density axis is the `dense` boolean; inline pad only when gutters are on.
+    variants: [
+      { props: { dense: false }, style: { minHeight: '56px', paddingTop: d.xs, paddingBottom: d.xs } },
+      { props: { dense: true }, style: { minHeight: '40px', paddingTop: d.xxs, paddingBottom: d.xxs } },
+      { props: { dense: false, disableGutters: false }, style: { paddingLeft: d.lg, paddingRight: d.lg } },
+      { props: { dense: true, disableGutters: false }, style: { paddingLeft: d.md, paddingRight: d.md } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiList', {
-    // Menu/list vertical breathing (spacing token).
-    [listVars.blockPad]: d.sm,
+    // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
+    variants: [
+      { props: { disablePadding: false }, style: { paddingTop: d.sm, paddingBottom: d.sm } },
+      { props: ({ ownerState }: { ownerState: { subheader?: unknown } }) => ownerState.subheader, style: { paddingTop: 0 } },
+    ],
   });
   addRootOverride(
     enhanced.components,
