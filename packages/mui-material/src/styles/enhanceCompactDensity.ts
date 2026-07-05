@@ -5,8 +5,7 @@ import { private_checkboxVars as cbVars } from '../Checkbox/checkboxVars';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
 import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
-import { private_accordionSummaryVars as asVars } from '../AccordionSummary/accordionSummaryVars';
-import { private_accordionDetailsVars as adVars } from '../AccordionDetails/accordionDetailsVars';
+import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_radioVars as radioVars } from '../Radio/radioVars';
 import { private_breadcrumbsVars as bcVars } from '../Breadcrumbs/breadcrumbsVars';
 import { private_toggleButtonVars as tbVars } from '../ToggleButton/toggleButtonVars';
@@ -486,17 +485,36 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     [chipVars.smallPadInline]: d.sm,
   });
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
-    // min-heights raw px; inline pad + content block margin = steps.
-    [asVars.minHeight]: '40px',
-    [asVars.expandedMinHeight]: '52px',
-    [asVars.inlinePad]: d.lg,
-    [asVars.marginBlock]: d.md,
-    [asVars.expandedMarginBlock]: d.lg,
+    // Collapsed min-height raw px; inline padding = step.
+    minHeight: '40px',
+    padding: `0 ${d.lg}`,
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+          !ownerState.disableGutters,
+        // Re-assert expanded min-height (master literal wins by specificity else).
+        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '52px' } },
+      },
+    ],
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiAccordionSummary',
+    {
+      // Content block margin reduces with min-height (else it binds header height).
+      margin: `${d.md} 0`,
+      variants: [
+        {
+          props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+            !ownerState.disableGutters,
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { margin: `${d.lg} 0` } },
+        },
+      ],
+    },
+    'content',
+  );
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
-    [adVars.topPad]: d.sm,
-    [adVars.inlinePad]: d.lg,
-    [adVars.bottomPad]: d.lg,
+    padding: `${d.sm} ${d.lg} ${d.lg}`,
   });
   enhanced.typography = {
     ...enhanced.typography,

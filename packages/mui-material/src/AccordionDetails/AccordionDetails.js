@@ -7,7 +7,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
-import { private_accordionDetailsVars as vars } from './accordionDetailsVars';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -23,16 +22,8 @@ const AccordionDetailsRoot = styled('div', {
   name: 'MuiAccordionDetails',
   slot: 'Root',
 })(
-  memoTheme(() => ({
-    // Density seams over the `8px 16px 16px` default (top/inline/bottom).
-    '--_topPad': '8px',
-    '--_inlinePad': '16px',
-    '--_bottomPad': '16px',
-    '--comp-topPad': `var(${vars.topPad}, var(--_topPad))`,
-    '--comp-inlinePad': `var(${vars.inlinePad}, var(--_inlinePad))`,
-    '--comp-bottomPad': `var(${vars.bottomPad}, var(--_bottomPad))`,
-    padding:
-      'var(--comp-topPad, var(--_topPad)) var(--comp-inlinePad, var(--_inlinePad)) var(--comp-bottomPad, var(--_bottomPad))',
+  memoTheme(({ theme }) => ({
+    padding: theme.spacing(1, 2, 2),
   })),
 );
 

@@ -61,8 +61,8 @@ import Stepper from '@mui/material/Stepper';
 import Step, { private_stepVars } from '@mui/material/Step';
 import StepLabel, { private_stepLabelVars } from '@mui/material/StepLabel';
 import Accordion from '@mui/material/Accordion';
-import AccordionSummary, { private_accordionSummaryVars } from '@mui/material/AccordionSummary';
-import AccordionDetails, { private_accordionDetailsVars } from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -607,14 +607,14 @@ function ChipMatrix() {
 // content block margin; Details top/inline/bottom padding. min-heights = raw px,
 // the rest = density keys.
 const ACCORDION_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_accordionSummaryVars.minHeight, prop: 'minHeight', selector: '.MuiAccordionSummary-root:not(.Mui-expanded)' },
-  { key: 'expandedMinHeight', cssVar: private_accordionSummaryVars.expandedMinHeight, prop: 'minHeight', selector: '.MuiAccordionSummary-root.Mui-expanded' },
-  { key: 'inlinePad', cssVar: private_accordionSummaryVars.inlinePad, prop: 'paddingInline', selector: '.MuiAccordionSummary-root' },
-  { key: 'marginBlock', cssVar: private_accordionSummaryVars.marginBlock, prop: 'marginBlock', selector: '.MuiAccordionSummary-content:not(.Mui-expanded)' },
-  { key: 'expandedMarginBlock', cssVar: private_accordionSummaryVars.expandedMarginBlock, prop: 'marginBlock', selector: '.MuiAccordionSummary-content.Mui-expanded' },
-  { key: 'detailsTopPad', cssVar: private_accordionDetailsVars.topPad, prop: 'paddingTop', selector: '.MuiAccordionDetails-root' },
-  { key: 'detailsInlinePad', cssVar: private_accordionDetailsVars.inlinePad, prop: 'paddingInline', selector: '.MuiAccordionDetails-root' },
-  { key: 'detailsBottomPad', cssVar: private_accordionDetailsVars.bottomPad, prop: 'paddingBottom', selector: '.MuiAccordionDetails-root' },
+  { key: 'minHeight', cssVar: '--AccordionSummary-minHeight', prop: 'minHeight', selector: '.MuiAccordionSummary-root:not(.Mui-expanded)' },
+  { key: 'expandedMinHeight', cssVar: '--AccordionSummary-expandedMinHeight', prop: 'minHeight', selector: '.MuiAccordionSummary-root.Mui-expanded' },
+  { key: 'inlinePad', cssVar: '--AccordionSummary-inlinePad', prop: 'paddingInline', selector: '.MuiAccordionSummary-root' },
+  { key: 'marginBlock', cssVar: '--AccordionSummary-marginBlock', prop: 'marginBlock', selector: '.MuiAccordionSummary-content:not(.Mui-expanded)' },
+  { key: 'expandedMarginBlock', cssVar: '--AccordionSummary-expandedMarginBlock', prop: 'marginBlock', selector: '.MuiAccordionSummary-content.Mui-expanded' },
+  { key: 'detailsTopPad', cssVar: '--AccordionDetails-topPad', prop: 'paddingTop', selector: '.MuiAccordionDetails-root' },
+  { key: 'detailsInlinePad', cssVar: '--AccordionDetails-inlinePad', prop: 'paddingInline', selector: '.MuiAccordionDetails-root' },
+  { key: 'detailsBottomPad', cssVar: '--AccordionDetails-bottomPad', prop: 'paddingBottom', selector: '.MuiAccordionDetails-root' },
 ];
 
 function AccordionMatrix() {
