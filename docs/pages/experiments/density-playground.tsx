@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button, { private_buttonVars } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import ButtonGroup, { private_buttonGroupVars } from '@mui/material/ButtonGroup';
 import Fab, { private_fabVars } from '@mui/material/Fab';
 import Pagination from '@mui/material/Pagination';
@@ -18,6 +18,7 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell, { private_tableCellVars } from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -48,6 +49,9 @@ import DialogContent, { private_dialogContentVars } from '@mui/material/DialogCo
 import DialogActions, { private_dialogActionsVars } from '@mui/material/DialogActions';
 import Card from '@mui/material/Card';
 import CardContent, { private_cardContentVars } from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import CardHeader from '@mui/material/CardHeader';
+import Rating from '@mui/material/Rating';
 import Select, { private_selectVars } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert, { private_alertVars } from '@mui/material/Alert';
@@ -85,8 +89,6 @@ const SIZES = ['small', 'medium', 'large'] as const;
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
 
 type Preset = (typeof PRESETS)[number];
-type Size = (typeof SIZES)[number];
-type MappingKey = `${Size}Pad`;
 
 // Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
 // layout-safe (absolute ::before + pointer-events:none), never touches the
@@ -130,8 +132,6 @@ const PRESET_LABEL: Record<Preset, string> = {
   comfort: 'comfort',
 };
 
-const buttonVar = (size: Size) => private_buttonVars[`${size}Pad` as MappingKey];
-
 const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);
 const tokenize = (input: string) => input.trim().split(/\s+/).filter(Boolean);
 
@@ -163,6 +163,22 @@ const previewText = (input: string, scalePx: Record<string, string> | null) =>
     .map((t) => (isDensityKey(t) ? (scalePx?.[t] ?? t) : t))
     .join(' ');
 
+// A readable property label from the token identity, e.g.
+// '--Button-small-pad' → 'Button small padding', '--MenuItem-dense-blockPad' →
+// 'Menu item dense block padding'. Split on `-` + camelCase, lowercase, cap the
+// component word, expand `pad` → `padding`.
+const fieldLabel = (cssVar: string) => {
+  const words = cssVar
+    .replace(/^--/, '')
+    .split('-')
+    .flatMap((seg) => seg.replace(/([a-z])([A-Z])/g, '$1 $2').split(' '))
+    .map((w) => w.toLowerCase());
+  return words
+    .map((w, i) => (i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+    .join(' ')
+    .replace(/\bpad\b/g, 'padding');
+};
+
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
 const PRESET_FN = {
   compact: enhanceCompactDensity,
@@ -177,58 +193,50 @@ const PRESET_FN = {
 // ---------------------------------------------------------------------------
 interface DensityField {
   key: string; // mapping-state key, e.g. 'smallPad'
-  cssVar: string; // e.g. '--Button-small-pad'
+  cssVar: string; // token identity — raw-px placeholder lookup + var-mode override target
+  selector: string; // canvas-relative selector the preset emits on (no `#density-canvas` prefix)
+  // The real CSS property (or properties) to override in-scope — the emitted-override
+  // model writes the property directly, so it survives the source's seam removal.
+  // Omit → var-mode: write `cssVar` instead, letting the source's own seam route it.
+  // Used for calc-coupling children (Chip height) and multi-route/media fields with
+  // no discriminating class (Tab icon gaps, Toolbar gutters, Step gutter, Tooltip offset/arrow).
+  prop?: string | string[];
 }
 interface DensityComponentDef {
   canvasLabel: string;
   fields: DensityField[];
   prefill: Record<string, string>;
-  renderMatrix: (args: { mapping: Record<string, string>; mappingEnabled: boolean }) => React.ReactNode;
+  note?: string; // shown under the mapping group (stub / out-of-scope axis)
+  // Overrides are applied globally via GlobalStyles (see `overrideCss`), so a
+  // matrix is a plain demo render — no per-element token plumbing.
+  renderMatrix: () => React.ReactNode;
 }
 
-function ButtonMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
+function ButtonMatrix() {
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
-      {SIZES.map((size) => {
-        const key = `${size}Pad`;
-        const value = mapping[key] ?? '';
-        // TO5/TO6: element-level token wins over the preset's styleOverride.
-        // At `unset`/empty/invalid emit NO token → falls back to the literal
-        // `--_pad` default (unset) or the preset's own mapping.
-        const sx =
-          mappingEnabled && parseMapping(value).state === 'ok'
-            ? { [buttonVar(size)]: resolveValue(value) }
-            : undefined;
-        return (
-          <Box key={size} data-size-section={size}>
-            <Divider textAlign="left" sx={{ mb: 1.5 }}>
-              <Typography variant="caption" color="text.secondary">
-                {size}
-              </Typography>
-            </Divider>
-            <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
-              {VARIANTS.map((variant) => (
-                <Button
-                  key={variant}
-                  variant={variant}
-                  size={size}
-                  color="primary"
-                  sx={sx}
-                  data-cell={`${variant}-${size}`}
-                >
-                  <span className="density-debug-text">{variant}</span>
-                </Button>
-              ))}
-            </Stack>
-          </Box>
-        );
-      })}
+      {SIZES.map((size) => (
+        <Box key={size} data-size-section={size}>
+          <Divider textAlign="left" sx={{ mb: 1.5 }}>
+            <Typography variant="caption" color="text.secondary">
+              {size}
+            </Typography>
+          </Divider>
+          <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+            {VARIANTS.map((variant) => (
+              <Button
+                key={variant}
+                variant={variant}
+                size={size}
+                color="primary"
+                data-cell={`${variant}-${size}`}
+              >
+                <span className="density-debug-text">{variant}</span>
+              </Button>
+            ))}
+          </Stack>
+        </Box>
+      ))}
     </Stack>
   );
 }
@@ -238,25 +246,25 @@ function ButtonMatrix({
 // mapping-state key. Sizing tokens (`minHeight`) accept raw px like any other —
 // a density key is just sugar; heights ship as raw px per preset.
 const MENU_FIELDS: DensityField[] = [
-  { key: 'listBlockPad', cssVar: private_listVars.blockPad },
-  { key: 'blockPad', cssVar: private_menuItemVars.blockPad },
-  { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad },
-  { key: 'minHeight', cssVar: private_menuItemVars.minHeight },
-  { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad },
-  { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad },
-  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight },
+  { key: 'listBlockPad', cssVar: private_listVars.blockPad, prop: 'paddingBlock', selector: '.MuiList-padding' },
+  { key: 'blockPad', cssVar: private_menuItemVars.blockPad, prop: 'paddingBlock', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
+  { key: 'inlinePad', cssVar: private_menuItemVars.inlinePad, prop: 'paddingInline', selector: '.MuiMenuItem-gutters:not(.MuiMenuItem-dense)' },
+  { key: 'minHeight', cssVar: private_menuItemVars.minHeight, prop: 'minHeight', selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)' },
+  { key: 'denseBlockPad', cssVar: private_menuItemVars.denseBlockPad, prop: 'paddingBlock', selector: '.MuiMenuItem-dense' },
+  { key: 'denseInlinePad', cssVar: private_menuItemVars.denseInlinePad, prop: 'paddingInline', selector: '.MuiMenuItem-gutters.MuiMenuItem-dense' },
+  { key: 'denseMinHeight', cssVar: private_menuItemVars.denseMinHeight, prop: 'minHeight', selector: '.MuiMenuItem-dense' },
 ];
 
-function MenuDemoItems({ itemSx }: { itemSx: Record<string, string> | undefined }) {
+function MenuDemoItems() {
   return (
     <React.Fragment>
-      <MenuItem sx={itemSx}>
+      <MenuItem>
         <span className="density-debug-text">Default item</span>
       </MenuItem>
-      <MenuItem selected sx={itemSx}>
+      <MenuItem selected>
         <span className="density-debug-text">Selected item</span>
       </MenuItem>
-      <MenuItem sx={itemSx}>
+      <MenuItem>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
@@ -264,13 +272,13 @@ function MenuDemoItems({ itemSx }: { itemSx: Record<string, string> | undefined 
           <span className="density-debug-text">With icon</span>
         </ListItemText>
       </MenuItem>
-      <MenuItem divider sx={itemSx}>
+      <MenuItem divider>
         <span className="density-debug-text">With divider</span>
       </MenuItem>
-      <MenuItem dense sx={itemSx}>
+      <MenuItem dense>
         <span className="density-debug-text">Dense item</span>
       </MenuItem>
-      <MenuItem dense sx={itemSx}>
+      <MenuItem dense>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
@@ -282,47 +290,21 @@ function MenuDemoItems({ itemSx }: { itemSx: Record<string, string> | undefined 
   );
 }
 
-function MenuMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
+function MenuMatrix() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  // Element-level tokens win over the preset's styleOverride. `--List-blockPad`
-  // goes on the list root; `--MenuItem-*` on each item (regular reads plain,
-  // dense reads `dense-*` — unused set is inert). Empty/invalid → emit none, so
-  // the preset's own value shows through (e.g. blank min-height keeps the preset px).
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const listSx =
-    mappingEnabled && active('listBlockPad')
-      ? { [private_listVars.blockPad]: resolveValue(mapping.listBlockPad) }
-      : undefined;
-  const itemSx = mappingEnabled
-    ? Object.fromEntries(
-        MENU_FIELDS.filter((f) => f.key !== 'listBlockPad' && active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+  // The popover portals outside `#density-canvas`, so manual overrides (scoped
+  // there) reach only the static list; both still follow the preset via context.
   return (
     <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
-      <MenuList sx={{ ...listSx, width: 240, border: '1px solid', borderColor: 'divider' }}>
-        <MenuDemoItems itemSx={itemSx} />
+      <MenuList sx={{ width: 240, border: '1px solid', borderColor: 'divider' }}>
+        <MenuDemoItems />
       </MenuList>
       <div>
         <Button variant="outlined" onClick={(event) => setAnchorEl(event.currentTarget)}>
           Open menu
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={() => setAnchorEl(null)}
-          slotProps={{ list: { sx: listSx } }}
-        >
-          <MenuDemoItems itemSx={itemSx} />
+        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+          <MenuDemoItems />
         </Menu>
       </div>
     </Stack>
@@ -333,35 +315,27 @@ function MenuMatrix({
 // Padding + anchor offset are spacing (prefill density keys); arrow size ships
 // as raw px per preset (read live off the theme), like MenuItem min-height.
 const TOOLTIP_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_tooltipVars.blockPad },
-  { key: 'inlinePad', cssVar: private_tooltipVars.inlinePad },
-  { key: 'offset', cssVar: private_tooltipVars.offset },
-  { key: 'arrowSize', cssVar: private_tooltipVars.arrowSize },
+  { key: 'blockPad', cssVar: private_tooltipVars.blockPad, prop: 'paddingBlock', selector: '.MuiTooltip-tooltip' },
+  { key: 'inlinePad', cssVar: private_tooltipVars.inlinePad, prop: 'paddingInline', selector: '.MuiTooltip-tooltip' },
+  // var-mode: one offset var drives a per-placement margin (4 placements, no class).
+  { key: 'offset', cssVar: private_tooltipVars.offset, selector: '.MuiTooltip-tooltip' },
+  // var-mode: the arrow's width + height (calc) both derive from this var.
+  { key: 'arrowSize', cssVar: private_tooltipVars.arrowSize, selector: '.MuiTooltip-tooltip' },
 ];
 
-function TooltipMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  // Element-level tokens win over the preset. All four land on the bubble
-  // (`tooltip` slot); the arrow inherits `--comp-arrowSize` from it.
-  const tooltipSx = mappingEnabled
-    ? Object.fromEntries(
-        TOOLTIP_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
-  // Force open + inline (no portal) so the bubble sits inside the debug scope
-  // and picks up the padding-ring / text-box overlays.
+function TooltipMatrix() {
+  // Force open + inline (no portal) so the bubble sits inside the debug scope,
+  // picks up the padding-ring / text-box overlays, and receives the canvas-scoped
+  // token overrides.
   const slotProps = {
     popper: { disablePortal: true },
-    tooltip: { sx: tooltipSx },
   } as const;
   return (
-    <Stack direction="row" spacing={14} sx={{ mt: 1, mb: 8, minHeight: 140, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={14}
+      sx={{ mt: 1, mb: 8, minHeight: 140, alignItems: 'flex-start' }}
+    >
       <Tooltip
         title={<span className="density-debug-text">Default tooltip</span>}
         open
@@ -387,52 +361,34 @@ function TooltipMatrix({
 // (per size). All spacing → prefill density keys. The label resting-Y is a
 // derived bridge (not a direct field).
 const OUTLINED_INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumBlockPad', cssVar: private_outlinedInputVars.mediumBlockPad },
-  { key: 'smallBlockPad', cssVar: private_outlinedInputVars.smallBlockPad },
-  { key: 'mediumInlinePad', cssVar: private_outlinedInputVars.mediumInlinePad },
-  { key: 'smallInlinePad', cssVar: private_outlinedInputVars.smallInlinePad },
-  { key: 'mediumGap', cssVar: private_inputAdornmentVars.mediumGap },
-  { key: 'smallGap', cssVar: private_inputAdornmentVars.smallGap },
+  { key: 'mediumBlockPad', cssVar: private_outlinedInputVars.mediumBlockPad, prop: 'paddingBlock', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
+  { key: 'smallBlockPad', cssVar: private_outlinedInputVars.smallBlockPad, prop: 'paddingBlock', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
+  { key: 'mediumInlinePad', cssVar: private_outlinedInputVars.mediumInlinePad, prop: 'paddingInline', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
+  { key: 'smallInlinePad', cssVar: private_outlinedInputVars.smallInlinePad, prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
+  // var-mode: one gap var → start marginRight / end marginLeft (no per-side class).
+  { key: 'mediumGap', cssVar: private_inputAdornmentVars.mediumGap, selector: '.MuiInputAdornment-root:not(.MuiInputAdornment-sizeSmall)' },
+  { key: 'smallGap', cssVar: private_inputAdornmentVars.smallGap, selector: '.MuiInputAdornment-sizeSmall' },
 ];
 
-function OutlinedInputMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  // Tokens go on the TextField (ancestor of label + input + adornment) so the
-  // `:has(~ &)` label bridge sees them — element-level on the input root can't
-  // reach the sibling label.
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        OUTLINED_INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function OutlinedInputMatrix() {
   return (
     <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="outlined" sx={sx} />
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="outlined" />
       <TextField
         label={<span className="density-debug-text">Small</span>}
         variant="outlined"
         size="small"
-        sx={sx}
       />
       <TextField
         label={<span className="density-debug-text">Start adornment</span>}
         variant="outlined"
-        sx={sx}
-        slotProps={{ input: { startAdornment: <InputAdornment position="start">$</InputAdornment> } }}
+        slotProps={{
+          input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+        }}
       />
       <TextField
         label={<span className="density-debug-text">End adornment</span>}
         variant="outlined"
-        sx={sx}
         slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
       />
     </Stack>
@@ -443,44 +399,27 @@ function OutlinedInputMatrix({
 // prefill density keys. The label rest/shrink Y follow the active preset (tuned
 // raw px, not editable here).
 const FILLED_INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumTopPad', cssVar: private_filledInputVars.mediumTopPad },
-  { key: 'smallTopPad', cssVar: private_filledInputVars.smallTopPad },
-  { key: 'mediumBottomPad', cssVar: private_filledInputVars.mediumBottomPad },
-  { key: 'smallBottomPad', cssVar: private_filledInputVars.smallBottomPad },
-  { key: 'mediumInlinePad', cssVar: private_filledInputVars.mediumInlinePad },
-  { key: 'smallInlinePad', cssVar: private_filledInputVars.smallInlinePad },
+  { key: 'mediumTopPad', cssVar: private_filledInputVars.mediumTopPad, prop: 'paddingTop', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallTopPad', cssVar: private_filledInputVars.smallTopPad, prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
+  { key: 'mediumBottomPad', cssVar: private_filledInputVars.mediumBottomPad, prop: 'paddingBottom', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallBottomPad', cssVar: private_filledInputVars.smallBottomPad, prop: 'paddingBottom', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
+  { key: 'mediumInlinePad', cssVar: private_filledInputVars.mediumInlinePad, prop: 'paddingInline', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallInlinePad', cssVar: private_filledInputVars.smallInlinePad, prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
 ];
 
-function FilledInputMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        FILLED_INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function FilledInputMatrix() {
   return (
     <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="filled" sx={sx} />
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="filled" />
       <TextField
         label={<span className="density-debug-text">Small</span>}
         variant="filled"
         size="small"
-        sx={sx}
       />
       <TextField
         label={<span className="density-debug-text">Filled value</span>}
         variant="filled"
         defaultValue="Value"
-        sx={sx}
       />
     </Stack>
   );
@@ -489,32 +428,19 @@ function FilledInputMatrix({
 // Input (standard) family: input top/bottom padding (top per size, bottom
 // shared). Inline is 0; the label floats above (no bridge).
 const INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumTopPad', cssVar: private_inputVars.mediumTopPad },
-  { key: 'smallTopPad', cssVar: private_inputVars.smallTopPad },
-  { key: 'bottomPad', cssVar: private_inputVars.bottomPad },
+  { key: 'mediumTopPad', cssVar: private_inputVars.mediumTopPad, prop: 'paddingTop', selector: '.MuiInput-root:not(.MuiInputBase-sizeSmall) .MuiInput-input' },
+  { key: 'smallTopPad', cssVar: private_inputVars.smallTopPad, prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiInput-input' },
+  { key: 'bottomPad', cssVar: private_inputVars.bottomPad, prop: 'paddingBottom', selector: '.MuiInput-input' },
 ];
 
-function InputMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        INPUT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function InputMatrix() {
   return (
     <Stack spacing={3} sx={{ mt: 1, width: 260, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="standard" sx={sx} />
+      <TextField label={<span className="density-debug-text">Medium</span>} variant="standard" />
       <TextField
         label={<span className="density-debug-text">Small</span>}
         variant="standard"
         size="small"
-        sx={sx}
       />
     </Stack>
   );
@@ -524,43 +450,31 @@ function InputMatrix({
 // shared inline pad + icon gaps (stack/inline), plus the paired Tabs-root
 // min-height. Spacing → density keys; min-heights → raw px (read off the theme).
 const TAB_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_tabVars.minHeight },
-  { key: 'tabsMinHeight', cssVar: private_tabsVars.minHeight },
-  { key: 'iconLabelMinHeight', cssVar: private_tabVars.iconLabelMinHeight },
-  { key: 'blockPad', cssVar: private_tabVars.blockPad },
-  { key: 'iconLabelBlockPad', cssVar: private_tabVars.iconLabelBlockPad },
-  { key: 'inlinePad', cssVar: private_tabVars.inlinePad },
-  { key: 'iconStackGap', cssVar: private_tabVars.iconStackGap },
-  { key: 'iconInlineGap', cssVar: private_tabVars.iconInlineGap },
+  { key: 'minHeight', cssVar: private_tabVars.minHeight, prop: 'minHeight', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
+  { key: 'tabsMinHeight', cssVar: private_tabsVars.minHeight, prop: 'minHeight', selector: '.MuiTabs-root' },
+  { key: 'iconLabelMinHeight', cssVar: private_tabVars.iconLabelMinHeight, prop: 'minHeight', selector: '.MuiTab-root.MuiTab-labelIcon' },
+  { key: 'blockPad', cssVar: private_tabVars.blockPad, prop: 'paddingBlock', selector: '.MuiTab-root:not(.MuiTab-labelIcon)' },
+  { key: 'iconLabelBlockPad', cssVar: private_tabVars.iconLabelBlockPad, prop: 'paddingBlock', selector: '.MuiTab-root.MuiTab-labelIcon' },
+  { key: 'inlinePad', cssVar: private_tabVars.inlinePad, prop: 'paddingInline', selector: '.MuiTab-root' },
+  // var-mode: one gap var → icon margin per iconPosition (top/bottom, start/end; no class).
+  { key: 'iconStackGap', cssVar: private_tabVars.iconStackGap, selector: '.MuiTab-root' },
+  { key: 'iconInlineGap', cssVar: private_tabVars.iconInlineGap, selector: '.MuiTab-root' },
 ];
 
-function TabsMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  // Tokens on each Tabs instance (ancestor of its Tab children, which inherit).
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        TAB_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function TabsMatrix() {
   const lbl = (t: string) => <span className="density-debug-text">{t}</span>;
   return (
     <Stack spacing={3} sx={{ mt: 1, width: 460 }}>
-      <Tabs value={0} sx={sx}>
+      <Tabs value={0}>
         <Tab label={lbl('One')} />
         <Tab label={lbl('Two')} />
         <Tab label={lbl('Three')} />
       </Tabs>
-      <Tabs value={0} sx={sx}>
+      <Tabs value={0}>
         <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
         <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
       </Tabs>
-      <Tabs value={0} sx={sx}>
+      <Tabs value={0}>
         <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
         <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
       </Tabs>
@@ -571,89 +485,72 @@ function TabsMatrix({
 // Checkbox family: the touch-target padding around the icon, per size (via
 // SwitchBase). All spacing → density keys.
 const CHECKBOX_FIELDS: DensityField[] = [
-  { key: 'mediumPad', cssVar: private_checkboxVars.mediumPad },
-  { key: 'smallPad', cssVar: private_checkboxVars.smallPad },
+  { key: 'mediumPad', cssVar: private_checkboxVars.mediumPad, prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeMedium' },
+  { key: 'smallPad', cssVar: private_checkboxVars.smallPad, prop: 'padding', selector: '.MuiCheckbox-root.MuiCheckbox-sizeSmall' },
 ];
 
-function CheckboxMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        CHECKBOX_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function CheckboxMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Checkbox defaultChecked sx={sx} />
-      <Checkbox defaultChecked size="small" sx={sx} />
+      <Checkbox defaultChecked />
+      <Checkbox defaultChecked size="small" />
     </Stack>
   );
 }
 
-// CardContent family: base padding + last-child bottom padding (no size axis).
-const CARD_CONTENT_FIELDS: DensityField[] = [
-  { key: 'pad', cssVar: private_cardContentVars.pad },
-  { key: 'padBottom', cssVar: private_cardContentVars.padBottom },
+// Card family: CardContent padding (+ last-child) — tokenized; CardActions/CardHeader
+// padding + gaps are stubs (not yet tokenized in source; no size axis).
+const CARD_FIELDS: DensityField[] = [
+  { key: 'pad', cssVar: private_cardContentVars.pad, prop: 'padding', selector: '.MuiCardContent-root' },
+  { key: 'padBottom', cssVar: private_cardContentVars.padBottom, prop: 'paddingBottom', selector: '.MuiCardContent-root:last-child' },
+  // Stub — CardActions/CardHeader not yet tokenized in source (no preset reflow yet);
+  // the direct-property override still applies over today's literals.
+  { key: 'actionsPad', cssVar: '--CardActions-pad', prop: 'padding', selector: '.MuiCardActions-root' },
+  { key: 'actionsGap', cssVar: '--CardActions-childGap', prop: 'marginLeft', selector: '.MuiCardActions-spacing > :not(:first-of-type)' },
+  { key: 'headerPad', cssVar: '--CardHeader-pad', prop: 'padding', selector: '.MuiCardHeader-root' },
+  { key: 'headerAvatarGap', cssVar: '--CardHeader-avatarGap', prop: 'marginRight', selector: '.MuiCardHeader-avatar' },
 ];
 
-function CardContentMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        CARD_CONTENT_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function CardMatrix() {
   return (
-    <Card variant="outlined" sx={{ mt: 1, width: 260 }}>
-      <CardContent sx={sx}>
-        <Typography variant="h6">
-          <span className="density-debug-text">Card title</span>
-        </Typography>
+    <Card variant="outlined" sx={{ mt: 1, width: 300 }}>
+      <CardHeader
+        avatar={<Avatar>R</Avatar>}
+        title={<span className="density-debug-text">Card header</span>}
+        subheader="With avatar"
+      />
+      <CardContent>
         <Typography variant="body2" color="text.secondary">
           <span className="density-debug-text">Body content with last-child bottom padding.</span>
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn more</Button>
+      </CardActions>
     </Card>
+  );
+}
+
+function RatingMatrix() {
+  return (
+    <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <Rating value={3} size="small" readOnly />
+      <Rating value={3} readOnly />
+      <Rating value={3} size="large" readOnly />
+    </Stack>
   );
 }
 
 // Select family: the content-box min-height floor (raw px). The visible density
 // mostly comes from the underlying OutlinedInput padding (tokenized separately).
-const SELECT_FIELDS: DensityField[] = [{ key: 'minHeight', cssVar: private_selectVars.minHeight }];
+const SELECT_FIELDS: DensityField[] = [
+  { key: 'minHeight', cssVar: private_selectVars.minHeight, prop: 'minHeight', selector: '.MuiSelect-select' },
+];
 
-function SelectMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        SELECT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function SelectMatrix() {
   return (
-    <FormControl sx={{ mt: 1, width: 220, ...sx }}>
+    <FormControl sx={{ mt: 1, width: 220 }}>
       <InputLabel id="pg-select-label">Age</InputLabel>
       <Select labelId="pg-select-label" value={10} label="Age">
         <MenuItem value={10}>Ten</MenuItem>
@@ -665,30 +562,19 @@ function SelectMatrix({
 
 // Alert family: root block/inline padding + icon→message gap (no size axis).
 const ALERT_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_alertVars.blockPad },
-  { key: 'inlinePad', cssVar: private_alertVars.inlinePad },
-  { key: 'iconGap', cssVar: private_alertVars.iconGap },
+  { key: 'blockPad', cssVar: private_alertVars.blockPad, prop: 'paddingBlock', selector: '.MuiAlert-root' },
+  { key: 'inlinePad', cssVar: private_alertVars.inlinePad, prop: 'paddingInline', selector: '.MuiAlert-root' },
+  // iconGap var lives on the root but drives the icon's marginRight (child element).
+  { key: 'iconGap', cssVar: private_alertVars.iconGap, prop: 'marginRight', selector: '.MuiAlert-icon' },
 ];
 
-function AlertMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        ALERT_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function AlertMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, width: 380 }}>
-      <Alert severity="info" sx={sx}>
+      <Alert severity="info">
         <span className="density-debug-text">Info alert — icon gap + root padding.</span>
       </Alert>
-      <Alert severity="success" onClose={() => {}} sx={sx}>
+      <Alert severity="success" onClose={() => {}}>
         <span className="density-debug-text">Success alert with a close action.</span>
       </Alert>
     </Stack>
@@ -698,28 +584,17 @@ function AlertMatrix({
 // Chip family: height (per size — drives avatar/icon/deleteIcon via calc) +
 // label inline padding (per size). Height = raw px; padInline = density keys.
 const CHIP_FIELDS: DensityField[] = [
-  { key: 'mediumHeight', cssVar: private_chipVars.mediumHeight },
-  { key: 'smallHeight', cssVar: private_chipVars.smallHeight },
-  { key: 'mediumPadInline', cssVar: private_chipVars.mediumPadInline },
-  { key: 'smallPadInline', cssVar: private_chipVars.smallPadInline },
+  // var-mode: height drives avatar/icon/deleteIcon dims via calc — write the var
+  // so the derived children scale too (writing `height` would move only the box).
+  { key: 'mediumHeight', cssVar: private_chipVars.mediumHeight, selector: '.MuiChip-root.MuiChip-sizeMedium' },
+  { key: 'smallHeight', cssVar: private_chipVars.smallHeight, selector: '.MuiChip-root.MuiChip-sizeSmall' },
+  { key: 'mediumPadInline', cssVar: private_chipVars.mediumPadInline, prop: 'paddingInline', selector: '.MuiChip-sizeMedium .MuiChip-label' },
+  { key: 'smallPadInline', cssVar: private_chipVars.smallPadInline, prop: 'paddingInline', selector: '.MuiChip-sizeSmall .MuiChip-label' },
 ];
 
-function ChipMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  // Chip tokens on a wrapping Box (ancestor); each Chip inherits them.
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        CHIP_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function ChipMatrix() {
   return (
-    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400, ...sx }}>
+    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400 }}>
       <Chip avatar={<Avatar>A</Avatar>} label="Avatar" />
       <Chip icon={<InboxIcon />} label="Icon" onDelete={() => {}} />
       <Chip label="Outlined" variant="outlined" onDelete={() => {}} />
@@ -732,36 +607,20 @@ function ChipMatrix({
 // content block margin; Details top/inline/bottom padding. min-heights = raw px,
 // the rest = density keys.
 const ACCORDION_FIELDS: DensityField[] = [
-  { key: 'minHeight', cssVar: private_accordionSummaryVars.minHeight },
-  { key: 'expandedMinHeight', cssVar: private_accordionSummaryVars.expandedMinHeight },
-  { key: 'inlinePad', cssVar: private_accordionSummaryVars.inlinePad },
-  { key: 'marginBlock', cssVar: private_accordionSummaryVars.marginBlock },
-  { key: 'expandedMarginBlock', cssVar: private_accordionSummaryVars.expandedMarginBlock },
-  { key: 'detailsTopPad', cssVar: private_accordionDetailsVars.topPad },
-  { key: 'detailsInlinePad', cssVar: private_accordionDetailsVars.inlinePad },
-  { key: 'detailsBottomPad', cssVar: private_accordionDetailsVars.bottomPad },
+  { key: 'minHeight', cssVar: private_accordionSummaryVars.minHeight, prop: 'minHeight', selector: '.MuiAccordionSummary-root:not(.Mui-expanded)' },
+  { key: 'expandedMinHeight', cssVar: private_accordionSummaryVars.expandedMinHeight, prop: 'minHeight', selector: '.MuiAccordionSummary-root.Mui-expanded' },
+  { key: 'inlinePad', cssVar: private_accordionSummaryVars.inlinePad, prop: 'paddingInline', selector: '.MuiAccordionSummary-root' },
+  { key: 'marginBlock', cssVar: private_accordionSummaryVars.marginBlock, prop: 'marginBlock', selector: '.MuiAccordionSummary-content:not(.Mui-expanded)' },
+  { key: 'expandedMarginBlock', cssVar: private_accordionSummaryVars.expandedMarginBlock, prop: 'marginBlock', selector: '.MuiAccordionSummary-content.Mui-expanded' },
+  { key: 'detailsTopPad', cssVar: private_accordionDetailsVars.topPad, prop: 'paddingTop', selector: '.MuiAccordionDetails-root' },
+  { key: 'detailsInlinePad', cssVar: private_accordionDetailsVars.inlinePad, prop: 'paddingInline', selector: '.MuiAccordionDetails-root' },
+  { key: 'detailsBottomPad', cssVar: private_accordionDetailsVars.bottomPad, prop: 'paddingBottom', selector: '.MuiAccordionDetails-root' },
 ];
 
-function AccordionMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  // Tokens on the Accordion (ancestor of Summary + Details, which inherit).
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        ACCORDION_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function AccordionMatrix() {
   return (
     <Box sx={{ mt: 1, width: 360 }}>
-      <Accordion defaultExpanded sx={sx}>
+      <Accordion defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <span className="density-debug-text">Expanded summary</span>
         </AccordionSummary>
@@ -769,7 +628,7 @@ function AccordionMatrix({
           <span className="density-debug-text">Details content padding.</span>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={sx}>
+      <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <span className="density-debug-text">Collapsed summary</span>
         </AccordionSummary>
@@ -781,50 +640,27 @@ function AccordionMatrix({
 
 // Radio family: touch-target padding per size (via SwitchBase, like Checkbox).
 const RADIO_FIELDS: DensityField[] = [
-  { key: 'mediumPad', cssVar: private_radioVars.mediumPad },
-  { key: 'smallPad', cssVar: private_radioVars.smallPad },
+  { key: 'mediumPad', cssVar: private_radioVars.mediumPad, prop: 'padding', selector: '.MuiRadio-root:not(.MuiRadio-sizeSmall)' },
+  { key: 'smallPad', cssVar: private_radioVars.smallPad, prop: 'padding', selector: '.MuiRadio-root.MuiRadio-sizeSmall' },
 ];
 
-function RadioMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        RADIO_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function RadioMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Radio checked sx={sx} />
-      <Radio checked size="small" sx={sx} />
+      <Radio checked />
+      <Radio checked size="small" />
     </Stack>
   );
 }
 
 // Breadcrumbs family: the separator inline gap (single token, no size axis).
 const BREADCRUMBS_FIELDS: DensityField[] = [
-  { key: 'separatorGap', cssVar: private_breadcrumbsVars.separatorGap },
+  { key: 'separatorGap', cssVar: private_breadcrumbsVars.separatorGap, prop: 'marginInline', selector: '.MuiBreadcrumbs-separator' },
 ];
 
-function BreadcrumbsMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx =
-    mappingEnabled && active('separatorGap')
-      ? { [private_breadcrumbsVars.separatorGap]: resolveValue(mapping.separatorGap) }
-      : undefined;
+function BreadcrumbsMatrix() {
   return (
-    <Breadcrumbs sx={{ mt: 1, ...sx }}>
+    <Breadcrumbs sx={{ mt: 1 }}>
       <Link underline="hover" color="inherit" href="#">
         <span className="density-debug-text">Home</span>
       </Link>
@@ -840,31 +676,16 @@ function BreadcrumbsMatrix({
 
 // ToggleButton family: uniform padding per size.
 const TOGGLE_BUTTON_FIELDS: DensityField[] = [
-  { key: 'smallPad', cssVar: private_toggleButtonVars.smallPad },
-  { key: 'mediumPad', cssVar: private_toggleButtonVars.mediumPad },
-  { key: 'largePad', cssVar: private_toggleButtonVars.largePad },
+  { key: 'smallPad', cssVar: private_toggleButtonVars.smallPad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeSmall' },
+  { key: 'mediumPad', cssVar: private_toggleButtonVars.mediumPad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeMedium' },
+  { key: 'largePad', cssVar: private_toggleButtonVars.largePad, prop: 'padding', selector: '.MuiToggleButton-root.MuiToggleButton-sizeLarge' },
 ];
 
-function ToggleButtonMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        TOGGLE_BUTTON_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function ToggleButtonMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
       {(['small', 'medium', 'large'] as const).map((size) => (
-        <ToggleButtonGroup key={size} value="left" size={size} exclusive sx={sx}>
+        <ToggleButtonGroup key={size} value="left" size={size} exclusive>
           <ToggleButton value="left">
             <span className="density-debug-text">{size} L</span>
           </ToggleButton>
@@ -878,54 +699,33 @@ function ToggleButtonMatrix({
 }
 
 // Avatar family: the square size (raw px; no size prop).
-const AVATAR_FIELDS: DensityField[] = [{ key: 'size', cssVar: private_avatarVars.size }];
+const AVATAR_FIELDS: DensityField[] = [
+  { key: 'size', cssVar: private_avatarVars.size, prop: ['width', 'height'], selector: '.MuiAvatar-root' },
+];
 
-function AvatarMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx =
-    mappingEnabled && active('size')
-      ? { [private_avatarVars.size]: resolveValue(mapping.size) }
-      : undefined;
+function AvatarMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Avatar sx={sx}>A</Avatar>
-      <Avatar sx={sx}>B</Avatar>
+      <Avatar>A</Avatar>
+      <Avatar>B</Avatar>
     </Stack>
   );
 }
 
 // Badge family: bubble size + padding, per state (standard / dot).
 const BADGE_FIELDS: DensityField[] = [
-  { key: 'standardSize', cssVar: private_badgeVars.standardSize },
-  { key: 'standardPad', cssVar: private_badgeVars.standardPad },
-  { key: 'dotSize', cssVar: private_badgeVars.dotSize },
+  { key: 'standardSize', cssVar: private_badgeVars.standardSize, prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-standard' },
+  { key: 'standardPad', cssVar: private_badgeVars.standardPad, prop: 'padding', selector: '.MuiBadge-badge.MuiBadge-standard' },
+  { key: 'dotSize', cssVar: private_badgeVars.dotSize, prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-dot' },
 ];
 
-function BadgeMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        BADGE_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function BadgeMatrix() {
   return (
     <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'center' }}>
-      <Badge badgeContent={4} color="primary" sx={sx}>
+      <Badge badgeContent={4} color="primary">
         <InboxIcon />
       </Badge>
-      <Badge variant="dot" color="primary" sx={sx}>
+      <Badge variant="dot" color="primary">
         <InboxIcon />
       </Badge>
     </Stack>
@@ -934,23 +734,12 @@ function BadgeMatrix({
 
 // ButtonGroup family: the grouped-button min-width floor (raw px).
 const BUTTON_GROUP_FIELDS: DensityField[] = [
-  { key: 'minWidth', cssVar: private_buttonGroupVars.minWidth },
+  { key: 'minWidth', cssVar: private_buttonGroupVars.minWidth, prop: 'minWidth', selector: '.MuiButtonGroup-grouped' },
 ];
 
-function ButtonGroupMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx =
-    mappingEnabled && active('minWidth')
-      ? { [private_buttonGroupVars.minWidth]: resolveValue(mapping.minWidth) }
-      : undefined;
+function ButtonGroupMatrix() {
   return (
-    <ButtonGroup variant="outlined" sx={{ mt: 1, ...sx }}>
+    <ButtonGroup variant="outlined" sx={{ mt: 1 }}>
       <Button>
         <span className="density-debug-text">One</span>
       </Button>
@@ -966,31 +755,16 @@ function ButtonGroupMatrix({
 
 // TableCell family: block padding per size (medium/small) + shared inline pad.
 const TABLE_CELL_FIELDS: DensityField[] = [
-  { key: 'mediumBlockPad', cssVar: private_tableCellVars.mediumBlockPad },
-  { key: 'smallBlockPad', cssVar: private_tableCellVars.smallBlockPad },
-  { key: 'inlinePad', cssVar: private_tableCellVars.inlinePad },
+  { key: 'mediumBlockPad', cssVar: private_tableCellVars.mediumBlockPad, prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeMedium' },
+  { key: 'smallBlockPad', cssVar: private_tableCellVars.smallBlockPad, prop: 'paddingBlock', selector: '.MuiTableCell-root.MuiTableCell-sizeSmall' },
+  { key: 'inlinePad', cssVar: private_tableCellVars.inlinePad, prop: 'paddingInline', selector: '.MuiTableCell-root' },
 ];
 
-function TableCellMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        TABLE_CELL_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function TableCellMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, width: 320 }}>
       {(['medium', 'small'] as const).map((size) => (
-        <Table key={size} size={size} sx={sx}>
+        <Table key={size} size={size}>
           <TableHead>
             <TableRow>
               <TableCell>
@@ -1014,33 +788,18 @@ function TableCellMatrix({
 // Autocomplete family: the option list geometry (mirrors MenuItem). The input's
 // density comes from its variant (tokenized separately).
 const AUTOCOMPLETE_FIELDS: DensityField[] = [
-  { key: 'optionMinHeight', cssVar: private_autocompleteVars.optionMinHeight },
-  { key: 'optionBlockPad', cssVar: private_autocompleteVars.optionBlockPad },
-  { key: 'optionInlinePad', cssVar: private_autocompleteVars.optionInlinePad },
+  { key: 'optionMinHeight', cssVar: private_autocompleteVars.optionMinHeight, prop: 'minHeight', selector: '.MuiAutocomplete-option' },
+  { key: 'optionBlockPad', cssVar: private_autocompleteVars.optionBlockPad, prop: 'paddingBlock', selector: '.MuiAutocomplete-option' },
+  { key: 'optionInlinePad', cssVar: private_autocompleteVars.optionInlinePad, prop: 'paddingInline', selector: '.MuiAutocomplete-option' },
 ];
 
-function AutocompleteMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        AUTOCOMPLETE_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function AutocompleteMatrix() {
   return (
     <Autocomplete
       open
       disablePortal
       options={['Apple', 'Banana', 'Cherry']}
-      sx={{ mt: 1, width: 260, ...sx }}
+      sx={{ mt: 1, width: 260 }}
       renderInput={(params) => <TextField {...params} label="Fruit" />}
     />
   );
@@ -1048,25 +807,14 @@ function AutocompleteMatrix({
 
 // Stepper family: Step horizontal gutter + StepLabel icon→label gap.
 const STEPPER_FIELDS: DensityField[] = [
-  { key: 'inlinePad', cssVar: private_stepVars.inlinePad },
-  { key: 'iconGap', cssVar: private_stepLabelVars.iconGap },
+  // var-mode: one gutter var → first step padding-left / last step padding-right (no class).
+  { key: 'inlinePad', cssVar: private_stepVars.inlinePad, selector: '.MuiStep-root' },
+  { key: 'iconGap', cssVar: private_stepLabelVars.iconGap, prop: 'paddingRight', selector: '.MuiStepLabel-iconContainer' },
 ];
 
-function StepperMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        STEPPER_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function StepperMatrix() {
   return (
-    <Stepper activeStep={1} sx={{ mt: 1, width: 360, ...sx }}>
+    <Stepper activeStep={1} sx={{ mt: 1, width: 360 }}>
       <Step>
         <StepLabel>
           <span className="density-debug-text">One</span>
@@ -1088,35 +836,25 @@ function StepperMatrix({
 
 // Toolbar (AppBar) family: gutter inline padding (base + ≥sm) + dense min-height.
 const TOOLBAR_FIELDS: DensityField[] = [
-  { key: 'inlinePad', cssVar: private_toolbarVars.inlinePad },
-  { key: 'wideInlinePad', cssVar: private_toolbarVars.wideInlinePad },
-  { key: 'denseMinHeight', cssVar: private_toolbarVars.denseMinHeight },
+  // var-mode: inlinePad/wideInlinePad collapse to the same (padding-inline, .gutters);
+  // they differ only by a ≥sm media query, which a class selector can't encode.
+  { key: 'inlinePad', cssVar: private_toolbarVars.inlinePad, selector: '.MuiToolbar-gutters' },
+  { key: 'wideInlinePad', cssVar: private_toolbarVars.wideInlinePad, selector: '.MuiToolbar-gutters' },
+  { key: 'denseMinHeight', cssVar: private_toolbarVars.denseMinHeight, prop: 'minHeight', selector: '.MuiToolbar-dense' },
 ];
 
-function ToolbarMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        TOOLBAR_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function ToolbarMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, width: 420 }}>
       <AppBar position="static">
-        <Toolbar sx={sx}>
+        <Toolbar>
           <Typography variant="h6">
             <span className="density-debug-text">Regular</span>
           </Typography>
         </Toolbar>
       </AppBar>
       <AppBar position="static">
-        <Toolbar variant="dense" sx={sx}>
+        <Toolbar variant="dense">
           <Typography variant="h6">
             <span className="density-debug-text">Dense</span>
           </Typography>
@@ -1128,33 +866,21 @@ function ToolbarMatrix({
 
 // Fab family: circular size per size (raw px).
 const FAB_FIELDS: DensityField[] = [
-  { key: 'smallSize', cssVar: private_fabVars.smallSize },
-  { key: 'mediumSize', cssVar: private_fabVars.mediumSize },
-  { key: 'largeSize', cssVar: private_fabVars.largeSize },
+  { key: 'smallSize', cssVar: private_fabVars.smallSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeSmall' },
+  { key: 'mediumSize', cssVar: private_fabVars.mediumSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeMedium' },
+  { key: 'largeSize', cssVar: private_fabVars.largeSize, prop: ['width', 'height'], selector: '.MuiFab-root.MuiFab-sizeLarge' },
 ];
 
-function FabMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        FAB_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function FabMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Fab size="small" color="primary" sx={sx}>
+      <Fab size="small" color="primary">
         <InboxIcon />
       </Fab>
-      <Fab size="medium" color="primary" sx={sx}>
+      <Fab size="medium" color="primary">
         <InboxIcon />
       </Fab>
-      <Fab color="primary" sx={sx}>
+      <Fab color="primary">
         <InboxIcon />
       </Fab>
     </Stack>
@@ -1163,55 +889,28 @@ function FabMatrix({
 
 // Pagination family: the item box size per size (shared page/ellipsis).
 const PAGINATION_FIELDS: DensityField[] = [
-  { key: 'smallSize', cssVar: private_paginationItemVars.smallSize },
-  { key: 'mediumSize', cssVar: private_paginationItemVars.mediumSize },
-  { key: 'largeSize', cssVar: private_paginationItemVars.largeSize },
+  { key: 'smallSize', cssVar: private_paginationItemVars.smallSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeSmall' },
+  { key: 'mediumSize', cssVar: private_paginationItemVars.mediumSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-root:not(.MuiPaginationItem-sizeSmall):not(.MuiPaginationItem-sizeLarge)' },
+  { key: 'largeSize', cssVar: private_paginationItemVars.largeSize, prop: ['minWidth', 'height'], selector: '.MuiPaginationItem-sizeLarge' },
 ];
 
-function PaginationMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        PAGINATION_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function PaginationMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1 }}>
-      <Pagination count={5} size="small" sx={sx} />
-      <Pagination count={5} sx={sx} />
-      <Pagination count={5} size="large" sx={sx} />
+      <Pagination count={5} size="small" />
+      <Pagination count={5} />
+      <Pagination count={5} size="large" />
     </Stack>
   );
 }
 
 // SnackbarContent family: root block/inline padding (no size axis).
 const SNACKBAR_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_snackbarContentVars.blockPad },
-  { key: 'inlinePad', cssVar: private_snackbarContentVars.inlinePad },
+  { key: 'blockPad', cssVar: private_snackbarContentVars.blockPad, prop: 'paddingBlock', selector: '.MuiSnackbarContent-root' },
+  { key: 'inlinePad', cssVar: private_snackbarContentVars.inlinePad, prop: 'paddingInline', selector: '.MuiSnackbarContent-root' },
 ];
 
-function SnackbarMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        SNACKBAR_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function SnackbarMatrix() {
   return (
     <SnackbarContent
       message={<span className="density-debug-text">Something happened</span>}
@@ -1220,35 +919,20 @@ function SnackbarMatrix({
           Undo
         </Button>
       }
-      sx={{ mt: 1, width: 320, ...sx }}
+      sx={{ mt: 1, width: 320 }}
     />
   );
 }
 
 // BottomNavigation family: bar height + action inline padding.
 const BOTTOM_NAV_FIELDS: DensityField[] = [
-  { key: 'height', cssVar: private_bottomNavigationVars.height },
-  { key: 'inlinePad', cssVar: private_bottomNavigationActionVars.inlinePad },
+  { key: 'height', cssVar: private_bottomNavigationVars.height, prop: 'height', selector: '.MuiBottomNavigation-root' },
+  { key: 'inlinePad', cssVar: private_bottomNavigationActionVars.inlinePad, prop: 'paddingInline', selector: '.MuiBottomNavigationAction-root' },
 ];
 
-function BottomNavigationMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        BOTTOM_NAV_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function BottomNavigationMatrix() {
   return (
-    <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400, ...sx }}>
+    <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400 }}>
       <BottomNavigationAction label="Recents" icon={<InboxIcon />} />
       <BottomNavigationAction label="Favorites" icon={<InboxIcon />} />
       <BottomNavigationAction label="Nearby" icon={<InboxIcon />} />
@@ -1258,28 +942,16 @@ function BottomNavigationMatrix({
 
 // Dialog family: title + content block/inline padding + actions padding.
 const DIALOG_FIELDS: DensityField[] = [
-  { key: 'titleBlockPad', cssVar: private_dialogTitleVars.blockPad },
-  { key: 'titleInlinePad', cssVar: private_dialogTitleVars.inlinePad },
-  { key: 'contentBlockPad', cssVar: private_dialogContentVars.blockPad },
-  { key: 'contentInlinePad', cssVar: private_dialogContentVars.inlinePad },
-  { key: 'actionsPad', cssVar: private_dialogActionsVars.pad },
+  { key: 'titleBlockPad', cssVar: private_dialogTitleVars.blockPad, prop: 'paddingBlock', selector: '.MuiDialogTitle-root' },
+  { key: 'titleInlinePad', cssVar: private_dialogTitleVars.inlinePad, prop: 'paddingInline', selector: '.MuiDialogTitle-root' },
+  { key: 'contentBlockPad', cssVar: private_dialogContentVars.blockPad, prop: 'paddingBlock', selector: '.MuiDialogContent-root' },
+  { key: 'contentInlinePad', cssVar: private_dialogContentVars.inlinePad, prop: 'paddingInline', selector: '.MuiDialogContent-root' },
+  { key: 'actionsPad', cssVar: private_dialogActionsVars.pad, prop: 'padding', selector: '.MuiDialogActions-root' },
 ];
 
-function DialogMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        DIALOG_FIELDS.filter((f) => active(f.key)).map((f) => [f.cssVar, resolveValue(mapping[f.key])]),
-      )
-    : undefined;
+function DialogMatrix() {
   return (
-    <Paper sx={{ mt: 1, width: 320, ...sx }}>
+    <Paper sx={{ mt: 1, width: 320 }}>
       <DialogTitle>
         <span className="density-debug-text">Dialog title</span>
       </DialogTitle>
@@ -1296,29 +968,14 @@ function DialogMatrix({
 
 // ListItemButton family: block padding (+ dense) + gutters inline padding.
 const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_listItemButtonVars.blockPad },
-  { key: 'denseBlockPad', cssVar: private_listItemButtonVars.denseBlockPad },
-  { key: 'inlinePad', cssVar: private_listItemButtonVars.inlinePad },
+  { key: 'blockPad', cssVar: private_listItemButtonVars.blockPad, prop: 'paddingBlock', selector: '.MuiListItemButton-root:not(.MuiListItemButton-dense)' },
+  { key: 'denseBlockPad', cssVar: private_listItemButtonVars.denseBlockPad, prop: 'paddingBlock', selector: '.MuiListItemButton-dense' },
+  { key: 'inlinePad', cssVar: private_listItemButtonVars.inlinePad, prop: 'paddingInline', selector: '.MuiListItemButton-gutters' },
 ];
 
-function ListItemButtonMatrix({
-  mapping,
-  mappingEnabled,
-}: {
-  mapping: Record<string, string>;
-  mappingEnabled: boolean;
-}) {
-  const active = (key: string) => parseMapping(mapping[key] ?? '').state === 'ok';
-  const sx = mappingEnabled
-    ? Object.fromEntries(
-        LIST_ITEM_BUTTON_FIELDS.filter((f) => active(f.key)).map((f) => [
-          f.cssVar,
-          resolveValue(mapping[f.key]),
-        ]),
-      )
-    : undefined;
+function ListItemButtonMatrix() {
   return (
-    <List sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider', ...sx }}>
+    <List sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider' }}>
       <ListItemButton>
         <ListItemText primary={<span className="density-debug-text">Regular item</span>} />
       </ListItemButton>
@@ -1336,9 +993,14 @@ const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
     // Canonical prefill matches enhanceDensity's own Button assignment.
-    fields: SIZES.map((size) => ({ key: `${size}Pad`, cssVar: buttonVar(size) })),
+    fields: SIZES.map((size) => ({
+      key: `${size}Pad`,
+      cssVar: `--Button-${size}-pad`,
+      prop: 'padding',
+      selector: `.MuiButton-size${size[0].toUpperCase()}${size.slice(1)}`,
+    })),
     prefill: { smallPad: 'xxs sm', mediumPad: 'xs lg', largePad: 'sm xl' },
-    renderMatrix: (args) => <ButtonMatrix {...args} />,
+    renderMatrix: () => <ButtonMatrix />,
   },
   Menu: {
     canvasLabel: 'Menu — static list + popover (default + dense)',
@@ -1351,7 +1013,7 @@ const COMPONENT_DEFS = {
       denseBlockPad: 'xxs',
       denseInlinePad: 'md',
     },
-    renderMatrix: (args) => <MenuMatrix {...args} />,
+    renderMatrix: () => <MenuMatrix />,
   },
   Tooltip: {
     canvasLabel: 'Tooltip — pointer (default + arrow); touch out of scope',
@@ -1362,7 +1024,7 @@ const COMPONENT_DEFS = {
       inlinePad: 'sm',
       offset: 'lg',
     },
-    renderMatrix: (args) => <TooltipMatrix {...args} />,
+    renderMatrix: () => <TooltipMatrix />,
   },
   OutlinedInput: {
     canvasLabel: 'OutlinedInput — size axis + adornments (label bridge)',
@@ -1376,7 +1038,7 @@ const COMPONENT_DEFS = {
       mediumGap: 'sm',
       smallGap: 'xxs',
     },
-    renderMatrix: (args) => <OutlinedInputMatrix {...args} />,
+    renderMatrix: () => <OutlinedInputMatrix />,
   },
   FilledInput: {
     canvasLabel: 'FilledInput — size axis (box padding); label follows preset',
@@ -1389,7 +1051,7 @@ const COMPONENT_DEFS = {
       mediumInlinePad: 'md',
       smallInlinePad: 'md',
     },
-    renderMatrix: (args) => <FilledInputMatrix {...args} />,
+    renderMatrix: () => <FilledInputMatrix />,
   },
   Input: {
     canvasLabel: 'Input (standard) — size axis (input top/bottom padding)',
@@ -1399,7 +1061,7 @@ const COMPONENT_DEFS = {
       smallTopPad: 'xxs',
       bottomPad: 'xs',
     },
-    renderMatrix: (args) => <InputMatrix {...args} />,
+    renderMatrix: () => <InputMatrix />,
   },
   Tabs: {
     canvasLabel: 'Tabs — text / icon-top / icon-start (Tab+Tabs minHeight paired)',
@@ -1413,49 +1075,49 @@ const COMPONENT_DEFS = {
       iconStackGap: 'xs',
       iconInlineGap: 'sm',
     },
-    renderMatrix: (args) => <TabsMatrix {...args} />,
+    renderMatrix: () => <TabsMatrix />,
   },
   Checkbox: {
     canvasLabel: 'Checkbox — touch-target padding (medium + small)',
     fields: CHECKBOX_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
-    renderMatrix: (args) => <CheckboxMatrix {...args} />,
+    renderMatrix: () => <CheckboxMatrix />,
   },
   Radio: {
     canvasLabel: 'Radio — touch-target padding (medium + small)',
     fields: RADIO_FIELDS,
     prefill: { mediumPad: 'sm', smallPad: 'xs' },
-    renderMatrix: (args) => <RadioMatrix {...args} />,
+    renderMatrix: () => <RadioMatrix />,
   },
   Avatar: {
     canvasLabel: 'Avatar — square size (raw px)',
     fields: AVATAR_FIELDS,
     prefill: {}, // size = raw px, read off the theme
-    renderMatrix: (args) => <AvatarMatrix {...args} />,
+    renderMatrix: () => <AvatarMatrix />,
   },
   Fab: {
     canvasLabel: 'Fab — circular size (small / medium / large)',
     fields: FAB_FIELDS,
     prefill: {}, // sizes = raw px, read off the theme
-    renderMatrix: (args) => <FabMatrix {...args} />,
+    renderMatrix: () => <FabMatrix />,
   },
   Pagination: {
     canvasLabel: 'Pagination — item box size (small / medium / large)',
     fields: PAGINATION_FIELDS,
     prefill: {}, // sizes = raw px, read off the theme
-    renderMatrix: (args) => <PaginationMatrix {...args} />,
+    renderMatrix: () => <PaginationMatrix />,
   },
   SnackbarContent: {
     canvasLabel: 'SnackbarContent — root padding',
     fields: SNACKBAR_FIELDS,
     prefill: { blockPad: 'xs', inlinePad: 'lg' },
-    renderMatrix: (args) => <SnackbarMatrix {...args} />,
+    renderMatrix: () => <SnackbarMatrix />,
   },
   BottomNavigation: {
     canvasLabel: 'BottomNavigation — bar height + action inline padding',
     fields: BOTTOM_NAV_FIELDS,
     prefill: { inlinePad: 'md' }, // height raw px off theme
-    renderMatrix: (args) => <BottomNavigationMatrix {...args} />,
+    renderMatrix: () => <BottomNavigationMatrix />,
   },
   Dialog: {
     canvasLabel: 'Dialog — title / content / actions padding',
@@ -1467,85 +1129,100 @@ const COMPONENT_DEFS = {
       contentInlinePad: 'xl',
       actionsPad: 'sm',
     },
-    renderMatrix: (args) => <DialogMatrix {...args} />,
+    renderMatrix: () => <DialogMatrix />,
   },
   ListItemButton: {
     canvasLabel: 'ListItemButton — block padding (+ dense) + gutters',
     fields: LIST_ITEM_BUTTON_FIELDS,
     prefill: { blockPad: 'sm', denseBlockPad: 'xxs', inlinePad: 'lg' },
-    renderMatrix: (args) => <ListItemButtonMatrix {...args} />,
+    renderMatrix: () => <ListItemButtonMatrix />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
     fields: BUTTON_GROUP_FIELDS,
     prefill: {}, // minWidth = raw px, read off the theme
-    renderMatrix: (args) => <ButtonGroupMatrix {...args} />,
+    renderMatrix: () => <ButtonGroupMatrix />,
   },
   TableCell: {
     canvasLabel: 'TableCell — block padding per size + inline padding',
     fields: TABLE_CELL_FIELDS,
     prefill: { mediumBlockPad: 'lg', smallBlockPad: 'xs', inlinePad: 'lg' },
-    renderMatrix: (args) => <TableCellMatrix {...args} />,
+    renderMatrix: () => <TableCellMatrix />,
   },
   Autocomplete: {
     canvasLabel: 'Autocomplete — option list min-height + padding (open)',
     fields: AUTOCOMPLETE_FIELDS,
     prefill: { optionBlockPad: 'xs', optionInlinePad: 'lg' }, // minHeight raw px off theme
-    renderMatrix: (args) => <AutocompleteMatrix {...args} />,
+    renderMatrix: () => <AutocompleteMatrix />,
   },
   Stepper: {
     canvasLabel: 'Stepper — step gutter + icon→label gap',
     fields: STEPPER_FIELDS,
     prefill: { inlinePad: 'sm', iconGap: 'sm' },
-    renderMatrix: (args) => <StepperMatrix {...args} />,
+    renderMatrix: () => <StepperMatrix />,
   },
   Toolbar: {
     canvasLabel: 'AppBar/Toolbar — gutter padding + dense min-height',
     fields: TOOLBAR_FIELDS,
     prefill: { inlinePad: 'lg', wideInlinePad: 'xl' }, // denseMinHeight raw px off theme
-    renderMatrix: (args) => <ToolbarMatrix {...args} />,
+    renderMatrix: () => <ToolbarMatrix />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
     fields: BADGE_FIELDS,
     prefill: { standardPad: '0 xs' }, // sizes = raw px, read off the theme
-    renderMatrix: (args) => <BadgeMatrix {...args} />,
+    renderMatrix: () => <BadgeMatrix />,
   },
   ToggleButton: {
     canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',
     fields: TOGGLE_BUTTON_FIELDS,
     prefill: { smallPad: 'sm', mediumPad: 'md', largePad: 'lg' },
-    renderMatrix: (args) => <ToggleButtonMatrix {...args} />,
+    renderMatrix: () => <ToggleButtonMatrix />,
   },
   Breadcrumbs: {
     canvasLabel: 'Breadcrumbs — separator inline gap',
     fields: BREADCRUMBS_FIELDS,
     prefill: { separatorGap: 'sm' },
-    renderMatrix: (args) => <BreadcrumbsMatrix {...args} />,
+    renderMatrix: () => <BreadcrumbsMatrix />,
   },
-  CardContent: {
-    canvasLabel: 'CardContent — padding + last-child bottom padding',
-    fields: CARD_CONTENT_FIELDS,
-    prefill: { pad: 'lg', padBottom: 'xl' },
-    renderMatrix: (args) => <CardContentMatrix {...args} />,
+  Card: {
+    canvasLabel: 'Card — header / content / actions padding + gaps',
+    fields: CARD_FIELDS,
+    prefill: {
+      pad: 'lg',
+      padBottom: 'xl',
+      actionsPad: 'sm',
+      actionsGap: 'sm',
+      headerPad: 'lg',
+      headerAvatarGap: 'lg',
+    },
+    note: 'CardActions/CardHeader — stub: manual override only, no preset reflow until source is tokenized.',
+    renderMatrix: () => <CardMatrix />,
+  },
+  Rating: {
+    canvasLabel: 'Rating — star size (typography/icon axis)',
+    fields: [],
+    prefill: {},
+    note: 'Star fontSize reflows via the preset typography config — out of scope for token editing.',
+    renderMatrix: () => <RatingMatrix />,
   },
   Select: {
     canvasLabel: 'Select — content-box floor (padding via its OutlinedInput)',
     fields: SELECT_FIELDS,
     prefill: {}, // minHeight = raw px, read off the theme
-    renderMatrix: (args) => <SelectMatrix {...args} />,
+    renderMatrix: () => <SelectMatrix />,
   },
   Alert: {
     canvasLabel: 'Alert — root padding + icon gap',
     fields: ALERT_FIELDS,
     prefill: { blockPad: 'xs', inlinePad: 'lg', iconGap: 'md' },
-    renderMatrix: (args) => <AlertMatrix {...args} />,
+    renderMatrix: () => <AlertMatrix />,
   },
   Chip: {
     canvasLabel: 'Chip — height (drives avatar/icon) + label inline padding',
     fields: CHIP_FIELDS,
     prefill: { mediumPadInline: 'md', smallPadInline: 'sm' }, // heights = raw px, read off theme
-    renderMatrix: (args) => <ChipMatrix {...args} />,
+    renderMatrix: () => <ChipMatrix />,
   },
   Accordion: {
     canvasLabel: 'Accordion — summary min-height/margin/pad + details padding',
@@ -1559,7 +1236,7 @@ const COMPONENT_DEFS = {
       detailsInlinePad: 'lg',
       detailsBottomPad: 'lg',
     },
-    renderMatrix: (args) => <AccordionMatrix {...args} />,
+    renderMatrix: () => <AccordionMatrix />,
   },
 } satisfies Record<string, DensityComponentDef>;
 
@@ -1578,7 +1255,9 @@ function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
     // the `tooltip` slot (it has no root slot).
     const styleOverrides = components[name]?.styleOverrides ?? {};
     for (const slot of Object.keys(styleOverrides)) {
-      const layers = Array.isArray(styleOverrides[slot]) ? styleOverrides[slot] : [styleOverrides[slot]];
+      const layers = Array.isArray(styleOverrides[slot])
+        ? styleOverrides[slot]
+        : [styleOverrides[slot]];
       for (let i = layers.length - 1; i >= 0; i -= 1) {
         const layer = layers[i];
         if (layer && typeof layer === 'object' && cssVar in layer) {
@@ -1590,62 +1269,101 @@ function themeTokenValue(theme: unknown, cssVar: string): string | undefined {
   return undefined;
 }
 
-// Canonical mapping for the active preset: spacing tokens prefill with their
-// density key (preset-independent), sizing tokens with the preset's raw px read
-// live off the theme. Empty when the preset didn't set a token (e.g. `unset`).
-const buildMapping = (theme: unknown) =>
-  Object.fromEntries(
-    COMPONENTS.map((c) => [
-      c,
-      Object.fromEntries(
-        COMPONENT_DEFS[c].fields.map((field) => [
-          field.key,
-          (COMPONENT_DEFS[c].prefill as Record<string, string>)[field.key] ??
-            themeTokenValue(theme, field.cssVar) ??
-            '',
-        ]),
-      ),
-    ]),
-  ) as Record<ComponentName, Record<string, string>>;
+// A blank override map — the default state. A field holds a value only once the
+// user types; until then it's inert (placeholder shows the preset's canonical).
+const emptyMapping = () =>
+  Object.fromEntries(COMPONENTS.map((c) => [c, {}])) as Record<
+    ComponentName,
+    Record<string, string>
+  >;
+
+// The value the active preset assigns a field — shown as the input placeholder.
+// Spacing prefills its density key (preset-independent); sizing reads the raw px
+// straight off the enhanced theme so it can't drift from what the preset ships.
+const canonicalValue = (theme: unknown, comp: ComponentName, field: DensityField) =>
+  (COMPONENT_DEFS[comp].prefill as Record<string, string>)[field.key] ??
+  themeTokenValue(theme, field.cssVar) ??
+  '';
 
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
 
+  // User overrides only — empty until a field is typed.
+  const [mapping, setMapping] =
+    React.useState<Record<ComponentName, Record<string, string>>>(emptyMapping);
+
   const mappingEnabled = preset !== 'unset';
   const visibleComponents: ComponentName[] = selection === 'All' ? COMPONENTS : [selection];
 
-  const canvasTheme = React.useMemo(() => {
+  // Preset theme drives the canvas + field placeholders/legend. Stable per preset:
+  // overrides layer on separately (GlobalStyles), so typing never rebuilds it.
+  const presetTheme = React.useMemo(() => {
     const base = createTheme({ cssVariables: true });
     return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
 
-  const [mapping, setMapping] = React.useState<Record<ComponentName, Record<string, string>>>(() =>
-    buildMapping(canvasTheme),
-  );
-
-  // Re-sync the mapping to the active preset's canonical values (incl. its raw-px
-  // sizing) whenever the preset changes, so fields default to what enhanceDensity
-  // ships rather than going stale/empty.
+  // A new preset has different canonical values → drop stale overrides.
   React.useEffect(() => {
-    setMapping(buildMapping(canvasTheme));
-  }, [canvasTheme]);
+    setMapping(emptyMapping());
+  }, [preset]);
+
+  // Overrides → one GlobalStyles rule per target element, scoped to `#density-canvas`
+  // so the id-level specificity beats the preset's styleOverride and nothing leaks
+  // to the sidebar. Undefined until something is typed.
+  const overrideCss = React.useMemo(() => {
+    if (preset === 'unset') {
+      return undefined;
+    }
+    const rules: Record<string, Record<string, string>> = {};
+    for (const comp of COMPONENTS) {
+      for (const field of COMPONENT_DEFS[comp].fields) {
+        const raw = mapping[comp]?.[field.key] ?? '';
+        if (parseMapping(raw).state !== 'ok') {
+          continue;
+        }
+        const selector = `#density-canvas ${field.selector}`;
+        if (!rules[selector]) {
+          rules[selector] = {};
+        }
+        const value = resolveValue(raw);
+        // property-mode: override the emitted CSS property directly (survives the
+        // source's seam removal). var-mode (no `prop`): write the private token var
+        // so the source's own seam routes it (calc-coupling / multi-route fields).
+        if (field.prop) {
+          for (const p of Array.isArray(field.prop) ? field.prop : [field.prop]) {
+            rules[selector][p] = value;
+          }
+        } else {
+          rules[selector][field.cssVar] = value;
+        }
+      }
+    }
+    return Object.keys(rules).length ? rules : undefined;
+  }, [preset, mapping]);
 
   // Active scale in px straight off the enhanced theme — single source of truth
   // for the legend + preview, so it can't drift from what the preset applied.
   const scalePx =
     preset === 'unset'
       ? null
-      : (canvasTheme as unknown as { density: Record<string, string> }).density;
+      : (presetTheme as unknown as { density: Record<string, string> }).density;
 
   const setField = (comp: ComponentName, key: string, value: string) =>
     setMapping((m) => ({ ...m, [comp]: { ...m[comp], [key]: value } }));
 
-  const resetMapping = () => setMapping(buildMapping(canvasTheme));
+  const resetMapping = () => setMapping(emptyMapping());
 
   return (
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
+    <Box
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        bgcolor: 'background.default',
+      }}
+    >
       <Head title="Density — playground" description="enhanceDensity preset × token mapping" />
 
       {/* Title row — compact, single line. */}
@@ -1716,7 +1434,11 @@ export default function DensityExperiment() {
             onChange={(_event, next: string[]) => setDebug(next)}
             aria-label="visual debug overlays"
           >
-            <ToggleButton value="padding" aria-label="highlight padding" data-debug-toggle="padding">
+            <ToggleButton
+              value="padding"
+              aria-label="highlight padding"
+              data-debug-toggle="padding"
+            >
               <Tooltip title="Padding highlight">
                 <PaddingIcon fontSize="small" />
               </Tooltip>
@@ -1765,7 +1487,14 @@ export default function DensityExperiment() {
 
           <Box
             component="section"
-            sx={{ flex: 1, minHeight: 0, overflowY: 'auto', px: 3, pb: 3, opacity: mappingEnabled ? 1 : 0.5 }}
+            sx={{
+              flex: 1,
+              minHeight: 0,
+              overflowY: 'auto',
+              px: 3,
+              pb: 3,
+              opacity: mappingEnabled ? 1 : 0.5,
+            }}
           >
             <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
               Vars mapping
@@ -1791,24 +1520,36 @@ export default function DensityExperiment() {
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'medium' }}>
                   {comp}
                 </Typography>
+                {(COMPONENT_DEFS[comp] as DensityComponentDef).note && (
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    component="p"
+                    sx={{ mt: 0.25, fontStyle: 'italic' }}
+                  >
+                    {(COMPONENT_DEFS[comp] as DensityComponentDef).note}
+                  </Typography>
+                )}
                 <Stack spacing={1.5} sx={{ mt: 1 }}>
                   {COMPONENT_DEFS[comp].fields.map((field) => {
-                    const value = mapping[comp][field.key] ?? '';
+                    const value = mapping[comp]?.[field.key] ?? '';
+                    const canon = canonicalValue(presetTheme, comp, field);
                     const parsed = parseMapping(value);
                     const showError = mappingEnabled && parsed.state === 'error';
                     let helper = ' ';
                     if (showError) {
                       helper = parsed.error ?? ' ';
-                    } else if (mappingEnabled && parsed.state === 'ok') {
-                      helper = previewText(value, scalePx); // key → px · raw → as typed
+                    } else if (mappingEnabled) {
+                      // typed → preview the typed value; empty → the preset default it inherits
+                      helper = previewText(value || canon, scalePx);
                     }
                     return (
                       <TextField
                         key={field.key}
                         size="small"
-                        label={field.cssVar}
+                        label={fieldLabel(field.cssVar)}
                         value={value}
-                        placeholder="density key or CSS value"
+                        placeholder={canon || 'density key or CSS value'}
                         disabled={!mappingEnabled}
                         error={showError}
                         helperText={helper}
@@ -1837,8 +1578,9 @@ export default function DensityExperiment() {
         </Box>
 
         {/* CANVAS — density-enhanced theme; scrolls independently. */}
-        <ThemeProvider theme={canvasTheme}>
+        <ThemeProvider theme={presetTheme}>
           <CssBaseline />
+          {overrideCss && <GlobalStyles styles={overrideCss} />}
           <Box
             id="density-canvas"
             data-debug-padding={debug.includes('padding') ? '' : undefined}
@@ -1851,7 +1593,7 @@ export default function DensityExperiment() {
                   <Typography variant="overline" color="text.secondary">
                     {COMPONENT_DEFS[comp].canvasLabel}
                   </Typography>
-                  {COMPONENT_DEFS[comp].renderMatrix({ mapping: mapping[comp], mappingEnabled })}
+                  {COMPONENT_DEFS[comp].renderMatrix()}
                 </Box>
               ))}
             </Stack>

@@ -7,7 +7,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
-import { private_buttonVars as buttonVars } from './buttonVars';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
@@ -94,10 +93,6 @@ const ButtonRoot = styled(ButtonBase, {
   },
 })(
   memoTheme(({ theme }) => {
-    // Material UI layer: the internal sized tokens are the static, unprefixed
-    // `private_buttonVars` map, imported here and by the `enhance*Density`
-    // presets so emitted and targeted names can't drift. The agnostic seam (`--comp-pad`)
-    // and internal default (`--_pad`) are literal and unprefixed.
     const inheritContainedBackgroundColor =
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800];
 
@@ -105,13 +100,8 @@ const ButtonRoot = styled(ButtonBase, {
       theme.palette.mode === 'light' ? theme.palette.grey.A100 : theme.palette.grey[700];
     return {
       ...theme.typography.button,
-      // Agnostic layer: the styled root's single consumption point reads the
-      // literal, unprefixed seam `--comp-pad`. `--_pad` is the universal default
-      // (today's root padding); variants specialize it per (variant, size), so a
-      // custom variant/size still gets a sane value.
-      '--_pad': '6px 16px',
-      padding: 'var(--comp-pad, var(--_pad))', // seam falls back to the internal default
       minWidth: 64,
+      padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
       ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
@@ -124,25 +114,9 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
-        // Built-in size routing (CSS, deduped) — routes the public sized token
-        // over the internal default into the agnostic seam. A custom size matches
-        // none of these, so the seam stays unset and consumption falls to `--_pad`.
-        {
-          props: { size: 'small' },
-          style: { '--comp-pad': `var(${buttonVars.smallPad}, var(--_pad))` },
-        },
-        {
-          props: { size: 'medium' },
-          style: { '--comp-pad': `var(${buttonVars.mediumPad}, var(--_pad))` },
-        },
-        {
-          props: { size: 'large' },
-          style: { '--comp-pad': `var(${buttonVars.largePad}, var(--_pad))` },
-        },
         {
           props: { variant: 'contained' },
           style: {
-            '--_pad': '6px 16px', // medium default; small/large override below
             color: `var(--variant-containedColor)`,
             backgroundColor: `var(--variant-containedBg)`,
             boxShadow: (theme.vars || theme).shadows[2],
@@ -169,7 +143,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'outlined' },
           style: {
-            '--_pad': '5px 15px', // medium default; small/large override below
+            padding: '5px 15px',
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
             backgroundColor: `var(--variant-outlinedBg)`,
@@ -182,7 +156,7 @@ const ButtonRoot = styled(ButtonBase, {
         {
           props: { variant: 'text' },
           style: {
-            '--_pad': '6px 8px', // medium default; small/large override below
+            padding: '6px 8px',
             color: `var(--variant-textColor)`,
             backgroundColor: `var(--variant-textBg)`,
           },
@@ -249,7 +223,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            '--_pad': '4px 5px',
+            padding: '4px 5px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -259,7 +233,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'text',
           },
           style: {
-            '--_pad': '8px 11px',
+            padding: '8px 11px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -269,7 +243,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            '--_pad': '3px 9px',
+            padding: '3px 9px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -279,7 +253,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'outlined',
           },
           style: {
-            '--_pad': '7px 21px',
+            padding: '7px 21px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -289,7 +263,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            '--_pad': '4px 10px',
+            padding: '4px 10px',
             fontSize: theme.typography.pxToRem(13),
           },
         },
@@ -299,7 +273,7 @@ const ButtonRoot = styled(ButtonBase, {
             variant: 'contained',
           },
           style: {
-            '--_pad': '8px 22px',
+            padding: '8px 22px',
             fontSize: theme.typography.pxToRem(15),
           },
         },
@@ -742,10 +716,6 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startIcon: PropTypes.node,
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

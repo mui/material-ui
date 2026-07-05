@@ -1,5 +1,4 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
-import { private_buttonVars as buttonVars } from '../Button/buttonVars';
 import { private_menuItemVars as menuItemVars } from '../MenuItem/menuItemVars';
 import { private_listVars as listVars } from '../List/listVars';
 import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
@@ -52,9 +51,12 @@ const scale: DensityScale = {
 export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
   addRootOverride(enhanced.components, 'MuiButton', {
-    [buttonVars.smallPad]: `${d.xxs} ${d.sm}`,
-    [buttonVars.mediumPad]: `${d.xs} ${d.lg}`,
-    [buttonVars.largePad]: `${d.sm} ${d.xl}`,
+    // Emit padding directly on the size variants Button already ships (no seam).
+    variants: [
+      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } },
+      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
+      { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     // Height = raw px (density steps are spacing-only). Padding = density steps.

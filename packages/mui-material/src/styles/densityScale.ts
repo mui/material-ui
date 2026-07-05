@@ -28,8 +28,8 @@ export type EnhanceableTheme = {
 const cssVar = (key: DensityKey) => `--mui-density-${key}`;
 
 /**
- * `var(--mui-density-*)` reference for each step. Presets read these to point a
- * component var at a chosen step, e.g. `[buttonVars.mediumPad]: `${densityVars.xs} ${densityVars.lg}``.
+ * `var(--mui-density-*)` reference for each step. Presets read these to emit a
+ * component's density value at a chosen step, e.g. `padding: `${densityVars.xs} ${densityVars.lg}``.
  */
 export const densityVars: DensityScale = DENSITY_KEYS.reduce((acc, key) => {
   acc[key] = `var(${cssVar(key)})`;
