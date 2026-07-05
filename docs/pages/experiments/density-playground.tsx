@@ -34,7 +34,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
-import { private_filledInputVars } from '@mui/material/FilledInput';
 import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
 import Tab, { private_tabVars } from '@mui/material/Tab';
@@ -401,12 +400,12 @@ function OutlinedInputMatrix() {
 // prefill density keys. The label rest/shrink Y follow the active preset (tuned
 // raw px, not editable here).
 const FILLED_INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumTopPad', cssVar: private_filledInputVars.mediumTopPad, prop: 'paddingTop', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
-  { key: 'smallTopPad', cssVar: private_filledInputVars.smallTopPad, prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
-  { key: 'mediumBottomPad', cssVar: private_filledInputVars.mediumBottomPad, prop: 'paddingBottom', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
-  { key: 'smallBottomPad', cssVar: private_filledInputVars.smallBottomPad, prop: 'paddingBottom', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
-  { key: 'mediumInlinePad', cssVar: private_filledInputVars.mediumInlinePad, prop: 'paddingInline', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
-  { key: 'smallInlinePad', cssVar: private_filledInputVars.smallInlinePad, prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
+  { key: 'mediumTopPad', cssVar: '--FilledInput-medium-topPad', prop: 'paddingTop', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallTopPad', cssVar: '--FilledInput-small-topPad', prop: 'paddingTop', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
+  { key: 'mediumBottomPad', cssVar: '--FilledInput-medium-bottomPad', prop: 'paddingBottom', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallBottomPad', cssVar: '--FilledInput-small-bottomPad', prop: 'paddingBottom', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
+  { key: 'mediumInlinePad', cssVar: '--FilledInput-medium-inlinePad', prop: 'paddingInline', selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input' },
+  { key: 'smallInlinePad', cssVar: '--FilledInput-small-inlinePad', prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input' },
 ];
 
 function FilledInputMatrix() {

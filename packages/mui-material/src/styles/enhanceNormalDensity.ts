@@ -1,6 +1,5 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
-import { private_filledInputVars as fiVars } from '../FilledInput/filledInputVars';
 import { private_inputVars as inVars } from '../Input/inputVars';
 import { private_tabVars as tabVars } from '../Tab/tabVars';
 import { private_tabsVars as tabsVars } from '../Tabs/tabsVars';
@@ -209,14 +208,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     ],
   });
   addRootOverride(enhanced.components, 'MuiFilledInput', {
-    // Box padding = density steps; the label rest/shrink Y are tuned raw px
-    // (no clean formula from topPad), set on the sibling label via `:has(~ &)`.
-    [fiVars.mediumTopPad]: d.xl,
-    [fiVars.smallTopPad]: d.lg,
-    [fiVars.mediumBottomPad]: d.sm,
-    [fiVars.smallBottomPad]: d.xxs,
-    [fiVars.mediumInlinePad]: d.md,
-    [fiVars.smallInlinePad]: d.md,
+    // Root padding (adornment/multiline) = density steps. The floating label is a
+    // preceding sibling — reach it via `:has(~ &)` and set its rest/shrink Y as
+    // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
+    // at master literals (out of scope).
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--FilledInputLabel-restY': '15px',
       '--FilledInputLabel-shrinkY': '7px',
@@ -231,8 +226,79 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           },
         },
       },
+      {
+        props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+          ownerState.startAdornment,
+        style: { paddingLeft: d.md },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) => ownerState.endAdornment,
+        style: { paddingRight: d.md },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+        style: { padding: `${d.xl} ${d.md} ${d.sm}` },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined; size?: string | undefined } }) =>
+          ownerState.multiline && ownerState.size === 'small',
+        style: { paddingTop: d.lg, paddingBottom: d.xxs },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined; hiddenLabel?: boolean | undefined } }) =>
+          ownerState.multiline && ownerState.hiddenLabel,
+        style: { paddingTop: 16, paddingBottom: 17 },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { multiline?: boolean | undefined; hiddenLabel?: boolean | undefined; size?: string | undefined };
+        }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+        style: { paddingTop: 8, paddingBottom: 9 },
+      },
     ],
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiFilledInput',
+    {
+      // Box height = input top/bottom padding (density steps); inline = step. The
+      // adornment/multiline zero-resets mirror master; hiddenLabel block padding
+      // stays at master literals (out of scope).
+      paddingTop: d.xl,
+      paddingRight: d.md,
+      paddingBottom: d.sm,
+      paddingLeft: d.md,
+      variants: [
+        { props: { size: 'small' }, style: { paddingTop: d.lg, paddingBottom: d.xxs } },
+        {
+          props: ({ ownerState }: { ownerState: { hiddenLabel?: boolean | undefined } }) => ownerState.hiddenLabel,
+          style: { paddingTop: 16, paddingBottom: 17 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+            ownerState.startAdornment,
+          style: { paddingLeft: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) =>
+            ownerState.endAdornment,
+          style: { paddingRight: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { hiddenLabel?: boolean | undefined; size?: string | undefined } }) =>
+            ownerState.hiddenLabel && ownerState.size === 'small',
+          style: { paddingTop: 8, paddingBottom: 9 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+          style: { paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0 },
+        },
+      ],
+    },
+    'input',
+  );
   addRootOverride(enhanced.components, 'MuiInput', {
     // Standard input padding = density steps (tiny; block only, inline stays 0).
     [inVars.mediumTopPad]: d.xs,
