@@ -921,11 +921,11 @@ importers:
         specifier: npm:@mui/material@5.18.0
         version: '@mui/material@5.18.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react@19.2.6))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)'
       jscodeshift:
-        specifier: ^17.1.2
-        version: 17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7))
+        specifier: ^17.3.0
+        version: 17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7))
       jscodeshift-add-imports:
         specifier: ^1.0.11
-        version: 1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7)))
+        version: 1.0.11(jscodeshift@17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7)))
       postcss:
         specifier: ^8.5.14
         version: 8.5.15
@@ -8281,8 +8281,8 @@ packages:
     peerDependencies:
       jscodeshift: ^0.7.0 || ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0
 
-  jscodeshift@17.1.2:
-    resolution: {integrity: sha512-uime4vFOiZ1o3ICT4Sm/AbItHEVw2oCxQ3a0egYVy3JMMOctxe07H3SKL1v175YqjMt27jn1N+3+Bj9SKDNgdQ==}
+  jscodeshift@17.3.0:
+    resolution: {integrity: sha512-LjFrGOIORqXBU+jwfC9nbkjmQfFldtMIoS6d9z2LG/lkmyNXsJAySPT+2SWXJEoE68/bCWcxKpXH37npftgmow==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
@@ -18830,19 +18830,19 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscodeshift-add-imports@1.0.11(jscodeshift@17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7))):
+  jscodeshift-add-imports@1.0.11(jscodeshift@17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7))):
     dependencies:
       '@babel/traverse': 7.29.7
-      jscodeshift: 17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7))
-      jscodeshift-find-imports: 2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7)))
+      jscodeshift: 17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7))
+      jscodeshift-find-imports: 2.0.4(jscodeshift@17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7)))
     transitivePeerDependencies:
       - supports-color
 
-  jscodeshift-find-imports@2.0.4(jscodeshift@17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7))):
+  jscodeshift-find-imports@2.0.4(jscodeshift@17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7))):
     dependencies:
-      jscodeshift: 17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7))
+      jscodeshift: 17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7))
 
-  jscodeshift@17.1.2(@babel/preset-env@7.29.5(@babel/core@7.29.7)):
+  jscodeshift@17.3.0(@babel/preset-env@7.29.5(@babel/core@7.29.7)):
     dependencies:
       '@babel/core': 7.29.7
       '@babel/parser': 7.29.7
