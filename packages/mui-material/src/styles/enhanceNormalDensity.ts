@@ -2,7 +2,6 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
-import { private_avatarVars as avVars } from '../Avatar/avatarVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
@@ -375,7 +374,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiAvatar', {
     // Square size = raw px (sizing).
-    [avVars.size]: '40px',
+    width: '40px',
+    height: '40px',
   });
   addRootOverride(
     enhanced.components,

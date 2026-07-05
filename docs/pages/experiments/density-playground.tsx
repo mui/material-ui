@@ -53,7 +53,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
-import Avatar, { private_avatarVars } from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -699,7 +699,7 @@ function ToggleButtonMatrix() {
 
 // Avatar family: the square size (raw px; no size prop).
 const AVATAR_FIELDS: DensityField[] = [
-  { key: 'size', cssVar: private_avatarVars.size, prop: ['width', 'height'], selector: '.MuiAvatar-root' },
+  { key: 'size', cssVar: '--Avatar-size', prop: ['width', 'height'], selector: '.MuiAvatar-root' },
 ];
 
 function AvatarMatrix() {
