@@ -11,7 +11,6 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
-import { private_badgeVars as vars } from './badgeVars';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -81,16 +80,10 @@ const BadgeBadge = styled('span', {
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
-    // Density seams: bubble size (raw px) + padding, per state (standard base;
-    // dot variant reroutes). borderRadius stays literal (pill at default size).
-    '--_size': `${RADIUS_STANDARD * 2}px`,
-    '--_pad': '0 6px',
-    '--comp-size': `var(${vars.standardSize}, var(--_size))`,
-    '--comp-pad': `var(${vars.standardPad}, var(--_pad))`,
-    minWidth: 'var(--comp-size, var(--_size))',
+    minWidth: RADIUS_STANDARD * 2,
     lineHeight: 1,
-    padding: 'var(--comp-pad, var(--_pad))',
-    height: 'var(--comp-size, var(--_size))',
+    padding: '0 6px',
+    height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     zIndex: 1, // Render the badge on top of potential ripples.
     '@media (forced-colors: active)': {
@@ -113,11 +106,10 @@ const BadgeBadge = styled('span', {
       {
         props: { variant: 'dot' },
         style: {
-          '--_size': `${RADIUS_DOT * 2}px`,
-          '--_pad': '0px',
-          '--comp-size': `var(${vars.dotSize}, var(--_size))`,
-          '--comp-pad': `var(${vars.dotPad}, var(--_pad))`,
           borderRadius: RADIUS_DOT,
+          height: RADIUS_DOT * 2,
+          minWidth: RADIUS_DOT * 2,
+          padding: 0,
         },
       },
       {

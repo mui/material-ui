@@ -3,7 +3,6 @@ import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_avatarVars as avVars } from '../Avatar/avatarVars';
-import { private_badgeVars as badgeVars } from '../Badge/badgeVars';
 import { private_buttonGroupVars as bgVars } from '../ButtonGroup/buttonGroupVars';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import { private_fabVars as fabVars } from '../Fab/fabVars';
@@ -376,12 +375,22 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // Square size = raw px (sizing).
     [avVars.size]: '32px',
   });
-  addRootOverride(enhanced.components, 'MuiBadge', {
-    // Bubble size = raw px; standard padding = '0 <step>'.
-    [badgeVars.standardSize]: '18px',
-    [badgeVars.dotSize]: '4px',
-    [badgeVars.standardPad]: `0 ${d.xs}`,
-  });
+  addRootOverride(
+    enhanced.components,
+    'MuiBadge',
+    {
+      // Bubble = raw px (sizing); standard inline pad = step. Dot resizes; dot pad
+      // + borderRadius stay frozen at master.
+      variants: [
+        {
+          props: { variant: 'standard' },
+          style: { minWidth: '18px', height: '18px', padding: `0 ${d.xs}` },
+        },
+        { props: { variant: 'dot' }, style: { minWidth: '4px', height: '4px' } },
+      ],
+    },
+    'badge',
+  );
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
     [bgVars.minWidth]: '32px',
   });

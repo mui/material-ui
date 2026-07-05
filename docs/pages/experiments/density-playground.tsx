@@ -54,7 +54,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
-import Badge, { private_badgeVars } from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
@@ -713,9 +713,9 @@ function AvatarMatrix() {
 
 // Badge family: bubble size + padding, per state (standard / dot).
 const BADGE_FIELDS: DensityField[] = [
-  { key: 'standardSize', cssVar: private_badgeVars.standardSize, prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-standard' },
-  { key: 'standardPad', cssVar: private_badgeVars.standardPad, prop: 'padding', selector: '.MuiBadge-badge.MuiBadge-standard' },
-  { key: 'dotSize', cssVar: private_badgeVars.dotSize, prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-dot' },
+  { key: 'standardSize', cssVar: '--Badge-standard-size', prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-standard' },
+  { key: 'standardPad', cssVar: '--Badge-standard-pad', prop: 'padding', selector: '.MuiBadge-badge.MuiBadge-standard' },
+  { key: 'dotSize', cssVar: '--Badge-dot-size', prop: ['minWidth', 'height'], selector: '.MuiBadge-badge.MuiBadge-dot' },
 ];
 
 function BadgeMatrix() {
