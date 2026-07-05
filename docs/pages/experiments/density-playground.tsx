@@ -71,7 +71,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton, { private_toggleButtonVars } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Tooltip, { private_tooltipVars } from '@mui/material/Tooltip';
+import Tooltip from '@mui/material/Tooltip';
 import PaddingIcon from '@mui/icons-material/Padding';
 import TitleIcon from '@mui/icons-material/Title';
 import {
@@ -315,12 +315,13 @@ function MenuMatrix() {
 // Padding + anchor offset are spacing (prefill density keys); arrow size ships
 // as raw px per preset (read live off the theme), like MenuItem min-height.
 const TOOLTIP_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_tooltipVars.blockPad, prop: 'paddingBlock', selector: '.MuiTooltip-tooltip' },
-  { key: 'inlinePad', cssVar: private_tooltipVars.inlinePad, prop: 'paddingInline', selector: '.MuiTooltip-tooltip' },
-  // var-mode: one offset var drives a per-placement margin (4 placements, no class).
-  { key: 'offset', cssVar: private_tooltipVars.offset, selector: '.MuiTooltip-tooltip' },
-  // var-mode: the arrow's width + height (calc) both derive from this var.
-  { key: 'arrowSize', cssVar: private_tooltipVars.arrowSize, selector: '.MuiTooltip-tooltip' },
+  { key: 'blockPad', cssVar: '--Tooltip-blockPad', prop: 'paddingBlock', selector: '.MuiTooltip-tooltip' },
+  { key: 'inlinePad', cssVar: '--Tooltip-inlinePad', prop: 'paddingInline', selector: '.MuiTooltip-tooltip' },
+  // Offset is emitted as per-placement margins by the preset (4 placements, no
+  // discriminating class) — the synthetic cssVar is label/placeholder only.
+  { key: 'offset', cssVar: '--Tooltip-offset', selector: '.MuiTooltip-tooltip' },
+  // Calc-coupled: the arrow's width + height (calc) both derive from this real var.
+  { key: 'arrowSize', cssVar: '--Tooltip-arrowSize', selector: '.MuiTooltip-tooltip' },
 ];
 
 function TooltipMatrix() {

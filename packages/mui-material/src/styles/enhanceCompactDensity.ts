@@ -1,5 +1,5 @@
 import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
-import { private_tooltipVars as tooltipVars } from '../Tooltip/tooltipVars';
+import tooltipClasses from '../Tooltip/tooltipClasses';
 import { private_outlinedInputVars as oiVars } from '../OutlinedInput/outlinedInputVars';
 import { private_inputLabelVars as ilVars } from '../InputLabel/inputLabelVars';
 import { private_inputAdornmentVars as iaVars } from '../InputAdornment/inputAdornmentVars';
@@ -77,12 +77,29 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiTooltip',
     {
-      // Regular (pointer) tooltip only — `touch` stays at its literals.
-      // Padding + anchor offset = density steps (spacing). Arrow = raw px (sizing).
-      [tooltipVars.blockPad]: d.xxs,
-      [tooltipVars.inlinePad]: d.sm,
-      [tooltipVars.offset]: d.lg,
-      [tooltipVars.arrowSize]: '10px',
+      // Regular (pointer) tooltip only — `touch` keeps its master literals.
+      // Padding + per-placement anchor offset = density steps (non-touch); the
+      // arrow child derives its size from the single `--Tooltip-arrowSize` (raw
+      // px), left unset for `touch` so both variants keep scaling.
+      '--Tooltip-arrowSize': '10px',
+      variants: [
+        {
+          props: ({ ownerState }: { ownerState: { touch?: boolean | undefined } }) => !ownerState.touch,
+          style: {
+            padding: `${d.xxs} ${d.sm}`,
+            [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
+            [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
+          },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { touch?: boolean | undefined; arrow?: boolean | undefined } }) =>
+            !ownerState.touch && !ownerState.arrow,
+          style: {
+            [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
+            [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
+          },
+        },
+      ],
     },
     'tooltip',
   );

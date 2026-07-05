@@ -19,7 +19,6 @@ import useId from '../utils/useId';
 import useControlled from '../utils/useControlled';
 import useSlot from '../utils/useSlot';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
-import { private_tooltipVars as tooltipVars } from './tooltipVars';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
@@ -69,37 +68,34 @@ const TooltipPopper = styled(Popper, {
       {
         props: ({ ownerState }) => ownerState.arrow,
         style: {
-          // Arrow protrusion/insets derive from the single `--comp-arrowSize`
-          // (default `1em`) so the arrow + its negative seam can't drift; keep
-          // the literal `0.71` (= 1/√2, hardcoded upstream) for zero-diff.
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
-            marginTop: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * -0.71)',
+            marginTop: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
             '&::before': {
               transformOrigin: '0 100%',
             },
           },
           [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
             bottom: 0,
-            marginBottom: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * -0.71)',
+            marginBottom: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
             '&::before': {
               transformOrigin: '100% 0',
             },
           },
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--comp-arrowSize, var(--_arrowSize))',
-            width: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * 0.71)',
+            height: 'var(--Tooltip-arrowSize, 1em)',
+            width: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)',
             insetInlineStart: 0,
-            marginInlineStart: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * -0.71)',
+            marginInlineStart: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
             '&::before': {
               transformOrigin: '100% 100%',
             },
           },
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--comp-arrowSize, var(--_arrowSize))',
-            width: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * 0.71)',
+            height: 'var(--Tooltip-arrowSize, 1em)',
+            width: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)',
             insetInlineEnd: 0,
-            marginInlineEnd: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * -0.71)',
+            marginInlineEnd: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
             '&::before': {
               transformOrigin: '0 0',
             },
@@ -125,31 +121,13 @@ const TooltipTooltip = styled('div', {
   },
 })(
   memoTheme(({ theme }) => ({
-    // Density seams for the regular (pointer) tooltip: spacing tokens
-    // `--Tooltip-blockPad`/`-inlinePad` (padding) + `--Tooltip-offset` (per-
-    // placement anchor margin) over their literal defaults via the agnostic
-    // `--comp-*`. `--_arrowSize` (the arrow's base dim) also lives here so it
-    // cascades to the arrow child. The same map is read by the `enhance*Density`
-    // presets. The `touch` variant below keeps its `8/16` pad + `24` offset
-    // literals (out of density scope — accessibility, not comfort).
-    '--_blockPad': '4px',
-    '--_inlinePad': '8px',
-    '--_offset': '14px',
-    '--_arrowSize': '1em',
-    [`--comp-blockPad`]: `var(${tooltipVars.blockPad}, var(--_blockPad))`,
-    [`--comp-inlinePad`]: `var(${tooltipVars.inlinePad}, var(--_inlinePad))`,
-    [`--comp-offset`]: `var(${tooltipVars.offset}, var(--_offset))`,
-    [`--comp-arrowSize`]: `var(${tooltipVars.arrowSize}, var(--_arrowSize))`,
     backgroundColor: theme.vars
       ? theme.vars.palette.Tooltip.bg
       : theme.alpha(theme.palette.grey[700], 0.92),
     borderRadius: (theme.vars || theme).shape.borderRadius,
     color: (theme.vars || theme).palette.common.white,
     fontFamily: theme.typography.fontFamily,
-    paddingTop: 'var(--comp-blockPad, var(--_blockPad))',
-    paddingBottom: 'var(--comp-blockPad, var(--_blockPad))',
-    paddingLeft: 'var(--comp-inlinePad, var(--_inlinePad))',
-    paddingRight: 'var(--comp-inlinePad, var(--_inlinePad))',
+    padding: '4px 8px',
     fontSize: theme.typography.pxToRem(11),
     maxWidth: 300,
     margin: 2,
@@ -157,19 +135,19 @@ const TooltipTooltip = styled('div', {
     fontWeight: theme.typography.fontWeightMedium,
     [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
       transformOrigin: 'right center',
-      marginInlineEnd: 'var(--comp-offset, var(--_offset))',
+      marginInlineEnd: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
       transformOrigin: 'left center',
-      marginInlineStart: 'var(--comp-offset, var(--_offset))',
+      marginInlineStart: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
       transformOrigin: 'center bottom',
-      marginBottom: 'var(--comp-offset, var(--_offset))',
+      marginBottom: '14px',
     },
     [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
       transformOrigin: 'center top',
-      marginTop: 'var(--comp-offset, var(--_offset))',
+      marginTop: '14px',
     },
     variants: [
       {
@@ -216,10 +194,8 @@ const TooltipArrow = styled('span', {
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
     position: 'absolute',
-    // Long dim = `--comp-arrowSize` (inherited from the bubble); the hypotenuse
-    // protrusion = same var × 0.71 (kept literal for zero-diff, = 1/√2).
-    width: 'var(--comp-arrowSize, var(--_arrowSize))',
-    height: 'calc(var(--comp-arrowSize, var(--_arrowSize)) * 0.71)' /* = width / sqrt(2) */,
+    width: 'var(--Tooltip-arrowSize, 1em)',
+    height: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
     color: theme.vars ? theme.vars.palette.Tooltip.bg : theme.alpha(theme.palette.grey[700], 0.9),
     '&::before': {

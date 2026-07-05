@@ -79,10 +79,7 @@ function expectRtlRightPlacementStyles() {
 
   expect(popper).to.have.attribute('data-popper-placement', 'right');
   expect(tooltip).toHaveComputedStyle({ direction: 'rtl' });
-  // Anchor offset is tokenized: the seam resolves to 14px via `--_offset`.
-  expect(hasInjectedStyle('margin-inline-start: var(--comp-offset, var(--_offset))')).to.equal(
-    true,
-  );
+  expect(hasInjectedStyle('margin-inline-start: 14px')).to.equal(true);
   expect(hasInjectedStyle('inset-inline-start: 0')).to.equal(true);
   expectArrowOnInlineEnd(tooltip, arrow);
 }
