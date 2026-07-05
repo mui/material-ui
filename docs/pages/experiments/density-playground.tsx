@@ -33,8 +33,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { private_autocompleteVars } from '@mui/material/Autocomplete';
-import InputAdornment, { private_inputAdornmentVars } from '@mui/material/InputAdornment';
-import { private_outlinedInputVars } from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
 import { private_filledInputVars } from '@mui/material/FilledInput';
 import { private_inputVars } from '@mui/material/Input';
 import Tabs, { private_tabsVars } from '@mui/material/Tabs';
@@ -362,13 +361,15 @@ function TooltipMatrix() {
 // (per size). All spacing → prefill density keys. The label resting-Y is a
 // derived bridge (not a direct field).
 const OUTLINED_INPUT_FIELDS: DensityField[] = [
-  { key: 'mediumBlockPad', cssVar: private_outlinedInputVars.mediumBlockPad, prop: 'paddingBlock', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
-  { key: 'smallBlockPad', cssVar: private_outlinedInputVars.smallBlockPad, prop: 'paddingBlock', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
-  { key: 'mediumInlinePad', cssVar: private_outlinedInputVars.mediumInlinePad, prop: 'paddingInline', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
-  { key: 'smallInlinePad', cssVar: private_outlinedInputVars.smallInlinePad, prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
-  // var-mode: one gap var → start marginRight / end marginLeft (no per-side class).
-  { key: 'mediumGap', cssVar: private_inputAdornmentVars.mediumGap, selector: '.MuiInputAdornment-root:not(.MuiInputAdornment-sizeSmall)' },
-  { key: 'smallGap', cssVar: private_inputAdornmentVars.smallGap, selector: '.MuiInputAdornment-sizeSmall' },
+  { key: 'mediumBlockPad', cssVar: '--OutlinedInput-medium-blockPad', prop: 'paddingBlock', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
+  { key: 'smallBlockPad', cssVar: '--OutlinedInput-small-blockPad', prop: 'paddingBlock', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
+  { key: 'mediumInlinePad', cssVar: '--OutlinedInput-medium-inlinePad', prop: 'paddingInline', selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input' },
+  { key: 'smallInlinePad', cssVar: '--OutlinedInput-small-inlinePad', prop: 'paddingInline', selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input' },
+  // Gap = start marginRight / end marginLeft (one token, no per-side discriminating
+  // class) — the preset emits the real margins per position; the synthetic cssVar
+  // is label/placeholder only.
+  { key: 'mediumGap', cssVar: '--InputAdornment-medium-gap', selector: '.MuiInputAdornment-root:not(.MuiInputAdornment-sizeSmall)' },
+  { key: 'smallGap', cssVar: '--InputAdornment-small-gap', selector: '.MuiInputAdornment-sizeSmall' },
 ];
 
 function OutlinedInputMatrix() {

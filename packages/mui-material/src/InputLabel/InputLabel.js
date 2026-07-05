@@ -11,7 +11,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
-import { private_inputLabelVars as vars } from './inputLabelVars';
 import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
@@ -111,7 +110,7 @@ const InputLabelRoot = styled(FormLabel, {
           pointerEvents: 'none',
           // Resting/shrunk Y are seams the input (FilledInput) sets under density
           // so the label tracks the box's top padding; defaults are today's px.
-          transform: `translate(12px, var(${vars.filledRestY}, 16px)) scale(1)`,
+          transform: 'translate(12px, var(--FilledInputLabel-restY, 16px)) scale(1)',
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -121,7 +120,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: `translate(12px, var(${vars.filledRestY}, 13px)) scale(1)`,
+          transform: 'translate(12px, var(--FilledInputLabel-restY, 13px)) scale(1)',
         },
       },
       {
@@ -129,7 +128,7 @@ const InputLabelRoot = styled(FormLabel, {
         style: {
           userSelect: 'none',
           pointerEvents: 'auto',
-          transform: `translate(12px, var(${vars.filledShrinkY}, 7px)) scale(0.75)`,
+          transform: 'translate(12px, var(--FilledInputLabel-shrinkY, 7px)) scale(0.75)',
           maxWidth: 'calc(133% - 24px)',
         },
       },
@@ -137,7 +136,7 @@ const InputLabelRoot = styled(FormLabel, {
         props: ({ variant, ownerState, size }) =>
           variant === 'filled' && ownerState.shrink && size === 'small',
         style: {
-          transform: `translate(12px, var(${vars.filledShrinkY}, 4px)) scale(0.75)`,
+          transform: 'translate(12px, var(--FilledInputLabel-shrinkY, 4px)) scale(0.75)',
         },
       },
       {
@@ -150,7 +149,7 @@ const InputLabelRoot = styled(FormLabel, {
           pointerEvents: 'none',
           // Resting-Y is a seam set by OutlinedInput (via `:has(~ &)`) so the
           // label tracks the input's block padding under density; default 16px.
-          transform: `translate(14px, var(${vars.y}, 16px)) scale(1)`,
+          transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)',
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -160,7 +159,7 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: `translate(14px, var(${vars.y}, 9px)) scale(1)`,
+          transform: 'translate(14px, var(--InputLabel-y, 9px)) scale(1)',
         },
       },
       {

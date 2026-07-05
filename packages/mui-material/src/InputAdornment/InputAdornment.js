@@ -11,7 +11,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
-import { private_inputAdornmentVars as vars } from './inputAdornmentVars';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -51,21 +50,7 @@ const InputAdornmentRoot = styled('div', {
     alignItems: 'center',
     whiteSpace: 'nowrap',
     color: (theme.vars || theme).palette.action.active,
-    // Density seams over the literal defaults. Medium routing sits in the base
-    // (not a `size: 'medium'` variant) because `size` from FormControl can be
-    // undefined; the small variant below reroutes to the small tokens.
-    '--_gap': '8px',
-    '--_marginTop': '16px',
-    '--comp-gap': `var(${vars.mediumGap}, var(--_gap))`,
-    '--comp-marginTop': `var(${vars.mediumMarginTop}, var(--_marginTop))`,
     variants: [
-      {
-        props: ({ ownerState }) => ownerState.size === 'small',
-        style: {
-          '--comp-gap': `var(${vars.smallGap}, var(--_gap))`,
-          '--comp-marginTop': `var(${vars.smallMarginTop}, var(--_marginTop))`,
-        },
-      },
       {
         props: {
           variant: 'filled',
@@ -73,7 +58,7 @@ const InputAdornmentRoot = styled('div', {
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
-              marginTop: 'var(--comp-marginTop, var(--_marginTop))',
+              marginTop: 16,
             },
         },
       },
@@ -82,7 +67,7 @@ const InputAdornmentRoot = styled('div', {
           position: 'start',
         },
         style: {
-          marginRight: 'var(--comp-gap, var(--_gap))',
+          marginRight: 8,
         },
       },
       {
@@ -90,7 +75,7 @@ const InputAdornmentRoot = styled('div', {
           position: 'end',
         },
         style: {
-          marginLeft: 'var(--comp-gap, var(--_gap))',
+          marginLeft: 8,
         },
       },
       {
