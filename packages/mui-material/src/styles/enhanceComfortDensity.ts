@@ -6,6 +6,18 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
+import { private_tooltipVars } from '../Tooltip/tooltipVars';
+import { private_chipVars } from '../Chip/chipVars';
+import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
+import type { TooltipOwnerState } from '../Tooltip';
+import type { OutlinedInputOwnerState } from '../OutlinedInput';
+import type { FilledInputProps } from '../FilledInput';
+import type { InputBaseProps } from '../InputBase';
+import type { InputAdornmentProps } from '../InputAdornment';
+import type { TabProps } from '../Tab';
+import type { ListProps } from '../List';
+import type { AccordionSummaryOwnerState } from '../AccordionSummary';
+import type { PaginationItemOwnerState } from '../PaginationItem';
 
 const scale: DensityScale = {
   xxs: '6px',
@@ -31,17 +43,17 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     // Height = raw px (density steps are spacing-only). Padding = density steps.
     // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [
-      { props: { dense: false }, style: { minHeight: '56px', paddingTop: d.xs, paddingBottom: d.xs } },
-      { props: { dense: true }, style: { minHeight: '40px', paddingTop: d.xxs, paddingBottom: d.xxs } },
-      { props: { dense: false, disableGutters: false }, style: { paddingLeft: d.lg, paddingRight: d.lg } },
-      { props: { dense: true, disableGutters: false }, style: { paddingLeft: d.md, paddingRight: d.md } },
+      { props: { dense: false }, style: { minHeight: '56px', paddingBlock: d.xs } },
+      { props: { dense: true }, style: { minHeight: '40px', paddingBlock: d.xxs } },
+      { props: { dense: false, disableGutters: false }, style: { paddingInline: d.lg } },
+      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.md } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
     variants: [
-      { props: { disablePadding: false }, style: { paddingTop: d.sm, paddingBottom: d.sm } },
-      { props: ({ ownerState }: { ownerState: { subheader?: unknown } }) => ownerState.subheader, style: { paddingTop: 0 } },
+      { props: { disablePadding: false }, style: { paddingBlock: d.sm } },
+      { props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader, style: { paddingTop: 0 } },
     ],
   });
   addRootOverride(
@@ -50,12 +62,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     {
       // Regular (pointer) tooltip only — `touch` keeps its master literals.
       // Padding + per-placement anchor offset = density steps (non-touch); the
-      // arrow child derives its size from the single `--Tooltip-arrowSize` (raw
+      // arrow child derives its size from the single `--_arrowSize` (raw
       // px), left unset for `touch` so both variants keep scaling.
-      '--Tooltip-arrowSize': '14px',
+      [private_tooltipVars.arrowSize]: '14px',
       variants: [
         {
-          props: ({ ownerState }: { ownerState: { touch?: boolean | undefined } }) => !ownerState.touch,
+          props: ({ ownerState }: { ownerState: TooltipOwnerState & { touch?: (boolean) | undefined } }) => !ownerState.touch,
           style: {
             padding: `${d.xxs} ${d.sm}`,
             [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
@@ -63,7 +75,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
           },
         },
         {
-          props: ({ ownerState }: { ownerState: { touch?: boolean | undefined; arrow?: boolean | undefined } }) =>
+          props: ({ ownerState }: { ownerState: TooltipOwnerState & { touch?: (boolean) | undefined } }) =>
             !ownerState.touch && !ownerState.arrow,
           style: {
             [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
@@ -77,41 +89,41 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     // Label bridge (calc-coupled): the floating label is a preceding sibling, so
     // it can't read the input root's token — reach it via `:has(~ &)` and derive
-    // `--InputLabel-y` from the density step, keeping the component's -0.5/+0.5
+    // `--_y` from the density step, keeping the component's -0.5/+0.5
     // per-size rounding. Root adornment/multiline padding = density steps.
-    [`.${inputLabelClasses.root}:has(~ &)`]: { '--InputLabel-y': `calc(${d.md} - 0.5px)` },
+    [`.${inputLabelClasses.root}:has(~ &)`]: { [private_inputLabelVars.y]: `calc(${d.md} - 0.5px)` },
     variants: [
       {
         props: { size: 'small' },
         style: {
-          [`.${inputLabelClasses.root}:has(~ &)`]: { '--InputLabel-y': `calc(${d.sm} + 0.5px)` },
+          [`.${inputLabelClasses.root}:has(~ &)`]: { [private_inputLabelVars.y]: `calc(${d.sm} + 0.5px)` },
         },
       },
       {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.startAdornment,
         style: { paddingLeft: d.lg },
       },
       {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.startAdornment && ownerState.size === 'small',
         style: { paddingLeft: d.md },
       },
       {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) => ownerState.endAdornment,
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.endAdornment,
         style: { paddingRight: d.lg },
       },
       {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.endAdornment && ownerState.size === 'small',
         style: { paddingRight: d.md },
       },
       {
-        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
         style: { padding: `${d.md} ${d.lg}` },
       },
       {
-        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.multiline && ownerState.size === 'small',
         style: { padding: `${d.sm} ${d.md}` },
       },
@@ -127,16 +139,16 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       variants: [
         { props: { size: 'small' }, style: { padding: `${d.sm} ${d.md}` } },
         {
-          props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
           style: { padding: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
             ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) =>
+          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
             ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
@@ -151,12 +163,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { position: 'start' }, style: { marginRight: d.sm } },
       { props: { position: 'end' }, style: { marginLeft: d.sm } },
       {
-        props: ({ ownerState }: { ownerState: { position?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
           ownerState.position === 'start' && ownerState.size === 'small',
         style: { marginRight: d.xxs },
       },
       {
-        props: ({ ownerState }: { ownerState: { position?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
           ownerState.position === 'end' && ownerState.size === 'small',
         style: { marginLeft: d.xxs },
       },
@@ -169,7 +181,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({ ownerState }: { ownerState: { variant?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
           ownerState.variant === 'filled' && ownerState.size === 'small',
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
@@ -185,48 +197,46 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
     // at master literals (out of scope).
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--FilledInputLabel-restY': '20px',
-      '--FilledInputLabel-shrinkY': '9px',
+      [private_inputLabelVars.restY]: '20px',
+      [private_inputLabelVars.shrinkY]: '9px',
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--FilledInputLabel-restY': '15px',
-            '--FilledInputLabel-shrinkY': '5px',
+            [private_inputLabelVars.restY]: '15px',
+            [private_inputLabelVars.shrinkY]: '5px',
           },
         },
       },
       {
-        props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.startAdornment,
         style: { paddingLeft: d.md },
       },
       {
-        props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) => ownerState.endAdornment,
+        props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.endAdornment,
         style: { paddingRight: d.md },
       },
       {
-        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
+        props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
         style: { padding: `${d.xl} ${d.md} ${d.sm}` },
       },
       {
-        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.multiline && ownerState.size === 'small',
         style: { paddingTop: d.lg, paddingBottom: d.xxs },
       },
       {
-        props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined; hiddenLabel?: boolean | undefined } }) =>
+        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.multiline && ownerState.hiddenLabel,
         style: { paddingTop: 16, paddingBottom: 17 },
       },
       {
         props: ({
           ownerState,
-        }: {
-          ownerState: { multiline?: boolean | undefined; hiddenLabel?: boolean | undefined; size?: string | undefined };
-        }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+        }: { ownerState: FilledInputProps }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
         style: { paddingTop: 8, paddingBottom: 9 },
       },
     ],
@@ -239,33 +249,32 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       // adornment/multiline zero-resets mirror master; hiddenLabel block padding
       // stays at master literals (out of scope).
       paddingTop: d.xl,
-      paddingRight: d.md,
       paddingBottom: d.sm,
-      paddingLeft: d.md,
+      paddingInline: d.md,
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d.lg, paddingBottom: d.xxs } },
         {
-          props: ({ ownerState }: { ownerState: { hiddenLabel?: boolean | undefined } }) => ownerState.hiddenLabel,
+          props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.hiddenLabel,
           style: { paddingTop: 16, paddingBottom: 17 },
         },
         {
-          props: ({ ownerState }: { ownerState: { startAdornment?: unknown | undefined } }) =>
+          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
             ownerState.startAdornment,
           style: { paddingLeft: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { endAdornment?: unknown | undefined } }) =>
+          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
             ownerState.endAdornment,
           style: { paddingRight: 0 },
         },
         {
-          props: ({ ownerState }: { ownerState: { hiddenLabel?: boolean | undefined; size?: string | undefined } }) =>
+          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
             ownerState.hiddenLabel && ownerState.size === 'small',
           style: { paddingTop: 8, paddingBottom: 9 },
         },
         {
-          props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
-          style: { paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0 },
+          props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
+          style: { paddingBlock: 0, paddingInline: 0 },
         },
       ],
     },
@@ -280,13 +289,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       // override on their own keys (win by injection order). Multiline box padding
       // lives on the InputBase root (left at master) — reset the input to 0 as
       // master does.
-      paddingTop: d.xs,
-      paddingBottom: d.xs,
+      paddingBlock: d.xs,
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d.xxs } },
         {
-          props: ({ ownerState }: { ownerState: { multiline?: boolean | undefined } }) => ownerState.multiline,
-          style: { paddingTop: 0, paddingBottom: 0 },
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => ownerState.multiline,
+          style: { paddingBlock: 0 },
         },
       ],
     },
@@ -295,46 +303,36 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
     minHeight: '56px',
-    paddingTop: d.sm,
-    paddingBottom: d.sm,
-    paddingLeft: d.lg,
-    paddingRight: d.lg,
+    paddingBlock: d.sm,
+    paddingInline: d.lg,
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { icon?: unknown; label?: unknown } }) =>
+        props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label,
-        style: { minHeight: '84px', paddingTop: d.xs, paddingBottom: d.xs },
+        style: { minHeight: '84px', paddingBlock: d.xs },
       },
       {
         props: ({
           ownerState,
-        }: {
-          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
-        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
+        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
         style: { [`& > .${tabClasses.icon}`]: { marginBottom: d.xs } },
       },
       {
         props: ({
           ownerState,
-        }: {
-          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
-        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
+        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
         style: { [`& > .${tabClasses.icon}`]: { marginTop: d.xs } },
       },
       {
         props: ({
           ownerState,
-        }: {
-          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
-        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
+        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
         style: { [`& > .${tabClasses.icon}`]: { marginRight: d.sm } },
       },
       {
         props: ({
           ownerState,
-        }: {
-          ownerState: { icon?: unknown; label?: unknown; iconPosition?: string | undefined };
-        }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
+        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
         style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.sm } },
       },
     ],
@@ -357,7 +355,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     ],
   });
   // Separator inline margins (spacing step) on the separator slot.
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginLeft: d.sm, marginRight: d.sm }, 'separator');
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.sm }, 'separator');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     // Emit uniform padding directly on the size variants ToggleButton ships (no seam).
     variants: [
@@ -409,10 +407,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       // slot: minHeight raw px, block/inline pad steps.
       [`& .${autocompleteClasses.option}`]: {
         minHeight: '56px',
-        paddingTop: d.xs,
-        paddingBottom: d.xs,
-        paddingLeft: d.lg,
-        paddingRight: d.lg,
+        paddingBlock: d.xs,
+        paddingInline: d.lg,
       },
     },
     'listbox',
@@ -440,11 +436,9 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       {
         props: { disableGutters: false },
         style: {
-          paddingLeft: d.lg,
-          paddingRight: d.lg,
+          paddingInline: d.lg,
           [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up('sm')]: {
-            paddingLeft: d.xl,
-            paddingRight: d.xl,
+            paddingInline: d.xl,
           },
         },
       },
@@ -468,21 +462,21 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { size: 'medium' }, style: { minWidth: '36px' } },
       { props: { size: 'large' }, style: { minWidth: '44px' } },
       {
-        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'small',
         style: { height: '30px' },
       },
       {
-        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'medium',
         style: { height: '36px' },
       },
       {
-        props: ({ ownerState }: { ownerState: { type?: string | undefined; size?: string | undefined } }) =>
+        props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'large',
@@ -499,8 +493,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
     // Inline padding only; block padding stays master's 0.
-    paddingLeft: d.md,
-    paddingRight: d.md,
+    paddingInline: d.md,
   });
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
     padding: `${d.lg} ${d.xl}`,
@@ -517,9 +510,9 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [
-      { props: { dense: false }, style: { paddingTop: d.sm, paddingBottom: d.sm } },
-      { props: { dense: true }, style: { paddingTop: d.xxs, paddingBottom: d.xxs } },
-      { props: { disableGutters: false }, style: { paddingLeft: d.lg, paddingRight: d.lg } },
+      { props: { dense: false }, style: { paddingBlock: d.sm } },
+      { props: { dense: true }, style: { paddingBlock: d.xxs } },
+      { props: { disableGutters: false }, style: { paddingInline: d.lg } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
@@ -548,9 +541,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiCardHeader',
     {
-      marginTop: `calc(${d.xxs} * -1)`,
+      marginBlock: `calc(${d.xxs} * -1)`,
       marginRight: `calc(${d.sm} * -1)`,
-      marginBottom: `calc(${d.xxs} * -1)`,
     },
     'action',
   );
@@ -569,11 +561,11 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   // Icon→message gap on the icon slot (child element).
   addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
-  // Height (raw px) drives avatar/icon/deleteIcon via calc off `--Chip-height`.
+  // Height (raw px) drives avatar/icon/deleteIcon via calc off `--_height`.
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
-      { props: { size: 'medium' }, style: { '--Chip-height': '36px' } },
-      { props: { size: 'small' }, style: { '--Chip-height': '28px' } },
+      { props: { size: 'medium' }, style: { [private_chipVars.height]: '36px' } },
+      { props: { size: 'small' }, style: { [private_chipVars.height]: '28px' } },
     ],
   });
   // Label inline padding = density steps, unified per size on the label slot.
@@ -594,7 +586,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     padding: `0 ${d.lg}`,
     variants: [
       {
-        props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+        props: ({ ownerState }: { ownerState: AccordionSummaryOwnerState & { disableGutters?: (boolean) | undefined } }) =>
           !ownerState.disableGutters,
         // Re-assert expanded min-height (master literal wins by specificity else).
         style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '76px' } },
@@ -609,7 +601,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       margin: `${d.md} 0`,
       variants: [
         {
-          props: ({ ownerState }: { ownerState: { disableGutters?: boolean | undefined } }) =>
+          props: ({ ownerState }: { ownerState: AccordionSummaryOwnerState & { disableGutters?: (boolean) | undefined } }) =>
             !ownerState.disableGutters,
           style: { [`&.${accordionSummaryClasses.expanded}`]: { margin: `${d.lg} 0` } },
         },

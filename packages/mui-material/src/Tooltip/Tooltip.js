@@ -56,6 +56,10 @@ const TooltipPopper = styled(Popper, {
   },
 })(
   memoTheme(({ theme }) => ({
+    // Arrow size default lives on the Popper root (ancestor of the arrow) so the
+    // `tooltip`-slot density override can win via inheritance; the arrow consumes
+    // it bare.
+    '--_arrowSize': '1em',
     zIndex: (theme.vars || theme).zIndex.tooltip,
     pointerEvents: 'none',
     variants: [
@@ -70,32 +74,32 @@ const TooltipPopper = styled(Popper, {
         style: {
           [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
             top: 0,
-            marginTop: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
+            marginTop: 'calc(var(--_arrowSize) * -0.71)',
             '&::before': {
               transformOrigin: '0 100%',
             },
           },
           [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
             bottom: 0,
-            marginBottom: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
+            marginBottom: 'calc(var(--_arrowSize) * -0.71)',
             '&::before': {
               transformOrigin: '100% 0',
             },
           },
           [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--Tooltip-arrowSize, 1em)',
-            width: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)',
+            height: 'var(--_arrowSize)',
+            width: 'calc(var(--_arrowSize) * 0.71)',
             insetInlineStart: 0,
-            marginInlineStart: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
+            marginInlineStart: 'calc(var(--_arrowSize) * -0.71)',
             '&::before': {
               transformOrigin: '100% 100%',
             },
           },
           [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-            height: 'var(--Tooltip-arrowSize, 1em)',
-            width: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)',
+            height: 'var(--_arrowSize)',
+            width: 'calc(var(--_arrowSize) * 0.71)',
             insetInlineEnd: 0,
-            marginInlineEnd: 'calc(var(--Tooltip-arrowSize, 1em) * -0.71)',
+            marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             '&::before': {
               transformOrigin: '0 0',
             },
@@ -194,8 +198,8 @@ const TooltipArrow = styled('span', {
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
     position: 'absolute',
-    width: 'var(--Tooltip-arrowSize, 1em)',
-    height: 'calc(var(--Tooltip-arrowSize, 1em) * 0.71)' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    width: 'var(--_arrowSize)',
+    height: 'calc(var(--_arrowSize) * 0.71)' /* = width / sqrt(2) = (length of the hypotenuse) */,
     boxSizing: 'border-box',
     color: theme.vars ? theme.vars.palette.Tooltip.bg : theme.alpha(theme.palette.grey[700], 0.9),
     '&::before': {

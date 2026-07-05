@@ -110,7 +110,8 @@ const InputLabelRoot = styled(FormLabel, {
           pointerEvents: 'none',
           // Resting/shrunk Y are seams the input (FilledInput) sets under density
           // so the label tracks the box's top padding; defaults are today's px.
-          transform: 'translate(12px, var(--FilledInputLabel-restY, 16px)) scale(1)',
+          '--_restY': '16px',
+          transform: 'translate(12px, var(--_restY)) scale(1)',
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -120,7 +121,8 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(12px, var(--FilledInputLabel-restY, 13px)) scale(1)',
+          '--_restY': '13px',
+          transform: 'translate(12px, var(--_restY)) scale(1)',
         },
       },
       {
@@ -128,7 +130,8 @@ const InputLabelRoot = styled(FormLabel, {
         style: {
           userSelect: 'none',
           pointerEvents: 'auto',
-          transform: 'translate(12px, var(--FilledInputLabel-shrinkY, 7px)) scale(0.75)',
+          '--_shrinkY': '7px',
+          transform: 'translate(12px, var(--_shrinkY)) scale(0.75)',
           maxWidth: 'calc(133% - 24px)',
         },
       },
@@ -136,7 +139,8 @@ const InputLabelRoot = styled(FormLabel, {
         props: ({ variant, ownerState, size }) =>
           variant === 'filled' && ownerState.shrink && size === 'small',
         style: {
-          transform: 'translate(12px, var(--FilledInputLabel-shrinkY, 4px)) scale(0.75)',
+          '--_shrinkY': '4px',
+          transform: 'translate(12px, var(--_shrinkY)) scale(0.75)',
         },
       },
       {
@@ -149,7 +153,8 @@ const InputLabelRoot = styled(FormLabel, {
           pointerEvents: 'none',
           // Resting-Y is a seam set by OutlinedInput (via `:has(~ &)`) so the
           // label tracks the input's block padding under density; default 16px.
-          transform: 'translate(14px, var(--InputLabel-y, 16px)) scale(1)',
+          '--_y': '16px',
+          transform: 'translate(14px, var(--_y)) scale(1)',
           maxWidth: 'calc(100% - 24px)',
         },
       },
@@ -159,7 +164,8 @@ const InputLabelRoot = styled(FormLabel, {
           size: 'small',
         },
         style: {
-          transform: 'translate(14px, var(--InputLabel-y, 9px)) scale(1)',
+          '--_y': '9px',
+          transform: 'translate(14px, var(--_y)) scale(1)',
         },
       },
       {
