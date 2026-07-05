@@ -2,7 +2,6 @@ import { addRootOverride, applyDensity, densityVars as d, DensityScale, Enhancea
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import { private_cardContentVars as ccVars } from '../CardContent/cardContentVars';
-import { private_alertVars as alertVars } from '../Alert/alertVars';
 import { private_chipVars as chipVars } from '../Chip/chipVars';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import { private_radioVars as radioVars } from '../Radio/radioVars';
@@ -475,11 +474,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'select',
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
-    // No size axis: root padding + icon gap (spacing steps).
-    [alertVars.blockPad]: d.xs,
-    [alertVars.inlinePad]: d.lg,
-    [alertVars.iconGap]: d.md,
+    // No size axis: root padding (block/inline steps).
+    padding: `${d.xs} ${d.lg}`,
   });
+  // Icon→message gap on the icon slot (child element).
+  addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
   addRootOverride(enhanced.components, 'MuiChip', {
     // Height = raw px (drives avatar/icon/deleteIcon via calc); label padInline = steps.
     [chipVars.mediumHeight]: '32px',

@@ -51,7 +51,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Rating from '@mui/material/Rating';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import Alert, { private_alertVars } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 import Chip, { private_chipVars } from '@mui/material/Chip';
 import Avatar, { private_avatarVars } from '@mui/material/Avatar';
 import Badge, { private_badgeVars } from '@mui/material/Badge';
@@ -562,10 +562,10 @@ function SelectMatrix() {
 
 // Alert family: root block/inline padding + icon→message gap (no size axis).
 const ALERT_FIELDS: DensityField[] = [
-  { key: 'blockPad', cssVar: private_alertVars.blockPad, prop: 'paddingBlock', selector: '.MuiAlert-root' },
-  { key: 'inlinePad', cssVar: private_alertVars.inlinePad, prop: 'paddingInline', selector: '.MuiAlert-root' },
-  // iconGap var lives on the root but drives the icon's marginRight (child element).
-  { key: 'iconGap', cssVar: private_alertVars.iconGap, prop: 'marginRight', selector: '.MuiAlert-icon' },
+  { key: 'blockPad', cssVar: '--Alert-blockPad', prop: 'paddingBlock', selector: '.MuiAlert-root' },
+  { key: 'inlinePad', cssVar: '--Alert-inlinePad', prop: 'paddingInline', selector: '.MuiAlert-root' },
+  // iconGap drives the icon's marginRight (child element).
+  { key: 'iconGap', cssVar: '--Alert-iconGap', prop: 'marginRight', selector: '.MuiAlert-icon' },
 ];
 
 function AlertMatrix() {
