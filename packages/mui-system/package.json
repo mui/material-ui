@@ -50,11 +50,11 @@
     "@types/react": "19.2.14",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "es-toolkit": "1.46.1",
+    "es-toolkit": "1.49.0",
     "fast-glob": "3.3.3",
     "react": "19.2.6",
     "sinon": "22.0.0",
-    "styled-components": "6.4.1"
+    "styled-components": "6.4.3"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
