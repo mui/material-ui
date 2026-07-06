@@ -39,12 +39,10 @@
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
-    "@types/react-transition-group": "^4.4.12",
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.6",
-    "react-transition-group": "^4.4.5"
+    "react-is": "^19.2.6"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
@@ -90,9 +88,6 @@
   },
   "engines": {
     "node": ">=14.0.0"
-  },
-  "browser": {
-    "react-transition-group/cjs/TransitionGroupContext.js": "react-transition-group/esm/TransitionGroupContext.js"
   },
   "exports": {
     ".": "./src/index.js",

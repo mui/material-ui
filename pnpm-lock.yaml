@@ -1135,9 +1135,6 @@ importers:
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
-      '@types/react-transition-group':
-        specifier: ^4.4.12
-        version: 4.4.12(@types/react@19.2.14)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1150,9 +1147,6 @@ importers:
       react-is:
         specifier: ^19.2.6
         version: 19.2.6
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
     devDependencies:
       '@types/chai':
         specifier: 5.2.3
