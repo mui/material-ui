@@ -410,8 +410,9 @@ function TooltipMatrix() {
   );
 }
 
-// OutlinedInput family: input block/inline padding (per size) + adornment gap
-// (per size). All spacing → prefill density keys. The label resting-Y is a
+// OutlinedInput family: input block padding (per size) + adornment gap (per
+// size). Inline padding is not tokenized — it's fieldset-constrained (changing it
+// misaligns the floating label), so it stays master. The label resting-Y is a
 // derived bridge (not a direct field).
 const OUTLINED_INPUT_FIELDS: DensityField[] = [
   {
@@ -424,18 +425,6 @@ const OUTLINED_INPUT_FIELDS: DensityField[] = [
     key: 'smallBlockPad',
     label: '--OutlinedInput-small-blockPad',
     prop: 'paddingBlock',
-    selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input',
-  },
-  {
-    key: 'mediumInlinePad',
-    label: '--OutlinedInput-medium-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input',
-  },
-  {
-    key: 'smallInlinePad',
-    label: '--OutlinedInput-small-inlinePad',
-    prop: 'paddingInline',
     selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input',
   },
   // Gap = start marginRight / end marginLeft (one token, no per-side discriminating
@@ -478,9 +467,9 @@ function OutlinedInputMatrix() {
   );
 }
 
-// FilledInput family: box top/bottom/inline padding (per size). All spacing →
-// prefill density keys. The label rest/shrink Y follow the active preset (tuned
-// raw px, not editable here).
+// FilledInput family: box top/bottom padding (per size). Inline padding is not
+// tokenized — it stays master to keep the floating label aligned. The label
+// rest/shrink Y follow the active preset (tuned raw px, not editable here).
 const FILLED_INPUT_FIELDS: DensityField[] = [
   {
     key: 'mediumTopPad',
@@ -504,18 +493,6 @@ const FILLED_INPUT_FIELDS: DensityField[] = [
     key: 'smallBottomPad',
     label: '--FilledInput-small-bottomPad',
     prop: 'paddingBottom',
-    selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
-  },
-  {
-    key: 'mediumInlinePad',
-    label: '--FilledInput-medium-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
-  },
-  {
-    key: 'smallInlinePad',
-    label: '--FilledInput-small-inlinePad',
-    prop: 'paddingInline',
     selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
   },
 ];
@@ -1495,8 +1472,6 @@ const COMPONENT_DEFS = {
     prefill: {
       mediumBlockPad: 'md',
       smallBlockPad: 'sm',
-      mediumInlinePad: 'lg',
-      smallInlinePad: 'md',
       mediumGap: 'sm',
       smallGap: 'xxs',
     },
@@ -1510,8 +1485,6 @@ const COMPONENT_DEFS = {
       smallTopPad: 'lg',
       mediumBottomPad: 'sm',
       smallBottomPad: 'xxs',
-      mediumInlinePad: 'md',
-      smallInlinePad: 'md',
     },
     renderMatrix: () => <FilledInputMatrix />,
   },

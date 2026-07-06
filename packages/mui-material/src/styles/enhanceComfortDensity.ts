@@ -90,7 +90,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     // Label bridge (calc-coupled): the floating label is a preceding sibling, so
     // it can't read the input root's token — reach it via `:has(~ &)` and derive
     // `--_y` from the density step, keeping the component's -0.5/+0.5
-    // per-size rounding. Root adornment/multiline padding = density steps.
+    // per-size rounding. Only block padding reflows — inline stays master
+    // (fieldset-constrained, keeps the floating label aligned).
     [`.${inputLabelClasses.root}:has(~ &)`]: { [private_inputLabelVars.y]: `calc(${d.md} - 0.5px)` },
     variants: [
       {
@@ -100,32 +101,13 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-          ownerState.startAdornment,
-        style: { paddingLeft: d.lg },
-      },
-      {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-          ownerState.startAdornment && ownerState.size === 'small',
-        style: { paddingLeft: d.md },
-      },
-      {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.endAdornment,
-        style: { paddingRight: d.lg },
-      },
-      {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-          ownerState.endAdornment && ownerState.size === 'small',
-        style: { paddingRight: d.md },
-      },
-      {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
-        style: { padding: `${d.md} ${d.lg}` },
+        style: { paddingBlock: d.md },
       },
       {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.multiline && ownerState.size === 'small',
-        style: { padding: `${d.sm} ${d.md}` },
+        style: { paddingBlock: d.sm },
       },
     ],
   });
@@ -133,24 +115,14 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiOutlinedInput',
     {
-      // Box padding lives on the input slot for the plain (no adornment/multiline)
-      // case; the zero-resets mirror master so adornment/multiline defer to root.
-      padding: `${d.md} ${d.lg}`,
+      // Only block padding reflows; inline stays master (fieldset-constrained).
+      // Master already ships the adornment/multiline inline resets on this slot.
+      paddingBlock: d.md,
       variants: [
-        { props: { size: 'small' }, style: { padding: `${d.sm} ${d.md}` } },
+        { props: { size: 'small' }, style: { paddingBlock: d.sm } },
         {
           props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
-          style: { padding: 0 },
-        },
-        {
-          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-            ownerState.startAdornment,
-          style: { paddingLeft: 0 },
-        },
-        {
-          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-            ownerState.endAdornment,
-          style: { paddingRight: 0 },
+          style: { paddingBlock: 0 },
         },
       ],
     },
@@ -211,17 +183,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-          ownerState.startAdornment,
-        style: { paddingLeft: d.md },
-      },
-      {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.endAdornment,
-        style: { paddingRight: d.md },
-      },
-      {
         props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
-        style: { padding: `${d.xl} ${d.md} ${d.sm}` },
+        style: { paddingTop: d.xl, paddingBottom: d.sm },
       },
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) =>
@@ -245,12 +208,10 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiFilledInput',
     {
-      // Box height = input top/bottom padding (density steps); inline = step. The
-      // adornment/multiline zero-resets mirror master; hiddenLabel block padding
-      // stays at master literals (out of scope).
+      // Only block padding reflows; inline stays master (keeps label alignment).
+      // hiddenLabel block padding stays at master literals (out of scope).
       paddingTop: d.xl,
       paddingBottom: d.sm,
-      paddingInline: d.md,
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d.lg, paddingBottom: d.xxs } },
         {
@@ -259,22 +220,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
         {
           props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-            ownerState.startAdornment,
-          style: { paddingLeft: 0 },
-        },
-        {
-          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-            ownerState.endAdornment,
-          style: { paddingRight: 0 },
-        },
-        {
-          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
             ownerState.hiddenLabel && ownerState.size === 'small',
           style: { paddingTop: 8, paddingBottom: 9 },
         },
         {
           props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
-          style: { paddingBlock: 0, paddingInline: 0 },
+          style: { paddingBlock: 0 },
         },
       ],
     },
