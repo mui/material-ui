@@ -1,4 +1,4 @@
-import { addRootOverride, applyDensity, densityVars as d, DensityScale, EnhanceableTheme } from './densityScale';
+import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
@@ -31,17 +31,25 @@ const scale: DensityScale = {
 
 export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
+  // Density steps from the enhanced theme: `var(--mui-density-*)` refs in
+  // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
+  const d: DensityScale = (enhanced.vars || enhanced).density;
   addRootOverride(enhanced.components, 'MuiButton', {
     // Emit padding directly on the size variants Button already ships (no seam).
+    // Compact-only type: lineHeight at base; fontSize on small/medium (large unchanged).
+    lineHeight: 1.5,
     variants: [
-      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } },
-      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
+      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}`, fontSize: '0.75rem' } },
+      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}`, fontSize: '0.8125rem' } },
       { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     // Height = raw px (density steps are spacing-only). Padding = density steps.
     // Density axis is the `dense` boolean; inline pad only when gutters are on.
+    // Compact-only type at base (body1 16px -> 14px).
+    fontSize: '0.875rem',
+    lineHeight: 1.4,
     variants: [
       { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.xs } },
       { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d.xxs } },
@@ -53,7 +61,10 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
     variants: [
       { props: { disablePadding: false }, style: { paddingBlock: d.sm } },
-      { props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader, style: { paddingTop: 0 } },
+      {
+        props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader,
+        style: { paddingTop: 0 },
+      },
     ],
   });
   addRootOverride(
@@ -65,18 +76,31 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       // arrow child derives its size from the single `--_arrowSize` (raw
       // px), left unset for `touch` so both variants keep scaling.
       [private_tooltipVars.arrowSize]: '10px',
+      // Compact-only type (11px -> 10px); lineHeight kept at master.
+      fontSize: '0.625rem',
       variants: [
         {
-          props: ({ ownerState }: { ownerState: TooltipOwnerState & { touch?: (boolean) | undefined } }) => !ownerState.touch,
+          props: ({
+            ownerState,
+          }: {
+            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
+          }) => !ownerState.touch,
           style: {
             padding: `${d.xxs} ${d.sm}`,
-            [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
-            [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
+            [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
+              marginInlineEnd: d.lg,
+            },
+            [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+              marginInlineStart: d.lg,
+            },
           },
         },
         {
-          props: ({ ownerState }: { ownerState: TooltipOwnerState & { touch?: (boolean) | undefined } }) =>
-            !ownerState.touch && !ownerState.arrow,
+          props: ({
+            ownerState,
+          }: {
+            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
+          }) => !ownerState.touch && !ownerState.arrow,
           style: {
             [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
             [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
@@ -92,12 +116,16 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // `--_y` from the density step, keeping the component's -0.5/+0.5
     // per-size rounding. Only block padding reflows — inline stays master
     // (fieldset-constrained, keeps the floating label aligned).
-    [`.${inputLabelClasses.root}:has(~ &)`]: { [private_inputLabelVars.y]: `calc(${d.md} - 0.5px)` },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      [private_inputLabelVars.y]: `calc(${d.md} - 0.5px)`,
+    },
     variants: [
       {
         props: { size: 'small' },
         style: {
-          [`.${inputLabelClasses.root}:has(~ &)`]: { [private_inputLabelVars.y]: `calc(${d.sm} + 0.5px)` },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            [private_inputLabelVars.y]: `calc(${d.sm} + 0.5px)`,
+          },
         },
       },
       {
@@ -135,30 +163,41 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       { props: { position: 'start' }, style: { marginRight: d.sm } },
       { props: { position: 'end' }, style: { marginLeft: d.sm } },
       {
-        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
-          ownerState.position === 'start' && ownerState.size === 'small',
+        props: ({
+          ownerState,
+        }: {
+          ownerState: InputAdornmentProps & { size?: string | undefined };
+        }) => ownerState.position === 'start' && ownerState.size === 'small',
         style: { marginRight: d.xxs },
       },
       {
-        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
-          ownerState.position === 'end' && ownerState.size === 'small',
+        props: ({
+          ownerState,
+        }: {
+          ownerState: InputAdornmentProps & { size?: string | undefined };
+        }) => ownerState.position === 'end' && ownerState.size === 'small',
         style: { marginLeft: d.xxs },
       },
       {
         props: { variant: 'filled' },
         style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-            marginTop: d.lg,
-          },
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: d.lg,
+            },
         },
       },
       {
-        props: ({ ownerState }: { ownerState: InputAdornmentProps & { size?: (string) | undefined } }) =>
-          ownerState.variant === 'filled' && ownerState.size === 'small',
+        props: ({
+          ownerState,
+        }: {
+          ownerState: InputAdornmentProps & { size?: string | undefined };
+        }) => ownerState.variant === 'filled' && ownerState.size === 'small',
         style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
-            marginTop: d.md,
-          },
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: d.md,
+            },
         },
       },
     ],
@@ -197,9 +236,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         style: { paddingTop: 16, paddingBottom: 17 },
       },
       {
-        props: ({
-          ownerState,
-        }: { ownerState: FilledInputProps }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
+          ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
         style: { paddingTop: 8, paddingBottom: 9 },
       },
     ],
@@ -251,39 +289,42 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     },
     'input',
   );
+  addRootOverride(enhanced.components, 'MuiInputBase', {
+    // Compact-only type on the input box (root slot); cascades to the native input.
+    fontSize: '0.875rem',
+    lineHeight: '1.375em',
+  });
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
+    // Compact-only type at base (button 14px -> 13px).
     minHeight: '40px',
     paddingBlock: d.sm,
     paddingInline: d.lg,
+    fontSize: '0.8125rem',
+    lineHeight: 1.2,
     variants: [
       {
-        props: ({ ownerState }: { ownerState: TabProps }) =>
-          ownerState.icon && ownerState.label,
+        props: ({ ownerState }: { ownerState: TabProps }) => ownerState.icon && ownerState.label,
         style: { minHeight: '60px', paddingBlock: d.xs },
       },
       {
-        props: ({
-          ownerState,
-        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
+        props: ({ ownerState }: { ownerState: TabProps }) =>
+          ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
         style: { [`& > .${tabClasses.icon}`]: { marginBottom: d.xs } },
       },
       {
-        props: ({
-          ownerState,
-        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
+        props: ({ ownerState }: { ownerState: TabProps }) =>
+          ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
         style: { [`& > .${tabClasses.icon}`]: { marginTop: d.xs } },
       },
       {
-        props: ({
-          ownerState,
-        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
+        props: ({ ownerState }: { ownerState: TabProps }) =>
+          ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
         style: { [`& > .${tabClasses.icon}`]: { marginRight: d.sm } },
       },
       {
-        props: ({
-          ownerState,
-        }: { ownerState: TabProps }) => ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
+        props: ({ ownerState }: { ownerState: TabProps }) =>
+          ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
         style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.sm } },
       },
     ],
@@ -388,7 +429,9 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         props: { disableGutters: false },
         style: {
           paddingInline: d.lg,
-          [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up('sm')]: {
+          [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
+            'sm',
+          )]: {
             paddingInline: d.xl,
           },
         },
@@ -508,7 +551,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
     // No size axis: root padding (block/inline steps).
-    padding: `${d.xs} ${d.lg}`,
+    paddingBlock: d.xs,
+    paddingInline: d.lg,
   });
   // Icon→message gap on the icon slot (child element).
   addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
@@ -537,8 +581,11 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     padding: `0 ${d.lg}`,
     variants: [
       {
-        props: ({ ownerState }: { ownerState: AccordionSummaryOwnerState & { disableGutters?: (boolean) | undefined } }) =>
-          !ownerState.disableGutters,
+        props: ({
+          ownerState,
+        }: {
+          ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
+        }) => !ownerState.disableGutters,
         // Re-assert expanded min-height (master literal wins by specificity else).
         style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '52px' } },
       },
@@ -549,19 +596,27 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     'MuiAccordionSummary',
     {
       // Content block margin reduces with min-height (else it binds header height).
-      margin: `${d.md} 0`,
+      marginBlock: d.md,
       variants: [
         {
-          props: ({ ownerState }: { ownerState: AccordionSummaryOwnerState & { disableGutters?: (boolean) | undefined } }) =>
-            !ownerState.disableGutters,
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { margin: `${d.lg} 0` } },
+          props: ({
+            ownerState,
+          }: {
+            ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
+          }) => !ownerState.disableGutters,
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: d.lg } },
         },
       ],
     },
     'content',
   );
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
-    padding: `${d.sm} ${d.lg} ${d.lg}`,
+    // Split from shorthand so each edge is its own knob (top differs from bottom).
+    paddingBlockStart: d.sm,
+    paddingBlockEnd: d.lg,
+    paddingInline: d.lg,
+    fontSize: '0.875rem',
+    lineHeight: 20 / 14,
   });
   enhanced.typography = {
     ...enhanced.typography,

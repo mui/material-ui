@@ -28,7 +28,10 @@ const OUT = path.resolve(
   __dirname,
   '../docs/src/modules/components/density/emitTable.generated.ts',
 );
-const OUT_LABELS = path.resolve(__dirname, '../docs/src/modules/components/density/densityLabels.ts');
+const OUT_LABELS = path.resolve(
+  __dirname,
+  '../docs/src/modules/components/density/densityLabels.ts',
+);
 
 const DENSITY_VAR_RE = /^var\(--mui-density-([a-z]+)\)$/;
 const isNestedSelectorKey = (k: string) => /[.&@:> ]/.test(k);
@@ -268,7 +271,8 @@ export interface DensityEmitRow {
   /** density step key when isDensity (e.g. 'xs'), else null. */
   densityKey: string | null;
   target: DensityEmitTarget;
-  values: { compact: string; normal: string; comfort: string };
+  /** per-preset value; a preset is absent (undefined) when the row doesn't emit there (e.g. compact-only type). */
+  values: { compact?: string; normal?: string; comfort?: string };
 }
 
 export const densityEmitTable: DensityEmitRow[] = [

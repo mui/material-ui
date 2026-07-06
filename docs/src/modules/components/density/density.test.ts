@@ -6,8 +6,15 @@ import {
   enhanceComfortDensity,
 } from '@mui/material/styles';
 import { densityEmitTable, type DensityEmitRow } from './emitTable.generated';
-import { densityGroups, densityRow, registeredFieldIds } from './densityFields';
+import {
+  componentFamily,
+  densityGroups,
+  densityRow,
+  fieldLabel,
+  registeredFieldIds,
+} from './densityFields';
 import { densityLabels } from './densityLabels';
+import { densityVirtualKnobs } from './densityExtraFields';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const PRESETS = {
@@ -74,9 +81,9 @@ function deriveSample(m: any): Record<string, unknown> | null {
 }
 
 describe('density playground — emit table & override builder', () => {
-  it('every registered field id exists in the generated table (drift guard)', () => {
-    const ids = new Set(densityEmitTable.map((r) => r.id));
-    const missing = registeredFieldIds.filter((id) => !ids.has(id));
+  it('every registered field id resolves to a row (drift guard)', () => {
+    // Generated rows + override-only extra rows both resolve via densityRow.
+    const missing = registeredFieldIds.filter((id) => !densityRow(id));
     expect(
       missing,
       `stale field ids — rerun pnpm density:codegen or fix densityFields`,
@@ -91,6 +98,13 @@ describe('density playground — emit table & override builder', () => {
     }
   });
 
+  it('every emit-table component maps to a canvas family (no silent drop)', () => {
+    const unmapped = [...new Set(densityEmitTable.map((r) => r.target.component))].filter(
+      (c) => !componentFamily[c],
+    );
+    expect(unmapped, `add these to componentFamily: ${unmapped}`).to.have.length(0);
+  });
+
   it('densityLabels keys exactly match the emit table ids (codegen-managed)', () => {
     const tableIds = densityEmitTable.map((r) => r.id).sort();
     const labelIds = Object.keys(densityLabels).sort();
@@ -99,7 +113,7 @@ describe('density playground — emit table & override builder', () => {
 
   it('every registered field has a non-empty label', () => {
     for (const id of registeredFieldIds) {
-      expect(densityLabels[id], `no label for ${id}`).to.be.a('string').and.not.equal('');
+      expect(fieldLabel(id), `no label for ${id}`).to.be.a('string').and.not.equal(id);
     }
   });
 
@@ -110,6 +124,9 @@ describe('density playground — emit table & override builder', () => {
       for (const id of registeredFieldIds) {
         const row = densityRow(id)!;
         const value = row.values[level];
+        if (value === undefined) {
+          continue; // row not emitted at this preset (e.g. compact-only type)
+        }
         const { component, slot, props, nested } = row.target;
         const layer = buildOverrides([{ row, value }])[component].styleOverrides[slot];
         const style = props === null ? layer : layer.variants[layer.variants.length - 1].style;
@@ -129,12 +146,16 @@ describe('density playground — emit table & override builder', () => {
           continue; // function matcher — covered by explicit cases below
         }
         const value = row.values[level];
+        if (value === undefined) {
+          continue; // row not emitted at this preset (e.g. compact-only type)
+        }
         const merged = mergeOntoPreset(preset, buildOverrides([{ row, value }]));
         const { component, slot, nested } = row.target;
         const applied = readLeaf(merged, component, slot, sample, nested, prop(row));
         const presetVal = readLeaf(preset, component, slot, sample, nested, prop(row));
-        expect(applied, `${id} applied`).to.equal(value);
-        expect(presetVal, `${id} preset emits same`).to.equal(value);
+        // table stores values as strings; CSS treats `0` and '0' alike → compare stringified
+        expect(String(applied), `${id} applied`).to.equal(value);
+        expect(String(presetVal), `${id} preset emits same`).to.equal(value);
       }
     });
 
@@ -148,7 +169,7 @@ describe('density playground — emit table & override builder', () => {
       ];
       for (const c of cases) {
         const row = densityRow(c.id)!;
-        const value = row.values[level];
+        const value = row.values[level]!; // these Tab rows emit at every preset
         const merged = mergeOntoPreset(preset, buildOverrides([{ row, value }]));
         const applied = readLeaf(
           merged,
@@ -158,7 +179,7 @@ describe('density playground — emit table & override builder', () => {
           row.target.nested,
           prop(row),
         );
-        expect(applied, `${c.id} @ ${level}`).to.equal(value);
+        expect(String(applied), `${c.id} @ ${level}`).to.equal(value);
       }
     });
 
@@ -177,6 +198,38 @@ describe('density playground — emit table & override builder', () => {
       expect(readLeaf(merged, 'MuiMenuItem', 'root', { dense: true }, '', 'paddingBlock')).to.equal(
         siblingRow.values[level],
       );
+    });
+  });
+
+  describe('override-only + virtual knobs', () => {
+    it('override-only row builds a styleOverride only when filled (per-size)', () => {
+      const row = densityRow('MuiButton|root|size=medium||borderRadius')!;
+      expect(row, 'Button borderRadius extra row registered').to.not.equal(undefined);
+      expect(row.values.compact, 'no preset default').to.equal(undefined);
+      const built = buildOverrides([{ row, value: '8px' }]);
+      const variant = built.MuiButton.styleOverrides.root.variants[0];
+      expect(variant.props).to.deep.equal({ size: 'medium' });
+      expect(variant.style.borderRadius).to.equal('8px');
+    });
+
+    it('virtual knob writes one value to every member target', () => {
+      for (const knob of densityVirtualKnobs) {
+        const edits = knob.members.map((id) => ({ row: densityRow(id)!, value: '4px' }));
+        expect(
+          edits.every((edit) => edit.row),
+          `${knob.id} members resolve`,
+        ).to.equal(true);
+        const built = buildOverrides(edits);
+        // every member's emitted prop lands at 4px (base nested or variant)
+        for (const id of knob.members) {
+          const { component, slot, nested } = densityRow(id)!.target;
+          const layer = built[component].styleOverrides[slot];
+          const scope = nested
+            ? (layer[nested] ?? layer.variants?.map((v: any) => v.style[nested]).find(Boolean))
+            : layer;
+          expect(JSON.stringify(scope), `${id} @ ${knob.id}`).to.contain('4px');
+        }
+      }
     });
   });
 });
