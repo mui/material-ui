@@ -30,7 +30,7 @@
     "typescript": "tsgo -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@types/hoist-non-react-statics": "^3.3.7",
     "csstype": "^3.2.3",
     "hoist-non-react-statics": "^3.3.2",
@@ -42,7 +42,7 @@
     "@types/react": "19.2.14",
     "chai": "6.2.2",
     "react": "19.2.6",
-    "styled-components": "6.4.1"
+    "styled-components": "6.4.3"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

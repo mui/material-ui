@@ -852,7 +852,7 @@ export const MarkdownElement = React.forwardRef<HTMLDivElement, MarkdownElementP
     const more: React.ComponentProps<typeof Root> = {};
 
     if (typeof renderedMarkdown === 'string') {
-      // workaround for https://github.com/facebook/react/issues/17170
+      // workaround for https://github.com/react/react/issues/17170
       // otherwise we could just set `dangerouslySetInnerHTML={undefined}`
       more.dangerouslySetInnerHTML = { __html: renderedMarkdown };
     }

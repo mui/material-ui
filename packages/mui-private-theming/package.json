@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "9.1.1",
+  "version": "9.2.0",
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "typescript": "tsgo -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@mui/utils": "workspace:^",
     "prop-types": "^15.8.1"
   },

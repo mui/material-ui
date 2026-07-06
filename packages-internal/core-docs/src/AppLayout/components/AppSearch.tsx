@@ -210,7 +210,7 @@ function DocSearchHit(props: DocSearchHitComponentProps) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-const standaloneProducts = ['base-ui', 'joy-ui'];
+const standaloneProducts = ['base-ui'];
 
 export interface AppSearchProps {
   sx?: SxProps;
