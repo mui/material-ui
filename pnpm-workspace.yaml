@@ -28,7 +28,7 @@ trustPolicyIgnoreAfter: 525600
 
 catalogs:
   docs:
-    stylis: '4.2.0'
+    stylis: '4.4.0'
     '@base-ui/react': '^1.6.0'
     '@docsearch/react': '^3.9.0'
     '@emotion/cache': '^11.14.0'
@@ -38,7 +38,7 @@ catalogs:
 
 overrides:
   # Both were bundled twice in the docs build
-  'docs>stylis': '4.2.0'
+  'docs>stylis': '4.4.0'
   'docs>react-is': '19.2.7'
   # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
   caniuse-lite: '^1.0.30001800'

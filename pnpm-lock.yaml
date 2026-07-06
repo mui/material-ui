@@ -25,11 +25,11 @@ catalogs:
       specifier: ^11.14.1
       version: 11.14.1
     stylis:
-      specifier: 4.2.0
-      version: 4.2.0
+      specifier: 4.4.0
+      version: 4.4.0
 
 overrides:
-  docs>stylis: 4.2.0
+  docs>stylis: 4.4.0
   docs>react-is: 19.2.7
   caniuse-lite: ^1.0.30001800
   '@types/node': 20.19.43
@@ -480,8 +480,8 @@ importers:
         specifier: ^6.4.3
         version: 6.4.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       stylis:
-        specifier: 4.2.0
-        version: 4.2.0
+        specifier: 4.4.0
+        version: 4.4.0
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@19.2.7)
@@ -719,7 +719,7 @@ importers:
         version: 7.3.8(@emotion/cache@11.14.0)(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/server@11.11.0(@emotion/css@11.13.5))(@types/react@19.2.17)(next@15.5.20(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)
       '@mui/stylis-plugin-rtl':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
-        version: 7.3.8(stylis@4.2.0)
+        version: 7.3.8(stylis@4.4.0)
       '@mui/system':
         specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^9.0.0 || ^9.0.0-alpha || ^9.0.0-beta
         version: 9.2.0(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)
@@ -770,7 +770,7 @@ importers:
         version: 6.4.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       stylis:
         specifier: catalog:docs
-        version: 4.2.0
+        version: 4.4.0
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:*
@@ -14091,11 +14091,11 @@ snapshots:
       '@emotion/react': 11.14.0(@types/react@19.2.17)(react@19.2.7)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)
 
-  '@mui/stylis-plugin-rtl@7.3.8(stylis@4.2.0)':
+  '@mui/stylis-plugin-rtl@7.3.8(stylis@4.4.0)':
     dependencies:
       '@babel/runtime': 7.29.7
       cssjanus: 2.3.1
-      stylis: 4.2.0
+      stylis: 4.4.0
 
   '@mui/system@5.18.0(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)':
     dependencies:
