@@ -15,7 +15,6 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -76,6 +75,12 @@ import {
   enhanceComfortDensity,
 } from '@mui/material/styles';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+import { densityGroups, densityRow, fieldLabel } from 'docs/src/modules/components/density/densityFields';
+import {
+  buildOverrides,
+  mergeOntoPreset,
+  type DensityEdit,
+} from 'docs/src/modules/components/density/buildDensityOverrides';
 
 const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
@@ -157,22 +162,6 @@ const previewText = (input: string, scalePx: Record<string, string> | null) =>
     .map((t) => (isDensityKey(t) ? (scalePx?.[t] ?? t) : t))
     .join(' ');
 
-// A readable property label from the token identity, e.g.
-// '--Button-small-pad' → 'Button small padding', '--MenuItem-dense-blockPad' →
-// 'Menu item dense block padding'. Split on `-` + camelCase, lowercase, cap the
-// component word, expand `pad` → `padding`.
-const fieldLabel = (label: string) => {
-  const words = label
-    .replace(/^--_?/, '')
-    .split('-')
-    .flatMap((seg) => seg.replace(/([a-z])([A-Z])/g, '$1 $2').split(' '))
-    .map((w) => w.toLowerCase());
-  return words
-    .map((w, i) => (i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w))
-    .join(' ')
-    .replace(/\bpad\b/g, 'padding');
-};
-
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
 const PRESET_FN = {
   compact: enhanceCompactDensity,
@@ -181,25 +170,17 @@ const PRESET_FN = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// Density-component registry. Only Button is de-prefixed/wired in this
-// prototype; add entries here as more families gain a static `private_*Vars`
-// map — the dropdown, canvas and mapping controls all iterate this registry.
+// Density-component registry. Now a canvas registry only: `canvasLabel` +
+// `renderMatrix` drive the demo panes. The editable fields + apply/read model
+// live in the generated table (`emitTable.generated`) via `densityGroups`.
+// `DensityField` / `fields` / `prefill` are the LEGACY field model, retained as
+// inert data behind the matrices until the whole-registry sweep rebuilds this.
 // ---------------------------------------------------------------------------
 interface DensityField {
-  key: string; // mapping-state key, e.g. 'smallPad'
-  label: string; // token identity — raw-px placeholder lookup + var-mode override target
-  selector: string; // canvas-relative selector the preset emits on (no `#density-canvas` prefix)
-  // The real CSS property (or properties) to override in-scope — the emitted-override
-  // model writes the property directly, so it survives the source's seam removal.
-  // Omit → var-mode: write `label` instead, letting the source's own seam route it.
-  // Used for calc-coupling children (Chip height) and multi-route/media fields with
-  // no discriminating class (Tab icon gaps, Toolbar gutters, Step gutter, Tooltip offset/arrow).
+  key: string;
+  label: string;
+  selector: string;
   prop?: string | string[];
-  // How to read this field's active-preset default off the enhanced theme, for
-  // fields whose value is an emitted CSS property (or var) on a `variants` entry
-  // rather than a `--Component-*` token (which `themeTokenValue` scans directly).
-  // `sample` is the ownerState the preset's variant matcher is evaluated against;
-  // `nested` is a selector key the value sits under (e.g. `& .MuiAutocomplete-option`).
   resolve?: {
     mui: string;
     slot?: string;
@@ -209,11 +190,9 @@ interface DensityField {
 }
 interface DensityComponentDef {
   canvasLabel: string;
-  fields: DensityField[];
-  prefill: Record<string, string>;
-  note?: string; // shown under the mapping group (stub / out-of-scope axis)
-  // Overrides are applied globally via GlobalStyles (see `overrideCss`), so a
-  // matrix is a plain demo render — no per-element token plumbing.
+  fields: DensityField[]; // legacy — no longer read by the sidebar
+  prefill: Record<string, string>; // legacy
+  note?: string; // legacy
   renderMatrix: () => React.ReactNode;
 }
 
@@ -334,8 +313,9 @@ function MenuDemoItems() {
 
 function MenuMatrix() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  // The popover portals outside `#density-canvas`, so manual overrides (scoped
-  // there) reach only the static list; both still follow the preset via context.
+  // Overrides now ride the theme (ThemeProvider context), so the portaled popover
+  // gets them too — unlike the old `#density-canvas`-scoped GlobalStyles, which
+  // reached only the in-canvas static list.
   return (
     <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
       <MenuList sx={{ width: 240, border: '1px solid', borderColor: 'divider' }}>
@@ -817,7 +797,11 @@ const ACCORDION_FIELDS: DensityField[] = [
     label: '--AccordionSummary-expandedMinHeight',
     prop: 'minHeight',
     selector: '.MuiAccordionSummary-root.Mui-expanded',
-    resolve: { mui: 'MuiAccordionSummary', sample: { disableGutters: false }, nested: '&.Mui-expanded' },
+    resolve: {
+      mui: 'MuiAccordionSummary',
+      sample: { disableGutters: false },
+      nested: '&.Mui-expanded',
+    },
   },
   {
     key: 'inlinePad',
@@ -1678,165 +1662,73 @@ const COMPONENT_DEFS = {
 type ComponentName = keyof typeof COMPONENT_DEFS;
 type Selection = 'All' | ComponentName;
 
-const COMPONENTS = Object.keys(COMPONENT_DEFS) as ComponentName[];
+// The active-preset default for a registered field: read straight off the
+// generated table (the value enhance*Density actually emits). Density leaves
+// echo their step key (e.g. 'xs'); sizing leaves echo raw px. Placeholder only.
+type PresetLevel = 'compact' | 'normal' | 'comfort';
 
-// Read the value a preset assigned to a token, straight off the enhanced theme's
-// component overrides (the same `addRootOverride` output). Single source of truth
-// for raw-px sizing defaults — can't drift from what `enhance*Density` ships.
-function themeTokenValue(theme: unknown, label: string): string | undefined {
-  const components = (theme as { components?: Record<string, any> })?.components ?? {};
-  for (const name of Object.keys(components)) {
-    // Scan every slot's overrides, not just `root` — Tooltip's tokens land on
-    // the `tooltip` slot (it has no root slot).
-    const styleOverrides = components[name]?.styleOverrides ?? {};
-    for (const slot of Object.keys(styleOverrides)) {
-      const layers = Array.isArray(styleOverrides[slot])
-        ? styleOverrides[slot]
-        : [styleOverrides[slot]];
-      for (let i = layers.length - 1; i >= 0; i -= 1) {
-        const layer = layers[i];
-        if (layer && typeof layer === 'object' && label in layer) {
-          return layer[label] as string;
-        }
-      }
-    }
+const fieldDefault = (id: string, preset: PresetLevel): string => {
+  const row = densityRow(id);
+  if (!row) {
+    return '';
   }
-  return undefined;
-}
-
-// A blank override map — the default state. A field holds a value only once the
-// user types; until then it's inert (placeholder shows the preset's canonical).
-const emptyMapping = () =>
-  Object.fromEntries(COMPONENTS.map((c) => [c, {}])) as Record<
-    ComponentName,
-    Record<string, string>
-  >;
-
-// Flatten `addRootOverride`'s nested `[prev, overrides]` layer arrays into a flat
-// list of style-layer objects (skipping the `null` seeds), preserving apply order.
-const flattenLayers = (node: unknown): Record<string, any>[] => {
-  if (Array.isArray(node)) {
-    return node.flatMap(flattenLayers);
-  }
-  return node && typeof node === 'object' ? [node as Record<string, any>] : [];
+  return row.isDensity ? (row.densityKey ?? '') : row.values[preset];
 };
-
-// Does a preset `variants[].props` matcher match a sample ownerState? Objects
-// match by subset-equality; functions are called `({ ownerState })`, mirroring MUI.
-const matchesSample = (matcher: unknown, sample: Record<string, unknown>): boolean => {
-  if (typeof matcher === 'function') {
-    try {
-      return Boolean((matcher as (arg: unknown) => unknown)({ ownerState: sample }));
-    } catch {
-      return false;
-    }
-  }
-  if (matcher && typeof matcher === 'object') {
-    return Object.entries(matcher as Record<string, unknown>).every(([k, v]) => sample[k] === v);
-  }
-  return false;
-};
-
-// Resolve a field's active-preset default off the enhanced theme's emitted
-// `styleOverrides` — reading the CSS property (`field.prop`) or, for var-mode
-// fields, the token (`field.label`) from the base layer + every variant matching
-// `resolve.sample`, last write wins (same order MUI applies them).
-const resolveThemeProp = (theme: unknown, field: DensityField): string | undefined => {
-  const { resolve } = field;
-  if (!resolve) {
-    return undefined;
-  }
-  const key = Array.isArray(field.prop) ? field.prop[0] : (field.prop ?? field.label);
-  const components = (theme as { components?: Record<string, any> })?.components ?? {};
-  const layers = flattenLayers(components[resolve.mui]?.styleOverrides?.[resolve.slot ?? 'root']);
-  const sample = resolve.sample ?? {};
-  let found: unknown;
-  for (const layer of layers) {
-    const styleSources: Record<string, any>[] = [layer];
-    if (Array.isArray(layer.variants)) {
-      for (const variant of layer.variants) {
-        if (variant && matchesSample(variant.props, sample)) {
-          styleSources.push(variant.style ?? {});
-        }
-      }
-    }
-    for (const style of styleSources) {
-      const target = resolve.nested ? style?.[resolve.nested] : style;
-      if (target && typeof target === 'object' && key in target) {
-        found = target[key];
-      }
-    }
-  }
-  return typeof found === 'string' ? found : undefined;
-};
-
-// The value the active preset assigns a field — shown as the input placeholder.
-// Spacing prefills its density key (preset-independent); sizing/variant values
-// resolve off the enhanced theme (via `resolve` or a direct token scan) so they
-// can't drift from what the preset ships.
-const canonicalValue = (theme: unknown, comp: ComponentName, field: DensityField) =>
-  (COMPONENT_DEFS[comp].prefill as Record<string, string>)[field.key] ??
-  resolveThemeProp(theme, field) ??
-  themeTokenValue(theme, field.label) ??
-  '';
 
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
 
-  // User overrides only — empty until a field is typed.
-  const [mapping, setMapping] =
-    React.useState<Record<ComponentName, Record<string, string>>>(emptyMapping);
+  // User overrides, keyed by generated-table row id — empty until a field is typed.
+  const [mapping, setMapping] = React.useState<Record<string, string>>({});
 
   const mappingEnabled = preset !== 'unset';
-  const visibleComponents: ComponentName[] = selection === 'All' ? COMPONENTS : [selection];
+  const visibleGroups =
+    selection === 'All' ? densityGroups : densityGroups.filter((g) => g.key === selection);
+  const visibleComponents = visibleGroups.map((g) => g.key) as ComponentName[];
 
-  // Preset theme drives the canvas + field placeholders/legend. Stable per preset:
-  // overrides layer on separately (GlobalStyles), so typing never rebuilds it.
+  // Preset theme (no overrides) — drives placeholders/legend and is the base the
+  // user overrides append onto.
   const presetTheme = React.useMemo(() => {
     const base = createTheme({ cssVariables: true });
     return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
 
-  // A new preset has different canonical values → drop stale overrides.
+  // A new preset has different defaults → drop stale overrides.
   React.useEffect(() => {
-    setMapping(emptyMapping());
+    setMapping({});
   }, [preset]);
 
-  // Overrides → one GlobalStyles rule per target element, scoped to `#density-canvas`
-  // so the id-level specificity beats the preset's styleOverride and nothing leaks
-  // to the sidebar. Undefined until something is typed.
-  const overrideCss = React.useMemo(() => {
+  // Apply = build each edit into the shape enhance*Density emits and append it
+  // onto the preset theme's components (user layer wins by order). No GlobalStyles,
+  // no class selectors — the merged theme IS what a real preset would emit.
+  const canvasTheme = React.useMemo(() => {
     if (preset === 'unset') {
-      return undefined;
+      return presetTheme;
     }
-    const rules: Record<string, Record<string, string>> = {};
-    for (const comp of COMPONENTS) {
-      for (const field of COMPONENT_DEFS[comp].fields) {
-        const raw = mapping[comp]?.[field.key] ?? '';
+    const edits: DensityEdit[] = [];
+    for (const group of densityGroups) {
+      for (const id of group.fields) {
+        const raw = mapping[id] ?? '';
         if (parseMapping(raw).state !== 'ok') {
           continue;
         }
-        const selector = `${field.selector}`;
-        if (!rules[selector]) {
-          rules[selector] = {};
-        }
-        const value = resolveValue(raw);
-        // property-mode: override the emitted CSS property directly (survives the
-        // source's seam removal). var-mode (no `prop`): write the private token var
-        // so the source's own seam routes it (calc-coupling / multi-route fields).
-        if (field.prop) {
-          for (const p of Array.isArray(field.prop) ? field.prop : [field.prop]) {
-            rules[selector][p] = value;
-          }
-        } else {
-          rules[selector][field.label] = value;
+        const row = densityRow(id);
+        if (row) {
+          edits.push({ row, value: resolveValue(raw) });
         }
       }
     }
-    return Object.keys(rules).length ? rules : undefined;
-  }, [preset, mapping]);
+    if (!edits.length) {
+      return presetTheme;
+    }
+    const components = mergeOntoPreset(
+      (presetTheme as unknown as { components?: Record<string, any> }).components ?? {},
+      buildOverrides(edits),
+    );
+    return { ...presetTheme, components };
+  }, [preset, presetTheme, mapping]);
 
   // Active scale in px straight off the enhanced theme — single source of truth
   // for the legend + preview, so it can't drift from what the preset applied.
@@ -1845,10 +1737,9 @@ export default function DensityExperiment() {
       ? null
       : (presetTheme as unknown as { density: Record<string, string> }).density;
 
-  const setField = (comp: ComponentName, key: string, value: string) =>
-    setMapping((m) => ({ ...m, [comp]: { ...m[comp], [key]: value } }));
+  const setField = (id: string, value: string) => setMapping((m) => ({ ...m, [id]: value }));
 
-  const resetMapping = () => setMapping(emptyMapping());
+  const resetMapping = () => setMapping({});
 
   return (
     <Box
@@ -1972,9 +1863,9 @@ export default function DensityExperiment() {
               slotProps={{ input: { 'data-component-select': true } as Record<string, unknown> }}
             >
               <MenuItem value="All">All</MenuItem>
-              {COMPONENTS.map((c) => (
-                <MenuItem key={c} value={c}>
-                  {c}
+              {densityGroups.map((g) => (
+                <MenuItem key={g.key} value={g.key}>
+                  {g.key}
                 </MenuItem>
               ))}
             </Select>
@@ -2010,25 +1901,15 @@ export default function DensityExperiment() {
                 {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
               </Typography>
             )}
-            {visibleComponents.map((comp) => (
-              <Box key={comp} sx={{ mt: 2 }} data-mapping-group={comp}>
+            {visibleGroups.map((group) => (
+              <Box key={group.key} sx={{ mt: 2 }} data-mapping-group={group.key}>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'medium' }}>
-                  {comp}
+                  {group.key}
                 </Typography>
-                {(COMPONENT_DEFS[comp] as DensityComponentDef).note && (
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    component="p"
-                    sx={{ mt: 0.25, fontStyle: 'italic' }}
-                  >
-                    {(COMPONENT_DEFS[comp] as DensityComponentDef).note}
-                  </Typography>
-                )}
                 <Stack spacing={1.5} sx={{ mt: 1 }}>
-                  {COMPONENT_DEFS[comp].fields.map((field) => {
-                    const value = mapping[comp]?.[field.key] ?? '';
-                    const canon = canonicalValue(presetTheme, comp, field);
+                  {group.fields.map((id) => {
+                    const value = mapping[id] ?? '';
+                    const canon = preset === 'unset' ? '' : fieldDefault(id, preset as PresetLevel);
                     const parsed = parseMapping(value);
                     const showError = mappingEnabled && parsed.state === 'error';
                     let helper = ' ';
@@ -2040,18 +1921,18 @@ export default function DensityExperiment() {
                     }
                     return (
                       <TextField
-                        key={field.key}
+                        key={id}
                         size="small"
-                        label={fieldLabel(field.label)}
+                        label={fieldLabel(id)}
                         value={value}
                         placeholder={canon || 'density key or CSS value'}
                         disabled={!mappingEnabled}
                         error={showError}
                         helperText={helper}
-                        onChange={(event) => setField(comp, field.key, event.target.value)}
+                        onChange={(event) => setField(id, event.target.value)}
                         slotProps={{
                           htmlInput: {
-                            'data-mapping-field': `${comp}-${field.key}`,
+                            'data-mapping-field': id,
                           },
                         }}
                       />
@@ -2072,10 +1953,9 @@ export default function DensityExperiment() {
           </Box>
         </Box>
 
-        {/* CANVAS — density-enhanced theme; scrolls independently. */}
-        <ThemeProvider theme={presetTheme}>
+        {/* CANVAS — preset theme with user overrides appended (no GlobalStyles). */}
+        <ThemeProvider theme={canvasTheme}>
           <CssBaseline />
-          {overrideCss && <GlobalStyles styles={{ '#density-canvas': overrideCss }} />}
           <Box
             id="density-canvas"
             data-debug-padding={debug.includes('padding') ? '' : undefined}

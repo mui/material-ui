@@ -52,6 +52,7 @@
     "test:coverage": "pnpm test:unit run --coverage",
     "vitest": "vitest",
     "test:coverage:html": "pnpm test:unit run --coverage --coverage.reporter html",
+    "density:codegen": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./scripts/generateDensityTable.ts",
     "density:shot": "playwright test -c scripts/density-screenshots/playwright.config.mjs",
     "density:shot:update": "playwright test -c scripts/density-screenshots/playwright.config.mjs --update-snapshots",
     "test:e2e": "pnpm -F ./test/e2e start",
