@@ -39,9 +39,9 @@
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "chai": "6.2.2",
-    "react": "19.2.6",
+    "react": "19.2.7",
     "styled-components": "6.4.3"
   },
   "peerDependencies": {
