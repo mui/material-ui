@@ -35,7 +35,7 @@ export const densityLabels: Record<string, string> = {
     'Autocomplete · inputRoot paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock':
     'Autocomplete · input paddingBlock',
-  'MuiAutocomplete|root|base|& .MuiFormControl-root|--_outlinedInputPadBlock':
+  'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock':
     'Autocomplete · --_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputRootPadBlock':
     'Autocomplete · Input root paddingBlock [size=small]',

@@ -489,7 +489,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
       paddingBlock: `var(--_autocompleteInputPadBlock)`,
     },
-    [`& .${formControlClasses.root}`]: {
+    [`& .${formControlClasses.root}:has(> .${outlinedInputClasses.root})`]: {
       '--_outlinedInputPadBlock':
         'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
     },

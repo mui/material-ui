@@ -410,7 +410,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiAutocomplete|root|base|& .MuiFormControl-root|--_outlinedInputPadBlock',
+    id: 'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
     label: 'Autocomplete · --_outlinedInputPadBlock',
     isDensity: false,
     densityKey: null,
@@ -418,7 +418,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       component: 'MuiAutocomplete',
       slot: 'root',
       props: null,
-      nested: '& .MuiFormControl-root',
+      nested: '& .MuiFormControl-root:has(> .MuiOutlinedInput-root)',
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
