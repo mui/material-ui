@@ -442,99 +442,61 @@ function TooltipMatrix() {
   );
 }
 
-// OutlinedInput family: input block padding (per size) + adornment gap (per
-// size). Inline padding is not tokenized — it's fieldset-constrained (changing it
-// misaligns the floating label), so it stays master. The label resting-Y is a
-// derived bridge (not a direct field).
-const OUTLINED_INPUT_FIELDS: DensityField[] = [
-  {
-    key: 'mediumBlockPad',
-    label: '--OutlinedInput-medium-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiOutlinedInput-root:not(.MuiInputBase-sizeSmall) .MuiOutlinedInput-input',
-  },
-  {
-    key: 'smallBlockPad',
-    label: '--OutlinedInput-small-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiInputBase-sizeSmall .MuiOutlinedInput-input',
-  },
-  // Gap = start marginRight / end marginLeft (one token, no per-side discriminating
-  // class) — the preset emits the real margins per position; the synthetic label
-  // is label/placeholder only.
-  {
-    key: 'mediumGap',
-    label: '--InputAdornment-medium-gap',
-    selector: '.MuiInputAdornment-root:not(.MuiInputAdornment-sizeSmall)',
-  },
-  {
-    key: 'smallGap',
-    label: '--InputAdornment-small-gap',
-    selector: '.MuiInputAdornment-sizeSmall',
-  },
-];
-
 function OutlinedInputMatrix() {
   return (
-    <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="outlined" />
-      <TextField
-        label={<span className="density-debug-text">Small</span>}
-        variant="outlined"
-        size="small"
-      />
-      <TextField
-        label={<span className="density-debug-text">Start adornment</span>}
-        variant="outlined"
-        slotProps={{
-          input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
-        }}
-      />
-      <TextField
-        label={<span className="density-debug-text">End adornment</span>}
-        variant="outlined"
-        slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
-      />
-      <TextField
-        label={<span className="density-debug-text">Multiline</span>}
-        variant="outlined"
-        multiline
-        rows={3}
-        defaultValue={'Line one\nLine two\nLine three'}
-      />
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <Stack spacing={3} sx={{ width: 220 }}>
+        <Typography variant="caption" color="text.secondary">
+          medium
+        </Typography>
+        <TextField label={<span className="density-debug-text">Label</span>} variant="outlined" />
+        <TextField
+          label={<span className="density-debug-text">Start adornment</span>}
+          variant="outlined"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label={<span className="density-debug-text">End adornment</span>}
+          variant="outlined"
+          slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+        />
+        <TextField
+          label={<span className="density-debug-text">Multiline</span>}
+          variant="outlined"
+          multiline
+          rows={3}
+          defaultValue={'Line one\nLine two\nLine three'}
+        />
+      </Stack>
+      <Stack spacing={3} sx={{ width: 220 }}>
+        <Typography variant="caption" color="text.secondary">
+          small
+        </Typography>
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="outlined"
+          size="small"
+        />
+        <TextField
+          label={<span className="density-debug-text">Start adornment</span>}
+          variant="outlined"
+          size="small"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label={<span className="density-debug-text">End adornment</span>}
+          variant="outlined"
+          size="small"
+          slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+        />
+      </Stack>
     </Stack>
   );
 }
-
-// FilledInput family: box top/bottom padding (per size). Inline padding is not
-// tokenized — it stays master to keep the floating label aligned. The label
-// rest/shrink Y follow the active preset (tuned raw px, not editable here).
-const FILLED_INPUT_FIELDS: DensityField[] = [
-  {
-    key: 'mediumTopPad',
-    label: '--FilledInput-medium-topPad',
-    prop: 'paddingTop',
-    selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
-  },
-  {
-    key: 'smallTopPad',
-    label: '--FilledInput-small-topPad',
-    prop: 'paddingTop',
-    selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
-  },
-  {
-    key: 'mediumBottomPad',
-    label: '--FilledInput-medium-bottomPad',
-    prop: 'paddingBottom',
-    selector: '.MuiFilledInput-root:not(.MuiInputBase-sizeSmall) .MuiFilledInput-input',
-  },
-  {
-    key: 'smallBottomPad',
-    label: '--FilledInput-small-bottomPad',
-    prop: 'paddingBottom',
-    selector: '.MuiInputBase-sizeSmall .MuiFilledInput-input',
-  },
-];
 
 function FilledInputMatrix() {
   // Resting (empty) vs shrunk (filled) label per size — the label rest/shrink Y
@@ -581,50 +543,77 @@ function FilledInputMatrix() {
           size="small"
           defaultValue="Filled value"
         />
+        <TextField
+          label="Amount"
+          variant="filled"
+          size="small"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label="Weight"
+          variant="filled"
+          size="small"
+          slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+        />
       </Stack>
     </Stack>
   );
 }
 
-// Input (standard) family: input top/bottom padding (top per size, bottom
-// shared). Inline is 0; the label floats above (no bridge).
-const INPUT_FIELDS: DensityField[] = [
-  {
-    key: 'mediumTopPad',
-    label: '--Input-medium-topPad',
-    prop: 'paddingTop',
-    selector: '.MuiInput-root:not(.MuiInputBase-sizeSmall) .MuiInput-input',
-  },
-  {
-    key: 'smallTopPad',
-    label: '--Input-small-topPad',
-    prop: 'paddingTop',
-    selector: '.MuiInputBase-sizeSmall .MuiInput-input',
-  },
-  {
-    key: 'bottomPad',
-    label: '--Input-bottomPad',
-    prop: 'paddingBottom',
-    selector: '.MuiInput-input',
-  },
-];
-
 function InputMatrix() {
   return (
-    <Stack spacing={3} sx={{ mt: 1, width: 260, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="standard" />
-      <TextField
-        label={<span className="density-debug-text">Small</span>}
-        variant="standard"
-        size="small"
-      />
-      <TextField
-        label={<span className="density-debug-text">Multiline</span>}
-        variant="standard"
-        multiline
-        rows={3}
-        defaultValue={'Line one\nLine two\nLine three'}
-      />
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <Stack spacing={3} sx={{ width: 220 }}>
+        <Typography variant="caption" color="text.secondary">
+          medium
+        </Typography>
+        <TextField label={<span className="density-debug-text">Label</span>} variant="standard" />
+        <TextField
+          label={<span className="density-debug-text">Start adornment</span>}
+          variant="standard"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label={<span className="density-debug-text">End adornment</span>}
+          variant="standard"
+          slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+        />
+        <TextField
+          label={<span className="density-debug-text">Multiline</span>}
+          variant="standard"
+          multiline
+          rows={3}
+          defaultValue={'Line one\nLine two\nLine three'}
+        />
+      </Stack>
+      <Stack spacing={3} sx={{ width: 220 }}>
+        <Typography variant="caption" color="text.secondary">
+          small
+        </Typography>
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="standard"
+          size="small"
+        />
+        <TextField
+          label={<span className="density-debug-text">Start adornment</span>}
+          variant="standard"
+          size="small"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label={<span className="density-debug-text">End adornment</span>}
+          variant="standard"
+          size="small"
+          slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
+        />
+      </Stack>
     </Stack>
   );
 }
@@ -1710,38 +1699,33 @@ const COMPONENT_DEFS = {
     },
     renderMatrix: () => <TooltipMatrix />,
   },
-  OutlinedInput: {
-    canvasLabel: 'OutlinedInput — size axis + adornments (label bridge)',
-    fields: OUTLINED_INPUT_FIELDS,
-    // All spacing → density keys (match the preset assignment).
-    prefill: {
-      mediumBlockPad: 'md',
-      smallBlockPad: 'sm',
-      mediumGap: 'sm',
-      smallGap: 'xxs',
-    },
-    renderMatrix: () => <OutlinedInputMatrix />,
-  },
-  FilledInput: {
-    canvasLabel: 'FilledInput — size axis (box padding); label follows preset',
-    fields: FILLED_INPUT_FIELDS,
-    prefill: {
-      mediumTopPad: 'xl',
-      smallTopPad: 'lg',
-      mediumBottomPad: 'sm',
-      smallBottomPad: 'xxs',
-    },
-    renderMatrix: () => <FilledInputMatrix />,
-  },
-  Input: {
-    canvasLabel: 'Input (standard) — size axis (input top/bottom padding)',
-    fields: INPUT_FIELDS,
-    prefill: {
-      mediumTopPad: 'xs',
-      smallTopPad: 'xxs',
-      bottomPad: 'xs',
-    },
-    renderMatrix: () => <InputMatrix />,
+  // All input parts (InputBase/Input/FilledInput/OutlinedInput/InputAdornment)
+  // collapse under one TextField selector; the sidebar still trees them by
+  // component → slot. Canvas stacks the three variant demos.
+  TextField: {
+    canvasLabel: 'TextField — outlined / filled / standard (size axis + label bridge)',
+    fields: [],
+    prefill: {},
+    renderMatrix: () => (
+      <Stack spacing={4} sx={{ mt: 1 }}>
+        {(
+          [
+            ['outlined', <OutlinedInputMatrix />],
+            ['filled', <FilledInputMatrix />],
+            ['standard', <InputMatrix />],
+          ] as const
+        ).map(([variant, node]) => (
+          <Box key={variant} data-variant-section={variant}>
+            <Divider textAlign="left" sx={{ mb: 1.5 }}>
+              <Typography variant="caption" color="text.secondary">
+                {variant}
+              </Typography>
+            </Divider>
+            {node}
+          </Box>
+        ))}
+      </Stack>
+    ),
   },
   Tabs: {
     canvasLabel: 'Tabs — text / icon-top / icon-start (Tab+Tabs minHeight paired)',

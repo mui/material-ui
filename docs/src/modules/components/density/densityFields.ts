@@ -23,11 +23,11 @@ export const componentFamily: Record<string, string> = {
   MuiTabs: 'Tabs',
   MuiAutocomplete: 'Autocomplete',
   MuiTooltip: 'Tooltip',
-  MuiOutlinedInput: 'OutlinedInput',
-  MuiInputAdornment: 'OutlinedInput',
-  MuiFilledInput: 'FilledInput',
-  MuiInputBase: 'Input',
-  MuiInput: 'Input',
+  MuiOutlinedInput: 'TextField',
+  MuiInputAdornment: 'TextField',
+  MuiFilledInput: 'TextField',
+  MuiInputBase: 'TextField',
+  MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
   MuiAvatar: 'Avatar',
@@ -58,6 +58,52 @@ export const componentFamily: Record<string, string> = {
   MuiAccordionSummary: 'Accordion',
 };
 
+/**
+ * Per-id denylist: rows kept in the (mechanical) emit table but not surfaced as
+ * sidebar knobs. Editorial, same layer as `componentFamily` — for internal `--_*`
+ * plumbing that derives off another knob and isn't independently tunable.
+ */
+export const hiddenFieldIds = new Set<string>([
+  'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiOutlinedInput|input|base||paddingBlock',
+  'MuiOutlinedInput|input|size=small||paddingBlock',
+  'MuiOutlinedInput|input|fn:1ghwre||paddingBlock',
+  'MuiOutlinedInput|root|fn:1ghwre||paddingBlock',
+  'MuiOutlinedInput|root|fn:124vl6||paddingBlock',
+  'MuiFilledInput|input|base||paddingTop',
+  'MuiFilledInput|input|base||paddingBottom',
+  'MuiFilledInput|input|fn:18uwxi||paddingTop',
+  'MuiFilledInput|input|fn:18uwxi||paddingBottom',
+  'MuiFilledInput|input|fn:1anfzr||paddingTop',
+  'MuiFilledInput|input|fn:1anfzr||paddingBottom',
+  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiFilledInput|root|fn:1ghwre||paddingTop',
+  'MuiFilledInput|root|fn:1ghwre||paddingBottom',
+  'MuiFilledInput|root|fn:124vl6||paddingTop',
+  'MuiFilledInput|root|fn:124vl6||paddingBottom',
+  'MuiFilledInput|input|fn:1ghwre||paddingBlock',
+  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY',
+  'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY',
+  'MuiFilledInput|root|fn:1dxjh5||paddingTop',
+  'MuiFilledInput|root|fn:1dxjh5||paddingBottom',
+  'MuiFilledInput|root|fn:156ydn||paddingTop',
+  'MuiFilledInput|root|fn:156ydn||paddingBottom',
+  'MuiInput|input|fn:1ghwre||paddingBlock',
+  'MuiInput|input|base||paddingTop',
+  'MuiInput|input|base||paddingBottom',
+  'MuiInput|input|size=small||paddingTop',
+  'MuiInput|input|size=small||paddingBottom',
+  'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiInput|root|base|label + &, .MuiInputLabel-root + &|marginTop',
+  'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
+  'MuiInput|root|multiline=true||paddingTop',
+  'MuiInput|root|multiline=true||paddingBottom',
+  'MuiInput|root|multiline=true,size=small||paddingTop',
+  'MuiInput|root|multiline=true,size=small||paddingBottom',
+]);
+
 export interface DensityGroup {
   /** matches a COMPONENT_DEFS key in the playground (canvas demo) */
   key: string;
@@ -73,6 +119,9 @@ export interface DensityGroup {
 export const densityGroups: DensityGroup[] = (() => {
   const byFamily = new Map<string, string[]>();
   for (const row of allRows) {
+    if (hiddenFieldIds.has(row.id)) {
+      continue; // editorial denylist (see hiddenFieldIds)
+    }
     const family = componentFamily[row.target.component];
     if (!family) {
       continue; // component not surfaced (no canvas demo)

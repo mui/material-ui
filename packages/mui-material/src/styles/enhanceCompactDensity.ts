@@ -170,6 +170,15 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       { props: { position: 'start' }, style: { marginRight: d.sm } },
       { props: { position: 'end' }, style: { marginLeft: d.sm } },
       {
+        props: { variant: 'filled' },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: 'calc(var(--_filledInputPadTop, 20px) - 4px)',
+            },
+        },
+      },
+      {
         props: ({
           ownerState,
         }: {
@@ -185,28 +194,6 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         }) => ownerState.position === 'end' && ownerState.size === 'small',
         style: { marginLeft: d.xxs },
       },
-      {
-        props: { variant: 'filled' },
-        style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
-            {
-              marginTop: d.lg,
-            },
-        },
-      },
-      {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: InputAdornmentProps & { size?: string | undefined };
-        }) => ownerState.variant === 'filled' && ownerState.size === 'small',
-        style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
-            {
-              marginTop: d.md,
-            },
-        },
-      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiFilledInput', {
@@ -215,8 +202,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // rest Y from the same source; shrink Y stays tuned raw px. hiddenLabel block
     // padding stays at master literals (out of scope).
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': d.xl,
-      '--_filledInputPadBottom': d.sm,
+      '--_filledInputPadTop': '20px',
+      '--_filledInputPadBottom': d.xs,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       [private_inputLabelVars.restY]: `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
@@ -227,7 +214,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         props: { size: 'small' },
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': d.lg,
+            '--_filledInputPadTop': '16px',
             '--_filledInputPadBottom': d.xxs,
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
@@ -239,15 +226,15 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
         style: {
-          paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
+          paddingTop: `var(--_filledInputPadTop, 20px)`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d.xs})`,
         },
       },
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.multiline && ownerState.size === 'small',
         style: {
-          paddingTop: `var(--_filledInputPadTop, ${d.lg})`,
+          paddingTop: `var(--_filledInputPadTop, 16px)`,
           paddingBottom: `var(--_filledInputPadBottom, ${d.xs})`,
         },
       },

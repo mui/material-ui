@@ -1216,8 +1216,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop',
     label: 'FilledInput · --_filledInputPadTop',
-    isDensity: true,
-    densityKey: 'xl',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -1225,17 +1225,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadTop',
     },
-    values: {
-      compact: 'var(--mui-density-xl)',
-      normal: 'var(--mui-density-xl)',
-      comfort: 'var(--mui-density-xl)',
-    },
+    values: { compact: '20px', normal: 'var(--mui-density-xl)', comfort: 'var(--mui-density-xl)' },
   },
   {
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
     label: 'FilledInput · --_filledInputPadBottom',
     isDensity: true,
-    densityKey: 'sm',
+    densityKey: 'xs',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -1244,7 +1240,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_filledInputPadBottom',
     },
     values: {
-      compact: 'var(--mui-density-sm)',
+      compact: 'var(--mui-density-xs)',
       normal: 'var(--mui-density-sm)',
       comfort: 'var(--mui-density-sm)',
     },
@@ -1284,8 +1280,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop',
     label: 'FilledInput · --_filledInputPadTop [size=small]',
-    isDensity: true,
-    densityKey: 'lg',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -1293,7 +1289,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadTop',
     },
-    values: { compact: 'var(--mui-density-lg)', normal: '18px', comfort: 'var(--mui-density-lg)' },
+    values: { compact: '16px', normal: '18px', comfort: 'var(--mui-density-lg)' },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
@@ -1354,7 +1350,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingTop',
     },
     values: {
-      compact: 'var(--_filledInputPadTop, var(--mui-density-xl))',
+      compact: 'var(--_filledInputPadTop, 20px)',
       normal: 'var(--_filledInputPadTop, var(--mui-density-xl))',
       comfort: 'var(--_filledInputPadTop, var(--mui-density-xl))',
     },
@@ -1372,7 +1368,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      compact: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
+      compact: 'var(--_filledInputPadBottom, var(--mui-density-xs))',
       normal: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
       comfort: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
     },
@@ -1390,7 +1386,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingTop',
     },
     values: {
-      compact: 'var(--_filledInputPadTop, var(--mui-density-lg))',
+      compact: 'var(--_filledInputPadTop, 16px)',
       normal: 'var(--_filledInputPadTop, var(--mui-density-lg))',
       comfort: 'var(--_filledInputPadTop, var(--mui-density-lg))',
     },
@@ -1812,6 +1808,24 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop',
+    label: 'InputAdornment · marginTop [variant=filled]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiInputAdornment',
+      slot: 'root',
+      props: { variant: 'filled' },
+      nested: '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)',
+      cssProp: 'marginTop',
+    },
+    values: {
+      compact: 'calc(var(--_filledInputPadTop, 20px) - 4px)',
+      normal: 'var(--mui-density-lg)',
+      comfort: 'var(--mui-density-lg)',
+    },
+  },
+  {
     id: 'MuiInputAdornment|root|fn:1voegp||marginRight',
     label: 'InputAdornment · marginRight [fn]',
     isDensity: true,
@@ -1848,24 +1862,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop',
-    label: 'InputAdornment · marginTop [variant=filled]',
-    isDensity: true,
-    densityKey: 'lg',
-    target: {
-      component: 'MuiInputAdornment',
-      slot: 'root',
-      props: { variant: 'filled' },
-      nested: '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)',
-      cssProp: 'marginTop',
-    },
-    values: {
-      compact: 'var(--mui-density-lg)',
-      normal: 'var(--mui-density-lg)',
-      comfort: 'var(--mui-density-lg)',
-    },
-  },
-  {
     id: 'MuiInputAdornment|root|fn:15uckb|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop',
     label: 'InputAdornment · marginTop [fn]',
     isDensity: true,
@@ -1878,7 +1874,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginTop',
     },
     values: {
-      compact: 'var(--mui-density-md)',
+      compact: undefined,
       normal: 'var(--mui-density-md)',
       comfort: 'var(--mui-density-md)',
     },

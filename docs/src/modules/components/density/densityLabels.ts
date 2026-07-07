@@ -88,19 +88,19 @@ export const densityLabels: Record<string, string> = {
   'MuiFilledInput|input|fn:1anfzr||paddingBottom': 'FilledInput · input · paddingBottom [fn]',
   'MuiFilledInput|input|fn:1ghwre||paddingBlock': 'FilledInput · input · paddingBlock [fn]',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
-    'FilledInput · --_filledInputPadTop',
+    'FilledInput · padding top',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
-    'FilledInput · --_filledInputPadBottom',
+    'FilledInput · padding bottom',
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'FilledInput · --_restY',
-  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY': 'FilledInput · --_shrinkY',
+  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY': 'FilledInput · shrink Y',
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
-    'FilledInput · --_filledInputPadTop [size=small]',
+    'FilledInput · padding top [size=small]',
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
-    'FilledInput · --_filledInputPadBottom [size=small]',
+    'FilledInput · padding bottom [size=small]',
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY':
     'FilledInput · --_restY [size=small]',
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY':
-    'FilledInput · --_shrinkY [size=small]',
+    'FilledInput · shrink Y [size=small]',
   'MuiFilledInput|root|fn:1ghwre||paddingTop': 'FilledInput · paddingTop [fn]',
   'MuiFilledInput|root|fn:1ghwre||paddingBottom': 'FilledInput · paddingBottom [fn]',
   'MuiFilledInput|root|fn:124vl6||paddingTop': 'FilledInput · paddingTop [fn]',
@@ -114,15 +114,15 @@ export const densityLabels: Record<string, string> = {
   'MuiInput|input|size=small||paddingTop': 'Input · input · paddingTop [size=small]',
   'MuiInput|input|size=small||paddingBottom': 'Input · input · paddingBottom [size=small]',
   'MuiInput|input|fn:1ghwre||paddingBlock': 'Input · input · paddingBlock [fn]',
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · --_inputPadTop',
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · --_inputPadBottom',
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': 'Input · --_inputMarginTop',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · padding top',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · padding bottom',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': 'Input · margin top',
   'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'Input · --_restY',
   'MuiInput|root|base|label + &, .MuiInputLabel-root + &|marginTop': 'Input · marginTop',
   'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop':
-    'Input · --_inputPadTop [size=small]',
+    'Input · padding top [size=small]',
   'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom':
-    'Input · --_inputPadBottom [size=small]',
+    'Input · padding bottom [size=small]',
   'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': 'Input · --_restY [size=small]',
   'MuiInput|root|multiline=true||paddingTop': 'Input · paddingTop [multiline=true]',
   'MuiInput|root|multiline=true||paddingBottom': 'Input · paddingBottom [multiline=true]',
@@ -133,12 +133,14 @@ export const densityLabels: Record<string, string> = {
   'MuiInputAdornment|root|position=start||marginRight':
     'InputAdornment · marginRight [position=start]',
   'MuiInputAdornment|root|position=end||marginLeft': 'InputAdornment · marginLeft [position=end]',
-  'MuiInputAdornment|root|fn:1voegp||marginRight': 'InputAdornment · marginRight [fn]',
-  'MuiInputAdornment|root|fn:1oteyj||marginLeft': 'InputAdornment · marginLeft [fn]',
   'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
     'InputAdornment · marginTop [variant=filled]',
+  'MuiInputAdornment|root|fn:1voegp||marginRight':
+    'InputAdornment · marginRight [size=small,position=start]',
+  'MuiInputAdornment|root|fn:1oteyj||marginLeft':
+    'InputAdornment · marginLeft [size=small,position=end]',
   'MuiInputAdornment|root|fn:15uckb|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
-    'InputAdornment · marginTop [fn]',
+    'InputAdornment · marginTop [variant=filled,size=small]',
   'MuiInputBase|input|base||paddingBlock': 'InputBase · input · paddingBlock',
   'MuiInputBase|input|size=small||paddingTop': 'InputBase · input · paddingTop [size=small]',
   'MuiInputBase|input|fn:1ghwre||paddingBlock': 'InputBase · input · paddingBlock [fn]',
@@ -163,12 +165,12 @@ export const densityLabels: Record<string, string> = {
     'OutlinedInput · input · paddingBlock [size=small]',
   'MuiOutlinedInput|input|fn:1ghwre||paddingBlock': 'OutlinedInput · input · paddingBlock [fn]',
   'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
-    'OutlinedInput · --_outlinedInputPadBlock',
+    'OutlinedInput · padding block',
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'OutlinedInput · --_restY',
   'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY':
     'OutlinedInput · --_restY [size=small]',
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
-    'OutlinedInput · --_outlinedInputPadBlock [size=small]',
+    'OutlinedInput · padding block [size=small]',
   'MuiOutlinedInput|root|fn:1ghwre||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
   'MuiOutlinedInput|root|fn:124vl6||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
