@@ -2679,6 +2679,36 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('grouped rendering crash on create-option', () => {
+    it('should not crash when groupBy becomes active while previously-cached options are still a flat array', () => {
+      const rawOptions = [{ id: 'asd', name: 'asd', is_recent: false }];
+
+      const view = render(
+        <Autocomplete
+          multiple
+          open
+          options={rawOptions}
+          value={[]}
+          getOptionLabel={(option) => option.name}
+          slotProps={{ popper: { keepMounted: true } }}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      // Cache the ungrouped options while the popup is open.
+      expect(screen.getAllByRole('option')).to.have.length(1);
+
+      // Simulate enabling grouping after the cache has been populated.
+      // The cached options are still ungrouped and should not crash the grouped renderer.
+      expect(() => {
+        view.setProps({
+          open: false,
+          groupBy: (option) => (option.is_recent ? 'Recent' : 'All Tags'),
+        });
+      }).not.to.throw();
+    });
+  });
+
   describe('prop: options', () => {
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const view = render(
