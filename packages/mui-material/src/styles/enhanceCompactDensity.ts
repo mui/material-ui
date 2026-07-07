@@ -38,11 +38,13 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   const d: DensityScale = (enhanced.vars || enhanced).density;
   addRootOverride(enhanced.components, 'MuiButton', {
     // Emit padding directly on the size variants Button already ships (no seam).
-    // Compact-only type: lineHeight at base; fontSize on small/medium (large unchanged).
+    // Compact-only type: lineHeight at base. Medium fontSize comes from
+    // theme.typography.button (Button's root spreads it, no medium variant); small
+    // needs its own smaller step. Keeping a medium fontSize here would mask the token.
     lineHeight: 1.5,
     variants: [
       { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}`, fontSize: '0.75rem' } },
-      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}`, fontSize: '0.8125rem' } },
+      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
       { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
     ],
   });
@@ -723,23 +725,20 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     fontSize: '0.875rem',
     lineHeight: 20 / 14,
   });
-  addRootOverride(enhanced.components, 'MuiTypography', {
-    // Compact-only type per variant (fontSize + lineHeight); normal/comfort keep master.
-    variants: [
-      { props: { variant: 'h1' }, style: { fontSize: '4.5rem', lineHeight: 1.1 } },
-      { props: { variant: 'h2' }, style: { fontSize: '3rem', lineHeight: 1.15 } },
-      { props: { variant: 'h3' }, style: { fontSize: '2.5rem', lineHeight: 1.15 } },
-      { props: { variant: 'h4' }, style: { fontSize: '1.75rem', lineHeight: 1.2 } },
-      { props: { variant: 'h5' }, style: { fontSize: '1.25rem', lineHeight: 1.25 } },
-      { props: { variant: 'h6' }, style: { fontSize: '1.125rem', lineHeight: 1.4 } },
-      { props: { variant: 'subtitle1' }, style: { fontSize: '0.875rem', lineHeight: 1.5 } },
-      { props: { variant: 'subtitle2' }, style: { fontSize: '0.8125rem', lineHeight: 1.4 } },
-      { props: { variant: 'body1' }, style: { fontSize: '0.875rem', lineHeight: 1.4 } },
-      { props: { variant: 'body2' }, style: { fontSize: '0.8125rem', lineHeight: 1.35 } },
-    ],
-  });
+  // Compact-only type per variant (fontSize + lineHeight); normal/comfort keep
+  // master. Theme-level tokens, not component overrides — same layer as button.
   enhanced.typography = {
     ...enhanced.typography,
+    h1: { ...enhanced.typography?.h1, fontSize: '4.5rem', lineHeight: 1.1 },
+    h2: { ...enhanced.typography?.h2, fontSize: '3rem', lineHeight: 1.15 },
+    h3: { ...enhanced.typography?.h3, fontSize: '2.5rem', lineHeight: 1.15 },
+    h4: { ...enhanced.typography?.h4, fontSize: '1.75rem', lineHeight: 1.2 },
+    h5: { ...enhanced.typography?.h5, fontSize: '1.25rem', lineHeight: 1.25 },
+    h6: { ...enhanced.typography?.h6, fontSize: '1.125rem', lineHeight: 1.4 },
+    subtitle1: { ...enhanced.typography?.subtitle1, fontSize: '0.875rem', lineHeight: 1.5 },
+    subtitle2: { ...enhanced.typography?.subtitle2, fontSize: '0.8125rem', lineHeight: 1.4 },
+    body1: { ...enhanced.typography?.body1, fontSize: '0.875rem', lineHeight: 1.4 },
+    body2: { ...enhanced.typography?.body2, fontSize: '0.8125rem', lineHeight: 1.35 },
     button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.5 },
   };
   return enhanced;

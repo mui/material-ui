@@ -24,6 +24,7 @@ import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -60,6 +61,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -97,6 +99,12 @@ import {
   mergeOntoPreset,
   type DensityEdit,
 } from 'docs/src/modules/components/density/buildDensityOverrides';
+import {
+  themeTokenGroups,
+  readThemeToken,
+  setThemeToken,
+  coerceToken,
+} from 'docs/src/modules/components/density/themeTokens';
 
 const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
@@ -1865,13 +1873,41 @@ function TypographyMatrix() {
   );
 }
 
+// Theme-token canvas previews (shown when a Theme-tokens panel is expanded).
+const THEME_TOKEN_PREVIEW: Record<string, () => React.ReactNode> = {
+  Typography: () => (
+    <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <TypographyMatrix />
+      <Box data-variant-section="button">
+        <Typography variant="caption" color="text.secondary">
+          button
+        </Typography>
+        <Box sx={{ mt: 0.5 }}>
+          <Button variant="contained">Button label</Button>
+        </Box>
+      </Box>
+    </Stack>
+  ),
+  // Components that inherit theme.shape.borderRadius.
+  'Border Radius': () => (
+    <Stack direction="row" spacing={3} sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+      <Button variant="contained">Button</Button>
+      <Button variant="outlined">Outlined</Button>
+      <TextField size="small" label="Outlined" />
+      <Chip label="Chip" />
+      <Paper variant="outlined" sx={{ px: 2, py: 1 }}>
+        Paper
+      </Paper>
+      <Card variant="outlined">
+        <CardContent>Card</CardContent>
+      </Card>
+    </Stack>
+  ),
+};
+
+// Typography lives in the theme-token section now (theme.typography), not here —
+// TypographyMatrix is reused as that panel's canvas preview.
 const COMPONENT_DEFS = {
-  Typography: {
-    canvasLabel: 'Typography — variants (h1–h6, subtitle1/2, body1/2)',
-    fields: [],
-    prefill: {},
-    renderMatrix: () => <TypographyMatrix />,
-  },
   Button: {
     canvasLabel: 'Button (color="primary")',
     // Canonical prefill matches enhanceDensity's own Button assignment.
@@ -2182,6 +2218,8 @@ export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
+  // Which Theme-tokens accordion is open (drives the canvas preview). One at a time.
+  const [tokenPanel, setTokenPanel] = React.useState<string | false>(false);
 
   // User overrides, keyed by generated-table row id — empty until a field is typed.
   const [mapping, setMapping] = React.useState<Record<string, string>>({});
@@ -2223,14 +2261,60 @@ export default function DensityExperiment() {
         }
       }
     }
-    if (!edits.length) {
-      return presetTheme;
+    let result: typeof presetTheme = presetTheme;
+    if (edits.length) {
+      const components = mergeOntoPreset(
+        (presetTheme as unknown as { components?: Record<string, any> }).components ?? {},
+        buildOverrides(edits),
+      );
+      result = { ...presetTheme, components } as typeof presetTheme;
     }
-    const components = mergeOntoPreset(
-      (presetTheme as unknown as { components?: Record<string, any> }).components ?? {},
-      buildOverrides(edits),
-    );
-    return { ...presetTheme, components };
+    // Theme-level token edits applied onto the theme object. Non-tokenized values
+    // (typography) reflow straight from here; CSS-var-backed values (shape) are
+    // read off a `var(...)` ref by components, so those are injected as a scoped
+    // CSS var on the canvas instead (see `tokenCssVars`) — the raw set here is
+    // still harmless/correct for any non-var consumer.
+    for (const group of themeTokenGroups) {
+      for (const slot of group.slots) {
+        for (const knob of slot.knobs) {
+          const raw = (mapping[knob.id] ?? '').trim();
+          if (!raw) {
+            continue;
+          }
+          result = setThemeToken(result, knob.path, coerceToken(raw, knob.numeric));
+        }
+      }
+    }
+    return result;
+  }, [preset, presetTheme, mapping]);
+
+  // CSS-var-backed token edits (e.g. shape.borderRadius) reflow via their CSS var,
+  // not the theme object — components read `var(--mui-shape-borderRadius, …)`. Map
+  // each edited var to its value; injected scoped to the canvas so it doesn't leak
+  // to the sidebar. Var name is parsed off the preset theme's own `var(...)` ref.
+  const tokenCssVars = React.useMemo(() => {
+    const vars = (presetTheme as unknown as { vars?: object }).vars;
+    if (preset === 'unset' || !vars) {
+      return undefined;
+    }
+    const out: Record<string, string> = {};
+    for (const group of themeTokenGroups) {
+      for (const slot of group.slots) {
+        for (const knob of slot.knobs) {
+          const raw = (mapping[knob.id] ?? '').trim();
+          if (!raw) {
+            continue;
+          }
+          const match = /var\((--[\w-]+)/.exec(readThemeToken(vars, knob.path));
+          if (!match) {
+            continue; // not var-backed (typography) — applied via the theme object
+          }
+          const value = coerceToken(raw, knob.numeric);
+          out[match[1]] = typeof value === 'number' ? `${value}px` : value;
+        }
+      }
+    }
+    return Object.keys(out).length ? out : undefined;
   }, [preset, presetTheme, mapping]);
 
   // Active scale in px straight off the enhanced theme — single source of truth
@@ -2364,12 +2448,83 @@ export default function DensityExperiment() {
             flexShrink: 0,
             borderRight: '1px solid',
             borderColor: 'divider',
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
+            overflowY: 'auto',
           }}
         >
-          <FormControl fullWidth size="small" sx={{ p: 3, pb: 1.5, flexShrink: 0 }}>
+          {/* Theme tokens — global theme.typography / theme.shape, above the component picker. */}
+          <Box sx={{ px: 3, pt: 3, pb: 1, flexShrink: 0 }}>
+            <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14, mb: 0.5 }}>
+              Theme tokens
+            </Typography>
+            <List disablePadding>
+              {themeTokenGroups.map((group) => {
+                const open = tokenPanel === group.key;
+                return (
+                  <React.Fragment key={group.key}>
+                    <ListItem
+                      disableGutters
+                      data-token-group={group.key}
+                      secondaryAction={
+                        <IconButton
+                          edge="end"
+                          size="small"
+                          onClick={() => setTokenPanel(open ? false : group.key)}
+                          aria-label={`${open ? 'collapse' : 'expand'} ${group.key}`}
+                        >
+                          {open ? (
+                            <ExpandLessIcon fontSize="small" />
+                          ) : (
+                            <ExpandMoreIcon fontSize="small" />
+                          )}
+                        </IconButton>
+                      }
+                    >
+                      <ListItemText
+                        primary={group.key}
+                        slotProps={{ primary: { sx: { fontWeight: 'medium', fontSize: 13 } } }}
+                      />
+                    </ListItem>
+                    {open &&
+                      group.slots.map((slot) => (
+                        <Box
+                          key={slot.key || group.key}
+                          data-token-slot={slot.key || 'root'}
+                          sx={
+                            slot.key
+                              ? { mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }
+                              : { mt: 1 }
+                          }
+                        >
+                          {slot.key && (
+                            <Typography variant="caption" color="text.secondary">
+                              {slot.key}
+                            </Typography>
+                          )}
+                          <Stack spacing={1.5} sx={{ mt: slot.key ? 0.5 : 0 }}>
+                            {slot.knobs.map((knob) => (
+                              <TextField
+                                key={knob.id}
+                                size="small"
+                                label={knob.label}
+                                value={mapping[knob.id] ?? ''}
+                                placeholder={
+                                  readThemeToken(presetTheme, knob.path) || 'theme value'
+                                }
+                                disabled={!mappingEnabled}
+                                onChange={(event) => setFields([knob.id], event.target.value)}
+                                slotProps={{ htmlInput: { 'data-token-field': knob.id } }}
+                              />
+                            ))}
+                          </Stack>
+                        </Box>
+                      ))}
+                  </React.Fragment>
+                );
+              })}
+            </List>
+          </Box>
+
+          <FormControl fullWidth size="small" sx={{ px: 3, pt: 1.5, pb: 1.5, flexShrink: 0 }}>
             <FormLabel id="component-label" sx={{ mb: 0.5 }}>
               Component
             </FormLabel>
@@ -2391,9 +2546,6 @@ export default function DensityExperiment() {
           <Box
             component="section"
             sx={{
-              flex: 1,
-              minHeight: 0,
-              overflowY: 'auto',
               px: 3,
               pb: 3,
               opacity: mappingEnabled ? 1 : 0.5,
@@ -2524,9 +2676,18 @@ export default function DensityExperiment() {
             data-debug-padding={debug.includes('padding') ? '' : undefined}
             data-debug-text={debug.includes('text') ? '' : undefined}
             data-debug-outline={debug.includes('outline') ? '' : undefined}
+            style={tokenCssVars}
             sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
           >
             <Stack spacing={6}>
+              {tokenPanel && THEME_TOKEN_PREVIEW[tokenPanel] && (
+                <Box data-token-preview={tokenPanel}>
+                  <Typography variant="overline" color="text.secondary" component="div">
+                    {tokenPanel} — theme token preview
+                  </Typography>
+                  {THEME_TOKEN_PREVIEW[tokenPanel]()}
+                </Box>
+              )}
               {visibleComponents.map((comp) => (
                 <Box key={comp} data-canvas-component={comp}>
                   {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
