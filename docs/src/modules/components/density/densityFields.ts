@@ -14,6 +14,7 @@ const allRows: DensityEmitRow[] = [...densityEmitTable, ...densityExtraRows];
  */
 export const componentFamily: Record<string, string> = {
   MuiButton: 'Button',
+  MuiTypography: 'Typography',
   MuiList: 'Menu',
   MuiListItemIcon: 'Menu',
   MuiMenuItem: 'Menu',
@@ -26,6 +27,7 @@ export const componentFamily: Record<string, string> = {
   MuiInputAdornment: 'OutlinedInput',
   MuiFilledInput: 'FilledInput',
   MuiInputBase: 'Input',
+  MuiInput: 'Input',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
   MuiAvatar: 'Avatar',

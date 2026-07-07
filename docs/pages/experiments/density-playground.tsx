@@ -65,8 +65,15 @@ import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import FormGroup from '@mui/material/FormGroup';
 import PaddingIcon from '@mui/icons-material/Padding';
 import TitleIcon from '@mui/icons-material/Title';
+import BorderAllIcon from '@mui/icons-material/BorderAll';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {
   createTheme,
   ThemeProvider,
@@ -75,7 +82,16 @@ import {
   enhanceComfortDensity,
 } from '@mui/material/styles';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
-import { densityGroups, densityRow, fieldLabel } from 'docs/src/modules/components/density/densityFields';
+import {
+  densityGroups,
+  densityRow,
+  knobLabel,
+  stripComponentSlot,
+} from 'docs/src/modules/components/density/densityFields';
+import {
+  densityVirtualKnobs,
+  type DensityVirtualKnob,
+} from 'docs/src/modules/components/density/densityExtraFields';
 import {
   buildOverrides,
   mergeOntoPreset,
@@ -111,16 +127,47 @@ const PADDING_RING = {
   maskComposite: 'exclude',
 } as const;
 
+// Slots the padding-ring overlay decorates. ButtonBase covers the buttony
+// components (Button/MenuItem/Tab/Checkbox/ToggleButton/AccordionSummary…);
+// the rest are padded non-button slots that would otherwise show nothing. The
+// `padding:inherit` mask needs the padding on the element itself, so input
+// `<input>` boxes are excluded (replaced elements ignore ::before).
+const PADDING_RING_SLOTS = [
+  '.MuiButtonBase-root',
+  '.MuiTooltip-tooltip',
+  '.MuiAlert-root',
+  '.MuiCardContent-root',
+  '.MuiCardActions-root',
+  '.MuiCardHeader-root',
+  '.MuiDialogTitle-root',
+  '.MuiDialogContent-root',
+  '.MuiDialogActions-root',
+  '.MuiTableCell-root',
+  '.MuiSnackbarContent-root',
+  '.MuiAccordionDetails-root',
+  '.MuiToolbar-root',
+  '.MuiChip-label',
+  '.MuiStepLabel-iconContainer',
+];
+
 const DEBUG_SX = {
   '& .density-debug-text': { position: 'relative', zIndex: 1, borderRadius: '2px' },
-  // Padding ring on ButtonBase (Button/MenuItem) + the Tooltip bubble.
-  '&[data-debug-padding] .MuiButtonBase-root, &[data-debug-padding] .MuiTooltip-tooltip': {
-    position: 'relative',
-  },
-  '&[data-debug-padding] .MuiButtonBase-root::before': PADDING_RING,
-  '&[data-debug-padding] .MuiTooltip-tooltip::before': PADDING_RING,
+  // Padding ring: each slot needs position:relative to anchor the ::before overlay.
+  ...Object.fromEntries(
+    PADDING_RING_SLOTS.map((s) => [`&[data-debug-padding] ${s}`, { position: 'relative' }]),
+  ),
+  ...Object.fromEntries(
+    PADDING_RING_SLOTS.map((s) => [`&[data-debug-padding] ${s}::before`, PADDING_RING]),
+  ),
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
+  },
+  // Outline every box so density shifts (padding/height) read at a glance.
+  // `outline` draws outside the box and takes no layout space → no reflow on toggle.
+  // The debug-text label spans are excluded — they're overlay helpers, not real boxes.
+  '&[data-debug-outline] *:not(.density-debug-text):not(path)': {
+    outline: '1px solid rgba(244, 67, 54, 0.5)',
+    outlineOffset: '-1px',
   },
 } as const;
 
@@ -276,38 +323,45 @@ const MENU_FIELDS: DensityField[] = [
   },
 ];
 
-function MenuDemoItems() {
+// One realistic account menu; `dense` toggles the whole list. Dense and default
+// items never coexist in one list, so the demo shows two lists side by side.
+function MenuDemoItems({ dense = false }: { dense?: boolean }) {
   return (
     <React.Fragment>
-      <MenuItem>
-        <span className="density-debug-text">Default item</span>
+      <MenuItem dense={dense}>
+        <span className="density-debug-text">Profile</span>
       </MenuItem>
-      <MenuItem selected>
-        <span className="density-debug-text">Selected item</span>
+      <MenuItem dense={dense} selected>
+        <span className="density-debug-text">My account</span>
       </MenuItem>
-      <MenuItem>
+      <MenuItem dense={dense}>
         <ListItemIcon>
           <InboxIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>
-          <span className="density-debug-text">With icon</span>
+          <span className="density-debug-text">Archived</span>
         </ListItemText>
       </MenuItem>
-      <MenuItem divider>
-        <span className="density-debug-text">With divider</span>
+      <MenuItem dense={dense} divider>
+        <span className="density-debug-text">Settings</span>
       </MenuItem>
-      <MenuItem dense>
-        <span className="density-debug-text">Dense item</span>
-      </MenuItem>
-      <MenuItem dense>
-        <ListItemIcon>
-          <InboxIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText>
-          <span className="density-debug-text">Dense + icon</span>
-        </ListItemText>
+      <MenuItem dense={dense}>
+        <span className="density-debug-text">Sign out</span>
       </MenuItem>
     </React.Fragment>
+  );
+}
+
+function MenuListDemo({ dense = false }: { dense?: boolean }) {
+  return (
+    <div>
+      <Typography variant="caption" color="text.secondary">
+        {dense ? 'dense' : 'default'}
+      </Typography>
+      <MenuList sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
+        <MenuDemoItems dense={dense} />
+      </MenuList>
+    </div>
   );
 }
 
@@ -318,9 +372,8 @@ function MenuMatrix() {
   // reached only the in-canvas static list.
   return (
     <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
-      <MenuList sx={{ width: 240, border: '1px solid', borderColor: 'divider' }}>
-        <MenuDemoItems />
-      </MenuList>
+      <MenuListDemo />
+      <MenuListDemo dense />
       <div>
         <Button variant="outlined" onClick={(event) => setAnchorEl(event.currentTarget)}>
           Open menu
@@ -363,29 +416,28 @@ function TooltipMatrix() {
   const slotProps = {
     popper: { disablePortal: true },
   } as const;
+  // One tooltip per placement so the preset's 4 per-placement offset margins all
+  // render; arrow on each also surfaces the arrow-size reflow.
+  const tips = [
+    { placement: 'top', label: 'Copy' },
+    { placement: 'bottom', label: 'Edit' },
+    { placement: 'left', label: 'Delete' },
+    { placement: 'right', label: 'Share' },
+  ] as const;
   return (
-    <Stack
-      direction="row"
-      spacing={14}
-      sx={{ mt: 1, mb: 8, minHeight: 140, alignItems: 'flex-start' }}
-    >
-      <Tooltip
-        title={<span className="density-debug-text">Default tooltip</span>}
-        open
-        placement="bottom"
-        slotProps={slotProps}
-      >
-        <Button variant="outlined">Default</Button>
-      </Tooltip>
-      <Tooltip
-        title={<span className="density-debug-text">Arrow tooltip</span>}
-        arrow
-        open
-        placement="bottom"
-        slotProps={slotProps}
-      >
-        <Button variant="outlined">Arrow</Button>
-      </Tooltip>
+    <Stack direction="row" spacing={12} sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center' }}>
+      {tips.map((t) => (
+        <Tooltip
+          key={t.placement}
+          title={<span className="density-debug-text">{t.label}</span>}
+          arrow
+          open
+          placement={t.placement}
+          slotProps={slotProps}
+        >
+          <Button variant="outlined">{t.label}</Button>
+        </Tooltip>
+      ))}
     </Stack>
   );
 }
@@ -443,6 +495,13 @@ function OutlinedInputMatrix() {
         variant="outlined"
         slotProps={{ input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> } }}
       />
+      <TextField
+        label={<span className="density-debug-text">Multiline</span>}
+        variant="outlined"
+        multiline
+        rows={3}
+        defaultValue={'Line one\nLine two\nLine three'}
+      />
     </Stack>
   );
 }
@@ -478,19 +537,51 @@ const FILLED_INPUT_FIELDS: DensityField[] = [
 ];
 
 function FilledInputMatrix() {
+  // Resting (empty) vs shrunk (filled) label per size — the label rest/shrink Y
+  // reflows differ. The adornment field exercises the filled adornment marginTop.
   return (
-    <Stack spacing={3} sx={{ mt: 1, width: 280, alignItems: 'flex-start' }}>
-      <TextField label={<span className="density-debug-text">Medium</span>} variant="filled" />
-      <TextField
-        label={<span className="density-debug-text">Small</span>}
-        variant="filled"
-        size="small"
-      />
-      <TextField
-        label={<span className="density-debug-text">Filled value</span>}
-        variant="filled"
-        defaultValue="Value"
-      />
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <Stack spacing={3} sx={{ width: 200 }}>
+        <Typography variant="caption" color="text.secondary">
+          medium
+        </Typography>
+        <TextField label={<span className="density-debug-text">Label</span>} variant="filled" />
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="filled"
+          defaultValue="Filled value"
+        />
+        <TextField
+          label="Amount"
+          variant="filled"
+          slotProps={{
+            input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
+          }}
+        />
+        <TextField
+          label={<span className="density-debug-text">Multiline</span>}
+          variant="filled"
+          multiline
+          rows={3}
+          defaultValue={'Line one\nLine two\nLine three'}
+        />
+      </Stack>
+      <Stack spacing={3} sx={{ width: 200 }}>
+        <Typography variant="caption" color="text.secondary">
+          small
+        </Typography>
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="filled"
+          size="small"
+        />
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="filled"
+          size="small"
+          defaultValue="Filled value"
+        />
+      </Stack>
     </Stack>
   );
 }
@@ -526,6 +617,13 @@ function InputMatrix() {
         label={<span className="density-debug-text">Small</span>}
         variant="standard"
         size="small"
+      />
+      <TextField
+        label={<span className="density-debug-text">Multiline</span>}
+        variant="standard"
+        multiline
+        rows={3}
+        defaultValue={'Line one\nLine two\nLine three'}
       />
     </Stack>
   );
@@ -579,17 +677,18 @@ function TabsMatrix() {
   return (
     <Stack spacing={3} sx={{ mt: 1, width: 460 }}>
       <Tabs value={0}>
-        <Tab label={lbl('One')} />
-        <Tab label={lbl('Two')} />
-        <Tab label={lbl('Three')} />
+        <Tab label={lbl('Overview')} />
+        <Tab label={lbl('Activity')} />
+        <Tab label={lbl('Settings')} />
       </Tabs>
       <Tabs value={0}>
-        <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
-        <Tab icon={<InboxIcon />} label={lbl('Top')} iconPosition="top" />
+        <Tab icon={<InboxIcon />} label={lbl('Recents')} iconPosition="top" />
+        <Tab icon={<InboxIcon />} label={lbl('Favorites')} iconPosition="top" />
+        <Tab icon={<InboxIcon />} label={lbl('Nearby')} iconPosition="top" />
       </Tabs>
       <Tabs value={0}>
-        <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
-        <Tab icon={<InboxIcon />} label={lbl('Start')} iconPosition="start" />
+        <Tab icon={<InboxIcon />} label={lbl('Inbox')} iconPosition="start" />
+        <Tab icon={<InboxIcon />} label={lbl('Starred')} iconPosition="start" />
       </Tabs>
     </Stack>
   );
@@ -612,11 +711,33 @@ const CHECKBOX_FIELDS: DensityField[] = [
   },
 ];
 
+function CheckboxGroupDemo({ size }: { size: 'small' | 'medium' }) {
+  const opts = [
+    { label: 'Email', checked: true },
+    { label: 'SMS', checked: false },
+    { label: 'Push notifications', checked: true },
+  ];
+  return (
+    <FormControl component="fieldset">
+      <FormLabel sx={{ typography: 'caption' }}>Notifications ({size})</FormLabel>
+      <FormGroup>
+        {opts.map((o) => (
+          <FormControlLabel
+            key={o.label}
+            control={<Checkbox size={size} defaultChecked={o.checked} />}
+            label={<span className="density-debug-text">{o.label}</span>}
+          />
+        ))}
+      </FormGroup>
+    </FormControl>
+  );
+}
+
 function CheckboxMatrix() {
   return (
-    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Checkbox defaultChecked />
-      <Checkbox defaultChecked size="small" />
+    <Stack direction="row" spacing={6} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <CheckboxGroupDemo size="medium" />
+      <CheckboxGroupDemo size="small" />
     </Stack>
   );
 }
@@ -773,10 +894,11 @@ const CHIP_FIELDS: DensityField[] = [
 function ChipMatrix() {
   return (
     <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400 }}>
-      <Chip avatar={<Avatar>A</Avatar>} label="Avatar" />
-      <Chip icon={<InboxIcon />} label="Icon" onDelete={() => {}} />
-      <Chip label="Outlined" variant="outlined" onDelete={() => {}} />
-      <Chip label="Small" size="small" onDelete={() => {}} />
+      <Chip avatar={<Avatar>N</Avatar>} label="Natacha" onDelete={() => {}} />
+      <Chip icon={<InboxIcon />} label="Archived" />
+      <Chip label="In review" variant="outlined" onDelete={() => {}} />
+      <Chip label="Bug" color="error" size="small" onDelete={() => {}} />
+      <Chip label="Draft" size="small" variant="outlined" />
     </Box>
   );
 }
@@ -845,18 +967,36 @@ function AccordionMatrix() {
   return (
     <Box sx={{ mt: 1, width: 360 }}>
       <Accordion defaultExpanded>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <span className="density-debug-text">Expanded summary</span>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="density-accordion1-content"
+          id="density-accordion1-header"
+        >
+          <Typography component="span" className="density-debug-text">
+            Accordion 1
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <span className="density-debug-text">Details content padding.</span>
+          <span className="density-debug-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </span>
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <span className="density-debug-text">Collapsed summary</span>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="density-accordion2-content"
+          id="density-accordion2-header"
+        >
+          <Typography component="span" className="density-debug-text">
+            Accordion 2
+          </Typography>
         </AccordionSummary>
-        <AccordionDetails>Hidden.</AccordionDetails>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+          sit amet blandit leo lobortis eget.
+        </AccordionDetails>
       </Accordion>
     </Box>
   );
@@ -878,11 +1018,29 @@ const RADIO_FIELDS: DensityField[] = [
   },
 ];
 
+function RadioGroupDemo({ size }: { size: 'small' | 'medium' }) {
+  return (
+    <FormControl>
+      <FormLabel sx={{ typography: 'caption' }}>Shipping ({size})</FormLabel>
+      <RadioGroup defaultValue="standard" name={`shipping-${size}`}>
+        {['Standard', 'Priority', 'Express'].map((label) => (
+          <FormControlLabel
+            key={label}
+            value={label.toLowerCase()}
+            control={<Radio size={size} />}
+            label={<span className="density-debug-text">{label}</span>}
+          />
+        ))}
+      </RadioGroup>
+    </FormControl>
+  );
+}
+
 function RadioMatrix() {
   return (
-    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
-      <Radio checked />
-      <Radio checked size="small" />
+    <Stack direction="row" spacing={6} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <RadioGroupDemo size="medium" />
+      <RadioGroupDemo size="small" />
     </Stack>
   );
 }
@@ -939,14 +1097,22 @@ function ToggleButtonMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
       {(['small', 'medium', 'large'] as const).map((size) => (
-        <ToggleButtonGroup key={size} value="left" size={size} exclusive>
-          <ToggleButton value="left">
-            <span className="density-debug-text">{size} L</span>
-          </ToggleButton>
-          <ToggleButton value="center">
-            <span className="density-debug-text">C</span>
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <Stack key={size} direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+          <Typography variant="caption" color="text.secondary" sx={{ width: 52 }}>
+            {size}
+          </Typography>
+          <ToggleButtonGroup value="left" size={size} exclusive aria-label="text alignment">
+            <ToggleButton value="left" aria-label="align left">
+              <FormatAlignLeftIcon fontSize="small" />
+            </ToggleButton>
+            <ToggleButton value="center" aria-label="align center">
+              <FormatAlignCenterIcon fontSize="small" />
+            </ToggleButton>
+            <ToggleButton value="right" aria-label="align right">
+              <FormatAlignRightIcon fontSize="small" />
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Stack>
       ))}
     </Stack>
   );
@@ -1058,26 +1224,56 @@ const TABLE_CELL_FIELDS: DensityField[] = [
   },
 ];
 
+const DESSERT_ROWS = [
+  { name: 'Frozen yoghurt', calories: 159, fat: 6.0 },
+  { name: 'Ice cream sandwich', calories: 237, fat: 9.0 },
+  { name: 'Eclair', calories: 262, fat: 16.0 },
+  { name: 'Cupcake', calories: 305, fat: 3.7 },
+];
+
 function TableCellMatrix() {
+  // Covers all four padding leaves: size=medium/small (the two tables), the
+  // leading padding="checkbox" cells, and the trailing padding="none" actions.
   return (
-    <Stack spacing={2} sx={{ mt: 1, width: 320 }}>
+    <Stack spacing={4} sx={{ mt: 1, width: 440 }}>
       {(['medium', 'small'] as const).map((size) => (
-        <Table key={size} size={size}>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <span className="density-debug-text">{size} name</span>
-              </TableCell>
-              <TableCell align="right">Value</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>Row one</TableCell>
-              <TableCell align="right">42</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <div key={size}>
+          <Typography variant="caption" color="text.secondary">
+            {size}
+          </Typography>
+          <Table size={size}>
+            <TableHead>
+              <TableRow>
+                <TableCell padding="checkbox">
+                  <Checkbox size="small" />
+                </TableCell>
+                <TableCell>
+                  <span className="density-debug-text">Dessert</span>
+                </TableCell>
+                <TableCell align="right">Calories</TableCell>
+                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell padding="none" align="right" />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {DESSERT_ROWS.map((row, i) => (
+                <TableRow key={row.name}>
+                  <TableCell padding="checkbox">
+                    <Checkbox size="small" defaultChecked={i === 0} />
+                  </TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell align="right">{row.calories}</TableCell>
+                  <TableCell align="right">{row.fat.toFixed(1)}</TableCell>
+                  <TableCell padding="none" align="right">
+                    <IconButton size="small" aria-label="more">
+                      <MoreVertIcon fontSize="small" />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       ))}
     </Stack>
   );
@@ -1107,15 +1303,28 @@ const AUTOCOMPLETE_FIELDS: DensityField[] = [
   },
 ];
 
+const FRUITS = ['Apple', 'Banana', 'Cherry', 'Elderberry', 'Fig'];
+
 function AutocompleteMatrix() {
   return (
-    <Autocomplete
-      open
-      disablePortal
-      options={['Apple', 'Banana', 'Cherry']}
-      sx={{ mt: 1, width: 260 }}
-      renderInput={(params) => <TextField {...params} label="Fruit" />}
-    />
+    // Row so the forced-open listbox (absolutely positioned) sits beside the
+    // multiple demo instead of overlapping it; minHeight reserves its height.
+    <Stack direction="row" spacing={4} sx={{ mt: 1, minHeight: 260, alignItems: 'flex-start' }}>
+      <Autocomplete
+        open
+        disablePortal
+        options={FRUITS}
+        sx={{ width: 260 }}
+        renderInput={(params) => <TextField {...params} label="Fruit" />}
+      />
+      <Autocomplete
+        multiple
+        options={FRUITS}
+        defaultValue={['Apple', 'Cherry']}
+        sx={{ width: 260 }}
+        renderInput={(params) => <TextField {...params} label="Fruits" placeholder="Add" />}
+      />
+    </Stack>
   );
 }
 
@@ -1134,21 +1343,13 @@ const STEPPER_FIELDS: DensityField[] = [
 function StepperMatrix() {
   return (
     <Stepper activeStep={1} sx={{ mt: 1, width: 360 }}>
-      <Step>
-        <StepLabel>
-          <span className="density-debug-text">One</span>
-        </StepLabel>
-      </Step>
-      <Step>
-        <StepLabel>
-          <span className="density-debug-text">Two</span>
-        </StepLabel>
-      </Step>
-      <Step>
-        <StepLabel>
-          <span className="density-debug-text">Three</span>
-        </StepLabel>
-      </Step>
+      {['Cart', 'Shipping', 'Payment'].map((label) => (
+        <Step key={label}>
+          <StepLabel>
+            <span className="density-debug-text">{label}</span>
+          </StepLabel>
+        </Step>
+      ))}
     </Stepper>
   );
 }
@@ -1358,17 +1559,23 @@ const DIALOG_FIELDS: DensityField[] = [
 ];
 
 function DialogMatrix() {
+  // `dividers` on the content covers its distinct padding leaf.
   return (
-    <Paper sx={{ mt: 1, width: 320 }}>
+    <Paper sx={{ mt: 1, width: 360 }}>
       <DialogTitle>
-        <span className="density-debug-text">Dialog title</span>
+        <span className="density-debug-text">Use location service?</span>
       </DialogTitle>
-      <DialogContent>
-        <span className="density-debug-text">Dialog content body text goes here.</span>
+      <DialogContent dividers>
+        <Typography variant="body2">
+          <span className="density-debug-text">
+            Let apps use your location to find nearby places. You can turn this off anytime in
+            settings.
+          </span>
+        </Typography>
       </DialogContent>
       <DialogActions>
-        <Button>Cancel</Button>
-        <Button>OK</Button>
+        <Button>Disagree</Button>
+        <Button variant="contained">Agree</Button>
       </DialogActions>
     </Paper>
   );
@@ -1396,23 +1603,77 @@ const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
   },
 ];
 
+// `dense` toggles the whole nav list — dense and default rows don't mix in a
+// real sidebar, so density is two separate lists.
+function NavListDemo({ dense = false }: { dense?: boolean }) {
+  const items = ['Inbox', 'Starred', 'Sent', 'Drafts'];
+  return (
+    <div>
+      <Typography variant="caption" color="text.secondary">
+        {dense ? 'dense' : 'default'}
+      </Typography>
+      <List sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
+        {items.map((label, i) => (
+          <ListItemButton key={label} dense={dense} selected={i === 1}>
+            <ListItemIcon>
+              <InboxIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={<span className="density-debug-text">{label}</span>} />
+          </ListItemButton>
+        ))}
+      </List>
+    </div>
+  );
+}
+
 function ListItemButtonMatrix() {
   return (
-    <List sx={{ mt: 1, width: 240, border: '1px solid', borderColor: 'divider' }}>
-      <ListItemButton>
-        <ListItemText primary={<span className="density-debug-text">Regular item</span>} />
-      </ListItemButton>
-      <ListItemButton selected>
-        <ListItemText primary={<span className="density-debug-text">Selected item</span>} />
-      </ListItemButton>
-      <ListItemButton dense>
-        <ListItemText primary={<span className="density-debug-text">Dense item</span>} />
-      </ListItemButton>
-    </List>
+    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <NavListDemo />
+      <NavListDemo dense />
+    </Stack>
+  );
+}
+
+const TYPOGRAPHY_VARIANTS = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'subtitle1',
+  'subtitle2',
+  'body1',
+  'body2',
+] as const;
+
+function TypographyMatrix() {
+  return (
+    <Stack spacing={1.5} sx={{ mt: 1 }}>
+      {TYPOGRAPHY_VARIANTS.map((variant) => (
+        <Box key={variant} data-variant-section={variant}>
+          <Typography variant="caption" color="text.secondary">
+            {variant}
+          </Typography>
+          <Typography variant={variant}>
+            {variant === 'h1' || variant === 'h2' || variant === 'h3'
+              ? 'The quick brown fox'
+              : 'The quick brown fox jumps over the lazy dog'}
+          </Typography>
+        </Box>
+      ))}
+    </Stack>
   );
 }
 
 const COMPONENT_DEFS = {
+  Typography: {
+    canvasLabel: 'Typography — variants (h1–h6, subtitle1/2, body1/2)',
+    fields: [],
+    prefill: {},
+    renderMatrix: () => <TypographyMatrix />,
+  },
   Button: {
     canvasLabel: 'Button (color="primary")',
     // Canonical prefill matches enhanceDensity's own Button assignment.
@@ -1667,12 +1928,61 @@ type Selection = 'All' | ComponentName;
 // echo their step key (e.g. 'xs'); sizing leaves echo raw px. Placeholder only.
 type PresetLevel = 'compact' | 'normal' | 'comfort';
 
+// Field ids absorbed into a virtual knob — hidden as individual inputs, driven
+// by the combined control instead.
+const virtualMemberIds = new Set(densityVirtualKnobs.flatMap((k) => k.members));
+const virtualKnobsByGroup = (group: string): DensityVirtualKnob[] =>
+  densityVirtualKnobs.filter((k) => k.group === group);
+
+// One sidebar control (a real field or a virtual knob), carrying the component +
+// slot it nests under and the ids it writes.
+interface KnobEntry {
+  key: string;
+  writeIds: string[];
+  label: string;
+  component: string; // public export short name (no `Mui`)
+  slot: string;
+}
+
+function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
+  const entries: KnobEntry[] = [];
+  for (const id of group.fields) {
+    if (virtualMemberIds.has(id)) {
+      continue; // shown via its virtual knob below
+    }
+    const row = densityRow(id);
+    if (!row) {
+      continue;
+    }
+    entries.push({
+      key: id,
+      writeIds: [id],
+      label: knobLabel(id),
+      component: row.target.component.replace(/^Mui/, ''),
+      slot: row.target.slot,
+    });
+  }
+  for (const knob of virtualKnobsByGroup(group.key)) {
+    const row = densityRow(knob.members[0]);
+    const slot = row ? row.target.slot : 'root';
+    const rawComponent = row ? row.target.component : `Mui${group.key}`;
+    entries.push({
+      key: knob.id,
+      writeIds: knob.members,
+      label: stripComponentSlot(knob.label, rawComponent, slot),
+      component: rawComponent.replace(/^Mui/, ''),
+      slot,
+    });
+  }
+  return entries;
+}
+
 const fieldDefault = (id: string, preset: PresetLevel): string => {
   const row = densityRow(id);
   if (!row) {
     return '';
   }
-  return row.isDensity ? (row.densityKey ?? '') : row.values[preset];
+  return (row.isDensity ? row.densityKey : row.values[preset]) ?? '';
 };
 
 export default function DensityExperiment() {
@@ -1737,7 +2047,16 @@ export default function DensityExperiment() {
       ? null
       : (presetTheme as unknown as { density: Record<string, string> }).density;
 
-  const setField = (id: string, value: string) => setMapping((m) => ({ ...m, [id]: value }));
+  // Write one value to every id an entry drives (a plain field writes one, a
+  // virtual knob writes all its members).
+  const setFields = (ids: string[], value: string) =>
+    setMapping((m) => {
+      const next = { ...m };
+      for (const id of ids) {
+        next[id] = value;
+      }
+      return next;
+    });
 
   const resetMapping = () => setMapping({});
 
@@ -1834,6 +2153,11 @@ export default function DensityExperiment() {
                 <TitleIcon fontSize="small" />
               </Tooltip>
             </ToggleButton>
+            <ToggleButton value="outline" aria-label="outline boxes" data-debug-toggle="outline">
+              <Tooltip title="Outline boxes">
+                <BorderAllIcon fontSize="small" />
+              </Tooltip>
+            </ToggleButton>
           </ToggleButtonGroup>
         </Box>
       </Box>
@@ -1901,46 +2225,92 @@ export default function DensityExperiment() {
                 {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
               </Typography>
             )}
-            {visibleGroups.map((group) => (
-              <Box key={group.key} sx={{ mt: 2 }} data-mapping-group={group.key}>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'medium' }}>
-                  {group.key}
-                </Typography>
-                <Stack spacing={1.5} sx={{ mt: 1 }}>
-                  {group.fields.map((id) => {
-                    const value = mapping[id] ?? '';
-                    const canon = preset === 'unset' ? '' : fieldDefault(id, preset as PresetLevel);
-                    const parsed = parseMapping(value);
-                    const showError = mappingEnabled && parsed.state === 'error';
-                    let helper = ' ';
-                    if (showError) {
-                      helper = parsed.error ?? ' ';
-                    } else if (mappingEnabled) {
-                      // typed → preview the typed value; empty → the preset default it inherits
-                      helper = previewText(value || canon, scalePx);
-                    }
-                    return (
-                      <TextField
-                        key={id}
-                        size="small"
-                        label={fieldLabel(id)}
-                        value={value}
-                        placeholder={canon || 'density key or CSS value'}
-                        disabled={!mappingEnabled}
-                        error={showError}
-                        helperText={helper}
-                        onChange={(event) => setField(id, event.target.value)}
-                        slotProps={{
-                          htmlInput: {
-                            'data-mapping-field': id,
-                          },
-                        }}
-                      />
-                    );
-                  })}
-                </Stack>
-              </Box>
-            ))}
+            {visibleGroups.map((group) => {
+              // Flatten this family into knob entries, then nest by component → slot.
+              // Virtual knobs sit at their first member's component/slot.
+              const entries = buildKnobEntries(group);
+              const byComponent = new Map<string, Map<string, KnobEntry[]>>();
+              for (const entry of entries) {
+                if (!byComponent.has(entry.component)) {
+                  byComponent.set(entry.component, new Map());
+                }
+                const bySlot = byComponent.get(entry.component)!;
+                if (!bySlot.has(entry.slot)) {
+                  bySlot.set(entry.slot, []);
+                }
+                bySlot.get(entry.slot)!.push(entry);
+              }
+              // Base component (name === family) leads, then sub-parts alphabetically:
+              // Accordion → AccordionDetails → AccordionSummary.
+              const orderedComponents = [...byComponent].sort(([a], [b]) => {
+                if (a === group.key) {
+                  return -1;
+                }
+                if (b === group.key) {
+                  return 1;
+                }
+                return a.localeCompare(b);
+              });
+              return orderedComponents.map(([component, bySlot]) => (
+                <Box key={component} sx={{ mt: 2 }} data-mapping-component={component}>
+                  <Typography sx={{ fontWeight: 'medium', fontSize: 13 }}>{component}</Typography>
+                  {[...bySlot]
+                    .sort(([a], [b]) => {
+                      // `root` always leads, then the rest alphabetically.
+                      if (a === 'root') {
+                        return -1;
+                      }
+                      if (b === 'root') {
+                        return 1;
+                      }
+                      return a.localeCompare(b);
+                    })
+                    .map(([slot, slotEntries]) => (
+                      <Box
+                        key={slot}
+                        data-mapping-slot={slot}
+                        sx={{ mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }}
+                      >
+                        <Typography variant="caption" color="text.secondary">
+                          {slot}
+                        </Typography>
+                        <Stack spacing={1.5} sx={{ mt: 0.5 }}>
+                          {slotEntries.map((entry) => {
+                            const value = mapping[entry.writeIds[0]] ?? '';
+                            const canon =
+                              preset === 'unset'
+                                ? ''
+                                : fieldDefault(entry.writeIds[0], preset as PresetLevel);
+                            const parsed = parseMapping(value);
+                            const showError = mappingEnabled && parsed.state === 'error';
+                            let helper = ' ';
+                            if (showError) {
+                              helper = parsed.error ?? ' ';
+                            } else if (mappingEnabled) {
+                              // typed → preview the typed value; empty → the inherited preset default
+                              helper = previewText(value || canon, scalePx);
+                            }
+                            return (
+                              <TextField
+                                key={entry.key}
+                                size="small"
+                                label={entry.label}
+                                value={value}
+                                placeholder={canon || 'density key or CSS value'}
+                                disabled={!mappingEnabled}
+                                error={showError}
+                                helperText={helper}
+                                onChange={(event) => setFields(entry.writeIds, event.target.value)}
+                                slotProps={{ htmlInput: { 'data-mapping-field': entry.key } }}
+                              />
+                            );
+                          })}
+                        </Stack>
+                      </Box>
+                    ))}
+                </Box>
+              ));
+            })}
             <Button
               size="small"
               variant="outlined"
@@ -1960,12 +2330,14 @@ export default function DensityExperiment() {
             id="density-canvas"
             data-debug-padding={debug.includes('padding') ? '' : undefined}
             data-debug-text={debug.includes('text') ? '' : undefined}
+            data-debug-outline={debug.includes('outline') ? '' : undefined}
             sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
           >
             <Stack spacing={6}>
               {visibleComponents.map((comp) => (
                 <Box key={comp} data-canvas-component={comp}>
-                  <Typography variant="overline" color="text.secondary">
+                  {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
+                  <Typography variant="overline" color="text.secondary" component="div">
                     {COMPONENT_DEFS[comp].canvasLabel}
                   </Typography>
                   {COMPONENT_DEFS[comp].renderMatrix()}

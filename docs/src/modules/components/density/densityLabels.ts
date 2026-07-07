@@ -17,11 +17,27 @@ export const densityLabels: Record<string, string> = {
   'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight':
     'AccordionSummary · minHeight (expanded)',
   'MuiAlert|icon|base||marginRight': 'Alert · icon · marginRight',
+  'MuiAlert|root|base||padding': 'Alert · padding',
   'MuiAlert|root|base||paddingBlock': 'Alert · paddingBlock',
   'MuiAlert|root|base||paddingInline': 'Alert · paddingInline',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight': 'Option min height',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': 'Option block padding',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': 'Option inline padding',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|fontSize':
+    'Autocomplete · listbox · Option fontSize',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight':
+    'Autocomplete · listbox · Option lineHeight',
+  'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock':
+    'Autocomplete · --_autocompleteInputRootPadBlock',
+  'MuiAutocomplete|root|base||--_autocompleteInputPadBlock':
+    'Autocomplete · --_autocompleteInputPadBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock':
+    'Autocomplete · inputRoot paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock':
+    'Autocomplete · input paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiFormControl-root|--_outlinedInputPadBlock':
+    'Autocomplete · --_outlinedInputPadBlock',
+  'MuiAutocomplete|tag|base||margin': 'Autocomplete · tag · margin',
   'MuiAvatar|root|base||width': 'Avatar · width',
   'MuiAvatar|root|base||height': 'Avatar · height',
   'MuiBadge|badge|variant=standard||minWidth': 'Badge · badge · minWidth [variant=standard]',
@@ -66,16 +82,21 @@ export const densityLabels: Record<string, string> = {
   'MuiFab|root|size=large,variant=circular||height': 'Fab · height [variant=circular,size=large]',
   'MuiFilledInput|input|base||paddingTop': 'FilledInput · input · paddingTop',
   'MuiFilledInput|input|base||paddingBottom': 'FilledInput · input · paddingBottom',
-  'MuiFilledInput|input|size=small||paddingTop': 'FilledInput · input · paddingTop [size=small]',
-  'MuiFilledInput|input|size=small||paddingBottom':
-    'FilledInput · input · paddingBottom [size=small]',
   'MuiFilledInput|input|fn:18uwxi||paddingTop': 'FilledInput · input · paddingTop [fn]',
   'MuiFilledInput|input|fn:18uwxi||paddingBottom': 'FilledInput · input · paddingBottom [fn]',
   'MuiFilledInput|input|fn:1anfzr||paddingTop': 'FilledInput · input · paddingTop [fn]',
   'MuiFilledInput|input|fn:1anfzr||paddingBottom': 'FilledInput · input · paddingBottom [fn]',
   'MuiFilledInput|input|fn:1ghwre||paddingBlock': 'FilledInput · input · paddingBlock [fn]',
+  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
+    'FilledInput · --_filledInputPadTop',
+  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
+    'FilledInput · --_filledInputPadBottom',
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'FilledInput · --_restY',
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY': 'FilledInput · --_shrinkY',
+  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
+    'FilledInput · --_filledInputPadTop [size=small]',
+  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
+    'FilledInput · --_filledInputPadBottom [size=small]',
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY':
     'FilledInput · --_restY [size=small]',
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY':
@@ -88,6 +109,27 @@ export const densityLabels: Record<string, string> = {
   'MuiFilledInput|root|fn:1dxjh5||paddingBottom': 'FilledInput · paddingBottom [fn]',
   'MuiFilledInput|root|fn:156ydn||paddingTop': 'FilledInput · paddingTop [fn]',
   'MuiFilledInput|root|fn:156ydn||paddingBottom': 'FilledInput · paddingBottom [fn]',
+  'MuiInput|input|base||paddingTop': 'Input · input · paddingTop',
+  'MuiInput|input|base||paddingBottom': 'Input · input · paddingBottom',
+  'MuiInput|input|size=small||paddingTop': 'Input · input · paddingTop [size=small]',
+  'MuiInput|input|size=small||paddingBottom': 'Input · input · paddingBottom [size=small]',
+  'MuiInput|input|fn:1ghwre||paddingBlock': 'Input · input · paddingBlock [fn]',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · --_inputPadTop',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · --_inputPadBottom',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': 'Input · --_inputMarginTop',
+  'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'Input · --_restY',
+  'MuiInput|root|base|label + &, .MuiInputLabel-root + &|marginTop': 'Input · marginTop',
+  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop':
+    'Input · --_inputPadTop [size=small]',
+  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom':
+    'Input · --_inputPadBottom [size=small]',
+  'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': 'Input · --_restY [size=small]',
+  'MuiInput|root|multiline=true||paddingTop': 'Input · paddingTop [multiline=true]',
+  'MuiInput|root|multiline=true||paddingBottom': 'Input · paddingBottom [multiline=true]',
+  'MuiInput|root|multiline=true,size=small||paddingTop':
+    'Input · paddingTop [multiline=true,size=small]',
+  'MuiInput|root|multiline=true,size=small||paddingBottom':
+    'Input · paddingBottom [multiline=true,size=small]',
   'MuiInputAdornment|root|position=start||marginRight':
     'InputAdornment · marginRight [position=start]',
   'MuiInputAdornment|root|position=end||marginLeft': 'InputAdornment · marginLeft [position=end]',
@@ -120,9 +162,13 @@ export const densityLabels: Record<string, string> = {
   'MuiOutlinedInput|input|size=small||paddingBlock':
     'OutlinedInput · input · paddingBlock [size=small]',
   'MuiOutlinedInput|input|fn:1ghwre||paddingBlock': 'OutlinedInput · input · paddingBlock [fn]',
-  'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_y': 'OutlinedInput · --_y',
-  'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_y':
-    'OutlinedInput · --_y [size=small]',
+  'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
+    'OutlinedInput · --_outlinedInputPadBlock',
+  'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'OutlinedInput · --_restY',
+  'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY':
+    'OutlinedInput · --_restY [size=small]',
+  'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
+    'OutlinedInput · --_outlinedInputPadBlock [size=small]',
   'MuiOutlinedInput|root|fn:1ghwre||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
   'MuiOutlinedInput|root|fn:124vl6||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
@@ -175,4 +221,24 @@ export const densityLabels: Record<string, string> = {
     'Tooltip · tooltip · marginBottom [fn]',
   'MuiTooltip|tooltip|fn:k1tkqz|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop':
     'Tooltip · tooltip · marginTop [fn]',
+  'MuiTypography|root|variant=h1||fontSize': 'Typography · fontSize [variant=h1]',
+  'MuiTypography|root|variant=h1||lineHeight': 'Typography · lineHeight [variant=h1]',
+  'MuiTypography|root|variant=h2||fontSize': 'Typography · fontSize [variant=h2]',
+  'MuiTypography|root|variant=h2||lineHeight': 'Typography · lineHeight [variant=h2]',
+  'MuiTypography|root|variant=h3||fontSize': 'Typography · fontSize [variant=h3]',
+  'MuiTypography|root|variant=h3||lineHeight': 'Typography · lineHeight [variant=h3]',
+  'MuiTypography|root|variant=h4||fontSize': 'Typography · fontSize [variant=h4]',
+  'MuiTypography|root|variant=h4||lineHeight': 'Typography · lineHeight [variant=h4]',
+  'MuiTypography|root|variant=h5||fontSize': 'Typography · fontSize [variant=h5]',
+  'MuiTypography|root|variant=h5||lineHeight': 'Typography · lineHeight [variant=h5]',
+  'MuiTypography|root|variant=h6||fontSize': 'Typography · fontSize [variant=h6]',
+  'MuiTypography|root|variant=h6||lineHeight': 'Typography · lineHeight [variant=h6]',
+  'MuiTypography|root|variant=subtitle1||fontSize': 'Typography · fontSize [variant=subtitle1]',
+  'MuiTypography|root|variant=subtitle1||lineHeight': 'Typography · lineHeight [variant=subtitle1]',
+  'MuiTypography|root|variant=subtitle2||fontSize': 'Typography · fontSize [variant=subtitle2]',
+  'MuiTypography|root|variant=subtitle2||lineHeight': 'Typography · lineHeight [variant=subtitle2]',
+  'MuiTypography|root|variant=body1||fontSize': 'Typography · fontSize [variant=body1]',
+  'MuiTypography|root|variant=body1||lineHeight': 'Typography · lineHeight [variant=body1]',
+  'MuiTypography|root|variant=body2||fontSize': 'Typography · fontSize [variant=body2]',
+  'MuiTypography|root|variant=body2||lineHeight': 'Typography · lineHeight [variant=body2]',
 };

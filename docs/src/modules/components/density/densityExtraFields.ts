@@ -133,6 +133,27 @@ export interface DensityVirtualKnob {
 
 export const densityVirtualKnobs: DensityVirtualKnob[] = [
   {
+    id: 'virtual:MuiAvatar:size',
+    label: 'Avatar · size',
+    group: 'Avatar',
+    members: ['MuiAvatar|root|base||width', 'MuiAvatar|root|base||height'],
+  },
+  {
+    id: 'virtual:MuiBadge:standardSize',
+    label: 'Badge · badge · size [variant=standard]',
+    group: 'Badge',
+    members: [
+      'MuiBadge|badge|variant=standard||minWidth',
+      'MuiBadge|badge|variant=standard||height',
+    ],
+  },
+  {
+    id: 'virtual:MuiBadge:dotSize',
+    label: 'Badge · badge · size [variant=dot]',
+    group: 'Badge',
+    members: ['MuiBadge|badge|variant=dot||minWidth', 'MuiBadge|badge|variant=dot||height'],
+  },
+  {
     id: 'virtual:MuiTab:iconGapBlock',
     label: 'Tab · icon gap (block)',
     group: 'Tabs',

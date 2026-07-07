@@ -65,7 +65,12 @@ export function applyDensity<T extends EnhanceableTheme>(
     components: NonNullable<EnhanceableTheme['components']>;
   };
   theme.density = scale;
-  theme.vars = { ...themeInput.vars, density: densityVars };
+  // Attach `.vars` only when the input is a CSS-vars theme — don't fabricate it
+  // for a static theme, so `theme.vars` stays a faithful "cssVariables on" signal
+  // and presets fall back to raw `theme.density` px when vars are off.
+  if (themeInput.vars) {
+    theme.vars = { ...themeInput.vars, density: densityVars };
+  }
 
   const c = themeInput.components;
   const existingBaseline = c?.MuiCssBaseline?.styleOverrides;

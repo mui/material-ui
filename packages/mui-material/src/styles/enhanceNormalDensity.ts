@@ -126,15 +126,14 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock)`,
-          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.md },
+          paddingBlock: `var(--_outlinedInputPadBlock, ${d.md})`,
         },
       },
       {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.multiline && ownerState.size === 'small',
         style: {
-          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.sm },
+          paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})`,
         },
       },
     ],
@@ -234,13 +233,20 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       },
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
-        style: { paddingTop: d.xl, paddingBottom: d.sm },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
+        },
       },
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.multiline && ownerState.size === 'small',
-        style: { paddingTop: d.lg, paddingBottom: d.xxs },
+        style: {
+          paddingTop: `var(--_filledInputPadTop, ${d.lg})`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d.xs})`,
+        },
       },
+      // hidden label does not need to sync with label, so no need CSS variables.
       {
         props: ({ ownerState }: { ownerState: FilledInputProps }) =>
           ownerState.multiline && ownerState.hiddenLabel,
@@ -308,6 +314,20 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           [`.${inputLabelClasses.root}:has(~ &)`]: {
             [private_inputLabelVars.restY]: `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xxs}) + var(--_inputPadBottom, ${d.xxs})) / 2)`,
           },
+        },
+      },
+      {
+        props: { multiline: true },
+        style: {
+          paddingTop: `var(--_inputPadTop, ${d.xs})`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d.xs} - 1px))`,
+        },
+      },
+      {
+        props: { multiline: true, size: 'small' },
+        style: {
+          paddingTop: `var(--_inputPadTop, ${d.xxs})`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d.xxs} - 1px))`,
         },
       },
     ],
