@@ -4,6 +4,7 @@ import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
+import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { private_tooltipVars } from '../Tooltip/tooltipVars';
@@ -18,6 +19,7 @@ import type { TabProps } from '../Tab';
 import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
+import { formControlClasses } from '../FormControl';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
 // typography — no reflow — so only the padding→step assignment below.
@@ -106,31 +108,34 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'tooltip',
   );
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
-    // Label bridge (calc-coupled): the floating label is a preceding sibling, so
-    // it can't read the input root's token — reach it via `:has(~ &)` and derive
-    // `--_y` from the density step, keeping the component's -0.5/+0.5
-    // per-size rounding. Only block padding reflows — inline stays master
-    // (fieldset-constrained, keeps the floating label aligned).
+    // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
+    [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.md },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      [private_inputLabelVars.y]: `calc(${d.md} - 0.5px)`,
+      [private_inputLabelVars.restY]: `calc(var(--_outlinedInputPadBlock) - 0.5px)`,
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            [private_inputLabelVars.y]: `calc(${d.sm} + 0.5px)`,
+            [private_inputLabelVars.restY]: `calc(var(--_outlinedInputPadBlock) + 0.5px)`,
           },
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.sm },
         },
       },
       {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
-        style: { paddingBlock: d.md },
+        style: {
+          paddingBlock: `var(--_outlinedInputPadBlock)`,
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.md },
+        },
       },
       {
         props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
           ownerState.multiline && ownerState.size === 'small',
-        style: { paddingBlock: d.sm },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.sm },
+        },
       },
     ],
   });
@@ -140,9 +145,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Only block padding reflows; inline stays master (fieldset-constrained).
       // Master already ships the adornment/multiline inline resets on this slot.
-      paddingBlock: d.md,
+      paddingBlock: `var(--_outlinedInputPadBlock, ${d.md})`,
       variants: [
-        { props: { size: 'small' }, style: { paddingBlock: d.sm } },
+        {
+          props: { size: 'small' },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})` },
+        },
         {
           props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
           style: { paddingBlock: 0 },
@@ -202,16 +210,24 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // preceding sibling — reach it via `:has(~ &)` and set its rest/shrink Y as
     // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
     // at master literals (out of scope).
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_filledInputPadTop': d.xl,
+      '--_filledInputPadBottom': d.sm,
+    },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      [private_inputLabelVars.restY]: '15px',
+      [private_inputLabelVars.restY]: `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
       [private_inputLabelVars.shrinkY]: '7px',
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_filledInputPadTop': '18px',
+            '--_filledInputPadBottom': '2px',
+          },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            [private_inputLabelVars.restY]: '10px',
+            [private_inputLabelVars.restY]: `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
             [private_inputLabelVars.shrinkY]: '4px',
           },
         },
@@ -243,21 +259,75 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Only block padding reflows; inline stays master (keeps label alignment).
       // hiddenLabel block padding stays at master literals (out of scope).
-      paddingTop: d.xl,
-      paddingBottom: d.sm,
+      paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
       variants: [
-        { props: { size: 'small' }, style: { paddingTop: d.lg, paddingBottom: d.xxs } },
         {
           props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.hiddenLabel,
-          style: { paddingTop: 16, paddingBottom: 17 },
+          style: {
+            paddingTop: `var(--_filledInputPadTop, 16px)`,
+            paddingBottom: `var(--_filledInputPadBottom, 17px)`,
+          },
         },
         {
           props: ({ ownerState }: { ownerState: FilledInputProps }) =>
             ownerState.hiddenLabel && ownerState.size === 'small',
-          style: { paddingTop: 8, paddingBottom: 9 },
+          style: {
+            paddingTop: `var(--_filledInputPadTop, 8px)`,
+            paddingBottom: `var(--_filledInputPadBottom, 9px)`,
+          },
         },
         {
           props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
+          style: { paddingBlock: 0 },
+        },
+      ],
+    },
+    'input',
+  );
+  addRootOverride(enhanced.components, 'MuiInput', {
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_inputPadTop': d.xs,
+      '--_inputPadBottom': `calc(${d.xs} - 1px)`,
+      '--_inputMarginTop': '16px',
+    },
+    [`.${inputLabelClasses.root}:has(~ &)`]: {
+      [private_inputLabelVars.restY]: `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xs}) + var(--_inputPadBottom, ${d.xs})) / 2)`,
+    },
+    [`label + &, .${inputLabelClasses.root} + &`]: {
+      marginTop: `var(--_inputMarginTop, 16px)`,
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          [`.${formControlClasses.root}:has(> &)`]: {
+            '--_inputPadTop': d.xxs,
+            '--_inputPadBottom': `calc(${d.xxs} - 1px)`,
+          },
+          [`.${inputLabelClasses.root}:has(~ &)`]: {
+            [private_inputLabelVars.restY]: `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xxs}) + var(--_inputPadBottom, ${d.xxs})) / 2)`,
+          },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiInput',
+    {
+      paddingTop: `var(--_inputPadTop, ${d.xs})`,
+      paddingBottom: `var(--_inputPadBottom, ${d.xs})`,
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            paddingTop: `var(--_inputPadTop, ${d.xxs})`,
+            paddingBottom: `var(--_inputPadBottom, ${d.xxs})`,
+          },
+        },
+        {
+          props: ({ ownerState }: { ownerState: InputBaseProps }) => ownerState.multiline,
           style: { paddingBlock: 0 },
         },
       ],
@@ -378,6 +448,19 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
   });
+  // Input wrapper block padding (around the value/tags) + tag (chip) margin = steps.
+  addRootOverride(enhanced.components, 'MuiAutocomplete', {
+    '--_autocompleteInputRootPadBlock': d.sm,
+    '--_autocompleteInputPadBlock': d.xs,
+    [`& .${outlinedInputClasses.root}`]: { paddingBlock: `var(--_autocompleteInputRootPadBlock)` },
+    [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
+      paddingBlock: `var(--_autocompleteInputPadBlock)`,
+    },
+    [`& .${formControlClasses.root}`]: {
+      '--_outlinedInputPadBlock':
+        'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
+    },
+  });
   addRootOverride(
     enhanced.components,
     'MuiAutocomplete',
@@ -392,6 +475,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     'listbox',
   );
+  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: d.xxs }, 'tag');
   // Horizontal step gutter: paddingLeft (first) / paddingRight (last) = step.
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [

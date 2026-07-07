@@ -7,7 +7,6 @@
  * `restY`/`shrinkY` = the filled label's resting/shrunk Y.
  */
 export const private_inputLabelVars = {
-  y: '--_y',
   restY: '--_restY',
   shrinkY: '--_shrinkY',
 } as const;
