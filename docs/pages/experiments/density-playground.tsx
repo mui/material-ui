@@ -224,30 +224,8 @@ const PRESET_FN = {
   comfort: enhanceComfortDensity,
 } as const;
 
-// ---------------------------------------------------------------------------
-// Density-component registry. Now a canvas registry only: `canvasLabel` +
-// `renderMatrix` drive the demo panes. The editable fields + apply/read model
-// live in the generated table (`emitTable.generated`) via `densityGroups`.
-// `DensityField` / `fields` / `prefill` are the LEGACY field model, retained as
-// inert data behind the matrices until the whole-registry sweep rebuilds this.
-// ---------------------------------------------------------------------------
-interface DensityField {
-  key: string;
-  label: string;
-  selector: string;
-  prop?: string | string[];
-  resolve?: {
-    mui: string;
-    slot?: string;
-    sample?: Record<string, unknown>;
-    nested?: string;
-  };
-}
 interface DensityComponentDef {
   canvasLabel: string;
-  fields: DensityField[]; // legacy — no longer read by the sidebar
-  prefill: Record<string, string>; // legacy
-  note?: string; // legacy
   renderMatrix: () => React.ReactNode;
 }
 
@@ -279,57 +257,6 @@ function ButtonMatrix() {
     </Stack>
   );
 }
-
-// The Menu family's density tokens: List container block padding + MenuItem
-// block/inline padding + min-height, keyed by the `dense` axis. Field key ===
-// mapping-state key. Sizing tokens (`minHeight`) accept raw px like any other —
-// a density key is just sugar; heights ship as raw px per preset.
-const MENU_FIELDS: DensityField[] = [
-  {
-    key: 'listBlockPad',
-    label: '--List-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiList-padding',
-  },
-  {
-    key: 'blockPad',
-    label: '--MenuItem-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)',
-  },
-  {
-    key: 'inlinePad',
-    label: '--MenuItem-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiMenuItem-gutters:not(.MuiMenuItem-dense)',
-  },
-  {
-    key: 'minHeight',
-    label: '--MenuItem-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiMenuItem-root:not(.MuiMenuItem-dense)',
-    resolve: { mui: 'MuiMenuItem', sample: { dense: false } },
-  },
-  {
-    key: 'denseBlockPad',
-    label: '--MenuItem-dense-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiMenuItem-dense',
-  },
-  {
-    key: 'denseInlinePad',
-    label: '--MenuItem-dense-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiMenuItem-gutters.MuiMenuItem-dense',
-  },
-  {
-    key: 'denseMinHeight',
-    label: '--MenuItem-dense-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiMenuItem-dense',
-    resolve: { mui: 'MuiMenuItem', sample: { dense: true } },
-  },
-];
 
 // One realistic account menu; `dense` toggles the whole list. Dense and default
 // items never coexist in one list, so the demo shows two lists side by side.
@@ -393,29 +320,6 @@ function MenuMatrix() {
     </Stack>
   );
 }
-
-// Tooltip density tokens (regular/pointer only — `touch` is out of scope).
-// Padding + anchor offset are spacing (prefill density keys); arrow size ships
-// as raw px per preset (read live off the theme), like MenuItem min-height.
-const TOOLTIP_FIELDS: DensityField[] = [
-  {
-    key: 'blockPad',
-    label: '--Tooltip-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiTooltip-tooltip',
-  },
-  {
-    key: 'inlinePad',
-    label: '--Tooltip-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiTooltip-tooltip',
-  },
-  // Offset is emitted as per-placement margins by the preset (4 placements, no
-  // discriminating class) — the synthetic label is label/placeholder only.
-  { key: 'offset', label: '--Tooltip-offset', selector: '.MuiTooltip-tooltip' },
-  // Calc-coupled: the arrow's width + height (calc) both derive from this real var.
-  { key: 'arrowSize', label: '--_arrowSize', selector: '.MuiTooltip-tooltip' },
-];
 
 function TooltipMatrix() {
   // Force open + inline (no portal) so the bubble sits inside the debug scope,
@@ -636,49 +540,6 @@ function InputMatrix() {
   );
 }
 
-// Tabs family: Tab default + icon+label states (block pad + min-height each) +
-// shared inline pad + icon gaps (stack/inline), plus the paired Tabs-root
-// min-height. Spacing → density keys; min-heights → raw px (read off the theme).
-const TAB_FIELDS: DensityField[] = [
-  {
-    key: 'minHeight',
-    label: '--Tab-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiTab-root:not(.MuiTab-labelIcon)',
-    resolve: { mui: 'MuiTab' },
-  },
-  {
-    key: 'tabsMinHeight',
-    label: '--Tabs-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiTabs-root',
-    resolve: { mui: 'MuiTabs' },
-  },
-  {
-    key: 'iconLabelMinHeight',
-    label: '--Tab-iconLabel-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiTab-root.MuiTab-labelIcon',
-    resolve: { mui: 'MuiTab', sample: { icon: true, label: true } },
-  },
-  {
-    key: 'blockPad',
-    label: '--Tab-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiTab-root:not(.MuiTab-labelIcon)',
-  },
-  {
-    key: 'iconLabelBlockPad',
-    label: '--Tab-iconLabel-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiTab-root.MuiTab-labelIcon',
-  },
-  { key: 'inlinePad', label: '--Tab-inlinePad', prop: 'paddingInline', selector: '.MuiTab-root' },
-  // var-mode: one gap var → icon margin per iconPosition (top/bottom, start/end; no class).
-  { key: 'iconStackGap', label: '--Tab-icon-stackGap', selector: '.MuiTab-root' },
-  { key: 'iconInlineGap', label: '--Tab-icon-inlineGap', selector: '.MuiTab-root' },
-];
-
 function TabsMatrix() {
   const lbl = (t: string) => <span className="density-debug-text">{t}</span>;
   return (
@@ -700,23 +561,6 @@ function TabsMatrix() {
     </Stack>
   );
 }
-
-// Checkbox family: the touch-target padding around the icon, per size (via
-// SwitchBase). All spacing → density keys.
-const CHECKBOX_FIELDS: DensityField[] = [
-  {
-    key: 'mediumPad',
-    label: '--Checkbox-medium-pad',
-    prop: 'padding',
-    selector: '.MuiCheckbox-root.MuiCheckbox-sizeMedium',
-  },
-  {
-    key: 'smallPad',
-    label: '--Checkbox-small-pad',
-    prop: 'padding',
-    selector: '.MuiCheckbox-root.MuiCheckbox-sizeSmall',
-  },
-];
 
 function CheckboxGroupDemo({ size }: { size: 'small' | 'medium' }) {
   const opts = [
@@ -749,42 +593,6 @@ function CheckboxMatrix() {
   );
 }
 
-// Card family: CardContent padding (+ last-child), CardActions/CardHeader padding
-// + gaps — all preset-reflowed via emitted overrides (no size axis).
-const CARD_FIELDS: DensityField[] = [
-  { key: 'pad', label: '--CardContent-pad', prop: 'padding', selector: '.MuiCardContent-root' },
-  {
-    key: 'padBottom',
-    label: '--CardContent-padBottom',
-    prop: 'paddingBottom',
-    selector: '.MuiCardContent-root:last-child',
-  },
-  {
-    key: 'actionsPad',
-    label: '--CardActions-pad',
-    prop: 'padding',
-    selector: '.MuiCardActions-root',
-  },
-  {
-    key: 'actionsGap',
-    label: '--CardActions-childGap',
-    prop: 'marginLeft',
-    selector: '.MuiCardActions-spacing > :not(:first-of-type)',
-  },
-  {
-    key: 'headerPad',
-    label: '--CardHeader-pad',
-    prop: 'padding',
-    selector: '.MuiCardHeader-root',
-  },
-  {
-    key: 'headerAvatarGap',
-    label: '--CardHeader-avatarGap',
-    prop: 'marginRight',
-    selector: '.MuiCardHeader-avatar',
-  },
-];
-
 function CardMatrix() {
   return (
     <Card variant="outlined" sx={{ mt: 1, width: 300 }}>
@@ -816,18 +624,6 @@ function RatingMatrix() {
   );
 }
 
-// Select family: the content-box min-height floor (raw px). The visible density
-// mostly comes from the underlying OutlinedInput padding (tokenized separately).
-const SELECT_FIELDS: DensityField[] = [
-  {
-    key: 'minHeight',
-    label: '--Select-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiSelect-select',
-    resolve: { mui: 'MuiSelect', slot: 'select' },
-  },
-];
-
 function SelectMatrix() {
   return (
     <FormControl sx={{ mt: 1, width: 220 }}>
@@ -839,19 +635,6 @@ function SelectMatrix() {
     </FormControl>
   );
 }
-
-// Alert family: root block/inline padding + icon→message gap (no size axis).
-const ALERT_FIELDS: DensityField[] = [
-  { key: 'blockPad', label: '--Alert-blockPad', prop: 'paddingBlock', selector: '.MuiAlert-root' },
-  {
-    key: 'inlinePad',
-    label: '--Alert-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiAlert-root',
-  },
-  // iconGap drives the icon's marginRight (child element).
-  { key: 'iconGap', label: '--Alert-iconGap', prop: 'marginRight', selector: '.MuiAlert-icon' },
-];
 
 function AlertMatrix() {
   return (
@@ -866,38 +649,6 @@ function AlertMatrix() {
   );
 }
 
-// Chip family: height (per size — drives avatar/icon/deleteIcon via calc) +
-// label inline padding (per size). Height = raw px; padInline = density keys.
-const CHIP_FIELDS: DensityField[] = [
-  // Calc-coupled var-mode: the single `--_height` (scoped per size) drives
-  // avatar/icon/deleteIcon dims via calc — write the var so the derived children
-  // scale too (writing `height` would move only the box).
-  {
-    key: 'mediumHeight',
-    label: '--_height',
-    selector: '.MuiChip-root.MuiChip-sizeMedium',
-    resolve: { mui: 'MuiChip', sample: { size: 'medium' } },
-  },
-  {
-    key: 'smallHeight',
-    label: '--_height',
-    selector: '.MuiChip-root.MuiChip-sizeSmall',
-    resolve: { mui: 'MuiChip', sample: { size: 'small' } },
-  },
-  {
-    key: 'mediumPadInline',
-    label: '--Chip-medium-padInline',
-    prop: 'paddingInline',
-    selector: '.MuiChip-sizeMedium .MuiChip-label',
-  },
-  {
-    key: 'smallPadInline',
-    label: '--Chip-small-padInline',
-    prop: 'paddingInline',
-    selector: '.MuiChip-sizeSmall .MuiChip-label',
-  },
-];
-
 function ChipMatrix() {
   return (
     <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400 }}>
@@ -909,66 +660,6 @@ function ChipMatrix() {
     </Box>
   );
 }
-
-// Accordion family: Summary collapsed/expanded min-height + inline pad +
-// content block margin; Details top/inline/bottom padding. min-heights = raw px,
-// the rest = density keys.
-const ACCORDION_FIELDS: DensityField[] = [
-  {
-    key: 'minHeight',
-    label: '--AccordionSummary-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiAccordionSummary-root:not(.Mui-expanded)',
-    resolve: { mui: 'MuiAccordionSummary' },
-  },
-  {
-    key: 'expandedMinHeight',
-    label: '--AccordionSummary-expandedMinHeight',
-    prop: 'minHeight',
-    selector: '.MuiAccordionSummary-root.Mui-expanded',
-    resolve: {
-      mui: 'MuiAccordionSummary',
-      sample: { disableGutters: false },
-      nested: '&.Mui-expanded',
-    },
-  },
-  {
-    key: 'inlinePad',
-    label: '--AccordionSummary-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiAccordionSummary-root',
-  },
-  {
-    key: 'marginBlock',
-    label: '--AccordionSummary-marginBlock',
-    prop: 'marginBlock',
-    selector: '.MuiAccordionSummary-content:not(.Mui-expanded)',
-  },
-  {
-    key: 'expandedMarginBlock',
-    label: '--AccordionSummary-expandedMarginBlock',
-    prop: 'marginBlock',
-    selector: '.MuiAccordionSummary-content.Mui-expanded',
-  },
-  {
-    key: 'detailsTopPad',
-    label: '--AccordionDetails-topPad',
-    prop: 'paddingTop',
-    selector: '.MuiAccordionDetails-root',
-  },
-  {
-    key: 'detailsInlinePad',
-    label: '--AccordionDetails-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiAccordionDetails-root',
-  },
-  {
-    key: 'detailsBottomPad',
-    label: '--AccordionDetails-bottomPad',
-    prop: 'paddingBottom',
-    selector: '.MuiAccordionDetails-root',
-  },
-];
 
 function AccordionMatrix() {
   return (
@@ -1009,22 +700,6 @@ function AccordionMatrix() {
   );
 }
 
-// Radio family: touch-target padding per size (via SwitchBase, like Checkbox).
-const RADIO_FIELDS: DensityField[] = [
-  {
-    key: 'mediumPad',
-    label: '--Radio-medium-pad',
-    prop: 'padding',
-    selector: '.MuiRadio-root:not(.MuiRadio-sizeSmall)',
-  },
-  {
-    key: 'smallPad',
-    label: '--Radio-small-pad',
-    prop: 'padding',
-    selector: '.MuiRadio-root.MuiRadio-sizeSmall',
-  },
-];
-
 function RadioGroupDemo({ size }: { size: 'small' | 'medium' }) {
   return (
     <FormControl>
@@ -1052,16 +727,6 @@ function RadioMatrix() {
   );
 }
 
-// Breadcrumbs family: the separator inline gap (single token, no size axis).
-const BREADCRUMBS_FIELDS: DensityField[] = [
-  {
-    key: 'separatorGap',
-    label: '--Breadcrumbs-separatorGap',
-    prop: 'marginInline',
-    selector: '.MuiBreadcrumbs-separator',
-  },
-];
-
 function BreadcrumbsMatrix() {
   return (
     <Breadcrumbs sx={{ mt: 1 }}>
@@ -1077,28 +742,6 @@ function BreadcrumbsMatrix() {
     </Breadcrumbs>
   );
 }
-
-// ToggleButton family: uniform padding per size.
-const TOGGLE_BUTTON_FIELDS: DensityField[] = [
-  {
-    key: 'smallPad',
-    label: '--ToggleButton-small-pad',
-    prop: 'padding',
-    selector: '.MuiToggleButton-root.MuiToggleButton-sizeSmall',
-  },
-  {
-    key: 'mediumPad',
-    label: '--ToggleButton-medium-pad',
-    prop: 'padding',
-    selector: '.MuiToggleButton-root.MuiToggleButton-sizeMedium',
-  },
-  {
-    key: 'largePad',
-    label: '--ToggleButton-large-pad',
-    prop: 'padding',
-    selector: '.MuiToggleButton-root.MuiToggleButton-sizeLarge',
-  },
-];
 
 function ToggleButtonMatrix() {
   return (
@@ -1125,17 +768,6 @@ function ToggleButtonMatrix() {
   );
 }
 
-// Avatar family: the square size (raw px; no size prop).
-const AVATAR_FIELDS: DensityField[] = [
-  {
-    key: 'size',
-    label: '--Avatar-size',
-    prop: ['width', 'height'],
-    selector: '.MuiAvatar-root',
-    resolve: { mui: 'MuiAvatar' },
-  },
-];
-
 function AvatarMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
@@ -1144,30 +776,6 @@ function AvatarMatrix() {
     </Stack>
   );
 }
-
-// Badge family: bubble size + padding, per state (standard / dot).
-const BADGE_FIELDS: DensityField[] = [
-  {
-    key: 'standardSize',
-    label: '--Badge-standard-size',
-    prop: ['minWidth', 'height'],
-    selector: '.MuiBadge-badge.MuiBadge-standard',
-    resolve: { mui: 'MuiBadge', slot: 'badge', sample: { variant: 'standard' } },
-  },
-  {
-    key: 'standardPad',
-    label: '--Badge-standard-pad',
-    prop: 'padding',
-    selector: '.MuiBadge-badge.MuiBadge-standard',
-  },
-  {
-    key: 'dotSize',
-    label: '--Badge-dot-size',
-    prop: ['minWidth', 'height'],
-    selector: '.MuiBadge-badge.MuiBadge-dot',
-    resolve: { mui: 'MuiBadge', slot: 'badge', sample: { variant: 'dot' } },
-  },
-];
 
 function BadgeMatrix() {
   return (
@@ -1181,17 +789,6 @@ function BadgeMatrix() {
     </Stack>
   );
 }
-
-// ButtonGroup family: the grouped-button min-width floor (raw px).
-const BUTTON_GROUP_FIELDS: DensityField[] = [
-  {
-    key: 'minWidth',
-    label: '--ButtonGroup-minWidth',
-    prop: 'minWidth',
-    selector: '.MuiButtonGroup-grouped',
-    resolve: { mui: 'MuiButtonGroup', nested: '& .MuiButtonGroup-grouped' },
-  },
-];
 
 function ButtonGroupMatrix() {
   return (
@@ -1208,28 +805,6 @@ function ButtonGroupMatrix() {
     </ButtonGroup>
   );
 }
-
-// TableCell family: block padding per size (medium/small) + shared inline pad.
-const TABLE_CELL_FIELDS: DensityField[] = [
-  {
-    key: 'mediumBlockPad',
-    label: '--TableCell-medium-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiTableCell-root.MuiTableCell-sizeMedium',
-  },
-  {
-    key: 'smallBlockPad',
-    label: '--TableCell-small-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiTableCell-root.MuiTableCell-sizeSmall',
-  },
-  {
-    key: 'inlinePad',
-    label: '--TableCell-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiTableCell-root',
-  },
-];
 
 const DESSERT_ROWS = [
   { name: 'Frozen yoghurt', calories: 159, fat: 6.0 },
@@ -1285,30 +860,6 @@ function TableCellMatrix() {
     </Stack>
   );
 }
-
-// Autocomplete family: the option list geometry (mirrors MenuItem). The input's
-// density comes from its variant (tokenized separately).
-const AUTOCOMPLETE_FIELDS: DensityField[] = [
-  {
-    key: 'optionMinHeight',
-    label: '--Autocomplete-option-minHeight',
-    prop: 'minHeight',
-    selector: '.MuiAutocomplete-option',
-    resolve: { mui: 'MuiAutocomplete', slot: 'listbox', nested: '& .MuiAutocomplete-option' },
-  },
-  {
-    key: 'optionBlockPad',
-    label: '--Autocomplete-option-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiAutocomplete-option',
-  },
-  {
-    key: 'optionInlinePad',
-    label: '--Autocomplete-option-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiAutocomplete-option',
-  },
-];
 
 const FRUITS = ['Apple', 'Banana', 'Cherry', 'Elderberry', 'Fig'];
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
@@ -1534,18 +1085,6 @@ function AutocompleteMatrix() {
   );
 }
 
-// Stepper family: Step horizontal gutter + StepLabel icon→label gap.
-const STEPPER_FIELDS: DensityField[] = [
-  // var-mode: one gutter var → first step padding-left / last step padding-right (no class).
-  { key: 'inlinePad', label: '--Step-inlinePad', selector: '.MuiStep-root' },
-  {
-    key: 'iconGap',
-    label: '--StepLabel-iconGap',
-    prop: 'paddingRight',
-    selector: '.MuiStepLabel-iconContainer',
-  },
-];
-
 function StepperMatrix() {
   return (
     <Stepper activeStep={1} sx={{ mt: 1, width: 360 }}>
@@ -1559,21 +1098,6 @@ function StepperMatrix() {
     </Stepper>
   );
 }
-
-// Toolbar (AppBar) family: gutter inline padding (base + ≥sm) + dense min-height.
-const TOOLBAR_FIELDS: DensityField[] = [
-  // Gutter padding is emitted base + ≥sm on the one `.gutters` class (the media
-  // bump has no discriminating selector) — synthetic label is label/placeholder only.
-  { key: 'inlinePad', label: '--Toolbar-inlinePad', selector: '.MuiToolbar-gutters' },
-  { key: 'wideInlinePad', label: '--Toolbar-wideInlinePad', selector: '.MuiToolbar-gutters' },
-  {
-    key: 'denseMinHeight',
-    label: '--Toolbar-denseMinHeight',
-    prop: 'minHeight',
-    selector: '.MuiToolbar-dense',
-    resolve: { mui: 'MuiToolbar', sample: { variant: 'dense' } },
-  },
-];
 
 function ToolbarMatrix() {
   return (
@@ -1596,31 +1120,6 @@ function ToolbarMatrix() {
   );
 }
 
-// Fab family: circular size per size (raw px).
-const FAB_FIELDS: DensityField[] = [
-  {
-    key: 'smallSize',
-    label: '--Fab-small-size',
-    prop: ['width', 'height'],
-    selector: '.MuiFab-root.MuiFab-sizeSmall',
-    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'small' } },
-  },
-  {
-    key: 'mediumSize',
-    label: '--Fab-medium-size',
-    prop: ['width', 'height'],
-    selector: '.MuiFab-root.MuiFab-sizeMedium',
-    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'medium' } },
-  },
-  {
-    key: 'largeSize',
-    label: '--Fab-large-size',
-    prop: ['width', 'height'],
-    selector: '.MuiFab-root.MuiFab-sizeLarge',
-    resolve: { mui: 'MuiFab', sample: { variant: 'circular', size: 'large' } },
-  },
-];
-
 function FabMatrix() {
   return (
     <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
@@ -1637,32 +1136,6 @@ function FabMatrix() {
   );
 }
 
-// Pagination family: the item box size per size (shared page/ellipsis).
-const PAGINATION_FIELDS: DensityField[] = [
-  {
-    key: 'smallSize',
-    label: '--PaginationItem-small-size',
-    prop: ['minWidth', 'height'],
-    selector: '.MuiPaginationItem-sizeSmall',
-    resolve: { mui: 'MuiPaginationItem', sample: { size: 'small' } },
-  },
-  {
-    key: 'mediumSize',
-    label: '--PaginationItem-medium-size',
-    prop: ['minWidth', 'height'],
-    selector:
-      '.MuiPaginationItem-root:not(.MuiPaginationItem-sizeSmall):not(.MuiPaginationItem-sizeLarge)',
-    resolve: { mui: 'MuiPaginationItem', sample: { size: 'medium' } },
-  },
-  {
-    key: 'largeSize',
-    label: '--PaginationItem-large-size',
-    prop: ['minWidth', 'height'],
-    selector: '.MuiPaginationItem-sizeLarge',
-    resolve: { mui: 'MuiPaginationItem', sample: { size: 'large' } },
-  },
-];
-
 function PaginationMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1 }}>
@@ -1672,22 +1145,6 @@ function PaginationMatrix() {
     </Stack>
   );
 }
-
-// SnackbarContent family: root block/inline padding (no size axis).
-const SNACKBAR_FIELDS: DensityField[] = [
-  {
-    key: 'blockPad',
-    label: '--SnackbarContent-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiSnackbarContent-root',
-  },
-  {
-    key: 'inlinePad',
-    label: '--SnackbarContent-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiSnackbarContent-root',
-  },
-];
 
 function SnackbarMatrix() {
   return (
@@ -1703,23 +1160,6 @@ function SnackbarMatrix() {
   );
 }
 
-// BottomNavigation family: bar height + action inline padding.
-const BOTTOM_NAV_FIELDS: DensityField[] = [
-  {
-    key: 'height',
-    label: '--BottomNavigation-height',
-    prop: 'height',
-    selector: '.MuiBottomNavigation-root',
-    resolve: { mui: 'MuiBottomNavigation' },
-  },
-  {
-    key: 'inlinePad',
-    label: '--BottomNavigationAction-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiBottomNavigationAction-root',
-  },
-];
-
 function BottomNavigationMatrix() {
   return (
     <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400 }}>
@@ -1729,40 +1169,6 @@ function BottomNavigationMatrix() {
     </BottomNavigation>
   );
 }
-
-// Dialog family: title + content block/inline padding + actions padding.
-const DIALOG_FIELDS: DensityField[] = [
-  {
-    key: 'titleBlockPad',
-    label: '--DialogTitle-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiDialogTitle-root',
-  },
-  {
-    key: 'titleInlinePad',
-    label: '--DialogTitle-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiDialogTitle-root',
-  },
-  {
-    key: 'contentBlockPad',
-    label: '--DialogContent-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiDialogContent-root',
-  },
-  {
-    key: 'contentInlinePad',
-    label: '--DialogContent-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiDialogContent-root',
-  },
-  {
-    key: 'actionsPad',
-    label: '--DialogActions-pad',
-    prop: 'padding',
-    selector: '.MuiDialogActions-root',
-  },
-];
 
 function DialogMatrix() {
   // `dividers` on the content covers its distinct padding leaf.
@@ -1786,28 +1192,6 @@ function DialogMatrix() {
     </Paper>
   );
 }
-
-// ListItemButton family: block padding (+ dense) + gutters inline padding.
-const LIST_ITEM_BUTTON_FIELDS: DensityField[] = [
-  {
-    key: 'blockPad',
-    label: '--ListItemButton-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiListItemButton-root:not(.MuiListItemButton-dense)',
-  },
-  {
-    key: 'denseBlockPad',
-    label: '--ListItemButton-dense-blockPad',
-    prop: 'paddingBlock',
-    selector: '.MuiListItemButton-dense',
-  },
-  {
-    key: 'inlinePad',
-    label: '--ListItemButton-inlinePad',
-    prop: 'paddingInline',
-    selector: '.MuiListItemButton-gutters',
-  },
-];
 
 // `dense` toggles the whole nav list — dense and default rows don't mix in a
 // real sidebar, so density is two separate lists.
@@ -1910,47 +1294,18 @@ const THEME_TOKEN_PREVIEW: Record<string, () => React.ReactNode> = {
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
-    // Canonical prefill matches enhanceDensity's own Button assignment.
-    fields: SIZES.map((size) => ({
-      key: `${size}Pad`,
-      label: `--Button-${size}-pad`,
-      prop: 'padding',
-      selector: `.MuiButton-size${size[0].toUpperCase()}${size.slice(1)}`,
-    })),
-    prefill: { smallPad: 'xxs sm', mediumPad: 'xs lg', largePad: 'sm xl' },
     renderMatrix: () => <ButtonMatrix />,
   },
   Menu: {
     canvasLabel: 'Menu — static list + popover (default + dense)',
-    fields: MENU_FIELDS,
-    // Canonical prefill matches enhanceDensity's own MuiList/MuiMenuItem mapping.
-    prefill: {
-      listBlockPad: 'sm',
-      blockPad: 'xs',
-      inlinePad: 'lg',
-      denseBlockPad: 'xxs',
-      denseInlinePad: 'md',
-    },
     renderMatrix: () => <MenuMatrix />,
   },
   Tooltip: {
     canvasLabel: 'Tooltip — pointer (default + arrow); touch out of scope',
-    fields: TOOLTIP_FIELDS,
-    // Spacing tokens prefill density keys; arrow size (raw px) reads off the theme.
-    prefill: {
-      blockPad: 'xxs',
-      inlinePad: 'sm',
-      offset: 'lg',
-    },
     renderMatrix: () => <TooltipMatrix />,
   },
-  // All input parts (InputBase/Input/FilledInput/OutlinedInput/InputAdornment)
-  // collapse under one TextField selector; the sidebar still trees them by
-  // component → slot. Canvas stacks the three variant demos.
   TextField: {
     canvasLabel: 'TextField — outlined / filled / standard (size axis + label bridge)',
-    fields: [],
-    prefill: {},
     renderMatrix: () => (
       <Stack spacing={4} sx={{ mt: 1 }}>
         {(
@@ -1974,177 +1329,98 @@ const COMPONENT_DEFS = {
   },
   Tabs: {
     canvasLabel: 'Tabs — text / icon-top / icon-start (Tab+Tabs minHeight paired)',
-    fields: TAB_FIELDS,
-    // Spacing → density keys; min-heights (minHeight/tabsMinHeight/iconLabelMinHeight)
-    // read raw px off the theme.
-    prefill: {
-      blockPad: 'sm',
-      iconLabelBlockPad: 'xs',
-      inlinePad: 'lg',
-      iconStackGap: 'xs',
-      iconInlineGap: 'sm',
-    },
     renderMatrix: () => <TabsMatrix />,
   },
   Checkbox: {
     canvasLabel: 'Checkbox — touch-target padding (medium + small)',
-    fields: CHECKBOX_FIELDS,
-    prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: () => <CheckboxMatrix />,
   },
   Radio: {
     canvasLabel: 'Radio — touch-target padding (medium + small)',
-    fields: RADIO_FIELDS,
-    prefill: { mediumPad: 'sm', smallPad: 'xs' },
     renderMatrix: () => <RadioMatrix />,
   },
   Avatar: {
     canvasLabel: 'Avatar — square size (raw px)',
-    fields: AVATAR_FIELDS,
-    prefill: {}, // size = raw px, read off the theme
     renderMatrix: () => <AvatarMatrix />,
   },
   Fab: {
     canvasLabel: 'Fab — circular size (small / medium / large)',
-    fields: FAB_FIELDS,
-    prefill: {}, // sizes = raw px, read off the theme
     renderMatrix: () => <FabMatrix />,
   },
   Pagination: {
     canvasLabel: 'Pagination — item box size (small / medium / large)',
-    fields: PAGINATION_FIELDS,
-    prefill: {}, // sizes = raw px, read off the theme
     renderMatrix: () => <PaginationMatrix />,
   },
   SnackbarContent: {
     canvasLabel: 'SnackbarContent — root padding',
-    fields: SNACKBAR_FIELDS,
-    prefill: { blockPad: 'xs', inlinePad: 'lg' },
     renderMatrix: () => <SnackbarMatrix />,
   },
   BottomNavigation: {
     canvasLabel: 'BottomNavigation — bar height + action inline padding',
-    fields: BOTTOM_NAV_FIELDS,
-    prefill: { inlinePad: 'md' }, // height raw px off theme
     renderMatrix: () => <BottomNavigationMatrix />,
   },
   Dialog: {
     canvasLabel: 'Dialog — title / content / actions padding',
-    fields: DIALOG_FIELDS,
-    prefill: {
-      titleBlockPad: 'lg',
-      titleInlinePad: 'xl',
-      contentBlockPad: 'lg',
-      contentInlinePad: 'xl',
-      actionsPad: 'sm',
-    },
     renderMatrix: () => <DialogMatrix />,
   },
   ListItemButton: {
     canvasLabel: 'ListItemButton — block padding (+ dense) + gutters',
-    fields: LIST_ITEM_BUTTON_FIELDS,
-    prefill: { blockPad: 'sm', denseBlockPad: 'xxs', inlinePad: 'lg' },
     renderMatrix: () => <ListItemButtonMatrix />,
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
-    fields: BUTTON_GROUP_FIELDS,
-    prefill: {}, // minWidth = raw px, read off the theme
     renderMatrix: () => <ButtonGroupMatrix />,
   },
   TableCell: {
     canvasLabel: 'TableCell — block padding per size + inline padding',
-    fields: TABLE_CELL_FIELDS,
-    prefill: { mediumBlockPad: 'lg', smallBlockPad: 'xs', inlinePad: 'lg' },
     renderMatrix: () => <TableCellMatrix />,
   },
   Autocomplete: {
     canvasLabel: 'Autocomplete — option list min-height + padding (open)',
-    fields: AUTOCOMPLETE_FIELDS,
-    prefill: { optionBlockPad: 'xs', optionInlinePad: 'lg' }, // minHeight raw px off theme
     renderMatrix: () => <AutocompleteMatrix />,
   },
   Stepper: {
     canvasLabel: 'Stepper — step gutter + icon→label gap',
-    fields: STEPPER_FIELDS,
-    prefill: { inlinePad: 'sm', iconGap: 'sm' },
     renderMatrix: () => <StepperMatrix />,
   },
   Toolbar: {
     canvasLabel: 'AppBar/Toolbar — gutter padding + dense min-height',
-    fields: TOOLBAR_FIELDS,
-    prefill: { inlinePad: 'lg', wideInlinePad: 'xl' }, // denseMinHeight raw px off theme
     renderMatrix: () => <ToolbarMatrix />,
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
-    fields: BADGE_FIELDS,
-    prefill: { standardPad: '0 xs' }, // sizes = raw px, read off the theme
     renderMatrix: () => <BadgeMatrix />,
   },
   ToggleButton: {
     canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',
-    fields: TOGGLE_BUTTON_FIELDS,
-    prefill: { smallPad: 'sm', mediumPad: 'md', largePad: 'lg' },
     renderMatrix: () => <ToggleButtonMatrix />,
   },
   Breadcrumbs: {
     canvasLabel: 'Breadcrumbs — separator inline gap',
-    fields: BREADCRUMBS_FIELDS,
-    prefill: { separatorGap: 'sm' },
     renderMatrix: () => <BreadcrumbsMatrix />,
   },
   Card: {
     canvasLabel: 'Card — header / content / actions padding + gaps',
-    fields: CARD_FIELDS,
-    prefill: {
-      pad: 'lg',
-      padBottom: 'xl',
-      actionsPad: 'sm',
-      actionsGap: 'sm',
-      headerPad: 'lg',
-      headerAvatarGap: 'lg',
-    },
-    note: 'CardContent/CardActions/CardHeader padding + gaps reflow via the preset; no size axis.',
     renderMatrix: () => <CardMatrix />,
   },
   Rating: {
     canvasLabel: 'Rating — star size (typography/icon axis)',
-    fields: [],
-    prefill: {},
-    note: 'Star fontSize reflows via the preset typography config — out of scope for token editing.',
     renderMatrix: () => <RatingMatrix />,
   },
   Select: {
     canvasLabel: 'Select — content-box floor (padding via its OutlinedInput)',
-    fields: SELECT_FIELDS,
-    prefill: {}, // minHeight = raw px, read off the theme
     renderMatrix: () => <SelectMatrix />,
   },
   Alert: {
     canvasLabel: 'Alert — root padding + icon gap',
-    fields: ALERT_FIELDS,
-    prefill: { blockPad: 'xs', inlinePad: 'lg', iconGap: 'md' },
     renderMatrix: () => <AlertMatrix />,
   },
   Chip: {
     canvasLabel: 'Chip — height (drives avatar/icon) + label inline padding',
-    fields: CHIP_FIELDS,
-    prefill: { mediumPadInline: 'md', smallPadInline: 'sm' }, // heights = raw px, read off theme
     renderMatrix: () => <ChipMatrix />,
   },
   Accordion: {
     canvasLabel: 'Accordion — summary min-height/margin/pad + details padding',
-    fields: ACCORDION_FIELDS,
-    // Spacing → density keys; min-heights read raw px off the theme.
-    prefill: {
-      inlinePad: 'lg',
-      marginBlock: 'md',
-      expandedMarginBlock: 'lg',
-      detailsTopPad: 'sm',
-      detailsInlinePad: 'lg',
-      detailsBottomPad: 'lg',
-    },
     renderMatrix: () => <AccordionMatrix />,
   },
 } satisfies Record<string, DensityComponentDef>;
