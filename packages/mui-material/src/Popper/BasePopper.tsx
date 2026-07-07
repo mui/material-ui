@@ -114,21 +114,16 @@ const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(funct
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState<Placement | undefined>(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState<
-    HTMLElement | VirtualElement | null | undefined
-  >(resolveAnchorEl(anchorEl));
+  const resolvedAnchorElement = React.useMemo<HTMLElement | VirtualElement | null | undefined>(
+    () => resolveAnchorEl(anchorEl),
+    [anchorEl],
+  );
 
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.forceUpdate();
     }
   });
-
-  React.useEffect(() => {
-    if (anchorEl) {
-      setResolvedAnchorElement(resolveAnchorEl(anchorEl));
-    }
-  }, [anchorEl]);
 
   useEnhancedEffect(() => {
     if (!resolvedAnchorElement || !open) {

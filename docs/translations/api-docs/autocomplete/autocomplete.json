@@ -59,7 +59,7 @@
       "description": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options."
     },
     "fullWidth": {
-      "description": "If <code>true</code>, the input will take up the full width of its container."
+      "description": "If <code>true</code>, the input takes up the full width of its container.<br><code>Autocomplete</code> treats <code>undefined</code> and <code>false</code> differently. If <code>undefined</code>, the inner input takes up the full width of its container. If <code>false</code>, the inner input is restricted to its intrinsic width."
     },
     "getLimitTagsText": {
       "description": "The label to display when the tags are truncated (<code>limitTags</code>).",
@@ -217,6 +217,9 @@
         }
       }
     },
+    "resetHighlightOnMouseLeave": {
+      "description": "If <code>true</code>, clears an option highlighted by mouse movement when the mouse leaves the listbox. This behavior will be enabled by default in the next major version."
+    },
     "selectOnFocus": {
       "description": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value."
     },
@@ -319,6 +322,7 @@
     "paper": "The component used to render the body of the popup.",
     "popper": "The component used to position the popup.",
     "popupIndicator": "The component used to render the popup indicator element.",
-    "root": "The component that renders the root."
+    "root": "The component that renders the root.",
+    "status": "The component used to render the status message container."
   }
 }

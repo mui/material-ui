@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "3.0.6",
+  "version": "3.0.9",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "license": "MIT",
@@ -25,27 +25,26 @@
     "release:publish": "pnpm build && pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm build && pnpm publish --tag latest --registry=\"http://localhost:4873/\"",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/internal-scripts\"",
-    "typescript": "tsc -b tsconfig.typecheck.json"
+    "typescript": "tsgo -b tsconfig.typecheck.json"
   },
   "dependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^7.29.7",
     "@babel/plugin-syntax-class-properties": "^7.12.13",
-    "@babel/plugin-syntax-jsx": "^7.28.6",
-    "@babel/plugin-syntax-typescript": "^7.28.6",
-    "@babel/types": "^7.29.0",
+    "@babel/plugin-syntax-jsx": "^7.29.7",
+    "@babel/plugin-syntax-typescript": "^7.29.7",
+    "@babel/types": "^7.29.7",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.45.1",
-    "typescript": "^5.9.3"
+    "es-toolkit": "^1.46.1",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@babel/register": "7.28.6",
+    "@babel/register": "7.29.7",
     "@types/babel__core": "7.20.5",
     "@types/chai": "5.2.3",
     "@types/doctrine": "0.0.9",
-    "@types/node": "20.19.39",
-    "@types/react": "19.2.14",
-    "@types/uuid": "10.0.0",
+    "@types/node": "20.19.43",
+    "@types/react": "19.2.17",
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
     "prettier": "3.8.3",

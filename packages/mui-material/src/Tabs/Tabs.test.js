@@ -5,7 +5,6 @@ import {
   act,
   createRenderer,
   fireEvent,
-  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
@@ -50,6 +49,7 @@ function hasRightScrollButton(container) {
 }
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isFirefox = /firefox/i.test(navigator.userAgent);
 
 describe.skipIf(isSafari)('<Tabs />', () => {
   const { clock, render, renderToString } = createRenderer();
@@ -488,16 +488,8 @@ describe.skipIf(isSafari)('<Tabs />', () => {
               <Tab value={3} />
             </Tabs>,
           );
-        }).toErrorDev([
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          // React Strict Mode runs mount effects twice
-          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-          'You can provide one of the following values: 1, 3',
-        ]);
+          // The warning is logged only once (see `warnedTabValueInvalid`).
+        }).toErrorDev(['You can provide one of the following values: 1, 3']);
       });
 
       describe.skipIf(!isJsdom())('hidden tab / tabs', () => {
@@ -812,7 +804,10 @@ describe.skipIf(isSafari)('<Tabs />', () => {
     });
   });
 
-  describe('scroll button behavior', () => {
+  // Firefox reports fractional `scrollLeft`/`scrollTop` in Vitest browser mode, so the
+  // exact integer assertions in these scroll tests fail.
+  // See https://github.com/vitest-dev/vitest/issues/9223
+  describe.skipIf(isFirefox)('scroll button behavior', () => {
     clock.withFakeTimers();
 
     it.skipIf(isJSDOM)('should scroll visible items', async function test() {
@@ -864,6 +859,34 @@ describe.skipIf(isSafari)('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should not animate scroll buttons when reduced motion is always', () => {
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+            <Tab style={{ width: 220, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+            <Tab style={{ width: 200, minWidth: 'auto' }} />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tablistContainer = screen.getByRole('tablist').parentElement;
+      const tabs = screen.getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
       expect(tablistContainer.scrollLeft).equal(200);
     });
 

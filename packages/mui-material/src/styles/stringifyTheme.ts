@@ -55,6 +55,7 @@ export function stringifyTheme(baseTheme: Record<string, any> = {}) {
 const theme = ${JSON.stringify(serializableTheme, null, 2)};
 
 theme.breakpoints = createBreakpoints(theme.breakpoints || {});
+theme.motion = { reducedMotion: 'never', ...theme.motion };
 theme.transitions = createTransitions(theme.transitions || {});
 
 export default theme;`;

@@ -19,7 +19,7 @@
   },
   {
     "name": "Marija Najdova",
-    "title": "Engineering Manager",
+    "title": "Director of Engineering",
     "about": "I do karate 🥋 and read 📚. A lot!",
     "location": "Skopje, North Macedonia",
     "locationCountry": "mk",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Danail Hadjiatanasov",
-    "title": "Engineering Manager",
+    "title": "VP of Revenue",
     "about": "Boringly normal, geek deep down. I like 🚗 and 🏂.",
     "location": "Sofia, Bulgaria",
     "locationCountry": "bg",
@@ -99,19 +99,10 @@
     "twitter": "iamcherniavskii"
   },
   {
-    "name": "Sam Sycamore",
-    "title": "Head of Documentation",
-    "about": "Musician and edible wild plant enthusiast 🌱.",
-    "location": "Washington state, US",
-    "locationCountry": "us",
-    "github": null,
-    "twitter": null
-  },
-  {
     "name": "Lukas Tyla",
     "title": "Software Engineer — eXplore",
     "about": "Learning and experimenting 📚.",
-    "location": "Vilnius, Lithuania",
+    "location": "Panevėžys, Lithuania",
     "locationCountry": "lt",
     "github": "LukasTy",
     "twitter": null
@@ -358,5 +349,23 @@
     "locationCountry": "rs",
     "github": "lukatosic19-del",
     "twitter": null
+  },
+  {
+    "name": "Eliot Heitz",
+    "title": "Account Executive — Sales",
+    "about": "Big on reading, travel, and time with friends and family 🙌.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": null,
+    "twitter": null
+  },
+  {
+    "name": "Jenna Smith",
+    "title": "Product Engineer — Base UI",
+    "about": "👩🏻‍💻 codes 🤘 gigs 😴 sleeps ♻️ repeats.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": "jjenzz",
+    "twitter": "jjenzz"
   }
 ]

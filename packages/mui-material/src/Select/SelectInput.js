@@ -19,12 +19,22 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 import { areEqualValues, isEmpty, getOpenInteractionType } from './utils';
+import {
+  canCycleRepeatedCharacter,
+  getMatchingOptionIndex,
+  getTypeaheadOptions,
+} from './utils/closedTypeahead';
 import { SelectFocusSourceProvider } from './utils/SelectFocusSourceContext';
 
 const OPENING_MOUSE_UP_BOUNDARY_OFFSET = 2;
 // The initial mouseup may land on an item when the menu opens over the trigger.
 const SELECTED_MOUSE_UP_DELAY = 400;
 const UNSELECTED_MOUSE_UP_DELAY = 200;
+const TYPEAHEAD_RESET_MS = 750;
+const SPACE = ' ';
+const ARROW_UP = 'ArrowUp';
+const ARROW_DOWN = 'ArrowDown';
+const ENTER = 'Enter';
 
 /**
  * Returns true when a native mouse event should be treated as happening inside
@@ -187,8 +197,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     allowSelectedMouseUp: false,
     allowUnselectedMouseUp: false,
   });
+  const closedTypeaheadRef = React.useRef({
+    buffer: '',
+    previousSearchIndex: null,
+    matchedIndex: null,
+  });
   const selectedMouseUpTimer = useTimeout();
   const unselectedMouseUpTimer = useTimeout();
+  const typeaheadResetTimer = useTimeout();
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -219,9 +235,19 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const open = displayNode !== null && openState;
 
+  const resetClosedTypeahead = React.useCallback(() => {
+    typeaheadResetTimer.clear();
+    closedTypeaheadRef.current.buffer = '';
+    closedTypeaheadRef.current.previousSearchIndex = null;
+    closedTypeaheadRef.current.matchedIndex = null;
+  }, [typeaheadResetTimer]);
+
   useEnhancedEffect(() => {
     openRef.current = open;
-  }, [open]);
+    if (open) {
+      resetClosedTypeahead();
+    }
+  }, [open, resetClosedTypeahead]);
 
   const clearSelectionTimers = React.useCallback(() => {
     selectedMouseUpTimer.clear();
@@ -257,8 +283,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return () => {
       resetMouseUpSelection();
       clearOpeningMouseUpListener();
+      resetClosedTypeahead();
     };
-  }, [resetMouseUpSelection, clearOpeningMouseUpListener]);
+  }, [resetMouseUpSelection, clearOpeningMouseUpListener, resetClosedTypeahead]);
 
   React.useEffect(() => {
     if (!open || !anchorElement || autoWidth) {
@@ -323,6 +350,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (openParam) {
+      resetClosedTypeahead();
       setOpenInteractionType(getOpenInteractionType(event));
 
       if (onOpen) {
@@ -375,6 +403,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     // Hijack the default focus behavior.
     event.preventDefault();
+
+    if (!displayRef.current) {
+      return;
+    }
+
     displayRef.current.focus();
 
     const doc = ownerDocument(event.currentTarget);
@@ -432,6 +465,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
+  const handleValueChange = (event, child, newValue) => {
+    setValueState(newValue);
+
+    if (onChange) {
+      // Redefine target to allow name and value to be read.
+      // This allows seamless integration with the most popular form libraries.
+      // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
+      // Clone the event to not override `target` of the original event.
+      const nativeEvent = event.nativeEvent || event;
+      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+
+      Object.defineProperty(clonedEvent, 'target', {
+        writable: true,
+        value: { value: newValue, name },
+      });
+      onChange(clonedEvent, child);
+    }
+  };
+
   const handleItemClick = (child) => (event) => {
     didPointerDownOnItemRef.current = false;
 
@@ -459,22 +511,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (value !== newValue) {
-      setValueState(newValue);
-
-      if (onChange) {
-        // Redefine target to allow name and value to be read.
-        // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
-        // Clone the event to not override `target` of the original event.
-        const nativeEvent = event.nativeEvent || event;
-        const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-
-        Object.defineProperty(clonedEvent, 'target', {
-          writable: true,
-          value: { value: newValue, name },
-        });
-        onChange(clonedEvent, child);
-      }
+      handleValueChange(event, child, newValue);
     }
 
     if (!multiple) {
@@ -500,18 +537,89 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.currentTarget.click();
   };
 
+  const handleClosedTypeahead = (event) => {
+    const state = closedTypeaheadRef.current;
+    const hasActiveBuffer = state.buffer !== '';
+
+    if (
+      open ||
+      multiple ||
+      disabled ||
+      event.defaultPrevented ||
+      event.nativeEvent?.isComposing ||
+      event.key.length !== 1 ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey ||
+      (event.key === SPACE && !hasActiveBuffer)
+    ) {
+      return false;
+    }
+
+    if (event.key === SPACE) {
+      event.preventDefault();
+    }
+
+    const isNewSession = state.buffer === '';
+    const { options: searchableOptions, selectedIndex } = getTypeaheadOptions(childrenArray, value);
+
+    if (searchableOptions.length === 0) {
+      if (event.key !== SPACE) {
+        resetClosedTypeahead();
+      }
+
+      return true;
+    }
+
+    if (isNewSession) {
+      state.previousSearchIndex = selectedIndex;
+    }
+
+    const key = event.key.toLowerCase();
+
+    if (state.buffer === key && canCycleRepeatedCharacter(searchableOptions, key)) {
+      state.buffer = '';
+      state.previousSearchIndex = state.matchedIndex;
+    }
+
+    state.buffer += key;
+    typeaheadResetTimer.start(TYPEAHEAD_RESET_MS, resetClosedTypeahead);
+
+    const matchingIndex = getMatchingOptionIndex(
+      searchableOptions,
+      state.buffer,
+      (state.previousSearchIndex ?? -1) + 1,
+    );
+
+    if (matchingIndex !== -1) {
+      const matchedOption = searchableOptions[matchingIndex];
+
+      state.matchedIndex = matchingIndex;
+      if (!areEqualValues(value, matchedOption.value)) {
+        handleValueChange(event, matchedOption.child, matchedOption.value);
+      }
+      return true;
+    }
+
+    if (event.key !== SPACE) {
+      resetClosedTypeahead();
+    }
+
+    return true;
+  };
+
   const handleKeyDown = (event) => {
     if (!readOnly) {
-      const validKeys = [
-        ' ',
-        'ArrowUp',
-        'ArrowDown',
-        // The native select doesn't respond to enter on macOS, but it's recommended by
-        // https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-        'Enter',
-      ];
+      const isClosedTypeaheadHandled = handleClosedTypeahead(event);
+      // The native select doesn't respond to Enter on macOS, but it's recommended by
+      // https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+      const isOpenKey =
+        event.key === SPACE ||
+        event.key === ARROW_UP ||
+        event.key === ARROW_DOWN ||
+        event.key === ENTER;
 
-      if (validKeys.includes(event.key)) {
+      if (!isClosedTypeaheadHandled && isOpenKey) {
         event.preventDefault();
         update(true, event);
       }
@@ -520,11 +628,27 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleBlur = (event) => {
+    resetClosedTypeahead();
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
+    }
+  };
+
+  const handleItemKeyDown = (child) => (event) => {
+    child?.props?.onKeyDown?.(event);
+
+    if (event.key === SPACE && event.target === event.currentTarget && !event.defaultPrevented) {
+      // Prevent the browser from scrolling the page
+      event.preventDefault();
+      // Ignore auto-repeated keydowns to avoid toggling multiple times
+      if (!event.repeat) {
+        // Trigger via click so that onClick receives a click event,
+        // consistent with Enter and pointer interactions.
+        event.currentTarget.click();
+      }
     }
   };
 
@@ -599,7 +723,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       onClick: handleItemClick(child),
       onMouseUp: handleItemMouseUp(child, selected),
       onKeyUp: (event) => {
-        if (event.key === ' ') {
+        if (event.key === SPACE) {
           // otherwise our MenuItems dispatches a click event
           // it's not behavior of the native <option> and causes
           // the select to close immediately since we open on space keydown
@@ -610,6 +734,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           child.props.onKeyUp(event);
         }
       },
+      onKeyDown: handleItemKeyDown(child),
       role: 'option',
       selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
@@ -620,7 +745,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Keep the opening mouseup guard current without mutating refs during render.
   useEnhancedEffect(() => {
     hasSelectedItemInListRef.current = foundMatch;
-  }, [foundMatch]);
+    if (!open && !multiple && !foundMatch) {
+      resetClosedTypeahead();
+    }
+  }, [foundMatch, multiple, open, resetClosedTypeahead]);
 
   if (process.env.NODE_ENV !== 'production') {
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
@@ -715,6 +843,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
+        aria-readonly={readOnly ? 'true' : undefined}
         aria-label={ariaLabel}
         aria-labelledby={labelId}
         aria-describedby={ariaDescribedby}
@@ -749,6 +878,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onChange={handleChange}
         tabIndex={-1}
         disabled={disabled}
+        readOnly={readOnly}
         className={classes.nativeInput}
         autoFocus={autoFocus}
         required={required}

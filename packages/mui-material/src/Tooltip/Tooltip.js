@@ -357,6 +357,9 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   );
 
   const handleMouseOver = (event) => {
+    if (childNode?.disabled) {
+      return;
+    }
     if (ignoreNonTouchEvents.current && event.type !== 'touchstart') {
       return;
     }
@@ -408,7 +411,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   };
 
   const handleFocus = (event) => {
-    // Workaround for https://github.com/facebook/react/issues/7769
+    // Workaround for https://github.com/react/react/issues/7769
     // The autoFocus of React might trigger the event before the componentDidMount.
     // We need to account for this eventuality.
     if (!childNode) {
@@ -416,7 +419,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
 
     if (isFocusVisible(event.target)) {
-      // Workaround for https://github.com/facebook/react/issues/9142.
+      // Workaround for https://github.com/react/react/issues/9142.
       // React does not fire blur when a focused element becomes disabled.
       const handleNativeBlur = (blurEvent) => {
         if (blurEvent.target.disabled) {

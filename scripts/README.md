@@ -46,7 +46,7 @@ The following steps must be proposed as a pull request.
 
 3. Click "Run workflow"
 4. Refresh the page to see the newly created workflow, and click it.
-5. The next screen will say "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
+5. The next screen will say "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiate.**
 
 #### Documentation
 
@@ -106,8 +106,8 @@ The following steps must be proposed as a pull request to `release/<PATCH_VERSIO
    > - **--dry-run** Used for debugging. Or directly run `pnpm release:publish:dry-run`.
    > - **--dist-tag** Use to publish legacy or canary versions.
 
-5. This command invokes the [Publish](https://github.com/mui/base-ui/actions/workflows/publish.yml) GitHub action. It'll log the url which can be opened to see the latest workflow run.
-6. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiaite.**
+5. This command invokes the [Publish](https://github.com/mui/material-ui/actions/workflows/publish.yml) GitHub action. It'll log the URL which can be opened to see the latest workflow run.
+6. The next screen shows "@username requested your review to deploy to npm-publish", click "Review deployments" and authorize your workflow run. **Never approve workflow runs you didn't initiate.**
 
 #### Documentation
 

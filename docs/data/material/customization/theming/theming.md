@@ -8,6 +8,10 @@ Themes let you apply a consistent tone to your app. It allows you to **customize
 
 To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on `createTheme`, palette, color schemes, CSS variables, and TypeScript augmentation.
+:::
+
 ## Theme provider
 
 Material UI components adhere to the library's default theme out of the box.
@@ -308,6 +312,51 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
+```
+
+### `enhanceHighContrast(theme, tokens) => theme`
+
+Applies `@media (forced-colors: active)` overrides to a theme, improving component visibility in [Windows High Contrast / Forced Colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors). Available with v9.1.0.
+It accepts a fully-created theme and returns an enhanced version of it.
+
+#### Arguments
+
+1. `theme` (_object_): The theme object to enhance.
+2. `tokens` (_object_ [optional]): An object of [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) to override individual defaults.
+
+| Token                | Default            | Description                                  |
+| :------------------- | :----------------- | :------------------------------------------- |
+| `disabled`           | `GrayText`         | Color for disabled elements                  |
+| `error`              | `ActiveText`       | Color for error states                       |
+| `selectedBackground` | `SelectedItem`     | Background color for selected items          |
+| `selectedText`       | `SelectedItemText` | Text color on selected items                 |
+| `activeBackground`   | `Highlight`        | Background color for active/toggled controls |
+| `activeText`         | `HighlightText`    | Text color on active/toggled controls        |
+| `buttonBorder`       | `ButtonBorder`     | Border color for interactive controls        |
+| `buttonText`         | `ButtonText`       | Text/icon color on buttons                   |
+| `canvas`             | `Canvas`           | Background color for the page/canvas         |
+
+#### Returns
+
+`theme` (_object_): The new theme with forced-colors overrides applied to affected components.
+
+#### Examples
+
+```js
+import { createTheme, enhanceHighContrast } from '@mui/material/styles';
+
+// Use defaults
+let theme = createTheme();
+theme = enhanceHighContrast(theme);
+```
+
+```js
+// Override individual tokens
+let theme = createTheme();
+theme = enhanceHighContrast(theme, {
+  activeBackground: 'SelectedItem',
+  activeText: 'SelectedItemText',
+});
 ```
 
 ### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
