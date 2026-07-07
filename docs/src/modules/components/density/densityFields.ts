@@ -102,6 +102,11 @@ export const hiddenFieldIds = new Set<string>([
   'MuiInput|root|multiline=true||paddingBottom',
   'MuiInput|root|multiline=true,size=small||paddingTop',
   'MuiInput|root|multiline=true,size=small||paddingBottom',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiFormControl-root|--_outlinedInputPadBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
 ]);
 
 export interface DensityGroup {

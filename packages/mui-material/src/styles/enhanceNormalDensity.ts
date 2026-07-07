@@ -13,7 +13,7 @@ import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
 import type { TooltipOwnerState } from '../Tooltip';
 import type { OutlinedInputOwnerState } from '../OutlinedInput';
 import type { FilledInputProps } from '../FilledInput';
-import type { InputBaseProps } from '../InputBase';
+import { inputBaseClasses, type InputBaseProps } from '../InputBase';
 import type { InputAdornmentProps } from '../InputAdornment';
 import type { TabProps } from '../Tab';
 import type { ListProps } from '../List';
@@ -480,6 +480,18 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       '--_outlinedInputPadBlock':
         'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
     },
+    // small size
+    [`&:has(.${inputBaseClasses.sizeSmall})`]: {
+      '--_autocompleteInputRootPadBlock': d.xs,
+      '--_autocompleteInputPadBlock': d.xxs,
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+    },
+    [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall} .${autocompleteClasses.input}`]:
+      {
+        paddingBlock: `var(--_autocompleteInputPadBlock)`,
+      },
   });
   addRootOverride(
     enhanced.components,

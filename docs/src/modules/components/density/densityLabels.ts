@@ -28,15 +28,23 @@ export const densityLabels: Record<string, string> = {
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight':
     'Autocomplete · listbox · Option lineHeight',
   'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock':
-    'Autocomplete · --_autocompleteInputRootPadBlock',
+    'Autocomplete · Input root paddingBlock',
   'MuiAutocomplete|root|base||--_autocompleteInputPadBlock':
-    'Autocomplete · --_autocompleteInputPadBlock',
+    'Autocomplete · Input inner paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock':
     'Autocomplete · inputRoot paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock':
     'Autocomplete · input paddingBlock',
   'MuiAutocomplete|root|base|& .MuiFormControl-root|--_outlinedInputPadBlock':
     'Autocomplete · --_outlinedInputPadBlock',
+  'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputRootPadBlock':
+    'Autocomplete · Input root paddingBlock [size=small]',
+  'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputPadBlock':
+    'Autocomplete · Input inner paddingBlock [size=small]',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock':
+    'Autocomplete · paddingBlock',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock':
+    'Autocomplete · paddingBlock',
   'MuiAutocomplete|tag|base||margin': 'Autocomplete · tag · margin',
   'MuiAvatar|root|base||width': 'Avatar · width',
   'MuiAvatar|root|base||height': 'Avatar · height',
