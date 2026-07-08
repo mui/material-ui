@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -24,7 +25,6 @@ import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -61,7 +61,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -119,6 +118,20 @@ const SIZES = ['small', 'medium', 'large'] as const;
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
 
 type Preset = (typeof PRESETS)[number];
+
+// Layout tabs — lowercase ids are the URL param values, decoupled from labels.
+const TABS = ['components', 'typography', 'radius'] as const;
+type TabKey = (typeof TABS)[number];
+const TAB_LABEL: Record<TabKey, string> = {
+  components: 'Components',
+  typography: 'Typography',
+  radius: 'Radius',
+};
+// Token tabs → their themeTokenGroups key.
+const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
+  typography: 'Typography',
+  radius: 'Border Radius',
+};
 
 // Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
 // layout-safe (absolute ::before + pointer-events:none), never touches the
@@ -1485,9 +1498,9 @@ function TypographyMatrix() {
   );
 }
 
-// Theme-token canvas previews (shown when a Theme-tokens panel is expanded).
-const THEME_TOKEN_PREVIEW: Record<string, () => React.ReactNode> = {
-  Typography: () => (
+// Theme-token canvas previews, keyed by layout tab id.
+const THEME_TOKEN_PREVIEW: Record<Exclude<TabKey, 'components'>, () => React.ReactNode> = {
+  typography: () => (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
       <TypographyMatrix />
       <Box data-variant-section="button">
@@ -1501,7 +1514,7 @@ const THEME_TOKEN_PREVIEW: Record<string, () => React.ReactNode> = {
     </Stack>
   ),
   // Components that inherit theme.shape.borderRadius.
-  'Border Radius': () => (
+  radius: () => (
     <Stack direction="row" spacing={3} sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}>
       <Button variant="contained">Button</Button>
       <Button variant="outlined">Outlined</Button>
@@ -1830,11 +1843,59 @@ export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
-  // Which Theme-tokens accordion is open (drives the canvas preview). One at a time.
-  const [tokenPanel, setTokenPanel] = React.useState<string | false>(false);
+  // Layout tab — drives both the sidebar content and the canvas.
+  const [tab, setTab] = React.useState<TabKey>('components');
 
   // User overrides, keyed by generated-table row id — empty until a field is typed.
   const [mapping, setMapping] = React.useState<Record<string, string>>({});
+
+  // Shareable URL — read the query ONCE when the router is ready, then lift every
+  // preset/tab/family change back into it (knob overrides stay out of the URL).
+  const router = useRouter();
+  const hydratedFromUrl = React.useRef(false);
+  React.useEffect(() => {
+    if (!router.isReady || hydratedFromUrl.current) {
+      return;
+    }
+    hydratedFromUrl.current = true;
+    const q = (k: string) =>
+      Array.isArray(router.query[k]) ? router.query[k]![0] : router.query[k];
+    // NOTE: PRESETS/TABS are `as const` tuples — `.includes(string)` fails tsgo (TS2345).
+    // Widen to readonly string[] for the guard, then narrow with `as`.
+    const p = q('preset');
+    if (p && (PRESETS as readonly string[]).includes(p)) {
+      setPreset(p as Preset);
+    }
+    const t = q('tab');
+    if (t && (TABS as readonly string[]).includes(t)) {
+      setTab(t as TabKey);
+    }
+    const f = q('family');
+    if (f && (f === 'All' || densityGroups.some((g) => g.key === f))) {
+      setSelection(f as Selection);
+    }
+    // Invalid/missing params → the defaults already in state (unset / components / All).
+  }, [router.isReady]); // eslint-disable-line react-hooks/exhaustive-deps -- router identity changes per route update; reading query once via the ref guard
+
+  React.useEffect(() => {
+    if (!hydratedFromUrl.current) {
+      return; // don't clobber the deep link before the read effect ran
+    }
+    const query: Record<string, string> = {};
+    if (preset !== 'unset') {
+      query.preset = preset;
+    }
+    if (tab !== 'components') {
+      query.tab = tab;
+    }
+    if (selection !== 'All') {
+      query.family = selection;
+    }
+    router.replace({ pathname: router.pathname, query }, undefined, { shallow: true });
+    // `router` intentionally OMITTED from deps: its identity changes on every route
+    // update, so including it re-fires the effect after each replace → replace loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preset, tab, selection]);
 
   const mappingEnabled = preset !== 'unset';
   const visibleGroups =
@@ -2060,6 +2121,19 @@ export default function DensityExperiment() {
         </Box>
       </Box>
 
+      {/* Layout tabs — third bar: what the sidebar + canvas show. */}
+      <Box sx={{ px: 3, borderBottom: '1px solid', borderColor: 'divider', flexShrink: 0 }}>
+        <Tabs
+          value={tab}
+          onChange={(_event, next: TabKey) => setTab(next)}
+          aria-label="playground layout tabs"
+        >
+          {TABS.map((t) => (
+            <Tab key={t} value={t} label={TAB_LABEL[t]} />
+          ))}
+        </Tabs>
+      </Box>
+
       {/* Content — sidebar (fixed Component + scrollable mapping) · scrollable canvas. */}
       <Box sx={{ flex: 1, minHeight: 0, display: 'flex' }}>
         <Box
@@ -2072,146 +2146,132 @@ export default function DensityExperiment() {
             overflowY: 'auto',
           }}
         >
-          {/* Theme tokens — global theme.typography / theme.shape, above the component picker. */}
-          <Box sx={{ px: 3, pt: 3, pb: 1, flexShrink: 0 }}>
-            <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14, mb: 0.5 }}>
-              Theme tokens
-            </Typography>
-            <List disablePadding>
-              {themeTokenGroups.map((group) => {
-                const open = tokenPanel === group.key;
-                return (
-                  <React.Fragment key={group.key}>
-                    <ListItem
-                      disableGutters
-                      data-token-group={group.key}
-                      secondaryAction={
-                        <IconButton
-                          edge="end"
-                          size="small"
-                          onClick={() => setTokenPanel(open ? false : group.key)}
-                          aria-label={`${open ? 'collapse' : 'expand'} ${group.key}`}
-                        >
-                          {open ? (
-                            <ExpandLessIcon fontSize="small" />
-                          ) : (
-                            <ExpandMoreIcon fontSize="small" />
-                          )}
-                        </IconButton>
+          {tab === 'components' && (
+            <React.Fragment>
+              <FormControl fullWidth size="small" sx={{ px: 3, pt: 1.5, pb: 1.5, flexShrink: 0 }}>
+                <FormLabel id="component-label" sx={{ mb: 0.5 }}>
+                  Component
+                </FormLabel>
+                <Select
+                  aria-labelledby="component-label"
+                  value={selection}
+                  onChange={(event) => setSelection(event.target.value as Selection)}
+                  slotProps={
+                    { input: { 'data-component-select': true } } as Record<string, unknown>
+                  }
+                >
+                  <MenuItem value="All">All</MenuItem>
+                  {densityGroups.map((g) => (
+                    <MenuItem key={g.key} value={g.key}>
+                      {g.key}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <Box
+                component="section"
+                sx={{
+                  px: 3,
+                  pb: 3,
+                  opacity: mappingEnabled ? 1 : 0.5,
+                }}
+              >
+                <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
+                  Vars mapping
+                </Typography>
+                {!mappingEnabled && (
+                  <Typography variant="caption" color="text.secondary">
+                    ⓘ pick a preset to enable steps
+                  </Typography>
+                )}
+                {mappingEnabled && scalePx && (
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    component="p"
+                    data-legend
+                    sx={{ mt: 0.5 }}
+                  >
+                    {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
+                  </Typography>
+                )}
+                {visibleGroups.map((group) => (
+                  <FamilyKnobs
+                    key={group.key}
+                    familyKey={group.key}
+                    mapping={mapping}
+                    preset={preset}
+                    scalePx={scalePx}
+                    disabled={!mappingEnabled}
+                    setFields={setFields}
+                  />
+                ))}
+                <Button
+                  size="small"
+                  variant="outlined"
+                  onClick={resetMapping}
+                  disabled={!mappingEnabled}
+                  sx={{ mt: 2 }}
+                >
+                  Reset mapping
+                </Button>
+              </Box>
+            </React.Fragment>
+          )}
+
+          {/* Token tabs — theme.typography / theme.shape knobs (same edit path: mapping → theme). */}
+          {tab !== 'components' &&
+            (() => {
+              const group = themeTokenGroups.find((g) => g.key === TAB_TOKEN_GROUP[tab])!;
+              return (
+                <Box
+                  component="section"
+                  data-token-group={group.key}
+                  sx={{ px: 3, pt: 3, pb: 3, opacity: mappingEnabled ? 1 : 0.5 }}
+                >
+                  <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
+                    {group.key}
+                  </Typography>
+                  {!mappingEnabled && (
+                    <Typography variant="caption" color="text.secondary">
+                      ⓘ pick a preset to enable edits
+                    </Typography>
+                  )}
+                  {group.slots.map((slot) => (
+                    <Box
+                      key={slot.key || group.key}
+                      data-token-slot={slot.key || 'root'}
+                      sx={
+                        slot.key
+                          ? { mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }
+                          : { mt: 1 }
                       }
                     >
-                      <ListItemText
-                        primary={group.key}
-                        slotProps={{ primary: { sx: { fontWeight: 'medium', fontSize: 13 } } }}
-                      />
-                    </ListItem>
-                    {open &&
-                      group.slots.map((slot) => (
-                        <Box
-                          key={slot.key || group.key}
-                          data-token-slot={slot.key || 'root'}
-                          sx={
-                            slot.key
-                              ? { mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }
-                              : { mt: 1 }
-                          }
-                        >
-                          {slot.key && (
-                            <Typography variant="caption" color="text.secondary">
-                              {slot.key}
-                            </Typography>
-                          )}
-                          <Stack spacing={1.5} sx={{ mt: slot.key ? 0.5 : 0 }}>
-                            {slot.knobs.map((knob) => (
-                              <KnobInput
-                                key={knob.id}
-                                id={knob.id}
-                                idAttr="data-token-field"
-                                label={knob.label}
-                                value={mapping[knob.id] ?? ''}
-                                placeholder={
-                                  readThemeToken(presetTheme, knob.path) || 'theme value'
-                                }
-                                disabled={!mappingEnabled}
-                                onCommit={(v) => setFields([knob.id], v)}
-                              />
-                            ))}
-                          </Stack>
-                        </Box>
-                      ))}
-                  </React.Fragment>
-                );
-              })}
-            </List>
-          </Box>
-
-          <FormControl fullWidth size="small" sx={{ px: 3, pt: 1.5, pb: 1.5, flexShrink: 0 }}>
-            <FormLabel id="component-label" sx={{ mb: 0.5 }}>
-              Component
-            </FormLabel>
-            <Select
-              aria-labelledby="component-label"
-              value={selection}
-              onChange={(event) => setSelection(event.target.value as Selection)}
-              slotProps={{ input: { 'data-component-select': true } as Record<string, unknown> }}
-            >
-              <MenuItem value="All">All</MenuItem>
-              {densityGroups.map((g) => (
-                <MenuItem key={g.key} value={g.key}>
-                  {g.key}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <Box
-            component="section"
-            sx={{
-              px: 3,
-              pb: 3,
-              opacity: mappingEnabled ? 1 : 0.5,
-            }}
-          >
-            <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
-              Vars mapping
-            </Typography>
-            {!mappingEnabled && (
-              <Typography variant="caption" color="text.secondary">
-                ⓘ pick a preset to enable steps
-              </Typography>
-            )}
-            {mappingEnabled && scalePx && (
-              <Typography
-                variant="caption"
-                color="text.secondary"
-                component="p"
-                data-legend
-                sx={{ mt: 0.5 }}
-              >
-                {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
-              </Typography>
-            )}
-            {visibleGroups.map((group) => (
-              <FamilyKnobs
-                key={group.key}
-                familyKey={group.key}
-                mapping={mapping}
-                preset={preset}
-                scalePx={scalePx}
-                disabled={!mappingEnabled}
-                setFields={setFields}
-              />
-            ))}
-            <Button
-              size="small"
-              variant="outlined"
-              onClick={resetMapping}
-              disabled={!mappingEnabled}
-              sx={{ mt: 2 }}
-            >
-              Reset mapping
-            </Button>
-          </Box>
+                      {slot.key && (
+                        <Typography variant="caption" color="text.secondary">
+                          {slot.key}
+                        </Typography>
+                      )}
+                      <Stack spacing={1.5} sx={{ mt: slot.key ? 0.5 : 0 }}>
+                        {slot.knobs.map((knob) => (
+                          <KnobInput
+                            key={knob.id}
+                            id={knob.id}
+                            idAttr="data-token-field"
+                            label={knob.label}
+                            value={mapping[knob.id] ?? ''}
+                            placeholder={readThemeToken(presetTheme, knob.path) || 'theme value'}
+                            disabled={!mappingEnabled}
+                            onCommit={(v) => setFields([knob.id], v)}
+                          />
+                        ))}
+                      </Stack>
+                    </Box>
+                  ))}
+                </Box>
+              );
+            })()}
         </Box>
 
         {/* CANVAS — preset theme with user overrides appended (no GlobalStyles). */}
@@ -2226,28 +2286,29 @@ export default function DensityExperiment() {
             sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
           >
             <Stack spacing={6}>
-              {tokenPanel && THEME_TOKEN_PREVIEW[tokenPanel] && (
-                <Box data-token-preview={tokenPanel}>
+              {tab !== 'components' && (
+                <Box data-token-preview={tab}>
                   <Typography variant="overline" color="text.secondary" component="div">
-                    {tokenPanel} — theme token preview
+                    {TAB_TOKEN_GROUP[tab]} — theme token preview
                   </Typography>
-                  {THEME_TOKEN_PREVIEW[tokenPanel]()}
+                  {THEME_TOKEN_PREVIEW[tab]()}
                 </Box>
               )}
-              {visibleComponents.map((comp) => {
-                const Def = COMPONENT_DEFS[comp];
-                return (
-                  <Box key={comp} data-canvas-component={comp}>
-                    {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
-                    <Typography variant="overline" color="text.secondary" component="div">
-                      {Def.canvasLabel}
-                    </Typography>
-                    <Box data-canvas-demo>
-                      <Def.Matrix />
+              {tab === 'components' &&
+                visibleComponents.map((comp) => {
+                  const Def = COMPONENT_DEFS[comp];
+                  return (
+                    <Box key={comp} data-canvas-component={comp}>
+                      {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
+                      <Typography variant="overline" color="text.secondary" component="div">
+                        {Def.canvasLabel}
+                      </Typography>
+                      <Box data-canvas-demo>
+                        <Def.Matrix />
+                      </Box>
                     </Box>
-                  </Box>
-                );
-              })}
+                  );
+                })}
             </Stack>
           </Box>
         </ThemeProvider>
