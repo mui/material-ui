@@ -3153,6 +3153,30 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { compact: '40px', normal: '48px', comfort: '56px' },
   },
   {
+    id: 'MuiTooltip|arrow|base||width',
+    label: 'Tooltip · arrow · width',
+    isDensity: false,
+    densityKey: null,
+    target: { component: 'MuiTooltip', slot: 'arrow', props: null, nested: '', cssProp: 'width' },
+    values: {
+      compact: 'var(--_arrowSize)',
+      normal: 'var(--_arrowSize)',
+      comfort: 'var(--_arrowSize)',
+    },
+  },
+  {
+    id: 'MuiTooltip|arrow|base||height',
+    label: 'Tooltip · arrow · height',
+    isDensity: false,
+    densityKey: null,
+    target: { component: 'MuiTooltip', slot: 'arrow', props: null, nested: '', cssProp: 'height' },
+    values: {
+      compact: 'calc(var(--_arrowSize) * 0.71)',
+      normal: 'calc(var(--_arrowSize) * 0.71)',
+      comfort: 'calc(var(--_arrowSize) * 0.71)',
+    },
+  },
+  {
     id: 'MuiTooltip|popper|base||--_arrowSize',
     label: 'Tooltip · popper · --_arrowSize',
     isDensity: false,
@@ -3308,42 +3332,6 @@ export const densityEmitTable: DensityEmitRow[] = [
       compact: 'calc(var(--_arrowSize) * -0.71)',
       normal: 'calc(var(--_arrowSize) * -0.71)',
       comfort: 'calc(var(--_arrowSize) * -0.71)',
-    },
-  },
-  {
-    id: 'MuiTooltip|popper|base|& .MuiTooltip-arrow|width',
-    label: 'Tooltip · popper · width',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTooltip',
-      slot: 'popper',
-      props: null,
-      nested: '& .MuiTooltip-arrow',
-      cssProp: 'width',
-    },
-    values: {
-      compact: 'var(--_arrowSize)',
-      normal: 'var(--_arrowSize)',
-      comfort: 'var(--_arrowSize)',
-    },
-  },
-  {
-    id: 'MuiTooltip|popper|base|& .MuiTooltip-arrow|height',
-    label: 'Tooltip · popper · height',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTooltip',
-      slot: 'popper',
-      props: null,
-      nested: '& .MuiTooltip-arrow',
-      cssProp: 'height',
-    },
-    values: {
-      compact: 'calc(var(--_arrowSize) * 0.71)',
-      normal: 'calc(var(--_arrowSize) * 0.71)',
-      comfort: 'calc(var(--_arrowSize) * 0.71)',
     },
   },
   {

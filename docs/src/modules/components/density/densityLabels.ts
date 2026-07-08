@@ -259,6 +259,8 @@ export const densityLabels: Record<string, string> = {
   'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline':
     'Toolbar · paddingInline [disableGutters=false]',
   'MuiToolbar|root|variant=dense||minHeight': 'Toolbar · minHeight [variant=dense]',
+  'MuiTooltip|arrow|base||width': 'Tooltip · arrow · width',
+  'MuiTooltip|arrow|base||height': 'Tooltip · arrow · height',
   'MuiTooltip|popper|base||--_arrowSize': 'Tooltip · popper · arrow size',
   'MuiTooltip|popper|base|&[data-popper-placement*="bottom"] .MuiTooltip-arrow|marginTop':
     'Tooltip · popper · marginTop',
@@ -276,8 +278,6 @@ export const densityLabels: Record<string, string> = {
     'Tooltip · popper · width',
   'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|marginInlineEnd':
     'Tooltip · popper · marginInlineEnd',
-  'MuiTooltip|popper|base|& .MuiTooltip-arrow|width': 'Tooltip · popper · width',
-  'MuiTooltip|popper|base|& .MuiTooltip-arrow|height': 'Tooltip · popper · height',
   'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
   'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':

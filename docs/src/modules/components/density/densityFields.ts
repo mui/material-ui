@@ -150,8 +150,8 @@ export const hiddenFieldIds = new Set<string>([
   'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|height',
   'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|width',
   'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|marginInlineEnd',
-  'MuiTooltip|popper|base|& .MuiTooltip-arrow|width',
-  'MuiTooltip|popper|base|& .MuiTooltip-arrow|height',
+  'MuiTooltip|arrow|base||width',
+  'MuiTooltip|arrow|base||height',
   // Checkbox/Radio sibling-label margin compensation — derived from the padding
   // knob (calc(-2px - padding)), not independently tunable. The padding field's
   // builder re-emits them (see selectionControlPadding in buildDensityOverrides).

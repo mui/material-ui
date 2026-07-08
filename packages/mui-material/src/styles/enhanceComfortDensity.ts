@@ -106,12 +106,20 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         width: 'calc(var(--_arrowSize) * 0.71)',
         marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
       },
-      [`& .${tooltipClasses.arrow}`]: {
-        width: 'var(--_arrowSize)',
-        height: 'calc(var(--_arrowSize) * 0.71)',
-      },
     },
     'popper',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
+      // Base arrow box on its own slot (inherits --_arrowSize from the popper
+      // root); left/right placements above re-assert because master sets them
+      // at popper level.
+      width: 'var(--_arrowSize)',
+      height: 'calc(var(--_arrowSize) * 0.71)',
+    },
+    'arrow',
   );
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
