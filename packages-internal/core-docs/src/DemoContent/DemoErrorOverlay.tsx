@@ -31,9 +31,10 @@ const ErrorAlert = styled(Alert)(({ theme }) => ({
 }));
 
 /**
- * Floating alert anchored to the top edge of the preview area. Surfaces the
- * live-edit runtime error for the selected variant, reported by
- * `useDemoController` through `CodeControllerContext` and read off `useDemo().error`.
+ * Floating alert anchored to the top border of the code panel (below the toolbar,
+ * where the user is editing). Surfaces the live-edit runtime error for the selected
+ * variant, reported by `useDemoController` through `CodeControllerContext` and read
+ * off `useDemo().error`.
  */
 export function DemoErrorOverlay({ message }: { message: string | null }) {
   if (!message) {
