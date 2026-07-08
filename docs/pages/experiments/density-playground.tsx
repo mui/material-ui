@@ -97,20 +97,23 @@ import {
 import {
   buildOverrides,
   mergeOntoPreset,
-  type DensityEdit,
 } from 'docs/src/modules/components/density/buildDensityOverrides';
 import {
   themeTokenGroups,
   readThemeToken,
   setThemeToken,
-  coerceToken,
 } from 'docs/src/modules/components/density/themeTokens';
 import {
   SCALE_KEYS,
   parseMapping,
   previewText,
-  resolveValue,
 } from 'docs/src/modules/components/density/mappingValue';
+import {
+  collectDensityEdits,
+  collectThemeTokenEdits,
+} from 'docs/src/modules/components/density/collectEdits';
+import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
+import { buildExportInput } from 'docs/src/modules/components/density/exportPayload';
 import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
 
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
@@ -1921,24 +1924,9 @@ export default function DensityExperiment() {
     if (preset === 'unset') {
       return presetTheme;
     }
-    const edits: DensityEdit[] = [];
-    const seen = new Set<string>(); // a shared field (e.g. FormControlLabel) sits in two families
-    for (const group of densityGroups) {
-      for (const id of group.fields) {
-        if (seen.has(id)) {
-          continue;
-        }
-        seen.add(id);
-        const raw = deferredMapping[id] ?? '';
-        if (parseMapping(raw).state !== 'ok') {
-          continue;
-        }
-        const row = densityRow(id);
-        if (row) {
-          edits.push({ row, value: resolveValue(raw) });
-        }
-      }
-    }
+    // Shared collectors (collectEdits.ts) — the SAME path the export builder
+    // uses, so the exported file encodes exactly what the canvas shows.
+    const edits = collectDensityEdits(deferredMapping);
     let result: typeof presetTheme = presetTheme;
     if (edits.length) {
       const components = mergeOntoPreset(
@@ -1952,16 +1940,8 @@ export default function DensityExperiment() {
     // read off a `var(...)` ref by components, so those are injected as a scoped
     // CSS var on the canvas instead (see `tokenCssVars`) — the raw set here is
     // still harmless/correct for any non-var consumer.
-    for (const group of themeTokenGroups) {
-      for (const slot of group.slots) {
-        for (const knob of slot.knobs) {
-          const raw = (deferredMapping[knob.id] ?? '').trim();
-          if (!raw) {
-            continue;
-          }
-          result = setThemeToken(result, knob.path, coerceToken(raw, knob.numeric));
-        }
-      }
+    for (const edit of collectThemeTokenEdits(deferredMapping)) {
+      result = setThemeToken(result, edit.path, edit.value);
     }
     return result;
   }, [preset, presetTheme, deferredMapping]);
@@ -1976,21 +1956,12 @@ export default function DensityExperiment() {
       return undefined;
     }
     const out: Record<string, string> = {};
-    for (const group of themeTokenGroups) {
-      for (const slot of group.slots) {
-        for (const knob of slot.knobs) {
-          const raw = (deferredMapping[knob.id] ?? '').trim();
-          if (!raw) {
-            continue;
-          }
-          const match = /var\((--[\w-]+)/.exec(readThemeToken(vars, knob.path));
-          if (!match) {
-            continue; // not var-backed (typography) — applied via the theme object
-          }
-          const value = coerceToken(raw, knob.numeric);
-          out[match[1]] = typeof value === 'number' ? `${value}px` : value;
-        }
+    for (const edit of collectThemeTokenEdits(deferredMapping)) {
+      const match = /var\((--[\w-]+)/.exec(readThemeToken(vars, edit.path));
+      if (!match) {
+        continue; // not var-backed (typography) — applied via the theme object
       }
+      out[match[1]] = typeof edit.value === 'number' ? `${edit.value}px` : edit.value;
     }
     return Object.keys(out).length ? out : undefined;
   }, [preset, presetTheme, deferredMapping]);
@@ -2018,6 +1989,20 @@ export default function DensityExperiment() {
   );
 
   const resetMapping = () => setMapping({});
+
+  // Export: self-contained density.ts with all three enhancers + current edits
+  // baked in (see exportPayload/buildExportSource). Enabled regardless of preset —
+  // the file always contains all three.
+  const handleExport = () => {
+    const source = buildExportSource(buildExportInput(mapping));
+    const blob = new Blob([source], { type: 'text/typescript' });
+    const anchor = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(blob),
+      download: 'density.ts',
+    });
+    anchor.click();
+    URL.revokeObjectURL(anchor.href);
+  };
 
   return (
     <Box
@@ -2118,6 +2103,9 @@ export default function DensityExperiment() {
               </Tooltip>
             </ToggleButton>
           </ToggleButtonGroup>
+          <Button size="small" variant="outlined" onClick={handleExport} data-export-button>
+            Export density.ts
+          </Button>
         </Box>
       </Box>
 
