@@ -71,6 +71,8 @@ It works well when it comes to typography as its height is set using `em` units.
 
 {{"component": "file://./demos/typography/index.ts", "collapseToEmpty": true}}
 
+Use `variant="text"` when inferring dimensions from typography, and customize the border radius with the `sx` prop if you need a different shape while preserving typography-based sizing.
+
 But when it comes to other components, you may not want to repeat the width and
 height. In these instances, you can pass `children` and it will
 infer its width and height from them.
