@@ -1,29 +1,32 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig, transformWithEsbuild } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const MONOREPO_ROOT = path.resolve(dirname, '../..');
 
+function resolveMuiCustomMedia(code: string) {
+  return code
+    .replace(/\(--mui-breakpoint-up-xs\)/g, '(min-width: 0px)')
+    .replace(/\(--mui-breakpoint-up-sm\)/g, '(min-width: 720px)')
+    .replace(/\(--mui-breakpoint-down-sm\)/g, '(max-width: 719.95px)');
+}
+
 export default defineConfig(({ mode }) => ({
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode === 'production' ? 'production' : 'development'),
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      loader: { '.js': 'jsx' },
-    },
-  },
   plugins: [
     {
-      name: 'treat-js-files-as-jsx',
+      name: 'resolve-mui-custom-media',
       enforce: 'pre' as const,
       transform(code, id) {
-        if (/\/node_modules\//.test(id) || id.startsWith('\0') || !/.*\.js$/.test(id)) {
+        if (!id.endsWith('.css')) {
           return null;
         }
-        return transformWithEsbuild(code, id, { loader: 'jsx' });
+
+        return { code: resolveMuiCustomMedia(code), map: null };
       },
     },
     react(),
@@ -31,24 +34,8 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: [
       {
-        find: '@mui/material',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src'),
-      },
-      {
-        find: '@mui/system',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src'),
-      },
-      {
-        find: '@mui/utils',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src'),
-      },
-      {
-        find: '@mui/private-theming',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src'),
-      },
-      {
         find: '@mui/styled-engine',
-        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine-noop/src'),
+        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine-noop/build'),
       },
     ],
   },

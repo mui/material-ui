@@ -14,14 +14,12 @@ Verifies that:
 4. `className`-based overrides work alongside Emotion-generated class names.
 5. Dark mode works via `ThemeProvider`'s `colorSchemes` / `CssVarsProvider`
    by flipping `data-mui-color-scheme="dark"` on `document.documentElement`.
+6. Toolbar source CSS breakpoint rules are processed by the app CSS pipeline.
 
-### Why only Slider?
+### Components
 
-Only `Slider` is used because it is the first component converted to the
-CSS-base pattern. It serves as the comparison baseline against
-`test/noop-vite-sandbox` — same component, same visual output, different
-engine. Bundle size delta between the two sandboxes measures the Emotion
-overhead.
+The app intentionally exercises `Slider`, `Toolbar`, and `Dialog` so it mirrors
+the static/noop sandbox scenarios with the Emotion engine still enabled.
 
 ## Dev server
 

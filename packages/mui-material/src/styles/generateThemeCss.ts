@@ -1,24 +1,9 @@
 import { styleSheetsToString } from '@mui/system/cssVars';
 import createTheme, { ThemeOptions } from './createTheme';
-import generateComponentBreakpointCss, {
-  GenerateComponentBreakpointCssOptions,
-} from './generateComponentBreakpointCss';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 export interface GenerateThemeCssTheme {
   generateStyleSheets?: (() => Array<Record<string, any>>) | undefined;
-  rootSelector?: string | undefined;
-}
-
-export interface GenerateThemeCssOptions extends Pick<
-  GenerateComponentBreakpointCssOptions,
-  'descriptors'
-> {
-  /**
-   * Scope component breakpoint CSS to a nested static theme root.
-   * Theme variables should be scoped by creating the theme with the same
-   * `cssVariables.rootSelector`.
-   */
   rootSelector?: string | undefined;
 }
 
@@ -50,7 +35,6 @@ function createCssVarsTheme(options: ThemeOptions) {
  */
 export default function generateThemeCss(
   themeOrOptions: GenerateThemeCssTheme | ThemeOptions = {},
-  options: GenerateThemeCssOptions = {},
 ) {
   const theme = isTheme(themeOrOptions)
     ? themeOrOptions
@@ -63,12 +47,5 @@ export default function generateThemeCss(
     );
   }
 
-  const rootSelector = options.rootSelector ?? theme.rootSelector;
-  const themeCss = styleSheetsToString(theme.generateStyleSheets());
-  const componentBreakpointCss = generateComponentBreakpointCss(theme, {
-    rootSelector,
-    descriptors: options.descriptors,
-  });
-
-  return [themeCss, componentBreakpointCss].filter(Boolean).join('\n');
+  return styleSheetsToString(theme.generateStyleSheets());
 }

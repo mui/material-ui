@@ -5,7 +5,7 @@ Static CSS theme proof for Material UI with `@mui/styled-engine-noop`.
 This sandbox uses:
 
 - generated `src/theme.css` for root and nested theme CSS variables
-- Slider and Toolbar CSS module styles
+- app-imported component source CSS for Slider and Toolbar styles
 - standalone `useColorScheme`
 - `ThemeScope` for the nested static theme
 - `useThemeScopeProps` to bridge scope props to a portal root

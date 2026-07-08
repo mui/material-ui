@@ -404,23 +404,6 @@
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
 }
 
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .root-theme-blue .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .root-theme-blue .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .root-theme-blue .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
-}
-
 .root-theme-green {
   --mui-spacing: 8px;
   --mui-shape-borderRadius: 4px;
@@ -824,23 +807,6 @@
   --mui-overlays-22: linear-gradient(rgba(255 255 255 / 0.161), rgba(255 255 255 / 0.161));
   --mui-overlays-23: linear-gradient(rgba(255 255 255 / 0.163), rgba(255 255 255 / 0.163));
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
-}
-
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .root-theme-green .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .root-theme-green .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .root-theme-green .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
 }
 
 .root-theme-red {
@@ -1248,23 +1214,6 @@
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
 }
 
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .root-theme-red .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .root-theme-red .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .root-theme-red .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
-}
-
 .inner-theme-blue {
   --mui-spacing: 8px;
   --mui-shape-borderRadius: 4px;
@@ -1668,23 +1617,6 @@
   --mui-overlays-22: linear-gradient(rgba(255 255 255 / 0.161), rgba(255 255 255 / 0.161));
   --mui-overlays-23: linear-gradient(rgba(255 255 255 / 0.163), rgba(255 255 255 / 0.163));
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
-}
-
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .inner-theme-blue .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .inner-theme-blue .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .inner-theme-blue .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
 }
 
 .inner-theme-green {
@@ -2092,23 +2024,6 @@
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
 }
 
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .inner-theme-green .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .inner-theme-green .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .inner-theme-green .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
-}
-
 .inner-theme-red {
   --mui-spacing: 8px;
   --mui-shape-borderRadius: 4px;
@@ -2512,21 +2427,4 @@
   --mui-overlays-22: linear-gradient(rgba(255 255 255 / 0.161), rgba(255 255 255 / 0.161));
   --mui-overlays-23: linear-gradient(rgba(255 255 255 / 0.163), rgba(255 255 255 / 0.163));
   --mui-overlays-24: linear-gradient(rgba(255 255 255 / 0.165), rgba(255 255 255 / 0.165));
-}
-
-@layer mui.components {
-@media (min-width:0px) and (orientation: landscape) {
-  .inner-theme-red .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 48px;
-  }
-}
-@media (min-width:720px) {
-  .inner-theme-red .MuiToolbar-root.MuiToolbar-gutters {
-    --MuiToolbar-gutters-paddingLeft: calc(3 * var(--mui-spacing, 8px));
-    --MuiToolbar-gutters-paddingRight: calc(3 * var(--mui-spacing, 8px));
-  }
-  .inner-theme-red .MuiToolbar-root.MuiToolbar-regular {
-    --MuiToolbar-regular-minHeight: 64px;
-  }
-}
 }

@@ -44,12 +44,12 @@ function createScopedTheme(rootSelector: string, colorSchemes: Record<string, an
 
 const rootThemeCss = themeOptions.map(({ name, colorSchemes }) => {
   const rootSelector = `.root-theme-${name}`;
-  return generateThemeCss(createScopedTheme(rootSelector, colorSchemes), { rootSelector });
+  return generateThemeCss(createScopedTheme(rootSelector, colorSchemes));
 });
 
 const nestedThemeCss = themeOptions.map(({ name, colorSchemes }) => {
   const rootSelector = `.inner-theme-${name}`;
-  return generateThemeCss(createScopedTheme(rootSelector, colorSchemes), { rootSelector });
+  return generateThemeCss(createScopedTheme(rootSelector, colorSchemes));
 });
 
 const css = [

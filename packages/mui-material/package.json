@@ -25,8 +25,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --tsgo --flat --copy \"src/**/*.css\" --copy \"default-theme.css\"",
+    "build": "pnpm build:theme-css && pnpm build:css && code-infra build --tsgo --flat --copy \"src/**/*.css\" --copy \"default-theme.css\"",
     "build:theme-css": "esbuild scripts/buildDefaultThemeCss.mts --bundle --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildDefaultThemeCss.mjs && OUTFILE=default-theme.css node /tmp/buildDefaultThemeCss.mjs",
+    "build:css": "tsx scripts/buildCssArtifacts.mts",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsgo -p tsconfig.json",
@@ -100,6 +101,9 @@
   },
   "exports": {
     ".": "./src/index.js",
+    "./styles": "./src/styles/index.js",
+    "./components.css": "./src/components.css",
+    "./components-source.css": "./src/components-source.css",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",

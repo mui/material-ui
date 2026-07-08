@@ -3,6 +3,7 @@
  *
  * Mirrors the Emotion sandbox scenarios, but there is no provider doing
  * runtime style injection. Theme switching swaps generated scope classes.
+ * Component source CSS and generated theme CSS are both imported by the app.
  */
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
@@ -10,6 +11,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
 import { useColorScheme } from '@mui/material/colorScheme';
 import { ThemeScope, useThemeScopeProps } from '@mui/material/styles';
+import '@mui/material/components-source.css';
 import './theme.css';
 
 const themeNames = ['Blue (default)', 'Green', 'Red'];

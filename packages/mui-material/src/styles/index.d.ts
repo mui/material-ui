@@ -8,11 +8,7 @@ export {
   Theme,
   CssThemeVariables,
 } from './createTheme';
-export {
-  default as generateThemeCss,
-  GenerateThemeCssOptions,
-  GenerateThemeCssTheme,
-} from './generateThemeCss';
+export { default as generateThemeCss, GenerateThemeCssTheme } from './generateThemeCss';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';

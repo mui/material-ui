@@ -5,12 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { registerBreakpointStyles } from '../styles/BreakpointStylesRegistry';
 import { getToolbarUtilityClass } from './toolbarClasses';
-import cssModules from './Toolbar.module.css';
-import toolbarBreakpointStyles from './Toolbar.breakpoints';
-
-registerBreakpointStyles('MuiToolbar', toolbarBreakpointStyles);
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableGutters, variant } = ownerState;
@@ -19,7 +14,7 @@ const useUtilityClasses = (ownerState) => {
     root: ['root', !disableGutters && 'gutters', variant],
   };
 
-  return composeClasses(slots, getToolbarUtilityClass, classes, cssModules);
+  return composeClasses(slots, getToolbarUtilityClass, classes);
 };
 
 const ToolbarRoot = styled('div', {
