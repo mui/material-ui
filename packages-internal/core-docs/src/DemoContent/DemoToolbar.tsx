@@ -264,8 +264,6 @@ export interface DemoToolbarProps {
    * omitted entirely rather than shown disabled.
    */
   jsSourceAnchor?: string;
-  /** Deploy permalinks shown only on staging / PR-preview builds. `null` hides them. */
-  devLinks?: DemoDeploymentLinks | null;
 }
 
 /**
@@ -300,7 +298,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
     githubLocation,
     tsSourceAnchor,
     jsSourceAnchor,
-    devLinks,
   } = props;
   const t = useTranslate();
 
@@ -588,64 +585,6 @@ export function DemoToolbar(props: DemoToolbarProps) {
           >
             {t('copySourceLinkTS')}
           </MenuItem>
-          {devLinks
-            ? [
-                devLinks.pullRequest ? (
-                  <MenuItem
-                    key="pr-preview"
-                    component="a"
-                    href={devLinks.pullRequest}
-                    target="_blank"
-                    rel="noopener nofollow"
-                    onClick={handleMoreClose}
-                    data-ga-event-category="demo"
-                    data-ga-event-label={gaLabel}
-                    data-ga-event-action="link-deploy-preview"
-                  >
-                    demo on PR
-                  </MenuItem>
-                ) : null,
-                <MenuItem
-                  key="next"
-                  component="a"
-                  href={devLinks.next}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={gaLabel}
-                  data-ga-event-action="link-next"
-                >
-                  demo on next
-                </MenuItem>,
-                <MenuItem
-                  key="permalink"
-                  component="a"
-                  href={devLinks.permalink}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={gaLabel}
-                  data-ga-event-action="permalink"
-                >
-                  demo permalink
-                </MenuItem>,
-                <MenuItem
-                  key="master"
-                  component="a"
-                  href={devLinks.master}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  onClick={handleMoreClose}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={gaLabel}
-                  data-ga-event-action="link-master"
-                >
-                  demo on master
-                </MenuItem>,
-              ]
-            : null}
         </Menu>
       </Box>
       <Snackbar
