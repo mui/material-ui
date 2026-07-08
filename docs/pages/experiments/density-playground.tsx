@@ -1791,7 +1791,6 @@ interface FamilyKnobsProps {
   mapping: Record<string, string>;
   preset: Preset;
   scalePx: Record<string, string> | null;
-  disabled: boolean;
   setFields: (ids: string[], value: string) => void;
 }
 
@@ -1801,7 +1800,7 @@ interface FamilyKnobsProps {
 // placeholders and previews all derive from those three).
 const FamilyKnobs = React.memo(
   function FamilyKnobs(props: FamilyKnobsProps) {
-    const { familyKey, mapping, preset, scalePx, disabled, setFields } = props;
+    const { familyKey, mapping, preset, scalePx, setFields } = props;
     return (
       <React.Fragment>
         {(familyKnobTree.get(familyKey) ?? []).map(({ component, slots }) => (
@@ -1832,7 +1831,6 @@ const FamilyKnobs = React.memo(
                         // Placeholder = what you'd TYPE: var refs shortened to bare
                         // step names; override-only knobs (no preset default) stay blank.
                         placeholder={shortenDensityVars(canon)}
-                        disabled={disabled}
                         // error is display-only; the commit still stores the draft
                         // (the apply path skips rows that don't parse).
                         computeHelper={(draft) => {
@@ -1859,7 +1857,6 @@ const FamilyKnobs = React.memo(
     prev.familyKey === next.familyKey &&
     prev.preset === next.preset &&
     prev.scalePx === next.scalePx &&
-    prev.disabled === next.disabled &&
     prev.setFields === next.setFields &&
     (familyReadIds.get(next.familyKey) ?? []).every((id) => prev.mapping[id] === next.mapping[id]),
 );
@@ -2196,75 +2193,62 @@ export default function DensityExperiment() {
                 </Select>
               </FormControl>
 
-              <Box
-                component="section"
-                sx={{
-                  px: 3,
-                  pb: 3,
-                  opacity: mappingEnabled ? 1 : 0.5,
-                }}
-              >
-                <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
-                  Vars mapping
-                </Typography>
-                {!mappingEnabled && (
-                  <Typography variant="caption" color="text.secondary">
-                    ⓘ pick a preset to enable steps
+              {/* No preset → no knobs at all: a banner asks for a preset instead
+                  of rendering a disabled tree. */}
+              {!mappingEnabled && (
+                <Alert severity="info" data-density-banner sx={{ mx: 3, mb: 3 }}>
+                  Select a density preset above to see the knobs.
+                </Alert>
+              )}
+              {mappingEnabled && (
+                <Box component="section" sx={{ px: 3, pb: 3 }}>
+                  <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
+                    Vars mapping
                   </Typography>
-                )}
-                {mappingEnabled && scalePx && (
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    component="p"
-                    data-legend
-                    sx={{ mt: 0.5 }}
-                  >
-                    {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
-                  </Typography>
-                )}
-                {visibleGroups.map((group) => (
-                  <FamilyKnobs
-                    key={group.key}
-                    familyKey={group.key}
-                    mapping={mapping}
-                    preset={preset}
-                    scalePx={scalePx}
-                    disabled={!mappingEnabled}
-                    setFields={setFields}
-                  />
-                ))}
-                <Button
-                  size="small"
-                  variant="outlined"
-                  onClick={resetMapping}
-                  disabled={!mappingEnabled}
-                  sx={{ mt: 2 }}
-                >
-                  Reset mapping
-                </Button>
-              </Box>
+                  {scalePx && (
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      component="p"
+                      data-legend
+                      sx={{ mt: 0.5 }}
+                    >
+                      {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
+                    </Typography>
+                  )}
+                  {visibleGroups.map((group) => (
+                    <FamilyKnobs
+                      key={group.key}
+                      familyKey={group.key}
+                      mapping={mapping}
+                      preset={preset}
+                      scalePx={scalePx}
+                      setFields={setFields}
+                    />
+                  ))}
+                  <Button size="small" variant="outlined" onClick={resetMapping} sx={{ mt: 2 }}>
+                    Reset mapping
+                  </Button>
+                </Box>
+              )}
             </React.Fragment>
           )}
 
           {/* Token tabs — theme.typography / theme.shape knobs (same edit path: mapping → theme). */}
+          {tab !== 'components' && !mappingEnabled && (
+            <Alert severity="info" data-density-banner sx={{ mx: 3, mt: 3 }}>
+              Select a density preset above to see the knobs.
+            </Alert>
+          )}
           {tab !== 'components' &&
+            mappingEnabled &&
             (() => {
               const group = themeTokenGroups.find((g) => g.key === TAB_TOKEN_GROUP[tab])!;
               return (
-                <Box
-                  component="section"
-                  data-token-group={group.key}
-                  sx={{ px: 3, pt: 3, pb: 3, opacity: mappingEnabled ? 1 : 0.5 }}
-                >
+                <Box component="section" data-token-group={group.key} sx={{ px: 3, pt: 3, pb: 3 }}>
                   <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
                     {group.key}
                   </Typography>
-                  {!mappingEnabled && (
-                    <Typography variant="caption" color="text.secondary">
-                      ⓘ pick a preset to enable edits
-                    </Typography>
-                  )}
                   {group.slots.map((slot) => (
                     <Box
                       key={slot.key || group.key}
@@ -2285,8 +2269,7 @@ export default function DensityExperiment() {
                           // Same placeholder/helper rules as the mapping knobs:
                           // placeholder = what you'd type (vars shortened, blank when
                           // no default); helper = the resolved value of draft-or-default.
-                          const canon =
-                            preset === 'unset' ? '' : readThemeToken(presetTheme, knob.path);
+                          const canon = readThemeToken(presetTheme, knob.path);
                           return (
                             <KnobInput
                               key={knob.id}
@@ -2295,7 +2278,6 @@ export default function DensityExperiment() {
                               label={knob.label}
                               value={mapping[knob.id] ?? ''}
                               placeholder={shortenDensityVars(canon)}
-                              disabled={!mappingEnabled}
                               computeHelper={(draft) => {
                                 const parsed = parseMapping(draft);
                                 if (parsed.state === 'error') {
