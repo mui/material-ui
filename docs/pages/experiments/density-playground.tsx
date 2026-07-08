@@ -115,9 +115,11 @@ import {
   parseMapping,
   previewText,
   shortenDensityVars,
+  tokenize,
 } from 'docs/src/modules/components/density/mappingValue';
 import {
   collectDensityEdits,
+  collectScaleEdits,
   collectThemeTokenEdits,
 } from 'docs/src/modules/components/density/collectEdits';
 import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
@@ -131,18 +133,21 @@ const VARIANTS = ['text', 'outlined', 'contained'] as const;
 type Preset = (typeof PRESETS)[number];
 
 // Layout tabs — lowercase ids are the URL param values, decoupled from labels.
-type TabKey = 'components' | 'typography' | 'radius';
+type TabKey = 'density' | 'components' | 'typography' | 'radius';
 // Radius is hidden for now — its wiring (TAB_TOKEN_GROUP, preview, token knobs)
 // stays intact; re-enable by adding it back here. Hidden tabs are also invalid
 // as `?tab=` values (they fall back to the default).
-const VISIBLE_TABS: readonly TabKey[] = ['components', 'typography'];
+const VISIBLE_TABS: readonly TabKey[] = ['density', 'components', 'typography'];
 const TAB_LABEL: Record<TabKey, string> = {
+  density: 'Density',
   components: 'Components',
   typography: 'Typography',
   radius: 'Radius',
 };
-// Token tabs → their themeTokenGroups key.
-const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
+// Token tabs (theme.typography / theme.shape knobs) → their themeTokenGroups key.
+// Density is NOT a token tab — its knobs edit the preset's scale steps.
+type TokenTabKey = 'typography' | 'radius';
+const TAB_TOKEN_GROUP: Record<TokenTabKey, string> = {
   typography: 'Typography',
   radius: 'Border Radius',
 };
@@ -1675,7 +1680,7 @@ function TypographyMatrix() {
 }
 
 // Theme-token canvas previews, keyed by layout tab id.
-const THEME_TOKEN_PREVIEW: Record<Exclude<TabKey, 'components'>, () => React.ReactNode> = {
+const THEME_TOKEN_PREVIEW: Record<TokenTabKey, () => React.ReactNode> = {
   typography: () => (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
       <TypographyMatrix />
@@ -2097,9 +2102,16 @@ export default function DensityExperiment() {
   }, [preset, tab, selection]);
 
   const mappingEnabled = preset !== 'unset';
+  // Theme-token tab (typography/radius) or null — the density tab is scale knobs,
+  // the components tab is mapping knobs.
+  const tokenTab: TokenTabKey | null = tab === 'typography' || tab === 'radius' ? tab : null;
   const visibleGroups =
     selection === 'All' ? densityGroups : densityGroups.filter((g) => g.key === selection);
   const visibleComponents = visibleGroups.map((g) => g.key) as ComponentName[];
+  // Density tab always shows the full canvas (same as the component selector's
+  // "All") — scale steps reflow everything, so the selector doesn't apply.
+  const canvasComponents =
+    tab === 'density' ? (densityGroups.map((g) => g.key) as ComponentName[]) : visibleComponents;
 
   // Preset theme (no overrides) — drives placeholders/legend and is the base the
   // user overrides append onto.
@@ -2164,15 +2176,39 @@ export default function DensityExperiment() {
       }
       out[match[1]] = typeof edit.value === 'number' ? `${edit.value}px` : edit.value;
     }
+    // Scale-step overrides (Density tab) — re-declare the step var on the canvas;
+    // every emitted var(--mui-density-*) consumer below inherits the override.
+    for (const edit of collectScaleEdits(deferredMapping)) {
+      out[`--mui-density-${edit.key}`] = edit.value;
+    }
     return Object.keys(out).length ? out : undefined;
   }, [preset, presetTheme, deferredMapping]);
 
-  // Active scale in px straight off the enhanced theme — single source of truth
-  // for the legend + preview, so it can't drift from what the preset applied.
-  const scalePx =
+  // The preset's own scale in px, straight off the enhanced theme — placeholder
+  // source for the Density-tab knobs (mirrors what the preset ships).
+  const presetScalePx =
     preset === 'unset'
       ? null
       : (presetTheme as unknown as { density: Record<string, string> }).density;
+
+  // EFFECTIVE scale (preset ⊕ scale-step overrides) — single source of truth for
+  // the legend + every helper preview, so `xs` resolves to what the canvas
+  // actually applies. Committed mapping, not deferred: sidebar feedback is instant.
+  const scalePx = React.useMemo(() => {
+    if (!presetScalePx) {
+      return null;
+    }
+    const edits = collectScaleEdits(mapping);
+    if (!edits.length) {
+      return presetScalePx;
+    }
+    const out = { ...presetScalePx };
+    for (const edit of edits) {
+      // A step alias (`var(--mui-density-xs)`) resolves against the preset's own px.
+      out[edit.key] = previewText(edit.value, presetScalePx);
+    }
+    return out;
+  }, [presetScalePx, mapping]);
 
   // Write one value to every id an entry drives (a plain field writes one, a
   // virtual knob writes all its members) — into the ACTIVE preset's workspace.
@@ -2425,10 +2461,51 @@ export default function DensityExperiment() {
               Select a density preset above to see the knobs.
             </Alert>
           )}
-          {tab !== 'components' &&
+
+          {/* Density tab — the preset's scale steps. An override re-declares the
+              step var on the canvas AND replaces the step in the exported :root
+              block (same collectScaleEdits path — export = canvas). */}
+          {tab === 'density' && mappingEnabled && presetScalePx && (
+            <Box component="section" data-token-group="Density scale" sx={{ px: 3, pt: 3, pb: 3 }}>
+              <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
+                Scale
+              </Typography>
+              <Typography variant="caption" color="text.secondary" component="p" sx={{ mt: 0.5 }}>
+                Each step feeds var(--mui-density-*) — every spacing knob mapped to it reflows.
+              </Typography>
+              <Stack spacing={1.5} sx={{ mt: 1.5 }}>
+                {SCALE_KEYS.map((key) => {
+                  const canon = presetScalePx[key];
+                  return (
+                    <KnobInput
+                      key={`${preset}:${key}`}
+                      id={`density.${key}`}
+                      idAttr="data-token-field"
+                      label={key}
+                      value={mapping[`density.${key}`] ?? ''}
+                      placeholder={canon}
+                      computeHelper={(draft) => {
+                        const tokens = tokenize(draft);
+                        if (tokens.length > 1) {
+                          return { helper: 'one value per step', error: true };
+                        }
+                        if (tokens[0] === key) {
+                          return { helper: 'step cannot reference itself', error: true };
+                        }
+                        return { helper: previewText(draft || canon, presetScalePx) };
+                      }}
+                      onCommit={(v) => setFields([`density.${key}`], v)}
+                    />
+                  );
+                })}
+              </Stack>
+            </Box>
+          )}
+
+          {tokenTab &&
             mappingEnabled &&
             (() => {
-              const group = themeTokenGroups.find((g) => g.key === TAB_TOKEN_GROUP[tab])!;
+              const group = themeTokenGroups.find((g) => g.key === TAB_TOKEN_GROUP[tokenTab])!;
               return (
                 <Box component="section" data-token-group={group.key} sx={{ px: 3, pt: 3, pb: 3 }}>
                   <Typography component="h2" sx={{ fontWeight: 'medium', fontSize: 14 }}>
@@ -2515,16 +2592,16 @@ export default function DensityExperiment() {
             sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
           >
             <Stack spacing={6}>
-              {tab !== 'components' && (
-                <Box data-token-preview={tab}>
+              {tokenTab && (
+                <Box data-token-preview={tokenTab}>
                   <Typography variant="overline" color="text.secondary" component="div">
-                    {TAB_TOKEN_GROUP[tab]} — theme token preview
+                    {TAB_TOKEN_GROUP[tokenTab]} — theme token preview
                   </Typography>
-                  {THEME_TOKEN_PREVIEW[tab]()}
+                  {THEME_TOKEN_PREVIEW[tokenTab]()}
                 </Box>
               )}
-              {tab === 'components' &&
-                visibleComponents.map((comp) => {
+              {!tokenTab &&
+                canvasComponents.map((comp) => {
                   const Def = COMPONENT_DEFS[comp];
                   return (
                     <Box key={comp} data-canvas-component={comp}>

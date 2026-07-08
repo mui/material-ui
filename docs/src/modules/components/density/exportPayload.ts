@@ -5,7 +5,7 @@ import {
   enhanceComfortDensity,
 } from '@mui/material/styles';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
-import { collectDensityEdits, collectThemeTokenEdits } from './collectEdits';
+import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
@@ -106,11 +106,17 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
         shape[edit.path[1]] = { [USER_VALUE_KEY]: edit.value };
       }
     }
+    // Scale-step overrides from the Density tab replace the step's px in place
+    // (the :root block), wrapped so the serializer tags them `// playground edit`.
+    const scale: ExportPresetPayload['scale'] = Object.fromEntries(
+      Object.entries(enhanced.density).map(([key, px]) => [`--mui-density-${key}`, px]),
+    );
+    for (const edit of collectScaleEdits(workspace)) {
+      scale[`--mui-density-${edit.key}`] = { [USER_VALUE_KEY]: edit.value };
+    }
     return {
       name,
-      scale: Object.fromEntries(
-        Object.entries(enhanced.density).map(([key, px]) => [`--mui-density-${key}`, px]),
-      ),
+      scale,
       components: flattenSlots(mergeOntoPreset(presetComponents, userLayer)),
       typography,
       shape,

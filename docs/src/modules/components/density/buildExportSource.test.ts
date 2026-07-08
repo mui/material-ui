@@ -23,6 +23,7 @@ const EDITS = {
     'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'sm',
   },
   themeTokens: { 'typography.h1.fontSize': '5rem', 'shape.borderRadius': '2' },
+  scaleStep: { 'density.md': '10px' },
 };
 
 function transpile(source: string) {
@@ -103,6 +104,35 @@ describe('buildExportSource', () => {
     expect(src).to.contain('marginBottom');
     expect(src).to.contain('marginTop');
     expect(transpile(src).diagnostics).to.deep.equal([]);
+  });
+
+  it('scale-step edits replace the step in the :root block, per preset, tagged', () => {
+    const src = buildExportSource(buildExportInput(workspaces(EDITS.scaleStep)));
+    // compact md replaced in place + annotated; other steps keep the baseline
+    expect(src).to.contain("'--mui-density-md': '10px', // playground edit");
+    expect(src).to.contain("'--mui-density-xxs': '2px'");
+    // exactly one preset carries the edit (compact's workspace only)
+    expect(src.match(/'10px', \/\/ playground edit/g)).to.have.length(1);
+    // step alias resolves to its var ref
+    const alias = buildExportSource(buildExportInput(workspaces({ 'density.md': 'xs' })));
+    expect(alias).to.contain("'--mui-density-md': 'var(--mui-density-xs)', // playground edit");
+    // invalid inputs are inert: multi-token and self-referencing steps keep baseline
+    const invalid = buildExportSource(
+      buildExportInput(workspaces({ 'density.md': 'xs md', 'density.lg': 'lg' })),
+    );
+    expect(invalid).not.to.contain(', // playground edit');
+    // runtime: the edited scale flows into the vars-theme stylesheet channel
+    const { enhanceCompactDensity, enhanceNormalDensity } = evaluate(src);
+    const compactTheme = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    const compactSheet = compactTheme
+      .generateStyleSheets()
+      .find((sheet: any) => sheet[':root']?.['--mui-density-md']);
+    expect(compactSheet[':root']['--mui-density-md']).to.equal('10px');
+    const normalTheme = enhanceNormalDensity(createTheme({ cssVariables: true }));
+    const normalSheet = normalTheme
+      .generateStyleSheets()
+      .find((sheet: any) => sheet[':root']?.['--mui-density-md']);
+    expect(normalSheet[':root']['--mui-density-md']).not.to.equal('10px');
   });
 
   it('typography + shape edits land in their preset payload, tagged as playground edits', () => {

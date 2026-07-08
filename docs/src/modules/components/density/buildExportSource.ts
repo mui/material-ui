@@ -9,8 +9,8 @@
 
 export interface ExportPresetPayload {
   name: 'compact' | 'normal' | 'comfort';
-  /** the :root block — { '--mui-density-xxs': '2px', … } */
-  scale: Record<string, string>;
+  /** the :root block — { '--mui-density-xxs': '2px', … }; user-edited steps carry a USER_VALUE_KEY wrapper */
+  scale: Record<string, unknown>;
   /** baseline ⊕ THIS preset's edits, flat-array slots, MuiCssBaseline excluded (scale is separate) */
   components: Record<string, { styleOverrides: Record<string, unknown> }>;
   /** the preset's own type reflow ⊕ this preset's user typography edits; {} when none */
