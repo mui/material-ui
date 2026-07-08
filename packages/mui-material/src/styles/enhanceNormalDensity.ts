@@ -1,5 +1,6 @@
 import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
+import chipClasses from '../Chip/chipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
@@ -8,8 +9,6 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { listItemIconClasses } from '../ListItemIcon';
-import { private_chipVars } from '../Chip/chipVars';
-import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
 import { inputBaseClasses } from '../InputBase';
 import type { TabProps } from '../Tab';
 import type { ListProps } from '../List';
@@ -123,18 +122,62 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     'arrow',
   );
+  addRootOverride(enhanced.components, 'MuiInputLabel', {
+    // Floating-label Y — master ships literal translate Ys (component untouched).
+    // Re-emit the transform per state so the Y can come from a preset-closed var:
+    //   --_restY   — written for EVERY rest state by the input-side broadcasts
+    //                below (OutlinedInput/FilledInput/Input `:has` selectors,
+    //                per size) → consumed BARE, no fallback: a missing writer is
+    //                a bug and must break visibly.
+    //   --_shrinkY — written ONLY by the FilledInput broadcasts → consumed bare
+    //                in the filled-shrink state; outlined/standard shrink have NO
+    //                density writer, so they re-state master's literal directly.
+    // Size-small variants collapse: size differentiation lives in the writers.
+    // Variant ORDER mirrors master's (later wins at equal specificity). The
+    // literal shrink rules are NOT redundant with master's: the rest rules here
+    // (which must exist to consume the var) also match shrunk labels and land
+    // AFTER master's shrink rules in the cascade — each shrink state must be
+    // re-asserted in this layer or shrunk labels would show the rest transform.
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { formControl?: object | undefined } }) =>
+          Boolean(ownerState.formControl),
+        style: { transform: 'translate(0, var(--_restY)) scale(1)' },
+      },
+      {
+        props: { shrink: true },
+        style: { transform: 'translate(0, -1.5px) scale(0.75)' },
+      },
+      {
+        props: { variant: 'filled' },
+        style: { transform: 'translate(12px, var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'filled', shrink: true },
+        style: { transform: 'translate(12px, var(--_shrinkY)) scale(0.75)' },
+      },
+      {
+        props: { variant: 'outlined' },
+        style: { transform: 'translate(14px, var(--_restY)) scale(1)' },
+      },
+      {
+        props: { variant: 'outlined', shrink: true },
+        style: { transform: 'translate(14px, -9px) scale(0.75)' },
+      },
+    ],
+  });
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
     [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.md },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      [private_inputLabelVars.restY]: `calc(var(--_outlinedInputPadBlock) - 0.5px)`,
+      '--_restY': `calc(var(--_outlinedInputPadBlock) - 0.5px)`,
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            [private_inputLabelVars.restY]: `calc(var(--_outlinedInputPadBlock) + 0.5px)`,
+            '--_restY': `calc(var(--_outlinedInputPadBlock) + 0.5px)`,
           },
           [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.sm },
         },
@@ -217,8 +260,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       '--_filledInputPadBottom': d.sm,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      [private_inputLabelVars.restY]: `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-      [private_inputLabelVars.shrinkY]: '7px',
+      '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+      '--_shrinkY': '7px',
     },
     variants: [
       {
@@ -229,8 +272,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
             '--_filledInputPadBottom': '2px',
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            [private_inputLabelVars.restY]: `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-            [private_inputLabelVars.shrinkY]: '4px',
+            '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
+            '--_shrinkY': '4px',
           },
         },
       },
@@ -297,7 +340,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       '--_inputMarginTop': '16px',
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      [private_inputLabelVars.restY]: `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xs}) + var(--_inputPadBottom, ${d.xs})) / 2)`,
+      '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xs}) + var(--_inputPadBottom, ${d.xs})) / 2)`,
     },
     [`label + &, .${inputLabelClasses.root} + &`]: {
       marginTop: `var(--_inputMarginTop, 16px)`,
@@ -311,7 +354,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
             '--_inputPadBottom': `calc(${d.xxs} - 1px)`,
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            [private_inputLabelVars.restY]: `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xxs}) + var(--_inputPadBottom, ${d.xxs})) / 2)`,
+            '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xxs}) + var(--_inputPadBottom, ${d.xxs})) / 2)`,
           },
         },
       },
@@ -714,8 +757,38 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   // Height (raw px) drives avatar/icon/deleteIcon via calc off `--_height`.
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
-      { props: { size: 'medium' }, style: { [private_chipVars.height]: '32px' } },
-      { props: { size: 'small' }, style: { [private_chipVars.height]: '24px' } },
+      {
+        props: { size: 'medium' },
+        style: {
+          // Box height + child dims derive from ONE preset-local var; master
+          // ships literal px on these same selectors (component untouched, these
+          // later same-specificity rules win). Insets mirror master's ratios:
+          // avatar/icon = height - 8, deleteIcon = height - 10 (master 32/24/-/22).
+          '--_height': '32px',
+          height: 'var(--_height)',
+          [`& .${chipClasses.avatar}`]: {
+            width: 'calc(var(--_height) - 8px)',
+            height: 'calc(var(--_height) - 8px)',
+          },
+          [`& .${chipClasses.icon}`]: { fontSize: 'calc(var(--_height) - 8px)' },
+          [`& .${chipClasses.deleteIcon}`]: { fontSize: 'calc(var(--_height) - 10px)' },
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          // Small insets mirror master's: avatar/icon = height - 6, delete = height - 8
+          // (master 24/18/18/16).
+          '--_height': '24px',
+          height: 'var(--_height)',
+          [`& .${chipClasses.avatar}`]: {
+            width: 'calc(var(--_height) - 6px)',
+            height: 'calc(var(--_height) - 6px)',
+          },
+          [`& .${chipClasses.icon}`]: { fontSize: 'calc(var(--_height) - 6px)' },
+          [`& .${chipClasses.deleteIcon}`]: { fontSize: 'calc(var(--_height) - 8px)' },
+        },
+      },
     ],
   });
   // Label inline padding = density steps, unified per size on the label slot.

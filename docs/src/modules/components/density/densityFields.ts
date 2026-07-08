@@ -25,6 +25,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiAutocomplete: 'Autocomplete',
   MuiTooltip: 'Tooltip',
   MuiOutlinedInput: 'TextField',
+  MuiInputLabel: 'TextField',
   MuiInputAdornment: 'TextField',
   MuiFilledInput: 'TextField',
   MuiInputBase: 'TextField',
@@ -139,6 +140,28 @@ export const hiddenFieldIds = new Set<string>([
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
+  // Chip box/child dims — derived from the per-size --_height var (calc leaves
+  // emitted by the presets against master selectors); the var rows are the knobs.
+  'MuiChip|root|size=medium||height',
+  'MuiChip|root|size=medium|& .MuiChip-avatar|width',
+  'MuiChip|root|size=medium|& .MuiChip-avatar|height',
+  'MuiChip|root|size=medium|& .MuiChip-icon|fontSize',
+  'MuiChip|root|size=medium|& .MuiChip-deleteIcon|fontSize',
+  'MuiChip|root|size=small||height',
+  'MuiChip|root|size=small|& .MuiChip-avatar|width',
+  'MuiChip|root|size=small|& .MuiChip-avatar|height',
+  'MuiChip|root|size=small|& .MuiChip-icon|fontSize',
+  'MuiChip|root|size=small|& .MuiChip-deleteIcon|fontSize',
+  // InputLabel floating-Y transforms — master's transform matrix re-emitted so
+  // the Y comes from the preset-closed --_restY/--_shrinkY vars (NO fallbacks —
+  // a missing writer must break visibly); driven by the OutlinedInput/
+  // FilledInput/Input pad knobs (the :has broadcasts), not independently tunable.
+  'MuiInputLabel|root|fn:1u4zrm||transform',
+  'MuiInputLabel|root|shrink=true,variant=filled||transform',
+  'MuiInputLabel|root|shrink=true,variant=outlined||transform',
+  'MuiInputLabel|root|shrink=true||transform',
+  'MuiInputLabel|root|variant=filled||transform',
+  'MuiInputLabel|root|variant=outlined||transform',
   // Tooltip arrow geometry — derived from the popper-slot --_arrowSize var
   // (calc leaves emitted by the presets against master selectors), not
   // independently tunable. The var row is the knob.

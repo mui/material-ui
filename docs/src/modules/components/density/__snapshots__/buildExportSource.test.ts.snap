@@ -201,10 +201,70 @@ const compact = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
-            '& .MuiTooltip-arrow': {
-              width: 'var(--_arrowSize)',
-              height: 'calc(var(--_arrowSize) * 0.71)',
-            },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(12px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(12px, var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(14px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -1235,6 +1295,17 @@ const compact = {
                 },
                 style: {
                   '--_height': '28px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 8px)',
+                    height: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 10px)',
+                  },
                 },
               },
               {
@@ -1243,6 +1314,17 @@ const compact = {
                 },
                 style: {
                   '--_height': '20px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 6px)',
+                    height: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
                 },
               },
             ],
@@ -1564,10 +1646,70 @@ const normal = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
-            '& .MuiTooltip-arrow': {
-              width: 'var(--_arrowSize)',
-              height: 'calc(var(--_arrowSize) * 0.71)',
-            },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(12px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(12px, var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(14px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -2600,6 +2742,17 @@ const normal = {
                 },
                 style: {
                   '--_height': '32px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 8px)',
+                    height: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 10px)',
+                  },
                 },
               },
               {
@@ -2608,6 +2761,17 @@ const normal = {
                 },
                 style: {
                   '--_height': '24px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 6px)',
+                    height: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
                 },
               },
             ],
@@ -2848,10 +3012,70 @@ const comfort = {
               width: 'calc(var(--_arrowSize) * 0.71)',
               marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
             },
-            '& .MuiTooltip-arrow': {
-              width: 'var(--_arrowSize)',
-              height: 'calc(var(--_arrowSize) * 0.71)',
-            },
+          },
+        ],
+        arrow: [
+          {
+            width: 'var(--_arrowSize)',
+            height: 'calc(var(--_arrowSize) * 0.71)',
+          },
+        ],
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: ({ ownerState }) => Boolean(ownerState.formControl),
+                style: {
+                  transform: 'translate(0, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(0, -1.5px) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                },
+                style: {
+                  transform: 'translate(12px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'filled',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(12px, var(--_shrinkY)) scale(0.75)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                },
+                style: {
+                  transform: 'translate(14px, var(--_restY)) scale(1)',
+                },
+              },
+              {
+                props: {
+                  variant: 'outlined',
+                  shrink: true,
+                },
+                style: {
+                  transform: 'translate(14px, -9px) scale(0.75)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -3884,6 +4108,17 @@ const comfort = {
                 },
                 style: {
                   '--_height': '36px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 8px)',
+                    height: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 10px)',
+                  },
                 },
               },
               {
@@ -3892,6 +4127,17 @@ const comfort = {
                 },
                 style: {
                   '--_height': '28px',
+                  height: 'var(--_height)',
+                  '& .MuiChip-avatar': {
+                    width: 'calc(var(--_height) - 6px)',
+                    height: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-icon': {
+                    fontSize: 'calc(var(--_height) - 6px)',
+                  },
+                  '& .MuiChip-deleteIcon': {
+                    fontSize: 'calc(var(--_height) - 8px)',
+                  },
                 },
               },
             ],

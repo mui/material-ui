@@ -73,10 +73,7 @@ const ChipRoot = styled('div', {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      // Calc-coupled: avatar/icon/deleteIcon dims derive from `--_height`
-      // (default = master medium 32px) so density scales them with the box.
-      '--_height': '32px',
-      height: 'var(--_height)',
+      height: 32,
       lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
@@ -99,20 +96,19 @@ const ChipRoot = styled('div', {
       [`& .${chipClasses.avatar}`]: {
         marginLeft: 5,
         marginRight: -6,
-        width: 'calc(var(--_height) - 8px)',
-        height: 'calc(var(--_height) - 8px)',
+        width: 24,
+        height: 24,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.icon}`]: {
         marginLeft: 5,
         marginRight: -6,
-        fontSize: 'calc(var(--_height) - 8px)',
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.alpha((theme.vars || theme).palette.text.primary, 0.26),
-        fontSize: 'calc(var(--_height) - 10px)',
+        fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
@@ -145,22 +141,21 @@ const ChipRoot = styled('div', {
         {
           props: { size: 'small' },
           style: {
-            '--_height': '24px',
-            height: 'var(--_height)',
+            height: 24,
             [`& .${chipClasses.avatar}`]: {
               marginLeft: 4,
               marginRight: -4,
-              width: 'calc(var(--_height) - 6px)',
-              height: 'calc(var(--_height) - 6px)',
+              width: 18,
+              height: 18,
               fontSize: theme.typography.pxToRem(10),
             },
             [`& .${chipClasses.icon}`]: {
-              fontSize: 'calc(var(--_height) - 6px)',
+              fontSize: 18,
               marginLeft: 4,
               marginRight: -4,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              fontSize: 'calc(var(--_height) - 8px)',
+              fontSize: 16,
               marginRight: 4,
               marginLeft: -4,
             },
