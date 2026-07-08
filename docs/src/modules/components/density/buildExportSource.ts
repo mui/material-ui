@@ -85,7 +85,7 @@ export function buildExportSource(input: ExportInput): string {
 // to nothing and density silently does not apply.
 //
 // Usage:
-//   const theme = compactDensity(createTheme({ /* your options */ }));
+//   const theme = enhanceCompactDensity(createTheme({ /* your options */ }));
 //   <ThemeProvider theme={theme}><CssBaseline />…</ThemeProvider>
 import { createTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
@@ -152,8 +152,14 @@ function enhance(
   } as AnyRecord);
 }
 
-export const compactDensity = (theme: Theme) => enhance(theme, compact);
-export const normalDensity = (theme: Theme) => enhance(theme, normal);
-export const comfortDensity = (theme: Theme) => enhance(theme, comfort);
+export function enhanceCompactDensity(theme: Theme): Theme {
+  return enhance(theme, compact);
+}
+export function enhanceNormalDensity(theme: Theme): Theme {
+  return enhance(theme, normal);
+}
+export function enhanceComfortDensity(theme: Theme): Theme {
+  return enhance(theme, comfort);
+}
 `;
 }

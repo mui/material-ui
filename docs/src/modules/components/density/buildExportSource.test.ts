@@ -56,11 +56,13 @@ function evaluate(source: string): Record<string, (theme: unknown) => any> {
 describe('buildExportSource', () => {
   it('empty edits → baseline-only self-contained file', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
-    expect(src).to.contain('export const compactDensity');
-    expect(src).to.contain('export const normalDensity');
-    expect(src).to.contain('export const comfortDensity');
-    // self-contained: only stable public API imported
-    expect(src).not.to.contain('enhanceCompactDensity');
+    // RFC contract naming: the file DECLARES the enhance* functions itself
+    expect(src).to.contain('export function enhanceCompactDensity');
+    expect(src).to.contain('export function enhanceNormalDensity');
+    expect(src).to.contain('export function enhanceComfortDensity');
+    // self-contained: only stable public API imported — never the unreleased enhance* fns
+    // (line-anchored: real import statements only, not prose in header comments)
+    expect(/^import[^;]*enhance/m.test(src)).to.equal(false);
     expect(src).to.contain("import { createTheme } from '@mui/material/styles'");
     // baseline present (full preset overrides, no user layer needed)
     expect(src).to.contain('MuiButton');
@@ -101,9 +103,9 @@ describe('buildExportSource', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.densityKey, ...EDITS.themeTokens })),
     );
-    const { compactDensity } = evaluate(src);
+    const { enhanceCompactDensity } = evaluate(src);
     const base = createTheme({ palette: { primary: { main: '#ff5252' } } });
-    const enhanced = compactDensity(base);
+    const enhanced = enhanceCompactDensity(base);
     // app theme survives the round-trip
     expect(enhanced.palette.primary.main).to.equal('#ff5252');
     // scale materialised via MuiCssBaseline :root
@@ -117,15 +119,15 @@ describe('buildExportSource', () => {
     expect(enhanced.typography.h1.fontSize).to.equal('5rem');
     expect(enhanced.shape.borderRadius).to.equal(2);
     // compact typography reflow baked per preset
-    expect(compactDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
+    expect(enhanceCompactDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
   });
 
-  it('edits are per-preset: compact edits do NOT leak into normalDensity', () => {
+  it('edits are per-preset: compact edits do NOT leak into enhanceNormalDensity', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.rawPx, ...EDITS.themeTokens })),
     );
-    const { normalDensity } = evaluate(src);
-    const normal = normalDensity(createTheme({}));
+    const { enhanceNormalDensity } = evaluate(src);
+    const normal = enhanceNormalDensity(createTheme({}));
     // normal's workspace was empty → master typography/shape, no 30px override
     expect(normal.typography.h1.fontSize).not.to.equal('5rem');
     expect(normal.shape.borderRadius).to.equal(4);
