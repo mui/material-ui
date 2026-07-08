@@ -386,6 +386,13 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiTabs', {
     minHeight: '40px', // == MuiTab base minHeight (the pairing)
   });
+  addRootOverride(enhanced.components, 'MuiTabScrollButton', {
+    // Square scroll-affordance button (source: 40px both axes) = raw px per the
+    // sizing policy. Horizontal tabs size via width; the vertical variant sets
+    // width:100% in source, so only height needs the density value there.
+    width: '32px',
+    variants: [{ props: { orientation: 'vertical' }, style: { height: '32px' } }],
+  });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
     // Touch-target padding per size (9px both sizes today) = density steps. Pull the
     // sibling label back by the same amount so the control↔label gap stays constant.
@@ -744,6 +751,15 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     paddingInline: d.lg,
     fontSize: '0.875rem',
     lineHeight: 20 / 14,
+  });
+  addRootOverride(enhanced.components, 'MuiSvgIcon', {
+    // Compact-only: global icon shrink per fontSize variant (source: 20/24/35px).
+    // Normal/comfort emit nothing — icons keep master sizes there.
+    variants: [
+      { props: { fontSize: 'small' }, style: { fontSize: '18px' } },
+      { props: { fontSize: 'medium' }, style: { fontSize: '20px' } },
+      { props: { fontSize: 'large' }, style: { fontSize: '30px' } },
+    ],
   });
   // Compact-only type per variant (fontSize + lineHeight); normal/comfort keep
   // master. Theme-level tokens, not component overrides — same layer as button.

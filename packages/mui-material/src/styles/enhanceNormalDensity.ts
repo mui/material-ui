@@ -388,6 +388,13 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(enhanced.components, 'MuiTabs', {
     minHeight: '48px', // == MuiTab base minHeight (the pairing)
   });
+  addRootOverride(enhanced.components, 'MuiTabScrollButton', {
+    // Square scroll-affordance button (source: 40px both axes) = raw px per the
+    // sizing policy. Horizontal tabs size via width; the vertical variant sets
+    // width:100% in source, so only height needs the density value there.
+    width: '40px',
+    variants: [{ props: { orientation: 'vertical' }, style: { height: '40px' } }],
+  });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
     // Touch-target padding per size (9px both sizes today) = density steps. Pull the
     // sibling label back by the same amount so the control↔label gap stays constant.

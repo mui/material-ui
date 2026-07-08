@@ -690,13 +690,41 @@ function RatingMatrix() {
   );
 }
 
-function SelectMatrix() {
+function SvgIconMatrix() {
+  // No label text → no `.density-debug-text` wrappers (outline overlay still applies).
   return (
-    <FormControl sx={{ mt: 1, width: 220 }}>
-      <InputLabel id="pg-select-label">
+    <Stack spacing={2} sx={{ mt: 1 }}>
+      {(['small', 'medium', 'large'] as const).map((fontSize) => (
+        <Box key={fontSize} data-size-section={fontSize}>
+          <Typography variant="caption" color="text.secondary" component="div">
+            {fontSize}
+          </Typography>
+          <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+            <InboxIcon fontSize={fontSize} />
+            <PaddingIcon fontSize={fontSize} />
+            <TitleIcon fontSize={fontSize} />
+            <MoreVertIcon fontSize={fontSize} />
+          </Stack>
+        </Box>
+      ))}
+    </Stack>
+  );
+}
+
+function SelectDemo({
+  variant,
+  size,
+}: {
+  variant: 'outlined' | 'filled' | 'standard';
+  size: 'medium' | 'small';
+}) {
+  const labelId = `pg-select-${variant}-${size}-label`;
+  return (
+    <FormControl variant={variant} size={size} sx={{ width: 200 }}>
+      <InputLabel id={labelId}>
         <span className="density-debug-text">Age</span>
       </InputLabel>
-      <Select labelId="pg-select-label" value={10} label="Age">
+      <Select labelId={labelId} value={10} label="Age">
         <MenuItem value={10}>
           <span className="density-debug-text">Ten</span>
         </MenuItem>
@@ -705,6 +733,26 @@ function SelectMatrix() {
         </MenuItem>
       </Select>
     </FormControl>
+  );
+}
+
+function SelectMatrix() {
+  // All three variants (padding rides MuiOutlinedInput/MuiFilledInput/MuiInput),
+  // medium + small side by side.
+  return (
+    <Stack spacing={3} sx={{ mt: 1 }}>
+      {(['outlined', 'filled', 'standard'] as const).map((variant) => (
+        <Box key={variant} data-variant-section={variant}>
+          <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+            {variant}
+          </Typography>
+          <Stack direction="row" spacing={3} sx={{ alignItems: 'flex-start' }}>
+            <SelectDemo variant={variant} size="medium" />
+            <SelectDemo variant={variant} size="small" />
+          </Stack>
+        </Box>
+      ))}
+    </Stack>
   );
 }
 
@@ -1571,6 +1619,10 @@ const COMPONENT_DEFS = {
   Select: {
     canvasLabel: 'Select — content-box floor (padding via its OutlinedInput)',
     Matrix: React.memo(SelectMatrix),
+  },
+  SvgIcon: {
+    canvasLabel: 'SvgIcon — global size per fontSize variant (compact-only emission)',
+    Matrix: React.memo(SvgIconMatrix),
   },
   Alert: {
     canvasLabel: 'Alert — root padding + icon gap',

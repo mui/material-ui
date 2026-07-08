@@ -21,6 +21,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiAccordion: 'Accordion',
   MuiTab: 'Tabs',
   MuiTabs: 'Tabs',
+  MuiTabScrollButton: 'Tabs',
   MuiAutocomplete: 'Autocomplete',
   MuiTooltip: 'Tooltip',
   MuiOutlinedInput: 'TextField',
@@ -53,6 +54,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiCardContent: 'Card',
   MuiCardHeader: 'Card',
   MuiSelect: 'Select',
+  MuiSvgIcon: 'SvgIcon',
   MuiAlert: 'Alert',
   MuiChip: 'Chip',
   MuiAccordionDetails: 'Accordion',
@@ -178,6 +180,7 @@ const WEAVE_FAMILY_ORDER = [
   'Checkbox',
   'Alert',
   'Icons',
+  'SvgIcon',
   'Modal',
   'Utils',
   'Chip',
@@ -220,6 +223,8 @@ export const shownFamilies = new Set<string>([
   'Accordion',
   'Checkbox',
   'Radio',
+  'SvgIcon',
+  'Select',
 ]);
 
 /**

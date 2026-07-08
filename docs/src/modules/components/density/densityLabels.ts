@@ -210,6 +210,9 @@ export const densityLabels: Record<string, string> = {
   'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
     'Step · paddingRight [orientation=horizontal,alternativeLabel=false,last=true]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
+  'MuiSvgIcon|root|fontSize=small||fontSize': 'Svg icon · size [small]',
+  'MuiSvgIcon|root|fontSize=medium||fontSize': 'Svg icon · size [medium]',
+  'MuiSvgIcon|root|fontSize=large||fontSize': 'Svg icon · size [large]',
   'MuiTab|root|base||minHeight': 'Tab min height',
   'MuiTab|root|base||paddingBlock': 'Tab block padding',
   'MuiTab|root|base||paddingInline': 'Tab inline padding',
@@ -226,6 +229,8 @@ export const densityLabels: Record<string, string> = {
   'MuiTableCell|root|padding=checkbox||padding': 'TableCell · padding [padding=checkbox]',
   'MuiTableCell|root|padding=none||padding': 'TableCell · padding [padding=none]',
   'MuiTabs|root|base||minHeight': 'Tabs min height',
+  'MuiTabScrollButton|root|base||width': 'Tab scroll button · width [horizontal]',
+  'MuiTabScrollButton|root|orientation=vertical||height': 'Tab scroll button · height [vertical]',
   'MuiToggleButton|root|size=small||padding': 'ToggleButton · padding [size=small]',
   'MuiToggleButton|root|size=medium||padding': 'ToggleButton · padding [size=medium]',
   'MuiToggleButton|root|size=large||padding': 'ToggleButton · padding [size=large]',
