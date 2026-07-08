@@ -259,7 +259,25 @@ export const densityLabels: Record<string, string> = {
   'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline':
     'Toolbar · paddingInline [disableGutters=false]',
   'MuiToolbar|root|variant=dense||minHeight': 'Toolbar · minHeight [variant=dense]',
-  'MuiTooltip|tooltip|base||--_arrowSize': 'Tooltip · tooltip · arrow size',
+  'MuiTooltip|popper|base||--_arrowSize': 'Tooltip · popper · arrow size',
+  'MuiTooltip|popper|base|&[data-popper-placement*="bottom"] .MuiTooltip-arrow|marginTop':
+    'Tooltip · popper · marginTop',
+  'MuiTooltip|popper|base|&[data-popper-placement*="top"] .MuiTooltip-arrow|marginBottom':
+    'Tooltip · popper · marginBottom',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|height':
+    'Tooltip · popper · height',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|width':
+    'Tooltip · popper · width',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|marginInlineStart':
+    'Tooltip · popper · marginInlineStart',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|height':
+    'Tooltip · popper · height',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|width':
+    'Tooltip · popper · width',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|marginInlineEnd':
+    'Tooltip · popper · marginInlineEnd',
+  'MuiTooltip|popper|base|& .MuiTooltip-arrow|width': 'Tooltip · popper · width',
+  'MuiTooltip|popper|base|& .MuiTooltip-arrow|height': 'Tooltip · popper · height',
   'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
   'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':

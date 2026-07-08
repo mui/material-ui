@@ -139,6 +139,19 @@ export const hiddenFieldIds = new Set<string>([
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
+  // Tooltip arrow geometry — derived from the popper-slot --_arrowSize var
+  // (calc leaves emitted by the presets against master selectors), not
+  // independently tunable. The var row is the knob.
+  'MuiTooltip|popper|base|&[data-popper-placement*="bottom"] .MuiTooltip-arrow|marginTop',
+  'MuiTooltip|popper|base|&[data-popper-placement*="top"] .MuiTooltip-arrow|marginBottom',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|height',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|width',
+  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|marginInlineStart',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|height',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|width',
+  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|marginInlineEnd',
+  'MuiTooltip|popper|base|& .MuiTooltip-arrow|width',
+  'MuiTooltip|popper|base|& .MuiTooltip-arrow|height',
   // Checkbox/Radio sibling-label margin compensation — derived from the padding
   // knob (calc(-2px - padding)), not independently tunable. The padding field's
   // builder re-emits them (see selectionControlPadding in buildDensityOverrides).

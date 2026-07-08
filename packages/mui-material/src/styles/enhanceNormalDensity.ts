@@ -8,7 +8,6 @@ import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { listItemIconClasses } from '../ListItemIcon';
-import { private_tooltipVars } from '../Tooltip/tooltipVars';
 import { private_chipVars } from '../Chip/chipVars';
 import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
 import { inputBaseClasses } from '../InputBase';
@@ -73,8 +72,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Padding + per-placement offset = density steps on the base (mirrors
       // Tooltip.js base margins), so they apply to every tooltip; arrow doesn't
-      // change them. Arrow child derives its size from `--_arrowSize` (raw px).
-      [private_tooltipVars.arrowSize]: '11px',
+      // change them. Arrow size lives on the popper slot (see the block below).
       padding: `${d.xxs} ${d.sm}`,
       [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
       [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
@@ -82,6 +80,40 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
     },
     'tooltip',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiTooltip',
+    {
+      // Arrow size — ONE preset-local var; the geometry below derives from it via
+      // calc. Master ships literal em values on these SAME selectors (component
+      // untouched); these popper-slot overrides win by cascade order. 0.71 = the
+      // master ratio (1/sqrt(2), the hypotenuse projection of the square arrow).
+      '--_arrowSize': '11px',
+      [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
+        marginTop: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
+        marginBottom: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
+        // width/height re-asserted here: master's placement rules set them at the
+        // same specificity, so the base arrow rule below would lose for left/right.
+        height: 'var(--_arrowSize)',
+        width: 'calc(var(--_arrowSize) * 0.71)',
+        marginInlineStart: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
+        height: 'var(--_arrowSize)',
+        width: 'calc(var(--_arrowSize) * 0.71)',
+        marginInlineEnd: 'calc(var(--_arrowSize) * -0.71)',
+      },
+      [`& .${tooltipClasses.arrow}`]: {
+        width: 'var(--_arrowSize)',
+        height: 'calc(var(--_arrowSize) * 0.71)',
+      },
+    },
+    'popper',
   );
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
