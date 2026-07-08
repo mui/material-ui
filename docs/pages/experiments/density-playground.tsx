@@ -1963,9 +1963,26 @@ const FamilyKnobs = React.memo(
               <Box
                 key={slot}
                 data-mapping-slot={slot}
-                sx={{ mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }}
+                sx={{
+                  mt: 1,
+                  pl: 1.5,
+                  position: 'relative',
+                  '&::before': {
+                    content: '""',
+                    borderLeft: '1px solid',
+                    borderColor: 'divider',
+                    position: 'absolute',
+                    top: '32px',
+                    bottom: '6px',
+                    left: 0,
+                  },
+                }}
               >
-                <Typography variant="caption" color="text.secondary" sx={SLOT_TAG_SX}>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ ...SLOT_TAG_SX, ml: '-16px', mb: 1 }}
+                >
                   {slot}
                 </Typography>
                 <Stack spacing={1.5} sx={{ mt: 0.5 }}>
@@ -2418,12 +2435,29 @@ export default function DensityExperiment() {
                       data-token-slot={slot.key || 'root'}
                       sx={
                         slot.key
-                          ? { mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }
+                          ? {
+                              mt: 1,
+                              pl: 1.5,
+                              position: 'relative',
+                              '&::before': {
+                                content: '""',
+                                borderLeft: '1px solid',
+                                borderColor: 'divider',
+                                position: 'absolute',
+                                top: '32px',
+                                bottom: '6px',
+                                left: 0,
+                              },
+                            }
                           : { mt: 1 }
                       }
                     >
                       {slot.key && (
-                        <Typography variant="caption" color="text.secondary" sx={SLOT_TAG_SX}>
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{ ...SLOT_TAG_SX, ml: '-13px', mb: 1 }}
+                        >
                           {slot.key}
                         </Typography>
                       )}
