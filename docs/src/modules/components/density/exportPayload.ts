@@ -6,6 +6,7 @@ import {
 } from '@mui/material/styles';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectThemeTokenEdits } from './collectEdits';
+import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
 export type { ExportInput } from './buildExportSource';
@@ -76,6 +77,13 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
   const presets = (Object.keys(PRESET_FN) as Level[]).map((name): ExportPresetPayload => {
     const workspace = mappingByPreset[name] ?? {};
     const userLayer = buildOverrides(collectDensityEdits(workspace));
+    // Mark each user slot layer so the serializer wraps it in code comments —
+    // the generated file distinguishes playground edits from the preset baseline.
+    for (const def of Object.values(userLayer)) {
+      for (const layer of Object.values(def.styleOverrides)) {
+        (layer as Record<string, unknown>)[USER_LAYER_KEY] = true;
+      }
+    }
     const enhanced = PRESET_FN[name](createTheme({ cssVariables: true })) as unknown as {
       density: Record<string, string>;
       components: Record<string, any>;
@@ -84,15 +92,19 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
     // MuiCssBaseline excluded — the scale block is emitted separately by the file.
     const { MuiCssBaseline, ...presetComponents } = enhanced.components ?? {};
     // This preset's user token edits: typography variants layer over the preset's
-    // own reflow patch; shape (borderRadius) is its own section.
-    const typography = typographyPatch(base.typography as Record<string, any>, enhanced.typography);
-    const shape: Record<string, string | number> = {};
+    // own reflow patch; shape (borderRadius) is its own section. User-edited
+    // leaves are wrapped so the serializer tags them with `// playground edit`.
+    const typography: ExportPresetPayload['typography'] = typographyPatch(
+      base.typography as Record<string, any>,
+      enhanced.typography,
+    );
+    const shape: ExportPresetPayload['shape'] = {};
     for (const edit of collectThemeTokenEdits(workspace)) {
       if (edit.path[0] === 'typography') {
         const [, variant, prop] = edit.path;
-        (typography[variant] ??= {})[prop] = edit.value;
+        (typography[variant] ??= {})[prop] = { [USER_VALUE_KEY]: edit.value };
       } else if (edit.path[0] === 'shape') {
-        shape[edit.path[1]] = edit.value;
+        shape[edit.path[1]] = { [USER_VALUE_KEY]: edit.value };
       }
     }
     return {

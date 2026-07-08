@@ -23,6 +23,8 @@ type AnyRecord = Record<string, any>;
 //   components → preset baseline emissions ⊕ that preset's edits (flat-array slots)
 //   typography → the preset's own type reflow ⊕ that preset's typography edits
 //   shape      → that preset's shape edits (borderRadius)
+// Playground edits are marked inline: appended slot layers sit between
+// "user overrides" comments; edited token leaves carry a "playground edit" tag.
 const compact = {
   scale: {
     '--mui-density-xxs': '2px',
@@ -65,6 +67,7 @@ const compact = {
               },
             ],
           },
+          // ─── user overrides (playground edits) — appended layer, wins by order ───
           {
             variants: [
               {
@@ -77,6 +80,7 @@ const compact = {
               },
             ],
           },
+          // ─── end user overrides ───
         ],
       },
     },

@@ -84,6 +84,18 @@ describe('buildExportSource', () => {
     expect(src).to.contain("'30px'");
   });
 
+  it('user override layers are wrapped in code comments; markers never leak as data', () => {
+    const src = buildExportSource(buildExportInput(workspaces(EDITS.rawPx)));
+    expect(src).to.contain('// ─── user overrides (playground edits)');
+    expect(src).to.contain('// ─── end user overrides ───');
+    // marker keys are print-time only
+    expect(src).not.to.contain('__densityUserOverride');
+    // baseline-only export carries no user-override comments
+    const clean = buildExportSource(buildExportInput(workspaces()));
+    expect(clean).not.to.contain('user overrides (playground edits)');
+    expect(transpile(src).diagnostics).to.deep.equal([]);
+  });
+
   it('virtual-knob members land as fn-matcher variants with function source', () => {
     const src = buildExportSource(buildExportInput(workspaces(EDITS.virtualMembers)));
     // fn matchers print verbatim — they read ownerState only
@@ -93,10 +105,10 @@ describe('buildExportSource', () => {
     expect(transpile(src).diagnostics).to.deep.equal([]);
   });
 
-  it('typography + shape edits land in their preset payload', () => {
+  it('typography + shape edits land in their preset payload, tagged as playground edits', () => {
     const src = buildExportSource(buildExportInput(workspaces(EDITS.themeTokens)));
-    expect(src).to.contain("'5rem'");
-    expect(src).to.contain('borderRadius: 2');
+    expect(src).to.contain("fontSize: '5rem', // playground edit");
+    expect(src).to.contain('borderRadius: 2, // playground edit');
   });
 
   it('generated module runs: preserves the app theme, applies overrides + scale', () => {

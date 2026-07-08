@@ -12,14 +12,30 @@ export interface ExportPresetPayload {
   /** baseline ⊕ THIS preset's edits, flat-array slots, MuiCssBaseline excluded (scale is separate) */
   components: Record<string, { styleOverrides: Record<string, unknown> }>;
   /** the preset's own type reflow ⊕ this preset's user typography edits; {} when none */
-  typography: Record<string, Record<string, string | number>>;
+  typography: Record<string, Record<string, unknown>>;
   /** this preset's user shape edits (borderRadius); {} when none */
-  shape: Record<string, string | number>;
+  shape: Record<string, unknown>;
 }
 
 export interface ExportInput {
   presets: ExportPresetPayload[];
 }
+
+// Serialization markers set by exportPayload so the generated file can annotate
+// which parts came from playground edits (vs the preset baseline). Both are
+// STRIPPED/UNWRAPPED at print time — they never reach the generated output as data.
+/** marks an appended slot LAYER as user edits → wrapped in begin/end comments */
+export const USER_LAYER_KEY = '__densityUserOverrideLayer';
+/** wraps a user-edited LEAF value → printed with a trailing `// playground edit` */
+export const USER_VALUE_KEY = '__densityUserOverrideValue';
+
+const isUserLayer = (v: unknown): v is Record<string, unknown> =>
+  Boolean(v) && typeof v === 'object' && (v as Record<string, unknown>)[USER_LAYER_KEY] === true;
+
+const asUserValue = (v: unknown): unknown =>
+  v && typeof v === 'object' && USER_VALUE_KEY in (v as Record<string, unknown>)
+    ? (v as Record<string, unknown>)[USER_VALUE_KEY]
+    : undefined;
 
 const IDENT = /^[A-Za-z_$][\w$]*$/;
 
@@ -46,19 +62,34 @@ function printValue(value: unknown, indent: string): string {
       return '[]';
     }
     const inner = `${indent}  `;
-    return `[\n${items.map((v) => `${inner}${printValue(v, inner)}`).join(',\n')},\n${indent}]`;
+    const lines = items.map((v) => {
+      if (isUserLayer(v)) {
+        return (
+          `${inner}// ─── user overrides (playground edits) — appended layer, wins by order ───\n` +
+          `${inner}${printValue(v, inner)},\n` +
+          `${inner}// ─── end user overrides ───`
+        );
+      }
+      return `${inner}${printValue(v, inner)},`;
+    });
+    return `[\n${lines.join('\n')}\n${indent}]`;
   }
   if (value && typeof value === 'object') {
     const entries = Object.entries(value as Record<string, unknown>).filter(
-      ([, v]) => v !== undefined,
+      ([k, v]) => v !== undefined && k !== USER_LAYER_KEY,
     );
     if (entries.length === 0) {
       return '{}';
     }
     const inner = `${indent}  `;
-    return `{\n${entries
-      .map(([k, v]) => `${inner}${printKey(k)}: ${printValue(v, inner)}`)
-      .join(',\n')},\n${indent}}`;
+    const lines = entries.map(([k, v]) => {
+      const userValue = asUserValue(v);
+      if (userValue !== undefined) {
+        return `${inner}${printKey(k)}: ${printValue(userValue, inner)}, // playground edit`;
+      }
+      return `${inner}${printKey(k)}: ${printValue(v, inner)},`;
+    });
+    return `{\n${lines.join('\n')}\n${indent}}`;
   }
   return 'undefined';
 }
@@ -98,6 +129,8 @@ type AnyRecord = Record<string, any>;
 //   components → preset baseline emissions ⊕ that preset's edits (flat-array slots)
 //   typography → the preset's own type reflow ⊕ that preset's typography edits
 //   shape      → that preset's shape edits (borderRadius)
+// Playground edits are marked inline: appended slot layers sit between
+// "user overrides" comments; edited token leaves carry a "playground edit" tag.
 ${presetConsts}
 
 function mergeTypography(base: AnyRecord, patch: AnyRecord): AnyRecord {
