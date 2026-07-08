@@ -207,13 +207,18 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-md))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-sm))',
                 },
@@ -234,7 +239,9 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -276,17 +283,19 @@ const compact = {
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "start" && ownerState.size === "small",
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
                 style: {
                   marginRight: 'var(--mui-density-xxs)',
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "end" && ownerState.size === "small",
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
                 style: {
                   marginLeft: 'var(--mui-density-xxs)',
                 },
@@ -325,28 +334,40 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 20px)',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-xs))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 16px)',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-xs))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 16,
                   paddingBottom: 17,
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
@@ -361,21 +382,28 @@ const compact = {
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
             variants: [
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel,
+                props: {
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 16px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 17px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 8px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 9px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -452,7 +480,9 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -477,7 +507,9 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -1514,13 +1546,18 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-md))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-sm))',
                 },
@@ -1541,7 +1578,9 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -1573,17 +1612,19 @@ const normal = {
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "start" && ownerState.size === "small",
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
                 style: {
                   marginRight: 'var(--mui-density-xxs)',
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "end" && ownerState.size === "small",
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
                 style: {
                   marginLeft: 'var(--mui-density-xxs)',
                 },
@@ -1599,9 +1640,10 @@ const normal = {
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.variant === "filled" && ownerState.size === "small",
+                props: {
+                  variant: 'filled',
+                  size: 'small',
+                },
                 style: {
                   '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
                     marginTop: 'var(--mui-density-md)',
@@ -1642,28 +1684,40 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, var(--mui-density-xl))',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, var(--mui-density-lg))',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-xs))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 16,
                   paddingBottom: 17,
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
@@ -1678,21 +1732,28 @@ const normal = {
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
             variants: [
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel,
+                props: {
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 16px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 17px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 8px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 9px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -1769,7 +1830,9 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -1794,7 +1857,9 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -2741,13 +2806,18 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-md))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-sm))',
                 },
@@ -2768,7 +2838,9 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -2800,17 +2872,19 @@ const comfort = {
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "start" && ownerState.size === "small",
+                props: {
+                  position: 'start',
+                  size: 'small',
+                },
                 style: {
                   marginRight: 'var(--mui-density-xxs)',
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.position === "end" && ownerState.size === "small",
+                props: {
+                  position: 'end',
+                  size: 'small',
+                },
                 style: {
                   marginLeft: 'var(--mui-density-xxs)',
                 },
@@ -2826,9 +2900,10 @@ const comfort = {
                 },
               },
               {
-                props: ({
-          ownerState
-        }) => ownerState.variant === "filled" && ownerState.size === "small",
+                props: {
+                  variant: 'filled',
+                  size: 'small',
+                },
                 style: {
                   '&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)': {
                     marginTop: 'var(--mui-density-md)',
@@ -2869,28 +2944,40 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, var(--mui-density-xl))',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, var(--mui-density-lg))',
                   paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-xs))',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel,
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 16,
                   paddingBottom: 17,
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline && ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  multiline: true,
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 8,
                   paddingBottom: 9,
@@ -2905,21 +2992,28 @@ const comfort = {
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-sm))',
             variants: [
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel,
+                props: {
+                  hiddenLabel: true,
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 16px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 17px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.hiddenLabel && ownerState.size === "small",
+                props: {
+                  hiddenLabel: true,
+                  size: 'small',
+                },
                 style: {
                   paddingTop: 'var(--_filledInputPadTop, 8px)',
                   paddingBottom: 'var(--_filledInputPadBottom, 9px)',
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -2996,7 +3090,9 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },
@@ -3021,7 +3117,9 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.multiline,
+                props: {
+                  multiline: true,
+                },
                 style: {
                   paddingBlock: 0,
                 },

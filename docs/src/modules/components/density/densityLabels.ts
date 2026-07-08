@@ -95,11 +95,16 @@ export const densityLabels: Record<string, string> = {
   'MuiFab|root|size=large,variant=circular||height': 'Fab · height [variant=circular,size=large]',
   'MuiFilledInput|input|base||paddingTop': 'FilledInput · input · paddingTop',
   'MuiFilledInput|input|base||paddingBottom': 'FilledInput · input · paddingBottom',
-  'MuiFilledInput|input|fn:18uwxi||paddingTop': 'FilledInput · input · paddingTop [fn]',
-  'MuiFilledInput|input|fn:18uwxi||paddingBottom': 'FilledInput · input · paddingBottom [fn]',
-  'MuiFilledInput|input|fn:1anfzr||paddingTop': 'FilledInput · input · paddingTop [fn]',
-  'MuiFilledInput|input|fn:1anfzr||paddingBottom': 'FilledInput · input · paddingBottom [fn]',
-  'MuiFilledInput|input|fn:1ghwre||paddingBlock': 'FilledInput · input · paddingBlock [fn]',
+  'MuiFilledInput|input|hiddenLabel=true||paddingTop':
+    'FilledInput · input · paddingTop [hiddenLabel=true]',
+  'MuiFilledInput|input|hiddenLabel=true||paddingBottom':
+    'FilledInput · input · paddingBottom [hiddenLabel=true]',
+  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingTop':
+    'FilledInput · input · paddingTop [hiddenLabel=true,size=small]',
+  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBottom':
+    'FilledInput · input · paddingBottom [hiddenLabel=true,size=small]',
+  'MuiFilledInput|input|multiline=true||paddingBlock':
+    'FilledInput · input · paddingBlock [multiline=true]',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
     'FilledInput · padding top',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
@@ -114,19 +119,26 @@ export const densityLabels: Record<string, string> = {
     'FilledInput · --_restY [size=small]',
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY':
     'FilledInput · shrink Y [size=small]',
-  'MuiFilledInput|root|fn:1ghwre||paddingTop': 'FilledInput · paddingTop [fn]',
-  'MuiFilledInput|root|fn:1ghwre||paddingBottom': 'FilledInput · paddingBottom [fn]',
-  'MuiFilledInput|root|fn:124vl6||paddingTop': 'FilledInput · paddingTop [fn]',
-  'MuiFilledInput|root|fn:124vl6||paddingBottom': 'FilledInput · paddingBottom [fn]',
-  'MuiFilledInput|root|fn:1dxjh5||paddingTop': 'FilledInput · paddingTop [fn]',
-  'MuiFilledInput|root|fn:1dxjh5||paddingBottom': 'FilledInput · paddingBottom [fn]',
-  'MuiFilledInput|root|fn:156ydn||paddingTop': 'FilledInput · paddingTop [fn]',
-  'MuiFilledInput|root|fn:156ydn||paddingBottom': 'FilledInput · paddingBottom [fn]',
+  'MuiFilledInput|root|multiline=true||paddingTop': 'FilledInput · paddingTop [multiline=true]',
+  'MuiFilledInput|root|multiline=true||paddingBottom':
+    'FilledInput · paddingBottom [multiline=true]',
+  'MuiFilledInput|root|multiline=true,size=small||paddingTop':
+    'FilledInput · paddingTop [multiline=true,size=small]',
+  'MuiFilledInput|root|multiline=true,size=small||paddingBottom':
+    'FilledInput · paddingBottom [multiline=true,size=small]',
+  'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingTop':
+    'FilledInput · paddingTop [multiline=true,hiddenLabel=true]',
+  'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingBottom':
+    'FilledInput · paddingBottom [multiline=true,hiddenLabel=true]',
+  'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingTop':
+    'FilledInput · paddingTop [multiline=true,hiddenLabel=true,size=small]',
+  'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingBottom':
+    'FilledInput · paddingBottom [multiline=true,hiddenLabel=true,size=small]',
   'MuiInput|input|base||paddingTop': 'Input · input · paddingTop',
   'MuiInput|input|base||paddingBottom': 'Input · input · paddingBottom',
   'MuiInput|input|size=small||paddingTop': 'Input · input · paddingTop [size=small]',
   'MuiInput|input|size=small||paddingBottom': 'Input · input · paddingBottom [size=small]',
-  'MuiInput|input|fn:1ghwre||paddingBlock': 'Input · input · paddingBlock [fn]',
+  'MuiInput|input|multiline=true||paddingBlock': 'Input · input · paddingBlock [multiline=true]',
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · padding top',
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · padding bottom',
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': 'Input · margin top',
@@ -148,15 +160,16 @@ export const densityLabels: Record<string, string> = {
   'MuiInputAdornment|root|position=end||marginLeft': 'InputAdornment · marginLeft [position=end]',
   'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
     'InputAdornment · marginTop [variant=filled]',
-  'MuiInputAdornment|root|fn:1voegp||marginRight':
-    'InputAdornment · marginRight [size=small,position=start]',
-  'MuiInputAdornment|root|fn:1oteyj||marginLeft':
-    'InputAdornment · marginLeft [size=small,position=end]',
-  'MuiInputAdornment|root|fn:15uckb|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
+  'MuiInputAdornment|root|position=start,size=small||marginRight':
+    'InputAdornment · marginRight [position=start,size=small]',
+  'MuiInputAdornment|root|position=end,size=small||marginLeft':
+    'InputAdornment · marginLeft [position=end,size=small]',
+  'MuiInputAdornment|root|size=small,variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
     'InputAdornment · marginTop [variant=filled,size=small]',
   'MuiInputBase|input|base||paddingBlock': 'InputBase · input · paddingBlock',
   'MuiInputBase|input|size=small||paddingTop': 'InputBase · input · paddingTop [size=small]',
-  'MuiInputBase|input|fn:1ghwre||paddingBlock': 'InputBase · input · paddingBlock [fn]',
+  'MuiInputBase|input|multiline=true||paddingBlock':
+    'InputBase · input · paddingBlock [multiline=true]',
   'MuiInputBase|root|base||fontSize': 'InputBase · fontSize',
   'MuiInputBase|root|base||lineHeight': 'InputBase · lineHeight',
   'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
@@ -177,7 +190,8 @@ export const densityLabels: Record<string, string> = {
   'MuiOutlinedInput|input|base||paddingBlock': 'OutlinedInput · input · paddingBlock',
   'MuiOutlinedInput|input|size=small||paddingBlock':
     'OutlinedInput · input · paddingBlock [size=small]',
-  'MuiOutlinedInput|input|fn:1ghwre||paddingBlock': 'OutlinedInput · input · paddingBlock [fn]',
+  'MuiOutlinedInput|input|multiline=true||paddingBlock':
+    'OutlinedInput · input · paddingBlock [multiline=true]',
   'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block',
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': 'OutlinedInput · --_restY',
@@ -185,8 +199,10 @@ export const densityLabels: Record<string, string> = {
     'OutlinedInput · --_restY [size=small]',
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block [size=small]',
-  'MuiOutlinedInput|root|fn:1ghwre||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
-  'MuiOutlinedInput|root|fn:124vl6||paddingBlock': 'OutlinedInput · paddingBlock [fn]',
+  'MuiOutlinedInput|root|multiline=true||paddingBlock':
+    'OutlinedInput · paddingBlock [multiline=true]',
+  'MuiOutlinedInput|root|multiline=true,size=small||paddingBlock':
+    'OutlinedInput · paddingBlock [multiline=true,size=small]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
   'MuiPaginationItem|root|size=medium||minWidth': 'PaginationItem · minWidth [size=medium]',
   'MuiPaginationItem|root|size=large||minWidth': 'PaginationItem · minWidth [size=large]',

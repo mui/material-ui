@@ -11,10 +11,7 @@ import { listItemIconClasses } from '../ListItemIcon';
 import { private_tooltipVars } from '../Tooltip/tooltipVars';
 import { private_chipVars } from '../Chip/chipVars';
 import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
-import type { OutlinedInputOwnerState } from '../OutlinedInput';
-import type { FilledInputProps } from '../FilledInput';
-import { inputBaseClasses, type InputBaseProps } from '../InputBase';
-import type { InputAdornmentProps } from '../InputAdornment';
+import { inputBaseClasses } from '../InputBase';
 import type { TabProps } from '../Tab';
 import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
@@ -101,14 +98,13 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
+        props: { multiline: true },
         style: {
           paddingBlock: `var(--_outlinedInputPadBlock, ${d.md})`,
         },
       },
       {
-        props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) =>
-          ownerState.multiline && ownerState.size === 'small',
+        props: { multiline: true, size: 'small' },
         style: {
           paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})`,
         },
@@ -128,7 +124,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
           style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})` },
         },
         {
-          props: ({ ownerState }: { ownerState: OutlinedInputOwnerState }) => ownerState.multiline,
+          props: { multiline: true },
           style: { paddingBlock: 0 },
         },
       ],
@@ -142,19 +138,11 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { position: 'start' }, style: { marginRight: d.sm } },
       { props: { position: 'end' }, style: { marginLeft: d.sm } },
       {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: InputAdornmentProps & { size?: string | undefined };
-        }) => ownerState.position === 'start' && ownerState.size === 'small',
+        props: { position: 'start', size: 'small' },
         style: { marginRight: d.xxs },
       },
       {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: InputAdornmentProps & { size?: string | undefined };
-        }) => ownerState.position === 'end' && ownerState.size === 'small',
+        props: { position: 'end', size: 'small' },
         style: { marginLeft: d.xxs },
       },
       {
@@ -167,11 +155,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: InputAdornmentProps & { size?: string | undefined };
-        }) => ownerState.variant === 'filled' && ownerState.size === 'small',
+        props: { variant: 'filled', size: 'small' },
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
@@ -209,15 +193,14 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
         },
       },
       {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
+        props: { multiline: true },
         style: {
           paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
           paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
         },
       },
       {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-          ownerState.multiline && ownerState.size === 'small',
+        props: { multiline: true, size: 'small' },
         style: {
           paddingTop: `var(--_filledInputPadTop, ${d.lg})`,
           paddingBottom: `var(--_filledInputPadBottom, ${d.xs})`,
@@ -225,13 +208,11 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       },
       // hidden label does not need to sync with label, so no need CSS variables.
       {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-          ownerState.multiline && ownerState.hiddenLabel,
+        props: { multiline: true, hiddenLabel: true },
         style: { paddingTop: 16, paddingBottom: 17 },
       },
       {
-        props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-          ownerState.multiline && ownerState.hiddenLabel && ownerState.size === 'small',
+        props: { multiline: true, hiddenLabel: true, size: 'small' },
         style: { paddingTop: 8, paddingBottom: 9 },
       },
     ],
@@ -247,22 +228,21 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
       variants: [
         {
-          props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.hiddenLabel,
+          props: { hiddenLabel: true },
           style: {
             paddingTop: `var(--_filledInputPadTop, 16px)`,
             paddingBottom: `var(--_filledInputPadBottom, 17px)`,
           },
         },
         {
-          props: ({ ownerState }: { ownerState: FilledInputProps }) =>
-            ownerState.hiddenLabel && ownerState.size === 'small',
+          props: { hiddenLabel: true, size: 'small' },
           style: {
             paddingTop: `var(--_filledInputPadTop, 8px)`,
             paddingBottom: `var(--_filledInputPadBottom, 9px)`,
           },
         },
         {
-          props: ({ ownerState }: { ownerState: FilledInputProps }) => ownerState.multiline,
+          props: { multiline: true },
           style: { paddingBlock: 0 },
         },
       ],
@@ -325,7 +305,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
           },
         },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => ownerState.multiline,
+          props: { multiline: true },
           style: { paddingBlock: 0 },
         },
       ],
@@ -345,7 +325,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d.xxs } },
         {
-          props: ({ ownerState }: { ownerState: InputBaseProps }) => ownerState.multiline,
+          props: { multiline: true },
           style: { paddingBlock: 0 },
         },
       ],

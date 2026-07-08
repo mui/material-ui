@@ -61,7 +61,12 @@ export const themeTokenGroups: ThemeTokenGroup[] = [
       {
         key: '',
         knobs: [
-          { id: 'shape.borderRadius', label: 'radius', path: ['shape', 'borderRadius'], numeric: true },
+          {
+            id: 'shape.borderRadius',
+            label: 'radius',
+            path: ['shape', 'borderRadius'],
+            numeric: true,
+          },
         ],
       },
     ],
