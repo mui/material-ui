@@ -38,6 +38,7 @@ import Radio from '@mui/material/Radio';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
+import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -143,6 +144,66 @@ const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
 // Stable empty mapping for `unset` (no workspace) — module-scope identity so it
 // never defeats the FamilyKnobs/KnobInput memos.
 const EMPTY_MAPPING: Record<string, string> = {};
+
+// "How to use" walkthrough — horizontal stepper, last step is the export.
+const HOW_TO_STEPS = [
+  {
+    label: 'Pick a density preset',
+    body: 'Choose compact, normal, or comfort in the top bar — the whole canvas reflows off that preset. "none" keeps today\'s defaults (and hides the knobs).',
+  },
+  {
+    label: 'Explore components',
+    body: 'On the Components tab, pick a family (or All) to see its demo. Toggle the visual-debug overlays (padding ring, text box, outline) to read the reflow at a glance.',
+  },
+  {
+    label: 'Tweak the knobs',
+    body: 'Each knob accepts a density step (xxs…xxl) or any raw CSS value (12px, 2rem). The placeholder shows what the preset ships; the helper shows what your input resolves to. Edits belong to the ACTIVE preset — switch presets and each keeps its own overrides.',
+  },
+  {
+    label: 'Adjust typography',
+    body: 'The Typography tab edits theme-level type tokens (per-variant fontSize / lineHeight) with the same rules; the canvas shows a live type preview.',
+  },
+  {
+    label: 'Export density.ts',
+    body: 'Click "Export density.ts" to download a self-contained file with all three enhance*Density functions and your edits baked in (annotated with comments). Paste it into any app on released @mui/material — just render <CssBaseline /> so the density variables materialise.',
+  },
+] as const;
+
+function HowToUseDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [step, setStep] = React.useState(0);
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth data-howto-dialog>
+      <DialogTitle>How to use the playground</DialogTitle>
+      <DialogContent>
+        <Stepper activeStep={step} sx={{ mb: 3 }}>
+          {HOW_TO_STEPS.map((s, i) => (
+            <Step key={s.label} completed={i < step}>
+              <StepLabel>{s.label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <Typography variant="body2" sx={{ minHeight: 64 }}>
+          {HOW_TO_STEPS[step].body}
+        </Typography>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} sx={{ mr: 'auto' }}>
+          Close
+        </Button>
+        <Button disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
+          Back
+        </Button>
+        <Button
+          variant="contained"
+          disabled={step === HOW_TO_STEPS.length - 1}
+          onClick={() => setStep((s) => s + 1)}
+        >
+          Next
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
 
 // Sidebar slot captions render as small tags for visual distinction from labels.
 const SLOT_TAG_SX = {
@@ -1867,6 +1928,7 @@ export default function DensityExperiment() {
   const [debug, setDebug] = React.useState<string[]>([]);
   // Layout tab — drives both the sidebar content and the canvas.
   const [tab, setTab] = React.useState<TabKey>('components');
+  const [howToOpen, setHowToOpen] = React.useState(false);
 
   // User overrides, keyed by generated-table row id — ONE WORKSPACE PER PRESET.
   // Overrides made under compact stay with compact: switch to normal → blank
@@ -2070,7 +2132,16 @@ export default function DensityExperiment() {
         <Typography variant="caption" color="text.secondary">
           Flip the preset · pick a component · remap its tokens to density steps
         </Typography>
+        <Button
+          size="small"
+          onClick={() => setHowToOpen(true)}
+          data-howto-button
+          sx={{ ml: 'auto', alignSelf: 'center' }}
+        >
+          How to use
+        </Button>
       </Box>
+      <HowToUseDialog open={howToOpen} onClose={() => setHowToOpen(false)} />
 
       {/* Control bar — full width: preset (left) · visual debug (right). */}
       <Box
