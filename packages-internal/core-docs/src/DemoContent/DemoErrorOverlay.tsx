@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import { styled } from '@mui/material/styles';
 
@@ -43,20 +42,13 @@ function stripPosition(message: string): string {
  * variant, reported by `useDemoController` through `CodeControllerContext` and read
  * off `useDemo().error`.
  */
-export function DemoErrorOverlay({
-  message,
-  showPosition = true,
-}: {
-  message: string | null;
-  /** When false (code collapsed to the preview), hide the misleading `(line:col)`. */
-  showPosition?: boolean;
-}) {
+export function DemoErrorOverlay({ message }: { message: string | null }) {
   if (!message) {
     return null;
   }
   return (
     <ErrorAlert aria-live="polite" variant="filled" severity="error">
-      {showPosition ? message : stripPosition(message)}
+      {stripPosition(message)}
     </ErrorAlert>
   );
 }

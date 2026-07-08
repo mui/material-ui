@@ -400,30 +400,6 @@ export default function DemoContent(props: DemoContentProps) {
       ? toJavascriptFileName(rootFileName)
       : undefined;
 
-  // Deploy permalinks are only meaningful on the staging / PR-preview Netlify
-  // builds. They reuse the current route + demo anchor, swapping the origin for
-  // the per-branch/per-deploy Netlify domains. `process.env` values are inlined
-  // by `withDeploymentConfig`, so in production this branch is dead-code and the
-  // links don't render.
-  const devLinks = React.useMemo(() => {
-    if (process.env.DEPLOY_ENV !== 'staging' && process.env.DEPLOY_ENV !== 'pull-request') {
-      return null;
-    }
-    const routePath = router.asPath.split('#')[0].split('?')[0];
-    const anchorHash = sourceAnchor ? `#${sourceAnchor}` : '';
-    const siteName = process.env.NETLIFY_SITE_NAME;
-    const pullRequestId = process.env.PULL_REQUEST_ID;
-    return {
-      pullRequest:
-        pullRequestId && siteName
-          ? `https://deploy-preview-${pullRequestId}--${siteName}.netlify.app${routePath}${anchorHash}`
-          : undefined,
-      next: `https://next--${siteName}.netlify.app${routePath}${anchorHash}`,
-      permalink: `${process.env.NETLIFY_DEPLOY_URL ?? ''}${routePath}${anchorHash}`,
-      master: `https://master--${siteName}.netlify.app${routePath}${anchorHash}`,
-    };
-  }, [router.asPath, sourceAnchor]);
-
   const toolbar = hideToolbar ? null : (
     <DemoToolbar
       gaLabel={gaLabel}
@@ -449,7 +425,6 @@ export default function DemoContent(props: DemoContentProps) {
       githubLocation={githubLocation}
       tsSourceAnchor={tsSourceAnchor}
       jsSourceAnchor={jsSourceAnchor}
-      devLinks={devLinks}
     />
   );
 
@@ -528,7 +503,7 @@ export default function DemoContent(props: DemoContentProps) {
       bg={resolvedBg}
       hideToolbar={hideToolbar}
       previewStyle={previewStyle}
-      codeOverlay={<DemoErrorOverlay message={demo.error} showPosition={demo.expanded} />}
+      codeOverlay={<DemoErrorOverlay message={demo.error} />}
       focusRef={demo.focusRef}
       toolbar={toolbar}
       toolbarRef={toolbarRef}
