@@ -123,8 +123,11 @@ const VARIANTS = ['text', 'outlined', 'contained'] as const;
 type Preset = (typeof PRESETS)[number];
 
 // Layout tabs — lowercase ids are the URL param values, decoupled from labels.
-const TABS = ['components', 'typography', 'radius'] as const;
-type TabKey = (typeof TABS)[number];
+type TabKey = 'components' | 'typography' | 'radius';
+// Radius is hidden for now — its wiring (TAB_TOKEN_GROUP, preview, token knobs)
+// stays intact; re-enable by adding it back here. Hidden tabs are also invalid
+// as `?tab=` values (they fall back to the default).
+const VISIBLE_TABS: readonly TabKey[] = ['components', 'typography'];
 const TAB_LABEL: Record<TabKey, string> = {
   components: 'Components',
   typography: 'Typography',
@@ -1880,7 +1883,7 @@ export default function DensityExperiment() {
       setPreset(p as Preset);
     }
     const t = q('tab');
-    if (t && (TABS as readonly string[]).includes(t)) {
+    if (t && (VISIBLE_TABS as readonly string[]).includes(t)) {
       setTab(t as TabKey);
     }
     const f = q('family');
@@ -2137,7 +2140,7 @@ export default function DensityExperiment() {
           onChange={(_event, next: TabKey) => setTab(next)}
           aria-label="playground layout tabs"
         >
-          {TABS.map((t) => (
+          {VISIBLE_TABS.map((t) => (
             <Tab key={t} value={t} label={TAB_LABEL[t]} />
           ))}
         </Tabs>
