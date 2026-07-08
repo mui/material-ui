@@ -6,8 +6,8 @@
   }
 
   .MuiToolbar-root.MuiToolbar-gutters {
-    padding-left: var(--MuiToolbar-gutters-paddingLeft, calc(2 * var(--mui-spacing, 8px)));
-    padding-right: var(--MuiToolbar-gutters-paddingRight, calc(2 * var(--mui-spacing, 8px)));
+    padding-left: calc(2 * var(--mui-spacing, 8px));
+    padding-right: calc(2 * var(--mui-spacing, 8px));
   }
 
   .MuiToolbar-root.MuiToolbar-dense {
@@ -15,6 +15,23 @@
   }
 
   .MuiToolbar-root.MuiToolbar-regular {
-    min-height: var(--MuiToolbar-regular-minHeight, 56px);
+    min-height: 56px;
+  }
+
+  @media (--mui-breakpoint-up-xs) and (orientation: landscape) {
+    .MuiToolbar-root.MuiToolbar-regular {
+      min-height: 48px;
+    }
+  }
+
+  @media (--mui-breakpoint-up-sm) {
+    .MuiToolbar-root.MuiToolbar-gutters {
+      padding-left: calc(3 * var(--mui-spacing, 8px));
+      padding-right: calc(3 * var(--mui-spacing, 8px));
+    }
+
+    .MuiToolbar-root.MuiToolbar-regular {
+      min-height: 64px;
+    }
   }
 }

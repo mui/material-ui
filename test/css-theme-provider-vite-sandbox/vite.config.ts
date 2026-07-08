@@ -1,11 +1,18 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig, transformWithEsbuild } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 // Two levels up: test/css-theme-provider-vite-sandbox → test → monorepo root
 const MONOREPO_ROOT = path.resolve(dirname, '../..');
+
+function resolveMuiCustomMedia(code: string) {
+  return code
+    .replace(/\(--mui-breakpoint-up-xs\)/g, '(min-width: 0px)')
+    .replace(/\(--mui-breakpoint-up-sm\)/g, '(min-width: 720px)')
+    .replace(/\(--mui-breakpoint-down-sm\)/g, '(max-width: 719.95px)');
+}
 
 // https://vite.dev/config/
 // Use the function form so `mode` is available for the NODE_ENV define.
@@ -15,56 +22,24 @@ export default defineConfig(({ mode }) => ({
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode === 'production' ? 'production' : 'development'),
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      // MUI source files use .js extension but contain JSX syntax.
-      // Tell esbuild's pre-bundler to treat them as JSX.
-      loader: { '.js': 'jsx' },
-    },
-  },
   plugins: [
-    // @mui/material source files use .js extension but contain JSX.
-    // This plugin re-parses them as JSX so Rollup/esbuild can handle them.
-    // enforce: 'pre' ensures this plugin runs before Vite's internal esbuild
-    // pre-transform, which would otherwise reject JSX in .js files.
     {
-      name: 'treat-js-files-as-jsx',
+      name: 'resolve-mui-custom-media',
       enforce: 'pre' as const,
       transform(code, id) {
-        if (/\/node_modules\//.test(id)) {
+        if (!id.endsWith('.css')) {
           return null;
         }
-        if (id.startsWith('\0')) {
-          return null;
-        }
-        if (!/.*\.js$/.test(id)) {
-          return null;
-        }
-        return transformWithEsbuild(code, id, { loader: 'jsx' });
+
+        return { code: resolveMuiCustomMedia(code), map: null };
       },
     },
     react(),
   ],
   resolve: {
     alias: [
-      // These aliases used to point @mui/* packages at their monorepo `src/`
-      // directories so Vite would pick up in-flight source changes without a
-      // rebuild. Now that the packages are built (pnpm -F @mui/material build
-      // etc.), the workspace symlinks + each package's `exports` field in
-      // build/package.json are enough — no alias needed.
-      //
-      // If you want to test against source again (e.g. mid-refactor before
-      // rebuilding), un-comment these and re-add the `treat-js-files-as-jsx`
-      // plugin (source .js files contain JSX; built .mjs files do not).
-      //
-      // { find: '@mui/material',        replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-material/src') },
-      // { find: '@mui/system',           replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-system/src') },
-      // { find: '@mui/utils',            replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-utils/src') },
-      // { find: '@mui/private-theming',  replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-private-theming/src') },
-
       // THE KEY ALIAS: swap Emotion for the zero-runtime noop engine.
       // This is exactly what non-Emotion users configure in their own bundler.
-
       {
         find: '@mui/styled-engine',
         replacement: path.resolve(MONOREPO_ROOT, 'packages/mui-styled-engine-noop/build'),

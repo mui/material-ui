@@ -7,14 +7,6 @@ import createTheme from './createTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
 import ThemeScope, { getThemeScopeProps } from './ThemeScope';
-import {
-  generateBreakpointStyleSheets,
-  getBreakpointStylesServerSnapshot,
-  getBreakpointStylesSnapshot,
-  subscribeBreakpointStyles,
-} from './BreakpointStylesRegistry';
-import useTheme from './useTheme';
-import GlobalStyles from '../GlobalStyles';
 import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
 const {
@@ -46,21 +38,6 @@ const {
   themeScope: ThemeScope,
   getThemeScopeProps,
 });
-
-function BreakpointStylesInjector() {
-  const theme = useTheme();
-  const breakpointStyles = React.useSyncExternalStore(
-    subscribeBreakpointStyles,
-    getBreakpointStylesSnapshot,
-    getBreakpointStylesServerSnapshot,
-  );
-  const css = React.useMemo(
-    () => generateBreakpointStyleSheets(theme, breakpointStyles),
-    [theme, breakpointStyles],
-  );
-
-  return css ? <GlobalStyles styles={css} /> : null;
-}
 
 let warnedOnce = false;
 
@@ -128,13 +105,7 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
  * To see the full documentation, check out https://mui.com/material-ui/customization/css-theme-variables/usage/.
  */
 export function CssVarsProvider(props: React.ComponentProps<typeof InternalCssVarsProvider>) {
-  return (
-    <InternalCssVarsProvider {...props}>
-      {props.children}
-      {/* Migrated component CSS still needs live theme breakpoints in the Emotion path. */}
-      {!props.disableStyleSheetGeneration && <BreakpointStylesInjector />}
-    </InternalCssVarsProvider>
-  );
+  return <InternalCssVarsProvider {...props} />;
 }
 
 export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };
