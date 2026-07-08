@@ -137,7 +137,7 @@ type TabKey = 'density' | 'components' | 'typography' | 'radius';
 // Radius is hidden for now — its wiring (TAB_TOKEN_GROUP, preview, token knobs)
 // stays intact; re-enable by adding it back here. Hidden tabs are also invalid
 // as `?tab=` values (they fall back to the default).
-const VISIBLE_TABS: readonly TabKey[] = ['density', 'components', 'typography'];
+const VISIBLE_TABS: readonly TabKey[] = ['density', 'typography', 'components'];
 const TAB_LABEL: Record<TabKey, string> = {
   density: 'Density',
   components: 'Components',
