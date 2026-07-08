@@ -17,8 +17,6 @@ minimumReleaseAgeExclude:
   # Renovate security update: @babel/core@7.29.6
   - '@babel/core@7.29.6'
 trustPolicy: no-downgrade
-trustPolicyExclude:
-  - '@mui/internal-*'
 # Skip trust-policy checks for packages published more than 365 days ago.
 # Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
 # reselect@5.1.1 and parts of @octokit/*) dropped provenance attestation for specific releases,
@@ -37,7 +35,7 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
-    '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@4fe3c48'
+    '@mui/internal-docs-infra': '0.12.1-canary.12'
 
 overrides:
   # Both were bundled twice in the docs build
