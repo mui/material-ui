@@ -28,9 +28,9 @@ export function parseMapping(input: string): { state: 'empty' | 'ok' | 'error'; 
   return { state: 'ok' };
 }
 
-// Human-readable resolved value: typed keys show their px (from the active
-// scale); emitted `var(--mui-density-<step>)` refs shorten to `density.<step>`;
-// everything else echoes as typed.
+// Helper-text rule: always a concrete CSS value, never a raw var() string —
+// typed keys AND emitted `var(--mui-density-<step>)` refs resolve to their px
+// off the active scale (step name when no scale); everything else echoes as typed.
 export const previewText = (input: string, scalePx: Record<string, string> | null) =>
   tokenize(input)
     .map((t) => {
@@ -38,6 +38,12 @@ export const previewText = (input: string, scalePx: Record<string, string> | nul
         return scalePx?.[t] ?? t;
       }
       const densityVar = /^var\(--mui-density-(\w+)\)$/.exec(t);
-      return densityVar ? `density.${densityVar[1]}` : t;
+      return densityVar ? (scalePx?.[densityVar[1]] ?? densityVar[1]) : t;
     })
     .join(' ');
+
+// Placeholder rule: emitted `var(--mui-density-<step>)` refs shorten to the bare
+// step name (`var(--mui-density-xs) var(--mui-density-lg)` → `xs lg`) — the
+// placeholder mirrors what you'd TYPE; the helper shows what it RESOLVES to.
+export const shortenDensityVars = (value: string) =>
+  value.replace(/var\(--mui-density-(\w+)\)/g, '$1');

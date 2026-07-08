@@ -6,6 +6,7 @@ import {
   resolveValue,
   parseMapping,
   previewText,
+  shortenDensityVars,
 } from './mappingValue';
 
 describe('mappingValue', () => {
@@ -40,11 +41,20 @@ describe('mappingValue', () => {
     expect(bad.error).to.equal('max 2 values (block inline)');
   });
 
-  it('previewText resolves keys to px off the scale and shortens var refs', () => {
+  it('previewText resolves keys AND var refs to px off the scale', () => {
     const scale = { xs: '4px', sm: '6px' };
     expect(previewText('xs sm', scale)).to.equal('4px 6px');
-    expect(previewText('var(--mui-density-xs)', scale)).to.equal('density.xs');
+    expect(previewText('var(--mui-density-xs)', scale)).to.equal('4px');
+    expect(previewText('var(--mui-density-xs) var(--mui-density-sm)', scale)).to.equal('4px 6px');
     expect(previewText('12px', scale)).to.equal('12px');
     expect(previewText('xs', null)).to.equal('xs');
+    expect(previewText('var(--mui-density-xs)', null)).to.equal('xs');
+  });
+
+  it('shortenDensityVars shortens var refs to bare step names for placeholders', () => {
+    expect(shortenDensityVars('var(--mui-density-xs) var(--mui-density-lg)')).to.equal('xs lg');
+    expect(shortenDensityVars('calc(-2px - var(--mui-density-sm))')).to.equal('calc(-2px - sm)');
+    expect(shortenDensityVars('40px')).to.equal('40px');
+    expect(shortenDensityVars('')).to.equal('');
   });
 });

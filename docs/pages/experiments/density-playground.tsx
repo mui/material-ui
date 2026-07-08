@@ -107,6 +107,7 @@ import {
   SCALE_KEYS,
   parseMapping,
   previewText,
+  shortenDensityVars,
 } from 'docs/src/modules/components/density/mappingValue';
 import {
   collectDensityEdits,
@@ -1816,7 +1817,9 @@ const FamilyKnobs = React.memo(
                         idAttr="data-mapping-field"
                         label={entry.label}
                         value={mapping[entry.writeIds[0]] ?? ''}
-                        placeholder={canon || 'density key or CSS value'}
+                        // Placeholder = what you'd TYPE: var refs shortened to bare
+                        // step names; override-only knobs (no preset default) stay blank.
+                        placeholder={shortenDensityVars(canon)}
                         disabled={disabled}
                         // error is display-only; the commit still stores the draft
                         // (the apply path skips rows that don't parse).
@@ -2266,18 +2269,32 @@ export default function DensityExperiment() {
                         </Typography>
                       )}
                       <Stack spacing={1.5} sx={{ mt: slot.key ? 0.5 : 0 }}>
-                        {slot.knobs.map((knob) => (
-                          <KnobInput
-                            key={knob.id}
-                            id={knob.id}
-                            idAttr="data-token-field"
-                            label={knob.label}
-                            value={mapping[knob.id] ?? ''}
-                            placeholder={readThemeToken(presetTheme, knob.path) || 'theme value'}
-                            disabled={!mappingEnabled}
-                            onCommit={(v) => setFields([knob.id], v)}
-                          />
-                        ))}
+                        {slot.knobs.map((knob) => {
+                          // Same placeholder/helper rules as the mapping knobs:
+                          // placeholder = what you'd type (vars shortened, blank when
+                          // no default); helper = the resolved value of draft-or-default.
+                          const canon =
+                            preset === 'unset' ? '' : readThemeToken(presetTheme, knob.path);
+                          return (
+                            <KnobInput
+                              key={knob.id}
+                              id={knob.id}
+                              idAttr="data-token-field"
+                              label={knob.label}
+                              value={mapping[knob.id] ?? ''}
+                              placeholder={shortenDensityVars(canon)}
+                              disabled={!mappingEnabled}
+                              computeHelper={(draft) => {
+                                const parsed = parseMapping(draft);
+                                if (parsed.state === 'error') {
+                                  return { helper: parsed.error, error: true };
+                                }
+                                return { helper: previewText(draft || canon, scalePx) };
+                              }}
+                              onCommit={(v) => setFields([knob.id], v)}
+                            />
+                          );
+                        })}
                       </Stack>
                     </Box>
                   ))}
