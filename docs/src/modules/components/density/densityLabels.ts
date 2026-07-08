@@ -178,15 +178,19 @@ export const densityLabels: Record<string, string> = {
   'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|disableGutters=false||paddingInline':
     'ListItemButton · paddingInline [disableGutters=false]',
-  'MuiMenuItem|root|base||fontSize': 'MenuItem · fontSize',
-  'MuiMenuItem|root|base||lineHeight': 'MenuItem · lineHeight',
-  'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': 'MenuItem · minWidth',
-  'MuiMenuItem|root|dense=false||minHeight': 'Item min height (mobile)',
-  'MuiMenuItem|root|dense=false||paddingBlock': 'Item block padding',
-  'MuiMenuItem|root|dense=true||minHeight': 'Dense item min height',
-  'MuiMenuItem|root|dense=true||paddingBlock': 'Dense item block padding',
-  'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline': 'Item inline padding',
-  'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline': 'Dense item inline padding',
+  'MuiMenuItem|root|base||fontSize': 'MenuItem · font size',
+  'MuiMenuItem|root|base||lineHeight': 'MenuItem · line height',
+  'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': 'MenuItem · min width',
+  'MuiMenuItem|root|dense=false||minHeight': 'min height (mobile)',
+  'MuiMenuItem|root|dense=false||paddingBlock': 'block padding',
+  'MuiMenuItem|root|dense=true||minHeight': 'min height [dense]',
+  'MuiMenuItem|root|dense=true||paddingBlock': 'block padding [dense]',
+  'MuiMenuItem|root|dense=true|& .MuiListItemIcon-root svg|fontSize':
+    'MenuItem · Icon font size [dense]',
+  'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline':
+    'inline padding [disableGutters]',
+  'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline':
+    'inline padding [dense][disableGutters]',
   'MuiOutlinedInput|input|base||paddingBlock': 'OutlinedInput · input · paddingBlock',
   'MuiOutlinedInput|input|size=small||paddingBlock':
     'OutlinedInput · input · paddingBlock [size=small]',

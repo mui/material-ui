@@ -379,7 +379,7 @@ function MenuDemoItems({ dense = false }: { dense?: boolean }) {
       </MenuItem>
       <MenuItem dense={dense}>
         <ListItemIcon>
-          <InboxIcon fontSize="small" />
+          <InboxIcon fontSize={dense ? 'small' : 'medium'} />
         </ListItemIcon>
         <ListItemText>
           <span className="density-debug-text">Archived</span>

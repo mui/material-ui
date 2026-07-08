@@ -49,7 +49,16 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     lineHeight: 1.4,
     variants: [
       { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.sm } },
-      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d.xs } },
+      {
+        props: { dense: true },
+        style: {
+          minHeight: '28px',
+          paddingBlock: d.xs,
+          [`& .${listItemIconClasses.root} svg`]: {
+            fontSize: '1.125rem',
+          },
+        },
+      },
       { props: { dense: false, disableGutters: false }, style: { paddingInline: d.lg } },
       { props: { dense: true, disableGutters: false }, style: { paddingInline: d.md } },
     ],

@@ -2250,6 +2250,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiMenuItem|root|dense=true|& .MuiListItemIcon-root svg|fontSize',
+    label: 'MenuItem · fontSize [dense=true]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiMenuItem',
+      slot: 'root',
+      props: { dense: true },
+      nested: '& .MuiListItemIcon-root svg',
+      cssProp: 'fontSize',
+    },
+    values: { compact: '1.125rem', normal: undefined, comfort: undefined },
+  },
+  {
     id: 'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline',
     label: 'MenuItem · paddingInline [dense=false,disableGutters=false]',
     isDensity: true,
