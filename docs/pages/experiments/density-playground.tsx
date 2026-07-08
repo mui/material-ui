@@ -88,6 +88,7 @@ import {
   densityGroups,
   densityRow,
   knobLabel,
+  orderFamilyComponents,
   stripComponentSlot,
 } from 'docs/src/modules/components/density/densityFields';
 import {
@@ -1710,8 +1711,13 @@ export default function DensityExperiment() {
       return presetTheme;
     }
     const edits: DensityEdit[] = [];
+    const seen = new Set<string>(); // a shared field (e.g. FormControlLabel) sits in two families
     for (const group of densityGroups) {
       for (const id of group.fields) {
+        if (seen.has(id)) {
+          continue;
+        }
+        seen.add(id);
         const raw = mapping[id] ?? '';
         if (parseMapping(raw).state !== 'ok') {
           continue;
@@ -2046,17 +2052,11 @@ export default function DensityExperiment() {
                 }
                 bySlot.get(entry.slot)!.push(entry);
               }
-              // Base component (name === family) leads, then sub-parts alphabetically:
-              // Accordion → AccordionDetails → AccordionSummary.
-              const orderedComponents = [...byComponent].sort(([a], [b]) => {
-                if (a === group.key) {
-                  return -1;
-                }
-                if (b === group.key) {
-                  return 1;
-                }
-                return a.localeCompare(b);
-              });
+              // Order + scope this family's components: familyComponentOrder config,
+              // else base-first (name === family) then alphabetical.
+              const orderedComponents = orderFamilyComponents(group.key, [
+                ...byComponent.keys(),
+              ]).map((component) => [component, byComponent.get(component)!] as const);
               return orderedComponents.map(([component, bySlot]) => (
                 <Box key={component} sx={{ mt: 2 }} data-mapping-component={component}>
                   <Typography sx={{ fontWeight: 'medium', fontSize: 13 }}>{component}</Typography>

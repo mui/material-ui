@@ -10,9 +10,10 @@ const allRows: DensityEmitRow[] = [...densityEmitTable, ...densityExtraRows];
  * surfaces its knobs. Family keys are COMPONENT_DEFS keys (each has one demo), so
  * bundled demos gather several components — Menu = List + MenuItem, Dialog =
  * Title/Content/Actions, etc. This is the only editorial piece; the fields
- * themselves come from the generated table.
+ * themselves come from the generated table. A component may belong to several
+ * families (array) — e.g. FormControlLabel surfaces in both Checkbox and Radio.
  */
-export const componentFamily: Record<string, string> = {
+export const componentFamily: Record<string, string | string[]> = {
   MuiButton: 'Button',
   MuiList: 'Menu',
   MuiListItemIcon: 'Menu',
@@ -29,6 +30,7 @@ export const componentFamily: Record<string, string> = {
   MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
+  MuiFormControlLabel: ['Checkbox', 'Radio'],
   MuiAvatar: 'Avatar',
   MuiFab: 'Fab',
   MuiPaginationItem: 'Pagination',
@@ -56,6 +58,35 @@ export const componentFamily: Record<string, string> = {
   MuiAccordionDetails: 'Accordion',
   MuiAccordionSummary: 'Accordion',
 };
+
+/**
+ * Per-family component order + scope in the sidebar. Keys are family
+ * (COMPONENT_DEFS) keys; values are component short-names (no `Mui` prefix) in
+ * display order. When a family has an entry, ONLY those components show, in that
+ * order (listed names with no knobs are dropped). Families without an entry fall
+ * back to base-first (name === family key) then alphabetical.
+ */
+export const familyComponentOrder: Record<string, string[]> = {
+  Checkbox: ['Checkbox', 'FormControlLabel'],
+  Radio: ['Radio', 'FormControlLabel'],
+};
+
+/** Ordered (and, when configured, scoped) component list for a family's sidebar group. */
+export function orderFamilyComponents(family: string, components: string[]): string[] {
+  const order = familyComponentOrder[family];
+  if (order) {
+    return order.filter((c) => components.includes(c));
+  }
+  return [...components].sort((a, b) => {
+    if (a === family) {
+      return -1;
+    }
+    if (b === family) {
+      return 1;
+    }
+    return a.localeCompare(b);
+  });
+}
 
 /**
  * Per-id denylist: rows kept in the (mechanical) emit table but not surfaced as
@@ -188,10 +219,12 @@ export const densityGroups: DensityGroup[] = (() => {
     if (!family) {
       continue; // component not surfaced (no canvas demo)
     }
-    if (!byFamily.has(family)) {
-      byFamily.set(family, []);
+    for (const fam of Array.isArray(family) ? family : [family]) {
+      if (!byFamily.has(fam)) {
+        byFamily.set(fam, []);
+      }
+      byFamily.get(fam)!.push(row.id);
     }
-    byFamily.get(family)!.push(row.id);
   }
   return [...byFamily]
     .map(([key, fields]) => ({ key, fields }))

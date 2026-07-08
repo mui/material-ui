@@ -63,6 +63,8 @@ export const densityExtraRows: DensityEmitRow[] = [
   slotRow('MuiAlert', 'icon', 'fontSize', 'Alert · icon · fontSize'),
   slotRow('MuiAlert', 'message', 'paddingBlock', 'Alert · message · paddingBlock'),
   slotRow('MuiAlert', 'message', 'fontSize', 'Alert · message · fontSize'),
+  // Control↔label gap (root is inline-flex). Shown in both Checkbox and Radio families.
+  slotRow('MuiFormControlLabel', 'root', 'gap', 'FormControlLabel · gap'),
   {
     id: 'MuiListItemIcon|root|base||minWidth',
     label: 'ListItemIcon · minWidth',
