@@ -30,19 +30,33 @@ const ErrorAlert = styled(Alert)(({ theme }) => ({
   },
 }));
 
+// Drops a trailing `(line:column)` from a parse-error message. The position is
+// relative to the FULL transpiled source; while the code is collapsed the user
+// only sees the preview snippet, so the numbers point at lines they can't see.
+function stripPosition(message: string): string {
+  return message.replace(/\s*\(\d+:\d+\)$/, '');
+}
+
 /**
  * Floating alert anchored to the top border of the code panel (below the toolbar,
  * where the user is editing). Surfaces the live-edit runtime error for the selected
  * variant, reported by `useDemoController` through `CodeControllerContext` and read
  * off `useDemo().error`.
  */
-export function DemoErrorOverlay({ message }: { message: string | null }) {
+export function DemoErrorOverlay({
+  message,
+  showPosition = true,
+}: {
+  message: string | null;
+  /** When false (code collapsed to the preview), hide the misleading `(line:col)`. */
+  showPosition?: boolean;
+}) {
   if (!message) {
     return null;
   }
   return (
     <ErrorAlert aria-live="polite" variant="filled" severity="error">
-      {message}
+      {showPosition ? message : stripPosition(message)}
     </ErrorAlert>
   );
 }
