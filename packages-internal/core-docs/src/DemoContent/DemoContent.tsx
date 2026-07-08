@@ -528,7 +528,7 @@ export default function DemoContent(props: DemoContentProps) {
       bg={resolvedBg}
       hideToolbar={hideToolbar}
       previewStyle={previewStyle}
-      codeOverlay={<DemoErrorOverlay message={demo.error} />}
+      codeOverlay={<DemoErrorOverlay message={demo.error} showPosition={demo.expanded} />}
       focusRef={demo.focusRef}
       toolbar={toolbar}
       toolbarRef={toolbarRef}
