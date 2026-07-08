@@ -23,17 +23,22 @@ function down(key: Breakpoint) {
   return `(max-width:${defaultBreakpointValues[key] - 0.05}px)`;
 }
 
-async function findCssModules(directory: string): Promise<string[]> {
+async function findCssFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = await Promise.all(
     entries.map(async (entry) => {
       const absolutePath = path.join(directory, entry.name);
 
       if (entry.isDirectory()) {
-        return findCssModules(absolutePath);
+        return findCssFiles(absolutePath);
       }
 
-      if (entry.isFile() && entry.name.endsWith('.module.css')) {
+      if (
+        entry.isFile() &&
+        entry.name.endsWith('.css') &&
+        entry.name !== 'styles.css' &&
+        entry.name !== 'styles-source.css'
+      ) {
         return [absolutePath];
       }
 
@@ -70,10 +75,10 @@ function resolveDefaultBreakpoints(css: string) {
   });
 }
 
-const cssModuleFiles = await findCssModules(srcRoot);
+const cssFiles = await findCssFiles(srcRoot);
 const sourceCss = (
   await Promise.all(
-    cssModuleFiles.map(async (file) => {
+    cssFiles.map(async (file) => {
       const relativePath = path.relative(srcRoot, file);
       const contents = await readFile(file, 'utf8');
 

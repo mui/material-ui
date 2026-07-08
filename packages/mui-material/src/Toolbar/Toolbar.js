@@ -6,7 +6,6 @@ import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getToolbarUtilityClass } from './toolbarClasses';
-import cssModules from './Toolbar.module.css';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableGutters, variant } = ownerState;
@@ -15,7 +14,7 @@ const useUtilityClasses = (ownerState) => {
     root: ['root', !disableGutters && 'gutters', variant],
   };
 
-  return composeClasses(slots, getToolbarUtilityClass, classes, cssModules);
+  return composeClasses(slots, getToolbarUtilityClass, classes);
 };
 
 const ToolbarRoot = styled('div', {

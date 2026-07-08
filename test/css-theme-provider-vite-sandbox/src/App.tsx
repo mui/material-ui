@@ -9,12 +9,13 @@
  * Verifies that:
  *   1. @mui/styled-engine is aliased to @mui/styled-engine-noop (no Emotion).
  *   2. CssThemeProvider injects --mui-* CSS variables at runtime without Emotion.
- *   3. Slider renders correctly using Slider.css + runtime CSS vars.
+ *   3. Slider renders correctly using generated source CSS + runtime CSS vars.
  *   4. The `sx` prop fires a console.error in dev and is otherwise ignored.
  *   5. className-based overrides beat @layer mui without !important.
  *   6. Dark mode works via CssThemeProvider by toggling data-mui-color-scheme
  *      on <html>.
  *   7. useTheme() returns JS theme values (breakpoints, spacing, etc.).
+ *   8. App-imported generated source CSS is translated by the app CSS pipeline.
  *
  * To confirm no Emotion is bundled, run:
  *   pnpm -F @mui-internal/css-theme-provider-vite-sandbox build
@@ -32,6 +33,7 @@ import {
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
+import '@mui/material/styles-source.css';
 
 const customBreakpoints = {
   values: { xs: 0, sm: 720, md: 900, lg: 1200, xl: 1536 },

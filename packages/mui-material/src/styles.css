@@ -1,4 +1,4 @@
-/* Slider/Slider.module.css */
+/* Slider/Slider.css */
 @layer mui.components {
   .MuiSlider-root {
     border-radius: 12px;
@@ -462,7 +462,7 @@
   }
 }
 
-/* Toolbar/Toolbar.module.css */
+/* Toolbar/Toolbar.css */
 @layer mui.components {
   .MuiToolbar-root {
     position: relative;

@@ -14,7 +14,6 @@ import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import capitalize from '../utils/capitalize';
 import BaseSliderValueLabel from './SliderValueLabel';
 import { getSliderUtilityClass } from './sliderClasses';
-import cssModules from './Slider.module.css';
 
 function Identity(x) {
   return x;
@@ -165,7 +164,7 @@ const useUtilityClasses = (ownerState) => {
     focusVisible: ['focusVisible'],
   };
 
-  return composeClasses(slots, getSliderUtilityClass, classes, cssModules);
+  return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
 const Forward = ({ children }) => children;

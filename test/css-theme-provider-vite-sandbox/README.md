@@ -11,13 +11,15 @@ Verifies that:
    the output bundle.
 2. `CssThemeProvider` injects `--mui-*` CSS variables at runtime without any
    `@emotion/*` dependency.
-3. `Slider` renders correctly using `Slider.css` + runtime CSS vars from
+3. `Slider` renders correctly using generated source CSS + runtime CSS vars from
    `CssThemeProvider`.
 4. The `sx` prop fires a dev-only `console.error` and is otherwise ignored.
 5. `className`-based overrides beat `@layer mui` without `!important`.
 6. Dark mode works via `CssThemeProvider` by flipping `data-mui-color-scheme`
    on `document.documentElement`.
 7. `useTheme()` returns live JavaScript theme values (breakpoints, spacing, etc.).
+8. Generated source CSS is imported by the app and translated by the app CSS
+   pipeline.
 
 ## How this differs from the other sandboxes
 

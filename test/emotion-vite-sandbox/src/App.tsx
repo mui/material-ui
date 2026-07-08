@@ -1,5 +1,5 @@
 /**
- * emotion-engine sandbox — Slider only.
+ * emotion-engine sandbox.
  *
  * Mirror of noop-vite-sandbox but using the Emotion engine (the default MUI
  * setup). No engine alias is applied — @mui/styled-engine resolves to the
@@ -11,6 +11,7 @@
  *   3. The `sx` prop works and applies styles at runtime via Emotion.
  *   4. Dark mode works via ThemeProvider's colorSchemes / CssVarsProvider.
  *   5. useTheme() returns live JS theme values.
+ *   6. App-imported generated source CSS is translated by the app CSS pipeline.
  *
  * To confirm Emotion IS bundled, run:
  *   pnpm -F @mui-internal/emotion-vite-sandbox build
@@ -29,6 +30,7 @@ import {
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
+import '@mui/material/styles-source.css';
 
 const customBreakpoints = {
   values: { xs: 0, sm: 720, md: 900, lg: 1200, xl: 1536 },
