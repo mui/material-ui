@@ -136,6 +136,10 @@ const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
   radius: 'Border Radius',
 };
 
+// Stable empty mapping for `unset` (no workspace) — module-scope identity so it
+// never defeats the FamilyKnobs/KnobInput memos.
+const EMPTY_MAPPING: Record<string, string> = {};
+
 // Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
 // layout-safe (absolute ::before + pointer-events:none), never touches the
 // components' real styles. The label span sits above the padding overlay
@@ -1849,8 +1853,14 @@ export default function DensityExperiment() {
   // Layout tab — drives both the sidebar content and the canvas.
   const [tab, setTab] = React.useState<TabKey>('components');
 
-  // User overrides, keyed by generated-table row id — empty until a field is typed.
-  const [mapping, setMapping] = React.useState<Record<string, string>>({});
+  // User overrides, keyed by generated-table row id — ONE WORKSPACE PER PRESET.
+  // Overrides made under compact stay with compact: switch to normal → blank
+  // knobs (normal's own empty state), switch back → compact's values return.
+  // `unset` has no workspace (knobs disabled + blank).
+  const [mappingByPreset, setMappingByPreset] = React.useState<
+    Record<PresetLevel, Record<string, string>>
+  >({ compact: {}, normal: {}, comfort: {} });
+  const mapping = preset === 'unset' ? EMPTY_MAPPING : mappingByPreset[preset];
 
   // Shareable URL — read the query ONCE when the router is ready, then lift every
   // preset/tab/family change back into it (knob overrides stay out of the URL).
@@ -1974,27 +1984,38 @@ export default function DensityExperiment() {
       : (presetTheme as unknown as { density: Record<string, string> }).density;
 
   // Write one value to every id an entry drives (a plain field writes one, a
-  // virtual knob writes all its members). Stable identity (functional update) so
-  // it never breaks the FamilyKnobs/KnobInput memos.
+  // virtual knob writes all its members) — into the ACTIVE preset's workspace.
+  // Identity is stable per preset (functional update); it changes on preset flip,
+  // which re-renders FamilyKnobs anyway (its `preset` prop changed).
   const setFields = React.useCallback(
-    (ids: string[], value: string) =>
-      setMapping((m) => {
-        const next = { ...m };
+    (ids: string[], value: string) => {
+      if (preset === 'unset') {
+        return;
+      }
+      const level = preset as PresetLevel;
+      setMappingByPreset((prev) => {
+        const bucket = { ...prev[level] };
         for (const id of ids) {
-          next[id] = value;
+          bucket[id] = value;
         }
-        return next;
-      }),
-    [],
+        return { ...prev, [level]: bucket };
+      });
+    },
+    [preset],
   );
 
-  const resetMapping = () => setMapping({});
+  // Clears the ACTIVE preset's workspace only — other presets keep theirs.
+  const resetMapping = () => {
+    if (preset !== 'unset') {
+      setMappingByPreset((prev) => ({ ...prev, [preset as PresetLevel]: {} }));
+    }
+  };
 
-  // Export: self-contained density.ts with all three enhancers + current edits
-  // baked in (see exportPayload/buildExportSource). Enabled regardless of preset —
-  // the file always contains all three.
+  // Export: self-contained density.ts with all three enhancers, each carrying
+  // ITS OWN preset's edits (see exportPayload/buildExportSource). Enabled
+  // regardless of preset — the file always contains all three.
   const handleExport = () => {
-    const source = buildExportSource(buildExportInput(mapping));
+    const source = buildExportSource(buildExportInput(mappingByPreset));
     const blob = new Blob([source], { type: 'text/typescript' });
     const anchor = Object.assign(document.createElement('a'), {
       href: URL.createObjectURL(blob),

@@ -10,10 +10,11 @@ import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
 export type { ExportInput } from './buildExportSource';
 
-// Builds the buildExportSource input from the current mapping. The PLAYGROUND may
-// call enhance*Density (linked package) — only the GENERATED FILE must not import
-// them. Shared by the Export button and the unit tests, and reusing
-// collectDensityEdits + mergeOntoPreset keeps export = canvas by construction.
+// Builds the buildExportSource input from the per-preset mapping workspaces.
+// The PLAYGROUND may call enhance*Density (linked package) — only the GENERATED
+// FILE must not import them. Shared by the Export button and the unit tests, and
+// reusing collectDensityEdits + mergeOntoPreset keeps export = canvas by
+// construction. Each preset's payload carries ITS OWN workspace's edits.
 
 const PRESET_FN = {
   compact: enhanceCompactDensity,
@@ -22,6 +23,8 @@ const PRESET_FN = {
 } as const;
 
 type Level = keyof typeof PRESET_FN;
+
+export type MappingByPreset = Record<Level, Record<string, string>>;
 
 // The preset's own theme.typography patch: every primitive that differs from the
 // base theme (compact's type reflow; empty for normal/comfort today).
@@ -68,10 +71,11 @@ function flattenSlots(
   );
 }
 
-export function buildExportInput(mapping: Record<string, string>): ExportInput {
-  const userLayer = buildOverrides(collectDensityEdits(mapping));
+export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput {
   const base = createTheme({ cssVariables: true });
   const presets = (Object.keys(PRESET_FN) as Level[]).map((name): ExportPresetPayload => {
+    const workspace = mappingByPreset[name] ?? {};
+    const userLayer = buildOverrides(collectDensityEdits(workspace));
     const enhanced = PRESET_FN[name](createTheme({ cssVariables: true })) as unknown as {
       density: Record<string, string>;
       components: Record<string, any>;
@@ -79,14 +83,27 @@ export function buildExportInput(mapping: Record<string, string>): ExportInput {
     };
     // MuiCssBaseline excluded — the scale block is emitted separately by the file.
     const { MuiCssBaseline, ...presetComponents } = enhanced.components ?? {};
+    // This preset's user token edits: typography variants layer over the preset's
+    // own reflow patch; shape (borderRadius) is its own section.
+    const typography = typographyPatch(base.typography as Record<string, any>, enhanced.typography);
+    const shape: Record<string, string | number> = {};
+    for (const edit of collectThemeTokenEdits(workspace)) {
+      if (edit.path[0] === 'typography') {
+        const [, variant, prop] = edit.path;
+        (typography[variant] ??= {})[prop] = edit.value;
+      } else if (edit.path[0] === 'shape') {
+        shape[edit.path[1]] = edit.value;
+      }
+    }
     return {
       name,
       scale: Object.fromEntries(
         Object.entries(enhanced.density).map(([key, px]) => [`--mui-density-${key}`, px]),
       ),
       components: flattenSlots(mergeOntoPreset(presetComponents, userLayer)),
-      typography: typographyPatch(base.typography as Record<string, any>, enhanced.typography),
+      typography,
+      shape,
     };
   });
-  return { presets, themeTokenEdits: collectThemeTokenEdits(mapping) };
+  return { presets };
 }

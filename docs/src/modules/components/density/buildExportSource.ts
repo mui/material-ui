@@ -9,16 +9,16 @@ export interface ExportPresetPayload {
   name: 'compact' | 'normal' | 'comfort';
   /** the :root block — { '--mui-density-xxs': '2px', … } */
   scale: Record<string, string>;
-  /** baseline ⊕ edits, flat-array slots, MuiCssBaseline excluded (scale is separate) */
+  /** baseline ⊕ THIS preset's edits, flat-array slots, MuiCssBaseline excluded (scale is separate) */
   components: Record<string, { styleOverrides: Record<string, unknown> }>;
-  /** the preset's own theme.typography patch (compact reflow); {} when none */
+  /** the preset's own type reflow ⊕ this preset's user typography edits; {} when none */
   typography: Record<string, Record<string, string | number>>;
+  /** this preset's user shape edits (borderRadius); {} when none */
+  shape: Record<string, string | number>;
 }
 
 export interface ExportInput {
   presets: ExportPresetPayload[];
-  /** user theme-token edits (typography variants, shape.borderRadius) — shared across presets */
-  themeTokenEdits: Array<{ path: readonly string[]; value: string | number }>;
 }
 
 const IDENT = /^[A-Za-z_$][\w$]*$/;
@@ -63,28 +63,7 @@ function printValue(value: unknown, indent: string): string {
   return 'undefined';
 }
 
-/** Nested object from token-edit paths: [['typography','h1','fontSize'], v] → {typography:{h1:{fontSize:v}}} */
-function nestTokenEdits(
-  edits: Array<{ path: readonly string[]; value: string | number }>,
-): Record<string, unknown> {
-  const root: Record<string, unknown> = {};
-  for (const { path, value } of edits) {
-    let node = root;
-    for (const seg of path.slice(0, -1)) {
-      node = (node[seg] ??= {}) as Record<string, unknown>;
-    }
-    node[path[path.length - 1]] = value;
-  }
-  return root;
-}
-
 export function buildExportSource(input: ExportInput): string {
-  const tokens = nestTokenEdits(input.themeTokenEdits);
-  const themeTokens = {
-    typography: (tokens.typography as Record<string, unknown>) ?? {},
-    shape: (tokens.shape as Record<string, unknown>) ?? {},
-  };
-
   const presetConsts = input.presets
     .map(
       (p) =>
@@ -92,6 +71,7 @@ export function buildExportSource(input: ExportInput): string {
         `  scale: ${printValue(p.scale, '  ')},\n` +
         `  components: ${printValue(p.components, '  ')},\n` +
         `  typography: ${printValue(p.typography, '  ')},\n` +
+        `  shape: ${printValue(p.shape, '  ')},\n` +
         `};`,
     )
     .join('\n\n');
@@ -112,17 +92,13 @@ import type { Theme } from '@mui/material/styles';
 
 type AnyRecord = Record<string, any>;
 
-// Per-preset payload, baked at export time:
+// Per-preset payload, baked at export time — each preset carries ITS OWN
+// playground edits (the playground keeps one override workspace per preset):
 //   scale      → :root { --mui-density-*: <px> } (via MuiCssBaseline)
-//   components → preset baseline emissions ⊕ playground edits (flat-array slots)
-//   typography → the preset's own type reflow (compact only today)
+//   components → preset baseline emissions ⊕ that preset's edits (flat-array slots)
+//   typography → the preset's own type reflow ⊕ that preset's typography edits
+//   shape      → that preset's shape edits (borderRadius)
 ${presetConsts}
-
-// Playground theme-token edits (typography variants / shape) — shared across presets.
-const themeTokens = {
-  typography: ${printValue(themeTokens.typography, '  ')},
-  shape: ${printValue(themeTokens.shape, '  ')},
-};
 
 function mergeTypography(base: AnyRecord, patch: AnyRecord): AnyRecord {
   const out: AnyRecord = { ...base };
@@ -134,7 +110,12 @@ function mergeTypography(base: AnyRecord, patch: AnyRecord): AnyRecord {
 
 function enhance(
   theme: Theme,
-  p: { scale: Record<string, string>; components: AnyRecord; typography: AnyRecord },
+  p: {
+    scale: Record<string, string>;
+    components: AnyRecord;
+    typography: AnyRecord;
+    shape: AnyRecord;
+  },
 ): Theme {
   const components: AnyRecord = { ...(theme.components as AnyRecord) };
 
@@ -165,11 +146,8 @@ function enhance(
 
   return createTheme({
     ...theme,
-    typography: mergeTypography(
-      mergeTypography(theme.typography as AnyRecord, p.typography),
-      themeTokens.typography,
-    ),
-    shape: { ...theme.shape, ...themeTokens.shape },
+    typography: mergeTypography(theme.typography as AnyRecord, p.typography),
+    shape: { ...theme.shape, ...p.shape },
     components,
   } as AnyRecord);
 }
