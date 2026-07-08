@@ -25,8 +25,7 @@ const useUtilityClasses = (ownerState) => {
 const SwitchBaseRoot = styled(ButtonBase, {
   name: 'MuiSwitchBase',
 })({
-  '--_pad': '9px',
-  padding: 'var(--_pad)',
+  padding: 9,
   borderRadius: '50%',
   variants: [
     {
