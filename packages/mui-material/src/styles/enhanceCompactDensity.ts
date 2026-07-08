@@ -10,7 +10,6 @@ import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { private_tooltipVars } from '../Tooltip/tooltipVars';
 import { private_chipVars } from '../Chip/chipVars';
 import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
-import type { TooltipOwnerState } from '../Tooltip';
 import type { OutlinedInputOwnerState } from '../OutlinedInput';
 import type { FilledInputProps } from '../FilledInput';
 import { inputBaseClasses, type InputBaseProps } from '../InputBase';
@@ -20,6 +19,7 @@ import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
+import { listItemIconClasses } from '../ListItemIcon';
 
 const scale: DensityScale = {
   xxs: '2px',
@@ -37,13 +37,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
   const d: DensityScale = (enhanced.vars || enhanced).density;
   addRootOverride(enhanced.components, 'MuiButton', {
-    // Emit padding directly on the size variants Button already ships (no seam).
-    // Compact-only type: lineHeight at base. Medium fontSize comes from
-    // theme.typography.button (Button's root spreads it, no medium variant); small
-    // needs its own smaller step. Keeping a medium fontSize here would mask the token.
-    lineHeight: 1.5,
     variants: [
-      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}`, fontSize: '0.75rem' } },
+      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } },
       { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
       { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
     ],
@@ -55,16 +50,19 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     fontSize: '0.875rem',
     lineHeight: 1.4,
     variants: [
-      { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.xs } },
-      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d.xxs } },
+      { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.sm } },
+      { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d.xs } },
       { props: { dense: false, disableGutters: false }, style: { paddingInline: d.lg } },
       { props: { dense: true, disableGutters: false }, style: { paddingInline: d.md } },
     ],
+    [`& .${listItemIconClasses.root}`]: {
+      minWidth: 28,
+    },
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
     variants: [
-      { props: { disablePadding: false }, style: { paddingBlock: d.sm } },
+      { props: { disablePadding: false }, style: { paddingBlock: d.md } },
       {
         props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader,
         style: { paddingTop: 0 },
@@ -75,42 +73,17 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiTooltip',
     {
-      // Regular (pointer) tooltip only — `touch` keeps its master literals.
-      // Padding + per-placement anchor offset = density steps (non-touch); the
-      // arrow child derives its size from the single `--_arrowSize` (raw
-      // px), left unset for `touch` so both variants keep scaling.
+      // Padding + per-placement offset = density steps on the base (mirrors
+      // Tooltip.js base margins), so they apply to every tooltip; arrow doesn't
+      // change them. Arrow child derives its size from `--_arrowSize` (raw px).
       [private_tooltipVars.arrowSize]: '10px',
       // Compact-only type (11px -> 10px); lineHeight kept at master.
       fontSize: '0.625rem',
-      variants: [
-        {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
-          }) => !ownerState.touch,
-          style: {
-            padding: `${d.xxs} ${d.sm}`,
-            [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-              marginInlineEnd: d.lg,
-            },
-            [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-              marginInlineStart: d.lg,
-            },
-          },
-        },
-        {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
-          }) => !ownerState.touch && !ownerState.arrow,
-          style: {
-            [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
-            [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
-          },
-        },
-      ],
+      padding: `${d.xxs} ${d.sm}`,
+      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
     },
     'tooltip',
   );

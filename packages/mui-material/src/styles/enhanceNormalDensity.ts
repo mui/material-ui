@@ -7,10 +7,10 @@ import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
+import { listItemIconClasses } from '../ListItemIcon';
 import { private_tooltipVars } from '../Tooltip/tooltipVars';
 import { private_chipVars } from '../Chip/chipVars';
 import { private_inputLabelVars } from '../InputLabel/inputLabelVars';
-import type { TooltipOwnerState } from '../Tooltip';
 import type { OutlinedInputOwnerState } from '../OutlinedInput';
 import type { FilledInputProps } from '../FilledInput';
 import { inputBaseClasses, type InputBaseProps } from '../InputBase';
@@ -55,6 +55,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       { props: { dense: false, disableGutters: false }, style: { paddingInline: d.lg } },
       { props: { dense: true, disableGutters: false }, style: { paddingInline: d.md } },
     ],
+    [`& .${listItemIconClasses.root}`]: {
+      minWidth: 32,
+    },
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
@@ -70,40 +73,15 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     enhanced.components,
     'MuiTooltip',
     {
-      // Regular (pointer) tooltip only — `touch` keeps its master literals.
-      // Padding + per-placement anchor offset = density steps (non-touch); the
-      // arrow child derives its size from the single `--_arrowSize` (raw
-      // px), left unset for `touch` so both variants keep scaling.
+      // Padding + per-placement offset = density steps on the base (mirrors
+      // Tooltip.js base margins), so they apply to every tooltip; arrow doesn't
+      // change them. Arrow child derives its size from `--_arrowSize` (raw px).
       [private_tooltipVars.arrowSize]: '11px',
-      variants: [
-        {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
-          }) => !ownerState.touch,
-          style: {
-            padding: `${d.xxs} ${d.sm}`,
-            [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
-              marginInlineEnd: d.lg,
-            },
-            [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-              marginInlineStart: d.lg,
-            },
-          },
-        },
-        {
-          props: ({
-            ownerState,
-          }: {
-            ownerState: TooltipOwnerState & { touch?: boolean | undefined };
-          }) => !ownerState.touch && !ownerState.arrow,
-          style: {
-            [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
-            [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
-          },
-        },
-      ],
+      padding: `${d.xxs} ${d.sm}`,
+      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
     },
     'tooltip',
   );
