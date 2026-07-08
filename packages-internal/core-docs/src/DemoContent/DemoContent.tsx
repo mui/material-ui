@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
@@ -196,7 +195,6 @@ export default function DemoContent(props: DemoContentProps) {
   });
 
   const t = useTranslate();
-  const router = useRouter();
 
   // Separate scroll-anchor session for transform swaps. Watches the same
   // code container, but anchors the page scroll on the JS/TS toggle group
@@ -385,11 +383,6 @@ export default function DemoContent(props: DemoContentProps) {
   const githubLocation = demo.selectedFileUrl
     ? demo.selectedFileUrl.replace('/tree/', '/blob/')
     : undefined;
-
-  // Anchor used by the deploy permalinks — the demo's own anchor id, so the
-  // permalink hash always matches the rendered `<DemoAnchorLink>`. No fallback to
-  // `demo.slug`: when anchors are disabled there's no matching target to link to.
-  const sourceAnchor = anchorName ?? undefined;
 
   // Copy-link anchors for the demo's ROOT file: its TS source name and its JS twin
   // (e.g. `ButtonBaseDemo.tsx` / `ButtonBaseDemo.jsx`) — the ids rendered above, so
