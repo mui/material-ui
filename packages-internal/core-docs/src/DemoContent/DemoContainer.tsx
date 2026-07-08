@@ -364,6 +364,10 @@ export const DemoCodeWrapper = styled('div', {
 // container" model. The window fills the panel flush, so `overflow: hidden` here
 // rounds the window's square scrollbar corners; the dark surface is the scrollport
 // background the code scrolls over (fixed at every scroll position).
+export const DemoCodeOverlayAnchor = styled('div')({
+  position: 'relative',
+});
+
 export const DemoCodePanel = styled('div', {
   shouldForwardProp: (prop) => prop !== 'expanded',
 })<{ expanded?: boolean }>(({ theme }) => ({
@@ -582,8 +586,13 @@ export interface DemoContainerProps {
    * the toolbar reset button.
    */
   onReset?: () => void;
-  /** Optional overlay placed on top of the preview (e.g. error alert). */
-  previewOverlay?: React.ReactNode;
+  /**
+   * Optional overlay anchored to the top border of the code panel (below the
+   * toolbar), e.g. the live-edit error alert. Placed there — rather than over the
+   * preview — so a build error appears where the user is typing, matching the
+   * legacy editor's placement.
+   */
+  codeOverlay?: React.ReactNode;
   /** Optional ref target for the initial-focus button inside the preview. */
   focusRef?: React.Ref<HTMLButtonElement>;
   /**
@@ -643,7 +652,7 @@ export function DemoContainer(props: DemoContainerProps) {
     iframe,
     name,
     onReset,
-    previewOverlay,
+    codeOverlay,
     focusRef,
     toolbar,
     toolbarRef,
@@ -696,13 +705,19 @@ export function DemoContainer(props: DemoContainerProps) {
     <React.Fragment>
       {tabs}
       {code != null ? (
-        <DemoCodePanel expanded={expanded}>
-          <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
-            <DemoCodeWrapper ref={codeRef} expanded={expanded}>
-              {code}
-            </DemoCodeWrapper>
-          </DemoCodeWindow>
-        </DemoCodePanel>
+        // Relative anchor so `codeOverlay` can straddle the code panel's top border
+        // (below the toolbar). It can't live inside `DemoCodePanel` — that clips with
+        // `overflow: hidden` — so it sits here as a sibling of the panel.
+        <DemoCodeOverlayAnchor>
+          {codeOverlay}
+          <DemoCodePanel expanded={expanded}>
+            <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
+              <DemoCodeWrapper ref={codeRef} expanded={expanded}>
+                {code}
+              </DemoCodeWrapper>
+            </DemoCodeWindow>
+          </DemoCodePanel>
+        </DemoCodeOverlayAnchor>
       ) : null}
     </React.Fragment>
   );
@@ -726,7 +741,6 @@ export function DemoContainer(props: DemoContainerProps) {
         ) : (
           themedPreview
         )}
-        {previewOverlay}
       </DemoPreviewArea>
 
       {toolbar != null ? (
