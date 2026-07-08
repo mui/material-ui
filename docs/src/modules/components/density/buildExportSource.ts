@@ -2,8 +2,10 @@
 // self-contained `density.ts` source string. The generated file imports ONLY
 // stable public API (`createTheme`) — the unreleased enhance*Density logic is
 // baked in as data — so it can preview density in a production sandbox without
-// upgrading @mui/material. It REQUIRES <CssBaseline /> in the consuming app:
-// that's what materialises the `--mui-density-*` vars the overrides reference.
+// upgrading @mui/material. The baked overrides reference `--mui-density-*`
+// vars; a CSS-vars theme materialises them through its own stylesheet channel
+// (ThemeProvider renders `generateStyleSheets`), a static theme needs
+// <CssBaseline /> for the MuiCssBaseline fallback.
 
 export interface ExportPresetPayload {
   name: 'compact' | 'normal' | 'comfort';
@@ -111,13 +113,15 @@ export function buildExportSource(input: ExportInput): string {
 // Preview MUI density WITHOUT upgrading @mui/material — the unreleased preset
 // logic is inlined as data; only stable public API is imported.
 //
-// REQUIRES <CssBaseline /> in the consuming app — it materialises the
-// --mui-density-* vars these overrides reference. Without it the refs resolve
-// to nothing and density silently does not apply.
+// The overrides reference --mui-density-* vars. With a CSS-vars theme
+// (createTheme({ cssVariables: true })) they ship on the theme's own stylesheet
+// channel — ThemeProvider alone is enough. With a static theme they fall back
+// to MuiCssBaseline, so <CssBaseline /> is REQUIRED there; without it the refs
+// resolve to nothing and density silently does not apply.
 //
 // Usage:
 //   const theme = enhanceCompactDensity(createTheme({ /* your options */ }));
-//   <ThemeProvider theme={theme}><CssBaseline />…</ThemeProvider>
+//   <ThemeProvider theme={theme}>…</ThemeProvider>
 import { createTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 
@@ -125,7 +129,8 @@ type AnyRecord = Record<string, any>;
 
 // Per-preset payload, baked at export time — each preset carries ITS OWN
 // playground edits (the playground keeps one override workspace per preset):
-//   scale      → :root { --mui-density-*: <px> } (via MuiCssBaseline)
+//   scale      → :root { --mui-density-*: <px> } (theme stylesheet channel, or
+//                MuiCssBaseline fallback for static themes)
 //   components → preset baseline emissions ⊕ that preset's edits (flat-array slots)
 //   typography → the preset's own type reflow ⊕ that preset's typography edits
 //   shape      → that preset's shape edits (borderRadius)
@@ -152,16 +157,20 @@ function enhance(
 ): Theme {
   const components: AnyRecord = { ...(theme.components as AnyRecord) };
 
-  // 1) scale → :root via MuiCssBaseline (needs <CssBaseline/>), layer-preserving
-  const baseline = components.MuiCssBaseline?.styleOverrides;
-  const baselineObj: AnyRecord = baseline && typeof baseline === 'object' ? baseline : {};
-  components.MuiCssBaseline = {
-    ...components.MuiCssBaseline,
-    styleOverrides: {
-      ...baselineObj,
-      ':root': { ...(baselineObj[':root'] as AnyRecord), ...p.scale },
-    },
-  };
+  // 1) scale → :root. Static theme: MuiCssBaseline fallback (needs <CssBaseline/>),
+  //    layer-preserving. CSS-vars theme: appended onto the theme's own stylesheet
+  //    channel after createTheme (below) — no CssBaseline involved.
+  if (!(theme as AnyRecord).vars) {
+    const baseline = components.MuiCssBaseline?.styleOverrides;
+    const baselineObj: AnyRecord = baseline && typeof baseline === 'object' ? baseline : {};
+    components.MuiCssBaseline = {
+      ...components.MuiCssBaseline,
+      styleOverrides: {
+        ...baselineObj,
+        ':root': { ...(baselineObj[':root'] as AnyRecord), ...p.scale },
+      },
+    };
+  }
 
   // 2) component overrides — flat array-form slot merge (density wins by order,
   //    the app's own styleOverrides/variants are kept as the leading layer).
@@ -177,12 +186,34 @@ function enhance(
     components[name] = { ...prev, styleOverrides: slots };
   }
 
-  return createTheme({
+  const result = createTheme({
     ...theme,
     typography: mergeTypography(theme.typography as AnyRecord, p.typography),
     shape: { ...theme.shape, ...p.shape },
     components,
-  } as AnyRecord);
+  } as AnyRecord) as AnyRecord;
+
+  // 3) CSS-vars theme: ride the theme's own vars channel — ThemeProvider renders
+  //    generateStyleSheets, same as the palette vars. Wrap generateThemeVars too:
+  //    the provider rebuilds theme.vars from it and would drop vars.density.
+  if (result.vars) {
+    const refs = Object.fromEntries(
+      Object.keys(p.scale).map((name) => [name.split('-density-')[1], 'var(' + name + ')']),
+    );
+    result.vars = { ...result.vars, density: refs };
+    const prevThemeVars = result.generateThemeVars;
+    result.generateThemeVars = () => ({
+      ...(prevThemeVars ? prevThemeVars() : {}),
+      density: refs,
+    });
+    const prevStyleSheets = result.generateStyleSheets;
+    result.generateStyleSheets = () => [
+      ...(prevStyleSheets ? prevStyleSheets() : []),
+      { [result.rootSelector || ':root']: p.scale },
+    ];
+  }
+
+  return result as Theme;
 }
 
 export function enhanceCompactDensity(theme: Theme): Theme {

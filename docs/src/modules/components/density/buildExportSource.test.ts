@@ -120,9 +120,17 @@ describe('buildExportSource', () => {
     const enhanced = enhanceCompactDensity(base);
     // app theme survives the round-trip
     expect(enhanced.palette.primary.main).to.equal('#ff5252');
-    // scale materialised via MuiCssBaseline :root
+    // static theme: scale falls back to MuiCssBaseline :root (needs <CssBaseline/>)
     const root = enhanced.components.MuiCssBaseline.styleOverrides[':root'];
     expect(root['--mui-density-xxs']).to.equal('2px');
+    // CSS-vars theme: scale rides the theme's own stylesheet channel instead
+    const varsTheme = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    expect(varsTheme.components.MuiCssBaseline).to.equal(undefined);
+    expect(varsTheme.vars.density.xxs).to.equal('var(--mui-density-xxs)');
+    expect(varsTheme.generateThemeVars().density.xxs).to.equal('var(--mui-density-xxs)');
+    const sheets = varsTheme.generateStyleSheets();
+    const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--mui-density-xxs']);
+    expect(densitySheet[':root']['--mui-density-xxs']).to.equal('2px');
     // component overrides present, flat array slots (no nested arrays)
     const buttonRoot = enhanced.components.MuiButton.styleOverrides.root;
     expect(Array.isArray(buttonRoot)).to.equal(true);

@@ -233,3 +233,37 @@ describe('density playground — emit table & override builder', () => {
     });
   });
 });
+
+describe('density scale emission — theme vars channel', () => {
+  it('CSS-vars theme: scale rides generateThemeVars/generateStyleSheets, no MuiCssBaseline', () => {
+    for (const level of LEVELS) {
+      const theme = PRESETS[level](createTheme({ cssVariables: true })) as any;
+      expect(theme.components.MuiCssBaseline, level).to.equal(undefined);
+      // prefix-aware refs off theme.cssVarPrefix
+      expect(theme.vars.density.md, level).to.equal('var(--mui-density-md)');
+      // CssVarsProvider rebuilds vars from generateThemeVars — density must survive
+      expect(theme.generateThemeVars().density.md, level).to.equal('var(--mui-density-md)');
+      const sheets = theme.generateStyleSheets();
+      const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--mui-density-md']);
+      expect(densitySheet[':root']['--mui-density-md'], level).to.equal(theme.density.md);
+    }
+  });
+
+  it('custom cssVarPrefix flows into the refs and the emitted sheet', () => {
+    const theme = enhanceCompactDensity(
+      createTheme({ cssVariables: { cssVarPrefix: 'acme' } }),
+    ) as any;
+    expect(theme.vars.density.md).to.equal('var(--acme-density-md)');
+    const sheets = theme.generateStyleSheets();
+    const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--acme-density-md']);
+    expect(densitySheet[':root']['--acme-density-md']).to.equal(theme.density.md);
+  });
+
+  it('static theme: raw px on theme.density only — no vars, no stylesheet wrapping', () => {
+    const theme = enhanceCompactDensity(createTheme()) as any;
+    expect(theme.vars).to.equal(undefined);
+    expect(theme.generateStyleSheets).to.equal(undefined);
+    expect(theme.components.MuiCssBaseline).to.equal(undefined);
+    expect(theme.density.md).to.match(/px$/);
+  });
+});

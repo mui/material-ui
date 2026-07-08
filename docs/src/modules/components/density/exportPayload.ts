@@ -89,8 +89,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
       components: Record<string, any>;
       typography: Record<string, any>;
     };
-    // MuiCssBaseline excluded — the scale block is emitted separately by the file.
-    const { MuiCssBaseline, ...presetComponents } = enhanced.components ?? {};
+    const presetComponents = enhanced.components ?? {};
     // This preset's user token edits: typography variants layer over the preset's
     // own reflow patch; shape (borderRadius) is its own section. User-edited
     // leaves are wrapped so the serializer tags them with `// playground edit`.

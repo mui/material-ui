@@ -1,8 +1,8 @@
 import { Theme } from './createTheme';
 
 /**
- * Named density steps, surfaced as `--mui-density-*` CSS vars. Presets assign a
- * component's sized tokens to these steps (via `densityVars` + `addRootOverride`).
+ * Named density steps, surfaced as `--<prefix>-density-*` CSS vars. Presets assign a
+ * component's sized tokens to these steps (via `theme.vars.density` + `addRootOverride`).
  */
 export interface DensityScale {
   xxs: string;
@@ -23,29 +23,26 @@ export type EnhanceableTheme = {
   components?: Theme['components'] | undefined;
   typography?: Record<string, any> | undefined;
   vars?: Record<string, any> | undefined;
+  // CSS-vars theme machinery (present when `createTheme({ cssVariables: … })`):
+  cssVarPrefix?: string | undefined;
+  rootSelector?: string | undefined;
+  generateThemeVars?: (() => Record<string, any>) | undefined;
+  generateStyleSheets?: (() => Array<Record<string, any>>) | undefined;
 };
-
-const cssVar = (key: DensityKey) => `--mui-density-${key}`;
-
-/**
- * `var(--mui-density-*)` reference for each step. Presets read these to emit a
- * component's density value at a chosen step, e.g. `padding: `${densityVars.xs} ${densityVars.lg}``.
- */
-export const densityVars: DensityScale = DENSITY_KEYS.reduce((acc, key) => {
-  acc[key] = `var(${cssVar(key)})`;
-  return acc;
-}, {} as DensityScale);
 
 /**
  * PRIVATE density core shared by the three `enhance*Density` presets. Not
  * re-exported from the styles barrel — presets are the public surface.
  *
- * **Scale emission only.** Emits the scale as `--mui-density-*` CSS vars at
- * `:root` (via `MuiCssBaseline` — requires `<CssBaseline />`) and exposes it on
- * `theme.density` / `theme.vars.density`. It is **component-agnostic**: it does
- * NOT touch any `Mui*` component. Each preset maps component vars → density
- * steps itself (`addRootOverride`), so a preset can point the same token at a
- * different step than its siblings.
+ * **Scale emission only.** Exposes the scale on `theme.density`, and for a
+ * CSS-vars theme rides the theme's own vars channel — `theme.vars.density` +
+ * wrapped `generateThemeVars`/`generateStyleSheets` — so `ThemeProvider`
+ * materialises the `--<prefix>-density-*` vars itself (same channel as the
+ * palette vars; no `<CssBaseline />` needed). For a static theme nothing else
+ * is emitted: presets read raw px straight off `theme.density`. It is
+ * **component-agnostic**: it does NOT touch any `Mui*` component. Each preset
+ * maps component vars → density steps itself (`addRootOverride`), so a preset
+ * can point the same token at a different step than its siblings.
  *
  * @param themeInput - The created theme to enhance.
  * @param scale - The preset's 7-step scale.
@@ -55,41 +52,43 @@ export function applyDensity<T extends EnhanceableTheme>(
   themeInput: T,
   scale: DensityScale,
 ): T & { density: DensityScale; components: NonNullable<EnhanceableTheme['components']> } {
-  const rootVars = DENSITY_KEYS.reduce<Record<string, string>>((acc, key) => {
-    acc[cssVar(key)] = scale[key];
-    return acc;
-  }, {});
-
   const theme = { ...themeInput } as T & {
     density: DensityScale;
     components: NonNullable<EnhanceableTheme['components']>;
   };
   theme.density = scale;
-  // Attach `.vars` only when the input is a CSS-vars theme — don't fabricate it
-  // for a static theme, so `theme.vars` stays a faithful "cssVariables on" signal
-  // and presets fall back to raw `theme.density` px when vars are off.
+  theme.components = { ...themeInput.components };
+
+  // CSS-vars theme only — static themes keep raw px on `theme.density` and
+  // presets fall back to it via `theme.vars || theme`.
   if (themeInput.vars) {
-    theme.vars = { ...themeInput.vars, density: densityVars };
+    // Same var-name join rule as the theme's own vars (createGetCssVar):
+    // `--<prefix>-density-*`, prefix-less when cssVarPrefix is ''.
+    const prefix = themeInput.cssVarPrefix ?? 'mui';
+    const varName = (key: DensityKey) => `--${prefix ? `${prefix}-` : ''}density-${key}`;
+    const refs = DENSITY_KEYS.reduce((acc, key) => {
+      acc[key] = `var(${varName(key)})`;
+      return acc;
+    }, {} as DensityScale);
+    const rootVars = DENSITY_KEYS.reduce<Record<string, string>>((acc, key) => {
+      acc[varName(key)] = scale[key];
+      return acc;
+    }, {});
+
+    theme.vars = { ...themeInput.vars, density: refs };
+    // `CssVarsProvider` rebuilds `vars` from `generateThemeVars()` — wrap it or
+    // the provider-composed theme silently drops `vars.density`.
+    const prevThemeVars = themeInput.generateThemeVars;
+    theme.generateThemeVars = () => ({
+      ...(prevThemeVars ? prevThemeVars() : themeInput.vars),
+      density: refs,
+    });
+    const prevStyleSheets = themeInput.generateStyleSheets;
+    theme.generateStyleSheets = () => [
+      ...(prevStyleSheets ? prevStyleSheets() : []),
+      { [themeInput.rootSelector || ':root']: rootVars },
+    ];
   }
-
-  const c = themeInput.components;
-  const existingBaseline = c?.MuiCssBaseline?.styleOverrides;
-  const baselineObject =
-    existingBaseline && typeof existingBaseline === 'object' ? existingBaseline : undefined;
-
-  theme.components = {
-    ...c,
-    MuiCssBaseline: {
-      ...c?.MuiCssBaseline,
-      styleOverrides: {
-        ...baselineObject,
-        ':root': {
-          ...(baselineObject as any)?.[':root'],
-          ...rootVars,
-        },
-      },
-    },
-  };
 
   return theme;
 }

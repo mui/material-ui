@@ -74,11 +74,6 @@ function collectLeaves(
       collectLeaves(v, base, nested ? `${nested}${NESTED_SEP}${k}` : k, out);
       continue;
     }
-    // Skip the :root scale definitions (MuiCssBaseline) — export emits those as a
-    // standalone --mui-density-* block, not as component overrides.
-    if (k.startsWith('--mui-density-')) {
-      continue;
-    }
     out.push({ ...base, nested, prop: k, value: v });
   }
 }
