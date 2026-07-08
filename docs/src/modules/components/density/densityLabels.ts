@@ -56,9 +56,7 @@ export const densityLabels: Record<string, string> = {
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',
   'MuiBottomNavigationAction|root|base||paddingInline': 'BottomNavigationAction · paddingInline',
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
-  'MuiButton|root|base||lineHeight': 'Button · lineHeight',
   'MuiButton|root|size=small||padding': 'Button · padding [size=small]',
-  'MuiButton|root|size=small||fontSize': 'Button · fontSize [size=small]',
   'MuiButton|root|size=medium||padding': 'Button · padding [size=medium]',
   'MuiButton|root|size=large||padding': 'Button · padding [size=large]',
   'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · minWidth',
@@ -72,7 +70,15 @@ export const densityLabels: Record<string, string> = {
   'MuiCardHeader|avatar|base||marginRight': 'CardHeader · avatar · marginRight',
   'MuiCardHeader|root|base||padding': 'CardHeader · padding',
   'MuiCheckbox|root|size=medium||padding': 'Checkbox · padding [size=medium]',
+  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
+    'Checkbox · marginLeft [size=medium]',
+  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
+    'Checkbox · marginRight [size=medium]',
   'MuiCheckbox|root|size=small||padding': 'Checkbox · padding [size=small]',
+  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
+    'Checkbox · marginLeft [size=small]',
+  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
+    'Checkbox · marginRight [size=small]',
   'MuiChip|label|size=medium||paddingInline': 'Chip · label · paddingInline [size=medium]',
   'MuiChip|label|size=small||paddingInline': 'Chip · label · paddingInline [size=small]',
   'MuiChip|root|size=medium||--_height': 'Chip · --_height [size=medium]',
@@ -154,14 +160,15 @@ export const densityLabels: Record<string, string> = {
   'MuiInputBase|root|base||fontSize': 'InputBase · fontSize',
   'MuiInputBase|root|base||lineHeight': 'InputBase · lineHeight',
   'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
-  'MuiList|root|fn:fqdz84||paddingTop': 'List · paddingTop [fn]',
+  'MuiList|root|fn:fqdz84||paddingTop': 'List · paddingTop [subheader]',
   'MuiListItemButton|root|dense=false||paddingBlock': 'ListItemButton · paddingBlock [dense=false]',
   'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|disableGutters=false||paddingInline':
     'ListItemButton · paddingInline [disableGutters=false]',
   'MuiMenuItem|root|base||fontSize': 'MenuItem · fontSize',
   'MuiMenuItem|root|base||lineHeight': 'MenuItem · lineHeight',
-  'MuiMenuItem|root|dense=false||minHeight': 'Item min height',
+  'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': 'MenuItem · minWidth',
+  'MuiMenuItem|root|dense=false||minHeight': 'Item min height (mobile)',
   'MuiMenuItem|root|dense=false||paddingBlock': 'Item block padding',
   'MuiMenuItem|root|dense=true||minHeight': 'Dense item min height',
   'MuiMenuItem|root|dense=true||paddingBlock': 'Dense item block padding',
@@ -187,7 +194,15 @@ export const densityLabels: Record<string, string> = {
   'MuiPaginationItem|root|fn:1dnyyw||height': 'PaginationItem · height [fn]',
   'MuiPaginationItem|root|fn:1tf0li||height': 'PaginationItem · height [fn]',
   'MuiRadio|root|size=medium||padding': 'Radio · padding [size=medium]',
+  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
+    'Radio · marginLeft [size=medium]',
+  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
+    'Radio · marginRight [size=medium]',
   'MuiRadio|root|size=small||padding': 'Radio · padding [size=small]',
+  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft':
+    'Radio · marginLeft [size=small]',
+  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight':
+    'Radio · marginRight [size=small]',
   'MuiSelect|select|base||minHeight': 'Select · select · minHeight',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
   'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
@@ -219,15 +234,15 @@ export const densityLabels: Record<string, string> = {
   'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline':
     'Toolbar · paddingInline [disableGutters=false]',
   'MuiToolbar|root|variant=dense||minHeight': 'Toolbar · minHeight [variant=dense]',
-  'MuiTooltip|tooltip|base||--_arrowSize': 'Tooltip · tooltip · --_arrowSize',
+  'MuiTooltip|tooltip|base||--_arrowSize': 'Tooltip · tooltip · arrow size',
   'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
-  'MuiTooltip|tooltip|fn:1fl7bu||padding': 'Tooltip · tooltip · padding [fn]',
-  'MuiTooltip|tooltip|fn:1fl7bu|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':
-    'Tooltip · tooltip · marginInlineEnd [fn]',
-  'MuiTooltip|tooltip|fn:1fl7bu|.MuiTooltip-popper[data-popper-placement*="right"] &|marginInlineStart':
-    'Tooltip · tooltip · marginInlineStart [fn]',
-  'MuiTooltip|tooltip|fn:k1tkqz|.MuiTooltip-popper[data-popper-placement*="top"] &|marginBottom':
-    'Tooltip · tooltip · marginBottom [fn]',
-  'MuiTooltip|tooltip|fn:k1tkqz|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop':
-    'Tooltip · tooltip · marginTop [fn]',
+  'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':
+    'Tooltip · tooltip · marginInlineEnd',
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="right"] &|marginInlineStart':
+    'Tooltip · tooltip · marginInlineStart',
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="top"] &|marginBottom':
+    'Tooltip · tooltip · marginBottom',
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop':
+    'Tooltip · tooltip · marginTop',
 };

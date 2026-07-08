@@ -19,6 +19,22 @@ export interface DensityEdit {
 
 const emittedProp = (t: DensityEmitTarget): string => t.cssProp ?? t.privateVar!;
 
+// Checkbox/Radio touch-target `padding` also drives a sibling FormControlLabel
+// margin compensation (a `-2px` offset minus the padding) so the control↔label gap
+// stays constant as the padding reflows. The two margin leaves aren't independent
+// knobs (hidden in densityFields) — the padding knob re-emits them here, mirroring
+// the preset's inline emission (enhance*Density MuiCheckbox/MuiRadio).
+const isSelectionControlPadding = (t: DensityEmitTarget): boolean =>
+  (t.component === 'MuiCheckbox' || t.component === 'MuiRadio') &&
+  t.slot === 'root' &&
+  t.cssProp === 'padding';
+
+const selectionControlPadding = (value: string): StyleLayer => ({
+  padding: value,
+  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': { marginLeft: `calc(-2px - ${value})` },
+  '.MuiFormControlLabel-labelPlacementStart:has(> &)': { marginRight: `calc(-2px - ${value})` },
+});
+
 // Recursive plain-object merge (for base fields sharing a nested selector).
 function deepMerge(target: StyleLayer, source: StyleLayer): void {
   for (const [k, v] of Object.entries(source)) {
@@ -33,9 +49,14 @@ function deepMerge(target: StyleLayer, source: StyleLayer): void {
 
 function addFieldToLayer(layer: StyleLayer, target: DensityEmitTarget, value: string): void {
   const prop = emittedProp(target);
-  const style: StyleLayer = target.nested
-    ? { [target.nested]: { [prop]: value } }
-    : { [prop]: value };
+  let style: StyleLayer;
+  if (isSelectionControlPadding(target)) {
+    style = selectionControlPadding(value);
+  } else if (target.nested) {
+    style = { [target.nested]: { [prop]: value } };
+  } else {
+    style = { [prop]: value };
+  }
   if (target.props === null) {
     deepMerge(layer, style); // un-varianted → top-level of the layer
   } else {

@@ -106,6 +106,17 @@ export const hiddenFieldIds = new Set<string>([
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
+  // Checkbox/Radio sibling-label margin compensation — derived from the padding
+  // knob (calc(-2px - padding)), not independently tunable. The padding field's
+  // builder re-emits them (see selectionControlPadding in buildDensityOverrides).
+  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
 ]);
 
 export interface DensityGroup {
@@ -114,6 +125,53 @@ export interface DensityGroup {
   /** generated-table row ids in table order */
   fields: string[];
 }
+
+/**
+ * Selector/display order — follows weave-families.yml (Weave usage rank). Keys
+ * not listed there (playground-only demo families) fall to the end, alphabetical.
+ */
+const WEAVE_FAMILY_ORDER = [
+  'Typography',
+  'Button',
+  'Menu',
+  'Tooltip',
+  'TextField',
+  'Progress',
+  'Tabs',
+  'Divider',
+  'Select',
+  'Skeleton',
+  'Link',
+  'Paper',
+  'Accordion',
+  'Checkbox',
+  'Alert',
+  'Icons',
+  'Modal',
+  'Utils',
+  'Chip',
+  'Card',
+  'DataGrid',
+  'Avatar',
+  'Radio',
+  'Switch',
+  'ToggleButton',
+  'Badge',
+  'TreeView',
+  'Autocomplete',
+  'Breadcrumbs',
+  'Stepper',
+  'DatePicker',
+  'ButtonGroup',
+  'Transitions',
+  'Slider',
+  'Table',
+  'Popover',
+];
+const familyRank = (key: string) => {
+  const i = WEAVE_FAMILY_ORDER.indexOf(key);
+  return i === -1 ? Infinity : i;
+};
 
 /**
  * One group per family, holding every emitted leaf of its components — derived
@@ -137,7 +195,11 @@ export const densityGroups: DensityGroup[] = (() => {
   }
   return [...byFamily]
     .map(([key, fields]) => ({ key, fields }))
-    .sort((a, b) => a.key.localeCompare(b.key));
+    .sort((a, b) => {
+      const ra = familyRank(a.key);
+      const rb = familyRank(b.key);
+      return ra !== rb ? ra - rb : a.key.localeCompare(b.key);
+    });
 })();
 
 const rowById = new Map<string, DensityEmitRow>(allRows.map((r) => [r.id, r]));

@@ -20,6 +20,7 @@ import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
+import { formControlLabelClasses } from '../FormControlLabel';
 
 const scale: DensityScale = {
   xxs: '6px',
@@ -387,17 +388,63 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     minHeight: '56px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
-    // Touch-target padding per size (9px both sizes today) = density steps.
+    // Touch-target padding per size (9px both sizes today) = density steps. Pull the
+    // sibling label back by the same amount so the control↔label gap stays constant.
     variants: [
-      { props: { size: 'medium' }, style: { padding: d.sm } },
-      { props: { size: 'small' }, style: { padding: d.xs } },
+      {
+        props: { size: 'medium' },
+        style: {
+          padding: d.sm,
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d.sm})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d.sm})`,
+          },
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          padding: d.xs,
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d.xs})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d.xs})`,
+          },
+        },
+      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiRadio', {
-    // Touch-target padding per size (9px both sizes today) = density steps.
+    // Touch-target padding per size (9px both sizes today) = density steps. Pull the
+    // sibling label back by the same amount so the control↔label gap stays constant.
     variants: [
-      { props: { size: 'medium' }, style: { padding: d.sm } },
-      { props: { size: 'small' }, style: { padding: d.xs } },
+      {
+        props: { size: 'medium' },
+        style: {
+          padding: d.sm,
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d.sm})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d.sm})`,
+          },
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          padding: d.xs,
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
+            marginLeft: `calc(-2px - ${d.xs})`,
+          },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
+            marginRight: `calc(-2px - ${d.xs})`,
+          },
+        },
+      },
     ],
   });
   // Separator inline margins (spacing step) on the separator slot.

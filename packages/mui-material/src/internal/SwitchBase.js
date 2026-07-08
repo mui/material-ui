@@ -25,11 +25,8 @@ const useUtilityClasses = (ownerState) => {
 const SwitchBaseRoot = styled(ButtonBase, {
   name: 'MuiSwitchBase',
 })({
-  // Density seam: the touch-target padding over the `9px` default. The concrete
-  // layer (Checkbox/Radio) routes its per-size public token into `--comp-pad`;
-  // unrouted (e.g. Switch) falls back to `9px`.
   '--_pad': '9px',
-  padding: 'var(--comp-pad, var(--_pad))',
+  padding: 'var(--_pad)',
   borderRadius: '50%',
   variants: [
     {

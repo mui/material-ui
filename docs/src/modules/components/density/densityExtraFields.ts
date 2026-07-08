@@ -59,9 +59,6 @@ export const densityExtraRows: DensityEmitRow[] = [
   radiusRowSized('MuiButton', 'root', 'Button', 'small'),
   radiusRowSized('MuiButton', 'root', 'Button', 'medium'),
   radiusRowSized('MuiButton', 'root', 'Button', 'large'),
-  radiusRow('MuiMenuItem', 'root', 'MenuItem'),
-  radiusRow('MuiTab', 'root', 'Tab'),
-  radiusRow('MuiTabs', 'root', 'Tabs'),
   radiusRow('MuiTooltip', 'tooltip', 'Tooltip'),
   slotRow('MuiAlert', 'icon', 'fontSize', 'Alert · icon · fontSize'),
   slotRow('MuiAlert', 'message', 'paddingBlock', 'Alert · message · paddingBlock'),
@@ -82,7 +79,7 @@ export const densityExtraRows: DensityEmitRow[] = [
   },
   {
     id: 'MuiList|root|disablePadding=false||paddingInline',
-    label: 'List · paddingInline [disablePadding=false]',
+    label: 'List · paddingInline',
     isDensity: false,
     densityKey: null,
     target: {
@@ -180,6 +177,19 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
       'MuiAccordion|root|base|&:first-of-type|borderTopRightRadius',
       'MuiAccordion|root|base|&:last-of-type|borderBottomLeftRadius',
       'MuiAccordion|root|base|&:last-of-type|borderBottomRightRadius',
+    ],
+  },
+  // The four per-placement offset margins (non-touch) collapse to one knob — arrow
+  // doesn't change them (see Tooltip.js base styles), so one value drives all sides.
+  {
+    id: 'virtual:MuiTooltip:offset',
+    label: 'Tooltip · tooltip · Offset',
+    group: 'Tooltip',
+    members: [
+      'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd',
+      'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="right"] &|marginInlineStart',
+      'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="top"] &|marginBottom',
+      'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop',
     ],
   },
 ];

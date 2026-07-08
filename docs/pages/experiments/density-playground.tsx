@@ -156,10 +156,21 @@ const PADDING_RING_SLOTS = [
   '.MuiToolbar-root',
   '.MuiChip-label',
   '.MuiStepLabel-iconContainer',
+  '.MuiStep-root',
+  '.MuiBadge-badge',
+  '.MuiAutocomplete-option',
 ];
 
 const DEBUG_SX = {
-  '& .density-debug-text': { position: 'relative', zIndex: 1, borderRadius: '2px' },
+  // inline-block (not inline) so the highlight fills the full line box (line-height),
+  // surfacing line-height density shifts. Layout-neutral for these labels: single-line
+  // spans shrink-wrap like inline; labels inside flex rows are blockified either way.
+  '& .density-debug-text': {
+    display: 'inline-block',
+    position: 'relative',
+    zIndex: 1,
+    borderRadius: '2px',
+  },
   // Padding ring: each slot needs position:relative to anchor the ::before overlay.
   ...Object.fromEntries(
     PADDING_RING_SLOTS.map((s) => [`&[data-debug-padding] ${s}`, { position: 'relative' }]),
@@ -170,10 +181,11 @@ const DEBUG_SX = {
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
   },
-  // Outline every box so density shifts (padding/height) read at a glance.
+  // Outline every box in the demo area (scoped under [data-canvas-demo], so the
+  // per-cell label header + wrapper are skipped) so density shifts read at a glance.
   // `outline` draws outside the box and takes no layout space → no reflow on toggle.
   // The debug-text label spans are excluded — they're overlay helpers, not real boxes.
-  '&[data-debug-outline] *:not(.density-debug-text):not(path)': {
+  '&[data-debug-outline] [data-canvas-demo] *:not(.density-debug-text):not(path)': {
     outline: '1px solid rgba(244, 67, 54, 0.5)',
     outlineOffset: '-1px',
   },
@@ -210,11 +222,18 @@ function parseMapping(input: string): { state: 'empty' | 'ok' | 'error'; error?:
   return { state: 'ok' };
 }
 
-// Human-readable resolved value: keys show their px (from the active scale),
-// raw values echo as typed.
+// Human-readable resolved value: typed keys show their px (from the active
+// scale); emitted `var(--mui-density-<step>)` refs shorten to `density.<step>`;
+// everything else echoes as typed.
 const previewText = (input: string, scalePx: Record<string, string> | null) =>
   tokenize(input)
-    .map((t) => (isDensityKey(t) ? (scalePx?.[t] ?? t) : t))
+    .map((t) => {
+      if (isDensityKey(t)) {
+        return scalePx?.[t] ?? t;
+      }
+      const densityVar = /^var\(--mui-density-(\w+)\)$/.exec(t);
+      return densityVar ? `density.${densityVar[1]}` : t;
+    })
     .join(' ');
 
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
@@ -311,7 +330,7 @@ function MenuMatrix() {
       <MenuListDemo dense />
       <div>
         <Button variant="outlined" onClick={(event) => setAnchorEl(event.currentTarget)}>
-          Open menu
+          <span className="density-debug-text">Open menu</span>
         </Button>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
           <MenuDemoItems />
@@ -328,29 +347,47 @@ function TooltipMatrix() {
   const slotProps = {
     popper: { disablePortal: true },
   } as const;
-  // One tooltip per placement so the preset's 4 per-placement offset margins all
-  // render; arrow on each also surfaces the arrow-size reflow.
+  // One tooltip per placement so the offset margins all render. Two rows: arrow
+  // (surfaces arrow-size + the left/right offset) and no-arrow (adds the
+  // top/bottom offset — the `Offset [arrow=false]` knob).
   const tips = [
     { placement: 'top', label: 'Copy' },
     { placement: 'bottom', label: 'Edit' },
     { placement: 'left', label: 'Delete' },
     { placement: 'right', label: 'Share' },
   ] as const;
+  const row = (arrow: boolean) => (
+    <Box key={arrow ? 'arrow' : 'no-arrow'}>
+      <Typography variant="caption" color="text.secondary">
+        {arrow ? 'arrow' : 'no arrow'}
+      </Typography>
+      <Stack
+        direction="row"
+        spacing={12}
+        sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center' }}
+      >
+        {tips.map((t) => (
+          <Tooltip
+            key={t.placement}
+            title={<span className="density-debug-text">{t.label}</span>}
+            arrow={arrow}
+            open
+            placement={t.placement}
+            slotProps={slotProps}
+          >
+            <Button variant="outlined">
+              <span className="density-debug-text">{t.label}</span>
+            </Button>
+          </Tooltip>
+        ))}
+      </Stack>
+    </Box>
+  );
   return (
-    <Stack direction="row" spacing={12} sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center' }}>
-      {tips.map((t) => (
-        <Tooltip
-          key={t.placement}
-          title={<span className="density-debug-text">{t.label}</span>}
-          arrow
-          open
-          placement={t.placement}
-          slotProps={slotProps}
-        >
-          <Button variant="outlined">{t.label}</Button>
-        </Tooltip>
-      ))}
-    </Stack>
+    <React.Fragment>
+      {row(true)}
+      {row(false)}
+    </React.Fragment>
   );
 }
 
@@ -430,7 +467,7 @@ function FilledInputMatrix() {
           defaultValue="Filled value"
         />
         <TextField
-          label="Amount"
+          label={<span className="density-debug-text">Amount</span>}
           variant="filled"
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
@@ -460,7 +497,7 @@ function FilledInputMatrix() {
           defaultValue="Filled value"
         />
         <TextField
-          label="Amount"
+          label={<span className="density-debug-text">Amount</span>}
           variant="filled"
           size="small"
           slotProps={{
@@ -468,7 +505,7 @@ function FilledInputMatrix() {
           }}
         />
         <TextField
-          label="Weight"
+          label={<span className="density-debug-text">Weight</span>}
           variant="filled"
           size="small"
           slotProps={{
@@ -558,6 +595,36 @@ function TabsMatrix() {
         <Tab icon={<InboxIcon />} label={lbl('Inbox')} iconPosition="start" />
         <Tab icon={<InboxIcon />} label={lbl('Starred')} iconPosition="start" />
       </Tabs>
+      <Tabs
+        value={2}
+        variant="scrollable"
+        scrollButtons="auto"
+        aria-label="scrollable auto tabs example"
+      >
+        <Tab label={lbl('Item One')} />
+        <Tab label={lbl('Item Two')} />
+        <Tab label={lbl('Item Three')} />
+        <Tab label={lbl('Item Four')} />
+        <Tab label={lbl('Item Five')} />
+        <Tab label={lbl('Item Six')} />
+        <Tab label={lbl('Item Seven')} />
+      </Tabs>
+      <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}>
+        <Tabs
+          value={3}
+          orientation="vertical"
+          variant="scrollable"
+          aria-label="Vertical tabs example"
+        >
+          <Tab label={lbl('Item One')} />
+          <Tab label={lbl('Item Two')} />
+          <Tab label={lbl('Item Three')} />
+          <Tab label={lbl('Item Four')} />
+          <Tab label={lbl('Item Five')} />
+          <Tab label={lbl('Item Six')} />
+          <Tab label={lbl('Item Seven')} />
+        </Tabs>
+      </Box>
     </Stack>
   );
 }
@@ -599,7 +666,7 @@ function CardMatrix() {
       <CardHeader
         avatar={<Avatar>R</Avatar>}
         title={<span className="density-debug-text">Card header</span>}
-        subheader="With avatar"
+        subheader={<span className="density-debug-text">With avatar</span>}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -607,8 +674,12 @@ function CardMatrix() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn more</Button>
+        <Button size="small">
+          <span className="density-debug-text">Share</span>
+        </Button>
+        <Button size="small">
+          <span className="density-debug-text">Learn more</span>
+        </Button>
       </CardActions>
     </Card>
   );
@@ -627,10 +698,16 @@ function RatingMatrix() {
 function SelectMatrix() {
   return (
     <FormControl sx={{ mt: 1, width: 220 }}>
-      <InputLabel id="pg-select-label">Age</InputLabel>
+      <InputLabel id="pg-select-label">
+        <span className="density-debug-text">Age</span>
+      </InputLabel>
       <Select labelId="pg-select-label" value={10} label="Age">
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={10}>
+          <span className="density-debug-text">Ten</span>
+        </MenuItem>
+        <MenuItem value={20}>
+          <span className="density-debug-text">Twenty</span>
+        </MenuItem>
       </Select>
     </FormControl>
   );
@@ -652,11 +729,28 @@ function AlertMatrix() {
 function ChipMatrix() {
   return (
     <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400 }}>
-      <Chip avatar={<Avatar>N</Avatar>} label="Natacha" onDelete={() => {}} />
-      <Chip icon={<InboxIcon />} label="Archived" />
-      <Chip label="In review" variant="outlined" onDelete={() => {}} />
-      <Chip label="Bug" color="error" size="small" onDelete={() => {}} />
-      <Chip label="Draft" size="small" variant="outlined" />
+      <Chip
+        avatar={<Avatar>N</Avatar>}
+        label={<span className="density-debug-text">Natacha</span>}
+        onDelete={() => {}}
+      />
+      <Chip icon={<InboxIcon />} label={<span className="density-debug-text">Archived</span>} />
+      <Chip
+        label={<span className="density-debug-text">In review</span>}
+        variant="outlined"
+        onDelete={() => {}}
+      />
+      <Chip
+        label={<span className="density-debug-text">Bug</span>}
+        color="error"
+        size="small"
+        onDelete={() => {}}
+      />
+      <Chip
+        label={<span className="density-debug-text">Draft</span>}
+        size="small"
+        variant="outlined"
+      />
     </Box>
   );
 }
@@ -692,8 +786,10 @@ function AccordionMatrix() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-          sit amet blandit leo lobortis eget.
+          <span className="density-debug-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            sit amet blandit leo lobortis eget.
+          </span>
         </AccordionDetails>
       </Accordion>
     </Box>
@@ -832,8 +928,12 @@ function TableCellMatrix() {
                 <TableCell>
                   <span className="density-debug-text">Dessert</span>
                 </TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                <TableCell align="right">
+                  <span className="density-debug-text">Calories</span>
+                </TableCell>
+                <TableCell align="right">
+                  <span className="density-debug-text">Fat&nbsp;(g)</span>
+                </TableCell>
                 <TableCell padding="none" align="right" />
               </TableRow>
             </TableHead>
@@ -843,9 +943,15 @@ function TableCellMatrix() {
                   <TableCell padding="checkbox">
                     <Checkbox size="small" defaultChecked={i === 0} />
                   </TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat.toFixed(1)}</TableCell>
+                  <TableCell>
+                    <span className="density-debug-text">{row.name}</span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span className="density-debug-text">{row.calories}</span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span className="density-debug-text">{row.fat.toFixed(1)}</span>
+                  </TableCell>
                   <TableCell padding="none" align="right">
                     <IconButton size="small" aria-label="more">
                       <MoreVertIcon fontSize="small" />
@@ -1000,7 +1106,17 @@ function AutocompleteMatrix() {
         disablePortal
         options={FRUITS}
         sx={{ width: 260 }}
-        renderInput={(params) => <TextField {...params} label="Fruit" />}
+        renderOption={(props, option) => {
+          const { key, ...optionProps } = props;
+          return (
+            <li key={key} {...optionProps}>
+              <span className="density-debug-text">{option}</span>
+            </li>
+          );
+        }}
+        renderInput={(params) => (
+          <TextField {...params} label={<span className="density-debug-text">Fruit</span>} />
+        )}
       />
       <Stack spacing={2} sx={{ width: 500 }}>
         <Autocomplete
@@ -1010,7 +1126,12 @@ function AutocompleteMatrix() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              variant="standard"
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
         <Autocomplete
@@ -1020,8 +1141,27 @@ function AutocompleteMatrix() {
           options={top100Films}
           getOptionLabel={(option) => option.title}
           defaultValue={[top100Films[13]]}
+          renderValue={(values, getItemProps) =>
+            values.map((option, index) => {
+              const { key, ...itemProps } = getItemProps({ index });
+              return (
+                <Chip
+                  key={key}
+                  variant="outlined"
+                  label={<span className="density-debug-text">{option.title}</span>}
+                  size="small"
+                  {...itemProps}
+                />
+              );
+            })
+          }
           renderInput={(params) => (
-            <TextField {...params} variant="standard" label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              variant="standard"
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
         <Autocomplete
@@ -1031,7 +1171,11 @@ function AutocompleteMatrix() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
         <Autocomplete
@@ -1041,8 +1185,26 @@ function AutocompleteMatrix() {
           options={top100Films}
           getOptionLabel={(option) => option.title}
           defaultValue={[top100Films[13]]}
+          renderValue={(values, getItemProps) =>
+            values.map((option, index) => {
+              const { key, ...itemProps } = getItemProps({ index });
+              return (
+                <Chip
+                  key={key}
+                  variant="outlined"
+                  label={<span className="density-debug-text">{option.title}</span>}
+                  size="small"
+                  {...itemProps}
+                />
+              );
+            })
+          }
           renderInput={(params) => (
-            <TextField {...params} label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
         <Autocomplete
@@ -1052,7 +1214,12 @@ function AutocompleteMatrix() {
           getOptionLabel={(option) => option.title}
           defaultValue={top100Films[13]}
           renderInput={(params) => (
-            <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              variant="filled"
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
         <Autocomplete
@@ -1069,7 +1236,7 @@ function AutocompleteMatrix() {
                 <Chip
                   key={key}
                   variant="outlined"
-                  label={option.title}
+                  label={<span className="density-debug-text">{option.title}</span>}
                   size="small"
                   {...itemProps}
                 />
@@ -1077,7 +1244,12 @@ function AutocompleteMatrix() {
             })
           }
           renderInput={(params) => (
-            <TextField {...params} variant="filled" label="Size small" placeholder="Favorites" />
+            <TextField
+              {...params}
+              variant="filled"
+              label={<span className="density-debug-text">Size small</span>}
+              placeholder="Favorites"
+            />
           )}
         />
       </Stack>
@@ -1152,7 +1324,7 @@ function SnackbarMatrix() {
       message={<span className="density-debug-text">Something happened</span>}
       action={
         <Button color="secondary" size="small">
-          Undo
+          <span className="density-debug-text">Undo</span>
         </Button>
       }
       sx={{ mt: 1, width: 320 }}
@@ -1163,9 +1335,18 @@ function SnackbarMatrix() {
 function BottomNavigationMatrix() {
   return (
     <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400 }}>
-      <BottomNavigationAction label="Recents" icon={<InboxIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<InboxIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<InboxIcon />} />
+      <BottomNavigationAction
+        label={<span className="density-debug-text">Recents</span>}
+        icon={<InboxIcon />}
+      />
+      <BottomNavigationAction
+        label={<span className="density-debug-text">Favorites</span>}
+        icon={<InboxIcon />}
+      />
+      <BottomNavigationAction
+        label={<span className="density-debug-text">Nearby</span>}
+        icon={<InboxIcon />}
+      />
     </BottomNavigation>
   );
 }
@@ -1186,8 +1367,12 @@ function DialogMatrix() {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button>Disagree</Button>
-        <Button variant="contained">Agree</Button>
+        <Button>
+          <span className="density-debug-text">Disagree</span>
+        </Button>
+        <Button variant="contained">
+          <span className="density-debug-text">Agree</span>
+        </Button>
       </DialogActions>
     </Paper>
   );
@@ -1970,7 +2155,7 @@ export default function DensityExperiment() {
                   <Typography variant="overline" color="text.secondary" component="div">
                     {COMPONENT_DEFS[comp].canvasLabel}
                   </Typography>
-                  {COMPONENT_DEFS[comp].renderMatrix()}
+                  <Box data-canvas-demo>{COMPONENT_DEFS[comp].renderMatrix()}</Box>
                 </Box>
               ))}
             </Stack>
