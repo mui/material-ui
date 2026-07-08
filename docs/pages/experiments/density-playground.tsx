@@ -144,6 +144,18 @@ const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
 // never defeats the FamilyKnobs/KnobInput memos.
 const EMPTY_MAPPING: Record<string, string> = {};
 
+// Sidebar slot captions render as small tags for visual distinction from labels.
+const SLOT_TAG_SX = {
+  display: 'inline-block',
+  px: 0.75,
+  py: 0.125,
+  borderRadius: 0.75,
+  bgcolor: 'action.hover',
+  border: '1px solid',
+  borderColor: 'divider',
+  lineHeight: 1.4,
+} as const;
+
 // Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
 // layout-safe (absolute ::before + pointer-events:none), never touches the
 // components' real styles. The label span sits above the padding overlay
@@ -1801,7 +1813,7 @@ const FamilyKnobs = React.memo(
                 data-mapping-slot={slot}
                 sx={{ mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }}
               >
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" color="text.secondary" sx={SLOT_TAG_SX}>
                   {slot}
                 </Typography>
                 <Stack spacing={1.5} sx={{ mt: 0.5 }}>
@@ -2264,7 +2276,7 @@ export default function DensityExperiment() {
                       }
                     >
                       {slot.key && (
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography variant="caption" color="text.secondary" sx={SLOT_TAG_SX}>
                           {slot.key}
                         </Typography>
                       )}
