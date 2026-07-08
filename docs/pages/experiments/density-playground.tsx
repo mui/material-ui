@@ -106,8 +106,14 @@ import {
   setThemeToken,
   coerceToken,
 } from 'docs/src/modules/components/density/themeTokens';
+import {
+  SCALE_KEYS,
+  parseMapping,
+  previewText,
+  resolveValue,
+} from 'docs/src/modules/components/density/mappingValue';
+import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
 
-const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
@@ -199,44 +205,6 @@ const PRESET_LABEL: Record<Preset, string> = {
   comfort: 'comfort',
 };
 
-const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);
-const tokenize = (input: string) => input.trim().split(/\s+/).filter(Boolean);
-
-// A mapping input is ANY valid CSS value. A density key (`xxs`…`xxl`) is sugar
-// for `var(--mui-density-<key>)`; anything else passes through verbatim as raw
-// CSS (`12px`, `2rem`, `auto`). 1 token → all sides; 2 → `block inline`.
-const resolveValue = (input: string) =>
-  tokenize(input)
-    .map((t) => (isDensityKey(t) ? `var(--mui-density-${t})` : t))
-    .join(' ');
-
-// Empty = inert (no override, no error). >2 tokens = error. Otherwise ok — raw
-// values are first-class, never rejected as "not a density key".
-function parseMapping(input: string): { state: 'empty' | 'ok' | 'error'; error?: string } {
-  const tokens = tokenize(input);
-  if (tokens.length === 0) {
-    return { state: 'empty' };
-  }
-  if (tokens.length > 2) {
-    return { state: 'error', error: 'max 2 values (block inline)' };
-  }
-  return { state: 'ok' };
-}
-
-// Human-readable resolved value: typed keys show their px (from the active
-// scale); emitted `var(--mui-density-<step>)` refs shorten to `density.<step>`;
-// everything else echoes as typed.
-const previewText = (input: string, scalePx: Record<string, string> | null) =>
-  tokenize(input)
-    .map((t) => {
-      if (isDensityKey(t)) {
-        return scalePx?.[t] ?? t;
-      }
-      const densityVar = /^var\(--mui-density-(\w+)\)$/.exec(t);
-      return densityVar ? `density.${densityVar[1]}` : t;
-    })
-    .join(' ');
-
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
 const PRESET_FN = {
   compact: enhanceCompactDensity,
@@ -246,7 +214,10 @@ const PRESET_FN = {
 
 interface DensityComponentDef {
   canvasLabel: string;
-  renderMatrix: () => React.ReactNode;
+  // Memoized component reference (not a per-render element factory) — keystroke
+  // page re-renders skip the matrices entirely; theme changes still reach the
+  // styled components through context, which penetrates React.memo.
+  Matrix: React.ComponentType;
 }
 
 function ButtonMatrix() {
@@ -574,6 +545,29 @@ function InputMatrix() {
           }}
         />
       </Stack>
+    </Stack>
+  );
+}
+
+function TextFieldMatrix() {
+  return (
+    <Stack spacing={4} sx={{ mt: 1 }}>
+      {(
+        [
+          ['outlined', <OutlinedInputMatrix />],
+          ['filled', <FilledInputMatrix />],
+          ['standard', <InputMatrix />],
+        ] as const
+      ).map(([variant, node]) => (
+        <Box key={variant} data-variant-section={variant}>
+          <Divider textAlign="left" sx={{ mb: 1.5 }}>
+            <Typography variant="caption" color="text.secondary">
+              {variant}
+            </Typography>
+          </Divider>
+          {node}
+        </Box>
+      ))}
     </Stack>
   );
 }
@@ -1480,134 +1474,115 @@ const THEME_TOKEN_PREVIEW: Record<string, () => React.ReactNode> = {
 const COMPONENT_DEFS = {
   Button: {
     canvasLabel: 'Button (color="primary")',
-    renderMatrix: () => <ButtonMatrix />,
+    Matrix: React.memo(ButtonMatrix),
   },
   Menu: {
     canvasLabel: 'Menu — static list + popover (default + dense)',
-    renderMatrix: () => <MenuMatrix />,
+    Matrix: React.memo(MenuMatrix),
   },
   Tooltip: {
     canvasLabel: 'Tooltip — pointer (default + arrow); touch out of scope',
-    renderMatrix: () => <TooltipMatrix />,
+    Matrix: React.memo(TooltipMatrix),
   },
   TextField: {
     canvasLabel: 'TextField — outlined / filled / standard (size axis + label bridge)',
-    renderMatrix: () => (
-      <Stack spacing={4} sx={{ mt: 1 }}>
-        {(
-          [
-            ['outlined', <OutlinedInputMatrix />],
-            ['filled', <FilledInputMatrix />],
-            ['standard', <InputMatrix />],
-          ] as const
-        ).map(([variant, node]) => (
-          <Box key={variant} data-variant-section={variant}>
-            <Divider textAlign="left" sx={{ mb: 1.5 }}>
-              <Typography variant="caption" color="text.secondary">
-                {variant}
-              </Typography>
-            </Divider>
-            {node}
-          </Box>
-        ))}
-      </Stack>
-    ),
+    Matrix: React.memo(TextFieldMatrix),
   },
   Tabs: {
     canvasLabel: 'Tabs — text / icon-top / icon-start (Tab+Tabs minHeight paired)',
-    renderMatrix: () => <TabsMatrix />,
+    Matrix: React.memo(TabsMatrix),
   },
   Checkbox: {
     canvasLabel: 'Checkbox — touch-target padding (medium + small)',
-    renderMatrix: () => <CheckboxMatrix />,
+    Matrix: React.memo(CheckboxMatrix),
   },
   Radio: {
     canvasLabel: 'Radio — touch-target padding (medium + small)',
-    renderMatrix: () => <RadioMatrix />,
+    Matrix: React.memo(RadioMatrix),
   },
   Avatar: {
     canvasLabel: 'Avatar — square size (raw px)',
-    renderMatrix: () => <AvatarMatrix />,
+    Matrix: React.memo(AvatarMatrix),
   },
   Fab: {
     canvasLabel: 'Fab — circular size (small / medium / large)',
-    renderMatrix: () => <FabMatrix />,
+    Matrix: React.memo(FabMatrix),
   },
   Pagination: {
     canvasLabel: 'Pagination — item box size (small / medium / large)',
-    renderMatrix: () => <PaginationMatrix />,
+    Matrix: React.memo(PaginationMatrix),
   },
   SnackbarContent: {
     canvasLabel: 'SnackbarContent — root padding',
-    renderMatrix: () => <SnackbarMatrix />,
+    Matrix: React.memo(SnackbarMatrix),
   },
   BottomNavigation: {
     canvasLabel: 'BottomNavigation — bar height + action inline padding',
-    renderMatrix: () => <BottomNavigationMatrix />,
+    Matrix: React.memo(BottomNavigationMatrix),
   },
   Dialog: {
     canvasLabel: 'Dialog — title / content / actions padding',
-    renderMatrix: () => <DialogMatrix />,
+    Matrix: React.memo(DialogMatrix),
   },
   ListItemButton: {
     canvasLabel: 'ListItemButton — block padding (+ dense) + gutters',
-    renderMatrix: () => <ListItemButtonMatrix />,
+    Matrix: React.memo(ListItemButtonMatrix),
   },
   ButtonGroup: {
     canvasLabel: 'ButtonGroup — grouped-button min-width floor',
-    renderMatrix: () => <ButtonGroupMatrix />,
+    Matrix: React.memo(ButtonGroupMatrix),
   },
   TableCell: {
     canvasLabel: 'TableCell — block padding per size + inline padding',
-    renderMatrix: () => <TableCellMatrix />,
+    Matrix: React.memo(TableCellMatrix),
   },
   Autocomplete: {
     canvasLabel: 'Autocomplete — option list min-height + padding (open)',
-    renderMatrix: () => <AutocompleteMatrix />,
+    Matrix: React.memo(AutocompleteMatrix),
   },
   Stepper: {
     canvasLabel: 'Stepper — step gutter + icon→label gap',
-    renderMatrix: () => <StepperMatrix />,
+    Matrix: React.memo(StepperMatrix),
   },
   Toolbar: {
     canvasLabel: 'AppBar/Toolbar — gutter padding + dense min-height',
-    renderMatrix: () => <ToolbarMatrix />,
+    Matrix: React.memo(ToolbarMatrix),
   },
   Badge: {
     canvasLabel: 'Badge — bubble size + padding (standard / dot)',
-    renderMatrix: () => <BadgeMatrix />,
+    Matrix: React.memo(BadgeMatrix),
   },
   ToggleButton: {
     canvasLabel: 'ToggleButton — uniform padding (small/medium/large)',
-    renderMatrix: () => <ToggleButtonMatrix />,
+    Matrix: React.memo(ToggleButtonMatrix),
   },
   Breadcrumbs: {
     canvasLabel: 'Breadcrumbs — separator inline gap',
-    renderMatrix: () => <BreadcrumbsMatrix />,
+    Matrix: React.memo(BreadcrumbsMatrix),
   },
   Card: {
     canvasLabel: 'Card — header / content / actions padding + gaps',
-    renderMatrix: () => <CardMatrix />,
+    Matrix: React.memo(CardMatrix),
   },
   Rating: {
     canvasLabel: 'Rating — star size (typography/icon axis)',
-    renderMatrix: () => <RatingMatrix />,
+    Matrix: React.memo(RatingMatrix),
   },
   Select: {
     canvasLabel: 'Select — content-box floor (padding via its OutlinedInput)',
-    renderMatrix: () => <SelectMatrix />,
+    Matrix: React.memo(SelectMatrix),
   },
   Alert: {
     canvasLabel: 'Alert — root padding + icon gap',
-    renderMatrix: () => <AlertMatrix />,
+    Matrix: React.memo(AlertMatrix),
   },
   Chip: {
     canvasLabel: 'Chip — height (drives avatar/icon) + label inline padding',
-    renderMatrix: () => <ChipMatrix />,
+    Matrix: React.memo(ChipMatrix),
   },
   Accordion: {
     canvasLabel: 'Accordion — summary min-height/margin/pad + details padding',
-    renderMatrix: () => <AccordionMatrix />,
+    Matrix: React.memo(AccordionMatrix),
   },
 } satisfies Record<string, DensityComponentDef>;
 
@@ -1676,6 +1651,129 @@ const fieldDefault = (id: string, preset: PresetLevel): string => {
   return (row.isDensity ? row.densityKey : row.values[preset]) ?? '';
 };
 
+// Per-family knob structure, precomputed ONCE at module scope — pure over static
+// registry data, so rebuilding it per render (the old inline path) only burned
+// time and defeated memoization. Entries flatten, then nest component → slot with
+// the family's component order and root-first slot order applied.
+const familyKnobEntries = new Map(densityGroups.map((g) => [g.key, buildKnobEntries(g)]));
+
+interface FamilyComponentGroup {
+  component: string;
+  slots: ReadonlyArray<readonly [string, KnobEntry[]]>;
+}
+
+const familyKnobTree = new Map<string, FamilyComponentGroup[]>(
+  densityGroups.map((group) => {
+    const byComponent = new Map<string, Map<string, KnobEntry[]>>();
+    for (const entry of familyKnobEntries.get(group.key)!) {
+      if (!byComponent.has(entry.component)) {
+        byComponent.set(entry.component, new Map());
+      }
+      const bySlot = byComponent.get(entry.component)!;
+      if (!bySlot.has(entry.slot)) {
+        bySlot.set(entry.slot, []);
+      }
+      bySlot.get(entry.slot)!.push(entry);
+    }
+    const ordered = orderFamilyComponents(group.key, [...byComponent.keys()]).map((component) => ({
+      component,
+      slots: [...byComponent.get(component)!].sort(([a], [b]) => {
+        // `root` always leads, then the rest alphabetically.
+        if (a === 'root') {
+          return -1;
+        }
+        if (b === 'root') {
+          return 1;
+        }
+        return a.localeCompare(b);
+      }),
+    }));
+    return [group.key, ordered];
+  }),
+);
+
+// The ids a family's knobs READ (value + placeholder come off writeIds[0]) — the
+// memo comparator diffs `mapping` over exactly these.
+const familyReadIds = new Map(
+  [...familyKnobEntries].map(([key, entries]) => [key, entries.map((entry) => entry.writeIds[0])]),
+);
+
+interface FamilyKnobsProps {
+  familyKey: string;
+  mapping: Record<string, string>;
+  preset: Preset;
+  scalePx: Record<string, string> | null;
+  disabled: boolean;
+  setFields: (ids: string[], value: string) => void;
+}
+
+// One family's mapping tree. Memo comparator: skip re-render unless THIS family's
+// read ids changed — the WHOLE mapping is passed (a fresh slice object per render
+// would defeat the memo) — or preset/scalePx/disabled flipped (stale-knob hazard:
+// placeholders and previews all derive from those three).
+const FamilyKnobs = React.memo(
+  function FamilyKnobs(props: FamilyKnobsProps) {
+    const { familyKey, mapping, preset, scalePx, disabled, setFields } = props;
+    return (
+      <React.Fragment>
+        {(familyKnobTree.get(familyKey) ?? []).map(({ component, slots }) => (
+          <Box key={component} sx={{ mt: 2 }} data-mapping-component={component}>
+            <Typography sx={{ fontWeight: 'medium', fontSize: 13 }}>{component}</Typography>
+            {slots.map(([slot, slotEntries]) => (
+              <Box
+                key={slot}
+                data-mapping-slot={slot}
+                sx={{ mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }}
+              >
+                <Typography variant="caption" color="text.secondary">
+                  {slot}
+                </Typography>
+                <Stack spacing={1.5} sx={{ mt: 0.5 }}>
+                  {slotEntries.map((entry) => {
+                    const canon =
+                      preset === 'unset'
+                        ? ''
+                        : fieldDefault(entry.writeIds[0], preset as PresetLevel);
+                    return (
+                      <KnobInput
+                        key={entry.key}
+                        id={entry.key}
+                        idAttr="data-mapping-field"
+                        label={entry.label}
+                        value={mapping[entry.writeIds[0]] ?? ''}
+                        placeholder={canon || 'density key or CSS value'}
+                        disabled={disabled}
+                        // error is display-only; the commit still stores the draft
+                        // (the apply path skips rows that don't parse).
+                        computeHelper={(draft) => {
+                          const parsed = parseMapping(draft);
+                          if (parsed.state === 'error') {
+                            return { helper: parsed.error, error: true };
+                          }
+                          // typed → preview the typed value; empty → the inherited preset default
+                          return { helper: previewText(draft || canon, scalePx) };
+                        }}
+                        onCommit={(v) => setFields(entry.writeIds, v)}
+                      />
+                    );
+                  })}
+                </Stack>
+              </Box>
+            ))}
+          </Box>
+        ))}
+      </React.Fragment>
+    );
+  },
+  (prev, next) =>
+    prev.familyKey === next.familyKey &&
+    prev.preset === next.preset &&
+    prev.scalePx === next.scalePx &&
+    prev.disabled === next.disabled &&
+    prev.setFields === next.setFields &&
+    (familyReadIds.get(next.familyKey) ?? []).every((id) => prev.mapping[id] === next.mapping[id]),
+);
+
 export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
@@ -1698,10 +1796,10 @@ export default function DensityExperiment() {
     return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
 
-  // A new preset has different defaults → drop stale overrides.
-  React.useEffect(() => {
-    setMapping({});
-  }, [preset]);
+  // Canvas work (theme rebuild + emotion recompute across every matrix) trails
+  // the committed mapping at lower priority — keystrokes land in the sidebar
+  // immediately, the canvas catches up.
+  const deferredMapping = React.useDeferredValue(mapping);
 
   // Apply = build each edit into the shape enhance*Density emits and append it
   // onto the preset theme's components (user layer wins by order). No GlobalStyles,
@@ -1718,7 +1816,7 @@ export default function DensityExperiment() {
           continue;
         }
         seen.add(id);
-        const raw = mapping[id] ?? '';
+        const raw = deferredMapping[id] ?? '';
         if (parseMapping(raw).state !== 'ok') {
           continue;
         }
@@ -1744,7 +1842,7 @@ export default function DensityExperiment() {
     for (const group of themeTokenGroups) {
       for (const slot of group.slots) {
         for (const knob of slot.knobs) {
-          const raw = (mapping[knob.id] ?? '').trim();
+          const raw = (deferredMapping[knob.id] ?? '').trim();
           if (!raw) {
             continue;
           }
@@ -1753,7 +1851,7 @@ export default function DensityExperiment() {
       }
     }
     return result;
-  }, [preset, presetTheme, mapping]);
+  }, [preset, presetTheme, deferredMapping]);
 
   // CSS-var-backed token edits (e.g. shape.borderRadius) reflow via their CSS var,
   // not the theme object — components read `var(--mui-shape-borderRadius, …)`. Map
@@ -1768,7 +1866,7 @@ export default function DensityExperiment() {
     for (const group of themeTokenGroups) {
       for (const slot of group.slots) {
         for (const knob of slot.knobs) {
-          const raw = (mapping[knob.id] ?? '').trim();
+          const raw = (deferredMapping[knob.id] ?? '').trim();
           if (!raw) {
             continue;
           }
@@ -1782,7 +1880,7 @@ export default function DensityExperiment() {
       }
     }
     return Object.keys(out).length ? out : undefined;
-  }, [preset, presetTheme, mapping]);
+  }, [preset, presetTheme, deferredMapping]);
 
   // Active scale in px straight off the enhanced theme — single source of truth
   // for the legend + preview, so it can't drift from what the preset applied.
@@ -1792,15 +1890,19 @@ export default function DensityExperiment() {
       : (presetTheme as unknown as { density: Record<string, string> }).density;
 
   // Write one value to every id an entry drives (a plain field writes one, a
-  // virtual knob writes all its members).
-  const setFields = (ids: string[], value: string) =>
-    setMapping((m) => {
-      const next = { ...m };
-      for (const id of ids) {
-        next[id] = value;
-      }
-      return next;
-    });
+  // virtual knob writes all its members). Stable identity (functional update) so
+  // it never breaks the FamilyKnobs/KnobInput memos.
+  const setFields = React.useCallback(
+    (ids: string[], value: string) =>
+      setMapping((m) => {
+        const next = { ...m };
+        for (const id of ids) {
+          next[id] = value;
+        }
+        return next;
+      }),
+    [],
+  );
 
   const resetMapping = () => setMapping({});
 
@@ -1969,17 +2071,17 @@ export default function DensityExperiment() {
                           )}
                           <Stack spacing={1.5} sx={{ mt: slot.key ? 0.5 : 0 }}>
                             {slot.knobs.map((knob) => (
-                              <TextField
+                              <KnobInput
                                 key={knob.id}
-                                size="small"
+                                id={knob.id}
+                                idAttr="data-token-field"
                                 label={knob.label}
                                 value={mapping[knob.id] ?? ''}
                                 placeholder={
                                   readThemeToken(presetTheme, knob.path) || 'theme value'
                                 }
                                 disabled={!mappingEnabled}
-                                onChange={(event) => setFields([knob.id], event.target.value)}
-                                slotProps={{ htmlInput: { 'data-token-field': knob.id } }}
+                                onCommit={(v) => setFields([knob.id], v)}
                               />
                             ))}
                           </Stack>
@@ -2037,86 +2139,17 @@ export default function DensityExperiment() {
                 {SCALE_KEYS.map((k) => `${k}=${scalePx[k]}`).join(' · ')}
               </Typography>
             )}
-            {visibleGroups.map((group) => {
-              // Flatten this family into knob entries, then nest by component → slot.
-              // Virtual knobs sit at their first member's component/slot.
-              const entries = buildKnobEntries(group);
-              const byComponent = new Map<string, Map<string, KnobEntry[]>>();
-              for (const entry of entries) {
-                if (!byComponent.has(entry.component)) {
-                  byComponent.set(entry.component, new Map());
-                }
-                const bySlot = byComponent.get(entry.component)!;
-                if (!bySlot.has(entry.slot)) {
-                  bySlot.set(entry.slot, []);
-                }
-                bySlot.get(entry.slot)!.push(entry);
-              }
-              // Order + scope this family's components: familyComponentOrder config,
-              // else base-first (name === family) then alphabetical.
-              const orderedComponents = orderFamilyComponents(group.key, [
-                ...byComponent.keys(),
-              ]).map((component) => [component, byComponent.get(component)!] as const);
-              return orderedComponents.map(([component, bySlot]) => (
-                <Box key={component} sx={{ mt: 2 }} data-mapping-component={component}>
-                  <Typography sx={{ fontWeight: 'medium', fontSize: 13 }}>{component}</Typography>
-                  {[...bySlot]
-                    .sort(([a], [b]) => {
-                      // `root` always leads, then the rest alphabetically.
-                      if (a === 'root') {
-                        return -1;
-                      }
-                      if (b === 'root') {
-                        return 1;
-                      }
-                      return a.localeCompare(b);
-                    })
-                    .map(([slot, slotEntries]) => (
-                      <Box
-                        key={slot}
-                        data-mapping-slot={slot}
-                        sx={{ mt: 1, pl: 1.5, borderLeft: '1px solid', borderColor: 'divider' }}
-                      >
-                        <Typography variant="caption" color="text.secondary">
-                          {slot}
-                        </Typography>
-                        <Stack spacing={1.5} sx={{ mt: 0.5 }}>
-                          {slotEntries.map((entry) => {
-                            const value = mapping[entry.writeIds[0]] ?? '';
-                            const canon =
-                              preset === 'unset'
-                                ? ''
-                                : fieldDefault(entry.writeIds[0], preset as PresetLevel);
-                            const parsed = parseMapping(value);
-                            const showError = mappingEnabled && parsed.state === 'error';
-                            let helper = ' ';
-                            if (showError) {
-                              helper = parsed.error ?? ' ';
-                            } else if (mappingEnabled) {
-                              // typed → preview the typed value; empty → the inherited preset default
-                              helper = previewText(value || canon, scalePx);
-                            }
-                            return (
-                              <TextField
-                                key={entry.key}
-                                size="small"
-                                label={entry.label}
-                                value={value}
-                                placeholder={canon || 'density key or CSS value'}
-                                disabled={!mappingEnabled}
-                                error={showError}
-                                helperText={helper}
-                                onChange={(event) => setFields(entry.writeIds, event.target.value)}
-                                slotProps={{ htmlInput: { 'data-mapping-field': entry.key } }}
-                              />
-                            );
-                          })}
-                        </Stack>
-                      </Box>
-                    ))}
-                </Box>
-              ));
-            })}
+            {visibleGroups.map((group) => (
+              <FamilyKnobs
+                key={group.key}
+                familyKey={group.key}
+                mapping={mapping}
+                preset={preset}
+                scalePx={scalePx}
+                disabled={!mappingEnabled}
+                setFields={setFields}
+              />
+            ))}
             <Button
               size="small"
               variant="outlined"
@@ -2149,15 +2182,20 @@ export default function DensityExperiment() {
                   {THEME_TOKEN_PREVIEW[tokenPanel]()}
                 </Box>
               )}
-              {visibleComponents.map((comp) => (
-                <Box key={comp} data-canvas-component={comp}>
-                  {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
-                  <Typography variant="overline" color="text.secondary" component="div">
-                    {COMPONENT_DEFS[comp].canvasLabel}
-                  </Typography>
-                  <Box data-canvas-demo>{COMPONENT_DEFS[comp].renderMatrix()}</Box>
-                </Box>
-              ))}
+              {visibleComponents.map((comp) => {
+                const Def = COMPONENT_DEFS[comp];
+                return (
+                  <Box key={comp} data-canvas-component={comp}>
+                    {/* block label — inline-flex roots (Select/ButtonGroup) must drop below, not sit beside it */}
+                    <Typography variant="overline" color="text.secondary" component="div">
+                      {Def.canvasLabel}
+                    </Typography>
+                    <Box data-canvas-demo>
+                      <Def.Matrix />
+                    </Box>
+                  </Box>
+                );
+              })}
             </Stack>
           </Box>
         </ThemeProvider>
