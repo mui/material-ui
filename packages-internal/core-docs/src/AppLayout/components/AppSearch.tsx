@@ -210,7 +210,7 @@ function DocSearchHit(props: DocSearchHitComponentProps) {
   return <Link href={hit.url}>{children}</Link>;
 }
 
-const standaloneProducts = ['base-ui', 'joy-ui'];
+const standaloneProducts = ['base-ui'];
 
 export interface AppSearchProps {
   sx?: SxProps;
@@ -285,6 +285,7 @@ export function AppSearch(props: AppSearchProps) {
     const initial = findDropdown();
     let observer: MutationObserver | undefined;
     if (initial) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStartScreenHost(initial);
     } else {
       observer = new MutationObserver(() => {

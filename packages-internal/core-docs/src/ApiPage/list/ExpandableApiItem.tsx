@@ -191,9 +191,11 @@ export function ExpandableApiItem(props: ExpandableApiItemProps) {
 
   const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expanded');
 
-  React.useEffect(() => {
+  const [prevDisplayOption, setPrevDisplayOption] = React.useState(displayOption);
+  if (prevDisplayOption !== displayOption) {
+    setPrevDisplayOption(displayOption);
     setIsExtended(displayOption === 'expanded');
-  }, [displayOption]);
+  }
 
   return (
     <Root
