@@ -205,6 +205,24 @@ const familyRank = (key: string) => {
 };
 
 /**
+ * WIP allowlist: when non-empty, ONLY these families show in the playground — every
+ * other family is hidden (selector, sidebar, and canvas). Use while building to hide
+ * unfinished families and reveal them one by one by adding to the set. Empty = show
+ * all (the finished state). Family = COMPONENT_DEFS key; hidden families keep their
+ * rows + `COMPONENT_DEFS` demo in the code, just unsurfaced.
+ */
+export const shownFamilies = new Set<string>([
+  'Button',
+  'Menu',
+  'Tooltip',
+  'TextField',
+  'Tabs',
+  'Accordion',
+  'Checkbox',
+  'Radio',
+]);
+
+/**
  * One group per family, holding every emitted leaf of its components — derived
  * from the table, so new leaves appear after `pnpm density:codegen`. Labels come
  * from `densityLabels` (codegen-managed keys, hand-edited values).
@@ -227,6 +245,7 @@ export const densityGroups: DensityGroup[] = (() => {
     }
   }
   return [...byFamily]
+    .filter(([key]) => shownFamilies.size === 0 || shownFamilies.has(key))
     .map(([key, fields]) => ({ key, fields }))
     .sort((a, b) => {
       const ra = familyRank(a.key);
