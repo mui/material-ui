@@ -38,6 +38,12 @@ import Radio from '@mui/material/Radio';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -145,7 +151,8 @@ const TAB_TOKEN_GROUP: Record<Exclude<TabKey, 'components'>, string> = {
 // never defeats the FamilyKnobs/KnobInput memos.
 const EMPTY_MAPPING: Record<string, string> = {};
 
-// "How to use" walkthrough — horizontal stepper, last step is the export.
+// "How to use" walkthrough — a vertical timeline, all steps visible at once
+// (no Next/Back paging); last step is the export.
 const HOW_TO_STEPS = [
   {
     label: 'Pick a density preset',
@@ -170,36 +177,44 @@ const HOW_TO_STEPS = [
 ] as const;
 
 function HowToUseDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [step, setStep] = React.useState(0);
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth data-howto-dialog>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth data-howto-dialog>
       <DialogTitle>How to use the playground</DialogTitle>
       <DialogContent>
-        <Stepper activeStep={step} sx={{ mb: 3 }}>
+        <Timeline
+          sx={{
+            p: 0,
+            m: 0,
+            // left-align content: collapse the empty opposite-content gutter
+            // (must target the missingOppositeContent rule's own ::before to win)
+            [`& .${timelineItemClasses.missingOppositeContent}::before`]: {
+              flex: 0,
+              padding: 0,
+            },
+          }}
+        >
           {HOW_TO_STEPS.map((s, i) => (
-            <Step key={s.label} completed={i < step}>
-              <StepLabel>{s.label}</StepLabel>
-            </Step>
+            <TimelineItem key={s.label}>
+              <TimelineSeparator>
+                <TimelineDot color="primary" sx={{ boxShadow: 'none' }}>
+                  <Typography variant="caption" sx={{ width: 16, textAlign: 'center' }}>
+                    {i + 1}
+                  </Typography>
+                </TimelineDot>
+                {i < HOW_TO_STEPS.length - 1 && <TimelineConnector />}
+              </TimelineSeparator>
+              <TimelineContent sx={{ pb: 3 }}>
+                <Typography variant="subtitle2">{s.label}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {s.body}
+                </Typography>
+              </TimelineContent>
+            </TimelineItem>
           ))}
-        </Stepper>
-        <Typography variant="body2" sx={{ minHeight: 64 }}>
-          {HOW_TO_STEPS[step].body}
-        </Typography>
+        </Timeline>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} sx={{ mr: 'auto' }}>
-          Close
-        </Button>
-        <Button disabled={step === 0} onClick={() => setStep((s) => s - 1)}>
-          Back
-        </Button>
-        <Button
-          variant="contained"
-          disabled={step === HOW_TO_STEPS.length - 1}
-          onClick={() => setStep((s) => s + 1)}
-        >
-          Next
-        </Button>
+        <Button onClick={onClose}>Close</Button>
       </DialogActions>
     </Dialog>
   );
@@ -2287,7 +2302,7 @@ export default function DensityExperiment() {
               </Tooltip>
             </ToggleButton>
           </ToggleButtonGroup>
-          <Button size="small" variant="outlined" onClick={handleExport} data-export-button>
+          <Button variant="outlined" onClick={handleExport} data-export-button>
             Export density.ts
           </Button>
         </Box>
