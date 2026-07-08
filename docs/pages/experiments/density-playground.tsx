@@ -327,7 +327,12 @@ function ButtonMatrix() {
               {size}
             </Typography>
           </Divider>
-          <Stack direction="row" spacing={2} useFlexGap sx={{ alignItems: 'center' }}>
+          <Stack
+            direction="row"
+            spacing={2}
+            useFlexGap
+            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+          >
             {VARIANTS.map((variant) => (
               <Button
                 key={variant}
@@ -394,7 +399,12 @@ function MenuMatrix() {
   // gets them too — unlike the old `#density-canvas`-scoped GlobalStyles, which
   // reached only the in-canvas static list.
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <MenuListDemo />
       <MenuListDemo dense />
       <div>
@@ -433,7 +443,8 @@ function TooltipMatrix() {
       <Stack
         direction="row"
         spacing={12}
-        sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center' }}
+        useFlexGap
+        sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center', flexWrap: 'wrap' }}
       >
         {tips.map((t) => (
           <Tooltip
@@ -462,7 +473,12 @@ function TooltipMatrix() {
 
 function OutlinedInputMatrix() {
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <Stack spacing={3} sx={{ width: 220 }}>
         <Typography variant="caption" color="text.secondary">
           medium
@@ -524,7 +540,12 @@ function FilledInputMatrix() {
   // Resting (empty) vs shrunk (filled) label per size — the label rest/shrink Y
   // reflows differ. The adornment field exercises the filled adornment marginTop.
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <Stack spacing={3} sx={{ width: 200 }}>
         <Typography variant="caption" color="text.secondary">
           medium
@@ -588,7 +609,12 @@ function FilledInputMatrix() {
 
 function InputMatrix() {
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <Stack spacing={3} sx={{ width: 220 }}>
         <Typography variant="caption" color="text.secondary">
           medium
@@ -745,7 +771,12 @@ function CheckboxGroupDemo({ size }: { size: 'small' | 'medium' }) {
 
 function CheckboxMatrix() {
   return (
-    <Stack direction="row" spacing={6} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={6}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <CheckboxGroupDemo size="medium" />
       <CheckboxGroupDemo size="small" />
     </Stack>
@@ -796,7 +827,12 @@ function SvgIconMatrix() {
           <Typography variant="caption" color="text.secondary" component="div">
             {fontSize}
           </Typography>
-          <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+          <Stack
+            direction="row"
+            spacing={1.5}
+            useFlexGap
+            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+          >
             <InboxIcon fontSize={fontSize} />
             <PaddingIcon fontSize={fontSize} />
             <TitleIcon fontSize={fontSize} />
@@ -843,7 +879,12 @@ function SelectMatrix() {
           <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
             {variant}
           </Typography>
-          <Stack direction="row" spacing={3} sx={{ alignItems: 'flex-start' }}>
+          <Stack
+            direction="row"
+            spacing={3}
+            useFlexGap
+            sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
+          >
             <SelectDemo variant={variant} size="medium" />
             <SelectDemo variant={variant} size="small" />
           </Stack>
@@ -956,7 +997,12 @@ function RadioGroupDemo({ size }: { size: 'small' | 'medium' }) {
 
 function RadioMatrix() {
   return (
-    <Stack direction="row" spacing={6} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={6}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <RadioGroupDemo size="medium" />
       <RadioGroupDemo size="small" />
     </Stack>
@@ -983,7 +1029,13 @@ function ToggleButtonMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1, alignItems: 'flex-start' }}>
       {(['small', 'medium', 'large'] as const).map((size) => (
-        <Stack key={size} direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+        <Stack
+          key={size}
+          direction="row"
+          spacing={1.5}
+          useFlexGap
+          sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+        >
           <Typography variant="caption" color="text.secondary" sx={{ width: 52 }}>
             {size}
           </Typography>
@@ -1006,7 +1058,12 @@ function ToggleButtonMatrix() {
 
 function AvatarMatrix() {
   return (
-    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+    <Stack
+      direction="row"
+      spacing={2}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
+    >
       <Avatar>A</Avatar>
       <Avatar>B</Avatar>
     </Stack>
@@ -1015,7 +1072,12 @@ function AvatarMatrix() {
 
 function BadgeMatrix() {
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'center' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
+    >
       <Badge badgeContent={4} color="primary">
         <InboxIcon />
       </Badge>
@@ -1240,7 +1302,12 @@ function AutocompleteMatrix() {
   return (
     // Row so the forced-open listbox (absolutely positioned) sits beside the
     // multiple demo instead of overlapping it; minHeight reserves its height.
-    <Stack direction="row" spacing={4} sx={{ mt: 1, minHeight: 260, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, minHeight: 260, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <Autocomplete
         open
         disablePortal
@@ -1434,7 +1501,12 @@ function ToolbarMatrix() {
 
 function FabMatrix() {
   return (
-    <Stack direction="row" spacing={2} sx={{ mt: 1, alignItems: 'center' }}>
+    <Stack
+      direction="row"
+      spacing={2}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
+    >
       <Fab size="small" color="primary">
         <InboxIcon />
       </Fab>
@@ -1543,7 +1615,12 @@ function NavListDemo({ dense = false }: { dense?: boolean }) {
 
 function ListItemButtonMatrix() {
   return (
-    <Stack direction="row" spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+    <Stack
+      direction="row"
+      spacing={4}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <NavListDemo />
       <NavListDemo dense />
     </Stack>
