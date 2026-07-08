@@ -2108,6 +2108,11 @@ export default function DensityExperiment() {
     return preset === 'unset' ? base : PRESET_FN[preset](base);
   }, [preset]);
 
+  // Unenhanced base. A typography knob counts as a preset default only when the
+  // preset diverges from base here; a value equal to base is inherited (the
+  // preset didn't emit it) → blank placeholder, matching the mapping knobs.
+  const baseTheme = React.useMemo(() => createTheme({ cssVariables: true }), []);
+
   // Canvas work (theme rebuild + emotion recompute across every matrix) trails
   // the committed mapping at lower priority — keystrokes land in the sidebar
   // immediately, the canvas catches up.
@@ -2466,7 +2471,11 @@ export default function DensityExperiment() {
                           // Same placeholder/helper rules as the mapping knobs:
                           // placeholder = what you'd type (vars shortened, blank when
                           // no default); helper = the resolved value of draft-or-default.
-                          const canon = readThemeToken(presetTheme, knob.path);
+                          // A value equal to base is inherited, not preset-emitted →
+                          // blank (e.g. comfort touches only `button`, so h1…h6 stay blank).
+                          const emitted = readThemeToken(presetTheme, knob.path);
+                          const canon =
+                            emitted === readThemeToken(baseTheme, knob.path) ? '' : emitted;
                           return (
                             <KnobInput
                               key={knob.id}
