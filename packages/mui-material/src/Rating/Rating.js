@@ -88,7 +88,12 @@ const RatingRoot = styled('span', {
       pointerEvents: 'none',
     },
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
-      outline: '1px solid #999',
+      // Legacy default, superseded when the curated ring is opted in. The class lands on the
+      // root (keyboard highlight state), but the indicator belongs on the active star only.
+      ...(!(theme.vars || theme).focusVisible && {
+        outline: '1px solid #999',
+      }),
+      ...((theme.vars || theme).focusVisible && (theme.vars || theme).focusVisible),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [

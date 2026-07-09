@@ -10,6 +10,7 @@ import Slider from '@mui/material/Slider';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Select from '@mui/material/Select';
+import Rating from '@mui/material/Rating';
 import InputLabel from '@mui/material/InputLabel';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
@@ -75,10 +76,13 @@ const noop = () => {};
 
 // Resolve the element that carries `.Mui-focusVisible`. ButtonBase controls carry it on
 // the root (form controls put `data-ring-target` on the inner <input>); Slider carries it
-// on the thumb while focus lands on the thumb's inner <input>; Link carries it on itself.
+// on the thumb while focus lands on the thumb's inner <input>; Rating carries it on the root
+// while focus lands on the active item's hidden <input>, and the ring is drawn on the active
+// icon child only; Link carries it on itself.
 const ringEl = (el: HTMLElement): HTMLElement =>
   el.closest<HTMLElement>('.MuiButtonBase-root') ??
   el.closest<HTMLElement>('.MuiSlider-thumb') ??
+  el.closest<HTMLElement>('.MuiRating-root') ??
   el;
 
 const isRingDisabled = (el: HTMLElement): boolean => {
@@ -411,6 +415,10 @@ function OwnFocus() {
           </Link>
           <Typography color="text.primary">Item</Typography>
         </Breadcrumbs>
+      </Row>
+      <Row label="Rating">
+        {/* Class lands on the root; the ring is drawn on the active icon only. */}
+        <Rating defaultValue={3} data-ring-target="Rating" />
       </Row>
     </Bucket>
   );

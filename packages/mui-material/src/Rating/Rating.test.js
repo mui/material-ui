@@ -361,4 +361,51 @@ describe('<Rating />', () => {
       });
     });
   });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('draws the curated ring on the active icon only', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating defaultValue={3} name="rating-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      expect(root).not.to.equal(null);
+
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('falls back to the legacy outline when unset', () => {
+      const { container } = render(<Rating defaultValue={3} name="rating-focus-visible-legacy" />);
+
+      const checkedRadio = screen
+        .getAllByRole('radio')
+        .find((radio) => radio.checked && radio.value === '3');
+
+      act(() => {
+        checkedRadio.focus();
+      });
+
+      const root = container.querySelector(`.${classes.focusVisible}`);
+      const activeIcon = root.querySelector(`.${classes.iconActive}`);
+      expect(activeIcon).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '1px',
+      });
+    });
+  });
 });
