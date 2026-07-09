@@ -224,6 +224,9 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
   const [dragging, setDragging] = React.useState(false);
+  const [draggingThumbPercent, setDraggingThumbPercent] = React.useState<number | undefined>(
+    undefined,
+  );
   const moveCountRef = React.useRef(0);
   // Ref (not state) because setActive() always accompanies updates, providing the re-render.
   const lastUsedThumbIndexRef = React.useRef(-1);
@@ -482,6 +485,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   if (disabled && active !== -1) {
     setActive(-1);
+    setDraggingThumbPercent(undefined);
   }
   if (disabled && focusedThumbIndex !== -1) {
     setFocusedThumbIndex(-1);
@@ -525,6 +529,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     let newValue;
     newValue = percentToValue(percent, min, max);
+    let draggingThumbValue = clamp(newValue, min, max);
     if (step) {
       newValue = roundValueToStep(newValue, step, min);
     } else {
@@ -548,6 +553,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
           values[activeIndex - 1] || -Infinity,
           values[activeIndex + 1] || Infinity,
         );
+        draggingThumbValue = clamp(
+          draggingThumbValue,
+          values[activeIndex - 1] || -Infinity,
+          values[activeIndex + 1] || Infinity,
+        );
       }
 
       const previousValue = newValue;
@@ -560,7 +570,11 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       }
     }
 
-    return { newValue, activeIndex };
+    return {
+      newValue,
+      activeIndex,
+      draggingThumbPercent: valueToPercent(draggingThumbValue, min, max),
+    };
   };
 
   const handleTouchMove = useEventCallback((nativeEvent: TouchEvent | PointerEvent) => {
@@ -592,6 +606,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     focusThumb(sliderRef, newFingerValue.activeIndex, setActive, false);
     lastUsedThumbIndexRef.current = newFingerValue.activeIndex;
+    setDraggingThumbPercent(newFingerValue.draggingThumbPercent);
     setValueState(newFingerValue.newValue);
 
     if (!dragging && moveCountRef.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
@@ -611,6 +626,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
     const finger = trackFinger(nativeEvent, touchIdRef);
     setDragging(false);
+    setDraggingThumbPercent(undefined);
 
     if (!finger) {
       return;
@@ -670,6 +686,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
       if (newFingerValue) {
         focusThumb(sliderRef, newFingerValue.activeIndex, setActive, false);
         lastUsedThumbIndexRef.current = newFingerValue.activeIndex;
+        setDraggingThumbPercent(newFingerValue.draggingThumbPercent);
 
         setValueState(newFingerValue.newValue);
 
@@ -745,6 +762,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
           setActive(newFingerValue.activeIndex);
           lastUsedThumbIndexRef.current = newFingerValue.activeIndex;
+          setDraggingThumbPercent(newFingerValue.draggingThumbPercent);
 
           if (pressedOnFocusedThumb) {
             event.preventDefault();
@@ -840,6 +858,8 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
   const getThumbStyle = (index: number) => {
     let zIndex: number | undefined;
+    const percent =
+      active === index && draggingThumbPercent != null ? draggingThumbPercent : undefined;
     if (range) {
       if (active === index) {
         zIndex = 2;
@@ -851,6 +871,7 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     }
 
     return {
+      ...(percent != null && axisProps[axis as keyof typeof axisProps].offset(percent)),
       // So the non active thumb doesn't show its label on hover.
       pointerEvents: active !== -1 && active !== index ? 'none' : undefined,
       zIndex,

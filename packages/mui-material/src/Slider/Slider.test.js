@@ -243,6 +243,44 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     expect(handleChange.args[1][1]).to.deep.equal(22);
   });
 
+  it.skipIf(isJsdom())('should position the active thumb from the unrounded drag percent', () => {
+    const { container } = render(
+      <Slider
+        defaultValue={0}
+        step={10}
+        slotProps={{
+          thumb: {
+            'data-testid': 'thumb',
+          },
+        }}
+      />,
+    );
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 100,
+      height: 10,
+      bottom: 10,
+      left: 0,
+    }));
+    const slider = screen.getByRole('slider');
+    const thumb = screen.getByTestId('thumb');
+
+    fireEvent.pointerDown(container.firstChild, {
+      buttons: 1,
+      clientX: 42.6,
+      pointerId: 1,
+    });
+
+    expect(slider).to.have.attribute('aria-valuenow', '40');
+    expect(thumb.style.left).to.equal('42.6%');
+
+    fireEvent.pointerUp(document.body, {
+      clientX: 42.6,
+      pointerId: 1,
+    });
+
+    expect(thumb.style.left).to.equal('40%');
+  });
+
   describe('prop: classes', () => {
     it('adds custom classes to the component', () => {
       const selectedClasses = ['root', 'rail', 'track', 'mark'];
