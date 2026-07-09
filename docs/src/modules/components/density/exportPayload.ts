@@ -6,6 +6,7 @@ import {
 } from '@mui/material/styles';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
+import { shortenDensityVars } from './mappingValue';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
@@ -106,18 +107,30 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
         shape[edit.path[1]] = { [USER_VALUE_KEY]: edit.value };
       }
     }
-    // Scale-step overrides from the Density tab replace the step's px in place
-    // (the :root block), wrapped so the serializer tags them `// playground edit`.
-    const scale: ExportPresetPayload['scale'] = Object.fromEntries(
-      Object.entries(enhanced.density).map(([key, px]) => [`--mui-density-${key}`, px]),
-    );
+    // Effective scale (a DensityScale): the preset's px per step, with Density-tab
+    // step edits applied. A step alias (e.g. md → xs) resolves to the referenced
+    // step's px — theme.density holds px; component overrides keep the var refs.
+    const scalePx: Record<string, string> = { ...enhanced.density };
+    const editedSteps = new Set<string>();
     for (const edit of collectScaleEdits(workspace)) {
-      scale[`--mui-density-${edit.key}`] = { [USER_VALUE_KEY]: edit.value };
+      const ref = shortenDensityVars(edit.value); // 'var(--mui-density-xs)' → 'xs'; '10px' → '10px'
+      scalePx[edit.key] = enhanced.density[ref] ?? ref;
+      editedSteps.add(edit.key);
     }
+    // Scale payload — bare step keys (exposed on theme.density); edited steps
+    // wrapped so the serializer tags them `// playground edit`.
+    const scale: ExportPresetPayload['scale'] = Object.fromEntries(
+      Object.entries(scalePx).map(([key, px]) => [
+        key,
+        editedSteps.has(key) ? { [USER_VALUE_KEY]: px } : px,
+      ]),
+    );
     return {
       name,
       scale,
-      components: flattenSlots(mergeOntoPreset(presetComponents, userLayer)),
+      components: flattenSlots(
+        mergeOntoPreset(presetComponents, userLayer),
+      ) as ExportPresetPayload['components'],
       typography,
       shape,
     };
