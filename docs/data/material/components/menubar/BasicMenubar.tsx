@@ -21,9 +21,9 @@ export default function BasicMenubar() {
           <MenuPositioner sideOffset={4} alignOffset={-2}>
             <MenuPopup>
               <MenuItem>New</MenuItem>
-              <MenuItem>Open...</MenuItem>
+              <MenuItem>Open…</MenuItem>
               <MenuItem>Save</MenuItem>
-              <MenuItem>Save as...</MenuItem>
+              <MenuItem>Save as…</MenuItem>
               <MenuSeparator />
               <MenuSubmenuRoot>
                 <MenuSubmenuTrigger>Share</MenuSubmenuTrigger>

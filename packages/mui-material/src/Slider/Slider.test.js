@@ -84,6 +84,30 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
     }),
   );
 
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider defaultValue={50} valueLabelDisplay="on" />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.track}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.thumb}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.valueLabel}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+  });
+
   it.skipIf(isJsdom())('should call handlers', () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();

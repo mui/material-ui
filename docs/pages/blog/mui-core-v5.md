@@ -597,7 +597,7 @@ We have moved six components from the lab to the main component package, after o
 
 The lab hosts the incubator components that are not yet ready to move to the core.
 The main difference between the lab and the core is how the components are versioned.
-Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower cadence](https://mui.com/versions/#release-frequency).
+Having a separate lab package allows us to release breaking changes when necessary while the core package follows a [slower cadence](https://mui.com/material-ui/getting-started/versions/#release-frequency).
 
 The following components are now available in the lab:
 
@@ -615,9 +615,9 @@ We have been meticulous to minimize the pain on the migration from v4 to v5.
 We know how daunting an upgrade can be.
 
 We have used all the tools at our disposal.
-We have [worked with the React core team](https://github.com/facebook/react/pull/20463) to make React DevTools display warnings directly in the components panel.
+We have [worked with the React core team](https://github.com/react/react/pull/20463) to make React DevTools display warnings directly in the components panel.
 This should make it easier to find where components need to be updated for v5.
-See this [CHANGELOG section](https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#expose-dev-mode-warnings-in-devtools-ui) for more details on it.
+See this [CHANGELOG section](https://github.com/react/react/blob/main/packages/react-devtools/CHANGELOG.md#expose-dev-mode-warnings-in-devtools-ui) for more details on it.
 
 In the following sections, we will cover some high-level changes required for a successful upgrade.
 We have documented all the breaking changes, we have added as many deprecations as we could, we wrote codemods to automate the laborious tasks, and more!

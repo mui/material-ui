@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { alpha, styled, SxProps } from '@mui/material/styles';
+import { alpha, styled, type SxProps } from '@mui/material/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
@@ -191,9 +191,11 @@ export function ExpandableApiItem(props: ExpandableApiItemProps) {
 
   const [isExtended, setIsExtended] = React.useState(() => displayOption === 'expanded');
 
-  React.useEffect(() => {
+  const [prevDisplayOption, setPrevDisplayOption] = React.useState(displayOption);
+  if (prevDisplayOption !== displayOption) {
+    setPrevDisplayOption(displayOption);
     setIsExtended(displayOption === 'expanded');
-  }, [displayOption]);
+  }
 
   return (
     <Root

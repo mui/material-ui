@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "9.0.0-beta.2",
+  "version": "9.0.0-beta.6",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "license": "MIT",
@@ -27,13 +27,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/lab\"",
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsgo -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -44,13 +44,13 @@
     "@mui/material": "workspace:^",
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sinon": "21.0.3"
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "sinon": "22.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

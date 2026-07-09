@@ -11,7 +11,7 @@ import {
 } from '@mui/internal-core-docs/ApiPage';
 import { RichMarkdownElement } from '@mui/internal-core-docs/MarkdownDocs';
 import { AppLayoutDocs, HEIGHT as AppFrameHeight } from '@mui/internal-core-docs/AppLayout';
-import { useTranslate, useUserLanguage } from '@mui/internal-core-docs/i18n';
+import { useTranslate } from '@mui/internal-core-docs/i18n';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropertiesToc, getClassesToc } from '@mui/internal-core-docs/ApiPage/private';
 
@@ -54,14 +54,13 @@ export default function MarkdownDocsV2(props) {
     hooksApiPageContents,
   } = props;
 
-  const userLanguage = useUserLanguage();
   const t = useTranslate();
 
   React.useEffect(() => {
     setActiveTab(router.query.docsTab ?? '');
   }, [router.query.docsTab]);
 
-  const localizedDoc = docs[userLanguage] || docs.en;
+  const localizedDoc = docs.en;
   // Generate the TOC based on the tab
   const demosToc = localizedDoc.toc;
 
@@ -126,7 +125,7 @@ export default function MarkdownDocsV2(props) {
 
   if (componentsApiPageContents) {
     Object.keys(componentsApiPageContents).forEach((key) => {
-      const { componentDescriptionToc = [] } = componentsApiDescriptions[key][userLanguage];
+      const { componentDescriptionToc = [] } = componentsApiDescriptions[key].en;
       const {
         name: componentName,
         slots,

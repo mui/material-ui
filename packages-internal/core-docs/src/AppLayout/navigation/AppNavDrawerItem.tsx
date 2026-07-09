@@ -1,11 +1,11 @@
 import * as React from 'react';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
+import { alpha, styled, type SxProps, type Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation, Link, type LinkProps } from '../../Link';
-import { MuiPageIcon } from '../../MuiPage';
+import { type MuiPageIcon } from '../../MuiPage';
 import { standardNavIcons } from '../icons/navIcons';
 
 interface ItemBaseProps {
@@ -369,11 +369,11 @@ export function AppNavDrawerItem(props: AppNavDrawerItemProps) {
   return (
     <StyledLi {...other} depth={depth}>
       {/* Fix overloading with prefetch={false}, only prefetch on hover */}
-      {/* @ts-ignore */}
       <Item
         component={subheader ? DeadLink : Link}
         depth={depth}
         hasIcon={hasIcon}
+        // @ts-ignore The actual component is DeadLink or Link, both of which support href
         href={href}
         prefetch={false}
         subheader={subheader}

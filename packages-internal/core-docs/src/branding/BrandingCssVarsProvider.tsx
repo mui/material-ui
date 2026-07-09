@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import deepmerge from '@mui/utils/deepmerge';
-import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
+import { ThemeProvider, createTheme, type PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -28,6 +28,9 @@ const themeOptions = {
     },
   },
   ...designTokens,
+  motion: {
+    reducedMotion: 'system' as const,
+  },
   typography: deepmerge(typography, {
     h1: {
       ':where([data-mui-color-scheme="dark"]) &': {
@@ -183,6 +186,7 @@ export function BrandingCssVarsProvider(props: {
   }, [direction]);
   return (
     <BrandingCssThemeProvider
+      direction={direction}
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
       <NextNProgressBar />

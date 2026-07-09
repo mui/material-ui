@@ -1,15 +1,8 @@
-import { RootSvg, RootSvgProps } from './RootSvg';
+import { RootSvg, type RootSvgProps } from './RootSvg';
 
 export function StorybookIcon(props: RootSvgProps) {
   return (
-    <RootSvg
-      xmlns="http://www.w3.org/2000/svg"
-      width={24}
-      height={24}
-      viewBox="0 0 24 24"
-      fill="none"
-      {...props}
-    >
+    <RootSvg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

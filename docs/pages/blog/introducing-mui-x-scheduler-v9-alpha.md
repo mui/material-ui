@@ -53,7 +53,7 @@ If you've shipped on Data Grid or Charts through early majors, the process shoul
 ## When to expect the stable
 
 We're targeting a stable Scheduler release in early July, based on the feedback and usage signals we collect during alpha.
-The date is an expectation, not a hard promise: we ship when quality is there.
+The date is an expectation, not a hard promise: we'll ship when the quality bar is met.
 
 Keeping Scheduler in alpha right now is intentional because it gives us the room to make necessary breaking changes before the next major, while APIs are still being validated in real projects.
 
@@ -73,7 +73,7 @@ Keeping Scheduler in alpha right now is intentional because it gives us the room
 
 At the center is an event model with start and end times, titles, and metadata that you link back to your business logic.
 
-You can group those events under resources representing people, rooms, assets or looser groupings that match your product.
+You can group those events under resources representing people, rooms, assets, or looser groupings that match your product.
 
 Recurring events support practical scheduling patterns: daily/weekly/monthly and custom rules, editable as a full series or one‑off exceptions, with timezone-aware evaluation so a daily 09:00 meeting stays at 09:00 local time across DST changes.
 

@@ -34,27 +34,27 @@ Depending on the Material UI version you are using, you must update the import 
 <codeblock storageKey="material-ui-version">
 
 ```diff v7
-// The legacy Grid component is named GridLegacy
+ // The legacy Grid component is named GridLegacy
 -import Grid from '@mui/material/GridLegacy';
 
-// The updated Grid component is named Grid
+ // The updated Grid component is named Grid
 +import Grid from '@mui/material/Grid';
 
 ```
 
 ```diff v6
-// The legacy Grid component is named Grid
+ // The legacy Grid component is named Grid
 -import Grid from '@mui/material/Grid';
 
-// The updated Grid component is named Grid2
+ // The updated Grid component is named Grid2
 +import Grid from '@mui/material/Grid2';
 ```
 
 ```diff v5
-// The legacy Grid component is named Grid
+ // The legacy Grid component is named Grid
 -import Grid from '@mui/material/Grid';
 
-// The updated Grid component is named Unstable_Grid2
+ // The updated Grid component is named Unstable_Grid2
 +import Grid from '@mui/material/Unstable_Grid2';
 ```
 

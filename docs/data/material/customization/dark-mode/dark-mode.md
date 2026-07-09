@@ -2,6 +2,10 @@
 
 <p class="description">Material UI comes with two palette modes: light (the default) and dark.</p>
 
+:::success
+Use the [Material UI theming agent skill](https://github.com/mui/material-ui/tree/master/skills/material-ui-theming) to give your AI coding assistant full context on dark mode, color schemes, and SSR behavior.
+:::
+
 ## Dark mode only
 
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme()` helper:
@@ -405,7 +409,7 @@ It can strain your eyes and disrupt your experience, particularly if you interac
 
 To better understand this issue, take a look at the animated image below:
 
-<img src="/static/joy-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
+<img src="/static/material-ui/dark-mode/dark-mode-flicker.gif" style="width: 814px; border-radius: 8px;" alt="An example video that shows a page that initially loads correctly in dark mode but quickly flickers to light mode." width="1628" height="400" />
 
 ### The solution: CSS variables
 

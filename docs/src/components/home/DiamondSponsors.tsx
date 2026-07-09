@@ -14,12 +14,6 @@ const DIAMONDs = [
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: '/static/sponsors/formengine-square.svg',
-    name: 'FormEngine Core',
-    description: 'Stop building forms with MUI manually! Try the smart way — use FormEngine Core.',
-    href: 'https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway',
-  },
 ];
 
 export default function DiamondSponsors() {
@@ -75,7 +69,6 @@ export default function DiamondSponsors() {
                 component="a"
                 href="mailto:sales@mui.com"
                 target="_blank"
-                rel="noopener"
                 color="primary"
                 sx={(theme) => ({
                   mr: 2,
@@ -94,7 +87,7 @@ export default function DiamondSponsors() {
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   To join us, contact us at{' '}
-                  <Link href="mailto:sales@mui.com" target="_blank" rel="noopener">
+                  <Link href="mailto:sales@mui.com" target="_blank">
                     sales@mui.com
                   </Link>{' '}
                   for pre-approval.
