@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "build:theme-css": "esbuild scripts/buildThemeCss.mts --bundle --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildNoopSandboxThemeCss.mjs && OUTFILE=src/theme.css node /tmp/buildNoopSandboxThemeCss.mjs",
-    "dev": "pnpm build:theme-css && vite --host 0.0.0.0",
+    "dev": "pnpm build:theme-css && vite",
     "build": "pnpm build:theme-css && vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@mui/material": "workspace:*",
