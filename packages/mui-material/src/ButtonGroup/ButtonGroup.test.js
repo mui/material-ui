@@ -191,7 +191,7 @@ describe('<ButtonGroup />', () => {
   // JSDOM doesn't support :focus-visible
   it.skipIf(isJsdom())(
     'applies a global disableFocusRipple (MuiButton.defaultProps) to grouped buttons',
-    async () => {
+    async function test() {
       const { container } = render(
         <ThemeProvider
           theme={createTheme({
@@ -217,7 +217,7 @@ describe('<ButtonGroup />', () => {
   // JSDOM doesn't support :focus-visible
   it.skipIf(isJsdom())(
     'explicit disableFocusRipple on ButtonGroup overrides the global default',
-    async () => {
+    async function test() {
       const { container } = render(
         <ThemeProvider
           theme={createTheme({
