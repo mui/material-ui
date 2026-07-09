@@ -26,6 +26,7 @@ type AnyRecord = Record<string, any>;
 //                slots); density sizes stay var(--mui-density-*) refs
 //   typography → the preset's own type reflow ⊕ that preset's typography edits
 //   shape      → that preset's shape edits (borderRadius)
+//   spacing    → theme.spacing base px, when the preset tunes it (else omitted)
 // Playground edits are marked inline: appended slot layers sit between
 // "user overrides" comments; edited token leaves carry a "playground edit" tag.
 const compact = {
@@ -91,8 +92,6 @@ const compact = {
       styleOverrides: {
         root: [
           {
-            fontSize: '0.875rem',
-            lineHeight: 1.4,
             variants: [
               {
                 props: {
@@ -587,6 +586,7 @@ const compact = {
         input: [
           {
             paddingBlock: 'var(--mui-density-xs)',
+            height: '1.42857143em',
             variants: [
               {
                 props: {
@@ -610,7 +610,7 @@ const compact = {
         root: [
           {
             fontSize: '0.875rem',
-            lineHeight: '1.375em',
+            lineHeight: '1.42857143',
           },
         ],
       },
@@ -1479,18 +1479,19 @@ const compact = {
     },
     body1: {
       fontSize: '0.875rem',
-      lineHeight: 1.4,
+      lineHeight: 1.42857143,
     },
     body2: {
       fontSize: '0.8125rem',
-      lineHeight: 1.35,
+      lineHeight: 1.38462,
     },
     button: {
       fontSize: '0.8125rem',
-      lineHeight: 1.5,
+      lineHeight: 1.38462,
     },
   },
   shape: {},
+  spacing: 6,
 };
 
 const normal = {
@@ -4296,6 +4297,25 @@ function applyDensity(themeInput: AnyRecord, scale: Record<string, string>): Any
   return theme;
 }
 
+// theme.spacing base — var-backed like the density scale (compact tightens it to
+// 6). CSS-vars themes emit --mui-spacing on the channel (components read
+// calc(n * var(--mui-spacing))); static themes get a spacing function.
+function applySpacing(theme: AnyRecord, base: number): AnyRecord {
+  const px = base + 'px';
+  if (theme.vars) {
+    theme.vars = { ...theme.vars, spacing: 'var(--mui-spacing, ' + px + ')' };
+    const prev = theme.generateStyleSheets;
+    theme.generateStyleSheets = () => [
+      ...(prev ? prev() : []),
+      { [theme.rootSelector || ':root']: { '--mui-spacing': px } },
+    ];
+  } else {
+    theme.spacing = (...args: any[]) =>
+      (args.length ? args : [1]).map((a) => (typeof a === 'number' ? a * base + 'px' : a)).join(' ');
+  }
+  return theme;
+}
+
 function enhance(
   theme: Theme,
   p: {
@@ -4303,6 +4323,7 @@ function enhance(
     components: AnyRecord;
     typography: AnyRecord;
     shape: AnyRecord;
+    spacing?: number;
   },
 ): Theme {
   const enhanced: AnyRecord = applyDensity(theme as AnyRecord, p.scale);
@@ -4332,6 +4353,9 @@ function enhance(
   // preset (variants resolve off theme.typography; no createTheme re-run needed).
   enhanced.typography = mergeTypography(enhanced.typography, p.typography);
   enhanced.shape = { ...enhanced.shape, ...p.shape };
+  if (p.spacing != null) {
+    applySpacing(enhanced, p.spacing);
+  }
 
   return enhanced as Theme;
 }

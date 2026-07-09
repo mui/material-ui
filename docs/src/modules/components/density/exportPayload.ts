@@ -7,6 +7,7 @@ import {
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
 import { shortenDensityVars } from './mappingValue';
+import { PRESET_SPACING_DEFAULT } from './themeTokens';
 import { USER_LAYER_KEY, USER_VALUE_KEY } from './buildExportSource';
 import type { ExportInput, ExportPresetPayload } from './buildExportSource';
 
@@ -99,12 +100,19 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
       enhanced.typography,
     );
     const shape: ExportPresetPayload['shape'] = {};
+    // theme.spacing base — the preset default (compact tightens to 6), overridable
+    // via the Spacing knob. Baked only when it differs from the MUI default (8) or
+    // is edited; an edit is tagged `// playground edit`.
+    const spacingDefault = PRESET_SPACING_DEFAULT[name];
+    let spacing: ExportPresetPayload['spacing'] = spacingDefault !== 8 ? spacingDefault : undefined;
     for (const edit of collectThemeTokenEdits(workspace)) {
       if (edit.path[0] === 'typography') {
         const [, variant, prop] = edit.path;
         (typography[variant] ??= {})[prop] = { [USER_VALUE_KEY]: edit.value };
       } else if (edit.path[0] === 'shape') {
         shape[edit.path[1]] = { [USER_VALUE_KEY]: edit.value };
+      } else if (edit.path[0] === 'spacing') {
+        spacing = { [USER_VALUE_KEY]: edit.value as number };
       }
     }
     // Effective scale (a DensityScale): the preset's px per step, with Density-tab
@@ -133,6 +141,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
       ) as ExportPresetPayload['components'],
       typography,
       shape,
+      spacing,
     };
   });
   return { presets };

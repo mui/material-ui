@@ -195,6 +195,29 @@ describe('buildExportSource', () => {
     expect(JSON.stringify(normal.components.MuiButton.styleOverrides.root)).not.to.contain('30px');
   });
 
+  it('spacing: compact bakes its tuned base (6); normal/comfort keep MUI default; dual-mode runtime', () => {
+    const src = buildExportSource(buildExportInput(workspaces()));
+    expect(src).to.contain('spacing: 6,'); // compact tightens spacing, baked plain
+    const { enhanceCompactDensity, enhanceNormalDensity } = evaluate(src);
+    // CSS-vars theme: --mui-spacing rides the theme's own channel
+    const varsTheme = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    expect(varsTheme.vars.spacing).to.equal('var(--mui-spacing, 6px)');
+    expect(JSON.stringify(varsTheme.generateStyleSheets())).to.contain('"--mui-spacing":"6px"');
+    // static theme: spacing function scales off the tuned base (6 * 2)
+    expect(enhanceCompactDensity(createTheme({})).spacing(2)).to.equal('12px');
+    // normal keeps the MUI default (8) — no baked spacing override (8 * 2)
+    expect(enhanceNormalDensity(createTheme({})).spacing(2)).to.equal('16px');
+  });
+
+  it('spacing edit overrides the preset base and is tagged', () => {
+    const src = buildExportSource(buildExportInput(workspaces({ spacing: '10' })));
+    expect(src).to.contain('spacing: 10, // playground edit');
+    const { enhanceCompactDensity } = evaluate(src);
+    expect(enhanceCompactDensity(createTheme({})).spacing(3)).to.equal('30px'); // 10 * 3
+    const vars = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    expect(vars.vars.spacing).to.equal('var(--mui-spacing, 10px)');
+  });
+
   it('snapshot of a small representative export', () => {
     const src = buildExportSource(buildExportInput(workspaces(EDITS.densityKey)));
     vitestExpect(src).toMatchSnapshot();

@@ -40,11 +40,6 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     ],
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
-    // Height = raw px (density steps are spacing-only). Padding = density steps.
-    // Density axis is the `dense` boolean; inline pad only when gutters are on.
-    // Compact-only type at base (body1 16px -> 14px).
-    fontSize: '0.875rem',
-    lineHeight: 1.4,
     variants: [
       { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.sm } },
       {
@@ -409,6 +404,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       // lives on the InputBase root (left at master) — reset the input to 0 as
       // master does.
       paddingBlock: d.xs,
+      height: '1.42857143em',
       variants: [
         { props: { size: 'small' }, style: { paddingTop: d.xxs } },
         {
@@ -422,7 +418,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   addRootOverride(enhanced.components, 'MuiInputBase', {
     // Compact-only type on the input box (root slot); cascades to the native input.
     fontSize: '0.875rem',
-    lineHeight: '1.375em',
+    lineHeight: '1.42857143',
   });
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
@@ -879,9 +875,9 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     h6: { ...enhanced.typography?.h6, fontSize: '1.125rem', lineHeight: 1.4 },
     subtitle1: { ...enhanced.typography?.subtitle1, fontSize: '0.875rem', lineHeight: 1.5 },
     subtitle2: { ...enhanced.typography?.subtitle2, fontSize: '0.8125rem', lineHeight: 1.4 },
-    body1: { ...enhanced.typography?.body1, fontSize: '0.875rem', lineHeight: 1.4 },
-    body2: { ...enhanced.typography?.body2, fontSize: '0.8125rem', lineHeight: 1.35 },
-    button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.5 },
+    body1: { ...enhanced.typography?.body1, fontSize: '0.875rem', lineHeight: 1.42857143 },
+    body2: { ...enhanced.typography?.body2, fontSize: '0.8125rem', lineHeight: 1.38462 },
+    button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.38462 },
   };
   return enhanced;
 }

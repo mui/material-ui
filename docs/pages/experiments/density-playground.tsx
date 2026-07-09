@@ -3,6 +3,8 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
@@ -25,6 +27,8 @@ import MenuList from '@mui/material/MenuList';
 import Menu from '@mui/material/Menu';
 import ListItemButton from '@mui/material/ListItemButton';
 import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
@@ -38,12 +42,6 @@ import Radio from '@mui/material/Radio';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -78,6 +76,7 @@ import FormGroup from '@mui/material/FormGroup';
 import PaddingIcon from '@mui/icons-material/Padding';
 import TitleIcon from '@mui/icons-material/Title';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
+import HeightIcon from '@mui/icons-material/Height';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
@@ -109,6 +108,7 @@ import {
   themeTokenGroups,
   readThemeToken,
   setThemeToken,
+  PRESET_SPACING_DEFAULT,
 } from 'docs/src/modules/components/density/themeTokens';
 import {
   SCALE_KEYS,
@@ -133,23 +133,25 @@ const VARIANTS = ['text', 'outlined', 'contained'] as const;
 type Preset = (typeof PRESETS)[number];
 
 // Layout tabs — lowercase ids are the URL param values, decoupled from labels.
-type TabKey = 'density' | 'components' | 'typography' | 'radius';
+type TabKey = 'density' | 'spacing' | 'components' | 'typography' | 'radius';
 // Radius is hidden for now — its wiring (TAB_TOKEN_GROUP, preview, token knobs)
 // stays intact; re-enable by adding it back here. Hidden tabs are also invalid
 // as `?tab=` values (they fall back to the default).
-const VISIBLE_TABS: readonly TabKey[] = ['density', 'typography', 'components'];
+const VISIBLE_TABS: readonly TabKey[] = ['density', 'spacing', 'typography', 'components'];
 const TAB_LABEL: Record<TabKey, string> = {
   density: 'Density',
+  spacing: 'Spacing',
   components: 'Components',
   typography: 'Typography',
   radius: 'Radius',
 };
-// Token tabs (theme.typography / theme.shape knobs) → their themeTokenGroups key.
-// Density is NOT a token tab — its knobs edit the preset's scale steps.
-type TokenTabKey = 'typography' | 'radius';
+// Token tabs (theme.typography / theme.shape / theme.spacing knobs) → their
+// themeTokenGroups key. Density is NOT a token tab — its knobs edit scale steps.
+type TokenTabKey = 'typography' | 'radius' | 'spacing';
 const TAB_TOKEN_GROUP: Record<TokenTabKey, string> = {
   typography: 'Typography',
   radius: 'Border Radius',
+  spacing: 'Spacing',
 };
 
 // Stable empty mapping for `unset` (no workspace) — module-scope identity so it
@@ -186,37 +188,25 @@ function HowToUseDialog({ open, onClose }: { open: boolean; onClose: () => void 
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth data-howto-dialog>
       <DialogTitle>How to use the playground</DialogTitle>
       <DialogContent>
-        <Timeline
-          sx={{
-            p: 0,
-            m: 0,
-            // left-align content: collapse the empty opposite-content gutter
-            // (must target the missingOppositeContent rule's own ::before to win)
-            [`& .${timelineItemClasses.missingOppositeContent}::before`]: {
-              flex: 0,
-              padding: 0,
-            },
-          }}
-        >
+        <List sx={{ py: 0 }}>
           {HOW_TO_STEPS.map((s, i) => (
-            <TimelineItem key={s.label}>
-              <TimelineSeparator>
-                <TimelineDot color="primary" sx={{ boxShadow: 'none' }}>
-                  <Typography variant="caption" sx={{ width: 16, textAlign: 'center' }}>
-                    {i + 1}
-                  </Typography>
-                </TimelineDot>
-                {i < HOW_TO_STEPS.length - 1 && <TimelineConnector />}
-              </TimelineSeparator>
-              <TimelineContent sx={{ pb: 3 }}>
-                <Typography variant="subtitle2">{s.label}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {s.body}
-                </Typography>
-              </TimelineContent>
-            </TimelineItem>
+            <ListItem key={s.label} alignItems="flex-start" disableGutters>
+              <ListItemAvatar sx={{ minWidth: 44 }}>
+                <Avatar sx={{ width: 28, height: 28, fontSize: 14, bgcolor: 'primary.main' }}>
+                  {i + 1}
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={s.label}
+                secondary={s.body}
+                slotProps={{
+                  primary: { variant: 'subtitle2' },
+                  secondary: { variant: 'body2' },
+                }}
+              />
+            </ListItem>
           ))}
-        </Timeline>
+        </List>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Close</Button>
@@ -283,7 +273,34 @@ const PADDING_RING_SLOTS = [
   '.MuiStep-root',
   '.MuiBadge-badge',
   '.MuiAutocomplete-option',
+  '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
+
+// Height-measure targets: the box whose height each demo is about — mostly
+// component ROOT boxes (density's headline signal is min-height). Special cases:
+// Checkbox/Radio/Switch controls sit inside a FormControlLabel, so the bare
+// ButtonBase root is EXCLUDED and the whole row is measured instead (badge lands at
+// row-end, past the label, not over it); SvgIcons are measured only inside the
+// SvgIcon demo — they appear inside nearly every other component, which would
+// otherwise spray a badge on every icon (and double-mark checkboxes/radios); and
+// the Tooltip demo is ABOUT the bubble, not its trigger buttons, so those buttons
+// are excluded and `.MuiTooltip-tooltip` is measured instead.
+const MEASURE_SLOTS = [
+  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *)',
+  '.MuiFormControlLabel-root',
+  '.MuiInputBase-root',
+  '.MuiChip-root',
+  '.MuiAlert-root',
+  '.MuiToolbar-root',
+  '.MuiTableCell-root',
+  '.MuiSnackbarContent-root',
+  '.MuiAvatar-root',
+  '[data-canvas-component="SvgIcon"] .MuiSvgIcon-root',
+  '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
+];
+
+// Height-measure ruler colour (dimension line + caps + badge).
+const MEASURE_COLOR = 'rgba(63, 81, 181, 0.9)';
 
 const DEBUG_SX = {
   // inline-block (not inline) so the highlight fills the full line box (line-height),
@@ -305,6 +322,13 @@ const DEBUG_SX = {
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
   },
+  // Spacing tab: gaps aren't padding, so the ::before ring can't reach them. The
+  // Padding toggle washes the whole Stack/Grid container green; the opaque
+  // .spacing-box children cover their own area → only the gap tracks read green.
+  '&[data-debug-padding] [data-spacing-gaps]': {
+    backgroundColor: 'rgba(46, 204, 64, 0.5)',
+    borderRadius: '4px',
+  },
   // Outline every box in the demo area (scoped under [data-canvas-demo], so the
   // per-cell label header + wrapper are skipped) so density shifts read at a glance.
   // `outline` draws outside the box and takes no layout space → no reflow on toggle.
@@ -312,6 +336,50 @@ const DEBUG_SX = {
   '&[data-debug-outline] [data-canvas-demo] *:not(.density-debug-text):not(path)': {
     outline: '1px solid rgba(244, 67, 54, 0.5)',
     outlineOffset: '-1px',
+  },
+  // Height-measure markers — an out-of-flow layer (see the effect) positioned by
+  // JS from each root's rect, so the ruler+badge escape the demo cells' / inputs'
+  // overflow clipping. These rules only style the marker; JS sets top/left/height.
+  '&[data-debug-measure] .density-measure-marker': {
+    position: 'absolute',
+    pointerEvents: 'none',
+    zIndex: 5,
+  },
+  // Vertical dimension line, 6px right of the element edge, spanning its height.
+  '&[data-debug-measure] .density-measure-ruler': {
+    position: 'absolute',
+    left: '6px',
+    top: 0,
+    bottom: 0,
+    width: '1px',
+    backgroundColor: MEASURE_COLOR,
+  },
+  // I-beam end-caps: short horizontal ticks at the top & bottom of the ruler.
+  '&[data-debug-measure] .density-measure-ruler::before, &[data-debug-measure] .density-measure-ruler::after':
+    {
+      content: '""',
+      position: 'absolute',
+      left: '-3px',
+      width: '7px',
+      height: '1px',
+      backgroundColor: MEASURE_COLOR,
+    },
+  '&[data-debug-measure] .density-measure-ruler::before': { top: 0 },
+  '&[data-debug-measure] .density-measure-ruler::after': { bottom: 0 },
+  // px badge, vertically centred, right of the ruler.
+  '&[data-debug-measure] .density-measure-badge': {
+    position: 'absolute',
+    left: '14px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    padding: '1px 5px',
+    borderRadius: '4px',
+    backgroundColor: '#3f51b5',
+    color: '#fff',
+    fontFamily: 'monospace',
+    fontSize: '11px',
+    lineHeight: 1.4,
+    whiteSpace: 'nowrap',
   },
 } as const;
 
@@ -349,7 +417,7 @@ function ButtonMatrix() {
           </Divider>
           <Stack
             direction="row"
-            spacing={2}
+            spacing={10}
             useFlexGap
             sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
@@ -421,7 +489,7 @@ function MenuMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -462,7 +530,7 @@ function TooltipMatrix() {
       </Typography>
       <Stack
         direction="row"
-        spacing={12}
+        spacing={10}
         useFlexGap
         sx={{ mt: 4, mb: 8, minHeight: 120, alignItems: 'center', flexWrap: 'wrap' }}
       >
@@ -495,7 +563,7 @@ function OutlinedInputMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -562,7 +630,7 @@ function FilledInputMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -631,7 +699,7 @@ function InputMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -793,7 +861,7 @@ function CheckboxMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={6}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -849,7 +917,7 @@ function SvgIconMatrix() {
           </Typography>
           <Stack
             direction="row"
-            spacing={1.5}
+            spacing={10}
             useFlexGap
             sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
@@ -901,7 +969,7 @@ function SelectMatrix() {
           </Typography>
           <Stack
             direction="row"
-            spacing={3}
+            spacing={10}
             useFlexGap
             sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
           >
@@ -1019,7 +1087,7 @@ function RadioMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={6}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -1052,7 +1120,7 @@ function ToggleButtonMatrix() {
         <Stack
           key={size}
           direction="row"
-          spacing={1.5}
+          spacing={10}
           useFlexGap
           sx={{ alignItems: 'center', flexWrap: 'wrap' }}
         >
@@ -1080,7 +1148,7 @@ function AvatarMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={2}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
     >
@@ -1094,7 +1162,7 @@ function BadgeMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
     >
@@ -1324,7 +1392,7 @@ function AutocompleteMatrix() {
     // multiple demo instead of overlapping it; minHeight reserves its height.
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, minHeight: 260, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -1523,7 +1591,7 @@ function FabMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={2}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
     >
@@ -1637,7 +1705,7 @@ function ListItemButtonMatrix() {
   return (
     <Stack
       direction="row"
-      spacing={4}
+      spacing={10}
       useFlexGap
       sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
     >
@@ -1679,6 +1747,22 @@ function TypographyMatrix() {
   );
 }
 
+// Subtle dashed tile for the Spacing demos. bgcolor MUST stay opaque (grey.100,
+// not an alpha token) so it covers the green gap wash (Padding debug), leaving
+// only the gap tracks green.
+const SPACING_BOX_SX = {
+  px: 2,
+  py: 1.5,
+  minWidth: 44,
+  textAlign: 'center',
+  borderRadius: 1,
+  border: '1px dashed',
+  borderColor: 'grey.400',
+  bgcolor: 'grey.100',
+  color: 'text.secondary',
+  fontSize: 13,
+} as const;
+
 // Theme-token canvas previews, keyed by layout tab id.
 const THEME_TOKEN_PREVIEW: Record<TokenTabKey, () => React.ReactNode> = {
   typography: () => (
@@ -1707,6 +1791,56 @@ const THEME_TOKEN_PREVIEW: Record<TokenTabKey, () => React.ReactNode> = {
       <Card variant="outlined">
         <CardContent>Card</CardContent>
       </Card>
+    </Stack>
+  ),
+  // theme.spacing (var-backed --mui-spacing) drives Stack/Grid gaps + Container
+  // gutters. The Padding toggle washes the Stack/Grid gap tracks green (gaps
+  // aren't padding, so the ::before ring can't reach them — see DEBUG_SX).
+  spacing: () => (
+    <Stack spacing={4} sx={{ mt: 1, alignItems: 'flex-start' }}>
+      <Box data-canvas-demo="Stack-spacing">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
+          <span className="density-debug-text">Stack · direction=&quot;row&quot; spacing={2}</span>
+        </Typography>
+        <Stack direction="row" spacing={2} data-spacing-gaps sx={{ borderRadius: 1 }}>
+          {['A', 'B', 'C', 'D'].map((t) => (
+            <Box key={t} className="spacing-box" sx={SPACING_BOX_SX}>
+              <span className="density-debug-text">{t}</span>
+            </Box>
+          ))}
+        </Stack>
+      </Box>
+
+      <Box data-canvas-demo="Grid-spacing">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
+          <span className="density-debug-text">Grid · container spacing={2}</span>
+        </Typography>
+        <Box sx={{ width: 320 }}>
+          <Grid container spacing={2} data-spacing-gaps sx={{ borderRadius: 1 }}>
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <Grid key={n} size={4}>
+                <Box className="spacing-box" sx={{ ...SPACING_BOX_SX, minWidth: 0, width: '100%' }}>
+                  <span className="density-debug-text">{n}</span>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
+
+      <Box data-canvas-demo="Container-spacing" sx={{ width: '100%', maxWidth: 560 }}>
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
+          <span className="density-debug-text">
+            Container · responsive gutters (Padding shows them)
+          </span>
+        </Typography>
+        <Container
+          maxWidth="sm"
+          sx={{ bgcolor: 'action.hover', py: 1.5, outline: '1px dashed', outlineColor: 'divider' }}
+        >
+          <span className="density-debug-text">Container content — gutters = theme.spacing</span>
+        </Container>
+      </Box>
     </Stack>
   ),
 };
@@ -2040,6 +2174,100 @@ export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
+  // Height-measure overlay: the only debug mode that needs JS — CSS can't read a
+  // rendered height, and an in-flow ::after badge gets clipped by the demo cells'
+  // / inputs' overflow (and the canvas's own overflow-y:auto, which forces
+  // overflow-x to compute as auto). So markers live in an out-of-flow layer
+  // appended to the (positioned) canvas — they scroll with content but escape all
+  // that clipping. A ResizeObserver (targets + canvas) and a MutationObserver
+  // (family/preset/component swaps) trigger a batched relayout that repositions
+  // every marker from its target's rect, so moves — not just resizes — stay in sync.
+  const measureOn = debug.includes('measure');
+  React.useEffect(() => {
+    if (!measureOn) {
+      return undefined;
+    }
+    const canvas = document.getElementById('density-canvas');
+    if (!canvas) {
+      return undefined;
+    }
+    const selector = MEASURE_SLOTS.join(',');
+    const layer = document.createElement('div');
+    layer.dataset.measureLayer = '';
+    layer.style.cssText =
+      'position:absolute;top:0;left:0;width:0;height:0;overflow:visible;pointer-events:none;';
+    canvas.appendChild(layer);
+
+    const markers = new Map<Element, { root: HTMLDivElement; badge: HTMLSpanElement }>();
+    const makeMarker = () => {
+      const root = document.createElement('div');
+      root.className = 'density-measure-marker';
+      const ruler = document.createElement('div');
+      ruler.className = 'density-measure-ruler';
+      const badge = document.createElement('span');
+      badge.className = 'density-measure-badge';
+      root.append(ruler, badge);
+      layer.appendChild(root);
+      return { root, badge };
+    };
+
+    let raf = 0;
+    let ro: ResizeObserver;
+    const relayout = () => {
+      raf = 0;
+      const targets = Array.from(canvas.querySelectorAll(selector));
+      const canvasRect = canvas.getBoundingClientRect();
+      const { scrollTop, scrollLeft } = canvas;
+      // Read phase — all getBoundingClientRect together, no interleaved writes.
+      const reads = targets.map((el) => ({ el, rect: el.getBoundingClientRect() }));
+      const seen = new Set<Element>();
+      // Write phase.
+      reads.forEach(({ el, rect }) => {
+        seen.add(el);
+        let marker = markers.get(el);
+        if (!marker) {
+          marker = makeMarker();
+          markers.set(el, marker);
+          ro.observe(el);
+        }
+        marker.root.style.top = `${rect.top - canvasRect.top + scrollTop}px`;
+        marker.root.style.left = `${rect.right - canvasRect.left + scrollLeft}px`;
+        marker.root.style.height = `${rect.height}px`;
+        // Show sub-pixel heights (e.g. 34.5px); trailing zeros drop, so whole
+        // numbers stay clean (35px, not 35.00px).
+        marker.badge.textContent = `${Math.round(rect.height * 100) / 100}px`;
+      });
+      markers.forEach((marker, el) => {
+        if (!seen.has(el)) {
+          marker.root.remove();
+          markers.delete(el);
+          ro.unobserve(el);
+        }
+      });
+    };
+    const schedule = () => {
+      if (!raf) {
+        raf = requestAnimationFrame(relayout);
+      }
+    };
+
+    ro = new ResizeObserver(schedule);
+    ro.observe(canvas);
+    const mo = new MutationObserver(schedule);
+    mo.observe(canvas, { childList: true, subtree: true });
+    window.addEventListener('resize', schedule);
+    relayout();
+
+    return () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+      }
+      window.removeEventListener('resize', schedule);
+      ro.disconnect();
+      mo.disconnect();
+      layer.remove();
+    };
+  }, [measureOn]);
   // Layout tab — drives both the sidebar content and the canvas.
   const [tab, setTab] = React.useState<TabKey>('components');
   const [howToOpen, setHowToOpen] = React.useState(false);
@@ -2102,9 +2330,11 @@ export default function DensityExperiment() {
   }, [preset, tab, selection]);
 
   const mappingEnabled = preset !== 'unset';
-  // Theme-token tab (typography/radius) or null — the density tab is scale knobs,
-  // the components tab is mapping knobs.
-  const tokenTab: TokenTabKey | null = tab === 'typography' || tab === 'radius' ? tab : null;
+  // Theme-token tab (typography/radius/spacing) or null — the density tab is scale
+  // knobs, the components tab is mapping knobs. Derived from TAB_TOKEN_GROUP so a
+  // new token tab needs no second edit here.
+  const tokenTab: TokenTabKey | null =
+    (tab as string) in TAB_TOKEN_GROUP ? (tab as TokenTabKey) : null;
   const visibleGroups =
     selection === 'All' ? densityGroups : densityGroups.filter((g) => g.key === selection);
   const visibleComponents = visibleGroups.map((g) => g.key) as ComponentName[];
@@ -2116,8 +2346,15 @@ export default function DensityExperiment() {
   // Preset theme (no overrides) — drives placeholders/legend and is the base the
   // user overrides append onto.
   const presetTheme = React.useMemo(() => {
-    const base = createTheme({ cssVariables: true });
-    return preset === 'unset' ? base : PRESET_FN[preset](base);
+    if (preset === 'unset') {
+      return createTheme({ cssVariables: true });
+    }
+    // Per-preset theme.spacing base (compact tightens to 6) — set on the base
+    // theme so --mui-spacing ships on the preset's own channel; placeholder +
+    // canvas read it generically, and the export bakes it. See PRESET_SPACING_DEFAULT.
+    return PRESET_FN[preset](
+      createTheme({ cssVariables: true, spacing: PRESET_SPACING_DEFAULT[preset] }),
+    );
   }, [preset]);
 
   // Unenhanced base. A typography knob counts as a preset default only when the
@@ -2154,6 +2391,12 @@ export default function DensityExperiment() {
     // CSS var on the canvas instead (see `tokenCssVars`) — the raw set here is
     // still harmless/correct for any non-var consumer.
     for (const edit of collectThemeTokenEdits(deferredMapping)) {
+      // theme.spacing is a FUNCTION — setting it to a number would break
+      // theme.spacing() at render. It's var-backed (--mui-spacing), so the
+      // override rides tokenCssVars instead; never touch the theme object.
+      if (edit.path[0] === 'spacing') {
+        continue;
+      }
       result = setThemeToken(result, edit.path, edit.value);
     }
     return result;
@@ -2359,6 +2602,11 @@ export default function DensityExperiment() {
                 <BorderAllIcon fontSize="small" />
               </Tooltip>
             </ToggleButton>
+            <ToggleButton value="measure" aria-label="measure height" data-debug-toggle="measure">
+              <Tooltip title="Measure height">
+                <HeightIcon fontSize="small" />
+              </Tooltip>
+            </ToggleButton>
           </ToggleButtonGroup>
           <Button variant="outlined" onClick={handleExport} data-export-button>
             Export density.ts
@@ -2550,9 +2798,17 @@ export default function DensityExperiment() {
                           // no default); helper = the resolved value of draft-or-default.
                           // A value equal to base is inherited, not preset-emitted →
                           // blank (e.g. comfort touches only `button`, so h1…h6 stay blank).
-                          const emitted = readThemeToken(presetTheme, knob.path);
-                          const canon =
-                            emitted === readThemeToken(baseTheme, knob.path) ? '' : emitted;
+                          // theme.spacing is a function → can't be read off the
+                          // theme as a number; its default is the per-preset base.
+                          const isSpacing = knob.id === 'spacing';
+                          const emitted = isSpacing
+                            ? String(PRESET_SPACING_DEFAULT[preset as PresetLevel])
+                            : readThemeToken(presetTheme, knob.path);
+                          // A value equal to base is inherited, not preset-emitted →
+                          // blank (spacing always shows its per-preset default).
+                          const inherited =
+                            !isSpacing && emitted === readThemeToken(baseTheme, knob.path);
+                          const canon = inherited ? '' : emitted;
                           return (
                             <KnobInput
                               key={knob.id}
@@ -2588,8 +2844,16 @@ export default function DensityExperiment() {
             data-debug-padding={debug.includes('padding') ? '' : undefined}
             data-debug-text={debug.includes('text') ? '' : undefined}
             data-debug-outline={debug.includes('outline') ? '' : undefined}
+            data-debug-measure={measureOn ? '' : undefined}
             style={tokenCssVars}
-            sx={{ flex: 1, minHeight: 0, overflowY: 'auto', p: 4, ...DEBUG_SX }}
+            sx={{
+              flex: 1,
+              minHeight: 0,
+              position: 'relative',
+              overflowY: 'auto',
+              p: 4,
+              ...DEBUG_SX,
+            }}
           >
             <Stack spacing={6}>
               {tokenTab && (

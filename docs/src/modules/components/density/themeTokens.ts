@@ -71,7 +71,39 @@ export const themeTokenGroups: ThemeTokenGroup[] = [
       },
     ],
   },
+  {
+    key: 'Spacing',
+    slots: [
+      {
+        key: '',
+        knobs: [
+          // theme.spacing is var-backed in cssVariables mode (var(--mui-spacing));
+          // canvas overrides ride --mui-spacing like radius rides --mui-shape-*.
+          // theme.spacing is a FUNCTION, so the placeholder can't be read off the
+          // theme — the sidebar special-cases it to PRESET_SPACING_DEFAULT.
+          {
+            id: 'spacing',
+            label: 'base (px)',
+            path: ['spacing'],
+            numeric: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
+
+/**
+ * Per-preset `theme.spacing` base (px per unit; MUI default 8). Compact density
+ * tightens layout spacing to 6; normal/comfort keep the default. Set on the base
+ * theme (`createTheme({ spacing })`) BEFORE the enhancer, and baked into the
+ * export. Shared by the playground (placeholder + base theme) and exportPayload.
+ */
+export const PRESET_SPACING_DEFAULT: Record<'compact' | 'normal' | 'comfort', number> = {
+  compact: 6,
+  normal: 8,
+  comfort: 8,
+};
 
 /** Live value at a token path on the built preset theme (placeholder/default). */
 export function readThemeToken(theme: unknown, path: readonly string[]): string {
