@@ -264,21 +264,14 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  // Forward the ripple flags to child buttons only when explicitly set — on the ButtonGroup
-  // or via `MuiButtonGroup.defaultProps`. When unset, each child `Button` resolves its own
-  // default, so a grouped button matches a standalone one and a global `disableRipple`
-  // (e.g. from `MuiButtonBase.defaultProps`) applies here too. See https://github.com/mui/material-ui/issues/32970.
-  const hasDisableRipple = props.disableRipple !== undefined;
-  const hasDisableFocusRipple = props.disableFocusRipple !== undefined;
-
   const context = React.useMemo(
     () => ({
       className: classes.grouped,
       color,
       disabled,
       disableElevation,
-      ...(hasDisableFocusRipple && { disableFocusRipple }),
-      ...(hasDisableRipple && { disableRipple }),
+      disableFocusRipple: props.disableFocusRipple,
+      disableRipple: props.disableRipple,
       fullWidth,
       size,
       variant,
@@ -287,10 +280,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       color,
       disabled,
       disableElevation,
-      hasDisableFocusRipple,
-      disableFocusRipple,
-      hasDisableRipple,
-      disableRipple,
+      props.disableFocusRipple,
+      props.disableRipple,
       fullWidth,
       size,
       variant,

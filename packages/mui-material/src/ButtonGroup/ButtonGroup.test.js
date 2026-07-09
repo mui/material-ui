@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, simulateKeyboardDevice, isJsdom } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
@@ -187,6 +187,58 @@ describe('<ButtonGroup />', () => {
     await ripple.startTouch(screen.getByRole('button'));
     expect(container.querySelector('.touchRipple')).not.to.equal(null);
   });
+
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())(
+    'applies a global disableFocusRipple (MuiButton.defaultProps) to grouped buttons',
+    async () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({
+            components: { MuiButton: { defaultProps: { disableFocusRipple: true } } },
+          })}
+        >
+          <ButtonGroup>
+            <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+              Hello World
+            </Button>
+          </ButtonGroup>
+        </ThemeProvider>,
+      );
+      const button = screen.getByRole('button');
+
+      simulateKeyboardDevice();
+      await ripple.startFocus(button);
+
+      expect(container.querySelector('.pulsate-focus-visible')).to.equal(null);
+    },
+  );
+
+  // JSDOM doesn't support :focus-visible
+  it.skipIf(isJsdom())(
+    'explicit disableFocusRipple on ButtonGroup overrides the global default',
+    async () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({
+            components: { MuiButton: { defaultProps: { disableFocusRipple: true } } },
+          })}
+        >
+          <ButtonGroup disableFocusRipple={false}>
+            <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+              Hello World
+            </Button>
+          </ButtonGroup>
+        </ThemeProvider>,
+      );
+      const button = screen.getByRole('button');
+
+      simulateKeyboardDevice();
+      await ripple.startFocus(button);
+
+      expect(container.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+    },
+  );
 
   it('should not be fullWidth by default', () => {
     const { container } = render(
