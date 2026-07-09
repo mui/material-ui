@@ -52,7 +52,7 @@ export const StyledSelectSelect = styled('select', {
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
-    right: 'calc(var(--_caret) + (var(--_endAdornment) - 1.5rem)/2)', // 1.5rem is the default icon size
+    right: 'calc(var(--_caret, 24px) + (var(--_endAdornment, 28px) - 1.5rem)/2)', // 1.5rem is the default icon size
   },
   [`.${inputBaseClasses.root}:has(> &)`]: {
     '--_endAdornment': '0px',
@@ -70,7 +70,7 @@ export const StyledSelectSelect = styled('select', {
         },
         // Bump specificity to allow extending custom inputs
         '&&&': {
-          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
+          paddingRight: 'calc(var(--_caret, 24px) + var(--_endAdornment, 0px))',
           minWidth: 16, // So it doesn't collapse.
         },
       },
@@ -87,7 +87,7 @@ export const StyledSelectSelect = styled('select', {
           '--_endAdornment': '28px',
         },
         '&&&': {
-          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
         },
       },
     },
@@ -107,7 +107,7 @@ export const StyledSelectSelect = styled('select', {
           borderRadius: (theme.vars || theme).shape.borderRadius, // Reset the reset for Chrome style
         },
         '&&&': {
-          paddingRight: 'calc(var(--_caret) + var(--_endAdornment))',
+          paddingRight: 'calc(var(--_caret, 32px) + var(--_endAdornment, 0px))',
         },
       },
     },
