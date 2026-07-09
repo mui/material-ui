@@ -25,7 +25,7 @@ catalogs:
       specifier: ^11.14.1
       version: 11.14.1
     '@mui/internal-docs-infra':
-      specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8
+      specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c
       version: 0.12.0
     stylis:
       specifier: 4.2.0
@@ -88,7 +88,7 @@ importers:
         version: 0.0.4-canary.74(@next/eslint-plugin-next@16.2.10)(@types/node@20.19.43)(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(@typescript-eslint/parser@8.61.0(eslint@10.6.0(jiti@2.7.0))(typescript@6.0.3))(@typescript/native-preview@7.0.0-dev.20260702.3)(eslint@10.6.0(jiti@2.7.0))(jest-diff@30.2.0)(postcss@8.5.16)(prettier@3.8.3)(stylelint@17.11.0(typescript@6.0.3))(typescript@6.0.3)(vitest@4.1.8)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils/build
@@ -286,7 +286,7 @@ importers:
         version: link:../packages-internal/core-docs/build
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../packages-internal/markdown
@@ -722,7 +722,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.2.17)(react@19.2.7))(@types/react@19.2.17)(react@19.2.7)
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       '@mui/internal-markdown':
         specifier: workspace:^
         version: link:../markdown
@@ -874,7 +874,7 @@ importers:
         version: 7.29.7
       '@mui/internal-docs-infra':
         specifier: catalog:docs
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils/build
@@ -3607,8 +3607,8 @@ packages:
       typescript:
         optional: true
 
-  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8':
-    resolution: {integrity: sha512-GkC8HhvpDmsBVhEn4HVOdj2DBIdbcKgm5urESBuvxF5tJjHxd5SxWGcVFvoqOJydrxvwqwxWMvBVdeHUr2Fj7g==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8}
+  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c':
+    resolution: {integrity: sha512-M+34Boduf02ikgZLunzKtm3fmuOjXksgl9NsMoZmcOSIQLnXGHUm7RjYNFzY+TH23oFOBpWMiWCS2dSV1z1YPg==, tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c}
     version: 0.12.0
     engines: {node: '>=22.18.0'}
     hasBin: true
@@ -14079,7 +14079,7 @@ snapshots:
       - supports-color
       - vitest
 
-  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@5d315b8(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)':
+  '@mui/internal-docs-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@36e291c(@types/react@19.2.17)(next@16.2.10(@babel/core@7.29.7)(@playwright/test@1.59.1)(babel-plugin-macros@3.1.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(prettier@3.8.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)':
     dependencies:
       '@babel/runtime': 7.29.7
       '@csstools/postcss-light-dark-function': 3.0.2(postcss@8.5.16)
