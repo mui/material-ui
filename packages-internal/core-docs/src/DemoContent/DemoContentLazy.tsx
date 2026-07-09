@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import { LazyContent } from '@mui/internal-docs-infra/CoordinatedLazy';
 import type { DemoContentProps } from './DemoContent';
 
@@ -16,10 +15,5 @@ import type { DemoContentProps } from './DemoContent';
  * lazy boundary has to be defined on the client.
  */
 export default function DemoContentLazy(props: DemoContentProps) {
-  return (
-    <LazyContent<DemoContentProps>
-      content={() => import('./DemoContent').then((mod) => ({ default: mod.default }))}
-      props={props}
-    />
-  );
+  return <LazyContent<DemoContentProps> content={() => import('./DemoContent')} props={props} />;
 }

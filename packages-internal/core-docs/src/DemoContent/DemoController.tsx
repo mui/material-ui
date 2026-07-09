@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import { useDemoController } from '@mui/internal-docs-infra/useDemoController';
 import type { UseDemoControllerOptions } from '@mui/internal-docs-infra/useDemoController';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
