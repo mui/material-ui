@@ -1,7 +1,6 @@
 'use client';
 
 import { useDemoController } from '@mui/internal-docs-infra/useDemoController';
-import type { UseDemoControllerOptions } from '@mui/internal-docs-infra/useDemoController';
 import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
 import type { CodeControllerProps } from '@mui/internal-docs-infra/CodeControllerContext';
 
@@ -13,11 +12,10 @@ import type { CodeControllerProps } from '@mui/internal-docs-infra/CodeControlle
 // a `Suspense` boundary that falls back to the build-time render, so editing never blanks
 // the preview. A demo reads its variant's runtime error via `useDemo().error` (surfaced by
 // `DemoErrorOverlay`).
-function DemoController(props: CodeControllerProps<UseDemoControllerOptions>) {
-  // The factory supplies the demo `url` (the per-demo cross-tab sync key) plus any
-  // `crossTabSync` opt-out, so forward the whole props object — `children` rides along
-  // and is simply ignored by the hook.
-  const value = useDemoController(props);
+function DemoController(props: CodeControllerProps) {
+  // The hook returns exactly the `CodeControllerContext` shape; cast since its `setCode`
+  // is a plain setter rather than a `Dispatch<SetStateAction>`.
+  const value = useDemoController();
 
   return (
     <CodeControllerContext.Provider value={value}>{props.children}</CodeControllerContext.Provider>
