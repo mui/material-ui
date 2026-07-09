@@ -407,5 +407,47 @@ describe('<Rating />', () => {
         outlineWidth: '1px',
       });
     });
+
+    it.skipIf(isJsdom())('draws the curated ring on the empty-value label', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Rating value={null} name="rating-empty-focus-visible" />
+        </ThemeProvider>,
+      );
+
+      const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+      act(() => {
+        noValueRadio.focus();
+      });
+
+      const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+      expect(label).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())(
+      'falls back to the legacy outline on the empty-value label when unset',
+      () => {
+        const { container } = render(
+          <Rating value={null} name="rating-empty-focus-visible-legacy" />,
+        );
+
+        const noValueRadio = screen.getAllByRole('radio').find((radio) => radio.checked);
+
+        act(() => {
+          noValueRadio.focus();
+        });
+
+        const label = container.querySelector(`.${classes.labelEmptyValueActive}`);
+        expect(label).toHaveComputedStyle({
+          outlineStyle: 'solid',
+          outlineWidth: '1px',
+        });
+      },
+    );
   });
 });

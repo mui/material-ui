@@ -131,21 +131,27 @@ const RatingLabel = styled('label', {
     styles.label,
     ownerState.emptyValueFocused && styles.labelEmptyValueActive,
   ],
-})({
-  cursor: 'inherit',
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.emptyValueFocused,
-      style: {
-        top: 0,
-        bottom: 0,
-        position: 'absolute',
-        outline: '1px solid #999',
-        width: '100%',
+})(
+  memoTheme(({ theme }) => ({
+    cursor: 'inherit',
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.emptyValueFocused,
+        style: {
+          top: 0,
+          bottom: 0,
+          position: 'absolute',
+          width: '100%',
+          // Legacy default, superseded when the curated ring is opted in.
+          ...(!(theme.vars || theme).focusVisible && {
+            outline: '1px solid #999',
+          }),
+          ...((theme.vars || theme).focusVisible && (theme.vars || theme).focusVisible),
+        },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const RatingIcon = styled('span', {
   name: 'MuiRating',
