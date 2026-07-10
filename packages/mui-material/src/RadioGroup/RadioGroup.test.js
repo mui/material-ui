@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
@@ -18,12 +18,6 @@ describe('<RadioGroup />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
   }));
-
-  it('the root component has the radiogroup role', () => {
-    const { container } = render(<RadioGroup value="" />);
-
-    expect(container.firstChild).to.have.attribute('role', 'radiogroup');
-  });
 
   it('should fire the onBlur callback', () => {
     const handleBlur = spy();
@@ -77,21 +71,6 @@ describe('<RadioGroup />', () => {
     fireEvent.click(radios[1]);
 
     expect(radios[1].checked).to.equal(true);
-  });
-
-  it('should have a default name', () => {
-    render(
-      <RadioGroup>
-        <Radio value="zero" />
-        <Radio value="one" />
-      </RadioGroup>,
-    );
-
-    const [arbitraryRadio, ...radios] = screen.getAllByRole('radio');
-    // `name` **property** will always be a string even if the **attribute** is omitted
-    expect(arbitraryRadio.name).not.to.equal('');
-    // all input[type="radio"] have the same name
-    expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
   });
 
   it('should support number value', () => {
@@ -421,5 +400,70 @@ describe('<RadioGroup />', () => {
     expect(radiogroup).to.have.class(classes.root);
     expect(radiogroup).to.have.class(classes.row);
     expect(radiogroup).not.to.have.class(classes.error);
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('exposes the radiogroup role on the root', () => {
+        const { container } = render(<RadioGroup value="" />);
+
+        expect(container.firstChild).to.have.attribute('role', 'radiogroup');
+      });
+
+      it('shares one generated name across all radios', () => {
+        render(
+          <RadioGroup>
+            <Radio value="zero" />
+            <Radio value="one" />
+          </RadioGroup>,
+        );
+
+        const [arbitraryRadio, ...radios] = screen.getAllByRole('radio');
+        // `name` **property** will always be a string even if the **attribute** is omitted
+        expect(arbitraryRadio.name).not.to.equal('');
+        // all input[type="radio"] have the same name
+        expect(new Set(radios.map((radio) => radio.name))).to.have.length(1);
+      });
+    });
+
+    it.skipIf(isJsdom())(
+      '2.1.1 Keyboard, 2.4.3 Focus Order: arrow keys rove selection as a single tab stop',
+      async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">before</button>
+            <RadioGroup name="pet" defaultValue="cat">
+              <Radio value="cat" disableRipple slotProps={{ input: { 'aria-label': 'Cat' } }} />
+              <Radio value="dog" disableRipple slotProps={{ input: { 'aria-label': 'Dog' } }} />
+              <Radio value="bird" disableRipple slotProps={{ input: { 'aria-label': 'Bird' } }} />
+            </RadioGroup>
+            <button type="button">after</button>
+          </React.Fragment>,
+        );
+        const after = screen.getByRole('button', { name: 'after' });
+        const [cat, dog, bird] = screen.getAllByRole('radio');
+
+        screen.getByRole('button', { name: 'before' }).focus();
+
+        // Tab enters the group on the checked radio (roving tab order).
+        await user.tab();
+        expect(cat).toHaveFocus();
+        expect(cat).to.have.property('checked', true);
+
+        // Arrow keys move focus to the next radio and check it, unchecking the previous.
+        await user.keyboard('[ArrowDown]');
+        expect(dog).toHaveFocus();
+        expect(dog).to.have.property('checked', true);
+        expect(cat).to.have.property('checked', false);
+
+        await user.keyboard('[ArrowDown]');
+        expect(bird).toHaveFocus();
+        expect(bird).to.have.property('checked', true);
+
+        // The group is a single tab stop: Tab leaves to the next control.
+        await user.tab();
+        expect(after).toHaveFocus();
+      },
+    );
   });
 });
