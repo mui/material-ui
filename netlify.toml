@@ -6,7 +6,7 @@
   command = "pnpm docs:build"
 
 [build.environment]
-  NODE_VERSION = "22.18"
+  NODE_VERSION = "22.22.3"
   PNPM_FLAGS = "--frozen-lockfile"
 
 # [[plugins]]
