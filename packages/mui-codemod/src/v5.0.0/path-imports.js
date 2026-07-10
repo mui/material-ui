@@ -1,9 +1,5 @@
 import addImports from 'jscodeshift-add-imports';
 
-const barrelImportsToTransform = {
-  material: {},
-  'icons-material': {},
-};
 const muiImportRegExp = /^@mui\/([^/]+)$/;
 
 export default function transformer(fileInfo, api, options) {
@@ -11,6 +7,11 @@ export default function transformer(fileInfo, api, options) {
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
+  };
+
+  const barrelImportsToTransform = {
+    material: {},
+    'icons-material': {},
   };
 
   const root = j(fileInfo.source);

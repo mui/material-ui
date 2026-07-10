@@ -60,6 +60,7 @@ const useUtilityClasses = (ownerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
+    status: ['status'],
     option: ['option'],
     groupLabel: ['groupLabel'],
     groupUl: ['groupUl'],
@@ -312,6 +313,11 @@ const AutocompleteLoading = styled('div', {
     padding: '14px 16px',
   })),
 );
+
+const AutocompleteStatus = styled('div', {
+  name: 'MuiAutocomplete',
+  slot: 'Status',
+})({});
 
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
@@ -611,6 +617,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     className: classes.paper,
   });
 
+  const [StatusSlot, statusProps] = useSlot('status', {
+    elementType: AutocompleteStatus,
+    externalForwardedProps,
+    ownerState,
+    className: classes.status,
+    additionalProps: {
+      role: 'status',
+      'aria-live': 'polite',
+      'aria-atomic': 'true',
+    },
+  });
+
   const [PopperSlot, popperProps] = useSlot('popper', {
     elementType: Popper,
     externalForwardedProps,
@@ -798,24 +816,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {anchorEl && hasPopupContent ? (
         <AutocompletePopper as={PopperSlot} {...popperProps}>
           <AutocompletePaper as={PaperSlot} {...paperProps}>
-            {loading && renderedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
-            ) : null}
-            {renderedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
-            ) : null}
+            <StatusSlot {...statusProps}>
+              {loading && renderedOptions.length === 0 ? (
+                <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                  {loadingText}
+                </AutocompleteLoading>
+              ) : null}
+              {renderedOptions.length === 0 && !freeSolo && !loading ? (
+                <AutocompleteNoOptions
+                  className={classes.noOptions}
+                  ownerState={ownerState}
+                  onMouseDown={(event) => {
+                    // Prevent input blur when interacting with the "no options" content
+                    event.preventDefault();
+                  }}
+                >
+                  {noOptionsText}
+                </AutocompleteNoOptions>
+              ) : null}
+            </StatusSlot>
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
@@ -1239,6 +1258,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     chip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     clearIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    status: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -1255,6 +1275,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     popper: PropTypes.elementType,
     popupIndicator: PropTypes.elementType,
     root: PropTypes.elementType,
+    status: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
