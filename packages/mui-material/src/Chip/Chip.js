@@ -17,6 +17,15 @@ import chipClasses, { getChipUtilityClass } from './chipClasses';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
+// Stable wrapper so that ButtonBase receives focusableWhenDisabled when skipFocusWhenDisabled=false.
+// shouldForwardProp on ChipRoot blocks focusableWhenDisabled from external props, so the prop is
+// added here inside the wrapper rather than passed through ChipRoot's prop-filtering layer.
+// focusableWhenDisabled is gated on `disabled` to avoid setting aria-disabled when not needed.
+const ChipButtonBase = React.forwardRef(function ChipButtonBase(inProps, ref) {
+  const { disabled, ...props } = inProps;
+  return <ButtonBase disabled={disabled} {...props} ref={ref} focusableWhenDisabled={!!disabled} />;
+});
+
 const useUtilityClasses = (ownerState) => {
   const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
 
@@ -426,7 +435,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
 
-  const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
+  const interactiveComponent = !skipFocusWhenDisabled ? ChipButtonBase : ButtonBase;
+  const component = clickable || onDelete ? interactiveComponent : ComponentProp || 'div';
 
   const ownerState = {
     ...props,
@@ -443,7 +453,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const moreProps =
-    component === ButtonBase
+    component === ButtonBase || component === ChipButtonBase
       ? {
           component: ComponentProp || 'div',
           internalNativeButton: false,
