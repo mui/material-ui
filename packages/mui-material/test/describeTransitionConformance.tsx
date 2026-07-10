@@ -6,12 +6,7 @@ import type { Clock, MuiRenderResult } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 type TransitionCallbackName =
-  | 'onEnter'
-  | 'onEntering'
-  | 'onEntered'
-  | 'onExit'
-  | 'onExiting'
-  | 'onExited';
+  'onEnter' | 'onEntering' | 'onEntered' | 'onExit' | 'onExiting' | 'onExited';
 
 interface TransitionConformanceOptions {
   /**

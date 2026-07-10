@@ -20,8 +20,7 @@ export interface MuiStyledOptions {
   // The difference between Interpolation and CSSInterpolation is that the former supports functions based on props
   // If we want to support props in the overrides, we will need to change the CSSInterpolation to Interpolation<Props>
   overridesResolver?:
-    | ((props: any, styles: Record<string, CSSInterpolation>) => CSSInterpolation)
-    | undefined;
+    ((props: any, styles: Record<string, CSSInterpolation>) => CSSInterpolation) | undefined;
   skipVariantsResolver?: boolean | undefined;
   skipSx?: boolean | undefined;
 }
