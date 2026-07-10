@@ -109,7 +109,7 @@ describe('<MenuItem />', () => {
   it('keeps `selected` presentational and omits aria-checked for non-checkable roles', () => {
     render(
       <MenuList>
-        <MenuItem role="option" selected aria-selected />
+        <MenuItem role="option" selected />
       </MenuList>,
     );
     const option = screen.getByRole('option');
