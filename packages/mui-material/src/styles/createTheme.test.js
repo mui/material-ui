@@ -525,12 +525,12 @@ describe('createTheme', () => {
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
       // `createTheme(options, ...args)` — `focusVisible` arrives via a merge argument, not
       // `options`. It must still resolve to the curated object, not stay a raw boolean.
-      expect(createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible).to.deep.equal(
-        {
-          ...CURATED,
-          outlineColor: createTheme().palette.primary.main,
-        },
-      );
+      expect(
+        createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible,
+      ).to.deep.equal({
+        ...CURATED,
+        outlineColor: createTheme().palette.primary.main,
+      });
       const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
       expect(varsTheme.vars.focusVisible.outlineColor).to.equal(
