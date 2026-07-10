@@ -3287,14 +3287,14 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { compact: '40px', normal: '48px', comfort: '56px' },
   },
   {
-    id: 'MuiTabScrollButton|root|base||width',
-    label: 'TabScrollButton · width',
+    id: 'MuiTabScrollButton|root|orientation=horizontal||width',
+    label: 'TabScrollButton · width [orientation=horizontal]',
     isDensity: false,
     densityKey: null,
     target: {
       component: 'MuiTabScrollButton',
       slot: 'root',
-      props: null,
+      props: { orientation: 'horizontal' },
       nested: '',
       cssProp: 'width',
     },

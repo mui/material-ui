@@ -451,11 +451,10 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     minHeight: '56px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiTabScrollButton', {
-    // Square scroll-affordance button (source: 40px both axes) = raw px per the
-    // sizing policy. Horizontal tabs size via width; the vertical variant sets
-    // width:100% in source, so only height needs the density value there.
-    width: '48px',
-    variants: [{ props: { orientation: 'vertical' }, style: { height: '48px' } }],
+    variants: [
+      { props: { orientation: 'horizontal' }, style: { width: '48px' } },
+      { props: { orientation: 'vertical' }, style: { height: '48px' } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
     // Touch-target padding per size (9px both sizes today) = density steps. Pull the
