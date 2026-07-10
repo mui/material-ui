@@ -31,14 +31,18 @@ jobs:
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Sync team members
-        run: pnpm docs:sync-team
-        env:
-          # syncTeamMembers.ts writes the missing-images summary for the PR body here.
-          SYNC_SUMMARY_FILE: ${{ runner.temp }}/sync-summary.md
+        id: sync
+        run: |
+          {
+            echo 'summary<<SYNC_SUMMARY_EOF'
+            pnpm --silent exec tsx ./docs/scripts/syncTeamMembers.ts
+            echo 'SYNC_SUMMARY_EOF'
+          } >> "$GITHUB_OUTPUT"
+          pnpm prettier
       - name: Create or update pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SYNC_SUMMARY_FILE: ${{ runner.temp }}/sync-summary.md
+          SYNC_SUMMARY: ${{ steps.sync.outputs.summary }}
           # Empty on scheduled runs, so fall back to the default reviewers.
           REVIEWERS: ${{ inputs.reviewers || 'mui/admins' }}
         run: |
@@ -55,7 +59,7 @@ jobs:
           git commit --all --message '[website] Sync about page team members'
           git push --force origin "$BRANCH"
 
-          BODY="$(printf 'Automated sync of the About page team members from the [mui-about API](https://frontend-public.mui.com/api/mui-about).\n\n'; cat "$SYNC_SUMMARY_FILE")"
+          BODY="$(printf 'Automated sync of the About page team members from the [mui-about API](https://frontend-public.mui.com/api/mui-about).\n\n%s' "$SYNC_SUMMARY")"
 
           if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
             gh pr edit "$BRANCH" --body "$BODY"
