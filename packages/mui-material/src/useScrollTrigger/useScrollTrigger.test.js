@@ -270,5 +270,62 @@ describe('useScrollTrigger', () => {
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
     });
+
+    // https://github.com/mui/material-ui/issues/46589
+    describe('layout resize, e.g. Collapse inside a sticky AppBar', () => {
+      function setScrollHeight(element, value) {
+        Object.defineProperty(element, 'scrollHeight', { value, configurable: true });
+      }
+
+      // Simulates a collapsible section inside a sticky AppBar: triggering the collapse
+      // shrinks the page, and scroll anchoring shifts the scroll position along with it.
+      const scrollSequence = [
+        // establish a baseline below the threshold
+        { offset: 50, height: 1000, result: 'false' },
+        // user scrolls down past the threshold => trigger, the collapse starts
+        { offset: 150, height: 1000, result: 'true' },
+        // the collapse shrinks the page, shifting the scroll position up without
+        // any scrolling from the user
+        { offset: 130, height: 980, result: 'true' },
+        { offset: 110, height: 960, result: 'true' },
+        { offset: 94, height: 944, result: 'true' },
+        // collapse finished, user keeps scrolling down below the original threshold
+        { offset: 96, height: 944, result: 'true' },
+        { offset: 98, height: 944, result: 'true' },
+        // user scrolls up => untrigger, the collapsed section expands again
+        { offset: 95, height: 944, result: 'false' },
+        // the expand grows the page, shifting the scroll position down
+        { offset: 115, height: 964, result: 'false' },
+        { offset: 135, height: 984, result: 'false' },
+        { offset: 151, height: 1000, result: 'false' },
+        // genuine scrolling keeps behaving as usual
+        { offset: 150, height: 1000, result: 'false' },
+        { offset: 155, height: 1000, result: 'true' },
+      ];
+
+      it('should not flip-flop when a scroll container resize shifts the scroll position', () => {
+        render(<Test customContainer />);
+        scrollSequence.forEach((test, index) => {
+          setScrollHeight(getContainer(), test.height);
+          dispatchScroll(test.offset, getContainer());
+          expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
+        });
+      });
+
+      it('should not flip-flop when a page resize shifts the window scroll position', () => {
+        try {
+          setScrollHeight(document.documentElement, 1000);
+          render(<Test />);
+          scrollSequence.forEach((test, index) => {
+            setScrollHeight(document.documentElement, test.height);
+            dispatchScroll(test.offset);
+            expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
+          });
+        } finally {
+          // restore the prototype getter
+          delete document.documentElement.scrollHeight;
+        }
+      });
+    });
   });
 });
