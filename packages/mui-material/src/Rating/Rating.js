@@ -390,7 +390,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     name: 'Rating',
   });
 
-  const valueRounded = roundValueToPrecision(valueDerived, precision);
+  // Clamp to the largest step that does not exceed max so that e.g. precision=0.4 + value=5
+  // (where 5/0.4 = 12.5, so roundValueToPrecision gives 5.2) never exceeds max.
+  // Preserve null/undefined as-is — clamp(null, 0, n) would coerce null to 0 via Math.max.
+  const maxAchievableValue = Number(
+    (Math.floor(max / precision) * precision).toFixed(getDecimalPrecision(precision)),
+  );
+  const rawRounded = roundValueToPrecision(valueDerived, precision);
+  const valueRounded = rawRounded == null ? rawRounded : clamp(rawRounded, 0, maxAchievableValue);
   const isRtl = useRtl();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
@@ -620,7 +627,13 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
         if (precision < 1) {
-          const items = Array.from(new Array(1 / precision));
+          // Enumerate the precision steps that belong to this star using floor-based global
+          // indices. This avoids RangeError when 1/precision is non-integer (e.g. 0.3 → 3.333…)
+          // and prevents cross-star value collisions caused by floating-point rounding in
+          // roundValueToPrecision when the step boundary doesn't align with integer stars.
+          const starStart = Math.floor((itemValue - 1) / precision);
+          const starEnd = Math.floor(itemValue / precision);
+          const items = Array.from(new Array(Math.max(starEnd - starStart, 1)));
           return (
             <DecimalSlot
               {...decimalSlotProps}
@@ -629,14 +642,14 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
               iconActive={isActive}
             >
               {items.map(($, indexDecimal) => {
-                const itemDecimalValue = roundValueToPrecision(
-                  itemValue - 1 + (indexDecimal + 1) * precision,
-                  precision,
+                const globalIndex = starStart + indexDecimal + 1;
+                const itemDecimalValue = Number(
+                  (globalIndex * precision).toFixed(getDecimalPrecision(precision)),
                 );
 
                 return (
                   <RatingItem
-                    key={itemDecimalValue}
+                    key={`${itemValue}-${indexDecimal}`}
                     {...ratingItemProps}
                     // The icon is already displayed as active
                     isActive={false}
@@ -648,7 +661,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
                           : {
                               width:
                                 itemDecimalValue === value
-                                  ? `${(indexDecimal + 1) * precision * 100}%`
+                                  ? `${(itemDecimalValue - (itemValue - 1)) * 100}%`
                                   : '0%',
                               overflow: 'hidden',
                               position: 'absolute',

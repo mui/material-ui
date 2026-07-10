@@ -26,6 +26,22 @@ trustPolicy: no-downgrade
 # provenance), and the other legacy packages restore provenance.
 trustPolicyIgnoreAfter: 525600
 
+overrides:
+  # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
+  caniuse-lite: '^1.0.30001792'
+  '@babel/core': '7.29.0'
+  '@babel/plugin-transform-runtime': '^7.29.0'
+  '@babel/preset-env': '^7.29.5'
+  '@babel/preset-react': '^7.28.5'
+  '@babel/preset-typescript': '^7.28.5'
+  '@babel/runtime': '^7.29.2'
+  '@types/node': '20.19.39'
+  cross-fetch: '^4.1.0'
+  '@pigment-css/react': '0.0.30'
+  '@pigment-css/unplugin': '0.0.30'
+  '@pigment-css/nextjs-plugin': '0.0.30'
+  '@pigment-css/vite-plugin': '0.0.30'
+
 catalogs:
   docs:
     stylis: '4.2.0'
