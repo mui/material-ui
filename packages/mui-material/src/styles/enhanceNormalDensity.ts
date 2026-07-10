@@ -7,15 +7,14 @@ import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
-import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { listItemIconClasses } from '../ListItemIcon';
 import { inputBaseClasses } from '../InputBase';
 import type { TabProps } from '../Tab';
-import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
 import { formControlLabelClasses } from '../FormControlLabel';
+import { inputAdornmentClasses } from '../InputAdornment';
 
 // Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
 // typography — no reflow — so only the padding→step assignment below.
@@ -57,13 +56,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
-    variants: [
-      { props: { disablePadding: false }, style: { paddingBlock: d.sm } },
-      {
-        props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader,
-        style: { paddingTop: 0 },
-      },
-    ],
+    variants: [{ props: { disablePadding: false }, style: { paddingBlock: d.sm } }],
   });
   addRootOverride(
     enhanced.components,
@@ -235,16 +228,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
-              marginTop: d.lg,
-            },
-        },
-      },
-      {
-        props: { variant: 'filled', size: 'small' },
-        style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
-            {
-              marginTop: d.md,
+              marginTop:
+                'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
             },
         },
       },
@@ -741,8 +726,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     enhanced.components,
     'MuiSelect',
     {
-      // Content-box floor (raw px); real padding comes from the input variant.
-      minHeight: '23px',
+      minHeight: 'auto',
     },
     'select',
   );

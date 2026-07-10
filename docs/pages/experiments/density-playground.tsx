@@ -74,6 +74,7 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import FormGroup from '@mui/material/FormGroup';
 import PaddingIcon from '@mui/icons-material/Padding';
+import CropFreeIcon from '@mui/icons-material/CropFree';
 import TitleIcon from '@mui/icons-material/Title';
 import BorderAllIcon from '@mui/icons-material/BorderAll';
 import HeightIcon from '@mui/icons-material/Height';
@@ -81,6 +82,8 @@ import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CheckIcon from '@mui/icons-material/Check';
 import {
   createTheme,
   ThemeProvider,
@@ -125,6 +128,7 @@ import {
 import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
 import { buildExportInput } from 'docs/src/modules/components/density/exportPayload';
 import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
+import ListSubheader from '@mui/material/ListSubheader';
 
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
@@ -228,12 +232,15 @@ const SLOT_TAG_SX = {
 } as const;
 
 // Visual-debug overlays, toggled by `data-debug-*` on the canvas. Pure CSS,
-// layout-safe (absolute ::before + pointer-events:none), never touches the
-// components' real styles. The label span sits above the padding overlay
+// layout-safe (absolute ::before/::after + pointer-events:none), never touches
+// the components' real styles. The label span sits above the padding overlay
 // (z-index) so text stays crisp; its blue fill only shows in text mode.
 // The padding-ring overlay: `inset:0` sizes it to the element's padding-box;
 // `padding:inherit` shrinks its content-box to the element's content box, and
 // the `exclude` mask knocks that center out → green fills only the padding ring.
+// Both this ring and the margin ring below fire off the SAME toggle
+// (`data-debug-boundingbox`) — one "Bounding box" button shows padding (inside
+// the border) and margin (outside the border) together.
 const PADDING_RING = {
   content: '""',
   position: 'absolute',
@@ -276,6 +283,34 @@ const PADDING_RING_SLOTS = [
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
+// Margin sits OUTSIDE the border-box, so the padding-ring's `padding:inherit` +
+// mask trick can't reach it (a pseudo-element can't escape past the border via
+// that technique) — and unlike padding, there's no OTHER CSS-only trick either:
+// margin is never itself painted, so nothing can "reveal" it the way masking
+// reveals padding. A ring keyed to a hardcoded density var (the first cut of
+// this feature) LOOKED right but silently went stale the moment a user edited
+// the matching sidebar knob — it kept showing the preset's original value,
+// never the live override.
+//
+// So, like the height-measure ruler, this needs JS: read the REAL computed
+// margin off each targeted element and project it as an out-of-flow marker —
+// robust to ANY value (preset default, sidebar override, even raw arbitrary
+// CSS), because it reads what actually rendered instead of assuming what
+// should have. All four sides are checked per element (whichever are non-zero
+// get a marker), so a slot with margin on more than one side (e.g.
+// FormControlLabel's compensating `marginLeft` AND its fixed `marginRight: 16`
+// from master) shows both — no more per-side selector plumbing needed. See
+// the `boundingBoxOn` effect for the marker layer (mirrors the measure effect
+// below: own out-of-flow layer, ResizeObserver + MutationObserver relayout).
+const MARGIN_MARKER_SELECTORS = [
+  '.MuiInputAdornment-positionStart',
+  '.MuiInputAdornment-positionEnd',
+  '.MuiAccordionSummary-content',
+  '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
+  '.MuiFormControlLabel-labelPlacementEnd',
+  '.MuiFormControlLabel-labelPlacementStart',
+];
+
 // Height-measure targets: the box whose height each demo is about — mostly
 // component ROOT boxes (density's headline signal is min-height). Special cases:
 // Checkbox/Radio/Switch controls sit inside a FormControlLabel, so the bare
@@ -314,20 +349,28 @@ const DEBUG_SX = {
   },
   // Padding ring: each slot needs position:relative to anchor the ::before overlay.
   ...Object.fromEntries(
-    PADDING_RING_SLOTS.map((s) => [`&[data-debug-padding] ${s}`, { position: 'relative' }]),
+    PADDING_RING_SLOTS.map((s) => [`&[data-debug-boundingbox] ${s}`, { position: 'relative' }]),
   ),
   ...Object.fromEntries(
-    PADDING_RING_SLOTS.map((s) => [`&[data-debug-padding] ${s}::before`, PADDING_RING]),
+    PADDING_RING_SLOTS.map((s) => [`&[data-debug-boundingbox] ${s}::before`, PADDING_RING]),
   ),
   '&[data-debug-text] .density-debug-text': {
     backgroundColor: 'rgba(0, 116, 217, 0.32)', // text box = blue
   },
   // Spacing tab: gaps aren't padding, so the ::before ring can't reach them. The
-  // Padding toggle washes the whole Stack/Grid container green; the opaque
+  // Bounding-box toggle washes the whole Stack/Grid container green; the opaque
   // .spacing-box children cover their own area → only the gap tracks read green.
-  '&[data-debug-padding] [data-spacing-gaps]': {
+  '&[data-debug-boundingbox] [data-spacing-gaps]': {
     backgroundColor: 'rgba(46, 204, 64, 0.5)',
     borderRadius: '4px',
+  },
+  // Margin markers — an out-of-flow layer (see the effect) positioned by JS
+  // from each target's real computed margin, so they track live sidebar
+  // overrides. These rules only style the marker; JS sets top/left/width/height.
+  '&[data-debug-boundingbox] .density-margin-marker': {
+    position: 'absolute',
+    pointerEvents: 'none',
+    backgroundColor: 'rgba(246, 178, 107, 0.6)', // margin = orange (DevTools convention)
   },
   // Outline every box in the demo area (scoped under [data-canvas-demo], so the
   // per-cell label header + wrapper are skipped) so density shifts read at a glance.
@@ -2268,6 +2311,136 @@ export default function DensityExperiment() {
       layer.remove();
     };
   }, [measureOn]);
+  // Margin markers (part of the Bounding-box toggle) — same rationale and
+  // shape as the height-measure effect above, but reading each target's REAL
+  // computed margin (all 4 sides) instead of its height. This is what makes
+  // the ring track a live sidebar override: a hardcoded density-var ring looks
+  // right until the user edits the knob, then silently goes stale — reading
+  // getComputedStyle never can, since it reflects whatever actually rendered.
+  // MutationObserver also needs `attributes` here (not just childList/subtree):
+  // an override often just swaps the target's generated class in place
+  // (same element, new computed margin) without any child list changing.
+  const boundingBoxOn = debug.includes('boundingBox');
+  React.useEffect(() => {
+    if (!boundingBoxOn) {
+      return undefined;
+    }
+    const canvas = document.getElementById('density-canvas');
+    if (!canvas) {
+      return undefined;
+    }
+    const selector = MARGIN_MARKER_SELECTORS.join(',');
+    const layer = document.createElement('div');
+    layer.dataset.marginLayer = '';
+    layer.style.cssText =
+      'position:absolute;top:0;left:0;width:0;height:0;overflow:visible;pointer-events:none;';
+    canvas.appendChild(layer);
+
+    type Side = 'top' | 'right' | 'bottom' | 'left';
+    const SIDES: Side[] = ['top', 'right', 'bottom', 'left'];
+    const markers = new Map<Element, Partial<Record<Side, HTMLDivElement>>>();
+    const getMarker = (el: Element, side: Side) => {
+      const bySide = markers.get(el) ?? {};
+      markers.set(el, bySide);
+      let marker = bySide[side];
+      if (!marker) {
+        marker = document.createElement('div');
+        marker.className = 'density-margin-marker';
+        layer.appendChild(marker);
+        bySide[side] = marker;
+      }
+      return marker;
+    };
+
+    let raf = 0;
+    let ro: ResizeObserver;
+    const relayout = () => {
+      raf = 0;
+      const targets = Array.from(canvas.querySelectorAll(selector));
+      const canvasRect = canvas.getBoundingClientRect();
+      const { scrollTop, scrollLeft } = canvas;
+      // Read phase — rects + computed margins together, no interleaved writes.
+      const reads = targets.map((el) => ({
+        el,
+        rect: el.getBoundingClientRect(),
+        cs: getComputedStyle(el),
+      }));
+      const seen = new Set<Element>();
+      // Write phase.
+      reads.forEach(({ el, rect, cs }) => {
+        seen.add(el);
+        if (!markers.has(el)) {
+          ro.observe(el);
+        }
+        const bySide = markers.get(el) ?? {};
+        markers.set(el, bySide);
+        SIDES.forEach((side) => {
+          const raw = parseFloat(cs.getPropertyValue(`margin-${side}`)) || 0;
+          if (raw === 0) {
+            bySide[side]?.remove();
+            delete bySide[side];
+            return;
+          }
+          const marker = getMarker(el, side);
+          const size = Math.abs(raw);
+          const outward = raw > 0;
+          const top = rect.top - canvasRect.top + scrollTop;
+          const left = rect.left - canvasRect.left + scrollLeft;
+          if (side === 'left' || side === 'right') {
+            marker.style.top = `${top}px`;
+            marker.style.height = `${rect.height}px`;
+            marker.style.width = `${size}px`;
+            marker.style.left =
+              side === 'right'
+                ? `${left + rect.width + (outward ? 0 : -size)}px`
+                : `${left + (outward ? -size : 0)}px`;
+          } else {
+            marker.style.left = `${left}px`;
+            marker.style.width = `${rect.width}px`;
+            marker.style.height = `${size}px`;
+            marker.style.top =
+              side === 'bottom'
+                ? `${top + rect.height + (outward ? 0 : -size)}px`
+                : `${top + (outward ? -size : 0)}px`;
+          }
+        });
+      });
+      markers.forEach((bySide, el) => {
+        if (!seen.has(el)) {
+          Object.values(bySide).forEach((m) => m?.remove());
+          markers.delete(el);
+          ro.unobserve(el);
+        }
+      });
+    };
+    const schedule = () => {
+      if (!raf) {
+        raf = requestAnimationFrame(relayout);
+      }
+    };
+
+    ro = new ResizeObserver(schedule);
+    ro.observe(canvas);
+    const mo = new MutationObserver(schedule);
+    mo.observe(canvas, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style'],
+    });
+    window.addEventListener('resize', schedule);
+    relayout();
+
+    return () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+      }
+      window.removeEventListener('resize', schedule);
+      ro.disconnect();
+      mo.disconnect();
+      layer.remove();
+    };
+  }, [boundingBoxOn]);
   // Layout tab — drives both the sidebar content and the canvas.
   const [tab, setTab] = React.useState<TabKey>('components');
   const [howToOpen, setHowToOpen] = React.useState(false);
@@ -2495,6 +2668,17 @@ export default function DensityExperiment() {
     URL.revokeObjectURL(anchor.href);
   };
 
+  // Copy: same generated source as Export, onto the clipboard instead of a
+  // file download. `copied` flips the icon briefly as feedback.
+  const [copied, setCopied] = React.useState(false);
+  const handleCopy = () => {
+    const source = buildExportSource(buildExportInput(mappingByPreset));
+    navigator.clipboard.writeText(source).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  };
+
   return (
     <Box
       sx={{
@@ -2584,12 +2768,12 @@ export default function DensityExperiment() {
             aria-label="visual debug overlays"
           >
             <ToggleButton
-              value="padding"
-              aria-label="highlight padding"
-              data-debug-toggle="padding"
+              value="boundingBox"
+              aria-label="highlight bounding box"
+              data-debug-toggle="boundingBox"
             >
-              <Tooltip title="Padding highlight">
-                <PaddingIcon fontSize="small" />
+              <Tooltip title="Bounding box (padding + margin)">
+                <CropFreeIcon fontSize="small" />
               </Tooltip>
             </ToggleButton>
             <ToggleButton value="text" aria-label="highlight text box" data-debug-toggle="text">
@@ -2611,6 +2795,16 @@ export default function DensityExperiment() {
           <Button variant="outlined" onClick={handleExport} data-export-button>
             Export density.ts
           </Button>
+          <Tooltip title={copied ? 'Copied!' : 'Copy density.ts to clipboard'}>
+            <IconButton
+              size="small"
+              onClick={handleCopy}
+              aria-label="copy density.ts to clipboard"
+              data-copy-button
+            >
+              {copied ? <CheckIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
 
@@ -2841,7 +3035,7 @@ export default function DensityExperiment() {
           <CssBaseline />
           <Box
             id="density-canvas"
-            data-debug-padding={debug.includes('padding') ? '' : undefined}
+            data-debug-boundingbox={boundingBoxOn ? '' : undefined}
             data-debug-text={debug.includes('text') ? '' : undefined}
             data-debug-outline={debug.includes('outline') ? '' : undefined}
             data-debug-measure={measureOn ? '' : undefined}

@@ -10,7 +10,6 @@ import inputLabelClasses from '../InputLabel/inputLabelClasses';
 import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { inputBaseClasses } from '../InputBase';
 import type { TabProps } from '../Tab';
-import type { ListProps } from '../List';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
@@ -63,10 +62,6 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
     variants: [
       { props: { disablePadding: false }, style: { paddingBlock: d.md } },
-      {
-        props: ({ ownerState }: { ownerState: ListProps }) => ownerState.subheader,
-        style: { paddingTop: 0 },
-      },
     ],
   });
   addRootOverride(
@@ -229,21 +224,21 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       { props: { position: 'start' }, style: { marginRight: d.sm } },
       { props: { position: 'end' }, style: { marginLeft: d.sm } },
       {
-        props: { variant: 'filled' },
-        style: {
-          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
-            {
-              marginTop: 'calc(var(--_filledInputPadTop, 20px) - 4px)',
-            },
-        },
-      },
-      {
         props: { position: 'start', size: 'small' },
         style: { marginRight: d.xxs },
       },
       {
         props: { position: 'end', size: 'small' },
         style: { marginLeft: d.xxs },
+      },
+      {
+        props: { variant: 'filled' },
+        style: {
+          [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
+            {
+              marginTop: 'calc(var(--_filledInputPadTop, 20px) - var(--_filledInputPadBottom, 4px))',
+            },
+        },
       },
     ],
   });
@@ -750,8 +745,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     enhanced.components,
     'MuiSelect',
     {
-      // Content-box floor (raw px); real padding comes from the input variant.
-      minHeight: '20px',
+      minHeight: 'auto',
     },
     'select',
   );

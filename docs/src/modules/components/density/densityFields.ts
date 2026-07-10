@@ -28,7 +28,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiInputLabel: 'TextField',
   MuiInputAdornment: 'TextField',
   MuiFilledInput: 'TextField',
-  MuiInputBase: 'TextField',
+  MuiInputBase: ['TextField', 'Select'],
   MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
@@ -72,6 +72,8 @@ export const componentFamily: Record<string, string | string[]> = {
 export const familyComponentOrder: Record<string, string[]> = {
   Checkbox: ['Checkbox', 'FormControlLabel'],
   Radio: ['Radio', 'FormControlLabel'],
+  Select: ['InputBase', 'Select'],
+  TextField: ['InputBase', 'InputAdornment', 'OutlinedInput', 'FilledInput', 'Input'],
 };
 
 /** Ordered (and, when configured, scoped) component list for a family's sidebar group. */
@@ -126,6 +128,7 @@ export const hiddenFieldIds = new Set<string>([
   'MuiInputBase|input|base||paddingBlock',
   'MuiInputBase|input|multiline=true||paddingBlock',
   'MuiInputBase|input|size=small||paddingTop',
+  'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop',
   'MuiInput|input|multiline=true||paddingBlock',
   'MuiInput|input|base||paddingTop',
   'MuiInput|input|base||paddingBottom',
@@ -189,7 +192,30 @@ export const hiddenFieldIds = new Set<string>([
   'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
   'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
   'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+  // minHeight sizing fields — preset-driven, not independently tunable via sidebar
+  'MuiAccordionSummary|root|base||minHeight',
+  'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight',
+  'MuiMenuItem|root|dense=false||minHeight',
+  'MuiMenuItem|root|dense=true||minHeight',
+  'MuiSelect|select|base||minHeight',
+  'MuiTab|root|base||minHeight',
+  'MuiTab|root|fn:1bbekq||minHeight',
+  'MuiTabs|root|base||minHeight',
+  'MuiToolbar|root|variant=dense||minHeight',
 ]);
+
+/**
+ * Per-family denylist: same shape/purpose as `hiddenFieldIds`, but scoped to one
+ * family — for fields on a shared component (mapped to several families via
+ * `componentFamily`) that should surface in some families and not others. Checked
+ * during the per-family fan-out in `densityGroups`, after the global denylist.
+ */
+export const hiddenFieldIdsByFamily: Record<string, Set<string>> = {
+  // InputBase's `input` slot is TextField-only sizing (height); Select renders
+  // its value through the `select` slot, so hide it there but keep it on TextField.
+  Select: new Set<string>(['MuiInputBase|input|base||height']),
+};
 
 export interface DensityGroup {
   /** matches a COMPONENT_DEFS key in the playground (canvas demo) */
@@ -282,6 +308,9 @@ export const densityGroups: DensityGroup[] = (() => {
       continue; // component not surfaced (no canvas demo)
     }
     for (const fam of Array.isArray(family) ? family : [family]) {
+      if (hiddenFieldIdsByFamily[fam]?.has(row.id)) {
+        continue; // editorial per-family denylist (see hiddenFieldIdsByFamily)
+      }
       if (!byFamily.has(fam)) {
         byFamily.set(fam, []);
       }

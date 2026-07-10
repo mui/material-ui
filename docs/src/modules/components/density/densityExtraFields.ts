@@ -31,14 +31,14 @@ const radiusRowSized = (
   values: {},
 });
 
-const edgeCorner = (nested: string, cssProp: string): DensityEmitRow => ({
-  id: `MuiAccordion|root|base|${nested}|${cssProp}`,
-  label: `Accordion · ${cssProp}`,
-  isDensity: false,
-  densityKey: null,
-  target: { component: 'MuiAccordion', slot: 'root', props: null, nested, cssProp },
-  values: {},
-});
+// const edgeCorner = (nested: string, cssProp: string): DensityEmitRow => ({
+//   id: `MuiAccordion|root|base|${nested}|${cssProp}`,
+//   label: `Accordion · ${cssProp}`,
+//   isDensity: false,
+//   densityKey: null,
+//   target: { component: 'MuiAccordion', slot: 'root', props: null, nested, cssProp },
+//   values: {},
+// });
 
 // Un-varianted override-only row on a given slot (blank until the user fills it).
 const slotRow = (
@@ -107,11 +107,26 @@ export const densityExtraRows: DensityEmitRow[] = [
     },
     values: {},
   },
+  // Select — placeholder field to keep the component visible in the selector
+  {
+    id: 'MuiSelect|select|base||paddingBlock',
+    label: 'Select · select · paddingBlock',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiSelect',
+      slot: 'select',
+      props: null,
+      nested: '',
+      cssProp: 'paddingBlock',
+    },
+    values: {},
+  },
   // Edge radius — 4 corner members hidden behind the virtual knob below.
-  edgeCorner('&:first-of-type', 'borderTopLeftRadius'),
-  edgeCorner('&:first-of-type', 'borderTopRightRadius'),
-  edgeCorner('&:last-of-type', 'borderBottomLeftRadius'),
-  edgeCorner('&:last-of-type', 'borderBottomRightRadius'),
+  // edgeCorner('&:first-of-type', 'borderTopLeftRadius'),
+  // edgeCorner('&:first-of-type', 'borderTopRightRadius'),
+  // edgeCorner('&:last-of-type', 'borderBottomLeftRadius'),
+  // edgeCorner('&:last-of-type', 'borderBottomRightRadius'),
 ];
 
 /**
@@ -170,22 +185,22 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
       'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft', // icon-end layout
     ],
   },
-  {
-    id: 'virtual:MuiAccordion:edgeRadius',
-    label: 'Accordion · edge radius',
-    group: 'Accordion',
-    members: [
-      'MuiAccordion|root|base|&:first-of-type|borderTopLeftRadius',
-      'MuiAccordion|root|base|&:first-of-type|borderTopRightRadius',
-      'MuiAccordion|root|base|&:last-of-type|borderBottomLeftRadius',
-      'MuiAccordion|root|base|&:last-of-type|borderBottomRightRadius',
-    ],
-  },
+  // {
+  //   id: 'virtual:MuiAccordion:edgeRadius',
+  //   label: 'Accordion · edge radius',
+  //   group: 'Accordion',
+  //   members: [
+  //     'MuiAccordion|root|base|&:first-of-type|borderTopLeftRadius',
+  //     'MuiAccordion|root|base|&:first-of-type|borderTopRightRadius',
+  //     'MuiAccordion|root|base|&:last-of-type|borderBottomLeftRadius',
+  //     'MuiAccordion|root|base|&:last-of-type|borderBottomRightRadius',
+  //   ],
+  // },
   // The four per-placement offset margins (non-touch) collapse to one knob — arrow
   // doesn't change them (see Tooltip.js base styles), so one value drives all sides.
   {
     id: 'virtual:MuiTooltip:offset',
-    label: 'Tooltip · tooltip · Offset',
+    label: 'Tooltip · tooltip · margin offset',
     group: 'Tooltip',
     members: [
       'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd',

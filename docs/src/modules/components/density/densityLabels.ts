@@ -168,14 +168,12 @@ export const densityLabels: Record<string, string> = {
   'MuiInputAdornment|root|position=start||marginRight':
     'InputAdornment · marginRight [position=start]',
   'MuiInputAdornment|root|position=end||marginLeft': 'InputAdornment · marginLeft [position=end]',
-  'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
-    'InputAdornment · marginTop [variant=filled]',
   'MuiInputAdornment|root|position=start,size=small||marginRight':
     'InputAdornment · marginRight [position=start,size=small]',
   'MuiInputAdornment|root|position=end,size=small||marginLeft':
     'InputAdornment · marginLeft [position=end,size=small]',
-  'MuiInputAdornment|root|size=small,variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
-    'InputAdornment · marginTop [variant=filled,size=small]',
+  'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
+    'InputAdornment · marginTop [variant=filled]',
   'MuiInputBase|input|base||paddingBlock': 'InputBase · input · paddingBlock',
   'MuiInputBase|input|base||height': 'InputBase · input · height',
   'MuiInputBase|input|size=small||paddingTop': 'InputBase · input · paddingTop [size=small]',
@@ -192,7 +190,6 @@ export const densityLabels: Record<string, string> = {
   'MuiInputLabel|root|shrink=true,variant=outlined||transform':
     'InputLabel · transform [variant=outlined,shrink=true]',
   'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
-  'MuiList|root|fn:fqdz84||paddingTop': 'List · paddingTop [subheader]',
   'MuiListItemButton|root|dense=false||paddingBlock': 'ListItemButton · paddingBlock [dense=false]',
   'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|disableGutters=false||paddingInline':
