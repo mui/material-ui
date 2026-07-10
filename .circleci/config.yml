@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   code-infra: https://raw.githubusercontent.com/mui/mui-public/c031d4471d2dcc537912379edc22953a7bb1fdc7/.circleci/orbs/code-infra.yml
-  aws-cli: circleci/aws-cli@5.4.1
+  aws-cli: circleci/aws-cli@5.4.2
   aws-s3: circleci/aws-s3@4.1.3
 
 parameters:
@@ -278,9 +278,9 @@ jobs:
       - run:
           name: A11y results committed?
           # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
-          # package.json/pnpm-lock.yaml. Exclude those so this check still verifies the a11y
-          # results on every job without tripping over the pinned dependencies.
-          command: git add -A -- . ':(exclude)package.json' ':(exclude)pnpm-lock.yaml' && git diff --exit-code --staged
+          # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
+          # this check still verifies the a11y results without tripping on the pinned deps.
+          command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
