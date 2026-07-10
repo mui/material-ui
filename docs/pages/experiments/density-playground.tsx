@@ -171,19 +171,19 @@ const HOW_TO_STEPS = [
   },
   {
     label: 'Explore components',
-    body: 'On the Components tab, pick a family (or All) to see its demo. Toggle the visual-debug overlays (padding ring, text box, outline) to read the reflow at a glance.',
+    body: 'On the Components tab, pick a family (or All) to see its demo. Toggle the visual-debug overlays — bounding box (padding + margin), text box, outline, or measure height — to read the reflow at a glance.',
   },
   {
     label: 'Tweak the knobs',
     body: 'Each knob accepts a density step (xxs…xxl) or any raw CSS value (12px, 2rem). The placeholder shows what the preset ships; the helper shows what your input resolves to. Edits belong to the ACTIVE preset — switch presets and each keeps its own overrides.',
   },
   {
-    label: 'Adjust typography',
-    body: 'The Typography tab edits theme-level type tokens (per-variant fontSize / lineHeight) with the same rules; the canvas shows a live type preview.',
+    label: 'Adjust theme tokens',
+    body: 'The Typography tab edits per-variant fontSize / lineHeight; the Spacing tab edits the theme.spacing base. Same input rules as component knobs; the canvas shows a live preview.',
   },
   {
-    label: 'Export density.ts',
-    body: 'Click "Export density.ts" to download a self-contained file with all three enhance*Density functions and your edits baked in (annotated with comments). Paste it into any app on released @mui/material — just render <CssBaseline /> so the density variables materialise.',
+    label: 'Export or copy density.ts',
+    body: 'Click "Export density.ts" to download — or the copy icon next to it to copy to your clipboard — a self-contained file with all three enhance*Density functions and your edits baked in (annotated with comments). Paste it into any app on released @mui/material — just render <CssBaseline /> so the density variables materialise.',
   },
 ] as const;
 
@@ -484,14 +484,33 @@ function ButtonMatrix() {
 
 // One realistic account menu; `dense` toggles the whole list. Dense and default
 // items never coexist in one list, so the demo shows two lists side by side.
+// Trailing hint styled like a keyboard shortcut — pushed to the far right via
+// ml:auto, which only displaces itself (and later siblings), so it composes
+// safely with the icon+ListItemText item (Archived) without disturbing their
+// layout.
+function ShortcutHint({ children }: { children: React.ReactNode }) {
+  return (
+    <Typography
+      variant="body2"
+      component="span"
+      className="density-debug-text"
+      sx={{ color: 'text.secondary', ml: 'auto', pl: 4 }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
 function MenuDemoItems({ dense = false }: { dense?: boolean }) {
   return (
     <React.Fragment>
       <MenuItem dense={dense}>
         <span className="density-debug-text">Profile</span>
+        <ShortcutHint>⌘P</ShortcutHint>
       </MenuItem>
       <MenuItem dense={dense} selected>
         <span className="density-debug-text">My account</span>
+        <ShortcutHint>⌘U</ShortcutHint>
       </MenuItem>
       <MenuItem dense={dense}>
         <ListItemIcon>
@@ -500,12 +519,15 @@ function MenuDemoItems({ dense = false }: { dense?: boolean }) {
         <ListItemText>
           <span className="density-debug-text">Archived</span>
         </ListItemText>
+        <ShortcutHint>⌘E</ShortcutHint>
       </MenuItem>
       <MenuItem dense={dense} divider>
         <span className="density-debug-text">Settings</span>
+        <ShortcutHint>⌘,</ShortcutHint>
       </MenuItem>
       <MenuItem dense={dense}>
         <span className="density-debug-text">Sign out</span>
+        <ShortcutHint>⇧⌘Q</ShortcutHint>
       </MenuItem>
     </React.Fragment>
   );
@@ -517,7 +539,7 @@ function MenuListDemo({ dense = false }: { dense?: boolean }) {
       <Typography variant="caption" color="text.secondary">
         {dense ? 'dense' : 'default'}
       </Typography>
-      <MenuList sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
+      <MenuList sx={{ width: 260, border: '1px solid', borderColor: 'divider' }}>
         <MenuDemoItems dense={dense} />
       </MenuList>
     </div>
@@ -2797,12 +2819,11 @@ export default function DensityExperiment() {
           </Button>
           <Tooltip title={copied ? 'Copied!' : 'Copy density.ts to clipboard'}>
             <IconButton
-              size="small"
               onClick={handleCopy}
               aria-label="copy density.ts to clipboard"
               data-copy-button
             >
-              {copied ? <CheckIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
+              {copied ? <CheckIcon /> : <ContentCopyIcon />}
             </IconButton>
           </Tooltip>
         </Box>
