@@ -309,6 +309,8 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiAccordionSummary-content',
   '.MuiAlert-icon',
   '.MuiAlert-action',
+  '.MuiChip-avatar',
+  '.MuiChip-deleteIcon',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
   '.MuiFormControlLabel-labelPlacementEnd',
   '.MuiFormControlLabel-labelPlacementStart',
@@ -1066,7 +1068,12 @@ function AlertMatrix() {
 
 function ChipMatrix() {
   return (
-    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1, width: 400 }}>
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
       <Chip
         avatar={<Avatar>N</Avatar>}
         label={<span className="density-debug-text">Natacha</span>}
@@ -1079,6 +1086,17 @@ function ChipMatrix() {
         onDelete={() => {}}
       />
       <Chip
+        avatar={<Avatar>N</Avatar>}
+        label={<span className="density-debug-text">Natacha</span>}
+        size="small"
+        onDelete={() => {}}
+      />
+      <Chip
+        icon={<InboxIcon />}
+        label={<span className="density-debug-text">Archived</span>}
+        size="small"
+      />
+      <Chip
         label={<span className="density-debug-text">Bug</span>}
         color="error"
         size="small"
@@ -1089,7 +1107,7 @@ function ChipMatrix() {
         size="small"
         variant="outlined"
       />
-    </Box>
+    </Stack>
   );
 }
 

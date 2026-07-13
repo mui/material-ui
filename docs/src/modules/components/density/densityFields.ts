@@ -146,18 +146,21 @@ export const hiddenFieldIds = new Set<string>([
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
-  // Chip box/child dims — derived from the per-size --_height var (calc leaves
-  // emitted by the presets against master selectors); the var rows are the knobs.
+  // Chip box/child dims — derived from the per-size --_height/--_avatarSize/
+  // --_deleteIconSize vars (consumers + centering margins emitted by the
+  // presets); the var rows are the knobs.
   'MuiChip|root|size=medium||height',
-  'MuiChip|root|size=medium|& .MuiChip-avatar|width',
-  'MuiChip|root|size=medium|& .MuiChip-avatar|height',
-  'MuiChip|root|size=medium|& .MuiChip-icon|fontSize',
-  'MuiChip|root|size=medium|& .MuiChip-deleteIcon|fontSize',
   'MuiChip|root|size=small||height',
-  'MuiChip|root|size=small|& .MuiChip-avatar|width',
-  'MuiChip|root|size=small|& .MuiChip-avatar|height',
-  'MuiChip|root|size=small|& .MuiChip-icon|fontSize',
-  'MuiChip|root|size=small|& .MuiChip-deleteIcon|fontSize',
+  'MuiChip|avatar|size=medium||width',
+  'MuiChip|avatar|size=medium||height',
+  'MuiChip|avatar|size=medium||marginLeft',
+  'MuiChip|avatar|size=small||width',
+  'MuiChip|avatar|size=small||height',
+  'MuiChip|avatar|size=small||marginLeft',
+  'MuiChip|deleteIcon|size=medium||fontSize',
+  'MuiChip|deleteIcon|size=medium||marginRight',
+  'MuiChip|deleteIcon|size=small||fontSize',
+  'MuiChip|deleteIcon|size=small||marginRight',
   // InputLabel floating-Y transforms — master's transform matrix re-emitted so
   // the Y comes from the preset-closed --_restY/--_shrinkY vars (NO fallbacks —
   // a missing writer must break visibly); driven by the OutlinedInput/
@@ -290,6 +293,7 @@ export const shownFamilies = new Set<string>([
   'Radio',
   'SvgIcon',
   'Select',
+  'Chip',
   'Alert',
 ]);
 

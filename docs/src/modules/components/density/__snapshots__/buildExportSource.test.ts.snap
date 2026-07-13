@@ -1301,16 +1301,6 @@ const compact = {
                 style: {
                   '--_height': '28px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 8px)',
-                    height: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 10px)',
-                  },
                 },
               },
               {
@@ -1320,16 +1310,6 @@ const compact = {
                 style: {
                   '--_height': '20px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 6px)',
-                    height: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
                 },
               },
             ],
@@ -1352,6 +1332,82 @@ const compact = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+        avatar: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_avatarSize': '20px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_avatarSize': '14px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+            ],
+          },
+        ],
+        icon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: '20px',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: '14px',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_deleteIconSize': '18px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_deleteIconSize': '12px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
             ],
@@ -2739,16 +2795,6 @@ const normal = {
                 style: {
                   '--_height': '32px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 8px)',
-                    height: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 10px)',
-                  },
                 },
               },
               {
@@ -2758,16 +2804,6 @@ const normal = {
                 style: {
                   '--_height': '24px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 6px)',
-                    height: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
                 },
               },
             ],
@@ -2790,6 +2826,82 @@ const normal = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+        avatar: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_avatarSize': '24px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_avatarSize': '18px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+            ],
+          },
+        ],
+        icon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: '24px',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: '18px',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_deleteIconSize': '22px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_deleteIconSize': '16px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
             ],
@@ -4095,16 +4207,6 @@ const comfort = {
                 style: {
                   '--_height': '36px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 8px)',
-                    height: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 10px)',
-                  },
                 },
               },
               {
@@ -4114,16 +4216,6 @@ const comfort = {
                 style: {
                   '--_height': '28px',
                   height: 'var(--_height)',
-                  '& .MuiChip-avatar': {
-                    width: 'calc(var(--_height) - 6px)',
-                    height: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-icon': {
-                    fontSize: 'calc(var(--_height) - 6px)',
-                  },
-                  '& .MuiChip-deleteIcon': {
-                    fontSize: 'calc(var(--_height) - 8px)',
-                  },
                 },
               },
             ],
@@ -4146,6 +4238,82 @@ const comfort = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+        avatar: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_avatarSize': '28px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_avatarSize': '22px',
+                  width: 'var(--_avatarSize)',
+                  height: 'var(--_avatarSize)',
+                  marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+                },
+              },
+            ],
+          },
+        ],
+        icon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  fontSize: '28px',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  fontSize: '22px',
+                },
+              },
+            ],
+          },
+        ],
+        deleteIcon: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_deleteIconSize': '26px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_deleteIconSize': '20px',
+                  fontSize: 'var(--_deleteIconSize)',
+                  marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
                 },
               },
             ],

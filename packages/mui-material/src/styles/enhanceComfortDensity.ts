@@ -1,6 +1,5 @@
 import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
-import chipClasses from '../Chip/chipClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
@@ -736,41 +735,16 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   // Icon→message gap on the icon slot (child element).
   addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
-  // Height (raw px) drives avatar/icon/deleteIcon via calc off `--_height`.
+  // Chip: height + avatar/deleteIcon sizes are preset-local vars (raw px per
+  // sizing policy) so the derived centering margins on the child slots track
+  // knob edits live; icon/label stay plain. Rules land on the slot master
+  // defines them on, winning by cascade order at equal specificity (master:
+  // height 32/24, avatar 24/18, deleteIcon 22/16, icon 18 small-only).
+  // --_height sits on the root so the child slots inherit it.
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
-      {
-        props: { size: 'medium' },
-        style: {
-          // Box height + child dims derive from ONE preset-local var; master
-          // ships literal px on these same selectors (component untouched, these
-          // later same-specificity rules win). Insets mirror master's ratios:
-          // avatar/icon = height - 8, deleteIcon = height - 10 (master 32/24/-/22).
-          '--_height': '36px',
-          height: 'var(--_height)',
-          [`& .${chipClasses.avatar}`]: {
-            width: 'calc(var(--_height) - 8px)',
-            height: 'calc(var(--_height) - 8px)',
-          },
-          [`& .${chipClasses.icon}`]: { fontSize: 'calc(var(--_height) - 8px)' },
-          [`& .${chipClasses.deleteIcon}`]: { fontSize: 'calc(var(--_height) - 10px)' },
-        },
-      },
-      {
-        props: { size: 'small' },
-        style: {
-          // Small insets mirror master's: avatar/icon = height - 6, delete = height - 8
-          // (master 24/18/18/16).
-          '--_height': '28px',
-          height: 'var(--_height)',
-          [`& .${chipClasses.avatar}`]: {
-            width: 'calc(var(--_height) - 6px)',
-            height: 'calc(var(--_height) - 6px)',
-          },
-          [`& .${chipClasses.icon}`]: { fontSize: 'calc(var(--_height) - 6px)' },
-          [`& .${chipClasses.deleteIcon}`]: { fontSize: 'calc(var(--_height) - 8px)' },
-        },
-      },
+      { props: { size: 'medium' }, style: { '--_height': '36px', height: 'var(--_height)' } },
+      { props: { size: 'small' }, style: { '--_height': '28px', height: 'var(--_height)' } },
     ],
   });
   // Label inline padding = density steps, unified per size on the label slot.
@@ -784,6 +758,71 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       ],
     },
     'label',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      variants: [
+        {
+          props: { size: 'medium' },
+          style: {
+            '--_avatarSize': '28px',
+            width: 'var(--_avatarSize)',
+            height: 'var(--_avatarSize)',
+            // center within the chip: (height - avatar) / 2
+            marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+          },
+        },
+        {
+          props: { size: 'small' },
+          style: {
+            '--_avatarSize': '22px',
+            width: 'var(--_avatarSize)',
+            height: 'var(--_avatarSize)',
+            marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
+          },
+        },
+      ],
+    },
+    'avatar',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      variants: [
+        { props: { size: 'medium' }, style: { fontSize: '28px' } },
+        { props: { size: 'small' }, style: { fontSize: '22px' } },
+      ],
+    },
+    'icon',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiChip',
+    {
+      variants: [
+        {
+          props: { size: 'medium' },
+          style: {
+            '--_deleteIconSize': '26px',
+            fontSize: 'var(--_deleteIconSize)',
+            // center within the chip: (height - delete icon) / 2
+            marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+          },
+        },
+        {
+          props: { size: 'small' },
+          style: {
+            '--_deleteIconSize': '20px',
+            fontSize: 'var(--_deleteIconSize)',
+            marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
+          },
+        },
+      ],
+    },
+    'deleteIcon',
   );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
     // Collapsed min-height raw px; inline padding = step.
