@@ -285,6 +285,10 @@ const PADDING_RING_SLOTS = [
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
+// Ring slots master already positions absolutely — the ::before ring anchors to
+// any positioned element, and forcing `relative` on these would un-anchor them.
+const POSITIONED_RING_SLOTS = new Set(['.MuiBadge-badge']);
+
 // Margin sits OUTSIDE the border-box, so the padding-ring's `padding:inherit` +
 // mask trick can't reach it (a pseudo-element can't escape past the border via
 // that technique) — and unlike padding, there's no OTHER CSS-only trick either:
@@ -328,10 +332,13 @@ const MARGIN_MARKER_SELECTORS = [
 // SvgIcon demo — they appear inside nearly every other component, which would
 // otherwise spray a badge on every icon (and double-mark checkboxes/radios); and
 // the Tooltip demo is ABOUT the bubble, not its trigger buttons, so those buttons
-// are excluded and `.MuiTooltip-tooltip` is measured instead.
+// are excluded and `.MuiTooltip-tooltip` is measured instead; ToggleButtons sit
+// flush inside a ToggleButtonGroup, so per-button badges stack on top of each
+// other — the group is measured once instead.
 const MEASURE_SLOTS = [
-  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *)',
+  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *)',
   '.MuiFormControlLabel-root',
+  '.MuiToggleButtonGroup-root',
   '.MuiInputBase-root',
   '.MuiChip-root',
   '.MuiAlert-root',
@@ -340,6 +347,7 @@ const MEASURE_SLOTS = [
   '.MuiTableCell-root',
   '.MuiSnackbarContent-root',
   '.MuiAvatar-root',
+  '[data-canvas-component="Badge"] .MuiBadge-badge',
   '[data-canvas-component="SvgIcon"] .MuiSvgIcon-root',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
 ];
@@ -357,9 +365,15 @@ const DEBUG_SX = {
     zIndex: 1,
     borderRadius: '2px',
   },
-  // Padding ring: each slot needs position:relative to anchor the ::before overlay.
+  // Padding ring: each slot needs to BE a positioned element to anchor the
+  // ::before overlay. Static slots get position:relative; slots master already
+  // positions absolutely (POSITIONED_RING_SLOTS) are skipped — forcing relative
+  // would un-anchor them (Badge bubble drops off its icon corner).
   ...Object.fromEntries(
-    PADDING_RING_SLOTS.map((s) => [`&[data-debug-boundingbox] ${s}`, { position: 'relative' }]),
+    PADDING_RING_SLOTS.filter((s) => !POSITIONED_RING_SLOTS.has(s)).map((s) => [
+      `&[data-debug-boundingbox] ${s}`,
+      { position: 'relative' },
+    ]),
   ),
   ...Object.fromEntries(
     PADDING_RING_SLOTS.map((s) => [`&[data-debug-boundingbox] ${s}::before`, PADDING_RING]),
@@ -1272,13 +1286,13 @@ function ToggleButtonMatrix() {
           </Typography>
           <ToggleButtonGroup value="left" size={size} exclusive aria-label="text alignment">
             <ToggleButton value="left" aria-label="align left">
-              <FormatAlignLeftIcon fontSize="small" />
+              <FormatAlignLeftIcon fontSize={size} />
             </ToggleButton>
             <ToggleButton value="center" aria-label="align center">
-              <FormatAlignCenterIcon fontSize="small" />
+              <FormatAlignCenterIcon fontSize={size} />
             </ToggleButton>
             <ToggleButton value="right" aria-label="align right">
-              <FormatAlignRightIcon fontSize="small" />
+              <FormatAlignRightIcon fontSize={size} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Stack>
@@ -1295,8 +1309,12 @@ function AvatarMatrix() {
       useFlexGap
       sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
     >
-      <Avatar>A</Avatar>
-      <Avatar>B</Avatar>
+      <Avatar>
+        <span className="density-debug-text">A</span>
+      </Avatar>
+      <Avatar>
+        <span className="density-debug-text">B</span>
+      </Avatar>
     </Stack>
   );
 }

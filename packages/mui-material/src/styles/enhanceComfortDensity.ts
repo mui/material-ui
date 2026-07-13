@@ -524,7 +524,7 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       variants: [
         {
           props: { variant: 'standard' },
-          style: { minWidth: '24px', height: '24px', padding: `0 ${d.xs}` },
+          style: { minWidth: '24px', height: '24px', paddingInline: d.xs },
         },
         { props: { variant: 'dot' }, style: { minWidth: '8px', height: '8px' } },
       ],

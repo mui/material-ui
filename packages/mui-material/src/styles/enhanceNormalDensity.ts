@@ -525,7 +525,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       variants: [
         {
           props: { variant: 'standard' },
-          style: { minWidth: '20px', height: '20px', padding: `0 ${d.xs}` },
+          style: { minWidth: '20px', height: '20px', paddingInline: d.xs },
         },
         { props: { variant: 'dot' }, style: { minWidth: '6px', height: '6px' } },
       ],

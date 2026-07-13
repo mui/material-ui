@@ -839,7 +839,7 @@ const compact = {
                 style: {
                   minWidth: '18px',
                   height: '18px',
-                  padding: '0 var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-xs)',
                 },
               },
               {
@@ -2335,7 +2335,7 @@ const normal = {
                 style: {
                   minWidth: '20px',
                   height: '20px',
-                  padding: '0 var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-xs)',
                 },
               },
               {
@@ -3747,7 +3747,7 @@ const comfort = {
                 style: {
                   minWidth: '24px',
                   height: '24px',
-                  padding: '0 var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-xs)',
                 },
               },
               {

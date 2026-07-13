@@ -297,6 +297,9 @@ export const shownFamilies = new Set<string>([
   'Chip',
   'Alert',
   'Card',
+  'Avatar',
+  'ToggleButton',
+  'Badge',
 ]);
 
 /**

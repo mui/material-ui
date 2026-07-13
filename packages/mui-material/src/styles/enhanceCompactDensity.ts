@@ -541,7 +541,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       variants: [
         {
           props: { variant: 'standard' },
-          style: { minWidth: '18px', height: '18px', padding: `0 ${d.xs}` },
+          style: { minWidth: '18px', height: '18px', paddingInline: d.xs },
         },
         { props: { variant: 'dot' }, style: { minWidth: '4px', height: '4px' } },
       ],

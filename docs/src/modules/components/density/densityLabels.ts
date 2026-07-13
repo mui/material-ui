@@ -49,7 +49,8 @@ export const densityLabels: Record<string, string> = {
   'MuiAvatar|root|base||height': 'Avatar · height',
   'MuiBadge|badge|variant=standard||minWidth': 'Badge · badge · minWidth [variant=standard]',
   'MuiBadge|badge|variant=standard||height': 'Badge · badge · height [variant=standard]',
-  'MuiBadge|badge|variant=standard||padding': 'Badge · badge · padding [variant=standard]',
+  'MuiBadge|badge|variant=standard||paddingInline':
+    'Badge · badge · paddingInline [variant=standard]',
   'MuiBadge|badge|variant=dot||minWidth': 'Badge · badge · minWidth [variant=dot]',
   'MuiBadge|badge|variant=dot||height': 'Badge · badge · height [variant=dot]',
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',
