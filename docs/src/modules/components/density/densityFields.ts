@@ -70,6 +70,7 @@ export const componentFamily: Record<string, string | string[]> = {
  * back to base-first (name === family key) then alphabetical.
  */
 export const familyComponentOrder: Record<string, string[]> = {
+  Card: ['Card', 'CardHeader', 'CardContent', 'CardActions'],
   Checkbox: ['Checkbox', 'FormControlLabel'],
   Radio: ['Radio', 'FormControlLabel'],
   Select: ['InputBase', 'Select'],
@@ -295,6 +296,7 @@ export const shownFamilies = new Set<string>([
   'Select',
   'Chip',
   'Alert',
+  'Card',
 ]);
 
 /**

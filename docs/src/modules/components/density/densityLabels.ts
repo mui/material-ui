@@ -61,9 +61,9 @@ export const densityLabels: Record<string, string> = {
   'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · minWidth',
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
-    'CardActions · marginLeft [disableSpacing=false]',
+    'CardActions · child gap',
   'MuiCardContent|root|base||padding': 'CardContent · padding',
-  'MuiCardContent|root|base|&:last-child|paddingBottom': 'CardContent · paddingBottom',
+  'MuiCardContent|root|base|&:last-child|paddingBottom': 'CardContent · paddingBottom [last-child]',
   'MuiCardHeader|action|base||marginBlock': 'CardHeader · action · marginBlock',
   'MuiCardHeader|action|base||marginRight': 'CardHeader · action · marginRight',
   'MuiCardHeader|avatar|base||marginRight': 'CardHeader · avatar · marginRight',

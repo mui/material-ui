@@ -50,6 +50,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
 import Rating from '@mui/material/Rating';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -310,6 +312,9 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiAlert-action',
   '.MuiChip-avatar',
   '.MuiChip-deleteIcon',
+  '.MuiCardHeader-avatar',
+  '.MuiCardHeader-action',
+  '.MuiCardActions-root > :not(style) ~ :not(style)',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
   '.MuiFormControlLabel-labelPlacementEnd',
   '.MuiFormControlLabel-labelPlacementStart',
@@ -943,26 +948,78 @@ function CheckboxMatrix() {
 
 function CardMatrix() {
   return (
-    <Card variant="outlined" sx={{ mt: 1, width: 300 }}>
-      <CardHeader
-        avatar={<Avatar>R</Avatar>}
-        title={<span className="density-debug-text">Card header</span>}
-        subheader={<span className="density-debug-text">With avatar</span>}
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          <span className="density-debug-text">Body content with last-child bottom padding.</span>
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">
-          <span className="density-debug-text">Share</span>
-        </Button>
-        <Button size="small">
-          <span className="density-debug-text">Learn more</span>
-        </Button>
-      </CardActions>
-    </Card>
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      {/* Full composition — exercises every CardHeader knob (padding, avatar gap,
+          action negative pulls) + actions padding/child gap. */}
+      <Card variant="outlined" sx={{ width: 300 }}>
+        <CardHeader
+          avatar={<Avatar>R</Avatar>}
+          action={
+            <IconButton size="small" aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={<span className="density-debug-text">Card header</span>}
+          subheader={<span className="density-debug-text">With avatar and action</span>}
+        />
+        <CardMedia sx={{ height: 96, background: 'linear-gradient(135deg, #90caf9, #1565c0)' }} />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            <span className="density-debug-text">Body content between media and actions.</span>
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">
+            <span className="density-debug-text">Share</span>
+          </Button>
+          <Button size="small">
+            <span className="density-debug-text">Learn more</span>
+          </Button>
+        </CardActions>
+      </Card>
+      {/* Content-only — the ONLY shape where the :last-child paddingBottom knob
+          applies (an actions row after the content defeats :last-child). */}
+      <Card variant="outlined" sx={{ width: 260 }}>
+        <CardContent>
+          <Typography variant="caption" color="text.secondary" gutterBottom component="div">
+            <span className="density-debug-text">Word of the day</span>
+          </Typography>
+          <Typography variant="h6" component="div">
+            <span className="density-debug-text">benevolent</span>
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <span className="density-debug-text">
+              Well meaning and kindly — last-child bottom padding applies here.
+            </span>
+          </Typography>
+        </CardContent>
+      </Card>
+      {/* Dense selectable grid — compact fits more cards per row; CardActionArea
+          is a ButtonBase, so height-measure badges apply. */}
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        {(['Plants', 'Animals'] as const).map((title, index) => (
+          <Card key={title} variant="outlined" sx={{ width: 180 }}>
+            <CardActionArea sx={index === 0 ? { backgroundColor: 'action.selected' } : undefined}>
+              <CardContent>
+                <Typography variant="subtitle2" component="div">
+                  <span className="density-debug-text">{title}</span>
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <span className="density-debug-text">
+                    {index === 0 ? 'Selected card.' : 'Click target.'}
+                  </span>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))}
+      </Box>
+    </Stack>
   );
 }
 
