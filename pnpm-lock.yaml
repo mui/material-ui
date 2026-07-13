@@ -384,8 +384,8 @@ importers:
         specifier: ^1.49.0
         version: 1.49.0
       feed:
-        specifier: ^5.2.1
-        version: 5.2.1
+        specifier: ^6.0.0
+        version: 6.0.0
       fg-loadcss:
         specifier: ^3.1.0
         version: 3.1.0
@@ -7423,8 +7423,8 @@ packages:
       picomatch:
         optional: true
 
-  feed@5.2.1:
-    resolution: {integrity: sha512-jTynzYPWs9ALjro0GW8j7sv9y7cJBeOdD4Y88kVqYy/eyusIX3g+499JiTDIlD9Ge/unebx57T4Uzo6vpYvMtA==}
+  feed@6.0.0:
+    resolution: {integrity: sha512-rvFOF1POce0ijAKy3tZN5T8PuprgIit/VbMyXJWcoYwcMOTSIJ7NqZb8DTLPJr77yiEO27kidm/fw0kcSIV+ww==}
     engines: {node: '>=20', pnpm: '>=10'}
 
   fflate@0.8.3:
@@ -18074,7 +18074,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.4
 
-  feed@5.2.1:
+  feed@6.0.0:
     dependencies:
       xml-js: 1.6.11
 
