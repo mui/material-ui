@@ -115,7 +115,6 @@ import {
 } from 'docs/src/modules/components/density/themeTokens';
 import {
   SCALE_KEYS,
-  parseMapping,
   previewText,
   shortenDensityVars,
   tokenize,
@@ -2227,16 +2226,10 @@ const FamilyKnobs = React.memo(
                         // Placeholder = what you'd TYPE: var refs shortened to bare
                         // step names; override-only knobs (no preset default) stay blank.
                         placeholder={shortenDensityVars(canon)}
-                        // error is display-only; the commit still stores the draft
-                        // (the apply path skips rows that don't parse).
-                        computeHelper={(draft) => {
-                          const parsed = parseMapping(draft);
-                          if (parsed.state === 'error') {
-                            return { helper: parsed.error, error: true };
-                          }
-                          // typed → preview the typed value; empty → the inherited preset default
-                          return { helper: previewText(draft || canon, scalePx) };
-                        }}
+                        // typed → preview the typed value; empty → the inherited preset default
+                        computeHelper={(draft) => ({
+                          helper: previewText(draft || canon, scalePx),
+                        })}
                         onCommit={(v) => setFields(entry.writeIds, v)}
                       />
                     );
@@ -3054,13 +3047,9 @@ export default function DensityExperiment() {
                               label={knob.label}
                               value={mapping[knob.id] ?? ''}
                               placeholder={shortenDensityVars(canon)}
-                              computeHelper={(draft) => {
-                                const parsed = parseMapping(draft);
-                                if (parsed.state === 'error') {
-                                  return { helper: parsed.error, error: true };
-                                }
-                                return { helper: previewText(draft || canon, scalePx) };
-                              }}
+                              computeHelper={(draft) => ({
+                                helper: previewText(draft || canon, scalePx),
+                              })}
                               onCommit={(v) => setFields([knob.id], v)}
                             />
                           );

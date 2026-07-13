@@ -5,37 +5,48 @@ export const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 
 export const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);
 
+// `-<key>` = negated step (the sugar the presets' negative pulls emit as
+// `calc(var(--mui-density-<key>) * -1)`, e.g. CardHeader action margins).
+const NEG_KEY_RE = /^-(xxs|xs|sm|md|lg|xl|xxl)$/;
+const NEG_CALC_RE = /calc\(var\(--mui-density-(\w+)\) \* -1\)/g;
+
 export const tokenize = (input: string) => input.trim().split(/\s+/).filter(Boolean);
 
 // A mapping input is ANY valid CSS value. A density key (`xxs`…`xxl`) is sugar
-// for `var(--mui-density-<key>)`; anything else passes through verbatim as raw
-// CSS (`12px`, `2rem`, `auto`). 1 token → all sides; 2 → `block inline`.
+// for `var(--mui-density-<key>)`, a negated key (`-xs`) for
+// `calc(var(--mui-density-xs) * -1)`; anything else passes through verbatim as
+// raw CSS (`12px`, `2rem`, `auto`). Multi-token inputs follow the CSS
+// shorthand of the target prop (`xs md`, `0px 12px 12px`).
 export const resolveValue = (input: string) =>
   tokenize(input)
-    .map((t) => (isDensityKey(t) ? `var(--mui-density-${t})` : t))
+    .map((t) => {
+      if (isDensityKey(t)) {
+        return `var(--mui-density-${t})`;
+      }
+      const neg = NEG_KEY_RE.exec(t);
+      return neg ? `calc(var(--mui-density-${neg[1]}) * -1)` : t;
+    })
     .join(' ');
 
-// Empty = inert (no override, no error). >2 tokens = error. Otherwise ok — raw
-// values are first-class, never rejected as "not a density key".
-export function parseMapping(input: string): { state: 'empty' | 'ok' | 'error'; error?: string } {
-  const tokens = tokenize(input);
-  if (tokens.length === 0) {
-    return { state: 'empty' };
-  }
-  if (tokens.length > 2) {
-    return { state: 'error', error: 'max 2 values (block inline)' };
-  }
-  return { state: 'ok' };
+// Empty = inert (no override). Anything else is trusted verbatim — every token
+// resolves independently and CSS shorthands take 1–4 values (`0px 12px 12px`),
+// so the input is never rejected.
+export function parseMapping(input: string): { state: 'empty' | 'ok' } {
+  return tokenize(input).length === 0 ? { state: 'empty' } : { state: 'ok' };
 }
 
 // Helper-text rule: always a concrete CSS value, never a raw var() string —
 // typed keys AND emitted `var(--mui-density-<step>)` refs resolve to their px
 // off the active scale (step name when no scale); everything else echoes as typed.
 export const previewText = (input: string, scalePx: Record<string, string> | null) =>
-  tokenize(input)
+  tokenize(input.replace(NEG_CALC_RE, '-$1'))
     .map((t) => {
       if (isDensityKey(t)) {
         return scalePx?.[t] ?? t;
+      }
+      const neg = NEG_KEY_RE.exec(t);
+      if (neg) {
+        return scalePx?.[neg[1]] ? `-${scalePx[neg[1]]}` : t;
       }
       const densityVar = /^var\(--mui-density-(\w+)\)$/.exec(t);
       return densityVar ? (scalePx?.[densityVar[1]] ?? densityVar[1]) : t;
@@ -43,7 +54,8 @@ export const previewText = (input: string, scalePx: Record<string, string> | nul
     .join(' ');
 
 // Placeholder rule: emitted `var(--mui-density-<step>)` refs shorten to the bare
-// step name (`var(--mui-density-xs) var(--mui-density-lg)` → `xs lg`) — the
-// placeholder mirrors what you'd TYPE; the helper shows what it RESOLVES to.
+// step name (`var(--mui-density-xs) var(--mui-density-lg)` → `xs lg`) and the
+// negated-calc form to `-<step>` — the placeholder mirrors what you'd TYPE; the
+// helper shows what it RESOLVES to.
 export const shortenDensityVars = (value: string) =>
-  value.replace(/var\(--mui-density-(\w+)\)/g, '$1');
+  value.replace(NEG_CALC_RE, '-$1').replace(/var\(--mui-density-(\w+)\)/g, '$1');
