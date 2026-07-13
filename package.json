@@ -147,7 +147,7 @@
     "yargs": "18.0.0"
   },
   "config": {
-    "valeVersion": "3.14.1"
+    "valeVersion": "3.15.1"
   },
   "packageManager": "pnpm@11.11.0",
   "engines": {
