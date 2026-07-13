@@ -37,7 +37,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: '22.18.0'
+          node-version: '22.22.3'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
@@ -49,11 +49,9 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
-      - name: Publish packages to pkg.pr.new and npm dry-run
+      - name: Publish packages to pkg.pr.new
         uses: mui/mui-public/.github/actions/ci-publish@9033c846aecf0e1454f13486af685d93269456e9 # master
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          npm-dry-run: true
       - name: Build docs
         run: pnpm docs:build
         env:
@@ -86,3 +84,22 @@ jobs:
           # Required, set by GitHub actions automatically:
           # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
           token: ${{secrets.GITHUB_TOKEN}}
+
+  # Mirrors the real publish workflow environment (`publish.yml`) so an env
+  # mismatch — e.g. the Node version pinned by `publish-prepare` violating our
+  # engineStrict `engines` range — is caught here instead of during publishing.
+  publish-dry-run:
+    name: Publish Dry Run
+
+    if: ${{ github.repository_owner == 'mui' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - name: Prepare for publishing
+        uses: mui/mui-public/.github/actions/publish-prepare@5a12855e473909291f8782c324f2c48983054337 # master
+        with:
+          node-version: '22.22.3'
+      - name: Dry run npm publishing
+        env:
+          IS_PUBLISH_TEST: 'true'
+        run: pnpm code-infra publish --ci --dry-run
