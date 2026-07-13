@@ -14,8 +14,12 @@ Verifies that:
 4. `className`-based overrides work alongside Emotion-generated class names.
 5. Dark mode works via `ThemeProvider`'s `colorSchemes` / `CssVarsProvider`
    by flipping `data-mui-color-scheme="dark"` on `document.documentElement`.
-6. Generated source CSS is imported by the app and translated by the app CSS
-   pipeline.
+6. `pnpm build:css` generates custom media and a Tailwind v3 config from the
+   app theme.
+7. Generated source CSS is imported by the app and its `@custom-media`
+   breakpoints are translated by PostCSS.
+8. Tailwind v3 consumes the generated MUI preset and uses the custom
+   `sm=720px` breakpoint.
 
 ### Components
 

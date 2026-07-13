@@ -18,8 +18,12 @@ Verifies that:
 6. Dark mode works via `CssThemeProvider` by flipping `data-mui-color-scheme`
    on `document.documentElement`.
 7. `useTheme()` returns live JavaScript theme values (breakpoints, spacing, etc.).
-8. Generated source CSS is imported by the app and translated by the app CSS
-   pipeline.
+8. `pnpm build:css` generates custom media and Tailwind v4 tokens from the app
+   theme.
+9. Generated source CSS is imported by the app and its `@custom-media`
+   breakpoints are translated by Lightning CSS.
+10. Tailwind v4 consumes the generated MUI tokens and uses the custom
+    `sm=720px` breakpoint.
 
 ## How this differs from the other sandboxes
 

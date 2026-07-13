@@ -8,6 +8,18 @@ export {
   Theme,
   CssThemeVariables,
 } from './createTheme';
+export {
+  default as createTailwindPreset,
+  CreateTailwindPresetOptions,
+} from './createTailwindPreset';
+export {
+  default as generateBreakpointCustomMedia,
+  GenerateBreakpointCustomMediaOptions,
+} from './generateBreakpointCustomMedia';
+export {
+  default as generateTailwindThemeCss,
+  GenerateTailwindThemeCssOptions,
+} from './generateTailwindThemeCss';
 export { default as enhanceHighContrast, HighContrastTokens } from './enhanceHighContrast';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
 export { Shadows } from './shadows';

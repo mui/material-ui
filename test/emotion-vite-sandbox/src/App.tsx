@@ -11,7 +11,8 @@
  *   3. The `sx` prop works and applies styles at runtime via Emotion.
  *   4. Dark mode works via ThemeProvider's colorSchemes / CssVarsProvider.
  *   5. useTheme() returns live JS theme values.
- *   6. App-imported generated source CSS is translated by the app CSS pipeline.
+ *   6. App-imported generated source CSS @custom-media is translated by PostCSS.
+ *   7. Tailwind v3 consumes a generated preset from the same MUI theme.
  *
  * To confirm Emotion IS bundled, run:
  *   pnpm -F @mui-internal/emotion-vite-sandbox build
@@ -30,11 +31,8 @@ import {
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import '@mui/material/styles-source.css';
-
-const customBreakpoints = {
-  values: { xs: 0, sm: 720, md: 900, lg: 1200, xl: 1536 },
-};
+import { customBreakpoints } from './theme';
+import './mui.css';
 
 const themes = [
   createTheme({
@@ -101,6 +99,26 @@ function ScopedDialog({ slotProps, ...props }: DialogProps) {
   const rootScopeProps = useThemeScopeProps(slotProps?.root as React.HTMLAttributes<HTMLElement>);
 
   return <Dialog {...props} slotProps={{ ...slotProps, root: rootScopeProps }} />;
+}
+
+function TailwindSection() {
+  return (
+    <div className="mb-8 max-w-[720px] rounded-mui bg-primary p-4 text-primary-contrast shadow-4 sm:bg-secondary sm:text-secondary-contrast">
+      <p className="typography-body2 m-0">
+        Tailwind tokens — colors, radius, shadow, typography, and the custom <code>sm=720px</code>{' '}
+        breakpoint are generated from the MUI theme.
+      </p>
+      <div className="mt-3 rounded-mui bg-background-paper p-3 text-text-primary shadow-1">
+        This nested panel uses generated MUI palette tokens through Tailwind utilities.
+      </div>
+      <Slider
+        disabled
+        defaultValue={40}
+        className="mui-disabled:opacity-50"
+        aria-label="Tailwind disabled variant slider"
+      />
+    </div>
+  );
 }
 
 interface InnerSectionProps {
@@ -232,6 +250,8 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
           </Toolbar>
         </div>
       </div>
+
+      <TailwindSection />
 
       <div style={{ maxWidth: 400 }}>
         <p style={{ marginBottom: 4 }}>
