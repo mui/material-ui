@@ -64,7 +64,7 @@ const theme = createTheme({
 </ThemeProvider>;
 ```
 
-The `container` prop only needs to be set on the base components that render directly through the `Portal`: `Modal`, `Popover`, and `Popper`. Higher-level components (like `Dialog`, `Menu`, or `Tooltip`) render these base components internally and inherit the container prop automatically.
+The `container` prop only needs to be set on the base components that render directly through the `Portal`: `Modal`, `Popover`, and `Popper`. Higher-level components (like `Dialog`, `Menu`, `Tooltip` etc.) render these base components internally and inherit the `container` prop automatically.
 
 ### 3. CSS theme variables (optional)
 
