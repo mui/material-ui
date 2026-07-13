@@ -26,6 +26,9 @@ export function experimental_sx() {
 }
 export { default as createTheme } from './createTheme';
 export { default as generateThemeCss } from './generateThemeCss';
+export { default as createTailwindPreset } from './createTailwindPreset';
+export { default as generateBreakpointCustomMedia } from './generateBreakpointCustomMedia';
+export { default as generateTailwindThemeCss } from './generateTailwindThemeCss';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
