@@ -128,7 +128,6 @@ import {
 import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
 import { buildExportInput } from 'docs/src/modules/components/density/exportPayload';
 import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
-import ListSubheader from '@mui/material/ListSubheader';
 
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
@@ -265,6 +264,8 @@ const PADDING_RING_SLOTS = [
   '.MuiButtonBase-root',
   '.MuiTooltip-tooltip',
   '.MuiAlert-root',
+  '.MuiAlert-message',
+  '.MuiAlert-action',
   '.MuiCardContent-root',
   '.MuiCardActions-root',
   '.MuiCardHeader-root',
@@ -306,6 +307,8 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiInputAdornment-positionStart',
   '.MuiInputAdornment-positionEnd',
   '.MuiAccordionSummary-content',
+  '.MuiAlert-icon',
+  '.MuiAlert-action',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
   '.MuiFormControlLabel-labelPlacementEnd',
   '.MuiFormControlLabel-labelPlacementStart',
@@ -326,6 +329,7 @@ const MEASURE_SLOTS = [
   '.MuiInputBase-root',
   '.MuiChip-root',
   '.MuiAlert-root',
+  '.MuiAlert-message',
   '.MuiToolbar-root',
   '.MuiTableCell-root',
   '.MuiSnackbarContent-root',

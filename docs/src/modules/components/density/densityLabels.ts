@@ -17,7 +17,6 @@ export const densityLabels: Record<string, string> = {
   'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight':
     'AccordionSummary · minHeight (expanded)',
   'MuiAlert|icon|base||marginRight': 'Alert · icon · marginRight',
-  'MuiAlert|root|base||padding': 'Alert · padding',
   'MuiAlert|root|base||paddingBlock': 'Alert · paddingBlock',
   'MuiAlert|root|base||paddingInline': 'Alert · paddingInline',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight': 'Option min height',

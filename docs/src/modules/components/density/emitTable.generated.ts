@@ -212,18 +212,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiAlert|root|base||padding',
-    label: 'Alert · padding',
-    isDensity: false,
-    densityKey: null,
-    target: { component: 'MuiAlert', slot: 'root', props: null, nested: '', cssProp: 'padding' },
-    values: {
-      compact: 'var(--mui-density-xs) var(--mui-density-lg)',
-      normal: undefined,
-      comfort: undefined,
-    },
-  },
-  {
     id: 'MuiAlert|root|base||paddingBlock',
     label: 'Alert · paddingBlock',
     isDensity: true,
@@ -236,7 +224,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      compact: undefined,
+      compact: 'var(--mui-density-xs)',
       normal: 'var(--mui-density-xs)',
       comfort: 'var(--mui-density-xs)',
     },
@@ -254,7 +242,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      compact: undefined,
+      compact: 'var(--mui-density-lg)',
       normal: 'var(--mui-density-lg)',
       comfort: 'var(--mui-density-lg)',
     },

@@ -60,9 +60,7 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
-    variants: [
-      { props: { disablePadding: false }, style: { paddingBlock: d.md } },
-    ],
+    variants: [{ props: { disablePadding: false }, style: { paddingBlock: d.md } }],
   });
   addRootOverride(
     enhanced.components,
@@ -236,7 +234,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
         style: {
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
-              marginTop: 'calc(var(--_filledInputPadTop, 20px) - var(--_filledInputPadBottom, 4px))',
+              marginTop:
+                'calc(var(--_filledInputPadTop, 20px) - var(--_filledInputPadBottom, 4px))',
             },
         },
       },
@@ -751,7 +750,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
     // No size axis: root padding (block/inline steps).
-    padding: `${d.xs} ${d.lg}`,
+    paddingBlock: d.xs,
+    paddingInline: d.lg,
   });
   // Icon→message gap on the icon slot (child element).
   addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');

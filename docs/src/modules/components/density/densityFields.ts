@@ -290,6 +290,7 @@ export const shownFamilies = new Set<string>([
   'Radio',
   'SvgIcon',
   'Select',
+  'Alert',
 ]);
 
 /**
