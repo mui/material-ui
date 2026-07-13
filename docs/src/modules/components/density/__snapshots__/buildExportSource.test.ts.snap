@@ -856,6 +856,87 @@ const compact = {
         ],
       },
     },
+    MuiSwitch: {
+      styleOverrides: {
+        root: [
+          {
+            width: 'var(--_width)',
+            height: 'var(--_height)',
+            padding: 'var(--_pad)',
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_width': '48px',
+                  '--_height': '30px',
+                  '--_thumbSize': '18px',
+                  '--_touchSize': '30px',
+                  '--_pad': '8px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-8px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-8px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_width': '36px',
+                  '--_height': '20px',
+                  '--_thumbSize': '14px',
+                  '--_touchSize': '20px',
+                  '--_pad': '5px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-5px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-5px',
+                  },
+                  '& .MuiSwitch-thumb': {
+                    width: 'var(--_thumbSize)',
+                    height: 'var(--_thumbSize)',
+                  },
+                  '& .MuiSwitch-switchBase': {
+                    padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+                    '&.Mui-checked': {
+                      transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        switchBase: [
+          {
+            top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+            padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+            left: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+            '&.Mui-checked': {
+              transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+              left: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+            },
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--_thumbSize)',
+            height: 'var(--_thumbSize)',
+          },
+        ],
+        track: [
+          {
+            borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
+          },
+        ],
+      },
+    },
     MuiButtonGroup: {
       styleOverrides: {
         root: [
@@ -2352,6 +2433,87 @@ const normal = {
         ],
       },
     },
+    MuiSwitch: {
+      styleOverrides: {
+        root: [
+          {
+            width: 'var(--_width)',
+            height: 'var(--_height)',
+            padding: 'var(--_pad)',
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_width': '58px',
+                  '--_height': '38px',
+                  '--_thumbSize': '20px',
+                  '--_touchSize': '38px',
+                  '--_pad': '12px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-12px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-12px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_width': '40px',
+                  '--_height': '24px',
+                  '--_thumbSize': '16px',
+                  '--_touchSize': '24px',
+                  '--_pad': '7px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-7px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-7px',
+                  },
+                  '& .MuiSwitch-thumb': {
+                    width: 'var(--_thumbSize)',
+                    height: 'var(--_thumbSize)',
+                  },
+                  '& .MuiSwitch-switchBase': {
+                    padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+                    '&.Mui-checked': {
+                      transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        switchBase: [
+          {
+            top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+            padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+            left: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+            '&.Mui-checked': {
+              transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+              left: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+            },
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--_thumbSize)',
+            height: 'var(--_thumbSize)',
+          },
+        ],
+        track: [
+          {
+            borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
+          },
+        ],
+      },
+    },
     MuiButtonGroup: {
       styleOverrides: {
         root: [
@@ -3760,6 +3922,87 @@ const comfort = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiSwitch: {
+      styleOverrides: {
+        root: [
+          {
+            width: 'var(--_width)',
+            height: 'var(--_height)',
+            padding: 'var(--_pad)',
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  '--_width': '62px',
+                  '--_height': '42px',
+                  '--_thumbSize': '22px',
+                  '--_touchSize': '42px',
+                  '--_pad': '13px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-13px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-13px',
+                  },
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  '--_width': '44px',
+                  '--_height': '28px',
+                  '--_thumbSize': '18px',
+                  '--_touchSize': '28px',
+                  '--_pad': '8px',
+                  '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
+                    marginLeft: '-8px',
+                  },
+                  '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
+                    marginRight: '-8px',
+                  },
+                  '& .MuiSwitch-thumb': {
+                    width: 'var(--_thumbSize)',
+                    height: 'var(--_thumbSize)',
+                  },
+                  '& .MuiSwitch-switchBase': {
+                    padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+                    '&.Mui-checked': {
+                      transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        switchBase: [
+          {
+            top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+            padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+            left: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+            '&.Mui-checked': {
+              transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+              left: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+            },
+          },
+        ],
+        thumb: [
+          {
+            width: 'var(--_thumbSize)',
+            height: 'var(--_thumbSize)',
+          },
+        ],
+        track: [
+          {
+            borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
           },
         ],
       },

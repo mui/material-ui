@@ -66,7 +66,7 @@ export const densityExtraRows: DensityEmitRow[] = [
   slotRow('MuiAlert', 'action', 'paddingTop', 'Alert · action · paddingTop'),
   slotRow('MuiAlert', 'action', 'paddingLeft', 'Alert · action · paddingLeft'),
   slotRow('MuiAlert', 'action', 'marginRight', 'Alert · action · marginRight'),
-  // Control↔label gap (root is inline-flex). Shown in both Checkbox and Radio families.
+  // Control↔label gap (root is inline-flex). Shown in Checkbox/Radio/Switch families.
   slotRow('MuiFormControlLabel', 'root', 'gap', 'FormControlLabel · gap'),
   {
     id: 'MuiListItemIcon|root|base||minWidth',
@@ -147,6 +147,44 @@ export interface DensityVirtualKnob {
   /** field ids this input writes to; all get the same value. */
   members: string[];
 }
+
+/**
+ * Linked writes: committing the KEY row's knob ALSO writes a derived value to
+ * the linked rows (hidden plumbing). `wrap` receives the RESOLVED CSS value
+ * (density keys already expanded); the result lands as an ordinary mapping
+ * entry, so canvas and export pick it up through the normal edit path. Clearing
+ * the key row clears the linked rows.
+ */
+export interface DensityLinkedWrite {
+  id: string;
+  wrap: (resolvedValue: string) => string;
+}
+
+const negate = (v: string) => `calc(-1 * ${v})`;
+
+export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
+  // Switch gutter -> FormControlLabel pull (marginLeft/right = -gutter).
+  'MuiSwitch|root|size=medium||--_pad': [
+    {
+      id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+      wrap: negate,
+    },
+    {
+      id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+      wrap: negate,
+    },
+  ],
+  'MuiSwitch|root|size=small||--_pad': [
+    {
+      id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
+      wrap: negate,
+    },
+    {
+      id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
+      wrap: negate,
+    },
+  ],
+};
 
 export const densityVirtualKnobs: DensityVirtualKnob[] = [
   {

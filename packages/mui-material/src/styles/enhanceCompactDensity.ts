@@ -1,5 +1,6 @@
 import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
+import switchClasses from '../Switch/switchClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
@@ -547,6 +548,94 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       ],
     },
     'badge',
+  );
+  // Switch: interlocked geometry off five preset-local vars (seam from PR
+  // #48624 moved here; component stays master). SwitchBase pad, touch-target
+  // centering, checked travel, and track radius all DERIVE from the vars, so the
+  // thumb stays centered whatever the knobs say. All raw px — the gutter drives
+  // track thickness (height - 2*pad), so it rides the dims, not a step.
+  addRootOverride(enhanced.components, 'MuiSwitch', {
+    // Consumers are base (they read whatever var is in scope); the var
+    // DECLARATIONS live on explicit size variants so a knob edit rebuilds
+    // size-scoped and never bleeds into the other size.
+    width: 'var(--_width)',
+    height: 'var(--_height)',
+    padding: 'var(--_pad)',
+    variants: [
+      {
+        props: { size: 'medium' },
+        style: {
+          '--_width': '48px',
+          '--_height': '30px',
+          '--_thumbSize': '18px',
+          '--_touchSize': '30px',
+          '--_pad': '8px',
+          // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
+          // re-writes these via the playground's linked-write registry.
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-8px' },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-8px' },
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          '--_width': '36px',
+          '--_height': '20px',
+          '--_thumbSize': '14px',
+          '--_touchSize': '20px',
+          '--_pad': '5px',
+          // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
+          // re-writes these via the playground's linked-write registry.
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-5px' },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-5px' },
+          // Master's small rules sit nested under the root variant at higher
+          // specificity — re-assert the derivations there or they lose for small.
+          [`& .${switchClasses.thumb}`]: {
+            width: 'var(--_thumbSize)',
+            height: 'var(--_thumbSize)',
+          },
+          [`& .${switchClasses.switchBase}`]: {
+            padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+            [`&.${switchClasses.checked}`]: {
+              transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+            },
+          },
+        },
+      },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSwitch',
+    {
+      // Center the touch target in the root; travel keeps the thumb symmetric.
+      top: 'calc((var(--_height) - var(--_touchSize)) / 2)',
+      padding: 'calc((var(--_touchSize) - var(--_thumbSize)) / 2)',
+      // When the touch target outgrows the root height, re-anchor the thumb on
+      // the track's end caps: nudge left by the overflow half at rest, right by
+      // the same amount when checked (0 when touch <= height).
+      left: 'min(0px, calc((var(--_height) - var(--_touchSize)) / 2))',
+      [`&.${switchClasses.checked}`]: {
+        transform: 'translateX(calc(var(--_width) - var(--_touchSize)))',
+        left: 'max(0px, calc((var(--_touchSize) - var(--_height)) / 2))',
+      },
+    },
+    'switchBase',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSwitch',
+    { width: 'var(--_thumbSize)', height: 'var(--_thumbSize)' },
+    'thumb',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSwitch',
+    {
+      // Full pill: half the track thickness (height minus the two gutters).
+      borderRadius: 'calc((var(--_height) - 2 * var(--_pad)) / 2)',
+    },
+    'track',
   );
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
     // Grouped-button min-width floor = raw px (sizing).

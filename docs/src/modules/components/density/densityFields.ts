@@ -32,7 +32,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
-  MuiFormControlLabel: ['Checkbox', 'Radio'],
+  MuiFormControlLabel: ['Checkbox', 'Radio', 'Switch'],
   MuiAvatar: 'Avatar',
   MuiFab: 'Fab',
   MuiPaginationItem: 'Pagination',
@@ -56,6 +56,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiCardHeader: 'Card',
   MuiSelect: 'Select',
   MuiSvgIcon: 'SvgIcon',
+  MuiSwitch: 'Switch',
   MuiAlert: 'Alert',
   MuiChip: 'Chip',
   MuiAccordionDetails: 'Accordion',
@@ -73,6 +74,7 @@ export const familyComponentOrder: Record<string, string[]> = {
   Card: ['Card', 'CardHeader', 'CardContent', 'CardActions'],
   Checkbox: ['Checkbox', 'FormControlLabel'],
   Radio: ['Radio', 'FormControlLabel'],
+  Switch: ['Switch', 'FormControlLabel'],
   Select: ['InputBase', 'Select'],
   TextField: ['InputBase', 'InputAdornment', 'OutlinedInput', 'FilledInput', 'Input'],
 };
@@ -147,6 +149,23 @@ export const hiddenFieldIds = new Set<string>([
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
+  // Switch geometry — root dims/pad, touch centering, travel, thumb size, and
+  // track radius all derive from the five per-size vars; the var rows are the knobs.
+  'MuiSwitch|root|base||width',
+  'MuiSwitch|root|base||height',
+  'MuiSwitch|root|base||padding',
+  'MuiSwitch|root|size=small|& .MuiSwitch-thumb|width',
+  'MuiSwitch|root|size=small|& .MuiSwitch-thumb|height',
+  'MuiSwitch|root|size=small|& .MuiSwitch-switchBase|padding',
+  'MuiSwitch|root|size=small|& .MuiSwitch-switchBase &.Mui-checked|transform',
+  'MuiSwitch|switchBase|base||top',
+  'MuiSwitch|switchBase|base||padding',
+  'MuiSwitch|switchBase|base||left',
+  'MuiSwitch|switchBase|base|&.Mui-checked|transform',
+  'MuiSwitch|switchBase|base|&.Mui-checked|left',
+  'MuiSwitch|thumb|base||width',
+  'MuiSwitch|thumb|base||height',
+  'MuiSwitch|track|base||borderRadius',
   // Chip box/child dims — derived from the per-size --_height/--_avatarSize/
   // --_deleteIconSize vars (consumers + centering margins emitted by the
   // presets); the var rows are the knobs.
@@ -300,6 +319,7 @@ export const shownFamilies = new Set<string>([
   'Avatar',
   'ToggleButton',
   'Badge',
+  'Switch',
 ]);
 
 /**

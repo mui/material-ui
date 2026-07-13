@@ -11,10 +11,11 @@ import {
   densityGroups,
   densityRow,
   fieldLabel,
+  hiddenFieldIds,
   registeredFieldIds,
 } from './densityFields';
 import { densityLabels } from './densityLabels';
-import { densityVirtualKnobs } from './densityExtraFields';
+import { densityVirtualKnobs, densityLinkedWrites } from './densityExtraFields';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const PRESETS = {
@@ -210,6 +211,19 @@ describe('density playground — emit table & override builder', () => {
       const variant = built.MuiButton.styleOverrides.root.variants[0];
       expect(variant.props).to.deep.equal({ size: 'medium' });
       expect(variant.style.borderRadius).to.equal('8px');
+    });
+
+    it('linked writes: key and linked rows all resolve to table rows', () => {
+      for (const [keyId, links] of Object.entries(densityLinkedWrites)) {
+        expect(Boolean(densityRow(keyId)), `${keyId} resolves`).to.equal(true);
+        for (const link of links) {
+          expect(Boolean(densityRow(link.id)), `${link.id} resolves`).to.equal(true);
+          expect(link.wrap('8px')).to.be.a('string');
+          // hiddenFieldIds drops rows from densityGroups -> collect path; linked
+          // targets must hide at render level only or their writes never apply.
+          expect(hiddenFieldIds.has(link.id), `${link.id} not in hiddenFieldIds`).to.equal(false);
+        }
+      }
     });
 
     it('virtual knob writes one value to every member target', () => {

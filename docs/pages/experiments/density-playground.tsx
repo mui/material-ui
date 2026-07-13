@@ -39,6 +39,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
+import Switch from '@mui/material/Switch';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
@@ -103,6 +104,7 @@ import {
 } from 'docs/src/modules/components/density/densityFields';
 import {
   densityVirtualKnobs,
+  densityLinkedWrites,
   type DensityVirtualKnob,
 } from 'docs/src/modules/components/density/densityExtraFields';
 import {
@@ -118,6 +120,7 @@ import {
 import {
   SCALE_KEYS,
   previewText,
+  resolveValue,
   shortenDensityVars,
   tokenize,
 } from 'docs/src/modules/components/density/mappingValue';
@@ -281,6 +284,7 @@ const PADDING_RING_SLOTS = [
   '.MuiStepLabel-iconContainer',
   '.MuiStep-root',
   '.MuiBadge-badge',
+  '.MuiSwitch-root',
   '.MuiAutocomplete-option',
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
@@ -1254,6 +1258,41 @@ function RadioMatrix() {
   );
 }
 
+function SwitchGroupDemo({ size }: { size: 'small' | 'medium' }) {
+  const opts = [
+    { label: 'Wi-Fi', checked: true },
+    { label: 'Bluetooth', checked: false },
+  ];
+  return (
+    <FormControl component="fieldset">
+      <FormLabel sx={{ typography: 'caption' }}>Connectivity ({size})</FormLabel>
+      <FormGroup>
+        {opts.map((o) => (
+          <FormControlLabel
+            key={o.label}
+            control={<Switch size={size} defaultChecked={o.checked} />}
+            label={<span className="density-debug-text">{o.label}</span>}
+          />
+        ))}
+      </FormGroup>
+    </FormControl>
+  );
+}
+
+function SwitchMatrix() {
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      <SwitchGroupDemo size="medium" />
+      <SwitchGroupDemo size="small" />
+    </Stack>
+  );
+}
+
 function BreadcrumbsMatrix() {
   return (
     <Breadcrumbs sx={{ mt: 1 }}>
@@ -2037,6 +2076,10 @@ const COMPONENT_DEFS = {
     canvasLabel: 'Radio — touch-target padding (medium + small)',
     Matrix: React.memo(RadioMatrix),
   },
+  Switch: {
+    canvasLabel: 'Switch — interlocked track/thumb/touch geometry (medium + small)',
+    Matrix: React.memo(SwitchMatrix),
+  },
   Avatar: {
     canvasLabel: 'Avatar — square size (raw px)',
     Matrix: React.memo(AvatarMatrix),
@@ -2138,6 +2181,12 @@ type PresetLevel = 'compact' | 'normal' | 'comfort';
 // Field ids absorbed into a virtual knob — hidden as individual inputs, driven
 // by the combined control instead.
 const virtualMemberIds = new Set(densityVirtualKnobs.flatMap((k) => k.members));
+// Linked-write targets hide like virtual members (render-only): they must stay
+// in densityGroups so their mapping entries reach collectDensityEdits — putting
+// them in hiddenFieldIds would drop them from the apply path entirely.
+const linkedTargetIds = new Set(
+  Object.values(densityLinkedWrites).flatMap((links) => links.map((l) => l.id)),
+);
 const virtualKnobsByGroup = (group: string): DensityVirtualKnob[] =>
   densityVirtualKnobs.filter((k) => k.group === group);
 
@@ -2156,6 +2205,9 @@ function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
   for (const id of group.fields) {
     if (virtualMemberIds.has(id)) {
       continue; // shown via its virtual knob below
+    }
+    if (linkedTargetIds.has(id)) {
+      continue; // written by its key row's linked write (e.g. Switch gutter)
     }
     const row = densityRow(id);
     if (!row) {
@@ -2752,6 +2804,11 @@ export default function DensityExperiment() {
         const bucket = { ...prev[level] };
         for (const id of ids) {
           bucket[id] = value;
+          // Linked writes: derived rows follow the key row (e.g. Switch label
+          // pull = -gutter); clearing the key clears them.
+          for (const link of densityLinkedWrites[id] ?? []) {
+            bucket[link.id] = value.trim() ? link.wrap(resolveValue(value)) : '';
+          }
         }
         return { ...prev, [level]: bucket };
       });
