@@ -320,6 +320,8 @@ export const shownFamilies = new Set<string>([
   'ToggleButton',
   'Badge',
   'Switch',
+  'Autocomplete',
+  'Breadcrumbs',
 ]);
 
 /**

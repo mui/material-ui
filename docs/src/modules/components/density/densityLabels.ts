@@ -22,10 +22,8 @@ export const densityLabels: Record<string, string> = {
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight': 'Option min height',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': 'Option block padding',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': 'Option inline padding',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|fontSize':
-    'Autocomplete · listbox · Option fontSize',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight':
-    'Autocomplete · listbox · Option lineHeight',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|fontSize': 'Option font size',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight': 'Option line height',
   'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock':
     'Autocomplete · Input root paddingBlock',
   'MuiAutocomplete|root|base||--_autocompleteInputPadBlock':

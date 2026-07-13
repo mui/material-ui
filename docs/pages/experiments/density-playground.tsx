@@ -320,12 +320,14 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiAlert-action',
   '.MuiChip-avatar',
   '.MuiChip-deleteIcon',
+  '.MuiBreadcrumbs-separator',
   '.MuiCardHeader-avatar',
   '.MuiCardHeader-action',
   '.MuiCardActions-root > :not(style) ~ :not(style)',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
   '.MuiFormControlLabel-labelPlacementEnd',
   '.MuiFormControlLabel-labelPlacementStart',
+  '.MuiAutocomplete-tag',
 ];
 
 // Height-measure targets: the box whose height each demo is about — mostly
@@ -338,9 +340,13 @@ const MARGIN_MARKER_SELECTORS = [
 // the Tooltip demo is ABOUT the bubble, not its trigger buttons, so those buttons
 // are excluded and `.MuiTooltip-tooltip` is measured instead; ToggleButtons sit
 // flush inside a ToggleButtonGroup, so per-button badges stack on top of each
-// other — the group is measured once instead.
+// other — the group is measured once instead; Autocomplete's popup/clear
+// indicators are IconButtons inside every input's end adornment — excluded so
+// the badge stays on the input row (`.MuiInputBase-root`), with the option rows
+// (the family's headline min-height) measured directly.
 const MEASURE_SLOTS = [
-  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *)',
+  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *):not(.MuiAutocomplete-endAdornment *)',
+  '.MuiAutocomplete-option',
   '.MuiFormControlLabel-root',
   '.MuiToggleButtonGroup-root',
   '.MuiInputBase-root',
