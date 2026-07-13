@@ -81,15 +81,6 @@
     "twitter": null
   },
   {
-    "name": "José Freitas",
-    "title": "Technical Product Manager",
-    "about": "Art, fiction, and bar philosophy.",
-    "location": "Augsburg, Germany",
-    "locationCountry": "de",
-    "github": "joserodolfofreitas",
-    "twitter": "zehdefreitas"
-  },
-  {
     "name": "Andrew Cherniavskyi",
     "title": "Tech Lead — xGrid",
     "about": "Love playing music - electric and bass guitar 🎸.",
@@ -124,15 +115,6 @@
     "locationCountry": "pk",
     "github": "MBilalShafi",
     "twitter": "MBilalShafi"
-  },
-  {
-    "name": "Albert Yu",
-    "title": "Software Engineer — Core",
-    "about": "Minimalist, dog lover 🏔🐕.",
-    "location": "Hong Kong",
-    "locationCountry": "hk",
-    "github": "mj12albert",
-    "twitter": "mj12albert"
   },
   {
     "name": "Romain Grégoire",
@@ -295,15 +277,6 @@
     "locationCountry": "es",
     "github": "rita-codes",
     "twitter": "rita_codes"
-  },
-  {
-    "name": "Connor Davis",
-    "title": "Software Engineer — Core",
-    "about": "Community gardener, non-profit organizer, and nature enthusiast.",
-    "location": "New York City, US",
-    "locationCountry": "us",
-    "github": "dav-is",
-    "twitter": "connordav_is"
   },
   {
     "name": "Luis Vasallo",

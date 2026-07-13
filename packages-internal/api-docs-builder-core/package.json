@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.39",
+    "@types/node": "20.19.43",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "sinon": "22.0.0",
