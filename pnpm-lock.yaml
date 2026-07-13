@@ -432,8 +432,8 @@ importers:
         specifier: ^19.2.7
         version: 19.2.7(react@19.2.7)
       react-draggable:
-        specifier: ^4.5.0
-        version: 4.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+        specifier: ^4.7.0
+        version: 4.7.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       react-final-form:
         specifier: ^7.0.1
         version: 7.0.1(final-form@5.0.1)(react@19.2.7)
@@ -10036,8 +10036,8 @@ packages:
     peerDependencies:
       react: ^19.2.7
 
-  react-draggable@4.5.0:
-    resolution: {integrity: sha512-VC+HBLEZ0XJxnOxVAZsdRi8rD04Iz3SiiKOoYzamjylUcju/hP9np/aZdLHf/7WOD268WMoNJMvYfB5yAK45cw==}
+  react-draggable@4.7.0:
+    resolution: {integrity: sha512-kTpANmKWVnFXiZ76Ag2ZowiFStuBYnJ606PI1TbUsOg29/400/JNIxI9+CuenhiAqFuXWJffz6F4UI3R51kUug==}
     peerDependencies:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
@@ -21198,7 +21198,7 @@ snapshots:
       react: 19.2.7
       scheduler: 0.27.0
 
-  react-draggable@4.5.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
+  react-draggable@4.7.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7):
     dependencies:
       clsx: 2.1.1
       prop-types: 15.8.1
