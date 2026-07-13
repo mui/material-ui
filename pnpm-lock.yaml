@@ -52,9 +52,6 @@ importers:
       '@vitest/eslint-plugin':
         specifier: ^1.6.22
         version: 1.6.22(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)(vitest@4.1.8)
-      babel-plugin-transform-import-meta:
-        specifier: ^2.3.3
-        version: 2.3.3(@babel/core@7.29.7)
       execa:
         specifier: ^9.6.1
         version: 9.6.1
