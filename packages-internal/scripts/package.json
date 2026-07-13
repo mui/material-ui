@@ -35,7 +35,7 @@
     "@babel/types": "^7.29.7",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
-    "es-toolkit": "^1.46.1",
+    "es-toolkit": "^1.49.0",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
