@@ -1,6 +1,7 @@
 import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import switchClasses from '../Switch/switchClasses';
+import stepLabelClasses from '../StepLabel/stepLabelClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
@@ -709,6 +710,46 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   // Icon→label gap on the iconContainer slot (step); alternativeLabel/vertical
   // paddingRight:0 stay frozen (higher-specificity class + own variant literals).
   addRootOverride(enhanced.components, 'MuiStepLabel', { paddingRight: d.sm }, 'iconContainer');
+  // alternativeLabel icon→label gap — master sets it on the label slot at
+  // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
+  // selector; a plain props variant (1 class) would lose.
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: d.md } },
+    'label',
+  );
+  // Vertical flow lines re-centered under the compact step icon (master: 12px
+  // under a 24px icon; compact icon shrinks via the SvgIcon emission).
+  addRootOverride(enhanced.components, 'MuiStepConnector', {
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: false },
+        style: { marginLeft: '9.5px' },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: { marginRight: '9.5px' },
+      },
+      // alternativeLabel line rides absolutely at half the icon height.
+      { props: { orientation: 'horizontal', alternativeLabel: true }, style: { top: '9.5px' } },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiStepContent', {
+    // Line-side insets per layout: alternativeLabel flips the line to
+    // border-right, so each variant tunes only its own side (master's flipped
+    // 0/8 left values stay untouched for alternativeLabel).
+    variants: [
+      {
+        props: { alternativeLabel: false },
+        style: { marginLeft: '9.5px', paddingLeft: '15.5px' },
+      },
+      {
+        props: { alternativeLabel: true },
+        style: { marginRight: '9.5px', paddingRight: '15.5px' },
+      },
+    ],
+  });
   addRootOverride(enhanced.components, 'MuiToolbar', {
     // Gutter inline pad (steps, incl the sm-breakpoint bump); dense bar min-height
     // (raw px). Regular min-height (theme.mixins.toolbar) stays frozen.

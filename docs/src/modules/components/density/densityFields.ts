@@ -14,7 +14,7 @@ const allRows: DensityEmitRow[] = [...densityEmitTable, ...densityExtraRows];
  * families (array) — e.g. FormControlLabel surfaces in both Checkbox and Radio.
  */
 export const componentFamily: Record<string, string | string[]> = {
-  MuiButton: 'Button',
+  MuiButton: ['Button', 'ButtonGroup'],
   MuiList: 'Menu',
   MuiListItemIcon: 'Menu',
   MuiMenuItem: 'Menu',
@@ -46,6 +46,9 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiButtonGroup: 'ButtonGroup',
   MuiTableCell: 'TableCell',
   MuiStep: 'Stepper',
+  MuiStepper: 'Stepper',
+  MuiStepConnector: 'Stepper',
+  MuiStepContent: 'Stepper',
   MuiStepLabel: 'Stepper',
   MuiToolbar: 'Toolbar',
   MuiBadge: 'Badge',
@@ -55,7 +58,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiCardContent: 'Card',
   MuiCardHeader: 'Card',
   MuiSelect: 'Select',
-  MuiSvgIcon: 'SvgIcon',
+  MuiSvgIcon: ['SvgIcon', 'ToggleButton', 'Stepper'],
   MuiSwitch: 'Switch',
   MuiAlert: 'Alert',
   MuiChip: 'Chip',
@@ -75,6 +78,9 @@ export const familyComponentOrder: Record<string, string[]> = {
   Checkbox: ['Checkbox', 'FormControlLabel'],
   Radio: ['Radio', 'FormControlLabel'],
   Switch: ['Switch', 'FormControlLabel'],
+  ButtonGroup: ['ButtonGroup', 'Button'],
+  ToggleButton: ['ToggleButton', 'SvgIcon'],
+  Stepper: ['Stepper', 'Step', 'StepLabel', 'StepConnector', 'StepContent', 'SvgIcon'],
   Select: ['InputBase', 'Select'],
   TextField: ['InputBase', 'InputAdornment', 'OutlinedInput', 'FilledInput', 'Input'],
 };
@@ -322,6 +328,8 @@ export const shownFamilies = new Set<string>([
   'Switch',
   'Autocomplete',
   'Breadcrumbs',
+  'Stepper',
+  'ButtonGroup',
 ]);
 
 /**

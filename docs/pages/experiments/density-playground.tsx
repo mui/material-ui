@@ -65,6 +65,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -282,6 +283,7 @@ const PADDING_RING_SLOTS = [
   '.MuiToolbar-root',
   '.MuiChip-label',
   '.MuiStepLabel-iconContainer',
+  '.MuiStepContent-root',
   '.MuiStep-root',
   '.MuiBadge-badge',
   '.MuiSwitch-root',
@@ -321,6 +323,9 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiChip-avatar',
   '.MuiChip-deleteIcon',
   '.MuiBreadcrumbs-separator',
+  '.MuiStepConnector-vertical',
+  '.MuiStepLabel-label.MuiStepLabel-alternativeLabel',
+  '.MuiStepContent-root',
   '.MuiCardHeader-avatar',
   '.MuiCardHeader-action',
   '.MuiCardActions-root > :not(style) ~ :not(style)',
@@ -340,15 +345,16 @@ const MARGIN_MARKER_SELECTORS = [
 // the Tooltip demo is ABOUT the bubble, not its trigger buttons, so those buttons
 // are excluded and `.MuiTooltip-tooltip` is measured instead; ToggleButtons sit
 // flush inside a ToggleButtonGroup, so per-button badges stack on top of each
-// other — the group is measured once instead; Autocomplete's popup/clear
+// other — the group is measured once instead (ButtonGroup likewise); Autocomplete's popup/clear
 // indicators are IconButtons inside every input's end adornment — excluded so
 // the badge stays on the input row (`.MuiInputBase-root`), with the option rows
 // (the family's headline min-height) measured directly.
 const MEASURE_SLOTS = [
-  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *):not(.MuiAutocomplete-endAdornment *)',
+  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *):not(.MuiButtonGroup-root *):not(.MuiAutocomplete-endAdornment *)',
   '.MuiAutocomplete-option',
   '.MuiFormControlLabel-root',
   '.MuiToggleButtonGroup-root',
+  '.MuiButtonGroup-root',
   '.MuiInputBase-root',
   '.MuiChip-root',
   '.MuiAlert-root',
@@ -1384,17 +1390,26 @@ function BadgeMatrix() {
 
 function ButtonGroupMatrix() {
   return (
-    <ButtonGroup variant="outlined" sx={{ mt: 1 }}>
-      <Button>
-        <span className="density-debug-text">One</span>
-      </Button>
-      <Button>
-        <span className="density-debug-text">Two</span>
-      </Button>
-      <Button>
-        <span className="density-debug-text">Three</span>
-      </Button>
-    </ButtonGroup>
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <ButtonGroup key={size} variant="outlined" size={size}>
+          <Button>
+            <span className="density-debug-text">One</span>
+          </Button>
+          <Button>
+            <span className="density-debug-text">Two</span>
+          </Button>
+          <Button>
+            <span className="density-debug-text">Three</span>
+          </Button>
+        </ButtonGroup>
+      ))}
+    </Stack>
   );
 }
 
@@ -1759,16 +1774,70 @@ function AutocompleteMatrix() {
 }
 
 function StepperMatrix() {
+  const labels = ['Cart', 'Shipping', 'Payment'];
+  const steps = labels.map((label) => (
+    <Step key={label}>
+      <StepLabel>
+        <span className="density-debug-text">{label}</span>
+      </StepLabel>
+    </Step>
+  ));
   return (
-    <Stepper activeStep={1} sx={{ mt: 1, width: 360 }}>
-      {['Cart', 'Shipping', 'Payment'].map((label) => (
-        <Step key={label}>
-          <StepLabel>
-            <span className="density-debug-text">{label}</span>
-          </StepLabel>
-        </Step>
-      ))}
-    </Stepper>
+    <Stack spacing={2} sx={{ mt: 1 }}>
+      {/* Row 1 — horizontal: first/last gutters + icon→label gap + column gap;
+          alternativeLabel freezes the icon gap but keeps the column-gap knob
+          (its connector right edge follows via the linked write). */}
+      <Stack
+        direction="row"
+        spacing={10}
+        useFlexGap
+        sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
+      >
+        <Stepper activeStep={1} sx={{ width: 360 }}>
+          {steps}
+        </Stepper>
+        <Stepper activeStep={1} alternativeLabel sx={{ width: 320 }}>
+          {steps}
+        </Stepper>
+      </Stack>
+      {/* Row 2 — vertical: compact re-centers the flow lines (connector/content
+          insets); the column-gap knob must NOT move these. */}
+      <Stack
+        direction="row"
+        spacing={10}
+        useFlexGap
+        sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
+      >
+        <Stepper activeStep={1} orientation="vertical" sx={{ width: 220 }}>
+          {labels.map((label) => (
+            <Step key={label}>
+              <StepLabel>
+                <span className="density-debug-text">{label}</span>
+              </StepLabel>
+              <StepContent>
+                <Typography variant="body2" color="text.secondary">
+                  <span className="density-debug-text">Step details.</span>
+                </Typography>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+        <Stepper activeStep={1} orientation="vertical" alternativeLabel sx={{ width: 220 }}>
+          {labels.map((label) => (
+            <Step key={label}>
+              <StepLabel>
+                <span className="density-debug-text">{label}</span>
+              </StepLabel>
+              <StepContent>
+                <Typography variant="body2" color="text.secondary">
+                  <span className="density-debug-text">Step details.</span>
+                </Typography>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+      </Stack>
+    </Stack>
   );
 }
 
@@ -2115,7 +2184,7 @@ const COMPONENT_DEFS = {
     Matrix: React.memo(ListItemButtonMatrix),
   },
   ButtonGroup: {
-    canvasLabel: 'ButtonGroup — grouped-button min-width floor',
+    canvasLabel: 'ButtonGroup — min-width floor + Button padding (small/medium/large)',
     Matrix: React.memo(ButtonGroupMatrix),
   },
   TableCell: {
@@ -2127,7 +2196,8 @@ const COMPONENT_DEFS = {
     Matrix: React.memo(AutocompleteMatrix),
   },
   Stepper: {
-    canvasLabel: 'Stepper — step gutter + icon→label gap',
+    canvasLabel:
+      'Stepper — gutters + icon→label gap + flow gap (horizontal / alternativeLabel / vertical)',
     Matrix: React.memo(StepperMatrix),
   },
   Toolbar: {

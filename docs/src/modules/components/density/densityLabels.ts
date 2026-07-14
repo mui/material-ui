@@ -57,7 +57,7 @@ export const densityLabels: Record<string, string> = {
   'MuiButton|root|size=small||padding': 'Button · padding [size=small]',
   'MuiButton|root|size=medium||padding': 'Button · padding [size=medium]',
   'MuiButton|root|size=large||padding': 'Button · padding [size=large]',
-  'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · minWidth',
+  'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · button minWidth',
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
     'CardActions · child gap',
@@ -246,10 +246,24 @@ export const densityLabels: Record<string, string> = {
   'MuiSelect|select|base||minHeight': 'Select · select · minHeight',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
   'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
-    'Step · paddingLeft [orientation=horizontal,alternativeLabel=false,hasConnector=false]',
+    'Step · paddingLeft [first, horizontal]',
   'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
-    'Step · paddingRight [orientation=horizontal,alternativeLabel=false,last=true]',
+    'Step · paddingRight [last, horizontal]',
+  'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft':
+    'StepConnector · marginLeft [vertical]',
+  'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight':
+    'StepConnector · marginRight [vertical, alternativeLabel]',
+  'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top':
+    'StepConnector · top [alternativeLabel, horizontal]',
+  'MuiStepContent|root|alternativeLabel=false||marginLeft': 'StepContent · marginLeft',
+  'MuiStepContent|root|alternativeLabel=false||paddingLeft': 'StepContent · paddingLeft',
+  'MuiStepContent|root|alternativeLabel=true||marginRight':
+    'StepContent · marginRight [alternativeLabel=true]',
+  'MuiStepContent|root|alternativeLabel=true||paddingRight':
+    'StepContent · paddingRight [alternativeLabel=true]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
+  'MuiStepLabel|label|base|&.MuiStepLabel-alternativeLabel|marginTop':
+    'StepLabel · label · marginTop [alternativeLabel]',
   'MuiSvgIcon|root|fontSize=small||fontSize': 'Svg icon · size [small]',
   'MuiSvgIcon|root|fontSize=medium||fontSize': 'Svg icon · size [medium]',
   'MuiSvgIcon|root|fontSize=large||fontSize': 'Svg icon · size [large]',

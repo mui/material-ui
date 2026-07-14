@@ -1072,6 +1072,78 @@ const compact = {
             paddingRight: 'var(--mui-density-sm)',
           },
         ],
+        label: [
+          {
+            '&.MuiStepLabel-alternativeLabel': {
+              marginTop: 'var(--mui-density-md)',
+            },
+          },
+        ],
+      },
+    },
+    MuiStepConnector: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: '9.5px',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: true,
+                },
+                style: {
+                  marginRight: '9.5px',
+                },
+              },
+              {
+                props: {
+                  orientation: 'horizontal',
+                  alternativeLabel: true,
+                },
+                style: {
+                  top: '9.5px',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiStepContent: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: '9.5px',
+                  paddingLeft: '15.5px',
+                },
+              },
+              {
+                props: {
+                  alternativeLabel: true,
+                },
+                style: {
+                  marginRight: '9.5px',
+                  paddingRight: '15.5px',
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     MuiToolbar: {

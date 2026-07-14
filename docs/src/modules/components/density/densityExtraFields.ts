@@ -66,6 +66,28 @@ export const densityExtraRows: DensityEmitRow[] = [
   slotRow('MuiAlert', 'action', 'paddingTop', 'Alert · action · paddingTop'),
   slotRow('MuiAlert', 'action', 'paddingLeft', 'Alert · action · paddingLeft'),
   slotRow('MuiAlert', 'action', 'marginRight', 'Alert · action · marginRight'),
+  // Stepper flow gap — no master default (connectors span the space); one virtual
+  // knob writes both containers (Stepper root + each Step root). columnGap, not
+  // gap: it only spaces the horizontal (row-flex) layout — vertical steppers
+  // stack on the row axis and stay untouched.
+  slotRow('MuiStepper', 'root', 'columnGap', 'Stepper · columnGap'),
+  slotRow('MuiStep', 'root', 'columnGap', 'Step · columnGap'),
+  // alternativeLabel connector right edge — master: calc(50% + 20px); the Stepper
+  // gap knob re-writes it (+ gap) via a linked write so the line clears the flow gap.
+  {
+    id: 'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||right',
+    label: 'StepConnector · right [alternativeLabel, horizontal]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiStepConnector',
+      slot: 'root',
+      props: { orientation: 'horizontal', alternativeLabel: true },
+      nested: '',
+      cssProp: 'right',
+    },
+    values: {},
+  },
   // Control↔label gap (root is inline-flex). Shown in Checkbox/Radio/Switch families.
   slotRow('MuiFormControlLabel', 'root', 'gap', 'FormControlLabel · gap'),
   {
@@ -163,6 +185,13 @@ export interface DensityLinkedWrite {
 const negate = (v: string) => `calc(-1 * ${v})`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
+  // Stepper flow gap -> alternativeLabel connector right edge clears the gap.
+  'MuiStepper|root|base||columnGap': [
+    {
+      id: 'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||right',
+      wrap: (v) => `calc(50% + 20px + ${v})`,
+    },
+  ],
   // Switch gutter -> FormControlLabel pull (marginLeft/right = -gutter).
   'MuiSwitch|root|size=medium||--_pad': [
     {
@@ -192,6 +221,12 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     label: 'Avatar · size',
     group: 'Avatar',
     members: ['MuiAvatar|root|base||width', 'MuiAvatar|root|base||height'],
+  },
+  {
+    id: 'virtual:MuiStepper:gap',
+    label: 'Stepper · column gap',
+    group: 'Stepper',
+    members: ['MuiStepper|root|base||columnGap', 'MuiStep|root|base||columnGap'],
   },
   {
     id: 'virtual:MuiBadge:standardSize',
