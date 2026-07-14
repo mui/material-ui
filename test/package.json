@@ -14,7 +14,7 @@
     "@mui/stylis-plugin-rtl": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "4.3.0",
     "@testing-library/dom": "10.4.1",
     "@types/chai": "5.2.3",
     "@types/react": "19.2.17",
@@ -33,7 +33,7 @@
     "sinon": "22.0.0",
     "styled-components": "6.4.3",
     "stylis": "4.4.0",
-    "tailwindcss": "4.2.4",
+    "tailwindcss": "4.3.2",
     "webfontloader": "1.6.28",
     "yargs": "17.7.3"
   },
