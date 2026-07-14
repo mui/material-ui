@@ -81,15 +81,6 @@
     "twitter": null
   },
   {
-    "name": "José Freitas",
-    "title": "Technical Product Manager",
-    "about": "Art, fiction, and bar philosophy.",
-    "location": "Augsburg, Germany",
-    "locationCountry": "de",
-    "github": "joserodolfofreitas",
-    "twitter": "zehdefreitas"
-  },
-  {
     "name": "Andrew Cherniavskyi",
     "title": "Tech Lead — xGrid",
     "about": "Love playing music - electric and bass guitar 🎸.",
@@ -97,15 +88,6 @@
     "locationCountry": "pl",
     "github": "cherniavskii",
     "twitter": "iamcherniavskii"
-  },
-  {
-    "name": "Sam Sycamore",
-    "title": "Head of Documentation",
-    "about": "Musician and edible wild plant enthusiast 🌱.",
-    "location": "Washington state, US",
-    "locationCountry": "us",
-    "github": null,
-    "twitter": null
   },
   {
     "name": "Lukas Tyla",
@@ -133,15 +115,6 @@
     "locationCountry": "pk",
     "github": "MBilalShafi",
     "twitter": "MBilalShafi"
-  },
-  {
-    "name": "Albert Yu",
-    "title": "Software Engineer — Core",
-    "about": "Minimalist, dog lover 🏔🐕.",
-    "location": "Hong Kong",
-    "locationCountry": "hk",
-    "github": "mj12albert",
-    "twitter": "mj12albert"
   },
   {
     "name": "Romain Grégoire",
@@ -306,15 +279,6 @@
     "twitter": "rita_codes"
   },
   {
-    "name": "Connor Davis",
-    "title": "Software Engineer — Core",
-    "about": "Community gardener, non-profit organizer, and nature enthusiast.",
-    "location": "New York City, US",
-    "locationCountry": "us",
-    "github": "dav-is",
-    "twitter": "connordav_is"
-  },
-  {
     "name": "Luis Vasallo",
     "title": "Account Executive — Sales",
     "about": "Loves drums 🥁, food 🍖 and books 📚.",
@@ -358,5 +322,23 @@
     "locationCountry": "rs",
     "github": "lukatosic19-del",
     "twitter": null
+  },
+  {
+    "name": "Eliot Heitz",
+    "title": "Account Executive — Sales",
+    "about": "Big on reading, travel, and time with friends and family 🙌.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": null,
+    "twitter": null
+  },
+  {
+    "name": "Jenna Smith",
+    "title": "Product Engineer — Base UI",
+    "about": "👩🏻‍💻 codes 🤘 gigs 😴 sleeps ♻️ repeats.",
+    "location": "London, UK",
+    "locationCountry": "gb",
+    "github": "jjenzz",
+    "twitter": "jjenzz"
   }
 ]

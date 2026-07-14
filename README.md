@@ -51,7 +51,6 @@ Use `@latest` for the latest stable release.
 
 <p>
   <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a href="https://formengine.io/lightweight-react-json-schema-form-builder-library-for-mui/?utm_source=mui&utm_medium=sponsor&utm_campaign=mui&utm_content=stop-manually&utm_term=smartway" rel="sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/formengine-square.svg" alt="formengine" title="Build forms with MUI the smart way!" loading="lazy" /></a>
 </p>
 
 Diamond sponsors are those who have pledged $1,500/month or more to MUI.
@@ -80,7 +79,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
  <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Follower24</a>
   &nbsp;
-  <a href="https://followerfabrik.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">FollowerFabrik</a>
+  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="sponsored" target="_blank">Views4You</a>
   &nbsp;
 </p>
 

@@ -1,8 +1,6 @@
 version: 2.1
 orbs:
   code-infra: https://raw.githubusercontent.com/mui/mui-public/c031d4471d2dcc537912379edc22953a7bb1fdc7/.circleci/orbs/code-infra.yml
-  aws-cli: circleci/aws-cli@5.4.1
-  aws-s3: circleci/aws-s3@4.1.3
 
 parameters:
   workflow:
@@ -35,7 +33,7 @@ default-job: &default-job
   working_directory: /tmp/material-ui
   executor:
     name: code-infra/mui-node
-    node-version: '22.18'
+    node-version: '22.22.3'
   resource_class: medium.gen2
 
 default-context: &default-context
@@ -185,7 +183,7 @@ jobs:
       - run:
           name: Upgrade Node.js for pnpm 11
           command: |
-            curl -fsSL https://nodejs.org/dist/v22.18.0/node-v22.18.0-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
+            curl -fsSL https://nodejs.org/dist/v22.22.3/node-v22.22.3-linux-x64.tar.gz | tar -xz -C /usr/local --strip-components=1
             node --version
       - code-infra/install-pnpm
       - run:
@@ -277,7 +275,10 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: A11y results committed?
-          command: git add -A && git diff --exit-code --staged
+          # The react@17/18/next jobs pin React via `package-overrides`, which rewrites
+          # pnpm-workspace.yaml (overrides) and may touch pnpm-lock.yaml. Exclude those so
+          # this check still verifies the a11y results without tripping on the pinned deps.
+          command: git add -A -- . ':(exclude)pnpm-*.yaml' && git diff --exit-code --staged
       - run:
           name: Upload screenshots to Argos CI
           command: pnpm test:argos
