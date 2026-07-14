@@ -48,7 +48,7 @@
     "@mui/x-tree-view": "9.9.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^10.1.2",
-    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/postcss": "^4.3.2",
     "@tanstack/react-query": "^5.101.2",
     "@tanstack/react-virtual": "^3.14.5",
     "autosuggest-highlight": "^3.3.4",
@@ -62,8 +62,8 @@
     "cross-env": "^10.1.0",
     "css-mediaquery": "^0.1.2",
     "dayjs": "^1.11.21",
-    "es-toolkit": "^1.46.1",
-    "feed": "^5.2.1",
+    "es-toolkit": "^1.49.0",
+    "feed": "^6.0.0",
     "fg-loadcss": "^3.1.0",
     "final-form": "^5.0.1",
     "flexsearch": "^0.8.212",
@@ -127,7 +127,7 @@
     "sharp": "0.35.3",
     "prettier": "3.9.5",
     "raw-loader": "4.0.2",
-    "tailwindcss": "4.2.4",
+    "tailwindcss": "4.3.2",
     "yargs": "18.0.0"
   }
 }
