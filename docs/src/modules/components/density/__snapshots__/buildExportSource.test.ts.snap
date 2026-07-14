@@ -1070,13 +1070,34 @@ const compact = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: true,
+                },
+                style: {
+                  paddingLeft: 'var(--mui-density-sm)',
+                },
+              },
+            ],
           },
         ],
         label: [
           {
-            '&.MuiStepLabel-alternativeLabel': {
-              marginTop: 'var(--mui-density-md)',
-            },
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                  alternativeLabel: true,
+                },
+                style: {
+                  '&.MuiStepLabel-alternativeLabel': {
+                    marginTop: 'var(--mui-density-md)',
+                  },
+                },
+              },
+            ],
           },
         ],
       },
@@ -2717,6 +2738,17 @@ const normal = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: true,
+                },
+                style: {
+                  paddingLeft: 'var(--mui-density-sm)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -4210,6 +4242,17 @@ const comfort = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: true,
+                },
+                style: {
+                  paddingLeft: 'var(--mui-density-sm)',
+                },
+              },
+            ],
           },
         ],
       },

@@ -707,16 +707,39 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
       },
     ],
   });
-  // Icon→label gap on the iconContainer slot (step); alternativeLabel/vertical
-  // paddingRight:0 stay frozen (higher-specificity class + own variant literals).
-  addRootOverride(enhanced.components, 'MuiStepLabel', { paddingRight: d.sm }, 'iconContainer');
-  // alternativeLabel icon→label gap — master sets it on the label slot at
-  // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
-  // selector; a plain props variant (1 class) would lose.
+  // Icon→label gap on the iconContainer slot: paddingRight in row layouts;
+  // vertical alternativeLabel flips the gap to paddingLeft (master 8px).
+  // alternativeLabel paddingRight:0 stays frozen (higher-specificity class).
   addRootOverride(
     enhanced.components,
     'MuiStepLabel',
-    { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: d.md } },
+    {
+      paddingRight: d.sm,
+      variants: [
+        {
+          props: { orientation: 'vertical', alternativeLabel: true },
+          style: { paddingLeft: d.sm },
+        },
+      ],
+    },
+    'iconContainer',
+  );
+  // alternativeLabel icon→label gap — master sets it on the label slot at
+  // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
+  // selector; a plain props variant (1 class) would lose. Scoped to horizontal:
+  // master zeroes the gap for vertical alternativeLabel (variant marginTop: 0)
+  // and an unscoped emission would stomp that reset.
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    {
+      variants: [
+        {
+          props: { orientation: 'horizontal', alternativeLabel: true },
+          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: d.md } },
+        },
+      ],
+    },
     'label',
   );
   // Vertical flow lines re-centered under the compact step icon (master: 12px

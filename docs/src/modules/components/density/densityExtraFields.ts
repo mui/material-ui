@@ -228,6 +228,17 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Stepper',
     members: ['MuiStepper|root|base||columnGap', 'MuiStep|root|base||columnGap'],
   },
+  // Icon→label gap: paddingRight in row layouts, paddingLeft when vertical
+  // alternativeLabel flips the icon to the label's right — one knob, one gap.
+  {
+    id: 'virtual:MuiStepLabel:labelSpacing',
+    label: 'StepLabel · iconContainer · row label spacing',
+    group: 'Stepper',
+    members: [
+      'MuiStepLabel|iconContainer|base||paddingRight',
+      'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft',
+    ],
+  },
   {
     id: 'virtual:MuiBadge:standardSize',
     label: 'Badge · badge · size [variant=standard]',

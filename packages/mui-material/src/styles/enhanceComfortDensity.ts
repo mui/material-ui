@@ -687,9 +687,23 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       },
     ],
   });
-  // Icon→label gap on the iconContainer slot (step); alternativeLabel/vertical
-  // paddingRight:0 stay frozen (higher-specificity class + own variant literals).
-  addRootOverride(enhanced.components, 'MuiStepLabel', { paddingRight: d.sm }, 'iconContainer');
+  // Icon→label gap on the iconContainer slot: paddingRight in row layouts;
+  // vertical alternativeLabel flips the gap to paddingLeft (master 8px).
+  // alternativeLabel paddingRight:0 stays frozen (higher-specificity class).
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    {
+      paddingRight: d.sm,
+      variants: [
+        {
+          props: { orientation: 'vertical', alternativeLabel: true },
+          style: { paddingLeft: d.sm },
+        },
+      ],
+    },
+    'iconContainer',
+  );
   addRootOverride(enhanced.components, 'MuiToolbar', {
     // Gutter inline pad (steps, incl the sm-breakpoint bump); dense bar min-height
     // (raw px). Regular min-height (theme.mixins.toolbar) stays frozen.

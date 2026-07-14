@@ -262,8 +262,10 @@ export const densityLabels: Record<string, string> = {
   'MuiStepContent|root|alternativeLabel=true||paddingRight':
     'StepContent · paddingRight [alternativeLabel=true]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
-  'MuiStepLabel|label|base|&.MuiStepLabel-alternativeLabel|marginTop':
-    'StepLabel · label · marginTop [alternativeLabel]',
+  'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft':
+    'StepLabel · iconContainer · paddingLeft [vertical alternativeLabel]',
+  'MuiStepLabel|label|alternativeLabel=true,orientation=horizontal|&.MuiStepLabel-alternativeLabel|marginTop':
+    'StepLabel · label · marginTop [horizontal alternativeLabel]',
   'MuiSvgIcon|root|fontSize=small||fontSize': 'Svg icon · size [small]',
   'MuiSvgIcon|root|fontSize=medium||fontSize': 'Svg icon · size [medium]',
   'MuiSvgIcon|root|fontSize=large||fontSize': 'Svg icon · size [large]',
