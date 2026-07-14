@@ -516,6 +516,9 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     width: '48px',
     height: '48px',
   });
+  // Bar thickness = raw px (sizing); bars are absolute top/bottom-0, so the
+  // root height drives every variant (determinate/indeterminate/buffer/query).
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: '5px' });
   addRootOverride(
     enhanced.components,
     'MuiBadge',

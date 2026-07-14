@@ -2442,6 +2442,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiLinearProgress|root|base||height',
+    label: 'LinearProgress · height',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiLinearProgress',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'height',
+    },
+    values: { compact: '3px', normal: '4px', comfort: '5px' },
+  },
+  {
     id: 'MuiList|root|disablePadding=false||paddingBlock',
     label: 'List · paddingBlock [disablePadding=false]',
     isDensity: true,

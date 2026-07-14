@@ -28,10 +28,7 @@ const OUT = path.resolve(
   __dirname,
   '../docs/src/modules/components/density/emitTable.generated.ts',
 );
-const OUT_LABELS = path.resolve(
-  __dirname,
-  '../docs/src/modules/components/density/densityLabels.ts',
-);
+const OUT_KNOBS = path.resolve(__dirname, '../docs/src/modules/components/density/densityKnobs.ts');
 
 const DENSITY_VAR_RE = /^var\(--mui-density-([a-z]+)\)$/;
 const isNestedSelectorKey = (k: string) => /[.&@:> ]/.test(k);
@@ -276,34 +273,64 @@ ${rows.map(renderRow).join('\n')}
 `;
 }
 
-// --- labels file: keys managed by codegen, values hand-edited (merge-preserve) ---
+// --- knobs file: keys managed by codegen, values hand-edited (merge-preserve) ---
 
-// Read the existing label map, tolerant of prettier's quote style / trailing commas
+type KnobMeta = { label: string; hidden?: true; hiddenIn?: string[]; note?: string };
+type KnobValue = string | KnobMeta;
+
+// Read the existing knob map, tolerant of prettier's quote style / trailing commas
 // (it's our own trusted generated file). Missing file → {}.
-function readExistingLabels(): Record<string, string> {
+function readExistingKnobs(): Record<string, KnobValue> {
   try {
-    const text = fs.readFileSync(OUT_LABELS, 'utf8');
-    const body = text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1);
-    return new Function(`return ${body}`)() as Record<string, string>;
+    const text = fs.readFileSync(OUT_KNOBS, 'utf8');
+    // First `{` after the const — the DensityKnobMeta interface above has its own braces.
+    const start = text.indexOf('{', text.indexOf('export const densityKnobs'));
+    const body = text.slice(start, text.lastIndexOf('}') + 1);
+    return new Function(`return ${body}`)() as Record<string, KnobValue>;
   } catch {
     return {};
   }
 }
 
-function renderLabels(rows: Row[], existing: Record<string, string>): string {
+function renderKnobs(rows: Row[], existing: Record<string, KnobValue>): string {
   const entries = rows.map(
     (r) => `  ${JSON.stringify(r.id)}: ${JSON.stringify(existing[r.id] ?? r.label)},`,
   );
-  return `/* eslint-disable */
-// Keys are managed by \`pnpm density:codegen\` — one per emitTable row, in table order.
-// EDIT THE VALUES ONLY. Regen preserves your labels and syncs the keys to the presets;
-// a new leaf appears with a guessed label, a removed leaf drops out. CI diffs this file.
+  return `// Keys are managed by \`pnpm density:codegen\` — one per emitTable row, in table order.
+// EDIT THE VALUES ONLY. A value is the knob label (string), or a meta object:
+//   hidden:   the row never applies independently — dropped from densityGroups before
+//             the collect path (the old hiddenFieldIds). NOT for virtual-knob members /
+//             linked-write targets — those hide at render level in the playground.
+//   hiddenIn: hidden only in the listed canvas families (the old hiddenFieldIdsByFamily).
+//   note:     why it's hidden / anything the label can't say. Survives regen + remap.
+// Regen preserves values, syncs keys to the presets, and auto-remaps an entry whose row
+// id changed unambiguously (matcher/selector edits); ambiguous renames fail the codegen.
+// CI diffs this file.
 
-export const densityLabels: Record<string, string> = {
+export interface DensityKnobMeta {
+  label: string;
+  /** never applies independently — dropped from densityGroups before collectDensityEdits. */
+  hidden?: true;
+  /** hidden only in these canvas families. */
+  hiddenIn?: string[];
+  /** why hidden (kept across regens and id remaps). */
+  note?: string;
+}
+
+export const densityKnobs: Record<string, string | DensityKnobMeta> = {
 ${entries.join('\n')}
 };
 `;
 }
+
+// Rename identity: everything in the id except the matcher segment — exactly what
+// changes when a variant matcher is edited (fn hash / object form / prop tweaks).
+const idTuple = (id: string): string => {
+  const parts = id.split('|');
+  return [parts[0], parts[1], parts.slice(3, -1).join('|'), parts[parts.length - 1]].join('|');
+};
+const rowTuple = (r: Row): string =>
+  [r.target.component, r.target.slot, r.target.nested, r.target.prop].join('|');
 
 function writeFormatted(file: string, contents: string): void {
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -319,20 +346,49 @@ function writeFormatted(file: string, contents: string): void {
 
 function main(): void {
   const rows = buildRows();
-  writeFormatted(OUT, render(rows));
-
-  const existing = readExistingLabels();
+  const existing = readExistingKnobs();
   const ids = new Set(rows.map((r) => r.id));
-  const dropped = Object.keys(existing).filter((id) => !ids.has(id));
-  writeFormatted(OUT_LABELS, renderLabels(rows, existing));
+
+  // Rename-aware merge: a dropped key matching exactly one ADDED key on
+  // component|slot|nested|prop is a rename → carry the whole entry (label + meta).
+  // Ambiguous (several candidates, or a candidate claimed twice) fails the run so a
+  // hidden row can't silently resurface; zero candidates = real removal → drop.
+  const addedByTuple = new Map<string, Row[]>();
+  for (const r of rows.filter((row) => !(row.id in existing))) {
+    const t = rowTuple(r);
+    addedByTuple.set(t, [...(addedByTuple.get(t) ?? []), r]);
+  }
+  const remapped: string[] = [];
+  const dropped: string[] = [];
+  const ambiguous: string[] = [];
+  const claimed = new Set<string>();
+  for (const oldId of Object.keys(existing).filter((id) => !ids.has(id))) {
+    const candidates = addedByTuple.get(idTuple(oldId)) ?? [];
+    if (candidates.length === 1 && !claimed.has(candidates[0].id)) {
+      claimed.add(candidates[0].id);
+      existing[candidates[0].id] = existing[oldId];
+      remapped.push(`${oldId} → ${candidates[0].id}`);
+    } else if (candidates.length === 0) {
+      const meta = typeof existing[oldId] === 'object' ? ' [HAD hidden/note meta]' : '';
+      dropped.push(`${oldId}${meta}`);
+    } else {
+      ambiguous.push(`${oldId} → ${candidates.map((c) => c.id).join('  |  ')}`);
+    }
+  }
+  if (ambiguous.length) {
+    console.error('density:codegen FAILED — ambiguous knob remap(s).');
+    console.error('Migrate these densityKnobs entries to the right new id by hand, rerun:');
+    ambiguous.forEach((line) => console.error(`  ${line}`));
+    process.exit(1);
+  }
+
+  writeFormatted(OUT, render(rows));
+  writeFormatted(OUT_KNOBS, renderKnobs(rows, existing));
 
   console.log(`density:codegen → ${path.relative(process.cwd(), OUT)} (${rows.length} rows)`);
-  console.log(
-    `               → ${path.relative(process.cwd(), OUT_LABELS)} (${rows.length} labels)`,
-  );
-  if (dropped.length) {
-    console.log(`  dropped ${dropped.length} stale label(s): ${dropped.join(', ')}`);
-  }
+  console.log(`               → ${path.relative(process.cwd(), OUT_KNOBS)} (${rows.length} knobs)`);
+  remapped.forEach((line) => console.log(`  remapped: ${line}`));
+  dropped.forEach((line) => console.log(`  dropped stale knob: ${line}`));
 }
 
 main();

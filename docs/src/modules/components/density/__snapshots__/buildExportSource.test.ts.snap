@@ -827,6 +827,15 @@ const compact = {
         ],
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: [
+          {
+            height: '3px',
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -2497,6 +2506,15 @@ const normal = {
         ],
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: [
+          {
+            height: '4px',
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -3997,6 +4015,15 @@ const comfort = {
           {
             width: '48px',
             height: '48px',
+          },
+        ],
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: [
+          {
+            height: '5px',
           },
         ],
       },

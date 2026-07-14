@@ -14,8 +14,8 @@ import {
   hiddenFieldIds,
   registeredFieldIds,
 } from './densityFields';
-import { densityLabels } from './densityLabels';
-import { densityVirtualKnobs, densityLinkedWrites } from './densityExtraFields';
+import { densityKnobs } from './densityKnobs';
+import { densityVirtualKnobs, densityLinkedWrites, densityExtraRows } from './densityExtraFields';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const PRESETS = {
@@ -106,10 +106,34 @@ describe('density playground — emit table & override builder', () => {
     expect(unmapped, `add these to componentFamily: ${unmapped}`).to.have.length(0);
   });
 
-  it('densityLabels keys exactly match the emit table ids (codegen-managed)', () => {
+  it('densityKnobs keys exactly match the emit table ids (codegen-managed)', () => {
+    // Also the stale-guard for hide meta: a knob entry (and its hidden/hiddenIn
+    // flags) can only exist under a live row id.
     const tableIds = densityEmitTable.map((r) => r.id).sort();
-    const labelIds = Object.keys(densityLabels).sort();
-    expect(labelIds, 'run pnpm density:codegen to sync label keys').to.deep.equal(tableIds);
+    const knobIds = Object.keys(densityKnobs).sort();
+    expect(knobIds, 'run pnpm density:codegen to sync knob keys').to.deep.equal(tableIds);
+  });
+
+  it('every hiddenIn family name exists (typo = silent no-op otherwise)', () => {
+    const knownFamilies = new Set(
+      Object.values(componentFamily).flatMap((f) => (Array.isArray(f) ? f : [f])),
+    );
+    const check = (id: string, families: string[] | undefined) => {
+      for (const family of families ?? []) {
+        expect(
+          knownFamilies.has(family),
+          `unknown family '${family}' in hiddenIn of ${id}`,
+        ).to.equal(true);
+      }
+    };
+    for (const [id, v] of Object.entries(densityKnobs)) {
+      if (typeof v === 'object') {
+        check(id, v.hiddenIn);
+      }
+    }
+    for (const row of densityExtraRows) {
+      check(row.id, row.hiddenIn);
+    }
   });
 
   it('every registered field has a non-empty label', () => {

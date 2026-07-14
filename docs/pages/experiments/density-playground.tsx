@@ -59,6 +59,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
+import LinearProgress from '@mui/material/LinearProgress';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -363,6 +364,7 @@ const MEASURE_SLOTS = [
   '.MuiTableCell-root',
   '.MuiSnackbarContent-root',
   '.MuiAvatar-root',
+  '.MuiLinearProgress-root',
   '[data-canvas-component="Badge"] .MuiBadge-badge',
   '[data-canvas-component="SvgIcon"] .MuiSvgIcon-root',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
@@ -1370,6 +1372,29 @@ function AvatarMatrix() {
   );
 }
 
+function ProgressMatrix() {
+  // Bars need a width to render; alignItems center keeps the height ruler clear
+  // of neighbors. CircularProgress is excluded: its size is an inline-style prop.
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'center', flexWrap: 'wrap' }}
+    >
+      <Box sx={{ width: 200 }}>
+        <LinearProgress />
+      </Box>
+      <Box sx={{ width: 200 }}>
+        <LinearProgress variant="determinate" value={60} />
+      </Box>
+      <Box sx={{ width: 200 }}>
+        <LinearProgress variant="buffer" value={60} valueBuffer={80} />
+      </Box>
+    </Stack>
+  );
+}
+
 function BadgeMatrix() {
   return (
     <Stack
@@ -2158,6 +2183,11 @@ const COMPONENT_DEFS = {
   Avatar: {
     canvasLabel: 'Avatar — square size (raw px)',
     Matrix: React.memo(AvatarMatrix),
+  },
+  Progress: {
+    canvasLabel:
+      'Progress — linear bar thickness (raw px); circular excluded (size prop is inline style)',
+    Matrix: React.memo(ProgressMatrix),
   },
   Fab: {
     canvasLabel: 'Fab — circular size (small / medium / large)',

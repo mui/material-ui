@@ -7,6 +7,18 @@ import type { DensityEmitRow } from './emitTable.generated';
  * table so `pnpm density:codegen` never rewrites or drops them.
  */
 
+/**
+ * Extra rows self-declare hide meta at their definition site — same semantics as
+ * `hidden`/`hiddenIn` on `densityKnobs.ts` meta (generated rows). `densityFields`
+ * derives `hiddenFieldIds`/`hiddenFieldIdsByFamily` from both sources.
+ */
+export type DensityExtraRow = DensityEmitRow & {
+  /** never applies independently — dropped from densityGroups before the collect path. */
+  hidden?: true;
+  /** hidden only in these canvas families. */
+  hiddenIn?: string[];
+};
+
 const radiusRow = (component: string, slot: string, label: string): DensityEmitRow => ({
   id: `${component}|${slot}|base||borderRadius`,
   label: `${label} · borderRadius`,
@@ -55,7 +67,7 @@ const slotRow = (
   values: {},
 });
 
-export const densityExtraRows: DensityEmitRow[] = [
+export const densityExtraRows: DensityExtraRow[] = [
   radiusRowSized('MuiButton', 'root', 'Button', 'small'),
   radiusRowSized('MuiButton', 'root', 'Button', 'medium'),
   radiusRowSized('MuiButton', 'root', 'Button', 'large'),

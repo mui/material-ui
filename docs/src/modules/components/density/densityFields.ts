@@ -1,5 +1,5 @@
 import { densityEmitTable, type DensityEmitRow } from './emitTable.generated';
-import { densityLabels } from './densityLabels';
+import { densityKnobs } from './densityKnobs';
 import { densityExtraRows } from './densityExtraFields';
 
 // Generated rows + hand-authored override-only rows share one registry.
@@ -34,6 +34,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiRadio: 'Radio',
   MuiFormControlLabel: ['Checkbox', 'Radio', 'Switch'],
   MuiAvatar: 'Avatar',
+  MuiLinearProgress: 'Progress',
   MuiFab: 'Fab',
   MuiPaginationItem: 'Pagination',
   MuiSnackbarContent: 'SnackbarContent',
@@ -104,147 +105,42 @@ export function orderFamilyComponents(family: string, components: string[]): str
 
 /**
  * Per-id denylist: rows kept in the (mechanical) emit table but not surfaced as
- * sidebar knobs. Editorial, same layer as `componentFamily` — for internal `--_*`
- * plumbing that derives off another knob and isn't independently tunable.
+ * sidebar knobs — the row never applies independently (dropped from
+ * `densityGroups` before the collect path). DERIVED: mark the row
+ * `hidden: true` in `densityKnobs.ts` (generated rows) or on the row itself in
+ * `densityExtraFields.ts` (extra rows); never edit this set directly.
  */
 export const hiddenFieldIds = new Set<string>([
-  'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiOutlinedInput|input|base||paddingBlock',
-  'MuiOutlinedInput|input|size=small||paddingBlock',
-  'MuiOutlinedInput|input|multiline=true||paddingBlock',
-  'MuiOutlinedInput|root|multiline=true||paddingBlock',
-  'MuiOutlinedInput|root|multiline=true,size=small||paddingBlock',
-  'MuiFilledInput|input|base||paddingTop',
-  'MuiFilledInput|input|base||paddingBottom',
-  'MuiFilledInput|input|hiddenLabel=true||paddingTop',
-  'MuiFilledInput|input|hiddenLabel=true||paddingBottom',
-  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingTop',
-  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBottom',
-  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiFilledInput|root|multiline=true||paddingTop',
-  'MuiFilledInput|root|multiline=true||paddingBottom',
-  'MuiFilledInput|root|multiline=true,size=small||paddingTop',
-  'MuiFilledInput|root|multiline=true,size=small||paddingBottom',
-  'MuiFilledInput|input|multiline=true||paddingBlock',
-  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY',
-  'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY',
-  'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingTop',
-  'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingBottom',
-  'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingTop',
-  'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingBottom',
-  'MuiInputBase|input|base||paddingBlock',
-  'MuiInputBase|input|multiline=true||paddingBlock',
-  'MuiInputBase|input|size=small||paddingTop',
-  'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop',
-  'MuiInput|input|multiline=true||paddingBlock',
-  'MuiInput|input|base||paddingTop',
-  'MuiInput|input|base||paddingBottom',
-  'MuiInput|input|size=small||paddingTop',
-  'MuiInput|input|size=small||paddingBottom',
-  'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiInput|root|base|label + &, .MuiInputLabel-root + &|marginTop',
-  'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
-  'MuiInput|root|multiline=true||paddingTop',
-  'MuiInput|root|multiline=true||paddingBottom',
-  'MuiInput|root|multiline=true,size=small||paddingTop',
-  'MuiInput|root|multiline=true,size=small||paddingBottom',
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock',
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock',
-  'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock',
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock',
-  // Switch geometry — root dims/pad, touch centering, travel, thumb size, and
-  // track radius all derive from the five per-size vars; the var rows are the knobs.
-  'MuiSwitch|root|base||width',
-  'MuiSwitch|root|base||height',
-  'MuiSwitch|root|base||padding',
-  'MuiSwitch|root|size=small|& .MuiSwitch-thumb|width',
-  'MuiSwitch|root|size=small|& .MuiSwitch-thumb|height',
-  'MuiSwitch|root|size=small|& .MuiSwitch-switchBase|padding',
-  'MuiSwitch|root|size=small|& .MuiSwitch-switchBase &.Mui-checked|transform',
-  'MuiSwitch|switchBase|base||top',
-  'MuiSwitch|switchBase|base||padding',
-  'MuiSwitch|switchBase|base||left',
-  'MuiSwitch|switchBase|base|&.Mui-checked|transform',
-  'MuiSwitch|switchBase|base|&.Mui-checked|left',
-  'MuiSwitch|thumb|base||width',
-  'MuiSwitch|thumb|base||height',
-  'MuiSwitch|track|base||borderRadius',
-  // Chip box/child dims — derived from the per-size --_height/--_avatarSize/
-  // --_deleteIconSize vars (consumers + centering margins emitted by the
-  // presets); the var rows are the knobs.
-  'MuiChip|root|size=medium||height',
-  'MuiChip|root|size=small||height',
-  'MuiChip|avatar|size=medium||width',
-  'MuiChip|avatar|size=medium||height',
-  'MuiChip|avatar|size=medium||marginLeft',
-  'MuiChip|avatar|size=small||width',
-  'MuiChip|avatar|size=small||height',
-  'MuiChip|avatar|size=small||marginLeft',
-  'MuiChip|deleteIcon|size=medium||fontSize',
-  'MuiChip|deleteIcon|size=medium||marginRight',
-  'MuiChip|deleteIcon|size=small||fontSize',
-  'MuiChip|deleteIcon|size=small||marginRight',
-  // InputLabel floating-Y transforms — master's transform matrix re-emitted so
-  // the Y comes from the preset-closed --_restY/--_shrinkY vars (NO fallbacks —
-  // a missing writer must break visibly); driven by the OutlinedInput/
-  // FilledInput/Input pad knobs (the :has broadcasts), not independently tunable.
-  'MuiInputLabel|root|fn:1u4zrm||transform',
-  'MuiInputLabel|root|shrink=true,variant=filled||transform',
-  'MuiInputLabel|root|shrink=true,variant=outlined||transform',
-  'MuiInputLabel|root|shrink=true||transform',
-  'MuiInputLabel|root|variant=filled||transform',
-  'MuiInputLabel|root|variant=outlined||transform',
-  // Tooltip arrow geometry — derived from the popper-slot --_arrowSize var
-  // (calc leaves emitted by the presets against master selectors), not
-  // independently tunable. The var row is the knob.
-  'MuiTooltip|popper|base|&[data-popper-placement*="bottom"] .MuiTooltip-arrow|marginTop',
-  'MuiTooltip|popper|base|&[data-popper-placement*="top"] .MuiTooltip-arrow|marginBottom',
-  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|height',
-  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|width',
-  'MuiTooltip|popper|base|&[data-popper-placement*="right"] .MuiTooltip-arrow|marginInlineStart',
-  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|height',
-  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|width',
-  'MuiTooltip|popper|base|&[data-popper-placement*="left"] .MuiTooltip-arrow|marginInlineEnd',
-  'MuiTooltip|arrow|base||width',
-  'MuiTooltip|arrow|base||height',
-  // Checkbox/Radio sibling-label margin compensation — derived from the padding
-  // knob (calc(-2px - padding)), not independently tunable. The padding field's
-  // builder re-emits them (see selectionControlPadding in buildDensityOverrides).
-  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-  'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-  'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-  'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
-  'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
-  // minHeight sizing fields — preset-driven, not independently tunable via sidebar
-  'MuiAccordionSummary|root|base||minHeight',
-  'MuiAccordionSummary|root|fn:ya70cs|&.Mui-expanded|minHeight',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|minHeight',
-  'MuiMenuItem|root|dense=false||minHeight',
-  'MuiMenuItem|root|dense=true||minHeight',
-  'MuiSelect|select|base||minHeight',
-  'MuiTab|root|base||minHeight',
-  'MuiTab|root|fn:1bbekq||minHeight',
-  'MuiTabs|root|base||minHeight',
-  'MuiToolbar|root|variant=dense||minHeight',
+  ...Object.entries(densityKnobs)
+    .filter(([, v]) => typeof v === 'object' && v.hidden)
+    .map(([id]) => id),
+  ...densityExtraRows.filter((r) => r.hidden).map((r) => r.id),
 ]);
 
 /**
- * Per-family denylist: same shape/purpose as `hiddenFieldIds`, but scoped to one
+ * Per-family denylist: same semantics as `hiddenFieldIds`, but scoped to one
  * family — for fields on a shared component (mapped to several families via
  * `componentFamily`) that should surface in some families and not others. Checked
  * during the per-family fan-out in `densityGroups`, after the global denylist.
+ * DERIVED from `hiddenIn` on `densityKnobs` meta / extra rows.
  */
-export const hiddenFieldIdsByFamily: Record<string, Set<string>> = {
-  // InputBase's `input` slot is TextField-only sizing (height); Select renders
-  // its value through the `select` slot, so hide it there but keep it on TextField.
-  Select: new Set<string>(['MuiInputBase|input|base||height']),
-};
+export const hiddenFieldIdsByFamily: Record<string, Set<string>> = (() => {
+  const out: Record<string, Set<string>> = {};
+  const add = (id: string, families: string[] | undefined) => {
+    for (const family of families ?? []) {
+      (out[family] ??= new Set()).add(id);
+    }
+  };
+  for (const [id, v] of Object.entries(densityKnobs)) {
+    if (typeof v === 'object') {
+      add(id, v.hiddenIn);
+    }
+  }
+  for (const row of densityExtraRows) {
+    add(row.id, row.hiddenIn);
+  }
+  return out;
+})();
 
 export interface DensityGroup {
   /** matches a COMPONENT_DEFS key in the playground (canvas demo) */
@@ -256,6 +152,8 @@ export interface DensityGroup {
 /**
  * Selector/display order — follows weave-families.yml (Weave usage rank). Keys
  * not listed there (playground-only demo families) fall to the end, alphabetical.
+ * Exception: minor families (Progress — single knob) are pinned to the bottom,
+ * after the usage-ranked block.
  */
 const WEAVE_FAMILY_ORDER = [
   'Typography',
@@ -263,7 +161,6 @@ const WEAVE_FAMILY_ORDER = [
   'Menu',
   'Tooltip',
   'TextField',
-  'Progress',
   'Tabs',
   'Divider',
   'Select',
@@ -295,6 +192,8 @@ const WEAVE_FAMILY_ORDER = [
   'Slider',
   'Table',
   'Popover',
+  // Pinned last (out of usage-rank position) — minor single-knob families.
+  'Progress',
 ];
 const familyRank = (key: string) => {
   const i = WEAVE_FAMILY_ORDER.indexOf(key);
@@ -330,12 +229,14 @@ export const shownFamilies = new Set<string>([
   'Breadcrumbs',
   'Stepper',
   'ButtonGroup',
+  'Progress',
 ]);
 
 /**
  * One group per family, holding every emitted leaf of its components — derived
- * from the table, so new leaves appear after `pnpm density:codegen`. Labels come
- * from `densityLabels` (codegen-managed keys, hand-edited values).
+ * from the table, so new leaves appear after `pnpm density:codegen`. Labels and
+ * hidden/hiddenIn meta come from `densityKnobs` (codegen-managed keys,
+ * hand-edited values).
  */
 export const densityGroups: DensityGroup[] = (() => {
   const byFamily = new Map<string, string[]>();
@@ -371,8 +272,11 @@ const rowById = new Map<string, DensityEmitRow>(allRows.map((r) => [r.id, r]));
 
 export const densityRow = (id: string): DensityEmitRow | undefined => rowById.get(id);
 
-/** Display label for a field id — codegen labels first, then override-only rows. */
-export const fieldLabel = (id: string): string => densityLabels[id] ?? rowById.get(id)?.label ?? id;
+/** Display label for a field id — codegen knob entries first, then override-only rows. */
+export const fieldLabel = (id: string): string => {
+  const v = densityKnobs[id];
+  return (typeof v === 'object' ? v.label : v) ?? rowById.get(id)?.label ?? id;
+};
 
 /**
  * Strip the "Component · [slot · ]" prefix a codegen label carries — the sidebar
