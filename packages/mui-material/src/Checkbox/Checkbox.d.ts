@@ -130,8 +130,7 @@ export interface CheckboxProps
    * @default 'medium'
    */
   size?:
-    | OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides>
-    | undefined;
+    OverridableStringUnion<'small' | 'medium' | 'large', CheckboxPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
