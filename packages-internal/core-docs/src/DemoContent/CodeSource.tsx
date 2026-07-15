@@ -386,12 +386,6 @@ export const CodeSource = styled('div', {
     opacity: 1,
   },
 
-  // Indent shifting for the focused/highlighted region. Uses transform to
-  // avoid layout reflow during height transitions.
-  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted"], & pre:has(> code[data-collapsible]) .frame[data-frame-type="focus"]':
-    {
-      transition: 'transform 0.3s ease',
-    },
   // Highlight backgrounds for the collapsed/focused view are painted by a
   // pseudo-element rather than the element's own `background`, so indent-
   // shifting a frame left can extend the tint back to the code's right edge by
@@ -473,6 +467,7 @@ export const CodeSource = styled('div', {
         {
           transform: `translateX(-${level * 2}ch)`,
           '--di-indent-shift': `calc(${level * 2}ch + 6px)`,
+          transition: 'transform 0.3s ease',
         },
       ];
     }),
