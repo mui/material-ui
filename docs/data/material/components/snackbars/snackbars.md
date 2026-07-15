@@ -122,7 +122,7 @@ Note that notistack prevents Snackbars from being [closed by pressing <kbd class
 
 ## Accessibility
 
-The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault` in the `onClose` prop.
+The user should be able to dismiss Snackbars by pressing <kbd class="key">Escape</kbd>. If there are multiple instances appearing at the same time and you want <kbd class="key">Escape</kbd> to dismiss only the oldest one that's currently open, call `event.preventDefault()` in the `onClose` prop.
 
 ```jsx
 export default function MyComponent() {
@@ -133,9 +133,11 @@ export default function MyComponent() {
       <Snackbar
         open={open}
         onClose={(event, reason) => {
-          // `reason === 'escapeKeyDown'` if `Escape` was pressed
           setOpen(false);
-          // call `event.preventDefault` to only close one Snackbar at a time.
+          if (reason === 'escapeKeyDown') {
+            // Close only one Snackbar per Escape key press.
+            event.preventDefault();
+          }
         }}
       />
       <Snackbar open={open} onClose={() => setOpen(false)} />

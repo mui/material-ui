@@ -104,6 +104,7 @@ const ButtonRoot = styled(ButtonBase, {
       padding: '6px 16px',
       border: 0,
       borderRadius: (theme.vars || theme).shape.borderRadius,
+      '--Button-focusRingColor': (theme.vars || theme).palette.primary.main,
       ...getTransitionStyles(theme, ['background-color', 'box-shadow', 'border-color', 'color'], {
         duration: theme.transitions.duration.short,
       }),
@@ -114,6 +115,15 @@ const ButtonRoot = styled(ButtonBase, {
         color: (theme.vars || theme).palette.action.disabled,
       },
       variants: [
+        {
+          props: { focusableWhenDisabled: true },
+          style: {
+            [`&.${buttonClasses.disabled}.${buttonClasses.focusVisible}`]: {
+              outline: '2px solid var(--Button-focusRingColor)',
+              outlineOffset: 2,
+            },
+          },
+        },
         {
           props: { variant: 'contained' },
           style: {
@@ -174,8 +184,9 @@ const ButtonRoot = styled(ButtonBase, {
               ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
+              '--Button-focusRingColor': (theme.vars || theme).palette[color].main,
               '@media (hover: hover)': {
-                '&:hover': {
+                [`&:hover:not(.${buttonClasses.disabled})`]: {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
                   '--variant-textBg': theme.alpha(
                     (theme.vars || theme).palette[color].main,
@@ -200,8 +211,9 @@ const ButtonRoot = styled(ButtonBase, {
             '--variant-containedBg': theme.vars
               ? theme.vars.palette.Button.inheritContainedBg
               : inheritContainedBackgroundColor,
+            '--Button-focusRingColor': (theme.vars || theme).palette.text.primary,
             '@media (hover: hover)': {
-              '&:hover': {
+              [`&:hover:not(.${buttonClasses.disabled})`]: {
                 '--variant-containedBg': theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
@@ -509,6 +521,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     disableElevation = false,
     disableFocusRipple = false,
     endIcon: endIconProp,
+    focusableWhenDisabled = false,
     focusVisibleClassName,
     fullWidth = false,
     id: idProp,
@@ -521,7 +534,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant = 'text',
     ...other
   } = props;
-
   const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
     <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
@@ -597,6 +609,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
+      focusableWhenDisabled={focusableWhenDisabled === true}
       classes={forwardedClasses}
     >
       {startIcon}
@@ -667,6 +680,12 @@ Button.propTypes /* remove-proptypes */ = {
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
+  /**
+   * When `true`, disabled buttons can be focused with the keyboard or programmatically while activation is prevented.
+   * Disabled buttons rendered as links remain non-focusable.
+   * @default false
+   */
+  focusableWhenDisabled: PropTypes.bool,
   /**
    * @ignore
    */
