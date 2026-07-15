@@ -10,11 +10,7 @@ import Paper from '@mui/material/Paper';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 
 type GridItemsAlignment =
-  | 'flex-start'
-  | 'center'
-  | 'flex-end'
-  | 'stretch'
-  | 'baseline';
+  'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
 type GridJustification =
   | 'flex-start'

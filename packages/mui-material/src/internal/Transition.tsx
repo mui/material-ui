@@ -27,8 +27,7 @@ interface CancellableCallback {
 }
 
 type TransitionEndListener =
-  | ((done: () => void) => void)
-  | ((node: HTMLElement, done: () => void) => void);
+  ((done: () => void) => void) | ((node: HTMLElement, done: () => void) => void);
 
 interface InternalTransitionProps {
   in?: boolean | undefined;

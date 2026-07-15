@@ -237,8 +237,7 @@ export default function DemoContent(props: DemoContentProps) {
   // targets.
   const handleResetFocus = React.useCallback(() => {
     const target = demo.focusRef.current as
-      | (HTMLButtonElement & { focusVisible?: () => void })
-      | null;
+      (HTMLButtonElement & { focusVisible?: () => void }) | null;
     if (target && typeof target.focusVisible === 'function') {
       target.focusVisible();
       return;
