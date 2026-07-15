@@ -23,11 +23,10 @@ async function fileExists(filePath: string) {
 }
 
 async function readCurrentMembers(): Promise<Person[]> {
-  try {
-    return JSON.parse(await fs.readFile(teamMembersPath, 'utf8'));
-  } catch {
+  if (!(await fileExists(teamMembersPath))) {
     return [];
   }
+  return JSON.parse(await fs.readFile(teamMembersPath, 'utf8'));
 }
 
 // Delete images of removed members and report new members missing a photo.
@@ -72,8 +71,11 @@ ${missingImages.map((entry) => `- ${entry}`).join('\n')}`
 }
 
 async function run() {
-  const previousMembers = (await readCurrentMembers()) ?? [];
+  const previousMembers = await readCurrentMembers();
   const response = await fetch('https://frontend-public.mui.com/api/mui-about');
+  if (!response.ok || response.status !== 200) {
+    throw new Error(`Failed to fetch team members: ${response.status} ${response.statusText}`);
+  }
   const { people }: { people: Person[] } = await response.json();
 
   await fs.writeFile(teamMembersPath, JSON.stringify(people), 'utf8');

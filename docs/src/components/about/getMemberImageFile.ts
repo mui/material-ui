@@ -1,6 +1,5 @@
 export default function getMemberImageFile(member: { name: string }) {
-  return `${member.name
-    .split(' ')
-    .map((x) => x.toLowerCase())
-    .join('-')}.png`;
+  // Strip path separators to prevent traversal when the name builds a filesystem path.
+  const slug = member.name.trim().toLowerCase().split(/\s+/).join('-').replace(/[/\\]/g, '');
+  return `${slug}.png`;
 }
