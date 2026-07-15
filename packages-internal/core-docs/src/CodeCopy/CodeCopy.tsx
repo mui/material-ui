@@ -158,14 +158,12 @@ export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
       }
 
       // Skip if it's not a copy keyboard event
-      if (
-        !(
-          (event.ctrlKey || event.metaKey) &&
-          String.fromCharCode(event.keyCode) === 'C' &&
-          !event.shiftKey &&
-          !event.altKey
-        )
-      ) {
+      if (!(
+        (event.ctrlKey || event.metaKey) &&
+        String.fromCharCode(event.keyCode) === 'C' &&
+        !event.shiftKey &&
+        !event.altKey
+      )) {
         return;
       }
 

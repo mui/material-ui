@@ -68,8 +68,7 @@ export interface IconButtonOwnProps {
    * @default 'medium'
    */
   size?:
-    | OverridableStringUnion<'small' | 'medium' | 'large', IconButtonPropsSizeOverrides>
-    | undefined;
+    OverridableStringUnion<'small' | 'medium' | 'large', IconButtonPropsSizeOverrides> | undefined;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

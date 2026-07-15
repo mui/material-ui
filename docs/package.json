@@ -125,7 +125,7 @@
     "chai": "6.2.2",
     "cross-fetch": "4.1.0",
     "sharp": "0.35.3",
-    "prettier": "3.8.3",
+    "prettier": "3.9.5",
     "raw-loader": "4.0.2",
     "tailwindcss": "4.3.2",
     "yargs": "18.0.0"

@@ -141,8 +141,7 @@ export interface SnackbarProps
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose?:
-    | ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void)
-    | undefined;
+    ((event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void) | undefined;
   /**
    * If `true`, the component is shown.
    */
