@@ -61,6 +61,7 @@ async function optimize(file, options) {
   const out = await sharp(buf).metadata();
   const mb = (bytes) => (bytes / 1e6).toFixed(2);
   const saved = ((1 - buf.length / before) * 100).toFixed(0);
+  // eslint-disable-next-line no-console
   console.log(
     `${file}\n  ${meta.width}x${meta.height} -> ${out.width}x${out.height}  ` +
       `${mb(before)}MB -> ${mb(buf.length)}MB  (-${saved}%)`,
@@ -70,12 +71,12 @@ async function optimize(file, options) {
 async function run() {
   const { options, files } = parseArgs(process.argv.slice(2));
   if (files.length === 0) {
-    console.error('Usage: node docs/scripts/optimizeImages.mjs [--max-width=N] [--quality=N] [--no-palette] <path...>');
+    console.error(
+      'Usage: node docs/scripts/optimizeImages.mjs [--max-width=N] [--quality=N] [--no-palette] <path...>',
+    );
     process.exit(1);
   }
-  for (const file of files) {
-    await optimize(file, options);
-  }
+  await Promise.all(files.map((file) => optimize(file, options)));
 }
 
 run().catch((error) => {
