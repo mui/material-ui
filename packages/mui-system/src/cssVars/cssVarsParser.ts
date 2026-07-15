@@ -2,6 +2,9 @@ type NestedRecord<V = any> = {
   [k: string | number]: NestedRecord<V> | V;
 };
 
+const isPrototypePollutingKey = (key: string) =>
+  key === '__proto__' || key === 'constructor' || key === 'prototype';
+
 /**
  * This function create an object from keys, value and then assign to target
  *
@@ -28,6 +31,11 @@ export const assignNestedKeys = <
   value: Value,
   arrayKeys: Array<string> = [],
 ) => {
+  // Prevent prototype pollution: never traverse or write through
+  // `__proto__` / `constructor` / `prototype` (e.g. a theme parsed from untrusted JSON).
+  if (keys.some(isPrototypePollutingKey)) {
+    return;
+  }
   let temp: T = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {

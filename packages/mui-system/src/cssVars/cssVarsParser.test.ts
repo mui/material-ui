@@ -57,6 +57,22 @@ describe('cssVarsParser', () => {
         keys: ['xs', 'sm', 'md'],
       });
     });
+
+    ['__proto__', 'constructor', 'prototype'].forEach((key) => {
+      it(`does not pollute Object.prototype via \`${key}\``, () => {
+        try {
+          const result = {};
+          assignNestedKeys(result, ['a', key, 'polluted'], 'yes');
+          expect((result as Record<string, unknown>).polluted).to.equal(undefined);
+          expect(({} as Record<string, unknown>).polluted).to.equal(undefined);
+          expect(
+            Object.prototype.hasOwnProperty.call(Object.prototype, 'polluted'),
+          ).to.equal(false);
+        } finally {
+          delete (Object.prototype as Record<string, unknown>).polluted;
+        }
+      });
+    });
   });
 
   describe('walkObjectDeep', () => {
@@ -394,6 +410,19 @@ describe('cssVarsParser', () => {
         },
       });
     });
+  });
+
+  it('does not pollute Object.prototype from a `__proto__` token path', () => {
+    try {
+      // `JSON.parse` produces a real own-enumerable `__proto__` key, which is the attack vector.
+      const theme = JSON.parse('{"palette":{"__proto__":{"polluted":"yes"}}}');
+      const { vars } = cssVarsParser(theme, { prefix: 'mui' });
+      expect(({} as Record<string, unknown>).polluted).to.equal(undefined);
+      // The polluting path is dropped entirely, so no `vars` entry is created for it.
+      expect(vars).to.deep.equal({});
+    } finally {
+      delete (Object.prototype as Record<string, unknown>).polluted;
+    }
   });
 
   it('does nothing if deep value is not string or number', () => {
