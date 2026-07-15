@@ -13,9 +13,11 @@ import {
   fieldLabel,
   hiddenFieldIds,
   registeredFieldIds,
+  densityVirtualKnobs,
+  densityLinkedWrites,
+  densityExtraRows,
 } from './densityFields';
 import { densityKnobs } from './densityKnobs';
-import { densityVirtualKnobs, densityLinkedWrites, densityExtraRows } from './densityExtraFields';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const PRESETS = {
@@ -72,7 +74,8 @@ function readLeaf(
   return found;
 }
 
-const prop = (row: DensityEmitRow) => row.target.cssProp ?? row.target.privateVar!;
+const prop = (row: DensityEmitRow) =>
+  row.target.cssProp ?? row.target.privateVar ?? row.target.defaultProp!;
 // A sample ownerState that satisfies an object/null matcher; null → cannot derive (function).
 function deriveSample(m: any): Record<string, unknown> | null {
   if (m === null) {
@@ -153,6 +156,11 @@ describe('density playground — emit table & override builder', () => {
           continue; // row not emitted at this preset (e.g. compact-only type)
         }
         const { component, slot, props, nested } = row.target;
+        if (row.target.defaultProp) {
+          const built = buildOverrides([{ row, value }])[component] as any;
+          expect(String(built.defaultProps[prop(row)]), `${id} value`).to.equal(value);
+          continue;
+        }
         const layer = buildOverrides([{ row, value }])[component].styleOverrides[slot];
         const style = props === null ? layer : layer.variants[layer.variants.length - 1].style;
         if (props !== null) {
@@ -176,6 +184,15 @@ describe('density playground — emit table & override builder', () => {
         }
         const merged = mergeOntoPreset(preset, buildOverrides([{ row, value }]));
         const { component, slot, nested } = row.target;
+        if (row.target.defaultProp) {
+          expect(String(merged[component].defaultProps[prop(row)]), `${id} applied`).to.equal(
+            value,
+          );
+          expect(String(preset[component]?.defaultProps?.[prop(row)]), `${id} preset`).to.equal(
+            value,
+          );
+          continue;
+        }
         const applied = readLeaf(merged, component, slot, sample, nested, prop(row));
         const presetVal = readLeaf(preset, component, slot, sample, nested, prop(row));
         // table stores values as strings; CSS treats `0` and '0' alike → compare stringified
@@ -269,6 +286,70 @@ describe('density playground — emit table & override builder', () => {
         }
       }
     });
+  });
+});
+
+describe('defaultProps emission (DataGrid heights)', () => {
+  // Straw-man per-preset bases (values reviewed visually, like every preset px).
+  // Heights are JS-gated in the grid (virtualizer math) — CSS can't move them,
+  // so the presets carry them as theme defaultProps; the grid's own density
+  // prop stays unset (factor ×1 → rendered = base exactly).
+  const HEIGHTS: Record<PresetLevel, { rowHeight: number; columnHeaderHeight: number }> = {
+    compact: { rowHeight: 40, columnHeaderHeight: 44 },
+    normal: { rowHeight: 52, columnHeaderHeight: 56 },
+    comfort: { rowHeight: 64, columnHeaderHeight: 68 },
+  };
+
+  it('emit table carries the defaultProps rows with per-preset values', () => {
+    for (const propName of ['rowHeight', 'columnHeaderHeight'] as const) {
+      const row = densityRow(`MuiDataGrid|defaultProps|base||${propName}`);
+      expect(row, `${propName} row`).to.not.equal(undefined);
+      expect(row!.target.slot).to.equal('defaultProps');
+      expect(row!.target.defaultProp).to.equal(propName);
+      for (const level of LEVELS) {
+        expect(row!.values[level], `${propName} @ ${level}`).to.equal(
+          String(HEIGHTS[level][propName]),
+        );
+      }
+    }
+  });
+
+  it('presets set components.MuiDataGrid.defaultProps; a user theme default wins', () => {
+    for (const level of LEVELS) {
+      const components = presetComponents(level);
+      expect(components.MuiDataGrid?.defaultProps?.rowHeight, level).to.equal(
+        HEIGHTS[level].rowHeight,
+      );
+      expect(components.MuiDataGrid?.defaultProps?.columnHeaderHeight, level).to.equal(
+        HEIGHTS[level].columnHeaderHeight,
+      );
+    }
+    const theme = createTheme({ cssVariables: true }) as any;
+    theme.components = { MuiDataGrid: { defaultProps: { rowHeight: 33 } } };
+    const enhanced = PRESETS.compact(theme) as any;
+    expect(enhanced.components.MuiDataGrid.defaultProps.rowHeight).to.equal(33);
+    expect(enhanced.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(44);
+  });
+
+  it('buildOverrides routes a defaultProps edit to defaultProps (number-coerced), not styleOverrides', () => {
+    const row = densityRow('MuiDataGrid|defaultProps|base||rowHeight')!;
+    const built = buildOverrides([{ row, value: '44px' }]);
+    expect((built.MuiDataGrid as any).defaultProps).to.deep.equal({ rowHeight: 44 });
+    expect(built.MuiDataGrid.styleOverrides).to.deep.equal({});
+  });
+
+  it('mergeOntoPreset: the edit wins over the preset default, siblings preserved', () => {
+    for (const level of LEVELS) {
+      const row = densityRow('MuiDataGrid|defaultProps|base||rowHeight')!;
+      const merged = mergeOntoPreset(
+        presetComponents(level),
+        buildOverrides([{ row, value: '48' }]),
+      );
+      expect(merged.MuiDataGrid.defaultProps.rowHeight, level).to.equal(48);
+      expect(merged.MuiDataGrid.defaultProps.columnHeaderHeight, level).to.equal(
+        HEIGHTS[level].columnHeaderHeight,
+      );
+    }
   });
 });
 

@@ -9,7 +9,10 @@ import type { DensityEmitRow, DensityEmitTarget } from './emitTable.generated';
  */
 
 export type StyleLayer = Record<string, any>;
-export type Overrides = Record<string, { styleOverrides: Record<string, StyleLayer> }>;
+export type Overrides = Record<
+  string,
+  { styleOverrides: Record<string, StyleLayer>; defaultProps?: Record<string, unknown> }
+>;
 
 export interface DensityEdit {
   row: DensityEmitRow;
@@ -17,7 +20,7 @@ export interface DensityEdit {
   value: string;
 }
 
-const emittedProp = (t: DensityEmitTarget): string => t.cssProp ?? t.privateVar!;
+const emittedProp = (t: DensityEmitTarget): string => t.cssProp ?? t.privateVar ?? t.defaultProp!;
 
 // Checkbox/Radio touch-target `padding` also drives a sibling FormControlLabel
 // margin compensation (a `-2px` offset minus the padding) so the control↔label gap
@@ -72,6 +75,15 @@ export function buildOverrides(edits: DensityEdit[]): Overrides {
     if (!overrides[component]) {
       overrides[component] = { styleOverrides: {} };
     }
+    if (row.target.defaultProp) {
+      // JS-gated prop seam (e.g. DataGrid heights) — a number-valued prop, so
+      // coerce '44'/'44px' to 44; anything non-numeric passes through verbatim.
+      const numeric = parseFloat(value);
+      (overrides[component].defaultProps ??= {})[row.target.defaultProp] = Number.isFinite(numeric)
+        ? numeric
+        : value;
+      continue;
+    }
     const slots = overrides[component].styleOverrides;
     if (!slots[slot]) {
       slots[slot] = {};
@@ -91,13 +103,16 @@ export function mergeOntoPreset(
   overrides: Overrides,
 ): Record<string, any> {
   const merged: Record<string, any> = { ...presetComponents };
-  for (const [component, { styleOverrides }] of Object.entries(overrides)) {
+  for (const [component, { styleOverrides, defaultProps }] of Object.entries(overrides)) {
     const presetComp = presetComponents[component] ?? {};
     const mergedSlots: Record<string, any> = { ...presetComp.styleOverrides };
     for (const [slot, layer] of Object.entries(styleOverrides)) {
       mergedSlots[slot] = [presetComp.styleOverrides?.[slot], layer];
     }
     merged[component] = { ...presetComp, styleOverrides: mergedSlots };
+    if (defaultProps) {
+      merged[component].defaultProps = { ...presetComp.defaultProps, ...defaultProps };
+    }
   }
   return merged;
 }

@@ -15,7 +15,10 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
+import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import TablePagination from '@mui/material/TablePagination';
 import TableCell from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -60,6 +63,7 @@ import Alert from '@mui/material/Alert';
 import Chip from '@mui/material/Chip';
 import Avatar from '@mui/material/Avatar';
 import LinearProgress from '@mui/material/LinearProgress';
+import Slider from '@mui/material/Slider';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -89,6 +93,8 @@ import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import { DataGrid, GridActionsCellItem, GridCellModes } from '@mui/x-data-grid';
+import type { GridColDef } from '@mui/x-data-grid';
 import {
   createTheme,
   ThemeProvider,
@@ -103,12 +109,10 @@ import {
   knobLabel,
   orderFamilyComponents,
   stripComponentSlot,
-} from 'docs/src/modules/components/density/densityFields';
-import {
   densityVirtualKnobs,
   densityLinkedWrites,
   type DensityVirtualKnob,
-} from 'docs/src/modules/components/density/densityExtraFields';
+} from 'docs/src/modules/components/density/densityFields';
 import {
   buildOverrides,
   mergeOntoPreset,
@@ -138,6 +142,7 @@ import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
+const ICON_BUTTON_COLORS = ['default', 'primary', 'secondary'] as const;
 
 type Preset = (typeof PRESETS)[number];
 
@@ -289,12 +294,24 @@ const PADDING_RING_SLOTS = [
   '.MuiBadge-badge',
   '.MuiSwitch-root',
   '.MuiAutocomplete-option',
+  '.MuiSlider-root',
+  '.MuiSlider-valueLabel',
+  '.MuiDivider-wrapper',
+  '.MuiTablePagination-select',
+  '.MuiDataGrid-cell',
+  '.MuiDataGrid-columnHeader',
+  '.MuiDataGrid-toolbar',
+  '.MuiDataGrid-footerContainer',
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
 // Ring slots master already positions absolutely — the ::before ring anchors to
 // any positioned element, and forcing `relative` on these would un-anchor them.
-const POSITIONED_RING_SLOTS = new Set(['.MuiBadge-badge']);
+const POSITIONED_RING_SLOTS = new Set([
+  '.MuiBadge-badge',
+  '.MuiSlider-valueLabel',
+  '.MuiDataGrid-columnHeader',
+]);
 
 // Margin sits OUTSIDE the border-box, so the padding-ring's `padding:inherit` +
 // mask trick can't reach it (a pseudo-element can't escape past the border via
@@ -316,8 +333,16 @@ const POSITIONED_RING_SLOTS = new Set(['.MuiBadge-badge']);
 // the `boundingBoxOn` effect for the marker layer (mirrors the measure effect
 // below: own out-of-flow layer, ResizeObserver + MutationObserver relayout).
 const MARGIN_MARKER_SELECTORS = [
+  '[data-canvas-component="Divider"] .MuiDivider-root',
+  '.MuiTableSortLabel-icon',
+  '.MuiTablePagination-selectRoot',
+  '.MuiTablePagination-actions',
   '.MuiInputAdornment-positionStart',
   '.MuiInputAdornment-positionEnd',
+  '.MuiDataGrid-rowCount',
+  '.MuiDataGrid-selectedRowCount',
+  '.MuiDataGrid-toolbarDivider',
+  '.MuiDataGrid-toolbarLabel',
   '.MuiAccordionSummary-content',
   '.MuiAlert-icon',
   '.MuiAlert-action',
@@ -351,7 +376,7 @@ const MARGIN_MARKER_SELECTORS = [
 // the badge stays on the input row (`.MuiInputBase-root`), with the option rows
 // (the family's headline min-height) measured directly.
 const MEASURE_SLOTS = [
-  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *):not(.MuiButtonGroup-root *):not(.MuiAutocomplete-endAdornment *)',
+  '.MuiButtonBase-root:not(.MuiFormControlLabel-root *):not([data-canvas-component="Tooltip"] *):not(.MuiToggleButtonGroup-root *):not(.MuiButtonGroup-root *):not(.MuiAutocomplete-endAdornment *):not(.MuiDataGrid-root *)',
   '.MuiAutocomplete-option',
   '.MuiFormControlLabel-root',
   '.MuiToggleButtonGroup-root',
@@ -365,9 +390,15 @@ const MEASURE_SLOTS = [
   '.MuiSnackbarContent-root',
   '.MuiAvatar-root',
   '.MuiLinearProgress-root',
+  '.MuiSlider-root',
+  '[data-canvas-component="Slider"] .MuiSlider-thumb',
   '[data-canvas-component="Badge"] .MuiBadge-badge',
   '[data-canvas-component="SvgIcon"] .MuiSvgIcon-root',
   '[data-canvas-component="Tooltip"] .MuiTooltip-tooltip',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-row--firstVisible',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-columnHeader--last',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-toolbar',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-footerContainer',
 ];
 
 // Height-measure ruler colour (dimension line + caps + badge).
@@ -493,33 +524,80 @@ interface DensityComponentDef {
 function ButtonMatrix() {
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
-      {SIZES.map((size) => (
-        <Box key={size} data-size-section={size}>
-          <Divider textAlign="left" sx={{ mb: 1.5 }}>
-            <Typography variant="caption" color="text.secondary">
-              {size}
-            </Typography>
-          </Divider>
-          <Stack
-            direction="row"
-            spacing={10}
-            useFlexGap
-            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
-          >
-            {VARIANTS.map((variant) => (
-              <Button
-                key={variant}
-                variant={variant}
-                size={size}
-                color="primary"
-                data-cell={`${variant}-${size}`}
+      {/* Button and IconButton share the Button family, so both live in this one
+          matrix. Component name is the top group label (Divider+caption, the
+          TextField-matrix convention); size is the inner label (plain caption,
+          the SvgIcon-matrix convention) — no nested dividers. Button splits by
+          `variant`; IconButton has none, so `color` is its 3-cell axis (padding
+          is identical across colors — this is for visibility, not a knob). */}
+      <Box data-component-section="Button">
+        <Divider textAlign="left" sx={{ mb: 2 }}>
+          <Typography variant="caption" color="text.secondary">
+            Button
+          </Typography>
+        </Divider>
+        <Stack spacing={3}>
+          {SIZES.map((size) => (
+            <Box key={size} data-size-section={size}>
+              <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+                {size}
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={10}
+                useFlexGap
+                sx={{ alignItems: 'center', flexWrap: 'wrap' }}
               >
-                <span className="density-debug-text">{variant}</span>
-              </Button>
-            ))}
-          </Stack>
-        </Box>
-      ))}
+                {VARIANTS.map((variant) => (
+                  <Button
+                    key={variant}
+                    variant={variant}
+                    size={size}
+                    color="primary"
+                    data-cell={`${variant}-${size}`}
+                  >
+                    <span className="density-debug-text">{variant}</span>
+                  </Button>
+                ))}
+              </Stack>
+            </Box>
+          ))}
+        </Stack>
+      </Box>
+      <Box data-component-section="IconButton">
+        <Divider textAlign="left" sx={{ mb: 2 }}>
+          <Typography variant="caption" color="text.secondary">
+            IconButton
+          </Typography>
+        </Divider>
+        <Stack spacing={3}>
+          {SIZES.map((size) => (
+            <Box key={size} data-size-section={`icon-${size}`}>
+              <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+                {size}
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={10}
+                useFlexGap
+                sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+              >
+                {ICON_BUTTON_COLORS.map((color) => (
+                  <IconButton
+                    key={color}
+                    size={size}
+                    color={color}
+                    aria-label="more"
+                    data-cell={`icon-${color}-${size}`}
+                  >
+                    <MoreVertIcon />
+                  </IconButton>
+                ))}
+              </Stack>
+            </Box>
+          ))}
+        </Stack>
+      </Box>
     </Stack>
   );
 }
@@ -1372,6 +1450,86 @@ function AvatarMatrix() {
   );
 }
 
+function DividerMatrix() {
+  // All spacing here is theme.spacing-backed (middle margins, wrapper padding) —
+  // it reflows via the per-preset spacing base / Spacing tab, not density steps;
+  // the sidebar knobs are override-only.
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      <Stack sx={{ width: 180 }}>
+        <Typography variant="body2">
+          <span className="density-debug-text">Full bleed</span>
+        </Typography>
+        <Divider />
+        <Typography variant="body2">
+          <span className="density-debug-text">Below</span>
+        </Typography>
+      </Stack>
+      <Stack sx={{ width: 180 }}>
+        <Typography variant="body2">
+          <span className="density-debug-text">Middle</span>
+        </Typography>
+        <Divider variant="middle" />
+        <Typography variant="body2">
+          <span className="density-debug-text">Below</span>
+        </Typography>
+      </Stack>
+      <Stack sx={{ width: 180 }}>
+        <Typography variant="body2">
+          <span className="density-debug-text">Above</span>
+        </Typography>
+        <Divider>
+          <span className="density-debug-text">OR</span>
+        </Divider>
+        <Typography variant="body2">
+          <span className="density-debug-text">Below</span>
+        </Typography>
+      </Stack>
+      <Stack direction="row" sx={{ alignItems: 'center' }}>
+        <Button size="small">
+          <span className="density-debug-text">Left</span>
+        </Button>
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <Button size="small">
+          <span className="density-debug-text">Right</span>
+        </Button>
+      </Stack>
+    </Stack>
+  );
+}
+
+function SliderMatrix() {
+  // Marks/markLabel geometry is frozen by design (master-literal offsets) — the
+  // demos cover what reflows: track thickness, thumb size, touch padding,
+  // value-label bubble padding. alignItems center keeps rulers clear.
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 5, alignItems: 'center', flexWrap: 'wrap' }}
+    >
+      <Box sx={{ width: 180 }}>
+        <Slider aria-label="Medium" defaultValue={40} />
+      </Box>
+      <Box sx={{ width: 180 }}>
+        <Slider aria-label="Small" size="small" defaultValue={40} />
+      </Box>
+      <Box sx={{ width: 180 }}>
+        <Slider aria-label="Value label" defaultValue={60} valueLabelDisplay="on" />
+      </Box>
+      <Box sx={{ height: 120 }}>
+        <Slider aria-label="Vertical" orientation="vertical" defaultValue={40} />
+      </Box>
+    </Stack>
+  );
+}
+
 function ProgressMatrix() {
   // Bars need a width to render; alignItems center keeps the height ruler clear
   // of neighbors. CircularProgress is excluded: its size is an inline-style prop.
@@ -1461,8 +1619,10 @@ function TableCellMatrix() {
                 <TableCell padding="checkbox">
                   <Checkbox size="small" />
                 </TableCell>
-                <TableCell>
-                  <span className="density-debug-text">Dessert</span>
+                <TableCell sortDirection="asc">
+                  <TableSortLabel active direction="asc">
+                    <span className="density-debug-text">Dessert</span>
+                  </TableSortLabel>
                 </TableCell>
                 <TableCell align="right">
                   <span className="density-debug-text">Calories</span>
@@ -1496,9 +1656,133 @@ function TableCellMatrix() {
                 </TableRow>
               ))}
             </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell padding="checkbox" />
+                <TableCell>
+                  <span className="density-debug-text">Total</span>
+                </TableCell>
+                <TableCell align="right">
+                  <span className="density-debug-text">
+                    {DESSERT_ROWS.reduce((sum, row) => sum + row.calories, 0)}
+                  </span>
+                </TableCell>
+                <TableCell align="right">
+                  <span className="density-debug-text">
+                    {DESSERT_ROWS.reduce((sum, row) => sum + row.fat, 0).toFixed(1)}
+                  </span>
+                </TableCell>
+                <TableCell padding="none" />
+              </TableRow>
+            </TableFooter>
           </Table>
+          <TablePagination
+            component="div"
+            count={64}
+            page={1}
+            onPageChange={() => {}}
+            rowsPerPage={10}
+            rowsPerPageOptions={[10, 25]}
+          />
         </div>
       ))}
+    </Stack>
+  );
+}
+
+// Data Grid (MUI X) — Phase A emissions live (plan: weave-gaps
+// prototype/density/next.md). Heights ride defaultProps raw px (rowHeight
+// 40/52/64, columnHeaderHeight 44/56/68 — JS-gated by the virtualizer; the
+// grid's own density prop stays unset so a toolbar-selector flip remains a
+// relative user multiplier). Cell/header/edit insets, title gap, toolbar
+// trio, footer minHeight, count gutters and actions gap ride density steps;
+// su-driven paddings also reflow via --DataGrid-t-spacing-unit
+// (← theme.spacing(1)); chrome (column menu, TablePagination, filter fields,
+// checkboxes) rides the Material emissions. Deterministic rows — no
+// x-data-grid-generator (random). Grid-internal text can't take the
+// .density-debug-text wrapper (rendered by the grid, not authored here).
+const DATA_GRID_ROWS = [
+  { id: 1, name: 'Frozen yoghurt', calories: 159, fat: 6.0, inStock: true },
+  { id: 2, name: 'Ice cream sandwich', calories: 237, fat: 9.0, inStock: true },
+  { id: 3, name: 'Eclair', calories: 262, fat: 16.0, inStock: false },
+  { id: 4, name: 'Cupcake', calories: 305, fat: 3.7, inStock: true },
+  { id: 5, name: 'Gingerbread', calories: 356, fat: 16.0, inStock: false },
+  { id: 6, name: 'Donut', calories: 452, fat: 25.0, inStock: true },
+];
+
+const DATA_GRID_COLUMNS: GridColDef[] = [
+  { field: 'name', headerName: 'Dessert', width: 140 },
+  { field: 'calories', headerName: 'Calories', type: 'number', width: 110 },
+  { field: 'fat', headerName: 'Fat (g)', type: 'number', width: 100 },
+  { field: 'inStock', headerName: 'In stock', type: 'boolean', width: 100 },
+  {
+    field: 'actions',
+    type: 'actions',
+    width: 80,
+    getActions: () => [
+      <GridActionsCellItem key="copy" icon={<ContentCopyIcon fontSize="small" />} label="Copy" />,
+      <GridActionsCellItem key="more" icon={<MoreVertIcon fontSize="small" />} label="More" />,
+    ],
+  },
+];
+
+const DATA_GRID_GROUPING = [
+  { groupId: 'Nutrition', children: [{ field: 'calories' }, { field: 'fat' }] },
+];
+
+const DATA_GRID_EDIT_COLUMNS: GridColDef[] = [
+  { field: 'name', headerName: 'Dessert', width: 180, editable: true },
+  { field: 'calories', headerName: 'Calories', type: 'number', width: 110 },
+];
+
+// Cell 1/name pinned in edit mode — deterministic, no interaction needed.
+const DATA_GRID_EDIT_MODES = { 1: { name: { mode: GridCellModes.Edit } } };
+
+function DataGridMatrix() {
+  return (
+    <Stack spacing={4} sx={{ mt: 1 }}>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          core — checkbox selection · column group · boolean · actions
+        </Typography>
+        <div style={{ height: 480, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS}
+            columns={DATA_GRID_COLUMNS}
+            columnGroupingModel={DATA_GRID_GROUPING}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          toolbar + quick filter + footer (TablePagination reflows via its Material emissions)
+        </Typography>
+        <div style={{ height: 320, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS}
+            columns={DATA_GRID_COLUMNS.slice(0, 4)}
+            showToolbar
+            pageSizeOptions={[3, 6]}
+            initialState={{ pagination: { paginationModel: { pageSize: 3 } } }}
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          edit input (cell forced into edit mode — inset mirrors the view cell)
+        </Typography>
+        <div style={{ height: 220, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS.slice(0, 2)}
+            columns={DATA_GRID_EDIT_COLUMNS}
+            cellModesModel={DATA_GRID_EDIT_MODES}
+            hideFooter
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
     </Stack>
   );
 }
@@ -2149,7 +2433,8 @@ const THEME_TOKEN_PREVIEW: Record<TokenTabKey, () => React.ReactNode> = {
 // TypographyMatrix is reused as that panel's canvas preview.
 const COMPONENT_DEFS = {
   Button: {
-    canvasLabel: 'Button (color="primary")',
+    canvasLabel:
+      'Button (color="primary") — text/outlined/contained; IconButton — default/primary/secondary',
     Matrix: React.memo(ButtonMatrix),
   },
   Menu: {
@@ -2189,6 +2474,16 @@ const COMPONENT_DEFS = {
       'Progress — linear bar thickness (raw px); circular excluded (size prop is inline style)',
     Matrix: React.memo(ProgressMatrix),
   },
+  Slider: {
+    canvasLabel:
+      'Slider — track thickness + thumb (raw px), touch padding + bubble padding (steps); coarse-pointer floor frozen',
+    Matrix: React.memo(SliderMatrix),
+  },
+  Divider: {
+    canvasLabel:
+      'Divider — margins/wrapper padding are theme.spacing-backed (reflow via Spacing tab); knobs override-only',
+    Matrix: React.memo(DividerMatrix),
+  },
   Fab: {
     canvasLabel: 'Fab — circular size (small / medium / large)',
     Matrix: React.memo(FabMatrix),
@@ -2217,9 +2512,14 @@ const COMPONENT_DEFS = {
     canvasLabel: 'ButtonGroup — min-width floor + Button padding (small/medium/large)',
     Matrix: React.memo(ButtonGroupMatrix),
   },
-  TableCell: {
-    canvasLabel: 'TableCell — block padding per size + inline padding',
+  Table: {
+    canvasLabel: 'Table — cell block padding per size + inline padding',
     Matrix: React.memo(TableCellMatrix),
+  },
+  DataGrid: {
+    canvasLabel:
+      'Data Grid (MUI X) — heights via defaultProps raw px (row 40/52/64, header 44/56/68; grid density prop unset), insets/gaps via steps; chrome rides Material emissions',
+    Matrix: React.memo(DataGridMatrix),
   },
   Autocomplete: {
     canvasLabel: 'Autocomplete — option list min-height + padding (open)',

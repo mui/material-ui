@@ -88,6 +88,40 @@ const compact = {
         ],
       },
     },
+    MuiIconButton: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  padding: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiMenuItem: {
       styleOverrides: {
         root: [
@@ -836,6 +870,90 @@ const compact = {
         ],
       },
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: '3px',
+                  paddingBlock: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingBlock: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'horizontal',
+                  size: 'small',
+                },
+                style: {
+                  height: '2px',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: '3px',
+                  paddingInline: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingInline: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  size: 'small',
+                },
+                style: {
+                  width: '2px',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: '16px',
+            height: '16px',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: '10px',
+                  height: '10px',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xxs) var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -994,7 +1112,48 @@ const compact = {
                   padding: 0,
                 },
               },
+              {
+                props: ({ ownerState }) => ownerState.variant === "head" || ownerState.variant === "footer",
+                style: {
+                  fontSize: '0.8125rem',
+                  lineHeight: '1.25rem',
+                },
+              },
             ],
+          },
+        ],
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        icon: [
+          {
+            fontSize: '16px',
+            marginInline: 'var(--mui-density-xxs)',
+          },
+        ],
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: [
+          {
+            fontSize: '0.8125rem',
+            '& .MuiTablePagination-toolbar': {
+              minHeight: '44px',
+              paddingRight: 'var(--mui-density-xxs)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
+              marginLeft: 'var(--mui-density-lg)',
+            },
+            '& .MuiTablePagination-selectRoot': {
+              marginLeft: 'var(--mui-density-sm)',
+              marginRight: 'var(--mui-density-xxl)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
+              paddingLeft: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xl)',
+            },
           },
         ],
       },
@@ -1684,6 +1843,73 @@ const compact = {
         ],
       },
     },
+    MuiDataGrid: {
+      defaultProps: {
+        rowHeight: 40,
+        columnHeaderHeight: 44,
+      },
+      styleOverrides: {
+        cell: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        columnHeader: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              padding: '0 var(--mui-density-md)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbar: [
+          {
+            minHeight: '44px',
+            padding: 'var(--mui-density-sm)',
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '44px',
+          },
+        ],
+        rowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
   },
   typography: {
     h1: {
@@ -1773,6 +1999,40 @@ const normal = {
                 },
                 style: {
                   padding: 'var(--mui-density-sm) var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  padding: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg)',
                 },
               },
             ],
@@ -2515,6 +2775,90 @@ const normal = {
         ],
       },
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: '4px',
+                  paddingBlock: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingBlock: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'horizontal',
+                  size: 'small',
+                },
+                style: {
+                  height: '2px',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: '4px',
+                  paddingInline: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingInline: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  size: 'small',
+                },
+                style: {
+                  width: '2px',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: '20px',
+            height: '20px',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: '12px',
+                  height: '12px',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xxs) var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -2674,6 +3018,39 @@ const normal = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        icon: [
+          {
+            fontSize: '18px',
+            marginInline: 'var(--mui-density-xxs)',
+          },
+        ],
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: [
+          {
+            '& .MuiTablePagination-toolbar': {
+              minHeight: '52px',
+              paddingRight: 'var(--mui-density-xxs)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
+              marginLeft: 'var(--mui-density-lg)',
+            },
+            '& .MuiTablePagination-selectRoot': {
+              marginLeft: 'var(--mui-density-sm)',
+              marginRight: 'var(--mui-density-xxl)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
+              paddingLeft: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xl)',
+            },
           },
         ],
       },
@@ -3243,6 +3620,73 @@ const normal = {
         ],
       },
     },
+    MuiDataGrid: {
+      defaultProps: {
+        rowHeight: 52,
+        columnHeaderHeight: 56,
+      },
+      styleOverrides: {
+        cell: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        columnHeader: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              padding: '0 var(--mui-density-md)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbar: [
+          {
+            minHeight: '52px',
+            padding: 'var(--mui-density-sm)',
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '52px',
+          },
+        ],
+        rowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
   },
   typography: {},
   shape: {},
@@ -3286,6 +3730,40 @@ const comfort = {
                 },
                 style: {
                   padding: 'var(--mui-density-sm) var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  padding: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg)',
                 },
               },
             ],
@@ -4028,6 +4506,90 @@ const comfort = {
         ],
       },
     },
+    MuiSlider: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                },
+                style: {
+                  height: '5px',
+                  paddingBlock: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingBlock: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'horizontal',
+                  size: 'small',
+                },
+                style: {
+                  height: '3px',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  width: '5px',
+                  paddingInline: 'var(--mui-density-md)',
+                  '@media (pointer: coarse)': {
+                    paddingInline: '20px',
+                  },
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  size: 'small',
+                },
+                style: {
+                  width: '3px',
+                },
+              },
+            ],
+          },
+        ],
+        thumb: [
+          {
+            width: '24px',
+            height: '24px',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  width: '14px',
+                  height: '14px',
+                },
+              },
+            ],
+          },
+        ],
+        valueLabel: [
+          {
+            padding: 'var(--mui-density-xxs) var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  size: 'small',
+                },
+                style: {
+                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiBadge: {
       styleOverrides: {
         badge: [
@@ -4187,6 +4749,39 @@ const comfort = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        icon: [
+          {
+            fontSize: '20px',
+            marginInline: 'var(--mui-density-xxs)',
+          },
+        ],
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: [
+          {
+            '& .MuiTablePagination-toolbar': {
+              minHeight: '60px',
+              paddingRight: 'var(--mui-density-xxs)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-actions': {
+              marginLeft: 'var(--mui-density-lg)',
+            },
+            '& .MuiTablePagination-selectRoot': {
+              marginLeft: 'var(--mui-density-sm)',
+              marginRight: 'var(--mui-density-xxl)',
+            },
+            '& .MuiTablePagination-toolbar .MuiTablePagination-select': {
+              paddingLeft: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xl)',
+            },
           },
         ],
       },
@@ -4756,6 +5351,73 @@ const comfort = {
         ],
       },
     },
+    MuiDataGrid: {
+      defaultProps: {
+        rowHeight: 64,
+        columnHeaderHeight: 68,
+      },
+      styleOverrides: {
+        cell: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        columnHeader: [
+          {
+            padding: '0 var(--mui-density-md)',
+          },
+        ],
+        editInputCell: [
+          {
+            '& input': {
+              padding: '0 var(--mui-density-md)',
+            },
+          },
+        ],
+        columnHeaderTitleContainer: [
+          {
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbar: [
+          {
+            minHeight: '60px',
+            padding: 'var(--mui-density-sm)',
+            gap: 'var(--mui-density-xxs)',
+          },
+        ],
+        toolbarDivider: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        toolbarLabel: [
+          {
+            margin: '0 var(--mui-density-xs)',
+          },
+        ],
+        footerContainer: [
+          {
+            minHeight: '60px',
+          },
+        ],
+        rowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        selectedRowCount: [
+          {
+            margin: '0 var(--mui-density-lg)',
+          },
+        ],
+        actionsCell: [
+          {
+            gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
   },
   typography: {
     button: {
@@ -4873,7 +5535,13 @@ function enhance(
       const layers = Array.isArray(layer) ? layer : [layer];
       slots[slot] = [prev.styleOverrides?.[slot], ...layers].filter(Boolean);
     }
-    enhanced.components[name] = { ...prev, styleOverrides: slots };
+    const next: AnyRecord = { ...prev, styleOverrides: slots };
+    // JS-gated prop seams (e.g. DataGrid heights) — the app's own defaultProps win.
+    const defProps = (def as AnyRecord).defaultProps;
+    if (defProps) {
+      next.defaultProps = { ...defProps, ...prev.defaultProps };
+    }
+    enhanced.components[name] = next;
   }
 
   // Static theme: no vars channel ships, so resolve the baked var(--mui-density-*)

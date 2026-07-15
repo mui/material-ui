@@ -50,6 +50,8 @@ type RawLeaf = {
   nested: string;
   prop: string;
   value: unknown;
+  /** the leaf came from the component's theme defaultProps, not styleOverrides. */
+  isDefaultProp?: boolean;
 };
 
 // Recurse a style object → leaf props, descending into nested-selector keys.
@@ -96,6 +98,23 @@ function extract(preset: PresetName): RawLeaf[] {
         }
       }
     }
+    // Theme defaultProps emissions (JS-gated seams, e.g. DataGrid heights) —
+    // one row per primitive prop under the synthetic 'defaultProps' slot.
+    const defaultProps = components[component]?.defaultProps ?? {};
+    for (const [prop, value] of Object.entries(defaultProps)) {
+      if (value !== null && (typeof value === 'object' || typeof value === 'function')) {
+        continue;
+      }
+      out.push({
+        component,
+        slot: 'defaultProps',
+        matcher: null,
+        nested: '',
+        prop,
+        value,
+        isDefaultProp: true,
+      });
+    }
   }
   return out;
 }
@@ -126,6 +145,13 @@ function matcherSlug(matcher: RawLeaf['matcher']): string {
 
 const rowId = (l: RawLeaf) =>
   [l.component, l.slot, matcherSlug(l.matcher), l.nested, l.prop].join('|');
+
+function leafKind(l: RawLeaf): 'cssProp' | 'privateVar' | 'defaultProp' {
+  if (l.isDefaultProp) {
+    return 'defaultProp';
+  }
+  return l.prop.startsWith('--') ? 'privateVar' : 'cssProp';
+}
 
 // Print a matcher as source for the generated .ts (functions verbatim, objects as literals).
 function printMatcher(matcher: RawLeaf['matcher']): string {
@@ -169,7 +195,7 @@ type Row = {
     slot: string;
     props: string;
     nested: string;
-    kind: 'cssProp' | 'privateVar';
+    kind: 'cssProp' | 'privateVar' | 'defaultProp';
     prop: string;
   };
   isDensity: boolean;
@@ -193,7 +219,7 @@ function buildRows(): Row[] {
             slot: leaf.slot,
             props: printMatcher(leaf.matcher),
             nested: leaf.nested,
-            kind: leaf.prop.startsWith('--') ? 'privateVar' : 'cssProp',
+            kind: leafKind(leaf),
             prop: leaf.prop,
           },
           isDensity: Boolean(densityMatch),
@@ -249,10 +275,12 @@ export interface DensityEmitTarget {
   props: Record<string, unknown> | ((arg: { ownerState: any }) => boolean) | null;
   /** nested selector chain relative to the slot; '' = none. */
   nested: string;
-  /** emitted CSS property (mutually exclusive with privateVar). */
+  /** emitted CSS property (mutually exclusive with privateVar/defaultProp). */
   cssProp?: string;
   /** emitted private var e.g. '--_height'. */
   privateVar?: string;
+  /** theme defaultProps prop name — JS-gated seams (e.g. DataGrid rowHeight); applies via defaultProps, not styleOverrides. */
+  defaultProp?: string;
 }
 
 export interface DensityEmitRow {

@@ -58,13 +58,19 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock': {
     label: 'Autocomplete · inputRoot paddingBlock',
     hidden: true,
+    note: 'Consumes --_autocompleteInputRootPadBlock — the var row is the knob.',
   },
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock': {
     label: 'Autocomplete · input paddingBlock',
     hidden: true,
+    note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
   },
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock':
-    { label: 'Autocomplete · --_outlinedInputPadBlock', hidden: true },
+    {
+      label: 'Autocomplete · --_outlinedInputPadBlock',
+      hidden: true,
+      note: "Re-writes --_outlinedInputPadBlock = calc(root pad + inner pad) so the OutlinedInput floating-label rest-Y follows Autocomplete's own pads.",
+    },
   'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputRootPadBlock':
     'Autocomplete · Input root paddingBlock [size=small]',
   'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputPadBlock':
@@ -72,9 +78,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall|paddingBlock': {
     label: 'Autocomplete · paddingBlock',
     hidden: true,
+    note: 'Consumes --_autocompleteInputRootPadBlock — the var row is the knob.',
   },
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root.MuiInputBase-sizeSmall .MuiAutocomplete-input|paddingBlock':
-    { label: 'Autocomplete · paddingBlock', hidden: true },
+    {
+      label: 'Autocomplete · paddingBlock',
+      hidden: true,
+      note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
+    },
   'MuiAutocomplete|tag|base||margin': 'Autocomplete · tag · margin',
   'MuiAvatar|root|base||width': 'Avatar · width',
   'MuiAvatar|root|base||height': 'Avatar · height',
@@ -192,6 +203,27 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
   },
+  'MuiDataGrid|actionsCell|base||gridGap': 'DataGrid · actionsCell · gridGap',
+  'MuiDataGrid|cell|base||padding': 'DataGrid · cell · padding',
+  'MuiDataGrid|columnHeader|base||padding': 'DataGrid · columnHeader · padding',
+  'MuiDataGrid|columnHeaderTitleContainer|base||gap': 'DataGrid · columnHeaderTitleContainer · gap',
+  'MuiDataGrid|defaultProps|base||rowHeight': {
+    label: 'DataGrid · row height (defaultProps, px)',
+    note: 'JS-gated: applies through the rowHeight prop, not CSS — the virtualizer computes row positions from it.',
+  },
+  'MuiDataGrid|defaultProps|base||columnHeaderHeight': {
+    label: 'DataGrid · header height (defaultProps, px)',
+    note: 'JS-gated: applies through the columnHeaderHeight prop, not CSS.',
+  },
+  'MuiDataGrid|editInputCell|base|& input|padding': 'DataGrid · editInputCell · padding',
+  'MuiDataGrid|footerContainer|base||minHeight': 'DataGrid · footerContainer · minHeight',
+  'MuiDataGrid|rowCount|base||margin': 'DataGrid · rowCount · margin',
+  'MuiDataGrid|selectedRowCount|base||margin': 'DataGrid · selectedRowCount · margin',
+  'MuiDataGrid|toolbar|base||minHeight': 'DataGrid · toolbar · minHeight',
+  'MuiDataGrid|toolbar|base||padding': 'DataGrid · toolbar · padding',
+  'MuiDataGrid|toolbar|base||gap': 'DataGrid · toolbar · gap',
+  'MuiDataGrid|toolbarDivider|base||margin': 'DataGrid · toolbarDivider · margin',
+  'MuiDataGrid|toolbarLabel|base||margin': 'DataGrid · toolbarLabel · margin',
   'MuiDialogActions|root|base||padding': 'DialogActions · padding',
   'MuiDialogContent|root|base||padding': 'DialogContent · padding',
   'MuiDialogContent|root|dividers=true||padding': 'DialogContent · padding [dividers=true]',
@@ -205,30 +237,37 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiFilledInput|input|base||paddingTop': {
     label: 'FilledInput · input · paddingTop',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|base||paddingBottom': {
     label: 'FilledInput · input · paddingBottom',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|hiddenLabel=true||paddingTop': {
     label: 'FilledInput · input · paddingTop [hiddenLabel=true]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|hiddenLabel=true||paddingBottom': {
     label: 'FilledInput · input · paddingBottom [hiddenLabel=true]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|hiddenLabel=true,size=small||paddingTop': {
     label: 'FilledInput · input · paddingTop [hiddenLabel=true,size=small]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBottom': {
     label: 'FilledInput · input · paddingBottom [hiddenLabel=true,size=small]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|input|multiline=true||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [multiline=true]',
     hidden: true,
+    note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
     'FilledInput · padding top',
@@ -237,10 +276,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY',
     hidden: true,
+    note: 'Floating-label rest-Y = calc((padTop + padBottom) / 2) — follows the pad var knobs; consumed by the InputLabel transform.',
   },
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_shrinkY': {
     label: 'FilledInput · shrink Y',
     hidden: true,
+    note: 'Filled shrink-Y — tuned literal (no clean formula from the pads); consumed by the InputLabel filled-shrink transform.',
   },
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
     'FilledInput · padding top [size=small]',
@@ -249,56 +290,80 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY [size=small]',
     hidden: true,
+    note: 'Floating-label rest-Y = calc((padTop + padBottom) / 2) — follows the pad var knobs; consumed by the InputLabel transform.',
   },
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_shrinkY': {
     label: 'FilledInput · shrink Y [size=small]',
     hidden: true,
+    note: 'Filled shrink-Y — tuned literal (no clean formula from the pads); consumed by the InputLabel filled-shrink transform.',
   },
   'MuiFilledInput|root|multiline=true||paddingTop': {
     label: 'FilledInput · paddingTop [multiline=true]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|root|multiline=true||paddingBottom': {
     label: 'FilledInput · paddingBottom [multiline=true]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|root|multiline=true,size=small||paddingTop': {
     label: 'FilledInput · paddingTop [multiline=true,size=small]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|root|multiline=true,size=small||paddingBottom': {
     label: 'FilledInput · paddingBottom [multiline=true,size=small]',
     hidden: true,
+    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingTop': {
     label: 'FilledInput · paddingTop [multiline=true,hiddenLabel=true]',
     hidden: true,
+    note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
   'MuiFilledInput|root|hiddenLabel=true,multiline=true||paddingBottom': {
     label: 'FilledInput · paddingBottom [multiline=true,hiddenLabel=true]',
     hidden: true,
+    note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
   'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingTop': {
     label: 'FilledInput · paddingTop [multiline=true,hiddenLabel=true,size=small]',
     hidden: true,
+    note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
   'MuiFilledInput|root|hiddenLabel=true,multiline=true,size=small||paddingBottom': {
     label: 'FilledInput · paddingBottom [multiline=true,hiddenLabel=true,size=small]',
     hidden: true,
+    note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
-  'MuiInput|input|base||paddingTop': { label: 'Input · input · paddingTop', hidden: true },
-  'MuiInput|input|base||paddingBottom': { label: 'Input · input · paddingBottom', hidden: true },
+  'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
+  'MuiIconButton|root|size=medium||padding': 'IconButton · padding [size=medium]',
+  'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
+  'MuiInput|input|base||paddingTop': {
+    label: 'Input · input · paddingTop',
+    hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
+  },
+  'MuiInput|input|base||paddingBottom': {
+    label: 'Input · input · paddingBottom',
+    hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
+  },
   'MuiInput|input|size=small||paddingTop': {
     label: 'Input · input · paddingTop [size=small]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInput|input|size=small||paddingBottom': {
     label: 'Input · input · paddingBottom [size=small]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInput|input|multiline=true||paddingBlock': {
     label: 'Input · input · paddingBlock [multiline=true]',
     hidden: true,
+    note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · padding top',
   'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · padding bottom',
@@ -306,10 +371,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY',
     hidden: true,
+    note: 'Floating-label rest-Y = calc(--_inputMarginTop + (padTop + padBottom) / 2) — follows the writer var knobs; consumed by the InputLabel transform.',
   },
   'MuiInput|root|base|label + &, .MuiInputLabel-root + &|marginTop': {
     label: 'Input · marginTop',
     hidden: true,
+    note: 'Consumes --_inputMarginTop (label clearance) — the FormControl writer var row is the knob.',
   },
   'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop':
     'Input · padding top [size=small]',
@@ -318,22 +385,27 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY [size=small]',
     hidden: true,
+    note: 'Floating-label rest-Y = calc(--_inputMarginTop + (padTop + padBottom) / 2) — follows the writer var knobs; consumed by the InputLabel transform.',
   },
   'MuiInput|root|multiline=true||paddingTop': {
     label: 'Input · paddingTop [multiline=true]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInput|root|multiline=true||paddingBottom': {
     label: 'Input · paddingBottom [multiline=true]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInput|root|multiline=true,size=small||paddingTop': {
     label: 'Input · paddingTop [multiline=true,size=small]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInput|root|multiline=true,size=small||paddingBottom': {
     label: 'Input · paddingBottom [multiline=true,size=small]',
     hidden: true,
+    note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
   'MuiInputAdornment|root|position=start||marginRight':
     'InputAdornment · marginRight [position=start]',
@@ -343,10 +415,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiInputAdornment|root|position=end,size=small||marginLeft':
     'InputAdornment · marginLeft [position=end,size=small]',
   'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
-    { label: 'InputAdornment · marginTop [variant=filled]', hidden: true },
+    {
+      label: 'InputAdornment · marginTop [variant=filled]',
+      hidden: true,
+      note: 'Adornment top offset = calc(padTop - padBottom) — follows the FilledInput pad var knobs.',
+    },
   'MuiInputBase|input|base||paddingBlock': {
     label: 'InputBase · input · paddingBlock',
     hidden: true,
+    note: 'Cascade base for the standard variant — the per-variant pad var knobs (Input/OutlinedInput/FilledInput) own the value.',
   },
   'MuiInputBase|input|base||height': {
     label: 'InputBase · input · height',
@@ -356,10 +433,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiInputBase|input|size=small||paddingTop': {
     label: 'InputBase · input · paddingTop [size=small]',
     hidden: true,
+    note: 'Cascade base for the standard variant — the per-variant pad var knobs (Input/OutlinedInput/FilledInput) own the value.',
   },
   'MuiInputBase|input|multiline=true||paddingBlock': {
     label: 'InputBase · input · paddingBlock [multiline=true]',
     hidden: true,
+    note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
   'MuiInputBase|root|base||fontSize': 'InputBase · fontSize',
   'MuiInputBase|root|base||lineHeight': 'InputBase · lineHeight',
@@ -421,34 +500,41 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiOutlinedInput|input|base||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock',
     hidden: true,
+    note: 'Consumes --_outlinedInputPadBlock — the FormControl writer var row is the knob.',
   },
   'MuiOutlinedInput|input|size=small||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock [size=small]',
     hidden: true,
+    note: 'Consumes --_outlinedInputPadBlock — the FormControl writer var row is the knob.',
   },
   'MuiOutlinedInput|input|multiline=true||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock [multiline=true]',
     hidden: true,
+    note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
   'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block',
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'OutlinedInput · --_restY',
     hidden: true,
+    note: 'Floating-label rest-Y = calc(--_outlinedInputPadBlock - 0.5px) — follows the pad var knob; consumed by the InputLabel transform.',
   },
   'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'OutlinedInput · --_restY [size=small]',
     hidden: true,
+    note: 'Floating-label rest-Y (small) = calc(--_outlinedInputPadBlock + 0.5px) — follows the pad var knob; consumed by the InputLabel transform.',
   },
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block [size=small]',
   'MuiOutlinedInput|root|multiline=true||paddingBlock': {
     label: 'OutlinedInput · paddingBlock [multiline=true]',
     hidden: true,
+    note: 'Multiline box padding on the root — consumes --_outlinedInputPadBlock; the FormControl writer var row is the knob.',
   },
   'MuiOutlinedInput|root|multiline=true,size=small||paddingBlock': {
     label: 'OutlinedInput · paddingBlock [multiline=true,size=small]',
     hidden: true,
+    note: 'Multiline box padding on the root — consumes --_outlinedInputPadBlock; the FormControl writer var row is the knob.',
   },
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
   'MuiPaginationItem|root|size=medium||minWidth': 'PaginationItem · minWidth [size=medium]',
@@ -483,6 +569,32 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
+  'MuiSlider|root|orientation=horizontal||height': 'Slider · height [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal||paddingBlock':
+    'Slider · paddingBlock [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal|@media (pointer: coarse)|paddingBlock': {
+    label: 'Slider · paddingBlock [horizontal, coarse pointer]',
+    hidden: true,
+    note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
+  },
+  'MuiSlider|root|orientation=horizontal,size=small||height':
+    'Slider · height [orientation=horizontal,size=small]',
+  'MuiSlider|root|orientation=vertical||width': 'Slider · width [orientation=vertical]',
+  'MuiSlider|root|orientation=vertical||paddingInline':
+    'Slider · paddingInline [orientation=vertical]',
+  'MuiSlider|root|orientation=vertical|@media (pointer: coarse)|paddingInline': {
+    label: 'Slider · paddingInline [vertical, coarse pointer]',
+    hidden: true,
+    note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
+  },
+  'MuiSlider|root|orientation=vertical,size=small||width':
+    'Slider · width [orientation=vertical,size=small]',
+  'MuiSlider|thumb|base||width': 'Slider · thumb · width',
+  'MuiSlider|thumb|base||height': 'Slider · thumb · height',
+  'MuiSlider|thumb|size=small||width': 'Slider · thumb · width [size=small]',
+  'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
+  'MuiSlider|valueLabel|base||padding': 'Slider · valueLabel · padding',
+  'MuiSlider|valueLabel|size=small||padding': 'Slider · valueLabel · padding [size=small]',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
   'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
     'Step · paddingLeft [first, horizontal]',
@@ -623,7 +735,30 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiTableCell|root|size=medium||padding': 'TableCell · padding [size=medium]',
   'MuiTableCell|root|size=small||padding': 'TableCell · padding [size=small]',
   'MuiTableCell|root|padding=checkbox||padding': 'TableCell · padding [padding=checkbox]',
-  'MuiTableCell|root|padding=none||padding': 'TableCell · padding [padding=none]',
+  'MuiTableCell|root|padding=none||padding': {
+    label: 'TableCell · padding [padding=none]',
+    hidden: true,
+    note: 'Frozen 0 re-assert so the size padding never leaks into padding="none" cells — not tunable.',
+  },
+  'MuiTableCell|root|fn:1k4u0u||fontSize': 'TableCell · fontSize [variant=head or footer]',
+  'MuiTableCell|root|fn:1k4u0u||lineHeight': 'TableCell · lineHeight [variant=head or footer]',
+  'MuiTablePagination|root|base||fontSize': 'TablePagination · fontSize',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight':
+    'TablePagination · toolbar minHeight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight':
+    'TablePagination · toolbar paddingRight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-actions|marginLeft':
+    'TablePagination · actions marginLeft',
+  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginLeft':
+    'TablePagination · select marginLeft',
+  'MuiTablePagination|root|base|& .MuiTablePagination-selectRoot|marginRight':
+    'TablePagination · select marginRight',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingLeft':
+    'TablePagination · select paddingLeft',
+  'MuiTablePagination|root|base|& .MuiTablePagination-toolbar .MuiTablePagination-select|paddingRight':
+    'TablePagination · select paddingRight',
+  'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
+  'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
   'MuiTabs|root|base||minHeight': {
     label: 'Tabs min height',
     hidden: true,

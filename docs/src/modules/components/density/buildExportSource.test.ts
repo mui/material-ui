@@ -183,6 +183,39 @@ describe('buildExportSource', () => {
     expect(enhanceCompactDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
   });
 
+  it('defaultProps emissions (DataGrid heights): baked per preset, app defaults win, knob edit applies', () => {
+    const src = buildExportSource(buildExportInput(workspaces()));
+    expect(src).to.contain('defaultProps');
+    expect(src).to.contain('rowHeight: 40');
+    const { enhanceCompactDensity, enhanceComfortDensity } = evaluate(src);
+    const enhanced = enhanceCompactDensity(createTheme({}));
+    expect(enhanced.components.MuiDataGrid.defaultProps).to.deep.equal({
+      rowHeight: 40,
+      columnHeaderHeight: 44,
+    });
+    expect(
+      enhanceComfortDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+    ).to.equal(64);
+    // the app's own defaultProps win over the baked preset value
+    const appTheme = createTheme({}) as any;
+    appTheme.components = { MuiDataGrid: { defaultProps: { rowHeight: 33 } } };
+    const merged = enhanceCompactDensity(appTheme);
+    expect(merged.components.MuiDataGrid.defaultProps.rowHeight).to.equal(33);
+    expect(merged.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(44);
+    // a playground edit on the defaultProps knob bakes into its preset only
+    const edited = evaluate(
+      buildExportSource(
+        buildExportInput(workspaces({ 'MuiDataGrid|defaultProps|base||rowHeight': '48' })),
+      ),
+    );
+    expect(
+      edited.enhanceCompactDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+    ).to.equal(48);
+    expect(
+      edited.enhanceNormalDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+    ).to.equal(52);
+  });
+
   it('edits are per-preset: compact edits do NOT leak into enhanceNormalDensity', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.rawPx, ...EDITS.themeTokens })),

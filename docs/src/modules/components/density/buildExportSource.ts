@@ -257,7 +257,13 @@ function enhance(
       const layers = Array.isArray(layer) ? layer : [layer];
       slots[slot] = [prev.styleOverrides?.[slot], ...layers].filter(Boolean);
     }
-    enhanced.components[name] = { ...prev, styleOverrides: slots };
+    const next: AnyRecord = { ...prev, styleOverrides: slots };
+    // JS-gated prop seams (e.g. DataGrid heights) — the app's own defaultProps win.
+    const defProps = (def as AnyRecord).defaultProps;
+    if (defProps) {
+      next.defaultProps = { ...defProps, ...prev.defaultProps };
+    }
+    enhanced.components[name] = next;
   }
 
   // Static theme: no vars channel ships, so resolve the baked var(--mui-density-*)

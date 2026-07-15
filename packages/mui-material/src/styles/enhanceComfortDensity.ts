@@ -1,4 +1,10 @@
-import { addRootOverride, applyDensity, DensityScale, EnhanceableTheme } from './densityScale';
+import {
+  addDefaultProps,
+  addRootOverride,
+  applyDensity,
+  DensityScale,
+  EnhanceableTheme,
+} from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import switchClasses from '../Switch/switchClasses';
 import tabClasses from '../Tab/tabClasses';
@@ -15,6 +21,7 @@ import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
 import { formControlLabelClasses } from '../FormControlLabel';
 import { inputAdornmentClasses } from '../InputAdornment';
+import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 
 const scale: DensityScale = {
   xxs: '6px',
@@ -37,6 +44,19 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } },
       { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
       { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiIconButton', {
+    // Uniform padding per size = density steps (master: 5/8/12 for
+    // small/medium/large — same shape as Button's own per-size padding).
+    // fontSize (the 1em-child sizing seam, 18/24/28) and the edge start/end
+    // negative margins (flush-alignment offsets, not padding-derived) stay
+    // frozen at master — icon visual size is owned by SvgIcon's own fontSize
+    // prop knob elsewhere, and the edge offsets aren't a clean step ratio.
+    variants: [
+      { props: { size: 'small' }, style: { padding: d.xxs } },
+      { props: { size: 'medium' }, style: { padding: d.sm } },
+      { props: { size: 'large' }, style: { padding: d.lg } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
@@ -519,6 +539,55 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   // Bar thickness = raw px (sizing); bars are absolute top/bottom-0, so the
   // root height drives every variant (determinate/indeterminate/buffer/query).
   addRootOverride(enhanced.components, 'MuiLinearProgress', { height: '5px' });
+  addRootOverride(enhanced.components, 'MuiSlider', {
+    // Track thickness = raw px (sizing; rail/track inherit the root box). Touch
+    // padding = step on the logical axis (block for horizontal, inline for
+    // vertical) so one knob drives both; the coarse-pointer 20px floor is
+    // re-asserted frozen (42px a11y hit target, never densified). Marks and
+    // markLabel geometry stay frozen (master-literal offsets the margins align to).
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          height: '5px',
+          paddingBlock: d.md,
+          '@media (pointer: coarse)': { paddingBlock: '20px' },
+        },
+      },
+      { props: { orientation: 'horizontal', size: 'small' }, style: { height: '3px' } },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          width: '5px',
+          paddingInline: d.md,
+          '@media (pointer: coarse)': { paddingInline: '20px' },
+        },
+      },
+      { props: { orientation: 'vertical', size: 'small' }, style: { width: '3px' } },
+    ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      // Thumb square = raw px (sizing); the 42px ::after hit target stays frozen.
+      width: '24px',
+      height: '24px',
+      variants: [{ props: { size: 'small' }, style: { width: '14px', height: '14px' } }],
+    },
+    'thumb',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiSlider',
+    {
+      // Bubble padding = steps (normal maps master's 0.25rem 0.75rem / 0.5rem
+      // exactly); arrow box + placement offsets stay frozen.
+      padding: `${d.xxs} ${d.md}`,
+      variants: [{ props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } }],
+    },
+    'valueLabel',
+  );
   addRootOverride(
     enhanced.components,
     'MuiBadge',
@@ -636,6 +705,45 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
       { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiTableSortLabel',
+    {
+      // Sort arrow = raw px (sizing); icon<->label gap = one marginInline leaf
+      // (master sets both sides at 4px — the arrow flips sides in right-aligned
+      // columns; normal xxs maps it exactly).
+      fontSize: '20px',
+      marginInline: d.xxs,
+    },
+    'icon',
+  );
+  addRootOverride(enhanced.components, 'MuiTablePagination', {
+    // ALL pagination geometry rides the ROOT slot as descendant selectors: the
+    // toolbar/select slots have custom overridesResolvers that SPREAD the theme
+    // styleOverride ({...styles.toolbar}) — an array-form slot (addRootOverride,
+    // playground layering) spreads to numeric keys and silently drops. Root's
+    // default resolver is array-safe, and root-class nesting outranks the slot
+    // rules (incl. master's duplicated minHeight media re-asserts).
+    // Bar min-height = raw px (sizing); trailing pad + actions gap = steps.
+    [`& .${tablePaginationClasses.toolbar}`]: {
+      minHeight: '60px',
+      paddingRight: d.xxs,
+    },
+    [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.actions}`]: {
+      marginLeft: d.lg,
+    },
+    // Rows-per-page select: outer gaps + inner pad (right side = the dropdown
+    // icon lane); normal maps master (8/32, 8/24) exactly. Inner pad nests past
+    // the toolbar so it outranks master's own 2-class `& .select` rule.
+    [`& .${tablePaginationClasses.selectRoot}`]: {
+      marginLeft: d.sm,
+      marginRight: d.xxl,
+    },
+    [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.select}`]: {
+      paddingLeft: d.sm,
+      paddingRight: d.xl,
+    },
   });
   addRootOverride(
     enhanced.components,
@@ -971,6 +1079,38 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     paddingBlockEnd: d.lg,
     paddingInline: d.lg,
   });
+  // MUI X DataGrid — rationale in enhanceCompactDensity; mirrored structure.
+  addDefaultProps(enhanced.components, 'MuiDataGrid', {
+    rowHeight: 64,
+    columnHeaderHeight: 68,
+  });
+  // Cell/header inline inset (master 0 10px) + edit input aligned to the same
+  // step (master 0 16px — upstream mismatch makes the value jump on edit entry).
+  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: `0 ${d.md}` }, 'cell');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: `0 ${d.md}` }, 'columnHeader');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { '& input': { padding: `0 ${d.md}` } },
+    'editInputCell',
+  );
+  // Header title↔sort/filter icon gap (master 2px = 0.25 spacing unit).
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.xxs }, 'columnHeaderTitleContainer');
+  // Toolbar: min-height = raw px (sizing); inner padding + item gap = steps.
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '60px', padding: d.sm, gap: d.xxs },
+    'toolbar',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.xs}` }, 'toolbarDivider');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.xs}` }, 'toolbarLabel');
+  // Footer: min-height = raw px (sizing); row/selection count gutters = steps.
+  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '60px' }, 'footerContainer');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.lg}` }, 'rowCount');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.lg}` }, 'selectedRowCount');
+  // Gap between row action icon buttons (master 8px).
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gridGap: d.sm }, 'actionsCell');
   enhanced.typography = {
     ...enhanced.typography,
     button: { ...enhanced.typography?.button, fontSize: '0.9375rem', lineHeight: 2 },

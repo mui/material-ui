@@ -120,3 +120,23 @@ export function addRootOverride(
     },
   };
 }
+
+/**
+ * Attach theme `defaultProps` for a component, preserving anything the consuming
+ * theme already set (an explicit user default wins over the preset's). For seams
+ * CSS cannot reach — e.g. the X DataGrid's row/header heights, which feed the
+ * virtualizer's JS math and only apply through props.
+ *
+ * **Mutates `components` in place** — same contract as `addRootOverride`.
+ */
+export function addDefaultProps(
+  components: NonNullable<EnhanceableTheme['components']>,
+  name: string,
+  defaults: Record<string, unknown>,
+): void {
+  const component = (components as any)[name];
+  (components as any)[name] = {
+    ...component,
+    defaultProps: { ...defaults, ...component?.defaultProps },
+  };
+}
