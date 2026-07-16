@@ -212,17 +212,17 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiDataGrid|actionsCell|base||gridGap': 'DataGrid · actionsCell · gridGap',
   'MuiDataGrid|aiAssistantPanel|base||width': {
     label: 'DataGrid · aiAssistantPanel · width',
-    note: '[Premium] master 380. No static demo — needs an AI service context; verify via computed styles.',
+    note: '[Premium] master 380. Demo: AI panel opens via initialState.preferencePanel (empty state, no service needed).',
   },
   'MuiDataGrid|aiAssistantPanelHeader|base||height': {
     label: 'DataGrid · aiAssistantPanelHeader · height',
-    note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52). No static demo — needs an AI service context; verify via computed styles.',
+    note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52). Demo: AI panel opens via initialState.preferencePanel (empty state, no service needed).',
   },
   'MuiDataGrid|cell|base||paddingInline': 'DataGrid · cell · paddingInline',
   'MuiDataGrid|cell|base|&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell|paddingTop':
     {
       label: 'DataGrid · cell · rowspan multiSelect paddingTop',
-      note: '⚑ [Premium] rowspan multi-select chip stack (master 8). No static demo — verify via computed styles.',
+      note: '⚑ [Premium] rowspan multi-select chip stack (master 8). Demo: row-spanning multiSelect column, aria-rowspan=2.',
     },
   'MuiDataGrid|chartsPanelDataAvailableFields|base||minHeight': {
     label: 'DataGrid · chartsPanelDataAvailableFields · minHeight',
