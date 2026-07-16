@@ -2349,6 +2349,7 @@ const compact = {
         root: [
           {
             height: '286px',
+            maxHeight: '286px',
             width: '278px',
           },
         ],
@@ -2381,6 +2382,28 @@ const compact = {
             height: '32px',
           },
         ],
+        buttonFiller: [
+          {
+            width: '64px',
+            height: '32px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  yearsPerRow: 3,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xs)',
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     MuiMonthCalendar: {
@@ -2389,6 +2412,22 @@ const compact = {
           {
             width: '64px',
             height: '32px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-lg)',
+            paddingBlock: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  monthsPerRow: 3,
+                },
+                style: {
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -4651,6 +4690,7 @@ const normal = {
         root: [
           {
             height: '336px',
+            maxHeight: '336px',
             width: '320px',
           },
         ],
@@ -4683,6 +4723,28 @@ const normal = {
             height: '36px',
           },
         ],
+        buttonFiller: [
+          {
+            width: '72px',
+            height: '36px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  yearsPerRow: 3,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xs)',
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     MuiMonthCalendar: {
@@ -4691,6 +4753,22 @@ const normal = {
           {
             width: '72px',
             height: '36px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-lg)',
+            paddingBlock: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  monthsPerRow: 3,
+                },
+                style: {
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
           },
         ],
       },
@@ -6907,6 +6985,7 @@ const comfort = {
         root: [
           {
             height: '406px',
+            maxHeight: '406px',
             width: '376px',
           },
         ],
@@ -6939,6 +7018,28 @@ const comfort = {
             height: '44px',
           },
         ],
+        buttonFiller: [
+          {
+            width: '84px',
+            height: '44px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-md)',
+            variants: [
+              {
+                props: {
+                  yearsPerRow: 3,
+                },
+                style: {
+                  paddingBlock: 'var(--mui-density-xs)',
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
       },
     },
     MuiMonthCalendar: {
@@ -6947,6 +7048,22 @@ const comfort = {
           {
             width: '84px',
             height: '44px',
+          },
+        ],
+        root: [
+          {
+            rowGap: 'var(--mui-density-lg)',
+            paddingBlock: 'var(--mui-density-sm)',
+            variants: [
+              {
+                props: {
+                  monthsPerRow: 3,
+                },
+                style: {
+                  columnGap: 'var(--mui-density-xl)',
+                },
+              },
+            ],
           },
         ],
       },

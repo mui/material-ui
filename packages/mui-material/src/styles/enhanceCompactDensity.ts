@@ -1548,12 +1548,13 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   };
   // MUI X Tree View — indentation is an inline-style var on the tree root
   // (useTreeViewRootProps), unreachable from styleOverrides; the defaultProp is the
-  // lever, and a string value passes through verbatim so the step reference survives.
+  // lever, and a string/number value passes through verbatim. `d.md` keeps it
+  // dual-mode: a var ref under cssVariables (any prefix), raw px on static themes.
   addDefaultProps(enhanced.components, 'MuiRichTreeView', {
-    itemChildrenIndentation: 'var(--mui-density-md)',
+    itemChildrenIndentation: d.md,
   });
   addDefaultProps(enhanced.components, 'MuiSimpleTreeView', {
-    itemChildrenIndentation: 'var(--mui-density-md)',
+    itemChildrenIndentation: d.md,
   });
   // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
   // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.
@@ -1619,6 +1620,9 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   // copy would shadow the knob), so day-size knob edits don't reflow the root box.
   addRootOverride(enhanced.components, 'MuiDateCalendar', {
     height: '286px',
+    // The PickerViewRoot base pins maxHeight at 336 — without moving it the comfort
+    // height is clamped and the last weeks clip (overflow hidden).
+    maxHeight: '286px',
     width: '278px',
   });
   // Calendar header: min/max pinned together (upstream pins both against a Safari
@@ -1632,7 +1636,12 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     maxHeight: '36px',
   });
   addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', { marginRight: d.xs }, 'label');
-  // Year/month grid buttons (master 72×36) — sizing raw.
+  // Year/month grid buttons (master 72×36) — sizing raw; the Year filler (last-row
+  // spacer) mirrors the button box. Grid spacing: row gaps + block padding + the
+  // 3-per-row columnGap ride steps (master 12/6/24 year, 16/8/24 month). Year's
+  // paddingBlock and both columnGaps scope to the default 3-per-row variant — the
+  // 4-per-row variant redefines those properties (padding '0 2px', columnGap 0) and
+  // an unconditional emission would clobber it.
   addRootOverride(
     enhanced.components,
     'MuiYearCalendar',
@@ -1641,10 +1650,25 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   );
   addRootOverride(
     enhanced.components,
+    'MuiYearCalendar',
+    { width: '64px', height: '32px' },
+    'buttonFiller',
+  );
+  addRootOverride(enhanced.components, 'MuiYearCalendar', {
+    rowGap: d.md,
+    variants: [{ props: { yearsPerRow: 3 }, style: { paddingBlock: d.xs, columnGap: d.xl } }],
+  });
+  addRootOverride(
+    enhanced.components,
     'MuiMonthCalendar',
     { width: '64px', height: '32px' },
     'button',
   );
+  addRootOverride(enhanced.components, 'MuiMonthCalendar', {
+    rowGap: d.lg,
+    paddingBlock: d.sm,
+    variants: [{ props: { monthsPerRow: 3 }, style: { columnGap: d.xl } }],
+  });
   // Digital clocks: item padding steps (master 8 16 / 8); the 2px 4px item margin is
   // frozen — the scroll positioning math subtracts the first item's 4px in JS.
   addRootOverride(enhanced.components, 'MuiDigitalClock', { padding: `${d.sm} ${d.lg}` }, 'item');

@@ -371,6 +371,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DateCalendar · height',
     note: "Raw per-preset (folds header + weekday + 6-week math at this preset's values); day-size knob edits do not reflow it — adjust to match.",
   },
+  'MuiDateCalendar|root|base||maxHeight': {
+    label: 'DateCalendar · maxHeight',
+    note: 'Pinned pair with height — the PickerViewRoot base clamps maxHeight at 336, which would clip taller presets. Edit both.',
+  },
   'MuiDateCalendar|root|base||width': {
     label: 'DateCalendar · width',
     note: "Raw per-preset (7 day columns + 40 slack at this preset's values); see height note.",
@@ -750,6 +754,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'inline padding [dense][disableGutters]',
   'MuiMonthCalendar|button|base||width': 'MonthCalendar · button · width',
   'MuiMonthCalendar|button|base||height': 'MonthCalendar · button · height',
+  'MuiMonthCalendar|root|base||rowGap': 'MonthCalendar · rowGap',
+  'MuiMonthCalendar|root|base||paddingBlock': 'MonthCalendar · paddingBlock',
+  'MuiMonthCalendar|root|monthsPerRow=3||columnGap': 'MonthCalendar · columnGap [monthsPerRow=3]',
   'MuiMultiSectionDigitalClockSection|item|base||padding': {
     label: 'MultiSectionDigitalClockSection · item · padding',
     note: 'Item = styled(MenuItem); margin frozen (same JS scroll math as DigitalClock).',
@@ -1197,4 +1204,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiYearCalendar|button|base||width': 'YearCalendar · button · width',
   'MuiYearCalendar|button|base||height': 'YearCalendar · button · height',
+  'MuiYearCalendar|buttonFiller|base||width': {
+    label: 'YearCalendar · buttonFiller · width',
+    note: 'Last-row spacer — mirrors the button box; edit with the button dims.',
+  },
+  'MuiYearCalendar|buttonFiller|base||height': {
+    label: 'YearCalendar · buttonFiller · height',
+    note: 'Last-row spacer — mirrors the button box; edit with the button dims.',
+  },
+  'MuiYearCalendar|root|base||rowGap': 'YearCalendar · rowGap',
+  'MuiYearCalendar|root|yearsPerRow=3||paddingBlock': {
+    label: 'YearCalendar · paddingBlock [yearsPerRow=3]',
+    note: 'Scoped to the default 3-per-row layout — the 4-per-row variant redefines padding (0 2px) and stays master.',
+  },
+  'MuiYearCalendar|root|yearsPerRow=3||columnGap': 'YearCalendar · columnGap [yearsPerRow=3]',
 };
