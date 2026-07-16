@@ -711,7 +711,9 @@ export function AppSearch(props: AppSearchProps) {
         styles={(theme) => [
           {
             [theme.vars ? '[data-mui-color-scheme="dark"]:root' : '.mode-dark']: {
-              '--docsearch-highlight-color': (theme.vars || theme).palette.primaryDark[300],
+              // Use the brand blue (primary) not the dark-surface palette (primaryDark) so the search
+              // icon matches the other dark-mode accents instead of rendering grey-blue.
+              '--docsearch-highlight-color': (theme.vars || theme).palette.primary[300],
               '--docsearch-hit-active-color': (theme.vars || theme).palette.primary[300],
             },
           },
