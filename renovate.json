@@ -16,6 +16,11 @@
       "matchPackageNames": ["@emotion/*", "stylis", "@types/stylis"]
     },
     {
+      "groupName": "DocSearch",
+      "description": "Keep the pinned @docsearch/css CDN link (AppSearch.tsx, tracked via customManagers) in lockstep with the @docsearch/react package.",
+      "matchPackageNames": ["@docsearch/react", "@docsearch/css"]
+    },
+    {
       "groupName": "Font awesome SVG icons",
       "matchPackageNames": "@fortawesome/*"
     },
@@ -78,6 +83,18 @@
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
+      "managerFilePatterns": [
+        "packages-internal/core-docs/src/AppLayout/components/AppSearch.tsx"
+      ],
+      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
+      "depNameTemplate": "@docsearch/css",
+      "datasourceTemplate": "npm"
     }
   ]
 }
