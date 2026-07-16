@@ -65,9 +65,9 @@ describe('cssVarsParser', () => {
           assignNestedKeys(result, ['a', key, 'polluted'], 'yes');
           expect((result as Record<string, unknown>).polluted).to.equal(undefined);
           expect(({} as Record<string, unknown>).polluted).to.equal(undefined);
-          expect(
-            Object.prototype.hasOwnProperty.call(Object.prototype, 'polluted'),
-          ).to.equal(false);
+          expect(Object.prototype.hasOwnProperty.call(Object.prototype, 'polluted')).to.equal(
+            false,
+          );
         } finally {
           delete (Object.prototype as Record<string, unknown>).polluted;
         }
