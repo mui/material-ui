@@ -2057,6 +2057,7 @@ const compact = {
         pivotPanelField: [
           {
             height: '26px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         pivotPanelAvailableFields: [
@@ -2087,6 +2088,7 @@ const compact = {
         chartsPanelDataField: [
           {
             height: '26px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         chartsPanelDataAvailableFields: [
@@ -4030,6 +4032,7 @@ const normal = {
         pivotPanelField: [
           {
             height: '32px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         pivotPanelAvailableFields: [
@@ -4060,6 +4063,7 @@ const normal = {
         chartsPanelDataField: [
           {
             height: '32px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         chartsPanelDataAvailableFields: [
@@ -5957,6 +5961,7 @@ const comfort = {
         pivotPanelField: [
           {
             height: '38px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         pivotPanelAvailableFields: [
@@ -5987,6 +5992,7 @@ const comfort = {
         chartsPanelDataField: [
           {
             height: '38px',
+            marginInlineStart: 'var(--mui-density-xs)',
           },
         ],
         chartsPanelDataAvailableFields: [

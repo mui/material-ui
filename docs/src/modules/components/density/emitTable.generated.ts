@@ -1434,6 +1434,24 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { compact: '26px', normal: '32px', comfort: '38px' },
   },
   {
+    id: 'MuiDataGrid|chartsPanelDataField|base||marginInlineStart',
+    label: 'DataGrid · chartsPanelDataField · marginInlineStart',
+    isDensity: true,
+    densityKey: 'xs',
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'chartsPanelDataField',
+      props: null,
+      nested: '',
+      cssProp: 'marginInlineStart',
+    },
+    values: {
+      compact: 'var(--mui-density-xs)',
+      normal: 'var(--mui-density-xs)',
+      comfort: 'var(--mui-density-xs)',
+    },
+  },
+  {
     id: 'MuiDataGrid|chartsPanelDataPlaceholder|base||minHeight',
     label: 'DataGrid · chartsPanelDataPlaceholder · minHeight',
     isDensity: false,
@@ -1920,6 +1938,24 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'height',
     },
     values: { compact: '26px', normal: '32px', comfort: '38px' },
+  },
+  {
+    id: 'MuiDataGrid|pivotPanelField|base||marginInlineStart',
+    label: 'DataGrid · pivotPanelField · marginInlineStart',
+    isDensity: true,
+    densityKey: 'xs',
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'pivotPanelField',
+      props: null,
+      nested: '',
+      cssProp: 'marginInlineStart',
+    },
+    values: {
+      compact: 'var(--mui-density-xs)',
+      normal: 'var(--mui-density-xs)',
+      comfort: 'var(--mui-density-xs)',
+    },
   },
   {
     id: 'MuiDataGrid|pivotPanelHeader|base||height',

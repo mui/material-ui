@@ -226,6 +226,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · chartsPanelDataField · height',
     note: '[Premium] mirrors pivotPanelField — values never fork.',
   },
+  'MuiDataGrid|chartsPanelDataField|base||marginInlineStart': {
+    label: 'DataGrid · chartsPanelDataField · marginInlineStart',
+    note: '[Premium] mirrors pivotPanelField — values never fork.',
+  },
   'MuiDataGrid|chartsPanelDataPlaceholder|base||minHeight': {
     label: 'DataGrid · chartsPanelDataPlaceholder · minHeight',
     note: '[Premium] mirrors pivotPanelPlaceholder — values never fork.',
@@ -301,6 +305,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 84).',
   },
   'MuiDataGrid|pivotPanelField|base||height': 'DataGrid · pivotPanelField · height',
+  'MuiDataGrid|pivotPanelField|base||marginInlineStart': {
+    label: 'DataGrid · pivotPanelField · marginInlineStart',
+    note: '[Premium] pulls the row off the sidebar edge so the hover drag handle (absolutely pinned to the row edge) gets space. No upstream margin.',
+  },
   'MuiDataGrid|pivotPanelHeader|base||height': {
     label: 'DataGrid · pivotPanelHeader · height',
     note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52).',

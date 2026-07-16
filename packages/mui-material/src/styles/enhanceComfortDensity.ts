@@ -1246,7 +1246,9 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   );
   // [Premium] Panel chrome sizing (raw px): sidebar/AI widths, the shared 52px
   // header rhythm (same trio as toolbar/footer), pivot/charts field rows and
-  // drop zones (charts mirrors pivot — one decision, values never fork).
+  // drop zones (charts mirrors pivot — one decision, values never fork). Field
+  // marginInlineStart (step) pulls the row off the sidebar edge so the hover
+  // drag handle — absolutely pinned to the row's left edge — gets breathing room.
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
@@ -1254,7 +1256,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     'sidebar',
   );
   addRootOverride(enhanced.components, 'MuiDataGrid', { height: '60px' }, 'pivotPanelHeader');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '38px' }, 'pivotPanelField');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { height: '38px', marginInlineStart: d.xs },
+    'pivotPanelField',
+  );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
@@ -1270,7 +1277,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   );
   addRootOverride(enhanced.components, 'MuiDataGrid', { width: '420px' }, 'aiAssistantPanel');
   addRootOverride(enhanced.components, 'MuiDataGrid', { height: '60px' }, 'aiAssistantPanelHeader');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '38px' }, 'chartsPanelDataField');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { height: '38px', marginInlineStart: d.xs },
+    'chartsPanelDataField',
+  );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
