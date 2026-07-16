@@ -99,14 +99,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiBottomNavigationAction|root|base||paddingInline': 'BottomNavigationAction · paddingInline',
   'MuiBottomNavigationAction|root|base||minWidth': 'BottomNavigationAction · minWidth',
   'MuiBottomNavigationAction|root|base||maxWidth': 'BottomNavigationAction · maxWidth',
-  'MuiBottomNavigationAction|root|fn:gt2t4r||paddingTop': {
+  'MuiBottomNavigationAction|root|fn:x2hhfk||paddingTop': {
     label: 'BottomNavigationAction · paddingTop [icon-only]',
-    note: 'Centers the icon when the label is hidden and unselected (master 14).',
-  },
-  'MuiBottomNavigationAction|root|fn:1kqkh2||paddingTop': {
-    label: 'BottomNavigationAction · paddingTop [icon-only, no label]',
-    hidden: true,
-    note: 'Frozen re-assert of master 0 (our icon-only rule lands later in the cascade and would clobber it).',
+    note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
   'MuiButton|root|size=small||padding': 'Button · padding [size=small]',
@@ -374,80 +369,64 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'DataGrid · treeDataGroupingCellToggle · marginRight',
   'MuiDialog|paper|base||--_dialogMargin': {
     label: 'Dialog · paper margin',
-    note: 'One private var: paper margin + every 100%-minus-margin viewport calc derive from it. Media-query guards stay at master boundaries (vars cannot reach @media).',
+    note: 'One private var: paper margin + every 100%-minus-margin viewport calc derive from it. All consumers scoped fullScreen:false (master zeroes them there); media guards stay at master boundaries (vars cannot reach @media).',
   },
-  'MuiDialog|paper|base||margin': {
+  'MuiDialog|paper|fullScreen=false||margin': {
     label: 'Dialog · paper · margin',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|scroll=paper||maxHeight': {
+  'MuiDialog|paper|fullScreen=false,scroll=paper||maxHeight': {
     label: 'Dialog · paper · maxHeight [scroll=paper]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|fn:1hhir0||maxWidth': {
+  'MuiDialog|paper|fn:1qbzzu||maxWidth': {
     label: 'Dialog · paper · maxWidth [no maxWidth]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|maxWidth=xs,scroll=body|@media (max-width:507.95px)|maxWidth': {
+  'MuiDialog|paper|fullScreen=false,maxWidth=xs,scroll=body|@media (max-width:507.95px)|maxWidth': {
     label: 'Dialog · paper · maxWidth [xs, scroll=body]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|maxWidth=sm,scroll=body|@media (max-width:663.95px)|maxWidth': {
+  'MuiDialog|paper|fullScreen=false,maxWidth=sm,scroll=body|@media (max-width:663.95px)|maxWidth': {
     label: 'Dialog · paper · maxWidth [sm, scroll=body]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|maxWidth=md,scroll=body|@media (max-width:963.95px)|maxWidth': {
+  'MuiDialog|paper|fullScreen=false,maxWidth=md,scroll=body|@media (max-width:963.95px)|maxWidth': {
     label: 'Dialog · paper · maxWidth [md, scroll=body]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialog|paper|maxWidth=lg,scroll=body|@media (max-width:1263.95px)|maxWidth': {
-    label: 'Dialog · paper · maxWidth [lg, scroll=body]',
-    hidden: true,
-    note: 'Derived from --_dialogMargin — the var row is the knob.',
-  },
-  'MuiDialog|paper|maxWidth=xl,scroll=body|@media (max-width:1599.95px)|maxWidth': {
-    label: 'Dialog · paper · maxWidth [xl, scroll=body]',
-    hidden: true,
-    note: 'Derived from --_dialogMargin — the var row is the knob.',
-  },
-  'MuiDialog|paper|fn:1b6a7q||width': {
+  'MuiDialog|paper|fullScreen=false,maxWidth=lg,scroll=body|@media (max-width:1263.95px)|maxWidth':
+    {
+      label: 'Dialog · paper · maxWidth [lg, scroll=body]',
+      hidden: true,
+      note: 'Derived from --_dialogMargin — the var row is the knob.',
+    },
+  'MuiDialog|paper|fullScreen=false,maxWidth=xl,scroll=body|@media (max-width:1599.95px)|maxWidth':
+    {
+      label: 'Dialog · paper · maxWidth [xl, scroll=body]',
+      hidden: true,
+      note: 'Derived from --_dialogMargin — the var row is the knob.',
+    },
+  'MuiDialog|paper|fullScreen=false,fullWidth=true||width': {
     label: 'Dialog · paper · width [fullWidth]',
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
-  },
-  'MuiDialog|paper|fn:1vwjpx||margin': {
-    label: 'Dialog · paper · margin [fullScreen]',
-    hidden: true,
-    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
-  },
-  'MuiDialog|paper|fn:1vwjpx||width': {
-    label: 'Dialog · paper · width [fullScreen]',
-    hidden: true,
-    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
-  },
-  'MuiDialog|paper|fn:1vwjpx||maxWidth': {
-    label: 'Dialog · paper · maxWidth [fullScreen]',
-    hidden: true,
-    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
-  },
-  'MuiDialog|paper|fn:1vwjpx||maxHeight': {
-    label: 'Dialog · paper · maxHeight [fullScreen]',
-    hidden: true,
-    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
   },
   'MuiDialogActions|root|base||padding': 'DialogActions · padding',
   'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft': {
     label: 'DialogActions · button gap',
     note: 'Inter-button gap under !disableSpacing (master 8 — CardActions twin).',
   },
-  'MuiDialogContent|root|base||padding': 'DialogContent · padding',
-  'MuiDialogContent|root|dividers=true||padding': 'DialogContent · padding [dividers=true]',
+  'MuiDialogContent|root|dividers=false||padding': {
+    label: 'DialogContent · padding [dividers=false]',
+    note: 'Scoped so master dividers padding (16 24) stays untouched — knob edits cannot leak into the dividers state.',
+  },
   'MuiDialogTitle|root|base||padding': 'DialogTitle · padding',
   'MuiFab|root|size=small,variant=circular||width': 'Fab · width [variant=circular,size=small]',
   'MuiFab|root|size=small,variant=circular||height': 'Fab · height [variant=circular,size=small]',

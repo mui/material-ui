@@ -1518,17 +1518,11 @@ const compact = {
             maxWidth: '152px',
             variants: [
               {
-                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected,
-                style: {
-                  paddingTop: 'var(--mui-density-md)',
-                },
-              },
-              {
                 props: ({
           ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && !ownerState.label,
+        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
-                  paddingTop: 0,
+                  paddingTop: 'var(--mui-density-md)',
                 },
               },
             ],
@@ -1549,14 +1543,13 @@ const compact = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-lg) var(--mui-density-xl)',
             variants: [
               {
                 props: {
-                  dividers: true,
+                  dividers: false,
                 },
                 style: {
-                  padding: '16px 24px',
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
                 },
               },
             ],
@@ -1588,18 +1581,28 @@ const compact = {
         paper: [
           {
             '--_dialogMargin': 'var(--mui-density-xxl)',
-            margin: 'var(--_dialogMargin)',
             variants: [
               {
                 props: {
+                  fullScreen: false,
+                },
+                style: {
+                  margin: 'var(--_dialogMargin)',
+                },
+              },
+              {
+                props: {
                   scroll: 'paper',
+                  fullScreen: false,
                 },
                 style: {
                   maxHeight: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
               },
               {
-                props: ({ ownerState }) => !ownerState.maxWidth,
+                props: ({
+            ownerState
+          }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -1608,6 +1611,7 @@ const compact = {
                 props: {
                   maxWidth: 'xs',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:507.95px)': {
@@ -1619,6 +1623,7 @@ const compact = {
                 props: {
                   maxWidth: 'sm',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:663.95px)': {
@@ -1630,6 +1635,7 @@ const compact = {
                 props: {
                   maxWidth: 'md',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:963.95px)': {
@@ -1641,6 +1647,7 @@ const compact = {
                 props: {
                   maxWidth: 'lg',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1263.95px)': {
@@ -1652,6 +1659,7 @@ const compact = {
                 props: {
                   maxWidth: 'xl',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1599.95px)': {
@@ -1660,18 +1668,12 @@ const compact = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.fullWidth,
+                props: {
+                  fullWidth: true,
+                  fullScreen: false,
+                },
                 style: {
                   width: 'calc(100% - var(--_dialogMargin) * 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.fullScreen,
-                style: {
-                  margin: 0,
-                  width: '100%',
-                  maxWidth: '100%',
-                  maxHeight: 'none',
                 },
               },
             ],
@@ -3688,17 +3690,11 @@ const normal = {
             maxWidth: '168px',
             variants: [
               {
-                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected,
-                style: {
-                  paddingTop: 'var(--mui-density-md)',
-                },
-              },
-              {
                 props: ({
           ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && !ownerState.label,
+        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
-                  paddingTop: 0,
+                  paddingTop: 'var(--mui-density-md)',
                 },
               },
             ],
@@ -3719,14 +3715,13 @@ const normal = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-lg) var(--mui-density-xl)',
             variants: [
               {
                 props: {
-                  dividers: true,
+                  dividers: false,
                 },
                 style: {
-                  padding: '16px 24px',
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
                 },
               },
             ],
@@ -3758,18 +3753,28 @@ const normal = {
         paper: [
           {
             '--_dialogMargin': 'var(--mui-density-xxl)',
-            margin: 'var(--_dialogMargin)',
             variants: [
               {
                 props: {
+                  fullScreen: false,
+                },
+                style: {
+                  margin: 'var(--_dialogMargin)',
+                },
+              },
+              {
+                props: {
                   scroll: 'paper',
+                  fullScreen: false,
                 },
                 style: {
                   maxHeight: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
               },
               {
-                props: ({ ownerState }) => !ownerState.maxWidth,
+                props: ({
+            ownerState
+          }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -3778,6 +3783,7 @@ const normal = {
                 props: {
                   maxWidth: 'xs',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:507.95px)': {
@@ -3789,6 +3795,7 @@ const normal = {
                 props: {
                   maxWidth: 'sm',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:663.95px)': {
@@ -3800,6 +3807,7 @@ const normal = {
                 props: {
                   maxWidth: 'md',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:963.95px)': {
@@ -3811,6 +3819,7 @@ const normal = {
                 props: {
                   maxWidth: 'lg',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1263.95px)': {
@@ -3822,6 +3831,7 @@ const normal = {
                 props: {
                   maxWidth: 'xl',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1599.95px)': {
@@ -3830,18 +3840,12 @@ const normal = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.fullWidth,
+                props: {
+                  fullWidth: true,
+                  fullScreen: false,
+                },
                 style: {
                   width: 'calc(100% - var(--_dialogMargin) * 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.fullScreen,
-                style: {
-                  margin: 0,
-                  width: '100%',
-                  maxWidth: '100%',
-                  maxHeight: 'none',
                 },
               },
             ],
@@ -5776,17 +5780,11 @@ const comfort = {
             maxWidth: '184px',
             variants: [
               {
-                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected,
-                style: {
-                  paddingTop: 'var(--mui-density-md)',
-                },
-              },
-              {
                 props: ({
           ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && !ownerState.label,
+        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
-                  paddingTop: 0,
+                  paddingTop: 'var(--mui-density-md)',
                 },
               },
             ],
@@ -5807,14 +5805,13 @@ const comfort = {
       styleOverrides: {
         root: [
           {
-            padding: 'var(--mui-density-lg) var(--mui-density-xl)',
             variants: [
               {
                 props: {
-                  dividers: true,
+                  dividers: false,
                 },
                 style: {
-                  padding: '16px 24px',
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
                 },
               },
             ],
@@ -5846,18 +5843,28 @@ const comfort = {
         paper: [
           {
             '--_dialogMargin': 'var(--mui-density-xxl)',
-            margin: 'var(--_dialogMargin)',
             variants: [
               {
                 props: {
+                  fullScreen: false,
+                },
+                style: {
+                  margin: 'var(--_dialogMargin)',
+                },
+              },
+              {
+                props: {
                   scroll: 'paper',
+                  fullScreen: false,
                 },
                 style: {
                   maxHeight: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
               },
               {
-                props: ({ ownerState }) => !ownerState.maxWidth,
+                props: ({
+            ownerState
+          }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -5866,6 +5873,7 @@ const comfort = {
                 props: {
                   maxWidth: 'xs',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:507.95px)': {
@@ -5877,6 +5885,7 @@ const comfort = {
                 props: {
                   maxWidth: 'sm',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:663.95px)': {
@@ -5888,6 +5897,7 @@ const comfort = {
                 props: {
                   maxWidth: 'md',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:963.95px)': {
@@ -5899,6 +5909,7 @@ const comfort = {
                 props: {
                   maxWidth: 'lg',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1263.95px)': {
@@ -5910,6 +5921,7 @@ const comfort = {
                 props: {
                   maxWidth: 'xl',
                   scroll: 'body',
+                  fullScreen: false,
                 },
                 style: {
                   '@media (max-width:1599.95px)': {
@@ -5918,18 +5930,12 @@ const comfort = {
                 },
               },
               {
-                props: ({ ownerState }) => ownerState.fullWidth,
+                props: {
+                  fullWidth: true,
+                  fullScreen: false,
+                },
                 style: {
                   width: 'calc(100% - var(--_dialogMargin) * 2)',
-                },
-              },
-              {
-                props: ({ ownerState }) => ownerState.fullScreen,
-                style: {
-                  margin: 0,
-                  width: '100%',
-                  maxWidth: '100%',
-                  maxHeight: 'none',
                 },
               },
             ],

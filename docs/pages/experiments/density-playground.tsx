@@ -93,6 +93,7 @@ import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import HighlightAltIcon from '@mui/icons-material/HighlightAlt';
 import {
   DataGrid,
   GridActionsCellItem,
@@ -106,6 +107,7 @@ import type { GridColDef } from '@mui/x-data-grid';
 import { DataGridPremium } from '@mui/x-data-grid-premium';
 import {
   createTheme,
+  keyframes,
   ThemeProvider,
   enhanceCompactDensity,
   enhanceNormalDensity,
@@ -2931,12 +2933,53 @@ const familyReadIds = new Map(
   [...familyKnobEntries].map(([key, entries]) => [key, entries.map((entry) => entry.writeIds[0])]),
 );
 
+// ── Slot highlight (sidebar → canvas) ────────────────────────────────────────
+// One sidebar slot group can be spotlighted in the canvas at a time, showing the
+// blast radius of its knobs before an override. Pure CSS off a class selector —
+// survives DataGrid row virtualization and knob-commit reflows with no
+// observers. The selector derives from the MUI convention (styleOverrides keys
+// are classes keys: `Mui<Component>-<slot>`); the map covers slots with no
+// class of their own (defaultProps → the boxes those props size) or future
+// convention misses.
+const SLOT_HIGHLIGHT_SELECTORS: Record<string, string> = {
+  'DataGrid|defaultProps': '.MuiDataGrid-row, .MuiDataGrid-columnHeader',
+};
+// Violet — green (padding), orange (margin), blue (text) are taken; box-shadow
+// (no background) composes with the outline (⊞) debug mode and keeps content
+// untinted. Pulse via box-shadow LAYERS: layer 1 = constant inset locator ring;
+// layer 2 = outer ring spreading 0→8px while fading to transparent. Same layer
+// count at every stop → smooth interpolation; the loop seam is invisible (the
+// outer ring ends at alpha 0).
+const SLOT_HIGHLIGHT_COLOR = 'rgb(156, 39, 176)';
+const slotPulse = keyframes({
+  '0%': {
+    boxShadow: 'inset 0 0 0 2px rgba(156, 39, 176, 0.9), 0 0 0 0 rgba(156, 39, 176, 0.55)',
+  },
+  '100%': {
+    boxShadow: 'inset 0 0 0 2px rgba(156, 39, 176, 0.9), 0 0 0 8px rgba(156, 39, 176, 0)',
+  },
+});
+const SLOT_HIGHLIGHT_STYLE = {
+  animation: `${slotPulse} 1.4s ease-out infinite`,
+};
+function slotHighlightSx(key: string) {
+  const [component, slot] = key.split('|');
+  const selector = SLOT_HIGHLIGHT_SELECTORS[key] ?? `.Mui${component}-${slot}`;
+  const scoped = selector
+    .split(',')
+    .map((s) => `& ${s.trim()}`)
+    .join(', ');
+  return { [scoped]: SLOT_HIGHLIGHT_STYLE };
+}
+
 interface FamilyKnobsProps {
   familyKey: string;
   mapping: Record<string, string>;
   preset: Preset;
   scalePx: Record<string, string> | null;
   setFields: (ids: string[], value: string) => void;
+  highlightSlot: string | null;
+  onToggleHighlight: (key: string) => void;
 }
 
 // One family's mapping tree. Memo comparator: skip re-render unless THIS family's
@@ -2945,65 +2988,87 @@ interface FamilyKnobsProps {
 // placeholders and previews all derive from those three).
 const FamilyKnobs = React.memo(
   function FamilyKnobs(props: FamilyKnobsProps) {
-    const { familyKey, mapping, preset, scalePx, setFields } = props;
+    const { familyKey, mapping, preset, scalePx, setFields, highlightSlot, onToggleHighlight } =
+      props;
     return (
       <React.Fragment>
         {(familyKnobTree.get(familyKey) ?? []).map(({ component, slots }) => (
           <Box key={component} sx={{ mt: 2 }} data-mapping-component={component}>
             <Typography sx={{ fontWeight: 'medium', fontSize: 13 }}>{component}</Typography>
-            {slots.map(([slot, slotEntries]) => (
-              <Box
-                key={slot}
-                data-mapping-slot={slot}
-                sx={{
-                  mt: 1,
-                  pl: 1.5,
-                  position: 'relative',
-                  '&::before': {
-                    content: '""',
-                    borderLeft: '1px solid',
-                    borderColor: 'divider',
-                    position: 'absolute',
-                    top: '32px',
-                    bottom: '6px',
-                    left: 0,
-                  },
-                }}
-              >
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ ...SLOT_TAG_SX, ml: '-16px', mb: 1 }}
+            {slots.map(([slot, slotEntries]) => {
+              const slotKey = `${component}|${slot}`;
+              const highlighted = highlightSlot === slotKey;
+              return (
+                <Box
+                  key={slot}
+                  data-mapping-slot={slot}
+                  sx={{
+                    mt: 1,
+                    pl: 1.5,
+                    position: 'relative',
+                    '&::before': {
+                      content: '""',
+                      borderLeft: '1px solid',
+                      borderColor: 'divider',
+                      position: 'absolute',
+                      top: '32px',
+                      bottom: '6px',
+                      left: 0,
+                    },
+                  }}
                 >
-                  {slot}
-                </Typography>
-                <Stack spacing={1.5} sx={{ mt: 0.5 }}>
-                  {slotEntries.map((entry) => {
-                    const canon =
-                      preset === 'unset'
-                        ? ''
-                        : fieldDefault(entry.writeIds[0], preset as PresetLevel);
-                    return (
-                      <KnobInput
-                        key={entry.key}
-                        id={entry.key}
-                        idAttr="data-mapping-field"
-                        label={entry.label}
-                        value={mapping[entry.writeIds[0]] ?? ''}
-                        // Placeholder = what you'd TYPE: var refs shortened to bare
-                        // step names; override-only knobs (no preset default) stay blank.
-                        placeholder={shortenDensityVars(canon)}
-                        // typed → preview the typed value; empty → the inherited preset default
-                        computeHelper={(draft) => ({
-                          helper: previewText(draft || canon, scalePx),
-                        })}
-                        onCommit={(v) => setFields(entry.writeIds, v)}
-                      />
-                    );
-                  })}
-                </Stack>
-              </Box>
-            ))}
+                  <Stack
+                    direction="row"
+                    spacing={0.5}
+                    sx={{ alignItems: 'center', ml: '-16px', mb: 1 }}
+                  >
+                    <Typography variant="caption" color="text.secondary" sx={SLOT_TAG_SX}>
+                      {slot}
+                    </Typography>
+                    <Tooltip title="Highlight this slot in the canvas">
+                      <IconButton
+                        size="small"
+                        aria-label={`Highlight ${component} ${slot} in the canvas`}
+                        aria-pressed={highlighted}
+                        data-slot-highlight-toggle={slotKey}
+                        onClick={() => onToggleHighlight(slotKey)}
+                        sx={{
+                          p: 0.25,
+                          color: highlighted ? SLOT_HIGHLIGHT_COLOR : 'text.disabled',
+                        }}
+                      >
+                        <HighlightAltIcon sx={{ fontSize: 16 }} />
+                      </IconButton>
+                    </Tooltip>
+                  </Stack>
+                  <Stack spacing={1.5} sx={{ mt: 0.5 }}>
+                    {slotEntries.map((entry) => {
+                      const canon =
+                        preset === 'unset'
+                          ? ''
+                          : fieldDefault(entry.writeIds[0], preset as PresetLevel);
+                      return (
+                        <KnobInput
+                          key={entry.key}
+                          id={entry.key}
+                          idAttr="data-mapping-field"
+                          label={entry.label}
+                          value={mapping[entry.writeIds[0]] ?? ''}
+                          // Placeholder = what you'd TYPE: var refs shortened to bare
+                          // step names; override-only knobs (no preset default) stay blank.
+                          placeholder={shortenDensityVars(canon)}
+                          // typed → preview the typed value; empty → the inherited preset default
+                          computeHelper={(draft) => ({
+                            helper: previewText(draft || canon, scalePx),
+                          })}
+                          onCommit={(v) => setFields(entry.writeIds, v)}
+                        />
+                      );
+                    })}
+                  </Stack>
+                </Box>
+              );
+            })}
           </Box>
         ))}
       </React.Fragment>
@@ -3014,6 +3079,8 @@ const FamilyKnobs = React.memo(
     prev.preset === next.preset &&
     prev.scalePx === next.scalePx &&
     prev.setFields === next.setFields &&
+    prev.highlightSlot === next.highlightSlot &&
+    prev.onToggleHighlight === next.onToggleHighlight &&
     (familyReadIds.get(next.familyKey) ?? []).every((id) => prev.mapping[id] === next.mapping[id]),
 );
 
@@ -3021,6 +3088,16 @@ export default function DensityExperiment() {
   const [preset, setPreset] = React.useState<Preset>('unset');
   const [selection, setSelection] = React.useState<Selection>('All');
   const [debug, setDebug] = React.useState<string[]>([]);
+  // Slot highlight: the sidebar slot group spotlighted in the canvas
+  // ("<Component>|<slot>", single-active); cleared on family switch.
+  const [highlightSlot, setHighlightSlot] = React.useState<string | null>(null);
+  const toggleHighlightSlot = React.useCallback(
+    (key: string) => setHighlightSlot((prev) => (prev === key ? null : key)),
+    [],
+  );
+  React.useEffect(() => {
+    setHighlightSlot(null);
+  }, [selection]);
   // Height-measure overlay: the only debug mode that needs JS — CSS can't read a
   // rendered height, and an in-flow ::after badge gets clipped by the demo cells'
   // / inputs' overflow (and the canvas's own overflow-y:auto, which forces
@@ -3695,6 +3772,8 @@ export default function DensityExperiment() {
                       preset={preset}
                       scalePx={scalePx}
                       setFields={setFields}
+                      highlightSlot={highlightSlot}
+                      onToggleHighlight={toggleHighlightSlot}
                     />
                   ))}
                   <Button size="small" variant="outlined" onClick={resetMapping} sx={{ mt: 2 }}>
@@ -3851,6 +3930,7 @@ export default function DensityExperiment() {
               overflowY: 'auto',
               p: 4,
               ...DEBUG_SX,
+              ...(highlightSlot ? slotHighlightSx(highlightSlot) : null),
             }}
           >
             <Stack spacing={6}>

@@ -930,14 +930,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     maxWidth: '168px',
     variants: [
       {
-        props: ({
-          ownerState,
-        }: {
-          ownerState: { showLabel?: boolean | undefined; selected?: boolean | undefined };
-        }) => !ownerState.showLabel && !ownerState.selected,
-        style: { paddingTop: d.md },
-      },
-      {
+        // Net master condition (pT14 unless the no-label rule zeroes it) — one
+        // matcher, so master's paddingTop:0 no-label state stays untouched.
         props: ({
           ownerState,
         }: {
@@ -946,8 +940,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
             selected?: boolean | undefined;
             label?: unknown;
           };
-        }) => !ownerState.showLabel && !ownerState.selected && !ownerState.label,
-        style: { paddingTop: 0 },
+        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+        style: { paddingTop: d.md },
       },
     ],
   });
@@ -955,10 +949,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     padding: `${d.lg} ${d.xl}`,
   });
   addRootOverride(enhanced.components, 'MuiDialogContent', {
-    // Base block/inline padding; re-assert the frozen dividers literal the base
-    // padding would otherwise clobber.
-    padding: `${d.lg} ${d.xl}`,
-    variants: [{ props: { dividers: true }, style: { padding: '16px 24px' } }],
+    // Scoped to dividers:false so master's distinct dividers padding (16 24)
+    // stays untouched — an unconditional root padding would clobber it (and a
+    // knob edit would too).
+    variants: [{ props: { dividers: false }, style: { padding: `${d.lg} ${d.xl}` } }],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
     // Root inset + inter-button gap (master 8/8 — CardActions' gap twin).
@@ -987,23 +981,27 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // Paper margin + every "100% minus margin" viewport calc derive from ONE
       // private var so the knob and the offset math can't desync. Media-query
       // GUARDS (down(width + 32*2)) stay at master's boundaries — media queries
-      // can't read vars; only the applied maxWidth co-varies. Master's
-      // fullScreen zero-margin state is re-asserted (these emissions land after
-      // it in the cascade and would clobber it).
+      // can't read vars; only the applied maxWidth co-varies. Every emission is
+      // scoped fullScreen:false — master's fullScreen state zeroes all of these
+      // and must stay untouched (an unscoped rule lands later in the cascade
+      // and would clobber it).
       '--_dialogMargin': d.xxl,
-      margin: 'var(--_dialogMargin)',
       variants: [
+        { props: { fullScreen: false }, style: { margin: 'var(--_dialogMargin)' } },
         {
-          props: { scroll: 'paper' },
+          props: { scroll: 'paper', fullScreen: false },
           style: { maxHeight: 'calc(100% - var(--_dialogMargin) * 2)' },
         },
         {
-          props: ({ ownerState }: { ownerState: { maxWidth?: string | false | undefined } }) =>
-            !ownerState.maxWidth,
+          props: ({
+            ownerState,
+          }: {
+            ownerState: { maxWidth?: string | false | undefined; fullScreen?: boolean | undefined };
+          }) => !ownerState.maxWidth && !ownerState.fullScreen,
           style: { maxWidth: 'calc(100% - var(--_dialogMargin) * 2)' },
         },
         {
-          props: { maxWidth: 'xs', scroll: 'body' },
+          props: { maxWidth: 'xs', scroll: 'body', fullScreen: false },
           style: {
             [bp.down(Math.max(bp.values.xs, 444) + 32 * 2)]: {
               maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
@@ -1013,7 +1011,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         ...Object.keys(bp.values)
           .filter((maxWidth) => maxWidth !== 'xs')
           .map((maxWidth) => ({
-            props: { maxWidth, scroll: 'body' },
+            props: { maxWidth, scroll: 'body', fullScreen: false },
             style: {
               [bp.down(bp.values[maxWidth] + 32 * 2)]: {
                 maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
@@ -1021,14 +1019,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
             },
           })),
         {
-          props: ({ ownerState }: { ownerState: { fullWidth?: boolean | undefined } }) =>
-            ownerState.fullWidth,
+          props: { fullWidth: true, fullScreen: false },
           style: { width: 'calc(100% - var(--_dialogMargin) * 2)' },
-        },
-        {
-          props: ({ ownerState }: { ownerState: { fullScreen?: boolean | undefined } }) =>
-            ownerState.fullScreen,
-          style: { margin: 0, width: '100%', maxWidth: '100%', maxHeight: 'none' },
         },
       ],
     },
