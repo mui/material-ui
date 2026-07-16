@@ -1,0 +1,43 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "string" } },
+    "closeOnClick": { "type": { "name": "bool" }, "default": "true" },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "nativeButton": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
+    },
+    "slots": { "type": { "name": "shape", "description": "{ root?: elementType }" } },
+    "style": { "type": { "name": "object" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuPreviewItem",
+  "imports": ["import MenuPreviewItem from '@mui/material/MenuPreviewItem';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": null
+    }
+  ],
+  "classes": [],
+  "muiName": "MuiMenuPreviewItem",
+  "filename": "/packages/mui-material/src/MenuPreviewItem/MenuPreviewItem.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>"
+}
