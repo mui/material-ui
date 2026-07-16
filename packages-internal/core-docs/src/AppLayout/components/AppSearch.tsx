@@ -425,6 +425,9 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-highlight-color': (theme.vars || theme).palette.primary[600],
               '--docsearch-text-color': (theme.vars || theme).palette.text.primary,
               '--docsearch-muted-color': (theme.vars || theme).palette.grey[600],
+              // v4 colors the hit icon and no-results text with this variable; keep it on the MUI
+              // muted grey (as v3 did) instead of Algolia's default purple-grey.
+              '--docsearch-secondary-text-color': 'var(--docsearch-muted-color)',
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
@@ -669,6 +672,13 @@ export function AppSearch(props: AppSearchProps) {
               backgroundColor: (theme.vars || theme).palette.primary[50],
               borderColor: (theme.vars || theme).palette.primary[300],
             },
+            // v4 tints the selected item's icon/action/highlight with --docsearch-highlight-color,
+            // which is muted in dark mode; restore the brighter active color (as in v3) so the
+            // focused item's icon turns blue in both themes.
+            '& .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-icon, & .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-action, & .DocSearch-Hit[aria-selected="true"] mark':
+              {
+                color: 'var(--docsearch-hit-active-color)',
+              },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
               color: (theme.vars || theme).palette.primary[500],
               '& .DocSearch-Hit-action-button': {
