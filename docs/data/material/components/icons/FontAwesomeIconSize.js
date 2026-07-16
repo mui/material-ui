@@ -24,13 +24,8 @@ const theme = createTheme({
 
 export default function FontAwesomeIconSize() {
   React.useEffect(() => {
-    const href = 'https://use.fontawesome.com/releases/v5.14.0/css/all.css';
-    if (document.querySelector(`link[href="${href}"]`)) {
-      return undefined;
-    }
-
     const node = loadCSS(
-      href,
+      'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
       // Inject before JSS
       document.querySelector('#font-awesome-css') || document.head.firstChild,
     );

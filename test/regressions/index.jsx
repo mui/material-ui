@@ -95,10 +95,6 @@ function App(props) {
       google: {
         families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
       },
-      custom: {
-        families: ['Font Awesome 5 Free:n9'],
-        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
-      },
       timeout: 20000,
       active: () => {
         setFontState('active');
