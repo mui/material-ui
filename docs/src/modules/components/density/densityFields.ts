@@ -268,6 +268,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiSnackbarContent: 'SnackbarContent',
   MuiBottomNavigation: 'BottomNavigation',
   MuiBottomNavigationAction: 'BottomNavigation',
+  MuiDialog: 'Dialog',
   MuiDialogTitle: 'Dialog',
   MuiDialogContent: 'Dialog',
   MuiDialogActions: 'Dialog',
@@ -478,6 +479,13 @@ export const shownFamilies = new Set<string>([
   'Slider',
   'Divider',
   'DataGrid',
+  'Toolbar',
+  'Dialog',
+  'Fab',
+  'Pagination',
+  'ListItemButton',
+  'SnackbarContent',
+  'BottomNavigation',
 ]);
 
 /**

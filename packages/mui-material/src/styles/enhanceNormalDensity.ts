@@ -817,8 +817,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'iconContainer',
   );
   addRootOverride(enhanced.components, 'MuiToolbar', {
-    // Gutter inline pad (steps, incl the sm-breakpoint bump); dense bar min-height
-    // (raw px). Regular min-height (theme.mixins.toolbar) stays frozen.
+    // Gutter inline pad (steps, incl the sm-breakpoint bump); dense + regular bar
+    // min-heights (raw px). Regular mirrors theme.mixins.toolbar's responsive
+    // shape (portrait / landscape / sm-up) as styleOverrides — the mixin itself
+    // stays untouched, so mixins.toolbar offset math keeps master.
     variants: [
       {
         props: { disableGutters: false },
@@ -832,6 +834,20 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         },
       },
       { props: { variant: 'dense' }, style: { minHeight: '48px' } },
+      {
+        props: { variant: 'regular' },
+        style: {
+          minHeight: '56px',
+          // Master nests this under breakpoints.up('xs') — a no-op (min-width:0)
+          // wrapper; emitted flat so the emit-table readback can resolve it.
+          '@media (orientation: landscape)': { minHeight: '48px' },
+          [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
+            'sm',
+          )]: {
+            minHeight: '64px',
+          },
+        },
+      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiFab', {
@@ -844,32 +860,53 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     ],
   });
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
-    // Item box size = raw px per size: min-width on every item, height only on the
-    // button items (ellipsis keeps master's auto height).
+    // Item box: min-width raw px + inline pad/inter-item gap steps per size on
+    // every item (ellipsis shares master's values; small's 1px margin is
+    // sub-step — frozen). Button items get height through one --_height var so
+    // the pill radius derives as height/2 (master pins per-size radius literals
+    // that would go stale as the heights move); ellipsis keeps auto height.
     variants: [
-      { props: { size: 'small' }, style: { minWidth: '26px' } },
-      { props: { size: 'medium' }, style: { minWidth: '32px' } },
-      { props: { size: 'large' }, style: { minWidth: '40px' } },
+      { props: { size: 'small' }, style: { minWidth: '26px', paddingInline: d.xxs } },
+      {
+        props: { size: 'medium' },
+        style: { minWidth: '32px', paddingInline: d.xs, marginInline: d.xxs },
+      },
+      {
+        props: { size: 'large' },
+        style: { minWidth: '40px', paddingInline: d.sm, marginInline: d.xxs },
+      },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'small',
-        style: { height: '26px' },
+        style: {
+          '--_height': '26px',
+          height: 'var(--_height)',
+          borderRadius: 'calc(var(--_height) / 2)',
+        },
       },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'medium',
-        style: { height: '32px' },
+        style: {
+          '--_height': '32px',
+          height: 'var(--_height)',
+          borderRadius: 'calc(var(--_height) / 2)',
+        },
       },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
           ownerState.type !== 'start-ellipsis' &&
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'large',
-        style: { height: '40px' },
+        style: {
+          '--_height': '40px',
+          height: 'var(--_height)',
+          borderRadius: 'calc(var(--_height) / 2)',
+        },
       },
     ],
   });
@@ -877,12 +914,42 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // No size axis: root padding (block/inline steps).
     padding: `${d.xs} ${d.lg}`,
   });
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingBlock: d.sm }, 'message');
+  // Inline-start inset only; the -8px flush end pull is an edge offset (frozen).
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: d.lg }, 'action');
   addRootOverride(enhanced.components, 'MuiBottomNavigation', {
     height: '56px',
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
-    // Inline padding only; block padding stays master's 0.
+    // Inline pad = step; per-item width clamps = raw px (sizing). Icon-only
+    // centering paddingTop = step, with master's no-label zero re-asserted
+    // (this emission lands after it in the cascade and would clobber it).
+    // Selected label type shift (12→14) stays frozen — state, not a size axis.
     paddingInline: d.md,
+    minWidth: '80px',
+    maxWidth: '168px',
+    variants: [
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: { showLabel?: boolean | undefined; selected?: boolean | undefined };
+        }) => !ownerState.showLabel && !ownerState.selected,
+        style: { paddingTop: d.md },
+      },
+      {
+        props: ({
+          ownerState,
+        }: {
+          ownerState: {
+            showLabel?: boolean | undefined;
+            selected?: boolean | undefined;
+            label?: unknown;
+          };
+        }) => !ownerState.showLabel && !ownerState.selected && !ownerState.label,
+        style: { paddingTop: 0 },
+      },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
     padding: `${d.lg} ${d.xl}`,
@@ -894,8 +961,79 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     variants: [{ props: { dividers: true }, style: { padding: '16px 24px' } }],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
+    // Root inset + inter-button gap (master 8/8 — CardActions' gap twin).
     padding: d.sm,
+    variants: [
+      {
+        props: ({ ownerState }: { ownerState: { disableSpacing?: boolean | undefined } }) =>
+          !ownerState.disableSpacing,
+        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.sm } },
+      },
+    ],
   });
+  const bp = (
+    enhanced as unknown as {
+      breakpoints: {
+        values: Record<string, number>;
+        unit: string;
+        down: (width: number) => string;
+      };
+    }
+  ).breakpoints;
+  addRootOverride(
+    enhanced.components,
+    'MuiDialog',
+    {
+      // Paper margin + every "100% minus margin" viewport calc derive from ONE
+      // private var so the knob and the offset math can't desync. Media-query
+      // GUARDS (down(width + 32*2)) stay at master's boundaries — media queries
+      // can't read vars; only the applied maxWidth co-varies. Master's
+      // fullScreen zero-margin state is re-asserted (these emissions land after
+      // it in the cascade and would clobber it).
+      '--_dialogMargin': d.xxl,
+      margin: 'var(--_dialogMargin)',
+      variants: [
+        {
+          props: { scroll: 'paper' },
+          style: { maxHeight: 'calc(100% - var(--_dialogMargin) * 2)' },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { maxWidth?: string | false | undefined } }) =>
+            !ownerState.maxWidth,
+          style: { maxWidth: 'calc(100% - var(--_dialogMargin) * 2)' },
+        },
+        {
+          props: { maxWidth: 'xs', scroll: 'body' },
+          style: {
+            [bp.down(Math.max(bp.values.xs, 444) + 32 * 2)]: {
+              maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
+            },
+          },
+        },
+        ...Object.keys(bp.values)
+          .filter((maxWidth) => maxWidth !== 'xs')
+          .map((maxWidth) => ({
+            props: { maxWidth, scroll: 'body' },
+            style: {
+              [bp.down(bp.values[maxWidth] + 32 * 2)]: {
+                maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
+              },
+            },
+          })),
+        {
+          props: ({ ownerState }: { ownerState: { fullWidth?: boolean | undefined } }) =>
+            ownerState.fullWidth,
+          style: { width: 'calc(100% - var(--_dialogMargin) * 2)' },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { fullScreen?: boolean | undefined } }) =>
+            ownerState.fullScreen,
+          style: { margin: 0, width: '100%', maxWidth: '100%', maxHeight: 'none' },
+        },
+      ],
+    },
+    'paper',
+  );
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [

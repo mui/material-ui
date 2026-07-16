@@ -97,6 +97,17 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiBadge|badge|variant=dot||height': 'Badge · badge · height [variant=dot]',
   'MuiBottomNavigation|root|base||height': 'BottomNavigation · height',
   'MuiBottomNavigationAction|root|base||paddingInline': 'BottomNavigationAction · paddingInline',
+  'MuiBottomNavigationAction|root|base||minWidth': 'BottomNavigationAction · minWidth',
+  'MuiBottomNavigationAction|root|base||maxWidth': 'BottomNavigationAction · maxWidth',
+  'MuiBottomNavigationAction|root|fn:gt2t4r||paddingTop': {
+    label: 'BottomNavigationAction · paddingTop [icon-only]',
+    note: 'Centers the icon when the label is hidden and unselected (master 14).',
+  },
+  'MuiBottomNavigationAction|root|fn:1kqkh2||paddingTop': {
+    label: 'BottomNavigationAction · paddingTop [icon-only, no label]',
+    hidden: true,
+    note: 'Frozen re-assert of master 0 (our icon-only rule lands later in the cascade and would clobber it).',
+  },
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
   'MuiButton|root|size=small||padding': 'Button · padding [size=small]',
   'MuiButton|root|size=medium||padding': 'Button · padding [size=medium]',
@@ -361,7 +372,80 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight':
     'DataGrid · treeDataGroupingCellToggle · marginRight',
+  'MuiDialog|paper|base||--_dialogMargin': {
+    label: 'Dialog · paper margin',
+    note: 'One private var: paper margin + every 100%-minus-margin viewport calc derive from it. Media-query guards stay at master boundaries (vars cannot reach @media).',
+  },
+  'MuiDialog|paper|base||margin': {
+    label: 'Dialog · paper · margin',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|scroll=paper||maxHeight': {
+    label: 'Dialog · paper · maxHeight [scroll=paper]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|fn:1hhir0||maxWidth': {
+    label: 'Dialog · paper · maxWidth [no maxWidth]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|maxWidth=xs,scroll=body|@media (max-width:507.95px)|maxWidth': {
+    label: 'Dialog · paper · maxWidth [xs, scroll=body]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|maxWidth=sm,scroll=body|@media (max-width:663.95px)|maxWidth': {
+    label: 'Dialog · paper · maxWidth [sm, scroll=body]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|maxWidth=md,scroll=body|@media (max-width:963.95px)|maxWidth': {
+    label: 'Dialog · paper · maxWidth [md, scroll=body]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|maxWidth=lg,scroll=body|@media (max-width:1263.95px)|maxWidth': {
+    label: 'Dialog · paper · maxWidth [lg, scroll=body]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|maxWidth=xl,scroll=body|@media (max-width:1599.95px)|maxWidth': {
+    label: 'Dialog · paper · maxWidth [xl, scroll=body]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|fn:1b6a7q||width': {
+    label: 'Dialog · paper · width [fullWidth]',
+    hidden: true,
+    note: 'Derived from --_dialogMargin — the var row is the knob.',
+  },
+  'MuiDialog|paper|fn:1vwjpx||margin': {
+    label: 'Dialog · paper · margin [fullScreen]',
+    hidden: true,
+    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
+  },
+  'MuiDialog|paper|fn:1vwjpx||width': {
+    label: 'Dialog · paper · width [fullScreen]',
+    hidden: true,
+    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
+  },
+  'MuiDialog|paper|fn:1vwjpx||maxWidth': {
+    label: 'Dialog · paper · maxWidth [fullScreen]',
+    hidden: true,
+    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
+  },
+  'MuiDialog|paper|fn:1vwjpx||maxHeight': {
+    label: 'Dialog · paper · maxHeight [fullScreen]',
+    hidden: true,
+    note: 'Frozen re-assert of master fullScreen state (our emissions land later in the cascade).',
+  },
   'MuiDialogActions|root|base||padding': 'DialogActions · padding',
+  'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft': {
+    label: 'DialogActions · button gap',
+    note: 'Inter-button gap under !disableSpacing (master 8 — CardActions twin).',
+  },
   'MuiDialogContent|root|base||padding': 'DialogContent · padding',
   'MuiDialogContent|root|dividers=true||padding': 'DialogContent · padding [dividers=true]',
   'MuiDialogTitle|root|base||padding': 'DialogTitle · padding',
@@ -674,11 +758,59 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Multiline box padding on the root — consumes --_outlinedInputPadBlock; the FormControl writer var row is the knob.',
   },
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
+  'MuiPaginationItem|root|size=small||paddingInline': {
+    label: 'PaginationItem · paddingInline [size=small]',
+    note: 'Small inter-item margin stays master 1px (sub-step, frozen).',
+  },
   'MuiPaginationItem|root|size=medium||minWidth': 'PaginationItem · minWidth [size=medium]',
+  'MuiPaginationItem|root|size=medium||paddingInline':
+    'PaginationItem · paddingInline [size=medium]',
+  'MuiPaginationItem|root|size=medium||marginInline': 'PaginationItem · marginInline [size=medium]',
   'MuiPaginationItem|root|size=large||minWidth': 'PaginationItem · minWidth [size=large]',
-  'MuiPaginationItem|root|fn:1nddmo||height': 'PaginationItem · height [fn]',
-  'MuiPaginationItem|root|fn:1dnyyw||height': 'PaginationItem · height [fn]',
-  'MuiPaginationItem|root|fn:1tf0li||height': 'PaginationItem · height [fn]',
+  'MuiPaginationItem|root|size=large||paddingInline': 'PaginationItem · paddingInline [size=large]',
+  'MuiPaginationItem|root|size=large||marginInline': 'PaginationItem · marginInline [size=large]',
+  'MuiPaginationItem|root|fn:1nddmo||--_height': {
+    label: 'PaginationItem · height [size=small] (px)',
+    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
+  },
+  'MuiPaginationItem|root|fn:1nddmo||height': {
+    label: 'PaginationItem · height [fn small]',
+    hidden: true,
+    note: 'Derived from --_height — the var row is the knob.',
+  },
+  'MuiPaginationItem|root|fn:1nddmo||borderRadius': {
+    label: 'PaginationItem · borderRadius [fn small]',
+    hidden: true,
+    note: 'Derived from --_height (height/2) — the var row is the knob.',
+  },
+  'MuiPaginationItem|root|fn:1dnyyw||--_height': {
+    label: 'PaginationItem · height [size=medium] (px)',
+    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
+  },
+  'MuiPaginationItem|root|fn:1dnyyw||height': {
+    label: 'PaginationItem · height [fn medium]',
+    hidden: true,
+    note: 'Derived from --_height — the var row is the knob.',
+  },
+  'MuiPaginationItem|root|fn:1dnyyw||borderRadius': {
+    label: 'PaginationItem · borderRadius [fn medium]',
+    hidden: true,
+    note: 'Derived from --_height (height/2) — the var row is the knob.',
+  },
+  'MuiPaginationItem|root|fn:1tf0li||--_height': {
+    label: 'PaginationItem · height [size=large] (px)',
+    note: 'One private var: item height + pill radius (height/2) derive from it; ellipsis keeps auto height.',
+  },
+  'MuiPaginationItem|root|fn:1tf0li||height': {
+    label: 'PaginationItem · height [fn large]',
+    hidden: true,
+    note: 'Derived from --_height — the var row is the knob.',
+  },
+  'MuiPaginationItem|root|fn:1tf0li||borderRadius': {
+    label: 'PaginationItem · borderRadius [fn large]',
+    hidden: true,
+    note: 'Derived from --_height (height/2) — the var row is the knob.',
+  },
   'MuiRadio|root|size=medium||padding': 'Radio · padding [size=medium]',
   'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Radio · marginLeft [size=medium]',
@@ -732,6 +864,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
   'MuiSlider|valueLabel|base||padding': 'Slider · valueLabel · padding',
   'MuiSlider|valueLabel|size=small||padding': 'Slider · valueLabel · padding [size=small]',
+  'MuiSnackbarContent|action|base||paddingLeft': 'SnackbarContent · action · paddingLeft',
+  'MuiSnackbarContent|message|base||paddingBlock': 'SnackbarContent · message · paddingBlock',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
   'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
     'Step · paddingLeft [first, horizontal]',
@@ -915,6 +1049,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
+  'MuiToolbar|root|variant=regular||minHeight': 'Toolbar · minHeight [variant=regular]',
+  'MuiToolbar|root|variant=regular|@media (orientation: landscape)|minHeight':
+    'Toolbar · minHeight [variant=regular]',
+  'MuiToolbar|root|variant=regular|@media (min-width:600px)|minHeight':
+    'Toolbar · minHeight [variant=regular]',
   'MuiTooltip|arrow|base||width': {
     label: 'Tooltip · arrow · width',
     hidden: true,

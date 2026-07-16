@@ -295,6 +295,8 @@ const PADDING_RING_SLOTS = [
   '.MuiDialogActions-root',
   '.MuiTableCell-root',
   '.MuiSnackbarContent-root',
+  '.MuiSnackbarContent-message',
+  '.MuiSnackbarContent-action',
   '.MuiAccordionDetails-root',
   '.MuiToolbar-root',
   '.MuiChip-label',
@@ -358,6 +360,9 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiDataGrid-selectedRowCount',
   '.MuiDataGrid-toolbarDivider',
   '.MuiDataGrid-toolbarLabel',
+  '.MuiDialog-paper',
+  '.MuiDialogActions-root > :not(style) ~ :not(style)',
+  '.MuiPaginationItem-root',
   '.MuiDataGrid-columnHeaderFilterInput',
   '.MuiDataGrid-groupingCriteriaCellToggle',
   '.MuiDataGrid-treeDataGroupingCellToggle',
@@ -423,6 +428,8 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelHeader',
   // :first-of-type → one badge per drop-zone list, not one per field row.
   '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelField:first-of-type',
+  '[data-canvas-component="BottomNavigation"] .MuiBottomNavigation-root',
+  '[data-canvas-component="Dialog"] .MuiDialog-paper',
 ];
 
 // Height-measure ruler colour (dimension line + caps + badge).
@@ -2345,6 +2352,11 @@ function FabMatrix() {
       <Fab color="primary">
         <InboxIcon />
       </Fab>
+      {/* Extended variant stays frozen at master (preset comment) — visible control. */}
+      <Fab variant="extended" color="primary">
+        <InboxIcon sx={{ mr: 1 }} />
+        <span className="density-debug-text">Extended</span>
+      </Fab>
     </Stack>
   );
 }
@@ -2352,9 +2364,10 @@ function FabMatrix() {
 function PaginationMatrix() {
   return (
     <Stack spacing={2} sx={{ mt: 1 }}>
-      <Pagination count={5} size="small" />
-      <Pagination count={5} />
-      <Pagination count={5} size="large" />
+      {/* count/defaultPage chosen so ellipsis renders (auto height, knob-excluded). */}
+      <Pagination count={10} defaultPage={6} size="small" />
+      <Pagination count={10} defaultPage={6} />
+      <Pagination count={10} defaultPage={6} size="large" />
     </Stack>
   );
 }
@@ -2374,28 +2387,77 @@ function SnackbarMatrix() {
 }
 
 function BottomNavigationMatrix() {
+  const actions = ['Recents', 'Favorites', 'Nearby'].map((label) => (
+    <BottomNavigationAction
+      key={label}
+      label={<span className="density-debug-text">{label}</span>}
+      icon={<InboxIcon />}
+    />
+  ));
   return (
-    <BottomNavigation value={0} showLabels sx={{ mt: 1, width: 400 }}>
-      <BottomNavigationAction
-        label={<span className="density-debug-text">Recents</span>}
-        icon={<InboxIcon />}
-      />
-      <BottomNavigationAction
-        label={<span className="density-debug-text">Favorites</span>}
-        icon={<InboxIcon />}
-      />
-      <BottomNavigationAction
-        label={<span className="density-debug-text">Nearby</span>}
-        icon={<InboxIcon />}
-      />
-    </BottomNavigation>
+    <Stack spacing={2} sx={{ mt: 1 }}>
+      {/* icon-only (no showLabels): unselected items exercise the centering
+          paddingTop state; the selected one keeps its label. */}
+      <BottomNavigation value={0} sx={{ width: 400 }}>
+        {actions}
+      </BottomNavigation>
+      <BottomNavigation value={0} showLabels sx={{ width: 400 }}>
+        {actions}
+      </BottomNavigation>
+    </Stack>
   );
 }
 
 function DialogMatrix() {
-  // `dividers` on the content covers its distinct padding leaf.
   return (
-    <Paper sx={{ mt: 1, width: 360 }}>
+    <Stack spacing={4} sx={{ mt: 1 }}>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          real dialog, rendered inline — paper margin (one --_dialogMargin var drives the
+          100%-minus-margin viewport calcs) · title/content/actions paddings · fullWidth width
+        </Typography>
+        <div style={{ position: 'relative', height: 300, width: '100%' }}>
+          <Dialog
+            open
+            fullWidth
+            hideBackdrop
+            disablePortal
+            disableEnforceFocus
+            disableAutoFocus
+            disableScrollLock
+            sx={{ position: 'absolute' }}
+          >
+            <DialogTitle>
+              <span className="density-debug-text">Use location service?</span>
+            </DialogTitle>
+            <DialogContent>
+              <Typography variant="body2">
+                <span className="density-debug-text">
+                  Let apps use your location to find nearby places. You can turn this off anytime in
+                  settings.
+                </span>
+              </Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button>
+                <span className="density-debug-text">Disagree</span>
+              </Button>
+              <Button variant="contained">
+                <span className="density-debug-text">Agree</span>
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      </div>
+      <DialogStaticComposition />
+    </Stack>
+  );
+}
+
+function DialogStaticComposition() {
+  // `dividers` on the content covers its distinct (frozen, re-asserted) padding leaf.
+  return (
+    <Paper sx={{ width: 360 }}>
       <DialogTitle>
         <span className="density-debug-text">Use location service?</span>
       </DialogTitle>
