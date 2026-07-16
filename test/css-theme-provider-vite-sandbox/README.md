@@ -11,30 +11,44 @@ Verifies that:
    the output bundle.
 2. `CssThemeProvider` injects `--mui-*` CSS variables at runtime without any
    `@emotion/*` dependency.
-3. `Slider` renders correctly using generated source CSS + runtime CSS vars from
+3. `Slider` renders using component CSS Modules + runtime CSS vars from
    `CssThemeProvider`.
 4. The `sx` prop fires a dev-only `console.error` and is otherwise ignored.
 5. `className`-based overrides beat `@layer mui` without `!important`.
 6. Dark mode works via `CssThemeProvider` by flipping `data-mui-color-scheme`
    on `document.documentElement`.
 7. `useTheme()` returns live JavaScript theme values (breakpoints, spacing, etc.).
-8. `pnpm build:css` generates custom media and Tailwind v4 tokens from the app
-   theme.
-9. Generated source CSS is imported by the app and its `@custom-media`
-   breakpoints are translated by Lightning CSS.
-10. Tailwind v4 consumes the generated MUI tokens and uses the custom
+8. The Material CSS tools resolver selects components that import their CSS
+   Modules.
+9. The Material Vite adapter injects the app theme's breakpoint aliases before
+   Lightning CSS translates them.
+10. `pnpm build:css` generates Tailwind v4 tokens from the app theme.
+11. Tailwind v4 consumes the generated MUI tokens and uses the custom
     `sm=720px` breakpoint.
+
+The relevant Vite setup is:
+
+```ts
+plugins: [
+  muiMaterialCssModules(),
+  muiCustomMedia({ theme }),
+  react(),
+  tailwindcss(),
+],
+```
+
+The app does not import `@mui/material/styles.css`; doing so would duplicate
+the component styles imported by the parallel build.
 
 ## How this differs from the other sandboxes
 
-|                   | noop-vite-sandbox            | css-theme-provider-vite-sandbox | emotion-vite-sandbox      |
-| :---------------- | :--------------------------- | :------------------------------ | :------------------------ |
-| Engine            | noop                         | noop                            | Emotion                   |
-| Theme delivery    | `default-theme.css` (static) | `CssThemeProvider` (runtime)    | `ThemeProvider` (runtime) |
-| Emotion in bundle | ❌                           | ❌                              | ✅                        |
-| `sx` prop         | ignored + warning            | ignored + warning               | ✅ works                  |
-| `useTheme()`      | ❌ no provider               | ✅                              | ✅                        |
-| Analogy           | Radix Themes                 | Mantine                         | MUI default               |
+|                   | default-css sandbox | css-theme-provider sandbox | emotion sandbox       |
+| :---------------- | :------------------ | :------------------------- | :-------------------- |
+| Engine            | noop                | noop                       | Emotion               |
+| Component CSS     | aggregate file      | per-component modules      | per-component modules |
+| Breakpoints       | default, prebuilt   | custom, Lightning CSS      | custom, PostCSS       |
+| Theme delivery    | runtime provider    | runtime provider           | runtime provider      |
+| Emotion in bundle | no                  | no                         | yes                   |
 
 ## Dev server
 
@@ -66,17 +80,17 @@ Build all three sandboxes, then compare JavaScript output sizes to measure the o
 of each approach:
 
 ```bash
-pnpm -F @mui-internal/noop-vite-sandbox build
+pnpm -F @mui-internal/css-theme-provider-default-css-vite-sandbox build
 pnpm -F @mui-internal/css-theme-provider-vite-sandbox build
 pnpm -F @mui-internal/emotion-vite-sandbox build
 
 # Compare JS sizes
-ls -lh test/noop-vite-sandbox/dist/assets/*.js
+ls -lh test/css-theme-provider-default-css-vite-sandbox/dist/assets/*.js
 ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.js
 ls -lh test/emotion-vite-sandbox/dist/assets/*.js
 
 # Compare CSS sizes
-ls -lh test/noop-vite-sandbox/dist/assets/*.css
+ls -lh test/css-theme-provider-default-css-vite-sandbox/dist/assets/*.css
 ls -lh test/css-theme-provider-vite-sandbox/dist/assets/*.css
 ls -lh test/emotion-vite-sandbox/dist/assets/*.css
 ```

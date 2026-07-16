@@ -1,5 +1,5 @@
 {
-  "name": "@mui-internal/emotion-vite-sandbox",
+  "name": "@mui-internal/css-theme-provider-default-css-vite-sandbox",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -8,14 +8,12 @@
     "predev": "pnpm build:css",
     "prebuild": "pnpm build:css",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@mui/material": "workspace:*",
-    "@mui/styled-engine": "workspace:*",
+    "@mui/styled-engine-noop": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
     "react": "^19.2.6",
@@ -23,12 +21,11 @@
   },
   "devDependencies": {
     "@mui/material-css-tools": "workspace:*",
+    "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.1.1",
-    "postcss": "^8.5.15",
-    "postcss-custom-media": "^12.0.1",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.3.0",
     "typescript": "^6.0.3",
     "vite": "^7.3.1"
   }

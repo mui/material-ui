@@ -1,4 +1,4 @@
-import type { Theme } from './createTheme';
+import type { Theme } from '@mui/material/styles';
 
 export interface GenerateTailwindThemeCssOptions {
   /**

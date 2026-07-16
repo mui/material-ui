@@ -9,14 +9,15 @@
  * Verifies that:
  *   1. @mui/styled-engine is aliased to @mui/styled-engine-noop (no Emotion).
  *   2. CssThemeProvider injects --mui-* CSS variables at runtime without Emotion.
- *   3. Slider renders correctly using generated source CSS + runtime CSS vars.
+ *   3. Slider renders using component CSS Modules + runtime CSS vars.
  *   4. The `sx` prop fires a console.error in dev and is otherwise ignored.
  *   5. className-based overrides beat @layer mui without !important.
  *   6. Dark mode works via CssThemeProvider by toggling data-mui-color-scheme
  *      on <html>.
  *   7. useTheme() returns JS theme values (breakpoints, spacing, etc.).
- *   8. App-imported generated source CSS @custom-media is translated by Lightning CSS.
- *   9. Tailwind v4 consumes generated @theme tokens from the same MUI theme.
+ *   8. The parallel MUI build imports component CSS Modules.
+ *   9. Lightning CSS translates their @custom-media aliases from the application theme.
+ *  10. Tailwind v4 consumes generated @theme tokens from the same MUI theme.
  *
  * To confirm no Emotion is bundled, run:
  *   pnpm -F @mui-internal/css-theme-provider-vite-sandbox build
@@ -34,8 +35,8 @@ import {
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import { customBreakpoints } from './theme';
-import './mui.css';
+import customBreakpoints from './theme';
+import './tailwind.css';
 
 const themes = [
   createTheme({

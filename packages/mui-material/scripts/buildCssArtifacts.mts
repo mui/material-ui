@@ -1,27 +1,21 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { Breakpoint } from '@mui/system';
+import { unstable_createBreakpoints as createBreakpoints } from '@mui/system/createBreakpoints';
+import { Features, transform } from 'lightningcss';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(dirname, '..');
 const srcRoot = path.join(packageRoot, 'src');
 
-const defaultBreakpointValues: Record<Breakpoint, number> = {
-  xs: 0,
-  sm: 600,
-  md: 900,
-  lg: 1200,
-  xl: 1536,
-};
-
-function up(key: Breakpoint) {
-  return `(min-width:${defaultBreakpointValues[key]}px)`;
-}
-
-function down(key: Breakpoint) {
-  return `(max-width:${defaultBreakpointValues[key] - 0.05}px)`;
-}
+// The aggregate styles.css components CSS file needs no consumer preprocessing, so compile it with MUI's defaults.
+const defaultBreakpoints = createBreakpoints({});
+const defaultCustomMedia = defaultBreakpoints.keys
+  .flatMap((key) => [
+    `@custom-media --mui-breakpoint-up-${key} ${defaultBreakpoints.up(key).replace(/^@media\s*/, '')};`,
+    `@custom-media --mui-breakpoint-down-${key} ${defaultBreakpoints.down(key).replace(/^@media\s*/, '')};`,
+  ])
+  .join('\n');
 
 async function findCssFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -33,12 +27,7 @@ async function findCssFiles(directory: string): Promise<string[]> {
         return findCssFiles(absolutePath);
       }
 
-      if (
-        entry.isFile() &&
-        entry.name.endsWith('.css') &&
-        entry.name !== 'styles.css' &&
-        entry.name !== 'styles-source.css'
-      ) {
+      if (entry.isFile() && entry.name.endsWith('.module.css')) {
         return [absolutePath];
       }
 
@@ -49,43 +38,24 @@ async function findCssFiles(directory: string): Promise<string[]> {
   return files.flat().sort();
 }
 
-function createReplacementMap() {
-  const replacements = new Map<string, string>();
-
-  (Object.keys(defaultBreakpointValues) as Breakpoint[]).forEach((key) => {
-    replacements.set(`--mui-breakpoint-up-${key}`, up(key));
-    replacements.set(`--mui-breakpoint-down-${key}`, down(key));
-  });
-
-  return replacements;
-}
-
-function resolveDefaultBreakpoints(css: string) {
-  const replacements = createReplacementMap();
-
-  return css.replace(/\(--mui-breakpoint-[\w-]+\)/g, (match) => {
-    const customMediaName = match.slice(1, -1);
-    const replacement = replacements.get(customMediaName);
-
-    if (!replacement) {
-      throw new Error(`Missing default breakpoint for ${customMediaName}`);
-    }
-
-    return replacement;
-  });
-}
-
 const cssFiles = await findCssFiles(srcRoot);
-const sourceCss = (
+const css = (
   await Promise.all(
     cssFiles.map(async (file) => {
       const relativePath = path.relative(srcRoot, file);
       const contents = await readFile(file, 'utf8');
+      // cssModules removes :global() without hashing Material UI's stable class names.
+      const result = transform({
+        filename: relativePath,
+        code: Buffer.from(`${defaultCustomMedia}\n${contents}`),
+        cssModules: true,
+        drafts: { customMedia: true },
+        include: Features.CustomMediaQueries,
+      });
 
-      return `/* ${relativePath} */\n${contents.trim()}\n`;
+      return `/* ${relativePath} */\n${result.code.toString().trim()}\n`;
     }),
   )
 ).join('\n');
 
-await writeFile(path.join(srcRoot, 'styles-source.css'), `${sourceCss}\n`);
-await writeFile(path.join(srcRoot, 'styles.css'), `${resolveDefaultBreakpoints(sourceCss)}\n`);
+await writeFile(path.join(srcRoot, 'styles.css'), `${css}\n`);

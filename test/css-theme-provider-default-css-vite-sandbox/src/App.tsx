@@ -1,48 +1,26 @@
 /**
- * emotion-engine sandbox.
- *
- * Mirror of noop-vite-sandbox but using the Emotion engine (the default MUI
- * setup). No engine alias is applied — @mui/styled-engine resolves to the
- * real Emotion-backed package.
- *
- * Verifies that:
- *   1. @mui/styled-engine resolves to the Emotion engine (bundle contains @emotion/*).
- *   2. Slider renders correctly via ThemeProvider + Emotion-generated styles.
- *   3. The `sx` prop works and applies styles at runtime via Emotion.
- *   4. Dark mode works via ThemeProvider's colorSchemes / CssVarsProvider.
- *   5. useTheme() returns live JS theme values.
- *   6. The parallel MUI build imports component CSS Modules.
- *   7. PostCSS translates their @custom-media aliases from the application theme.
- *   8. Tailwind v3 consumes a generated preset from the same MUI theme.
- *
- * To confirm Emotion IS bundled, run:
- *   pnpm -F @mui-internal/emotion-vite-sandbox build
- * Then:
- *   grep -r "@emotion" dist/
- *   # should print matches
+ * Mirrors the runtime CssThemeProvider sandbox while using the aggregate stylesheet.
+ * Component breakpoints therefore use MUI's precompiled defaults instead of app values.
  */
 import * as React from 'react';
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import {
-  createTheme,
-  ThemeProvider,
-  useColorScheme,
-  useThemeScopeProps,
-} from '@mui/material/styles';
+import Dialog, { type DialogProps } from '@mui/material/Dialog';
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
-import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import customBreakpoints from './theme';
+import {
+  createTheme,
+  CssThemeProvider,
+  useCssColorScheme,
+  useThemeScopeProps,
+} from '@mui/material/styles';
+import '@mui/material/styles.css';
 import './tailwind.css';
 
 const themes = [
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: {
       light: { palette: { primary: { main: '#2e7d32' }, secondary: { main: '#e91e63' } } },
@@ -50,7 +28,6 @@ const themes = [
     },
   }),
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: { colorSchemeSelector: '[data-mui-color-scheme="%s"]' },
     colorSchemes: {
       light: { palette: { primary: { main: '#c62828' }, secondary: { main: '#f57c00' } } },
@@ -61,10 +38,8 @@ const themes = [
 
 const themeNames = ['Blue (default)', 'Green', 'Red'];
 
-// Nested ThemeProvider auto-renders the scope wrapper for this simple class root.
 const innerThemes = [
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -72,7 +47,6 @@ const innerThemes = [
     colorSchemes: { light: true, dark: true },
   }),
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -83,7 +57,6 @@ const innerThemes = [
     },
   }),
   createTheme({
-    breakpoints: customBreakpoints,
     cssVariables: {
       rootSelector: '.inner-theme-scope',
       colorSchemeSelector: '.inner-theme-scope[data-mui-color-scheme="%s"]',
@@ -106,7 +79,7 @@ function TailwindSection() {
   return (
     <div className="mb-8 max-w-[720px] rounded-mui bg-primary p-4 text-primary-contrast shadow-4 sm:bg-secondary sm:text-secondary-contrast">
       <p className="typography-body2 m-0">
-        Tailwind tokens — colors, radius, shadow, typography, and the custom <code>sm=720px</code>{' '}
+        Tailwind tokens - colors, radius, shadow, typography, and the default <code>sm=600px</code>{' '}
         breakpoint are generated from the MUI theme.
       </p>
       <div className="mt-3 rounded-mui bg-background-paper p-3 text-text-primary shadow-1">
@@ -124,7 +97,7 @@ function TailwindSection() {
 
 interface InnerSectionProps {
   innerThemeIndex: number;
-  setInnerThemeIndex: (i: number) => void;
+  setInnerThemeIndex: (index: number) => void;
 }
 
 function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps) {
@@ -134,12 +107,12 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
   return (
     <div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
-        {themeNames.map((name, i) => (
+        {themeNames.map((name, index) => (
           <button
             key={name}
             type="button"
-            onClick={() => setInnerThemeIndex(i)}
-            style={{ fontWeight: innerThemeIndex === i ? 'bold' : 'normal' }}
+            onClick={() => setInnerThemeIndex(index)}
+            style={{ fontWeight: innerThemeIndex === index ? 'bold' : 'normal' }}
           >
             {name}
           </button>
@@ -148,11 +121,11 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
       <div style={{ maxWidth: 400 }}>
         <p style={{ marginBottom: 4 }}>
-          className override — thumb turns inner secondary color via plain CSS:
+          className override - thumb turns inner secondary color via plain CSS:
         </p>
         <Slider
           value={value}
-          onChange={(_, v) => setValue(v as number)}
+          onChange={(_, newValue) => setValue(newValue as number)}
           className="inner-custom-slider"
           aria-label="Inner custom class slider"
         />
@@ -161,12 +134,12 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
       <div style={{ maxWidth: 400, marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          sx override — track turns inner secondary + thumb grows larger (Emotion: applied at
-          runtime):
+          sx override - track should turn inner secondary and thumb should grow (noop engine:
+          ignored, see console):
         </p>
         <Slider
           value={value}
-          onChange={(_, v) => setValue(v as number)}
+          onChange={(_, newValue) => setValue(newValue as number)}
           sx={{
             color: 'secondary.main',
             '& .MuiSlider-thumb': { width: 28, height: 28 },
@@ -178,7 +151,7 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
       <div style={{ marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          Dialog portal — root slot receives the current theme scope:
+          Dialog portal - root slot receives the current theme scope:
         </p>
         <button type="button" onClick={() => setDialogOpen(true)}>
           Open scoped Dialog
@@ -202,13 +175,13 @@ function InnerSection({ innerThemeIndex, setInnerThemeIndex }: InnerSectionProps
 
 interface AppContentProps {
   themeIndex: number;
-  setThemeIndex: (i: number) => void;
+  setThemeIndex: (index: number) => void;
 }
 
 function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
   const [value, setValue] = React.useState<number>(40);
   const [innerThemeIndex, setInnerThemeIndex] = React.useState(0);
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode } = useCssColorScheme();
 
   return (
     <div
@@ -220,18 +193,19 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         fontFamily: 'sans-serif',
       }}
     >
-      <h1 style={{ marginTop: 0 }}>emotion-engine sandbox</h1>
+      <h1 style={{ marginTop: 0 }}>CssThemeProvider aggregate CSS sandbox</h1>
       <p>
-        Engine: <code>@mui/styled-engine</code> (Emotion) — Emotion is bundled here.
+        Engine: <code>@mui/styled-engine-noop</code> - components use the precompiled{' '}
+        <code>@mui/material/styles.css</code> stylesheet.
       </p>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
-        {themeNames.map((name, i) => (
+        {themeNames.map((name, index) => (
           <button
             key={name}
             type="button"
-            onClick={() => setThemeIndex(i)}
-            style={{ fontWeight: themeIndex === i ? 'bold' : 'normal' }}
+            onClick={() => setThemeIndex(index)}
+            style={{ fontWeight: themeIndex === index ? 'bold' : 'normal' }}
           >
             {name}
           </button>
@@ -243,7 +217,7 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
 
       <div style={{ maxWidth: 720, marginBottom: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          Toolbar breakpoint rule — gutters/min-height switch at custom <code>sm=720px</code>:
+          Toolbar breakpoint rule - gutters/min-height switch at default <code>sm=600px</code>:
         </p>
         <div style={{ border: '1px solid var(--mui-palette-divider)' }}>
           <Toolbar style={{ background: 'var(--mui-palette-action-hover)' }}>
@@ -256,12 +230,11 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
 
       <div style={{ maxWidth: 400 }}>
         <p style={{ marginBottom: 4 }}>
-          className override — thumb turns secondary color via plain CSS:
+          className override - thumb turns secondary color via plain CSS:
         </p>
-
         <Slider
           value={value}
-          onChange={(_, v) => setValue(v as number)}
+          onChange={(_, newValue) => setValue(newValue as number)}
           className="custom-slider"
           aria-label="Custom class slider"
         />
@@ -270,11 +243,12 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
 
       <div style={{ maxWidth: 400, marginTop: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          sx override — track turns secondary + thumb grows larger (Emotion: applied at runtime):
+          sx override - track should turn secondary and thumb should grow (noop engine: ignored, see
+          console):
         </p>
         <Slider
           value={value}
-          onChange={(_, v) => setValue(v as number)}
+          onChange={(_, newValue) => setValue(newValue as number)}
           sx={{
             color: 'var(--mui-palette-secondary-main)',
             '& .MuiSlider-thumb': { width: 28, height: 28 },
@@ -293,11 +267,11 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
         }}
       >
         <h2 style={{ marginTop: 0 }}>
-          Nested scoped theme (same --mui-palette-* names, scoped to container)
+          Nested scoped theme (auto scope wrapper, --mui-palette-* override)
         </h2>
-        <ThemeProvider theme={innerThemes[innerThemeIndex]}>
+        <CssThemeProvider theme={innerThemes[innerThemeIndex]}>
           <InnerSection innerThemeIndex={innerThemeIndex} setInnerThemeIndex={setInnerThemeIndex} />
-        </ThemeProvider>
+        </CssThemeProvider>
       </div>
 
       <style>{`
@@ -318,9 +292,10 @@ function AppContent({ themeIndex, setThemeIndex }: AppContentProps) {
 
 export default function App() {
   const [themeIndex, setThemeIndex] = React.useState(0);
+
   return (
-    <ThemeProvider theme={themes[themeIndex]}>
+    <CssThemeProvider theme={themes[themeIndex]}>
       <AppContent themeIndex={themeIndex} setThemeIndex={setThemeIndex} />
-    </ThemeProvider>
+    </CssThemeProvider>
   );
 }

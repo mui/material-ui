@@ -3,11 +3,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateTailwindThemeCss } from '@mui/material-css-tools';
 import { createTheme } from '@mui/material/styles';
-import customBreakpoints from '../src/theme';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const srcRoot = path.resolve(dirname, '../src');
-const theme = createTheme({ breakpoints: customBreakpoints });
+const theme = createTheme();
 
 await writeFile(
   path.join(srcRoot, 'tailwind.css'),

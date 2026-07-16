@@ -4,10 +4,14 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { Features } from 'lightningcss';
+import { createTheme } from '@mui/material/styles';
+import { muiCustomMedia, muiMaterialCssModules } from '@mui/material-css-tools/vite';
+import customBreakpoints from './src/theme';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 // Two levels up: test/css-theme-provider-vite-sandbox → test → monorepo root
 const MONOREPO_ROOT = path.resolve(dirname, '../..');
+const breakpointTheme = createTheme({ breakpoints: customBreakpoints });
 
 // https://vite.dev/config/
 // Use the function form so `mode` is available for the NODE_ENV define.
@@ -26,7 +30,12 @@ export default defineConfig(({ mode }) => ({
       include: Features.CustomMediaQueries,
     },
   },
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    muiMaterialCssModules(),
+    muiCustomMedia({ theme: breakpointTheme }),
+    react(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: [
       // THE KEY ALIAS: swap Emotion for the zero-runtime noop engine.

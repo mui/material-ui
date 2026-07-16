@@ -25,8 +25,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:css && code-infra build --tsgo --flat --copy \"src/**/*.css\"",
+    "build": "pnpm build:css && code-infra build --tsgo --flat --copy \"src/**/*.css\" && pnpm build:css-modules",
     "build:css": "tsx scripts/buildCssArtifacts.mts",
+    "build:css-modules": "tsx scripts/buildCssModulesVariant.mts",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
     "typescript": "tsgo -p tsconfig.json",
@@ -58,6 +59,7 @@
     "css-mediaquery": "0.1.2",
     "es-toolkit": "1.46.1",
     "fast-glob": "3.3.3",
+    "lightningcss": "^1.32.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-router": "7.15.1",
@@ -101,7 +103,6 @@
   "exports": {
     ".": "./src/index.js",
     "./styles.css": "./src/styles.css",
-    "./styles-source.css": "./src/styles-source.css",
     "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
     "./zero-styled": "./src/zero-styled/index.tsx",
     "./className": "./src/className/index.ts",

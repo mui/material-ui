@@ -1,11 +1,13 @@
-import type { Theme } from './createTheme';
+import type { Theme } from '@mui/material/styles';
 
 interface TailwindPluginApi {
   addVariant: (name: string, selector: string) => void;
-  matchUtilities?: (
-    utilities: Record<string, (value: string) => Record<string, string>>,
-    options: { values: Record<string, string> },
-  ) => void;
+  matchUtilities?:
+    | ((
+        utilities: Record<string, (value: string) => Record<string, string>>,
+        options: { values: Record<string, string> },
+      ) => void)
+    | undefined;
 }
 
 export interface CreateTailwindPresetOptions {
