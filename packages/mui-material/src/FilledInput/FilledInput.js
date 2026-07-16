@@ -11,6 +11,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
+import selectClasses from '../Select/selectClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -18,6 +19,7 @@ import {
   InputBaseInput,
 } from '../InputBase/InputBase';
 import { capitalize } from '../utils';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, disableUnderline, startAdornment, endAdornment, size, hiddenLabel, multiline } =
@@ -67,7 +69,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
       borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      transition: theme.transitions.create('background-color', {
+      ...getTransitionStyles(theme, 'background-color', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
@@ -97,7 +99,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               position: 'absolute',
               right: 0,
               transform: 'scaleX(0)',
-              transition: theme.transitions.create('transform', {
+              ...getTransitionStyles(theme, 'transform', {
                 duration: theme.transitions.duration.shorter,
                 easing: theme.transitions.easing.easeOut,
               }),
@@ -127,7 +129,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
               content: '""',
               position: 'absolute',
               right: 0,
-              transition: theme.transitions.create('border-bottom-color', {
+              ...getTransitionStyles(theme, 'border-bottom-color', {
                 duration: theme.transitions.duration.shorter,
               }),
               pointerEvents: 'none', // Transparent to the hover style.
@@ -162,7 +164,12 @@ const FilledInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 12,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '12px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {

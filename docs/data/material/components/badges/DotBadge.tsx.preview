@@ -1,3 +1,5 @@
-<Badge color="secondary" variant="dot">
-  <MailIcon />
-</Badge>
+<IconButton aria-label="show new notifications">
+  <Badge color="secondary" variant="dot">
+    <NotificationsIcon />
+  </Badge>
+</IconButton>

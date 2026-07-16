@@ -132,8 +132,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
   options?: {
     prefix?: string | undefined;
     shouldSkipGeneratingVar?:
-      | ((objectPathKeys: Array<string>, value: string | number) => boolean)
-      | undefined;
+      ((objectPathKeys: Array<string>, value: string | number) => boolean) | undefined;
   },
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};

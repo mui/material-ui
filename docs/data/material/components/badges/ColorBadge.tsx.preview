@@ -1,6 +1,15 @@
-<Badge badgeContent={4} color="secondary">
-  <MailIcon color="action" />
-</Badge>
-<Badge badgeContent={4} color="success">
-  <MailIcon color="action" />
-</Badge>
+<IconButton aria-label="show 8 shared files">
+  <Badge badgeContent={8} color="primary">
+    <FolderOpenIcon />
+  </Badge>
+</IconButton>
+<IconButton aria-label="show 2 confirmed events">
+  <Badge badgeContent={2} color="success">
+    <CalendarMonthIcon />
+  </Badge>
+</IconButton>
+<IconButton aria-label="show 1 critical alert">
+  <Badge badgeContent={1} color="error">
+    <ReportProblemOutlinedIcon />
+  </Badge>
+</IconButton>

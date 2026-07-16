@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "9.0.0",
+  "version": "9.2.0",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "license": "MIT",
@@ -25,15 +25,15 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build --flat",
+    "build": "code-infra build --tsgo --flat",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
-    "typescript": "tsc -p tsconfig.json",
+    "typescript": "tsgo -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
     "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -43,23 +43,23 @@
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.4",
+    "react-is": "^19.2.7",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "css-mediaquery": "0.1.2",
-    "es-toolkit": "1.46.0",
+    "es-toolkit": "1.49.0",
     "fast-glob": "3.3.3",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-router": "7.13.2",
-    "sinon": "21.1.2"
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-router": "7.18.1",
+    "sinon": "22.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -90,6 +90,9 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "browser": {
+    "react-transition-group/cjs/TransitionGroupContext.js": "react-transition-group/esm/TransitionGroupContext.js"
   },
   "exports": {
     ".": "./src/index.js",

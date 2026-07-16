@@ -6,20 +6,55 @@ packages:
   - test
   - test/*
 
-patchedDependencies:
-  styled-components: patches/styled-components.patch
-
-onlyBuiltDependencies:
-  - '@vvago/vale'
-
 engineStrict: true
+enablePrePostScripts: true
+updateNotifier: false
+blockExoticSubdeps: true
+minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@mui/*'
+  - '@base-ui/*'
+  # Renovate security update: @babel/core@7.29.6
+  - '@babel/core@7.29.6'
+trustPolicy: no-downgrade
+# Skip trust-policy checks for packages published more than 365 days ago.
+# Some widely-used legacy packages (notably semver@6.x — pulled in by @babel/core@7.x — plus
+# reselect@5.1.1 and parts of @octokit/*) dropped provenance attestation for specific releases,
+# triggering false-positive trust-downgrade errors. Packages that old have had ample time for
+# community review; supply-chain risk is most relevant within a shorter window.
+# TODO: drop once @babel/core stops depending on semver@^6.3.1 (no 6.x semver release has
+# provenance), and the other legacy packages restore provenance.
+trustPolicyIgnoreAfter: 525600
 
 catalogs:
   docs:
     stylis: '4.2.0'
-    '@base-ui/react': '^1.4.0'
+    '@base-ui/react': '^1.6.0'
     '@docsearch/react': '^3.9.0'
     '@emotion/cache': '^11.14.0'
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
+
+overrides:
+  # Both were bundled twice in the docs build
+  'docs>stylis': '4.2.0'
+  'docs>react-is': '19.2.7'
+  # Migrated from package.json "resolutions" (pnpm 11 ignores that field).
+  caniuse-lite: '^1.0.30001803'
+  '@types/node': '20.19.43'
+  cross-fetch: '^4.1.0'
+  '@pigment-css/react': '0.0.31'
+  '@pigment-css/unplugin': '0.0.31'
+  '@pigment-css/nextjs-plugin': '0.0.31'
+  '@pigment-css/vite-plugin': '0.0.31'
+
+allowBuilds:
+  '@vvago/vale': true
+  esbuild: true
+  nx: true
+  sharp: true
+  unrs-resolver: true
+  '@mui/x-telemetry': false
+  core-js: false
+  core-js-pure: false

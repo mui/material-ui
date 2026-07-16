@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import NotchedOutline from './NotchedOutline';
-import useFormControl from '../FormControl/useFormControl';
-import formControlState from '../FormControl/formControlState';
+import { useFormControlState } from '../FormControl/useFormControl';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import selectClasses from '../Select/selectClasses';
 import InputBase, {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
@@ -94,7 +94,12 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: ({ ownerState }) => ownerState.endAdornment,
           style: {
-            paddingRight: 14,
+            // use CSS variable to keep specificity
+            '--_trailingPad': '14px',
+            paddingRight: 'var(--_trailingPad)',
+            [`&.${selectClasses.root}`]: {
+              '--_trailingPad': '0px',
+            },
           },
         },
         {
@@ -197,10 +202,8 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const muiFormControl = useFormControl();
-  const fcs = formControlState({
+  const [fcs, muiFormControl] = useFormControlState({
     props,
-    muiFormControl,
     states: ['color', 'disabled', 'error', 'focused', 'hiddenLabel', 'size', 'required'],
   });
 

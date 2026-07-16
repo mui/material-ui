@@ -55,8 +55,7 @@ export interface UseAutocompleteProps<
    * TODO v6: Normalize the logic and remove this param.
    */
   unstable_isActiveElementInListbox?:
-    | ((listbox: React.RefObject<HTMLElement | null>) => boolean)
-    | undefined;
+    ((listbox: React.RefObject<HTMLElement | null>) => boolean) | undefined;
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -170,8 +169,7 @@ export interface UseAutocompleteProps<
    * @returns {string | number}
    */
   getOptionKey?:
-    | ((option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string | number)
-    | undefined;
+    ((option: Value | AutocompleteFreeSoloValueMapping<FreeSolo>) => string | number) | undefined;
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
@@ -183,8 +181,7 @@ export interface UseAutocompleteProps<
    * @default (option) => option.label ?? option
    */
   getOptionLabel?:
-    | ((option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string)
-    | undefined;
+    ((option: AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo>) => string) | undefined;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -305,6 +302,12 @@ export interface UseAutocompleteProps<
    */
   readOnly?: boolean | undefined;
   /**
+   * If `true`, clears an option highlighted by mouse movement when the mouse leaves the listbox.
+   * This behavior will be enabled by default in the next major version.
+   * @default false
+   */
+  resetHighlightOnMouseLeave?: boolean | undefined;
+  /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
    * @default !props.freeSolo
@@ -329,28 +332,14 @@ export interface UseAutocompleteParameters<
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
 export type AutocompleteChangeReason =
-  | 'createOption'
-  | 'selectOption'
-  | 'removeOption'
-  | 'clear'
-  | 'blur';
+  'createOption' | 'selectOption' | 'removeOption' | 'clear' | 'blur';
 export interface AutocompleteChangeDetails<Value = string> {
   option: Value;
 }
 export type AutocompleteCloseReason =
-  | 'createOption'
-  | 'toggleInput'
-  | 'escape'
-  | 'selectOption'
-  | 'removeOption'
-  | 'blur';
+  'createOption' | 'toggleInput' | 'escape' | 'selectOption' | 'removeOption' | 'blur';
 export type AutocompleteInputChangeReason =
-  | 'input'
-  | 'reset'
-  | 'clear'
-  | 'blur'
-  | 'selectOption'
-  | 'removeOption';
+  'input' | 'reset' | 'clear' | 'blur' | 'selectOption' | 'removeOption';
 
 export type AutocompleteGetItemProps<Multiple extends boolean | undefined> = Multiple extends true
   ? (args: { index: number }) => {
@@ -438,9 +427,10 @@ export interface UseAutocompleteReturnValue<
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
    * Resolver for the listbox component's props.
+   * @param externalProps props for the listbox component
    * @returns props that should be spread on the listbox component
    */
-  getListboxProps: () => React.HTMLAttributes<HTMLUListElement>;
+  getListboxProps: (externalProps?: any) => React.HTMLAttributes<HTMLUListElement>;
   /**
    * Resolver for the rendered option element's props.
    * @param renderedOption option rendered on the Autocomplete

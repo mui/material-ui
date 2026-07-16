@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, isJsdom, screen } from '@mui/internal-test-utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Switch, { switchClasses as classes } from '@mui/material/Switch';
 import FormControl from '@mui/material/FormControl';
 import describeConformance from '../../test/describeConformance';
@@ -55,6 +56,27 @@ describe('<Switch />', () => {
     });
   });
 
+  it.skipIf(isJsdom())('disables CSS transitions when reduced motion is always', () => {
+    const theme = createTheme({
+      motion: {
+        reducedMotion: 'always',
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Switch />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.switchBase}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+    expect(container.querySelector(`.${classes.track}`)).toHaveComputedStyle({
+      transitionDuration: '0s',
+    });
+  });
+
   it('should render an .thumb element inside the .switchBase element', () => {
     const { container } = render(
       <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
@@ -76,6 +98,18 @@ describe('<Switch />', () => {
     render(<Switch />);
 
     expect(screen.getByRole('switch')).to.have.property('checked', false);
+  });
+
+  it('preserves `role="switch"` when input slotProps are provided as an object', () => {
+    render(<Switch slotProps={{ input: { 'aria-label': 'Dark mode' } }} />);
+
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
+  });
+
+  it('preserves `role="switch"` when input slotProps are provided as a function', () => {
+    render(<Switch slotProps={{ input: () => ({ 'aria-label': 'Dark mode' }) }} />);
+
+    expect(screen.getByRole('switch', { name: 'Dark mode' })).to.have.property('checked', false);
   });
 
   it('renders a switch with the Checked state when checked', () => {
