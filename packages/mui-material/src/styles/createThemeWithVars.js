@@ -25,6 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
+import toPx from '../utils/toPx';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -966,13 +967,20 @@ export default function createThemeWithVars(options = {}, ...args) {
     options.focusVisible,
   );
   if (focusVisibleInput != null && focusVisibleInput !== false) {
-    theme.focusVisible = {
+    const resolvedFocusVisible = {
       outlineStyle: 'solid',
       outlineColor: `var(--${cssVarPrefix}-palette-primary-main)`,
       outlineWidth: 2,
-      outlineOffset: 2,
       ...(focusVisibleInput === true ? null : focusVisibleInput),
     };
+    // Mirror createThemeNoVars: default the offset to a per-component sign flip via
+    // `--_focusVisible-offset`, scaled by the resolved width. A user `outlineOffset` still wins.
+    if (resolvedFocusVisible.outlineOffset == null) {
+      resolvedFocusVisible.outlineOffset = `calc(var(--_focusVisible-offset, 1) * ${toPx(
+        resolvedFocusVisible.outlineWidth,
+      )})`;
+    }
+    theme.focusVisible = resolvedFocusVisible;
   }
 
   const parserConfig = {

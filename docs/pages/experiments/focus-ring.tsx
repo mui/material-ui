@@ -65,10 +65,16 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
     off: { label: 'off', value: undefined },
     true: { label: 'true (curated)', value: true },
     recolor: { label: 'recolor', value: { outlineColor: '#9c27b0' } },
-    twocolor: { label: 'two-color (C40)', value: { boxShadow: '0 0 0 4px gold' } },
+    twocolor: {
+      label: 'two-color (C40)',
+      value: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px gold' },
+    },
     shadowonly: {
       label: 'box-shadow only',
-      value: { outlineColor: 'transparent', boxShadow: '0 0 0 4px gold' },
+      value: {
+        outlineColor: 'transparent',
+        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px gold',
+      },
     },
   };
 
@@ -238,7 +244,13 @@ function OuterRing() {
       <Row label="Stepper">
         <Stepper nonLinear activeStep={0} sx={{ minWidth: 260 }}>
           <Step>
-            <StepButton data-ring-target="StepButton">One</StepButton>
+            {/* suppressFocusVisible is an internal ButtonBase escape hatch, not public-typed */}
+            <StepButton
+              {...({ suppressFocusVisible: true } as React.ComponentProps<typeof StepButton>)}
+              data-ring-target="StepButton"
+            >
+              One
+            </StepButton>
           </Step>
           <Step>
             <StepButton data-ring-target="StepButton">Two</StepButton>
@@ -619,7 +631,7 @@ export default function FocusVisible() {
               label="Custom focusVisible (JSON)"
               value={customJson}
               onChange={(event) => setCustomJson(event.target.value)}
-              placeholder={'{ "outlineColor": "transparent", "boxShadow": "0 0 0 4px gold" }'}
+              placeholder={'{ "boxShadow": "var(--_focusVisible-behavior, ) 0 0 0 4px gold" }'}
               error={custom.error}
               helperText={customHelp}
               multiline
@@ -729,8 +741,10 @@ export default function FocusVisible() {
                 <code>overflow: hidden</code> clip:
               </strong>{' '}
               a standalone outer ring is clipped to nothing inside an <code>overflow: hidden</code>{' '}
-              ancestor (e.g. Card). The inner-ring families inset the ring (negative offset) so it
-              draws inside the box.
+              ancestor (e.g. Card). The inner-ring families set two private vars the ring reads —{' '}
+              <code>--_focusVisible-offset: -1</code> flips the outline inward, and{' '}
+              <code>--_focusVisible-behavior: inset</code> insets a custom box-shadow — so both
+              techniques draw inside the box.
             </Typography>
             <Typography variant="body2" color="text.secondary">
               • <strong>Forced colors:</strong> in forced-colors mode the UA paints its own focus

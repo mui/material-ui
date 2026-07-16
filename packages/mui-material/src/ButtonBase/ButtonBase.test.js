@@ -1631,6 +1631,14 @@ describe('<ButtonBase />', () => {
       expect(button).toHaveComputedStyle({ outlineStyle: 'none' });
     });
 
+    it.skipIf(isJsdom())('leaves a user box-shadow outset on a non-clip-prone component', () => {
+      // same behavior-var box-shadow that insets on Tab: here the var is unset, so it stays outset
+      const button = focusVisibleButton({
+        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)',
+      });
+      expect(window.getComputedStyle(button).boxShadow).not.to.match(/inset/);
+    });
+
     it.skipIf(isJsdom())('an object recolors the ring but keeps the curated geometry', () => {
       const button = focusVisibleButton({ outlineColor: 'rgb(255, 0, 0)' });
       expect(button).toHaveComputedStyle({

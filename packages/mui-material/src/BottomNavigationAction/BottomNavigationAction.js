@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import toPx from '../utils/toPx';
+import insetFocusRing from '../utils/insetFocusRing';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import ButtonBase, { buttonBaseClasses } from '../ButtonBase';
+import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
 import { getTransitionStyles } from '../transitions/utils';
 import bottomNavigationActionClasses, {
@@ -48,12 +48,9 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     [`&.${bottomNavigationActionClasses.selected}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
-    // Inset the focus ring: actions sit flush inside a bounded BottomNavigation bar.
-    ...((theme.vars || theme).focusVisible && {
-      [`&.${buttonBaseClasses.focusVisible}`]: {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
-      },
-    }),
+    // Inset the focus ring: actions sit flush inside a bounded BottomNavigation bar. Set the
+    // private vars the curated ring reads so the outline offset and any user box-shadow inset.
+    ...((theme.vars || theme).focusVisible && insetFocusRing),
     variants: [
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,

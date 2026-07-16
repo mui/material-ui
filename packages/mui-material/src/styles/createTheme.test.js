@@ -459,7 +459,9 @@ describe('createTheme', () => {
     const CURATED = {
       outlineStyle: 'solid',
       outlineWidth: 2,
-      outlineOffset: 2,
+      // Offset is a per-component sign flip (`--_focusVisible-offset`: 1 outset / -1 inset)
+      // scaled by the width, so a clip-prone component insets without knowing the width.
+      outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
     };
 
     it('`true` resolves to the curated ring using the palette primary color', () => {
@@ -517,9 +519,26 @@ describe('createTheme', () => {
       expect(theme.vars.focusVisible.outlineWidth).to.equal(
         'var(--mui-focusVisible-outlineWidth, 2px)',
       );
+      // the offset default carries the per-component sign-flip calc as its fallback
       expect(theme.vars.focusVisible.outlineOffset).to.equal(
-        'var(--mui-focusVisible-outlineOffset, 2px)',
+        'var(--mui-focusVisible-outlineOffset, calc(var(--_focusVisible-offset, 1) * 2px))',
       );
+    });
+
+    it('offset defaults to the sign-flip calc, but a user `outlineOffset` wins', () => {
+      const auto = createTheme({ cssVariables: false, focusVisible: true });
+      expect(auto.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
+      );
+      // a wider ring scales the inset with it
+      const wide = createTheme({ cssVariables: false, focusVisible: { outlineWidth: 4 } });
+      expect(wide.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 4px)',
+      );
+      // an explicit offset replaces the calc verbatim (reaches non-clipped components; a
+      // clip-prone component would clip — documented as the `styleOverrides` escape hatch)
+      const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
+      expect(fixed.focusVisible.outlineOffset).to.equal(6);
     });
 
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {

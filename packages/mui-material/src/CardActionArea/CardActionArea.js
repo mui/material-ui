@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import toPx from '../utils/toPx';
+import insetFocusRing from '../utils/insetFocusRing';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
@@ -41,12 +41,9 @@ const CardActionAreaRoot = styled(ButtonBase, {
     [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
       opacity: (theme.vars || theme).palette.action.focusOpacity,
     },
-    // Inset the focus ring: Card sets overflow:hidden, which clips a positive outline-offset.
-    ...((theme.vars || theme).focusVisible && {
-      [`&.${cardActionAreaClasses.focusVisible}`]: {
-        outlineOffset: `calc(-1 * ${toPx((theme.vars || theme).focusVisible.outlineWidth)})`,
-      },
-    }),
+    // Inset the focus ring: Card sets overflow:hidden, which clips an outset ring. Set the private
+    // vars the curated ring reads so the outline offset and any user box-shadow inset.
+    ...((theme.vars || theme).focusVisible && insetFocusRing),
   })),
 );
 

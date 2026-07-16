@@ -15,7 +15,7 @@ v1 ships **one opt-in feature**: `theme.focusVisible` renders a curated keyboard
 | object      | Merged over the curated default (partial override)                                   |
 | `false`     | Reserved kill-switch — same as `undefined` today, meaningful once the fallback lands |
 
-The value is normalized once (`true` → curated object, object → merged over it) so components read a resolved object and never the boolean. Curated default: `{ outlineStyle: 'solid', outlineColor: palette.primary.main, outlineWidth: 2, outlineOffset: 2 }`.
+The value is normalized once (`true` → curated object, object → merged over it) so components read a resolved object and never the boolean. Curated default: `{ outlineStyle: 'solid', outlineColor: palette.primary.main, outlineWidth: 2, outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)' }`. The offset is a per-component sign flip: `--_focusVisible-offset` is `1` (outset) by default and `-1` on a clip-prone component, scaled by the resolved width — so a clip-prone component insets the ring without knowing the width. A user-provided `outlineOffset` still replaces the calc verbatim.
 
 ## Why this shape
 
@@ -27,4 +27,5 @@ The value is normalized once (`true` → curated object, object → merged over 
 - v1 is non-breaking: no app changes rendering unless it sets `theme.focusVisible`.
 - Scope is defined by mechanism — every component that renders `ButtonBase` (Button, IconButton, Fab, Tab, MenuItem, ListItemButton, Chip when clickable/deletable, Checkbox/Radio/Switch via SwitchBase, …), plus Slider's thumb and Link, which carry `.Mui-focusVisible` and are wired explicitly. Non-`.Mui-focusVisible` inputs (TextField/InputBase) stay out of scope.
 - Components whose keyboard indicator is a background tint (`palette.action.focus`: MenuItem, Chip, ListItemButton, …) get the ring **additively** on top of the tint. Excluding a component is a `styleOverrides` recipe (`&.Mui-focusVisible { outlineColor: 'transparent' }` — keeps the forced-colors fallback; `outline: 0` would kill it).
+- **Clip-prone components** (rendered inside a MUI-owned `overflow: hidden` — Tab, MenuItem, ListItemButton, BottomNavigationAction, CardActionArea, Autocomplete option) inset the ring by spreading a shared `insetFocusRing` on their root: `--_focusVisible-offset: -1` flips the outline inward and `--_focusVisible-behavior: inset` insets a user-provided box-shadow. Both techniques adapt without the component reading the ring width, and a user's two-color (C40) box-shadow no longer clips there. Changing the inset on a specific component stays a `styleOverrides` escape hatch.
 - The auto-on fallback ADR supersedes the deferred half of this record when it lands.

@@ -326,5 +326,25 @@ describe('<Tab />', () => {
       focusVisible(tab);
       expect(tab).toHaveComputedStyle({ outlineOffset: '-2px' });
     });
+
+    it.skipIf(isJsdom())('insets a user box-shadow via the behavior var', () => {
+      const theme = createTheme({
+        // the C40 two-color pattern: the behavior var makes it inset on clip-prone components
+        focusVisible: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)' },
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      // the box-shadow renders inside the scroller, so it cannot be clipped
+      expect(window.getComputedStyle(tab).boxShadow).to.match(/inset/);
+    });
   });
 });

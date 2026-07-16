@@ -17,6 +17,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
+import toPx from '../utils/toPx';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -121,13 +122,21 @@ function createThemeNoVars(options = {}, ...args) {
   // Normalize the opt-in focus ring once: `true` → curated default, object → merged
   // over it. Components then read a resolved object and never the boolean.
   if (muiTheme.focusVisible != null && muiTheme.focusVisible !== false) {
-    muiTheme.focusVisible = {
+    const resolvedFocusVisible = {
       outlineStyle: 'solid',
       outlineColor: palette.primary.main,
       outlineWidth: 2,
-      outlineOffset: 2,
       ...(muiTheme.focusVisible === true ? null : muiTheme.focusVisible),
     };
+    // Offset defaults to a per-component sign flip: `--_focusVisible-offset` is 1 (outset) unless
+    // a clip-prone component sets -1 (inset), scaled by the resolved width so an inset ring never
+    // clips regardless of the component. A user-provided `outlineOffset` still wins.
+    if (resolvedFocusVisible.outlineOffset == null) {
+      resolvedFocusVisible.outlineOffset = `calc(var(--_focusVisible-offset, 1) * ${toPx(
+        resolvedFocusVisible.outlineWidth,
+      )})`;
+    }
+    muiTheme.focusVisible = resolvedFocusVisible;
   }
 
   if (process.env.NODE_ENV !== 'production') {
