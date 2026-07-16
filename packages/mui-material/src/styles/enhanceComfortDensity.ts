@@ -1086,12 +1086,12 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   // Cell/header inline inset (master 0 10px) + edit input aligned to the same
   // step (master 0 16px — upstream mismatch makes the value jump on edit entry).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: `0 ${d.md}` }, 'cell');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: `0 ${d.md}` }, 'columnHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.md }, 'cell');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.md }, 'columnHeader');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { '& input': { padding: `0 ${d.md}` } },
+    { '& input': { paddingInline: d.md } },
     'editInputCell',
   );
   // Header title↔sort/filter icon gap (master 2px = 0.25 spacing unit).
@@ -1103,14 +1103,192 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
     { minHeight: '60px', padding: d.sm, gap: d.xxs },
     'toolbar',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.xs}` }, 'toolbarDivider');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.xs}` }, 'toolbarLabel');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.xs }, 'toolbarDivider');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.xs }, 'toolbarLabel');
   // Footer: min-height = raw px (sizing); row/selection count gutters = steps.
   addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '60px' }, 'footerContainer');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.lg}` }, 'rowCount');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { margin: `0 ${d.lg}` }, 'selectedRowCount');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.lg }, 'rowCount');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.lg }, 'selectedRowCount');
   // Gap between row action icon buttons (master 8px).
   addRootOverride(enhanced.components, 'MuiDataGrid', { gridGap: d.sm }, 'actionsCell');
+  // Filter panel (portal). Content padding/gap nest under the `panel` slot —
+  // upstream resolves the `panelContent` styleOverrides key on BOTH the filter
+  // content wrapper and the panel popup shell (GridPanel's inner slot), so a
+  // direct key emission would pad the shell too.
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { '& .MuiDataGrid-panelContent': { padding: `${d.xl} ${d.md} ${d.lg} ${d.sm}`, gap: d.xl } },
+    'panel',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: d.sm }, 'panelFooter');
+  // Gap between the filter form's column/operator/value inputs (master su(1.5)).
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.md }, 'filterForm');
+  // Filter field widths (sizing → raw px; master 75/150/150/190).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minWidth: '85px' },
+    'filterFormLogicOperatorInput',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '170px' }, 'filterFormColumnInput');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { width: '170px' },
+    'filterFormOperatorInput',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '215px' }, 'filterFormValueInput');
+  // Columns management panel paddings (master su(0.5,1.5) / su(1.5,2) /
+  // su(1,1,1,1.5) / su(1,0)). The per-row checkbox↔label gap targets the
+  // Material class — the grid's FormControlLabel wrapper is slot:'internal'
+  // (no styleOverrides key of its own).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { padding: `${d.xs} ${d.md}`, '& .MuiFormControlLabel-root': { gap: d.xs } },
+    'columnsManagement',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { padding: `${d.md} ${d.lg}` },
+    'columnsManagementHeader',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { padding: `${d.sm} ${d.sm} ${d.sm} ${d.md}` },
+    'columnsManagementFooter',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { paddingBlock: d.sm },
+    'columnsManagementEmptyText',
+  );
+  // Column menu list min-width (sizing; master 248). Nested under `menu` — the
+  // list is slot:'internal' and the menu portals outside the root, so the
+  // root's child-class keys can't reach it.
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { '& .MuiDataGrid-menuList': { minWidth: '276px' } },
+    'menu',
+  );
+  // Toolbar quick filter expanded width (sizing; master 260). The expanded
+  // state has no DOM hook — it's ownerState-only — so the width scopes via a
+  // variants matcher; collapsed keeps upstream's var(--trigger-width).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { variants: [{ props: { expanded: true }, style: { width: '290px' } }] },
+    'toolbarQuickFilterControl',
+  );
+  // Label↔action gap in the no-rows/no-columns overlays (master su(1)).
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.sm }, 'overlay');
+  // Drag-ghost insets (master 0 12px; placeholder 0 6px — nested to outrank
+  // upstream's `.row--dragging .rowReorderCellPlaceholder` rule).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { paddingInline: d.md },
+    'columnHeader--dragging',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { paddingInline: d.md, '& .MuiDataGrid-rowReorderCellPlaceholder': { paddingInline: d.xs } },
+    'row--dragging',
+  );
+  // Rowspan multi-select chip stack inset (master paddingTop 8; selector
+  // mirrors upstream's aria-rowspan scoping to match its specificity).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    {
+      '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': { paddingTop: d.sm },
+    },
+    'cell',
+  );
+  // [Pro] Header-filter row insets (master 8/8/5; physical paddingRight matches
+  // upstream so RTL flipping stays identical). The upstream densityCompact
+  // conditional stays dormant — the grid's density prop is unset.
+  addRootOverride(enhanced.components, 'MuiDataGrid', {
+    '& .MuiDataGrid-columnHeader--filter': { paddingBlock: d.sm, paddingRight: d.xs },
+  });
+  // [Pro] Header-filter input margins (master su(0.5) / su(-0.25)).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { marginRight: d.xs, marginBottom: `calc(${d.xxs} * -1)` },
+    'columnHeaderFilterInput',
+  );
+  // [Pro/Premium] Grouping indent: depth × multiplier × spacing unit (master 2).
+  // Premium grouping cells read the var; Pro tree-data computes the same indent
+  // in JS and bypasses it — upstream inconsistency, flagged as fix candidate.
+  addRootOverride(enhanced.components, 'MuiDataGrid', {
+    '--DataGrid-cellOffsetMultiplier': '2.5',
+  });
+  // [Pro/Premium] Group-toggle gutter: flex-basis = sizing raw px (master 28);
+  // physical marginRight matches upstream (master su(2)).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { flexBasis: '32px', marginRight: d.lg },
+    'treeDataGroupingCellToggle',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { flexBasis: '32px', marginRight: d.lg },
+    'groupingCriteriaCellToggle',
+  );
+  // [Premium] Panel chrome sizing (raw px): sidebar/AI widths, the shared 52px
+  // header rhythm (same trio as toolbar/footer), pivot/charts field rows and
+  // drop zones (charts mirrors pivot — one decision, values never fork).
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { width: '330px', minWidth: '280px', maxWidth: '430px' },
+    'sidebar',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '60px' }, 'pivotPanelHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '38px' }, 'pivotPanelField');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '100px' },
+    'pivotPanelAvailableFields',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '188px' }, 'pivotPanelSections');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '44px' },
+    'pivotPanelPlaceholder',
+  );
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '420px' }, 'aiAssistantPanel');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '60px' }, 'aiAssistantPanelHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '38px' }, 'chartsPanelDataField');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '100px' },
+    'chartsPanelDataAvailableFields',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '188px' },
+    'chartsPanelDataSections',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { minHeight: '44px' },
+    'chartsPanelDataPlaceholder',
+  );
   enhanced.typography = {
     ...enhanced.typography,
     button: { ...enhanced.typography?.button, fontSize: '0.9375rem', lineHeight: 2 },

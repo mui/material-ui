@@ -1851,18 +1851,23 @@ const compact = {
       styleOverrides: {
         cell: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-sm)',
+            },
           },
         ],
         columnHeader: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
           },
         ],
         editInputCell: [
           {
             '& input': {
-              padding: '0 var(--mui-density-md)',
+              paddingInline: 'var(--mui-density-md)',
             },
           },
         ],
@@ -1880,12 +1885,12 @@ const compact = {
         ],
         toolbarDivider: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         toolbarLabel: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         footerContainer: [
@@ -1895,17 +1900,208 @@ const compact = {
         ],
         rowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         selectedRowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         actionsCell: [
           {
             gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-xl) var(--mui-density-md) var(--mui-density-lg) var(--mui-density-sm)',
+              gap: 'var(--mui-density-xl)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-sm)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-md)',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '65px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '130px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '130px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '165px',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-xs) var(--mui-density-md)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-md) var(--mui-density-lg)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-md)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-sm)',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '220px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '230px',
+                },
+              },
+            ],
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xs)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '1.5',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+            marginBottom: 'calc(var(--mui-density-xxs) * -1)',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            flexBasis: '24px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            flexBasis: '24px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        sidebar: [
+          {
+            width: '270px',
+            minWidth: '240px',
+            maxWidth: '370px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '44px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            height: '26px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '68px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '128px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '32px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '340px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '44px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            height: '26px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '68px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '128px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '32px',
           },
         ],
       },
@@ -3628,18 +3824,23 @@ const normal = {
       styleOverrides: {
         cell: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-sm)',
+            },
           },
         ],
         columnHeader: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
           },
         ],
         editInputCell: [
           {
             '& input': {
-              padding: '0 var(--mui-density-md)',
+              paddingInline: 'var(--mui-density-md)',
             },
           },
         ],
@@ -3657,12 +3858,12 @@ const normal = {
         ],
         toolbarDivider: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         toolbarLabel: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         footerContainer: [
@@ -3672,17 +3873,208 @@ const normal = {
         ],
         rowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         selectedRowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         actionsCell: [
           {
             gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-xl) var(--mui-density-md) var(--mui-density-lg) var(--mui-density-sm)',
+              gap: 'var(--mui-density-xl)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-sm)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-md)',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '75px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '150px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '150px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '190px',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-xs) var(--mui-density-md)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-md) var(--mui-density-lg)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-md)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-sm)',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '248px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '260px',
+                },
+              },
+            ],
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xs)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '2',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+            marginBottom: 'calc(var(--mui-density-xxs) * -1)',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            flexBasis: '28px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            flexBasis: '28px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        sidebar: [
+          {
+            width: '300px',
+            minWidth: '260px',
+            maxWidth: '400px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '52px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            height: '32px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '84px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '158px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '38px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '380px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '52px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            height: '32px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '84px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '158px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '38px',
           },
         ],
       },
@@ -5359,18 +5751,23 @@ const comfort = {
       styleOverrides: {
         cell: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
+          },
+          {
+            '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+              paddingTop: 'var(--mui-density-sm)',
+            },
           },
         ],
         columnHeader: [
           {
-            padding: '0 var(--mui-density-md)',
+            paddingInline: 'var(--mui-density-md)',
           },
         ],
         editInputCell: [
           {
             '& input': {
-              padding: '0 var(--mui-density-md)',
+              paddingInline: 'var(--mui-density-md)',
             },
           },
         ],
@@ -5388,12 +5785,12 @@ const comfort = {
         ],
         toolbarDivider: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         toolbarLabel: [
           {
-            margin: '0 var(--mui-density-xs)',
+            marginInline: 'var(--mui-density-xs)',
           },
         ],
         footerContainer: [
@@ -5403,17 +5800,208 @@ const comfort = {
         ],
         rowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         selectedRowCount: [
           {
-            margin: '0 var(--mui-density-lg)',
+            marginInline: 'var(--mui-density-lg)',
           },
         ],
         actionsCell: [
           {
             gridGap: 'var(--mui-density-sm)',
+          },
+        ],
+        panel: [
+          {
+            '& .MuiDataGrid-panelContent': {
+              padding: 'var(--mui-density-xl) var(--mui-density-md) var(--mui-density-lg) var(--mui-density-sm)',
+              gap: 'var(--mui-density-xl)',
+            },
+          },
+        ],
+        panelFooter: [
+          {
+            padding: 'var(--mui-density-sm)',
+          },
+        ],
+        filterForm: [
+          {
+            gap: 'var(--mui-density-md)',
+          },
+        ],
+        filterFormLogicOperatorInput: [
+          {
+            minWidth: '85px',
+          },
+        ],
+        filterFormColumnInput: [
+          {
+            width: '170px',
+          },
+        ],
+        filterFormOperatorInput: [
+          {
+            width: '170px',
+          },
+        ],
+        filterFormValueInput: [
+          {
+            width: '215px',
+          },
+        ],
+        columnsManagement: [
+          {
+            padding: 'var(--mui-density-xs) var(--mui-density-md)',
+            '& .MuiFormControlLabel-root': {
+              gap: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        columnsManagementHeader: [
+          {
+            padding: 'var(--mui-density-md) var(--mui-density-lg)',
+          },
+        ],
+        columnsManagementFooter: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-sm) var(--mui-density-md)',
+          },
+        ],
+        columnsManagementEmptyText: [
+          {
+            paddingBlock: 'var(--mui-density-sm)',
+          },
+        ],
+        menu: [
+          {
+            '& .MuiDataGrid-menuList': {
+              minWidth: '276px',
+            },
+          },
+        ],
+        toolbarQuickFilterControl: [
+          {
+            variants: [
+              {
+                props: {
+                  expanded: true,
+                },
+                style: {
+                  width: '290px',
+                },
+              },
+            ],
+          },
+        ],
+        overlay: [
+          {
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+        'columnHeader--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+          },
+        ],
+        'row--dragging': [
+          {
+            paddingInline: 'var(--mui-density-md)',
+            '& .MuiDataGrid-rowReorderCellPlaceholder': {
+              paddingInline: 'var(--mui-density-xs)',
+            },
+          },
+        ],
+        root: [
+          {
+            '& .MuiDataGrid-columnHeader--filter': {
+              paddingBlock: 'var(--mui-density-sm)',
+              paddingRight: 'var(--mui-density-xs)',
+            },
+          },
+          {
+            '--DataGrid-cellOffsetMultiplier': '2.5',
+          },
+        ],
+        columnHeaderFilterInput: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+            marginBottom: 'calc(var(--mui-density-xxs) * -1)',
+          },
+        ],
+        treeDataGroupingCellToggle: [
+          {
+            flexBasis: '32px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        groupingCriteriaCellToggle: [
+          {
+            flexBasis: '32px',
+            marginRight: 'var(--mui-density-lg)',
+          },
+        ],
+        sidebar: [
+          {
+            width: '330px',
+            minWidth: '280px',
+            maxWidth: '430px',
+          },
+        ],
+        pivotPanelHeader: [
+          {
+            height: '60px',
+          },
+        ],
+        pivotPanelField: [
+          {
+            height: '38px',
+          },
+        ],
+        pivotPanelAvailableFields: [
+          {
+            minHeight: '100px',
+          },
+        ],
+        pivotPanelSections: [
+          {
+            minHeight: '188px',
+          },
+        ],
+        pivotPanelPlaceholder: [
+          {
+            minHeight: '44px',
+          },
+        ],
+        aiAssistantPanel: [
+          {
+            width: '420px',
+          },
+        ],
+        aiAssistantPanelHeader: [
+          {
+            height: '60px',
+          },
+        ],
+        chartsPanelDataField: [
+          {
+            height: '38px',
+          },
+        ],
+        chartsPanelDataAvailableFields: [
+          {
+            minHeight: '100px',
+          },
+        ],
+        chartsPanelDataSections: [
+          {
+            minHeight: '188px',
+          },
+        ],
+        chartsPanelDataPlaceholder: [
+          {
+            minHeight: '44px',
           },
         ],
       },

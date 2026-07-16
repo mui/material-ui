@@ -337,6 +337,17 @@ export function orderFamilyComponents(family: string, components: string[]): str
 }
 
 /**
+ * Per-component sidebar slot order. Keys are component short-names (no `Mui`
+ * prefix); values are slot names in display order. Listed slots lead in that
+ * order; unlisted slots follow the base convention (`root` first, then
+ * alphabetical). Unlike `familyComponentOrder`, this never scopes — unlisted
+ * slots still show.
+ */
+export const componentSlotOrder: Record<string, string[]> = {
+  DataGrid: ['defaultProps', 'columnHeader', 'columnHeaderTitleContainer', 'cell'],
+};
+
+/**
  * Per-id denylist: rows kept in the (mechanical) emit table but not surfaced as
  * sidebar knobs — the row never applies independently (dropped from
  * `densityGroups` before the collect path). DERIVED: mark the row

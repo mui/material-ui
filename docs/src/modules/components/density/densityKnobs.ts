@@ -204,9 +204,61 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Derived from the per-size --_height/--_avatarSize/--_deleteIconSize vars — the var rows are the knobs.',
   },
   'MuiDataGrid|actionsCell|base||gridGap': 'DataGrid · actionsCell · gridGap',
-  'MuiDataGrid|cell|base||padding': 'DataGrid · cell · padding',
-  'MuiDataGrid|columnHeader|base||padding': 'DataGrid · columnHeader · padding',
+  'MuiDataGrid|aiAssistantPanel|base||width': {
+    label: 'DataGrid · aiAssistantPanel · width',
+    note: '[Premium] master 380. No static demo — needs an AI service context; verify via computed styles.',
+  },
+  'MuiDataGrid|aiAssistantPanelHeader|base||height': {
+    label: 'DataGrid · aiAssistantPanelHeader · height',
+    note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52). No static demo — needs an AI service context; verify via computed styles.',
+  },
+  'MuiDataGrid|cell|base||paddingInline': 'DataGrid · cell · paddingInline',
+  'MuiDataGrid|cell|base|&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell|paddingTop':
+    {
+      label: 'DataGrid · cell · rowspan multiSelect paddingTop',
+      note: '⚑ [Premium] rowspan multi-select chip stack (master 8). No static demo — verify via computed styles.',
+    },
+  'MuiDataGrid|chartsPanelDataAvailableFields|base||minHeight': {
+    label: 'DataGrid · chartsPanelDataAvailableFields · minHeight',
+    note: '[Premium] mirrors pivotPanelAvailableFields — values never fork.',
+  },
+  'MuiDataGrid|chartsPanelDataField|base||height': {
+    label: 'DataGrid · chartsPanelDataField · height',
+    note: '[Premium] mirrors pivotPanelField — values never fork.',
+  },
+  'MuiDataGrid|chartsPanelDataPlaceholder|base||minHeight': {
+    label: 'DataGrid · chartsPanelDataPlaceholder · minHeight',
+    note: '[Premium] mirrors pivotPanelPlaceholder — values never fork.',
+  },
+  'MuiDataGrid|chartsPanelDataSections|base||minHeight': {
+    label: 'DataGrid · chartsPanelDataSections · minHeight',
+    note: '[Premium] mirrors pivotPanelSections — values never fork.',
+  },
+  'MuiDataGrid|columnHeader|base||paddingInline': 'DataGrid · columnHeader · paddingInline',
+  'MuiDataGrid|columnHeader--dragging|base||paddingInline': {
+    label: 'DataGrid · columnHeader--dragging · paddingInline',
+    note: '⚑ transient drag-ghost inset (master 0 12px) — not visible in static demos.',
+  },
+  'MuiDataGrid|columnHeaderFilterInput|base||marginRight': {
+    label: 'DataGrid · columnHeaderFilterInput · marginRight',
+    note: '[Pro] header-filter input (master su(0.5)).',
+  },
+  'MuiDataGrid|columnHeaderFilterInput|base||marginBottom': {
+    label: 'DataGrid · columnHeaderFilterInput · marginBottom',
+    note: '[Pro] negative pull (master su(-0.25)) — a negated key (-xxs) maps it.',
+  },
   'MuiDataGrid|columnHeaderTitleContainer|base||gap': 'DataGrid · columnHeaderTitleContainer · gap',
+  'MuiDataGrid|columnsManagement|base||padding': 'DataGrid · columnsManagement · padding',
+  'MuiDataGrid|columnsManagement|base|& .MuiFormControlLabel-root|gap': {
+    label: 'DataGrid · columnsManagement · row label gap',
+    note: 'Targets the Material FormControlLabel class — the grid wrapper is slot:internal (no styleOverrides key).',
+  },
+  'MuiDataGrid|columnsManagementEmptyText|base||paddingBlock':
+    'DataGrid · columnsManagementEmptyText · paddingBlock',
+  'MuiDataGrid|columnsManagementFooter|base||padding':
+    'DataGrid · columnsManagementFooter · padding',
+  'MuiDataGrid|columnsManagementHeader|base||padding':
+    'DataGrid · columnsManagementHeader · padding',
   'MuiDataGrid|defaultProps|base||rowHeight': {
     label: 'DataGrid · row height (defaultProps, px)',
     note: 'JS-gated: applies through the rowHeight prop, not CSS — the virtualizer computes row positions from it.',
@@ -215,15 +267,92 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · header height (defaultProps, px)',
     note: 'JS-gated: applies through the columnHeaderHeight prop, not CSS.',
   },
-  'MuiDataGrid|editInputCell|base|& input|padding': 'DataGrid · editInputCell · padding',
+  'MuiDataGrid|editInputCell|base|& input|paddingInline':
+    'DataGrid · editInputCell · paddingInline',
+  'MuiDataGrid|filterForm|base||gap': 'DataGrid · filterForm · gap',
+  'MuiDataGrid|filterFormColumnInput|base||width': 'DataGrid · filterFormColumnInput · width',
+  'MuiDataGrid|filterFormLogicOperatorInput|base||minWidth':
+    'DataGrid · filterFormLogicOperatorInput · minWidth',
+  'MuiDataGrid|filterFormOperatorInput|base||width': 'DataGrid · filterFormOperatorInput · width',
+  'MuiDataGrid|filterFormValueInput|base||width': 'DataGrid · filterFormValueInput · width',
   'MuiDataGrid|footerContainer|base||minHeight': 'DataGrid · footerContainer · minHeight',
-  'MuiDataGrid|rowCount|base||margin': 'DataGrid · rowCount · margin',
-  'MuiDataGrid|selectedRowCount|base||margin': 'DataGrid · selectedRowCount · margin',
+  'MuiDataGrid|groupingCriteriaCellToggle|base||flexBasis': {
+    label: 'DataGrid · groupingCriteriaCellToggle · flexBasis',
+    note: '[Premium] group-toggle gutter width (master 28px).',
+  },
+  'MuiDataGrid|groupingCriteriaCellToggle|base||marginRight':
+    'DataGrid · groupingCriteriaCellToggle · marginRight',
+  'MuiDataGrid|menu|base|& .MuiDataGrid-menuList|minWidth': {
+    label: 'DataGrid · menuList · minWidth',
+    note: 'Nested under the menu popup slot — the list is slot:internal and the menu portals outside the root. Opens on interaction only; verify via computed styles.',
+  },
+  'MuiDataGrid|overlay|base||gap': 'DataGrid · overlay · gap',
+  'MuiDataGrid|panel|base|& .MuiDataGrid-panelContent|padding': {
+    label: 'DataGrid · panelContent · padding',
+    note: 'Nested under panel — upstream resolves the panelContent key on the popup shell too.',
+  },
+  'MuiDataGrid|panel|base|& .MuiDataGrid-panelContent|gap': {
+    label: 'DataGrid · panelContent · gap',
+    note: 'Gap between stacked filter forms (master su(2.5)).',
+  },
+  'MuiDataGrid|panelFooter|base||padding': 'DataGrid · panelFooter · padding',
+  'MuiDataGrid|pivotPanelAvailableFields|base||minHeight': {
+    label: 'DataGrid · pivotPanelAvailableFields · minHeight',
+    note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 84).',
+  },
+  'MuiDataGrid|pivotPanelField|base||height': 'DataGrid · pivotPanelField · height',
+  'MuiDataGrid|pivotPanelHeader|base||height': {
+    label: 'DataGrid · pivotPanelHeader · height',
+    note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52).',
+  },
+  'MuiDataGrid|pivotPanelPlaceholder|base||minHeight': {
+    label: 'DataGrid · pivotPanelPlaceholder · minHeight',
+    note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 38).',
+  },
+  'MuiDataGrid|pivotPanelSections|base||minHeight': {
+    label: 'DataGrid · pivotPanelSections · minHeight',
+    note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 158).',
+  },
+  'MuiDataGrid|root|base|& .MuiDataGrid-columnHeader--filter|paddingBlock': {
+    label: 'DataGrid · columnHeader--filter · paddingBlock',
+    note: '[Pro] header-filter row (master 8/8; the densityCompact conditional stays dormant — grid density unset).',
+  },
+  'MuiDataGrid|root|base|& .MuiDataGrid-columnHeader--filter|paddingRight': {
+    label: 'DataGrid · columnHeader--filter · paddingRight',
+    note: '[Pro] physical right inset (master 5) — matches upstream so RTL flips identically.',
+  },
+  'MuiDataGrid|root|base||--DataGrid-cellOffsetMultiplier': {
+    label: 'DataGrid · grouping indent multiplier',
+    note: 'Unitless: indent = multiplier × spacing unit × depth (master 2). Premium grouping cells read the var; Pro tree-data computes the indent in JS and bypasses it (upstream inconsistency).',
+  },
+  'MuiDataGrid|row--dragging|base||paddingInline': {
+    label: 'DataGrid · row--dragging · paddingInline',
+    note: '⚑ transient drag-ghost inset (master 0 12px) — not visible in static demos.',
+  },
+  'MuiDataGrid|row--dragging|base|& .MuiDataGrid-rowReorderCellPlaceholder|paddingInline': {
+    label: 'DataGrid · row--dragging · placeholder paddingInline',
+    note: '⚑ reorder placeholder inset (master 0 6px); nested to outrank the upstream nested rule.',
+  },
+  'MuiDataGrid|rowCount|base||marginInline': 'DataGrid · rowCount · marginInline',
+  'MuiDataGrid|selectedRowCount|base||marginInline': 'DataGrid · selectedRowCount · marginInline',
+  'MuiDataGrid|sidebar|base||width': 'DataGrid · sidebar · width',
+  'MuiDataGrid|sidebar|base||minWidth': 'DataGrid · sidebar · minWidth',
+  'MuiDataGrid|sidebar|base||maxWidth': 'DataGrid · sidebar · maxWidth',
   'MuiDataGrid|toolbar|base||minHeight': 'DataGrid · toolbar · minHeight',
   'MuiDataGrid|toolbar|base||padding': 'DataGrid · toolbar · padding',
   'MuiDataGrid|toolbar|base||gap': 'DataGrid · toolbar · gap',
-  'MuiDataGrid|toolbarDivider|base||margin': 'DataGrid · toolbarDivider · margin',
-  'MuiDataGrid|toolbarLabel|base||margin': 'DataGrid · toolbarLabel · margin',
+  'MuiDataGrid|toolbarDivider|base||marginInline': 'DataGrid · toolbarDivider · marginInline',
+  'MuiDataGrid|toolbarLabel|base||marginInline': 'DataGrid · toolbarLabel · marginInline',
+  'MuiDataGrid|toolbarQuickFilterControl|expanded=true||width': {
+    label: 'DataGrid · quick filter · width [expanded]',
+    note: 'Variants matcher — the expanded state has no DOM hook; collapsed keeps var(--trigger-width). Master 260.',
+  },
+  'MuiDataGrid|treeDataGroupingCellToggle|base||flexBasis': {
+    label: 'DataGrid · treeDataGroupingCellToggle · flexBasis',
+    note: '[Pro] tree-data toggle gutter width (master 28px).',
+  },
+  'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight':
+    'DataGrid · treeDataGroupingCellToggle · marginRight',
   'MuiDialogActions|root|base||padding': 'DialogActions · padding',
   'MuiDialogContent|root|base||padding': 'DialogContent · padding',
   'MuiDialogContent|root|dividers=true||padding': 'DialogContent · padding [dividers=true]',

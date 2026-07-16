@@ -93,8 +93,17 @@ import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
-import { DataGrid, GridActionsCellItem, GridCellModes } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridActionsCellItem,
+  GridCellModes,
+  GridPreferencePanelsValue,
+} from '@mui/x-data-grid';
 import type { GridColDef } from '@mui/x-data-grid';
+// Premium build reused for every paid-feature demo (it includes Pro features
+// like header filters) — one large package import instead of two. No license
+// key in this repo, so those demos render the watermark; layout is unaffected.
+import { DataGridPremium } from '@mui/x-data-grid-premium';
 import {
   createTheme,
   ThemeProvider,
@@ -108,6 +117,7 @@ import {
   densityRow,
   knobLabel,
   orderFamilyComponents,
+  componentSlotOrder,
   stripComponentSlot,
   densityVirtualKnobs,
   densityLinkedWrites,
@@ -302,6 +312,11 @@ const PADDING_RING_SLOTS = [
   '.MuiDataGrid-columnHeader',
   '.MuiDataGrid-toolbar',
   '.MuiDataGrid-footerContainer',
+  '.MuiDataGrid-panelContent',
+  '.MuiDataGrid-panelFooter',
+  '.MuiDataGrid-columnsManagement',
+  '.MuiDataGrid-columnsManagementHeader',
+  '.MuiDataGrid-columnsManagementFooter',
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
@@ -343,6 +358,9 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiDataGrid-selectedRowCount',
   '.MuiDataGrid-toolbarDivider',
   '.MuiDataGrid-toolbarLabel',
+  '.MuiDataGrid-columnHeaderFilterInput',
+  '.MuiDataGrid-groupingCriteriaCellToggle',
+  '.MuiDataGrid-treeDataGroupingCellToggle',
   '.MuiAccordionSummary-content',
   '.MuiAlert-icon',
   '.MuiAlert-action',
@@ -399,6 +417,12 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-columnHeader--last',
   '[data-canvas-component="DataGrid"] .MuiDataGrid-toolbar',
   '[data-canvas-component="DataGrid"] .MuiDataGrid-footerContainer',
+  // Header-filter row height = the headerFilterHeight ?? columnHeaderHeight
+  // fallback riding the emitted defaultProps — measured to prove it.
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-headerFilterRow',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelHeader',
+  // :first-of-type → one badge per drop-zone list, not one per field row.
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelField:first-of-type',
 ];
 
 // Height-measure ruler colour (dimension line + caps + badge).
@@ -1698,16 +1722,20 @@ function TableCellMatrix() {
 // trio, footer minHeight, count gutters and actions gap ride density steps;
 // su-driven paddings also reflow via --DataGrid-t-spacing-unit
 // (← theme.spacing(1)); chrome (column menu, TablePagination, filter fields,
-// checkboxes) rides the Material emissions. Deterministic rows — no
-// x-data-grid-generator (random). Grid-internal text can't take the
+// checkboxes) rides the Material emissions. Panels/menu/pro/premium chrome
+// (filter+columns panels, header filters, grouping indent, pivot sidebar,
+// overlay gap) get their own emissions — see the presets. Deterministic rows —
+// no x-data-grid-generator (random). Grid-internal text can't take the
 // .density-debug-text wrapper (rendered by the grid, not authored here).
 const DATA_GRID_ROWS = [
-  { id: 1, name: 'Frozen yoghurt', calories: 159, fat: 6.0, inStock: true },
-  { id: 2, name: 'Ice cream sandwich', calories: 237, fat: 9.0, inStock: true },
-  { id: 3, name: 'Eclair', calories: 262, fat: 16.0, inStock: false },
-  { id: 4, name: 'Cupcake', calories: 305, fat: 3.7, inStock: true },
-  { id: 5, name: 'Gingerbread', calories: 356, fat: 16.0, inStock: false },
-  { id: 6, name: 'Donut', calories: 452, fat: 25.0, inStock: true },
+  // `category` feeds only the grouping/pivot demos (no category column in the
+  // core demos, so adding it changes nothing there).
+  { id: 1, name: 'Frozen yoghurt', category: 'Frozen', calories: 159, fat: 6.0, inStock: true },
+  { id: 2, name: 'Ice cream sandwich', category: 'Frozen', calories: 237, fat: 9.0, inStock: true },
+  { id: 3, name: 'Eclair', category: 'Baked', calories: 262, fat: 16.0, inStock: false },
+  { id: 4, name: 'Cupcake', category: 'Baked', calories: 305, fat: 3.7, inStock: true },
+  { id: 5, name: 'Gingerbread', category: 'Baked', calories: 356, fat: 16.0, inStock: false },
+  { id: 6, name: 'Donut', category: 'Fried', calories: 452, fat: 25.0, inStock: true },
 ];
 
 const DATA_GRID_COLUMNS: GridColDef[] = [
@@ -1737,6 +1765,20 @@ const DATA_GRID_EDIT_COLUMNS: GridColDef[] = [
 
 // Cell 1/name pinned in edit mode — deterministic, no interaction needed.
 const DATA_GRID_EDIT_MODES = { 1: { name: { mode: GridCellModes.Edit } } };
+
+const DATA_GRID_GROUPING_COLUMNS: GridColDef[] = [
+  { field: 'name', headerName: 'Dessert', width: 160 },
+  { field: 'category', headerName: 'Category', width: 120 },
+  { field: 'inStock', headerName: 'In stock', type: 'boolean', width: 110 },
+  { field: 'calories', headerName: 'Calories', type: 'number', width: 110 },
+];
+
+// Keeps the preference panels INSIDE #density-canvas: portaled panels escape
+// the canvas-scoped debug overlays and Density-tab scale-var overrides (preset
+// :root vars and theme styleOverrides still reach them either way).
+const DATA_GRID_INLINE_PANEL_SLOT_PROPS = {
+  basePopper: { material: { disablePortal: true } },
+} as const;
 
 function DataGridMatrix() {
   return (
@@ -1780,6 +1822,121 @@ function DataGridMatrix() {
             cellModesModel={DATA_GRID_EDIT_MODES}
             hideFooter
             disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          filter panel (open by default, rendered inline) — panelContent padding/gap · filterForm
+          gap · field widths · MenuItem/inputs reflow via Material emissions
+        </Typography>
+        <div style={{ height: 420, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS.slice(0, 3)}
+            columns={DATA_GRID_COLUMNS.slice(0, 3)}
+            hideFooter
+            disableRowSelectionOnClick
+            initialState={{
+              preferencePanel: {
+                open: true,
+                openedPanelValue: GridPreferencePanelsValue.filters,
+              },
+              filter: {
+                filterModel: { items: [{ field: 'calories', operator: '>', value: '200' }] },
+              },
+            }}
+            slotProps={DATA_GRID_INLINE_PANEL_SLOT_PROPS}
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          columns panel (open by default, rendered inline) — body/header/footer paddings · row label
+          gap · search field via Material emissions
+        </Typography>
+        <div style={{ height: 420, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS.slice(0, 3)}
+            columns={DATA_GRID_COLUMNS.slice(0, 4)}
+            hideFooter
+            disableRowSelectionOnClick
+            initialState={{
+              preferencePanel: {
+                open: true,
+                openedPanelValue: GridPreferencePanelsValue.columns,
+              },
+            }}
+            slotProps={DATA_GRID_INLINE_PANEL_SLOT_PROPS}
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          header filters [pro] — filter-row paddings · input margins · row height rides the
+          columnHeaderHeight fallback
+        </Typography>
+        <div style={{ height: 260, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_ROWS.slice(0, 3)}
+            columns={DATA_GRID_GROUPING_COLUMNS.slice(0, 3)}
+            headerFilters
+            hideFooter
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          row grouping [premium] (pre-expanded) — indent multiplier · toggle gutter/margin
+        </Typography>
+        <div style={{ height: 420, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_ROWS}
+            columns={DATA_GRID_GROUPING_COLUMNS}
+            initialState={{ rowGrouping: { model: ['category', 'inStock'] } }}
+            defaultGroupingExpansionDepth={-1}
+            hideFooter
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          no-columns overlay (all columns hidden) — label↔button gap
+        </Typography>
+        <div style={{ height: 180, width: '100%' }}>
+          <DataGrid
+            rows={[]}
+            columns={DATA_GRID_COLUMNS.slice(0, 2)}
+            initialState={{
+              columns: { columnVisibilityModel: { name: false, calories: false } },
+            }}
+            hideFooter
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          pivot sidebar [premium] (open by default) — sidebar width · panel header 52-rhythm · field
+          rows · drop zones
+        </Typography>
+        <div style={{ height: 440, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_ROWS}
+            columns={DATA_GRID_GROUPING_COLUMNS}
+            hideFooter
+            disableRowSelectionOnClick
+            initialState={{
+              pivoting: {
+                enabled: true,
+                panelOpen: true,
+                model: {
+                  rows: [{ field: 'category' }],
+                  columns: [{ field: 'inStock' }],
+                  values: [{ field: 'calories', aggFunc: 'sum' }],
+                },
+              },
+            }}
           />
         </div>
       </div>
@@ -2677,7 +2834,22 @@ const familyKnobTree = new Map<string, FamilyComponentGroup[]>(
     const ordered = orderFamilyComponents(group.key, [...byComponent.keys()]).map((component) => ({
       component,
       slots: [...byComponent.get(component)!].sort(([a], [b]) => {
-        // `root` always leads, then the rest alphabetically.
+        // Configured slots lead (componentSlotOrder), then `root`, then the
+        // rest alphabetically.
+        const pinned = componentSlotOrder[component];
+        if (pinned) {
+          const ai = pinned.indexOf(a);
+          const bi = pinned.indexOf(b);
+          if (ai !== -1 || bi !== -1) {
+            if (ai === -1) {
+              return 1;
+            }
+            if (bi === -1) {
+              return -1;
+            }
+            return ai - bi;
+          }
+        }
         if (a === 'root') {
           return -1;
         }
