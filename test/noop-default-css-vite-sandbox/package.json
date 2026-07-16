@@ -1,10 +1,10 @@
 {
-  "name": "@mui-internal/noop-vite-sandbox",
+  "name": "@mui-internal/noop-default-css-vite-sandbox",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build:theme-css": "esbuild scripts/buildThemeCss.mts --bundle --tsconfig-raw='{\"compilerOptions\":{}}' --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildNoopSandboxThemeCss.mjs && OUTFILE=src/theme.css OUTDIR=src node /tmp/buildNoopSandboxThemeCss.mjs",
+    "build:theme-css": "esbuild scripts/buildThemeCss.mts --bundle --tsconfig-raw='{\"compilerOptions\":{}}' --loader:.js=jsx --jsx-factory=React.createElement --jsx-import-source=react --platform=node --format=esm --outfile=/tmp/buildNoopDefaultCssSandboxThemeCss.mjs && OUTFILE=src/theme.css OUTDIR=src node /tmp/buildNoopDefaultCssSandboxThemeCss.mjs",
     "dev": "pnpm build:theme-css && vite",
     "build": "pnpm build:theme-css && vite build",
     "preview": "vite preview"
@@ -23,7 +23,6 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.1.1",
-    "lightningcss": "^1.32.0",
     "tailwindcss": "4.3.0",
     "typescript": "^6.0.3",
     "vite": "^7.3.1"

@@ -14,30 +14,32 @@ Verifies that:
 4. `className`-based overrides work alongside Emotion-generated class names.
 5. Dark mode works via `ThemeProvider`'s `colorSchemes` / `CssVarsProvider`
    by flipping `data-mui-color-scheme="dark"` on `document.documentElement`.
-6. Toolbar source CSS breakpoint rules are processed by the app CSS pipeline.
-7. Tailwind v3 can consume MUI theme tokens and the same custom breakpoint
-   values through generated config/CSS.
+6. The Material CSS tools resolver selects components that import their CSS
+   Modules.
+7. The Material PostCSS adapter injects the app theme's breakpoint aliases,
+   and `postcss-custom-media` translates them.
+8. `pnpm build:css` generates a Tailwind v3 config from the app theme.
+9. Tailwind v3 consumes the generated MUI preset and uses the custom
+   `sm=720px` breakpoint.
+
+The relevant Vite setup is:
+
+```ts
+plugins: [muiMaterialCssModules(), react()],
+css: {
+  postcss: {
+    plugins: [muiCustomMedia({ theme }), tailwindcss(), postcssCustomMedia()],
+  },
+},
+```
+
+The app does not import `@mui/material/styles.css`; doing so would duplicate
+the component styles imported by the parallel build.
 
 ### Components
 
 The app intentionally exercises `Slider`, `Toolbar`, and `Dialog` so it mirrors
-the static/noop sandbox scenarios with the Emotion engine still enabled.
-
-## CSS and Tailwind
-
-`pnpm build:css` generates:
-
-- `src/mui.css`, which imports `@mui/material/components-source.css`, emits
-  MUI breakpoint aliases with `generateBreakpointCustomMedia(theme)`, and loads
-  Tailwind v3 layers.
-- `tailwind.config.cjs`, which uses
-  `createTailwindPreset(createTheme({ breakpoints }))` so Tailwind utilities use
-  the same MUI theme tokens.
-
-Vite runs Tailwind v3 through PostCSS and uses `postcss-custom-media` to
-translate the `@custom-media` breakpoint aliases. The sandbox uses
-`sm=720px` to prove both MUI component CSS and Tailwind's `sm:` utilities share
-the custom value.
+the non-Emotion sandbox scenarios with the Emotion engine still enabled.
 
 ## Dev server
 
@@ -64,18 +66,27 @@ grep -r "@emotion" test/emotion-vite-sandbox/dist/
 
 ## Bundle size comparison
 
-Build both sandboxes, then compare JavaScript output sizes to measure the
-Emotion overhead:
+Build all three sandboxes, then compare JavaScript output sizes to measure the overhead
+of each approach:
 
 ```bash
+pnpm -F @mui-internal/noop-default-css-vite-sandbox build
 pnpm -F @mui-internal/noop-vite-sandbox build
 pnpm -F @mui-internal/emotion-vite-sandbox build
 
 # Compare JS sizes
+ls -lh test/noop-default-css-vite-sandbox/dist/assets/*.js
 ls -lh test/noop-vite-sandbox/dist/assets/*.js
 ls -lh test/emotion-vite-sandbox/dist/assets/*.js
 
 # Compare CSS sizes
+ls -lh test/noop-default-css-vite-sandbox/dist/assets/*.css
 ls -lh test/noop-vite-sandbox/dist/assets/*.css
 ls -lh test/emotion-vite-sandbox/dist/assets/*.css
 ```
+
+## Relation to the TODO
+
+This sandbox maps to **§8 (Bundle size validation)** in `STYLING_V8_TODO.md`.
+It is the Emotion-path counterpart to `test/noop-vite-sandbox`, used to
+measure the JavaScript bundle delta between the two engines.

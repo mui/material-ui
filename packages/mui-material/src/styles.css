@@ -1,19 +1,19 @@
 /* Slider/Slider.module.css */
 @layer mui.components {
   .MuiSlider-root {
-    border-radius: 12px;
     box-sizing: content-box;
-    display: inline-block;
-    position: relative;
     cursor: pointer;
     touch-action: none;
     -webkit-tap-highlight-color: transparent;
+    border-radius: 12px;
+    display: inline-block;
+    position: relative;
   }
 
   @media print {
     .MuiSlider-root {
-      print-color-adjust: exact;
       -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
   }
 
@@ -21,33 +21,37 @@
     display: none;
   }
 
-  .MuiSlider-root.MuiSlider-dragging .MuiSlider-thumb,
-  .MuiSlider-root.MuiSlider-dragging .MuiSlider-track {
+  .MuiSlider-root.MuiSlider-dragging .MuiSlider-thumb, .MuiSlider-root.MuiSlider-dragging .MuiSlider-track {
     transition: none;
   }
 
   .MuiSlider-root.MuiSlider-colorPrimary {
     color: var(--mui-palette-primary-main);
   }
+
   .MuiSlider-root.MuiSlider-colorSecondary {
     color: var(--mui-palette-secondary-main);
   }
+
   .MuiSlider-root.MuiSlider-colorWarning {
     color: var(--mui-palette-warning-main);
   }
+
   .MuiSlider-root.MuiSlider-colorError {
     color: var(--mui-palette-error-main);
   }
+
   .MuiSlider-root.MuiSlider-colorSuccess {
     color: var(--mui-palette-success-main);
   }
+
   .MuiSlider-root.MuiSlider-colorInfo {
     color: var(--mui-palette-info-main);
   }
 
   .MuiSlider-root.MuiSlider-horizontal {
-    height: 4px;
     width: 100%;
+    height: 4px;
     padding-block: 13px;
   }
 
@@ -66,8 +70,8 @@
   }
 
   .MuiSlider-root.MuiSlider-vertical {
-    height: 100%;
     width: 4px;
+    height: 100%;
     padding-inline: 13px;
   }
 
@@ -92,17 +96,17 @@
   }
 
   .MuiSlider-rail {
+    border-radius: inherit;
+    opacity: .38;
+    background-color: currentColor;
     display: block;
     position: absolute;
-    border-radius: inherit;
-    background-color: currentColor;
-    opacity: 0.38;
   }
 
   @media (forced-colors: active) {
     .MuiSlider-rail {
-      border: 1px solid transparent;
       box-sizing: border-box;
+      border: 1px solid #0000;
     }
   }
 
@@ -125,16 +129,15 @@
   }
 
   .MuiSlider-track {
-    display: block;
-    position: absolute;
     border-radius: inherit;
-    border: 1px solid currentColor;
-    background-color: currentColor;
-    transition:
-      left var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+    transition: left var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
       width var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
       bottom var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
       height var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut);
+    background-color: currentColor;
+    border: 1px solid;
+    display: block;
+    position: absolute;
   }
 
   .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorPrimary {
@@ -190,109 +193,97 @@
   }
 
   .MuiSlider-thumb {
-    position: absolute;
+    box-sizing: border-box;
     width: 20px;
     height: 20px;
-    box-sizing: border-box;
-    border-radius: 50%;
-    outline: 0;
-    background-color: currentColor;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition:
-      box-shadow var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
+    transition: box-shadow var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
       left var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut),
       bottom var(--mui-transitions-duration-shortest) var(--mui-transitions-easing-easeInOut);
+    background-color: currentColor;
+    border-radius: 50%;
+    outline: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: absolute;
   }
 
   @media (forced-colors: active) {
     .MuiSlider-thumb {
-      border: 1px solid ButtonBorder;
+      border: 1px solid buttonborder;
     }
   }
 
-  .MuiSlider-thumb::before {
-    position: absolute;
-    content: '';
+  .MuiSlider-thumb:before {
+    content: "";
     border-radius: inherit;
     width: 100%;
     height: 100%;
     box-shadow: var(--mui-shadows-2);
+    position: absolute;
   }
 
-  .MuiSlider-thumb::after {
-    position: absolute;
-    content: '';
+  .MuiSlider-thumb:after {
+    content: "";
     border-radius: 50%;
     width: 42px;
     height: 42px;
+    position: absolute;
     inset-block-start: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorPrimary:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorPrimary.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-primary-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorPrimary:hover, .MuiSlider-thumb.MuiSlider-thumbColorPrimary.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-primary-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorPrimary.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-primary-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-primary-mainChannel) / .16);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorSecondary:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorSecondary.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-secondary-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorSecondary:hover, .MuiSlider-thumb.MuiSlider-thumbColorSecondary.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-secondary-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorSecondary.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-secondary-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-secondary-mainChannel) / .16);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorError:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorError.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-error-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorError:hover, .MuiSlider-thumb.MuiSlider-thumbColorError.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-error-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorError.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-error-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-error-mainChannel) / .16);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorInfo:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorInfo.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-info-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorInfo:hover, .MuiSlider-thumb.MuiSlider-thumbColorInfo.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-info-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorInfo.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-info-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-info-mainChannel) / .16);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorSuccess:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorSuccess.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-success-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorSuccess:hover, .MuiSlider-thumb.MuiSlider-thumbColorSuccess.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-success-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorSuccess.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-success-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-success-mainChannel) / .16);
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbColorWarning:hover,
-  .MuiSlider-thumb.MuiSlider-thumbColorWarning.Mui-focusVisible {
-    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-warning-mainChannel) / 0.16);
+  .MuiSlider-thumb.MuiSlider-thumbColorWarning:hover, .MuiSlider-thumb.MuiSlider-thumbColorWarning.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-warning-mainChannel) / .16);
   }
 
   .MuiSlider-thumb.MuiSlider-thumbColorWarning.Mui-active {
-    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-warning-mainChannel) / 0.16);
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-warning-mainChannel) / .16);
   }
 
   @media (hover: none) {
-    .MuiSlider-thumb.MuiSlider-thumbColorPrimary:hover,
-    .MuiSlider-thumb.MuiSlider-thumbColorSecondary:hover,
-    .MuiSlider-thumb.MuiSlider-thumbColorError:hover,
-    .MuiSlider-thumb.MuiSlider-thumbColorInfo:hover,
-    .MuiSlider-thumb.MuiSlider-thumbColorSuccess:hover,
-    .MuiSlider-thumb.MuiSlider-thumbColorWarning:hover {
+    .MuiSlider-thumb.MuiSlider-thumbColorPrimary:hover, .MuiSlider-thumb.MuiSlider-thumbColorSecondary:hover, .MuiSlider-thumb.MuiSlider-thumbColorError:hover, .MuiSlider-thumb.MuiSlider-thumbColorInfo:hover, .MuiSlider-thumb.MuiSlider-thumbColorSuccess:hover, .MuiSlider-thumb.MuiSlider-thumbColorWarning:hover {
       box-shadow: none;
     }
   }
@@ -302,7 +293,7 @@
     height: 12px;
   }
 
-  .MuiSlider-thumb.MuiSlider-thumbSizeSmall::before {
+  .MuiSlider-thumb.MuiSlider-thumbSizeSmall:before {
     box-shadow: none;
   }
 
@@ -311,7 +302,7 @@
     transform: translate(-50%, -50%);
   }
 
-  [dir='rtl'] .MuiSlider-thumb.MuiSlider-horizontal {
+  [dir="rtl"] .MuiSlider-thumb.MuiSlider-horizontal {
     transform: translate(50%, -50%);
   }
 
@@ -327,37 +318,37 @@
   .MuiSlider-valueLabel {
     z-index: 1;
     white-space: nowrap;
-    font-size: 0.875rem;
-    line-height: 1.43;
-    letter-spacing: 0.01071em;
-    font-weight: 500;
+    letter-spacing: .01071em;
     transition: transform var(--mui-transitions-duration-shortest)
       var(--mui-transitions-easing-easeInOut);
-    position: absolute;
     background-color: var(--mui-palette-grey-600);
-    border-radius: 2px;
     color: var(--mui-palette-common-white);
-    display: flex;
-    align-items: center;
+    border-radius: 2px;
     justify-content: center;
-    padding: 0.25rem 0.75rem;
+    align-items: center;
+    padding: .25rem .75rem;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.43;
+    display: flex;
+    position: absolute;
   }
 
   .MuiSlider-valueLabel.MuiSlider-horizontal {
-    transform: translateY(-100%) scale(0);
-    inset-block-start: -10px;
     transform-origin: block-end center;
+    inset-block-start: -10px;
+    transform: translateY(-100%) scale(0);
   }
 
-  .MuiSlider-valueLabel.MuiSlider-horizontal::before {
-    position: absolute;
-    content: '';
+  .MuiSlider-valueLabel.MuiSlider-horizontal:before {
+    content: "";
+    background-color: inherit;
     width: 8px;
     height: 8px;
-    transform: translate(-50%, 50%) rotate(45deg);
-    background-color: inherit;
+    position: absolute;
     inset-block-end: 0;
     inset-inline-start: 50%;
+    transform: translate(-50%, 50%) rotate(45deg);
   }
 
   .MuiSlider-valueLabel.MuiSlider-horizontal.MuiSlider-valueLabelOpen {
@@ -365,21 +356,21 @@
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical {
-    transform: translateY(-50%) scale(0);
-    inset-inline-end: 30px;
-    inset-block-start: 50%;
     transform-origin: inline-end center;
+    inset-block-start: 50%;
+    inset-inline-end: 30px;
+    transform: translateY(-50%) scale(0);
   }
 
-  .MuiSlider-valueLabel.MuiSlider-vertical::before {
-    position: absolute;
-    content: '';
+  .MuiSlider-valueLabel.MuiSlider-vertical:before {
+    content: "";
+    background-color: inherit;
     width: 8px;
     height: 8px;
-    transform: translate(-50%, -50%) rotate(45deg);
-    background-color: inherit;
-    inset-inline-end: -8px;
+    position: absolute;
     inset-block-start: 50%;
+    inset-inline-end: -8px;
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-valueLabelOpen {
@@ -387,8 +378,8 @@
   }
 
   .MuiSlider-valueLabel.MuiSlider-sizeSmall {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+    padding: .25rem .5rem;
+    font-size: .75rem;
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-sizeSmall {
@@ -396,11 +387,11 @@
   }
 
   .MuiSlider-mark {
-    position: absolute;
+    background-color: currentColor;
+    border-radius: 1px;
     width: 2px;
     height: 2px;
-    border-radius: 1px;
-    background-color: currentColor;
+    position: absolute;
   }
 
   .MuiSlider-mark.MuiSlider-horizontal {
@@ -408,7 +399,7 @@
     transform: translate(-1px, -50%);
   }
 
-  [dir='rtl'] .MuiSlider-mark.MuiSlider-horizontal {
+  [dir="rtl"] .MuiSlider-mark.MuiSlider-horizontal {
     transform: translate(1px, -50%);
   }
 
@@ -419,16 +410,16 @@
 
   .MuiSlider-mark.MuiSlider-markActive {
     background-color: var(--mui-palette-background-paper);
-    opacity: 0.8;
+    opacity: .8;
   }
 
   .MuiSlider-markLabel {
-    font-size: 0.875rem;
-    line-height: 1.43;
-    letter-spacing: 0.01071em;
+    letter-spacing: .01071em;
     color: var(--mui-palette-text-secondary);
-    position: absolute;
     white-space: nowrap;
+    font-size: .875rem;
+    line-height: 1.43;
+    position: absolute;
   }
 
   .MuiSlider-markLabel.MuiSlider-horizontal {
@@ -436,7 +427,7 @@
     transform: translateX(-50%);
   }
 
-  [dir='rtl'] .MuiSlider-markLabel.MuiSlider-horizontal {
+  [dir="rtl"] .MuiSlider-markLabel.MuiSlider-horizontal {
     transform: translateX(50%);
   }
 
@@ -465,9 +456,9 @@
 /* Toolbar/Toolbar.module.css */
 @layer mui.components {
   .MuiToolbar-root {
-    position: relative;
-    display: flex;
     align-items: center;
+    display: flex;
+    position: relative;
   }
 
   .MuiToolbar-root.MuiToolbar-gutters {
@@ -483,13 +474,13 @@
     min-height: 56px;
   }
 
-  @media (--mui-breakpoint-up-xs) and (orientation: landscape) {
+  @media (width >= 0) and (orientation: landscape) {
     .MuiToolbar-root.MuiToolbar-regular {
       min-height: 48px;
     }
   }
 
-  @media (--mui-breakpoint-up-sm) {
+  @media (width >= 600px) {
     .MuiToolbar-root.MuiToolbar-gutters {
       padding-left: calc(3 * var(--mui-spacing, 8px));
       padding-right: calc(3 * var(--mui-spacing, 8px));

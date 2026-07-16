@@ -1,0 +1,49 @@
+{
+  "name": "@mui/material-css-tools",
+  "version": "9.2.0",
+  "description": "Build adapters for Material UI component CSS.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-material-css-tools"
+  },
+  "scripts": {
+    "build": "code-infra build --tsgo --flat",
+    "typescript": "tsgo -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.29.2",
+    "magic-string": "^0.30.21"
+  },
+  "devDependencies": {
+    "@mui/material": "workspace:^",
+    "@types/node": "20.19.39",
+    "csstype": "^3.2.3",
+    "postcss": "^8.5.15",
+    "vite": "^7.3.1"
+  },
+  "peerDependencies": {
+    "@mui/material": "workspace:^",
+    "postcss": "^8.0.0",
+    "vite": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "postcss": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./postcss": "./src/postcss.ts",
+    "./vite": "./src/vite.ts"
+  }
+}

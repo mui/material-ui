@@ -1,9 +1,9 @@
 /**
- * static-theme sandbox — Path B (pre-generated CSS).
+ * Static-theme sandbox using the aggregate component stylesheet.
  *
  * Mirrors the Emotion sandbox scenarios, but there is no provider doing
  * runtime style injection. Theme switching swaps generated scope classes.
- * Components import their CSS Modules; the app imports generated theme CSS.
+ * The app imports aggregate component CSS and generated theme CSS.
  */
 import * as React from 'react';
 import Slider from '@mui/material/Slider';
@@ -11,6 +11,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
 import { useColorScheme } from '@mui/material/colorScheme';
 import { ThemeScope, useThemeScopeProps } from '@mui/material/styles';
+import '@mui/material/styles.css';
 import './tailwind.css';
 import './theme.css';
 
@@ -29,7 +30,7 @@ function TailwindSection() {
   return (
     <div className="mb-8 max-w-[720px] rounded-mui bg-primary p-4 text-primary-contrast shadow-4 sm:bg-secondary sm:text-secondary-contrast">
       <p className="typography-body2 m-0">
-        Tailwind tokens — colors, radius, shadow, typography, and the custom <code>sm=720px</code>{' '}
+        Tailwind tokens — colors, radius, shadow, typography, and the default <code>sm=600px</code>{' '}
         breakpoint are generated from the MUI theme.
       </p>
       <div className="mt-3 rounded-mui bg-background-paper p-3 text-text-primary shadow-1">
@@ -148,7 +149,7 @@ function AppContent({ colorScheme, mode, setMode, themeIndex, setThemeIndex }: A
         fontFamily: 'sans-serif',
       }}
     >
-      <h1 style={{ marginTop: 0 }}>static-theme sandbox</h1>
+      <h1 style={{ marginTop: 0 }}>static-theme aggregate CSS sandbox</h1>
       <p>
         Engine: <code>@mui/styled-engine-noop</code> — no Emotion. Theme delivered via generated{' '}
         <code>theme.css</code> (no runtime CSS variable injection).
@@ -172,7 +173,7 @@ function AppContent({ colorScheme, mode, setMode, themeIndex, setThemeIndex }: A
 
       <div style={{ maxWidth: 720, marginBottom: 32 }}>
         <p style={{ marginBottom: 4 }}>
-          Toolbar breakpoint rule — gutters/min-height switch at custom <code>sm=720px</code>:
+          Toolbar breakpoint rule — gutters/min-height switch at default <code>sm=600px</code>:
         </p>
         <div style={{ border: '1px solid var(--mui-palette-divider)' }}>
           <Toolbar style={{ background: 'var(--mui-palette-action-hover)' }}>

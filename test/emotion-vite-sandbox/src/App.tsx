@@ -11,7 +11,9 @@
  *   3. The `sx` prop works and applies styles at runtime via Emotion.
  *   4. Dark mode works via ThemeProvider's colorSchemes / CssVarsProvider.
  *   5. useTheme() returns live JS theme values.
- *   6. Toolbar source CSS breakpoints are resolved by the app CSS pipeline.
+ *   6. The parallel MUI build imports component CSS Modules.
+ *   7. PostCSS translates their @custom-media aliases from the application theme.
+ *   8. Tailwind v3 consumes a generated preset from the same MUI theme.
  *
  * To confirm Emotion IS bundled, run:
  *   pnpm -F @mui-internal/emotion-vite-sandbox build
@@ -30,11 +32,8 @@ import {
 import Slider from '@mui/material/Slider';
 import Toolbar from '@mui/material/Toolbar';
 import Dialog, { type DialogProps } from '@mui/material/Dialog';
-import './mui.css';
-
-const customBreakpoints = {
-  values: { xs: 0, sm: 720, md: 900, lg: 1200, xl: 1536 },
-};
+import customBreakpoints from './theme';
+import './tailwind.css';
 
 const themes = [
   createTheme({

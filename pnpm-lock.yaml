@@ -1184,6 +1184,9 @@ importers:
       fast-glob:
         specifier: 3.3.3
         version: 3.3.3
+      lightningcss:
+        specifier: ^1.32.0
+        version: 1.32.0
       react:
         specifier: 19.2.6
         version: 19.2.6
@@ -1196,6 +1199,32 @@ importers:
       sinon:
         specifier: 22.0.0
         version: 22.0.0
+    publishDirectory: build
+
+  packages/mui-material-css-tools:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.29.2
+        version: 7.29.2
+      magic-string:
+        specifier: ^0.30.21
+        version: 0.30.21
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../mui-material/build
+      '@types/node':
+        specifier: 20.19.39
+        version: 20.19.39
+      csstype:
+        specifier: ^3.2.3
+        version: 3.2.3
+      postcss:
+        specifier: ^8.5.15
+        version: 8.5.15
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -1711,6 +1740,9 @@ importers:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
     devDependencies:
+      '@mui/material-css-tools':
+        specifier: workspace:*
+        version: link:../../packages/mui-material-css-tools/build
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -1720,6 +1752,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.1
         version: 5.1.1(vite@7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
+      postcss:
+        specifier: ^8.5.15
+        version: 8.5.15
       postcss-custom-media:
         specifier: ^12.0.1
         version: 12.0.1(postcss@8.5.15)
@@ -1742,6 +1777,52 @@ importers:
         specifier: workspace:^
         version: link:../../packages/mui-material/build
 
+  test/noop-default-css-vite-sandbox:
+    dependencies:
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../../packages/mui-material/build
+      '@mui/styled-engine-noop':
+        specifier: workspace:*
+        version: link:../../packages/mui-styled-engine-noop/build
+      '@mui/system':
+        specifier: workspace:*
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:../../packages/mui-utils/build
+      react:
+        specifier: ^19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: ^19.2.6
+        version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@mui/material-css-tools':
+        specifier: workspace:*
+        version: link:../../packages/mui-material-css-tools/build
+      '@tailwindcss/vite':
+        specifier: ^4.3.0
+        version: 4.3.0(vite@7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^5.1.1
+        version: 5.1.1(vite@7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
+      tailwindcss:
+        specifier: 4.3.0
+        version: 4.3.0
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^7.3.1
+        version: 7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)
+
   test/noop-vite-sandbox:
     dependencies:
       '@mui/material':
@@ -1763,6 +1844,9 @@ importers:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
     devDependencies:
+      '@mui/material-css-tools':
+        specifier: workspace:*
+        version: link:../../packages/mui-material-css-tools/build
       '@tailwindcss/vite':
         specifier: ^4.3.0
         version: 4.3.0(vite@7.3.6(@types/node@20.19.39)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))

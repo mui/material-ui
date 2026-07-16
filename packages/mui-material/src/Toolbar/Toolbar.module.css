@@ -1,36 +1,36 @@
 @layer mui.components {
-  .MuiToolbar-root {
+  :global(.MuiToolbar-root) {
     position: relative;
     display: flex;
     align-items: center;
   }
 
-  .MuiToolbar-root.MuiToolbar-gutters {
+  :global(.MuiToolbar-root):global(.MuiToolbar-gutters) {
     padding-left: calc(2 * var(--mui-spacing, 8px));
     padding-right: calc(2 * var(--mui-spacing, 8px));
   }
 
-  .MuiToolbar-root.MuiToolbar-dense {
+  :global(.MuiToolbar-root):global(.MuiToolbar-dense) {
     min-height: 48px;
   }
 
-  .MuiToolbar-root.MuiToolbar-regular {
+  :global(.MuiToolbar-root):global(.MuiToolbar-regular) {
     min-height: 56px;
   }
 
   @media (--mui-breakpoint-up-xs) and (orientation: landscape) {
-    .MuiToolbar-root.MuiToolbar-regular {
+    :global(.MuiToolbar-root):global(.MuiToolbar-regular) {
       min-height: 48px;
     }
   }
 
   @media (--mui-breakpoint-up-sm) {
-    .MuiToolbar-root.MuiToolbar-gutters {
+    :global(.MuiToolbar-root):global(.MuiToolbar-gutters) {
       padding-left: calc(3 * var(--mui-spacing, 8px));
       padding-right: calc(3 * var(--mui-spacing, 8px));
     }
 
-    .MuiToolbar-root.MuiToolbar-regular {
+    :global(.MuiToolbar-root):global(.MuiToolbar-regular) {
       min-height: 64px;
     }
   }

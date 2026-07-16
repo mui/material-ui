@@ -1,4 +1,4 @@
-import type { Theme } from './createTheme';
+import type { Theme } from '@mui/material/styles';
 
 export interface GenerateTailwindThemeCssOptions {
   /**
@@ -61,9 +61,7 @@ function kebabCase(value: string) {
 }
 
 function breakpointValue(theme: Pick<Theme, 'breakpoints'>, key: string) {
-  return `${(theme.breakpoints.values as Record<string, number>)[key]}${
-    theme.breakpoints.unit || 'px'
-  }`;
+  return `${(theme.breakpoints.values as Record<string, number>)[key]}${theme.breakpoints.unit || 'px'}`;
 }
 
 function generateBreakpointTheme(theme: Pick<Theme, 'breakpoints'>) {
