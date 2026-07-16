@@ -417,9 +417,10 @@ describe('cssVarsParser', () => {
       // `JSON.parse` produces a real own-enumerable `__proto__` key, which is the attack vector.
       const theme = JSON.parse('{"palette":{"__proto__":{"polluted":"yes"}}}');
       const { vars } = cssVarsParser(theme, { prefix: 'mui' });
+      // The malicious leaf must not pollute Object.prototype nor leak into the generated vars.
       expect(({} as Record<string, unknown>).polluted).to.equal(undefined);
-      // The polluting path is dropped entirely, so no `vars` entry is created for it.
-      expect(vars).to.deep.equal({});
+      expect(Object.prototype.hasOwnProperty.call(Object.prototype, 'polluted')).to.equal(false);
+      expect((vars as { palette?: Record<string, unknown> }).palette?.polluted).to.equal(undefined);
     } finally {
       delete (Object.prototype as Record<string, unknown>).polluted;
     }

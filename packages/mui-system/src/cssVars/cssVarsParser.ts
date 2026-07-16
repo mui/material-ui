@@ -30,13 +30,14 @@ export const assignNestedKeys = <
   value: Value,
   arrayKeys: Array<string> = [],
 ) => {
-  // Prevent prototype pollution: never traverse or write through
-  // `__proto__` / `constructor` / `prototype` (e.g. a theme parsed from untrusted JSON).
-  if (keys.some((key) => prototypePollutingKeys.has(key))) {
-    return;
-  }
   let temp: T = obj;
-  keys.forEach((k, index) => {
+  for (let index = 0; index < keys.length; index += 1) {
+    const k = keys[index];
+    // Prevent prototype pollution: never traverse or write through
+    // `__proto__` / `constructor` / `prototype` (e.g. a theme parsed from untrusted JSON).
+    if (prototypePollutingKeys.has(k)) {
+      break;
+    }
     if (index === keys.length - 1) {
       if (Array.isArray(temp)) {
         temp[Number(k)] = value;
@@ -49,7 +50,7 @@ export const assignNestedKeys = <
       }
       temp = temp[k];
     }
-  });
+  }
 };
 
 /**
