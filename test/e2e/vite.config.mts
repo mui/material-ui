@@ -11,10 +11,10 @@ export default defineConfig({
       output: {
         keepNames: true,
         minify: {
-          mangle: false
-        }
-      }
-    }
+          mangle: false,
+        },
+      },
+    },
   },
   plugins: [
     {
@@ -36,8 +36,8 @@ export default defineConfig({
         return transformWithOxc(code, id, {
           lang: 'tsx',
           jsx: {
-            runtime: 'automatic'
-          }
+            runtime: 'automatic',
+          },
         });
       },
     },
