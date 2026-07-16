@@ -2962,10 +2962,12 @@ const slotPulse = keyframes({
 const SLOT_HIGHLIGHT_STYLE = {
   animation: `${slotPulse} 1.4s ease-out infinite`,
 };
-function slotHighlightSx(key: string) {
+function slotHighlightSelector(key: string) {
   const [component, slot] = key.split('|');
-  const selector = SLOT_HIGHLIGHT_SELECTORS[key] ?? `.Mui${component}-${slot}`;
-  const scoped = selector
+  return SLOT_HIGHLIGHT_SELECTORS[key] ?? `.Mui${component}-${slot}`;
+}
+function slotHighlightSx(key: string) {
+  const scoped = slotHighlightSelector(key)
     .split(',')
     .map((s) => `& ${s.trim()}`)
     .join(', ');
@@ -3098,6 +3100,18 @@ export default function DensityExperiment() {
   React.useEffect(() => {
     setHighlightSlot(null);
   }, [selection]);
+  // Scroll the first highlighted box into view on toggle-on/switch — the canvas
+  // scrolls independently, so a big component's slot (DataGrid footer) can sit
+  // off-screen exactly while its knobs are being edited.
+  React.useEffect(() => {
+    if (!highlightSlot) {
+      return;
+    }
+    document
+      .getElementById('density-canvas')
+      ?.querySelector(slotHighlightSelector(highlightSlot))
+      ?.scrollIntoView({ behavior: 'instant', block: 'center' });
+  }, [highlightSlot]);
   // Height-measure overlay: the only debug mode that needs JS — CSS can't read a
   // rendered height, and an in-flow ::after badge gets clipped by the demo cells'
   // / inputs' overflow (and the canvas's own overflow-y:auto, which forces
