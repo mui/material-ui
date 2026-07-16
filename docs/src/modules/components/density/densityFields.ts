@@ -414,6 +414,10 @@ export interface DensityGroup {
  * Exception: minor families (Progress — single knob) are pinned to the bottom,
  * after the usage-ranked block.
  */
+// weave-families.yml usage rank for the core families; three deliberate breaks:
+// the families Weave doesn't use (Toolbar…BottomNavigation) follow the ranked core,
+// Progress stays pinned after them (minor single-knob), and the MUI X families sit
+// at the very bottom as their own group (matching the yml's `MUI X` group).
 const WEAVE_FAMILY_ORDER = [
   'Typography',
   'Button',
@@ -435,24 +439,33 @@ const WEAVE_FAMILY_ORDER = [
   'Utils',
   'Chip',
   'Card',
-  'DataGrid',
   'Avatar',
   'Radio',
   'Switch',
   'ToggleButton',
   'Badge',
-  'TreeView',
   'Autocomplete',
   'Breadcrumbs',
   'Stepper',
-  'DatePicker',
   'ButtonGroup',
   'Transitions',
   'Slider',
   'Table',
   'Popover',
-  // Pinned last (out of usage-rank position) — minor single-knob families.
+  // Not Weave-ranked (absent from weave-families.yml) — surfaced order.
+  'Toolbar',
+  'Dialog',
+  'Fab',
+  'Pagination',
+  'ListItemButton',
+  'SnackbarContent',
+  'BottomNavigation',
+  // Pinned after the core (out of usage-rank position) — minor single-knob families.
   'Progress',
+  // MUI X families — bottom group.
+  'DataGrid',
+  'DatePicker',
+  'TreeView',
 ];
 const familyRank = (key: string) => {
   const i = WEAVE_FAMILY_ORDER.indexOf(key);
