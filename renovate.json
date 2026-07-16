@@ -89,9 +89,7 @@
     {
       "customType": "regex",
       "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
-      "managerFilePatterns": [
-        "packages-internal/core-docs/src/AppLayout/components/AppSearch.tsx"
-      ],
+      "managerFilePatterns": ["packages-internal/core-docs/src/AppLayout/components/AppSearch.tsx"],
       "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
       "depNameTemplate": "@docsearch/css",
       "datasourceTemplate": "npm"
