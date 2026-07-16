@@ -1,4 +1,4 @@
-import { defineConfig, transformWithEsbuild } from 'vite';
+import { defineConfig, transformWithOxc } from 'vite';
 import react from '@vitejs/plugin-react';
 // eslint-disable-next-line import/no-relative-packages
 import { alias } from '../../vitest.shared.mts';
@@ -7,10 +7,14 @@ import { alias } from '../../vitest.shared.mts';
 export default defineConfig({
   build: {
     outDir: 'build',
-  },
-  esbuild: {
-    minifyIdentifiers: false,
-    keepNames: true,
+    rolldownOptions: {
+      output: {
+        keepNames: true,
+        minify: {
+          mangle: false
+        }
+      }
+    }
   },
   plugins: [
     {
@@ -28,9 +32,11 @@ export default defineConfig({
         }
         // Use the exposed transform from vite, instead of directly
         // transforming with esbuild
-        return transformWithEsbuild(code, id, {
-          loader: 'tsx',
-          jsx: 'automatic',
+        return transformWithOxc(code, id, {
+          lang: 'tsx',
+          jsx: {
+            runtime: 'automatic'
+          }
         });
       },
     },
@@ -45,8 +51,8 @@ export default defineConfig({
   },
   optimizeDeps: {
     force: true,
-    esbuildOptions: {
-      loader: {
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'tsx',
       },
     },
