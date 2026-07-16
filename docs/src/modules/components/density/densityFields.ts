@@ -118,20 +118,6 @@ export const densityExtraRows: DensityExtraRow[] = [
     values: {},
   },
   {
-    id: 'MuiList|root|disablePadding=false||paddingInline',
-    label: 'List · paddingInline',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiList',
-      slot: 'root',
-      props: { disablePadding: false },
-      nested: '',
-      cssProp: 'paddingInline',
-    },
-    values: {},
-  },
-  {
     id: 'MuiAccordion|root|base|&.Mui-expanded|margin',
     label: 'Accordion · expanded margin',
     isDensity: false,
