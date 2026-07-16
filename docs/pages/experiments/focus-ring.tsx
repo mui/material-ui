@@ -718,10 +718,11 @@ export default function FocusVisible() {
           <Stack spacing={1} sx={{ mt: 3 }}>
             <Typography variant="subtitle2">Edge cases</Typography>
             <Typography variant="body2" color="text.secondary">
-              • <strong>Contained Button / Fab (elevation override):</strong> these animate their
-              own <code>box-shadow</code> on focus, so the <em>two-color</em> preset&apos;s
-              box-shadow may be overridden on them — but the <code>outline</code> baseline always
-              shows.
+              • <strong>Contained Button (elevation override):</strong> it animates its own{' '}
+              <code>box-shadow</code> on focus, so the <em>two-color</em> preset&apos;s box-shadow
+              may be overridden on it — but the <code>outline</code> baseline always shows. (Slider
+              and Fab re-assert <code>theme.focusVisible</code> in the same block, so the custom
+              box-shadow wins there.)
             </Typography>
             <Typography variant="body2" color="text.secondary">
               • <strong>Disabled + focusVisible:</strong> Button/IconButton set their own outline on{' '}

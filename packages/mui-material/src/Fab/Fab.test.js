@@ -1,9 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  isJsdom,
+  focusVisible,
+  simulatePointerDevice,
+} from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
@@ -190,6 +197,55 @@ describe('<Fab />', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    // The effective box-shadow is the last matching rule in source order (equal specificity here).
+    // Read it from the CSSOM rather than getComputedStyle, which returns a mid-transition value.
+    function effectiveBoxShadow(el) {
+      let shadow = '';
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue;
+        }
+        for (const rule of Array.from(rules)) {
+          if (!rule.style || !rule.style.boxShadow || !rule.selectorText) {
+            continue;
+          }
+          const matches = rule.selectorText.split(',').some((selector) => {
+            try {
+              return el.matches(selector.trim());
+            } catch {
+              return false;
+            }
+          });
+          if (matches) {
+            shadow = rule.style.boxShadow;
+          }
+        }
+      }
+      return shadow;
+    }
+
+    it.skipIf(isJsdom())('a user box-shadow wins over the focus elevation', () => {
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            focusVisible: { boxShadow: '0 0 0 4px rgb(255, 0, 0)' },
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          })}
+        >
+          <Fab>Fab</Fab>
+        </ThemeProvider>,
+      );
+      const fab = screen.getByRole('button');
+      simulatePointerDevice();
+      focusVisible(fab);
+      expect(effectiveBoxShadow(fab)).to.contain('rgb(255, 0, 0)');
     });
   });
 });
