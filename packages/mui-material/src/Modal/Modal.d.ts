@@ -138,8 +138,7 @@ export interface ModalOwnProps {
   slotProps?:
     | {
         root?:
-          | SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState>
-          | undefined;
+          SlotComponentProps<'div', ModalComponentsPropsOverrides, ModalOwnerState> | undefined;
         backdrop?:
           | SlotComponentProps<typeof Backdrop, ModalComponentsPropsOverrides, ModalOwnerState>
           | undefined;

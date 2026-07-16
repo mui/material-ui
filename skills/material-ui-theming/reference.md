@@ -1,4 +1,4 @@
-# Material UI theming: reference snippets
+# MaterialÂ UI theming: reference snippets
 
 ## Custom theme property (TypeScript)
 

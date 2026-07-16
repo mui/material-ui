@@ -52,7 +52,6 @@ export interface GridBaseProps {
    */
   offset?: ResponsiveStyleValue<GridOffset> | undefined;
   /**
-   * @internal
    * The level of the grid starts from `0` and increases when the grid nests
    * inside another grid. Nesting is defined as a container Grid being a direct
    * child of a container Grid.
