@@ -244,13 +244,7 @@ function OuterRing() {
       <Row label="Stepper">
         <Stepper nonLinear activeStep={0} sx={{ minWidth: 260 }}>
           <Step>
-            {/* suppressFocusVisible is an internal ButtonBase escape hatch, not public-typed */}
-            <StepButton
-              {...({ suppressFocusVisible: true } as React.ComponentProps<typeof StepButton>)}
-              data-ring-target="StepButton"
-            >
-              One
-            </StepButton>
+            <StepButton data-ring-target="StepButton">One</StepButton>
           </Step>
           <Step>
             <StepButton data-ring-target="StepButton">Two</StepButton>
