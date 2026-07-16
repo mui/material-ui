@@ -100,11 +100,18 @@ import {
   GridCellModes,
   GridPreferencePanelsValue,
 } from '@mui/x-data-grid';
-import type { GridColDef } from '@mui/x-data-grid';
+import type { GridColDef, GridRowSelectionModel } from '@mui/x-data-grid';
 // Premium build reused for every paid-feature demo (it includes Pro features
 // like header filters) — one large package import instead of two. No license
 // key in this repo, so those demos render the watermark; layout is unaffected.
-import { DataGridPremium } from '@mui/x-data-grid-premium';
+import {
+  DataGridPremium,
+  GridAiAssistantPanel,
+  GridChartsIntegrationContextProvider,
+  GridChartsPanel,
+  GridChartsRendererProxy,
+  GridSidebarValue,
+} from '@mui/x-data-grid-premium';
 import {
   createTheme,
   keyframes,
@@ -321,6 +328,9 @@ const PADDING_RING_SLOTS = [
   '.MuiDataGrid-columnsManagement',
   '.MuiDataGrid-columnsManagementHeader',
   '.MuiDataGrid-columnsManagementFooter',
+  '.MuiDataGrid-multiSelectCell',
+  // Upstream drops this utility class; the emotion label class carries the name.
+  '[class*="MuiDataGrid-columnsManagementEmptyText"]',
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
@@ -368,6 +378,8 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiDataGrid-columnHeaderFilterInput',
   '.MuiDataGrid-groupingCriteriaCellToggle',
   '.MuiDataGrid-treeDataGroupingCellToggle',
+  '.MuiDataGrid-pivotPanelField',
+  '.MuiDataGrid-chartsPanelDataField',
   '.MuiAccordionSummary-content',
   '.MuiAlert-icon',
   '.MuiAlert-action',
@@ -430,6 +442,10 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelHeader',
   // :first-of-type → one badge per drop-zone list, not one per field row.
   '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelField:first-of-type',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-pivotPanelPlaceholder',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-chartsPanelDataField:first-of-type',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-chartsPanelDataPlaceholder',
+  '[data-canvas-component="DataGrid"] .MuiDataGrid-aiAssistantPanelHeader',
   '[data-canvas-component="BottomNavigation"] .MuiBottomNavigation-root',
   '[data-canvas-component="Dialog"] .MuiDialog-paper',
 ];
@@ -1782,19 +1798,115 @@ const DATA_GRID_GROUPING_COLUMNS: GridColDef[] = [
   { field: 'calories', headerName: 'Calories', type: 'number', width: 110 },
 ];
 
+// Adjacent rows share the same tag set so rowSpanning merges the multiSelect
+// cells (the rowspan-scoped paddingTop emission needs aria-rowspan > 1).
+const DATA_GRID_SPAN_ROWS = [
+  { id: 1, name: 'Frozen yoghurt', tags: ['Sweet', 'Cold'] },
+  { id: 2, name: 'Ice cream sandwich', tags: ['Sweet', 'Cold'] },
+  { id: 3, name: 'Eclair', tags: ['Sweet'] },
+  { id: 4, name: 'Cupcake', tags: ['Sweet'] },
+];
+const DATA_GRID_SPAN_COLUMNS: GridColDef[] = [
+  { field: 'name', headerName: 'Dessert', width: 180 },
+  {
+    field: 'tags',
+    headerName: 'Tags',
+    type: 'multiSelect',
+    width: 220,
+    valueOptions: ['Sweet', 'Cold', 'Baked'],
+  },
+];
+
+// Leaf rows only — the grid auto-fills the parent nodes from the path prefixes.
+const DATA_GRID_TREE_ROWS = [
+  { id: 1, hierarchy: ['Frozen', 'Frozen yoghurt'], calories: 159 },
+  { id: 2, hierarchy: ['Frozen', 'Ice cream sandwich'], calories: 237 },
+  { id: 3, hierarchy: ['Baked', 'Eclair'], calories: 262 },
+  { id: 4, hierarchy: ['Baked', 'Cupcake'], calories: 305 },
+];
+const DATA_GRID_TREE_COLUMNS: GridColDef[] = [
+  { field: 'calories', headerName: 'Calories', type: 'number', width: 110 },
+];
+const getTreeDataPath = (row: (typeof DATA_GRID_TREE_ROWS)[number]) => row.hierarchy;
+
+// Charts panel: only `chartable: true` columns survive the dimensions/values
+// filters in the chartsIntegration state initializer.
+const DATA_GRID_CHARTS_COLUMNS: GridColDef[] = [
+  { field: 'name', headerName: 'Dessert', width: 160 },
+  { field: 'category', headerName: 'Category', width: 120, chartable: true },
+  { field: 'calories', headerName: 'Calories', type: 'number', width: 110, chartable: true },
+];
+
+// Registration is what flips the panel from its "No charts" overlay to the real
+// tabs — GridChartsRendererProxy registers the chart id into the context; the
+// renderer itself can be anything (@mui/x-charts-premium only supplies a real
+// chart painter, it is NOT required for the panel).
+function NullChartRenderer() {
+  return null;
+}
+
+// The panel's Chart/Fields/Customize tab state is internal (useState, no prop),
+// and inactive tabs stay mounted but display:none — so the chartsPanelData*
+// slots need the Fields tab ACTIVE to be visible. One-shot retry poll: the tabs
+// appear only after the proxy's registration effect commits.
+function ChartsPanelDemo(props: { children: React.ReactNode }) {
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  React.useEffect(() => {
+    let tries = 0;
+    const timer = setInterval(() => {
+      tries += 1;
+      const tab = Array.from(rootRef.current?.querySelectorAll('[role="tab"]') ?? []).find(
+        (el) => el.textContent === 'Fields',
+      ) as HTMLElement | undefined;
+      if (tab) {
+        tab.click();
+      }
+      if (tab || tries > 20) {
+        clearInterval(timer);
+      }
+    }, 150);
+    return () => clearInterval(timer);
+  }, []);
+  return (
+    <div ref={rootRef} style={{ height: 440, width: '100%' }}>
+      {props.children}
+    </div>
+  );
+}
+
 // Keeps the preference panels INSIDE #density-canvas: portaled panels escape
 // the canvas-scoped debug overlays and Density-tab scale-var overrides (preset
 // :root vars and theme styleOverrides still reach them either way).
 const DATA_GRID_INLINE_PANEL_SLOT_PROPS = {
   basePopper: { material: { disablePortal: true } },
+  // Pin the panels open: GridPanel routes BOTH clickaway and Escape through its
+  // onClose prop, and GridPreferencesPanel spreads slotProps.panel after its own
+  // hidePreferences handler — so a no-op override persists the panel. Nothing
+  // else closes on page clicks (the other hidePreferences callers are explicit
+  // trigger/menu/API paths).
+  panel: { onClose: () => {} },
+} as const;
+
+// Empty-state columns panel: no togglable columns → currentColumns is empty
+// without any search, the only static path to columnsManagementEmptyText.
+const DATA_GRID_EMPTY_COLUMNS_SLOT_PROPS = {
+  ...DATA_GRID_INLINE_PANEL_SLOT_PROPS,
+  columnsManagement: { getTogglableColumns: () => [] },
 } as const;
 
 function DataGridMatrix() {
+  // Preselected so the footer's selectedRowCount renders (only mounts when the
+  // count is > 0, and initialState has no rowSelection key — model prop only).
+  const [coreSelection, setCoreSelection] = React.useState<GridRowSelectionModel>({
+    type: 'include',
+    ids: new Set([1, 2]),
+  });
   return (
     <Stack spacing={4} sx={{ mt: 1 }}>
       <div>
         <Typography variant="caption" color="text.secondary">
-          core — checkbox selection · column group · boolean · actions
+          core — checkbox selection (2 preselected → footer count) · column group · boolean ·
+          actions
         </Typography>
         <div style={{ height: 480, width: '100%' }}>
           <DataGrid
@@ -1803,20 +1915,29 @@ function DataGridMatrix() {
             columnGroupingModel={DATA_GRID_GROUPING}
             checkboxSelection
             disableRowSelectionOnClick
+            rowSelectionModel={coreSelection}
+            onRowSelectionModelChange={setCoreSelection}
           />
         </div>
       </div>
       <div>
         <Typography variant="caption" color="text.secondary">
-          toolbar + quick filter + footer (TablePagination reflows via its Material emissions)
+          toolbar (labeled) + quick filter (pre-filled → expanded control) + footer (TablePagination
+          reflows via its Material emissions)
         </Typography>
         <div style={{ height: 320, width: '100%' }}>
           <DataGrid
             rows={DATA_GRID_ROWS}
             columns={DATA_GRID_COLUMNS.slice(0, 4)}
             showToolbar
+            label="Desserts"
             pageSizeOptions={[3, 6]}
-            initialState={{ pagination: { paginationModel: { pageSize: 3 } } }}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 3 } },
+              // The quick-filter control does not mount at all while collapsed;
+              // a non-empty initial value is what flips the primitive to expanded.
+              filter: { filterModel: { items: [], quickFilterValues: ['e'] } },
+            }}
           />
         </div>
       </div>
@@ -1836,11 +1957,14 @@ function DataGridMatrix() {
       </div>
       <div>
         <Typography variant="caption" color="text.secondary">
-          filter panel (open by default, rendered inline) — panelContent padding/gap · filterForm
-          gap · field widths · MenuItem/inputs reflow via Material emissions
+          filter panel (open by default, rendered inline, 2 conditions) — panelContent padding/gap ·
+          filterForm gap · field widths · logic-operator select (2nd row) · panel footer ·
+          MenuItem/inputs reflow via Material emissions
         </Typography>
         <div style={{ height: 420, width: '100%' }}>
-          <DataGrid
+          {/* Premium: community forbids multiple filter items, which also drops the
+              panel footer (Add filter / Remove all) — both slots need multi-filtering. */}
+          <DataGridPremium
             rows={DATA_GRID_ROWS.slice(0, 3)}
             columns={DATA_GRID_COLUMNS.slice(0, 3)}
             hideFooter
@@ -1851,7 +1975,12 @@ function DataGridMatrix() {
                 openedPanelValue: GridPreferencePanelsValue.filters,
               },
               filter: {
-                filterModel: { items: [{ field: 'calories', operator: '>', value: '200' }] },
+                filterModel: {
+                  items: [
+                    { id: 1, field: 'calories', operator: '>', value: '200' },
+                    { id: 2, field: 'name', operator: 'contains', value: 'a' },
+                  ],
+                },
               },
             }}
             slotProps={DATA_GRID_INLINE_PANEL_SLOT_PROPS}
@@ -1876,6 +2005,26 @@ function DataGridMatrix() {
               },
             }}
             slotProps={DATA_GRID_INLINE_PANEL_SLOT_PROPS}
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          columns panel empty state (no togglable columns) — emptyText padding
+        </Typography>
+        <div style={{ height: 260, width: '100%' }}>
+          <DataGrid
+            rows={DATA_GRID_ROWS.slice(0, 2)}
+            columns={DATA_GRID_COLUMNS.slice(0, 2)}
+            hideFooter
+            disableRowSelectionOnClick
+            initialState={{
+              preferencePanel: {
+                open: true,
+                openedPanelValue: GridPreferencePanelsValue.columns,
+              },
+            }}
+            slotProps={DATA_GRID_EMPTY_COLUMNS_SLOT_PROPS}
           />
         </div>
       </div>
@@ -1911,6 +2060,38 @@ function DataGridMatrix() {
       </div>
       <div>
         <Typography variant="caption" color="text.secondary">
+          row spanning + multi-select [pro] — spanned multiSelect cell top padding (adjacent equal
+          tag sets merge)
+        </Typography>
+        <div style={{ height: 240, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_SPAN_ROWS}
+            columns={DATA_GRID_SPAN_COLUMNS}
+            rowSpanning
+            hideFooter
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          tree data [pro] (pre-expanded) — grouping-cell toggle gutter · non-paginated footer shows
+          the total-rows count
+        </Typography>
+        <div style={{ height: 300, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_TREE_ROWS}
+            columns={DATA_GRID_TREE_COLUMNS}
+            treeData
+            getTreeDataPath={getTreeDataPath}
+            groupingColDef={{ headerName: 'Dessert', width: 220 }}
+            defaultGroupingExpansionDepth={-1}
+            disableRowSelectionOnClick
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
           no-columns overlay (all columns hidden) — label↔button gap
         </Typography>
         <div style={{ height: 180, width: '100%' }}>
@@ -1926,8 +2107,32 @@ function DataGridMatrix() {
       </div>
       <div>
         <Typography variant="caption" color="text.secondary">
+          AI assistant panel [premium] (open by default, rendered inline, no service — empty state)
+          — panel width/maxHeight · header paddings
+        </Typography>
+        <div style={{ height: 420, width: '100%' }}>
+          <DataGridPremium
+            rows={DATA_GRID_ROWS.slice(0, 3)}
+            columns={DATA_GRID_COLUMNS.slice(0, 3)}
+            aiAssistant
+            hideFooter
+            disableRowSelectionOnClick
+            initialState={{
+              preferencePanel: {
+                open: true,
+                openedPanelValue: GridPreferencePanelsValue.aiAssistant,
+              },
+            }}
+            // The AI panel slot ships null by default (bundle-size opt-in).
+            slots={{ aiAssistantPanel: GridAiAssistantPanel }}
+            slotProps={DATA_GRID_INLINE_PANEL_SLOT_PROPS}
+          />
+        </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
           pivot sidebar [premium] (open by default) — sidebar width · panel header 52-rhythm · field
-          rows · drop zones
+          rows · drop zones (Columns left empty → placeholder)
         </Typography>
         <div style={{ height: 440, width: '100%' }}>
           <DataGridPremium
@@ -1941,13 +2146,44 @@ function DataGridMatrix() {
                 panelOpen: true,
                 model: {
                   rows: [{ field: 'category' }],
-                  columns: [{ field: 'inStock' }],
+                  // Columns intentionally empty — an empty drop zone is the only
+                  // state that renders the pivotPanelPlaceholder slot.
+                  columns: [],
                   values: [{ field: 'calories', aggFunc: 'sum' }],
                 },
               },
             }}
           />
         </div>
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          charts panel [premium] (open on the Fields tab, stub renderer — no chart painted) — field
+          rows · sections · available-fields zone placeholder
+        </Typography>
+        <ChartsPanelDemo>
+          <GridChartsIntegrationContextProvider>
+            <DataGridPremium
+              rows={DATA_GRID_ROWS}
+              columns={DATA_GRID_CHARTS_COLUMNS}
+              chartsIntegration
+              hideFooter
+              disableRowSelectionOnClick
+              initialState={{
+                sidebar: { open: true, value: GridSidebarValue.Charts },
+                chartsIntegration: {
+                  activeChartId: 'main',
+                  // Values intentionally empty — an empty section is what renders
+                  // the chartsPanelDataPlaceholder slot (same as the pivot zones).
+                  charts: { main: { dimensions: ['category'], values: [] } },
+                },
+              }}
+              // Like the AI panel, the chartsPanel slot ships null by default.
+              slots={{ chartsPanel: GridChartsPanel }}
+            />
+            <GridChartsRendererProxy id="main" label="Chart" renderer={NullChartRenderer} />
+          </GridChartsIntegrationContextProvider>
+        </ChartsPanelDemo>
       </div>
     </Stack>
   );
@@ -2943,6 +3179,12 @@ const familyReadIds = new Map(
 // convention misses.
 const SLOT_HIGHLIGHT_SELECTORS: Record<string, string> = {
   'DataGrid|defaultProps': '.MuiDataGrid-row, .MuiDataGrid-columnHeader',
+  // Upstream never applies these utility classes (emptyText: styled slot rendered
+  // with no className; quickFilterControl: a later className spread wins) — only
+  // the emotion label class carries the name. The slot-key styleOverrides still
+  // land, so the knobs are live; match the label class.
+  'DataGrid|columnsManagementEmptyText': '[class*="MuiDataGrid-columnsManagementEmptyText"]',
+  'DataGrid|toolbarQuickFilterControl': '[class*="MuiDataGrid-toolbarQuickFilterControl"]',
 };
 // Violet — green (padding), orange (margin), blue (text) are taken; box-shadow
 // (no background) composes with the outline (⊞) debug mode and keeps content
