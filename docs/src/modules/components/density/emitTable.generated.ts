@@ -1674,7 +1674,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       defaultProp: 'rowHeight',
     },
-    values: { compact: '40', normal: '52', comfort: '64' },
+    values: { compact: '28', normal: '40', comfort: '60' },
   },
   {
     id: 'MuiDataGrid|defaultProps|base||columnHeaderHeight',
@@ -1688,7 +1688,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       defaultProp: 'columnHeaderHeight',
     },
-    values: { compact: '44', normal: '56', comfort: '68' },
+    values: { compact: '28', normal: '40', comfort: '60' },
   },
   {
     id: 'MuiDataGrid|editInputCell|base|& input|paddingInline',

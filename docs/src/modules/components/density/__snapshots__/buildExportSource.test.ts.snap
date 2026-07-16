@@ -1845,8 +1845,8 @@ const compact = {
     },
     MuiDataGrid: {
       defaultProps: {
-        rowHeight: 40,
-        columnHeaderHeight: 44,
+        rowHeight: 28,
+        columnHeaderHeight: 28,
       },
       styleOverrides: {
         cell: [
@@ -3820,8 +3820,8 @@ const normal = {
     },
     MuiDataGrid: {
       defaultProps: {
-        rowHeight: 52,
-        columnHeaderHeight: 56,
+        rowHeight: 40,
+        columnHeaderHeight: 40,
       },
       styleOverrides: {
         cell: [
@@ -5749,8 +5749,8 @@ const comfort = {
     },
     MuiDataGrid: {
       defaultProps: {
-        rowHeight: 64,
-        columnHeaderHeight: 68,
+        rowHeight: 60,
+        columnHeaderHeight: 60,
       },
       styleOverrides: {
         cell: [

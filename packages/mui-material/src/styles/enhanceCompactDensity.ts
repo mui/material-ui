@@ -1182,8 +1182,8 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   // flip of the grid's toolbar density selector stays a relative multiplier
   // on top of these bases.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
-    rowHeight: 40,
-    columnHeaderHeight: 44,
+    rowHeight: 28,
+    columnHeaderHeight: 28,
   });
   // Cell/header inline inset (master 0 10px) + edit input aligned to the same
   // step (master 0 16px — upstream mismatch makes the value jump on edit entry).

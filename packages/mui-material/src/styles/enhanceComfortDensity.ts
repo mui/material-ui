@@ -1081,8 +1081,8 @@ export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme:
   });
   // MUI X DataGrid — rationale in enhanceCompactDensity; mirrored structure.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
-    rowHeight: 64,
-    columnHeaderHeight: 68,
+    rowHeight: 60,
+    columnHeaderHeight: 60,
   });
   // Cell/header inline inset (master 0 10px) + edit input aligned to the same
   // step (master 0 16px — upstream mismatch makes the value jump on edit entry).

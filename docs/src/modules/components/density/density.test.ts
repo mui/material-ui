@@ -290,14 +290,16 @@ describe('density playground — emit table & override builder', () => {
 });
 
 describe('defaultProps emission (DataGrid heights)', () => {
-  // Straw-man per-preset bases (values reviewed visually, like every preset px).
+  // Requirement bases: 28/40/60 (ratios 0.7/1/1.5 — the exact scale the grid's
+  // fixed ×0.7/×1.3 density stops cannot express; comfort 60 is unreachable
+  // through floor(base × 1.3)). Header height follows the same values.
   // Heights are JS-gated in the grid (virtualizer math) — CSS can't move them,
   // so the presets carry them as theme defaultProps; the grid's own density
   // prop stays unset (factor ×1 → rendered = base exactly).
   const HEIGHTS: Record<PresetLevel, { rowHeight: number; columnHeaderHeight: number }> = {
-    compact: { rowHeight: 40, columnHeaderHeight: 44 },
-    normal: { rowHeight: 52, columnHeaderHeight: 56 },
-    comfort: { rowHeight: 64, columnHeaderHeight: 68 },
+    compact: { rowHeight: 28, columnHeaderHeight: 28 },
+    normal: { rowHeight: 40, columnHeaderHeight: 40 },
+    comfort: { rowHeight: 60, columnHeaderHeight: 60 },
   };
 
   it('emit table carries the defaultProps rows with per-preset values', () => {
@@ -328,7 +330,7 @@ describe('defaultProps emission (DataGrid heights)', () => {
     theme.components = { MuiDataGrid: { defaultProps: { rowHeight: 33 } } };
     const enhanced = PRESETS.compact(theme) as any;
     expect(enhanced.components.MuiDataGrid.defaultProps.rowHeight).to.equal(33);
-    expect(enhanced.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(44);
+    expect(enhanced.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(28);
   });
 
   it('buildOverrides routes a defaultProps edit to defaultProps (number-coerced), not styleOverrides', () => {

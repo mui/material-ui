@@ -1716,7 +1716,7 @@ function TableCellMatrix() {
 
 // Data Grid (MUI X) — Phase A emissions live (plan: weave-gaps
 // prototype/density/next.md). Heights ride defaultProps raw px (rowHeight
-// 40/52/64, columnHeaderHeight 44/56/68 — JS-gated by the virtualizer; the
+// 28/40/60, columnHeaderHeight follows — JS-gated by the virtualizer; the
 // grid's own density prop stays unset so a toolbar-selector flip remains a
 // relative user multiplier). Cell/header/edit insets, title gap, toolbar
 // trio, footer minHeight, count gutters and actions gap ride density steps;
@@ -2675,7 +2675,7 @@ const COMPONENT_DEFS = {
   },
   DataGrid: {
     canvasLabel:
-      'Data Grid (MUI X) — heights via defaultProps raw px (row 40/52/64, header 44/56/68; grid density prop unset), insets/gaps via steps; chrome rides Material emissions',
+      'Data Grid (MUI X) — heights via defaultProps raw px (row + header 28/40/60; grid density prop unset), insets/gaps via steps; chrome rides Material emissions',
     Matrix: React.memo(DataGridMatrix),
   },
   Autocomplete: {
