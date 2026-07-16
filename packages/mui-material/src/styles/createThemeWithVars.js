@@ -25,6 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
+import { focusVisibleVars } from './focusVisibleVars';
 import toPx from '../utils/toPx';
 
 function assignNode(obj, keys) {
@@ -976,7 +977,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     // Mirror createThemeNoVars: default the offset to a per-component sign flip via
     // `--_focusVisible-offset`, scaled by the resolved width. A user `outlineOffset` still wins.
     if (resolvedFocusVisible.outlineOffset == null) {
-      resolvedFocusVisible.outlineOffset = `calc(var(--_focusVisible-offset, 1) * ${toPx(
+      resolvedFocusVisible.outlineOffset = `calc(${focusVisibleVars.offset} * ${toPx(
         resolvedFocusVisible.outlineWidth,
       )})`;
     }

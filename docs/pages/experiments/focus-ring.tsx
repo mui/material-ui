@@ -56,7 +56,7 @@ import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, focusVisibleVars } from '@mui/material/styles';
 
 type Preset = 'off' | 'true' | 'recolor' | 'twocolor' | 'shadowonly';
 
@@ -67,13 +67,13 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
     recolor: { label: 'recolor', value: { outlineColor: '#9c27b0' } },
     twocolor: {
       label: 'two-color (C40)',
-      value: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px gold' },
+      value: { boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px gold` },
     },
     shadowonly: {
       label: 'box-shadow only',
       value: {
         outlineColor: 'transparent',
-        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px gold',
+        boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px gold`,
       },
     },
   };

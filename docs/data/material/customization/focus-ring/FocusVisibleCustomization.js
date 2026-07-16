@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, focusVisibleVars } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -10,11 +10,11 @@ const recolor = createTheme({ focusVisible: { outlineColor: '#9c27b0' } });
 
 // Two-color ring (WCAG technique C40): the curated outline plus an additive
 // box-shadow in a contrasting color, so it stays visible on any background.
-// The `--_focusVisible-behavior` var makes the box-shadow inset on clip-prone
+// `focusVisibleVars.behavior` makes the box-shadow inset on clip-prone
 // components (Tab, MenuItem…), so it is never clipped there.
 const twoColor = createTheme({
   focusVisible: {
-    boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px rgba(0, 0, 0, 0.4)',
+    boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px rgba(0, 0, 0, 0.4)`,
   },
 });
 
@@ -22,7 +22,7 @@ const twoColor = createTheme({
 const outlineRemoved = createTheme({
   focusVisible: {
     outlineColor: 'transparent',
-    boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px #1976d2',
+    boxShadow: `${focusVisibleVars.behavior} 0 0 0 3px #1976d2`,
   },
 });
 

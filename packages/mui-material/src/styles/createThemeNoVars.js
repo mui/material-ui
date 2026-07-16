@@ -17,6 +17,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
+import { focusVisibleVars } from './focusVisibleVars';
 import toPx from '../utils/toPx';
 
 function coefficientToPercentage(coefficient) {
@@ -132,7 +133,7 @@ function createThemeNoVars(options = {}, ...args) {
     // a clip-prone component sets -1 (inset), scaled by the resolved width so an inset ring never
     // clips regardless of the component. A user-provided `outlineOffset` still wins.
     if (resolvedFocusVisible.outlineOffset == null) {
-      resolvedFocusVisible.outlineOffset = `calc(var(--_focusVisible-offset, 1) * ${toPx(
+      resolvedFocusVisible.outlineOffset = `calc(${focusVisibleVars.offset} * ${toPx(
         resolvedFocusVisible.outlineWidth,
       )})`;
     }

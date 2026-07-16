@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled, focusVisibleVars } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
@@ -539,6 +539,16 @@ describe('createTheme', () => {
       // clip-prone component would clip — documented as the `styleOverrides` escape hatch)
       const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
       expect(fixed.focusVisible.outlineOffset).to.equal(6);
+    });
+
+    it('`focusVisibleVars` exposes the private-var handles as a stable public contract', () => {
+      // These strings are public API — a consumer references them so a custom outlineOffset/
+      // box-shadow keeps the per-component inset behavior. The default offset calc reuses them.
+      expect(focusVisibleVars.offset).to.equal('var(--_focusVisible-offset, 1)');
+      expect(focusVisibleVars.behavior).to.equal('var(--_focusVisible-behavior, )');
+      expect(
+        createTheme({ cssVariables: false, focusVisible: true }).focusVisible.outlineOffset,
+      ).to.equal(`calc(${focusVisibleVars.offset} * 2px)`);
     });
 
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
