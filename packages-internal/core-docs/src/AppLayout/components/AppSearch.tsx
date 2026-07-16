@@ -425,9 +425,10 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-highlight-color': (theme.vars || theme).palette.primary[600],
               '--docsearch-text-color': (theme.vars || theme).palette.text.primary,
               '--docsearch-muted-color': (theme.vars || theme).palette.grey[600],
-              // v4 colors the hit icon and no-results text with this variable; keep it on the MUI
-              // muted grey (as v3 did) instead of Algolia's default purple-grey.
+              // Keep the v4 muted icons/text (hit icon, no-results text, idle magnifier, screen
+              // icons) on MUI's muted grey instead of Algolia's default purple-grey.
               '--docsearch-secondary-text-color': 'var(--docsearch-muted-color)',
+              '--docsearch-icon-color': 'var(--docsearch-muted-color)',
               '--docsearch-searchbox-shadow': 0,
               '--docsearch-hit-shadow': 0,
               '--docsearch-footer-shadow': 0,
@@ -601,6 +602,11 @@ export function AppSearch(props: AppSearchProps) {
             // overlaps instead of wrapping; restore a readable line-height (matches prod).
             '& .DocSearch-NoResults .DocSearch-Title': {
               lineHeight: 1.5,
+            },
+            // The v4 screen icon (no-results / empty state) hardcodes an inline stroke="#5a5e9a"
+            // that no variable can reach; recolor it to the MUI muted grey.
+            '& .DocSearch-Screen-Icon svg': {
+              stroke: 'var(--docsearch-muted-color)',
             },
             '& .DocSearch-Dropdown-Container': {
               '& .DocSearch-Hits:first-of-type': {
