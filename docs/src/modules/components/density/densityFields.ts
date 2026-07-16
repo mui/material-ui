@@ -297,6 +297,18 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiChip: 'Chip',
   MuiAccordionDetails: 'Accordion',
   MuiAccordionSummary: 'Accordion',
+  MuiRichTreeView: 'TreeView',
+  MuiSimpleTreeView: 'TreeView',
+  MuiTreeItem: 'TreeView',
+  MuiDateCalendar: 'DatePicker',
+  MuiDayCalendar: 'DatePicker',
+  MuiPickerDay: 'DatePicker',
+  MuiPickersCalendarHeader: 'DatePicker',
+  MuiYearCalendar: 'DatePicker',
+  MuiMonthCalendar: 'DatePicker',
+  MuiDigitalClock: 'DatePicker',
+  MuiMultiSectionDigitalClockSection: 'DatePicker',
+  MuiPickersToolbar: 'DatePicker',
 };
 
 /**
@@ -346,6 +358,8 @@ export function orderFamilyComponents(family: string, components: string[]): str
  */
 export const componentSlotOrder: Record<string, string[]> = {
   DataGrid: ['defaultProps', 'columnHeader', 'columnHeaderTitleContainer', 'cell'],
+  TreeItem: ['root', 'content'],
+  DayCalendar: ['root', 'weekDayLabel', 'weekNumber', 'weekNumberLabel', 'slideTransition'],
 };
 
 /**
@@ -486,6 +500,8 @@ export const shownFamilies = new Set<string>([
   'ListItemButton',
   'SnackbarContent',
   'BottomNavigation',
+  'TreeView',
+  'DatePicker',
 ]);
 
 /**

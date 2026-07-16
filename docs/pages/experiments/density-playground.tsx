@@ -112,6 +112,18 @@ import {
   GridChartsRendererProxy,
   GridSidebarValue,
 } from '@mui/x-data-grid-premium';
+import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { YearCalendar } from '@mui/x-date-pickers/YearCalendar';
+import { MonthCalendar } from '@mui/x-date-pickers/MonthCalendar';
+import { DigitalClock } from '@mui/x-date-pickers/DigitalClock';
+import { MultiSectionDigitalClock } from '@mui/x-date-pickers/MultiSectionDigitalClock';
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
+import dayjs from 'dayjs';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
 import {
   createTheme,
   keyframes,
@@ -157,6 +169,9 @@ import {
 import { buildExportSource } from 'docs/src/modules/components/density/buildExportSource';
 import { buildExportInput } from 'docs/src/modules/components/density/exportPayload';
 import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
+
+// displayWeekNumber calls value.week() — AdapterDayjs does not install the plugin itself.
+dayjs.extend(weekOfYear);
 
 const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
@@ -331,6 +346,11 @@ const PADDING_RING_SLOTS = [
   '.MuiDataGrid-multiSelectCell',
   // Upstream drops this utility class; the emotion label class carries the name.
   '[class*="MuiDataGrid-columnsManagementEmptyText"]',
+  '.MuiTreeItem-content',
+  '.MuiPickersCalendarHeader-root',
+  '.MuiDigitalClock-item',
+  '.MuiMultiSectionDigitalClockSection-item',
+  '.MuiPickersToolbar-root',
   '.MuiContainer-root', // Spacing tab: responsive gutters = theme.spacing
 ];
 
@@ -380,6 +400,8 @@ const MARGIN_MARKER_SELECTORS = [
   '.MuiDataGrid-treeDataGroupingCellToggle',
   '.MuiDataGrid-pivotPanelField',
   '.MuiDataGrid-chartsPanelDataField',
+  '.MuiPickersCalendarHeader-root',
+  '.MuiPickersCalendarHeader-label',
   '.MuiAccordionSummary-content',
   '.MuiAlert-icon',
   '.MuiAlert-action',
@@ -448,6 +470,15 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-aiAssistantPanelHeader',
   '[data-canvas-component="BottomNavigation"] .MuiBottomNavigation-root',
   '[data-canvas-component="Dialog"] .MuiDialog-paper',
+  '[data-canvas-component="TreeView"] .MuiTreeItem-content',
+  '[data-canvas-component="DatePicker"] .MuiDateCalendar-root',
+  '[data-canvas-component="DatePicker"] .MuiDayCalendar-weekDayLabel:first-of-type',
+  '[data-canvas-component="DatePicker"] .MuiDayCalendar-weekContainer:first-of-type .MuiPickerDay-root:first-of-type',
+  '[data-canvas-component="DatePicker"] .MuiPickersCalendarHeader-root',
+  '[data-canvas-component="DatePicker"] .MuiYearCalendar-button:first-of-type',
+  '[data-canvas-component="DatePicker"] .MuiMonthCalendar-button:first-of-type',
+  '[data-canvas-component="DatePicker"] .MuiDigitalClock-item:first-of-type',
+  '[data-canvas-component="DatePicker"] .MuiMultiSectionDigitalClockSection-item:first-of-type',
 ];
 
 // Height-measure ruler colour (dimension line + caps + badge).
@@ -2189,6 +2220,132 @@ function DataGridMatrix() {
   );
 }
 
+// Tree View (MUI X) — indentation rides defaultProps.itemChildrenIndentation
+// (inline-style var, styleOverrides can't reach it), row height rides upstream's
+// --TreeView-itemHeight hook, content paddings/gap ride steps. Item labels are
+// rendered by the component — no .density-debug-text wrapper possible (grid
+// precedent).
+const TREE_ITEMS = [
+  {
+    id: 'desserts',
+    label: 'Desserts',
+    children: [
+      {
+        id: 'frozen',
+        label: 'Frozen',
+        children: [
+          { id: 'frozen-yoghurt', label: 'Frozen yoghurt' },
+          { id: 'ice-cream-sandwich', label: 'Ice cream sandwich' },
+        ],
+      },
+      {
+        id: 'baked',
+        label: 'Baked',
+        children: [
+          { id: 'eclair', label: 'Eclair' },
+          { id: 'cupcake', label: 'Cupcake' },
+        ],
+      },
+    ],
+  },
+  { id: 'drinks', label: 'Drinks', children: [{ id: 'coffee', label: 'Coffee' }] },
+];
+const TREE_EXPANDED = ['desserts', 'frozen', 'baked', 'drinks'];
+
+function TreeViewMatrix() {
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          nested (pre-expanded, 3 levels) — indentation × depth · row height · content paddings/gap
+        </Typography>
+        <RichTreeView items={TREE_ITEMS} defaultExpandedItems={TREE_EXPANDED} sx={{ width: 280 }} />
+      </div>
+      <div>
+        <Typography variant="caption" color="text.secondary">
+          checkbox selection — checkbox rides its Material emissions · content gap between
+          toggle/checkbox/label
+        </Typography>
+        <RichTreeView
+          items={TREE_ITEMS}
+          defaultExpandedItems={TREE_EXPANDED}
+          checkboxSelection
+          multiSelect
+          defaultSelectedItems={['frozen-yoghurt', 'eclair']}
+          sx={{ width: 280 }}
+        />
+      </div>
+    </Stack>
+  );
+}
+
+// Pickers (MUI X) — fixed date keeps the demos deterministic (no Date.now →
+// no Argos noise). Inline components (DateCalendar/clocks) render portal-free;
+// StaticDateTimePicker surfaces the toolbar without popper wrangling.
+const PICKER_DATE = dayjs('2026-07-16');
+const renderCalendarLoading = () => <DayCalendarSkeleton />;
+
+function DatePickerMatrix() {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Stack
+        direction="row"
+        spacing={10}
+        useFlexGap
+        sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+      >
+        <div>
+          <Typography variant="caption" color="text.secondary">
+            day calendar (+ week numbers) — day size var drives cells/labels/6-week container ·
+            header spacing · root box raw per preset
+          </Typography>
+          <DateCalendar defaultValue={PICKER_DATE} displayWeekNumber />
+        </div>
+        <div>
+          <Typography variant="caption" color="text.secondary">
+            loading calendar — loadingContainer shares the 6-week minHeight calc
+          </Typography>
+          <DateCalendar defaultValue={PICKER_DATE} loading renderLoading={renderCalendarLoading} />
+        </div>
+        <div>
+          <Typography variant="caption" color="text.secondary">
+            year / month grids — button size trios
+          </Typography>
+          <Stack direction="row" spacing={4} useFlexGap sx={{ flexWrap: 'wrap' }}>
+            <YearCalendar defaultValue={PICKER_DATE} />
+            <MonthCalendar defaultValue={PICKER_DATE} />
+          </Stack>
+        </div>
+        <div>
+          <Typography variant="caption" color="text.secondary">
+            digital clocks — item padding steps (MenuItem emissions cascade under) · section widths
+            · item margins frozen (JS scroll math)
+          </Typography>
+          <Stack direction="row" spacing={4} useFlexGap sx={{ flexWrap: 'wrap' }}>
+            {/* Unconstrained, the item rows stretch to the flex row's width. */}
+            <Box sx={{ width: 140 }}>
+              <DigitalClock defaultValue={PICKER_DATE} />
+            </Box>
+            <MultiSectionDigitalClock defaultValue={PICKER_DATE} />
+          </Stack>
+        </div>
+        <div>
+          <Typography variant="caption" color="text.secondary">
+            static date-time (mobile layout) — toolbar padding (portrait-scoped) · actionBar rides
+            DialogActions emissions
+          </Typography>
+          <StaticDateTimePicker defaultValue={PICKER_DATE} />
+        </div>
+      </Stack>
+    </LocalizationProvider>
+  );
+}
+
 const FRUITS = ['Apple', 'Banana', 'Cherry', 'Elderberry', 'Fig'];
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
@@ -2978,6 +3135,16 @@ const COMPONENT_DEFS = {
       'Data Grid (MUI X) — heights via defaultProps raw px (row + header 28/40/60; grid density prop unset), insets/gaps via steps; chrome rides Material emissions',
     Matrix: React.memo(DataGridMatrix),
   },
+  TreeView: {
+    canvasLabel:
+      'Tree View (MUI X) — indentation via defaultProps (inline-style var), row height via the upstream --TreeView-itemHeight hook, content paddings/gap via steps',
+    Matrix: React.memo(TreeViewMatrix),
+  },
+  DatePicker: {
+    canvasLabel:
+      'Date / Time Pickers (MUI X) — day geometry via --_daySize var (cells/labels/6-week container), root boxes + buttons raw px, header/toolbar/clock spacing via steps',
+    Matrix: React.memo(DatePickerMatrix),
+  },
   Autocomplete: {
     canvasLabel: 'Autocomplete — option list min-height + padding (open)',
     Matrix: React.memo(AutocompleteMatrix),
@@ -3185,6 +3352,9 @@ const SLOT_HIGHLIGHT_SELECTORS: Record<string, string> = {
   // land, so the knobs are live; match the label class.
   'DataGrid|columnsManagementEmptyText': '[class*="MuiDataGrid-columnsManagementEmptyText"]',
   'DataGrid|toolbarQuickFilterControl': '[class*="MuiDataGrid-toolbarQuickFilterControl"]',
+  // defaultProps rows have no DOM element — the indentation shows on the items.
+  'RichTreeView|defaultProps': '.MuiRichTreeView-root .MuiTreeItem-content',
+  'SimpleTreeView|defaultProps': '.MuiSimpleTreeView-root .MuiTreeItem-content',
 };
 // Violet — green (padding), orange (margin), blue (text) are taken; box-shadow
 // (no background) composes with the outline (⊞) debug mode and keeps content

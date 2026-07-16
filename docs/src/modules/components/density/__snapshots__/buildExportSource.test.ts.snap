@@ -2269,6 +2269,172 @@ const compact = {
         ],
       },
     },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        root: [
+          {
+            '--TreeView-itemHeight': '28px',
+          },
+        ],
+        content: [
+          {
+            paddingBlock: 'var(--mui-density-xxs)',
+            paddingRight: 'var(--mui-density-sm)',
+            paddingLeft: 'calc(var(--mui-density-sm) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '--_daySize': '30px',
+          },
+        ],
+        weekDayLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '36px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: 'var(--_daySize)',
+            height: 'var(--_daySize)',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '36px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': 'var(--_daySize)',
+          },
+        ],
+      },
+    },
+    MuiDateCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            height: '286px',
+            width: '278px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-md)',
+            marginBottom: 'var(--mui-density-xxs)',
+            paddingLeft: 'var(--mui-density-xl)',
+            paddingRight: 'var(--mui-density-md)',
+            minHeight: '36px',
+            maxHeight: '36px',
+          },
+        ],
+        label: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '64px',
+            height: '32px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '64px',
+            height: '32px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-lg)',
+          },
+        ],
+      },
+    },
+    MuiMultiSectionDigitalClockSection: {
+      styleOverrides: {
+        root: [
+          {
+            width: '48px',
+          },
+        ],
+        item: [
+          {
+            padding: 'var(--mui-density-sm)',
+            width: '40px',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
   },
   typography: {
     h1: {
@@ -4405,6 +4571,172 @@ const normal = {
         ],
       },
     },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        root: [
+          {
+            '--TreeView-itemHeight': '32px',
+          },
+        ],
+        content: [
+          {
+            paddingBlock: 'var(--mui-density-xxs)',
+            paddingRight: 'var(--mui-density-sm)',
+            paddingLeft: 'calc(var(--mui-density-sm) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '--_daySize': '36px',
+          },
+        ],
+        weekDayLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '40px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: 'var(--_daySize)',
+            height: 'var(--_daySize)',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '40px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': 'var(--_daySize)',
+          },
+        ],
+      },
+    },
+    MuiDateCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            height: '336px',
+            width: '320px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-md)',
+            marginBottom: 'var(--mui-density-xxs)',
+            paddingLeft: 'var(--mui-density-xl)',
+            paddingRight: 'var(--mui-density-md)',
+            minHeight: '40px',
+            maxHeight: '40px',
+          },
+        ],
+        label: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '72px',
+            height: '36px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '72px',
+            height: '36px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-lg)',
+          },
+        ],
+      },
+    },
+    MuiMultiSectionDigitalClockSection: {
+      styleOverrides: {
+        root: [
+          {
+            width: '56px',
+          },
+        ],
+        item: [
+          {
+            padding: 'var(--mui-density-sm)',
+            width: '48px',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
   },
   typography: {},
   shape: {},
@@ -6491,6 +6823,172 @@ const comfort = {
         chartsPanelDataPlaceholder: [
           {
             minHeight: '44px',
+          },
+        ],
+      },
+    },
+    MuiRichTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiSimpleTreeView: {
+      defaultProps: {
+        itemChildrenIndentation: 'var(--mui-density-md)',
+      },
+      styleOverrides: {},
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        root: [
+          {
+            '--TreeView-itemHeight': '40px',
+          },
+        ],
+        content: [
+          {
+            paddingBlock: 'var(--mui-density-xxs)',
+            paddingRight: 'var(--mui-density-sm)',
+            paddingLeft: 'calc(var(--mui-density-sm) + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))',
+            gap: 'var(--mui-density-sm)',
+          },
+        ],
+      },
+    },
+    MuiDayCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            '--_daySize': '44px',
+          },
+        ],
+        weekDayLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '48px',
+          },
+        ],
+        weekNumber: [
+          {
+            width: 'var(--_daySize)',
+            height: 'var(--_daySize)',
+          },
+        ],
+        weekNumberLabel: [
+          {
+            width: 'var(--_daySize)',
+            height: '48px',
+          },
+        ],
+        slideTransition: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+        loadingContainer: [
+          {
+            minHeight: 'calc((var(--_daySize) + 4px) * 6)',
+          },
+        ],
+      },
+    },
+    MuiPickerDay: {
+      styleOverrides: {
+        root: [
+          {
+            '--PickerDay-size': 'var(--_daySize)',
+          },
+        ],
+      },
+    },
+    MuiDateCalendar: {
+      styleOverrides: {
+        root: [
+          {
+            height: '406px',
+            width: '376px',
+          },
+        ],
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-md)',
+            marginBottom: 'var(--mui-density-xxs)',
+            paddingLeft: 'var(--mui-density-xl)',
+            paddingRight: 'var(--mui-density-md)',
+            minHeight: '48px',
+            maxHeight: '48px',
+          },
+        ],
+        label: [
+          {
+            marginRight: 'var(--mui-density-xs)',
+          },
+        ],
+      },
+    },
+    MuiYearCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '84px',
+            height: '44px',
+          },
+        ],
+      },
+    },
+    MuiMonthCalendar: {
+      styleOverrides: {
+        button: [
+          {
+            width: '84px',
+            height: '44px',
+          },
+        ],
+      },
+    },
+    MuiDigitalClock: {
+      styleOverrides: {
+        item: [
+          {
+            padding: 'var(--mui-density-sm) var(--mui-density-lg)',
+          },
+        ],
+      },
+    },
+    MuiMultiSectionDigitalClockSection: {
+      styleOverrides: {
+        root: [
+          {
+            width: '64px',
+          },
+        ],
+        item: [
+          {
+            padding: 'var(--mui-density-sm)',
+            width: '56px',
+          },
+        ],
+      },
+    },
+    MuiPickersToolbar: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  pickerOrientation: 'portrait',
+                },
+                style: {
+                  padding: 'var(--mui-density-lg) var(--mui-density-xl)',
+                },
+              },
+            ],
           },
         ],
       },

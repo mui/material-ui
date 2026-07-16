@@ -1546,5 +1546,121 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
     body2: { ...enhanced.typography?.body2, fontSize: '0.8125rem', lineHeight: 1.38462 },
     button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.38462 },
   };
+  // MUI X Tree View — indentation is an inline-style var on the tree root
+  // (useTreeViewRootProps), unreachable from styleOverrides; the defaultProp is the
+  // lever, and a string value passes through verbatim so the step reference survives.
+  addDefaultProps(enhanced.components, 'MuiRichTreeView', {
+    itemChildrenIndentation: 'var(--mui-density-md)',
+  });
+  addDefaultProps(enhanced.components, 'MuiSimpleTreeView', {
+    itemChildrenIndentation: 'var(--mui-density-md)',
+  });
+  // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
+  // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.
+  addRootOverride(enhanced.components, 'MuiTreeItem', { '--TreeView-itemHeight': '28px' });
+  // Longhands only — a padding shorthand would clobber upstream's paddingLeft depth
+  // calc, so the calc is re-emitted with the step base instead.
+  addRootOverride(
+    enhanced.components,
+    'MuiTreeItem',
+    {
+      paddingBlock: d.xxs,
+      paddingRight: d.sm,
+      paddingLeft: `calc(${d.sm} + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))`,
+      gap: d.sm,
+    },
+    'content',
+  );
+  // MUI X Date/Time Pickers. Day geometry is JS constants (DAY_SIZE 36 / DAY_MARGIN 2)
+  // baked into PickerDay's own vars AND raw into the weekday/week-number boxes and the
+  // 6-week container math — one private var (on the DayCalendar root, which owns
+  // every consumer; a DateCalendar copy would shadow it for descendants and break
+  // the knob) drives them all (Dialog-margin pattern). Day margin (2px) stays
+  // frozen — sub-step, and the scroll/positioning math reuses it.
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { '--_daySize': '30px' });
+  addRootOverride(enhanced.components, 'MuiPickerDay', {
+    '--PickerDay-size': 'var(--_daySize)',
+  });
+  // Weekday/week-number boxes: widths follow the day var; label heights raw.
+  addRootOverride(
+    enhanced.components,
+    'MuiDayCalendar',
+    { width: 'var(--_daySize)', height: '36px' },
+    'weekDayLabel',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDayCalendar',
+    { width: 'var(--_daySize)', height: 'var(--_daySize)' },
+    'weekNumber',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDayCalendar',
+    { width: 'var(--_daySize)', height: '36px' },
+    'weekNumberLabel',
+  );
+  // 6-week container: master minHeight = (DAY_SIZE + 2*DAY_MARGIN) * 6 = 240.
+  addRootOverride(
+    enhanced.components,
+    'MuiDayCalendar',
+    { minHeight: 'calc((var(--_daySize) + 4px) * 6)' },
+    'slideTransition',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDayCalendar',
+    { minHeight: 'calc((var(--_daySize) + 4px) * 6)' },
+    'loadingContainer',
+  );
+  // Calendar root: master 336×320 = header block + weekday row + 6 weeks / 7 day
+  // columns + 40 slack. Raw per-preset (matches this preset's day/header math) — the
+  // day var can't reach here (it lives on the DayCalendar DESCENDANT; an ancestor
+  // copy would shadow the knob), so day-size knob edits don't reflow the root box.
+  addRootOverride(enhanced.components, 'MuiDateCalendar', {
+    height: '286px',
+    width: '278px',
+  });
+  // Calendar header: min/max pinned together (upstream pins both against a Safari
+  // jump); spacing steps (master 12/4/24/12, label gap 6), height raw.
+  addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', {
+    marginTop: d.md,
+    marginBottom: d.xxs,
+    paddingLeft: d.xl,
+    paddingRight: d.md,
+    minHeight: '36px',
+    maxHeight: '36px',
+  });
+  addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', { marginRight: d.xs }, 'label');
+  // Year/month grid buttons (master 72×36) — sizing raw.
+  addRootOverride(
+    enhanced.components,
+    'MuiYearCalendar',
+    { width: '64px', height: '32px' },
+    'button',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiMonthCalendar',
+    { width: '64px', height: '32px' },
+    'button',
+  );
+  // Digital clocks: item padding steps (master 8 16 / 8); the 2px 4px item margin is
+  // frozen — the scroll positioning math subtracts the first item's 4px in JS.
+  addRootOverride(enhanced.components, 'MuiDigitalClock', { padding: `${d.sm} ${d.lg}` }, 'item');
+  addRootOverride(enhanced.components, 'MuiMultiSectionDigitalClockSection', {
+    width: '48px',
+  });
+  addRootOverride(
+    enhanced.components,
+    'MuiMultiSectionDigitalClockSection',
+    { padding: d.sm, width: '40px' },
+    'item',
+  );
+  // Pickers toolbar (master su(2,3)); scoped to portrait — landscape has its own
+  // master padding (16) an unconditional emission would clobber.
+  addRootOverride(enhanced.components, 'MuiPickersToolbar', {
+    variants: [{ props: { pickerOrientation: 'portrait' }, style: { padding: `${d.lg} ${d.xl}` } }],
+  });
   return enhanced;
 }

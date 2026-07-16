@@ -367,6 +367,53 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight':
     'DataGrid · treeDataGroupingCellToggle · marginRight',
+  'MuiDateCalendar|root|base||height': {
+    label: 'DateCalendar · height',
+    note: "Raw per-preset (folds header + weekday + 6-week math at this preset's values); day-size knob edits do not reflow it — adjust to match.",
+  },
+  'MuiDateCalendar|root|base||width': {
+    label: 'DateCalendar · width',
+    note: "Raw per-preset (7 day columns + 40 slack at this preset's values); see height note.",
+  },
+  'MuiDayCalendar|loadingContainer|base||minHeight': {
+    label: 'DayCalendar · loadingContainer · minHeight',
+    hidden: true,
+    note: 'Derived — same 6-week calc as slideTransition, off --_daySize.',
+  },
+  'MuiDayCalendar|root|base||--_daySize': {
+    label: 'DayCalendar · day size (--_daySize)',
+    note: 'THE day-size knob — drives PickerDay --PickerDay-size, weekday/week-number boxes, and the 6-week container minHeight. The DateCalendar root box is raw px and does NOT follow edits (the var lives on the DayCalendar descendant; an ancestor copy would shadow it) — retype root height/width to match.',
+  },
+  'MuiDayCalendar|slideTransition|base||minHeight': {
+    label: 'DayCalendar · slideTransition · minHeight',
+    hidden: true,
+    note: 'Derived — master (DAY_SIZE + 2×DAY_MARGIN) × 6 re-emitted off --_daySize.',
+  },
+  'MuiDayCalendar|weekDayLabel|base||width': {
+    label: 'DayCalendar · weekDayLabel · width',
+    hidden: true,
+    note: 'Derived from --_daySize (upstream hardcodes DAY_SIZE here, not the PickerDay var).',
+  },
+  'MuiDayCalendar|weekDayLabel|base||height': 'DayCalendar · weekDayLabel · height',
+  'MuiDayCalendar|weekNumber|base||width': {
+    label: 'DayCalendar · weekNumber · width',
+    hidden: true,
+    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+  },
+  'MuiDayCalendar|weekNumber|base||height': {
+    label: 'DayCalendar · weekNumber · height',
+    hidden: true,
+    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+  },
+  'MuiDayCalendar|weekNumberLabel|base||width': {
+    label: 'DayCalendar · weekNumberLabel · width',
+    hidden: true,
+    note: '[Pro] derived from --_daySize; renders only with displayWeekNumber.',
+  },
+  'MuiDayCalendar|weekNumberLabel|base||height': {
+    label: 'DayCalendar · weekNumberLabel · height',
+    note: '[Pro] renders only with displayWeekNumber (raw trio, pairs with weekDayLabel height).',
+  },
   'MuiDialog|paper|base||--_dialogMargin': {
     label: 'Dialog · paper margin',
     note: 'One private var: paper margin + every 100%-minus-margin viewport calc derive from it. All consumers scoped fullScreen:false (master zeroes them there); media guards stay at master boundaries (vars cannot reach @media).',
@@ -428,6 +475,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Scoped so master dividers padding (16 24) stays untouched — knob edits cannot leak into the dividers state.',
   },
   'MuiDialogTitle|root|base||padding': 'DialogTitle · padding',
+  'MuiDigitalClock|item|base||padding': {
+    label: 'DigitalClock · item · padding',
+    note: "Item = styled(MenuItem) — Material Menu emissions cascade under this. The 2px 4px item margin is frozen: the scroll positioning math subtracts the first item's 4px in JS.",
+  },
   'MuiFab|root|size=small,variant=circular||width': 'Fab · width [variant=circular,size=small]',
   'MuiFab|root|size=small,variant=circular||height': 'Fab · height [variant=circular,size=small]',
   'MuiFab|root|size=medium,variant=circular||width': 'Fab · width [variant=circular,size=medium]',
@@ -697,6 +748,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'inline padding [disableGutters]',
   'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline':
     'inline padding [dense][disableGutters]',
+  'MuiMonthCalendar|button|base||width': 'MonthCalendar · button · width',
+  'MuiMonthCalendar|button|base||height': 'MonthCalendar · button · height',
+  'MuiMultiSectionDigitalClockSection|item|base||padding': {
+    label: 'MultiSectionDigitalClockSection · item · padding',
+    note: 'Item = styled(MenuItem); margin frozen (same JS scroll math as DigitalClock).',
+  },
+  'MuiMultiSectionDigitalClockSection|item|base||width':
+    'MultiSectionDigitalClockSection · item · width',
+  'MuiMultiSectionDigitalClockSection|root|base||width': 'MultiSectionDigitalClockSection · width',
   'MuiOutlinedInput|input|base||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock',
     hidden: true,
@@ -790,6 +850,28 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Derived from --_height (height/2) — the var row is the knob.',
   },
+  'MuiPickerDay|root|base||--PickerDay-size': {
+    label: 'PickerDay · --PickerDay-size',
+    hidden: true,
+    note: "Derived — re-points upstream's own var at --_daySize; the DayCalendar day-size row is the knob.",
+  },
+  'MuiPickersCalendarHeader|label|base||marginRight': 'PickersCalendarHeader · label · marginRight',
+  'MuiPickersCalendarHeader|root|base||marginTop': 'PickersCalendarHeader · marginTop',
+  'MuiPickersCalendarHeader|root|base||marginBottom': 'PickersCalendarHeader · marginBottom',
+  'MuiPickersCalendarHeader|root|base||paddingLeft': 'PickersCalendarHeader · paddingLeft',
+  'MuiPickersCalendarHeader|root|base||paddingRight': 'PickersCalendarHeader · paddingRight',
+  'MuiPickersCalendarHeader|root|base||minHeight': {
+    label: 'PickersCalendarHeader · minHeight',
+    note: 'Pinned pair with maxHeight (upstream pins both against a Safari jump) — edit both.',
+  },
+  'MuiPickersCalendarHeader|root|base||maxHeight': {
+    label: 'PickersCalendarHeader · maxHeight',
+    note: 'Pinned pair with minHeight — edit both.',
+  },
+  'MuiPickersToolbar|root|pickerOrientation=portrait||padding': {
+    label: 'PickersToolbar · padding (portrait)',
+    note: 'Portrait-scoped — landscape keeps its own master padding (16).',
+  },
   'MuiRadio|root|size=medium||padding': 'Radio · padding [size=medium]',
   'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Radio · marginLeft [size=medium]',
@@ -812,10 +894,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
   },
+  'MuiRichTreeView|defaultProps|base||itemChildrenIndentation': {
+    label: 'RichTreeView · itemChildrenIndentation (defaultProps)',
+    note: 'The indentation var is INLINE STYLE on the tree root — styleOverrides cannot reach it; the defaultProp is the lever. A string passes verbatim, so var(--mui-density-md) keeps step semantics (type a key like md, or raw px).',
+  },
   'MuiSelect|select|base||minHeight': {
     label: 'Select · select · minHeight',
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
+  },
+  'MuiSimpleTreeView|defaultProps|base||itemChildrenIndentation': {
+    label: 'SimpleTreeView · itemChildrenIndentation (defaultProps)',
+    note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
   'MuiSlider|root|orientation=horizontal||height': 'Slider · height [orientation=horizontal]',
   'MuiSlider|root|orientation=horizontal||paddingBlock':
@@ -1094,4 +1184,17 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'Tooltip · tooltip · marginBottom',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop':
     'Tooltip · tooltip · marginTop',
+  'MuiTreeItem|content|base||paddingBlock': 'TreeItem · content · paddingBlock',
+  'MuiTreeItem|content|base||paddingRight': 'TreeItem · content · paddingRight',
+  'MuiTreeItem|content|base||paddingLeft': {
+    label: 'TreeItem · content · paddingLeft',
+    note: 'Master depth calc re-emitted with a step base — a padding shorthand would clobber it.',
+  },
+  'MuiTreeItem|content|base||gap': 'TreeItem · content · gap',
+  'MuiTreeItem|root|base||--TreeView-itemHeight': {
+    label: 'TreeItem · row height (--TreeView-itemHeight)',
+    note: 'Upstream hook: content height = var(--TreeView-itemHeight, unset); master is unset (content-sized ≈32) — the unset preset stays zero-diff.',
+  },
+  'MuiYearCalendar|button|base||width': 'YearCalendar · button · width',
+  'MuiYearCalendar|button|base||height': 'YearCalendar · button · height',
 };
