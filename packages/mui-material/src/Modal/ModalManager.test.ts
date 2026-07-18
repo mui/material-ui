@@ -194,7 +194,7 @@ describe('ModalManager', () => {
         document.body.removeChild(shadowContainer);
       });
 
-      it('should scroll body and compensate for its scrollbar when parent is shadow root', () => {
+      it('should lock body scrolling and compensate for its scrollbar when the container is in a shadow root', () => {
         const modal = getDummyModal();
 
         container2.style.overflow = 'scroll';
