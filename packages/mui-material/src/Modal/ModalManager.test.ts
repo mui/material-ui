@@ -194,21 +194,25 @@ describe('ModalManager', () => {
         document.body.removeChild(shadowContainer);
       });
 
-      it('should scroll body when parent is shadow root', () => {
+      it('should scroll body and compensate for its scrollbar when parent is shadow root', () => {
         const modal = getDummyModal();
 
         container2.style.overflow = 'scroll';
+        document.body.style.paddingRight = '20px';
 
         document.body.appendChild(shadowContainer);
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
         expect(container2.style.overflow).to.equal('scroll');
+        expect(container2.style.paddingRight).to.equal('');
         expect(document.body.style.overflow).to.equal('hidden');
+        expect(document.body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
         modalManager.remove(modal);
 
         expect(container2.style.overflow).to.equal('scroll');
         expect(document.body.style.overflow).to.equal('');
+        expect(document.body.style.paddingRight).to.equal('20px');
       });
     });
 

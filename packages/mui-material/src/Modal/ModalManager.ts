@@ -96,30 +96,6 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const container = containerInfo.container;
 
   if (!props.disableScrollLock) {
-    if (isOverflowing(container)) {
-      // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(container));
-
-      restoreStyle.push({
-        value: container.style.paddingRight,
-        property: 'padding-right',
-        el: container,
-      });
-      // Use computed style, here to get the real padding to add our scrollbar width.
-      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
-
-      // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
-        restoreStyle.push({
-          value: element.style.paddingRight,
-          property: 'padding-right',
-          el: element,
-        });
-        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
-      });
-    }
-
     let scrollContainer: HTMLElement;
 
     if (container.parentNode instanceof DocumentFragment) {
@@ -134,6 +110,30 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         containerWindow.getComputedStyle(parent).overflowY === 'scroll'
           ? parent
           : container;
+    }
+
+    if (isOverflowing(scrollContainer)) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
+      const scrollbarSize = getScrollbarSize(ownerWindow(scrollContainer));
+
+      restoreStyle.push({
+        value: scrollContainer.style.paddingRight,
+        property: 'padding-right',
+        el: scrollContainer,
+      });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      scrollContainer.style.paddingRight = `${getPaddingRight(scrollContainer) + scrollbarSize}px`;
+
+      // .mui-fixed is a global helper.
+      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
+        restoreStyle.push({
+          value: element.style.paddingRight,
+          property: 'padding-right',
+          el: element,
+        });
+        element.style.paddingRight = `${getPaddingRight(element) + scrollbarSize}px`;
+      });
     }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
