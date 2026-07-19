@@ -14,7 +14,7 @@
     "@mui/stylis-plugin-rtl": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@tailwindcss/vite": "4.3.0",
+    "@tailwindcss/vite": "4.3.2",
     "@testing-library/dom": "10.4.1",
     "@types/chai": "5.2.3",
     "@types/react": "19.2.17",
