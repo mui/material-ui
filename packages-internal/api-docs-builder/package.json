@@ -47,6 +47,6 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.23.1"
   }
 }
