@@ -24,11 +24,7 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 }
 
 type ClickAwayMouseEventHandler =
-  | 'onClick'
-  | 'onMouseDown'
-  | 'onMouseUp'
-  | 'onPointerDown'
-  | 'onPointerUp';
+  'onClick' | 'onMouseDown' | 'onMouseUp' | 'onPointerDown' | 'onPointerUp';
 type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
 
 export interface ClickAwayListenerProps {
