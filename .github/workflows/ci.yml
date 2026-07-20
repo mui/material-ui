@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-nextjs-
       - run: pnpm release:build
       - name: Publish packages to pkg.pr.new
-        uses: mui/mui-public/.github/actions/ci-publish@d0c4e65df099189157250fa353917bcb28ff4110 # master
+        uses: mui/mui-public/.github/actions/ci-publish@80a73ec0e0c1ae634d226649075d27cd30a8c9da # master
         if: ${{ matrix.os == 'ubuntu-latest' }}
       - name: Build docs
         run: pnpm docs:build
@@ -96,7 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Prepare for publishing
-        uses: mui/mui-public/.github/actions/publish-prepare@d0c4e65df099189157250fa353917bcb28ff4110 # master
+        uses: mui/mui-public/.github/actions/publish-prepare@80a73ec0e0c1ae634d226649075d27cd30a8c9da # master
         with:
           node-version: '22.22.3'
       - name: Dry run npm publishing
