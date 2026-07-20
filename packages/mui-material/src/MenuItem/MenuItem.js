@@ -110,7 +110,7 @@ const MenuItemRoot = styled(ButtonBase, {
     },
     // Inset the focus ring: a scrolling Menu/MenuList clips an outset ring. Set the private vars
     // the curated ring reads so the outline offset and any user box-shadow inset.
-    ...((theme.vars || theme).focusVisible && insetFocusRing),
+    ...(theme.focusVisible && insetFocusRing),
     [`&.${menuItemClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },

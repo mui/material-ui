@@ -50,7 +50,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     },
     // Inset the focus ring: actions sit flush inside a bounded BottomNavigation bar. Set the
     // private vars the curated ring reads so the outline offset and any user box-shadow inset.
-    ...((theme.vars || theme).focusVisible && insetFocusRing),
+    ...(theme.focusVisible && insetFocusRing),
     variants: [
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,

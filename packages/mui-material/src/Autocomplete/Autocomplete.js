@@ -374,9 +374,9 @@ const AutocompleteListbox = styled('ul', {
         // Options are plain <li> (not ButtonBase), so add the curated ring here — keyed to the
         // keyboard-navigation state. `insetFocusRing` sets the private vars the ring reads so it
         // insets: the listbox scrolls and would clip an outset ring.
-        ...((theme.vars || theme).focusVisible && {
+        ...(theme.focusVisible && {
           ...insetFocusRing,
-          ...(theme.vars || theme).focusVisible,
+          ...theme.focusVisible,
         }),
       },
       '&[aria-selected="true"]': {

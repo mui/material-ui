@@ -12,6 +12,7 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import insetFocusRing from '../utils/insetFocusRing';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { mergeSlotProps } from '../utils';
@@ -54,6 +55,10 @@ const CheckboxRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    // Inset the focus ring: a Checkbox often lives in a clip-prone container (a DataGrid selection
+    // cell, a dense table/list row) where an outset ring is clipped. `insetFocusRing` sets the
+    // private vars the curated ring reads, so the outline offset and any user box-shadow inset.
+    ...(theme.focusVisible && insetFocusRing),
     variants: [
       {
         props: { color: 'default', disableRipple: false },

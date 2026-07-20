@@ -57,7 +57,7 @@ const SwitchRoot = styled('span', {
     width: 34 + 12 * 2,
     height: 14 + 12 * 2,
     // `theme.focusVisible` outlines the SwitchBase; the default `hidden` would clip it.
-    overflow: (theme.vars || theme).focusVisible ? 'visible' : 'hidden',
+    overflow: theme.focusVisible ? 'visible' : 'hidden',
     padding: 12,
     boxSizing: 'border-box',
     position: 'relative',

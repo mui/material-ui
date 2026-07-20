@@ -72,8 +72,8 @@ export const ButtonBaseRoot = styled('button', {
     },
     // Opt-in keyboard focus ring. `theme.focusVisible` is normalized to the resolved
     // ring object at theme creation, so a truthy value here is ready to spread.
-    ...((theme.vars || theme).focusVisible && {
-      [`&.${buttonBaseClasses.focusVisible}`]: (theme.vars || theme).focusVisible,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
     }),
   })),
 );

@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  act,
+  createRenderer,
+  screen,
+  isJsdom,
+  simulatePointerDevice,
+  focusVisible,
+} from '@mui/internal-test-utils';
 import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -283,5 +290,49 @@ describe('<Checkbox />', () => {
     const checkbox = screen.getByRole('checkbox').parentElement;
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
+
+  describe('theme.focusVisible', () => {
+    // `cssVariables: true` is the regression guard: `focusVisible` is skipped from var generation
+    // so the offset calc stays inline and resolves the private `--_focusVisible-offset` (-1) on the
+    // root. Hoisting it to `:root` would freeze the offset at +2 and clip the inset.
+    [false, true].forEach((cssVariables) => {
+      it.skipIf(isJsdom())(
+        `insets the focus ring so a clip-prone container cannot clip it (cssVariables: ${cssVariables})`,
+        () => {
+          const theme = createTheme({
+            cssVariables,
+            focusVisible: true,
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Checkbox />
+            </ThemeProvider>,
+          );
+          const input = screen.getByRole('checkbox');
+          simulatePointerDevice();
+          focusVisible(input);
+          expect(input.parentElement).toHaveComputedStyle({ outlineOffset: '-2px' });
+        },
+      );
+    });
+
+    it.skipIf(isJsdom())('insets a user box-shadow via the behavior var', () => {
+      const theme = createTheme({
+        // the C40 two-color pattern: the behavior var makes it inset on clip-prone components
+        focusVisible: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)' },
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Checkbox />
+        </ThemeProvider>,
+      );
+      const input = screen.getByRole('checkbox');
+      simulatePointerDevice();
+      focusVisible(input);
+      expect(window.getComputedStyle(input.parentElement).boxShadow).to.match(/inset/);
+    });
   });
 });

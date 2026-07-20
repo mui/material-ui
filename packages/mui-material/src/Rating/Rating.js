@@ -90,10 +90,10 @@ const RatingRoot = styled('span', {
     [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
       // Legacy default, superseded when the curated ring is opted in. The class lands on the
       // root (keyboard highlight state), but the indicator belongs on the active star only.
-      ...(!(theme.vars || theme).focusVisible && {
+      ...(!theme.focusVisible && {
         outline: '1px solid #999',
       }),
-      ...((theme.vars || theme).focusVisible && (theme.vars || theme).focusVisible),
+      ...(theme.focusVisible && theme.focusVisible),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -143,10 +143,10 @@ const RatingLabel = styled('label', {
           position: 'absolute',
           width: '100%',
           // Legacy default, superseded when the curated ring is opted in.
-          ...(!(theme.vars || theme).focusVisible && {
+          ...(!theme.focusVisible && {
             outline: '1px solid #999',
           }),
-          ...((theme.vars || theme).focusVisible && (theme.vars || theme).focusVisible),
+          ...(theme.focusVisible && theme.focusVisible),
         },
       },
     ],

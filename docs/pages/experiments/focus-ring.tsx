@@ -196,36 +196,6 @@ function OuterRing() {
         <Chip label="Clickable" onClick={noop} data-ring-target="Chip" />
         <Chip label="Deletable" onDelete={noop} data-ring-target="Chip" />
       </Row>
-      <Row label="Checkbox">
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultChecked
-              slotProps={{
-                input: {
-                  'data-ring-target': 'Checkbox',
-                } as React.InputHTMLAttributes<HTMLInputElement>,
-              }}
-            />
-          }
-          label="Checkbox"
-        />
-      </Row>
-      <Row label="Radio">
-        <FormControlLabel
-          control={
-            <Radio
-              defaultChecked
-              slotProps={{
-                input: {
-                  'data-ring-target': 'Radio',
-                } as React.InputHTMLAttributes<HTMLInputElement>,
-              }}
-            />
-          }
-          label="Radio"
-        />
-      </Row>
       <Row label="Switch">
         <FormControlLabel
           control={
@@ -360,6 +330,38 @@ function InnerRing() {
             </Box>
           </CardActionArea>
         </Card>
+      </Row>
+      <Row label="Checkbox">
+        {/* Inset ring — a Checkbox often sits in a clip-prone cell/row (e.g. DataGrid selection). */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              defaultChecked
+              slotProps={{
+                input: {
+                  'data-ring-target': 'Checkbox',
+                } as React.InputHTMLAttributes<HTMLInputElement>,
+              }}
+            />
+          }
+          label="Checkbox"
+        />
+      </Row>
+      <Row label="Radio">
+        {/* Inset ring — same clip-prone containers as Checkbox. */}
+        <FormControlLabel
+          control={
+            <Radio
+              defaultChecked
+              slotProps={{
+                input: {
+                  'data-ring-target': 'Radio',
+                } as React.InputHTMLAttributes<HTMLInputElement>,
+              }}
+            />
+          }
+          label="Radio"
+        />
       </Row>
       <Row label="Select">
         {/* Trigger is InputBase (no ring); its dropdown items are MenuItem (ButtonBase) → inset ring. */}

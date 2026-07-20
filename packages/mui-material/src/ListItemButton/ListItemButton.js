@@ -109,7 +109,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
     },
     // Inset the focus ring: a scrolling List (drawers, long lists) clips an outset ring. Set the
     // private vars the curated ring reads so the outline offset and any user box-shadow inset.
-    ...((theme.vars || theme).focusVisible && insetFocusRing),
+    ...(theme.focusVisible && insetFocusRing),
     [`&.${listItemButtonClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },

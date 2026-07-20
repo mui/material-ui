@@ -13,6 +13,7 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import insetFocusRing from '../utils/insetFocusRing';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import useSlot from '../utils/useSlot';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -46,6 +47,10 @@ const RadioRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    // Inset the focus ring: a Radio often lives in a clip-prone container (a DataGrid selection
+    // cell, a dense table/list row) where an outset ring is clipped. `insetFocusRing` sets the
+    // private vars the curated ring reads, so the outline offset and any user box-shadow inset.
+    ...(theme.focusVisible && insetFocusRing),
     [`&.${radioClasses.disabled}`]: {
       color: (theme.vars || theme).palette.action.disabled,
     },

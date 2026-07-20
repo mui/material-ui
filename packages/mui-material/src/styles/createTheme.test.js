@@ -508,20 +508,18 @@ describe('createTheme', () => {
       expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
     });
 
-    it('vars theme: curated color is a scheme-reactive palette var, numbers become px', () => {
+    it('vars theme: curated color is a scheme-reactive palette var, focusVisible is kept inline', () => {
       const theme = createTheme({ cssVariables: true, focusVisible: true });
       // scheme-reactive: resolves through the palette var, correct in dark mode
       expect(theme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
-      expect(theme.vars.focusVisible.outlineColor).to.equal(
-        'var(--mui-focusVisible-outlineColor, var(--mui-palette-primary-main))',
-      );
-      // numeric 2 surfaces as a `2px` fallback in the generated var
-      expect(theme.vars.focusVisible.outlineWidth).to.equal(
-        'var(--mui-focusVisible-outlineWidth, 2px)',
-      );
-      // the offset default carries the per-component sign-flip calc as its fallback
-      expect(theme.vars.focusVisible.outlineOffset).to.equal(
-        'var(--mui-focusVisible-outlineOffset, calc(var(--_focusVisible-offset, 1) * 2px))',
+      // `focusVisible` is skipped from var generation (see `shouldSkipGeneratingVar`): hoisting it
+      // to a `:root` var resolves the embedded per-component private vars (`--_focusVisible-offset`)
+      // at `:root` where they are unset, freezing the offset and breaking the inner-ring inset. So
+      // there is no `--mui-focusVisible-*` var and the recipe stays inline on `theme.focusVisible`.
+      expect(theme.vars.focusVisible).to.equal(undefined);
+      expect(theme.focusVisible.outlineWidth).to.equal(2);
+      expect(theme.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
     });
 
@@ -562,9 +560,8 @@ describe('createTheme', () => {
       });
       const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
-      expect(varsTheme.vars.focusVisible.outlineColor).to.equal(
-        'var(--mui-focusVisible-outlineColor, var(--mui-palette-primary-main))',
-      );
+      // skipped from var generation — kept inline (see the vars-theme test above)
+      expect(varsTheme.vars.focusVisible).to.equal(undefined);
     });
   });
 

@@ -59,8 +59,8 @@ const LinkRoot = styled(Typography, {
       // Opt-in curated ring, same object-spread as the other components. For
       // `component="button"` it replaces the variant's `outline: auto` (gated there),
       // so it does not rely on variant source order.
-      ...((theme.vars || theme).focusVisible && {
-        [`&.${linkClasses.focusVisible}`]: (theme.vars || theme).focusVisible,
+      ...(theme.focusVisible && {
+        [`&.${linkClasses.focusVisible}`]: theme.focusVisible,
       }),
       variants: [
         {
@@ -158,7 +158,7 @@ const LinkRoot = styled(Typography, {
               borderStyle: 'none', // Remove Firefox dotted outline.
             },
             // Browser default focus ring, unless the curated ring is opted in (spread at the root).
-            ...(!(theme.vars || theme).focusVisible && {
+            ...(!theme.focusVisible && {
               [`&.${linkClasses.focusVisible}`]: {
                 outline: 'auto',
               },

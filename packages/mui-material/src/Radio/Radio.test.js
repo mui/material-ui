@@ -1,5 +1,11 @@
 import { expect } from 'chai';
-import { createRenderer, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  screen,
+  isJsdom,
+  simulatePointerDevice,
+  focusVisible,
+} from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -193,6 +199,50 @@ describe('<Radio />', () => {
       const radio = screen.getByRole('radio').parentElement;
       await ripple.startTouch(radio);
       expect(radio.querySelector('.touch-ripple')).not.to.equal(null);
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    // `cssVariables: true` is the regression guard: `focusVisible` is skipped from var generation
+    // so the offset calc stays inline and resolves the private `--_focusVisible-offset` (-1) on the
+    // root. Hoisting it to `:root` would freeze the offset at +2 and clip the inset.
+    [false, true].forEach((cssVariables) => {
+      it.skipIf(isJsdom())(
+        `insets the focus ring so a clip-prone container cannot clip it (cssVariables: ${cssVariables})`,
+        () => {
+          const theme = createTheme({
+            cssVariables,
+            focusVisible: true,
+            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+          });
+          render(
+            <ThemeProvider theme={theme}>
+              <Radio />
+            </ThemeProvider>,
+          );
+          const input = screen.getByRole('radio');
+          simulatePointerDevice();
+          focusVisible(input);
+          expect(input.parentElement).toHaveComputedStyle({ outlineOffset: '-2px' });
+        },
+      );
+    });
+
+    it.skipIf(isJsdom())('insets a user box-shadow via the behavior var', () => {
+      const theme = createTheme({
+        // the C40 two-color pattern: the behavior var makes it inset on clip-prone components
+        focusVisible: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)' },
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Radio />
+        </ThemeProvider>,
+      );
+      const input = screen.getByRole('radio');
+      simulatePointerDevice();
+      focusVisible(input);
+      expect(window.getComputedStyle(input.parentElement).boxShadow).to.match(/inset/);
     });
   });
 });
