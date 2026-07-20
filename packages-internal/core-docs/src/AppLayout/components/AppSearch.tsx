@@ -658,10 +658,16 @@ export function AppSearch(props: AppSearchProps) {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: theme.typography.fontWeightMedium,
               color: (theme.vars || theme).palette.text.primary,
+              // Algolia sets text-overflow on the flex container, where it can never apply, so long
+              // snippets get clipped mid-word. Truncate on the items instead.
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             },
             '& .DocSearch-Hit-path': {
               fontSize: theme.typography.pxToRem(12),
               color: (theme.vars || theme).palette.text.secondary,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             },
             '& .DocSearch-Hit-icon': {
               '> svg': {
