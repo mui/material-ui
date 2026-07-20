@@ -70,11 +70,14 @@ export const ButtonBaseRoot = styled('button', {
     '@media print': {
       colorAdjust: 'exact',
     },
-    // Opt-in keyboard focus ring. `theme.focusVisible` is normalized to the resolved
-    // ring object at theme creation, so a truthy value here is ready to spread.
-    ...(theme.focusVisible && {
-      [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
-    }),
+    variants: [
+      {
+        props: { internalDisabledThemeFocusVisible: false },
+        style: theme.focusVisible && {
+          [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
+        },
+      },
+    ],
   })),
 );
 
@@ -104,6 +107,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     suppressFocusVisible = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,
+    internalDisabledThemeFocusVisible = false,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
@@ -282,6 +286,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     suppressFocusVisible,
     tabIndex,
     focusVisible,
+    internalDisabledThemeFocusVisible,
   };
 
   const classes = useUtilityClasses(ownerState);

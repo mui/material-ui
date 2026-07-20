@@ -57,6 +57,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import { createTheme, ThemeProvider, focusVisibleVars } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
 
 type Preset = 'off' | 'true' | 'recolor' | 'twocolor' | 'shadowonly';
 
@@ -196,7 +197,72 @@ function OuterRing() {
         <Chip label="Clickable" onClick={noop} data-ring-target="Chip" />
         <Chip label="Deletable" onDelete={noop} data-ring-target="Chip" />
       </Row>
+      {/* Checkbox/Radio/Switch are ButtonBase-derived but opt OUT of the shared root ring
+          (internalDisabledThemeFocusVisible) and draw it on a specific slot instead — the icon
+          svg for Checkbox/Radio, the track for Switch. Ring renders fully, so they bucket outer. */}
+      <Row label="Checkbox">
+        {/* Ring targets the icon svg (not the ButtonBase root). */}
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Checkbox',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Checkbox A"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Checkbox',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Checkbox B"
+          />
+        </FormGroup>
+      </Row>
+      <Row label="Radio">
+        {/* Ring targets the icon svg (not the ButtonBase root). */}
+        <RadioGroup defaultValue="a">
+          <FormControlLabel
+            control={
+              <Radio
+                value="a"
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Radio',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Radio A"
+          />
+          <FormControlLabel
+            control={
+              <Radio
+                value="b"
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Radio',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Radio B"
+          />
+        </RadioGroup>
+      </Row>
       <Row label="Switch">
+        {/* Ring targets the track slot (not the ButtonBase root). */}
         <FormControlLabel
           control={
             <Switch
@@ -330,38 +396,6 @@ function InnerRing() {
             </Box>
           </CardActionArea>
         </Card>
-      </Row>
-      <Row label="Checkbox">
-        {/* Inset ring — a Checkbox often sits in a clip-prone cell/row (e.g. DataGrid selection). */}
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultChecked
-              slotProps={{
-                input: {
-                  'data-ring-target': 'Checkbox',
-                } as React.InputHTMLAttributes<HTMLInputElement>,
-              }}
-            />
-          }
-          label="Checkbox"
-        />
-      </Row>
-      <Row label="Radio">
-        {/* Inset ring — same clip-prone containers as Checkbox. */}
-        <FormControlLabel
-          control={
-            <Radio
-              defaultChecked
-              slotProps={{
-                input: {
-                  'data-ring-target': 'Radio',
-                } as React.InputHTMLAttributes<HTMLInputElement>,
-              }}
-            />
-          }
-          label="Radio"
-        />
       </Row>
       <Row label="Select">
         {/* Trigger is InputBase (no ring); its dropdown items are MenuItem (ButtonBase) → inset ring. */}

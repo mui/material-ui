@@ -8,7 +8,13 @@ import describeConformance from '../../test/describeConformance';
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
-  function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
+  function CustomSwitchBase({
+    centerRipple,
+    focusRipple,
+    ownerState,
+    internalDisabledThemeFocusVisible,
+    ...props
+  }) {
     return <div data-testid="custom" {...props} />;
   }
 

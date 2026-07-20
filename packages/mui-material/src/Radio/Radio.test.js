@@ -203,12 +203,12 @@ describe('<Radio />', () => {
   });
 
   describe('theme.focusVisible', () => {
-    // `cssVariables: true` is the regression guard: `focusVisible` is skipped from var generation
-    // so the offset calc stays inline and resolves the private `--_focusVisible-offset` (-1) on the
-    // root. Hoisting it to `:root` would freeze the offset at +2 and clip the inset.
+    // Radio is an outer-ring exception to the shared ButtonBase rule: it opts the root out of the
+    // theme ring and draws it on the icon svg instead, so the ring renders fully. Running both var
+    // modes guards the shouldSkipGeneratingVar fix — the recipe stays inline on the svg.
     [false, true].forEach((cssVariables) => {
       it.skipIf(isJsdom())(
-        `insets the focus ring so a clip-prone container cannot clip it (cssVariables: ${cssVariables})`,
+        `draws the focus ring on the icon svg, not the ButtonBase root (cssVariables: ${cssVariables})`,
         () => {
           const theme = createTheme({
             cssVariables,
@@ -223,26 +223,15 @@ describe('<Radio />', () => {
           const input = screen.getByRole('radio');
           simulatePointerDevice();
           focusVisible(input);
-          expect(input.parentElement).toHaveComputedStyle({ outlineOffset: '-2px' });
+          expect(input.parentElement.querySelector('svg')).toHaveComputedStyle({
+            outlineStyle: 'solid',
+            outlineWidth: '2px',
+            outlineOffset: '2px',
+          });
+          // the shared ButtonBase root ring is off, so there is no double ring
+          expect(input.parentElement).toHaveComputedStyle({ outlineStyle: 'none' });
         },
       );
-    });
-
-    it.skipIf(isJsdom())('insets a user box-shadow via the behavior var', () => {
-      const theme = createTheme({
-        // the C40 two-color pattern: the behavior var makes it inset on clip-prone components
-        focusVisible: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)' },
-        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
-      });
-      render(
-        <ThemeProvider theme={theme}>
-          <Radio />
-        </ThemeProvider>,
-      );
-      const input = screen.getByRole('radio');
-      simulatePointerDevice();
-      focusVisible(input);
-      expect(window.getComputedStyle(input.parentElement).boxShadow).to.match(/inset/);
     });
   });
 });

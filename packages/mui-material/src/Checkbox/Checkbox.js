@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -12,7 +13,6 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-import insetFocusRing from '../utils/insetFocusRing';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { mergeSlotProps } from '../utils';
@@ -55,10 +55,12 @@ const CheckboxRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
-    // Inset the focus ring: a Checkbox often lives in a clip-prone container (a DataGrid selection
-    // cell, a dense table/list row) where an outset ring is clipped. `insetFocusRing` sets the
-    // private vars the curated ring reads, so the outline offset and any user box-shadow inset.
-    ...(theme.focusVisible && insetFocusRing),
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...theme.focusVisible,
+      },
+    }),
     variants: [
       {
         props: { color: 'default', disableRipple: false },
