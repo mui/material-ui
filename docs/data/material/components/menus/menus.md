@@ -52,6 +52,17 @@ To use a selected menu item without impacting the initial focus, set the `varian
 
 {{"component": "file://./demos/simple-list/index.ts"}}
 
+## Checkbox and radio menu items
+
+To build a menu of toggleable options, set each item's `role` to `menuitemcheckbox` for independent toggles, or `menuitemradio` for a single choice within a group.
+For these roles, the `selected` prop drives `aria-checked`, so assistive technologies announce the checked state.
+
+{{"demo": "CheckboxMenu.js", "bg": true}}
+
+For a single choice within a group, use `menuitemradio`:
+
+{{"demo": "RadioMenu.js", "bg": true}}
+
 ## Positioned menu
 
 Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.

@@ -61,6 +61,61 @@ describe('<MenuItem />', () => {
 
     expect(menuitem).to.have.class(classes.selected);
     expect(menuitem).not.to.have.attribute('aria-selected');
+    expect(menuitem).not.to.have.attribute('aria-checked');
+  });
+
+  it('drives aria-checked from `selected` for `role="menuitemcheckbox"`', () => {
+    const { rerender } = render(
+      <MenuList>
+        <MenuItem role="menuitemcheckbox" selected />
+      </MenuList>,
+    );
+    const menuitem = screen.getByRole('menuitemcheckbox');
+
+    expect(menuitem).to.have.attribute('aria-checked', 'true');
+    expect(menuitem).not.to.have.attribute('aria-selected');
+
+    rerender(
+      <MenuList>
+        <MenuItem role="menuitemcheckbox" selected={false} />
+      </MenuList>,
+    );
+
+    expect(screen.getByRole('menuitemcheckbox')).to.have.attribute('aria-checked', 'false');
+  });
+
+  it('sets aria-checked="false" for a `menuitemcheckbox` when `selected` is omitted', () => {
+    render(
+      <MenuList>
+        <MenuItem role="menuitemcheckbox" />
+      </MenuList>,
+    );
+
+    expect(screen.getByRole('menuitemcheckbox')).to.have.attribute('aria-checked', 'false');
+  });
+
+  it('drives aria-checked from `selected` for `role="menuitemradio"`', () => {
+    render(
+      <MenuList>
+        <MenuItem role="menuitemradio" selected />
+      </MenuList>,
+    );
+    const menuitem = screen.getByRole('menuitemradio');
+
+    expect(menuitem).to.have.attribute('aria-checked', 'true');
+    expect(menuitem).not.to.have.attribute('aria-selected');
+  });
+
+  it('keeps `selected` presentational and omits aria-checked for non-checkable roles', () => {
+    render(
+      <MenuList>
+        <MenuItem role="option" selected />
+      </MenuList>,
+    );
+    const option = screen.getByRole('option');
+
+    expect(option).to.have.class(classes.selected);
+    expect(option).not.to.have.attribute('aria-checked');
   });
 
   it('can have a role of option', () => {
