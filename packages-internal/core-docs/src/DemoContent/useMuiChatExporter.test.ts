@@ -101,4 +101,34 @@ describe('applyVariantTransform', () => {
     expect(typeof existing === 'object' && existing.source).to.equal('existing');
     expect(result.extraFiles).to.have.property('utils.ts');
   });
+
+  it('does not mutate the repository source while preparing an export', () => {
+    const variant: VariantCode = {
+      source: 'const value: number = 1;',
+      fileName: 'Example.tsx',
+      transforms: { js: { fileName: 'Example.jsx', hasDelta: true } },
+    };
+
+    applyVariantTransform(variant, 'js', fakeApply);
+
+    expect(variant.source).to.equal('const value: number = 1;');
+    expect(variant.fileName).to.equal('Example.tsx');
+    expect(variant.transforms).to.have.property('js');
+  });
+
+  it('falls back to the original file when a transform fails', () => {
+    const variant: VariantCode = {
+      source: 'const value: number = 1;',
+      fileName: 'Example.tsx',
+      transforms: { js: { fileName: 'Example.jsx', hasDelta: true } },
+    };
+    const failingApply = (() => {
+      throw new Error('invalid transform');
+    }) as Parameters<typeof applyVariantTransform>[2];
+
+    const result = applyVariantTransform(variant, 'js', failingApply);
+
+    expect(result.source).to.equal(variant.source);
+    expect(result.fileName).to.equal(variant.fileName);
+  });
 });

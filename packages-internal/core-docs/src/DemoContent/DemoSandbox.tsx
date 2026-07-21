@@ -174,7 +174,7 @@ export function DemoIframe(props: DemoIframeProps) {
 
   // If we portal content into the iframe before the load event then that
   // content is dropped in Firefox.
-  const [iframeLoaded, onLoad] = React.useReducer(() => true, false);
+  const [iframeLoadEpoch, onLoad] = React.useReducer((epoch: number) => epoch + 1, 0);
 
   React.useEffect(() => {
     const frameDocument = frameRef.current!.contentDocument;
@@ -182,21 +182,22 @@ export function DemoIframe(props: DemoIframeProps) {
     // before React can attach listeners, so check `readyState` once mounted
     // and "replay" the missed load event.
     // See https://github.com/facebook/react/pull/13862.
-    if (frameDocument != null && frameDocument.readyState === 'complete' && !iframeLoaded) {
+    if (frameDocument != null && frameDocument.readyState === 'complete' && iframeLoadEpoch === 0) {
       onLoad();
     }
-  }, [iframeLoaded]);
+  }, [iframeLoadEpoch]);
 
   const frameDocument = frameRef.current?.contentDocument;
+  const frameBody = frameDocument?.body;
   return (
     <React.Fragment>
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} srcDoc={SRC_DOC} />
-      {iframeLoaded !== false && frameDocument
+      {iframeLoadEpoch > 0 && frameDocument && frameBody
         ? ReactDOM.createPortal(
             <FramedDemo document={frameDocument} isolated={isolated}>
               {children}
             </FramedDemo>,
-            frameDocument.body,
+            frameBody,
           )
         : null}
     </React.Fragment>
