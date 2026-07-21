@@ -71,16 +71,7 @@ export const DemoRoot = styled('div')(({ theme }) => ({
     marginLeft: 0,
     marginRight: 0,
   },
-  // Make each demo a layout/style boundary so the expand/collapse
-  // `max-height` transition doesn't force the entire document tree (every
-  // other demo, sidebar, etc.) to relayout on every frame. Without this,
-  // Chrome reports `partialLayout: false` and reflows 6000+ objects per
-  // animation frame; with it, sibling demos shift position but skip their
-  // internal layout/style passes.
-  //
-  // `paint` containment is intentionally omitted — it creates a paint layer
-  // per demo and multiplies Paint events (~30x on a typical docs page)
-  // without further reducing layout cost.
+  // Keep each demo as an independent layout and style boundary.
   contain: 'layout style',
 
   // ---- Toolbar bottom corners: square against a visible source window ----
@@ -96,8 +87,7 @@ export const DemoRoot = styled('div')(({ theme }) => ({
   //     is the visible focus-window size (the full source when there's no
   //     emphasis). `<Pre>` and `useCodeFallback` emit the attribute identically.
   // The empty-focus case — and a toolbar with no code panel at all — keeps the
-  // rounded default; the toolbar's own `transition: border-radius` animates the
-  // change when the source expands.
+  // rounded default.
   '&[data-code-open] [role="toolbar"], &:has(pre > code[data-focused-lines]:not([data-focused-lines="0"])) [role="toolbar"]':
     {
       [theme.breakpoints.up('sm')]: {
@@ -234,8 +224,7 @@ export const DemoAnchorLink = styled('div')({
 // Action-button bar between preview and code. Bottom corners round by default
 // (the toolbar is the demo's visual bottom) and square so it merges into the
 // code panel when a source window is visible below it — see the `DemoRoot`
-// `data-code-open` / `data-focused-lines` rule that drives the corners off the
-// DOM. The `transition: border-radius` here animates that change.
+// `data-code-open` / `data-focused-lines` rule that drives the corners off the DOM.
 export const DemoToolbarRoot = styled('div')(({ theme }) => [
   {
     display: 'none',
@@ -250,7 +239,6 @@ export const DemoToolbarRoot = styled('div')(({ theme }) => [
       borderTopWidth: 0,
       backgroundColor: alpha(theme.palette.grey[50], 0.2),
       borderRadius: '0 0 12px 12px',
-      transition: theme.transitions.create('border-radius'),
     },
     '& .MuiIconButton-root': {
       '&:hover': {
@@ -297,27 +285,9 @@ export const DemoFileTabBar = styled(Tabs.List)(fileTabBarStyles);
 
 // Plain-div twin used by the SSR loading skeleton, where wrapping in a
 // `Tabs.Root` would be pointless (no interactive state).
-export const DemoFileTabBarSkeleton = styled('div')(fileTabBarStyles);
-
-// CSS-only collapse wrapper for the file tab bar. Animates `max-height` from
-// 0 to a fixed cap so the bar can slide open/closed without a JS measurement
-// step. The cap (`100px`) only needs to exceed the bar's intrinsic height
-// (~52px = 1.5*8 padding + 26 tab + 1.5*8 padding + borders); the actual
-// rendered height is still determined by the child.
-export const DemoFileTabBarCollapse = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'expanded',
-})<{ expanded?: boolean }>({
-  overflow: 'hidden',
-  maxHeight: 0,
-  transition: 'max-height 0.3s ease',
-  variants: [
-    {
-      props: { expanded: true },
-      style: {
-        maxHeight: 100,
-      },
-    },
-  ],
+export const DemoFileTabBarSkeleton = styled('div')(fileTabBarStyles, {
+  // Match the 26px tab plus 12px vertical padding on each side.
+  minHeight: 50,
 });
 
 // Wraps the highlighted code. The fade overlay relies on `:has()` to detect
@@ -340,7 +310,6 @@ export const DemoCodeWrapper = styled('div', {
     right: 0,
     height: 40,
     background: `linear-gradient(to bottom, transparent, ${alpha(CODE_BG, 0.85)})`,
-    transition: 'transform 0.3s ease',
     pointerEvents: 'none',
   },
 
@@ -349,7 +318,7 @@ export const DemoCodeWrapper = styled('div', {
       props: { expanded: true },
       style: {
         '&:has(pre > code > .frame[data-frame-truncated="visible"])::after': {
-          transform: 'translateY(100%)',
+          display: 'none',
         },
       },
     },
@@ -391,24 +360,23 @@ export const DemoCodePanel = styled('div', {
   // transparent inset `<pre>`. `box-shadow`/`outline` paint outside the border box
   // (not clipped by this panel's own `overflow: hidden`) and both follow
   // `border-radius`. Hover keys off the PANEL being hovered while it contains an
-  // `.editable-code-wrapper` (not off the `<pre>` itself), so hovering anywhere in
+  // `.editable-code-wrapper`, so hovering anywhere in
   // the panel — including its inset padding — arms the ring. Focus keys off the
-  // `<pre>` since that's the element that actually takes editing focus. Non-editable
-  // demos have no `.editable-code-wrapper`, so they never match; the `<pre>`'s own
-  // default focus outline is suppressed in `CodeSource`.
+  // textarea since that's the element that takes editing focus. Non-editable demos
+  // have no `.editable-code-wrapper`, so they never match.
   '&:hover:has(.editable-code-wrapper)': {
     boxShadow: `0 0 0 3px ${alpha(theme.palette.primary[500], 0.5)}`,
   },
-  '&:has(.editable-code-wrapper pre:focus), &:has(.editable-code-wrapper pre:focus-visible)': {
-    outline: `3px solid ${alpha(theme.palette.primary[500], 0.8)}`,
-    outlineOffset: 0,
-  },
+  '&:has(.editable-code-wrapper textarea:focus), &:has(.editable-code-wrapper textarea:focus-visible)':
+    {
+      outline: `3px solid ${alpha(theme.palette.primary[500], 0.8)}`,
+      outlineOffset: 0,
+    },
   // Collapse-to-empty: drop the border so the zero-height panel doesn't leave a
   // 1px line below the toolbar (the window zeroes its inset padding in step). The
   // expanded variant restores it.
   '&:has(pre > code[data-collapsible][data-focused-lines="0"])': {
     borderWidth: 0,
-    transition: 'border-width 0.3s ease',
   },
   variants: [
     {
@@ -428,28 +396,12 @@ export const DemoCodePanel = styled('div', {
 // shorter collapsed/focused snippets sit under the cap and still render at their
 // natural height (a `max-height` cap never stretches content beneath it).
 //
-// The vertical cap is applied in both states on purpose. Gating it on `expanded`
-// made collapse drop the cap on the first frame — before the inner `.frame`
-// elements had animated their height down (a 0.3s transition) — so the window
-// briefly ballooned to the full expanded source height and then shrank, a visible
-// jump. Keeping the cap means the window tracks the shrinking content smoothly. It
-// also keeps the panel a scroll container for the whole collapse, which is what
-// `useCodeWindow`'s `scrollContainerRef` anchoring (attached here) compensates
-// against (the resizing `DemoCodeWrapper` inside stays the observed `containerRef`).
-//
 // Horizontal scroll lives here (not on the inner `<pre>`) so the scrollbar sits at
 // the window's bottom edge — inside the rounded panel and always in view — rather
 // than at the bottom of a collapsible `<pre>` whose full height runs past the cap
-// and out of sight. It is enabled in BOTH states: a collapsed focused snippet
-// scrolls when its VISIBLE frames overflow (hidden frames are width-contained via
-// `contain: inline-size` in `CodeSource`, so they can't drive an empty-space
-// scrollbar), and expanding reveals the full source's natural width.
+// and out of sight. It is enabled in both states: a collapsed focused snippet
+// scrolls when its visible frames overflow, and expanding reveals the full source.
 //
-// `useCodeWindow`'s gutter swap runs on this element (wired as `scrollContainerRef`):
-// the hook flips `data-scrollbar-gutter` here, so the rules below hold `overflow-x:
-// hidden` for the duration of the swap and animate an equivalent `margin-bottom` on
-// the inner `<code>` to reserve the scrollbar's height. When the hook clears the
-// attribute the real scrollbar takes over the reserved gap without a snap.
 export const DemoCodeWindow = styled('div', {
   shouldForwardProp: (prop) => prop !== 'expanded',
 })<{ expanded?: boolean }>({
@@ -459,10 +411,6 @@ export const DemoCodeWindow = styled('div', {
   // The inset padding lives on the `<pre>` itself (see `CodeSource`) so the `<pre>`
   // fills the container and the inset scrolls with the content. This window is just
   // the transparent, height-capped scroll viewport over the panel's dark surface.
-  // Width reserved for the horizontal scrollbar during the gutter swap. Matches
-  // the classic scrollbar thickness; overlay scrollbars (0px) make
-  // `useCodeWindow` skip the swap entirely.
-  '--scrollbar-gutter-size': '15px',
   // NB: no `overscroll-behavior: contain` here. As an `overflow: auto` element
   // the window is a scroll container, and `contain` stops the wheel from
   // chaining to the page — so hovering over a code block that can't scroll
@@ -476,42 +424,6 @@ export const DemoCodeWindow = styled('div', {
   '&:has(pre > code[data-focused-lines="0"])': {
     overflowY: 'hidden',
   },
-  // While the gutter swap is reserving a horizontal scrollbar, its `pre > code`
-  // margin-bottom already animates the bottom edge — so don't ALSO transition the
-  // collapse-to-empty `<pre>`'s bottom (and side) padding, or the two desync and
-  // jitter against the scrollbar. Animate only the top edge; the bottom/sides snap.
-  // The swap only runs when a real horizontal scrollbar exists
-  // (`animateScrollbarGutter` bails on overlay scrollbars and non-overflowing
-  // content), so without horizontal overflow the `<pre>`'s full `padding` transition
-  // (in `CodeSource`) still applies. The `[attr]` + `:has()` + descendant `pre`
-  // out-specifies that rule.
-  '&[data-scrollbar-gutter]:has(pre > code[data-focused-lines="0"]) pre': {
-    transition: 'padding-top 0.3s cubic-bezier(0.5, 0, 0, 1)',
-  },
-  // Hold the horizontal scrollbar back while the gutter swap runs. The
-  // attribute selectors out-specify the `expanded` variant below, so the lock
-  // wins mid-animation.
-  '&[data-scrollbar-gutter="expand-from"], &[data-scrollbar-gutter="expand-to"], &[data-scrollbar-gutter="collapse-from"], &[data-scrollbar-gutter="collapse-to"]':
-    {
-      overflowX: 'hidden',
-    },
-  // Animate the reserved gutter on the inner `<code>` in step with the swap.
-  '&[data-scrollbar-gutter="expand-from"] pre > code': {
-    marginBottom: 0,
-    transition: 'none',
-  },
-  '&[data-scrollbar-gutter="expand-to"] pre > code': {
-    marginBottom: 'var(--scrollbar-gutter-size)',
-    transition: 'margin-bottom 0.3s ease',
-  },
-  '&[data-scrollbar-gutter="collapse-from"] pre > code': {
-    marginBottom: 'var(--scrollbar-gutter-size)',
-    transition: 'none',
-  },
-  '&[data-scrollbar-gutter="collapse-to"] pre > code': {
-    marginBottom: 0,
-    transition: 'margin-bottom 0.3s ease',
-  },
   variants: [
     {
       props: { expanded: true },
@@ -520,9 +432,7 @@ export const DemoCodeWindow = styled('div', {
         // allows horizontal scroll — so it isn't repeated here.)
         // Expanded, the empty-focus source is revealed and may exceed the height
         // cap — restore vertical scrolling suppressed by the collapsed rule above
-        // (the `<pre>` restores its own inset padding in `CodeSource`). The revealed
-        // frames drop their `contain: inline-size`, so the source recovers its full
-        // width and scrolls normally.
+        // (the `<pre>` restores its own inset padding in `CodeSource`).
         '&:has(pre > code[data-focused-lines="0"])': {
           overflowY: 'auto',
         },
@@ -586,6 +496,8 @@ export interface DemoContainerProps {
    * the toolbar reset button.
    */
   onReset?: () => void;
+  /** Changes whenever the preview and its error boundary must be remounted. */
+  previewEpoch?: number;
   /**
    * Optional overlay anchored to the top border of the code panel (below the
    * toolbar), e.g. the live-edit error alert. Placed there — rather than over the
@@ -606,6 +518,8 @@ export interface DemoContainerProps {
   toolbarLabel?: string;
   /** Keydown handler for ARIA toolbar keyboard navigation. */
   onToolbarKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  /** Focus handler used to maintain the toolbar's roving tab stop. */
+  onToolbarFocus?: React.FocusEventHandler<HTMLDivElement>;
   /**
    * Whether the source viewer is currently expanded. Drives `data-code-open` on
    * the root (which squares the toolbar's bottom corners and reveals the code
@@ -616,14 +530,8 @@ export interface DemoContainerProps {
   tabs?: React.ReactNode;
   /** Code viewer / source panel. */
   code?: React.ReactNode;
-  /** Optional ref forwarded to the code wrapper (the resizing element) for scroll-anchoring. */
-  codeRef?: React.Ref<HTMLDivElement>;
-  /**
-   * Optional ref forwarded to the scrollable code window (the fixed-height
-   * `overflow: auto` ancestor). Wire `useCodeWindow`'s `scrollContainerRef`
-   * here so expand/collapse anchoring compensates the panel's scroll.
-   */
-  codeScrollRef?: React.Ref<HTMLDivElement>;
+  /** ID assigned to the source region for toolbar `aria-controls`. */
+  codeId?: string;
   /** Slot rendered after the code panel (AI hero, ads, etc.). */
   afterCode?: React.ReactNode;
   /**
@@ -652,17 +560,18 @@ export function DemoContainer(props: DemoContainerProps) {
     iframe,
     name,
     onReset,
+    previewEpoch,
     codeOverlay,
     focusRef,
     toolbar,
     toolbarRef,
     toolbarLabel,
     onToolbarKeyDown,
+    onToolbarFocus,
     expanded,
     tabs,
     code,
-    codeRef,
-    codeScrollRef,
+    codeId,
     afterCode,
     renderTabsAndCode,
   } = props;
@@ -694,7 +603,7 @@ export function DemoContainer(props: DemoContainerProps) {
   // `DemoContentLoading` skeleton still share the exact same theming.
   const themedName = name ?? 'demo';
   const themedPreview = (
-    <DemoErrorBoundary name={themedName} onReset={onReset}>
+    <DemoErrorBoundary key={previewEpoch} name={themedName} onReset={onReset}>
       <DemoComponentTheme isolated={isolated} iframe={iframe} name={themedName}>
         {preview}
       </DemoComponentTheme>
@@ -708,13 +617,11 @@ export function DemoContainer(props: DemoContainerProps) {
         // Relative anchor so `codeOverlay` can straddle the code panel's top border
         // (below the toolbar). It can't live inside `DemoCodePanel` — that clips with
         // `overflow: hidden` — so it sits here as a sibling of the panel.
-        <DemoCodeOverlayAnchor>
+        <DemoCodeOverlayAnchor id={codeId}>
           {codeOverlay}
           <DemoCodePanel expanded={expanded}>
-            <DemoCodeWindow ref={codeScrollRef} expanded={expanded}>
-              <DemoCodeWrapper ref={codeRef} expanded={expanded}>
-                {code}
-              </DemoCodeWrapper>
+            <DemoCodeWindow expanded={expanded}>
+              <DemoCodeWrapper expanded={expanded}>{code}</DemoCodeWrapper>
             </DemoCodeWindow>
           </DemoCodePanel>
         </DemoCodeOverlayAnchor>
@@ -750,6 +657,7 @@ export function DemoContainer(props: DemoContainerProps) {
             role="toolbar"
             aria-label={toolbarLabel}
             onKeyDown={onToolbarKeyDown}
+            onFocus={onToolbarFocus}
           >
             {toolbar}
           </DemoToolbarRoot>
