@@ -87,6 +87,7 @@ export const CodeSource = styled('div', {
   '& .editable-code-editor > div': {
     width: 'max-content',
     minWidth: '100%',
+    minHeight: `calc(1lh + ${CODE_INSET} + ${CODE_INSET})`,
     fontFamily: 'Menlo, Consolas, "Droid Sans Mono", monospace',
     fontWeight: '400',
     fontSize: '0.8125rem',

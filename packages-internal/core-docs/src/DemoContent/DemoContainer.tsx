@@ -74,26 +74,13 @@ export const DemoRoot = styled('div')(({ theme }) => ({
   // Keep each demo as an independent layout and style boundary.
   contain: 'layout style',
 
-  // ---- Toolbar bottom corners: square against a visible source window ----
-  // The toolbar rounds its bottom corners by default (it's the demo's visual
-  // bottom) and squares them when a source window sits directly below it, so it
-  // merges into the code panel. Both conditions are read from the DOM here — not
-  // a prop — so the live demo and the SSR loading skeleton decide the corners
-  // identically (nothing to thread, or forget to thread):
-  //   - Expanded (`data-code-open`): the full source is revealed below.
-  //   - A non-empty collapsed focus window: the `<code>`'s `data-focused-lines`
-  //     is present and not `"0"`. It is `"0"` only for a `collapseToEmpty` /
-  //     `oversizedFocus: 'hide'` block (empty collapsed window); any other value
-  //     is the visible focus-window size (the full source when there's no
-  //     emphasis). `<Pre>` and `useCodeFallback` emit the attribute identically.
-  // The empty-focus case — and a toolbar with no code panel at all — keeps the
-  // rounded default.
-  '&[data-code-open] [role="toolbar"], &:has(pre > code[data-focused-lines]:not([data-focused-lines="0"])) [role="toolbar"]':
-    {
-      [theme.breakpoints.up('sm')]: {
-        borderRadius: 0,
-      },
+  // Square the toolbar against any visible source window, matching master's
+  // `openDemoSource` styling for focused snippets and expanded source.
+  '&[data-code-open] [role="toolbar"]': {
+    [theme.breakpoints.up('sm')]: {
+      borderRadius: 0,
     },
+  },
 }));
 
 // Outer preview wrapper — visual container around the rendered demo.
@@ -224,7 +211,7 @@ export const DemoAnchorLink = styled('div')({
 // Action-button bar between preview and code. Bottom corners round by default
 // (the toolbar is the demo's visual bottom) and square so it merges into the
 // code panel when a source window is visible below it — see the `DemoRoot`
-// `data-code-open` / `data-focused-lines` rule that drives the corners off the DOM.
+// `data-code-open` rule driven by `sourceVisible`.
 export const DemoToolbarRoot = styled('div')(({ theme }) => [
   {
     display: 'none',
@@ -521,11 +508,12 @@ export interface DemoContainerProps {
   /** Focus handler used to maintain the toolbar's roving tab stop. */
   onToolbarFocus?: React.FocusEventHandler<HTMLDivElement>;
   /**
-   * Whether the source viewer is currently expanded. Drives `data-code-open` on
-   * the root (which squares the toolbar's bottom corners and reveals the code
-   * panel) and the code window/wrapper expand state.
+   * Whether the source viewer is currently expanded. Drives the code
+   * window/wrapper expand state.
    */
   expanded?: boolean;
+  /** Whether a focused snippet or expanded source is visible below the toolbar. */
+  sourceVisible?: boolean;
   /** Optional file tab bar — typically only present for multi-file demos when expanded. */
   tabs?: React.ReactNode;
   /** Code viewer / source panel. */
@@ -569,6 +557,7 @@ export function DemoContainer(props: DemoContainerProps) {
     onToolbarKeyDown,
     onToolbarFocus,
     expanded,
+    sourceVisible,
     tabs,
     code,
     codeId,
@@ -630,7 +619,7 @@ export function DemoContainer(props: DemoContainerProps) {
   );
 
   return (
-    <DemoRoot data-code-open={expanded ? '' : undefined}>
+    <DemoRoot data-code-open={sourceVisible ? '' : undefined}>
       {anchorId != null ? <DemoAnchorLink id={anchorId} /> : null}
       {anchors}
       {sourceAnchorIds?.map((id) => (
