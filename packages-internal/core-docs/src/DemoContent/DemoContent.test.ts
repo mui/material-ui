@@ -52,8 +52,8 @@ describe('DemoContent behavior', () => {
       hasFocusProjection: true,
     });
 
-    expect(collapsed.sourceVisible).to.equal(false);
-    expect(expanded.sourceVisible).to.equal(true);
+    expect(collapsed).to.deep.equal({ sourceVisible: false, hasSourceFocus: false });
+    expect(expanded).to.deep.equal({ sourceVisible: true, hasSourceFocus: false });
   });
 
   it('resets controlled state and remounts the preview', () => {
