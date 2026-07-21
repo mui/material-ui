@@ -139,7 +139,7 @@
     "serve": "14.2.6",
     "stylelint": "17.14.0",
     "tsx": "4.23.1",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.0",
     "vitest-fail-on-console": "0.10.1",

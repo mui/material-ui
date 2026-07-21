@@ -26,9 +26,9 @@
     ".": "./src/index.ts"
   },
   "devDependencies": {
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "peerDependencies": {
-    "typescript": "^5.9.3 || ^6.0.0"
+    "typescript": "^5.9.3 || ^6.0.0 || ^7.0.0"
   }
 }

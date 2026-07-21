@@ -26,6 +26,6 @@
     "@types/sinon": "17.0.4",
     "chai": "6.2.2",
     "sinon": "22.0.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
