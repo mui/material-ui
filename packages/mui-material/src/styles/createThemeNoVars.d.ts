@@ -58,9 +58,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   shape?: ShapeOptions | undefined;
   transitions?: TransitionsOptions | undefined;
   typography?:
-    | TypographyVariantsOptions
-    | ((palette: Palette) => TypographyVariantsOptions)
-    | undefined;
+    TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   zIndex?: ZIndexOptions | undefined;
   focusVisible?: boolean | FocusVisible | undefined;
   unstable_strictMode?: boolean | undefined;
