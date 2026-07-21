@@ -196,6 +196,7 @@ describe('ModalManager', () => {
 
       it('should lock body scrolling and compensate for its scrollbar when the container is in a shadow root', () => {
         const modal = getDummyModal();
+        const initialBodyPaddingRight = document.body.style.paddingRight;
 
         container2.style.overflow = 'scroll';
         document.body.style.paddingRight = '20px';
@@ -213,6 +214,8 @@ describe('ModalManager', () => {
         expect(container2.style.overflow).to.equal('scroll');
         expect(document.body.style.overflow).to.equal('');
         expect(document.body.style.paddingRight).to.equal('20px');
+
+        document.body.style.paddingRight = initialBodyPaddingRight;
       });
     });
 
