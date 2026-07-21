@@ -19,6 +19,9 @@ import { alpha, styled, useTheme } from '@mui/material/styles';
 import copy from 'clipboard-copy';
 import { useTranslate } from '../i18n';
 import { OpenInMUIChatButton } from './OpenInMUIChatButton';
+import type { DemoDeploymentLinks } from './demoDeploymentLinks';
+
+export type { DemoDeploymentLinks } from './demoDeploymentLinks';
 
 // ---------------------------------------------------------------------------
 // Toolbar control styling
@@ -94,16 +97,12 @@ function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
 // Toolbar keyboard navigation
 // ---------------------------------------------------------------------------
 
-/**
- * ARIA toolbar keyboard navigation with one roving-tabindex scope per
- * `[data-toolbar-group]`. Each group's *first* focusable button is its single
- * tab stop, so Tab moves *between* groups — landing on "Edit in Chat", then
- * "Expand" — while arrow keys (RTL aware) and Home/End move focus *within* the
- * focused button's group. Tabindex is managed on the buttons directly via a
- * `MutationObserver` so the hook stays decoupled from the toolbar's JSX.
- */
+/** ARIA toolbar keyboard navigation with one RTL-aware roving tab stop. */
 function isFocusableToolbarButton(button: HTMLElement): boolean {
-  if (button.hasAttribute('disabled') || button.getAttribute('aria-hidden') === 'true') {
+  if (
+    button.hasAttribute('disabled') ||
+    button.closest('[aria-hidden="true"], [hidden]') !== null
+  ) {
     return false;
   }
   if (typeof button.checkVisibility === 'function') {
@@ -116,28 +115,35 @@ function isFocusableToolbarButton(button: HTMLElement): boolean {
   return style.visibility !== 'hidden' && style.display !== 'none';
 }
 
-function getGroupButtons(group: HTMLElement): HTMLElement[] {
-  return Array.from(group.querySelectorAll<HTMLElement>('button')).filter(isFocusableToolbarButton);
-}
-
 export function useToolbarKeyboard() {
   const theme = useTheme();
   const toolbarRef = React.useRef<HTMLDivElement>(null);
+  const activeIndexRef = React.useRef(0);
 
-  // Make each group's first focusable button its only tab stop (the rest are
-  // reachable by arrow keys). Runs on mount and from the MutationObserver as
-  // buttons appear/disappear (e.g. the JS/TS toggle on expand).
-  const syncTabIndex = React.useCallback(() => {
+  const getFocusableButtons = React.useCallback(() => {
     const container = toolbarRef.current;
-    if (!container) {
+    return container
+      ? Array.from(container.querySelectorAll<HTMLElement>('button')).filter(
+          isFocusableToolbarButton,
+        )
+      : [];
+  }, []);
+
+  const syncTabIndex = React.useCallback(() => {
+    toolbarRef.current?.querySelectorAll<HTMLElement>('button').forEach((button) => {
+      button.tabIndex = -1;
+    });
+    const buttons = getFocusableButtons();
+    if (buttons.length === 0) {
       return;
     }
-    container.querySelectorAll<HTMLElement>('[data-toolbar-group]').forEach((group) => {
-      getGroupButtons(group).forEach((button, index) => {
-        button.tabIndex = index === 0 ? 0 : -1;
-      });
+    if (activeIndexRef.current >= buttons.length) {
+      activeIndexRef.current = 0;
+    }
+    buttons.forEach((button, index) => {
+      button.tabIndex = index === activeIndexRef.current ? 0 : -1;
     });
-  }, []);
+  }, [getFocusableButtons]);
 
   React.useEffect(() => {
     const container = toolbarRef.current;
@@ -155,14 +161,21 @@ export function useToolbarKeyboard() {
     return () => observer.disconnect();
   }, [syncTabIndex]);
 
+  const handleFocus = React.useCallback(
+    (event: React.FocusEvent<HTMLDivElement>) => {
+      const focusedIndex = getFocusableButtons().indexOf(event.target as HTMLElement);
+      if (focusedIndex !== -1) {
+        activeIndexRef.current = focusedIndex;
+        syncTabIndex();
+      }
+    },
+    [getFocusableButtons, syncTabIndex],
+  );
+
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const buttons = getFocusableButtons();
       const active = document.activeElement as HTMLElement | null;
-      const group = active?.closest<HTMLElement>('[data-toolbar-group]');
-      if (!group) {
-        return;
-      }
-      const buttons = getGroupButtons(group);
       const currentIndex = active ? buttons.indexOf(active) : -1;
       if (currentIndex === -1) {
         return;
@@ -189,30 +202,15 @@ export function useToolbarKeyboard() {
       event.preventDefault();
       buttons[nextIndex].focus();
     },
-    [theme.direction],
+    [getFocusableButtons, theme.direction],
   );
 
-  return { toolbarRef, handleKeyDown };
+  return { toolbarRef, handleKeyDown, handleFocus };
 }
 
 // ---------------------------------------------------------------------------
 // Toolbar component
 // ---------------------------------------------------------------------------
-
-/**
- * Deploy permalinks surfaced in the More menu on staging / PR-preview builds.
- * Each points at the same demo on a different Netlify deployment.
- */
-export interface DemoDeploymentLinks {
-  /** Deploy-preview URL for the current PR. Omitted when not a PR build. */
-  pullRequest?: string;
-  /** URL on the `next` branch deployment. */
-  next: string;
-  /** Permalink to this exact deploy. */
-  permalink: string;
-  /** URL on the `master` branch deployment. */
-  master: string;
-}
 
 export interface DemoToolbarProps {
   gaLabel: string;
@@ -221,7 +219,7 @@ export interface DemoToolbarProps {
   /** Whether the source viewer is currently expanded. */
   expanded: boolean;
   onToggleExpand: () => void;
-  /** Ref for the show-source toggle button (used by `useCodeWindow`). */
+  /** Ref for the show-source toggle button. */
   toggleRef: React.Ref<HTMLButtonElement>;
   showCodeLabel: React.ReactNode;
   /** Whether a JS transform is available for the current variant. */
@@ -264,6 +262,8 @@ export interface DemoToolbarProps {
    * omitted entirely rather than shown disabled.
    */
   jsSourceAnchor?: string;
+  /** Deploy permalinks shown on staging and pull-request builds. */
+  deploymentLinks?: DemoDeploymentLinks | null;
 }
 
 /**
@@ -298,6 +298,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
     githubLocation,
     tsSourceAnchor,
     jsSourceAnchor,
+    deploymentLinks,
   } = props;
   const t = useTranslate();
 
@@ -376,35 +377,26 @@ export function DemoToolbar(props: DemoToolbarProps) {
 
   return (
     <React.Fragment>
-      {/* Group 1: "Edit in Chat" + the JS/TS switcher form one roving-tabindex
-          scope (`data-toolbar-group`), so Tab lands here first (on "Edit in
-          Chat") and the next Tab jumps to the actions group; arrow keys move
-          between the two. The `gap` keeps "Edit in Chat" from touching the
-          JS/TS switcher. */}
-      <Box role="group" data-toolbar-group sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         {/* Open in MUI Chat */}
         <OpenInMUIChatButton
           openMuiChat={openMuiChat}
-          data-ga-event-category="demo"
+          data-ga-event-category="mui-chat"
           data-ga-event-label={gaLabel}
           data-ga-event-action="open-in-mui-chat"
         />
 
-        {/* JS/TS toggle (only relevant when code is open). Uses a CSS-only
-            opacity transition rather than MUI's `<Fade>` because Fade calls
-            `reflow(node)` (reading `node.scrollTop`) on every transition,
-            forcing a synchronous layout flush that thrashes with
-            `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
+        {/* JS/TS toggle (only relevant when code is open). */}
         <ToggleButtonGroup
           ref={languageToggleRef}
           sx={{
             margin: '8px 0',
-            transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
             opacity: expanded && hasJsTransform ? 1 : 0,
             visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
             pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
           }}
           exclusive
+          aria-hidden={!expanded || !hasJsTransform}
           value={isJsSelected ? 'js' : 'ts'}
           onChange={onLanguageClick}
         >
@@ -429,13 +421,7 @@ export function DemoToolbar(props: DemoToolbarProps) {
         </ToggleButtonGroup>
       </Box>
 
-      {/* Group 2: the remaining action buttons — its own roving-tabindex scope,
-          so the second Tab enters here (on "Expand" for a single-variant demo). */}
-      <Box
-        role="group"
-        data-toolbar-group
-        sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}
-      >
+      <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}>
         {hasNonSystemDemos && (
           <ToolbarButton
             size="small"
@@ -458,11 +444,11 @@ export function DemoToolbar(props: DemoToolbarProps) {
         <ToolbarButton
           ref={toggleRef}
           onClick={onToggleExpand}
-          aria-controls={expanded && demoSourceId ? demoSourceId : undefined}
+          aria-controls={demoSourceId}
           aria-expanded={expanded}
           data-ga-event-category="demo"
           data-ga-event-label={gaLabel}
-          data-ga-event-action={expanded ? 'collapse' : 'expand'}
+          data-ga-event-action="expand"
           sx={{ mr: 0.5 }}
         >
           {showCodeLabel}
@@ -585,6 +571,60 @@ export function DemoToolbar(props: DemoToolbarProps) {
           >
             {t('copySourceLinkTS')}
           </MenuItem>
+          {deploymentLinks?.pullRequest ? (
+            <MenuItem
+              component="a"
+              href={deploymentLinks.pullRequest}
+              target="_blank"
+              rel="noopener nofollow"
+              onClick={handleMoreClose}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="link-deploy-preview"
+            >
+              demo on PR
+            </MenuItem>
+          ) : null}
+          {deploymentLinks ? (
+            <React.Fragment>
+              <MenuItem
+                component="a"
+                href={deploymentLinks.next}
+                target="_blank"
+                rel="noopener nofollow"
+                onClick={handleMoreClose}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="link-next"
+              >
+                demo on next
+              </MenuItem>
+              <MenuItem
+                component="a"
+                href={deploymentLinks.permalink}
+                target="_blank"
+                rel="noopener nofollow"
+                onClick={handleMoreClose}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="permalink"
+              >
+                demo permalink
+              </MenuItem>
+              <MenuItem
+                component="a"
+                href={deploymentLinks.master}
+                target="_blank"
+                rel="noopener nofollow"
+                onClick={handleMoreClose}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="link-master"
+              >
+                demo on master
+              </MenuItem>
+            </React.Fragment>
+          ) : null}
         </Menu>
       </Box>
       <Snackbar
