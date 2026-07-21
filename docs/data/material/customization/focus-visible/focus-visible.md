@@ -2,7 +2,7 @@
 
 <p class="description">Apply an outline keyboard focus across Material�UI components with a single theme option.</p>
 
-Starting from v9.x, Material UI provides built-in support for enabling a basic keyboard focus indicator through CSS.
+Starting from v9.x, Material UI provides built-in support for enabling a basic keyboard focus indicator through CSS.
 
 ## Usage
 
@@ -61,7 +61,11 @@ To make the `boxShadow` flip for the inner focus indicator components, use `focu
 ```js
 import { focusVisibleVars } from '@mui/material/styles';
 
-createTheme({ focusVisible: { boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px rgba(0, 0, 0, 0.4)` } });
+createTheme({
+  focusVisible: {
+    boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px rgba(0, 0, 0, 0.4)`,
+  },
+});
 ```
 
 :::info
@@ -76,13 +80,13 @@ To replace the outline entirely with box-shadow indicator, set `outline: 'none'`
 import { focusVisibleVars } from '@mui/material/styles';
 
 createTheme({
-  focusVisible: { outline: 'none', boxShadow: `${focusVisible.behavior} 0 0 0 3px #1976d2` },
+  focusVisible: {
+    outline: 'none',
+    boxShadow: `${focusVisible.behavior} 0 0 0 3px #1976d2`,
+  },
 });
 ```
 
 {{"demo": "FocusVisibleCustomization.js"}}
 
 ## API
-
-
-
