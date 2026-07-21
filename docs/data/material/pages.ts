@@ -205,7 +205,7 @@ const pages: MuiPage[] = [
           },
           { pathname: '/material-ui/customization/density' },
           {
-            pathname: '/material-ui/customization/focus-ring',
+            pathname: '/material-ui/customization/focus-visible',
             title: 'Focus visible',
             newFeature: true,
           },
