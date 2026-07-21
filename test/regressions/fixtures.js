@@ -58,7 +58,7 @@ const importDemos = import.meta.glob(
     'docs/data/base/**/[A-Z]*/tailwind/index.js',
     'docs/data/base/**/[A-Z]*/system/index.js',
     // ================== Structural — cannot be imported safely ==================
-    '!docs/data/experiments',
+    '!docs/data/experiments/**',
     '!docs/data/material/**/*NoSnap.*',
     // Templates that aren't standalone demos
     '!docs/data/material/getting-started/templates/marketing-page/**',
@@ -74,25 +74,25 @@ const importDemos = import.meta.glob(
     '!docs/data/material/customization/typography/demos/responsive-font-sizes-chart/**',
     // Other non-demo subtrees
     '!docs/data/material/getting-started/supported-components/demos/**',
-    '!docs/data/material/guides',
-    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind',
-    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal',
-    '!docs/data/premium-themes',
+    '!docs/data/material/guides/**',
+    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind/**',
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal/**',
+    '!docs/data/premium-themes/**',
     // ================== Slug-level — no tool consumer ==================
-    '!docs/data/material/components/backdrop', // Needs interaction
-    '!docs/data/material/components/click-away-listener', // Needs interaction
-    '!docs/data/material/components/container', // Can't see the impact
-    '!docs/data/material/components/dialogs', // Needs interaction
-    '!docs/data/material/components/image-list', // Images don't load
+    '!docs/data/material/components/backdrop/**', // Needs interaction
+    '!docs/data/material/components/click-away-listener/**', // Needs interaction
+    '!docs/data/material/components/container/**', // Can't see the impact
+    '!docs/data/material/components/dialogs/**', // Needs interaction
+    '!docs/data/material/components/image-list/**', // Images don't load
     '!docs/data/material/components/material-icons/demos/search-icons/**', // Heavy icon grid
-    '!docs/data/material/components/menus', // Needs interaction
-    '!docs/data/material/components/popper', // Needs interaction
-    '!docs/data/material/components/progress', // Flaky
-    '!docs/data/material/components/speed-dial', // Needs interaction
-    '!docs/data/material/components/textarea-autosize', // Superseded by a dedicated regression test
-    '!docs/data/material/components/tooltips', // Needs interaction
-    '!docs/data/material/components/transitions', // Needs interaction
-    '!docs/data/material/components/use-media-query', // Need to dynamically resize to test
+    '!docs/data/material/components/menus/**', // Needs interaction
+    '!docs/data/material/components/popper/**', // Needs interaction
+    '!docs/data/material/components/progress/**', // Flaky
+    '!docs/data/material/components/speed-dial/**', // Needs interaction
+    '!docs/data/material/components/textarea-autosize/**', // Superseded by a dedicated regression test
+    '!docs/data/material/components/tooltips/**', // Needs interaction
+    '!docs/data/material/components/transitions/**', // Needs interaction
+    '!docs/data/material/components/use-media-query/**', // Need to dynamically resize to test
     '!docs/data/material/getting-started/versions/demos/**', // not a component
   ],
   {
