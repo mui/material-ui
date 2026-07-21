@@ -60,3 +60,6 @@ allowBuilds:
   '@mui/x-telemetry': false
   core-js: false
   core-js-pure: false
+
+patchedDependencies:
+  '@mui/internal-docs-infra@0.12.0': patches/@mui__internal-docs-infra@0.12.0.patch
