@@ -10,7 +10,7 @@ export interface ManagedModalProps {
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 
-  if (doc.body === container) {
+  if (container === doc.body || container === doc.documentElement) {
     return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
   }
 
