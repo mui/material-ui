@@ -128,6 +128,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       previewStyle={previewStyle}
       toolbar={toolbar}
       expanded={initialExpanded}
+      sourceVisible={sourceVisible}
       tabs={tabs}
       code={code}
       codeId={demoSourceId}
