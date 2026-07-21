@@ -62,8 +62,7 @@ const TabRoot = styled(ButtonBase, {
     whiteSpace: 'normal',
     textAlign: 'center',
     lineHeight: 1.25,
-    // Inset the focus ring: the Tabs scroller clips an outset ring. `insetFocusRing` sets the
-    // private vars the curated ring reads, so the outline offset and any user box-shadow inset.
+    // Inset the ring: the Tabs scroller clips an outset ring.
     ...(theme.focusVisible && insetFocusRing),
     variants: [
       {

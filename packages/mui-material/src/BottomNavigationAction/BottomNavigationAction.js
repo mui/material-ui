@@ -48,8 +48,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     [`&.${bottomNavigationActionClasses.selected}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
-    // Inset the focus ring: actions sit flush inside a bounded BottomNavigation bar. Set the
-    // private vars the curated ring reads so the outline offset and any user box-shadow inset.
+    // Inset the ring: actions sit flush inside a bounded bar.
     ...(theme.focusVisible && insetFocusRing),
     variants: [
       {
