@@ -1,0 +1,25 @@
+diff --git a/pipeline/hastUtils/index.mjs b/pipeline/hastUtils/index.mjs
+index 7962e73de42d2547812c0496fa998a1e7e014b04..f31695f71cbf2e14fc4d4cfdee16b39b5ce5547a 100644
+--- a/pipeline/hastUtils/index.mjs
++++ b/pipeline/hastUtils/index.mjs
+@@ -1,4 +1,19 @@
+-export * from "./hastCompression.mjs";
++export {
++  HAST_DICTIONARY,
++  MAX_DICTIONARY_SIZE,
++  CHECKSUM_BYTES,
++  buildDictionary,
++  computeDictionaryChecksum,
++  HastDictionaryMismatchError,
++  compressHast,
++  compressHastAsync,
++  decompressHast,
++  decompressHastAsync,
++  compressString,
++  compressStringAsync,
++  decompressString,
++  decompressStringAsync,
++} from "./hastCompression.mjs";
+ export * from "./hastUtils.mjs";
+ export { getHastTextContent, getShallowTextContent } from "./getHastTextContent.mjs";
+ export { stripHighlightingSpans } from "./stripHighlightingSpans.mjs";
