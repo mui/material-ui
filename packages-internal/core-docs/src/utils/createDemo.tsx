@@ -15,7 +15,6 @@ import DemoContentLoading from '../DemoContent/DemoContentLoading';
 // Already in this module's graph via `DemoContentLoading` → `DemoContainer` →
 // `DemoComponentTheme`, so importing the page theme provider adds no weight.
 import { DemoPageThemeProvider } from '../DemoThemeProviders';
-import { normalizeDemoOptions } from './normalizeDemoOptions';
 
 // Populated by `withDeploymentConfig` so build-time `file://` URLs gathered
 // from `import.meta.url` get rewritten into hosted Git URLs (e.g.
@@ -40,9 +39,29 @@ function withDemoPageLayout<T extends React.ComponentType<any>>(Demo: T): T {
   return Demo;
 }
 
+interface DemoDisplayOptions {
+  defaultCodeOpen?: boolean;
+  initialExpanded?: boolean;
+  collapseToEmpty?: boolean;
+}
+
+export function normalizeDemoOptions<T extends DemoDisplayOptions>(
+  options: T,
+): Omit<T, 'defaultCodeOpen'> {
+  const { defaultCodeOpen, ...normalized } = options;
+
+  if (defaultCodeOpen === true) {
+    return { ...normalized, initialExpanded: true };
+  }
+  if (defaultCodeOpen === false) {
+    return { ...normalized, collapseToEmpty: true };
+  }
+  return normalized;
+}
+
 function withNormalizedDemoOptions<T extends React.ComponentType<any>>(Demo: T): T {
   function NormalizedDemo(props: React.ComponentProps<T>) {
-    return React.createElement(Demo, normalizeDemoOptions(props));
+    return <Demo {...(normalizeDemoOptions(props) as React.ComponentProps<T>)} />;
   }
 
   return Object.assign(NormalizedDemo, Demo) as T;

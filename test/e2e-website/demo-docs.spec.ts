@@ -288,6 +288,14 @@ test.describe('Demo docs', () => {
     });
   });
 
+  test('uses show and hide labels when collapsed source is empty', async ({ page }) => {
+    await page.goto('/material-ui/react-button/');
+    const demo = getDemo(page, 'CustomizedButtons');
+
+    await demo.getByRole('button', { name: 'Show code', exact: true }).click();
+    await expect(demo.getByRole('button', { name: 'Hide code', exact: true })).toBeVisible();
+  });
+
   test('keeps disableLiveEdit App Bar and Drawer iframe demos non-editable', async ({ page }) => {
     await page.goto('/material-ui/react-app-bar/#HideAppBar.tsx');
     const appBarDemo = getDemo(page, 'HideAppBar');
