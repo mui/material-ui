@@ -25,8 +25,8 @@ function useFirstRender() {
   return firstRenderRef.current;
 }
 
-export function resolveInitialCodeVariant(hash: string, cookie: string | undefined) {
-  const sourceExtension = hash.match(/\.(js|jsx|ts|tsx)$/)?.[1];
+export function resolveInitialCodeVariant(urlHash: string, cookie: string | undefined) {
+  const sourceExtension = urlHash.match(/\.(js|jsx|ts|tsx)$/)?.[1];
   if (sourceExtension) {
     return sourceExtension === 'js' || sourceExtension === 'jsx'
       ? CODE_VARIANTS.JS
