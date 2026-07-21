@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
+import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { ThemeProvider, createTheme, useTheme, enhanceHighContrast } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from '../ThemeContext';
@@ -15,6 +15,49 @@ const defaultTheme = createTheme({
     reducedMotion: 'system',
   },
 });
+
+type InjectTheme = () => Record<string, unknown>;
+type GetInjectTheme = () => InjectTheme;
+
+let injectThemeCache:
+  { source: GetInjectTheme; promise: Promise<Record<string, unknown> | undefined> } | undefined;
+
+function loadInjectedTheme(): Promise<Record<string, unknown> | undefined> {
+  if (typeof window === 'undefined') {
+    return Promise.resolve(undefined);
+  }
+  const runtimeWindow = window as typeof window & {
+    React?: typeof React;
+    jsx?: typeof import('react/jsx-runtime');
+    getInjectTheme?: GetInjectTheme;
+  };
+  const source = runtimeWindow.getInjectTheme;
+  if (typeof source !== 'function') {
+    return Promise.resolve(undefined);
+  }
+  if (injectThemeCache?.source === source) {
+    return injectThemeCache.promise;
+  }
+
+  const promise = (async () => {
+    try {
+      runtimeWindow.React = React;
+      runtimeWindow.jsx = await import('react/jsx-runtime');
+      const injectTheme = source();
+      if (typeof injectTheme !== 'function') {
+        return undefined;
+      }
+      const runtimeTheme = injectTheme();
+      return Object.prototype.toString.call(runtimeTheme) === '[object Object]'
+        ? runtimeTheme
+        : undefined;
+    } catch {
+      return undefined;
+    }
+  })();
+  injectThemeCache = { source, promise };
+  return promise;
+}
 
 /**
  * Builds the Material UI theme shared by every (non-isolated) demo on a page.
@@ -130,6 +173,26 @@ export function DemoInstanceThemeProvider({
   );
 }
 
+function DemoRuntimeThemeProvider({ children }: React.PropsWithChildren) {
+  const [runtimeTheme, setRuntimeTheme] = React.useState<Record<string, unknown> | undefined>();
+
+  useEnhancedEffect(() => {
+    let active = true;
+    loadInjectedTheme().then((theme) => {
+      if (active) {
+        setRuntimeTheme(theme);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return (
+    <DemoInstanceThemeProvider runtimeTheme={runtimeTheme}>{children}</DemoInstanceThemeProvider>
+  );
+}
+
 /**
  * Wraps a demo's rendered component with the appropriate theme context and,
  * when requested, an iframe sandbox.
@@ -186,12 +249,12 @@ export function DemoComponentTheme({
   }
 
   return (
-    <DemoInstanceThemeProvider runtimeTheme={undefined}>
+    <DemoRuntimeThemeProvider>
       {iframe && React.isValidElement(children) ? (
         <DemoIframe name={name}>{children}</DemoIframe>
       ) : (
         children
       )}
-    </DemoInstanceThemeProvider>
+    </DemoRuntimeThemeProvider>
   );
 }

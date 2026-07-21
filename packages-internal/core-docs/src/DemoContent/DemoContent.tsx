@@ -1,24 +1,27 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
-import { useCodeWindow } from '@mui/internal-docs-infra/useCodeWindow';
-import { useScrollAnchor } from '@mui/internal-docs-infra/useScrollAnchor';
 import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { useTranslate } from '../i18n';
+import { useCodeVariant, useNoSsrCodeVariant, useSetCodeVariant } from '../codeVariant';
 import DemoContext from '../DemoContext';
 import { AdCarbonInline } from '../Ad/AdCarbon';
-import { stylingSolutionMapping } from '../constants/constants';
+import { CODE_VARIANTS, stylingSolutionMapping } from '../constants/constants';
 import { DemoAiSuggestionHero } from './DemoAiSuggestionHero';
-import {
-  DemoAnchorLink,
-  DemoContainer,
-  DemoFileTabBar,
-  DemoFileTabBarCollapse,
-} from './DemoContainer';
+import { DemoAnchorLink, DemoContainer, DemoFileTabBar } from './DemoContainer';
 import { DemoErrorOverlay } from './DemoErrorOverlay';
 import { CodeSource, FileTab } from './CodeSource';
 import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
+import {
+  createDemoUseOptions,
+  expandDemo,
+  resetDemo,
+  resolveDemoSourceView,
+  toggleDemoExpanded,
+} from './DemoContent.helpers';
+import { buildDemoDeploymentLinks } from './demoDeploymentLinks';
 import {
   demoAnchorId,
   fileSourceAnchorIds,
@@ -26,12 +29,7 @@ import {
   toJavascriptFileName,
 } from './sourceAnchors';
 import { useMuiChatExporter } from './useMuiChatExporter';
-import { buildExportConfig, codeSandboxTsconfigOverride } from './exportConfig';
-
-// Duration (ms) of one half of the transform swap window. The full
-// `expand → swap → collapse` cycle lasts `TRANSFORM_DELAY * 2`. Must match
-// the `.collapse` keyframe duration in `syntax.css`.
-const TRANSFORM_DELAY = 350;
+import { buildExportConfig } from './exportConfig';
 
 // ---------------------------------------------------------------------------
 // Component
@@ -49,6 +47,8 @@ export interface DemoOptions {
   disableAd?: boolean;
   /** Disable in-place editing of the demo source. */
   disableLiveEdit?: boolean;
+  /** Legacy source display option. Normalized by `createDemo` before rendering. */
+  defaultCodeOpen?: boolean;
   /** Prompt string shown in the "Customize with AI" hero. When unset, the hero is omitted. */
   aiSuggestion?: string;
   /** Hide the "Edit this page" button in the toolbar. */
@@ -73,6 +73,7 @@ export default function DemoContent(props: DemoContentProps) {
   const {
     hideToolbar,
     initialExpanded,
+    disableLiveEdit,
     disableAd: demoDisableAd,
     aiSuggestion,
     anchorId: anchorIdOption,
@@ -139,10 +140,7 @@ export default function DemoContent(props: DemoContentProps) {
   const csbConfig = csbContext?.csb;
   const pageDisableAd = csbContext?.disableAd ?? false;
 
-  // resolveDependencies needs to know whether we're exporting TS or JS, but
-  // selectedTransform is only known after useDemo(). A ref bridges this — it's
-  // read at click time (when openStackBlitz/openCodeSandbox fire), not at
-  // render time, so the circular dependency is harmless.
+  // Export dependency resolution reads the current language at click time.
   const useTypescriptRef = React.useRef(true);
 
   const exportConfig = React.useMemo(
@@ -150,42 +148,30 @@ export default function DemoContent(props: DemoContentProps) {
     [csbConfig],
   );
 
-  // When the rendered code has collapsible frames (from `enhanceCodeEmphasis`),
-  // this expands all hidden context lines. Demos without emphasis frames render
-  // identically in both states. Declared before `useDemo` so its `anchorScroll`
-  // can be handed to `onExpand` below.
-  // `scrollContainerRef` points at the fixed-height code window so the
-  // expand/collapse anchoring compensates that panel's own scroll once the
-  // expanded source exceeds the cap, rather than scrolling the page.
-  const { containerRef, scrollContainerRef, toggleRef, anchorScroll } = useCodeWindow<
-    HTMLButtonElement,
-    HTMLDivElement
-  >();
-
-  const onExpand = React.useCallback(() => anchorScroll('expand'), [anchorScroll]);
-
-  // `initialExpanded` is read by `useDemo` straight from `props` (it's a
-  // `contentProps` field, threaded from the MDX `{{"component": …}}` meta), so
-  // it isn't passed as an opt here.
-  const demo = useDemo(props, {
-    export: exportConfig,
-    exportCodeSandbox: codeSandboxTsconfigOverride,
-    // Enables the expand → swap → collapse window on the rendered `<pre>` so
-    // the `.collapse` placeholder animation in `syntax.css` has time to run
-    // (must match the keyframe duration there).
-    transformDelay: TRANSFORM_DELAY,
-    // Only the file the user is currently looking at participates in the
-    // coordinated swap window — other files defer their transform until
-    // they're brought into view. Avoids paying layout-shift cost for code
-    // the viewer can't see and prevents `hasCollapseInFocus` work from
-    // spreading across files needlessly.
-    transformLayoutShift: 'focus',
-    // Keyboard-driven expansion (the caret navigating past the visible top or
-    // bottom of a collapsed code window) anchors the scroll just like clicking
-    // the expand toggle does, instead of letting the viewport jump.
-    onExpand,
-  });
+  const codeVariant = useCodeVariant();
+  const noSsrCodeVariant = useNoSsrCodeVariant();
+  const setCodeVariant = useSetCodeVariant();
+  const selectedTransform = (noSsrCodeVariant ?? codeVariant) === CODE_VARIANTS.JS ? 'js' : null;
+  const handleSelectedTransformChange = React.useCallback(
+    (transform: string | null) => {
+      setCodeVariant(transform === 'js' ? CODE_VARIANTS.JS : CODE_VARIANTS.TS);
+    },
+    [setCodeVariant],
+  );
+  const demo = useDemo(
+    props,
+    createDemoUseOptions({
+      disableLiveEdit,
+      selectedTransform,
+      onSelectedTransformChange: handleSelectedTransformChange,
+      exportConfig,
+    }),
+  );
   useTypescriptRef.current = demo.selectedTransform !== 'js';
+  const [previewEpoch, remountPreview] = React.useReducer((epoch: number) => epoch + 1, 0);
+  const handleReset = React.useCallback(() => {
+    resetDemo(demo.reset, remountPreview);
+  }, [demo.reset]);
 
   const openMuiChat = useMuiChatExporter({
     props,
@@ -196,24 +182,8 @@ export default function DemoContent(props: DemoContentProps) {
 
   const t = useTranslate();
 
-  // Separate scroll-anchor session for transform swaps. Watches the same
-  // code container, but anchors the page scroll on the JS/TS toggle group
-  // (which lives outside the code window) so the clicked button stays under
-  // the user's pointer while the `expand → swap → collapse` window plays out.
-  const { containerRef: transformAnchorContainerRef, anchorScroll: anchorTransformScroll } =
-    useScrollAnchor<HTMLDivElement>();
+  const toggleRef = React.useRef<HTMLButtonElement>(null);
   const languageToggleRef = React.useRef<HTMLDivElement | null>(null);
-
-  // Combined ref that feeds the code container element into both
-  // `useCodeWindow` (for expand/collapse anchoring) and the transform
-  // `useScrollAnchor` session above.
-  const setCodeContainerRef = React.useCallback(
-    (node: HTMLDivElement | null) => {
-      (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-      (transformAnchorContainerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-    },
-    [containerRef, transformAnchorContainerRef],
-  );
 
   const hasJsTransform = demo.availableTransforms.includes('js');
   const isJsSelected = demo.selectedTransform === 'js';
@@ -221,13 +191,10 @@ export default function DemoContent(props: DemoContentProps) {
   const handleLanguageClick = React.useCallback(
     (_event: React.MouseEvent, value: string | null) => {
       if (value !== null) {
-        if (languageToggleRef.current) {
-          anchorTransformScroll(languageToggleRef.current, TRANSFORM_DELAY * 2);
-        }
         demo.selectTransform(value === 'js' ? 'js' : null);
       }
     },
-    [demo, anchorTransformScroll],
+    [demo],
   );
 
   // Prefer Material UI's `ButtonBase#focusVisible()` (a non-standard helper
@@ -245,14 +212,12 @@ export default function DemoContent(props: DemoContentProps) {
     demo.resetFocus();
   }, [demo]);
 
-  // Picks the expand-button label: "full source" wording when the collapsed
-  // view shows only a focused snippet, plain "source" wording when it already
-  // shows the whole file. (The toolbar's bottom corners are driven separately,
-  // from the `<code>`'s `data-focused-lines` in `DemoContainer`'s CSS.)
-  // TODO: derive from `useDemo()` once it exposes whether the rendered code
-  // has a focused source snippet (e.g. emphasis frames from
-  // `enhanceCodeEmphasis`). Until then, treat all demos as focused-source.
-  const hasSourceFocus = true;
+  const { sourceVisible, hasSourceFocus } = resolveDemoSourceView({
+    expanded: demo.expanded,
+    focusedLines: demo.selectedFileFocusedLines,
+    collapsible: demo.selectedFileCollapsible,
+    hasFocusProjection: demo.selectedFileHasFocusProjection,
+  });
   const showCodeLabel = hasSourceFocus
     ? t(demo.expanded ? 'hideFullSource' : 'showFullSource')
     : t(demo.expanded ? 'hideSource' : 'showSource');
@@ -299,17 +264,22 @@ export default function DemoContent(props: DemoContentProps) {
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;
+  const handleExpand = React.useCallback(() => {
+    expandDemo(demo.expand, remountPreview);
+  }, [demo.expand]);
   const handleToggleFrames = React.useCallback(() => {
-    const next = !expandedRef.current;
-    anchorScroll(next ? 'expand' : 'collapse');
-    demo.setExpanded(next);
-  }, [anchorScroll, demo]);
+    toggleDemoExpanded(expandedRef.current, demo.expand, demo.setExpanded, remountPreview);
+  }, [demo.expand, demo.setExpanded]);
 
   // GA event label — the canonical demo slug is used since it uniquely
   // identifies a demo within a page and is stable across renders.
   const gaLabel = demo.slug ?? props.name ?? '';
 
-  const { toolbarRef, handleKeyDown: handleToolbarKeyDown } = useToolbarKeyboard();
+  const {
+    toolbarRef,
+    handleKeyDown: handleToolbarKeyDown,
+    handleFocus: handleToolbarFocus,
+  } = useToolbarKeyboard();
 
   // ---- Source deep links (custom, transform-only) ----
   // Render the ROOT (entry) file's `#<FileName>.{tsx,ts,js,jsx}` anchors (via
@@ -321,7 +291,7 @@ export default function DemoContent(props: DemoContentProps) {
   // hashes (`isHashRelevantToDemo`), so these colon-less ids never fight it. NEVER
   // join these ids with `:` or it re-enables native nav.
   const [hash] = useUrlHashState();
-  const { availableTransforms, selectTransform, setExpanded } = demo;
+  const { availableTransforms, selectTransform } = demo;
 
   // The root file is the selected variant's entry file (`VariantCode.fileName`,
   // e.g. `ButtonBaseDemo.tsx`).
@@ -350,9 +320,9 @@ export default function DemoContent(props: DemoContentProps) {
     }
     appliedHashRef.current = hash;
     // Landing on a source link reveals the source and selects its language.
-    setExpanded(true);
+    handleExpand();
     selectTransform(sourceAnchorTransform(hash));
-  }, [hash, sourceAnchorIds, setExpanded, selectTransform]);
+  }, [hash, sourceAnchorIds, handleExpand, selectTransform]);
 
   // The main `#<DemoName>` anchor is rendered by `DemoContainer` (via the
   // `anchorId` prop) so the loading skeleton emits it too. Here we only add the
@@ -371,7 +341,7 @@ export default function DemoContent(props: DemoContentProps) {
       </React.Fragment>
     ) : null;
 
-  const demoSourceId = anchorName ? `demo-source-${anchorName}` : undefined;
+  const demoSourceId = `demo-source-${anchorName ?? demo.slug ?? demoName ?? 'demo'}`;
 
   // GitHub "view source" link for the file currently shown in the viewer.
   // `selectedFileUrl` is the demo's local source URL rewritten to a hosted Git
@@ -391,6 +361,22 @@ export default function DemoContent(props: DemoContentProps) {
     rootFileName && availableTransforms.includes('js')
       ? toJavascriptFileName(rootFileName)
       : undefined;
+
+  const router = useRouter();
+  const deploymentLinks = React.useMemo(
+    () =>
+      buildDemoDeploymentLinks(
+        {
+          deployEnv: process.env.DEPLOY_ENV,
+          siteName: process.env.SITE_NAME ?? process.env.NETLIFY_SITE_NAME,
+          siteDeployUrl: process.env.SITE_DEPLOY_URL ?? process.env.NETLIFY_DEPLOY_URL,
+          pullRequestId: process.env.PULL_REQUEST_ID,
+        },
+        router.asPath,
+        anchorName ?? demo.slug,
+      ),
+    [router.asPath, anchorName, demo.slug],
+  );
 
   const toolbar = hideToolbar ? null : (
     <DemoToolbar
@@ -413,25 +399,18 @@ export default function DemoContent(props: DemoContentProps) {
       onOpenCodeSandbox={demo.openCodeSandbox}
       onCopySource={demo.copy}
       onResetFocus={handleResetFocus}
-      onReset={demo.reset}
+      onReset={handleReset}
       githubLocation={githubLocation}
       tsSourceAnchor={tsSourceAnchor}
       jsSourceAnchor={jsSourceAnchor}
+      deploymentLinks={deploymentLinks}
     />
   );
 
   const hasMultipleFiles = !hideToolbar && demo.files.length > 1;
 
-  // Keep the tab strip mounted whenever the demo exposes multiple files so
-  // that toggling `expanded` doesn't re-mount the code panel below and reset
-  // its CSS transitions. The wrapping `DemoFileTabBarCollapse` animates the
-  // strip's height from 0 to `auto` (CSS-only via the grid `0fr → 1fr` trick).
-  // While collapsed the strip is only clipped (`max-height: 0; overflow:
-  // hidden`), so its tab `<button>`s stay in the DOM and tabbable — mark the
-  // region `inert` so a hidden tab can't be Tab-focused, clicked, or announced
-  // by assistive tech until the source viewer expands.
-  const tabs = hasMultipleFiles ? (
-    <DemoFileTabBarCollapse expanded={demo.expanded} inert={!demo.expanded}>
+  const tabs =
+    hasMultipleFiles && sourceVisible ? (
       <DemoFileTabBar activateOnFocus>
         {demo.files.map((file) => (
           <FileTab key={file.name} value={file.name}>
@@ -439,8 +418,7 @@ export default function DemoContent(props: DemoContentProps) {
           </FileTab>
         ))}
       </DemoFileTabBar>
-    </DemoFileTabBarCollapse>
-  ) : null;
+    ) : null;
 
   const code = hideToolbar ? null : (
     <CodeSource expanded={demo.expanded}>{demo.selectedFile}</CodeSource>
@@ -491,7 +469,8 @@ export default function DemoContent(props: DemoContentProps) {
       isolated={isolated}
       iframe={iframe}
       name={demoName ?? demo.slug ?? 'demo'}
-      onReset={demo.reset}
+      onReset={handleReset}
+      previewEpoch={previewEpoch}
       bg={resolvedBg}
       hideToolbar={hideToolbar}
       previewStyle={previewStyle}
@@ -501,11 +480,11 @@ export default function DemoContent(props: DemoContentProps) {
       toolbarRef={toolbarRef}
       toolbarLabel={t('demoToolbarLabel')}
       onToolbarKeyDown={handleToolbarKeyDown}
+      onToolbarFocus={handleToolbarFocus}
       expanded={demo.expanded}
       tabs={tabs}
       code={code}
-      codeRef={setCodeContainerRef}
-      codeScrollRef={scrollContainerRef}
+      codeId={demoSourceId}
       afterCode={afterCode}
       renderTabsAndCode={renderTabsAndCode}
     />
