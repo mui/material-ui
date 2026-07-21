@@ -7,10 +7,6 @@ import { CODE_BG } from './DemoContainer';
 // so the scrollbar and editable focus ring sit inside the rounded panel.
 const CODE_INSET = 'calc(2 * var(--muidocs-spacing))';
 
-// Shared duration + easing for the collapse animations (the `<pre>`'s padding and
-// the frames' height collapse in step on expand/collapse).
-const COLLAPSE_TIMING = '0.3s cubic-bezier(0.5, 0, 0, 1)';
-
 /**
  * Single-file tab button used in the multi-file tab bar between the toolbar
  * and the code panel. Renders as a Base UI `Tabs.Tab` so the surrounding
@@ -33,7 +29,6 @@ export const FileTab = styled(Tabs.Tab)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
   color: (theme.vars || theme).palette.text.tertiary,
-  transition: 'background 100ms ease, color 100ms ease',
   '&:hover': {
     backgroundColor: (theme.vars || theme).palette.divider,
   },
@@ -57,8 +52,7 @@ export const FileTab = styled(Tabs.Tab)(({ theme }) => ({
 /**
  * Wraps the already-highlighted code from `useDemo`. Hosts the styles
  * required by the `enhanceCodeEmphasis` source enhancer: frame/line
- * highlights, indent shifting, fade overlay, and collapsible frame
- * transitions for `data-frame-type` / `data-collapsible` markup.
+ * highlights, indent shifting, fade overlay, and collapsible frame visibility.
  */
 export const CodeSource = styled('div', {
   shouldForwardProp: (prop) => prop !== 'expanded',
@@ -89,22 +83,28 @@ export const CodeSource = styled('div', {
     fontSize: '0.8125rem',
     lineHeight: '1.5',
     tabSize: 2,
-    // Expand stagger: when the focused region opens, frames directly bordering
-    // it grow at full speed while frames farther out wait out the first third —
-    // the bordering frames push them off-screen — then cover their height in the
-    // remaining two thirds. `--frame-expand-duration` is the single knob; the
-    // delayed frames still finish on time (delay + stagger duration = total).
-    '--frame-expand-duration': '0.3s',
-    '--frame-expand-stagger-delay': 'calc(var(--frame-expand-duration) / 3)',
-    '--frame-expand-stagger-duration':
-      'calc(var(--frame-expand-duration) - var(--frame-expand-stagger-delay))',
+  },
+  '& .editable-code-editor > div': {
+    width: 'max-content',
+    minWidth: '100%',
+    fontFamily: 'Menlo, Consolas, "Droid Sans Mono", monospace',
+    fontWeight: '400',
+    fontSize: '0.8125rem',
+    lineHeight: '1.5',
+    tabSize: 2,
+  },
+  '& .editable-code-editor > div > pre, & .editable-code-editor > div > textarea': {
+    padding: `${CODE_INSET} !important`,
+    whiteSpace: 'pre !important',
+    overflowWrap: 'normal !important',
+    wordBreak: 'normal !important',
   },
   // The editable `<pre>`'s hover/focus ring is drawn on the rounded
   // `DemoCodePanel` (via `:has()`) so it follows the rounded border instead of
   // boxing the transparent inset `<pre>`. Here we only suppress the `<pre>`'s
   // default focus outline (white in the dark color scheme); the panel ring is the
   // visible indicator.
-  '& .editable-code-wrapper pre:focus, & .editable-code-wrapper pre:focus-visible': {
+  '& .editable-code-wrapper textarea:focus, & .editable-code-wrapper textarea:focus-visible': {
     outline: 'none',
   },
 
@@ -117,14 +117,11 @@ export const CodeSource = styled('div', {
   // ---- Collapse-to-empty padding ----
   // A `collapseToEmpty` / `oversizedFocus: 'hide'` block records
   // `data-focused-lines="0"`: every frame is hidden, so the panel must take no
-  // vertical space. The frames animate to zero height; zero the `<pre>`'s own
-  // top/bottom padding too (transitioned so the gap shrinks in step) — otherwise
-  // it leaves a ~32px gap. The expanded variant restores it. The 1px panel border
-  // is zeroed separately on `DemoCodePanel`.
+  // vertical space. Zero the `<pre>`'s own top/bottom padding too; otherwise it
+  // leaves a ~32px gap. The expanded variant restores it.
   '& pre:has(> code[data-collapsible][data-focused-lines="0"])': {
     paddingTop: 0,
     paddingBottom: 0,
-    transition: `padding ${COLLAPSE_TIMING}`,
   },
 
   // Code element inside pre — block so frames stretch to the widest line.
@@ -198,7 +195,6 @@ export const CodeSource = styled('div', {
     // 6px gutter then.
     marginRight: 'calc(-1 * max(6px, var(--di-indent-shift, 0px)))',
     paddingRight: 'max(6px, var(--di-indent-shift, 0px))',
-    transition: 'padding-right 0.3s ease, margin-right 0.3s ease',
   },
   // Inline highlights are emitted as `<mark>` by `enhanceCodeEmphasis`
   // (e.g. `@highlight-text`). Override the UA `mark` default (yellow fill,
@@ -291,8 +287,7 @@ export const CodeSource = styled('div', {
   // "Press Enter to start editing" overlay. `<Pre>` ships the overlay with
   // the `[hidden]` attribute by default and toggles `data-editable-prompt` on
   // the wrapper while the prompt is shown. Override `[hidden]` so the overlay
-  // stays in layout, then animate the slide/fade + focus ring via
-  // `data-editable-prompt`.
+  // stays in layout and is shown via `data-editable-prompt`.
   '& .editable-code-wrapper .editable-code-overlay[hidden]': {
     display: 'block',
   },
@@ -308,10 +303,7 @@ export const CodeSource = styled('div', {
     color: '#FFF',
     borderRadius: 6,
     fontSize: theme.typography.pxToRem(13),
-    // Animate the popup slide/fade together with its focus ring. `outline`
-    // (rather than `box-shadow`) is used so the ring paints purely outside
-    // the popup and never stacks under the popup's own background/border.
-    transition: 'top 0.3s, opacity 0.3s, visibility 0.3s, outline-color 0.3s, outline-width 0.3s',
+    // `outline` paints the ring outside the popup without stacking under it.
     outlineStyle: 'solid',
     outlineColor: alpha(theme.palette.primary[500], 0),
     outlineWidth: 0,
@@ -352,48 +344,14 @@ export const CodeSource = styled('div', {
   // `data-frame-type`, so an unscoped rule would hide all of them.
   '& pre:has(> code[data-collapsible]) .frame:not([data-frame-type]), & pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted-unfocused"], & pre:has(> code[data-collapsible]) .frame[data-frame-type="focus-unfocused"]':
     {
-      maxHeight: 0,
-      overflow: 'hidden',
-      overflowAnchor: 'none',
-      opacity: 0,
-      visibility: 'hidden',
-      // Stop hidden frames from driving the collapsed horizontal scroll extent.
-      // The `<pre>`/`<code>` use `min-width: fit-content`, which resolves against
-      // the widest `.line` of EVERY in-flow frame — hidden frames included, since
-      // `height: 0` + `overflow: hidden/clip` + `visibility: hidden` collapse only
-      // the BLOCK axis and never remove a box from max-content width. So a wide
-      // off-screen line (a long import/comment elsewhere in the source) would
-      // inflate `code`'s fit-content and, once the window allows horizontal scroll
-      // while collapsed (`DemoCodeWindow` `overflow-x: auto`), produce a scrollbar
-      // that scrolls into empty space past the short visible focus frames.
-      // `contain: inline-size` sizes each hidden frame to the available (window)
-      // inline width instead of its content's max-content width, so its `.line`
-      // children no longer contribute to `code`'s `fit-content`. The collapsed
-      // scroll extent then reflects only the VISIBLE (focused) frames. The
-      // `expanded` variant drops these rules entirely, so the expanded source
-      // recovers its full natural width and scrolls normally.
-      contain: 'inline-size',
-      transition: `max-height ${COLLAPSE_TIMING}, opacity 0.2s ease 0.1s, visibility 0.3s`,
-      '@supports (interpolate-size: allow-keywords)': {
-        interpolateSize: 'allow-keywords',
-        maxHeight: 'unset',
-        height: 0,
-        overflow: 'clip',
-        transition: 'height 0.3s ease, opacity 0.3s ease, visibility 0.3s',
-      },
+      display: 'none',
     } as any,
-  '& pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted-unfocused"]': {
-    opacity: 1,
-  },
 
   // Highlight backgrounds for the collapsed/focused view are painted by a
-  // pseudo-element rather than the element's own `background`, so indent-
-  // shifting a frame left can extend the tint back to the code's right edge by
-  // animating one always-rounded box (its `width`). There are no element
-  // corners to square and un-square, so the un-indent animation stays smooth.
+  // pseudo-element rather than the element's own `background`, so shifting a
+  // frame left can extend the tint back to the code's right edge.
   // `--di-indent-shift` is published per indent level on the frame (below) and
-  // inherited by nested lines, so a frame and its highlighted lines extend by
-  // the same amount. The frame paints via `::after` (its `::before` is the
+  // inherited by nested lines. The frame paints via `::after` (its `::before` is the
   // frame description badge); lines paint via `::before` (their `::after` is
   // the line description badge). Each pseudo sits at `z-index: -1` behind the
   // code text; `isolation` scopes that stacking to the frame.
@@ -415,7 +373,6 @@ export const CodeSource = styled('div', {
       left: 0,
       width: 'calc(100% + var(--di-indent-shift, 0px))',
       zIndex: -1,
-      transition: 'width 0.3s ease',
       pointerEvents: 'none',
     },
   // Frame tint — a single block, always fully rounded.
@@ -467,7 +424,6 @@ export const CodeSource = styled('div', {
         {
           transform: `translateX(-${level * 2}ch)`,
           '--di-indent-shift': `calc(${level * 2}ch + 6px)`,
-          transition: 'transform 0.3s ease',
         },
       ];
     }),
@@ -480,43 +436,9 @@ export const CodeSource = styled('div', {
         // Show all frames when expanded.
         '& pre:has(> code[data-collapsible]) .frame:not([data-frame-type]), & pre:has(> code[data-collapsible]) .frame[data-frame-type="highlighted-unfocused"], & pre:has(> code[data-collapsible]) .frame[data-frame-type="focus-unfocused"]':
           {
-            maxHeight: 2220,
-            opacity: 1,
-            visibility: 'visible',
-            // Release the collapsed width clamp so the revealed frames recover
-            // their natural max-content width and the expanded source scrolls
-            // horizontally as before. The base rule and this variant share the
-            // same selector/specificity, so without this explicit reset the base
-            // `contain: inline-size` would leak in and clip the expanded source
-            // to the window width.
-            contain: 'none',
-            transition:
-              'max-height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.15s ease, visibility 0s',
-            '@supports (interpolate-size: allow-keywords)': {
-              maxHeight: 'unset',
-              height: 'auto',
-              overflow: 'clip',
-              transition:
-                'height var(--frame-expand-stagger-duration) ease var(--frame-expand-stagger-delay), opacity 0.3s ease, visibility 0s',
-            },
+            display: 'block',
           } as any,
-        // Frames directly bordering the focused region run at full speed with no
-        // delay. `:has(+ visible)` catches the hidden frame above the region;
-        // `visible + frame` catches the one below. "Visible" is any typed frame
-        // except the hidden `-unfocused` overflow variants. These bordering
-        // frames push the delayed far frames off-screen during the first third
-        // before those start growing.
-        '& pre:has(> code[data-collapsible]) .frame:is(:not([data-frame-type]), [data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"]):has(+ .frame[data-frame-type]:not([data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"])), & pre:has(> code[data-collapsible]) .frame[data-frame-type]:not([data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"]) + .frame:is(:not([data-frame-type]), [data-frame-type="highlighted-unfocused"], [data-frame-type="focus-unfocused"])':
-          {
-            '@supports (interpolate-size: allow-keywords)': {
-              transition:
-                'height var(--frame-expand-duration) ease, opacity 0.3s ease, visibility 0s',
-            },
-          },
-        // Reset the indent shift and collapse the background extension when
-        // expanded: the frame is back at its natural position, so zero
-        // `--di-indent-shift` (the nested line pseudos inherit it) and the
-        // frame and line pseudos animate their `width` back to natural. Must
+        // Reset the indent shift and background extension when expanded. Must
         // match the per-indent base rules' specificity (which include
         // `[data-frame-indent="N"]`) or the base values would still win.
         ...Object.fromEntries(
@@ -528,8 +450,7 @@ export const CodeSource = styled('div', {
             ];
           }),
         ),
-        // Restore the `<pre>`'s inset padding once the source is expanded — both
-        // animated by the transitions declared on the collapsed base rules above.
+        // Restore the `<pre>`'s inset padding once the source is expanded.
         '& pre:has(> code > .frame[data-frame-truncated="visible"])': {
           paddingBottom: CODE_INSET,
         },

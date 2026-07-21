@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import { styled } from '@mui/material/styles';
 
@@ -43,12 +44,34 @@ function stripPosition(message: string): string {
  * off `useDemo().error`.
  */
 export function DemoErrorOverlay({ message }: { message: string | null }) {
-  if (!message) {
+  const requestRef = React.useRef({ message, id: 0 });
+  if (requestRef.current.message !== message) {
+    requestRef.current = { message, id: requestRef.current.id + 1 };
+  }
+  const [visibleError, setVisibleError] = React.useState<{
+    message: string;
+    requestId: number;
+  } | null>(null);
+
+  React.useEffect(() => {
+    if (!message) {
+      return undefined;
+    }
+    const requestId = requestRef.current.id;
+    const timeout = setTimeout(() => setVisibleError({ message, requestId }), 300);
+    return () => clearTimeout(timeout);
+  }, [message]);
+
+  if (
+    !message ||
+    visibleError?.requestId !== requestRef.current.id ||
+    visibleError.message !== message
+  ) {
     return null;
   }
   return (
     <ErrorAlert aria-live="polite" variant="filled" severity="error">
-      {stripPosition(message)}
+      {stripPosition(visibleError.message)}
     </ErrorAlert>
   );
 }

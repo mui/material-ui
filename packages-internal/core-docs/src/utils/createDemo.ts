@@ -15,6 +15,7 @@ import DemoContentLoading from '../DemoContent/DemoContentLoading';
 // Already in this module's graph via `DemoContentLoading` → `DemoContainer` →
 // `DemoComponentTheme`, so importing the page theme provider adds no weight.
 import { DemoPageThemeProvider } from '../DemoThemeProviders';
+import { normalizeDemoOptions } from './normalizeDemoOptions';
 
 // Populated by `withDeploymentConfig` so build-time `file://` URLs gathered
 // from `import.meta.url` get rewritten into hosted Git URLs (e.g.
@@ -39,6 +40,14 @@ function withDemoPageLayout<T extends React.ComponentType<any>>(Demo: T): T {
   return Demo;
 }
 
+function withNormalizedDemoOptions<T extends React.ComponentType<any>>(Demo: T): T {
+  function NormalizedDemo(props: React.ComponentProps<T>) {
+    return React.createElement(Demo, normalizeDemoOptions(props));
+  }
+
+  return Object.assign(NormalizedDemo, Demo) as T;
+}
+
 const createDemoBase = createDemoFactory({
   DemoContent: DemoContentLazy,
   DemoContentLoading,
@@ -46,6 +55,7 @@ const createDemoBase = createDemoFactory({
   projectDir,
   projectUrl,
   editActivation: 'interaction',
+  fallbackUsesExtraFiles: true,
 });
 
 const createDemoWithVariantsBase = createDemoWithVariantsFactory({
@@ -55,6 +65,7 @@ const createDemoWithVariantsBase = createDemoWithVariantsFactory({
   projectDir,
   projectUrl,
   editActivation: 'interaction',
+  fallbackUsesExtraFiles: true,
 });
 
 /**
@@ -64,7 +75,7 @@ const createDemoWithVariantsBase = createDemoWithVariantsFactory({
  * @param meta Additional meta for the demo.
  */
 export const createDemo: typeof createDemoBase = (url, component, meta) =>
-  withDemoPageLayout(createDemoBase(url, component, meta));
+  withDemoPageLayout(withNormalizedDemoOptions(createDemoBase(url, component, meta)));
 
 /**
  * Creates a demo component for displaying code examples with syntax highlighting.
@@ -74,4 +85,4 @@ export const createDemo: typeof createDemoBase = (url, component, meta) =>
  * @param meta Additional meta for the demo.
  */
 export const createDemoWithVariants: typeof createDemoWithVariantsBase = (url, variants, meta) =>
-  withDemoPageLayout(createDemoWithVariantsBase(url, variants, meta));
+  withDemoPageLayout(withNormalizedDemoOptions(createDemoWithVariantsBase(url, variants, meta)));
