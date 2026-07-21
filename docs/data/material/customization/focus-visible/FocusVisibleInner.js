@@ -14,7 +14,7 @@ const theme = createTheme({
 export default function FocusVisibleInner() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
+      <Stack spacing={2} sx={{ alignItems: 'center' }}>
         <Typography variant="body2" color="text.secondary">
           Press <kbd>Tab</kbd>, then use the arrow keys — the ring insets so the Tabs
           scroller cannot clip it.

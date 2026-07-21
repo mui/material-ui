@@ -15,7 +15,7 @@ const theme = createTheme({
 export default function FocusVisibleDefault() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
+      <Stack spacing={2} sx={{ alignItems: 'center' }}>
         <Typography variant="body2" color="text.secondary">
           Press <kbd>Tab</kbd> to move keyboard focus — the ring appears on focus.
         </Typography>
