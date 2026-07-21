@@ -10,7 +10,7 @@
 // override is in place first.
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
+const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.{js,ts,tsx}'], {
   import: 'default',
   eager: true,
 });

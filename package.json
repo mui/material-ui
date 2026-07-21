@@ -112,7 +112,7 @@
     "@types/react": "19.2.17",
     "@types/yargs": "17.0.35",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^6.0.0",
     "@vitest/browser-playwright": "^4.1.0",
     "@vitest/coverage-v8": "^4.1.0",
     "axe-core": "4.12.1",
@@ -144,7 +144,7 @@
     "stylelint": "17.14.0",
     "tsx": "4.23.1",
     "typescript": "6.0.3",
-    "vite": "^7.3.6",
+    "vite": "^8.0.0",
     "vitest": "^4.1.0",
     "vitest-fail-on-console": "0.10.1",
     "yargs": "18.0.0"
