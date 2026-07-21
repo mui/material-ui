@@ -482,6 +482,7 @@ export default function DemoContent(props: DemoContentProps) {
       onToolbarKeyDown={handleToolbarKeyDown}
       onToolbarFocus={handleToolbarFocus}
       expanded={demo.expanded}
+      sourceVisible={sourceVisible}
       tabs={tabs}
       code={code}
       codeId={demoSourceId}

@@ -40,7 +40,7 @@ export function resolveDemoSourceView({
 }: DemoSourceViewParams) {
   return {
     sourceVisible: expanded || focusedLines > 0,
-    hasSourceFocus: collapsible && hasFocusProjection,
+    hasSourceFocus: collapsible && hasFocusProjection && focusedLines > 0,
   };
 }
 
