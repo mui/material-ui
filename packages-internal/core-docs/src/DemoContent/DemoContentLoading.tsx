@@ -1,10 +1,10 @@
-import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import { CodeSource } from './CodeSource';
 import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
 import { demoAnchorId, fileSourceAnchorIds } from './sourceAnchors';
+import { resolveDemoSourceView } from './DemoContent.helpers';
 
 // ---------------------------------------------------------------------------
 // SSR / streaming placeholder rendered before the live `DemoContent` mounts.
@@ -27,7 +27,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // the hydrated `<Pre>`, so the collapse CSS sizes the window identically
   // before highlighting swaps in. `focusedLines` is the collapsed window size
   // (0 for a `collapseToEmpty` / `oversizedFocus: 'hide'` block).
-  const { code: fallbackCode } = useCodeFallback(props);
+  const { code: fallbackCode, focusedLines = 0, collapsible = false } = useCodeFallback(props);
   const {
     hideToolbar,
     initialExpanded,
@@ -44,7 +44,14 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   } = props;
 
   const previewStyle = maxWidth == null && height == null ? undefined : { maxWidth, height };
-  const themeName = slug ?? name ?? 'demo';
+  const themeName = name ?? slug ?? 'demo';
+  const resolvedBg = bg ?? (iframe ? true : undefined);
+  const { sourceVisible } = resolveDemoSourceView({
+    expanded: initialExpanded === true,
+    focusedLines,
+    collapsible,
+    hasFocusProjection: collapsible,
+  });
 
   // The root file is the first entry in `fileNames`, used both for the demo's
   // deep-link anchor (its base name, e.g. `#ContainedButtons`) and the per-file
@@ -55,6 +62,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // link resolves against the skeleton before the demo hydrates. An explicit
   // `anchorId` option overrides it (`null` disables anchors).
   const anchorId = anchorIdOption === undefined ? demoAnchorId(rootFileName) : anchorIdOption;
+  const demoSourceId = `demo-source-${anchorId ?? slug ?? name ?? 'demo'}`;
 
   if (hideToolbar === true) {
     return (
@@ -64,7 +72,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
         isolated={isolated}
         iframe={iframe}
         name={themeName}
-        bg={bg}
+        bg={resolvedBg}
         hideToolbar
         previewStyle={previewStyle}
       />
@@ -81,11 +89,8 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // `DemoToolbarFallback` value in master's `Demo.tsx`.
   const toolbar = <div style={{ minHeight: 42 }} />;
 
-  // Only render the file tab bar when the author explicitly opted into an
-  // open code panel — the live demo starts on the first file, so a multi-file
-  // tab list is meaningless until the user actually opens the source viewer.
   const tabs =
-    initialExpanded && fileNames && fileNames.length > 1 ? (
+    sourceVisible && fileNames && fileNames.length > 1 ? (
       <DemoFileTabBarSkeleton aria-hidden />
     ) : null;
 
@@ -93,10 +98,9 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   // hydrated demo exactly (dark background, rounded bottom corners, padding,
   // and the `enhanceCodeEmphasis` styles). `fallbackCode` is the ready `<code>`
   // (with the `data-*` attributes the collapse CSS keys off), so it only needs
-  // wrapping in `<pre>` to satisfy `CodeSource`'s descendant selectors. Render
-  // the collapsed frame layout (`expanded={false}`) — full expansion needs the
-  // live JS; the window stays sized to the focused snippet (empty for an
-  // empty-focus block) until `DemoContent` hydrates.
+  // wrapping in `<pre>` to satisfy `CodeSource`'s descendant selectors. The
+  // shared `initialExpanded` value keeps its frame visibility aligned with the
+  // hydrated source.
   const code = fallbackCode ? (
     <CodeSource expanded={initialExpanded}>
       {/* `fallbackCode` is a bare `<code>` (from `useCodeFallback`); wrap it in
@@ -119,13 +123,14 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
       isolated={isolated}
       iframe={iframe}
       name={themeName}
-      bg={bg}
+      bg={resolvedBg}
       hideToolbar={hideToolbar}
       previewStyle={previewStyle}
       toolbar={toolbar}
       expanded={initialExpanded}
       tabs={tabs}
       code={code}
+      codeId={demoSourceId}
       sourceAnchorIds={sourceAnchorIds}
     />
   );
