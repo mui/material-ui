@@ -1,0 +1,13 @@
+<ThemeProvider theme={theme}>
+  <Stack spacing={2} sx={{ alignItems: 'flex-start' }}>
+    <Typography variant="body2" color="text.secondary">
+      Press <kbd>Tab</kbd>, then use the arrow keys — the ring insets so the Tabs
+      scroller cannot clip it.
+    </Typography>
+    <Tabs value={0}>
+      <Tab label="One" />
+      <Tab label="Two" />
+      <Tab label="Three" />
+    </Tabs>
+  </Stack>
+</ThemeProvider>

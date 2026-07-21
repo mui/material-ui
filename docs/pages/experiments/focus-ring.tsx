@@ -54,8 +54,14 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Alert from '@mui/material/Alert';
+import SnackbarContent from '@mui/material/SnackbarContent';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { createTheme, ThemeProvider, focusVisibleVars } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 
@@ -466,6 +472,77 @@ function OwnFocus() {
   );
 }
 
+function OnAppBar() {
+  return (
+    <Bucket
+      title="on a colored surface (AppBar · Alert · Snackbar) — out of scope"
+      hint="color=inherit Buttons/IconButtons on saturated containers (primary AppBar, severity-filled Alert, inverted SnackbarContent). The curated ring is primary.main, so it can lack contrast here. OUT OF SCOPE for v1 — one global ring color can't contrast every surface; the consumer overrides outlineColor on the surface (e.g. currentColor). See the RFC."
+    >
+      <Row label="AppBar">
+        <AppBar position="static" sx={{ borderRadius: 1 }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              data-ring-target="IconButton (AppBar)"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Title
+            </Typography>
+            <Button color="inherit" data-ring-target="Button (AppBar)">
+              Login
+            </Button>
+            <IconButton color="inherit" aria-label="add" data-ring-target="IconButton (AppBar)">
+              <AddIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Row>
+      <Row label="Alert (filled)">
+        {/* Filled Alert = severity-colored surface; its action Button + close IconButton are color=inherit. */}
+        <Alert
+          variant="filled"
+          severity="error"
+          sx={{ width: '100%' }}
+          action={
+            <React.Fragment>
+              <Button color="inherit" size="small" data-ring-target="Button (Alert)">
+                UNDO
+              </Button>
+              <IconButton
+                color="inherit"
+                size="small"
+                aria-label="close"
+                data-ring-target="IconButton (Alert)"
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            </React.Fragment>
+          }
+        >
+          Something went wrong
+        </Alert>
+      </Row>
+      <Row label="SnackbarContent">
+        {/* Dark inverted surface; the action Button is color=inherit. */}
+        <SnackbarContent
+          sx={{ width: '100%' }}
+          message="Message sent"
+          action={
+            <Button color="inherit" size="small" data-ring-target="Button (SnackbarContent)">
+              UNDO
+            </Button>
+          }
+        />
+      </Row>
+    </Bucket>
+  );
+}
+
 export default function FocusVisible() {
   const [preset, setPreset] = React.useState<Preset>('true');
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
@@ -747,6 +824,9 @@ export default function FocusVisible() {
               </Paper>
               <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
                 <OwnFocus />
+              </Paper>
+              <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
+                <OnAppBar />
               </Paper>
             </Stack>
           </ThemeProvider>
