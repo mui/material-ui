@@ -15,6 +15,7 @@ import useButtonBase from './useButtonBase';
 import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import { focusVisibleOffsetVar } from '../styles/focusVisibleVars';
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, focusVisible, focusVisibleClassName, suppressFocusVisible, classes } =
@@ -74,6 +75,7 @@ export const ButtonBaseRoot = styled('button', {
       {
         props: { internalDisabledThemeFocusVisible: false },
         style: theme.focusVisible && {
+          [focusVisibleOffsetVar]: 1,
           [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
         },
       },
