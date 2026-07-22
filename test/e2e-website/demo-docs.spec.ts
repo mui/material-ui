@@ -115,6 +115,11 @@ test.describe('Demo docs', () => {
       );
       await expect(page.getByTestId('focused-message')).toHaveText('Edited helper');
 
+      await demo.locator('button[data-ga-event-action="expand"]').click();
+      await expect(page.getByTestId('focused-message')).toHaveText('Ready helper');
+      await editSelectedFile(demo, (source) =>
+        source.replace("getMessage('Ready')", "getMessage('Edited')"),
+      );
       await demo.getByRole('tab', { name: 'message.ts' }).click();
       await expect(demo.locator('pre [class*="pl-"]').first()).toBeAttached();
       await editSelectedFile(demo, (source) => source.replace('helper', 'module'));
@@ -129,7 +134,9 @@ test.describe('Demo docs', () => {
     test('expansion discards edits from every file', async ({ page }) => {
       await page.goto(validationPage);
       const demo = getDemo(page, 'FocusedLiveEdit');
+      const sourceToggle = demo.locator('button[data-ga-event-action="expand"]');
 
+      await sourceToggle.click();
       await editSelectedFile(demo, (source) =>
         source.replace("getMessage('Ready')", "getMessage('Edited')"),
       );
@@ -138,7 +145,8 @@ test.describe('Demo docs', () => {
       await demo.getByRole('tab', { name: 'FocusedLiveEdit.module.css' }).click();
       await editSelectedFile(demo, (source) => source.replace('rgb(20 70 120)', 'rgb(120 40 20)'));
 
-      await demo.locator('button[data-ga-event-action="expand"]').click();
+      await sourceToggle.click(); // Collapse without resetting edits.
+      await sourceToggle.click(); // Re-expansion resets every file.
       await expect(page.getByTestId('focused-message')).toHaveText('Ready helper');
       await expect(page.getByTestId('focused-preview')).toHaveCSS('color', 'rgb(20, 70, 120)');
 
