@@ -177,6 +177,13 @@ function DemoRuntimeThemeProvider({ children }: React.PropsWithChildren) {
   const [runtimeTheme, setRuntimeTheme] = React.useState<Record<string, unknown> | undefined>();
 
   useEnhancedEffect(() => {
+    if (
+      typeof window === 'undefined' ||
+      typeof (window as typeof window & { getInjectTheme?: GetInjectTheme }).getInjectTheme !==
+        'function'
+    ) {
+      return undefined;
+    }
     let active = true;
     loadInjectedTheme().then((theme) => {
       if (active) {
