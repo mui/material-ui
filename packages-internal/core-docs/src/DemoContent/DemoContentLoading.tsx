@@ -6,6 +6,7 @@ import { DemoContainer, DemoFileTabBarSkeleton } from './DemoContainer';
 import type { DemoOptions } from './DemoContent';
 import { demoAnchorId, fileSourceAnchorIds } from './sourceAnchors';
 import { resolveDemoSourceView } from './DemoContent.helpers';
+import { loadDemoContent } from './loadDemoContent';
 
 // ---------------------------------------------------------------------------
 // SSR / streaming placeholder rendered before the live `DemoContent` mounts.
@@ -22,28 +23,23 @@ import { resolveDemoSourceView } from './DemoContent.helpers';
 
 export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
 
-let demoContentPromise: Promise<typeof import('./DemoContent')> | undefined;
-
-export function loadDemoContent() {
-  demoContentPromise ??= import('./DemoContent').catch((error) => {
-    demoContentPromise = undefined;
-    throw error;
-  });
-  return demoContentPromise;
-}
-
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
-  React.useEffect(() => {
-    // Start the content chunk alongside deferred precompute without revealing it early.
-    void loadDemoContent().catch(() => {});
-  }, []);
-
   // `code` is the ready `<code>` for the displayed file — the hook applies
   // `data-collapsible`, `data-total-lines`, and `data-focused-lines` to match
   // the hydrated `<Pre>`, so the collapse CSS sizes the window identically
   // before highlighting swaps in. `focusedLines` is the collapsed window size
   // (0 for a `collapseToEmpty` / `oversizedFocus: 'hide'` block).
-  const { code: fallbackCode, focusedLines = 0, collapsible = false } = useCodeFallback(props);
+  const {
+    code: fallbackCode,
+    focusedLines = 0,
+    collapsible = false,
+    canLoadContent,
+  } = useCodeFallback(props);
+  React.useEffect(() => {
+    if (canLoadContent) {
+      void loadDemoContent().catch(() => {});
+    }
+  }, [canLoadContent]);
   const {
     hideToolbar,
     initialExpanded,
