@@ -130,6 +130,20 @@ describe('<FormControlLabel />', () => {
       expect(container.firstChild).to.have.class(classes.labelPlacementStart);
     });
 
+    it('should have the `end` class', () => {
+      const { container } = render(
+        <FormControlLabel label="Pizza" labelPlacement="end" control={<div />} />,
+      );
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
+    });
+
+    it('should have the `end` class by default', () => {
+      const { container } = render(<FormControlLabel label="Pizza" control={<div />} />);
+
+      expect(container.firstChild).to.have.class(classes.labelPlacementEnd);
+    });
+
     it('should have the `top` class', () => {
       const { container } = render(
         <FormControlLabel label="Pizza" labelPlacement="top" control={<div />} />,
