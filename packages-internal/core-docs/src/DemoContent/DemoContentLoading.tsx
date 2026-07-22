@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { ContentLoadingProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { useCodeFallback } from '@mui/internal-docs-infra/CodeHighlighter';
 import { CodeSource } from './CodeSource';
@@ -21,7 +22,22 @@ import { resolveDemoSourceView } from './DemoContent.helpers';
 
 export type DemoContentLoadingProps = ContentLoadingProps<DemoOptions>;
 
+let demoContentPromise: Promise<typeof import('./DemoContent')> | undefined;
+
+export function loadDemoContent() {
+  demoContentPromise ??= import('./DemoContent').catch((error) => {
+    demoContentPromise = undefined;
+    throw error;
+  });
+  return demoContentPromise;
+}
+
 export default function DemoContentLoading(props: DemoContentLoadingProps) {
+  React.useEffect(() => {
+    // Start the content chunk alongside deferred precompute without revealing it early.
+    void loadDemoContent().catch(() => {});
+  }, []);
+
   // `code` is the ready `<code>` for the displayed file — the hook applies
   // `data-collapsible`, `data-total-lines`, and `data-focused-lines` to match
   // the hydrated `<Pre>`, so the collapse CSS sizes the window identically
