@@ -27,7 +27,7 @@ describe('DemoContent behavior', () => {
     });
   });
 
-  it('keeps focused source and all-file tabs visible while collapsed', () => {
+  it('keeps focused source visible while collapsed', () => {
     expect(
       resolveDemoSourceView({
         expanded: false,
