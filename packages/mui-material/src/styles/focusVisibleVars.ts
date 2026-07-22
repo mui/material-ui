@@ -1,25 +1,34 @@
-// Raw names of the private custom properties the opt-in focus ring reads. Kept internal — the
-// public handle is `focusVisibleVars` below.
+import type * as React from 'react';
+import toPx from '../utils/toPx';
+
+// Private custom properties the opt-in focus ring reads. Wired internally by `createTheme` so a
+// consumer's `theme.focusVisible` insets on clip-prone components (Tab, MenuItem, …) without
+// referencing any var. `--_focusVisible-offset` flips the outline-offset sign (1 outset / -1 inset);
+// `--_focusVisible-behavior` resolves to `inset` there, so prefixing a box-shadow insets it.
 export const focusVisibleOffsetVar = '--_focusVisible-offset';
 export const focusVisibleBehaviorVar = '--_focusVisible-behavior';
 
+const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
+const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
+
 /**
- * CSS custom-property handles for the opt-in focus ring (`theme.focusVisible`). They are emitted
- * regardless of the `cssVariables` option, so reference them to customize the ring while keeping
- * the per-component inset behavior — otherwise a custom `outlineOffset`/`boxShadow` clips on the
- * components that render inside an `overflow: hidden` (Tab, MenuItem, ListItemButton, …).
- *
- * - `behavior` resolves to `inset` on those clip-prone components and to empty elsewhere. Prefix a
- *   `boxShadow` with it so a two-color (WCAG C40) ring insets where it would otherwise clip.
- * - `offset` is the outline-offset sign multiplier (`1` outset, `-1` inset). Multiply a length by
- *   it to keep a custom `outlineOffset` inset-aware.
- *
- * @example
- * createTheme({
- *   focusVisible: { boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px #9c27b0` },
- * });
+ * Wire the private inset vars into a resolved `theme.focusVisible` so a custom `outlineOffset` or
+ * `boxShadow` insets automatically on clip-prone components — the consumer never references a var.
+ * Mutates and returns the object.
  */
-export const focusVisibleVars = {
-  offset: `var(${focusVisibleOffsetVar}, 1)`,
-  behavior: `var(${focusVisibleBehaviorVar}, )`,
-};
+export function wireFocusVisibleVars(resolved: React.CSSProperties): React.CSSProperties {
+  // Multiply the offset by the sign var so it flips to inset on clip-prone components; default to
+  // the outline width when the consumer did not set an offset.
+  resolved.outlineOffset = `calc(${offsetValue} * ${toPx(
+    (resolved.outlineOffset ?? resolved.outlineWidth) as string | number,
+  )})`;
+  // Prefix a box-shadow with the behavior var so it insets there too, unless it already opts in.
+  if (
+    typeof resolved.boxShadow === 'string' &&
+    !/\binset\b/.test(resolved.boxShadow) &&
+    !resolved.boxShadow.includes(focusVisibleBehaviorVar)
+  ) {
+    resolved.boxShadow = `${behaviorValue} ${resolved.boxShadow}`;
+  }
+  return resolved;
+}

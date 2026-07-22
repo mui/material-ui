@@ -25,8 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
-import { focusVisibleVars } from './focusVisibleVars';
-import toPx from '../utils/toPx';
+import { wireFocusVisibleVars } from './focusVisibleVars';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -975,14 +974,8 @@ export default function createThemeWithVars(options = {}, ...args) {
       outlineWidth: 2,
       ...(focusVisibleInput === true ? null : focusVisibleInput),
     };
-    // Mirror createThemeNoVars: default the offset to a per-component sign flip via
-    // `--_focusVisible-offset`, scaled by the resolved width. A user `outlineOffset` still wins.
-    if (resolvedFocusVisible.outlineOffset == null) {
-      resolvedFocusVisible.outlineOffset = `calc(${focusVisibleVars.offset} * ${toPx(
-        resolvedFocusVisible.outlineWidth,
-      )})`;
-    }
-    theme.focusVisible = resolvedFocusVisible;
+    // Mirror createThemeNoVars: wire the private inset vars into the offset and any box-shadow.
+    theme.focusVisible = wireFocusVisibleVars(resolvedFocusVisible);
   }
 
   const parserConfig = {

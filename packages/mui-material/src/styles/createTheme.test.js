@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { ThemeProvider, createTheme, styled, focusVisibleVars } from '@mui/material/styles';
+import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import { deepOrange, green, grey } from '@mui/material/colors';
 import createPalette from './createPalette';
 
@@ -489,7 +489,7 @@ describe('createTheme', () => {
       expect(theme.focusVisible.outlineStyle).to.equal('solid');
     });
 
-    it('a boxShadow is additive on top of the curated outline', () => {
+    it('a boxShadow is additive on the outline and gets the inset behavior var prepended', () => {
       const theme = createTheme({
         cssVariables: false,
         focusVisible: { boxShadow: '0 0 0 4px #fff' },
@@ -497,8 +497,17 @@ describe('createTheme', () => {
       expect(theme.focusVisible).to.deep.equal({
         ...CURATED,
         outlineColor: theme.palette.primary.main,
-        boxShadow: '0 0 0 4px #fff',
+        // prepended internally so the box-shadow insets on clip-prone components
+        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
       });
+    });
+
+    it('does not prepend the behavior var to a boxShadow that already opts into inset', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { boxShadow: 'inset 0 0 0 4px #fff' },
+      });
+      expect(theme.focusVisible.boxShadow).to.equal('inset 0 0 0 4px #fff');
     });
 
     it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
@@ -523,7 +532,7 @@ describe('createTheme', () => {
       );
     });
 
-    it('offset defaults to the sign-flip calc, but a user `outlineOffset` wins', () => {
+    it('outlineOffset defaults to the width, and a custom value is made inset-aware', () => {
       const auto = createTheme({ cssVariables: false, focusVisible: true });
       expect(auto.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
@@ -533,20 +542,11 @@ describe('createTheme', () => {
       expect(wide.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 4px)',
       );
-      // an explicit offset replaces the calc verbatim (reaches non-clipped components; a
-      // clip-prone component would clip — documented as the `styleOverrides` escape hatch)
+      // a custom offset is wrapped in the sign var, so it still insets on clip-prone components
       const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
-      expect(fixed.focusVisible.outlineOffset).to.equal(6);
-    });
-
-    it('`focusVisibleVars` exposes the private-var handles as a stable public contract', () => {
-      // These strings are public API — a consumer references them so a custom outlineOffset/
-      // box-shadow keeps the per-component inset behavior. The default offset calc reuses them.
-      expect(focusVisibleVars.offset).to.equal('var(--_focusVisible-offset, 1)');
-      expect(focusVisibleVars.behavior).to.equal('var(--_focusVisible-behavior, )');
-      expect(
-        createTheme({ cssVariables: false, focusVisible: true }).focusVisible.outlineOffset,
-      ).to.equal(`calc(${focusVisibleVars.offset} * 2px)`);
+      expect(fixed.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 6px)',
+      );
     });
 
     it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {

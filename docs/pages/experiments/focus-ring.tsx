@@ -62,11 +62,12 @@ import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { createTheme, ThemeProvider, focusVisibleVars } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 
 type Preset = 'off' | 'true' | 'recolor' | 'twocolor' | 'shadowonly';
 
+// Plain box-shadows: createTheme prepends the inset behavior var, so they inset on clip-prone components.
 const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSProperties | undefined }> =
   {
     off: { label: 'off', value: undefined },
@@ -74,13 +75,13 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
     recolor: { label: 'recolor', value: { outlineColor: '#9c27b0' } },
     twocolor: {
       label: 'two-color (C40)',
-      value: { boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px gold` },
+      value: { boxShadow: '0 0 0 4px gold' },
     },
     shadowonly: {
       label: 'box-shadow only',
       value: {
         outlineColor: 'transparent',
-        boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px gold`,
+        boxShadow: '0 0 0 4px gold',
       },
     },
   };

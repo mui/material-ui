@@ -6,7 +6,7 @@
   >
     {/* Outer ring: the box-shadow renders outside the Button. */}
     <Button variant="outlined">Tab to me</Button>
-    {/* Inner ring: `focusVisibleVars.behavior` insets the box-shadow so the Tabs scroller cannot clip it. */}
+    {/* Inner ring: the box-shadow insets automatically so the Tabs scroller cannot clip it. */}
     <Tabs value={0}>
       <Tab label="Tab one" />
       <Tab label="Tab two" />

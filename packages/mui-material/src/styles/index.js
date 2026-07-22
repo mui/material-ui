@@ -25,7 +25,6 @@ export function experimental_sx() {
   );
 }
 export { default as createTheme } from './createTheme';
-export { focusVisibleVars } from './focusVisibleVars';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';

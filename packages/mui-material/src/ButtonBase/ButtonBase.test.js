@@ -1632,10 +1632,8 @@ describe('<ButtonBase />', () => {
     });
 
     it.skipIf(isJsdom())('leaves a user box-shadow outset on a non-clip-prone component', () => {
-      // same behavior-var box-shadow that insets on Tab: here the var is unset, so it stays outset
-      const button = focusVisibleButton({
-        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)',
-      });
+      // createTheme prepends the behavior var; on a bare ButtonBase it is unset, so it stays outset
+      const button = focusVisibleButton({ boxShadow: '0 0 0 3px rgb(255, 0, 0)' });
       expect(window.getComputedStyle(button).boxShadow).not.to.match(/inset/);
     });
 

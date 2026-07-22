@@ -50,16 +50,12 @@ createTheme({ focusVisible: { outlineColor: '#9c27b0' } });
 
 ### Use box-shadow as a second layer
 
-A `boxShadow` can be **additive** on top of the outline. This is useful for a two-color ring (WCAG technique [C40](https://www.w3.org/WAI/WCAG21/Techniques/css/C40)) that stays visible on any background.
-
-To make the `boxShadow` flip for the inner focus indicator components, use `focusVisibleVars.behavior` from the styles:
+A `boxShadow` can be **additive** on top of the outline. This is useful for a two-color ring (WCAG technique [C40](https://www.w3.org/WAI/WCAG21/Techniques/css/C40)) that stays visible on any background. Material UI insets the box-shadow automatically on the inner focus indicator components, so a plain value works everywhere:
 
 ```js
-import { focusVisibleVars } from '@mui/material/styles';
-
 createTheme({
   focusVisible: {
-    boxShadow: `${focusVisibleVars.behavior} 0 0 0 4px rgba(0, 0, 0, 0.4)`,
+    boxShadow: '0 0 0 4px rgba(0, 0, 0, 0.4)',
   },
 });
 ```
@@ -75,12 +71,10 @@ The `focusVisible` node will override the component's default focus visible styl
 To replace the outline entirely with box-shadow indicator, set `outline: 'none'`:
 
 ```js
-import { focusVisibleVars } from '@mui/material/styles';
-
 createTheme({
   focusVisible: {
     outline: 'none',
-    boxShadow: `${focusVisibleVars.behavior} 0 0 0 3px #1976d2`,
+    boxShadow: '0 0 0 3px #1976d2',
   },
 });
 ```

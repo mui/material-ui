@@ -17,8 +17,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
-import { focusVisibleVars } from './focusVisibleVars';
-import toPx from '../utils/toPx';
+import { wireFocusVisibleVars } from './focusVisibleVars';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -129,15 +128,9 @@ function createThemeNoVars(options = {}, ...args) {
       outlineWidth: 2,
       ...(muiTheme.focusVisible === true ? null : muiTheme.focusVisible),
     };
-    // Offset defaults to a per-component sign flip: `--_focusVisible-offset` is 1 (outset) unless
-    // a clip-prone component sets -1 (inset), scaled by the resolved width so an inset ring never
-    // clips regardless of the component. A user-provided `outlineOffset` still wins.
-    if (resolvedFocusVisible.outlineOffset == null) {
-      resolvedFocusVisible.outlineOffset = `calc(${focusVisibleVars.offset} * ${toPx(
-        resolvedFocusVisible.outlineWidth,
-      )})`;
-    }
-    muiTheme.focusVisible = resolvedFocusVisible;
+    // Wire the private inset vars so the outline offset and any box-shadow inset automatically on
+    // clip-prone components, without the consumer referencing a var.
+    muiTheme.focusVisible = wireFocusVisibleVars(resolvedFocusVisible);
   }
 
   if (process.env.NODE_ENV !== 'production') {

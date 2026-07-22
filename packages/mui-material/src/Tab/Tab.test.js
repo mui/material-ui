@@ -327,10 +327,10 @@ describe('<Tab />', () => {
       expect(tab).toHaveComputedStyle({ outlineOffset: '-2px' });
     });
 
-    it.skipIf(isJsdom())('insets a user box-shadow via the behavior var', () => {
+    it.skipIf(isJsdom())('insets a user box-shadow automatically on clip-prone components', () => {
       const theme = createTheme({
-        // the C40 two-color pattern: the behavior var makes it inset on clip-prone components
-        focusVisible: { boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 3px rgb(255, 0, 0)' },
+        // a plain box-shadow (C40 two-color pattern); createTheme prepends the behavior var so it insets here
+        focusVisible: { boxShadow: '0 0 0 3px rgb(255, 0, 0)' },
         components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
       });
       render(
