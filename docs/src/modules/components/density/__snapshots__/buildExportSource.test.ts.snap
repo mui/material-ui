@@ -50,7 +50,17 @@ const compact = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                  paddingBlock: 'var(--mui-density-xxs)',
+                  paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xxs) - 1px)',
                 },
               },
               {
@@ -58,7 +68,17 @@ const compact = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-xs) var(--mui-density-lg)',
+                  paddingBlock: 'var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-lg)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xs) - 1px)',
                 },
               },
               {
@@ -66,7 +86,17 @@ const compact = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-sm) var(--mui-density-xl)',
+                  paddingBlock: 'var(--mui-density-sm)',
+                  paddingInline: 'var(--mui-density-xl)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-sm) - 1px)',
                 },
               },
             ],
@@ -79,7 +109,7 @@ const compact = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xs)',
+                  paddingBlock: 'var(--mui-density-xs)',
                 },
               },
             ],
@@ -2546,7 +2576,17 @@ const normal = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                  paddingBlock: 'var(--mui-density-xxs)',
+                  paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xxs) - 1px)',
                 },
               },
               {
@@ -2554,7 +2594,17 @@ const normal = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-xs) var(--mui-density-lg)',
+                  paddingBlock: 'var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-lg)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xs) - 1px)',
                 },
               },
               {
@@ -2562,7 +2612,17 @@ const normal = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-sm) var(--mui-density-xl)',
+                  paddingBlock: 'var(--mui-density-sm)',
+                  paddingInline: 'var(--mui-density-xl)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-sm) - 1px)',
                 },
               },
             ],
@@ -4841,7 +4901,17 @@ const comfort = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xxs) var(--mui-density-sm)',
+                  paddingBlock: 'var(--mui-density-xxs)',
+                  paddingInline: 'var(--mui-density-sm)',
+                },
+              },
+              {
+                props: {
+                  size: 'small',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xxs) - 1px)',
                 },
               },
               {
@@ -4849,7 +4919,17 @@ const comfort = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-xs) var(--mui-density-lg)',
+                  paddingBlock: 'var(--mui-density-xs)',
+                  paddingInline: 'var(--mui-density-lg)',
+                },
+              },
+              {
+                props: {
+                  size: 'medium',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-xs) - 1px)',
                 },
               },
               {
@@ -4857,7 +4937,17 @@ const comfort = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-sm) var(--mui-density-xl)',
+                  paddingBlock: 'var(--mui-density-sm)',
+                  paddingInline: 'var(--mui-density-xl)',
+                },
+              },
+              {
+                props: {
+                  size: 'large',
+                  variant: 'outlined',
+                },
+                style: {
+                  paddingBlock: 'calc(var(--mui-density-sm) - 1px)',
                 },
               },
             ],

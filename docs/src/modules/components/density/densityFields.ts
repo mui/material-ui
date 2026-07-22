@@ -606,6 +606,20 @@ export interface DensityLinkedWrite {
 const negate = (v: string) => `calc(-1 * ${v})`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
+  // Button block padding -> outlined re-emission at -1px (border keeps all
+  // variants at equal height; master's own compensation). One knob per size
+  // moves every variant, outlined stays 1px behind.
+  ...Object.fromEntries(
+    (['small', 'medium', 'large'] as const).map((size) => [
+      `MuiButton|root|size=${size}||paddingBlock`,
+      [
+        {
+          id: `MuiButton|root|size=${size},variant=outlined||paddingBlock`,
+          wrap: (v: string) => `calc(${v} - 1px)`,
+        },
+      ],
+    ]),
+  ),
   // Stepper flow gap -> alternativeLabel connector right edge clears the gap.
   'MuiStepper|root|base||columnGap': [
     {

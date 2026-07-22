@@ -104,9 +104,24 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
-  'MuiButton|root|size=small||padding': 'Button · padding [size=small]',
-  'MuiButton|root|size=medium||padding': 'Button · padding [size=medium]',
-  'MuiButton|root|size=large||padding': 'Button · padding [size=large]',
+  'MuiButton|root|size=small||paddingBlock': 'Button · paddingBlock [size=small]',
+  'MuiButton|root|size=small||paddingInline': 'Button · paddingInline [size=small]',
+  'MuiButton|root|size=small,variant=outlined||paddingBlock': {
+    label: 'Button · paddingBlock [size=small, outlined]',
+    note: 'Linked write: follows the size=small paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
+  },
+  'MuiButton|root|size=medium||paddingBlock': 'Button · paddingBlock [size=medium]',
+  'MuiButton|root|size=medium||paddingInline': 'Button · paddingInline [size=medium]',
+  'MuiButton|root|size=medium,variant=outlined||paddingBlock': {
+    label: 'Button · paddingBlock [size=medium, outlined]',
+    note: 'Linked write: follows the size=medium paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
+  },
+  'MuiButton|root|size=large||paddingBlock': 'Button · paddingBlock [size=large]',
+  'MuiButton|root|size=large||paddingInline': 'Button · paddingInline [size=large]',
+  'MuiButton|root|size=large,variant=outlined||paddingBlock': {
+    label: 'Button · paddingBlock [size=large, outlined]',
+    note: 'Linked write: follows the size=large paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
+  },
   'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · button minWidth',
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':

@@ -41,9 +41,26 @@ export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme:
   const d: DensityScale = (enhanced.vars || enhanced).density;
   addRootOverride(enhanced.components, 'MuiButton', {
     variants: [
-      { props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } },
-      { props: { size: 'medium' }, style: { padding: `${d.xs} ${d.lg}` } },
-      { props: { size: 'large' }, style: { padding: `${d.sm} ${d.xl}` } },
+      // Longhand split: block is the height lever, inline the width. One knob
+      // per axis moves every variant; outlined re-emits BLOCK only at −1px so
+      // its border keeps all variants at equal height (master's own
+      // compensation, e.g. 3px/9px vs contained 4px/10px). Outlined inline is
+      // NOT compensated — width parity across variants is not a goal.
+      { props: { size: 'small' }, style: { paddingBlock: d.xxs, paddingInline: d.sm } },
+      {
+        props: { size: 'small', variant: 'outlined' },
+        style: { paddingBlock: `calc(${d.xxs} - 1px)` },
+      },
+      { props: { size: 'medium' }, style: { paddingBlock: d.xs, paddingInline: d.lg } },
+      {
+        props: { size: 'medium', variant: 'outlined' },
+        style: { paddingBlock: `calc(${d.xs} - 1px)` },
+      },
+      { props: { size: 'large' }, style: { paddingBlock: d.sm, paddingInline: d.xl } },
+      {
+        props: { size: 'large', variant: 'outlined' },
+        style: { paddingBlock: `calc(${d.sm} - 1px)` },
+      },
     ],
   });
   addRootOverride(enhanced.components, 'MuiIconButton', {
