@@ -2,7 +2,7 @@
 
 import { LazyContent } from '@mui/internal-docs-infra/CoordinatedLazy';
 import type { DemoContentProps } from './DemoContent';
-import { loadDemoContent } from './DemoContentLoading';
+import { loadDemoContent } from './loadDemoContent';
 
 /**
  * Client wrapper that code-splits the heavy `DemoContent` (the live demo
