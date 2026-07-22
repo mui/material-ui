@@ -292,6 +292,7 @@ test.describe('Demo docs', () => {
     await page.goto('/material-ui/react-button/');
     const demo = getDemo(page, 'CustomizedButtons');
 
+    await demo.scrollIntoViewIfNeeded();
     await demo.getByRole('button', { name: 'Show code', exact: true }).click();
     await expect(demo.getByRole('button', { name: 'Hide code', exact: true })).toBeVisible();
   });
