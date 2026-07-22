@@ -74,7 +74,6 @@ const createDemoBase = createDemoFactory({
   projectDir,
   projectUrl,
   editActivation: 'interaction',
-  fallbackUsesExtraFiles: true,
 });
 
 const createDemoWithVariantsBase = createDemoWithVariantsFactory({
@@ -84,7 +83,6 @@ const createDemoWithVariantsBase = createDemoWithVariantsFactory({
   projectDir,
   projectUrl,
   editActivation: 'interaction',
-  fallbackUsesExtraFiles: true,
 });
 
 /**
