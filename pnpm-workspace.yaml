@@ -38,7 +38,7 @@ catalogs:
     '@mui/internal-docs-infra': '0.12.1-canary.13'
 
 overrides:
-  '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@9a15984'
+  '@mui/internal-docs-infra': 'https://pkg.pr.new/mui/mui-public/@mui/internal-docs-infra@61efae2'
   # Both were bundled twice in the docs build
   'docs>stylis': '4.2.0'
   'docs>react-is': '19.2.7'
