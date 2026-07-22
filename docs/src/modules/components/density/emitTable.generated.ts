@@ -5865,6 +5865,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       slot: 'root',
       props: { size: 'small' },
       nested: '& .MuiSwitch-switchBase &.Mui-checked',
+      nestedPath: ['& .MuiSwitch-switchBase', '&.Mui-checked'],
       cssProp: 'transform',
     },
     values: {

@@ -48,6 +48,10 @@ type RawLeaf = {
   slot: string;
   matcher: object | ((arg: { ownerState: any }) => boolean) | null;
   nested: string;
+  /** nested selector segments — the space-joined `nested` is LOSSY for
+   * multi-level nesting ('A': {'&.b': …} ≠ 'A &.b' in emotion); the path keeps
+   * ids stable while letting consumers rebuild the true structure. */
+  nestedPath: string[];
   prop: string;
   value: unknown;
   /** the leaf came from the component's theme defaultProps, not styleOverrides. */
@@ -57,23 +61,19 @@ type RawLeaf = {
 // Recurse a style object → leaf props, descending into nested-selector keys.
 function collectLeaves(
   style: Record<string, any>,
-  base: Omit<RawLeaf, 'prop' | 'value' | 'nested'>,
-  nested: string,
+  base: Omit<RawLeaf, 'prop' | 'value' | 'nested' | 'nestedPath'>,
+  nestedPath: string[],
   out: RawLeaf[],
 ): void {
   for (const [k, v] of Object.entries(style)) {
     if (k === 'variants') {
       continue;
     }
-    if (isNestedSelectorKey(k) && v && typeof v === 'object') {
-      collectLeaves(v, base, nested ? `${nested}${NESTED_SEP}${k}` : k, out);
-      continue;
-    }
     if (v && typeof v === 'object') {
-      collectLeaves(v, base, nested ? `${nested}${NESTED_SEP}${k}` : k, out);
+      collectLeaves(v, base, [...nestedPath, k], out);
       continue;
     }
-    out.push({ ...base, nested, prop: k, value: v });
+    out.push({ ...base, nested: nestedPath.join(NESTED_SEP), nestedPath, prop: k, value: v });
   }
 }
 
@@ -85,13 +85,13 @@ function extract(preset: PresetName): RawLeaf[] {
     const styleOverrides = components[component]?.styleOverrides ?? {};
     for (const slot of Object.keys(styleOverrides)) {
       for (const layer of flattenLayers(styleOverrides[slot])) {
-        collectLeaves(layer, { component, slot, matcher: null }, '', out);
+        collectLeaves(layer, { component, slot, matcher: null }, [], out);
         if (Array.isArray(layer.variants)) {
           for (const variant of layer.variants) {
             collectLeaves(
               variant.style ?? {},
               { component, slot, matcher: variant.props },
-              '',
+              [],
               out,
             );
           }
@@ -110,6 +110,7 @@ function extract(preset: PresetName): RawLeaf[] {
         slot: 'defaultProps',
         matcher: null,
         nested: '',
+        nestedPath: [],
         prop,
         value,
         isDefaultProp: true,
@@ -195,6 +196,8 @@ type Row = {
     slot: string;
     props: string;
     nested: string;
+    /** present only for multi-level nesting — rebuild structure from this, not `nested` */
+    nestedPath?: string[];
     kind: 'cssProp' | 'privateVar' | 'defaultProp';
     prop: string;
   };
@@ -219,6 +222,7 @@ function buildRows(): Row[] {
             slot: leaf.slot,
             props: printMatcher(leaf.matcher),
             nested: leaf.nested,
+            ...(leaf.nestedPath.length > 1 ? { nestedPath: leaf.nestedPath } : {}),
             kind: leafKind(leaf),
             prop: leaf.prop,
           },
@@ -248,6 +252,7 @@ function renderRow(r: Row): string {
     `slot: ${JSON.stringify(t.slot)}`,
     `props: ${t.props}`,
     `nested: ${JSON.stringify(t.nested)}`,
+    ...(t.nestedPath ? [`nestedPath: ${JSON.stringify(t.nestedPath)}`] : []),
     `${t.kind}: ${JSON.stringify(t.prop)}`,
   ];
   return `  {
