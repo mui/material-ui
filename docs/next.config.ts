@@ -56,6 +56,7 @@ export default withDeploymentConfig({
           {
             loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
             options: {
+              deferPrecompute: true,
               emphasisOptions: {
                 emitFrameIndent: true,
                 focusFramesMaxSize: 12,
@@ -205,6 +206,7 @@ export default withDeploymentConfig({
               {
                 loader: '@mui/internal-docs-infra/pipeline/loadPrecomputedCodeHighlighter',
                 options: {
+                  deferPrecompute: true,
                   // The CSS in DemoContent.tsx uses `data-frame-indent` to
                   // shift highlighted/focus frames left when collapsed.
                   emphasisOptions: {
