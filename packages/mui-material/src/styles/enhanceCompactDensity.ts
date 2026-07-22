@@ -27,11 +27,11 @@ import { listItemIconClasses } from '../ListItemIcon';
 const scale: DensityScale = {
   xxs: '2px',
   xs: '4px',
-  sm: '6px',
-  md: '8px',
-  lg: '12px',
-  xl: '18px',
-  xxl: '24px',
+  sm: '8px',
+  md: '12px',
+  lg: '16px',
+  xl: '24px',
+  xxl: '32px',
 };
 
 export default function enhanceCompactDensity<T extends EnhanceableTheme>(theme: T) {

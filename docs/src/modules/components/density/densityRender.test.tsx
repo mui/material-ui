@@ -227,11 +227,11 @@ describe('density render — IconButton padding emission', () => {
     );
     const rootHash = hashClassOf(container.querySelector('.MuiIconButton-root')!, 'root');
     // cssVariables mode: the step resolves to a var() ref, not a literal — the
-    // literal only appears in the separate `:root{--mui-density-sm:6px}` block.
+    // literal only appears in the separate `:root{--mui-density-sm:8px}` block.
     expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal(
       'var(--mui-density-sm)',
     );
-    expect(documentCss()).to.match(/--mui-density-sm:\s*6px/, 'expected compact sm step = 6px');
+    expect(documentCss()).to.match(/--mui-density-sm:\s*8px/, 'expected compact sm step = 8px');
     unmount();
   });
 

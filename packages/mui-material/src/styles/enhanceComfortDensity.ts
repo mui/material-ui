@@ -24,13 +24,13 @@ import { inputAdornmentClasses } from '../InputAdornment';
 import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 
 const scale: DensityScale = {
-  xxs: '6px',
-  xs: '8px',
-  sm: '12px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
-  xxl: '40px',
+  xxs: '8px',
+  xs: '12px',
+  sm: '16px',
+  md: '24px',
+  lg: '32px',
+  xl: '48px',
+  xxl: '64px',
 };
 
 export default function enhanceComfortDensity<T extends EnhanceableTheme>(theme: T) {

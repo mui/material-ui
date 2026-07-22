@@ -76,7 +76,7 @@ describe('buildExportSource', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
     expect(src).to.contain("xxs: '2px'"); // compact
     expect(src).to.contain("xxs: '4px'"); // normal
-    expect(src).to.contain("xxs: '6px'"); // comfort
+    expect(src).to.contain("xxs: '8px'"); // comfort
     // overrides keep var(--mui-density-*) refs (applyDensity emits them on the
     // theme's own channel); no MuiCssBaseline :root injection
     expect(src).to.contain('var(--mui-density-');

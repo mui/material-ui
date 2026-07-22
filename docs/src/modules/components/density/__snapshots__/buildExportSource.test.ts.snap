@@ -33,11 +33,11 @@ const compact = {
   scale: {
     xxs: '2px',
     xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '18px',
-    xxl: '24px',
+    sm: '8px',
+    md: '12px',
+    lg: '16px',
+    xl: '24px',
+    xxl: '32px',
   },
   components: {
     MuiButton: {
@@ -2550,12 +2550,12 @@ const compact = {
 const normal = {
   scale: {
     xxs: '4px',
-    xs: '6px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '24px',
-    xxl: '32px',
+    xs: '8px',
+    sm: '12px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+    xxl: '48px',
   },
   components: {
     MuiButton: {
@@ -4866,13 +4866,13 @@ const normal = {
 
 const comfort = {
   scale: {
-    xxs: '6px',
-    xs: '8px',
-    sm: '12px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
-    xxl: '40px',
+    xxs: '8px',
+    xs: '12px',
+    sm: '16px',
+    md: '24px',
+    lg: '32px',
+    xl: '48px',
+    xxl: '64px',
   },
   components: {
     MuiButton: {
