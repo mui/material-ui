@@ -72,18 +72,6 @@ function ariaHiddenSiblings(
   });
 }
 
-function findIndexOf<T>(items: readonly T[], callback: (item: T) => boolean): number {
-  let idx = -1;
-  items.some((item, index) => {
-    if (callback(item)) {
-      idx = index;
-      return true;
-    }
-    return false;
-  });
-  return idx;
-}
-
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   const restoreStyle: Array<{
     /**
@@ -228,7 +216,7 @@ export class ModalManager {
     const hiddenSiblings = getHiddenSiblings(container);
     ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
 
-    const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
+    const containerIndex = this.containers.findIndex((item) => item.container === container);
     if (containerIndex !== -1) {
       this.containers[containerIndex].modals.push(modal);
       return modalIndex;
@@ -245,7 +233,7 @@ export class ModalManager {
   }
 
   mount(modal: Modal, props: ManagedModalProps): void {
-    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
+    const containerIndex = this.containers.findIndex((item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
@@ -260,7 +248,7 @@ export class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(this.containers, (item) => item.modals.includes(modal));
+    const containerIndex = this.containers.findIndex((item) => item.modals.includes(modal));
     const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
