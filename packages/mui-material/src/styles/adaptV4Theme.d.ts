@@ -24,9 +24,7 @@ export interface DeprecatedThemeOptions {
   spacing?: SpacingOptions | undefined;
   transitions?: TransitionsOptions | undefined;
   typography?:
-    | TypographyVariantsOptions
-    | ((palette: Palette) => TypographyVariantsOptions)
-    | undefined;
+    TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions) | undefined;
   variants?: ComponentsVariants | undefined;
   zIndex?: ZIndexOptions | undefined;
   unstable_strictMode?: boolean | undefined;

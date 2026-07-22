@@ -143,8 +143,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
    * @default 'text'
    */
   variant?:
-    | OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides>
-    | undefined;
+    OverridableStringUnion<'text' | 'outlined', PaginationItemPropsVariantOverrides> | undefined;
 }
 
 export interface PaginationItemTypeMap<
