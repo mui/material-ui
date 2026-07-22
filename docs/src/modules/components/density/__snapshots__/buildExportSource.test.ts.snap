@@ -1548,9 +1548,7 @@ const compact = {
             maxWidth: '152px',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
                   paddingTop: 'var(--mui-density-md)',
                 },
@@ -1630,9 +1628,7 @@ const compact = {
                 },
               },
               {
-                props: ({
-            ownerState
-          }) => !ownerState.maxWidth && !ownerState.fullScreen,
+                props: ({ ownerState }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -1956,9 +1952,7 @@ const compact = {
             padding: '0 var(--mui-density-lg)',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     minHeight: '52px',
@@ -1973,9 +1967,7 @@ const compact = {
             marginBlock: 'var(--mui-density-md)',
             variants: [
               {
-                props: ({
-            ownerState
-          }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     marginBlock: 'var(--mui-density-lg)',
@@ -3955,9 +3947,7 @@ const normal = {
             maxWidth: '168px',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
                   paddingTop: 'var(--mui-density-md)',
                 },
@@ -4037,9 +4027,7 @@ const normal = {
                 },
               },
               {
-                props: ({
-            ownerState
-          }) => !ownerState.maxWidth && !ownerState.fullScreen,
+                props: ({ ownerState }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -4363,9 +4351,7 @@ const normal = {
             padding: '0 var(--mui-density-lg)',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     minHeight: '64px',
@@ -4380,9 +4366,7 @@ const normal = {
             marginBlock: 'var(--mui-density-md)',
             variants: [
               {
-                props: ({
-            ownerState
-          }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     marginBlock: 'var(--mui-density-lg)',
@@ -6280,9 +6264,7 @@ const comfort = {
             maxWidth: '184px',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
+                props: ({ ownerState }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
                 style: {
                   paddingTop: 'var(--mui-density-md)',
                 },
@@ -6362,9 +6344,7 @@ const comfort = {
                 },
               },
               {
-                props: ({
-            ownerState
-          }) => !ownerState.maxWidth && !ownerState.fullScreen,
+                props: ({ ownerState }) => !ownerState.maxWidth && !ownerState.fullScreen,
                 style: {
                   maxWidth: 'calc(100% - var(--_dialogMargin) * 2)',
                 },
@@ -6688,9 +6668,7 @@ const comfort = {
             padding: '0 var(--mui-density-lg)',
             variants: [
               {
-                props: ({
-          ownerState
-        }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     minHeight: '76px',
@@ -6705,9 +6683,7 @@ const comfort = {
             marginBlock: 'var(--mui-density-md)',
             variants: [
               {
-                props: ({
-            ownerState
-          }) => !ownerState.disableGutters,
+                props: ({ ownerState }) => !ownerState.disableGutters,
                 style: {
                   '&.Mui-expanded': {
                     marginBlock: 'var(--mui-density-lg)',
