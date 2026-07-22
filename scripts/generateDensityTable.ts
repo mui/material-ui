@@ -31,7 +31,6 @@ const OUT = path.resolve(
 const OUT_KNOBS = path.resolve(__dirname, '../docs/src/modules/components/density/densityKnobs.ts');
 
 const DENSITY_VAR_RE = /^var\(--mui-density-([a-z]+)\)$/;
-const isNestedSelectorKey = (k: string) => /[.&@:> ]/.test(k);
 const NESTED_SEP = ' ';
 
 // --- extraction (mirrors the playground's flattenLayers / matchesSample walk) ---
@@ -280,6 +279,8 @@ export interface DensityEmitTarget {
   props: Record<string, unknown> | ((arg: { ownerState: any }) => boolean) | null;
   /** nested selector chain relative to the slot; '' = none. */
   nested: string;
+  /** per-level selector chain when depth>1 — the space-joined \`nested\` string is lossy for emotion nesting. */
+  nestedPath?: string[];
   /** emitted CSS property (mutually exclusive with privateVar/defaultProp). */
   cssProp?: string;
   /** emitted private var e.g. '--_height'. */
