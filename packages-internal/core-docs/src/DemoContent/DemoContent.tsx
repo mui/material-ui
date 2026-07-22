@@ -158,8 +158,10 @@ export default function DemoContent(props: DemoContentProps) {
     },
     [setCodeVariant],
   );
+  // The highlighter clones `props.code` with live edits; actions still need the initial source.
+  const initialCodeRef = React.useRef(props.code);
   const demo = useDemo(
-    props,
+    { ...props, code: initialCodeRef.current },
     createDemoUseOptions({
       disableLiveEdit,
       selectedTransform,
