@@ -2,6 +2,7 @@
 
 import { LazyContent } from '@mui/internal-docs-infra/CoordinatedLazy';
 import type { DemoContentProps } from './DemoContent';
+import { loadDemoContent } from './DemoContentLoading';
 
 /**
  * Client wrapper that code-splits the heavy `DemoContent` (the live demo
@@ -10,10 +11,9 @@ import type { DemoContentProps } from './DemoContent';
  * renders it once the chunk loads, so `DemoContentLoading` paints its fallback
  * while the content streams in.
  *
- * The import thunk must live in this `'use client'` module: a dynamic import is
- * a function and can't cross the server -> client boundary as a prop, so the
- * lazy boundary has to be defined on the client.
+ * The mounted loading fallback starts the cached import alongside deferred
+ * precompute; this wrapper consumes it only once the full data is ready.
  */
 export default function DemoContentLazy(props: DemoContentProps) {
-  return <LazyContent<DemoContentProps> content={() => import('./DemoContent')} props={props} />;
+  return <LazyContent<DemoContentProps> content={loadDemoContent} props={props} />;
 }
