@@ -90,7 +90,7 @@ export default function DemoContentLoading(props: DemoContentLoadingProps) {
   const toolbar = <div style={{ minHeight: 42 }} />;
 
   const tabs =
-    sourceVisible && fileNames && fileNames.length > 1 ? (
+    initialExpanded && fileNames && fileNames.length > 1 ? (
       <DemoFileTabBarSkeleton aria-hidden />
     ) : null;
 

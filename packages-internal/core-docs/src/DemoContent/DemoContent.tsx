@@ -410,7 +410,7 @@ export default function DemoContent(props: DemoContentProps) {
   const hasMultipleFiles = !hideToolbar && demo.files.length > 1;
 
   const tabs =
-    hasMultipleFiles && sourceVisible ? (
+    hasMultipleFiles && demo.expanded ? (
       <DemoFileTabBar activateOnFocus>
         {demo.files.map((file) => (
           <FileTab key={file.name} value={file.name}>
