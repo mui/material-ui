@@ -6,24 +6,24 @@ import { createTheme } from '@mui/material/styles';
 import { buildExportSource } from './buildExportSource';
 import { buildExportInput, type MappingByPreset } from './exportPayload';
 
-// One override workspace per preset — edits placed under `compact` must NOT leak
-// into the normal/comfort enhancers.
-const workspaces = (compact: Record<string, string> = {}): MappingByPreset => ({
-  compact,
-  normal: {},
-  comfort: {},
+// One override workspace per preset — edits placed under `high` must NOT leak
+// into the medium/low enhancers.
+const workspaces = (high: Record<string, string> = {}): MappingByPreset => ({
+  high,
+  medium: {},
+  low: {},
 });
 
 const EDITS = {
-  densityKey: { 'MuiButton|root|size=small||paddingBlock': 'xs' },
+  densityKey: { 'MuiButton|root|size=small||paddingBlock': 'x-small' },
   rawPx: { 'MuiButton|root|size=medium||paddingBlock': '30px' },
   virtualMembers: {
     // virtual:MuiTab:iconGapBlock — both members get one value (fn-matcher rows)
-    'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom': 'sm',
-    'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'sm',
+    'MuiTab|root|fn:8b76di|& > .MuiTab-icon|marginBottom': 'small',
+    'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'small',
   },
   themeTokens: { 'typography.h1.fontSize': '5rem', 'shape.borderRadius': '2' },
-  scaleStep: { 'density.md': '10px' },
+  scaleStep: { 'density.medium': '10px' },
 };
 
 function transpile(source: string) {
@@ -58,9 +58,9 @@ describe('buildExportSource', () => {
   it('empty edits → baseline-only self-contained file', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
     // RFC contract naming: the file DECLARES the enhance* functions itself
-    expect(src).to.contain('export function enhanceCompactDensity');
-    expect(src).to.contain('export function enhanceNormalDensity');
-    expect(src).to.contain('export function enhanceComfortDensity');
+    expect(src).to.contain('export function enhanceHighDensity');
+    expect(src).to.contain('export function enhanceMediumDensity');
+    expect(src).to.contain('export function enhanceLowDensity');
     // self-contained: only a type imported — never the unreleased enhance* fns
     // (line-anchored: real import statements only, not prose in header comments)
     expect(/^import[^;]*enhance/m.test(src)).to.equal(false);
@@ -74,9 +74,9 @@ describe('buildExportSource', () => {
 
   it('emits the scale map per preset (bare step keys) + keeps var refs in overrides', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
-    expect(src).to.contain("xxs: '2px'"); // compact
-    expect(src).to.contain("xxs: '4px'"); // normal
-    expect(src).to.contain("xxs: '8px'"); // comfort
+    expect(src).to.contain("'xx-small': '2px'"); // high
+    expect(src).to.contain("'xx-small': '4px'"); // medium
+    expect(src).to.contain("'xx-small': '8px'"); // low
     // overrides keep var(--mui-density-*) refs (applyDensity emits them on the
     // theme's own channel); no MuiCssBaseline :root injection
     expect(src).to.contain('var(--mui-density-');
@@ -87,14 +87,14 @@ describe('buildExportSource', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.densityKey, ...EDITS.rawPx })),
     );
-    expect(src).to.contain('var(--mui-density-xs)'); // density-key edit kept as a ref
+    expect(src).to.contain('var(--mui-density-x-small)'); // density-key edit kept as a ref
     expect(src).to.contain("'30px'"); // raw px passes through verbatim
     // static theme: enhance() resolves the refs to px off the scale
-    const { enhanceCompactDensity } = evaluate(src);
-    const theme = enhanceCompactDensity(createTheme({}));
+    const { enhanceHighDensity } = evaluate(src);
+    const theme = enhanceHighDensity(createTheme({}));
     const overrides = JSON.stringify(theme.components.MuiButton.styleOverrides.root);
     expect(overrides).to.not.contain('var('); // resolved
-    expect(overrides).to.contain(theme.density.xs); // xs step px inlined
+    expect(overrides).to.contain(theme.density['x-small']); // x-small step px inlined
   });
 
   it('user override layers are wrapped in code comments; markers never leak as data', () => {
@@ -120,23 +120,25 @@ describe('buildExportSource', () => {
 
   it('scale-step edits replace the step in the scale map, per preset, tagged', () => {
     const src = buildExportSource(buildExportInput(workspaces(EDITS.scaleStep)));
-    // compact md replaced + annotated; other steps keep the baseline
-    expect(src).to.contain("md: '10px', // playground edit");
-    expect(src).to.contain("xxs: '2px'");
-    // exactly one preset carries the edit (compact's workspace only)
+    // high medium replaced + annotated; other steps keep the baseline
+    expect(src).to.contain("medium: '10px', // playground edit");
+    expect(src).to.contain("'xx-small': '2px'");
+    // exactly one preset carries the edit (high's workspace only)
     expect(src.match(/'10px', \/\/ playground edit/g)).to.have.length(1);
-    // runtime: the edited step lands on theme.density, compact only
-    const { enhanceCompactDensity, enhanceNormalDensity } = evaluate(src);
-    expect(enhanceCompactDensity(createTheme({})).density.md).to.equal('10px');
-    expect(enhanceNormalDensity(createTheme({})).density.md).to.not.equal('10px');
+    // runtime: the edited step lands on theme.density, high only
+    const { enhanceHighDensity, enhanceMediumDensity } = evaluate(src);
+    expect(enhanceHighDensity(createTheme({})).density.medium).to.equal('10px');
+    expect(enhanceMediumDensity(createTheme({})).density.medium).to.not.equal('10px');
     // a step alias resolves to the referenced step's px — no var refs
-    const alias = buildExportSource(buildExportInput(workspaces({ 'density.md': 'xs' })));
-    const compactXs = enhanceCompactDensity(createTheme({})).density.xs;
-    expect(alias).to.contain(`md: '${compactXs}', // playground edit`);
-    expect(alias).to.not.contain("md: 'var(--mui-density-"); // scale step is px, not a ref
+    const alias = buildExportSource(buildExportInput(workspaces({ 'density.medium': 'x-small' })));
+    const highXSmall = enhanceHighDensity(createTheme({})).density['x-small'];
+    expect(alias).to.contain(`medium: '${highXSmall}', // playground edit`);
+    expect(alias).to.not.contain("medium: 'var(--mui-density-"); // scale step is px, not a ref
     // invalid inputs are inert: multi-token and self-referencing steps keep baseline
     const invalid = buildExportSource(
-      buildExportInput(workspaces({ 'density.md': 'xs md', 'density.lg': 'lg' })),
+      buildExportInput(
+        workspaces({ 'density.medium': 'x-small medium', 'density.large': 'large' }),
+      ),
     );
     expect(invalid).not.to.contain(', // playground edit');
   });
@@ -151,13 +153,13 @@ describe('buildExportSource', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.densityKey, ...EDITS.themeTokens })),
     );
-    const { enhanceCompactDensity } = evaluate(src);
+    const { enhanceHighDensity } = evaluate(src);
     const base = createTheme({ palette: { primary: { main: '#ff5252' } } });
-    const enhanced = enhanceCompactDensity(base);
+    const enhanced = enhanceHighDensity(base);
     // app theme survives the round-trip
     expect(enhanced.palette.primary.main).to.equal('#ff5252');
     // scale exposed on theme.density (raw px) — no CssBaseline injected
-    expect(enhanced.density.xxs).to.equal('2px');
+    expect(enhanced.density['xx-small']).to.equal('2px');
     expect(enhanced.components.MuiCssBaseline).to.equal(undefined);
     // static theme: component overrides present, flat array slots, refs → px
     const buttonRoot = enhanced.components.MuiButton.styleOverrides.root;
@@ -166,40 +168,40 @@ describe('buildExportSource', () => {
     expect(JSON.stringify(buttonRoot)).to.not.contain('var('); // resolved to px
     // CSS-vars theme: scale on theme.density + vars.density refs; overrides KEEP
     // the refs; applyDensity emits --mui-density-* on the theme's own stylesheet.
-    const varsTheme = enhanceCompactDensity(createTheme({ cssVariables: true }));
-    expect(varsTheme.density.xxs).to.equal('2px');
+    const varsTheme = enhanceHighDensity(createTheme({ cssVariables: true }));
+    expect(varsTheme.density['xx-small']).to.equal('2px');
     expect(varsTheme.components.MuiCssBaseline).to.equal(undefined);
-    expect(varsTheme.vars.density.xxs).to.equal('var(--mui-density-xxs)');
+    expect(varsTheme.vars.density['xx-small']).to.equal('var(--mui-density-xx-small)');
     expect(JSON.stringify(varsTheme.components.MuiButton.styleOverrides.root)).to.contain(
       'var(--mui-density-',
     );
     const sheets = JSON.stringify(varsTheme.generateStyleSheets());
-    expect(sheets).to.contain('--mui-density-xxs');
+    expect(sheets).to.contain('--mui-density-xx-small');
     expect(sheets).to.contain('2px');
     // user themeTokens applied
     expect(enhanced.typography.h1.fontSize).to.equal('5rem');
     expect(enhanced.shape.borderRadius).to.equal(2);
-    // compact typography reflow baked per preset
-    expect(enhanceCompactDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
+    // high typography reflow baked per preset
+    expect(enhanceHighDensity(createTheme({})).typography.body2.fontSize).to.equal('0.8125rem');
   });
 
   it('defaultProps emissions (DataGrid heights): baked per preset, app defaults win, knob edit applies', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
     expect(src).to.contain('defaultProps');
     expect(src).to.contain('rowHeight: 28');
-    const { enhanceCompactDensity, enhanceComfortDensity } = evaluate(src);
-    const enhanced = enhanceCompactDensity(createTheme({}));
+    const { enhanceHighDensity, enhanceLowDensity } = evaluate(src);
+    const enhanced = enhanceHighDensity(createTheme({}));
     expect(enhanced.components.MuiDataGrid.defaultProps).to.deep.equal({
       rowHeight: 28,
       columnHeaderHeight: 28,
     });
     expect(
-      enhanceComfortDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+      enhanceLowDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
     ).to.equal(60);
     // the app's own defaultProps win over the baked preset value
     const appTheme = createTheme({}) as any;
     appTheme.components = { MuiDataGrid: { defaultProps: { rowHeight: 33 } } };
-    const merged = enhanceCompactDensity(appTheme);
+    const merged = enhanceHighDensity(appTheme);
     expect(merged.components.MuiDataGrid.defaultProps.rowHeight).to.equal(33);
     expect(merged.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(28);
     // a playground edit on the defaultProps knob bakes into its preset only
@@ -209,45 +211,45 @@ describe('buildExportSource', () => {
       ),
     );
     expect(
-      edited.enhanceCompactDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+      edited.enhanceHighDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
     ).to.equal(48);
     expect(
-      edited.enhanceNormalDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
+      edited.enhanceMediumDensity(createTheme({})).components.MuiDataGrid.defaultProps.rowHeight,
     ).to.equal(40);
   });
 
-  it('edits are per-preset: compact edits do NOT leak into enhanceNormalDensity', () => {
+  it('edits are per-preset: high edits do NOT leak into enhanceMediumDensity', () => {
     const src = buildExportSource(
       buildExportInput(workspaces({ ...EDITS.rawPx, ...EDITS.themeTokens })),
     );
-    const { enhanceNormalDensity } = evaluate(src);
-    const normal = enhanceNormalDensity(createTheme({}));
-    // normal's workspace was empty → master typography/shape, no 30px override
-    expect(normal.typography.h1.fontSize).not.to.equal('5rem');
-    expect(normal.shape.borderRadius).to.equal(4);
-    expect(JSON.stringify(normal.components.MuiButton.styleOverrides.root)).not.to.contain('30px');
+    const { enhanceMediumDensity } = evaluate(src);
+    const medium = enhanceMediumDensity(createTheme({}));
+    // medium's workspace was empty → master typography/shape, no 30px override
+    expect(medium.typography.h1.fontSize).not.to.equal('5rem');
+    expect(medium.shape.borderRadius).to.equal(4);
+    expect(JSON.stringify(medium.components.MuiButton.styleOverrides.root)).not.to.contain('30px');
   });
 
-  it('spacing: compact bakes its tuned base (6); normal/comfort keep MUI default; dual-mode runtime', () => {
+  it('spacing: high bakes its tuned base (6); medium/low keep MUI default; dual-mode runtime', () => {
     const src = buildExportSource(buildExportInput(workspaces()));
-    expect(src).to.contain('spacing: 6,'); // compact tightens spacing, baked plain
-    const { enhanceCompactDensity, enhanceNormalDensity } = evaluate(src);
+    expect(src).to.contain('spacing: 6,'); // high tightens spacing, baked plain
+    const { enhanceHighDensity, enhanceMediumDensity } = evaluate(src);
     // CSS-vars theme: --mui-spacing rides the theme's own channel
-    const varsTheme = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    const varsTheme = enhanceHighDensity(createTheme({ cssVariables: true }));
     expect(varsTheme.vars.spacing).to.equal('var(--mui-spacing, 6px)');
     expect(JSON.stringify(varsTheme.generateStyleSheets())).to.contain('"--mui-spacing":"6px"');
     // static theme: spacing function scales off the tuned base (6 * 2)
-    expect(enhanceCompactDensity(createTheme({})).spacing(2)).to.equal('12px');
-    // normal keeps the MUI default (8) — no baked spacing override (8 * 2)
-    expect(enhanceNormalDensity(createTheme({})).spacing(2)).to.equal('16px');
+    expect(enhanceHighDensity(createTheme({})).spacing(2)).to.equal('12px');
+    // medium keeps the MUI default (8) — no baked spacing override (8 * 2)
+    expect(enhanceMediumDensity(createTheme({})).spacing(2)).to.equal('16px');
   });
 
   it('spacing edit overrides the preset base and is tagged', () => {
     const src = buildExportSource(buildExportInput(workspaces({ spacing: '10' })));
     expect(src).to.contain('spacing: 10, // playground edit');
-    const { enhanceCompactDensity } = evaluate(src);
-    expect(enhanceCompactDensity(createTheme({})).spacing(3)).to.equal('30px'); // 10 * 3
-    const vars = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    const { enhanceHighDensity } = evaluate(src);
+    expect(enhanceHighDensity(createTheme({})).spacing(3)).to.equal('30px'); // 10 * 3
+    const vars = enhanceHighDensity(createTheme({ cssVariables: true }));
     expect(vars.vars.spacing).to.equal('var(--mui-spacing, 10px)');
   });
 

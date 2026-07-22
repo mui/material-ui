@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import {
   createTheme,
-  enhanceCompactDensity,
-  enhanceNormalDensity,
-  enhanceComfortDensity,
+  enhanceHighDensity,
+  enhanceMediumDensity,
+  enhanceLowDensity,
 } from '@mui/material/styles';
 import { densityEmitTable, type DensityEmitRow } from './emitTable.generated';
 import {
@@ -21,9 +21,9 @@ import { densityKnobs } from './densityKnobs';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 
 const PRESETS = {
-  compact: enhanceCompactDensity,
-  normal: enhanceNormalDensity,
-  comfort: enhanceComfortDensity,
+  high: enhanceHighDensity,
+  medium: enhanceMediumDensity,
+  low: enhanceLowDensity,
 } as const;
 type PresetLevel = keyof typeof PRESETS;
 const LEVELS = Object.keys(PRESETS) as PresetLevel[];
@@ -153,7 +153,7 @@ describe('density playground — emit table & override builder', () => {
         const row = densityRow(id)!;
         const value = row.values[level];
         if (value === undefined) {
-          continue; // row not emitted at this preset (e.g. compact-only type)
+          continue; // row not emitted at this preset (e.g. high-only type)
         }
         const { component, slot, props, nested } = row.target;
         if (row.target.defaultProp) {
@@ -180,7 +180,7 @@ describe('density playground — emit table & override builder', () => {
         }
         const value = row.values[level];
         if (value === undefined) {
-          continue; // row not emitted at this preset (e.g. compact-only type)
+          continue; // row not emitted at this preset (e.g. high-only type)
         }
         const merged = mergeOntoPreset(preset, buildOverrides([{ row, value }]));
         const { component, slot, nested } = row.target;
@@ -230,7 +230,7 @@ describe('density playground — emit table & override builder', () => {
       const siblingId = 'MuiMenuItem|root|dense=true||paddingBlock';
       const editRow = densityRow(editId)!;
       const siblingRow = densityRow(siblingId)!;
-      const edited = 'var(--mui-density-xxl)';
+      const edited = 'var(--mui-density-xx-large)';
       const merged = mergeOntoPreset(preset, buildOverrides([{ row: editRow, value: edited }]));
 
       expect(
@@ -247,7 +247,7 @@ describe('density playground — emit table & override builder', () => {
     it('override-only row builds a styleOverride only when filled (per-size)', () => {
       const row = densityRow('MuiButton|root|size=medium||borderRadius')!;
       expect(row, 'Button borderRadius extra row registered').to.not.equal(undefined);
-      expect(row.values.compact, 'no preset default').to.equal(undefined);
+      expect(row.values.high, 'no preset default').to.equal(undefined);
       const built = buildOverrides([{ row, value: '8px' }]);
       const variant = built.MuiButton.styleOverrides.root.variants[0];
       expect(variant.props).to.deep.equal({ size: 'medium' });
@@ -291,15 +291,15 @@ describe('density playground — emit table & override builder', () => {
 
 describe('defaultProps emission (DataGrid heights)', () => {
   // Requirement bases: 28/40/60 (ratios 0.7/1/1.5 — the exact scale the grid's
-  // fixed ×0.7/×1.3 density stops cannot express; comfort 60 is unreachable
+  // fixed ×0.7/×1.3 density stops cannot express; low 60 is unreachable
   // through floor(base × 1.3)). Header height follows the same values.
   // Heights are JS-gated in the grid (virtualizer math) — CSS can't move them,
   // so the presets carry them as theme defaultProps; the grid's own density
   // prop stays unset (factor ×1 → rendered = base exactly).
   const HEIGHTS: Record<PresetLevel, { rowHeight: number; columnHeaderHeight: number }> = {
-    compact: { rowHeight: 28, columnHeaderHeight: 28 },
-    normal: { rowHeight: 40, columnHeaderHeight: 40 },
-    comfort: { rowHeight: 60, columnHeaderHeight: 60 },
+    high: { rowHeight: 28, columnHeaderHeight: 28 },
+    medium: { rowHeight: 40, columnHeaderHeight: 40 },
+    low: { rowHeight: 60, columnHeaderHeight: 60 },
   };
 
   it('emit table carries the defaultProps rows with per-preset values', () => {
@@ -328,7 +328,7 @@ describe('defaultProps emission (DataGrid heights)', () => {
     }
     const theme = createTheme({ cssVariables: true }) as any;
     theme.components = { MuiDataGrid: { defaultProps: { rowHeight: 33 } } };
-    const enhanced = PRESETS.compact(theme) as any;
+    const enhanced = PRESETS.high(theme) as any;
     expect(enhanced.components.MuiDataGrid.defaultProps.rowHeight).to.equal(33);
     expect(enhanced.components.MuiDataGrid.defaultProps.columnHeaderHeight).to.equal(28);
   });
@@ -361,30 +361,30 @@ describe('density scale emission — theme vars channel', () => {
       const theme = PRESETS[level](createTheme({ cssVariables: true })) as any;
       expect(theme.components.MuiCssBaseline, level).to.equal(undefined);
       // prefix-aware refs off theme.cssVarPrefix
-      expect(theme.vars.density.md, level).to.equal('var(--mui-density-md)');
+      expect(theme.vars.density.medium, level).to.equal('var(--mui-density-medium)');
       // CssVarsProvider rebuilds vars from generateThemeVars — density must survive
-      expect(theme.generateThemeVars().density.md, level).to.equal('var(--mui-density-md)');
+      expect(theme.generateThemeVars().density.medium, level).to.equal('var(--mui-density-medium)');
       const sheets = theme.generateStyleSheets();
-      const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--mui-density-md']);
-      expect(densitySheet[':root']['--mui-density-md'], level).to.equal(theme.density.md);
+      const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--mui-density-medium']);
+      expect(densitySheet[':root']['--mui-density-medium'], level).to.equal(theme.density.medium);
     }
   });
 
   it('custom cssVarPrefix flows into the refs and the emitted sheet', () => {
-    const theme = enhanceCompactDensity(
+    const theme = enhanceHighDensity(
       createTheme({ cssVariables: { cssVarPrefix: 'acme' } }),
     ) as any;
-    expect(theme.vars.density.md).to.equal('var(--acme-density-md)');
+    expect(theme.vars.density.medium).to.equal('var(--acme-density-medium)');
     const sheets = theme.generateStyleSheets();
-    const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--acme-density-md']);
-    expect(densitySheet[':root']['--acme-density-md']).to.equal(theme.density.md);
+    const densitySheet = sheets.find((sheet: any) => sheet[':root']?.['--acme-density-medium']);
+    expect(densitySheet[':root']['--acme-density-medium']).to.equal(theme.density.medium);
   });
 
   it('static theme: raw px on theme.density only — no vars, no stylesheet wrapping', () => {
-    const theme = enhanceCompactDensity(createTheme()) as any;
+    const theme = enhanceHighDensity(createTheme()) as any;
     expect(theme.vars).to.equal(undefined);
     expect(theme.generateStyleSheets).to.equal(undefined);
     expect(theme.components.MuiCssBaseline).to.equal(undefined);
-    expect(theme.density.md).to.match(/px$/);
+    expect(theme.density.medium).to.match(/px$/);
   });
 });

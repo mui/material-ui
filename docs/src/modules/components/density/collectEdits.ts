@@ -30,7 +30,7 @@ export function collectDensityEdits(mapping: Record<string, string>): DensityEdi
 }
 
 export interface ScaleEdit {
-  /** scale step (`xxs`…`xxl`) */
+  /** scale step (`xx-small`…`xx-large`) */
   key: string;
   /** resolved CSS value — a typed step name becomes its `var(--mui-density-*)` ref */
   value: string;

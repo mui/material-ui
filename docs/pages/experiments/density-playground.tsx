@@ -128,9 +128,9 @@ import {
   createTheme,
   keyframes,
   ThemeProvider,
-  enhanceCompactDensity,
-  enhanceNormalDensity,
-  enhanceComfortDensity,
+  enhanceHighDensity,
+  enhanceMediumDensity,
+  enhanceLowDensity,
 } from '@mui/material/styles';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 import {
@@ -173,7 +173,7 @@ import { KnobInput } from 'docs/src/modules/components/density/KnobInput';
 // displayWeekNumber calls value.week() — AdapterDayjs does not install the plugin itself.
 dayjs.extend(weekOfYear);
 
-const PRESETS = ['unset', 'compact', 'normal', 'comfort'] as const;
+const PRESETS = ['unset', 'high', 'medium', 'low'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
 const VARIANTS = ['text', 'outlined', 'contained'] as const;
 const ICON_BUTTON_COLORS = ['default', 'primary', 'secondary'] as const;
@@ -211,7 +211,7 @@ const EMPTY_MAPPING: Record<string, string> = {};
 const HOW_TO_STEPS = [
   {
     label: 'Pick a density preset',
-    body: 'Choose compact, normal, or comfort in the top bar — the whole canvas reflows off that preset. "none" keeps today\'s defaults (and hides the knobs).',
+    body: 'Choose high, medium, or low in the top bar — the whole canvas reflows off that preset. "none" keeps today\'s defaults (and hides the knobs).',
   },
   {
     label: 'Explore components',
@@ -219,7 +219,7 @@ const HOW_TO_STEPS = [
   },
   {
     label: 'Tweak the knobs',
-    body: 'Each knob accepts a density step (xxs…xxl) or any raw CSS value (12px, 2rem). The placeholder shows what the preset ships; the helper shows what your input resolves to. Edits belong to the ACTIVE preset — switch presets and each keeps its own overrides.',
+    body: 'Each knob accepts a density step (xx-small…xx-large) or any raw CSS value (12px, 2rem). The placeholder shows what the preset ships; the helper shows what your input resolves to. Edits belong to the ACTIVE preset — switch presets and each keeps its own overrides.',
   },
   {
     label: 'Adjust theme tokens',
@@ -581,16 +581,16 @@ const DEBUG_SX = {
 
 const PRESET_LABEL: Record<Preset, string> = {
   unset: 'none',
-  compact: 'compact',
-  normal: 'normal',
-  comfort: 'comfort',
+  high: 'high',
+  medium: 'medium',
+  low: 'low',
 };
 
 // Each preset maps to its `enhance*Density` fn; `unset` applies none.
 const PRESET_FN = {
-  compact: enhanceCompactDensity,
-  normal: enhanceNormalDensity,
-  comfort: enhanceComfortDensity,
+  high: enhanceHighDensity,
+  medium: enhanceMediumDensity,
+  low: enhanceLowDensity,
 } as const;
 
 interface DensityComponentDef {
@@ -1189,7 +1189,7 @@ function CardMatrix() {
           </Typography>
         </CardContent>
       </Card>
-      {/* Dense selectable grid — compact fits more cards per row; CardActionArea
+      {/* Dense selectable grid — high density fits more cards per row; CardActionArea
           is a ButtonBase, so height-measure badges apply. */}
       <Box sx={{ display: 'flex', gap: 2 }}>
         {(['Plants', 'Animals'] as const).map((title, index) => (
@@ -2668,7 +2668,7 @@ function StepperMatrix() {
           {steps}
         </Stepper>
       </Stack>
-      {/* Row 2 — vertical: compact re-centers the flow lines (connector/content
+      {/* Row 2 — vertical: high density re-centers the flow lines (connector/content
           insets); the column-gap knob must NOT move these. */}
       <Stack
         direction="row"
@@ -3183,7 +3183,7 @@ const COMPONENT_DEFS = {
     Matrix: React.memo(SelectMatrix),
   },
   SvgIcon: {
-    canvasLabel: 'SvgIcon — global size per fontSize variant (compact-only emission)',
+    canvasLabel: 'SvgIcon — global size per fontSize variant (high-only emission)',
     Matrix: React.memo(SvgIconMatrix),
   },
   Alert: {
@@ -3205,8 +3205,8 @@ type Selection = 'All' | ComponentName;
 
 // The active-preset default for a registered field: read straight off the
 // generated table (the value enhance*Density actually emits). Density leaves
-// echo their step key (e.g. 'xs'); sizing leaves echo raw px. Placeholder only.
-type PresetLevel = 'compact' | 'normal' | 'comfort';
+// echo their step key (e.g. 'x-small'); sizing leaves echo raw px. Placeholder only.
+type PresetLevel = 'high' | 'medium' | 'low';
 
 // Field ids absorbed into a virtual knob — hidden as individual inputs, driven
 // by the combined control instead.
@@ -3753,12 +3753,12 @@ export default function DensityExperiment() {
   const [howToOpen, setHowToOpen] = React.useState(false);
 
   // User overrides, keyed by generated-table row id — ONE WORKSPACE PER PRESET.
-  // Overrides made under compact stay with compact: switch to normal → blank
-  // knobs (normal's own empty state), switch back → compact's values return.
+  // Overrides made under high stay with high: switch to medium → blank
+  // knobs (medium's own empty state), switch back → high's values return.
   // `unset` has no workspace (knobs disabled + blank).
   const [mappingByPreset, setMappingByPreset] = React.useState<
     Record<PresetLevel, Record<string, string>>
-  >({ compact: {}, normal: {}, comfort: {} });
+  >({ high: {}, medium: {}, low: {} });
   const mapping = preset === 'unset' ? EMPTY_MAPPING : mappingByPreset[preset];
 
   // Shareable URL — read the query ONCE when the router is ready, then lift every
@@ -3829,7 +3829,7 @@ export default function DensityExperiment() {
     if (preset === 'unset') {
       return createTheme({ cssVariables: true });
     }
-    // Per-preset theme.spacing base (compact tightens to 6) — set on the base
+    // Per-preset theme.spacing base (high tightens to 6) — set on the base
     // theme so --mui-spacing ships on the preset's own channel; placeholder +
     // canvas read it generically, and the export bakes it. See PRESET_SPACING_DEFAULT.
     return PRESET_FN[preset](
@@ -3927,7 +3927,7 @@ export default function DensityExperiment() {
     }
     const out = { ...presetScalePx };
     for (const edit of edits) {
-      // A step alias (`var(--mui-density-xs)`) resolves against the preset's own px.
+      // A step alias (`var(--mui-density-x-small)`) resolves against the preset's own px.
       out[edit.key] = previewText(edit.value, presetScalePx);
     }
     return out;
@@ -4304,7 +4304,7 @@ export default function DensityExperiment() {
                           // placeholder = what you'd type (vars shortened, blank when
                           // no default); helper = the resolved value of draft-or-default.
                           // A value equal to base is inherited, not preset-emitted →
-                          // blank (e.g. comfort touches only `button`, so h1…h6 stay blank).
+                          // blank (e.g. low touches only `button`, so h1…h6 stay blank).
                           // theme.spacing is a function → can't be read off the
                           // theme as a number; its default is the per-preset base.
                           const isSpacing = knob.id === 'spacing';

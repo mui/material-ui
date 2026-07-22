@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider, enhanceCompactDensity } from '@mui/material/styles';
+import { createTheme, ThemeProvider, enhanceHighDensity } from '@mui/material/styles';
 import TablePagination from '@mui/material/TablePagination';
 import IconButton from '@mui/material/IconButton';
 import { densityRow } from './densityFields';
@@ -101,7 +101,7 @@ function leafRules(css: string): Array<{ selector: string; decls: string }> {
 }
 
 // CSS lets the SAME rule declare a property twice (e.g. master's literal
-// `padding:8px` followed by our override's `padding:var(--mui-density-sm)`) —
+// `padding:8px` followed by our override's `padding:var(--mui-density-small)`) —
 // the LAST one wins. A plain `.match()` only proves our value is present
 // somewhere, not that it's the one actually applied. This finds every leaf
 // rule whose selector chain contains ALL of `mustInclude` and returns the
@@ -144,16 +144,16 @@ function winningDeclaration(css: string, mustInclude: string[], prop: string): s
 // a static emit-table check cannot catch a resolver eating the styles.
 describe('density render — TablePagination root-slot emission', () => {
   it('spread-resolver slots (toolbar/select) stay empty in the preset emission', () => {
-    const theme = enhanceCompactDensity(createTheme({ cssVariables: true })) as unknown as {
+    const theme = enhanceHighDensity(createTheme({ cssVariables: true })) as unknown as {
       components: Record<string, { styleOverrides?: Record<string, unknown> }>;
     };
     const slots = Object.keys(theme.components.MuiTablePagination?.styleOverrides ?? {});
     expect(slots).to.deep.equal(['root']);
   });
 
-  it('compact preset lands the toolbar minHeight in rendered CSS at root-class specificity', () => {
+  it('high preset lands the toolbar minHeight in rendered CSS at root-class specificity', () => {
     const { container, unmount } = mountPagination(
-      enhanceCompactDensity(createTheme({ cssVariables: true })),
+      enhanceHighDensity(createTheme({ cssVariables: true })),
     );
     const rootHash = hashClassOf(container.querySelector('.MuiTablePagination-root')!, 'root');
     expect(
@@ -163,7 +163,7 @@ describe('density render — TablePagination root-slot emission', () => {
   });
 
   it('a knob edit on the toolbar minHeight row reaches rendered CSS (playground apply path)', () => {
-    const preset = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    const preset = enhanceHighDensity(createTheme({ cssVariables: true }));
     const row = densityRow(TOOLBAR_MIN_HEIGHT_ID);
     expect(Boolean(row), `${TOOLBAR_MIN_HEIGHT_ID} resolves`).to.equal(true);
     const components = mergeOntoPreset(
@@ -181,7 +181,7 @@ describe('density render — TablePagination root-slot emission', () => {
   it('control: an array-form toolbar-slot override is eaten by the spread resolver', () => {
     // Pins the constraint. If this starts FAILING, upstream fixed the resolver —
     // the root-slot detour can migrate back to plain toolbar/select emissions.
-    const preset = enhanceCompactDensity(createTheme({ cssVariables: true })) as unknown as {
+    const preset = enhanceHighDensity(createTheme({ cssVariables: true })) as unknown as {
       components: Record<string, { styleOverrides?: Record<string, unknown> }>;
     };
     const components = {
@@ -220,23 +220,23 @@ describe('density render — TablePagination root-slot emission', () => {
 // prove it, per the TablePagination lesson: static emit-table checks can't see a
 // resolver eating styles.
 describe('density render — IconButton padding emission', () => {
-  it("compact preset padding WINS over master's literal in the same rule block", () => {
+  it("high preset padding WINS over master's literal in the same rule block", () => {
     const { container, unmount } = mount(
-      enhanceCompactDensity(createTheme({ cssVariables: true })),
+      enhanceHighDensity(createTheme({ cssVariables: true })),
       <IconButton aria-label="more" />,
     );
     const rootHash = hashClassOf(container.querySelector('.MuiIconButton-root')!, 'root');
     // cssVariables mode: the step resolves to a var() ref, not a literal — the
-    // literal only appears in the separate `:root{--mui-density-sm:8px}` block.
+    // literal only appears in the separate `:root{--mui-density-small:8px}` block.
     expect(winningDeclaration(documentCss(), [rootHash], 'padding')).to.equal(
-      'var(--mui-density-sm)',
+      'var(--mui-density-small)',
     );
-    expect(documentCss()).to.match(/--mui-density-sm:\s*8px/, 'expected compact sm step = 8px');
+    expect(documentCss()).to.match(/--mui-density-small:\s*8px/, 'expected high small step = 8px');
     unmount();
   });
 
   it('a knob edit on the medium padding row WINS in rendered CSS (playground apply path)', () => {
-    const preset = enhanceCompactDensity(createTheme({ cssVariables: true }));
+    const preset = enhanceHighDensity(createTheme({ cssVariables: true }));
     const row = densityRow(ICON_BUTTON_MEDIUM_PADDING_ID);
     expect(Boolean(row), `${ICON_BUTTON_MEDIUM_PADDING_ID} resolves`).to.equal(true);
     const components = mergeOntoPreset(

@@ -6,11 +6,11 @@
 // `var(--mui-density-*)` refs; the generated `enhance` mirrors the real preset:
 // CSS-vars themes ship the scale on the theme's own vars channel (no
 // <CssBaseline/>), static themes resolve the refs to raw px at runtime. The scale
-// is a plain `{ xxs, xs, … }` map (a `DensityScale`) exposed on `theme.density`.
+// is a plain `{ 'xx-small', 'x-small', … }` map (a `DensityScale`) exposed on `theme.density`.
 
 export interface ExportPresetPayload {
-  name: 'compact' | 'normal' | 'comfort';
-  /** the scale map — { xxs: '2px', … } (bare step keys, a DensityScale exposed on theme.density); user-edited steps carry a USER_VALUE_KEY wrapper */
+  name: 'high' | 'medium' | 'low';
+  /** the scale map — { 'xx-small': '2px', … } (bare step keys, a DensityScale exposed on theme.density); user-edited steps carry a USER_VALUE_KEY wrapper */
   scale: Record<string, unknown>;
   /** baseline ⊕ THIS preset's edits, flat-array slots; density sizes stay var(--mui-density-*) refs (resolved to px at runtime for static themes) */
   components: Record<string, { styleOverrides: Record<string, unknown> }>;
@@ -132,7 +132,7 @@ ${spacingLine}};`;
 //     to raw px at runtime; ThemeProvider alone, still no <CssBaseline/>.
 //
 // Usage:
-//   const theme = enhanceCompactDensity(createTheme({ /* your options */ }));
+//   const theme = enhanceHighDensity(createTheme({ /* your options */ }));
 //   <ThemeProvider theme={theme}>…</ThemeProvider>
 import type { Theme } from '@mui/material/styles';
 
@@ -140,7 +140,7 @@ type AnyRecord = Record<string, any>;
 
 // Per-preset payload, baked at export time — each preset carries ITS OWN
 // playground edits (the playground keeps one override workspace per preset):
-//   scale      → { xxs: '<px>', … } — the DensityScale, exposed on theme.density
+//   scale      → { 'xx-small': '<px>', … } — the DensityScale, exposed on theme.density
 //   components → preset baseline emissions ⊕ that preset's edits (flat-array
 //                slots); density sizes stay var(--mui-density-*) refs
 //   typography → the preset's own type reflow ⊕ that preset's typography edits
@@ -165,7 +165,7 @@ function mergeTypography(base: AnyRecord, patch: AnyRecord): AnyRecord {
 // theme's own stylesheet channel).
 function resolveDensityRefs(value: unknown, scale: Record<string, string>): unknown {
   if (typeof value === 'string') {
-    return value.replace(/var\\(--mui-density-(\\w+)\\)/g, (whole, key) => scale[key] ?? whole);
+    return value.replace(/var\\(--mui-density-([\\w-]+)\\)/g, (whole, key) => scale[key] ?? whole);
   }
   if (value === null || typeof value !== 'object') {
     return value;
@@ -216,7 +216,7 @@ function applyDensity(themeInput: AnyRecord, scale: Record<string, string>): Any
   return theme;
 }
 
-// theme.spacing base — var-backed like the density scale (compact tightens it to
+// theme.spacing base — var-backed like the density scale (high tightens it to
 // 6). CSS-vars themes emit --mui-spacing on the channel (components read
 // calc(n * var(--mui-spacing))); static themes get a spacing function.
 function applySpacing(theme: AnyRecord, base: number): AnyRecord {
@@ -285,14 +285,14 @@ function enhance(
   return enhanced as Theme;
 }
 
-export function enhanceCompactDensity(theme: Theme): Theme {
-  return enhance(theme, compact);
+export function enhanceHighDensity(theme: Theme): Theme {
+  return enhance(theme, high);
 }
-export function enhanceNormalDensity(theme: Theme): Theme {
-  return enhance(theme, normal);
+export function enhanceMediumDensity(theme: Theme): Theme {
+  return enhance(theme, medium);
 }
-export function enhanceComfortDensity(theme: Theme): Theme {
-  return enhance(theme, comfort);
+export function enhanceLowDensity(theme: Theme): Theme {
+  return enhance(theme, low);
 }
 `;
 }

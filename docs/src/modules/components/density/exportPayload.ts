@@ -1,8 +1,8 @@
 import {
   createTheme,
-  enhanceCompactDensity,
-  enhanceNormalDensity,
-  enhanceComfortDensity,
+  enhanceHighDensity,
+  enhanceMediumDensity,
+  enhanceLowDensity,
 } from '@mui/material/styles';
 import { buildOverrides, mergeOntoPreset } from './buildDensityOverrides';
 import { collectDensityEdits, collectScaleEdits, collectThemeTokenEdits } from './collectEdits';
@@ -20,9 +20,9 @@ export type { ExportInput } from './buildExportSource';
 // construction. Each preset's payload carries ITS OWN workspace's edits.
 
 const PRESET_FN = {
-  compact: enhanceCompactDensity,
-  normal: enhanceNormalDensity,
-  comfort: enhanceComfortDensity,
+  high: enhanceHighDensity,
+  medium: enhanceMediumDensity,
+  low: enhanceLowDensity,
 } as const;
 
 type Level = keyof typeof PRESET_FN;
@@ -30,7 +30,7 @@ type Level = keyof typeof PRESET_FN;
 export type MappingByPreset = Record<Level, Record<string, string>>;
 
 // The preset's own theme.typography patch: every primitive that differs from the
-// base theme (compact's type reflow; empty for normal/comfort today).
+// base theme (high's type reflow; empty for medium/low today).
 function typographyPatch(
   base: Record<string, any>,
   enhanced: Record<string, any>,
@@ -100,7 +100,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
       enhanced.typography,
     );
     const shape: ExportPresetPayload['shape'] = {};
-    // theme.spacing base — the preset default (compact tightens to 6), overridable
+    // theme.spacing base — the preset default (high tightens to 6), overridable
     // via the Spacing knob. Baked only when it differs from the MUI default (8) or
     // is edited; an edit is tagged `// playground edit`.
     const spacingDefault = PRESET_SPACING_DEFAULT[name];
@@ -121,7 +121,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
     const scalePx: Record<string, string> = { ...enhanced.density };
     const editedSteps = new Set<string>();
     for (const edit of collectScaleEdits(workspace)) {
-      const ref = shortenDensityVars(edit.value); // 'var(--mui-density-xs)' → 'xs'; '10px' → '10px'
+      const ref = shortenDensityVars(edit.value); // 'var(--mui-density-x-small)' → 'x-small'; '10px' → '10px'
       scalePx[edit.key] = enhanced.density[ref] ?? ref;
       editedSteps.add(edit.key);
     }

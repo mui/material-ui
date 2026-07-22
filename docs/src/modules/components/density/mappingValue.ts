@@ -1,22 +1,30 @@
 // Pure helpers for the playground's mapping-input value language, shared by the
 // page (theme apply path) and KnobInput (per-keystroke feedback).
 
-export const SCALE_KEYS = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
+export const SCALE_KEYS = [
+  'xx-small',
+  'x-small',
+  'small',
+  'medium',
+  'large',
+  'x-large',
+  'xx-large',
+] as const;
 
 export const isDensityKey = (t: string) => (SCALE_KEYS as readonly string[]).includes(t);
 
 // `-<key>` = negated step (the sugar the presets' negative pulls emit as
 // `calc(var(--mui-density-<key>) * -1)`, e.g. CardHeader action margins).
-const NEG_KEY_RE = /^-(xxs|xs|sm|md|lg|xl|xxl)$/;
-const NEG_CALC_RE = /calc\(var\(--mui-density-(\w+)\) \* -1\)/g;
+const NEG_KEY_RE = /^-(xx-small|x-small|small|medium|large|x-large|xx-large)$/;
+const NEG_CALC_RE = /calc\(var\(--mui-density-([\w-]+)\) \* -1\)/g;
 
 export const tokenize = (input: string) => input.trim().split(/\s+/).filter(Boolean);
 
-// A mapping input is ANY valid CSS value. A density key (`xxs`…`xxl`) is sugar
-// for `var(--mui-density-<key>)`, a negated key (`-xs`) for
-// `calc(var(--mui-density-xs) * -1)`; anything else passes through verbatim as
-// raw CSS (`12px`, `2rem`, `auto`). Multi-token inputs follow the CSS
-// shorthand of the target prop (`xs md`, `0px 12px 12px`).
+// A mapping input is ANY valid CSS value. A density key (`xx-small`…`xx-large`)
+// is sugar for `var(--mui-density-<key>)`, a negated key (`-x-small`) for
+// `calc(var(--mui-density-x-small) * -1)`; anything else passes through verbatim
+// as raw CSS (`12px`, `2rem`, `auto`). Multi-token inputs follow the CSS
+// shorthand of the target prop (`x-small medium`, `0px 12px 12px`).
 export const resolveValue = (input: string) =>
   tokenize(input)
     .map((t) => {
@@ -48,14 +56,14 @@ export const previewText = (input: string, scalePx: Record<string, string> | nul
       if (neg) {
         return scalePx?.[neg[1]] ? `-${scalePx[neg[1]]}` : t;
       }
-      const densityVar = /^var\(--mui-density-(\w+)\)$/.exec(t);
+      const densityVar = /^var\(--mui-density-([\w-]+)\)$/.exec(t);
       return densityVar ? (scalePx?.[densityVar[1]] ?? densityVar[1]) : t;
     })
     .join(' ');
 
 // Placeholder rule: emitted `var(--mui-density-<step>)` refs shorten to the bare
-// step name (`var(--mui-density-xs) var(--mui-density-lg)` → `xs lg`) and the
-// negated-calc form to `-<step>` — the placeholder mirrors what you'd TYPE; the
-// helper shows what it RESOLVES to.
+// step name (`var(--mui-density-x-small) var(--mui-density-large)` →
+// `x-small large`) and the negated-calc form to `-<step>` — the placeholder
+// mirrors what you'd TYPE; the helper shows what it RESOLVES to.
 export const shortenDensityVars = (value: string) =>
-  value.replace(NEG_CALC_RE, '-$1').replace(/var\(--mui-density-(\w+)\)/g, '$1');
+  value.replace(NEG_CALC_RE, '-$1').replace(/var\(--mui-density-([\w-]+)\)/g, '$1');

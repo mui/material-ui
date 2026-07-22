@@ -94,15 +94,15 @@ export const themeTokenGroups: ThemeTokenGroup[] = [
 ];
 
 /**
- * Per-preset `theme.spacing` base (px per unit; MUI default 8). Compact density
- * tightens layout spacing to 6; normal/comfort keep the default. Set on the base
+ * Per-preset `theme.spacing` base (px per unit; MUI default 8). High density
+ * tightens layout spacing to 6; medium/low keep the default. Set on the base
  * theme (`createTheme({ spacing })`) BEFORE the enhancer, and baked into the
  * export. Shared by the playground (placeholder + base theme) and exportPayload.
  */
-export const PRESET_SPACING_DEFAULT: Record<'compact' | 'normal' | 'comfort', number> = {
-  compact: 6,
-  normal: 8,
-  comfort: 8,
+export const PRESET_SPACING_DEFAULT: Record<'high' | 'medium' | 'low', number> = {
+  high: 6,
+  medium: 8,
+  low: 8,
 };
 
 /** Live value at a token path on the built preset theme (placeholder/default). */

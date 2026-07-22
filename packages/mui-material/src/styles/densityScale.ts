@@ -5,18 +5,26 @@ import { Theme } from './createTheme';
  * component's sized tokens to these steps (via `theme.vars.density` + `addRootOverride`).
  */
 export interface DensityScale {
-  xxs: string;
-  xs: string;
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
-  xxl: string;
+  'xx-small': string;
+  'x-small': string;
+  small: string;
+  medium: string;
+  large: string;
+  'x-large': string;
+  'xx-large': string;
 }
 
 export type DensityKey = keyof DensityScale;
 
-export const DENSITY_KEYS: DensityKey[] = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+export const DENSITY_KEYS: DensityKey[] = [
+  'xx-small',
+  'x-small',
+  'small',
+  'medium',
+  'large',
+  'x-large',
+  'xx-large',
+];
 
 /** Theme shape the presets can enhance in place. */
 export type EnhanceableTheme = {

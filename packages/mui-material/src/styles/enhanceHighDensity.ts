@@ -7,35 +7,34 @@ import {
 } from './densityScale';
 import tooltipClasses from '../Tooltip/tooltipClasses';
 import switchClasses from '../Switch/switchClasses';
+import stepLabelClasses from '../StepLabel/stepLabelClasses';
+import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
 import tabClasses from '../Tab/tabClasses';
 import accordionSummaryClasses from '../AccordionSummary/accordionSummaryClasses';
 import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 import autocompleteClasses from '../Autocomplete/autocompleteClasses';
 import outlinedInputClasses from '../OutlinedInput/outlinedInputClasses';
 import inputLabelClasses from '../InputLabel/inputLabelClasses';
-import { listItemIconClasses } from '../ListItemIcon';
+import inputAdornmentClasses from '../InputAdornment/inputAdornmentClasses';
 import { inputBaseClasses } from '../InputBase';
 import type { TabProps } from '../Tab';
 import type { AccordionSummaryOwnerState } from '../AccordionSummary';
 import type { PaginationItemOwnerState } from '../PaginationItem';
 import { formControlClasses } from '../FormControl';
 import { formControlLabelClasses } from '../FormControlLabel';
-import { inputAdornmentClasses } from '../InputAdornment';
-import tablePaginationClasses from '../TablePagination/tablePaginationClasses';
+import { listItemIconClasses } from '../ListItemIcon';
 
-// Explicit px (self-contained, not spacing-derived). Normal keeps today's Button
-// typography — no reflow — so only the padding→step assignment below.
 const scale: DensityScale = {
-  xxs: '4px',
-  xs: '8px',
-  sm: '12px',
-  md: '16px',
-  lg: '24px',
-  xl: '32px',
-  xxl: '48px',
+  'xx-small': '2px',
+  'x-small': '4px',
+  small: '8px',
+  medium: '12px',
+  large: '16px',
+  'x-large': '24px',
+  'xx-large': '32px',
 };
 
-export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: T) {
+export default function enhanceHighDensity<T extends EnhanceableTheme>(theme: T) {
   const enhanced = applyDensity(theme, scale);
   // Density steps from the enhanced theme: `var(--mui-density-*)` refs in
   // cssVariables mode, raw px otherwise (dual-mode via `theme.vars || theme`).
@@ -47,20 +46,20 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // its border keeps all variants at equal height (master's own
       // compensation, e.g. 3px/9px vs contained 4px/10px). Outlined inline is
       // NOT compensated — width parity across variants is not a goal.
-      { props: { size: 'small' }, style: { paddingBlock: d.xxs, paddingInline: d.sm } },
+      { props: { size: 'small' }, style: { paddingBlock: d['xx-small'], paddingInline: d.small } },
       {
         props: { size: 'small', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d.xxs} - 1px)` },
+        style: { paddingBlock: `calc(${d['xx-small']} - 1px)` },
       },
-      { props: { size: 'medium' }, style: { paddingBlock: d.xs, paddingInline: d.lg } },
+      { props: { size: 'medium' }, style: { paddingBlock: d['x-small'], paddingInline: d.large } },
       {
         props: { size: 'medium', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d.xs} - 1px)` },
+        style: { paddingBlock: `calc(${d['x-small']} - 1px)` },
       },
-      { props: { size: 'large' }, style: { paddingBlock: d.sm, paddingInline: d.xl } },
+      { props: { size: 'large' }, style: { paddingBlock: d.small, paddingInline: d['x-large'] } },
       {
         props: { size: 'large', variant: 'outlined' },
-        style: { paddingBlock: `calc(${d.sm} - 1px)` },
+        style: { paddingBlock: `calc(${d.small} - 1px)` },
       },
     ],
   });
@@ -72,27 +71,34 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // frozen at master — icon visual size is owned by SvgIcon's own fontSize
     // prop knob elsewhere, and the edge offsets aren't a clean step ratio.
     variants: [
-      { props: { size: 'small' }, style: { padding: d.xxs } },
-      { props: { size: 'medium' }, style: { padding: d.sm } },
-      { props: { size: 'large' }, style: { padding: d.lg } },
+      { props: { size: 'small' }, style: { padding: d['xx-small'] } },
+      { props: { size: 'medium' }, style: { padding: d.small } },
+      { props: { size: 'large' }, style: { padding: d.large } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiMenuItem', {
-    // Height = raw px (density steps are spacing-only). Padding = density steps.
-    // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [
-      { props: { dense: false }, style: { minHeight: '44px', paddingBlock: d.xs } },
-      { props: { dense: true }, style: { minHeight: '32px', paddingBlock: d.xxs } },
-      { props: { dense: false, disableGutters: false }, style: { paddingInline: d.lg } },
-      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.md } },
+      { props: { dense: false }, style: { minHeight: '36px', paddingBlock: d.small } },
+      {
+        props: { dense: true },
+        style: {
+          minHeight: '28px',
+          paddingBlock: d['x-small'],
+          [`& .${listItemIconClasses.root} svg`]: {
+            fontSize: '1.125rem',
+          },
+        },
+      },
+      { props: { dense: false, disableGutters: false }, style: { paddingInline: d.large } },
+      { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
     ],
     [`& .${listItemIconClasses.root}`]: {
-      minWidth: 32,
+      minWidth: 28,
     },
   });
   addRootOverride(enhanced.components, 'MuiList', {
     // Menu/list vertical breathing (spacing token); subheader keeps paddingTop 0.
-    variants: [{ props: { disablePadding: false }, style: { paddingBlock: d.sm } }],
+    variants: [{ props: { disablePadding: false }, style: { paddingBlock: d.medium } }],
   });
   addRootOverride(
     enhanced.components,
@@ -101,11 +107,15 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // Padding + per-placement offset = density steps on the base (mirrors
       // Tooltip.js base margins), so they apply to every tooltip; arrow doesn't
       // change them. Arrow size lives on the popper slot (see the block below).
-      padding: `${d.xxs} ${d.sm}`,
-      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.lg },
-      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: { marginInlineStart: d.lg },
-      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.lg },
-      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.lg },
+      // Compact-only type (11px -> 10px); lineHeight kept at master.
+      fontSize: '0.625rem',
+      padding: `${d['xx-small']} ${d.small}`,
+      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.large },
+      [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
+        marginInlineStart: d.large,
+      },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.large },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.large },
     },
     'tooltip',
   );
@@ -117,7 +127,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // calc. Master ships literal em values on these SAME selectors (component
       // untouched); these popper-slot overrides win by cascade order. 0.71 = the
       // master ratio (1/sqrt(2), the hypotenuse projection of the square arrow).
-      '--_arrowSize': '11px',
+      '--_arrowSize': '10px',
       [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
         marginTop: 'calc(var(--_arrowSize) * -0.71)',
       },
@@ -197,7 +207,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiOutlinedInput', {
     // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
-    [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.md },
+    [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.medium },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc(var(--_outlinedInputPadBlock) - 0.5px)`,
     },
@@ -208,19 +218,19 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           [`.${inputLabelClasses.root}:has(~ &)`]: {
             '--_restY': `calc(var(--_outlinedInputPadBlock) + 0.5px)`,
           },
-          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.sm },
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.small },
         },
       },
       {
         props: { multiline: true },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${d.md})`,
+          paddingBlock: `var(--_outlinedInputPadBlock, ${d.medium})`,
         },
       },
       {
         props: { multiline: true, size: 'small' },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})`,
+          paddingBlock: `var(--_outlinedInputPadBlock, ${d.small})`,
         },
       },
     ],
@@ -231,11 +241,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Only block padding reflows; inline stays master (fieldset-constrained).
       // Master already ships the adornment/multiline inline resets on this slot.
-      paddingBlock: `var(--_outlinedInputPadBlock, ${d.md})`,
+      paddingBlock: `var(--_outlinedInputPadBlock, ${d.medium})`,
       variants: [
         {
           props: { size: 'small' },
-          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d.sm})` },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d.small})` },
         },
         {
           props: { multiline: true },
@@ -249,15 +259,15 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // Adornment gap (start marginRight / end marginLeft) + filled positionStart
     // marginTop = density steps, per size (medium default / small).
     variants: [
-      { props: { position: 'start' }, style: { marginRight: d.sm } },
-      { props: { position: 'end' }, style: { marginLeft: d.sm } },
+      { props: { position: 'start' }, style: { marginRight: d.small } },
+      { props: { position: 'end' }, style: { marginLeft: d.small } },
       {
         props: { position: 'start', size: 'small' },
-        style: { marginRight: d.xxs },
+        style: { marginRight: d['xx-small'] },
       },
       {
         props: { position: 'end', size: 'small' },
-        style: { marginLeft: d.xxs },
+        style: { marginLeft: d['xx-small'] },
       },
       {
         props: { variant: 'filled' },
@@ -265,51 +275,51 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]:
             {
               marginTop:
-                'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
+                'calc(var(--_filledInputPadTop, 20px) - var(--_filledInputPadBottom, 4px))',
             },
         },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiFilledInput', {
-    // Root padding (adornment/multiline) = density steps. The floating label is a
-    // preceding sibling — reach it via `:has(~ &)` and set its rest/shrink Y as
-    // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
-    // at master literals (out of scope).
+    // Root padding (adornment/multiline) = density steps, broadcast as vars so the
+    // floating label (a preceding sibling, reached via `:has(~ &)`) can derive its
+    // rest Y from the same source; shrink Y stays tuned raw px. hiddenLabel block
+    // padding stays at master literals (out of scope).
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': d.xl,
-      '--_filledInputPadBottom': d.sm,
+      '--_filledInputPadTop': '20px',
+      '--_filledInputPadBottom': d['x-small'],
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-      '--_shrinkY': '7px',
+      '--_shrinkY': '5px',
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': '18px',
-            '--_filledInputPadBottom': '2px',
+            '--_filledInputPadTop': '16px',
+            '--_filledInputPadBottom': d['xx-small'],
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
             '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
-            '--_shrinkY': '4px',
+            '--_shrinkY': '3px',
           },
         },
       },
       {
         props: { multiline: true },
         style: {
-          paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
+          paddingTop: `var(--_filledInputPadTop, 20px)`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d['x-small']})`,
         },
       },
       {
         props: { multiline: true, size: 'small' },
         style: {
-          paddingTop: `var(--_filledInputPadTop, ${d.lg})`,
-          paddingBottom: `var(--_filledInputPadBottom, ${d.xs})`,
+          paddingTop: `var(--_filledInputPadTop, 16px)`,
+          paddingBottom: `var(--_filledInputPadBottom, ${d['x-small']})`,
         },
       },
       // hidden label does not need to sync with label, so no need CSS variables.
@@ -328,9 +338,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'MuiFilledInput',
     {
       // Only block padding reflows; inline stays master (keeps label alignment).
-      // hiddenLabel block padding stays at master literals (out of scope).
-      paddingTop: `var(--_filledInputPadTop, ${d.xl})`,
-      paddingBottom: `var(--_filledInputPadBottom, ${d.sm})`,
+      // Small padding flows through the FormControl var. hiddenLabel block padding
+      // stays at master literals (out of scope).
+      paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
+      paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
       variants: [
         {
           props: { hiddenLabel: true },
@@ -356,12 +367,12 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   );
   addRootOverride(enhanced.components, 'MuiInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_inputPadTop': d.xs,
-      '--_inputPadBottom': `calc(${d.xs} - 1px)`,
+      '--_inputPadTop': d['x-small'],
+      '--_inputPadBottom': `calc(${d['x-small']} - 1px)`,
       '--_inputMarginTop': '16px',
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xs}) + var(--_inputPadBottom, ${d.xs})) / 2)`,
+      '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d['x-small']}) + var(--_inputPadBottom, ${d['x-small']})) / 2)`,
     },
     [`label + &, .${inputLabelClasses.root} + &`]: {
       marginTop: `var(--_inputMarginTop, 16px)`,
@@ -371,26 +382,26 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         props: { size: 'small' },
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
-            '--_inputPadTop': d.xxs,
-            '--_inputPadBottom': `calc(${d.xxs} - 1px)`,
+            '--_inputPadTop': d['xx-small'],
+            '--_inputPadBottom': `calc(${d['xx-small']} - 1px)`,
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d.xxs}) + var(--_inputPadBottom, ${d.xxs})) / 2)`,
+            '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d['xx-small']}) + var(--_inputPadBottom, ${d['xx-small']})) / 2)`,
           },
         },
       },
       {
         props: { multiline: true },
         style: {
-          paddingTop: `var(--_inputPadTop, ${d.xs})`,
-          paddingBottom: `var(--_inputPadBottom, calc(${d.xs} - 1px))`,
+          paddingTop: `var(--_inputPadTop, ${d['x-small']})`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d['x-small']} - 1px))`,
         },
       },
       {
         props: { multiline: true, size: 'small' },
         style: {
-          paddingTop: `var(--_inputPadTop, ${d.xxs})`,
-          paddingBottom: `var(--_inputPadBottom, calc(${d.xxs} - 1px))`,
+          paddingTop: `var(--_inputPadTop, ${d['xx-small']})`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d['xx-small']} - 1px))`,
         },
       },
     ],
@@ -399,14 +410,14 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     enhanced.components,
     'MuiInput',
     {
-      paddingTop: `var(--_inputPadTop, ${d.xs})`,
-      paddingBottom: `var(--_inputPadBottom, ${d.xs})`,
+      paddingTop: `var(--_inputPadTop, ${d['x-small']})`,
+      paddingBottom: `var(--_inputPadBottom, ${d['x-small']})`,
       variants: [
         {
           props: { size: 'small' },
           style: {
-            paddingTop: `var(--_inputPadTop, ${d.xxs})`,
-            paddingBottom: `var(--_inputPadBottom, ${d.xxs})`,
+            paddingTop: `var(--_inputPadTop, ${d['xx-small']})`,
+            paddingBottom: `var(--_inputPadBottom, ${d['xx-small']})`,
           },
         },
         {
@@ -426,9 +437,10 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // override on their own keys (win by injection order). Multiline box padding
       // lives on the InputBase root (left at master) — reset the input to 0 as
       // master does.
-      paddingBlock: d.xs,
+      paddingBlock: d['x-small'],
+      height: '1.42857143em',
       variants: [
-        { props: { size: 'small' }, style: { paddingTop: d.xxs } },
+        { props: { size: 'small' }, style: { paddingTop: d['xx-small'] } },
         {
           props: { multiline: true },
           style: { paddingBlock: 0 },
@@ -437,45 +449,53 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     'input',
   );
+  addRootOverride(enhanced.components, 'MuiInputBase', {
+    // Compact-only type on the input box (root slot); cascades to the native input.
+    fontSize: '0.875rem',
+    lineHeight: '1.42857143',
+  });
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
-    minHeight: '48px',
-    paddingBlock: d.sm,
-    paddingInline: d.lg,
+    // Compact-only type at base (button 14px -> 13px).
+    minHeight: '40px',
+    paddingBlock: d.small,
+    paddingInline: d.large,
+    fontSize: '0.8125rem',
+    lineHeight: 1.2,
     variants: [
       {
         props: ({ ownerState }: { ownerState: TabProps }) => ownerState.icon && ownerState.label,
-        style: { minHeight: '72px', paddingBlock: d.xs },
+        style: { minHeight: '60px', paddingBlock: d['x-small'] },
       },
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'top',
-        style: { [`& > .${tabClasses.icon}`]: { marginBottom: d.xs } },
+        style: { [`& > .${tabClasses.icon}`]: { marginBottom: d['x-small'] } },
       },
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'bottom',
-        style: { [`& > .${tabClasses.icon}`]: { marginTop: d.xs } },
+        style: { [`& > .${tabClasses.icon}`]: { marginTop: d['x-small'] } },
       },
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
-        style: { [`& > .${tabClasses.icon}`]: { marginRight: d.sm } },
+        style: { [`& > .${tabClasses.icon}`]: { marginRight: d.small } },
       },
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
-        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.sm } },
+        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.small } },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiTabs', {
-    minHeight: '48px', // == MuiTab base minHeight (the pairing)
+    minHeight: '40px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiTabScrollButton', {
     variants: [
-      { props: { orientation: 'horizontal' }, style: { width: '40px' } },
-      { props: { orientation: 'vertical' }, style: { height: '40px' } },
+      { props: { orientation: 'horizontal' }, style: { width: '32px' } },
+      { props: { orientation: 'vertical' }, style: { height: '32px' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCheckbox', {
@@ -485,24 +505,24 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { size: 'medium' },
         style: {
-          padding: d.sm,
+          padding: d.small,
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.sm})`,
+            marginLeft: `calc(-2px - ${d.small})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.sm})`,
+            marginRight: `calc(-2px - ${d.small})`,
           },
         },
       },
       {
         props: { size: 'small' },
         style: {
-          padding: d.xs,
+          padding: d['x-small'],
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.xs})`,
+            marginLeft: `calc(-2px - ${d['x-small']})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.xs})`,
+            marginRight: `calc(-2px - ${d['x-small']})`,
           },
         },
       },
@@ -515,47 +535,47 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { size: 'medium' },
         style: {
-          padding: d.sm,
+          padding: d.small,
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.sm})`,
+            marginLeft: `calc(-2px - ${d.small})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.sm})`,
+            marginRight: `calc(-2px - ${d.small})`,
           },
         },
       },
       {
         props: { size: 'small' },
         style: {
-          padding: d.xs,
+          padding: d['x-small'],
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.xs})`,
+            marginLeft: `calc(-2px - ${d['x-small']})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.xs})`,
+            marginRight: `calc(-2px - ${d['x-small']})`,
           },
         },
       },
     ],
   });
   // Separator inline margins (spacing step) on the separator slot.
-  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.sm }, 'separator');
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.small }, 'separator');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     // Emit uniform padding directly on the size variants ToggleButton ships (no seam).
     variants: [
-      { props: { size: 'small' }, style: { padding: d.sm } },
-      { props: { size: 'medium' }, style: { padding: d.md } },
-      { props: { size: 'large' }, style: { padding: d.lg } },
+      { props: { size: 'small' }, style: { padding: d.small } },
+      { props: { size: 'medium' }, style: { padding: d.medium } },
+      { props: { size: 'large' }, style: { padding: d.large } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiAvatar', {
     // Square size = raw px (sizing).
-    width: '40px',
-    height: '40px',
+    width: '32px',
+    height: '32px',
   });
   // Bar thickness = raw px (sizing); bars are absolute top/bottom-0, so the
   // root height drives every variant (determinate/indeterminate/buffer/query).
-  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: '4px' });
+  addRootOverride(enhanced.components, 'MuiLinearProgress', { height: '3px' });
   addRootOverride(enhanced.components, 'MuiSlider', {
     // Track thickness = raw px (sizing; rail/track inherit the root box). Touch
     // padding = step on the logical axis (block for horizontal, inline for
@@ -566,8 +586,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { orientation: 'horizontal' },
         style: {
-          height: '4px',
-          paddingBlock: d.md,
+          height: '3px',
+          paddingBlock: d.medium,
           '@media (pointer: coarse)': { paddingBlock: '20px' },
         },
       },
@@ -575,8 +595,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { orientation: 'vertical' },
         style: {
-          width: '4px',
-          paddingInline: d.md,
+          width: '3px',
+          paddingInline: d.medium,
           '@media (pointer: coarse)': { paddingInline: '20px' },
         },
       },
@@ -588,9 +608,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'MuiSlider',
     {
       // Thumb square = raw px (sizing); the 42px ::after hit target stays frozen.
-      width: '20px',
-      height: '20px',
-      variants: [{ props: { size: 'small' }, style: { width: '12px', height: '12px' } }],
+      width: '16px',
+      height: '16px',
+      variants: [{ props: { size: 'small' }, style: { width: '10px', height: '10px' } }],
     },
     'thumb',
   );
@@ -600,8 +620,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Bubble padding = steps (normal maps master's 0.25rem 0.75rem / 0.5rem
       // exactly); arrow box + placement offsets stay frozen.
-      padding: `${d.xxs} ${d.md}`,
-      variants: [{ props: { size: 'small' }, style: { padding: `${d.xxs} ${d.sm}` } }],
+      padding: `${d['xx-small']} ${d.medium}`,
+      variants: [{ props: { size: 'small' }, style: { padding: `${d['xx-small']} ${d.small}` } }],
     },
     'valueLabel',
   );
@@ -614,9 +634,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       variants: [
         {
           props: { variant: 'standard' },
-          style: { minWidth: '20px', height: '20px', paddingInline: d.xs },
+          style: { minWidth: '18px', height: '18px', paddingInline: d['x-small'] },
         },
-        { props: { variant: 'dot' }, style: { minWidth: '6px', height: '6px' } },
+        { props: { variant: 'dot' }, style: { minWidth: '4px', height: '4px' } },
       ],
     },
     'badge',
@@ -637,29 +657,29 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { size: 'medium' },
         style: {
-          '--_width': '58px',
-          '--_height': '38px',
-          '--_thumbSize': '20px',
-          '--_touchSize': '38px',
-          '--_pad': '12px',
+          '--_width': '48px',
+          '--_height': '30px',
+          '--_thumbSize': '18px',
+          '--_touchSize': '30px',
+          '--_pad': '8px',
           // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
           // re-writes these via the playground's linked-write registry.
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-12px' },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-12px' },
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-8px' },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-8px' },
         },
       },
       {
         props: { size: 'small' },
         style: {
-          '--_width': '40px',
-          '--_height': '24px',
-          '--_thumbSize': '16px',
-          '--_touchSize': '24px',
-          '--_pad': '7px',
+          '--_width': '36px',
+          '--_height': '20px',
+          '--_thumbSize': '14px',
+          '--_touchSize': '20px',
+          '--_pad': '5px',
           // Label pull mirrors the gutter (Checkbox pattern); the gutter knob
           // re-writes these via the playground's linked-write registry.
-          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-7px' },
-          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-7px' },
+          [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: { marginLeft: '-5px' },
+          [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: { marginRight: '-5px' },
           // Master's small rules sit nested under the root variant at higher
           // specificity — re-assert the derivations there or they lose for small.
           [`& .${switchClasses.thumb}`]: {
@@ -711,16 +731,25 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   );
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
     // Grouped-button min-width floor = raw px (sizing).
-    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '40px' },
+    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '32px' },
   });
   addRootOverride(enhanced.components, 'MuiTableCell', {
     // Block pad per size (steps); inline pad shared. Re-assert the frozen
     // checkbox/none affordances the size padding would otherwise clobber.
+    // Compact-only type tightening on head/footer — both share the head size
+    // (master: head inherits body2 14px/1.5rem; footer is smaller at
+    // 12px/1.3125rem, but compact levels footer up to match head for legibility
+    // at this density). One `props` fn matches either variant, same style.
     variants: [
-      { props: { size: 'medium' }, style: { padding: `${d.lg} ${d.lg}` } },
-      { props: { size: 'small' }, style: { padding: `${d.xs} ${d.lg}` } },
+      { props: { size: 'medium' }, style: { padding: `${d.large} ${d.large}` } },
+      { props: { size: 'small' }, style: { padding: `${d['x-small']} ${d.large}` } },
       { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
       { props: { padding: 'none' }, style: { padding: 0 } },
+      {
+        props: ({ ownerState }: { ownerState: { variant?: string | undefined } }) =>
+          ownerState.variant === 'head' || ownerState.variant === 'footer',
+        style: { fontSize: '0.8125rem', lineHeight: '1.25rem' },
+      },
     ],
   });
   addRootOverride(
@@ -729,9 +758,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     {
       // Sort arrow = raw px (sizing); icon<->label gap = one marginInline leaf
       // (master sets both sides at 4px — the arrow flips sides in right-aligned
-      // columns; normal xxs maps it exactly).
-      fontSize: '18px',
-      marginInline: d.xxs,
+      // columns; medium xx-small maps it exactly).
+      fontSize: '16px',
+      marginInline: d['xx-small'],
     },
     'icon',
   );
@@ -742,30 +771,49 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // playground layering) spreads to numeric keys and silently drops. Root's
     // default resolver is array-safe, and root-class nesting outranks the slot
     // rules (incl. master's duplicated minHeight media re-asserts).
+    // Compact-only type tightening (matches the TableCell head knob); the
+    // select inherits it, selectLabel/displayedRows stay body2.
+    fontSize: '0.8125rem',
     // Bar min-height = raw px (sizing); trailing pad + actions gap = steps.
     [`& .${tablePaginationClasses.toolbar}`]: {
-      minHeight: '52px',
-      paddingRight: d.xxs,
+      minHeight: '44px',
+      paddingRight: d['xx-small'],
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.actions}`]: {
-      marginLeft: d.lg,
+      marginLeft: d.large,
     },
     // Rows-per-page select: outer gaps + inner pad (right side = the dropdown
     // icon lane); normal maps master (8/32, 8/24) exactly. Inner pad nests past
     // the toolbar so it outranks master's own 2-class `& .select` rule.
     [`& .${tablePaginationClasses.selectRoot}`]: {
-      marginLeft: d.sm,
-      marginRight: d.xxl,
+      marginLeft: d.small,
+      marginRight: d['xx-large'],
     },
     [`& .${tablePaginationClasses.toolbar} .${tablePaginationClasses.select}`]: {
-      paddingLeft: d.sm,
-      paddingRight: d.xl,
+      paddingLeft: d.small,
+      paddingRight: d['x-large'],
     },
   });
+  addRootOverride(
+    enhanced.components,
+    'MuiAutocomplete',
+    {
+      // Option list (mirrors MenuItem) renders in a Popper → emit on the listbox
+      // slot: minHeight raw px, block/inline pad steps, compact-only type.
+      [`& .${autocompleteClasses.option}`]: {
+        minHeight: '32px',
+        paddingBlock: d['x-small'],
+        paddingInline: d.large,
+        fontSize: '0.875rem',
+        lineHeight: 1.4,
+      },
+    },
+    'listbox',
+  );
   // Input wrapper block padding (around the value/tags) + tag (chip) margin = steps.
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    '--_autocompleteInputRootPadBlock': d.sm,
-    '--_autocompleteInputPadBlock': d.xs,
+    '--_autocompleteInputRootPadBlock': d.small,
+    '--_autocompleteInputPadBlock': d['x-small'],
     [`& .${outlinedInputClasses.root}`]: { paddingBlock: `var(--_autocompleteInputRootPadBlock)` },
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
       paddingBlock: `var(--_autocompleteInputPadBlock)`,
@@ -776,8 +824,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     },
     // small size
     [`&:has(.${inputBaseClasses.sizeSmall})`]: {
-      '--_autocompleteInputRootPadBlock': d.xs,
-      '--_autocompleteInputPadBlock': d.xxs,
+      '--_autocompleteInputRootPadBlock': d.small,
+      '--_autocompleteInputPadBlock': d['xx-small'],
     },
     [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
       paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
@@ -787,31 +835,17 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
   });
-  addRootOverride(
-    enhanced.components,
-    'MuiAutocomplete',
-    {
-      // Option list (mirrors MenuItem) renders in a Popper → emit on the listbox
-      // slot: minHeight raw px, block/inline pad steps.
-      [`& .${autocompleteClasses.option}`]: {
-        minHeight: '44px',
-        paddingBlock: d.xs,
-        paddingInline: d.lg,
-      },
-    },
-    'listbox',
-  );
-  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: d.xxs }, 'tag');
+  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: d['xx-small'] }, 'tag');
   // Horizontal step gutter: paddingLeft (first) / paddingRight (last) = step.
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
-        style: { paddingLeft: d.sm },
+        style: { paddingLeft: d.small },
       },
       {
         props: { orientation: 'horizontal', alternativeLabel: false, last: true },
-        style: { paddingRight: d.sm },
+        style: { paddingRight: d.small },
       },
     ],
   });
@@ -822,16 +856,65 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     enhanced.components,
     'MuiStepLabel',
     {
-      paddingRight: d.sm,
+      paddingRight: d.small,
       variants: [
         {
           props: { orientation: 'vertical', alternativeLabel: true },
-          style: { paddingLeft: d.sm },
+          style: { paddingLeft: d.small },
         },
       ],
     },
     'iconContainer',
   );
+  // alternativeLabel icon→label gap — master sets it on the label slot at
+  // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
+  // selector; a plain props variant (1 class) would lose. Scoped to horizontal:
+  // master zeroes the gap for vertical alternativeLabel (variant marginTop: 0)
+  // and an unscoped emission would stomp that reset.
+  addRootOverride(
+    enhanced.components,
+    'MuiStepLabel',
+    {
+      variants: [
+        {
+          props: { orientation: 'horizontal', alternativeLabel: true },
+          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: d.medium } },
+        },
+      ],
+    },
+    'label',
+  );
+  // Vertical flow lines re-centered under the compact step icon (master: 12px
+  // under a 24px icon; compact icon shrinks via the SvgIcon emission).
+  addRootOverride(enhanced.components, 'MuiStepConnector', {
+    variants: [
+      {
+        props: { orientation: 'vertical', alternativeLabel: false },
+        style: { marginLeft: '9.5px' },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: { marginRight: '9.5px' },
+      },
+      // alternativeLabel line rides absolutely at half the icon height.
+      { props: { orientation: 'horizontal', alternativeLabel: true }, style: { top: '9.5px' } },
+    ],
+  });
+  addRootOverride(enhanced.components, 'MuiStepContent', {
+    // Line-side insets per layout: alternativeLabel flips the line to
+    // border-right, so each variant tunes only its own side (master's flipped
+    // 0/8 left values stay untouched for alternativeLabel).
+    variants: [
+      {
+        props: { alternativeLabel: false },
+        style: { marginLeft: '9.5px', paddingLeft: '15.5px' },
+      },
+      {
+        props: { alternativeLabel: true },
+        style: { marginRight: '9.5px', paddingRight: '15.5px' },
+      },
+    ],
+  });
   addRootOverride(enhanced.components, 'MuiToolbar', {
     // Gutter inline pad (steps, incl the sm-breakpoint bump); dense + regular bar
     // min-heights (raw px). Regular mirrors theme.mixins.toolbar's responsive
@@ -841,26 +924,26 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       {
         props: { disableGutters: false },
         style: {
-          paddingInline: d.lg,
+          paddingInline: d.large,
           [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
             'sm',
           )]: {
-            paddingInline: d.xl,
+            paddingInline: d['x-large'],
           },
         },
       },
-      { props: { variant: 'dense' }, style: { minHeight: '48px' } },
+      { props: { variant: 'dense' }, style: { minHeight: '40px' } },
       {
         props: { variant: 'regular' },
         style: {
-          minHeight: '56px',
+          minHeight: '48px',
           // Master nests this under breakpoints.up('xs') — a no-op (min-width:0)
           // wrapper; emitted flat so the emit-table readback can resolve it.
-          '@media (orientation: landscape)': { minHeight: '48px' },
+          '@media (orientation: landscape)': { minHeight: '40px' },
           [(theme as unknown as { breakpoints: { up: (key: string) => string } }).breakpoints.up(
             'sm',
           )]: {
-            minHeight: '64px',
+            minHeight: '56px',
           },
         },
       },
@@ -870,9 +953,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // Circular size = raw px per size (button-like action). Scoped to circular so
     // the extended variant (auto width + literal height) stays frozen at master.
     variants: [
-      { props: { variant: 'circular', size: 'small' }, style: { width: '40px', height: '40px' } },
-      { props: { variant: 'circular', size: 'medium' }, style: { width: '48px', height: '48px' } },
-      { props: { variant: 'circular', size: 'large' }, style: { width: '56px', height: '56px' } },
+      { props: { variant: 'circular', size: 'small' }, style: { width: '36px', height: '36px' } },
+      { props: { variant: 'circular', size: 'medium' }, style: { width: '44px', height: '44px' } },
+      { props: { variant: 'circular', size: 'large' }, style: { width: '52px', height: '52px' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiPaginationItem', {
@@ -882,14 +965,14 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     // the pill radius derives as height/2 (master pins per-size radius literals
     // that would go stale as the heights move); ellipsis keeps auto height.
     variants: [
-      { props: { size: 'small' }, style: { minWidth: '26px', paddingInline: d.xxs } },
+      { props: { size: 'small' }, style: { minWidth: '22px', paddingInline: d['xx-small'] } },
       {
         props: { size: 'medium' },
-        style: { minWidth: '32px', paddingInline: d.xs, marginInline: d.xxs },
+        style: { minWidth: '28px', paddingInline: d['x-small'], marginInline: d['xx-small'] },
       },
       {
         props: { size: 'large' },
-        style: { minWidth: '40px', paddingInline: d.sm, marginInline: d.xxs },
+        style: { minWidth: '36px', paddingInline: d.small, marginInline: d['xx-small'] },
       },
       {
         props: ({ ownerState }: { ownerState: PaginationItemOwnerState }) =>
@@ -897,7 +980,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'small',
         style: {
-          '--_height': '26px',
+          '--_height': '22px',
           height: 'var(--_height)',
           borderRadius: 'calc(var(--_height) / 2)',
         },
@@ -908,7 +991,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'medium',
         style: {
-          '--_height': '32px',
+          '--_height': '28px',
           height: 'var(--_height)',
           borderRadius: 'calc(var(--_height) / 2)',
         },
@@ -919,7 +1002,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           ownerState.type !== 'end-ellipsis' &&
           ownerState.size === 'large',
         style: {
-          '--_height': '40px',
+          '--_height': '36px',
           height: 'var(--_height)',
           borderRadius: 'calc(var(--_height) / 2)',
         },
@@ -928,22 +1011,22 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
     // No size axis: root padding (block/inline steps).
-    padding: `${d.xs} ${d.lg}`,
+    padding: `${d['x-small']} ${d.large}`,
   });
-  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingBlock: d.sm }, 'message');
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingBlock: d.small }, 'message');
   // Inline-start inset only; the -8px flush end pull is an edge offset (frozen).
-  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: d.lg }, 'action');
+  addRootOverride(enhanced.components, 'MuiSnackbarContent', { paddingLeft: d.large }, 'action');
   addRootOverride(enhanced.components, 'MuiBottomNavigation', {
-    height: '56px',
+    height: '48px',
   });
   addRootOverride(enhanced.components, 'MuiBottomNavigationAction', {
     // Inline pad = step; per-item width clamps = raw px (sizing). Icon-only
     // centering paddingTop = step, with master's no-label zero re-asserted
     // (this emission lands after it in the cascade and would clobber it).
     // Selected label type shift (12→14) stays frozen — state, not a size axis.
-    paddingInline: d.md,
-    minWidth: '80px',
-    maxWidth: '168px',
+    paddingInline: d.medium,
+    minWidth: '72px',
+    maxWidth: '152px',
     variants: [
       {
         // Net master condition (pT14 unless the no-label rule zeroes it) — one
@@ -957,27 +1040,27 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
             label?: unknown;
           };
         }) => !ownerState.showLabel && !ownerState.selected && Boolean(ownerState.label),
-        style: { paddingTop: d.md },
+        style: { paddingTop: d.medium },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiDialogTitle', {
-    padding: `${d.lg} ${d.xl}`,
+    padding: `${d.large} ${d['x-large']}`,
   });
   addRootOverride(enhanced.components, 'MuiDialogContent', {
     // Scoped to dividers:false so master's distinct dividers padding (16 24)
     // stays untouched — an unconditional root padding would clobber it (and a
     // knob edit would too).
-    variants: [{ props: { dividers: false }, style: { padding: `${d.lg} ${d.xl}` } }],
+    variants: [{ props: { dividers: false }, style: { padding: `${d.large} ${d['x-large']}` } }],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
     // Root inset + inter-button gap (master 8/8 — CardActions' gap twin).
-    padding: d.sm,
+    padding: d.small,
     variants: [
       {
         props: ({ ownerState }: { ownerState: { disableSpacing?: boolean | undefined } }) =>
           !ownerState.disableSpacing,
-        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.sm } },
+        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.small } },
       },
     ],
   });
@@ -1001,7 +1084,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
       // scoped fullScreen:false — master's fullScreen state zeroes all of these
       // and must stay untouched (an unscoped rule lands later in the cascade
       // and would clobber it).
-      '--_dialogMargin': d.xxl,
+      '--_dialogMargin': d['xx-large'],
       variants: [
         { props: { fullScreen: false }, style: { margin: 'var(--_dialogMargin)' } },
         {
@@ -1045,39 +1128,39 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(enhanced.components, 'MuiListItemButton', {
     // Density axis is the `dense` boolean; inline pad only when gutters are on.
     variants: [
-      { props: { dense: false }, style: { paddingBlock: d.sm } },
-      { props: { dense: true }, style: { paddingBlock: d.xxs } },
-      { props: { disableGutters: false }, style: { paddingInline: d.lg } },
+      { props: { dense: false }, style: { paddingBlock: d.small } },
+      { props: { dense: true }, style: { paddingBlock: d['xx-small'] } },
+      { props: { disableGutters: false }, style: { paddingInline: d.large } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardContent', {
     // No size axis: base padding + larger last-child bottom padding.
-    padding: d.lg,
-    '&:last-child': { paddingBottom: d.xl },
+    padding: d.large,
+    '&:last-child': { paddingBottom: d['x-large'] },
   });
   addRootOverride(enhanced.components, 'MuiCardActions', {
     // No size axis: root padding + inter-child gap (spacing variant) = steps.
-    padding: d.sm,
+    padding: d.small,
     variants: [
       {
         props: { disableSpacing: false },
-        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.sm } },
+        style: { '& > :not(style) ~ :not(style)': { marginLeft: d.small } },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiCardHeader', {
     // Root padding = step (no size axis).
-    padding: d.lg,
+    padding: d.large,
   });
   // Avatar→content gap on the avatar slot.
-  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: d.lg }, 'avatar');
+  addRootOverride(enhanced.components, 'MuiCardHeader', { marginRight: d.large }, 'avatar');
   // Action negative pulls counteract the control's own box; scale with density.
   addRootOverride(
     enhanced.components,
     'MuiCardHeader',
     {
-      marginBlock: `calc(${d.xxs} * -1)`,
-      marginRight: `calc(${d.sm} * -1)`,
+      marginBlock: `calc(${d['xx-small']} * -1)`,
+      marginRight: `calc(${d.small} * -1)`,
     },
     'action',
   );
@@ -1091,11 +1174,11 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   );
   addRootOverride(enhanced.components, 'MuiAlert', {
     // No size axis: root padding (block/inline steps).
-    paddingBlock: d.xs,
-    paddingInline: d.lg,
+    paddingBlock: d['x-small'],
+    paddingInline: d.large,
   });
   // Icon→message gap on the icon slot (child element).
-  addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.md }, 'icon');
+  addRootOverride(enhanced.components, 'MuiAlert', { marginRight: d.medium }, 'icon');
   // Chip: height + avatar/deleteIcon sizes are preset-local vars (raw px per
   // sizing policy) so the derived centering margins on the child slots track
   // knob edits live; icon/label stay plain. Rules land on the slot master
@@ -1104,8 +1187,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   // --_height sits on the root so the child slots inherit it.
   addRootOverride(enhanced.components, 'MuiChip', {
     variants: [
-      { props: { size: 'medium' }, style: { '--_height': '32px', height: 'var(--_height)' } },
-      { props: { size: 'small' }, style: { '--_height': '24px', height: 'var(--_height)' } },
+      { props: { size: 'medium' }, style: { '--_height': '28px', height: 'var(--_height)' } },
+      { props: { size: 'small' }, style: { '--_height': '20px', height: 'var(--_height)' } },
     ],
   });
   // Label inline padding = density steps, unified per size on the label slot.
@@ -1114,8 +1197,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'MuiChip',
     {
       variants: [
-        { props: { size: 'medium' }, style: { paddingInline: d.md } },
-        { props: { size: 'small' }, style: { paddingInline: d.sm } },
+        { props: { size: 'medium' }, style: { paddingInline: d.medium } },
+        { props: { size: 'small' }, style: { paddingInline: d.small } },
       ],
     },
     'label',
@@ -1128,7 +1211,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         {
           props: { size: 'medium' },
           style: {
-            '--_avatarSize': '24px',
+            '--_avatarSize': '20px',
             width: 'var(--_avatarSize)',
             height: 'var(--_avatarSize)',
             // center within the chip: (height - avatar) / 2
@@ -1138,7 +1221,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         {
           props: { size: 'small' },
           style: {
-            '--_avatarSize': '18px',
+            '--_avatarSize': '14px',
             width: 'var(--_avatarSize)',
             height: 'var(--_avatarSize)',
             marginLeft: 'calc(var(--_height) / 2 - var(--_avatarSize) / 2)',
@@ -1153,8 +1236,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'MuiChip',
     {
       variants: [
-        { props: { size: 'medium' }, style: { fontSize: '24px' } },
-        { props: { size: 'small' }, style: { fontSize: '18px' } },
+        { props: { size: 'medium' }, style: { fontSize: '20px' } },
+        { props: { size: 'small' }, style: { fontSize: '14px' } },
       ],
     },
     'icon',
@@ -1167,7 +1250,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         {
           props: { size: 'medium' },
           style: {
-            '--_deleteIconSize': '22px',
+            '--_deleteIconSize': '18px',
             fontSize: 'var(--_deleteIconSize)',
             // center within the chip: (height - delete icon) / 2
             marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
@@ -1176,7 +1259,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
         {
           props: { size: 'small' },
           style: {
-            '--_deleteIconSize': '16px',
+            '--_deleteIconSize': '12px',
             fontSize: 'var(--_deleteIconSize)',
             marginRight: 'calc(var(--_height) / 2 - var(--_deleteIconSize) / 2)',
           },
@@ -1187,8 +1270,8 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   );
   addRootOverride(enhanced.components, 'MuiAccordionSummary', {
     // Collapsed min-height raw px; inline padding = step.
-    minHeight: '48px',
-    padding: `0 ${d.lg}`,
+    minHeight: '40px',
+    padding: `0 ${d.large}`,
     variants: [
       {
         props: ({
@@ -1197,7 +1280,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
         }) => !ownerState.disableGutters,
         // Re-assert expanded min-height (master literal wins by specificity else).
-        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '64px' } },
+        style: { [`&.${accordionSummaryClasses.expanded}`]: { minHeight: '52px' } },
       },
     ],
   });
@@ -1206,7 +1289,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     'MuiAccordionSummary',
     {
       // Content block margin reduces with min-height (else it binds header height).
-      marginBlock: d.md,
+      marginBlock: d.medium,
       variants: [
         {
           props: ({
@@ -1214,7 +1297,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
           }: {
             ownerState: AccordionSummaryOwnerState & { disableGutters?: boolean | undefined };
           }) => !ownerState.disableGutters,
-          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: d.lg } },
+          style: { [`&.${accordionSummaryClasses.expanded}`]: { marginBlock: d.large } },
         },
       ],
     },
@@ -1222,42 +1305,82 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   );
   addRootOverride(enhanced.components, 'MuiAccordionDetails', {
     // Split from shorthand so each edge is its own knob (top differs from bottom).
-    paddingBlockStart: d.sm,
-    paddingBlockEnd: d.lg,
-    paddingInline: d.lg,
+    paddingBlockStart: d.small,
+    paddingBlockEnd: d.large,
+    paddingInline: d.large,
+    fontSize: '0.875rem',
+    lineHeight: 20 / 14,
   });
-  // MUI X DataGrid — rationale in enhanceCompactDensity; mirrored structure.
+  addRootOverride(enhanced.components, 'MuiSvgIcon', {
+    // Compact-only: global icon shrink per fontSize variant (source: 20/24/35px).
+    // Normal/comfort emit nothing — icons keep master sizes there.
+    variants: [
+      { props: { fontSize: 'small' }, style: { fontSize: '18px' } },
+      { props: { fontSize: 'medium' }, style: { fontSize: '20px' } },
+      { props: { fontSize: 'large' }, style: { fontSize: '30px' } },
+    ],
+  });
+  // Compact-only type per variant (fontSize + lineHeight); normal/comfort keep
+  // master. Theme-level tokens, not component overrides — same layer as button.
+  // MUI X DataGrid — cross-package emission (plain untyped keys; the grid reads
+  // theme.components.MuiDataGrid via getThemeProps/styleOverrides). Row/header
+  // heights are JS-gated — the virtualizer computes row positions from the
+  // rowHeight prop, CSS can't move them — so they ship as defaultProps raw px
+  // (sizing); the grid's own density prop stays UNSET (factor ×1) since its
+  // fixed ×0.7/×1.3 stops can't express arbitrary per-preset scales. A user
+  // flip of the grid's toolbar density selector stays a relative multiplier
+  // on top of these bases.
   addDefaultProps(enhanced.components, 'MuiDataGrid', {
-    rowHeight: 40,
-    columnHeaderHeight: 40,
+    rowHeight: 28,
+    columnHeaderHeight: 28,
   });
   // Cell/header inline inset (master 0 10px) + edit input aligned to the same
   // step (master 0 16px — upstream mismatch makes the value jump on edit entry).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.md }, 'cell');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.md }, 'columnHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.medium }, 'cell');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { paddingInline: d.medium }, 'columnHeader');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { '& input': { paddingInline: d.md } },
+    { '& input': { paddingInline: d.medium } },
     'editInputCell',
   );
   // Header title↔sort/filter icon gap (master 2px = 0.25 spacing unit).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.xxs }, 'columnHeaderTitleContainer');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { gap: d['xx-small'] },
+    'columnHeaderTitleContainer',
+  );
   // Toolbar: min-height = raw px (sizing); inner padding + item gap = steps.
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '52px', padding: d.sm, gap: d.xxs },
+    { minHeight: '44px', padding: d.small, gap: d['xx-small'] },
     'toolbar',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.xs }, 'toolbarDivider');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.xs }, 'toolbarLabel');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { marginInline: d['x-small'] },
+    'toolbarDivider',
+  );
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { marginInline: d['x-small'] },
+    'toolbarLabel',
+  );
   // Footer: min-height = raw px (sizing); row/selection count gutters = steps.
-  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '52px' }, 'footerContainer');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.lg }, 'rowCount');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.lg }, 'selectedRowCount');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '44px' }, 'footerContainer');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { marginInline: d.large }, 'rowCount');
+  addRootOverride(
+    enhanced.components,
+    'MuiDataGrid',
+    { marginInline: d.large },
+    'selectedRowCount',
+  );
   // Gap between row action icon buttons (master 8px).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { gridGap: d.sm }, 'actionsCell');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gridGap: d.small }, 'actionsCell');
   // Filter panel (portal). Content padding/gap nest under the `panel` slot —
   // upstream resolves the `panelContent` styleOverrides key on BOTH the filter
   // content wrapper and the panel popup shell (GridPanel's inner slot), so a
@@ -1265,27 +1388,32 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { '& .MuiDataGrid-panelContent': { padding: `${d.xl} ${d.md} ${d.lg} ${d.sm}`, gap: d.xl } },
+    {
+      '& .MuiDataGrid-panelContent': {
+        padding: `${d['x-large']} ${d.medium} ${d.large} ${d.small}`,
+        gap: d['x-large'],
+      },
+    },
     'panel',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: d.sm }, 'panelFooter');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { padding: d.small }, 'panelFooter');
   // Gap between the filter form's column/operator/value inputs (master su(1.5)).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.md }, 'filterForm');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.medium }, 'filterForm');
   // Filter field widths (sizing → raw px; master 75/150/150/190).
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minWidth: '75px' },
+    { minWidth: '65px' },
     'filterFormLogicOperatorInput',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '150px' }, 'filterFormColumnInput');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '130px' }, 'filterFormColumnInput');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { width: '150px' },
+    { width: '130px' },
     'filterFormOperatorInput',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '190px' }, 'filterFormValueInput');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '165px' }, 'filterFormValueInput');
   // Columns management panel paddings (master su(0.5,1.5) / su(1.5,2) /
   // su(1,1,1,1.5) / su(1,0)). The per-row checkbox↔label gap targets the
   // Material class — the grid's FormControlLabel wrapper is slot:'internal'
@@ -1293,25 +1421,28 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { padding: `${d.xs} ${d.md}`, '& .MuiFormControlLabel-root': { gap: d.xs } },
+    {
+      padding: `${d['x-small']} ${d.medium}`,
+      '& .MuiFormControlLabel-root': { gap: d['x-small'] },
+    },
     'columnsManagement',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { padding: `${d.md} ${d.lg}` },
+    { padding: `${d.medium} ${d.large}` },
     'columnsManagementHeader',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { padding: `${d.sm} ${d.sm} ${d.sm} ${d.md}` },
+    { padding: `${d.small} ${d.small} ${d.small} ${d.medium}` },
     'columnsManagementFooter',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { paddingBlock: d.sm },
+    { paddingBlock: d.small },
     'columnsManagementEmptyText',
   );
   // Column menu list min-width (sizing; master 248). Nested under `menu` — the
@@ -1320,7 +1451,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { '& .MuiDataGrid-menuList': { minWidth: '248px' } },
+    { '& .MuiDataGrid-menuList': { minWidth: '220px' } },
     'menu',
   );
   // Toolbar quick filter expanded width (sizing; master 260). The expanded
@@ -1329,23 +1460,26 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { variants: [{ props: { expanded: true }, style: { width: '260px' } }] },
+    { variants: [{ props: { expanded: true }, style: { width: '230px' } }] },
     'toolbarQuickFilterControl',
   );
   // Label↔action gap in the no-rows/no-columns overlays (master su(1)).
-  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.sm }, 'overlay');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { gap: d.small }, 'overlay');
   // Drag-ghost insets (master 0 12px; placeholder 0 6px — nested to outrank
   // upstream's `.row--dragging .rowReorderCellPlaceholder` rule).
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { paddingInline: d.md },
+    { paddingInline: d.medium },
     'columnHeader--dragging',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { paddingInline: d.md, '& .MuiDataGrid-rowReorderCellPlaceholder': { paddingInline: d.xs } },
+    {
+      paddingInline: d.medium,
+      '& .MuiDataGrid-rowReorderCellPlaceholder': { paddingInline: d['x-small'] },
+    },
     'row--dragging',
   );
   // Rowspan multi-select chip stack inset (master paddingTop 8; selector
@@ -1354,7 +1488,9 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
     enhanced.components,
     'MuiDataGrid',
     {
-      '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': { paddingTop: d.sm },
+      '&[aria-rowspan]:not([aria-rowspan="1"]) .MuiDataGrid-multiSelectCell': {
+        paddingTop: d.small,
+      },
     },
     'cell',
   );
@@ -1362,33 +1498,33 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   // upstream so RTL flipping stays identical). The upstream densityCompact
   // conditional stays dormant — the grid's density prop is unset.
   addRootOverride(enhanced.components, 'MuiDataGrid', {
-    '& .MuiDataGrid-columnHeader--filter': { paddingBlock: d.sm, paddingRight: d.xs },
+    '& .MuiDataGrid-columnHeader--filter': { paddingBlock: d.small, paddingRight: d['x-small'] },
   });
   // [Pro] Header-filter input margins (master su(0.5) / su(-0.25)).
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { marginRight: d.xs, marginBottom: `calc(${d.xxs} * -1)` },
+    { marginRight: d['x-small'], marginBottom: `calc(${d['xx-small']} * -1)` },
     'columnHeaderFilterInput',
   );
   // [Pro/Premium] Grouping indent: depth × multiplier × spacing unit (master 2).
   // Premium grouping cells read the var; Pro tree-data computes the same indent
   // in JS and bypasses it — upstream inconsistency, flagged as fix candidate.
   addRootOverride(enhanced.components, 'MuiDataGrid', {
-    '--DataGrid-cellOffsetMultiplier': '2',
+    '--DataGrid-cellOffsetMultiplier': '1.5',
   });
   // [Pro/Premium] Group-toggle gutter: flex-basis = sizing raw px (master 28);
   // physical marginRight matches upstream (master su(2)).
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { flexBasis: '28px', marginRight: d.lg },
+    { flexBasis: '24px', marginRight: d.large },
     'treeDataGroupingCellToggle',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { flexBasis: '28px', marginRight: d.lg },
+    { flexBasis: '24px', marginRight: d.large },
     'groupingCriteriaCellToggle',
   );
   // [Premium] Panel chrome sizing (raw px): sidebar/AI widths, the shared 52px
@@ -1399,78 +1535,92 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { width: '300px', minWidth: '260px', maxWidth: '400px' },
+    { width: '270px', minWidth: '240px', maxWidth: '370px' },
     'sidebar',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '52px' }, 'pivotPanelHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '44px' }, 'pivotPanelHeader');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { height: '32px', marginInlineStart: d.xs },
+    { height: '26px', marginInlineStart: d['x-small'] },
     'pivotPanelField',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '84px' },
+    { minHeight: '68px' },
     'pivotPanelAvailableFields',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '158px' }, 'pivotPanelSections');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { minHeight: '128px' }, 'pivotPanelSections');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '38px' },
+    { minHeight: '32px' },
     'pivotPanelPlaceholder',
   );
-  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '380px' }, 'aiAssistantPanel');
-  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '52px' }, 'aiAssistantPanelHeader');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { width: '340px' }, 'aiAssistantPanel');
+  addRootOverride(enhanced.components, 'MuiDataGrid', { height: '44px' }, 'aiAssistantPanelHeader');
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { height: '32px', marginInlineStart: d.xs },
+    { height: '26px', marginInlineStart: d['x-small'] },
     'chartsPanelDataField',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '84px' },
+    { minHeight: '68px' },
     'chartsPanelDataAvailableFields',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '158px' },
+    { minHeight: '128px' },
     'chartsPanelDataSections',
   );
   addRootOverride(
     enhanced.components,
     'MuiDataGrid',
-    { minHeight: '38px' },
+    { minHeight: '32px' },
     'chartsPanelDataPlaceholder',
   );
+  enhanced.typography = {
+    ...enhanced.typography,
+    h1: { ...enhanced.typography?.h1, fontSize: '4.5rem', lineHeight: 1.1 },
+    h2: { ...enhanced.typography?.h2, fontSize: '3rem', lineHeight: 1.15 },
+    h3: { ...enhanced.typography?.h3, fontSize: '2.5rem', lineHeight: 1.15 },
+    h4: { ...enhanced.typography?.h4, fontSize: '1.75rem', lineHeight: 1.2 },
+    h5: { ...enhanced.typography?.h5, fontSize: '1.25rem', lineHeight: 1.25 },
+    h6: { ...enhanced.typography?.h6, fontSize: '1.125rem', lineHeight: 1.4 },
+    subtitle1: { ...enhanced.typography?.subtitle1, fontSize: '0.875rem', lineHeight: 1.5 },
+    subtitle2: { ...enhanced.typography?.subtitle2, fontSize: '0.8125rem', lineHeight: 1.4 },
+    body1: { ...enhanced.typography?.body1, fontSize: '0.875rem', lineHeight: 1.42857143 },
+    body2: { ...enhanced.typography?.body2, fontSize: '0.8125rem', lineHeight: 1.38462 },
+    button: { ...enhanced.typography?.button, fontSize: '0.8125rem', lineHeight: 1.38462 },
+  };
   // MUI X Tree View — indentation is an inline-style var on the tree root
   // (useTreeViewRootProps), unreachable from styleOverrides; the defaultProp is the
-  // lever, and a string/number value passes through verbatim. `d.md` keeps it
+  // lever, and a string/number value passes through verbatim. `d.medium` keeps it
   // dual-mode: a var ref under cssVariables (any prefix), raw px on static themes.
   addDefaultProps(enhanced.components, 'MuiRichTreeView', {
-    itemChildrenIndentation: d.md,
+    itemChildrenIndentation: d.medium,
   });
   addDefaultProps(enhanced.components, 'MuiSimpleTreeView', {
-    itemChildrenIndentation: d.md,
+    itemChildrenIndentation: d.medium,
   });
   // Row height rides upstream's own hook (content height: var(--TreeView-itemHeight,
   // unset)); sizing raw px. Master is unset (content-sized, about 32) — normal keeps it.
-  addRootOverride(enhanced.components, 'MuiTreeItem', { '--TreeView-itemHeight': '32px' });
+  addRootOverride(enhanced.components, 'MuiTreeItem', { '--TreeView-itemHeight': '28px' });
   // Longhands only — a padding shorthand would clobber upstream's paddingLeft depth
   // calc, so the calc is re-emitted with the step base instead.
   addRootOverride(
     enhanced.components,
     'MuiTreeItem',
     {
-      paddingBlock: d.xxs,
-      paddingRight: d.sm,
-      paddingLeft: `calc(${d.sm} + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))`,
-      gap: d.sm,
+      paddingBlock: d['xx-small'],
+      paddingRight: d.small,
+      paddingLeft: `calc(${d.small} + var(--TreeView-itemChildrenIndentation) * var(--TreeView-itemDepth))`,
+      gap: d.small,
     },
     'content',
   );
@@ -1480,7 +1630,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   // every consumer; a DateCalendar copy would shadow it for descendants and break
   // the knob) drives them all (Dialog-margin pattern). Day margin (2px) stays
   // frozen — sub-step, and the scroll/positioning math reuses it.
-  addRootOverride(enhanced.components, 'MuiDayCalendar', { '--_daySize': '36px' });
+  addRootOverride(enhanced.components, 'MuiDayCalendar', { '--_daySize': '30px' });
   addRootOverride(enhanced.components, 'MuiPickerDay', {
     '--PickerDay-size': 'var(--_daySize)',
   });
@@ -1488,7 +1638,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '40px' },
+    { width: 'var(--_daySize)', height: '36px' },
     'weekDayLabel',
   );
   addRootOverride(
@@ -1500,7 +1650,7 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiDayCalendar',
-    { width: 'var(--_daySize)', height: '40px' },
+    { width: 'var(--_daySize)', height: '36px' },
     'weekNumberLabel',
   );
   // 6-week container: master minHeight = (DAY_SIZE + 2*DAY_MARGIN) * 6 = 240.
@@ -1521,23 +1671,28 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   // day var can't reach here (it lives on the DayCalendar DESCENDANT; an ancestor
   // copy would shadow the knob), so day-size knob edits don't reflow the root box.
   addRootOverride(enhanced.components, 'MuiDateCalendar', {
-    height: '336px',
+    height: '286px',
     // The PickerViewRoot base pins maxHeight at 336 — without moving it the comfort
     // height is clamped and the last weeks clip (overflow hidden).
-    maxHeight: '336px',
-    width: '320px',
+    maxHeight: '286px',
+    width: '278px',
   });
   // Calendar header: min/max pinned together (upstream pins both against a Safari
   // jump); spacing steps (master 12/4/24/12, label gap 6), height raw.
   addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', {
-    marginTop: d.md,
-    marginBottom: d.xxs,
-    paddingLeft: d.xl,
-    paddingRight: d.md,
-    minHeight: '40px',
-    maxHeight: '40px',
+    marginTop: d.medium,
+    marginBottom: d['xx-small'],
+    paddingLeft: d['x-large'],
+    paddingRight: d.medium,
+    minHeight: '36px',
+    maxHeight: '36px',
   });
-  addRootOverride(enhanced.components, 'MuiPickersCalendarHeader', { marginRight: d.xs }, 'label');
+  addRootOverride(
+    enhanced.components,
+    'MuiPickersCalendarHeader',
+    { marginRight: d['x-small'] },
+    'label',
+  );
   // Year/month grid buttons (master 72×36) — sizing raw; the Year filler (last-row
   // spacer) mirrors the button box. Grid spacing: row gaps + block padding + the
   // 3-per-row columnGap ride steps (master 12/6/24 year, 16/8/24 month). Year's
@@ -1547,46 +1702,58 @@ export default function enhanceNormalDensity<T extends EnhanceableTheme>(theme: 
   addRootOverride(
     enhanced.components,
     'MuiYearCalendar',
-    { width: '72px', height: '36px' },
+    { width: '64px', height: '32px' },
     'button',
   );
   addRootOverride(
     enhanced.components,
     'MuiYearCalendar',
-    { width: '72px', height: '36px' },
+    { width: '64px', height: '32px' },
     'buttonFiller',
   );
   addRootOverride(enhanced.components, 'MuiYearCalendar', {
-    rowGap: d.md,
-    variants: [{ props: { yearsPerRow: 3 }, style: { paddingBlock: d.xs, columnGap: d.xl } }],
+    rowGap: d.medium,
+    variants: [
+      { props: { yearsPerRow: 3 }, style: { paddingBlock: d['x-small'], columnGap: d['x-large'] } },
+    ],
   });
   addRootOverride(
     enhanced.components,
     'MuiMonthCalendar',
-    { width: '72px', height: '36px' },
+    { width: '64px', height: '32px' },
     'button',
   );
   addRootOverride(enhanced.components, 'MuiMonthCalendar', {
-    rowGap: d.lg,
-    paddingBlock: d.sm,
-    variants: [{ props: { monthsPerRow: 3 }, style: { columnGap: d.xl } }],
+    rowGap: d.large,
+    paddingBlock: d.small,
+    variants: [{ props: { monthsPerRow: 3 }, style: { columnGap: d['x-large'] } }],
   });
   // Digital clocks: item padding steps (master 8 16 / 8); the 2px 4px item margin is
   // frozen — the scroll positioning math subtracts the first item's 4px in JS.
-  addRootOverride(enhanced.components, 'MuiDigitalClock', { padding: `${d.sm} ${d.lg}` }, 'item');
+  addRootOverride(
+    enhanced.components,
+    'MuiDigitalClock',
+    { padding: `${d.small} ${d.large}` },
+    'item',
+  );
   addRootOverride(enhanced.components, 'MuiMultiSectionDigitalClockSection', {
-    width: '56px',
+    width: '48px',
   });
   addRootOverride(
     enhanced.components,
     'MuiMultiSectionDigitalClockSection',
-    { padding: d.sm, width: '48px' },
+    { padding: d.small, width: '40px' },
     'item',
   );
   // Pickers toolbar (master su(2,3)); scoped to portrait — landscape has its own
   // master padding (16) an unconditional emission would clobber.
   addRootOverride(enhanced.components, 'MuiPickersToolbar', {
-    variants: [{ props: { pickerOrientation: 'portrait' }, style: { padding: `${d.lg} ${d.xl}` } }],
+    variants: [
+      {
+        props: { pickerOrientation: 'portrait' },
+        style: { padding: `${d.large} ${d['x-large']}` },
+      },
+    ],
   });
   return enhanced;
 }

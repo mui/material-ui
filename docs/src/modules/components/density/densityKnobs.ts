@@ -270,7 +270,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiDataGrid|columnHeaderFilterInput|base||marginBottom': {
     label: 'DataGrid · columnHeaderFilterInput · marginBottom',
-    note: '[Pro] negative pull (master su(-0.25)) — a negated key (-xxs) maps it.',
+    note: '[Pro] negative pull (master su(-0.25)) — a negated key (-xx-small) maps it.',
   },
   'MuiDataGrid|columnHeaderTitleContainer|base||gap': 'DataGrid · columnHeaderTitleContainer · gap',
   'MuiDataGrid|columnsManagement|base||padding': 'DataGrid · columnsManagement · padding',
