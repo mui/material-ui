@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "9.1.1",
+  "version": "9.2.0",
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "attw": "attw --pack ./build --entrypoints \".\" \"Button\" \"styles\" \"utils\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
+    "@babel/runtime": "^7.29.7",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -43,22 +43,22 @@
     "clsx": "^2.1.1",
     "csstype": "^3.2.3",
     "prop-types": "^15.8.1",
-    "react-is": "^19.2.6",
+    "react-is": "^19.2.7",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
     "@types/prop-types": "15.7.15",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/sinon": "21.0.1",
     "chai": "6.2.2",
     "css-mediaquery": "0.1.2",
-    "es-toolkit": "1.46.1",
+    "es-toolkit": "1.49.0",
     "fast-glob": "3.3.3",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "react-router": "7.15.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-router": "8.2.0",
     "sinon": "22.0.0"
   },
   "peerDependencies": {
@@ -90,6 +90,9 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "browser": {
+    "react-transition-group/cjs/TransitionGroupContext.js": "react-transition-group/esm/TransitionGroupContext.js"
   },
   "exports": {
     ".": "./src/index.js",

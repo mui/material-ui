@@ -6,7 +6,10 @@ import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import useValueAsRef from '@mui/utils/useValueAsRef';
 // Material UI transitions must still work inside react-transition-group's TransitionGroup.
 // Import only its context module; do not import its Transition or TransitionGroup components.
-import TransitionGroupContext from 'react-transition-group/TransitionGroupContext';
+// Use RTG's explicit CJS file for Node ESM/SSR; package.json's `browser` field redirects
+// browser bundles to RTG's ESM file.
+// eslint-disable-next-line import/extensions -- Node ESM needs the explicit .js extension.
+import TransitionGroupContext from 'react-transition-group/cjs/TransitionGroupContext.js';
 import { reflow } from '../transitions/utils';
 
 type RenderedTransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited';
@@ -24,8 +27,7 @@ interface CancellableCallback {
 }
 
 type TransitionEndListener =
-  | ((done: () => void) => void)
-  | ((node: HTMLElement, done: () => void) => void);
+  ((done: () => void) => void) | ((node: HTMLElement, done: () => void) => void);
 
 interface InternalTransitionProps {
   in?: boolean | undefined;

@@ -93,6 +93,7 @@ describe('<Autocomplete />', () => {
       slots: {
         clearIndicator: { expectedClassName: classes.clearIndicator },
         popupIndicator: { expectedClassName: classes.popupIndicator },
+        status: { expectedClassName: classes.status },
       },
       only: [
         'slotsProp',
@@ -231,6 +232,26 @@ describe('<Autocomplete />', () => {
       );
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
+    });
+
+    it('should render the loading message in the status container', () => {
+      const view = render(
+        <Autocomplete
+          open
+          options={['one']}
+          loadingText="Fetching options"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      view.setProps({ options: [], loading: true });
+
+      expect(status).to.have.text('Fetching options');
     });
 
     it('should show supplied options to the "options" prop even when loading', () => {
@@ -3374,6 +3395,73 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('The');
     });
 
+    it('should prevent form submission when committing typed text over auto-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            autoHighlight
+            openOnFocus
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.type(screen.getByRole('combobox'), 'The{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
+    it('should prevent form submission when committing edited selected text over value-highlighted match', async () => {
+      const handleChange = spy();
+      const handleSubmit = spy();
+      const options = ['The Shawshank Redemption', 'The Godfather'];
+      const { user } = render(
+        <div
+          onKeyDown={(event) => {
+            if (!event.defaultPrevented && event.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
+        >
+          <Autocomplete
+            freeSolo
+            defaultValue="The Godfather"
+            options={options}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} autoFocus />}
+          />
+        </div>,
+      );
+
+      await user.keyboard('{Backspace}{Backspace}{Backspace}{Backspace}{Backspace}{Enter}');
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('The Godf');
+      expect(handleSubmit.callCount).to.equal(0);
+
+      await user.keyboard('{Enter}');
+
+      expect(handleSubmit.callCount).to.equal(1);
+    });
+
     it('should prefer typed text after editing a selected value', async () => {
       const handleChange = spy();
       const options = ['The Shawshank Redemption', 'The Godfather'];
@@ -4968,6 +5056,78 @@ describe('<Autocomplete />', () => {
     );
 
     expect(screen.getByTestId('label')).to.have.attribute('data-shrink', 'false');
+  });
+
+  describe('prop: noOptionsText', () => {
+    it('should render the no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No options')).not.to.equal(null);
+    });
+
+    it('should render the custom no options text when there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          noOptionsText="No results"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.getByText('No results')).not.to.equal(null);
+    });
+
+    it('should not render the no options text when loading and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          loading
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should not render the no options text when freeSolo is true and there are no options', () => {
+      render(
+        <Autocomplete
+          open
+          options={[]}
+          freeSolo
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      expect(screen.queryByText('No options')).to.equal(null);
+    });
+
+    it('should always render a status message container for no options', async () => {
+      const { user } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const status = screen.getByRole('status');
+      expect(status).to.have.attribute('aria-live', 'polite');
+      expect(status).to.have.attribute('aria-atomic', 'true');
+      expect(status.children).to.have.length(0);
+
+      await user.type(screen.getByRole('combobox'), 'three');
+
+      expect(status.children).to.have.length(1);
+    });
   });
 
   // https://github.com/mui/material-ui/issues/47203

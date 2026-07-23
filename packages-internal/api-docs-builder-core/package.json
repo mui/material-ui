@@ -18,11 +18,11 @@
     "@mui/internal-core-docs": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "docs": "workspace:^",
-    "es-toolkit": "^1.46.1"
+    "es-toolkit": "^1.49.0"
   },
   "devDependencies": {
     "@types/chai": "5.2.3",
-    "@types/node": "20.19.39",
+    "@types/node": "20.19.43",
     "@types/sinon": "21.0.1",
     "chai": "6.2.2",
     "sinon": "22.0.0",

@@ -5,7 +5,7 @@
     "typescript": "tsgo -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "7.29.2",
+    "@babel/runtime": "7.29.7",
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@mui/icons-material": "workspace:^",
@@ -14,30 +14,30 @@
     "@mui/stylis-plugin-rtl": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "4.3.2",
     "@testing-library/dom": "10.4.1",
     "@types/chai": "5.2.3",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.17",
     "@types/react-is": "19.2.0",
     "@types/sinon": "21.0.1",
     "chai": "6.2.2",
     "docs": "workspace:^",
-    "es-toolkit": "1.46.1",
+    "es-toolkit": "1.49.0",
     "fast-glob": "3.3.3",
     "prop-types": "15.8.1",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
-    "react-is": "19.2.6",
-    "react-router": "7.15.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "react-is": "19.2.7",
+    "react-router": "8.2.0",
     "react-window": "2.2.7",
     "sinon": "22.0.0",
-    "styled-components": "6.4.1",
+    "styled-components": "6.4.3",
     "stylis": "4.4.0",
-    "tailwindcss": "4.2.4",
+    "tailwindcss": "4.3.2",
     "webfontloader": "1.6.28",
-    "yargs": "17.7.2"
+    "yargs": "17.7.3"
   },
   "dependencies": {
-    "@react-spring/web": "^10.0.3"
+    "@react-spring/web": "^10.1.2"
   }
 }

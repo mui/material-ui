@@ -189,12 +189,7 @@ export type Interpolation<P> =
 // see https://github.com/microsoft/TypeScript/issues/34796
 export type FlattenInterpolation<P> = ReadonlyArray<Interpolation<P>>;
 export type InterpolationValue =
-  | string
-  | number
-  | FalseyValue
-  | Keyframes
-  | StyledComponentInterpolation
-  | CSSObject;
+  string | number | FalseyValue | Keyframes | StyledComponentInterpolation | CSSObject;
 export type SimpleInterpolation = InterpolationValue | FlattenSimpleInterpolation;
 // adapter for compatibility with @mui/styled-engine
 export type CSSInterpolation = SimpleInterpolation;
@@ -225,7 +220,8 @@ export type StyledComponent<
   T extends object = {},
   O extends object = {},
   A extends keyof any = never,
-> = // the "string" allows this to be used as an object key
+> =
+  // the "string" allows this to be used as an object key
   // I really want to avoid this if possible but it's the only way to use nesting with object styles...
   string &
     StyledComponentBase<C, T, O, A> &
@@ -353,8 +349,7 @@ export interface StyledConfig<O extends object = {}> {
   label?: string | undefined;
   target?: string | undefined;
   shouldForwardProp?:
-    | ((prop: keyof O, defaultValidatorFn: (prop: keyof O) => boolean) => boolean)
-    | undefined;
+    ((prop: keyof O, defaultValidatorFn: (prop: keyof O) => boolean) => boolean) | undefined;
 }
 
 /** Same as StyledConfig but shouldForwardProp must be a type guard */
