@@ -83,9 +83,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
-    "@babel/core": "7.29.7",
-    "@babel/node": "7.29.7",
-    "@babel/plugin-transform-react-constant-elements": "7.29.7",
+    "@babel/core": "8.0.1",
+    "@babel/node": "8.0.1",
+    "@babel/plugin-transform-react-constant-elements": "8.0.1",
     "@eslint/compat": "2.1.0",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.27",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.78",
