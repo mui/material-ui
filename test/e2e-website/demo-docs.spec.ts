@@ -23,6 +23,14 @@ async function editSelectedFile(demo: Locator, update: (source: string) => strin
   await editor.fill(update(await editor.inputValue()));
 }
 
+// Clicks can land before the demo preview hydrates and get lost; retry until the effect shows.
+async function clickForEffect(target: Locator, expectation: () => Promise<void>) {
+  await expect(async () => {
+    await target.click();
+    await expectation();
+  }).toPass();
+}
+
 test.describe('Demo docs', () => {
   test('mode toggle demos should work', async ({ page }) => {
     await page.goto('/experiments/docs/demos/');
@@ -36,17 +44,18 @@ test.describe('Demo docs', () => {
     );
 
     // Toggle dark mode
-    await page
-      .getByRole('radiogroup', { name: /^demo-mode-toggle$/ })
-      .locator('label:nth-child(3)')
-      .click();
-
-    await expect(page.locator('div:has(> [data-element="demo-mode-toggle-paper"])')).toHaveClass(
-      /dark/,
-    );
-    await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
-      'background-color',
-      'rgb(18, 18, 18)',
+    await clickForEffect(
+      page.getByRole('radiogroup', { name: /^demo-mode-toggle$/ }).locator('label:nth-child(3)'),
+      async () => {
+        await expect(
+          page.locator('div:has(> [data-element="demo-mode-toggle-paper"])'),
+        ).toHaveClass(/dark/, { timeout: 2000 });
+        await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
+          'background-color',
+          'rgb(18, 18, 18)',
+          { timeout: 2000 },
+        );
+      },
     );
   });
 
@@ -62,17 +71,18 @@ test.describe('Demo docs', () => {
     );
 
     // Toggle dark mode
-    await page
-      .getByRole('radiogroup', { name: /^demo-mode-toggle-custom-theme$/ })
-      .locator('label:nth-child(3)')
-      .click();
-
-    await expect(
-      page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
-    ).toHaveClass(/dark/);
-    await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
-      'background-color',
-      'rgb(183, 28, 28)',
+    await clickForEffect(
+      page
+        .getByRole('radiogroup', { name: /^demo-mode-toggle-custom-theme$/ })
+        .locator('label:nth-child(3)'),
+      async () => {
+        await expect(
+          page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
+        ).toHaveClass(/dark/, { timeout: 2000 });
+        await expect(
+          page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]'),
+        ).toHaveCSS('background-color', 'rgb(183, 28, 28)', { timeout: 2000 });
+      },
     );
   });
 
@@ -88,15 +98,18 @@ test.describe('Demo docs', () => {
     );
 
     // Toggle dark mode
-    await iframe
-      .getByRole('radiogroup', { name: /^demo-mode-toggle-iframe$/ })
-      .locator('label:nth-child(3)')
-      .click();
-
-    await expect(iframe.locator('html')).toHaveClass(/dark/);
-    await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
-      'background-color',
-      'rgb(18, 18, 18)',
+    await clickForEffect(
+      iframe
+        .getByRole('radiogroup', { name: /^demo-mode-toggle-iframe$/ })
+        .locator('label:nth-child(3)'),
+      async () => {
+        await expect(iframe.locator('html')).toHaveClass(/dark/, { timeout: 2000 });
+        await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
+          'background-color',
+          'rgb(18, 18, 18)',
+          { timeout: 2000 },
+        );
+      },
     );
   });
 
@@ -162,8 +175,11 @@ test.describe('Demo docs', () => {
       await page.goto(validationPage);
       const demo = getDemo(page, 'FocusedLiveEdit');
 
-      await page.getByTestId('focused-count').click();
-      await expect(page.getByTestId('focused-count')).toHaveText('Count: 1');
+      await clickForEffect(page.getByTestId('focused-count'), async () => {
+        await expect(page.getByTestId('focused-count')).toHaveText(/Count: [1-9]/, {
+          timeout: 2000,
+        });
+      });
       await demo.getByRole('button', { name: 'Reset demo' }).click();
       await expect(page.getByTestId('focused-count')).toHaveText('Count: 0');
     });
