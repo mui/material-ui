@@ -503,4 +503,104 @@ describe('<TextareaAutosize />', () => {
     // and 2 times in a real browser
     expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
   });
+
+  it('should not lose textarea value during reflow workaround for controlled component', async () => {
+    function App() {
+      const [value, setValue] = React.useState<string>(
+        'some long text that makes the input start with multiple rows',
+      );
+
+      const handleChange = (event: React.ChangeEvent<any>) => {
+        setValue(event.target.value);
+      };
+
+      return <TextareaAutosize value={value} onChange={handleChange} />;
+    }
+
+    render(<App />);
+    const textarea = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
+
+    const originalValue = textarea.value;
+
+    act(() => {
+      textarea.focus();
+    });
+
+    // Trigger textarea height changes
+    fireEvent.change(textarea, {
+      target: { value: 'some short text' },
+    });
+    await raf();
+
+    fireEvent.change(textarea, {
+      target: { value: originalValue },
+    });
+    await raf();
+
+    expect(textarea.value).to.equal(originalValue);
+  });
+  it('should not lose textarea value during reflow workaround for uncontrolled component', async () => {
+    function App() {
+      return (
+        <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
+      );
+    }
+
+    render(<App />);
+    const textarea = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
+
+    const originalValue = textarea.value;
+
+    act(() => {
+      textarea.focus();
+    });
+
+    // Trigger textarea height changes
+    fireEvent.change(textarea, {
+      target: { value: 'some short text' },
+    });
+    await raf();
+
+    fireEvent.change(textarea, {
+      target: { value: originalValue },
+    });
+    await raf();
+
+    expect(textarea.value).to.equal(originalValue);
+  });
+  it('should not restore selection when textarea is not focused', async () => {
+    function App() {
+      const [value, setValue] = React.useState('Initial long text');
+      const handleChange = (event: React.ChangeEvent<any>) => {
+        setValue(event.target.value);
+      };
+      return (
+        <div>
+          <TextareaAutosize value={value} onChange={handleChange} />
+          <button onClick={() => setValue('Short')}>Change</button>
+        </div>
+      );
+    }
+
+    render(<App />);
+    const textarea = screen.getByRole<HTMLTextAreaElement>('textbox', {
+      hidden: false,
+    });
+    const button = screen.getByRole('button');
+
+    // Don't focus the textarea
+    expect(document.activeElement).not.to.equal(textarea);
+
+    // Change value programmatically
+    fireEvent.click(button);
+    await raf();
+
+    // Should update without error
+    expect(textarea.value).to.equal('Short');
+    expect(document.activeElement).not.to.equal(textarea);
+  });
 });
