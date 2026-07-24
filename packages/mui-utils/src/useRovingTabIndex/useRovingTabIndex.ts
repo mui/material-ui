@@ -103,7 +103,11 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    * Spread these props onto the list or composite root element that should listen for focus
    * and keyboard events.
    */
-  getContainerProps: (ref?: React.Ref<HTMLElement>) => {
+  getContainerProps: (
+    ref?: React.Ref<HTMLElement> | undefined,
+    onFocus?: ((event: React.FocusEvent<HTMLElement>) => void) | undefined,
+    onKeyDown?: ((event: React.KeyboardEvent<HTMLElement>) => void) | undefined,
+  ) => {
     /**
      * Keeps the active item in sync when focus moves onto one of the registered items.
      */
@@ -313,8 +317,14 @@ export function useRovingTabIndexRoot<Key = unknown>(
   );
 
   const getContainerProps = React.useCallback(
-    (ref?: React.Ref<HTMLElement>) => {
+    (
+      ref: React.Ref<HTMLElement> | undefined,
+      onFocusProp?: (event: React.FocusEvent<HTMLElement>) => void,
+      onKeyDownProp?: (event: React.KeyboardEvent<HTMLElement>) => void,
+    ) => {
       const onFocus = (event: React.FocusEvent<HTMLElement>) => {
+        onFocusProp?.(event);
+
         const snapshot = getNavigableItemsSnapshot(itemMapRef.current);
         const focusedIndex = findItemIndexByElement(snapshot, event.target);
 
@@ -324,7 +334,15 @@ export function useRovingTabIndexRoot<Key = unknown>(
       };
 
       const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-        if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
+        onKeyDownProp?.(event);
+
+        if (
+          event.defaultPrevented ||
+          event.altKey ||
+          event.shiftKey ||
+          event.ctrlKey ||
+          event.metaKey
+        ) {
           return;
         }
 

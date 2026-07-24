@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import {
   type UseRovingTabIndexParams,
@@ -58,9 +59,18 @@ function TestComponent(
   props: Partial<UseRovingTabIndexParams<string>> & {
     items?: TestItem[];
     buttonRef?: React.Ref<HTMLButtonElement>;
+    onKeyDown?: React.KeyboardEventHandler;
+    onFocus?: React.FocusEventHandler;
   },
 ) {
-  const { items = defaultItems, buttonRef, orientation = 'horizontal', ...options } = props;
+  const {
+    items = defaultItems,
+    buttonRef,
+    orientation = 'horizontal',
+    onKeyDown,
+    onFocus,
+    ...options
+  } = props;
   const rootParams: UseRovingTabIndexParams<string> = {
     ...(options as Omit<UseRovingTabIndexParams<string>, 'orientation'>),
     orientation,
@@ -73,7 +83,11 @@ function TestComponent(
 
   return (
     <RovingTabIndexContext.Provider value={root as UseRovingTabIndexReturnValue<unknown>}>
-      <div data-testid="container" tabIndex={-1} {...root.getContainerProps()}>
+      <div
+        data-testid="container"
+        tabIndex={-1}
+        {...root.getContainerProps(undefined, onFocus, onKeyDown)}
+      >
         {items
           .filter((item) => item.render !== false)
           .map((item) => (
@@ -468,5 +482,66 @@ describe('useRovingTabIndexRoot + useRovingTabIndexItem', () => {
 
     await user.keyboard('{ArrowRight}');
     expect(screen.getByTestId('button-3')).toHaveFocus();
+  });
+
+  test("composes with a user's onFocus and onKeyDown handlers", async () => {
+    const onFocusSpy = spy();
+    const onKeyDownSpy = spy();
+
+    const { user } = render(<TestComponent onFocus={onFocusSpy} onKeyDown={onKeyDownSpy} />);
+
+    await user.click(screen.getByTestId('button-1'));
+
+    expect(onFocusSpy.callCount).to.equal(1);
+
+    await user.keyboard('{ArrowRight}');
+    expect(screen.getByTestId('button-2')).toHaveFocus();
+
+    expect(onKeyDownSpy.callCount).to.equal(1);
+  });
+
+  test('runs the onFocus and onKeyDown handlers even when the event is prevented', async () => {
+    const onFocusSpy = spy();
+    const onKeyDownSpy = spy();
+
+    const { user } = render(
+      <TestComponent
+        onFocus={(event) => {
+          event.preventDefault();
+          onFocusSpy();
+        }}
+        onKeyDown={(event) => {
+          event.preventDefault();
+          onKeyDownSpy();
+        }}
+      />,
+    );
+
+    await user.click(screen.getByTestId('button-1'));
+
+    expect(onFocusSpy.callCount).to.equal(1);
+
+    await user.keyboard('{ArrowRight}');
+    expect(screen.getByTestId('button-1')).toHaveFocus();
+
+    expect(onKeyDownSpy.callCount).to.equal(1);
+  });
+
+  test('runs consumer onKeyDown even without arrow key navigation', async () => {
+    const onKeyDownSpy = spy();
+
+    const { user } = render(
+      <TestComponent
+        onKeyDown={(event) => {
+          event.preventDefault();
+          onKeyDownSpy();
+        }}
+      />,
+    );
+
+    await user.click(screen.getByTestId('button-1'));
+
+    await user.keyboard('{Enter}');
+    expect(onKeyDownSpy.callCount).to.equal(1);
   });
 });

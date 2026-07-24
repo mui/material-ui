@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -59,6 +60,155 @@ describe('<ToggleButtonGroup />', () => {
     const [firstButton, secondButton] = screen.getAllByRole('button');
     expect(firstButton).to.have.property('disabled', true);
     expect(secondButton).to.have.property('disabled', true);
+  });
+
+  describe('keyboard navigation', () => {
+    it('should have one tab stop and skip disabled buttons', () => {
+      render(
+        <ToggleButtonGroup>
+          <ToggleButton value="one" disabled>
+            One
+          </ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+          <ToggleButton value="three">Three</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      expect(screen.getAllByRole('button').map((button) => button.tabIndex)).to.deep.equal([
+        -1, 0, -1,
+      ]);
+    });
+
+    it('should navigate horizontally and wrap focus', async () => {
+      const { user } = render(
+        <ToggleButtonGroup>
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two" disabled>
+            Two
+          </ToggleButton>
+          <ToggleButton value="three">Three</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+      const [firstButton, , thirdButton] = screen.getAllByRole('button');
+
+      await user.tab();
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowRight}');
+      expect(thirdButton).toHaveFocus();
+      expect(thirdButton).to.have.property('tabIndex', 0);
+      expect(firstButton).to.have.property('tabIndex', -1);
+
+      await user.keyboard('{ArrowRight}');
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(thirdButton).toHaveFocus();
+    });
+
+    it('should swap direction when RTL is applied', async () => {
+      const rtlTheme = createTheme({ direction: 'rtl' });
+      const { user } = render(
+        <ThemeProvider theme={rtlTheme}>
+          <ToggleButtonGroup>
+            <ToggleButton value="one">One</ToggleButton>
+            <ToggleButton value="two">Two</ToggleButton>
+            <ToggleButton value="three">Three</ToggleButton>
+          </ToggleButtonGroup>
+        </ThemeProvider>,
+      );
+      const [firstButton, secondButton, thirdButton] = screen.getAllByRole('button');
+
+      await user.tab();
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(secondButton).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(thirdButton).toHaveFocus();
+
+      await user.keyboard('{ArrowRight}');
+      expect(secondButton).toHaveFocus();
+    });
+
+    it('should navigate vertically and support Home and End', async () => {
+      const { user } = render(
+        <ToggleButtonGroup orientation="vertical">
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+          <ToggleButton value="three">Three</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+      const [firstButton, secondButton, thirdButton] = screen.getAllByRole('button');
+
+      await user.tab();
+      await user.keyboard('{ArrowDown}');
+      expect(secondButton).toHaveFocus();
+
+      await user.keyboard('{End}');
+      expect(thirdButton).toHaveFocus();
+
+      await user.keyboard('{Home}');
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowUp}');
+      expect(thirdButton).toHaveFocus();
+    });
+
+    it('should move focus without changing the selected value', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <ToggleButtonGroup exclusive value="one" onChange={handleChange}>
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      await user.tab();
+      await user.keyboard('{ArrowRight}');
+
+      expect(screen.getAllByRole('button')[1]).toHaveFocus();
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('should support wrapped ToggleButton children', async () => {
+      const { user } = render(
+        <ToggleButtonGroup>
+          <Tooltip title="One">
+            <ToggleButton value="one">One</ToggleButton>
+          </Tooltip>
+          <Tooltip title="Two">
+            <ToggleButton value="two">Two</ToggleButton>
+          </Tooltip>
+        </ToggleButtonGroup>,
+      );
+      const [firstButton, secondButton] = screen.getAllByRole('button');
+
+      await user.tab();
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowRight}');
+      expect(secondButton).toHaveFocus();
+    });
+
+    it('should call root event handlers without disabling roving focus', async () => {
+      const handleFocus = spy();
+      const handleKeyDown = spy();
+      const { user } = render(
+        <ToggleButtonGroup onFocus={handleFocus} onKeyDown={handleKeyDown}>
+          <ToggleButton value="one">One</ToggleButton>
+          <ToggleButton value="two">Two</ToggleButton>
+        </ToggleButtonGroup>,
+      );
+
+      await user.tab();
+      await user.keyboard('{ArrowRight}');
+
+      expect(screen.getAllByRole('button')[1]).toHaveFocus();
+      expect(handleFocus.callCount).to.be.greaterThan(0);
+      expect(handleKeyDown.callCount).to.equal(1);
+    });
   });
 
   describe('exclusive', () => {
