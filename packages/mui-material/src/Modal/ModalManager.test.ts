@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import getScrollbarSize from '@mui/utils/getScrollbarSize';
 import { ModalManager } from './ModalManager';
 
@@ -430,6 +431,269 @@ describe('ModalManager', () => {
       expect(container2.children[0]).toBeInaccessible();
       expect(container2.children[1]).toBeInaccessible();
       expect(container2.children[2]).not.toBeInaccessible();
+    });
+  });
+
+  // Regression test for https://github.com/mui/material-ui/issues/46791
+  // Touch browsers don't reliably honor `overflow: hidden` on the document
+  // scroll container, so the page can still scroll behind a modal (e.g. when the
+  // on-screen keyboard opens for an Autocomplete inside a Drawer). On touch
+  // devices we additionally pin the body with `position: fixed` and restore the
+  // scroll position on unlock.
+  describe('touch-device scroll lock', () => {
+    let scrollXDescriptor: PropertyDescriptor | undefined;
+    let scrollYDescriptor: PropertyDescriptor | undefined;
+    let originalScrollTo: typeof window.scrollTo;
+    let originalMatchMedia: typeof window.matchMedia;
+    let scrollToSpy: ReturnType<typeof spy>;
+
+    // Minimal `matchMedia` stub so detection is deterministic regardless of the
+    // browser the tests actually run in. Only `(pointer: coarse)` is meaningful.
+    function stubMatchMedia(coarse: boolean) {
+      window.matchMedia = ((query: string) =>
+        ({
+          matches: coarse && query.includes('pointer: coarse'),
+          media: query,
+          onchange: null,
+          addListener: () => {},
+          removeListener: () => {},
+          addEventListener: () => {},
+          removeEventListener: () => {},
+          dispatchEvent: () => false,
+        }) as unknown as MediaQueryList) as typeof window.matchMedia;
+    }
+
+    // Shadow the read-only navigator getters with own properties; afterEach
+    // deletes them to fall back to the original prototype getters.
+    function stubNavigator(values: {
+      userAgent?: string;
+      platform?: string;
+      maxTouchPoints?: number;
+      pointerCoarse?: boolean;
+    }) {
+      if (values.userAgent !== undefined) {
+        Object.defineProperty(navigator, 'userAgent', {
+          value: values.userAgent,
+          configurable: true,
+        });
+      }
+      if (values.platform !== undefined) {
+        Object.defineProperty(navigator, 'platform', {
+          value: values.platform,
+          configurable: true,
+        });
+      }
+      if (values.maxTouchPoints !== undefined) {
+        Object.defineProperty(navigator, 'maxTouchPoints', {
+          value: values.maxTouchPoints,
+          configurable: true,
+        });
+      }
+      if (values.pointerCoarse !== undefined) {
+        stubMatchMedia(values.pointerCoarse);
+      }
+    }
+
+    beforeEach(() => {
+      modalManager = new ModalManager();
+      scrollXDescriptor = Object.getOwnPropertyDescriptor(window, 'scrollX');
+      Object.defineProperty(window, 'scrollX', { value: 80, configurable: true });
+      scrollYDescriptor = Object.getOwnPropertyDescriptor(window, 'scrollY');
+      Object.defineProperty(window, 'scrollY', { value: 150, configurable: true });
+
+      originalScrollTo = window.scrollTo;
+      scrollToSpy = spy();
+      window.scrollTo = scrollToSpy as unknown as typeof window.scrollTo;
+
+      // Default to a fine pointer; touch tests opt in via `pointerCoarse`.
+      originalMatchMedia = window.matchMedia;
+      stubMatchMedia(false);
+    });
+
+    afterEach(() => {
+      delete (navigator as any).userAgent;
+      delete (navigator as any).platform;
+      delete (navigator as any).maxTouchPoints;
+      window.matchMedia = originalMatchMedia;
+      if (scrollXDescriptor) {
+        Object.defineProperty(window, 'scrollX', scrollXDescriptor);
+      } else {
+        delete (window as any).scrollX;
+      }
+      if (scrollYDescriptor) {
+        Object.defineProperty(window, 'scrollY', scrollYDescriptor);
+      } else {
+        delete (window as any).scrollY;
+      }
+      window.scrollTo = originalScrollTo;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+    });
+
+    it('pins the body with position: fixed and restores scroll on iOS', () => {
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('fixed');
+      expect(document.body.style.top).to.equal('-150px');
+      expect(document.body.style.left).to.equal('-80px');
+      expect(document.body.style.width).to.equal('100%');
+
+      modalManager.remove(modal);
+
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+      expect(document.body.style.left).to.equal('');
+      expect(document.body.style.overflow).to.equal('');
+      expect(scrollToSpy.calledOnceWith(80, 150)).to.equal(true);
+    });
+
+    it('detects iPadOS 13+ which reports as MacIntel with touch points', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/604.1',
+        platform: 'MacIntel',
+        maxTouchPoints: 5,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.position).to.equal('fixed');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.calledOnceWith(80, 150)).to.equal(true);
+    });
+
+    it('pins the body and restores scroll on Android', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+        platform: 'Linux armv8l',
+        maxTouchPoints: 5,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.position).to.equal('fixed');
+      expect(document.body.style.top).to.equal('-150px');
+      expect(document.body.style.left).to.equal('-80px');
+
+      modalManager.remove(modal);
+      expect(document.body.style.position).to.equal('');
+      expect(scrollToSpy.calledOnceWith(80, 150)).to.equal(true);
+    });
+
+    it('does not pin the body on non-touch platforms', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Safari/604.1',
+        platform: 'MacIntel',
+        maxTouchPoints: 0,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('does not pin the body on touch-capable laptops (fine primary pointer)', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        platform: 'Win32',
+        maxTouchPoints: 10,
+        pointerCoarse: false,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.overflow).to.equal('hidden');
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.top).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('pins the body on touch-primary devices reported via pointer: coarse', () => {
+      stubNavigator({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        platform: 'Win32',
+        maxTouchPoints: 5,
+        pointerCoarse: true,
+      });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, {});
+
+      expect(document.body.style.position).to.equal('fixed');
+      expect(document.body.style.top).to.equal('-150px');
+      expect(document.body.style.left).to.equal('-80px');
+
+      modalManager.remove(modal);
+      expect(document.body.style.position).to.equal('');
+      expect(scrollToSpy.calledOnceWith(80, 150)).to.equal(true);
+    });
+
+    it('does nothing when disableScrollLock is set on iOS', () => {
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
+
+      const modal = getDummyModal();
+      modalManager.add(modal, document.body);
+      modalManager.mount(modal, { disableScrollLock: true });
+
+      expect(document.body.style.position).to.equal('');
+      expect(document.body.style.overflow).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+    });
+
+    it('does not pin a non-document scroll container on iOS', () => {
+      stubNavigator({ userAgent:
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
+      platform: 'iPhone' });
+
+      const customContainer = document.createElement('div');
+      document.body.appendChild(customContainer);
+
+      const modal = getDummyModal();
+      modalManager.add(modal, customContainer);
+      modalManager.mount(modal, {});
+
+      expect(customContainer.style.overflow).to.equal('hidden');
+      expect(customContainer.style.position).to.equal('');
+
+      modalManager.remove(modal);
+      expect(scrollToSpy.called).to.equal(false);
+      document.body.removeChild(customContainer);
     });
   });
 });
