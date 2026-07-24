@@ -53,7 +53,7 @@
     "next": "15.5.20"
   },
   "peerDependencies": {
-    "@base-ui/react": "^1",
+    "@base-ui/react": "^1.5.0",
     "@docsearch/react": "catalog:docs",
     "@emotion/cache": "catalog:docs",
     "@emotion/react": "catalog:docs",
