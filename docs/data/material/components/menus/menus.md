@@ -1,7 +1,7 @@
 ---
 productId: material-ui
 title: React Menu component
-components: Menu, MenuItem, MenuList, MenuPreview, MenuPreviewTrigger, MenuPreviewPopup, MenuPreviewSubmenuPopup, MenuPreviewItem, MenuPreviewLinkItem, MenuPreviewCheckboxItem, MenuPreviewCheckboxItemIndicator, MenuPreviewRadioGroup, MenuPreviewRadioItem, MenuPreviewRadioItemIndicator, MenuPreviewGroup, MenuPreviewGroupLabel, MenuPreviewSeparator, MenuPreviewSubmenuRoot, MenuPreviewSubmenuTrigger, ClickAwayListener, Popover, Popper
+components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'scope: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
