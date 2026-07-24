@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -145,6 +150,19 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
   },
 ];
 
+// Switch docs demos enrolled for axe assertions. FormControlLabelPosition is
+// excluded: its `aria-label` on a role-less FormGroup div trips
+// `aria-prohibited-attr`, a demo quirk unrelated to Switch.
+const SWITCH_A11Y_DEMOS = [
+  'BasicSwitches',
+  'SwitchLabels',
+  'ColorSwitches',
+  'ControlledSwitches',
+  'CustomizedSwitches',
+  'SwitchesSize',
+  'SwitchesGroup',
+];
+
 /**
  * A11y defaults to off — only matched-and-enabled rules produce results.
  * Slug-wide rules use `*`; brace-globs narrow enrolment to specific demos;
@@ -154,6 +172,11 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: `docs/data/material/components/switches/{${SWITCH_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+  },
 ];
 
 export interface ParsedRoute {
