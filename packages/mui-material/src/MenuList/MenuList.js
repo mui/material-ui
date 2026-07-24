@@ -218,7 +218,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     [focusInitialTarget],
   );
 
-  const rovingContainerProps = getContainerProps({ onFocus: other.onFocus });
+  const rovingContainerProps = getContainerProps(undefined, other.onFocus);
   const handleRef = useForkRef(listRef, rovingContainerProps.ref, ref);
   const menuListContextValue = React.useMemo(
     () => ({

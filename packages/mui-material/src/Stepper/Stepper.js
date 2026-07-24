@@ -85,11 +85,11 @@ function RovingStepper(props) {
     orientation,
     isRtl,
   });
-  const rovingContainerProps = rovingContainer.getContainerProps({
-    ref: forwardedRef,
-    onKeyDown: other.onKeyDown,
-    onFocus: other.onFocus,
-  });
+  const rovingContainerProps = rovingContainer.getContainerProps(
+    forwardedRef,
+    other.onFocus,
+    other.onKeyDown,
+  );
 
   return (
     <RovingTabIndexContext.Provider value={rovingContainer}>

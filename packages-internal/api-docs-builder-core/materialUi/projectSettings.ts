@@ -38,7 +38,10 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton)/) !== null;
+    return (
+      filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider|RovingToggleButton)/) !==
+      null
+    );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,

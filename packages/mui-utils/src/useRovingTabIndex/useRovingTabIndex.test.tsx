@@ -86,7 +86,7 @@ function TestComponent(
       <div
         data-testid="container"
         tabIndex={-1}
-        {...root.getContainerProps({ onFocus, onKeyDown })}
+        {...root.getContainerProps(undefined, onFocus, onKeyDown)}
       >
         {items
           .filter((item) => item.render !== false)

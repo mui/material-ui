@@ -224,11 +224,11 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     isRtl,
   });
 
-  const rovingContainerProps = rovingTabIndexRoot.getContainerProps({
+  const rovingContainerProps = rovingTabIndexRoot.getContainerProps(
     ref,
-    onFocus: other.onFocus,
-    onKeyDown: other.onKeyDown,
-  });
+    other.onFocus,
+    other.onKeyDown,
+  );
 
   return (
     <ToggleButtonGroupRoot
