@@ -50,7 +50,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "next": "15.5.20"
+    "next": "16.2.11"
   },
   "peerDependencies": {
     "@base-ui/react": "^1",
