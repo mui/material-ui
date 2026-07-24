@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette, PaletteProps, spacing, SpacingProps } from '@mui/system';
+import { palette, type PaletteProps, spacing, type SpacingProps } from '@mui/system';
 
 const Div = styled.div<PaletteProps & SpacingProps>`
   ${palette}

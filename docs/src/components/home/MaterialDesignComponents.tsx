@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
   styled,
-  Theme,
-  ThemeOptions,
+  type Theme,
+  type ThemeOptions,
   alpha,
   extendTheme,
   CssVarsProvider,

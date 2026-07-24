@@ -1,15 +1,15 @@
-import * as React from 'react';
+import type * as React from 'react';
 import {
-  OverridableComponent,
-  OverridableStringUnion,
-  OverrideProps,
-  PartiallyRequired,
+  type OverridableComponent,
+  type OverridableStringUnion,
+  type OverrideProps,
+  type PartiallyRequired,
 } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { AvatarGroupClasses } from './avatarGroupClasses';
-import Avatar from '../Avatar';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '../styles';
+import { type AvatarGroupClasses } from './avatarGroupClasses';
+import type Avatar from '../Avatar';
+import { type CreateSlotsAndSlotProps, type SlotProps } from '../utils/types';
 
 export interface AvatarGroupPropsVariantOverrides {}
 

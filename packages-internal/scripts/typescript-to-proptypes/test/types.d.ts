@@ -1,7 +1,7 @@
 import {
-  InjectPropTypesInFileOptions,
-  GetPropTypesFromFileOptions,
-  GeneratePropTypesOptions,
+  type InjectPropTypesInFileOptions,
+  type GetPropTypesFromFileOptions,
+  type GeneratePropTypesOptions,
 } from '../src';
 
 export type TestOptions = {

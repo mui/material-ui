@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { SxProps } from '@mui/material/styles';
+import { type SxProps } from '@mui/material/styles';
 
 import mergeSlotProps from './mergeSlotProps';
 

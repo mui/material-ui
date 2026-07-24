@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { OverrideProps, PartiallyRequired } from '@mui/types';
-import { SxProps } from '../styleFunctionSx';
-import { Theme, Breakpoint } from '../createTheme';
+import type * as React from 'react';
+import { type OverrideProps, type PartiallyRequired } from '@mui/types';
+import { type SxProps } from '../styleFunctionSx';
+import { type Theme, type Breakpoint } from '../createTheme';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

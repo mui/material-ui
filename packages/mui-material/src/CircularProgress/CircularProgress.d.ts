@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../internal';
-import { CircularProgressClasses } from './circularProgressClasses';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type OverridableStringUnion } from '@mui/types';
+import { type Theme } from '../styles';
+import { type InternalStandardProps as StandardProps } from '../internal';
+import { type CircularProgressClasses } from './circularProgressClasses';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsVariantOverrides {}

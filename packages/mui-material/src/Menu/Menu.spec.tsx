@@ -1,4 +1,4 @@
-import Menu, { MenuProps } from '@mui/material/Menu';
+import Menu, { type MenuProps } from '@mui/material/Menu';
 
 // slotProps.transition should reject unknown props
 <Menu

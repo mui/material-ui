@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ListItemClasses } from './listItemClasses';
-import { SlotProps } from '../utils/types';
+import type * as React from 'react';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '../styles';
+import { type OverridableComponent, type OverrideProps } from '../OverridableComponent';
+import { type ListItemClasses } from './listItemClasses';
+import { type SlotProps } from '../utils/types';
 
 export interface ListItemRootSlotPropsOverrides {}
 

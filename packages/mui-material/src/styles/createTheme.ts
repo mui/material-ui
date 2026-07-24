@@ -1,14 +1,14 @@
-import createPalette, { PaletteOptions } from './createPalette';
-import { ColorSystemOptions } from './createThemeFoundation';
+import createPalette, { type PaletteOptions } from './createPalette';
+import { type ColorSystemOptions } from './createThemeFoundation';
 import createThemeWithVars, {
-  CssVarsThemeOptions,
-  ColorSystem,
-  DefaultColorScheme,
+  type CssVarsThemeOptions,
+  type ColorSystem,
+  type DefaultColorScheme,
 } from './createThemeWithVars';
 import createThemeNoVars, {
-  Theme,
-  CssThemeVariables,
-  ThemeOptions as ThemeNoVarsOptions,
+  type Theme,
+  type CssThemeVariables,
+  type ThemeOptions as ThemeNoVarsOptions,
 } from './createThemeNoVars';
 
 export type { Theme, CssThemeVariables } from './createThemeNoVars';

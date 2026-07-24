@@ -1,6 +1,6 @@
 import querystring from 'node:querystring';
-import { App, AwsLambdaReceiver, BlockAction, ButtonAction } from '@slack/bolt';
-import { Handler } from '@netlify/functions';
+import { App, AwsLambdaReceiver, type BlockAction, type ButtonAction } from '@slack/bolt';
+import { type Handler } from '@netlify/functions';
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
 const JOY_FEEBACKS_CHANNEL_ID = 'C050VE13HDL';

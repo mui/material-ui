@@ -5,13 +5,14 @@ import { prefixer } from 'stylis';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeOptionsContext } from '../ThemeContext';
 import globalSelector from '../globalSelector';
+import type * as RtlBundleModule from '../utils/rtlBundle';
 
 type StyledEngineProviderProps = {
   cacheLtr: ReturnType<typeof createCache>;
   children: React.ReactNode;
 };
 
-type RtlBundle = typeof import('../utils/rtlBundle');
+type RtlBundle = typeof RtlBundleModule;
 type RtlState = {
   bundle: RtlBundle;
   cacheRtl: ReturnType<typeof createCache>;
