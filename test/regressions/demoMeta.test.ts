@@ -49,6 +49,28 @@ describe('getConfig', () => {
     expect(
       getConfig(A11Y_RULES, 'docs/data/material/components/buttons/ColorButtons'),
     ).to.deep.include({ enabled: true });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/ToggleButtons'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/toggle-button/ToggleButtonA11ySemanticStates',
+      ),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('allows a known Toggle Button color-contrast fixture to record failures without asserting them', () => {
+    expect(
+      getConfig(
+        A11Y_RULES,
+        'docs/data/material/components/toggle-button/ToggleButtonA11yColorMatrix',
+      ),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
   });
 
   it('returns undefined for a demo outside a brace-glob enrolment', () => {
@@ -56,6 +78,10 @@ describe('getConfig', () => {
     expect(getConfig(A11Y_RULES, 'docs/data/material/components/buttons/DisabledButtons')).to.equal(
       undefined,
     );
+    // StandaloneToggleButton is a docs demo that is not enrolled for axe assertions.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/toggle-button/StandaloneToggleButton'),
+    ).to.equal(undefined);
   });
 
   it('honours last-match-wins when multiple rules apply', () => {

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -296,6 +297,64 @@ describe('<ToggleButtonGroup />', () => {
       expect(button).not.to.have.class(classes.firstButton);
       expect(button).not.to.have.class(classes.middleButton);
       expect(button).not.to.have.class(classes.lastButton);
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    describe('1.3.1 Info and Relationships', () => {
+      it('exposes the group role on the root', () => {
+        render(
+          <ToggleButtonGroup value="left">
+            <ToggleButton value="left">Left</ToggleButton>
+            <ToggleButton value="right">Right</ToggleButton>
+          </ToggleButtonGroup>,
+        );
+
+        expect(screen.getByRole('group')).not.to.equal(null);
+      });
+    });
+
+    describe('4.1.2 Name, Role, Value', () => {
+      it('names the group from its aria-label', () => {
+        render(
+          <ToggleButtonGroup value="left" aria-label="text alignment">
+            <ToggleButton value="left">Left</ToggleButton>
+            <ToggleButton value="right">Right</ToggleButton>
+          </ToggleButtonGroup>,
+        );
+
+        expect(screen.getByRole('group', { name: 'text alignment' })).not.to.equal(null);
+      });
+
+      it('reflects the exclusive selection as aria-pressed on the children', async () => {
+        function ControlledGroup() {
+          const [alignment, setAlignment] = React.useState('left');
+          return (
+            <ToggleButtonGroup
+              value={alignment}
+              exclusive
+              onChange={(event, newAlignment) => setAlignment(newAlignment)}
+              aria-label="text alignment"
+            >
+              <ToggleButton value="left" disableRipple>
+                Left
+              </ToggleButton>
+              <ToggleButton value="right" disableRipple>
+                Right
+              </ToggleButton>
+            </ToggleButtonGroup>
+          );
+        }
+
+        const { user } = render(<ControlledGroup />);
+        const [left, right] = screen.getAllByRole('button');
+        expect(left).to.have.attribute('aria-pressed', 'true');
+        expect(right).to.have.attribute('aria-pressed', 'false');
+
+        await user.click(right);
+        expect(left).to.have.attribute('aria-pressed', 'false');
+        expect(right).to.have.attribute('aria-pressed', 'true');
+      });
     });
   });
 });
