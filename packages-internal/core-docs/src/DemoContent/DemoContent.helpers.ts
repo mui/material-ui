@@ -1,5 +1,8 @@
 import type { UseDemoOpts } from '@mui/internal-docs-infra/useDemo';
+import type { Code } from '@mui/internal-docs-infra/CodeHighlighter/types';
 import { buildExportConfig, codeSandboxTsconfigOverride } from './exportConfig';
+
+const JAVASCRIPT_EXTENSIONS = ['.js', '.mjs', '.jsx', '.ts', '.tsx'];
 
 interface CreateDemoUseOptionsParams {
   disableLiveEdit?: boolean;
@@ -42,6 +45,36 @@ export function resolveDemoSourceView({
     sourceVisible: expanded || focusedLines > 0,
     hasSourceFocus: collapsible && hasFocusProjection && focusedLines > 0,
   };
+}
+
+export function getDemoEditingDependencies(code: Code | undefined) {
+  let js = false;
+  let css = false;
+
+  for (const variant of Object.values(code ?? {})) {
+    if (!variant || typeof variant === 'string') {
+      continue;
+    }
+    const fileNames = [
+      variant.fileName,
+      ...(variant.extraFiles ? Object.keys(variant.extraFiles) : []),
+    ];
+    for (const fileName of fileNames) {
+      if (fileName?.endsWith('.css')) {
+        css = true;
+      } else if (
+        fileName &&
+        JAVASCRIPT_EXTENSIONS.some((extension) => fileName.endsWith(extension))
+      ) {
+        js = true;
+      }
+      if (js && css) {
+        return { js, css };
+      }
+    }
+  }
+
+  return { js, css };
 }
 
 export function resetDemo(resetSource: (() => void) | undefined, remountPreview: () => void) {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import { Tabs } from '@base-ui/react/tabs';
 import type { ContentProps } from '@mui/internal-docs-infra/CodeHighlighter/types';
+import { CodeControllerContext } from '@mui/internal-docs-infra/CodeControllerContext';
 import { useDemo } from '@mui/internal-docs-infra/useDemo';
 import { useUrlHashState } from '@mui/internal-docs-infra/useUrlHashState';
 import { useTranslate } from '../i18n';
@@ -17,6 +18,7 @@ import { DemoToolbar, useToolbarKeyboard } from './DemoToolbar';
 import {
   createDemoUseOptions,
   expandDemo,
+  getDemoEditingDependencies,
   resetDemo,
   resolveDemoSourceView,
   toggleDemoExpanded,
@@ -137,6 +139,7 @@ export default function DemoContent(props: DemoContentProps) {
   }
 
   const csbContext = React.useContext(DemoContext);
+  const codeController = React.useContext(CodeControllerContext);
   const csbConfig = csbContext?.csb;
   const pageDisableAd = csbContext?.disableAd ?? false;
 
@@ -266,12 +269,28 @@ export default function DemoContent(props: DemoContentProps) {
 
   const expandedRef = React.useRef(demo.expanded);
   expandedRef.current = demo.expanded;
+  const editingDependencies = React.useMemo(
+    () => getDemoEditingDependencies(props.code),
+    [props.code],
+  );
+  const expandSource = demo.expand;
+  const expandWithEditingPreload = React.useCallback(() => {
+    if (!disableLiveEdit) {
+      codeController?.onActivate?.(editingDependencies);
+    }
+    expandSource();
+  }, [codeController, disableLiveEdit, editingDependencies, expandSource]);
   const handleExpand = React.useCallback(() => {
-    expandDemo(demo.expand, remountPreview);
-  }, [demo.expand]);
+    expandDemo(expandWithEditingPreload, remountPreview);
+  }, [expandWithEditingPreload]);
   const handleToggleFrames = React.useCallback(() => {
-    toggleDemoExpanded(expandedRef.current, demo.expand, demo.setExpanded, remountPreview);
-  }, [demo.expand, demo.setExpanded]);
+    toggleDemoExpanded(
+      expandedRef.current,
+      expandWithEditingPreload,
+      demo.setExpanded,
+      remountPreview,
+    );
+  }, [expandWithEditingPreload, demo.setExpanded]);
 
   // GA event label — the canonical demo slug is used since it uniquely
   // identifies a demo within a page and is stable across renders.
