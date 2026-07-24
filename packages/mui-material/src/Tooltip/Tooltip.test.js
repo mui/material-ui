@@ -387,6 +387,61 @@ describe('<Tooltip />', () => {
     expect(screen.queryByRole('tooltip')).to.equal(null);
   });
 
+  it('opens when a disabled native button receives mouse events', async () => {
+    clock.restore();
+
+    const { user } = render(
+      <Tooltip title="Hello World" enterDelay={0} slotProps={{ transition: { timeout: 0 } }}>
+        <button disabled type="button">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    await user.hover(screen.getByRole('button'));
+
+    expect(screen.getByRole('tooltip')).toBeVisible();
+  });
+
+  it('keeps a disabled-trigger tooltip open when the tooltip is hovered', async () => {
+    clock.restore();
+
+    const { user } = render(
+      <Tooltip
+        title="Hello World"
+        enterDelay={0}
+        leaveDelay={500}
+        slotProps={{ transition: { timeout: 0 } }}
+      >
+        <button disabled type="button">
+          Hello World
+        </button>
+      </Tooltip>,
+    );
+
+    const button = screen.getByRole('button');
+
+    await user.hover(button);
+    expect(screen.getByRole('tooltip')).toBeVisible();
+
+    await user.unhover(button);
+    await act(async () => {
+      await new Promise((resolve) => {
+        // Wait a bit but not long enough for the tooltip to disappear
+        setTimeout(resolve, 250);
+      });
+    });
+    await user.hover(screen.getByRole('tooltip'));
+    await act(async () => {
+      await new Promise((resolve) => {
+        // Wait out the close timeout until the tooltip should have disappeared
+        setTimeout(resolve, 300);
+      });
+    });
+
+    expect(screen.getByRole('tooltip')).toBeVisible();
+  });
+
   it('opens on the next task when reduced motion is always', () => {
     const handleEntered = spy();
     const theme = createTheme({
@@ -794,44 +849,6 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('disabled button warning', () => {
-    it('should not raise a warning if title is empty', () => {
-      expect(() => {
-        render(
-          <Tooltip title="">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
-    });
-
-    it('should raise a warning when we are uncontrolled and can not listen to events', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World">
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).toWarnDev('MUI: You are providing a disabled `button` child to the Tooltip component');
-    });
-
-    it('should not raise a warning when we are controlled', () => {
-      expect(() => {
-        render(
-          <Tooltip title="Hello World" open>
-            <button type="submit" disabled>
-              Hello World
-            </button>
-          </Tooltip>,
-        );
-      }).not.toErrorDev();
-    });
-  });
-
   describe('prop: disableInteractive', () => {
     it('when false should keep the overlay open if the popper element is hovered', () => {
       render(
@@ -1161,9 +1178,9 @@ describe('<Tooltip />', () => {
       expect(handleClose.callCount).to.equal(1);
     });
 
-    it('stays closed when a stray mouseover lands while the disabled child is closing', async () => {
+    it('stays closed when a stray mouseover lands while the disabled trigger is closing', async () => {
       // Deterministic regression test for the flaky "stuck open" tooltip:
-      // when the focused child becomes disabled the close is scheduled via the React
+      // when the focused trigger becomes disabled the close is scheduled via the React
       // #9142 native-blur workaround, but a layout-shift `mouseover` on the interactive
       // popper used to cancel that pending close and reopen the tooltip. A disabled
       // anchor must never (re)open. `leaveDelay` opens a deterministic window in which to
@@ -1195,11 +1212,11 @@ describe('<Tooltip />', () => {
         expect(screen.getByRole('tooltip')).toBeVisible();
       });
 
-      // Disabling the focused child schedules the close (leaveDelay window still pending).
+      // Disabling the focused trigger schedules the close (leaveDelay window still pending).
       await user.keyboard('{Enter}');
 
       // A stray `mouseover` reaches the interactive popper before the close fires.
-      fireEvent.mouseOver(screen.getByRole('tooltip'));
+      await user.hover(screen.getByRole('tooltip'));
 
       // The disabled anchor must still close (and not reopen).
       await waitFor(() => {
