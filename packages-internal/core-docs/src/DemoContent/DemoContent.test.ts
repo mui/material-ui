@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import {
   createDemoUseOptions,
   expandDemo,
+  getDemoEditingDependencies,
   resetDemo,
   resolveDemoSourceView,
   toggleDemoExpanded,
@@ -129,6 +130,35 @@ describe('DemoContent behavior', () => {
 
     expect(expandCount).to.equal(1);
     expect(remountCount).to.equal(1);
+  });
+
+  it('detects the editing runtime dependencies across demo variants', () => {
+    expect(
+      getDemoEditingDependencies({
+        System: {
+          fileName: 'Demo.tsx',
+          source: 'export default function Demo() { return null; }',
+        },
+        Styled: {
+          fileName: 'Demo.js',
+          source: "import styles from './Demo.module.css';",
+          extraFiles: {
+            'Demo.module.css': { source: '.root {}' },
+          },
+        },
+      }),
+    ).to.deep.equal({ js: true, css: true });
+  });
+
+  it('does not preload editing runtimes without supported source files', () => {
+    expect(
+      getDemoEditingDependencies({
+        Data: {
+          fileName: 'data.json',
+          source: '{}',
+        },
+      }),
+    ).to.deep.equal({ js: false, css: false });
   });
 
   it('builds deployment links from the current route and demo anchor', () => {
