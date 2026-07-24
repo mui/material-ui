@@ -6,9 +6,9 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 
 /**
  * Inherits the full Base UI `Menu.SubmenuRoot` prop surface (open/close
- * control, hover-open with delays, `closeParentOnEsc`, keyboard behavior).
- * `Omit` (a mapped type) is used instead of bare `extends` so the proptypes
- * generator resolves the inherited members.
+ * control, `closeParentOnEsc`, keyboard behavior); hover-open props live on
+ * the submenu trigger. `Omit` (a mapped type) is used instead of bare
+ * `extends` so the proptypes generator resolves the inherited members.
  */
 export interface Menu2SubmenuRootProps extends Omit<BaseMenu.SubmenuRoot.Props, 'children'> {
   /**
@@ -22,10 +22,6 @@ export interface Menu2SubmenuRootProps extends Omit<BaseMenu.SubmenuRoot.Props, 
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2SubmenuRoot API](https://mui.com/material-ui/api/menu-preview-submenu-root/)
  */
 function Menu2SubmenuRoot(props: Menu2SubmenuRootProps): React.JSX.Element {
   const themedProps = useDefaultProps({

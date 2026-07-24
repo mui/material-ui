@@ -199,10 +199,6 @@ const Menu2PopupList = styled(List, {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2Popup API](https://mui.com/material-ui/api/menu-preview-popup/)
  */
 const Menu2Popup = React.forwardRef(function Menu2Popup(
   inProps: Menu2PopupProps,

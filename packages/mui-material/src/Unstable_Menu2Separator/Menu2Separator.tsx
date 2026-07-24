@@ -94,10 +94,6 @@ const Menu2SeparatorRoot = styled(Divider, {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2Separator API](https://mui.com/material-ui/api/menu-preview-separator/)
  */
 const Menu2Separator = React.forwardRef(function Menu2Separator(
   inProps: Menu2SeparatorProps,

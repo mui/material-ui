@@ -6,9 +6,9 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 
 /**
  * Inherits the full Base UI `Menu.Root` prop surface (open/close control,
- * modality, hover-open with delays, `actionsRef`, keyboard behavior).
- * `Omit` (a mapped type) is used instead of bare `extends` so the proptypes
- * generator resolves the inherited members.
+ * modality, `actionsRef`, keyboard behavior); hover-open props live on the
+ * trigger parts. `Omit` (a mapped type) is used instead of bare `extends` so
+ * the proptypes generator resolves the inherited members.
  */
 export interface Menu2Props extends Omit<BaseMenu.Root.Props, 'children'> {
   /**
@@ -22,10 +22,6 @@ export interface Menu2Props extends Omit<BaseMenu.Root.Props, 'children'> {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2 API](https://mui.com/material-ui/api/menu-preview/)
  */
 function Menu2(props: Menu2Props): React.JSX.Element {
   const themedProps = useDefaultProps({

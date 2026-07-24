@@ -127,10 +127,6 @@ const BaseMenuTrigger = BaseMenu.Trigger as any;
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2Trigger API](https://mui.com/material-ui/api/menu-preview-trigger/)
  */
 const Menu2Trigger = React.forwardRef(function Menu2Trigger(
   inProps: Menu2TriggerProps,

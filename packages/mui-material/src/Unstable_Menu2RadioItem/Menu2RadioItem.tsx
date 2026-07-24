@@ -89,10 +89,6 @@ const Menu2RadioItemRoot = styled('div', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2RadioItem API](https://mui.com/material-ui/api/menu-preview-radio-item/)
  */
 const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   inProps: Menu2RadioItemProps,

@@ -1,4 +1,4 @@
-import { CSSInterpolation } from '@mui/system';
+import { CSSInterpolation, CSSObject } from '@mui/system';
 import memoTheme from '../utils/memoTheme';
 import { Theme } from '../styles';
 import { menuListStyles, menuPaperStyles } from '../Menu/menuStyles';
@@ -57,7 +57,9 @@ export function getMenu2ItemStyles(
 }
 
 export const menu2PopupPaperStyles: CSSInterpolation = {
-  ...menuPaperStyles,
+  // The classic module types its exports as CSSInterpolation via JSDoc; the
+  // value is a plain style object, narrowed here so it can be spread.
+  ...(menuPaperStyles as CSSObject),
   // In the classic Menu the Paper sits in a full-viewport Modal, so its
   // `maxHeight: calc(100% - 96px)` means "viewport minus 96px". Inside the
   // content-sized Base UI popup that percentage resolves against the popup

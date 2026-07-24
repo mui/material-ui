@@ -58,7 +58,7 @@ type PopupAlign = NonNullable<PopupProps['align']>;
 interface PlaygroundSettings {
   // Root behavior
   modal: boolean;
-  rootOpenOnHover: boolean;
+  triggerOpenOnHover: boolean;
   loopFocus: boolean;
   highlightItemOnHover: boolean;
   // Submenu behavior
@@ -82,7 +82,7 @@ interface PlaygroundSettings {
 
 const defaultSettings: PlaygroundSettings = {
   modal: true,
-  rootOpenOnHover: false,
+  triggerOpenOnHover: false,
   loopFocus: true,
   highlightItemOnHover: true,
   submenusOpenOnHover: true,
@@ -166,13 +166,16 @@ function PlaygroundDemo({
   return (
     <Menu
       modal={settings.modal}
-      openOnHover={settings.rootOpenOnHover}
       loopFocus={settings.loopFocus}
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
     >
-      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+      <Trigger
+        variant="contained"
+        openOnHover={settings.triggerOpenOnHover}
+        endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
+      >
         Project
       </Trigger>
       <Popup
@@ -456,7 +459,7 @@ function SettingsPanel({
       <div>
         <strong>Root behavior</strong>
         {renderCheckbox('modal', 'modal')}
-        {renderCheckbox('rootOpenOnHover', 'openOnHover (root)')}
+        {renderCheckbox('triggerOpenOnHover', 'openOnHover (trigger)')}
         {renderCheckbox('loopFocus', 'loopFocus')}
         {renderCheckbox('highlightItemOnHover', 'highlightItemOnHover')}
       </div>

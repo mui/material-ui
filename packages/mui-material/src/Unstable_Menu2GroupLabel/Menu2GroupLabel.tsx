@@ -84,10 +84,6 @@ const Menu2GroupLabelRoot = styled(ListSubheader, {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2GroupLabel API](https://mui.com/material-ui/api/menu-preview-group-label/)
  */
 const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
   inProps: Menu2GroupLabelProps,

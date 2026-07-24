@@ -82,10 +82,6 @@ const Menu2LinkItemRoot = styled('a', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2LinkItem API](https://mui.com/material-ui/api/menu-preview-link-item/)
  */
 const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
   inProps: Menu2LinkItemProps,

@@ -107,10 +107,6 @@ function DefaultRadioIndicatorIcon() {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2RadioItemIndicator API](https://mui.com/material-ui/api/menu-preview-radio-item-indicator/)
  */
 const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicator(
   inProps: Menu2RadioItemIndicatorProps,

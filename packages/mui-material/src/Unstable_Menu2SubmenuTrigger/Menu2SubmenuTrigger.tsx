@@ -102,10 +102,6 @@ const Menu2SubmenuTriggerRoot = styled('div', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2SubmenuTrigger API](https://mui.com/material-ui/api/menu-preview-submenu-trigger/)
  */
 const Menu2SubmenuTrigger = React.forwardRef(function Menu2SubmenuTrigger(
   inProps: Menu2SubmenuTriggerProps,

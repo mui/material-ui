@@ -112,10 +112,6 @@ const Menu2RadioGroupRoot = styled('div', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2RadioGroup API](https://mui.com/material-ui/api/menu-preview-radio-group/)
  */
 const Menu2RadioGroup = React.forwardRef(function Menu2RadioGroup(
   inProps: Menu2RadioGroupProps,

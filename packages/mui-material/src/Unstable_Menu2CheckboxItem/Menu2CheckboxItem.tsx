@@ -115,10 +115,6 @@ const Menu2CheckboxItemRoot = styled('div', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2CheckboxItem API](https://mui.com/material-ui/api/menu-preview-checkbox-item/)
  */
 const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   inProps: Menu2CheckboxItemProps,

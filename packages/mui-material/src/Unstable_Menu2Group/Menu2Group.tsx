@@ -80,10 +80,6 @@ const Menu2GroupRoot = styled('div', {
  * Demos:
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
- *
- * API:
- *
- * - [Menu2Group API](https://mui.com/material-ui/api/menu-preview-group/)
  */
 const Menu2Group = React.forwardRef(function Menu2Group(
   inProps: Menu2GroupProps,
