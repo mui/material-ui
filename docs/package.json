@@ -21,7 +21,7 @@
     "@babel/core": "^7.29.7",
     "@babel/runtime": "^7.29.7",
     "@base-ui/react": "catalog:docs",
-    "@docsearch/react": "^3.9.0",
+    "@docsearch/react": "^4.6.3",
     "@emotion/cache": "catalog:docs",
     "@emotion/react": "catalog:docs",
     "@emotion/server": "catalog:docs",
