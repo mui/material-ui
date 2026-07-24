@@ -324,6 +324,12 @@ import { createTheme, enhanceHighContrast } from '@mui/material/styles';
 const theme = enhanceHighContrast(createTheme());
 ```
 
+Use the following demo to compare the affected component states with and without the theme enhancer.
+In Chrome, open DevTools > More tools > Rendering, then set `forced-colors` to `active` and `prefers-color-scheme` to `light` or `dark`.
+You can also use your operating system's high contrast or contrast theme settings.
+
+{{"demo": "HighContrastShowcase.js", "defaultCodeOpen": false}}
+
 By default, it uses the [CSS system color keywords](https://www.w3.org/TR/css-color-4/#css-system-colors) (`Highlight`, `HighlightText`, `ButtonBorder`, etc.).
 You can override individual tokens with other [system colors](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/system-color) to match your brand or design requirements.
 When overriding paired tokens, choose values that the browser guarantees to contrast with each other — for example `SelectedItem` is always paired with `SelectedItemText`, and `Highlight` with `HighlightText`:
