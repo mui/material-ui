@@ -81,7 +81,7 @@ export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undef
       };
 
 export type AutocompleteRenderValue<Value, Multiple, FreeSolo> = Multiple extends true
-  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  ? ReadonlyArray<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>;
 
 export interface AutocompleteRenderOptionState {

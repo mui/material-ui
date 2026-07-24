@@ -33,7 +33,7 @@ export type AutocompleteValueOrFreeSoloValueMapping<Value, FreeSolo> = FreeSolo 
   : Value;
 
 export type AutocompleteValue<Value, Multiple, DisableClearable, FreeSolo> = Multiple extends true
-  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  ? ReadonlyArray<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
   : DisableClearable extends true
     ? NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
     : Value | null | AutocompleteFreeSoloValueMapping<FreeSolo>;
