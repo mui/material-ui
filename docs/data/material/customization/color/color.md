@@ -74,6 +74,7 @@ If you are using the default primary and / or secondary shades then by providing
 - [mui-theme-creator](https://zenoo.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material UI component library. Includes basic site templates to show various components and how they are affected by the theme
 - [MUI Theme Builder](https://petertyliu.github.io/mui-theme-builder/): A tool to generate, preview, and edit Material UI themes
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [MUI Theme Customizer](https://mansourcodes.github.io/mui-theme-customizer/): A tool to make it easier to experiment with and generate Material UI themes.
 
 ## 2014 Material Design color palettes
 
