@@ -831,7 +831,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             {renderedOptions.length > 0 ? (
               <ListboxSlot {...listboxProps}>
                 {renderedOptions.map((option, index) => {
-                  if (groupBy) {
+                  if (groupBy && Array.isArray(option.options)) {
                     return renderGroup({
                       key: option.key,
                       group: option.group,
