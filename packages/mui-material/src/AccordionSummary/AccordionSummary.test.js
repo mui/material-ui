@@ -114,22 +114,6 @@ describe('<AccordionSummary />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
-  // JSDOM doesn't support :focus-visible
-  it.skipIf(isJsdom())('calls onFocusVisible if focused visibly', function test() {
-    const handleFocusVisible = spy();
-    render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
-    // simulate pointer device
-    fireEvent.mouseDown(document.body);
-
-    // this doesn't actually apply focus like in the browser. we need to move focus manually
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    act(() => {
-      screen.getByRole('button').focus();
-    });
-
-    expect(handleFocusVisible.callCount).to.equal(1);
-  });
-
   describe('prop: nativeButton', () => {
     it('forwards nativeButton={false} through useSlot to ButtonBase', () => {
       const CustomSpan = React.forwardRef((props, ref) => <span ref={ref} {...props} />);
@@ -150,6 +134,146 @@ describe('<AccordionSummary />', () => {
       // would warn about a non-button host with nativeButton omitted.
       expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
+    });
+  });
+
+  describe('WCAG 2.2 conformance', () => {
+    it('2.1.2 No Keyboard Trap: keyboard focus can enter and leave the summary', async () => {
+      const { user } = render(
+        <React.Fragment>
+          <button type="button">Before</button>
+          <Accordion>
+            <AccordionSummary>Summary</AccordionSummary>
+          </Accordion>
+          <button type="button">After</button>
+        </React.Fragment>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'Summary' })).toHaveFocus();
+
+      // Tab moves focus back out of the summary — it is never captured.
+      await user.tab();
+      expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+
+      // Shift+Tab moves back onto it.
+      await user.tab({ shift: true });
+      expect(screen.getByRole('button', { name: 'Summary' })).toHaveFocus();
+    });
+
+    describe('2.4.3 Focus Order', () => {
+      it('is a single tab stop in natural DOM order with no positive tabIndex', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <button type="button">Before</button>
+            <Accordion>
+              <AccordionSummary>Summary</AccordionSummary>
+            </Accordion>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+        expect(screen.getByRole('button', { name: 'Summary' })).to.have.property('tabIndex', 0);
+
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Before' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'Summary' })).toHaveFocus();
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+
+      it('removes a disabled summary from the tab order', async () => {
+        const { user } = render(
+          <React.Fragment>
+            <Accordion disabled>
+              <AccordionSummary>Disabled</AccordionSummary>
+            </Accordion>
+            <button type="button">After</button>
+          </React.Fragment>,
+        );
+
+        // Tab skips the disabled summary and lands on the next control.
+        await user.tab();
+        expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
+      });
+    });
+
+    // JSDOM doesn't support :focus-visible
+    it.skipIf(isJsdom())(
+      '2.4.7 Focus Visible: applies the focus-visible state on keyboard focus',
+      function test() {
+        const handleFocusVisible = spy();
+        render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
+        // simulate pointer device
+        fireEvent.mouseDown(document.body);
+
+        // this doesn't actually apply focus like in the browser. we need to move focus manually
+        fireEvent.keyDown(document.body, { key: 'Tab' });
+        act(() => {
+          screen.getByRole('button').focus();
+        });
+
+        expect(handleFocusVisible.callCount).to.equal(1);
+      },
+    );
+
+    it('2.5.2 Pointer Cancellation: activates on click, but not when released off the target', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <React.Fragment>
+          <Accordion onChange={handleChange} expanded={false}>
+            <AccordionSummary>Summary</AccordionSummary>
+          </Accordion>
+          <div data-testid="outside" />
+        </React.Fragment>,
+      );
+      const button = screen.getByRole('button');
+
+      // Press on the summary, move away, then release: nothing runs on the down
+      // event, and releasing off the target cancels the activation.
+      await user.pointer([
+        { keys: '[MouseLeft>]', target: button },
+        { target: screen.getByTestId('outside') },
+        { keys: '[/MouseLeft]' },
+      ]);
+      expect(handleChange.callCount).to.equal(0);
+
+      // A full click — press and release over the target — toggles the accordion.
+      await user.click(button);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('3.2.1 On Focus: moving keyboard focus to the summary does not toggle it', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Accordion onChange={handleChange} expanded={false}>
+          <AccordionSummary>Summary</AccordionSummary>
+        </Accordion>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('button')).toHaveFocus();
+      // Focus alone changes no context.
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('3.2.2 On Input: the panel toggles only from explicit activation, never on its own', async () => {
+      const handleChange = spy();
+      const { user } = render(
+        <Accordion onChange={handleChange} expanded={false}>
+          <AccordionSummary>Summary</AccordionSummary>
+        </Accordion>,
+      );
+
+      // Rendering the summary and its aria-expanded state toggles nothing on its own.
+      expect(handleChange.callCount).to.equal(0);
+
+      // The panel toggles only when the user explicitly activates the summary.
+      await user.click(screen.getByRole('button'));
+      expect(handleChange.callCount).to.equal(1);
     });
   });
 });

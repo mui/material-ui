@@ -74,6 +74,35 @@ describe('getConfig', () => {
   });
 });
 
+describe('getConfig (accordion a11y)', () => {
+  it('enrols the accordion demos and fixtures for all-rule assertions', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionUsage'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/AccordionA11yNonNative'),
+    ).to.deep.include({ enabled: true, assertions: 'all' });
+  });
+
+  it('records but does not assert color-contrast on the accordion cluster', () => {
+    // The divider `::before` makes axe unable to resolve the summary background.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/CustomizedAccordions'),
+    ).to.deep.include({
+      enabled: true,
+      assertions: 'all',
+      skipAssertions: ['color-contrast'],
+    });
+  });
+
+  it('returns undefined for an accordion demo outside the brace-glob enrolment', () => {
+    // The accordion enrolment lists specific demos; it is not slug-wide.
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/accordion/SomeUnenrolledDemo'),
+    ).to.equal(undefined);
+  });
+});
+
 describe('rule data sanity', () => {
   it('rule arrays are non-empty (catches accidental import regression)', () => {
     expect(SCREENSHOT_RULES.length).to.be.greaterThan(0);
