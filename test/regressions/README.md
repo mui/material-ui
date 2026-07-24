@@ -52,11 +52,13 @@ A fixture can be loaded with `await renderFixture(fixturePath)`, for example `re
 
 Accessibility checks are opt-in.
 Add rules in `./demoMeta.ts` under `A11Y_RULES`.
+By default, only CSS-dependent visual axe rules are asserted.
+Set `assertions: 'all'` when a fixture is expected to pass every axe rule it exercises.
 
 Use a slug-wide rule for many demos, or a brace-glob for specific demos:
 
 ```ts
-{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true }
+{ test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true, assertions: 'all' }
 ```
 
 Filtered runs with `-t` only refresh matched slugs.
