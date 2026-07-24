@@ -339,6 +339,10 @@ MenuList.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onKeyDown: PropTypes.func,
   /**
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus

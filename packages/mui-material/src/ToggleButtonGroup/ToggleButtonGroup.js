@@ -319,6 +319,14 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
