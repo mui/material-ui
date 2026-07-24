@@ -844,6 +844,34 @@ describe('<Menu2 />', () => {
     expect(screen.getByRole('menuitem', { name: 'Archive' })).to.not.equal(null);
   });
 
+  it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup>
+          <Menu2SubmenuRoot defaultOpen>
+            <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup>
+              <Menu2Item>Zoom</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2SubmenuRoot>
+          <Menu2Separator />
+          <Menu2Item>After</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    await screen.findByRole('menuitem', { name: 'Zoom' });
+
+    const separator = screen.getByRole('separator');
+    const { marginTop, marginBottom } = window.getComputedStyle(separator);
+    // Regression: the inline focus-guard nodes of an open submenu broke the
+    // legacy `[item] + divider` adjacency rule and collapsed this spacing.
+    expect(marginTop).to.equal('8px');
+    expect(marginBottom).to.equal('8px');
+  });
+
   it('supports Material UI Tooltip on enabled item flavors', async () => {
     const { user } = render(
       <Menu2 open>

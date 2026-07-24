@@ -8,6 +8,7 @@ import { SxProps } from '@mui/system';
 import Divider from '../Divider';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import {
   getMenu2RootRender,
@@ -77,7 +78,16 @@ const Menu2SeparatorRoot = styled(Divider, {
   name: 'MuiMenu2Separator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({}) as any;
+})(
+  // Own the classic item/divider spacing instead of relying on the legacy
+  // `[item] + divider` adjacency rule: Base UI mounts inline focus-guard
+  // nodes next to an open submenu trigger, which breaks that selector and
+  // collapses the gap.
+  memoTheme(({ theme }) => ({
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  })),
+) as any;
 
 /**
  *
