@@ -532,6 +532,7 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
 function Menu2ContextMenuRecipe() {
   const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
   const open = anchor !== null;
+  const contextAreaRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleContextMenu = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -580,7 +581,16 @@ function Menu2ContextMenuRecipe() {
   };
 
   return (
-    <div onContextMenu={handleContextMenu} style={{ cursor: 'context-menu' }}>
+    // tabIndex={-1} makes the invoked surface a valid focus-restore target. A
+    // detached menu has no trigger to return focus to, and Base UI's fallback
+    // is its internal "previously focused element" record, which can point at
+    // an unrelated menu trigger from an earlier interaction.
+    <div
+      ref={contextAreaRef}
+      tabIndex={-1}
+      onContextMenu={handleContextMenu}
+      style={{ cursor: 'context-menu' }}
+    >
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
         amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
@@ -591,7 +601,7 @@ function Menu2ContextMenuRecipe() {
         lacinia tellus a libero volutpat maximus.
       </Typography>
       <Menu2 open={open} onOpenChange={handleOpenChange}>
-        <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed">
+        <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed" finalFocus={contextAreaRef}>
           <Menu2Item onClick={handleClose}>Copy</Menu2Item>
           <Menu2Item onClick={handleClose}>Print</Menu2Item>
           <Menu2Item onClick={handleClose}>Highlight</Menu2Item>

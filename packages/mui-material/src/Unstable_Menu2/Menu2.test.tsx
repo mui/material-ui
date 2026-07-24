@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { listClasses } from '@mui/material/List';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
@@ -843,6 +843,82 @@ describe('<Menu2 />', () => {
     expect(screen.getByRole('menuitem', { name: 'More' })).to.not.equal(null);
     expect(screen.getByRole('menuitem', { name: 'Archive' })).to.not.equal(null);
   });
+
+  it.skipIf(isJsdom())(
+    'restores focus to finalFocus when a detached context menu closes',
+    async () => {
+      function ContextMenuHarness() {
+        const [anchor, setAnchor] = React.useState<{ getBoundingClientRect: () => DOMRect } | null>(
+          null,
+        );
+        const areaRef = React.useRef<HTMLDivElement | null>(null);
+
+        return (
+          <div
+            ref={areaRef}
+            tabIndex={-1}
+            data-testid="context-area"
+            onContextMenu={(event) => {
+              event.preventDefault();
+              const { clientX, clientY } = event;
+              setAnchor({
+                getBoundingClientRect: () =>
+                  DOMRect.fromRect({ x: clientX, y: clientY, width: 0, height: 0 }),
+              });
+            }}
+          >
+            Context area
+            <Menu2
+              open={anchor !== null}
+              onOpenChange={(nextOpen) => {
+                if (!nextOpen) {
+                  setAnchor(null);
+                }
+              }}
+            >
+              <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed" finalFocus={areaRef}>
+                <Menu2Item>Copy</Menu2Item>
+              </Menu2Popup>
+            </Menu2>
+          </div>
+        );
+      }
+
+      const { user } = render(
+        <React.Fragment>
+          <Menu2>
+            <Menu2Trigger>Other menu</Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item>Other item</Menu2Item>
+            </Menu2Popup>
+          </Menu2>
+          <ContextMenuHarness />
+        </React.Fragment>,
+      );
+
+      // Seed Base UI's internal previously-focused record with an unrelated
+      // trigger by opening and closing that menu first.
+      const otherTrigger = screen.getByRole('button', { name: 'Other menu' });
+      await user.click(otherTrigger);
+      await screen.findByRole('menuitem', { name: 'Other item' });
+      await user.keyboard('{Escape}');
+      await waitFor(() => {
+        expect(otherTrigger).toHaveFocus();
+      });
+
+      // A detached menu has no trigger; without finalFocus, closing it restores
+      // focus to that stale record instead of the invoked surface.
+      const area = screen.getByTestId('context-area');
+      fireEvent.contextMenu(area, { clientX: 100, clientY: 100 });
+      await screen.findByRole('menuitem', { name: 'Copy' });
+
+      await user.keyboard('{Escape}');
+
+      await waitFor(() => {
+        expect(area).toHaveFocus();
+      });
+    },
+  );
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
     const { user } = render(
