@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import insetFocusRing from '../utils/insetFocusRing';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -61,6 +62,8 @@ const TabRoot = styled(ButtonBase, {
     whiteSpace: 'normal',
     textAlign: 'center',
     lineHeight: 1.25,
+    // Inset the ring: the Tabs scroller clips an outset ring.
+    ...(theme.focusVisible && insetFocusRing),
     variants: [
       {
         props: ({ ownerState }) =>

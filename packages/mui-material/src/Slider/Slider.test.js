@@ -6,6 +6,7 @@ import {
   act,
   createRenderer,
   fireEvent,
+  focusVisible,
   screen,
   supportsTouch,
   isJsdom,
@@ -1899,4 +1900,65 @@ describe.skipIf(!supportsTouch())('<Slider />', () => {
       expect(handleChange.callCount).to.be.greaterThan(changesAfterDown);
     },
   );
+
+  describe('theme.focusVisible', () => {
+    // The effective box-shadow is the last matching rule in source order (equal specificity here).
+    // Read it from the CSSOM rather than getComputedStyle, which returns a mid-transition value.
+    function effectiveBoxShadow(el) {
+      let shadow = '';
+      for (const sheet of Array.from(document.styleSheets)) {
+        let rules;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue;
+        }
+        for (const rule of Array.from(rules)) {
+          if (!rule.style || !rule.style.boxShadow || !rule.selectorText) {
+            continue;
+          }
+          const matches = rule.selectorText.split(',').some((selector) => {
+            try {
+              return el.matches(selector.trim());
+            } catch {
+              return false;
+            }
+          });
+          if (matches) {
+            shadow = rule.style.boxShadow;
+          }
+        }
+      }
+      return shadow;
+    }
+
+    it.skipIf(isJsdom())('renders the curated ring on the thumb when set', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme({ focusVisible: true })}>
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      focusVisible(screen.getByRole('slider'));
+      const thumb = container.querySelector(`.${classes.thumb}`);
+      expect(thumb).to.have.class(classes.focusVisible);
+      expect(thumb).toHaveComputedStyle({
+        outlineStyle: 'solid',
+        outlineWidth: '2px',
+        outlineOffset: '2px',
+      });
+    });
+
+    it.skipIf(isJsdom())('a user box-shadow wins over the color focus halo', () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({ focusVisible: { boxShadow: '0 0 0 4px rgb(255, 0, 0)' } })}
+        >
+          <Slider defaultValue={30} />
+        </ThemeProvider>,
+      );
+      focusVisible(screen.getByRole('slider'));
+      const thumb = container.querySelector(`.${classes.thumb}`);
+      expect(effectiveBoxShadow(thumb)).to.contain('rgb(255, 0, 0)');
+    });
+  });
 });

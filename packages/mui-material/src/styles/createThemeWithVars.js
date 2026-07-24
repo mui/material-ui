@@ -25,6 +25,7 @@ import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
 import { light, dark } from './createPalette';
+import { wireFocusVisibleVars } from './focusVisibleVars';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -954,6 +955,28 @@ export default function createThemeWithVars(options = {}, ...args) {
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
+
+  // In the vars theme the curated default color must be the palette var, not a resolved
+  // hex: `focusVisible` is spread inline (skipped from var generation, see
+  // `shouldSkipGeneratingVar`) so a hex would freeze the light-mode color in dark, while the
+  // palette var adapts. A user-provided `outlineColor` still wins.
+  // Resolve the raw input from options AND merge args (mirrors createThemeNoVars) so
+  // `createTheme({ cssVariables: true }, { focusVisible: true })` is normalized too;
+  // reading the already-normalized `theme.focusVisible` would re-bake the hex color.
+  const focusVisibleInput = args.reduce(
+    (acc, argument) => (argument && 'focusVisible' in argument ? argument.focusVisible : acc),
+    options.focusVisible,
+  );
+  if (focusVisibleInput != null && focusVisibleInput !== false) {
+    const resolvedFocusVisible = {
+      outlineStyle: 'solid',
+      outlineColor: `var(--${cssVarPrefix}-palette-primary-main)`,
+      outlineWidth: 2,
+      ...(focusVisibleInput === true ? null : focusVisibleInput),
+    };
+    // Mirror createThemeNoVars: wire the private inset vars into the offset and any box-shadow.
+    theme.focusVisible = wireFocusVisibleVars(resolvedFocusVisible);
+  }
 
   const parserConfig = {
     prefix: cssVarPrefix,

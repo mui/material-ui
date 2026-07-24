@@ -455,6 +455,116 @@ describe('createTheme', () => {
     });
   });
 
+  describe('focusVisible', () => {
+    const CURATED = {
+      outlineStyle: 'solid',
+      outlineWidth: 2,
+      // Offset is a per-component sign flip (`--_focusVisible-offset`: 1 outset / -1 inset)
+      // scaled by the width, so a clip-prone component insets without knowing the width.
+      outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
+    };
+
+    it('`true` resolves to the curated ring using the palette primary color', () => {
+      const theme = createTheme({ cssVariables: false, focusVisible: true });
+      expect(theme.focusVisible).to.deep.equal({
+        ...CURATED,
+        outlineColor: theme.palette.primary.main,
+      });
+    });
+
+    it('an object merges over the curated default, keeping geometry', () => {
+      const theme = createTheme({ cssVariables: false, focusVisible: { outlineColor: 'red' } });
+      expect(theme.focusVisible).to.deep.equal({
+        ...CURATED,
+        outlineColor: 'red',
+      });
+    });
+
+    it('`outlineColor: transparent` removes the visible outline but keeps the object', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { outlineColor: 'transparent' },
+      });
+      expect(theme.focusVisible.outlineColor).to.equal('transparent');
+      expect(theme.focusVisible.outlineStyle).to.equal('solid');
+    });
+
+    it('a boxShadow is additive on the outline and gets the inset behavior var prepended', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { boxShadow: '0 0 0 4px #fff' },
+      });
+      expect(theme.focusVisible).to.deep.equal({
+        ...CURATED,
+        outlineColor: theme.palette.primary.main,
+        // prepended internally so the box-shadow insets on clip-prone components
+        boxShadow: 'var(--_focusVisible-behavior, ) 0 0 0 4px #fff',
+      });
+    });
+
+    it('does not prepend the behavior var to a boxShadow that already opts into inset', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { boxShadow: 'inset 0 0 0 4px #fff' },
+      });
+      expect(theme.focusVisible.boxShadow).to.equal('inset 0 0 0 4px #fff');
+    });
+
+    it('`false` and `undefined` leave focusVisible off (non-breaking)', () => {
+      expect(createTheme({ cssVariables: false, focusVisible: false }).focusVisible).to.equal(
+        false,
+      );
+      expect(createTheme({ cssVariables: false }).focusVisible).to.equal(undefined);
+    });
+
+    it('vars theme: curated color is a scheme-reactive palette var, focusVisible is kept inline', () => {
+      const theme = createTheme({ cssVariables: true, focusVisible: true });
+      // scheme-reactive: resolves through the palette var, correct in dark mode
+      expect(theme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
+      // `focusVisible` is skipped from var generation (see `shouldSkipGeneratingVar`): hoisting it
+      // to a `:root` var resolves the embedded per-component private vars (`--_focusVisible-offset`)
+      // at `:root` where they are unset, freezing the offset and breaking the inner-ring inset. So
+      // there is no `--mui-focusVisible-*` var and the recipe stays inline on `theme.focusVisible`.
+      expect(theme.vars.focusVisible).to.equal(undefined);
+      expect(theme.focusVisible.outlineWidth).to.equal(2);
+      expect(theme.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
+      );
+    });
+
+    it('outlineOffset defaults to the width, and a custom value is made inset-aware', () => {
+      const auto = createTheme({ cssVariables: false, focusVisible: true });
+      expect(auto.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
+      );
+      // a wider ring scales the inset with it
+      const wide = createTheme({ cssVariables: false, focusVisible: { outlineWidth: 4 } });
+      expect(wide.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 4px)',
+      );
+      // a custom offset is wrapped in the sign var, so it still insets on clip-prone components
+      const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
+      expect(fixed.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 6px)',
+      );
+    });
+
+    it('normalizes `focusVisible` passed as a merge argument (non-vars and vars)', () => {
+      // `createTheme(options, ...args)` — `focusVisible` arrives via a merge argument, not
+      // `options`. It must still resolve to the curated object, not stay a raw boolean.
+      expect(
+        createTheme({ cssVariables: false }, { focusVisible: true }).focusVisible,
+      ).to.deep.equal({
+        ...CURATED,
+        outlineColor: createTheme().palette.primary.main,
+      });
+      const varsTheme = createTheme({ cssVariables: true }, { focusVisible: true });
+      expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
+      // skipped from var generation — kept inline (see the vars-theme test above)
+      expect(varsTheme.vars.focusVisible).to.equal(undefined);
+    });
+  });
+
   it('shallow merges multiple arguments', () => {
     const theme = createTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
     expect(theme.foo).to.equal('I am foo');

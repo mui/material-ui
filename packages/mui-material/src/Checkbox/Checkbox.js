@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -54,6 +55,12 @@ const CheckboxRoot = styled(SwitchBase, {
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
+    ...(theme.focusVisible && {
+      [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        ...theme.focusVisible,
+      },
+    }),
     variants: [
       {
         props: { color: 'default', disableRipple: false },

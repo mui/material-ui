@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import insetFocusRing from '../utils/insetFocusRing';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -47,6 +48,8 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     [`&.${bottomNavigationActionClasses.selected}`]: {
       color: (theme.vars || theme).palette.primary.main,
     },
+    // Inset the ring: actions sit flush inside a bounded bar.
+    ...(theme.focusVisible && insetFocusRing),
     variants: [
       {
         props: ({ showLabel, selected }) => !showLabel && !selected,

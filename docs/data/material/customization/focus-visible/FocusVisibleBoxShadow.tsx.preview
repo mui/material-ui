@@ -1,0 +1,15 @@
+<ThemeProvider theme={theme}>
+  <Stack
+    direction="row"
+    spacing={3}
+    sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3 }}
+  >
+    {/* Outer ring: the box-shadow renders outside the Button. */}
+    <Button variant="outlined">Tab to me</Button>
+    {/* Inner ring: the box-shadow insets automatically so the Tabs scroller cannot clip it. */}
+    <Tabs value={0}>
+      <Tab label="Tab one" />
+      <Tab label="Tab two" />
+    </Tabs>
+  </Stack>
+</ThemeProvider>

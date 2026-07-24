@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, simulatePointerDevice, screen, isJsdom } from '@mui/internal-test-utils';
+import {
+  createRenderer,
+  simulatePointerDevice,
+  focusVisible,
+  screen,
+  isJsdom,
+} from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -299,6 +305,46 @@ describe('<Tab />', () => {
       // would warn about a non-button host with nativeButton omitted.
       expect(errorSpy.mock.calls.length).to.equal(0);
       errorSpy.mockRestore();
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())('insets the focus ring so a Tabs scroller cannot clip it', () => {
+      const theme = createTheme({
+        focusVisible: true,
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      expect(tab).toHaveComputedStyle({ outlineOffset: '-2px' });
+    });
+
+    it.skipIf(isJsdom())('insets a user box-shadow automatically on clip-prone components', () => {
+      const theme = createTheme({
+        // a plain box-shadow (C40 two-color pattern); createTheme prepends the behavior var so it insets here
+        focusVisible: { boxShadow: '0 0 0 3px rgb(255, 0, 0)' },
+        components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Tabs value={0}>
+            <Tab label="One" />
+          </Tabs>
+        </ThemeProvider>,
+      );
+      const tab = screen.getByRole('tab');
+      simulatePointerDevice();
+      focusVisible(tab);
+      // the box-shadow renders inside the scroller, so it cannot be clipped
+      expect(window.getComputedStyle(tab).boxShadow).to.match(/inset/);
     });
   });
 });

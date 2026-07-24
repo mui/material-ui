@@ -8,7 +8,13 @@ import describeConformance from '../../test/describeConformance';
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
-  function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
+  function CustomSwitchBase({
+    centerRipple,
+    focusRipple,
+    ownerState,
+    internalDisabledThemeFocusVisible,
+    ...props
+  }) {
     return <div data-testid="custom" {...props} />;
   }
 
@@ -209,6 +215,35 @@ describe('<Switch />', () => {
       const { container } = render(<Switch className="test-class-name" />);
 
       expect(container.firstChild).to.have.class('test-class-name');
+    });
+  });
+
+  describe('theme.focusVisible', () => {
+    it.skipIf(isJsdom())(
+      'root overflow is visible so the focus ring is not clipped when focusVisible is set',
+      () => {
+        const { container } = render(
+          <ThemeProvider theme={createTheme({ focusVisible: true })}>
+            <Switch />
+          </ThemeProvider>,
+        );
+        expect(container.firstChild).toHaveComputedStyle({
+          overflowX: 'visible',
+          overflowY: 'visible',
+        });
+      },
+    );
+
+    it.skipIf(isJsdom())('root overflow stays hidden when focusVisible is unset', () => {
+      const { container } = render(
+        <ThemeProvider theme={createTheme()}>
+          <Switch />
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({
+        overflowX: 'hidden',
+        overflowY: 'hidden',
+      });
     });
   });
 });

@@ -7,6 +7,7 @@ import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import isFocusVisible from '@mui/utils/isFocusVisible';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
@@ -14,6 +15,7 @@ import useButtonBase from './useButtonBase';
 import useLazyRipple from '../useLazyRipple';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import { focusVisibleOffsetVar } from '../styles/focusVisibleVars';
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, focusVisible, focusVisibleClassName, suppressFocusVisible, classes } =
@@ -35,39 +37,51 @@ const useUtilityClasses = (ownerState) => {
 export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
-})({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'relative',
-  boxSizing: 'border-box',
-  WebkitTapHighlightColor: 'transparent',
-  backgroundColor: 'transparent', // Reset default value
-  // We disable the focus ring for mouse, touch and keyboard users.
-  outline: 0,
-  border: 0,
-  margin: 0, // Remove the margin in Safari
-  borderRadius: 0,
-  padding: 0, // Remove the padding in Firefox
-  cursor: 'pointer',
-  userSelect: 'none',
-  verticalAlign: 'middle',
-  MozAppearance: 'none', // Reset
-  WebkitAppearance: 'none', // Reset
-  textDecoration: 'none',
-  // So we take precedent over the style of a native <a /> element.
-  color: 'inherit',
-  '&::-moz-focus-inner': {
-    borderStyle: 'none', // Remove Firefox dotted outline.
-  },
-  [`&.${buttonBaseClasses.disabled}`]: {
-    pointerEvents: 'none', // Disable link interactions
-    cursor: 'default',
-  },
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-});
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    boxSizing: 'border-box',
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent', // Reset default value
+
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    border: 0,
+    margin: 0, // Remove the margin in Safari
+    borderRadius: 0,
+    padding: 0, // Remove the padding in Firefox
+    cursor: 'pointer',
+    userSelect: 'none',
+    verticalAlign: 'middle',
+    MozAppearance: 'none', // Reset
+    WebkitAppearance: 'none', // Reset
+    textDecoration: 'none',
+    // So we take precedent over the style of a native <a /> element.
+    color: 'inherit',
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
+    [`&.${buttonBaseClasses.disabled}`]: {
+      pointerEvents: 'none', // Disable link interactions
+      cursor: 'default',
+    },
+    '@media print': {
+      colorAdjust: 'exact',
+    },
+    variants: [
+      {
+        props: { internalDisabledThemeFocusVisible: false },
+        style: theme.focusVisible && {
+          [focusVisibleOffsetVar]: 1,
+          [`&.${buttonBaseClasses.focusVisible}`]: theme.focusVisible,
+        },
+      },
+    ],
+  })),
+);
 
 /**
  * `ButtonBase` contains as few styles as possible.
@@ -95,6 +109,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     suppressFocusVisible = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,
+    internalDisabledThemeFocusVisible = false,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',
     nativeButton: nativeButtonProp,
@@ -273,6 +288,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     suppressFocusVisible,
     tabIndex,
     focusVisible,
+    internalDisabledThemeFocusVisible,
   };
 
   const classes = useUtilityClasses(ownerState);

@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import insetFocusRing from '../utils/insetFocusRing';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import ButtonBase from '../ButtonBase';
@@ -106,6 +107,8 @@ const ListItemButtonRoot = styled(ButtonBase, {
     [`&.${listItemButtonClasses.focusVisible}`]: {
       backgroundColor: (theme.vars || theme).palette.action.focus,
     },
+    // Inset the ring: a scrolling List (drawers, long lists) clips an outset ring.
+    ...(theme.focusVisible && insetFocusRing),
     [`&.${listItemButtonClasses.disabled}`]: {
       opacity: (theme.vars || theme).palette.action.disabledOpacity,
     },

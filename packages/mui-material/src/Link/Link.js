@@ -56,6 +56,12 @@ const LinkRoot = styled(Typography, {
 })(
   memoTheme(({ theme }) => {
     return {
+      // Opt-in curated ring, same object-spread as the other components. For
+      // `component="button"` it replaces the variant's `outline: auto` (gated there),
+      // so it does not rely on variant source order.
+      ...(theme.focusVisible && {
+        [`&.${linkClasses.focusVisible}`]: theme.focusVisible,
+      }),
       variants: [
         {
           props: {
@@ -151,9 +157,12 @@ const LinkRoot = styled(Typography, {
             '&::-moz-focus-inner': {
               borderStyle: 'none', // Remove Firefox dotted outline.
             },
-            [`&.${linkClasses.focusVisible}`]: {
-              outline: 'auto',
-            },
+            // Browser default focus ring, unless the curated ring is opted in (spread at the root).
+            ...(!theme.focusVisible && {
+              [`&.${linkClasses.focusVisible}`]: {
+                outline: 'auto',
+              },
+            }),
           },
         },
       ],

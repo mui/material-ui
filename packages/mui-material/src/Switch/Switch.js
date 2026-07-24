@@ -11,6 +11,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
 import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
@@ -51,49 +52,52 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})({
-  display: 'inline-flex',
-  width: 34 + 12 * 2,
-  height: 14 + 12 * 2,
-  overflow: 'hidden',
-  padding: 12,
-  boxSizing: 'border-box',
-  position: 'relative',
-  flexShrink: 0,
-  zIndex: 0, // Reset the stacking context.
-  verticalAlign: 'middle', // For correct alignment with the text.
-  '@media print': {
-    colorAdjust: 'exact',
-  },
-  variants: [
-    {
-      props: { edge: 'start' },
-      style: { marginLeft: -8 },
+})(
+  memoTheme(({ theme }) => ({
+    display: 'inline-flex',
+    width: 34 + 12 * 2,
+    height: 14 + 12 * 2,
+    // The ring renders on the track slot; the default `hidden` would clip it.
+    overflow: theme.focusVisible ? 'visible' : 'hidden',
+    padding: 12,
+    boxSizing: 'border-box',
+    position: 'relative',
+    flexShrink: 0,
+    zIndex: 0, // Reset the stacking context.
+    verticalAlign: 'middle', // For correct alignment with the text.
+    '@media print': {
+      colorAdjust: 'exact',
     },
-    {
-      props: { edge: 'end' },
-      style: { marginRight: -8 },
-    },
-    {
-      props: { size: 'small' },
-      style: {
-        width: 40,
-        height: 24,
-        padding: 7,
-        [`& .${switchClasses.thumb}`]: {
-          width: 16,
-          height: 16,
-        },
-        [`& .${switchClasses.switchBase}`]: {
-          padding: 4,
-          [`&.${switchClasses.checked}`]: {
-            transform: 'translateX(16px)',
+    variants: [
+      {
+        props: { edge: 'start' },
+        style: { marginLeft: -8 },
+      },
+      {
+        props: { edge: 'end' },
+        style: { marginRight: -8 },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          width: 40,
+          height: 24,
+          padding: 7,
+          [`& .${switchClasses.thumb}`]: {
+            width: 16,
+            height: 16,
+          },
+          [`& .${switchClasses.switchBase}`]: {
+            padding: 4,
+            [`&.${switchClasses.checked}`]: {
+              transform: 'translateX(16px)',
+            },
           },
         },
       },
-    },
-  ],
-});
+    ],
+  })),
+);
 
 const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
@@ -127,9 +131,15 @@ const SwitchSwitchBase = styled(SwitchBase, {
         ? theme.vars.palette.Switch.defaultDisabledColor
         : `${theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600]}`,
     },
-    [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-      opacity: 0.5,
-    },
+    ...(theme.focusVisible
+      ? {
+          [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: theme.focusVisible,
+        }
+      : {
+          [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+            opacity: 0.5,
+          },
+        }),
     [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
       opacity: theme.vars
         ? theme.vars.opacity.switchTrackDisabled
@@ -180,6 +190,9 @@ const SwitchSwitchBase = styled(SwitchBase, {
             },
             [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: (theme.vars || theme).palette[color].main,
+              ...(theme.focusVisible && {
+                backgroundColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
+              }),
             },
           },
         })),
@@ -203,12 +216,25 @@ const SwitchTrack = styled('span', {
       boxSizing: 'border-box',
       border: '1px solid ButtonBorder',
     },
-    backgroundColor: theme.vars
-      ? theme.vars.palette.common.onBackground
-      : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
-    opacity: theme.vars
-      ? theme.vars.opacity.switchTrack
-      : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+    ...(theme.focusVisible
+      ? {
+          backgroundColor: theme.alpha(
+            theme.vars
+              ? theme.vars.palette.common.onBackground
+              : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+            theme.vars
+              ? theme.vars.opacity.switchTrack
+              : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+          ),
+        }
+      : {
+          backgroundColor: theme.vars
+            ? theme.vars.palette.common.onBackground
+            : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+          opacity: theme.vars
+            ? theme.vars.opacity.switchTrack
+            : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+        }),
   })),
 );
 
