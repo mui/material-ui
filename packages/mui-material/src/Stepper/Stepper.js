@@ -85,7 +85,11 @@ function RovingStepper(props) {
     orientation,
     isRtl,
   });
-  const rovingContainerProps = rovingContainer.getContainerProps(forwardedRef);
+  const rovingContainerProps = rovingContainer.getContainerProps({
+    ref: forwardedRef,
+    onKeyDown: other.onKeyDown,
+    onFocus: other.onFocus,
+  });
 
   return (
     <RovingTabIndexContext.Provider value={rovingContainer}>
@@ -95,8 +99,8 @@ function RovingStepper(props) {
         className={className}
         role="tablist"
         aria-orientation={orientation}
-        {...rovingContainerProps}
         {...other}
+        {...rovingContainerProps}
       >
         {children}
       </StepperRoot>

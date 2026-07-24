@@ -9,6 +9,12 @@ import useEventCallback from '../useEventCallback';
 import useForkRef from '../useForkRef';
 import { useRovingTabIndexContext } from './RovingTabIndexContext';
 
+type GetContainerPropsParams = {
+  ref?: React.Ref<HTMLElement> | undefined;
+  onFocus?: ((event: React.FocusEvent<HTMLElement>) => void) | undefined;
+  onKeyDown?: ((event: React.KeyboardEvent<HTMLElement>) => void) | undefined;
+};
+
 export interface Item<Key = unknown> {
   /**
    * The logical id used to track the item across reorders and re-renders.
@@ -103,7 +109,7 @@ export interface UseRovingTabIndexReturnValue<Key = unknown> {
    * Spread these props onto the list or composite root element that should listen for focus
    * and keyboard events.
    */
-  getContainerProps: (ref?: React.Ref<HTMLElement>) => {
+  getContainerProps: (params?: GetContainerPropsParams) => {
     /**
      * Keeps the active item in sync when focus moves onto one of the registered items.
      */
@@ -313,8 +319,10 @@ export function useRovingTabIndexRoot<Key = unknown>(
   );
 
   const getContainerProps = React.useCallback(
-    (ref?: React.Ref<HTMLElement>) => {
+    (params?: GetContainerPropsParams) => {
       const onFocus = (event: React.FocusEvent<HTMLElement>) => {
+        params?.onFocus?.(event);
+
         const snapshot = getNavigableItemsSnapshot(itemMapRef.current);
         const focusedIndex = findItemIndexByElement(snapshot, event.target);
 
@@ -324,7 +332,15 @@ export function useRovingTabIndexRoot<Key = unknown>(
       };
 
       const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-        if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
+        params?.onKeyDown?.(event);
+
+        if (
+          event.defaultPrevented ||
+          event.altKey ||
+          event.shiftKey ||
+          event.ctrlKey ||
+          event.metaKey
+        ) {
           return;
         }
 
@@ -386,7 +402,7 @@ export function useRovingTabIndexRoot<Key = unknown>(
       return {
         onFocus,
         onKeyDown,
-        ref: handleRefs(ref, (elementNode) => {
+        ref: handleRefs(params?.ref, (elementNode) => {
           containerRef.current = elementNode;
         }),
       };
