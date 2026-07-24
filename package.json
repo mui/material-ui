@@ -13,7 +13,7 @@
     "release:publish": "code-infra publish --github-release",
     "release:publish:dry-run": "code-infra publish --github-release --dry-run",
     "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --no-private --force-publish=@mui/core-downloads-tracker",
-    "release:build": "lerna run --concurrency 8 --no-private build --skip-nx-cache",
+    "release:build": "pnpm docs:llms:build && cross-env MUI_PUBLISH_DOCS=1 lerna run --concurrency 8 --no-private build --skip-nx-cache",
     "release:changelog": "node scripts/releaseChangelog.mjs",
     "release:pack": "tsx scripts/releasePack.mts",
     "docs:api": "rimraf --glob ./docs/pages/**/api-docs ./docs/pages/**/api && pnpm docs:api:build",
