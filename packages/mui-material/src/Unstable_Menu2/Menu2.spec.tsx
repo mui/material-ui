@@ -1,28 +1,28 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Menu from '@mui/material/Unstable_Menu2';
-import CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
-import Group from '@mui/material/Unstable_Menu2Group';
-import GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
-import Item from '@mui/material/Unstable_Menu2Item';
-import LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Popup from '@mui/material/Unstable_Menu2Popup';
-import RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
-import Separator from '@mui/material/Unstable_Menu2Separator';
-import SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Trigger from '@mui/material/Unstable_Menu2Trigger';
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { createTheme } from '@mui/material/styles';
 // @ts-expect-error Menu2 is intentionally not exported from the root barrel for this POC.
 import { Menu2 as RootBarrelMenu2 } from '@mui/material';
 
 function Menu2Composition() {
   return (
-    <Menu
+    <Menu2
       modal={false}
       defaultOpen
       onOpenChange={(open, eventDetails) => {
@@ -31,10 +31,10 @@ function Menu2Composition() {
         eventDetails.preventUnmountOnClose();
       }}
     >
-      <Trigger variant="contained" openOnHover delay={100} nativeButton>
+      <Menu2Trigger variant="contained" openOnHover delay={100} nativeButton>
         Options
-      </Trigger>
-      <Popup
+      </Menu2Trigger>
+      <Menu2Popup
         anchor={null}
         side="bottom"
         align="start"
@@ -54,13 +54,13 @@ function Menu2Composition() {
           list: { 'data-testid': 'list' },
         }}
       >
-        <Group>
-          <GroupLabel>Group</GroupLabel>
-          <Item dense selected nativeButton={false}>
-            Item
-          </Item>
-          <LinkItem href="/profile">Profile</LinkItem>
-          <CheckboxItem
+        <Menu2Group>
+          <Menu2GroupLabel>Menu2Group</Menu2GroupLabel>
+          <Menu2Item dense selected nativeButton={false}>
+            Menu2Item
+          </Menu2Item>
+          <Menu2LinkItem href="/profile">Profile</Menu2LinkItem>
+          <Menu2CheckboxItem
             defaultChecked
             nativeButton={false}
             onChange={(event, checked, eventDetails) => {
@@ -69,10 +69,10 @@ function Menu2Composition() {
               eventDetails.cancel();
             }}
           >
-            <CheckboxItemIndicator keepMounted />
+            <Menu2CheckboxItemIndicator keepMounted />
             Checkbox
-          </CheckboxItem>
-          <RadioGroup
+          </Menu2CheckboxItem>
+          <Menu2RadioGroup
             defaultValue="one"
             onChange={(event, value, eventDetails) => {
               expectType<Event, typeof event>(event);
@@ -80,28 +80,28 @@ function Menu2Composition() {
               eventDetails.cancel();
             }}
           >
-            <RadioItem value="one" nativeButton={false}>
-              <RadioItemIndicator keepMounted />
+            <Menu2RadioItem value="one" nativeButton={false}>
+              <Menu2RadioItemIndicator keepMounted />
               One
-            </RadioItem>
-          </RadioGroup>
-          <Separator />
-          <SubmenuRoot
+            </Menu2RadioItem>
+          </Menu2RadioGroup>
+          <Menu2Separator />
+          <Menu2SubmenuRoot
             onOpenChange={(open, eventDetails) => {
               expectType<boolean, typeof open>(open);
               eventDetails.cancel();
             }}
           >
-            <SubmenuTrigger openOnHover nativeButton={false}>
+            <Menu2SubmenuTrigger openOnHover nativeButton={false}>
               More
-            </SubmenuTrigger>
-            <SubmenuPopup sideOffset={2}>
-              <Item>Nested</Item>
-            </SubmenuPopup>
-          </SubmenuRoot>
-        </Group>
-      </Popup>
-    </Menu>
+            </Menu2SubmenuTrigger>
+            <Menu2SubmenuPopup sideOffset={2}>
+              <Menu2Item>Nested</Menu2Item>
+            </Menu2SubmenuPopup>
+          </Menu2SubmenuRoot>
+        </Menu2Group>
+      </Menu2Popup>
+    </Menu2>
   );
 }
 
@@ -167,33 +167,33 @@ createTheme({
   },
 });
 
-<Popup
+<Menu2Popup
   // @ts-expect-error Popover anchorOrigin is intentionally not supported.
   anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
 />;
 
-<Popup
+<Menu2Popup
   slots={{
     // @ts-expect-error Popover transition slot is intentionally not supported.
     transition: 'div',
   }}
 />;
 
-<Trigger
+<Menu2Trigger
   // @ts-expect-error Base UI render prop is intentionally not supported.
   render={<button aria-label="Options" type="button" />}
 >
   Options
-</Trigger>;
+</Menu2Trigger>;
 
-<Trigger
+<Menu2Trigger
   // @ts-expect-error Menu2Trigger cannot be rendered as a link.
   href="/profile"
 >
   Options
-</Trigger>;
+</Menu2Trigger>;
 
-<Popup
+<Menu2Popup
   slotProps={{
     popup: {
       // @ts-expect-error Base UI render prop is intentionally not supported.

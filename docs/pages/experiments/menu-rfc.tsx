@@ -13,45 +13,28 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { ThemeProvider, createTheme, type SxProps, type Theme } from '@mui/material/styles';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
-import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Unstable_Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
-import Unstable_Menu2Group from '@mui/material/Unstable_Menu2Group';
-import Unstable_Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
-import Unstable_Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Unstable_Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Unstable_Menu2Popup from '@mui/material/Unstable_Menu2Popup';
-import Unstable_Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Unstable_Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Unstable_Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
-import Unstable_Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Unstable_Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Unstable_Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Unstable_Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Unstable_Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+// The Unstable_ subpaths use default exports, so the local bindings drop the
+// prefix and the JSX mirrors the future stable names.
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
 
-// Local aliases for demo readability; the import lines above reflect the real
-// one-component-per-subpath ergonomics (no Base UI-style short aliases).
-const Menu = Unstable_Menu2;
-const CheckboxItem = Unstable_Menu2CheckboxItem;
-const CheckboxItemIndicator = Unstable_Menu2CheckboxItemIndicator;
-const Group = Unstable_Menu2Group;
-const GroupLabel = Unstable_Menu2GroupLabel;
-const Item = Unstable_Menu2Item;
-const LinkItem = Unstable_Menu2LinkItem;
-const Popup = Unstable_Menu2Popup;
-const RadioGroup = Unstable_Menu2RadioGroup;
-const RadioItem = Unstable_Menu2RadioItem;
-const RadioItemIndicator = Unstable_Menu2RadioItemIndicator;
-const Separator = Unstable_Menu2Separator;
-const SubmenuPopup = Unstable_Menu2SubmenuPopup;
-const SubmenuRoot = Unstable_Menu2SubmenuRoot;
-const SubmenuTrigger = Unstable_Menu2SubmenuTrigger;
-const Trigger = Unstable_Menu2Trigger;
-
-type MenuProps = React.ComponentProps<typeof Menu>;
-type PopupProps = React.ComponentProps<typeof Popup>;
+type MenuProps = React.ComponentProps<typeof Menu2>;
+type PopupProps = React.ComponentProps<typeof Menu2Popup>;
 type PopupSide = NonNullable<PopupProps['side']>;
 type PopupAlign = NonNullable<PopupProps['align']>;
 
@@ -164,21 +147,21 @@ function PlaygroundDemo({
   };
 
   return (
-    <Menu
+    <Menu2
       modal={settings.modal}
       loopFocus={settings.loopFocus}
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
       onOpenChangeComplete={handleOpenChangeComplete}
     >
-      <Trigger
+      <Menu2Trigger
         variant="contained"
         openOnHover={settings.triggerOpenOnHover}
         endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
       >
         Project
-      </Trigger>
-      <Popup
+      </Menu2Trigger>
+      <Menu2Popup
         side={settings.side}
         align={settings.align}
         sideOffset={settings.sideOffset}
@@ -186,83 +169,83 @@ function PlaygroundDemo({
         keepMounted={settings.keepMounted}
         {...popupKnobProps}
       >
-        <Group>
-          <GroupLabel>Actions</GroupLabel>
-          <Item {...itemProps} onClick={handleItemClick}>
+        <Menu2Group>
+          <Menu2GroupLabel>Actions</Menu2GroupLabel>
+          <Menu2Item {...itemProps} onClick={handleItemClick}>
             New file
-          </Item>
-          <Item {...itemProps} onClick={handleItemClick}>
+          </Menu2Item>
+          <Menu2Item {...itemProps} onClick={handleItemClick}>
             Duplicate
-          </Item>
-          <Item {...itemProps} disabled onClick={handleItemClick}>
+          </Menu2Item>
+          <Menu2Item {...itemProps} disabled onClick={handleItemClick}>
             Archive (disabled)
-          </Item>
-        </Group>
-        <Separator />
+          </Menu2Item>
+        </Menu2Group>
+        <Menu2Separator />
 
-        <SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-          <SubmenuTrigger {...submenuTriggerProps}>
+        <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
+          <Menu2SubmenuTrigger {...submenuTriggerProps}>
             Share
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup {...submenuPopupProps}>
-            <Item {...itemProps} onClick={handleItemClick}>
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup {...submenuPopupProps}>
+            <Menu2Item {...itemProps} onClick={handleItemClick}>
               Email
-            </Item>
-            <Item {...itemProps} onClick={handleItemClick}>
+            </Menu2Item>
+            <Menu2Item {...itemProps} onClick={handleItemClick}>
               Copy link
-            </Item>
-            <SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-              <SubmenuTrigger {...submenuTriggerProps}>
+            </Menu2Item>
+            <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
+              <Menu2SubmenuTrigger {...submenuTriggerProps}>
                 Export as
                 <KeyboardArrowRightRoundedIcon fontSize="small" />
-              </SubmenuTrigger>
-              <SubmenuPopup {...submenuPopupProps}>
-                <RadioGroup defaultValue="pdf">
-                  <RadioItem {...itemProps} value="pdf">
-                    <RadioItemIndicator keepMounted />
+              </Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup {...submenuPopupProps}>
+                <Menu2RadioGroup defaultValue="pdf">
+                  <Menu2RadioItem {...itemProps} value="pdf">
+                    <Menu2RadioItemIndicator keepMounted />
                     PDF document
-                  </RadioItem>
-                  <RadioItem {...itemProps} value="epub">
-                    <RadioItemIndicator keepMounted />
+                  </Menu2RadioItem>
+                  <Menu2RadioItem {...itemProps} value="epub">
+                    <Menu2RadioItemIndicator keepMounted />
                     EPUB publication
-                  </RadioItem>
-                  <RadioItem {...itemProps} value="markdown">
-                    <RadioItemIndicator keepMounted />
+                  </Menu2RadioItem>
+                  <Menu2RadioItem {...itemProps} value="markdown">
+                    <Menu2RadioItemIndicator keepMounted />
                     Markdown
-                  </RadioItem>
-                </RadioGroup>
-              </SubmenuPopup>
-            </SubmenuRoot>
-          </SubmenuPopup>
-        </SubmenuRoot>
+                  </Menu2RadioItem>
+                </Menu2RadioGroup>
+              </Menu2SubmenuPopup>
+            </Menu2SubmenuRoot>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
 
-        <SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
-          <SubmenuTrigger {...submenuTriggerProps}>
+        <Menu2SubmenuRoot closeParentOnEsc={settings.closeParentOnEsc}>
+          <Menu2SubmenuTrigger {...submenuTriggerProps}>
             View
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup {...submenuPopupProps}>
-            <CheckboxItem {...itemProps} defaultChecked>
-              <CheckboxItemIndicator keepMounted />
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup {...submenuPopupProps}>
+            <Menu2CheckboxItem {...itemProps} defaultChecked>
+              <Menu2CheckboxItemIndicator keepMounted />
               Show ruler
-            </CheckboxItem>
-            <CheckboxItem {...itemProps}>
-              <CheckboxItemIndicator keepMounted />
+            </Menu2CheckboxItem>
+            <Menu2CheckboxItem {...itemProps}>
+              <Menu2CheckboxItemIndicator keepMounted />
               Show outline
-            </CheckboxItem>
-          </SubmenuPopup>
-        </SubmenuRoot>
-        <Separator />
+            </Menu2CheckboxItem>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
+        <Menu2Separator />
 
-        <Item {...itemProps} selected onClick={handleItemClick}>
+        <Menu2Item {...itemProps} selected onClick={handleItemClick}>
           Selected item (visual-only)
-        </Item>
-        <LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
+        </Menu2Item>
+        <Menu2LinkItem {...itemProps} href="https://mui.com/material-ui/react-menu/">
           Menu documentation
-        </LinkItem>
-      </Popup>
-    </Menu>
+        </Menu2LinkItem>
+      </Menu2Popup>
+    </Menu2>
   );
 }
 
@@ -308,23 +291,26 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
           ))}
         </ClassicMenu>
       </div>
-      <Menu>
-        <Trigger variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+      <Menu2>
+        <Menu2Trigger
+          variant="outlined"
+          endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}
+        >
           Successor
-        </Trigger>
-        <Popup sideOffset={2} {...popupKnobProps}>
+        </Menu2Trigger>
+        <Menu2Popup sideOffset={2} {...popupKnobProps}>
           {parityItems.map((item) => (
-            <Item
+            <Menu2Item
               key={item.label}
               {...itemProps}
               selected={'selected' in item && item.selected}
               disabled={'disabled' in item && item.disabled}
             >
               {item.label}
-            </Item>
+            </Menu2Item>
           ))}
-        </Popup>
-      </Menu>
+        </Menu2Popup>
+      </Menu2>
     </Stack>
   );
 }
@@ -348,13 +334,13 @@ function ControlledAnchorDemo() {
       >
         Open (controlled)
       </Button>
-      <Menu open={open} onOpenChange={handleOpenChange}>
-        <Popup anchor={anchorEl ?? undefined} sideOffset={4}>
-          <Item onClick={() => setAnchorEl(null)}>Profile</Item>
-          <Item onClick={() => setAnchorEl(null)}>My account</Item>
-          <Item onClick={() => setAnchorEl(null)}>Logout</Item>
-        </Popup>
-      </Menu>
+      <Menu2 open={open} onOpenChange={handleOpenChange}>
+        <Menu2Popup anchor={anchorEl ?? undefined} sideOffset={4}>
+          <Menu2Item onClick={() => setAnchorEl(null)}>Profile</Menu2Item>
+          <Menu2Item onClick={() => setAnchorEl(null)}>My account</Menu2Item>
+          <Menu2Item onClick={() => setAnchorEl(null)}>Logout</Menu2Item>
+        </Menu2Popup>
+      </Menu2>
     </div>
   );
 }
@@ -396,18 +382,21 @@ const typeaheadEntries = [
 
 function TypeaheadScrollDemo() {
   return (
-    <Menu>
-      <Trigger variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+    <Menu2>
+      <Menu2Trigger variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
         Country
-      </Trigger>
-      <Popup sideOffset={4} slotProps={{ paper: { sx: { maxHeight: 320, overflow: 'auto' } } }}>
+      </Menu2Trigger>
+      <Menu2Popup
+        sideOffset={4}
+        slotProps={{ paper: { sx: { maxHeight: 320, overflow: 'auto' } } }}
+      >
         {typeaheadEntries.map((entry) => (
-          <Item key={entry} dense>
+          <Menu2Item key={entry} dense>
             {entry}
-          </Item>
+          </Menu2Item>
         ))}
-      </Popup>
-    </Menu>
+      </Menu2Popup>
+    </Menu2>
   );
 }
 
@@ -557,8 +546,8 @@ export default function MenuRfcExperiment() {
           <Typography>
             Companion experiment for the Menu successor RFC. Every knob maps to a prop or an RFC
             open question. See also the{' '}
-            <NextLink href="/experiments/menu-preview/">Unstable_Menu2 experiment</NextLink> for
-            Tooltip, PreviewCard, and ContextMenu recipes.
+            <NextLink href="/experiments/menu-preview/">Menu2 experiment</NextLink> for Tooltip,
+            PreviewCard, and ContextMenu recipes.
           </Typography>
 
           <SettingsPanel settings={settings} onChange={setSettings} />
@@ -612,7 +601,7 @@ export default function MenuRfcExperiment() {
           <section>
             <h3 id="controlled-anchor">Classic-style controlled usage</h3>
             <p>
-              No Trigger part: external anchor element plus controlled <code>open</code> /{' '}
+              No Menu2Trigger part: external anchor element plus controlled <code>open</code> /{' '}
               <code>onOpenChange</code>, approximating the classic <code>anchorEl</code> pattern.
             </p>
             <ControlledAnchorDemo />

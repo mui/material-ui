@@ -8,42 +8,25 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Unstable_Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
-import Unstable_Menu2Group from '@mui/material/Unstable_Menu2Group';
-import Unstable_Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
-import Unstable_Menu2Item from '@mui/material/Unstable_Menu2Item';
-import Unstable_Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
-import Unstable_Menu2Popup from '@mui/material/Unstable_Menu2Popup';
-import Unstable_Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
-import Unstable_Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Unstable_Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
-import Unstable_Menu2Separator from '@mui/material/Unstable_Menu2Separator';
-import Unstable_Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
-import Unstable_Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Unstable_Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
-import Unstable_Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
+// The Unstable_ subpaths use default exports, so the local bindings drop the
+// prefix and the JSX mirrors the future stable names.
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
+import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
-
-// Local aliases for demo readability; the import lines above reflect the real
-// one-component-per-subpath ergonomics (no Base UI-style short aliases).
-const Menu = Unstable_Menu2;
-const CheckboxItem = Unstable_Menu2CheckboxItem;
-const CheckboxItemIndicator = Unstable_Menu2CheckboxItemIndicator;
-const Group = Unstable_Menu2Group;
-const GroupLabel = Unstable_Menu2GroupLabel;
-const Item = Unstable_Menu2Item;
-const LinkItem = Unstable_Menu2LinkItem;
-const Popup = Unstable_Menu2Popup;
-const RadioGroup = Unstable_Menu2RadioGroup;
-const RadioItem = Unstable_Menu2RadioItem;
-const RadioItemIndicator = Unstable_Menu2RadioItemIndicator;
-const Separator = Unstable_Menu2Separator;
-const SubmenuPopup = Unstable_Menu2SubmenuPopup;
-const SubmenuRoot = Unstable_Menu2SubmenuRoot;
-const SubmenuTrigger = Unstable_Menu2SubmenuTrigger;
-const Trigger = Unstable_Menu2Trigger;
 
 interface MenuSettings {
   modal: boolean;
@@ -284,7 +267,7 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
   };
 
   return (
-    <Menu
+    <Menu2
       onOpenChange={(open) => {
         if (!open) {
           setActiveItemId(null);
@@ -292,42 +275,42 @@ function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHove
         }
       }}
     >
-      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
         Help cards
-      </Trigger>
-      <Popup sideOffset={8}>
-        <Item
+      </Menu2Trigger>
+      <Menu2Popup sideOffset={8}>
+        <Menu2Item
           label={rootPreviewCardItems[0].label}
           {...getPreviewCardProps(rootPreviewCardItems[0])}
         >
           {rootPreviewCardItems[0].label}
-        </Item>
-        <SubmenuRoot>
-          <SubmenuTrigger
+        </Menu2Item>
+        <Menu2SubmenuRoot>
+          <Menu2SubmenuTrigger
             openOnHover={submenusOpenOnHover}
             onFocus={clearActiveItem}
             onMouseEnter={clearActiveItem}
           >
             Version history
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup sideOffset={8}>
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup sideOffset={8}>
             {versionHistoryPreviewCardItems.map((item) => (
-              <Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
+              <Menu2Item key={item.id} label={item.label} {...getPreviewCardProps(item)}>
                 {item.label}
-              </Item>
+              </Menu2Item>
             ))}
-          </SubmenuPopup>
-        </SubmenuRoot>
-        <Item
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
+        <Menu2Item
           label={rootPreviewCardItems[1].label}
           {...getPreviewCardProps(rootPreviewCardItems[1])}
         >
           {rootPreviewCardItems[1].label}
-        </Item>
-      </Popup>
+        </Menu2Item>
+      </Menu2Popup>
       <MaterialPreviewCard id={activePreviewCardId} item={activeItem} anchorEl={anchorEl} />
-    </Menu>
+    </Menu2>
   );
 }
 
@@ -338,115 +321,115 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
   }, []);
 
   return (
-    <Menu modal={settings.modal} disabled={settings.disabled}>
-      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+    <Menu2 modal={settings.modal} disabled={settings.disabled}>
+      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
         File
-      </Trigger>
-      <Popup sideOffset={8}>
-        <Item onClick={handleItemClick}>New document</Item>
-        <Item onClick={handleItemClick}>Open…</Item>
-        <LinkItem href="/docs/templates">Template gallery</LinkItem>
-        <LinkItem href="/docs/recent">Recent documents</LinkItem>
-        <LinkItem href="/help/docs">Docs help center</LinkItem>
-        <Item onClick={handleItemClick}>Make a copy</Item>
-        <Separator />
-        <Item closeOnClick={false} onClick={handleItemClick}>
+      </Menu2Trigger>
+      <Menu2Popup sideOffset={8}>
+        <Menu2Item onClick={handleItemClick}>New document</Menu2Item>
+        <Menu2Item onClick={handleItemClick}>Open…</Menu2Item>
+        <Menu2LinkItem href="/docs/templates">Template gallery</Menu2LinkItem>
+        <Menu2LinkItem href="/docs/recent">Recent documents</Menu2LinkItem>
+        <Menu2LinkItem href="/help/docs">Docs help center</Menu2LinkItem>
+        <Menu2Item onClick={handleItemClick}>Make a copy</Menu2Item>
+        <Menu2Separator />
+        <Menu2Item closeOnClick={false} onClick={handleItemClick}>
           Rename document
-        </Item>
-        <Item disabled onClick={handleItemClick}>
+        </Menu2Item>
+        <Menu2Item disabled onClick={handleItemClick}>
           Offline editing unavailable
-        </Item>
-        <Separator />
+        </Menu2Item>
+        <Menu2Separator />
 
-        <SubmenuRoot>
-          <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+        <Menu2SubmenuRoot>
+          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             View options
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup sideOffset={8}>
-            <Group>
-              <GroupLabel>Document display</GroupLabel>
-              <RadioGroup defaultValue="100">
-                <RadioItem value="100">
-                  <RadioItemIndicator keepMounted />
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup sideOffset={8}>
+            <Menu2Group>
+              <Menu2GroupLabel>Document display</Menu2GroupLabel>
+              <Menu2RadioGroup defaultValue="100">
+                <Menu2RadioItem value="100">
+                  <Menu2RadioItemIndicator keepMounted />
                   100%
-                </RadioItem>
-                <RadioItem value="fit">
-                  <RadioItemIndicator keepMounted />
+                </Menu2RadioItem>
+                <Menu2RadioItem value="fit">
+                  <Menu2RadioItemIndicator keepMounted />
                   Fit
-                </RadioItem>
-                <RadioItem value="page-width">
-                  <RadioItemIndicator keepMounted />
+                </Menu2RadioItem>
+                <Menu2RadioItem value="page-width">
+                  <Menu2RadioItemIndicator keepMounted />
                   Page width
-                </RadioItem>
-                <RadioItem value="custom" disabled>
-                  <RadioItemIndicator keepMounted />
+                </Menu2RadioItem>
+                <Menu2RadioItem value="custom" disabled>
+                  <Menu2RadioItemIndicator keepMounted />
                   Custom zoom unavailable
-                </RadioItem>
-              </RadioGroup>
-            </Group>
+                </Menu2RadioItem>
+              </Menu2RadioGroup>
+            </Menu2Group>
 
-            <Separator />
+            <Menu2Separator />
 
-            <Group>
-              <GroupLabel>Show</GroupLabel>
-              <CheckboxItem defaultChecked>
-                <CheckboxItemIndicator keepMounted />
+            <Menu2Group>
+              <Menu2GroupLabel>Show</Menu2GroupLabel>
+              <Menu2CheckboxItem defaultChecked>
+                <Menu2CheckboxItemIndicator keepMounted />
                 Ruler
-              </CheckboxItem>
-              <CheckboxItem defaultChecked>
-                <CheckboxItemIndicator keepMounted />
+              </Menu2CheckboxItem>
+              <Menu2CheckboxItem defaultChecked>
+                <Menu2CheckboxItemIndicator keepMounted />
                 Document outline
-              </CheckboxItem>
-              <CheckboxItem>
-                <CheckboxItemIndicator keepMounted />
+              </Menu2CheckboxItem>
+              <Menu2CheckboxItem>
+                <Menu2CheckboxItemIndicator keepMounted />
                 Line numbers
-              </CheckboxItem>
-              <CheckboxItem disabled>
-                <CheckboxItemIndicator keepMounted />
+              </Menu2CheckboxItem>
+              <Menu2CheckboxItem disabled>
+                <Menu2CheckboxItemIndicator keepMounted />
                 Page breaks unavailable
-              </CheckboxItem>
-            </Group>
+              </Menu2CheckboxItem>
+            </Menu2Group>
 
-            <Separator />
+            <Menu2Separator />
 
-            <SubmenuRoot>
-              <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+            <Menu2SubmenuRoot>
+              <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
                 More tools
                 <KeyboardArrowRightRoundedIcon fontSize="small" />
-              </SubmenuTrigger>
-              <SubmenuPopup sideOffset={8}>
-                <Item onClick={handleItemClick}>Word count</Item>
-                <Item onClick={handleItemClick}>Dictionary</Item>
-                <Item onClick={handleItemClick}>Accessibility settings</Item>
-              </SubmenuPopup>
-            </SubmenuRoot>
-          </SubmenuPopup>
-        </SubmenuRoot>
+              </Menu2SubmenuTrigger>
+              <Menu2SubmenuPopup sideOffset={8}>
+                <Menu2Item onClick={handleItemClick}>Word count</Menu2Item>
+                <Menu2Item onClick={handleItemClick}>Dictionary</Menu2Item>
+                <Menu2Item onClick={handleItemClick}>Accessibility settings</Menu2Item>
+              </Menu2SubmenuPopup>
+            </Menu2SubmenuRoot>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
 
-        <SubmenuRoot>
-          <SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
+        <Menu2SubmenuRoot>
+          <Menu2SubmenuTrigger openOnHover={settings.submenusOpenOnHover}>
             Download
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup sideOffset={8}>
-            <Item>Microsoft Word (.docx)</Item>
-            <Item>PDF document (.pdf)</Item>
-            <Item>Plain text (.txt)</Item>
-          </SubmenuPopup>
-        </SubmenuRoot>
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup sideOffset={8}>
+            <Menu2Item>Microsoft Word (.docx)</Menu2Item>
+            <Menu2Item>PDF document (.pdf)</Menu2Item>
+            <Menu2Item>Plain text (.txt)</Menu2Item>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
 
-        <SubmenuRoot disabled>
-          <SubmenuTrigger disabled openOnHover={settings.submenusOpenOnHover}>
+        <Menu2SubmenuRoot disabled>
+          <Menu2SubmenuTrigger disabled openOnHover={settings.submenusOpenOnHover}>
             Add-ons unavailable
             <KeyboardArrowRightRoundedIcon fontSize="small" />
-          </SubmenuTrigger>
-          <SubmenuPopup sideOffset={8}>
-            <Item>Marketplace</Item>
-          </SubmenuPopup>
-        </SubmenuRoot>
-      </Popup>
-    </Menu>
+          </Menu2SubmenuTrigger>
+          <Menu2SubmenuPopup sideOffset={8}>
+            <Menu2Item>Marketplace</Menu2Item>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
+      </Menu2Popup>
+    </Menu2>
   );
 }
 
@@ -474,75 +457,75 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
   );
 
   return (
-    <Menu>
-      <Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
+    <Menu2>
+      <Menu2Trigger variant="contained" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
         Tools
-      </Trigger>
-      <Popup sideOffset={8}>
+      </Menu2Trigger>
+      <Menu2Popup sideOffset={8}>
         <MenuTooltip title="Create a blank document">
-          <Item>New document</Item>
+          <Menu2Item>New document</Menu2Item>
         </MenuTooltip>
         <MenuTooltip title="Open recently edited documents">
-          <Item>Open recent</Item>
+          <Menu2Item>Open recent</Menu2Item>
         </MenuTooltip>
         <MenuTooltip title="Copy this document to your Drive">
-          <Item>Make a copy</Item>
+          <Menu2Item>Make a copy</Menu2Item>
         </MenuTooltip>
         <DisabledTooltip title="Import is disabled while offline">
-          <Item disabled>Import from Drive</Item>
+          <Menu2Item disabled>Import from Drive</Menu2Item>
         </DisabledTooltip>
         <DisabledTooltip title="Sharing is unavailable in preview">
-          <Item disabled>Share with people</Item>
+          <Menu2Item disabled>Share with people</Menu2Item>
         </DisabledTooltip>
-        <Separator />
+        <Menu2Separator />
 
-        <SubmenuRoot>
+        <Menu2SubmenuRoot>
           <MenuTooltip title="Open view settings" tooltipProps={submenuTriggerTooltipProps}>
-            <SubmenuTrigger openOnHover={submenusOpenOnHover}>
+            <Menu2SubmenuTrigger openOnHover={submenusOpenOnHover}>
               View options
               <KeyboardArrowRightRoundedIcon fontSize="small" />
-            </SubmenuTrigger>
+            </Menu2SubmenuTrigger>
           </MenuTooltip>
-          <SubmenuPopup sideOffset={8}>
-            <Group>
-              <GroupLabel>Show</GroupLabel>
+          <Menu2SubmenuPopup sideOffset={8}>
+            <Menu2Group>
+              <Menu2GroupLabel>Show</Menu2GroupLabel>
               <MenuTooltip title="Display comments in the document">
-                <CheckboxItem defaultChecked>
-                  <CheckboxItemIndicator keepMounted />
+                <Menu2CheckboxItem defaultChecked>
+                  <Menu2CheckboxItemIndicator keepMounted />
                   Comments
-                </CheckboxItem>
+                </Menu2CheckboxItem>
               </MenuTooltip>
               <DisabledTooltip title="Page breaks are locked in published view">
-                <CheckboxItem disabled>
-                  <CheckboxItemIndicator keepMounted />
+                <Menu2CheckboxItem disabled>
+                  <Menu2CheckboxItemIndicator keepMounted />
                   Page breaks
-                </CheckboxItem>
+                </Menu2CheckboxItem>
               </DisabledTooltip>
-            </Group>
+            </Menu2Group>
 
-            <Separator />
+            <Menu2Separator />
 
-            <Group>
-              <GroupLabel>Zoom</GroupLabel>
-              <RadioGroup defaultValue="fit">
+            <Menu2Group>
+              <Menu2GroupLabel>Zoom</Menu2GroupLabel>
+              <Menu2RadioGroup defaultValue="fit">
                 <MenuTooltip title="Use the available viewport width">
-                  <RadioItem value="fit">
-                    <RadioItemIndicator keepMounted />
+                  <Menu2RadioItem value="fit">
+                    <Menu2RadioItemIndicator keepMounted />
                     Fit
-                  </RadioItem>
+                  </Menu2RadioItem>
                 </MenuTooltip>
                 <DisabledTooltip title="Custom zoom is unavailable in preview">
-                  <RadioItem value="custom" disabled>
-                    <RadioItemIndicator keepMounted />
+                  <Menu2RadioItem value="custom" disabled>
+                    <Menu2RadioItemIndicator keepMounted />
                     Custom
-                  </RadioItem>
+                  </Menu2RadioItem>
                 </DisabledTooltip>
-              </RadioGroup>
-            </Group>
-          </SubmenuPopup>
-        </SubmenuRoot>
-      </Popup>
-    </Menu>
+              </Menu2RadioGroup>
+            </Menu2Group>
+          </Menu2SubmenuPopup>
+        </Menu2SubmenuRoot>
+      </Menu2Popup>
+    </Menu2>
   );
 }
 
@@ -576,7 +559,7 @@ function Menu2ContextMenuRecipe() {
     setAnchor(null);
   };
 
-  const handleOpenChange: React.ComponentProps<typeof Menu>['onOpenChange'] = (
+  const handleOpenChange: React.ComponentProps<typeof Menu2>['onOpenChange'] = (
     nextOpen,
     eventDetails,
   ) => {
@@ -607,14 +590,14 @@ function Menu2ContextMenuRecipe() {
         facilisis neque enim sed neque. Quisque accumsan metus vel maximus consequat. Suspendisse
         lacinia tellus a libero volutpat maximus.
       </Typography>
-      <Menu open={open} onOpenChange={handleOpenChange}>
-        <Popup anchor={anchor ?? undefined} positionMethod="fixed">
-          <Item onClick={handleClose}>Copy</Item>
-          <Item onClick={handleClose}>Print</Item>
-          <Item onClick={handleClose}>Highlight</Item>
-          <Item onClick={handleClose}>Email</Item>
-        </Popup>
-      </Menu>
+      <Menu2 open={open} onOpenChange={handleOpenChange}>
+        <Menu2Popup anchor={anchor ?? undefined} positionMethod="fixed">
+          <Menu2Item onClick={handleClose}>Copy</Menu2Item>
+          <Menu2Item onClick={handleClose}>Print</Menu2Item>
+          <Menu2Item onClick={handleClose}>Highlight</Menu2Item>
+          <Menu2Item onClick={handleClose}>Email</Menu2Item>
+        </Menu2Popup>
+      </Menu2>
     </div>
   );
 }
@@ -634,7 +617,7 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Unstable_Menu2 experiment" description="Material UI Unstable_Menu2 experiment" />
+      <Head title="Menu2 experiment" description="Material UI Menu2 experiment" />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
@@ -673,20 +656,18 @@ export default function Menu2Experiment() {
             <Menu2Demo settings={settings} />
           </section>
           <section>
-            <h3 id="menu-preview-tooltips">Unstable_Menu2 + Tooltip</h3>
+            <h3 id="menu-preview-tooltips">Menu2 + Tooltip</h3>
             <p>Material UI Tooltip integrated with every menu item.</p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-popover-preview-card">
-              Unstable_Menu2 + Popover-based preview card
-            </h3>
+            <h3 id="menu-preview-popover-preview-card">Menu2 + Popover-based preview card</h3>
             <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
             <Menu2WithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-context-menu-recipe">Unstable_Menu2 as ContextMenu recipe</h3>
-            <p>Right-click the text to open a cursor-positioned Unstable_Menu2 popup.</p>
+            <h3 id="menu-preview-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
+            <p>Right-click the text to open a cursor-positioned Menu2 popup.</p>
             <Menu2ContextMenuRecipe />
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
