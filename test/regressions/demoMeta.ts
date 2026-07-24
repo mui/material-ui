@@ -154,6 +154,20 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  */
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,IconAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+  },
+  // Avatar's default `colorDefault` styling is white text on grey[400] (~1.9:1),
+  // and the documented letter/background examples use low-contrast author
+  // colors, so color-contrast genuinely fails (WCAG 1.4.3). Record the
+  // violations in the JSON without failing the build. IconAvatars (icons only,
+  // aria-hidden, no text) is excluded here so it still asserts a clean pass.
+  {
+    test: 'docs/data/material/components/avatars/{LetterAvatars,BackgroundLetterAvatars,VariantAvatars,AvatarA11yImage}',
+    enabled: true,
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {
