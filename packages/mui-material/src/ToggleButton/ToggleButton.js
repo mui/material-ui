@@ -216,7 +216,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
 
   if (isRovingTabIndex) {
     return (
-      <RovingToggleButton disabled={disabled} selected={selected} ref={ref}>
+      <RovingToggleButton disabled={disabled} selected={selected} ref={ref} value={value}>
         {button}
       </RovingToggleButton>
     );

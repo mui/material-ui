@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
@@ -103,6 +104,32 @@ describe('<ToggleButtonGroup />', () => {
 
       await user.keyboard('{ArrowLeft}');
       expect(thirdButton).toHaveFocus();
+    });
+
+    it('should swap direction when RTL is applied', async () => {
+      const rtlTheme = createTheme({ direction: 'rtl' });
+      const { user } = render(
+        <ThemeProvider theme={rtlTheme}>
+          <ToggleButtonGroup>
+            <ToggleButton value="one">One</ToggleButton>
+            <ToggleButton value="two">Two</ToggleButton>
+            <ToggleButton value="three">Three</ToggleButton>
+          </ToggleButtonGroup>
+        </ThemeProvider>,
+      );
+      const [firstButton, secondButton, thirdButton] = screen.getAllByRole('button');
+
+      await user.tab();
+      expect(firstButton).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(secondButton).toHaveFocus();
+
+      await user.keyboard('{ArrowLeft}');
+      expect(thirdButton).toHaveFocus();
+
+      await user.keyboard('{ArrowRight}');
+      expect(secondButton).toHaveFocus();
     });
 
     it('should navigate vertically and support Home and End', async () => {
