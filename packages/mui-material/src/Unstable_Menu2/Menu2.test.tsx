@@ -453,6 +453,28 @@ describe('<Menu2 />', () => {
     expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation4);
   });
 
+  it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup slotProps={{ paper: { 'data-testid': 'paper' } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const paper = await screen.findByTestId('paper');
+    const { maxHeight, overflowY } = window.getComputedStyle(paper);
+    // Regression: the classic `calc(100% - 96px)` resolved against the
+    // content-sized popup instead of the viewport and clipped the end of the
+    // menu (separators and trailing items).
+    expect(maxHeight).not.to.equal('calc(100% - 96px)');
+    expect(maxHeight).not.to.equal('none');
+    expect(overflowY).to.equal('auto');
+  });
+
   it('supports controlled open state and Base UI cancellation details', async () => {
     const handleOpenChange = spy((open: boolean, eventDetails: any) => {
       expect(open).to.equal(true);

@@ -56,7 +56,16 @@ export function getMenu2ItemStyles(
   };
 }
 
-export const menu2PopupPaperStyles: CSSInterpolation = menuPaperStyles;
+export const menu2PopupPaperStyles: CSSInterpolation = {
+  ...menuPaperStyles,
+  // In the classic Menu the Paper sits in a full-viewport Modal, so its
+  // `maxHeight: calc(100% - 96px)` means "viewport minus 96px". Inside the
+  // content-sized Base UI popup that percentage resolves against the popup
+  // itself (browser-dependent), clipping the end of the menu. Use the
+  // collision-aware space provided by the positioner instead.
+  maxHeight: 'min(calc(100vh - 96px), var(--available-height))',
+  overflowY: 'auto',
+};
 
 export const menu2PopupListStyles: CSSInterpolation = menuListStyles;
 
