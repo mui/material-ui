@@ -35,6 +35,7 @@ catalogs:
     '@emotion/react': '^11.14.0'
     '@emotion/server': '^11.11.0'
     '@emotion/styled': '^11.14.1'
+    '@mui/internal-docs-infra': '0.12.1-canary.13'
 
 overrides:
   # Both were bundled twice in the docs build

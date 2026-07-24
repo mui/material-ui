@@ -1,0 +1,598 @@
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MDButton from '@mui/material/Button';
+import MDToggleButton from '@mui/material/ToggleButton';
+import MDToggleButtonGroup, { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Snackbar from '@mui/material/Snackbar';
+import SvgIcon from '@mui/material/SvgIcon';
+import Tooltip from '@mui/material/Tooltip';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
+import ResetFocusIcon from '@mui/icons-material/CenterFocusWeak';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import copy from 'clipboard-copy';
+import { useTranslate } from '../i18n';
+import { OpenInMUIChatButton } from './OpenInMUIChatButton';
+
+// ---------------------------------------------------------------------------
+// Toolbar control styling
+// ---------------------------------------------------------------------------
+
+const ToggleButtonGroup = styled(MDToggleButtonGroup)(({ theme }) => [
+  theme.unstable_sx({
+    [`& .${toggleButtonGroupClasses.grouped}`]: {
+      '&:not(:first-of-type)': { pr: '2px' },
+      '&:not(:last-of-type)': { pl: '2px' },
+    },
+  }),
+]);
+
+const ToggleButton = styled(MDToggleButton)(({ theme }) => [
+  theme.unstable_sx({
+    height: 26,
+    width: 38,
+    p: 0,
+    fontSize: theme.typography.pxToRem(13),
+    borderRadius: '999px',
+    '&.Mui-disabled': {
+      opacity: 0.8,
+      cursor: 'not-allowed',
+    },
+  }),
+]);
+
+const ToolbarButton = styled(MDButton)(({ theme }) => ({
+  height: 26,
+  padding: '7px 8px 8px 8px',
+  flexShrink: 0,
+  borderRadius: 999,
+  border: '1px solid',
+  borderColor: alpha(theme.palette.grey[200], 0.8),
+  fontSize: theme.typography.pxToRem(13),
+  fontWeight: theme.typography.fontWeightMedium,
+  color: theme.palette.primary[600],
+  '& .MuiSvgIcon-root': {
+    color: theme.palette.primary.main,
+  },
+  '&:hover': {
+    backgroundColor: theme.palette.primary[50],
+    borderColor: theme.palette.primary[200],
+    '@media (hover: none)': { backgroundColor: 'transparent' },
+  },
+  ...theme.applyDarkStyles({
+    color: theme.palette.primary[300],
+    borderColor: alpha(theme.palette.primary[300], 0.2),
+    '& .MuiSvgIcon-root': { color: theme.palette.primary[300] },
+    '&:hover': {
+      borderColor: alpha(theme.palette.primary[300], 0.5),
+      backgroundColor: alpha(theme.palette.primary[500], 0.2),
+      '@media (hover: none)': { backgroundColor: 'transparent' },
+    },
+  }),
+}));
+
+function DemoTooltip(props: React.ComponentProps<typeof Tooltip>) {
+  return (
+    <Tooltip
+      slotProps={{
+        popper: {
+          sx: { zIndex: (theme) => theme.zIndex.appBar - 1 },
+        },
+      }}
+      {...props}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Toolbar keyboard navigation
+// ---------------------------------------------------------------------------
+
+/**
+ * ARIA toolbar keyboard navigation with one roving-tabindex scope per
+ * `[data-toolbar-group]`. Each group's *first* focusable button is its single
+ * tab stop, so Tab moves *between* groups — landing on "Edit in Chat", then
+ * "Expand" — while arrow keys (RTL aware) and Home/End move focus *within* the
+ * focused button's group. Tabindex is managed on the buttons directly via a
+ * `MutationObserver` so the hook stays decoupled from the toolbar's JSX.
+ */
+function isFocusableToolbarButton(button: HTMLElement): boolean {
+  if (button.hasAttribute('disabled') || button.getAttribute('aria-hidden') === 'true') {
+    return false;
+  }
+  if (typeof button.checkVisibility === 'function') {
+    return button.checkVisibility({ visibilityProperty: true });
+  }
+  if (typeof window === 'undefined') {
+    return true;
+  }
+  const style = window.getComputedStyle(button);
+  return style.visibility !== 'hidden' && style.display !== 'none';
+}
+
+function getGroupButtons(group: HTMLElement): HTMLElement[] {
+  return Array.from(group.querySelectorAll<HTMLElement>('button')).filter(isFocusableToolbarButton);
+}
+
+export function useToolbarKeyboard() {
+  const theme = useTheme();
+  const toolbarRef = React.useRef<HTMLDivElement>(null);
+
+  // Make each group's first focusable button its only tab stop (the rest are
+  // reachable by arrow keys). Runs on mount and from the MutationObserver as
+  // buttons appear/disappear (e.g. the JS/TS toggle on expand).
+  const syncTabIndex = React.useCallback(() => {
+    const container = toolbarRef.current;
+    if (!container) {
+      return;
+    }
+    container.querySelectorAll<HTMLElement>('[data-toolbar-group]').forEach((group) => {
+      getGroupButtons(group).forEach((button, index) => {
+        button.tabIndex = index === 0 ? 0 : -1;
+      });
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const container = toolbarRef.current;
+    if (!container) {
+      return undefined;
+    }
+    syncTabIndex();
+    const observer = new MutationObserver(syncTabIndex);
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['disabled', 'aria-hidden', 'style', 'hidden'],
+    });
+    return () => observer.disconnect();
+  }, [syncTabIndex]);
+
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const active = document.activeElement as HTMLElement | null;
+      const group = active?.closest<HTMLElement>('[data-toolbar-group]');
+      if (!group) {
+        return;
+      }
+      const buttons = getGroupButtons(group);
+      const currentIndex = active ? buttons.indexOf(active) : -1;
+      if (currentIndex === -1) {
+        return;
+      }
+      const prevKey = theme.direction === 'ltr' ? 'ArrowLeft' : 'ArrowRight';
+      const nextKey = theme.direction === 'ltr' ? 'ArrowRight' : 'ArrowLeft';
+      let nextIndex = -1;
+      switch (event.key) {
+        case prevKey:
+          nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+          break;
+        case nextKey:
+          nextIndex = (currentIndex + 1) % buttons.length;
+          break;
+        case 'Home':
+          nextIndex = 0;
+          break;
+        case 'End':
+          nextIndex = buttons.length - 1;
+          break;
+        default:
+          return;
+      }
+      event.preventDefault();
+      buttons[nextIndex].focus();
+    },
+    [theme.direction],
+  );
+
+  return { toolbarRef, handleKeyDown };
+}
+
+// ---------------------------------------------------------------------------
+// Toolbar component
+// ---------------------------------------------------------------------------
+
+/**
+ * Deploy permalinks surfaced in the More menu on staging / PR-preview builds.
+ * Each points at the same demo on a different Netlify deployment.
+ */
+export interface DemoDeploymentLinks {
+  /** Deploy-preview URL for the current PR. Omitted when not a PR build. */
+  pullRequest?: string;
+  /** URL on the `next` branch deployment. */
+  next: string;
+  /** Permalink to this exact deploy. */
+  permalink: string;
+  /** URL on the `master` branch deployment. */
+  master: string;
+}
+
+export interface DemoToolbarProps {
+  gaLabel: string;
+  /** ID of the source viewer for `aria-controls`. */
+  demoSourceId: string | undefined;
+  /** Whether the source viewer is currently expanded. */
+  expanded: boolean;
+  onToggleExpand: () => void;
+  /** Ref for the show-source toggle button (used by `useCodeWindow`). */
+  toggleRef: React.Ref<HTMLButtonElement>;
+  showCodeLabel: React.ReactNode;
+  /** Whether a JS transform is available for the current variant. */
+  hasJsTransform: boolean;
+  isJsSelected: boolean;
+  onLanguageClick: (event: React.MouseEvent, value: string | null) => void;
+  /**
+   * Ref attached to the JS/TS toggle group. `DemoContent` uses it as the
+   * scroll-anchor element when a transform swap reflows the code tree.
+   */
+  languageToggleRef?: React.Ref<HTMLDivElement>;
+  /** Variant cycling (styling solutions). */
+  variants: readonly string[];
+  selectedVariant: string;
+  onSelectVariant: (variant: string) => void;
+  openMuiChat?: () => Promise<void>;
+  hideEditButton?: boolean;
+  onOpenStackBlitz: () => void;
+  onOpenCodeSandbox: () => void;
+  onCopySource: (event: React.MouseEvent<HTMLElement>) => Promise<void>;
+  onResetFocus: () => void;
+  onReset?: () => void;
+  /**
+   * Hosted GitHub URL of the file currently shown in the viewer. Undefined
+   * when no repository URL is configured (the "View on GitHub" item is then
+   * disabled).
+   */
+  githubLocation?: string;
+  /**
+   * Anchor id for the TypeScript source of the currently-shown file (e.g.
+   * `ComboBox.tsx`), used by the "copy TypeScript link" item. The matching
+   * `<DemoAnchorLink>` is rendered alongside the demo; the item is disabled when
+   * unset.
+   */
+  tsSourceAnchor?: string;
+  /**
+   * Anchor id for the JavaScript twin of the currently-shown file (e.g.
+   * `ComboBox.jsx`), used by the "copy JavaScript link" item. Landing on it swaps
+   * to the JS transform. Unset when there's no JS transform — the item is then
+   * omitted entirely rather than shown disabled.
+   */
+  jsSourceAnchor?: string;
+}
+
+/**
+ * Live demo toolbar. Renders the JS/TS toggle (when the source viewer is
+ * expanded), the show/hide source button, sandbox launchers, copy/reset
+ * actions, and the "more" overflow menu. All handlers are passed in from
+ * `DemoContent`; this component owns only the local UI state (open/snackbar/
+ * copy feedback) so it can be tested in isolation.
+ */
+export function DemoToolbar(props: DemoToolbarProps) {
+  const {
+    gaLabel,
+    demoSourceId,
+    expanded,
+    onToggleExpand,
+    toggleRef,
+    showCodeLabel,
+    hasJsTransform,
+    isJsSelected,
+    onLanguageClick,
+    languageToggleRef,
+    variants,
+    selectedVariant,
+    onSelectVariant,
+    openMuiChat,
+    hideEditButton,
+    onOpenStackBlitz,
+    onOpenCodeSandbox,
+    onCopySource,
+    onResetFocus,
+    onReset,
+    githubLocation,
+    tsSourceAnchor,
+    jsSourceAnchor,
+  } = props;
+  const t = useTranslate();
+
+  // "More" menu state.
+  const [moreAnchorEl, setMoreAnchorEl] = React.useState<HTMLElement | null>(null);
+  const handleMoreClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setMoreAnchorEl(event.currentTarget);
+  }, []);
+  const handleMoreClose = React.useCallback(() => {
+    setMoreAnchorEl(null);
+  }, []);
+  const moreMenuOpen = Boolean(moreAnchorEl);
+
+  // Snackbar shown after copying a source link to the clipboard.
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState<string | undefined>(undefined);
+  const handleSnackbarClose = React.useCallback((_event: unknown, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
+  }, []);
+
+  // Copy-source button feedback — swap the icon to a checkmark briefly after
+  // a successful copy.
+  const [sourceCopied, setSourceCopied] = React.useState(false);
+  const copyTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  React.useEffect(
+    () => () => {
+      if (copyTimeoutRef.current !== null) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    },
+    [],
+  );
+  const handleCopySource = React.useCallback(
+    async (event: React.MouseEvent<HTMLElement>) => {
+      await onCopySource(event);
+      setSourceCopied(true);
+      if (copyTimeoutRef.current !== null) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+      copyTimeoutRef.current = setTimeout(() => {
+        setSourceCopied(false);
+      }, 1000);
+    },
+    [onCopySource],
+  );
+
+  // "Copy source link" handlers. Copies a permalink to the current page that
+  // targets the selected file's `.tsx` (TS) or `.jsx`/`.js` (JS) source anchor —
+  // the per-file ids rendered next to the demo. The anchor already carries the
+  // extension, and landing on the JS one swaps to the JS transform. Built from
+  // `window.location` at click time so it reflects the page the user is on.
+  const createHandleCodeSourceLink = React.useCallback(
+    (target: 'js' | 'tsx') => async () => {
+      handleMoreClose();
+      const anchor = target === 'tsx' ? tsSourceAnchor : jsSourceAnchor;
+      if (!anchor || typeof window === 'undefined') {
+        return;
+      }
+      const base = window.location.href.split('#')[0];
+      const link = `${base}#${anchor}`;
+      try {
+        await copy(link);
+        setSnackbarMessage(t('copiedSourceLink'));
+        setSnackbarOpen(true);
+      } catch {
+        // Swallow — clipboard access may be denied by the user agent.
+      }
+    },
+    [t, handleMoreClose, tsSourceAnchor, jsSourceAnchor],
+  );
+
+  const hasNonSystemDemos = variants.length > 1;
+
+  return (
+    <React.Fragment>
+      {/* Group 1: "Edit in Chat" + the JS/TS switcher form one roving-tabindex
+          scope (`data-toolbar-group`), so Tab lands here first (on "Edit in
+          Chat") and the next Tab jumps to the actions group; arrow keys move
+          between the two. The `gap` keeps "Edit in Chat" from touching the
+          JS/TS switcher. */}
+      <Box role="group" data-toolbar-group sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        {/* Open in MUI Chat */}
+        <OpenInMUIChatButton
+          openMuiChat={openMuiChat}
+          data-ga-event-category="demo"
+          data-ga-event-label={gaLabel}
+          data-ga-event-action="open-in-mui-chat"
+        />
+
+        {/* JS/TS toggle (only relevant when code is open). Uses a CSS-only
+            opacity transition rather than MUI's `<Fade>` because Fade calls
+            `reflow(node)` (reading `node.scrollTop`) on every transition,
+            forcing a synchronous layout flush that thrashes with
+            `useScrollAnchor`'s `ResizeObserver` during expand/collapse. */}
+        <ToggleButtonGroup
+          ref={languageToggleRef}
+          sx={{
+            margin: '8px 0',
+            transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1)',
+            opacity: expanded && hasJsTransform ? 1 : 0,
+            visibility: expanded && hasJsTransform ? 'visible' : 'hidden',
+            pointerEvents: expanded && hasJsTransform ? 'auto' : 'none',
+          }}
+          exclusive
+          value={isJsSelected ? 'js' : 'ts'}
+          onChange={onLanguageClick}
+        >
+          <ToggleButton
+            value="js"
+            aria-label={t('showJSSource')}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="source-js"
+          >
+            JS
+          </ToggleButton>
+          <ToggleButton
+            value="ts"
+            aria-label={t('showTSSource')}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="source-ts"
+          >
+            TS
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+
+      {/* Group 2: the remaining action buttons — its own roving-tabindex scope,
+          so the second Tab enters here (on "Expand" for a single-variant demo). */}
+      <Box
+        role="group"
+        data-toolbar-group
+        sx={{ ml: 'auto', display: 'flex', alignItems: 'center' }}
+      >
+        {hasNonSystemDemos && (
+          <ToolbarButton
+            size="small"
+            onClick={() => {
+              const idx = variants.indexOf(selectedVariant);
+              onSelectVariant(variants[(idx + 1) % variants.length]);
+            }}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="styling"
+          >
+            {selectedVariant}
+          </ToolbarButton>
+        )}
+
+        {hasNonSystemDemos ? (
+          <Divider orientation="vertical" variant="middle" sx={{ mx: 1, height: 24 }} />
+        ) : null}
+
+        <ToolbarButton
+          ref={toggleRef}
+          onClick={onToggleExpand}
+          aria-controls={expanded && demoSourceId ? demoSourceId : undefined}
+          aria-expanded={expanded}
+          data-ga-event-category="demo"
+          data-ga-event-label={gaLabel}
+          data-ga-event-action={expanded ? 'collapse' : 'expand'}
+          sx={{ mr: 0.5 }}
+        >
+          {showCodeLabel}
+        </ToolbarButton>
+
+        {!hideEditButton ? (
+          <React.Fragment>
+            <DemoTooltip title={t('stackblitz')} placement="bottom">
+              <IconButton
+                onClick={onOpenStackBlitz}
+                sx={{ borderRadius: 1 }}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="stackblitz"
+              >
+                <SvgIcon viewBox="0 0 19 28">
+                  <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                </SvgIcon>
+              </IconButton>
+            </DemoTooltip>
+
+            <DemoTooltip title={t('codesandbox')} placement="bottom">
+              <IconButton
+                onClick={onOpenCodeSandbox}
+                sx={{ borderRadius: 1 }}
+                data-ga-event-category="demo"
+                data-ga-event-label={gaLabel}
+                data-ga-event-action="codesandbox"
+              >
+                <SvgIcon viewBox="0 0 1024 1024">
+                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                </SvgIcon>
+              </IconButton>
+            </DemoTooltip>
+          </React.Fragment>
+        ) : null}
+
+        <DemoTooltip title={t('copySource')} placement="bottom">
+          <IconButton
+            onClick={handleCopySource}
+            sx={{ borderRadius: 1 }}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="copy"
+          >
+            {sourceCopied ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />}
+          </IconButton>
+        </DemoTooltip>
+
+        <DemoTooltip title={t('resetFocus')} placement="bottom">
+          <IconButton
+            onClick={onResetFocus}
+            sx={{ borderRadius: 1 }}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="reset-focus"
+          >
+            <ResetFocusIcon />
+          </IconButton>
+        </DemoTooltip>
+
+        <DemoTooltip title={t('resetDemo')} placement="bottom">
+          <IconButton
+            onClick={onReset}
+            sx={{ borderRadius: 1 }}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="reset"
+          >
+            <RefreshRoundedIcon />
+          </IconButton>
+        </DemoTooltip>
+
+        <IconButton
+          onClick={handleMoreClick}
+          aria-label={t('seeMore')}
+          aria-owns={moreMenuOpen ? 'demo-menu-more' : undefined}
+          aria-haspopup="true"
+          sx={{ borderRadius: 1 }}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="demo-menu-more"
+          anchorEl={moreAnchorEl}
+          open={moreMenuOpen}
+          onClose={handleMoreClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <MenuItem
+            component="a"
+            href={githubLocation}
+            target="_blank"
+            rel="noopener nofollow"
+            onClick={handleMoreClose}
+            disabled={!githubLocation}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="github"
+          >
+            {t('viewGitHub')}
+          </MenuItem>
+          {jsSourceAnchor ? (
+            <MenuItem
+              onClick={createHandleCodeSourceLink('js')}
+              data-ga-event-category="demo"
+              data-ga-event-label={gaLabel}
+              data-ga-event-action="copy-js-source-link"
+            >
+              {t('copySourceLinkJS')}
+            </MenuItem>
+          ) : null}
+          <MenuItem
+            onClick={createHandleCodeSourceLink('tsx')}
+            disabled={!tsSourceAnchor}
+            data-ga-event-category="demo"
+            data-ga-event-label={gaLabel}
+            data-ga-event-action="copy-ts-source-link"
+          >
+            {t('copySourceLinkTS')}
+          </MenuItem>
+        </Menu>
+      </Box>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
+    </React.Fragment>
+  );
+}

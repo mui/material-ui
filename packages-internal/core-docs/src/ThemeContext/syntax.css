@@ -1,0 +1,515 @@
+/* Syntax highlighting theme using prettylights classes.
+ * Color values from prism-okaidia (with AA contrast overrides). */
+:root {
+  /* Core syntax colors (from prism-okaidia) */
+  --color-prettylights-syntax-comment: #b2b2b2;
+  --color-prettylights-syntax-constant: #f8f8f2;
+  --color-prettylights-syntax-constant-other-reference-link: #a6e22e;
+  --color-prettylights-syntax-entity: #a6e22e;
+  --color-prettylights-syntax-entity-name: #e6db74;
+  --color-prettylights-syntax-entity-tag: #fc929e;
+  --color-prettylights-syntax-keyword: #66d9ef;
+  --color-prettylights-syntax-string: #a6e22e;
+  --color-prettylights-syntax-string-regexp: #fd971f;
+  --color-prettylights-syntax-variable: #f8f8f2;
+  --color-prettylights-syntax-storage-modifier-import: #f8f8f2;
+  --color-prettylights-syntax-brackethighlighter-angle: #f8f8f2;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #fc929e;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #b2b2b2;
+
+  /* Invalid/error states */
+  --color-prettylights-syntax-invalid-illegal-bg: #fc929e;
+  --color-prettylights-syntax-invalid-illegal-text: #f8f8f2;
+  --color-prettylights-syntax-carriage-return-bg: #fc929e;
+  --color-prettylights-syntax-carriage-return-text: #f8f8f2;
+
+  /* Markup/markdown */
+  --color-prettylights-syntax-markup-heading: #66d9ef;
+  --color-prettylights-syntax-markup-bold: #f8f8f2;
+  --color-prettylights-syntax-markup-italic: #f8f8f2;
+  --color-prettylights-syntax-markup-list: #fc929e;
+  --color-prettylights-syntax-markup-changed-bg: transparent;
+  --color-prettylights-syntax-markup-changed-text: #e6db74;
+  --color-prettylights-syntax-markup-deleted-bg: transparent;
+  --color-prettylights-syntax-markup-deleted-text: #fc929e;
+  --color-prettylights-syntax-markup-inserted-bg: transparent;
+  --color-prettylights-syntax-markup-inserted-text: #a6e22e;
+  --color-prettylights-syntax-markup-ignored-bg: transparent;
+  --color-prettylights-syntax-markup-ignored-text: #b2b2b2;
+  --color-prettylights-syntax-meta-diff-range: #b78eff;
+
+  /* Docs-infra extensions */
+  --color-docs-infra-syntax-number: #b78eff;
+  --color-docs-infra-syntax-boolean: #b78eff;
+  --color-docs-infra-syntax-nullish: #b2b2b2;
+  --color-docs-infra-syntax-attr-key: #a6e22e;
+  --color-docs-infra-syntax-attr-value: #e6db74;
+  --color-docs-infra-syntax-attr-value-quote: #f8f8f2;
+  --color-docs-infra-syntax-attr-equals: #f8f8f2;
+  --color-docs-infra-syntax-data-attr: #a6e22e;
+  --color-docs-infra-syntax-css-property: #fc929e;
+  --color-docs-infra-syntax-css-value: #f8f8f2;
+  --color-docs-infra-syntax-this: #66d9ef;
+  --color-docs-infra-syntax-builtin-type: #66d9ef;
+  --color-docs-infra-syntax-jsx: #e6db74;
+  --color-docs-infra-syntax-jsx-variable: #fc929e;
+  --color-docs-infra-syntax-html-tag: #fc929e;
+  --color-docs-infra-syntax-jsx-tag: #fc929e;
+  --color-docs-infra-syntax-property-string: #fc929e;
+  --color-docs-infra-syntax-object-property: #f8f8f2;
+  --color-docs-infra-syntax-punctuation: #f8f8f2;
+
+  /* Rendered line height of code blocks. Used by the `.collapse` placeholder
+   * animation to scale the entry/exit height to the number of hidden lines. */
+  --docs-infra-syntax-line-height: 19.5px;
+}
+
+.pl-c {
+  color: var(--color-prettylights-syntax-comment);
+}
+
+.pl-c1,
+.pl-s .pl-v {
+  color: var(--color-prettylights-syntax-constant);
+}
+
+.pl-e {
+  color: var(--color-prettylights-syntax-entity);
+}
+
+.pl-en {
+  color: var(--color-prettylights-syntax-entity-name);
+}
+
+.pl-smi,
+.pl-s .pl-s1 {
+  color: var(--color-prettylights-syntax-storage-modifier-import);
+}
+
+.pl-ent {
+  color: var(--color-prettylights-syntax-entity-tag);
+}
+
+.pl-k {
+  color: var(--color-prettylights-syntax-keyword);
+}
+
+.pl-s,
+.pl-pds,
+.pl-s .pl-pse .pl-s1 {
+  color: var(--color-prettylights-syntax-string);
+}
+
+.pl-v,
+.pl-smw {
+  color: var(--color-prettylights-syntax-variable);
+}
+
+.pl-bu {
+  color: var(--color-prettylights-syntax-brackethighlighter-unmatched);
+}
+
+.pl-ii {
+  color: var(--color-prettylights-syntax-invalid-illegal-text);
+  background-color: var(--color-prettylights-syntax-invalid-illegal-bg);
+}
+
+.pl-c2 {
+  color: var(--color-prettylights-syntax-carriage-return-text);
+  background-color: var(--color-prettylights-syntax-carriage-return-bg);
+}
+
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sre,
+.pl-sr .pl-sra {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-string-regexp);
+}
+
+.pl-ml {
+  color: var(--color-prettylights-syntax-markup-list);
+}
+
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-markup-heading);
+}
+
+.pl-mi {
+  font-style: italic;
+  color: var(--color-prettylights-syntax-markup-italic);
+}
+
+.pl-mb {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-markup-bold);
+}
+
+.pl-md {
+  color: var(--color-prettylights-syntax-markup-deleted-text);
+  background-color: var(--color-prettylights-syntax-markup-deleted-bg);
+}
+
+.pl-mi1 {
+  color: var(--color-prettylights-syntax-markup-inserted-text);
+  background-color: var(--color-prettylights-syntax-markup-inserted-bg);
+}
+
+.pl-mc {
+  color: var(--color-prettylights-syntax-markup-changed-text);
+  background-color: var(--color-prettylights-syntax-markup-changed-bg);
+}
+
+.pl-mi2 {
+  color: var(--color-prettylights-syntax-markup-ignored-text);
+  background-color: var(--color-prettylights-syntax-markup-ignored-bg);
+}
+
+.pl-mdr {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-meta-diff-range);
+}
+
+.pl-ba {
+  color: var(--color-prettylights-syntax-brackethighlighter-angle);
+}
+
+.pl-sg {
+  color: var(--color-prettylights-syntax-sublimelinter-gutter-mark);
+}
+
+.pl-corl {
+  text-decoration: underline;
+  color: var(--color-prettylights-syntax-constant-other-reference-link);
+}
+
+/* Docs-infra extensions (.di-* classes) */
+
+.di-num {
+  color: var(--color-docs-infra-syntax-number);
+}
+
+.di-bool {
+  color: var(--color-docs-infra-syntax-boolean);
+}
+
+.di-n {
+  color: var(--color-docs-infra-syntax-nullish);
+}
+
+.di-ak {
+  color: var(--color-docs-infra-syntax-attr-key);
+}
+
+.di-av {
+  color: var(--color-docs-infra-syntax-attr-value);
+}
+
+.di-av .pl-pds {
+  color: var(--color-docs-infra-syntax-attr-value-quote);
+}
+
+.di-ae {
+  color: var(--color-docs-infra-syntax-attr-equals);
+}
+
+.di-da {
+  color: var(--color-docs-infra-syntax-data-attr);
+}
+
+.di-cp {
+  color: var(--color-docs-infra-syntax-css-property);
+}
+
+.di-cv {
+  color: var(--color-docs-infra-syntax-css-value);
+}
+
+.di-this {
+  color: var(--color-docs-infra-syntax-this);
+}
+
+.di-bt {
+  color: var(--color-docs-infra-syntax-builtin-type);
+}
+
+.di-op {
+  color: var(--color-docs-infra-syntax-object-property);
+}
+
+.di-jsx {
+  color: var(--color-docs-infra-syntax-jsx);
+}
+
+.di-jv {
+  color: var(--color-docs-infra-syntax-jsx-variable);
+}
+
+.di-ht {
+  color: var(--color-docs-infra-syntax-html-tag);
+}
+
+.di-jt {
+  color: var(--color-docs-infra-syntax-jsx-tag);
+}
+
+.di-ps {
+  color: var(--color-docs-infra-syntax-property-string);
+}
+
+.di-jv .pl-pds,
+.di-ps .pl-pds {
+  color: inherit;
+}
+
+.di-pu {
+  color: var(--color-docs-infra-syntax-punctuation);
+}
+
+/* ----------------------------------------------------------------------
+ * Collapsed-lines placeholder
+ *
+ * `<span class="collapse" data-lines={n}>` is emitted wherever a source
+ * transform deleted a run of lines (e.g. the type-stripping path
+ * replaces type-only lines with empty strings, which the runtime then
+ * folds into a single placeholder). `<Pre>` also injects a single
+ * bridge `.collapse` placeholder into the shorter side of a variant
+ * swap (see `useCode({ variantSwapDelay })`) so the line-count delta
+ * between the outgoing and incoming variants animates instead of
+ * snapping. While either swap kind is in flight, `<Pre>` sets
+ * `data-transforming="expand"` or `data-transforming="collapse"` on
+ * the rendered `<pre>` so the placeholder can animate in the correct
+ * direction:
+ *
+ *   - `expand`   the OUTGOING tree's placeholders should expand back
+ *                to their original height (the lines being kept by the
+ *                new transform/variant are about to reappear). Fired
+ *                during the pre-swap window for `transform → null`,
+ *                the first half of `transform → transform`, and the
+ *                pre-swap window of any variant swap.
+ *   - `collapse` the INCOMING tree's placeholders should collapse from
+ *                their original height down to 0 (the lines just
+ *                removed by the new transform/variant). Fired during
+ *                the post-swap window for `null → transform`, the
+ *                second half of `transform → transform`, and the
+ *                post-swap window of any variant swap.
+ *
+ * We use a CSS `@keyframes` rule (rather than a transition + the
+ * `@starting-style` at-rule) because React typically reuses the same
+ * `<span>` DOM node when a `.line` is replaced by a `.collapse` at the
+ * same position — only the `class` and `data-*` attributes change. That
+ * isn't an element insertion, so `@starting-style` would never fire;
+ * but a new `animation-name` starts as soon as the rule begins applying
+ * to the element, which is exactly what we want.
+ *
+ * `--docs-infra-syntax-line-height` should match the rendered line height
+ * of the code block so the entry height lines up with the lines being
+ * removed.
+ * ------------------------------------------------------------------- */
+
+pre .frame .collapse {
+  display: block;
+  overflow: hidden;
+}
+
+/* One empty `<span/>` per collapsed source line. Each child takes up
+ * exactly one line-height, so the placeholder's intrinsic height is
+ * `count * line-height` with no `data-lines` lookup, custom property,
+ * or per-count fallback rules. Animating each child independently is
+ * marginally more work than a single group animation but trades that
+ * for portable behavior across every engine and removes the upper
+ * bound on supported runs. */
+pre .frame .collapse > span {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Paused post-swap state (`data-transforming="expanded"`): the new
+ * tree just committed but the active animation hasn't started yet.
+ * Hold each bridge child at the expanded height so the structure
+ * matches the start of the upcoming collapse animation. */
+pre[data-transforming='expanded'] .frame .collapse > span {
+  height: var(--docs-infra-syntax-line-height);
+}
+
+/* Active post-swap entry animation: the new tree just committed and
+ * any `.collapse` placeholders it contains should collapse from their
+ * children's expanded height down to 0. Gated on
+ * `data-transforming="collapsing"` so initial renders and unrelated
+ * re-renders stay silent. */
+pre[data-transforming='collapsing'] .frame .collapse > span {
+  animation: docs-infra-collapse-enter 350ms ease both;
+}
+
+@keyframes docs-infra-collapse-enter {
+  from {
+    height: var(--docs-infra-syntax-line-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Pre-swap exit animation
+ *
+ * When `useCode({ transformDelay })` or `useCode({ variantSwapDelay })`
+ * is set, switching away from the current transform/variant doesn't
+ * commit the new tree synchronously — the hook first flips
+ * `data-transforming="collapsed"` (paused) so the rendered `<pre>` can
+ * settle into the animation start state, then flips to
+ * `data-transforming="expanding"` once the next paint is ready and
+ * runs the configured delay ms before dropping the attribute and
+ * committing the new tree (which may then immediately get a
+ * `data-transforming="expanded"` → `"collapsing"` handshake of its
+ * own for the entry animation; the full swap thus runs
+ * collapsed → expanding → swap → expanded → collapsing back-to-back).
+ * During the expanding window, any `.collapse` placeholders in the
+ * CURRENT tree run the exit animation below (each child 0 →
+ * line-height) so the removed lines visually reappear before the real
+ * `.line` spans replace them.
+ * ------------------------------------------------------------------- */
+
+pre[data-transforming='expanding'] .frame .collapse > span {
+  animation: docs-infra-collapse-exit 350ms ease forwards;
+}
+
+@keyframes docs-infra-collapse-exit {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--docs-infra-syntax-line-height);
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Transformer-added lines (single-line `data-expanding`)
+ *
+ * The symmetric case of the `.collapse` placeholder. Source transformers
+ * that *insert* lines (e.g. the api-key injector) mark each new line
+ * with `data-expanding=""` via paired `@expanding-start`/`@expanding-end`
+ * markers in their returned comments map. Each line animates
+ * independently — there is no equivalent of the multi-line placeholder
+ * here, since deletions can be folded into a placeholder ahead of the
+ * diff but insertions cannot be folded after one without losing the
+ * highlighted content the viewer wants to reveal.
+ *
+ *   - During the post-swap `data-transforming="collapsing"` window
+ *     (incoming tree just committed), each added line expands from
+ *     0 to one line-height — the new lines visually slide in. The
+ *     paired `data-transforming="expanded"` paused state holds each
+ *     line at 0 so the start position is in place before the active
+ *     animation begins.
+ *   - During the pre-swap `data-transforming="expanding"` window
+ *     (outgoing tree about to be replaced by one without these lines),
+ *     each added line collapses from one line-height to 0 — the lines
+ *     visually slide out before the new tree commits. The paired
+ *     `data-transforming="collapsed"` paused state holds each line at
+ *     its natural height (matching the inert base state) so the start
+ *     position is in place before the active animation begins.
+ *
+ * Outside those windows the attribute is inert: the line renders at its
+ * natural height like any other `.line`. This means initial loads
+ * (where a transform may already be applied from URL/localStorage)
+ * show the added lines at full height with no animation, which is the
+ * correct behavior — there is no "before" state to animate from.
+ * ------------------------------------------------------------------- */
+
+pre .frame .line[data-expanding] {
+  display: block;
+  overflow: hidden;
+}
+
+/* Paused post-swap state (`data-transforming="expanded"`): the new
+ * tree just committed but the active animation hasn't started yet.
+ * Hold each added line at 0 so the start position matches the
+ * upcoming entry animation. */
+pre[data-transforming='expanded'] .frame .line[data-expanding] {
+  height: 0;
+}
+
+pre[data-transforming='collapsing'] .frame .line[data-expanding] {
+  animation: docs-infra-line-collapse-enter 350ms ease both;
+}
+
+@keyframes docs-infra-line-collapse-enter {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--docs-infra-syntax-line-height);
+  }
+}
+
+pre[data-transforming='expanding'] .frame .line[data-expanding] {
+  animation: docs-infra-line-collapse-exit 350ms ease forwards;
+}
+
+@keyframes docs-infra-line-collapse-exit {
+  from {
+    height: var(--docs-infra-syntax-line-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Off-screen code skipping (progressive enhancement)
+ *
+ * `content-visibility: auto` lets the browser skip laying out and painting a
+ * code block's highlighted spans while it sits far from the viewport — a large
+ * saving on docs pages stacked with demos. For a skipped block to still
+ * reserve the correct vertical space (so the scrollbar doesn't jump as blocks
+ * are skipped and un-skipped), `contain-intrinsic-size` must match the rendered
+ * height. That height is `lines * line-height`, and `<Pre>` carries the line
+ * counts on the `<code>` as data attributes:
+ *   - `data-total-lines`    every line  (expanded / non-collapsible height)
+ *   - `data-focused-lines`  the focus window (collapsed height)
+ *
+ * The `<code>` has no padding of its own (the `<pre>` owns it), so its height
+ * is exactly `lines * --docs-infra-syntax-line-height`. The leading `auto`
+ * keyword uses that line-count estimate only until the block has rendered once,
+ * then remembers the real measured size.
+ *
+ * Gated behind `@supports` for typed `attr()` (Chromium 133+): without it the
+ * `calc()` is invalid, and turning on `content-visibility: auto` with no usable
+ * intrinsic size would collapse every off-screen block to 0 height and jump the
+ * scrollbar. Browsers without typed `attr()` just skip the optimisation and
+ * render code blocks as before.
+ * ------------------------------------------------------------------- */
+@supports (contain-intrinsic-size: calc(attr(data-total-lines type(<number>), 0) * 1px)) {
+  pre > code[data-total-lines] {
+    content-visibility: auto;
+
+    /* Expanded / non-collapsible: reserve every line. */
+    contain-intrinsic-height: auto
+      calc(attr(data-total-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+
+    /* Paint containment is implied by `content-visibility: auto`. Without this,
+     * it would clip the 6px rounded bleed of the frame/line highlight
+     * backgrounds (and the description badges) at the bare `<code>` box edge —
+     * let them paint just past it. */
+    overflow-clip-margin: 16px;
+  }
+
+  /* Collapsed: a collapsible block the host hasn't expanded shows only its
+   * focus window, so reserve that height instead. */
+  pre > code[data-collapsible][data-focused-lines] {
+    contain-intrinsic-height: auto
+      calc(attr(data-focused-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+  }
+
+  /* Expanded (`data-code-open` on the demo root reveals the full source):
+   * reserve every line again. Same specificity as the collapsed rule above but
+   * later in source order, so it wins while the source is open. */
+  [data-code-open] pre > code[data-collapsible] {
+    contain-intrinsic-height: auto
+      calc(attr(data-total-lines type(<number>), 0) * var(--docs-infra-syntax-line-height));
+  }
+}
