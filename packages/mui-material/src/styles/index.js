@@ -26,6 +26,9 @@ export function experimental_sx() {
 }
 export { default as createTheme } from './createTheme';
 export { default as enhanceHighContrast } from './enhanceHighContrast';
+export { default as enhanceHighDensity } from './enhanceHighDensity';
+export { default as enhanceMediumDensity } from './enhanceMediumDensity';
+export { default as enhanceLowDensity } from './enhanceLowDensity';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
