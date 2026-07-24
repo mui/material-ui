@@ -37,6 +37,11 @@ export interface A11yRule {
   /** Minimatch glob against `docs/data/material/components/{slug}/{Demo}`. */
   test: string;
   enabled?: boolean;
+  /**
+   * `visual` asserts rules that depend on rendered CSS. `all` asserts every
+   * axe violation/incomplete that is not listed in `skipAssertions`.
+   */
+  assertions?: 'visual' | 'all';
   /** Axe rule IDs recorded into results JSON but not asserted on. */
   skipAssertions?: string[];
 }
@@ -152,8 +157,31 @@ export const SCREENSHOT_RULES: ScreenshotRule[] = [
  *
  * Initial PR scope: `buttons` only. Other components onboard incrementally.
  */
+// TextField docs demos enrolled for axe assertions; the `select` dropdown,
+// InputBase-only, and standalone hidden-label demos are excluded.
+const TEXTFIELD_A11Y_DEMOS = [
+  'BasicTextFields',
+  'ColorTextFields',
+  'ValidationTextFields',
+  'FormPropsTextFields',
+  'TextFieldSizes',
+  'MultilineTextFields',
+];
+
 export const A11Y_RULES: A11yRule[] = [
   { test: 'docs/data/material/components/buttons/{BasicButtons,ColorButtons}', enabled: true },
+  {
+    test: `docs/data/material/components/text-fields/{${TEXTFIELD_A11Y_DEMOS.join(',')}}`,
+    enabled: true,
+    assertions: 'all',
+    // color-contrast is recorded but not asserted (1.4.3): axe cannot resolve
+    // the input value's background through the overlapping notched outline
+    // (logged as incomplete), and the focused color labels (warning 3.11:1),
+    // error text on the filled surface (4.36:1), and the ~0.42-opacity
+    // placeholder (~2.6:1) are known shortfalls kept in the JSON without
+    // failing CI.
+    skipAssertions: ['color-contrast'],
+  },
 ];
 
 export interface ParsedRoute {

@@ -58,6 +58,18 @@ describe('getConfig', () => {
     );
   });
 
+  it('enrols a text-fields demo with assertions:all and color-contrast recorded-not-asserted', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/text-fields/FormPropsTextFields'),
+    ).to.deep.include({ enabled: true, assertions: 'all', skipAssertions: ['color-contrast'] });
+  });
+
+  it('returns undefined for a text-fields demo outside the enrolment (select)', () => {
+    expect(
+      getConfig(A11Y_RULES, 'docs/data/material/components/text-fields/SelectTextFields'),
+    ).to.equal(undefined);
+  });
+
   it('honours last-match-wins when multiple rules apply', () => {
     const rules = [
       { test: 'docs/data/material/components/foo/*', enabled: true },
