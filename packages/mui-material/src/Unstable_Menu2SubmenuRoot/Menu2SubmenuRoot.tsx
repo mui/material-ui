@@ -4,55 +4,17 @@ import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-export interface Menu2SubmenuRootProps {
+/**
+ * Inherits the full Base UI `Menu.SubmenuRoot` prop surface (open/close
+ * control, hover-open with delays, `closeParentOnEsc`, keyboard behavior).
+ * `Omit` (a mapped type) is used instead of bare `extends` so the proptypes
+ * generator resolves the inherited members.
+ */
+export interface Menu2SubmenuRootProps extends Omit<BaseMenu.SubmenuRoot.Props, 'children'> {
   /**
    * The content of the submenu.
    */
   children?: React.ReactNode;
-  /**
-   * Whether the submenu is initially open.
-   *
-   * To render a controlled submenu, use the `open` prop instead.
-   * @default false
-   */
-  defaultOpen?: boolean | undefined;
-  /**
-   * Whether the submenu is currently open.
-   */
-  open?: boolean | undefined;
-  /**
-   * Event handler called when the submenu is opened or closed.
-   */
-  onOpenChange?: BaseMenu.SubmenuRoot.Props['onOpenChange'] | undefined;
-  /**
-   * Event handler called after any animations complete when the submenu is opened or closed.
-   */
-  onOpenChangeComplete?: BaseMenu.SubmenuRoot.Props['onOpenChangeComplete'] | undefined;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Whether to loop keyboard focus back to the first item.
-   * @default true
-   */
-  loopFocus?: boolean | undefined;
-  /**
-   * Whether moving the pointer over items should highlight them.
-   * @default true
-   */
-  highlightItemOnHover?: boolean | undefined;
-  /**
-   * The visual orientation of the submenu.
-   * @default 'vertical'
-   */
-  orientation?: 'horizontal' | 'vertical' | undefined;
-  /**
-   * When in a submenu, determines whether pressing the Escape key closes the entire menu.
-   * @default false
-   */
-  closeParentOnEsc?: boolean | undefined;
 }
 
 /**
@@ -83,50 +45,6 @@ Menu2SubmenuRoot.propTypes /* remove-proptypes */ = {
    * The content of the submenu.
    */
   children: PropTypes.node,
-  /**
-   * When in a submenu, determines whether pressing the Escape key closes the entire menu.
-   * @default false
-   */
-  closeParentOnEsc: PropTypes.bool,
-  /**
-   * Whether the submenu is initially open.
-   *
-   * To render a controlled submenu, use the `open` prop instead.
-   * @default false
-   */
-  defaultOpen: PropTypes.bool,
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Whether moving the pointer over items should highlight them.
-   * @default true
-   */
-  highlightItemOnHover: PropTypes.bool,
-  /**
-   * Whether to loop keyboard focus back to the first item.
-   * @default true
-   */
-  loopFocus: PropTypes.bool,
-  /**
-   * Event handler called when the submenu is opened or closed.
-   */
-  onOpenChange: PropTypes.func,
-  /**
-   * Event handler called after any animations complete when the submenu is opened or closed.
-   */
-  onOpenChangeComplete: PropTypes.func,
-  /**
-   * Whether the submenu is currently open.
-   */
-  open: PropTypes.bool,
-  /**
-   * The visual orientation of the submenu.
-   * @default 'vertical'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 } as any;
 
 export default Menu2SubmenuRoot;

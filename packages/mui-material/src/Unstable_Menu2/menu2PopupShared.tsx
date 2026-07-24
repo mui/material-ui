@@ -134,7 +134,29 @@ export type Menu2PopupCollisionAvoidance = Menu2PositionerProps['collisionAvoida
 export type Menu2PopupContainer = Menu2PortalProps['container'];
 export type Menu2PopupFinalFocus = BaseMenu.Popup.Props['finalFocus'];
 
-export interface Menu2PopupPublicProps {
+/**
+ * The flattened positioning/portal surface hoisted onto the popup, inherited
+ * from the Base UI parts via Pick so new Base UI props flow through types
+ * automatically. Only props that Material UI adds, or whose defaults differ
+ * from Base UI, are declared locally.
+ */
+export interface Menu2PopupPublicProps
+  extends
+    Pick<
+      Menu2PositionerProps,
+      | 'anchor'
+      | 'positionMethod'
+      | 'sideOffset'
+      | 'alignOffset'
+      | 'collisionBoundary'
+      | 'collisionPadding'
+      | 'arrowPadding'
+      | 'sticky'
+      | 'disableAnchorTracking'
+      | 'collisionAvoidance'
+    >,
+    Pick<Menu2PortalProps, 'container' | 'keepMounted'>,
+    Pick<BaseMenu.Popup.Props, 'finalFocus'> {
   /**
    * The menu items.
    */
@@ -148,78 +170,16 @@ export interface Menu2PopupPublicProps {
    */
   style?: React.CSSProperties | undefined;
   /**
-   * An element to position the popup against.
-   *
-   * By default, the popup is positioned against the trigger.
-   */
-  anchor?: Menu2PopupAnchor | undefined;
-  /**
-   * Determines which CSS `position` property to use.
-   * @default 'absolute'
-   */
-  positionMethod?: Menu2PopupPositionMethod | undefined;
-  /**
    * Which side of the anchor element to align the popup against.
    * @default 'bottom'
    */
   side?: Menu2PopupSide | undefined;
   /**
-   * Distance between the anchor and the popup in pixels.
-   * @default 0
-   */
-  sideOffset?: Menu2PopupOffset | undefined;
-  /**
    * How to align the popup relative to the specified side.
+   * Defaults to `start` to match the classic Menu (Base UI defaults to `center`).
    * @default 'start'
    */
   align?: Menu2PopupAlign | undefined;
-  /**
-   * Additional offset along the alignment axis in pixels.
-   * @default 0
-   */
-  alignOffset?: Menu2PopupOffset | undefined;
-  /**
-   * An element or a rectangle that delimits the area that the popup is confined to.
-   * @default 'clipping-ancestors'
-   */
-  collisionBoundary?: Menu2PopupCollisionBoundary | undefined;
-  /**
-   * Additional space to maintain from the edge of the collision boundary.
-   * @default 5
-   */
-  collisionPadding?: Menu2PopupCollisionPadding | undefined;
-  /**
-   * Minimum distance to maintain between the arrow and the edges of the popup.
-   * @default 5
-   */
-  arrowPadding?: Menu2PositionerProps['arrowPadding'] | undefined;
-  /**
-   * Whether to maintain the popup in the viewport after the anchor element was scrolled out of view.
-   * @default false
-   */
-  sticky?: Menu2PositionerProps['sticky'] | undefined;
-  /**
-   * Whether to disable the popup from tracking layout shifts of its positioning anchor.
-   * @default false
-   */
-  disableAnchorTracking?: Menu2PositionerProps['disableAnchorTracking'] | undefined;
-  /**
-   * Determines how to handle collisions when positioning the popup.
-   */
-  collisionAvoidance?: Menu2PopupCollisionAvoidance | undefined;
-  /**
-   * The container element to portal the popup into.
-   */
-  container?: Menu2PopupContainer | undefined;
-  /**
-   * Whether to keep the portal mounted in the DOM while the popup is hidden.
-   * @default false
-   */
-  keepMounted?: Menu2PortalProps['keepMounted'] | undefined;
-  /**
-   * Determines the element to focus when the menu is closed.
-   */
-  finalFocus?: Menu2PopupFinalFocus | undefined;
   /**
    * The elevation of the menu surface.
    * @default 8

@@ -4,60 +4,17 @@ import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { useDefaultProps } from '../DefaultPropsProvider';
 
-export interface Menu2Props {
+/**
+ * Inherits the full Base UI `Menu.Root` prop surface (open/close control,
+ * modality, hover-open with delays, `actionsRef`, keyboard behavior).
+ * `Omit` (a mapped type) is used instead of bare `extends` so the proptypes
+ * generator resolves the inherited members.
+ */
+export interface Menu2Props extends Omit<BaseMenu.Root.Props, 'children'> {
   /**
    * The content of the menu.
    */
   children?: React.ReactNode;
-  /**
-   * Whether the menu is initially open.
-   *
-   * To render a controlled menu, use the `open` prop instead.
-   * @default false
-   */
-  defaultOpen?: boolean | undefined;
-  /**
-   * Whether the menu is currently open.
-   */
-  open?: boolean | undefined;
-  /**
-   * Event handler called when the menu is opened or closed.
-   */
-  onOpenChange?: BaseMenu.Root.Props['onOpenChange'] | undefined;
-  /**
-   * Event handler called after any animations complete when the menu is opened or closed.
-   */
-  onOpenChangeComplete?: BaseMenu.Root.Props['onOpenChangeComplete'] | undefined;
-  /**
-   * Determines if the menu enters a modal state when open.
-   * @default true
-   */
-  modal?: boolean | undefined;
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled?: boolean | undefined;
-  /**
-   * Whether to loop keyboard focus back to the first item.
-   * @default true
-   */
-  loopFocus?: boolean | undefined;
-  /**
-   * Whether moving the pointer over items should highlight them.
-   * @default true
-   */
-  highlightItemOnHover?: boolean | undefined;
-  /**
-   * The visual orientation of the menu.
-   * @default 'vertical'
-   */
-  orientation?: 'horizontal' | 'vertical' | undefined;
-  /**
-   * When in a submenu, determines whether pressing the Escape key closes the entire menu.
-   * @default false
-   */
-  closeParentOnEsc?: boolean | undefined;
 }
 
 /**
@@ -88,55 +45,6 @@ Menu2.propTypes /* remove-proptypes */ = {
    * The content of the menu.
    */
   children: PropTypes.node,
-  /**
-   * When in a submenu, determines whether pressing the Escape key closes the entire menu.
-   * @default false
-   */
-  closeParentOnEsc: PropTypes.bool,
-  /**
-   * Whether the menu is initially open.
-   *
-   * To render a controlled menu, use the `open` prop instead.
-   * @default false
-   */
-  defaultOpen: PropTypes.bool,
-  /**
-   * Whether the component should ignore user interaction.
-   * @default false
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Whether moving the pointer over items should highlight them.
-   * @default true
-   */
-  highlightItemOnHover: PropTypes.bool,
-  /**
-   * Whether to loop keyboard focus back to the first item.
-   * @default true
-   */
-  loopFocus: PropTypes.bool,
-  /**
-   * Determines if the menu enters a modal state when open.
-   * @default true
-   */
-  modal: PropTypes.bool,
-  /**
-   * Event handler called when the menu is opened or closed.
-   */
-  onOpenChange: PropTypes.func,
-  /**
-   * Event handler called after any animations complete when the menu is opened or closed.
-   */
-  onOpenChangeComplete: PropTypes.func,
-  /**
-   * Whether the menu is currently open.
-   */
-  open: PropTypes.bool,
-  /**
-   * The visual orientation of the menu.
-   * @default 'vertical'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 } as any;
 
 export default Menu2;

@@ -58,6 +58,7 @@ type PopupAlign = NonNullable<PopupProps['align']>;
 interface PlaygroundSettings {
   // Root behavior
   modal: boolean;
+  rootOpenOnHover: boolean;
   loopFocus: boolean;
   highlightItemOnHover: boolean;
   // Submenu behavior
@@ -81,6 +82,7 @@ interface PlaygroundSettings {
 
 const defaultSettings: PlaygroundSettings = {
   modal: true,
+  rootOpenOnHover: false,
   loopFocus: true,
   highlightItemOnHover: true,
   submenusOpenOnHover: true,
@@ -122,13 +124,14 @@ const growPopupSx: SxProps<Theme> = {
 };
 
 function usePopupKnobProps(settings: PlaygroundSettings) {
-  return React.useMemo(() => {
-    const slotProps: PopupProps['slotProps'] = {
-      paper: { elevation: settings.elevation },
-      ...(settings.animation === 'grow' ? { popup: { sx: growPopupSx } } : null),
-    };
-    return { slotProps };
-  }, [settings.elevation, settings.animation]);
+  return React.useMemo(
+    () => ({
+      // Top-level convenience prop (forwards to the Paper slot).
+      elevation: settings.elevation,
+      ...(settings.animation === 'grow' ? { slotProps: { popup: { sx: growPopupSx } } } : null),
+    }),
+    [settings.elevation, settings.animation],
+  );
 }
 
 function PlaygroundDemo({
@@ -138,7 +141,7 @@ function PlaygroundDemo({
   settings: PlaygroundSettings;
   onLog: (entry: string) => void;
 }) {
-  const { slotProps } = usePopupKnobProps(settings);
+  const popupKnobProps = usePopupKnobProps(settings);
   const itemProps = { dense: settings.dense, divider: settings.dividers };
   const submenuTriggerProps = {
     ...itemProps,
@@ -146,7 +149,7 @@ function PlaygroundDemo({
     delay: settings.submenuDelay,
     closeDelay: settings.submenuCloseDelay,
   };
-  const submenuPopupProps = { sideOffset: 8, slotProps };
+  const submenuPopupProps = { sideOffset: 8, ...popupKnobProps };
 
   const handleOpenChange: MenuProps['onOpenChange'] = (nextOpen, eventDetails) => {
     onLog(`onOpenChange -> ${nextOpen ? 'open' : 'close'} (reason: ${eventDetails.reason})`);
@@ -163,6 +166,7 @@ function PlaygroundDemo({
   return (
     <Menu
       modal={settings.modal}
+      openOnHover={settings.rootOpenOnHover}
       loopFocus={settings.loopFocus}
       highlightItemOnHover={settings.highlightItemOnHover}
       onOpenChange={handleOpenChange}
@@ -177,7 +181,7 @@ function PlaygroundDemo({
         sideOffset={settings.sideOffset}
         alignOffset={settings.alignOffset}
         keepMounted={settings.keepMounted}
-        slotProps={slotProps}
+        {...popupKnobProps}
       >
         <Group>
           <GroupLabel>Actions</GroupLabel>
@@ -269,7 +273,7 @@ const parityItems = [
 
 function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings }) {
   const [classicAnchorEl, setClassicAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { slotProps } = usePopupKnobProps(settings);
+  const popupKnobProps = usePopupKnobProps(settings);
   const itemProps = { dense: settings.dense, divider: settings.dividers };
 
   return (
@@ -305,7 +309,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
         <Trigger variant="outlined" endIcon={<KeyboardArrowDownRoundedIcon fontSize="small" />}>
           Successor
         </Trigger>
-        <Popup sideOffset={2} slotProps={slotProps}>
+        <Popup sideOffset={2} {...popupKnobProps}>
           {parityItems.map((item) => (
             <Item
               key={item.label}
@@ -452,6 +456,7 @@ function SettingsPanel({
       <div>
         <strong>Root behavior</strong>
         {renderCheckbox('modal', 'modal')}
+        {renderCheckbox('rootOpenOnHover', 'openOnHover (root)')}
         {renderCheckbox('loopFocus', 'loopFocus')}
         {renderCheckbox('highlightItemOnHover', 'highlightItemOnHover')}
       </div>
@@ -594,9 +599,9 @@ export default function MenuRfcExperiment() {
             <h3 id="classic-parity">Classic vs successor</h3>
             <p>
               The same item set rendered by the classic Menu and the successor, for visual parity
-              checks (dense, dividers, selected, disabled, elevation knobs apply to both). Note the
-              classic top-level <code>elevation</code> prop vs{' '}
-              <code>slotProps.paper.elevation</code> on the successor (RFC open question).
+              checks (dense, dividers, selected, disabled, elevation knobs apply to both). Both
+              expose a top-level <code>elevation</code> prop; the successor forwards it to the Paper
+              slot.
             </p>
             <ClassicVersusSuccessorDemo settings={settings} />
           </section>
