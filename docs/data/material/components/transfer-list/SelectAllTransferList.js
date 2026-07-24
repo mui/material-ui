@@ -97,7 +97,7 @@ CustomList.propTypes = {
   handleToggleAll: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.number).isRequired,
   numberOfChecked: PropTypes.func.isRequired,
-  title: PropTypes.node.isRequired,
+  title: PropTypes.node,
 };
 
 export default function SelectAllTransferList() {
