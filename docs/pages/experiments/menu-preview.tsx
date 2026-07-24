@@ -8,24 +8,42 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import Menu, {
-  CheckboxItem,
-  CheckboxItemIndicator,
-  Group,
-  GroupLabel,
-  Item,
-  LinkItem,
-  Popup,
-  RadioGroup,
-  RadioItem,
-  RadioItemIndicator,
-  Separator,
-  SubmenuPopup,
-  SubmenuRoot,
-  SubmenuTrigger,
-  Trigger,
-} from '@mui/material/MenuPreview';
+import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
+import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Unstable_Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Unstable_Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Unstable_Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Unstable_Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Unstable_Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Unstable_Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Unstable_Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Unstable_Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Unstable_Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Unstable_Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Unstable_Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Unstable_Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
+import Unstable_Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Unstable_Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+
+// Local aliases for demo readability; the import lines above reflect the real
+// one-component-per-subpath ergonomics (no Base UI-style short aliases).
+const Menu = Unstable_Menu2;
+const CheckboxItem = Unstable_Menu2CheckboxItem;
+const CheckboxItemIndicator = Unstable_Menu2CheckboxItemIndicator;
+const Group = Unstable_Menu2Group;
+const GroupLabel = Unstable_Menu2GroupLabel;
+const Item = Unstable_Menu2Item;
+const LinkItem = Unstable_Menu2LinkItem;
+const Popup = Unstable_Menu2Popup;
+const RadioGroup = Unstable_Menu2RadioGroup;
+const RadioItem = Unstable_Menu2RadioItem;
+const RadioItemIndicator = Unstable_Menu2RadioItemIndicator;
+const Separator = Unstable_Menu2Separator;
+const SubmenuPopup = Unstable_Menu2SubmenuPopup;
+const SubmenuRoot = Unstable_Menu2SubmenuRoot;
+const SubmenuTrigger = Unstable_Menu2SubmenuTrigger;
+const Trigger = Unstable_Menu2Trigger;
 
 interface MenuSettings {
   modal: boolean;
@@ -232,11 +250,7 @@ function DisabledTooltip(props: { title: string; children: React.ReactElement })
   );
 }
 
-function MenuPreviewWithPreviewCardsDemo({
-  submenusOpenOnHover,
-}: {
-  submenusOpenOnHover: boolean;
-}) {
+function Menu2WithPreviewCardsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
   const previewCardIdPrefix = React.useId();
   const [activeItemId, setActiveItemId] = React.useState<string | null>(null);
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -317,7 +331,7 @@ function MenuPreviewWithPreviewCardsDemo({
   );
 }
 
-function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
+function Menu2Demo({ settings }: { settings: MenuSettings }) {
   const handleItemClick = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
     // eslint-disable-next-line no-console
     console.log(`${event.currentTarget.textContent} clicked`);
@@ -436,7 +450,7 @@ function MenuPreviewDemo({ settings }: { settings: MenuSettings }) {
   );
 }
 
-function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
+function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: boolean }) {
   const { direction } = useTheme();
   const submenuTriggerTooltipProps = React.useMemo<Partial<TooltipProps>>(
     () => ({
@@ -532,7 +546,7 @@ function MenuPreviewWithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHo
   );
 }
 
-function MenuPreviewContextMenuRecipe() {
+function Menu2ContextMenuRecipe() {
   const [anchor, setAnchor] = React.useState<ReturnType<typeof createVirtualAnchor> | null>(null);
   const open = anchor !== null;
 
@@ -605,7 +619,7 @@ function MenuPreviewContextMenuRecipe() {
   );
 }
 
-export default function MenuPreviewExperiment() {
+export default function Menu2Experiment() {
   const [settings, setSettings] = React.useState<MenuSettings>(defaultSettings);
 
   const handleCheckboxChange = (setting: keyof MenuSettings) => {
@@ -620,7 +634,7 @@ export default function MenuPreviewExperiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="MenuPreview experiment" description="Material UI MenuPreview experiment" />
+      <Head title="Unstable_Menu2 experiment" description="Material UI Unstable_Menu2 experiment" />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
@@ -656,22 +670,24 @@ export default function MenuPreviewExperiment() {
           <section>
             <h3 id="fully-featured-menu">Fully featured menu</h3>
             <p>Fully-featured menu with submenus, links, radio groups, and checkbox items.</p>
-            <MenuPreviewDemo settings={settings} />
+            <Menu2Demo settings={settings} />
           </section>
           <section>
-            <h3 id="menu-preview-tooltips">MenuPreview + Tooltip</h3>
+            <h3 id="menu-preview-tooltips">Unstable_Menu2 + Tooltip</h3>
             <p>Material UI Tooltip integrated with every menu item.</p>
-            <MenuPreviewWithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+            <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-popover-preview-card">MenuPreview + Popover-based preview card</h3>
+            <h3 id="menu-preview-popover-preview-card">
+              Unstable_Menu2 + Popover-based preview card
+            </h3>
             <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
-            <MenuPreviewWithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
+            <Menu2WithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-context-menu-recipe">MenuPreview as ContextMenu recipe</h3>
-            <p>Right-click the text to open a cursor-positioned MenuPreview popup.</p>
-            <MenuPreviewContextMenuRecipe />
+            <h3 id="menu-preview-context-menu-recipe">Unstable_Menu2 as ContextMenu recipe</h3>
+            <p>Right-click the text to open a cursor-positioned Unstable_Menu2 popup.</p>
+            <Menu2ContextMenuRecipe />
           </section>
           <a href="https://base-ui.com/react/components/menu">Base UI Menu API</a>
         </Stack>

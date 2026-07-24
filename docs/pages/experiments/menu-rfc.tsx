@@ -13,24 +13,42 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { ThemeProvider, createTheme, type SxProps, type Theme } from '@mui/material/styles';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
-import Menu, {
-  CheckboxItem,
-  CheckboxItemIndicator,
-  Group,
-  GroupLabel,
-  Item,
-  LinkItem,
-  Popup,
-  RadioGroup,
-  RadioItem,
-  RadioItemIndicator,
-  Separator,
-  SubmenuPopup,
-  SubmenuRoot,
-  SubmenuTrigger,
-  Trigger,
-} from '@mui/material/MenuPreview';
+import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
+import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Unstable_Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
+import Unstable_Menu2Group from '@mui/material/Unstable_Menu2Group';
+import Unstable_Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
+import Unstable_Menu2Item from '@mui/material/Unstable_Menu2Item';
+import Unstable_Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
+import Unstable_Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Unstable_Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Unstable_Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
+import Unstable_Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
+import Unstable_Menu2Separator from '@mui/material/Unstable_Menu2Separator';
+import Unstable_Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
+import Unstable_Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
+import Unstable_Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Unstable_Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 import { AppLayoutHead as Head } from '@mui/internal-core-docs/AppLayout';
+
+// Local aliases for demo readability; the import lines above reflect the real
+// one-component-per-subpath ergonomics (no Base UI-style short aliases).
+const Menu = Unstable_Menu2;
+const CheckboxItem = Unstable_Menu2CheckboxItem;
+const CheckboxItemIndicator = Unstable_Menu2CheckboxItemIndicator;
+const Group = Unstable_Menu2Group;
+const GroupLabel = Unstable_Menu2GroupLabel;
+const Item = Unstable_Menu2Item;
+const LinkItem = Unstable_Menu2LinkItem;
+const Popup = Unstable_Menu2Popup;
+const RadioGroup = Unstable_Menu2RadioGroup;
+const RadioItem = Unstable_Menu2RadioItem;
+const RadioItemIndicator = Unstable_Menu2RadioItemIndicator;
+const Separator = Unstable_Menu2Separator;
+const SubmenuPopup = Unstable_Menu2SubmenuPopup;
+const SubmenuRoot = Unstable_Menu2SubmenuRoot;
+const SubmenuTrigger = Unstable_Menu2SubmenuTrigger;
+const Trigger = Unstable_Menu2Trigger;
 
 type MenuProps = React.ComponentProps<typeof Menu>;
 type PopupProps = React.ComponentProps<typeof Popup>;
@@ -531,7 +549,7 @@ export default function MenuRfcExperiment() {
           <Typography>
             Companion experiment for the Menu successor RFC. Every knob maps to a prop or an RFC
             open question. See also the{' '}
-            <NextLink href="/experiments/menu-preview/">MenuPreview experiment</NextLink> for
+            <NextLink href="/experiments/menu-preview/">Unstable_Menu2 experiment</NextLink> for
             Tooltip, PreviewCard, and ContextMenu recipes.
           </Typography>
 
