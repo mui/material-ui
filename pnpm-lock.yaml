@@ -641,8 +641,8 @@ importers:
         specifier: 20.19.43
         version: 20.19.43
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -676,8 +676,8 @@ importers:
         specifier: 20.19.43
         version: 20.19.43
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1090,8 +1090,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.17)
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1167,8 +1167,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(@types/react@19.2.17)
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1427,8 +1427,8 @@ importers:
         specifier: 19.2.17
         version: 19.2.17
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1500,8 +1500,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -1565,8 +1565,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0
       '@types/sinon':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       chai:
         specifier: 6.2.2
         version: 6.2.2
@@ -5361,8 +5361,8 @@ packages:
   '@types/serve-static@2.2.0':
     resolution: {integrity: sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==}
 
-  '@types/sinon@21.0.1':
-    resolution: {integrity: sha512-5yoJSqLbjH8T9V2bksgRayuhpZy+723/z6wBOR+Soe4ZlXC0eW8Na71TeaZPUWDQvM7LYKa9UGFc6LRqxiR5fQ==}
+  '@types/sinon@22.0.0':
+    resolution: {integrity: sha512-TDbVpbccc2HfiqHR09Argj3mHV1KMW7sCCKj52fsl8lbRLkEn7fB1966EWhOKWUBcqfBueZuPoA7/OK1CKiy3g==}
 
   '@types/sinonjs__fake-timers@8.1.5':
     resolution: {integrity: sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ==}
@@ -15552,7 +15552,7 @@ snapshots:
       '@types/http-errors': 2.0.5
       '@types/node': 20.19.43
 
-  '@types/sinon@21.0.1':
+  '@types/sinon@22.0.0':
     dependencies:
       '@types/sinonjs__fake-timers': 8.1.5
 
