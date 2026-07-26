@@ -37,7 +37,7 @@
     "@types/node": "20.19.43",
     "@types/sinon": "21.0.1",
     "chai": "6.2.2",
-    "sinon": "22.0.0"
+    "sinon": "22.1.0"
   },
   "exports": {
     ".": "./src/index.ts"
