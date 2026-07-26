@@ -79,7 +79,7 @@
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
     "@vitest/eslint-plugin": "^1.6.23",
-    "execa": "^9.6.1"
+    "execa": "^10.0.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
