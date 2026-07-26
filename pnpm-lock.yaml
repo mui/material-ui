@@ -399,8 +399,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       markdown-to-jsx:
-        specifier: ^9.8.2
-        version: 9.8.2(react@19.2.7)
+        specifier: ^9.9.0
+        version: 9.9.0(react@19.2.7)
       material-ui-popup-state:
         specifier: ^5.3.7
         version: 5.3.7(@mui/material@packages+mui-material+build)(@types/react@19.2.17)(react@19.2.7)
@@ -8693,8 +8693,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  markdown-to-jsx@9.8.2:
-    resolution: {integrity: sha512-rWUuxKB5NsuJmSfUOuXkQ0O5qk0J/Lr3Lk6dzxKoKQI/jeHYlsVfz3zJdMLAhI46hHoXDYERWhtBOiqtWDZ4LA==}
+  markdown-to-jsx@9.9.0:
+    resolution: {integrity: sha512-3YRQuriODgdMr9EeY//Ya/104p978bY0nOwmc85IGxHixqOlhNDgq7IJTsLOdmFxjMFKJ6bVzUav30wWVJZOJQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       react: '>= 16.0.0'
@@ -19291,7 +19291,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  markdown-to-jsx@9.8.2(react@19.2.7):
+  markdown-to-jsx@9.9.0(react@19.2.7):
     optionalDependencies:
       react: 19.2.7
 
