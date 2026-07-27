@@ -133,18 +133,29 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     ...(theme.focusVisible
       ? {
+          // when focusVisible is enabled, the styles must not rely on `opacity` so that the ring is visible on the track slot.
           [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: theme.focusVisible,
+          [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+            backgroundColor: theme.alpha(
+              theme.vars
+                ? theme.vars.palette.common.onBackground
+                : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+              theme.vars
+                ? theme.vars.opacity.switchTrack
+                : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+            ),
+          },
         }
       : {
           [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
             opacity: 0.5,
           },
+          [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+            opacity: theme.vars
+              ? theme.vars.opacity.switchTrackDisabled
+              : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+          },
         }),
-    [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
-      opacity: theme.vars
-        ? theme.vars.opacity.switchTrackDisabled
-        : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
-    },
     [`& .${switchClasses.input}`]: {
       left: '-100%',
       width: '300%',
@@ -190,10 +201,30 @@ const SwitchSwitchBase = styled(SwitchBase, {
             },
             [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
               backgroundColor: (theme.vars || theme).palette[color].main,
-              ...(theme.focusVisible && {
-                backgroundColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
-              }),
             },
+            ...(theme.focusVisible && {
+              [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha((theme.vars || theme).palette[color].main, 0.5),
+              },
+              [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha(
+                  theme.vars
+                    ? theme.vars.palette.common.onBackground
+                    : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+                  theme.vars
+                    ? theme.vars.opacity.switchTrack
+                    : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+                ),
+              },
+              [`&.${switchClasses.checked}.${switchClasses.disabled} + .${switchClasses.track}`]: {
+                backgroundColor: theme.alpha(
+                  (theme.vars || theme).palette[color].main,
+                  theme.vars
+                    ? theme.vars.opacity.switchTrack
+                    : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
+                ),
+              },
+            }),
           },
         })),
     ],
