@@ -11,7 +11,7 @@ const theme = createTheme({ focusVisible: true });
 export default function AutocompleteOption() {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ p: 2, width: 280 }}>
+      <Box sx={{ p: 2, width: 280, height: 400 }}>
         <Autocomplete
           open
           options={['One', 'Two', 'Three']}
