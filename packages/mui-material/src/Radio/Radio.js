@@ -50,8 +50,6 @@ const RadioRoot = styled(SwitchBase, {
     color: (theme.vars || theme).palette.text.secondary,
     ...(theme.focusVisible && {
       [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
-        // Reset the inset vars so the icon ring stays outset even inside a clip-prone ancestor
-        // (Menu, List) whose root sets them.
         ...outsetFocusRing,
         borderRadius: (theme.vars || theme).shape.borderRadius,
         ...theme.focusVisible,

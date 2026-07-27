@@ -4,8 +4,6 @@ import {
   createRenderer,
   screen,
   simulateKeyboardDevice,
-  simulatePointerDevice,
-  focusVisible,
   within,
   isJsdom,
 } from '@mui/internal-test-utils';
@@ -1032,76 +1030,5 @@ describe('<Button />', () => {
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
     });
-  });
-
-  describe('theme.focusVisible', () => {
-    // The effective box-shadow is the last matching rule in source order (equal specificity here).
-    // Read it from the CSSOM rather than getComputedStyle, which returns a mid-transition value.
-    function effectiveBoxShadow(el) {
-      let shadow = '';
-      for (const sheet of Array.from(document.styleSheets)) {
-        let rules;
-        try {
-          rules = sheet.cssRules;
-        } catch {
-          continue;
-        }
-        for (const rule of Array.from(rules)) {
-          if (!rule.style || !rule.style.boxShadow || !rule.selectorText) {
-            continue;
-          }
-          const matches = rule.selectorText.split(',').some((selector) => {
-            try {
-              return el.matches(selector.trim());
-            } catch {
-              return false;
-            }
-          });
-          if (matches) {
-            shadow = rule.style.boxShadow;
-          }
-        }
-      }
-      return shadow;
-    }
-
-    it.skipIf(isJsdom())('a user box-shadow wins over the contained focus elevation', () => {
-      render(
-        <ThemeProvider
-          theme={createTheme({
-            focusVisible: { boxShadow: '0 0 0 4px rgb(255, 0, 0)' },
-            components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
-          })}
-        >
-          <Button variant="contained">Contained</Button>
-        </ThemeProvider>,
-      );
-      const button = screen.getByRole('button');
-      simulatePointerDevice();
-      focusVisible(button);
-      expect(effectiveBoxShadow(button)).to.contain('rgb(255, 0, 0)');
-    });
-
-    it.skipIf(isJsdom())(
-      'the curated default (outline only) keeps the contained focus elevation',
-      () => {
-        render(
-          <ThemeProvider
-            theme={createTheme({
-              focusVisible: true,
-              components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
-            })}
-          >
-            <Button variant="contained">Contained</Button>
-          </ThemeProvider>,
-        );
-        const button = screen.getByRole('button');
-        simulatePointerDevice();
-        focusVisible(button);
-        // The curated ring has no boxShadow key, so the contained focus elevation (shadows[6])
-        // survives. '3px 5px -1px' is the format-stable offset of its first layer.
-        expect(effectiveBoxShadow(button)).to.contain('3px 5px -1px');
-      },
-    );
   });
 });

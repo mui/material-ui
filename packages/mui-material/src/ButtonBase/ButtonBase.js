@@ -109,6 +109,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     suppressFocusVisible = false,
     // private prop to allow native vs non-native button props to be resolved before mount
     internalNativeButton: internalNativeButtonProp,
+    // private prop to let a parent (like SwitchBase) control its own focus visible style
     internalDisabledThemeFocusVisible = false,
     /* eslint-enable react/prop-types */
     LinkComponent = 'a',

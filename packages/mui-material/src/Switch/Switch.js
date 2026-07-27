@@ -139,8 +139,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
       ? {
           // when focusVisible is enabled, the styles must not rely on `opacity` so that the ring is visible on the track slot.
           [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: {
-            // Reset the inset vars so the track ring stays outset even inside a clip-prone ancestor
-            // (List, Menu) whose root sets them.
             ...outsetFocusRing,
             ...theme.focusVisible,
           },

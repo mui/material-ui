@@ -132,8 +132,6 @@ const ButtonRoot = styled(ButtonBase, {
             },
             [`&.${buttonClasses.focusVisible}`]: {
               boxShadow: (theme.vars || theme).shadows[6],
-              // Re-assert in the same block: a customized `theme.focusVisible` (e.g. a box-shadow
-              // ring) must win over the focus elevation, declared after the ButtonBase ring.
               ...(theme.focusVisible && theme.focusVisible),
             },
             [`&.${buttonClasses.disabled}`]: {
