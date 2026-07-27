@@ -7,6 +7,16 @@
   },
   "customManagers": [
     {
+      "description": "Update Node.js versions in CircleCI executor parameters",
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
+      "matchStrings": ["node-version:\\s*'(?<currentValue>[^']+)'"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node"
+    },
+    {
+      "description": "Update Node.js versions in CircleCI download URLs",
       "customType": "regex",
       "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
       "matchStrings": [
