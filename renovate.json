@@ -5,6 +5,19 @@
   "lockFileMaintenance": {
     "schedule": "* 0-4 1 * *"
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
+      "matchStrings": [
+        "curl -fsSL https://nodejs\\.org/dist/v(?<currentValue>\\d+\\.\\d+\\.\\d+)/node-v\\d+\\.\\d+\\.\\d+-linux-x64\\.tar\\.gz"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node",
+      "autoReplaceStringTemplate": "curl -fsSL https://nodejs.org/dist/v{{{newValue}}}/node-v{{{newValue}}}-linux-x64.tar.gz"
+    }
+  ],
   "packageRules": [
     {
       "groupName": "Pigment CSS",
