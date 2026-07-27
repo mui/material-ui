@@ -37,7 +37,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.1'
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - name: Cache Next.js build
@@ -98,7 +98,7 @@ jobs:
       - name: Prepare for publishing
         uses: mui/mui-public/.github/actions/publish-prepare@80a73ec0e0c1ae634d226649075d27cd30a8c9da # master
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.1'
       - name: Dry run npm publishing
         env:
           IS_PUBLISH_TEST: 'true'
