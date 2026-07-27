@@ -459,8 +459,8 @@ describe('createTheme', () => {
     const CURATED = {
       outlineStyle: 'solid',
       outlineWidth: 2,
-      // Offset is a per-component sign flip (`--_focusVisible-offset`: 1 outset / -1 inset)
-      // scaled by the width, so a clip-prone component insets without knowing the width.
+      // Offset is a fixed curated 2px, wrapped in a per-component sign flip
+      // (`--_focusVisible-offset`: 1 outset / -1 inset) so a clip-prone component insets it.
       outlineOffset: 'calc(var(--_focusVisible-offset, 1) * 2px)',
     };
 
@@ -532,17 +532,17 @@ describe('createTheme', () => {
       );
     });
 
-    it('outlineOffset defaults to the width, and a custom value is made inset-aware', () => {
+    it('outlineOffset is a fixed curated 2px, a custom width does not scale it, a custom offset is inset-aware', () => {
       const auto = createTheme({ cssVariables: false, focusVisible: true });
       expect(auto.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      // a wider ring scales the inset with it
+      // a wider ring keeps the curated 2px offset — the offset does not track the width
       const wide = createTheme({ cssVariables: false, focusVisible: { outlineWidth: 4 } });
       expect(wide.focusVisible.outlineOffset).to.equal(
-        'calc(var(--_focusVisible-offset, 1) * 4px)',
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
       );
-      // a custom offset is wrapped in the sign var, so it still insets on clip-prone components
+      // a custom offset replaces it, still wrapped in the sign var so it insets on clip-prone components
       const fixed = createTheme({ cssVariables: false, focusVisible: { outlineOffset: 6 } });
       expect(fixed.focusVisible.outlineOffset).to.equal(
         'calc(var(--_focusVisible-offset, 1) * 6px)',
@@ -562,6 +562,22 @@ describe('createTheme', () => {
       expect(varsTheme.focusVisible.outlineColor).to.equal('var(--mui-palette-primary-main)');
       // skipped from var generation — kept inline (see the vars-theme test above)
       expect(varsTheme.vars.focusVisible).to.equal(undefined);
+    });
+
+    it('re-composing a resolved theme does not double-wrap the offset (idempotent)', () => {
+      // `createTheme(existingTheme, overrides)` and `createTheme({ focusVisible: theme.focusVisible })`
+      // feed an already-resolved object back in. The offset calc must not wrap a second time, which
+      // would be `(-1 * -1)` = outset on clip-prone components and clip the ring after re-composition.
+      const base = createTheme({ cssVariables: false, focusVisible: true });
+      const recomposed = createTheme({ cssVariables: false, focusVisible: base.focusVisible });
+      expect(recomposed.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
+      );
+      // same via the merge-argument path
+      const merged = createTheme(base, { cssVariables: false });
+      expect(merged.focusVisible.outlineOffset).to.equal(
+        'calc(var(--_focusVisible-offset, 1) * 2px)',
+      );
     });
 
     it('no-vars colorSchemes: each scheme carries its own primary so dark mode stays reactive', () => {

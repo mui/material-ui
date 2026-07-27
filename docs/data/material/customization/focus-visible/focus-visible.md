@@ -68,16 +68,20 @@ The `focusVisible` node will override the component's default focus visible styl
 
 ### Replace outline with box-shadow
 
-To replace the outline entirely with box-shadow indicator, set `outline: 'none'`:
+To replace the outline entirely with a box-shadow indicator, hide the outline with `outlineColor: 'transparent'`:
 
 ```js
 createTheme({
   focusVisible: {
-    outline: 'none',
+    outlineColor: 'transparent',
     boxShadow: '0 0 0 3px #1976d2',
   },
 });
 ```
+
+:::success
+Hide the outline with `outlineColor: 'transparent'`, not `outline: 'none'`. In [forced-colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors) the browser strips the box-shadow and forces the outline to a system color, so a transparent outline reappears as the indicator. `outline: 'none'` removes it, leaving no keyboard focus indicator at all.
+:::
 
 ## Full focus visible demo
 

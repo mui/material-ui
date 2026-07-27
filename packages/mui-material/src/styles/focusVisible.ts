@@ -1,13 +1,15 @@
 import type * as React from 'react';
 
-// Private vars the ring reads so `theme.focusVisible` insets on clip-prone components without the
-// consumer referencing a var. `-offset` flips the outline-offset sign (1 outset, -1 inset);
-// `-behavior` resolves to `inset`, so prefixing a box-shadow insets it too.
-export const focusVisibleOffsetVar = '--_focusVisible-offset';
-export const focusVisibleBehaviorVar = '--_focusVisible-behavior';
+const focusVisibleOffsetVar = '--_focusVisible-offset';
+const focusVisibleBehaviorVar = '--_focusVisible-behavior';
 
 const offsetValue = `var(${focusVisibleOffsetVar}, 1)`;
 const behaviorValue = `var(${focusVisibleBehaviorVar}, )`;
+
+export const outsetFocusRing = {
+  [focusVisibleOffsetVar]: 1,
+  [focusVisibleBehaviorVar]: 'var(--__,)', // workaround because Emotion strips out empty space. empty space must be used for box-shadow, there is no explicit `outset` keyword.
+};
 
 // Clip-prone components (Tab, MenuItem, …) spread this on their root to inset the ring, so an
 // `overflow: hidden` ancestor cannot clip it — without the component knowing the ring width.
@@ -43,6 +45,7 @@ export function resolveFocusVisible(
     outlineStyle: 'solid',
     outlineColor,
     outlineWidth: 2,
+    outlineOffset: 2,
     ...(input === true ? null : input),
   });
 }
@@ -53,11 +56,15 @@ export function resolveFocusVisible(
  * Mutates and returns the object.
  */
 export function wireFocusVisibleVars(resolved: React.CSSProperties): React.CSSProperties {
-  // Multiply the offset by the sign var so it flips to inset on clip-prone components; default to
-  // the outline width when no offset was set.
-  const offset = resolved.outlineOffset ?? resolved.outlineWidth;
-  const offsetPx = typeof offset === 'number' ? `${offset}px` : offset;
-  resolved.outlineOffset = `calc(${offsetValue} * ${offsetPx})`;
+  // Multiply the offset by the sign var so it flips to inset on clip-prone components; default to 0
+  // when no offset was set (the curated default sets an explicit `outlineOffset`). Skip if already
+  // wired, so re-composing a resolved theme (`createTheme(existingTheme, overrides)`) does not wrap
+  // the calc twice and invert the sign.
+  const offset = resolved.outlineOffset ?? 0;
+  if (typeof offset !== 'string' || !offset.includes(focusVisibleOffsetVar)) {
+    const offsetPx = typeof offset === 'number' ? `${offset}px` : offset;
+    resolved.outlineOffset = `calc(${offsetValue} * ${offsetPx})`;
+  }
   // Prefix a box-shadow with the behavior var so it insets there too, unless it already opts in.
   if (
     typeof resolved.boxShadow === 'string' &&
