@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -57,6 +58,9 @@ const CheckboxRoot = styled(SwitchBase, {
     color: (theme.vars || theme).palette.text.secondary,
     ...(theme.focusVisible && {
       [`&.${buttonBaseClasses.focusVisible} svg:first-of-type`]: {
+        // Reset the inset vars so the icon ring stays outset even inside a clip-prone ancestor
+        // (Menu, List) whose root sets them.
+        ...outsetFocusRing,
         borderRadius: (theme.vars || theme).shape.borderRadius,
         ...theme.focusVisible,
       },

@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import getTextDecoration from './getTextDecoration';
+import { outsetFocusRing } from '../styles/focusVisible';
 
 const v6Colors = {
   primary: true,
@@ -60,7 +61,8 @@ const LinkRoot = styled(Typography, {
       // `component="button"` it replaces the variant's `outline: auto` (gated there),
       // so it does not rely on variant source order.
       ...(theme.focusVisible && {
-        [`&.${linkClasses.focusVisible}`]: theme.focusVisible,
+        // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
+        [`&.${linkClasses.focusVisible}`]: { ...outsetFocusRing, ...theme.focusVisible },
       }),
       variants: [
         {

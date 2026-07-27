@@ -12,6 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import buttonBaseClasses from '../ButtonBase/buttonBaseClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import { mergeSlotProps } from '../utils';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
@@ -137,7 +138,12 @@ const SwitchSwitchBase = styled(SwitchBase, {
     ...(theme.focusVisible
       ? {
           // when focusVisible is enabled, the styles must not rely on `opacity` so that the ring is visible on the track slot.
-          [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: theme.focusVisible,
+          [`&.${buttonBaseClasses.focusVisible} ~ .${switchClasses.track}`]: {
+            // Reset the inset vars so the track ring stays outset even inside a clip-prone ancestor
+            // (List, Menu) whose root sets them.
+            ...outsetFocusRing,
+            ...theme.focusVisible,
+          },
           [`&.${switchClasses.disabled} + .${switchClasses.track}`]: {
             backgroundColor: theme.alpha(
               theme.vars

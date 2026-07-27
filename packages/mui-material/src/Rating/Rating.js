@@ -16,6 +16,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
+import { outsetFocusRing } from '../styles/focusVisible';
 import useSlot from '../utils/useSlot';
 import { getTransitionStyles } from '../transitions/utils';
 
@@ -93,7 +94,8 @@ const RatingRoot = styled('span', {
       ...(!theme.focusVisible && {
         outline: '1px solid #999',
       }),
-      ...(theme.focusVisible && theme.focusVisible),
+      // Reset the inset vars so the star ring stays outset even inside a clip-prone ancestor.
+      ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
     },
     [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
     variants: [
@@ -146,7 +148,8 @@ const RatingLabel = styled('label', {
           ...(!theme.focusVisible && {
             outline: '1px solid #999',
           }),
-          ...(theme.focusVisible && theme.focusVisible),
+          // Reset the inset vars so the ring stays outset even inside a clip-prone ancestor.
+          ...(theme.focusVisible && { ...outsetFocusRing, ...theme.focusVisible }),
         },
       },
     ],
