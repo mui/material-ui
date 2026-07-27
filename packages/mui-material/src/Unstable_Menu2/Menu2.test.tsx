@@ -3,6 +3,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, fireEvent, isJsdom, screen, waitFor } from '@mui/internal-test-utils';
 import { listClasses } from '@mui/material/List';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import { paperClasses } from '@mui/material/Paper';
 import Tooltip from '@mui/material/Tooltip';
 import Menu2 from '@mui/material/Unstable_Menu2';
@@ -919,6 +921,33 @@ describe('<Menu2 />', () => {
       });
     },
   );
+
+  it.skipIf(isJsdom())('supports inset list text composed inside items', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>
+            <ListItemIcon data-testid="icon">i</ListItemIcon>
+            <ListItemText>Cut</ListItemText>
+          </Menu2Item>
+          <Menu2Item>
+            <ListItemText inset data-testid="inset-text">
+              Paste
+            </ListItemText>
+          </Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    // `inset` is a ListItemText prop, not an item prop: the shared item styles
+    // align it with the icon column so icon-less items line up.
+    const insetText = await screen.findByTestId('inset-text');
+    expect(window.getComputedStyle(insetText).paddingLeft).to.equal('36px');
+    expect(window.getComputedStyle(screen.getByTestId('icon')).minWidth).to.equal('36px');
+  });
 
   it.skipIf(isJsdom())('keeps separator spacing stable while a submenu is open', async () => {
     const { user } = render(
