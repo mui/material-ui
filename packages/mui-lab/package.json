@@ -48,8 +48,8 @@
     "@types/react-dom": "19.2.3",
     "@types/sinon": "21.0.1",
     "chai": "6.2.2",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "sinon": "22.1.0"
   },
   "peerDependencies": {
