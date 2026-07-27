@@ -22,15 +22,6 @@ export function mergeStateClassName<State>(
 export type SlotProps<SlotPropsValue, OwnerState> =
   SlotPropsValue | ((ownerState: OwnerState) => SlotPropsValue) | undefined;
 
-export function resolveSlotProps<SlotPropsValue, OwnerState>(
-  slotProps: SlotProps<SlotPropsValue, OwnerState>,
-  ownerState: OwnerState,
-): SlotPropsValue | undefined {
-  return typeof slotProps === 'function'
-    ? (slotProps as (ownerState: OwnerState) => SlotPropsValue)(ownerState)
-    : slotProps;
-}
-
 export interface Menu2RootSlots {
   root?: React.ElementType | undefined;
 }

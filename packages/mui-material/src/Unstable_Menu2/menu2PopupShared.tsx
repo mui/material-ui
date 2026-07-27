@@ -2,13 +2,15 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import useSlotProps from '@mui/utils/useSlotProps';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import isHostComponent from '@mui/utils/isHostComponent';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { PaperProps } from '../Paper';
 import { ListProps } from '../List';
-import { resolveSlotProps, SlotProps } from './menu2Utils';
+import { SlotProps } from './menu2Utils';
 
 type ExternalSlotProps<Props> = Omit<Partial<Props>, 'className' | 'render' | 'style'> & {
   className?: string | undefined;
@@ -245,11 +247,11 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
   const ListSlot = slots?.list ?? defaultSlots.list;
 
-  const resolvedPortalProps = resolveSlotProps(slotProps?.portal, ownerState);
-  const resolvedPositionerProps = resolveSlotProps(slotProps?.positioner, ownerState);
-  const resolvedPopupProps = resolveSlotProps(slotProps?.popup, ownerState);
-  const resolvedPaperProps = resolveSlotProps(slotProps?.paper, ownerState);
-  const resolvedListProps = resolveSlotProps(slotProps?.list, ownerState);
+  const resolvedPortalProps = resolveComponentProps(slotProps?.portal, ownerState);
+  const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
+  const resolvedPopupProps = resolveComponentProps(slotProps?.popup, ownerState);
+  const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
+  const resolvedListProps = resolveComponentProps(slotProps?.list, ownerState);
   const { className: resolvedPopupClassName, ...resolvedPopupOtherProps } =
     resolvedPopupProps ?? {};
   const positionerProps = {
@@ -288,26 +290,30 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     },
     positionerHostOmittedProps,
   );
+  // The Material surfaces go through the shared slot plumbing (className
+  // merging, ref forking, host-aware ownerState). Base UI-specific host-prop
+  // omission is layered on top; see `getSlotProps`.
+  const mergedPaperProps = useSlotProps({
+    elementType: PaperSlot,
+    externalSlotProps: resolvedPaperProps,
+    ownerState,
+    additionalProps: { elevation: elevation ?? 8 },
+    className: classes?.paper,
+  });
+  const mergedListProps = useSlotProps({
+    elementType: ListSlot,
+    externalSlotProps: resolvedListProps,
+    ownerState,
+    additionalProps: { component: 'div', disablePadding: false },
+    className: classes?.list,
+  });
+
   const paperSlotProps = getSlotProps(
     PaperSlot,
-    {
-      elevation: elevation ?? 8,
-      ...resolvedPaperProps,
-      className: clsx(classes?.paper, resolvedPaperProps?.className),
-      sx: mergeSx(sx, resolvedPaperProps?.sx),
-    },
+    { ...mergedPaperProps, sx: mergeSx(sx, resolvedPaperProps?.sx) },
     paperHostOmittedProps,
   );
-  const listSlotProps = getSlotProps(
-    ListSlot,
-    {
-      component: 'div',
-      disablePadding: false,
-      ...resolvedListProps,
-      className: clsx(classes?.list, resolvedListProps?.className),
-    },
-    listHostOmittedProps,
-  );
+  const listSlotProps = getSlotProps(ListSlot, mergedListProps, listHostOmittedProps);
 
   return (
     <PortalSlot {...portalSlotProps}>

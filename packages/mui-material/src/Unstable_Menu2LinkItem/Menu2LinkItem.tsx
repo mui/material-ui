@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
@@ -7,11 +8,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  resolveSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemOwnerState,
   Menu2LinkItemBaseProps,
@@ -134,7 +131,7 @@ const Menu2LinkItem = React.forwardRef(function Menu2LinkItem(
       <BaseMenu.LinkItem
         ref={ref}
         render={getMenu2RootRender(slots?.root ?? Menu2LinkItemRoot, ownerState, {
-          ...resolveSlotProps(slotProps?.root, ownerState),
+          ...resolveComponentProps(slotProps?.root, ownerState),
           as: component,
           ownerState,
           sx,

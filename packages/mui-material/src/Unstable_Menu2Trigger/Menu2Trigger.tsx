@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
@@ -13,7 +14,6 @@ import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-  resolveSlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import { getMenu2TriggerUtilityClass, Menu2TriggerClasses } from '../Unstable_Menu2/menu2Classes';
 
@@ -167,7 +167,7 @@ const Menu2Trigger = React.forwardRef(function Menu2Trigger(
       ref={ref}
       disabled={disabled}
       render={getMenu2RootRender(RootSlot, ownerState, {
-        ...resolveSlotProps(slotProps?.root, ownerState),
+        ...resolveComponentProps(slotProps?.root, ownerState),
         component,
         ownerState,
         sx,

@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import PropTypes from 'prop-types';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import ListContext from '../List/ListContext';
@@ -20,7 +21,6 @@ import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
-  resolveSlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemUtilityClass,
@@ -133,7 +133,7 @@ const Menu2Item = React.forwardRef(function Menu2Item(
       <BaseMenu.Item
         ref={ref}
         render={getMenu2RootRender(RootSlot, ownerState, {
-          ...resolveSlotProps(slotProps?.root, ownerState),
+          ...resolveComponentProps(slotProps?.root, ownerState),
           as: component,
           ownerState,
           sx,

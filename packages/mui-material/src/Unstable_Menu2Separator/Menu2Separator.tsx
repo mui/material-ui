@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Separator as BaseSeparator } from '@base-ui/react/separator';
 import { SxProps } from '@mui/system';
@@ -10,11 +11,7 @@ import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  resolveSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2SeparatorUtilityClass,
   Menu2SeparatorClasses,
@@ -127,7 +124,7 @@ const Menu2Separator = React.forwardRef(function Menu2Separator(
       ref={ref}
       orientation={orientation}
       render={getMenu2RootRender(slots?.root ?? Menu2SeparatorRoot, ownerState, {
-        ...resolveSlotProps(slotProps?.root, ownerState),
+        ...resolveComponentProps(slotProps?.root, ownerState),
         component: component ?? 'div',
         orientation,
         ownerState,

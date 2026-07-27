@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
@@ -9,11 +10,7 @@ import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { menu2IndicatorStyles } from '../Unstable_Menu2/menu2SharedStyles';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  resolveSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2RadioItemIndicatorUtilityClass,
   Menu2RadioItemIndicatorClasses,
@@ -138,7 +135,7 @@ const Menu2RadioItemIndicator = React.forwardRef(function Menu2RadioItemIndicato
     <BaseMenu.RadioItemIndicator
       ref={ref}
       render={getMenu2RootRender(slots?.root ?? Menu2RadioItemIndicatorRoot, ownerState, {
-        ...resolveSlotProps(slotProps?.root, ownerState),
+        ...resolveComponentProps(slotProps?.root, ownerState),
         as: component,
         ownerState,
         sx,

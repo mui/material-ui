@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { SxProps } from '@mui/system';
@@ -9,11 +10,7 @@ import ListSubheader from '../ListSubheader';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import {
-  getMenu2RootRender,
-  Menu2RootSlotProps,
-  resolveSlotProps,
-} from '../Unstable_Menu2/menu2Utils';
+import { getMenu2RootRender, Menu2RootSlotProps } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2GroupLabelUtilityClass,
   Menu2GroupLabelClasses,
@@ -114,7 +111,7 @@ const Menu2GroupLabel = React.forwardRef(function Menu2GroupLabel(
     <BaseMenu.GroupLabel
       ref={ref}
       render={getMenu2RootRender(slots?.root ?? Menu2GroupLabelRoot, ownerState, {
-        ...resolveSlotProps(slotProps?.root, ownerState),
+        ...resolveComponentProps(slotProps?.root, ownerState),
         component: component ?? 'div',
         disableSticky: true,
         ownerState,
