@@ -17,7 +17,7 @@ import createTransitions from './createTransitions';
 import createMotion from './createMotion';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
-import { wireFocusVisibleVars } from './focusVisibleVars';
+import { resolveFocusVisible } from './focusVisible';
 
 function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
@@ -119,18 +119,10 @@ function createThemeNoVars(options = {}, ...args) {
   // `reducedMotion` is owned by `theme.motion`; remove stale values preserved by systemCreateTheme.
   delete muiTheme.transitions.reducedMotion;
 
-  // Normalize the opt-in focus ring once: `true` → curated default, object → merged
-  // over it. Components then read a resolved object and never the boolean.
+  // Normalize once so components read a resolved object, never the boolean. The color is a hex off
+  // this (default) scheme; `createTheme` attaches a per-scheme copy so dark mode stays reactive.
   if (muiTheme.focusVisible != null && muiTheme.focusVisible !== false) {
-    const resolvedFocusVisible = {
-      outlineStyle: 'solid',
-      outlineColor: palette.primary.main,
-      outlineWidth: 2,
-      ...(muiTheme.focusVisible === true ? null : muiTheme.focusVisible),
-    };
-    // Wire the private inset vars so the outline offset and any box-shadow inset automatically on
-    // clip-prone components, without the consumer referencing a var.
-    muiTheme.focusVisible = wireFocusVisibleVars(resolvedFocusVisible);
+    muiTheme.focusVisible = resolveFocusVisible(muiTheme.focusVisible, palette.primary.main);
   }
 
   if (process.env.NODE_ENV !== 'production') {

@@ -563,6 +563,35 @@ describe('createTheme', () => {
       // skipped from var generation — kept inline (see the vars-theme test above)
       expect(varsTheme.vars.focusVisible).to.equal(undefined);
     });
+
+    it('no-vars colorSchemes: each scheme carries its own primary so dark mode stays reactive', () => {
+      // Regression: without a per-scheme copy the outline froze to the light primary in dark mode.
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: true,
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.light.palette.primary.main,
+      );
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal(
+        theme.colorSchemes.dark.palette.primary.main,
+      );
+      // else the test is vacuous
+      expect(theme.colorSchemes.light.palette.primary.main).not.to.equal(
+        theme.colorSchemes.dark.palette.primary.main,
+      );
+    });
+
+    it('no-vars colorSchemes: a custom outlineColor stays identical across schemes', () => {
+      const theme = createTheme({
+        cssVariables: false,
+        focusVisible: { outlineColor: 'rgb(255, 0, 0)' },
+        colorSchemes: { light: true, dark: true },
+      });
+      expect(theme.colorSchemes.light.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
+      expect(theme.colorSchemes.dark.focusVisible.outlineColor).to.equal('rgb(255, 0, 0)');
+    });
   });
 
   it('shallow merges multiple arguments', () => {

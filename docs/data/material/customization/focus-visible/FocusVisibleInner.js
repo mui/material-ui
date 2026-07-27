@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   focusVisible: true,
+  colorSchemes: { light: true, dark: true },
   // These demos opt out of the ripple, so the focus ring is the only keyboard indicator.
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 });
