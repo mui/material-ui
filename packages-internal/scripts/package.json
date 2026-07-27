@@ -45,6 +45,7 @@
     "@types/doctrine": "0.0.9",
     "@types/node": "20.19.43",
     "@types/react": "19.2.17",
+    "@types/uuid": "11.0.0",
     "chai": "6.2.2",
     "fast-glob": "3.3.3",
     "prettier": "3.9.5",

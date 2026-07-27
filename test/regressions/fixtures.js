@@ -10,7 +10,7 @@
 // override is in place first.
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
+const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.{js,ts,tsx}'], {
   import: 'default',
   eager: true,
 });
@@ -57,67 +57,67 @@ const importDemos = import.meta.glob(
     '!docs/data/experiments',
     '!docs/data/material/**/*NoSnap.*',
     // Templates — not demos
-    '!docs/data/material/getting-started/templates/blog/components',
-    '!docs/data/material/getting-started/templates/checkout/components',
-    '!docs/data/material/getting-started/templates/crud-dashboard/components',
-    '!docs/data/material/getting-started/templates/crud-dashboard/theme/customizations',
-    '!docs/data/material/getting-started/templates/crud-dashboard/hooks',
-    '!docs/data/material/getting-started/templates/crud-dashboard/context',
-    '!docs/data/material/getting-started/templates/dashboard/components',
-    '!docs/data/material/getting-started/templates/dashboard/internals/components',
-    '!docs/data/material/getting-started/templates/dashboard/theme/customizations',
-    '!docs/data/material/getting-started/templates/marketing-page/components',
-    '!docs/data/material/getting-started/templates/marketing-page/MarketingPage',
-    '!docs/data/material/getting-started/templates/shared-theme',
-    '!docs/data/material/getting-started/templates/sign-in/components',
-    '!docs/data/material/getting-started/templates/sign-in-side/components',
-    '!docs/data/material/getting-started/templates/sign-up/components',
+    '!docs/data/material/getting-started/templates/blog/components/**',
+    '!docs/data/material/getting-started/templates/checkout/components/**',
+    '!docs/data/material/getting-started/templates/crud-dashboard/components/**',
+    '!docs/data/material/getting-started/templates/crud-dashboard/theme/customizations/**',
+    '!docs/data/material/getting-started/templates/crud-dashboard/hooks/**',
+    '!docs/data/material/getting-started/templates/crud-dashboard/context/**',
+    '!docs/data/material/getting-started/templates/dashboard/components/**',
+    '!docs/data/material/getting-started/templates/dashboard/internals/components/**',
+    '!docs/data/material/getting-started/templates/dashboard/theme/customizations/**',
+    '!docs/data/material/getting-started/templates/marketing-page/components/**',
+    '!docs/data/material/getting-started/templates/marketing-page/MarketingPage.*',
+    '!docs/data/material/getting-started/templates/shared-theme/**',
+    '!docs/data/material/getting-started/templates/sign-in/components/**',
+    '!docs/data/material/getting-started/templates/sign-in-side/components/**',
+    '!docs/data/material/getting-started/templates/sign-up/components/**',
     // Customization demos — not component pages
-    '!docs/data/material/customization/breakpoints',
-    '!docs/data/material/customization/color',
-    '!docs/data/material/customization/container-queries/ResizableDemo',
-    '!docs/data/material/customization/default-theme',
-    '!docs/data/material/customization/density/DensityTool',
-    '!docs/data/material/customization/right-to-left/RtlDemo',
-    '!docs/data/material/customization/transitions/TransitionHover',
-    '!docs/data/material/customization/typography/ResponsiveFontSizesChart',
+    '!docs/data/material/customization/breakpoints/**',
+    '!docs/data/material/customization/color/**',
+    '!docs/data/material/customization/container-queries/ResizableDemo.*',
+    '!docs/data/material/customization/default-theme/**',
+    '!docs/data/material/customization/density/DensityTool.*',
+    '!docs/data/material/customization/right-to-left/RtlDemo.*',
+    '!docs/data/material/customization/transitions/TransitionHover.*',
+    '!docs/data/material/customization/typography/ResponsiveFontSizesChart.*',
     // Other non-demo subtrees
-    '!docs/data/material/components/menubar/components', // Source subdir, not demos
-    '!docs/data/material/getting-started/supported-components/MaterialUIComponents',
-    '!docs/data/material/guides',
-    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind',
-    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal',
-    '!docs/data/premium-themes',
+    '!docs/data/material/components/menubar/components/**', // Source subdir, not demos
+    '!docs/data/material/getting-started/supported-components/MaterialUIComponents.*',
+    '!docs/data/material/guides/**',
+    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind.*',
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal.*',
+    '!docs/data/premium-themes/**',
     // ================== Slug-level — no tool consumer ==================
-    '!docs/data/material/components/backdrop', // Needs interaction
-    '!docs/data/material/components/click-away-listener', // Needs interaction
-    '!docs/data/material/components/container', // Can't see the impact
-    '!docs/data/material/components/dialogs', // Needs interaction
-    '!docs/data/material/components/image-list', // Images don't load
-    '!docs/data/material/components/material-icons/SearchIcons', // Heavy icon grid
-    '!docs/data/material/components/menus', // Needs interaction
-    '!docs/data/material/components/popper', // Needs interaction
-    '!docs/data/material/components/progress', // Flaky
-    '!docs/data/material/components/speed-dial', // Needs interaction
-    '!docs/data/material/components/textarea-autosize', // Superseded by a dedicated regression test
-    '!docs/data/material/components/tooltips', // Needs interaction
-    '!docs/data/material/components/transitions', // Needs interaction
-    '!docs/data/material/components/use-media-query', // Need to dynamically resize to test
-    '!docs/data/material/customization/breakpoints', // Need to dynamically resize to test
-    '!docs/data/material/customization/color', // Escape viewport
-    '!docs/data/material/customization/container-queries/ResizableDemo', // No public components
-    '!docs/data/material/customization/default-theme', // Redux isolation
-    '!docs/data/material/customization/density/DensityTool', // Redux isolation
-    '!docs/data/material/customization/right-to-left/RtlDemo',
-    '!docs/data/material/customization/transitions/TransitionHover', // Need interaction
-    '!docs/data/material/customization/typography/ResponsiveFontSizesChart',
-    '!docs/data/material/getting-started/supported-components/MaterialUIComponents', // No public components
-    '!docs/data/material/guides',
-    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind', // CodeSandbox
-    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal', // No public components
-    '!docs/data/premium-themes',
-    '!docs/data/material/getting-started/versions/LatestVersions', // not a component
-    '!docs/data/material/getting-started/versions/ReleasedVersions', // not a component
+    '!docs/data/material/components/backdrop/**', // Needs interaction
+    '!docs/data/material/components/click-away-listener/**', // Needs interaction
+    '!docs/data/material/components/container/**', // Can't see the impact
+    '!docs/data/material/components/dialogs/**', // Needs interaction
+    '!docs/data/material/components/image-list/**', // Images don't load
+    '!docs/data/material/components/material-icons/SearchIcons.*', // Heavy icon grid
+    '!docs/data/material/components/menus/**', // Needs interaction
+    '!docs/data/material/components/popper/**', // Needs interaction
+    '!docs/data/material/components/progress/**', // Flaky
+    '!docs/data/material/components/speed-dial/**', // Needs interaction
+    '!docs/data/material/components/textarea-autosize/**', // Superseded by a dedicated regression test
+    '!docs/data/material/components/tooltips/**', // Needs interaction
+    '!docs/data/material/components/transitions/**', // Needs interaction
+    '!docs/data/material/components/use-media-query/**', // Need to dynamically resize to test
+    '!docs/data/material/customization/breakpoints/**', // Need to dynamically resize to test
+    '!docs/data/material/customization/color/**', // Escape viewport
+    '!docs/data/material/customization/container-queries/ResizableDemo.*', // No public components
+    '!docs/data/material/customization/default-theme/**', // Redux isolation
+    '!docs/data/material/customization/density/DensityTool.*', // Redux isolation
+    '!docs/data/material/customization/right-to-left/RtlDemo.*',
+    '!docs/data/material/customization/transitions/TransitionHover.*', // Need interaction
+    '!docs/data/material/customization/typography/ResponsiveFontSizesChart.*',
+    '!docs/data/material/getting-started/supported-components/MaterialUIComponents.*', // No public components
+    '!docs/data/material/guides/**',
+    '!docs/data/base/getting-started/quickstart/BaseButtonTailwind.*', // CodeSandbox
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal.*', // No public components
+    '!docs/data/premium-themes/**',
+    '!docs/data/material/getting-started/versions/LatestVersions.*', // not a component
+    '!docs/data/material/getting-started/versions/ReleasedVersions.*', // not a component
   ],
   {
     import: 'default',
