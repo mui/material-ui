@@ -46,7 +46,7 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.17",
     "chai": "6.2.2",
-    "react": "19.2.7"
+    "react": "19.2.8"
   },
   "peerDependencies": {
     "@emotion/react": "^11.4.1",
