@@ -16,9 +16,17 @@ describe('<Tab />', () => {
     classes,
     inheritComponent: ButtonBase,
     render: (node) => {
-      const value = node.props.value ?? 0;
+      // `Tab` must be a direct child of `Tabs`, which injects state into its children via
+      // `cloneElement`. Some conformance tests wrap the element(s) in a provider (e.g.
+      // `ThemeProvider`), so we slot `Tabs` *inside* the wrapper around the `Tab`s. Otherwise
+      // `Tabs` would clone the provider with `Tab`-internal props (`fullWidth`, `indicator`, …),
+      // tripping the provider's `exactProp` check under React 18.
+      // TODO: React 19 dropped runtime propType/`exactProp` validation, so once we stop testing
+      // React 18 this can revert to rendering `node` directly: `<Tabs value={0}>{node}</Tabs>`.
+      const isWrapped = node.type !== Tab;
+      const tabs = <Tabs value={0}>{isWrapped ? node.props.children : node}</Tabs>;
       const { container, ...other } = render(
-        <Tabs value={value}>{React.cloneElement(node, { value })}</Tabs>,
+        isWrapped ? React.cloneElement(node, undefined, tabs) : tabs,
       );
 
       return {

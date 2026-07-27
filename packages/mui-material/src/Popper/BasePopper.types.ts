@@ -27,12 +27,7 @@ export interface PopperOwnProps {
    * The return value will passed as the reference object of the Popper instance.
    */
   anchorEl?:
-    | null
-    | VirtualElement
-    | HTMLElement
-    | (() => HTMLElement)
-    | (() => VirtualElement)
-    | undefined;
+    null | VirtualElement | HTMLElement | (() => HTMLElement) | (() => VirtualElement) | undefined;
   /**
    * Popper render function or node.
    */
@@ -100,8 +95,7 @@ export interface PopperOwnProps {
   slotProps?:
     | {
         root?:
-          | SlotComponentProps<'div', PopperRootSlotPropsOverrides, PopperOwnerState>
-          | undefined;
+          SlotComponentProps<'div', PopperRootSlotPropsOverrides, PopperOwnerState> | undefined;
       }
     | undefined;
   /**

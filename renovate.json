@@ -42,7 +42,17 @@
     {
       "description": "Prevent major version updates of bundler/framework packages in bundling fixtures",
       "matchFileNames": ["test/bundling/fixtures/**/package.json"],
-      "matchPackageNames": ["esbuild", "gatsby", "next", "rollup", "snowpack", "vite", "webpack"],
+      "matchPackageNames": [
+        "esbuild",
+        "gatsby",
+        "next",
+        "rollup",
+        "snowpack",
+        "vite",
+        "webpack",
+        "@types/react**",
+        "react**"
+      ],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },

@@ -53,10 +53,11 @@ function forcePageReload(registration: ServiceWorkerRegistration) {
 }
 
 export async function registerServiceWorker(swPath: string): Promise<void> {
+  const { host } = window.location;
   if (
     'serviceWorker' in navigator &&
     process.env.NODE_ENV === 'production' &&
-    window.location.host.includes('mui.com')
+    (host === 'mui.com' || host.endsWith('.mui.com'))
   ) {
     // register() automatically attempts to refresh the sw.js.
     const registration = await navigator.serviceWorker.register(swPath);

@@ -6,7 +6,7 @@ export { HamburgerMenuIcon } from './HamburgerMenuIcon';
 export { JavaScriptIcon } from './JavaScriptIcon';
 export { MarkdownIcon } from './MarkdownIcon';
 export { MaterialDesignIcon } from './MaterialDesignIcon';
-export { MuiLogomarkIcon, muiSvgLogoString, muiSvgWordmarkString } from './MuiLogomarkIcon';
+export { MuiLogomarkIcon, muiSvgLogomarkString, muiSvgLogotypeString } from './MuiLogomarkIcon';
 export { MuiLogotypeIcon } from './MuiLogotypeIcon';
 export { MuiXIcon } from './MuiXIcon';
 export { RootSvg } from './RootSvg';

@@ -44,6 +44,22 @@ describe('@mui/codemod', () => {
           'The transformed version should be correct',
         );
       });
+
+      it('should not leak imports between file transformations', () => {
+        transform(
+          {
+            source: read('./path-imports.test/actual.js'),
+            path: require.resolve('./path-imports.test/actual.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const source = "import { createContext } from 'react';\n";
+        const actual = transform({ source, path: 'other.js' }, { jscodeshift }, {});
+
+        expect(actual).to.equal(source);
+      });
     });
   });
 });

@@ -47,12 +47,7 @@ function flipPlacement(placement?: PopperPlacementType, direction?: 'ltr' | 'rtl
 
 function resolveAnchorEl(
   anchorEl:
-    | VirtualElement
-    | (() => VirtualElement)
-    | HTMLElement
-    | (() => HTMLElement)
-    | null
-    | undefined,
+    VirtualElement | (() => VirtualElement) | HTMLElement | (() => HTMLElement) | null | undefined,
 ): HTMLElement | VirtualElement | null | undefined {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }

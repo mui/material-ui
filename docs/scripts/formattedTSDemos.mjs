@@ -5,25 +5,28 @@
  * would indicate equivalence.
  */
 
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import babel from '@babel/core';
+import prettier from 'prettier';
+import {
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+} from '@mui/internal-scripts/typescript-to-proptypes';
+import { createTypeScriptProjectBuilder } from '@mui/internal-api-docs-builder';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import { fixBabelGeneratorIssues, fixLineEndings } from '@mui/internal-docs-utils';
+// This docs-package script reuses a root-package config; `@mui/monorepo` isn't self-resolvable under tsx.
+// eslint-disable-next-line import/no-relative-packages
+import CORE_TYPESCRIPT_PROJECTS from '../../scripts/coreTypeScriptProjects.mjs';
+
 /**
  * List of demos or folders to ignore when transpiling.
  * Only ignore files that aren't used in the UI.
  */
 const ignoreList = ['/pages.ts'];
-
-const path = require('path');
-const fs = require('node:fs');
-const babel = require('@babel/core');
-const prettier = require('prettier');
-const {
-  getPropTypesFromFile,
-  injectPropTypesInFile,
-} = require('@mui/internal-scripts/typescript-to-proptypes');
-const { createTypeScriptProjectBuilder } = require('@mui/internal-api-docs-builder');
-const { default: yargs } = require('yargs');
-const { hideBin } = require('yargs/helpers');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
-const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -34,7 +37,7 @@ const babelConfig = {
   shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
-const workspaceRoot = path.join(__dirname, '../../');
+const workspaceRoot = path.join(import.meta.dirname, '../../');
 
 async function getFiles(root) {
   const files = [];
@@ -90,7 +93,7 @@ async function transpileFile(tsxPath, project) {
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
-          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          fileURLToPath(import.meta.resolve('docs/src/modules/utils/babel-plugin-jsx-preview')),
           { maxLines: 16, outputFilename: `${tsxPath}.preview` },
         ],
       ]);

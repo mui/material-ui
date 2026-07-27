@@ -162,7 +162,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       checkedIcon: React.cloneElement(indeterminateIcon, {
         fontSize: indeterminateIcon.props.fontSize ?? size,
       }),
-      disableRipple,
+      // Forward the raw prop so an unset value stays `undefined` and ButtonBase resolves its
+      // own default — letting a global `MuiButtonBase.defaultProps.disableRipple` apply here.
+      disableRipple: props.disableRipple,
       slots,
       slotProps: {
         input: mergeSlotProps(
