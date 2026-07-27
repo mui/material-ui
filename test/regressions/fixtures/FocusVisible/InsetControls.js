@@ -21,33 +21,26 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 // Each control sits inside its real clipping container (Tabs scroller, scrolling Menu/List, Card,
-// bounded BottomNavigation) so a regression in the ring inset shows up as a clipped ring.
+// bounded BottomNavigation) so a regression in the ring inset shows up as a clipped ring. One
+// control per family renders already focus-visible (the `Mui-focusVisible` class the ring keys on),
+// so the screenshot loop captures the inset ring without a separate driven test.
 const theme = createTheme({
   focusVisible: true,
   components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
 });
 
 export default function InsetControls() {
-  const ref = React.useRef(null);
-  // Render already focus-visible so the standard screenshot loop captures the ring — a driven test
-  // would leave a redundant un-focused baseline. Forcing the class (what the ring keys on) is
-  // faithful and reaches the ButtonBase root wherever it is, including SwitchBase.
-  React.useLayoutEffect(() => {
-    ref.current
-      ?.querySelectorAll('.MuiButtonBase-root')
-      .forEach((el) => el.classList.add('Mui-focusVisible'));
-  }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Stack ref={ref} spacing={2} sx={{ p: 2, width: 320 }}>
+      <Stack spacing={2} sx={{ p: 2, width: 320 }}>
         <Tabs value={0}>
-          <Tab label="One" />
+          <Tab className="Mui-focusVisible" label="One" />
           <Tab label="Two" />
         </Tabs>
 
         <Paper sx={{ maxHeight: 96, overflow: 'auto' }}>
           <MenuList>
-            <MenuItem>Menu item one</MenuItem>
+            <MenuItem className="Mui-focusVisible">Menu item one</MenuItem>
             <MenuItem>Menu item two</MenuItem>
             <MenuItem>Menu item three</MenuItem>
           </MenuList>
@@ -55,7 +48,7 @@ export default function InsetControls() {
 
         <Paper sx={{ maxHeight: 96, overflow: 'auto' }}>
           <List disablePadding>
-            <ListItemButton>
+            <ListItemButton className="Mui-focusVisible">
               <ListItemText primary="List item one" />
             </ListItemButton>
             <ListItemButton>
@@ -65,7 +58,7 @@ export default function InsetControls() {
         </Paper>
 
         <Card>
-          <CardActionArea>
+          <CardActionArea className="Mui-focusVisible">
             <CardContent>
               <Typography>Card action area</Typography>
             </CardContent>
@@ -74,7 +67,11 @@ export default function InsetControls() {
 
         <Box sx={{ width: 320 }}>
           <BottomNavigation showLabels value={0}>
-            <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+            <BottomNavigationAction
+              className="Mui-focusVisible"
+              label="Recents"
+              icon={<RestoreIcon />}
+            />
             <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
             <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
           </BottomNavigation>
