@@ -137,7 +137,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
                 ? theme.vars.palette.common.onBackground
                 : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
               theme.vars
-                ? theme.vars.opacity.switchTrack
+                ? theme.vars.opacity.switchTrackDisabled
                 : `${theme.palette.mode === 'light' ? 0.12 : 0.2}`,
             ),
           },
