@@ -13,9 +13,17 @@ const theme = createTheme({
 });
 
 export default function SelectionControls() {
+  const ref = React.useRef(null);
+  // Render already focus-visible so the screenshot loop captures the ring (see InsetControls).
+  // Forcing on `.MuiButtonBase-root` reaches the SwitchBase root, which a `className` can't.
+  React.useLayoutEffect(() => {
+    ref.current
+      ?.querySelectorAll('.MuiButtonBase-root')
+      .forEach((el) => el.classList.add('Mui-focusVisible'));
+  }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row" spacing={2} sx={{ p: 2, alignItems: 'center' }}>
+      <Stack ref={ref} direction="row" spacing={2} sx={{ p: 2, alignItems: 'center' }}>
         <Checkbox />
         <Checkbox defaultChecked />
         <Radio />

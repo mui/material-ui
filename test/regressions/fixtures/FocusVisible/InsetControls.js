@@ -28,9 +28,18 @@ const theme = createTheme({
 });
 
 export default function InsetControls() {
+  const ref = React.useRef(null);
+  // Render already focus-visible so the standard screenshot loop captures the ring — a driven test
+  // would leave a redundant un-focused baseline. Forcing the class (what the ring keys on) is
+  // faithful and reaches the ButtonBase root wherever it is, including SwitchBase.
+  React.useLayoutEffect(() => {
+    ref.current
+      ?.querySelectorAll('.MuiButtonBase-root')
+      .forEach((el) => el.classList.add('Mui-focusVisible'));
+  }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Stack spacing={2} sx={{ p: 2, width: 320 }}>
+      <Stack ref={ref} spacing={2} sx={{ p: 2, width: 320 }}>
         <Tabs value={0}>
           <Tab label="One" />
           <Tab label="Two" />

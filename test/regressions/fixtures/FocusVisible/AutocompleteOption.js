@@ -9,12 +9,19 @@ import TextField from '@mui/material/TextField';
 const theme = createTheme({ focusVisible: true });
 
 export default function AutocompleteOption() {
+  const ref = React.useRef(null);
+  // Highlight the first option so the screenshot loop captures the ring (see InsetControls). The
+  // listbox is inline (disablePortal) so it lives under this ref.
+  React.useLayoutEffect(() => {
+    ref.current?.querySelector('.MuiAutocomplete-option')?.classList.add('Mui-focusVisible');
+  }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ p: 2, width: 280, height: 400 }}>
+      <Box ref={ref} sx={{ p: 2, width: 280, height: 400 }}>
         <Autocomplete
           open
           options={['One', 'Two', 'Three']}
+          slotProps={{ popper: { disablePortal: true } }}
           renderInput={(params) => <TextField {...params} label="Options" />}
         />
       </Box>

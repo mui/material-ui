@@ -307,60 +307,14 @@ async function main() {
     });
 
     describe('theme.focusVisible ring', () => {
-      // The ring is class-driven (`.Mui-focusVisible` is added by JS, not the `:focus-visible`
-      // pseudo), so forcing the class faithfully reproduces it and lights every control at once.
-      async function forceFocusVisible(page) {
-        await page.evaluate(() => {
-          document.querySelectorAll('.MuiButtonBase-root').forEach((el) => {
-            el.classList.add('Mui-focusVisible');
-          });
-        });
-      }
-
-      test('insets the ring on ButtonBase-derived controls so a clipping ancestor cannot cut it', async ({
-        pooled,
-      }) => {
-        const { page } = pooled;
-        const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
-        await forceFocusVisible(page);
-        await takeScreenshot(page, {
-          testcase,
-          route: '/regression-FocusVisible/InsetControlsFocused',
-        });
-      });
-
-      test('renders the slot ring on selection controls (Checkbox, Radio, Switch)', async ({
-        pooled,
-      }) => {
-        const { page } = pooled;
-        const testcase = await renderFixture(page, '/regression-FocusVisible/SelectionControls');
-        await forceFocusVisible(page);
-        await takeScreenshot(page, {
-          testcase,
-          route: '/regression-FocusVisible/SelectionControlsFocused',
-        });
-      });
-
-      test('insets the ring on an Autocomplete option via keyboard navigation', async ({
-        pooled,
-      }) => {
-        const { page } = pooled;
-        const testcase = await renderFixture(page, '/regression-FocusVisible/AutocompleteOption');
-        await page.getByRole('combobox').focus();
-        // ArrowDown highlights the first option, which sets `.Mui-focusVisible` on that <li>.
-        await page.keyboard.press('ArrowDown');
-        await takeScreenshot(page, {
-          testcase,
-          route: '/regression-FocusVisible/AutocompleteOptionFocused',
-        });
-      });
-
+      // The FocusVisible fixtures render already focus-visible, so the standard screenshot loop
+      // above captures the ring. This case only adds the forced-colors variant (proving the outline
+      // survives Windows High Contrast), which needs Playwright to emulate the media feature.
       test('keeps the outline ring visible in forced-colors mode', async ({ pooled }) => {
         const { page } = pooled;
         await page.emulateMedia({ forcedColors: 'active' });
         try {
           const testcase = await renderFixture(page, '/regression-FocusVisible/InsetControls');
-          await forceFocusVisible(page);
           await takeScreenshot(page, {
             testcase,
             route: '/regression-FocusVisible/InsetControlsForcedColors',
