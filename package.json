@@ -128,7 +128,7 @@
     "lerna": "9.0.7",
     "minimatch": "10.2.5",
     "nx": "22.7.6",
-    "pkg-pr-new": "0.0.78",
+    "pkg-pr-new": "0.0.79",
     "playwright": "1.61.1",
     "prettier": "3.9.5",
     "pretty-quick": "4.2.2",

@@ -53,8 +53,8 @@
     "es-toolkit": "1.49.0",
     "fast-glob": "3.3.3",
     "react": "19.2.7",
-    "sinon": "22.0.0",
-    "styled-components": "6.4.3"
+    "sinon": "22.1.0",
+    "styled-components": "6.4.4"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
