@@ -1,12 +1,15 @@
+---
+title: 'RFC draft: Menu successor with submenu support'
+description: Living draft of the Menu2 RFC, tracked next to the Menu2 experiments until it is posted publicly.
+---
+
 # RFC draft: Menu successor with submenu support
 
-Living draft tracked in this PR until the RFC is posted publicly; review comments welcome on this file.
+<p class="description">Living draft tracked in this PR until the RFC is posted publicly; review comments welcome on this file.</p>
 
 Suggested issue title: `[RFC] Menu: Base UI-based successor with submenu support`
 
-Structured for `.github/ISSUE_TEMPLATE/3.rfc.yml` -- paste each section below into the matching form field.
-
----
+Structured for `.github/ISSUE_TEMPLATE/3.rfc.yml` -- paste each section below into the matching form field. Companion experiments: [playground](/experiments/menu2-playground/), [recipes](/experiments/menu2-recipes/).
 
 ## What's the problem?
 

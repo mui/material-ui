@@ -537,17 +537,21 @@ export default function MenuRfcExperiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Menu RFC playground" description="Base UI-based Menu successor RFC playground" />
+      <Head
+        title="Menu2 playground"
+        description="Menu2 knobs playground for the Menu successor RFC"
+      />
       <Container maxWidth="md" sx={{ pt: 4, pb: 8 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
-            Menu RFC playground
+            Menu2 playground
           </Typography>
           <Typography>
-            Companion experiment for the Menu successor RFC. Every knob maps to a prop or an RFC
-            open question. See also the{' '}
-            <NextLink href="/experiments/menu-preview/">Menu2 experiment</NextLink> for Tooltip,
-            PreviewCard, and ContextMenu recipes.
+            Companion experiment for the{' '}
+            <NextLink href="/experiments/menu2-rfc/">Menu2 RFC draft</NextLink>. Every knob maps to
+            a prop or an RFC open question. See also{' '}
+            <NextLink href="/experiments/menu2-recipes/">Menu2 recipes</NextLink> for Tooltip,
+            PreviewCard, and ContextMenu integrations.
           </Typography>
 
           <SettingsPanel settings={settings} onChange={setSettings} />

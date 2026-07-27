@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Popover from '@mui/material/Popover';
@@ -627,11 +628,19 @@ export default function Menu2Experiment() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Head title="Menu2 experiment" description="Material UI Menu2 experiment" />
+      <Head
+        title="Menu2 recipes"
+        description="Menu2 integrations with Tooltip, Popover, and context menus"
+      />
       <Container maxWidth="md" sx={{ pt: 4 }}>
         <Stack spacing={4}>
           <Typography component="h2" variant="h4">
-            Menu Preview
+            Menu2 recipes
+          </Typography>
+          <Typography>
+            Integration recipes for Menu2. See also the{' '}
+            <NextLink href="/experiments/menu2-rfc/">Menu2 RFC draft</NextLink> and the{' '}
+            <NextLink href="/experiments/menu2-playground/">Menu2 playground</NextLink>.
           </Typography>
           <fieldset>
             <legend>Demo controls</legend>
@@ -661,22 +670,22 @@ export default function Menu2Experiment() {
             </label>
           </fieldset>
           <section>
-            <h3 id="fully-featured-menu">Fully featured menu</h3>
+            <h3 id="menu2-fully-featured">Fully featured menu</h3>
             <p>Fully-featured menu with submenus, links, radio groups, and checkbox items.</p>
             <Menu2Demo settings={settings} />
           </section>
           <section>
-            <h3 id="menu-preview-tooltips">Menu2 + Tooltip</h3>
+            <h3 id="menu2-tooltips">Menu2 + Tooltip</h3>
             <p>Material UI Tooltip integrated with every menu item.</p>
             <Menu2WithTooltipsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-popover-preview-card">Menu2 + Popover-based preview card</h3>
+            <h3 id="menu2-popover-preview-card">Menu2 + Popover-based preview card</h3>
             <p>Material UI Popover used as a PreviewCard-style menu item help card.</p>
             <Menu2WithPreviewCardsDemo submenusOpenOnHover={settings.submenusOpenOnHover} />
           </section>
           <section>
-            <h3 id="menu-preview-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
+            <h3 id="menu2-context-menu-recipe">Menu2 as ContextMenu recipe</h3>
             <p>Right-click the text to open a cursor-positioned Menu2 popup.</p>
             <Menu2ContextMenuRecipe />
           </section>
