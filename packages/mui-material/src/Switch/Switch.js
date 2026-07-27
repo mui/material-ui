@@ -52,52 +52,48 @@ const SwitchRoot = styled('span', {
       styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(
-  memoTheme(({ theme }) => ({
-    display: 'inline-flex',
-    width: 34 + 12 * 2,
-    height: 14 + 12 * 2,
-    // The ring renders on the track slot; the default `hidden` would clip it.
-    overflow: theme.focusVisible ? 'visible' : 'hidden',
-    padding: 12,
-    boxSizing: 'border-box',
-    position: 'relative',
-    flexShrink: 0,
-    zIndex: 0, // Reset the stacking context.
-    verticalAlign: 'middle', // For correct alignment with the text.
-    '@media print': {
-      colorAdjust: 'exact',
+})({
+  display: 'inline-flex',
+  width: 34 + 12 * 2,
+  height: 14 + 12 * 2,
+  padding: 12,
+  boxSizing: 'border-box',
+  position: 'relative',
+  flexShrink: 0,
+  zIndex: 0, // Reset the stacking context.
+  verticalAlign: 'middle', // For correct alignment with the text.
+  '@media print': {
+    colorAdjust: 'exact',
+  },
+  variants: [
+    {
+      props: { edge: 'start' },
+      style: { marginLeft: -8 },
     },
-    variants: [
-      {
-        props: { edge: 'start' },
-        style: { marginLeft: -8 },
-      },
-      {
-        props: { edge: 'end' },
-        style: { marginRight: -8 },
-      },
-      {
-        props: { size: 'small' },
-        style: {
-          width: 40,
-          height: 24,
-          padding: 7,
-          [`& .${switchClasses.thumb}`]: {
-            width: 16,
-            height: 16,
-          },
-          [`& .${switchClasses.switchBase}`]: {
-            padding: 4,
-            [`&.${switchClasses.checked}`]: {
-              transform: 'translateX(16px)',
-            },
+    {
+      props: { edge: 'end' },
+      style: { marginRight: -8 },
+    },
+    {
+      props: { size: 'small' },
+      style: {
+        width: 40,
+        height: 24,
+        padding: 7,
+        [`& .${switchClasses.thumb}`]: {
+          width: 16,
+          height: 16,
+        },
+        [`& .${switchClasses.switchBase}`]: {
+          padding: 4,
+          [`&.${switchClasses.checked}`]: {
+            transform: 'translateX(16px)',
           },
         },
       },
-    ],
-  })),
-);
+    },
+  ],
+});
 
 const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
