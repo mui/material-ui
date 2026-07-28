@@ -33,6 +33,7 @@ export type DensityTypographyPatch = Record<string, Record<string, string | numb
 export type EnhanceableTheme = {
   components?: Theme['components'] | undefined;
   typography?: Record<string, any> | undefined;
+  breakpoints?: { up: (key: 'xs' | 'sm' | 'md' | 'lg' | 'xl') => string } | undefined;
   densityTypography?: DensityTypographyPatch | undefined;
   vars?: Record<string, any> | undefined;
   // CSS-vars theme machinery (present when `createTheme({ cssVariables: … })`):

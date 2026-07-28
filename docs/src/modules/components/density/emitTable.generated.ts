@@ -3964,6 +3964,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '8', medium: '8', low: '8' },
   },
   {
+    id: 'MuiListItem|root|dense=false||minHeight',
+    label: 'ListItem · minHeight [dense=false]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiListItem',
+      slot: 'root',
+      props: { dense: false },
+      nested: '',
+      cssProp: 'minHeight',
+    },
+    values: { high: undefined, medium: '32px', low: undefined },
+  },
+  {
     id: 'MuiListItemButton|root|dense=false||paddingBlock',
     label: 'ListItemButton · paddingBlock [dense=false]',
     isDensity: true,
@@ -4018,6 +4032,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiListItemButton|root|dense=false||minHeight',
+    label: 'ListItemButton · minHeight [dense=false]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiListItemButton',
+      slot: 'root',
+      props: { dense: false },
+      nested: '',
+      cssProp: 'minHeight',
+    },
+    values: { high: undefined, medium: '32px', low: undefined },
+  },
+  {
     id: 'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth',
     label: 'MenuItem · minWidth',
     isDensity: false,
@@ -4029,7 +4057,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiListItemIcon-root',
       cssProp: 'minWidth',
     },
-    values: { high: '32', medium: '32', low: '32' },
+    values: { high: '24', medium: '24', low: '24' },
   },
   {
     id: 'MuiMenuItem|root|dense=false||minHeight',
@@ -4062,6 +4090,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-xx-small)',
       low: 'var(--mui-density-xx-small)',
     },
+  },
+  {
+    id: 'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight',
+    label: 'MenuItem · minHeight [dense=false]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiMenuItem',
+      slot: 'root',
+      props: { dense: false },
+      nested: '@media (min-width:600px)',
+      cssProp: 'minHeight',
+    },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiMenuItem|root|dense=true||minHeight',

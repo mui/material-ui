@@ -7,6 +7,7 @@ import {
   parseMapping,
   previewText,
   shortenDensityVars,
+  appendPxToNumeric,
 } from './mappingValue';
 
 describe('mappingValue', () => {
@@ -93,5 +94,23 @@ describe('mappingValue', () => {
     expect(
       shortenDensityVars('calc(var(--mui-density-x-small) * -1) var(--mui-density-small)'),
     ).to.equal('-x-small small');
+  });
+
+  it('appendPxToNumeric adds px to bare numeric tokens (emotion parity)', () => {
+    expect(appendPxToNumeric('24', 'minWidth')).to.equal('24px');
+    expect(appendPxToNumeric('0 12 1.5', 'padding')).to.equal('0px 12px 1.5px');
+    expect(appendPxToNumeric('-4', 'marginRight')).to.equal('-4px');
+    expect(appendPxToNumeric('12px auto 50%', 'margin')).to.equal('12px auto 50%');
+    expect(appendPxToNumeric('var(--mui-density-x-small) 8', 'padding')).to.equal(
+      'var(--mui-density-x-small) 8px',
+    );
+    expect(appendPxToNumeric('20')).to.equal('20px'); // no prop = length context (scale steps)
+  });
+
+  it('appendPxToNumeric leaves custom properties and unitless props verbatim', () => {
+    expect(appendPxToNumeric('2', '--DataGrid-cellOffsetMultiplier')).to.equal('2');
+    expect(appendPxToNumeric('12', '--_arrowSize')).to.equal('12');
+    expect(appendPxToNumeric('1.5', 'lineHeight')).to.equal('1.5');
+    expect(appendPxToNumeric('700', 'fontWeight')).to.equal('700');
   });
 });

@@ -67,3 +67,28 @@ export const previewText = (input: string, scalePx: Record<string, string> | nul
 // mirrors what you'd TYPE; the helper shows what it RESOLVES to.
 export const shortenDensityVars = (value: string) =>
   value.replace(NEG_CALC_RE, '-$1').replace(/var\(--mui-density-([\w-]+)\)/g, '$1');
+
+// Emotion parity for bare numbers: presets emit numeric leaves (`minWidth: 32`)
+// and emotion appends `px`, but a knob edit travels as a STRING, which emotion
+// passes through verbatim — so `24` rendered as invalid `min-width: 24`. Mirror
+// emotion's rule at the edit layer: a pure-numeric token gains `px`, except on
+// custom properties (`--*` — e.g. DataGrid's cellOffsetMultiplier is genuinely
+// unitless; matches emotion skipping them too) and unitless CSS props.
+const UNITLESS_PROPS = new Set([
+  'lineHeight',
+  'fontWeight',
+  'opacity',
+  'zIndex',
+  'flex',
+  'flexGrow',
+  'flexShrink',
+]);
+const NUMERIC_TOKEN_RE = /^-?(\d+\.?\d*|\.\d+)$/;
+export const appendPxToNumeric = (value: string, prop?: string) => {
+  if (prop && (prop.startsWith('--') || UNITLESS_PROPS.has(prop))) {
+    return value;
+  }
+  return tokenize(value)
+    .map((t) => (NUMERIC_TOKEN_RE.test(t) ? `${t}px` : t))
+    .join(' ');
+};

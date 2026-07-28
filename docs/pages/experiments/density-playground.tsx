@@ -93,6 +93,7 @@ import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HighlightAltIcon from '@mui/icons-material/HighlightAlt';
 import {
   DataGrid,
@@ -156,6 +157,7 @@ import {
 } from 'docs/src/modules/components/density/themeTokens';
 import {
   SCALE_KEYS,
+  appendPxToNumeric,
   previewText,
   resolveValue,
   shortenDensityVars,
@@ -780,6 +782,13 @@ function MenuDemoItems({ dense = false }: { dense?: boolean }) {
           <span className="density-debug-text">Archived</span>
         </ListItemText>
         <ShortcutHint>⌘E</ShortcutHint>
+      </MenuItem>
+      {/* Design-capture menuItem anatomy (menu.png): label + shortcut + submenu
+          caret (controlCaretRight) on one row. */}
+      <MenuItem dense={dense}>
+        <span className="density-debug-text">Share</span>
+        <ShortcutHint>⌘C</ShortcutHint>
+        <ChevronRightIcon fontSize="small" sx={{ color: 'text.secondary' }} />
       </MenuItem>
       <MenuItem dense={dense} divider>
         <span className="density-debug-text">Settings</span>
@@ -2959,6 +2968,25 @@ function NavListDemo({ dense = false }: { dense?: boolean }) {
   );
 }
 
+// Plain (non-interactive) rows — MuiListItem's own minHeight floor target.
+function PlainListDemo() {
+  const items = ['Inbox', 'Starred', 'Sent'];
+  return (
+    <div>
+      <Typography variant="caption" color="text.secondary">
+        plain
+      </Typography>
+      <List sx={{ width: 220, border: '1px solid', borderColor: 'divider' }}>
+        {items.map((label) => (
+          <ListItem key={label}>
+            <ListItemText primary={<span className="density-debug-text">{label}</span>} />
+          </ListItem>
+        ))}
+      </List>
+    </div>
+  );
+}
+
 function ListItemButtonMatrix() {
   return (
     <Stack
@@ -2969,6 +2997,7 @@ function ListItemButtonMatrix() {
     >
       <NavListDemo />
       <NavListDemo dense />
+      <PlainListDemo />
     </Stack>
   );
 }
@@ -3288,6 +3317,8 @@ interface KnobEntry {
   label: string;
   component: string; // public export short name (no `Mui`)
   slot: string;
+  /** emitted CSS prop / private var — drives the helper's numeric→px display. */
+  prop?: string;
 }
 
 function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
@@ -3309,6 +3340,7 @@ function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
       label: knobLabel(id),
       component: row.target.component.replace(/^Mui/, ''),
       slot: row.target.slot,
+      prop: row.target.cssProp ?? row.target.privateVar,
     });
   }
   for (const knob of virtualKnobsByGroup(group.key)) {
@@ -3321,6 +3353,7 @@ function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
       label: stripComponentSlot(knob.label, rawComponent, slot),
       component: rawComponent.replace(/^Mui/, ''),
       slot,
+      prop: row ? (row.target.cssProp ?? row.target.privateVar) : undefined,
     });
   }
   return entries;
@@ -3534,9 +3567,14 @@ const FamilyKnobs = React.memo(
                           // Placeholder = what you'd TYPE: var refs shortened to bare
                           // step names; override-only knobs (no preset default) stay blank.
                           placeholder={shortenDensityVars(canon)}
-                          // typed → preview the typed value; empty → the inherited preset default
+                          // typed → preview the typed value; empty → the inherited preset
+                          // default. Bare numbers preview with px (emotion parity — the
+                          // collect path appends it on emit).
                           computeHelper={(draft) => ({
-                            helper: previewText(draft || canon, scalePx),
+                            helper: previewText(
+                              appendPxToNumeric(draft || canon, entry.prop),
+                              scalePx,
+                            ),
                           })}
                           onCommit={(v) => setFields(entry.writeIds, v)}
                         />
@@ -4310,7 +4348,10 @@ export default function DensityExperiment() {
                         if (tokens[0] === key) {
                           return { helper: 'step cannot reference itself', error: true };
                         }
-                        return { helper: previewText(draft || canon, presetScalePx) };
+                        // Steps are lengths — bare numbers preview with px (emotion parity).
+                        return {
+                          helper: previewText(appendPxToNumeric(draft) || canon, presetScalePx),
+                        };
                       }}
                       onCommit={(v) => setFields([`density.${key}`], v)}
                     />

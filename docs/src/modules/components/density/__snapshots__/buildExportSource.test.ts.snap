@@ -164,6 +164,9 @@ const high = {
                 style: {
                   minHeight: '32px',
                   paddingBlock: 'var(--mui-density-xx-small)',
+                  '@media (min-width:600px)': {
+                    minHeight: '32px',
+                  },
                 },
               },
               {
@@ -195,7 +198,7 @@ const high = {
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 32,
+              minWidth: 24,
             },
           },
         ],
@@ -2615,6 +2618,9 @@ const medium = {
                 style: {
                   minHeight: '32px',
                   paddingBlock: 'var(--mui-density-xx-small)',
+                  '@media (min-width:600px)': {
+                    minHeight: '32px',
+                  },
                 },
               },
               {
@@ -2646,7 +2652,7 @@ const medium = {
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 32,
+              minWidth: 24,
             },
           },
         ],
@@ -3621,6 +3627,18 @@ const medium = {
                 },
                 style: {
                   paddingInline: 'var(--mui-density-large)',
+                },
+              },
+            ],
+          },
+          {
+            variants: [
+              {
+                props: {
+                  dense: false,
+                },
+                style: {
+                  minHeight: '32px',
                 },
               },
             ],
@@ -4826,6 +4844,24 @@ const medium = {
         ],
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  dense: false,
+                },
+                style: {
+                  minHeight: '32px',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiSvgIcon: {
       styleOverrides: {
         root: [
@@ -4888,6 +4924,10 @@ const medium = {
     body1: {
       fontSize: '0.875rem',
       lineHeight: 1.428571429,
+    },
+    body2: {
+      fontSize: '0.8125rem',
+      lineHeight: 1.38462,
     },
     caption: {
       fontSize: '0.75rem',
@@ -5022,6 +5062,9 @@ const low = {
                 style: {
                   minHeight: '32px',
                   paddingBlock: 'var(--mui-density-xx-small)',
+                  '@media (min-width:600px)': {
+                    minHeight: '32px',
+                  },
                 },
               },
               {
@@ -5053,7 +5096,7 @@ const low = {
               },
             ],
             '& .MuiListItemIcon-root': {
-              minWidth: 32,
+              minWidth: 24,
             },
           },
         ],

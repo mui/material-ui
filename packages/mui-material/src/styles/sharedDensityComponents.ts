@@ -79,19 +79,28 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       { props: { size: 'large' }, style: { padding: d.large } },
     ],
   });
+  // Master resets MenuItem min-height to `auto` at sm-up (non-dense only);
+  // stylis hoists that media block AFTER the class rule, so a plain later
+  // declaration can never win on desktop — the floor must re-assert inside the
+  // same media. Dense has no master media reset, so no re-assert. The knob
+  // mirrors this via a linked write (densityFields `densityLinkedWrites`).
+  const smUp = enhanced.breakpoints ? enhanced.breakpoints.up('sm') : '@media (min-width:600px)';
   addRootOverride(enhanced.components, 'MuiMenuItem', {
     variants: [
       // minHeight: semantic/size/touch-target/default (32px);
       // paddingBlock: semantic/spacing/variable/xxs
-      { props: { dense: false }, style: { minHeight: '32px', paddingBlock: d['xx-small'] } },
-      // dense has no Weave counterpart — one 4px step tighter than the default row
+      {
+        props: { dense: false },
+        style: { minHeight: '32px', paddingBlock: d['xx-small'], [smUp]: { minHeight: '32px' } },
+      },
+      // dense has no captured counterpart — one 4px step tighter than the default row
       { props: { dense: true }, style: { minHeight: '28px', paddingBlock: d['xx-small'] } },
       // gutter inline: semantic/spacing/variable/xs
       { props: { dense: false, disableGutters: false }, style: { paddingInline: d['x-small'] } },
       { props: { dense: true, disableGutters: false }, style: { paddingInline: d.medium } },
     ],
     [`& .${listItemIconClasses.root}`]: {
-      minWidth: 32,
+      minWidth: 24,
     },
   });
   addRootOverride(enhanced.components, 'MuiList', {

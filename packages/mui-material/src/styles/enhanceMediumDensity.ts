@@ -35,6 +35,8 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
     h3: { fontSize: '1.25rem', lineHeight: 1.3 },
     // "body" = body1: semantic/font-size/variable/m (14px) / line-height 20px
     body1: { fontSize: '0.875rem', lineHeight: 1.428571429 },
+    // 'body2' guessing, need to ask Weave to provide
+    body2: { fontSize: '0.8125rem', lineHeight: 1.38462 },
     // semantic/font-size/variable/s (12px assumed) / line-height 18px
     caption: { fontSize: '0.75rem', lineHeight: 1.5 },
     button: { fontSize: '0.875rem', lineHeight: 1.428571429 },
@@ -75,6 +77,16 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
   // axes driven by ONE virtual knob (`virtual:MuiIconButton:minSize`).
   addRootOverride(enhanced.components, 'MuiIconButton', {
     variants: [{ props: { size: 'medium' }, style: { minWidth: '32px', minHeight: '32px' } }],
+  });
+  // List-row floor: semantic/size/navigation/list-item/min-height (32px) — the
+  // capture's MenuItem 3.0 Min height. MenuItem already carries it (shared,
+  // dense 28); ListItem/ListItemButton get the same floor here. Raw px (sizing
+  // policy); medium-only; dense keeps master (no captured dense value).
+  addRootOverride(enhanced.components, 'MuiListItem', {
+    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
+  });
+  addRootOverride(enhanced.components, 'MuiListItemButton', {
+    variants: [{ props: { dense: false }, style: { minHeight: '32px' } }],
   });
   // Medium-only: global icon size per fontSize variant (master: 20/24/35px).
   // High/low emit nothing — icons keep master sizes there. Raw px (sizing policy).

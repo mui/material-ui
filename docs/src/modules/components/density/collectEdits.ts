@@ -1,6 +1,12 @@
 import { densityGroups, densityRow } from './densityFields';
 import { themeTokenGroups, coerceToken } from './themeTokens';
-import { SCALE_KEYS, parseMapping, resolveValue, tokenize } from './mappingValue';
+import {
+  SCALE_KEYS,
+  appendPxToNumeric,
+  parseMapping,
+  resolveValue,
+  tokenize,
+} from './mappingValue';
 import type { DensityEdit } from './buildDensityOverrides';
 
 // Mapping → the edit lists the canvas applies. Shared by `canvasTheme` and the
@@ -22,7 +28,11 @@ export function collectDensityEdits(mapping: Record<string, string>): DensityEdi
       }
       const row = densityRow(id);
       if (row) {
-        edits.push({ row, value: resolveValue(raw) });
+        // Bare numbers gain px (emotion parity) keyed off the emitted prop;
+        // defaultProp rows skip it — buildOverrides number-coerces those.
+        const prop = row.target.cssProp ?? row.target.privateVar;
+        const resolved = resolveValue(raw);
+        edits.push({ row, value: prop ? appendPxToNumeric(resolved, prop) : resolved });
       }
     }
   }
@@ -50,7 +60,8 @@ export function collectScaleEdits(mapping: Record<string, string>): ScaleEdit[] 
     if (tokens.length !== 1 || tokens[0] === key) {
       continue;
     }
-    out.push({ key, value: resolveValue(raw) });
+    // Steps are always lengths — a bare number gains px (emotion parity).
+    out.push({ key, value: appendPxToNumeric(resolveValue(raw)) });
   }
   return out;
 }

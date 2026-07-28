@@ -740,22 +740,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiLinearProgress|root|base||height': 'LinearProgress · height',
   'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
+  'MuiListItem|root|dense=false||minHeight': 'ListItem · minHeight [dense=false]',
   'MuiListItemButton|root|dense=false||paddingBlock': 'ListItemButton · paddingBlock [dense=false]',
   'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|disableGutters=false||paddingInline':
     'ListItemButton · paddingInline [disableGutters=false]',
+  'MuiListItemButton|root|dense=false||minHeight': 'ListItemButton · minHeight [dense=false]',
   'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': 'MenuItem · icon min width',
-  'MuiMenuItem|root|dense=false||minHeight': {
-    label: 'min height (mobile)',
-    hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
-  },
+  'MuiMenuItem|root|dense=false||minHeight': 'min height',
   'MuiMenuItem|root|dense=false||paddingBlock': 'block padding',
-  'MuiMenuItem|root|dense=true||minHeight': {
-    label: 'min height [dense]',
-    hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
-  },
+  'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight':
+    'MenuItem · minHeight [dense=false]',
+  'MuiMenuItem|root|dense=true||minHeight': 'min height [dense]',
   'MuiMenuItem|root|dense=true||paddingBlock': 'block padding [dense]',
   'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline':
     'inline padding [disableGutters]',

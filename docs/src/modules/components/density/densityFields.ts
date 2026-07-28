@@ -108,6 +108,9 @@ export const densityExtraRows: DensityExtraRow[] = [
     label: 'ListItemIcon · minWidth',
     isDensity: false,
     densityKey: null,
+    // Redundant in Menu — MenuItem's own nested `icon min width` knob owns this
+    // seam there (Menu is currently ListItemIcon's only family).
+    hiddenIn: ['Menu'],
     target: {
       component: 'MuiListItemIcon',
       slot: 'root',
@@ -258,6 +261,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiDialogTitle: 'Dialog',
   MuiDialogContent: 'Dialog',
   MuiDialogActions: 'Dialog',
+  MuiListItem: 'ListItemButton',
   MuiListItemButton: 'ListItemButton',
   MuiButtonGroup: 'ButtonGroup',
   MuiTableCell: 'Table',
@@ -628,6 +632,13 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
       ],
     ]),
   ),
+  // MenuItem min-height -> the sm-up re-assert. Master resets non-dense
+  // min-height to `auto` at sm-up (media rules hoist after the class rule), so
+  // the knob's value must land inside that media too or desktop ignores it.
+  // Dense has no master media reset — no link needed.
+  'MuiMenuItem|root|dense=false||minHeight': [
+    { id: 'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight', wrap: (v) => v },
+  ],
   // Stepper flow gap -> alternativeLabel connector right edge clears the gap.
   'MuiStepper|root|base||columnGap': [
     {
