@@ -79,6 +79,7 @@
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
     "@vitest/eslint-plugin": "^1.6.23",
+    "brace-expansion": "2.1.2",
     "execa": "^9.6.1"
   },
   "devDependencies": {
