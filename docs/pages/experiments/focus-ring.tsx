@@ -58,6 +58,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Alert from '@mui/material/Alert';
 import SnackbarContent from '@mui/material/SnackbarContent';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import AddIcon from '@mui/icons-material/Add';
 import StarIcon from '@mui/icons-material/Star';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -87,6 +88,60 @@ const PRESETS: Record<Preset, { label: string; value: boolean | React.CSSPropert
   };
 
 const noop = () => {};
+
+// Custom 16×16 selection-control icons with NO built-in whitespace — the glyph fills the
+// viewBox edge to edge, unlike the default Material icons whose 24×24 viewBox carries ~4px
+// of padding around the glyph. The ring rule targets `svg:first-of-type`, so it hugs
+// whatever box the replacement icon renders at: smaller icon → tighter ring, no tuning.
+function TightSquareIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon viewBox="0 0 16 16" {...props} sx={{ fontSize: 16 }}>
+      <rect
+        x="0.75"
+        y="0.75"
+        width="14.5"
+        height="14.5"
+        rx="3.25"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+    </SvgIcon>
+  );
+}
+
+function TightSquareCheckedIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon viewBox="0 0 16 16" {...props} sx={{ fontSize: 16 }}>
+      <rect x="0" y="0" width="16" height="16" rx="4" fill="currentColor" />
+      <path
+        d="m4.5 8.5 2.5 2.5 4.5-5"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  );
+}
+
+function TightCircleIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon viewBox="0 0 16 16" {...props} sx={{ fontSize: 16 }}>
+      <circle cx="8" cy="8" r="7.25" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    </SvgIcon>
+  );
+}
+
+function TightCircleCheckedIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon viewBox="0 0 16 16" {...props} sx={{ fontSize: 16 }}>
+      <circle cx="8" cy="8" r="7.25" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="8" cy="8" r="3.75" fill="currentColor" />
+    </SvgIcon>
+  );
+}
 
 // Resolve the element that carries `.Mui-focusVisible`. ButtonBase controls carry it on
 // the root (form controls put `data-ring-target` on the inner <input>); Slider carries it
@@ -260,6 +315,60 @@ function OuterRing() {
                 slotProps={{
                   input: {
                     'data-ring-target': 'Radio',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Radio B"
+          />
+        </RadioGroup>
+      </Row>
+      <Row label="Custom icons">
+        {/* icon/checkedIcon replaced with tight 16×16 svgs (glyph fills the viewBox — no
+            built-in whitespace like the default 24×24 Material icons). The ring rule targets
+            `svg:first-of-type`, so it wraps the replacement icon's box automatically. */}
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox
+                defaultChecked
+                icon={<TightSquareIcon />}
+                checkedIcon={<TightSquareCheckedIcon />}
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Checkbox (custom 16px icon)',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Checkbox"
+          />
+        </FormGroup>
+        <RadioGroup row defaultValue="a">
+          <FormControlLabel
+            control={
+              <Radio
+                value="a"
+                icon={<TightCircleIcon />}
+                checkedIcon={<TightCircleCheckedIcon />}
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Radio (custom 16px icon)',
+                  } as React.InputHTMLAttributes<HTMLInputElement>,
+                }}
+              />
+            }
+            label="Radio A"
+          />
+          <FormControlLabel
+            control={
+              <Radio
+                value="b"
+                icon={<TightCircleIcon />}
+                checkedIcon={<TightCircleCheckedIcon />}
+                slotProps={{
+                  input: {
+                    'data-ring-target': 'Radio (custom 16px icon)',
                   } as React.InputHTMLAttributes<HTMLInputElement>,
                 }}
               />
