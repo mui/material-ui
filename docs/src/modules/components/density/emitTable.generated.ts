@@ -88,34 +88,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
-    id: 'MuiAccordionDetails|root|base||fontSize',
-    label: 'AccordionDetails · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiAccordionDetails',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.875rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiAccordionDetails|root|base||lineHeight',
-    label: 'AccordionDetails · lineHeight',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiAccordionDetails',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'lineHeight',
-    },
-    values: { high: '1.4285714285714286', medium: undefined, low: undefined },
-  },
-  {
     id: 'MuiAccordionSummary|content|base||marginBlock',
     label: 'AccordionSummary · content · marginBlock',
     isDensity: true,
@@ -163,7 +135,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '40px', medium: '48px', low: '56px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiAccordionSummary|root|base||padding',
@@ -178,9 +150,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: '0 var(--mui-density-large)',
-      medium: '0 var(--mui-density-large)',
-      low: '0 var(--mui-density-large)',
+      high: '0 var(--mui-density-x-small)',
+      medium: '0 var(--mui-density-x-small)',
+      low: '0 var(--mui-density-x-small)',
     },
   },
   {
@@ -195,7 +167,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '&.Mui-expanded',
       cssProp: 'minHeight',
     },
-    values: { high: '52px', medium: '64px', low: '76px' },
+    values: { high: '64px', medium: '64px', low: '64px' },
   },
   {
     id: 'MuiAlert|icon|base||marginRight',
@@ -263,13 +235,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiAutocomplete-option',
       cssProp: 'minHeight',
     },
-    values: { high: '32px', medium: '44px', low: '56px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock',
     label: 'Autocomplete · listbox · paddingBlock',
     isDensity: true,
-    densityKey: 'x-small',
+    densityKey: 'xx-small',
     target: {
       component: 'MuiAutocomplete',
       slot: 'listbox',
@@ -278,16 +250,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
     id: 'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline',
     label: 'Autocomplete · listbox · paddingInline',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'x-small',
     target: {
       component: 'MuiAutocomplete',
       slot: 'listbox',
@@ -296,38 +268,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
-  },
-  {
-    id: 'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|fontSize',
-    label: 'Autocomplete · listbox · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiAutocomplete',
-      slot: 'listbox',
-      props: null,
-      nested: '& .MuiAutocomplete-option',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.875rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight',
-    label: 'Autocomplete · listbox · lineHeight',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiAutocomplete',
-      slot: 'listbox',
-      props: null,
-      nested: '& .MuiAutocomplete-option',
-      cssProp: 'lineHeight',
-    },
-    values: { high: '1.4', medium: undefined, low: undefined },
   },
   {
     id: 'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock',
@@ -423,7 +367,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputRootPadBlock',
     label: 'Autocomplete · --_autocompleteInputRootPadBlock',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiAutocomplete',
       slot: 'root',
@@ -432,9 +376,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_autocompleteInputRootPadBlock',
     },
     values: {
-      high: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
       medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -452,7 +396,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: {
       high: 'var(--mui-density-xx-small)',
       medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -515,7 +459,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiAvatar', slot: 'root', props: null, nested: '', cssProp: 'width' },
-    values: { high: '32px', medium: '40px', low: '48px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiAvatar|root|base||height',
@@ -523,7 +467,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiAvatar', slot: 'root', props: null, nested: '', cssProp: 'height' },
-    values: { high: '32px', medium: '40px', low: '48px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiBadge|badge|variant=standard||minWidth',
@@ -537,7 +481,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '18px', medium: '20px', low: '24px' },
+    values: { high: '20px', medium: '20px', low: '20px' },
   },
   {
     id: 'MuiBadge|badge|variant=standard||height',
@@ -551,13 +495,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '18px', medium: '20px', low: '24px' },
+    values: { high: '20px', medium: '20px', low: '20px' },
   },
   {
     id: 'MuiBadge|badge|variant=standard||paddingInline',
     label: 'Badge · badge · paddingInline [variant=standard]',
-    isDensity: true,
-    densityKey: 'x-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiBadge',
       slot: 'badge',
@@ -565,11 +509,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingInline',
     },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
+    values: { high: '12', medium: '12', low: '12' },
   },
   {
     id: 'MuiBadge|badge|variant=dot||minWidth',
@@ -583,7 +523,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '4px', medium: '6px', low: '8px' },
+    values: { high: '6px', medium: '6px', low: '6px' },
   },
   {
     id: 'MuiBadge|badge|variant=dot||height',
@@ -597,7 +537,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '4px', medium: '6px', low: '8px' },
+    values: { high: '6px', medium: '6px', low: '6px' },
   },
   {
     id: 'MuiBottomNavigation|root|base||height',
@@ -611,7 +551,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '48px', medium: '56px', low: '64px' },
+    values: { high: '56px', medium: '56px', low: '56px' },
   },
   {
     id: 'MuiBottomNavigationAction|root|base||paddingInline',
@@ -643,7 +583,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '72px', medium: '80px', low: '88px' },
+    values: { high: '80px', medium: '80px', low: '80px' },
   },
   {
     id: 'MuiBottomNavigationAction|root|base||maxWidth',
@@ -657,7 +597,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'maxWidth',
     },
-    values: { high: '152px', medium: '168px', low: '184px' },
+    values: { high: '168px', medium: '168px', low: '168px' },
   },
   {
     id: 'MuiBottomNavigationAction|root|fn:x2hhfk||paddingTop',
@@ -695,6 +635,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-small)',
       low: 'var(--mui-density-small)',
     },
+  },
+  {
+    id: 'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize',
+    label: 'Button · endIcon · fontSize [size=medium]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiButton',
+      slot: 'endIcon',
+      props: { size: 'medium' },
+      nested: '& > *:nth-of-type(1)',
+      cssProp: 'fontSize',
+    },
+    values: { high: undefined, medium: '16px', low: undefined },
   },
   {
     id: 'MuiButton|root|size=small||paddingBlock',
@@ -753,8 +707,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiButton|root|size=medium||paddingBlock',
     label: 'Button · paddingBlock [size=medium]',
-    isDensity: true,
-    densityKey: 'x-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiButton',
       slot: 'root',
@@ -762,17 +716,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingBlock',
     },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
+    values: { high: '4', medium: '4', low: '4' },
   },
   {
     id: 'MuiButton|root|size=medium||paddingInline',
     label: 'Button · paddingInline [size=medium]',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'medium',
     target: {
       component: 'MuiButton',
       slot: 'root',
@@ -781,9 +731,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
@@ -798,11 +748,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingBlock',
     },
-    values: {
-      high: 'calc(var(--mui-density-x-small) - 1px)',
-      medium: 'calc(var(--mui-density-x-small) - 1px)',
-      low: 'calc(var(--mui-density-x-small) - 1px)',
-    },
+    values: { high: '3', medium: '3', low: '3' },
   },
   {
     id: 'MuiButton|root|size=large||paddingBlock',
@@ -859,6 +805,34 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiButton|root|size=medium||minHeight',
+    label: 'Button · minHeight [size=medium]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiButton',
+      slot: 'root',
+      props: { size: 'medium' },
+      nested: '',
+      cssProp: 'minHeight',
+    },
+    values: { high: undefined, medium: '32px', low: undefined },
+  },
+  {
+    id: 'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize',
+    label: 'Button · startIcon · fontSize [size=medium]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiButton',
+      slot: 'startIcon',
+      props: { size: 'medium' },
+      nested: '& > *:nth-of-type(1)',
+      cssProp: 'fontSize',
+    },
+    values: { high: undefined, medium: '16px', low: undefined },
+  },
+  {
     id: 'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth',
     label: 'ButtonGroup · minWidth',
     isDensity: false,
@@ -870,7 +844,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiButtonGroup-grouped',
       cssProp: 'minWidth',
     },
-    values: { high: '32px', medium: '40px', low: '48px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiCardActions|root|base||padding',
@@ -912,7 +886,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCardContent|root|base||padding',
     label: 'CardContent · padding',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'medium',
     target: {
       component: 'MuiCardContent',
       slot: 'root',
@@ -921,9 +895,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
@@ -1136,7 +1110,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_avatarSize',
     },
-    values: { high: '20px', medium: '24px', low: '28px' },
+    values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
     id: 'MuiChip|avatar|size=medium||width',
@@ -1196,7 +1170,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_avatarSize',
     },
-    values: { high: '14px', medium: '18px', low: '22px' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiChip|avatar|size=small||width',
@@ -1256,7 +1230,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_deleteIconSize',
     },
-    values: { high: '18px', medium: '22px', low: '26px' },
+    values: { high: '22px', medium: '22px', low: '22px' },
   },
   {
     id: 'MuiChip|deleteIcon|size=medium||fontSize',
@@ -1306,7 +1280,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_deleteIconSize',
     },
-    values: { high: '12px', medium: '16px', low: '20px' },
+    values: { high: '16px', medium: '16px', low: '16px' },
   },
   {
     id: 'MuiChip|deleteIcon|size=small||fontSize',
@@ -1356,7 +1330,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '20px', medium: '24px', low: '28px' },
+    values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
     id: 'MuiChip|icon|size=small||fontSize',
@@ -1370,13 +1344,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '14px', medium: '18px', low: '22px' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiChip|label|size=medium||paddingInline',
     label: 'Chip · label · paddingInline [size=medium]',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'small',
     target: {
       component: 'MuiChip',
       slot: 'label',
@@ -1385,9 +1359,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
   },
   {
@@ -1420,7 +1394,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '28px', medium: '32px', low: '36px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiChip|root|size=medium||height',
@@ -1448,7 +1422,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '20px', medium: '24px', low: '28px' },
+    values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
     id: 'MuiChip|root|size=small||height',
@@ -1561,20 +1535,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '68px', medium: '84px', low: '100px' },
   },
   {
-    id: 'MuiDataGrid|chartsPanelDataField|base||height',
-    label: 'DataGrid · chartsPanelDataField · height',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiDataGrid',
-      slot: 'chartsPanelDataField',
-      props: null,
-      nested: '',
-      cssProp: 'height',
-    },
-    values: { high: '26px', medium: '32px', low: '38px' },
-  },
-  {
     id: 'MuiDataGrid|chartsPanelDataField|base||marginInlineStart',
     label: 'DataGrid · chartsPanelDataField · marginInlineStart',
     isDensity: true,
@@ -1591,6 +1551,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-x-small)',
       low: 'var(--mui-density-x-small)',
     },
+  },
+  {
+    id: 'MuiDataGrid|chartsPanelDataField|base||height',
+    label: 'DataGrid · chartsPanelDataField · height',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'chartsPanelDataField',
+      props: null,
+      nested: '',
+      cssProp: 'height',
+    },
+    values: { high: '26px', medium: '32px', low: '38px' },
   },
   {
     id: 'MuiDataGrid|chartsPanelDataPlaceholder|base||minHeight',
@@ -1936,20 +1910,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '44px', medium: '52px', low: '60px' },
   },
   {
-    id: 'MuiDataGrid|groupingCriteriaCellToggle|base||flexBasis',
-    label: 'DataGrid · groupingCriteriaCellToggle · flexBasis',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiDataGrid',
-      slot: 'groupingCriteriaCellToggle',
-      props: null,
-      nested: '',
-      cssProp: 'flexBasis',
-    },
-    values: { high: '24px', medium: '28px', low: '32px' },
-  },
-  {
     id: 'MuiDataGrid|groupingCriteriaCellToggle|base||marginRight',
     label: 'DataGrid · groupingCriteriaCellToggle · marginRight',
     isDensity: true,
@@ -1966,6 +1926,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-large)',
       low: 'var(--mui-density-large)',
     },
+  },
+  {
+    id: 'MuiDataGrid|groupingCriteriaCellToggle|base||flexBasis',
+    label: 'DataGrid · groupingCriteriaCellToggle · flexBasis',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'groupingCriteriaCellToggle',
+      props: null,
+      nested: '',
+      cssProp: 'flexBasis',
+    },
+    values: { high: '24px', medium: '28px', low: '32px' },
   },
   {
     id: 'MuiDataGrid|menu|base|& .MuiDataGrid-menuList|minWidth',
@@ -2063,20 +2037,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '68px', medium: '84px', low: '100px' },
   },
   {
-    id: 'MuiDataGrid|pivotPanelField|base||height',
-    label: 'DataGrid · pivotPanelField · height',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiDataGrid',
-      slot: 'pivotPanelField',
-      props: null,
-      nested: '',
-      cssProp: 'height',
-    },
-    values: { high: '26px', medium: '32px', low: '38px' },
-  },
-  {
     id: 'MuiDataGrid|pivotPanelField|base||marginInlineStart',
     label: 'DataGrid · pivotPanelField · marginInlineStart',
     isDensity: true,
@@ -2093,6 +2053,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-x-small)',
       low: 'var(--mui-density-x-small)',
     },
+  },
+  {
+    id: 'MuiDataGrid|pivotPanelField|base||height',
+    label: 'DataGrid · pivotPanelField · height',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'pivotPanelField',
+      props: null,
+      nested: '',
+      cssProp: 'height',
+    },
+    values: { high: '26px', medium: '32px', low: '38px' },
   },
   {
     id: 'MuiDataGrid|pivotPanelHeader|base||height',
@@ -2301,20 +2275,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '370px', medium: '400px', low: '430px' },
   },
   {
-    id: 'MuiDataGrid|toolbar|base||minHeight',
-    label: 'DataGrid · toolbar · minHeight',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiDataGrid',
-      slot: 'toolbar',
-      props: null,
-      nested: '',
-      cssProp: 'minHeight',
-    },
-    values: { high: '44px', medium: '52px', low: '60px' },
-  },
-  {
     id: 'MuiDataGrid|toolbar|base||padding',
     label: 'DataGrid · toolbar · padding',
     isDensity: true,
@@ -2343,6 +2303,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-xx-small)',
       low: 'var(--mui-density-xx-small)',
     },
+  },
+  {
+    id: 'MuiDataGrid|toolbar|base||minHeight',
+    label: 'DataGrid · toolbar · minHeight',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'toolbar',
+      props: null,
+      nested: '',
+      cssProp: 'minHeight',
+    },
+    values: { high: '44px', medium: '52px', low: '60px' },
   },
   {
     id: 'MuiDataGrid|toolbarDivider|base||marginInline',
@@ -2395,20 +2369,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '230px', medium: '260px', low: '290px' },
   },
   {
-    id: 'MuiDataGrid|treeDataGroupingCellToggle|base||flexBasis',
-    label: 'DataGrid · treeDataGroupingCellToggle · flexBasis',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiDataGrid',
-      slot: 'treeDataGroupingCellToggle',
-      props: null,
-      nested: '',
-      cssProp: 'flexBasis',
-    },
-    values: { high: '24px', medium: '28px', low: '32px' },
-  },
-  {
     id: 'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight',
     label: 'DataGrid · treeDataGroupingCellToggle · marginRight',
     isDensity: true,
@@ -2425,6 +2385,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-large)',
       low: 'var(--mui-density-large)',
     },
+  },
+  {
+    id: 'MuiDataGrid|treeDataGroupingCellToggle|base||flexBasis',
+    label: 'DataGrid · treeDataGroupingCellToggle · flexBasis',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDataGrid',
+      slot: 'treeDataGroupingCellToggle',
+      props: null,
+      nested: '',
+      cssProp: 'flexBasis',
+    },
+    values: { high: '24px', medium: '28px', low: '32px' },
   },
   {
     id: 'MuiDateCalendar|root|base||height',
@@ -2786,7 +2760,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiDialogActions|root|base||padding',
     label: 'DialogActions · padding',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'medium',
     target: {
       component: 'MuiDialogActions',
       slot: 'root',
@@ -2795,9 +2769,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
@@ -2831,9 +2805,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large) var(--mui-density-x-large)',
-      medium: 'var(--mui-density-large) var(--mui-density-x-large)',
-      low: 'var(--mui-density-large) var(--mui-density-x-large)',
+      high: 'var(--mui-density-large) var(--mui-density-medium)',
+      medium: 'var(--mui-density-large) var(--mui-density-medium)',
+      low: 'var(--mui-density-large) var(--mui-density-medium)',
     },
   },
   {
@@ -2849,9 +2823,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large) var(--mui-density-x-large)',
-      medium: 'var(--mui-density-large) var(--mui-density-x-large)',
-      low: 'var(--mui-density-large) var(--mui-density-x-large)',
+      high: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
+      medium:
+        'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
+      low: 'var(--mui-density-small) var(--mui-density-small) var(--mui-density-small) var(--mui-density-medium)',
     },
   },
   {
@@ -2884,7 +2859,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '36px', medium: '40px', low: '44px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiFab|root|size=small,variant=circular||height',
@@ -2898,7 +2873,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '36px', medium: '40px', low: '44px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiFab|root|size=medium,variant=circular||width',
@@ -2912,7 +2887,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '44px', medium: '48px', low: '52px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiFab|root|size=medium,variant=circular||height',
@@ -2926,7 +2901,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '44px', medium: '48px', low: '52px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiFab|root|size=large,variant=circular||width',
@@ -2940,7 +2915,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '52px', medium: '56px', low: '64px' },
+    values: { high: '56px', medium: '56px', low: '56px' },
   },
   {
     id: 'MuiFab|root|size=large,variant=circular||height',
@@ -2954,7 +2929,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '52px', medium: '56px', low: '64px' },
+    values: { high: '56px', medium: '56px', low: '56px' },
   },
   {
     id: 'MuiFilledInput|input|base||paddingTop',
@@ -3081,8 +3056,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop',
     label: 'FilledInput · --_filledInputPadTop',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'x-large',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3091,7 +3066,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_filledInputPadTop',
     },
     values: {
-      high: '20px',
+      high: 'var(--mui-density-x-large)',
       medium: 'var(--mui-density-x-large)',
       low: 'var(--mui-density-x-large)',
     },
@@ -3100,7 +3075,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
     label: 'FilledInput · --_filledInputPadBottom',
     isDensity: true,
-    densityKey: 'x-small',
+    densityKey: 'small',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3109,7 +3084,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_filledInputPadBottom',
     },
     values: {
-      high: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-small)',
       medium: 'var(--mui-density-small)',
       low: 'var(--mui-density-small)',
     },
@@ -3144,7 +3119,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiInputLabel-root:has(~ &)',
       privateVar: '--_shrinkY',
     },
-    values: { high: '5px', medium: '7px', low: '9px' },
+    values: { high: '7px', medium: '7px', low: '7px' },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop',
@@ -3158,13 +3133,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadTop',
     },
-    values: { high: '16px', medium: '18px', low: 'var(--mui-density-large)' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
     label: 'FilledInput · --_filledInputPadBottom [size=small]',
-    isDensity: true,
-    densityKey: 'xx-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3172,11 +3147,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadBottom',
     },
-    values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: '2px',
-      low: 'var(--mui-density-xx-small)',
-    },
+    values: { high: '2px', medium: '2px', low: '2px' },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
@@ -3208,7 +3179,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiInputLabel-root:has(~ &)',
       privateVar: '--_shrinkY',
     },
-    values: { high: '3px', medium: '4px', low: '5px' },
+    values: { high: '4px', medium: '4px', low: '4px' },
   },
   {
     id: 'MuiFilledInput|root|multiline=true||paddingTop',
@@ -3223,7 +3194,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingTop',
     },
     values: {
-      high: 'var(--_filledInputPadTop, 20px)',
+      high: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
       medium: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
       low: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
     },
@@ -3241,7 +3212,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      high: 'var(--_filledInputPadBottom, var(--mui-density-x-small))',
+      high: 'var(--_filledInputPadBottom, var(--mui-density-small))',
       medium: 'var(--_filledInputPadBottom, var(--mui-density-small))',
       low: 'var(--_filledInputPadBottom, var(--mui-density-small))',
     },
@@ -3259,7 +3230,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingTop',
     },
     values: {
-      high: 'var(--_filledInputPadTop, 16px)',
+      high: 'var(--_filledInputPadTop, var(--mui-density-large))',
       medium: 'var(--_filledInputPadTop, var(--mui-density-large))',
       low: 'var(--_filledInputPadTop, var(--mui-density-large))',
     },
@@ -3359,8 +3330,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiIconButton|root|size=medium||padding',
     label: 'IconButton · padding [size=medium]',
-    isDensity: true,
-    densityKey: 'small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiIconButton',
       slot: 'root',
@@ -3368,11 +3339,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'padding',
     },
-    values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
-    },
+    values: { high: '4', medium: '4', low: '4' },
   },
   {
     id: 'MuiIconButton|root|size=large||padding',
@@ -3777,9 +3744,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginTop',
     },
     values: {
-      high: 'calc(var(--_filledInputPadTop, 20px) - var(--_filledInputPadBottom, 4px))',
+      high: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
       medium: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
-      low: 'calc(var(--_filledInputPadTop, 24px) - var(--_filledInputPadBottom, 12px))',
+      low: 'calc(var(--_filledInputPadTop, 18px) - var(--_filledInputPadBottom, 2px))',
     },
   },
   {
@@ -3799,20 +3766,6 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-x-small)',
       low: 'var(--mui-density-x-small)',
     },
-  },
-  {
-    id: 'MuiInputBase|input|base||height',
-    label: 'InputBase · input · height',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiInputBase',
-      slot: 'input',
-      props: null,
-      nested: '',
-      cssProp: 'height',
-    },
-    values: { high: '1.42857143em', medium: undefined, low: undefined },
   },
   {
     id: 'MuiInputBase|input|size=small||paddingTop',
@@ -3845,34 +3798,6 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: { high: '0', medium: '0', low: '0' },
-  },
-  {
-    id: 'MuiInputBase|root|base||fontSize',
-    label: 'InputBase · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiInputBase',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.875rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiInputBase|root|base||lineHeight',
-    label: 'InputBase · lineHeight',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiInputBase',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'lineHeight',
-    },
-    values: { high: '1.42857143', medium: undefined, low: undefined },
   },
   {
     id: 'MuiInputLabel|root|fn:1u4zrm||transform',
@@ -3994,13 +3919,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '3px', medium: '4px', low: '5px' },
+    values: { high: '4px', medium: '4px', low: '4px' },
   },
   {
     id: 'MuiList|root|disablePadding=false||paddingBlock',
     label: 'List · paddingBlock [disablePadding=false]',
-    isDensity: true,
-    densityKey: 'medium',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiList',
       slot: 'root',
@@ -4008,11 +3933,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'paddingBlock',
     },
-    values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
-    },
+    values: { high: '8', medium: '8', low: '8' },
   },
   {
     id: 'MuiListItemButton|root|dense=false||paddingBlock',
@@ -4080,7 +4001,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiListItemIcon-root',
       cssProp: 'minWidth',
     },
-    values: { high: '28', medium: '32', low: '40' },
+    values: { high: '32', medium: '32', low: '32' },
   },
   {
     id: 'MuiMenuItem|root|dense=false||minHeight',
@@ -4094,13 +4015,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '36px', medium: '44px', low: '56px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiMenuItem|root|dense=false||paddingBlock',
     label: 'MenuItem · paddingBlock [dense=false]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'xx-small',
     target: {
       component: 'MuiMenuItem',
       slot: 'root',
@@ -4109,9 +4030,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -4126,13 +4047,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '28px', medium: '32px', low: '40px' },
+    values: { high: '28px', medium: '28px', low: '28px' },
   },
   {
     id: 'MuiMenuItem|root|dense=true||paddingBlock',
     label: 'MenuItem · paddingBlock [dense=true]',
     isDensity: true,
-    densityKey: 'x-small',
+    densityKey: 'xx-small',
     target: {
       component: 'MuiMenuItem',
       slot: 'root',
@@ -4141,30 +4062,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--mui-density-x-small)',
+      high: 'var(--mui-density-xx-small)',
       medium: 'var(--mui-density-xx-small)',
       low: 'var(--mui-density-xx-small)',
     },
   },
   {
-    id: 'MuiMenuItem|root|dense=true|& .MuiListItemIcon-root svg|fontSize',
-    label: 'MenuItem · fontSize [dense=true]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiMenuItem',
-      slot: 'root',
-      props: { dense: true },
-      nested: '& .MuiListItemIcon-root svg',
-      cssProp: 'fontSize',
-    },
-    values: { high: '1.125rem', medium: undefined, low: undefined },
-  },
-  {
     id: 'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline',
     label: 'MenuItem · paddingInline [dense=false,disableGutters=false]',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'x-small',
     target: {
       component: 'MuiMenuItem',
       slot: 'root',
@@ -4173,9 +4080,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -4337,9 +4244,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
+      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
     },
   },
   {
@@ -4378,7 +4285,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock',
     label: 'OutlinedInput · --_outlinedInputPadBlock',
     isDensity: true,
-    densityKey: 'medium',
+    densityKey: 'xx-small',
     target: {
       component: 'MuiOutlinedInput',
       slot: 'root',
@@ -4387,9 +4294,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -4459,9 +4366,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-medium))',
+      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
     },
   },
   {
@@ -4494,7 +4401,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '22px', medium: '26px', low: '30px' },
+    values: { high: '26px', medium: '26px', low: '26px' },
   },
   {
     id: 'MuiPaginationItem|root|size=small||paddingInline',
@@ -4526,7 +4433,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '28px', medium: '32px', low: '36px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiPaginationItem|root|size=medium||paddingInline',
@@ -4576,7 +4483,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minWidth',
     },
-    values: { high: '36px', medium: '40px', low: '44px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiPaginationItem|root|size=large||paddingInline',
@@ -4629,7 +4536,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '22px', medium: '26px', low: '30px' },
+    values: { high: '26px', medium: '26px', low: '26px' },
   },
   {
     id: 'MuiPaginationItem|root|fn:1nddmo||height',
@@ -4684,7 +4591,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '28px', medium: '32px', low: '36px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiPaginationItem|root|fn:1dnyyw||height',
@@ -4739,7 +4646,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '36px', medium: '40px', low: '44px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiPaginationItem|root|fn:1tf0li||height',
@@ -5099,7 +5006,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '3px', medium: '4px', low: '5px' },
+    values: { high: '4px', medium: '4px', low: '4px' },
   },
   {
     id: 'MuiSlider|root|orientation=horizontal||paddingBlock',
@@ -5145,7 +5052,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '2px', medium: '2px', low: '3px' },
+    values: { high: '2px', medium: '2px', low: '2px' },
   },
   {
     id: 'MuiSlider|root|orientation=vertical||width',
@@ -5159,7 +5066,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '3px', medium: '4px', low: '5px' },
+    values: { high: '4px', medium: '4px', low: '4px' },
   },
   {
     id: 'MuiSlider|root|orientation=vertical||paddingInline',
@@ -5205,7 +5112,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '2px', medium: '2px', low: '3px' },
+    values: { high: '2px', medium: '2px', low: '2px' },
   },
   {
     id: 'MuiSlider|thumb|base||width',
@@ -5213,7 +5120,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSlider', slot: 'thumb', props: null, nested: '', cssProp: 'width' },
-    values: { high: '16px', medium: '20px', low: '24px' },
+    values: { high: '20px', medium: '20px', low: '20px' },
   },
   {
     id: 'MuiSlider|thumb|base||height',
@@ -5221,7 +5128,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSlider', slot: 'thumb', props: null, nested: '', cssProp: 'height' },
-    values: { high: '16px', medium: '20px', low: '24px' },
+    values: { high: '20px', medium: '20px', low: '20px' },
   },
   {
     id: 'MuiSlider|thumb|size=small||width',
@@ -5235,7 +5142,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '10px', medium: '12px', low: '14px' },
+    values: { high: '12px', medium: '12px', low: '12px' },
   },
   {
     id: 'MuiSlider|thumb|size=small||height',
@@ -5249,7 +5156,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '10px', medium: '12px', low: '14px' },
+    values: { high: '12px', medium: '12px', low: '12px' },
   },
   {
     id: 'MuiSlider|valueLabel|base||padding',
@@ -5336,9 +5243,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-x-small) var(--mui-density-large)',
-      medium: 'var(--mui-density-x-small) var(--mui-density-large)',
-      low: 'var(--mui-density-x-small) var(--mui-density-large)',
+      high: '8px var(--mui-density-large)',
+      medium: '8px var(--mui-density-large)',
+      low: '8px var(--mui-density-large)',
     },
   },
   {
@@ -5376,104 +5283,6 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--mui-density-small)',
       low: 'var(--mui-density-small)',
     },
-  },
-  {
-    id: 'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft',
-    label: 'StepConnector · marginLeft [orientation=vertical,alternativeLabel=false]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepConnector',
-      slot: 'root',
-      props: { orientation: 'vertical', alternativeLabel: false },
-      nested: '',
-      cssProp: 'marginLeft',
-    },
-    values: { high: '9.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight',
-    label: 'StepConnector · marginRight [orientation=vertical,alternativeLabel=true]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepConnector',
-      slot: 'root',
-      props: { orientation: 'vertical', alternativeLabel: true },
-      nested: '',
-      cssProp: 'marginRight',
-    },
-    values: { high: '9.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top',
-    label: 'StepConnector · top [orientation=horizontal,alternativeLabel=true]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepConnector',
-      slot: 'root',
-      props: { orientation: 'horizontal', alternativeLabel: true },
-      nested: '',
-      cssProp: 'top',
-    },
-    values: { high: '9.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepContent|root|alternativeLabel=false||marginLeft',
-    label: 'StepContent · marginLeft [alternativeLabel=false]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepContent',
-      slot: 'root',
-      props: { alternativeLabel: false },
-      nested: '',
-      cssProp: 'marginLeft',
-    },
-    values: { high: '9.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepContent|root|alternativeLabel=false||paddingLeft',
-    label: 'StepContent · paddingLeft [alternativeLabel=false]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepContent',
-      slot: 'root',
-      props: { alternativeLabel: false },
-      nested: '',
-      cssProp: 'paddingLeft',
-    },
-    values: { high: '15.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepContent|root|alternativeLabel=true||marginRight',
-    label: 'StepContent · marginRight [alternativeLabel=true]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepContent',
-      slot: 'root',
-      props: { alternativeLabel: true },
-      nested: '',
-      cssProp: 'marginRight',
-    },
-    values: { high: '9.5px', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiStepContent|root|alternativeLabel=true||paddingRight',
-    label: 'StepContent · paddingRight [alternativeLabel=true]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiStepContent',
-      slot: 'root',
-      props: { alternativeLabel: true },
-      nested: '',
-      cssProp: 'paddingRight',
-    },
-    values: { high: '15.5px', medium: undefined, low: undefined },
   },
   {
     id: 'MuiStepLabel|iconContainer|base||paddingRight',
@@ -5523,7 +5332,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '&.MuiStepLabel-alternativeLabel',
       cssProp: 'marginTop',
     },
-    values: { high: 'var(--mui-density-medium)', medium: undefined, low: undefined },
+    values: {
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
+    },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=small||fontSize',
@@ -5537,7 +5350,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '18px', medium: undefined, low: undefined },
+    values: { high: undefined, medium: '12px', low: undefined },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=medium||fontSize',
@@ -5551,7 +5364,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '20px', medium: undefined, low: undefined },
+    values: { high: undefined, medium: '16px', low: undefined },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=large||fontSize',
@@ -5565,7 +5378,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '30px', medium: undefined, low: undefined },
+    values: { high: undefined, medium: '20px', low: undefined },
   },
   {
     id: 'MuiSwitch|root|base||width',
@@ -5603,7 +5416,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_width',
     },
-    values: { high: '48px', medium: '58px', low: '62px' },
+    values: { high: '58px', medium: '58px', low: '58px' },
   },
   {
     id: 'MuiSwitch|root|size=medium||--_height',
@@ -5617,7 +5430,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '30px', medium: '38px', low: '42px' },
+    values: { high: '38px', medium: '38px', low: '38px' },
   },
   {
     id: 'MuiSwitch|root|size=medium||--_thumbSize',
@@ -5631,7 +5444,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_thumbSize',
     },
-    values: { high: '18px', medium: '20px', low: '22px' },
+    values: { high: '20px', medium: '20px', low: '20px' },
   },
   {
     id: 'MuiSwitch|root|size=medium||--_touchSize',
@@ -5645,7 +5458,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_touchSize',
     },
-    values: { high: '30px', medium: '38px', low: '42px' },
+    values: { high: '38px', medium: '38px', low: '38px' },
   },
   {
     id: 'MuiSwitch|root|size=medium||--_pad',
@@ -5659,7 +5472,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_pad',
     },
-    values: { high: '8px', medium: '12px', low: '13px' },
+    values: { high: '12px', medium: '12px', low: '12px' },
   },
   {
     id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
@@ -5673,7 +5486,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControlLabel-labelPlacementEnd:has(> &)',
       cssProp: 'marginLeft',
     },
-    values: { high: '-8px', medium: '-12px', low: '-13px' },
+    values: { high: '-12px', medium: '-12px', low: '-12px' },
   },
   {
     id: 'MuiSwitch|root|size=medium|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
@@ -5687,7 +5500,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControlLabel-labelPlacementStart:has(> &)',
       cssProp: 'marginRight',
     },
-    values: { high: '-8px', medium: '-12px', low: '-13px' },
+    values: { high: '-12px', medium: '-12px', low: '-12px' },
   },
   {
     id: 'MuiSwitch|root|size=small||--_width',
@@ -5701,7 +5514,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_width',
     },
-    values: { high: '36px', medium: '40px', low: '44px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiSwitch|root|size=small||--_height',
@@ -5715,7 +5528,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_height',
     },
-    values: { high: '20px', medium: '24px', low: '28px' },
+    values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
     id: 'MuiSwitch|root|size=small||--_thumbSize',
@@ -5729,7 +5542,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_thumbSize',
     },
-    values: { high: '14px', medium: '16px', low: '18px' },
+    values: { high: '16px', medium: '16px', low: '16px' },
   },
   {
     id: 'MuiSwitch|root|size=small||--_touchSize',
@@ -5743,7 +5556,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_touchSize',
     },
-    values: { high: '20px', medium: '24px', low: '28px' },
+    values: { high: '24px', medium: '24px', low: '24px' },
   },
   {
     id: 'MuiSwitch|root|size=small||--_pad',
@@ -5757,7 +5570,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_pad',
     },
-    values: { high: '5px', medium: '7px', low: '8px' },
+    values: { high: '7px', medium: '7px', low: '7px' },
   },
   {
     id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft',
@@ -5771,7 +5584,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControlLabel-labelPlacementEnd:has(> &)',
       cssProp: 'marginLeft',
     },
-    values: { high: '-5px', medium: '-7px', low: '-8px' },
+    values: { high: '-7px', medium: '-7px', low: '-7px' },
   },
   {
     id: 'MuiSwitch|root|size=small|.MuiFormControlLabel-labelPlacementStart:has(> &)|marginRight',
@@ -5785,7 +5598,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControlLabel-labelPlacementStart:has(> &)',
       cssProp: 'marginRight',
     },
-    values: { high: '-5px', medium: '-7px', low: '-8px' },
+    values: { high: '-7px', medium: '-7px', low: '-7px' },
   },
   {
     id: 'MuiSwitch|root|size=small|& .MuiSwitch-thumb|width',
@@ -5976,7 +5789,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '40px', medium: '48px', low: '56px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiTab|root|base||paddingBlock',
@@ -5994,7 +5807,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiTab|root|base||paddingInline',
     label: 'Tab · paddingInline',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'small',
     target: {
       component: 'MuiTab',
       slot: 'root',
@@ -6003,26 +5816,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
     },
-  },
-  {
-    id: 'MuiTab|root|base||fontSize',
-    label: 'Tab · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'fontSize' },
-    values: { high: '0.8125rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiTab|root|base||lineHeight',
-    label: 'Tab · lineHeight',
-    isDensity: false,
-    densityKey: null,
-    target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'lineHeight' },
-    values: { high: '1.2', medium: undefined, low: undefined },
   },
   {
     id: 'MuiTab|root|fn:1bbekq||minHeight',
@@ -6036,7 +5833,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '60px', medium: '72px', low: '84px' },
+    values: { high: '72px', medium: '72px', low: '72px' },
   },
   {
     id: 'MuiTab|root|fn:1bbekq||paddingBlock',
@@ -6197,48 +5994,6 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '0', medium: '0', low: '0' },
   },
   {
-    id: 'MuiTableCell|root|fn:1k4u0u||fontSize',
-    label: 'TableCell · fontSize [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTableCell',
-      slot: 'root',
-      props: ({ ownerState }) => ownerState.variant === 'head' || ownerState.variant === 'footer',
-      nested: '',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.8125rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiTableCell|root|fn:1k4u0u||lineHeight',
-    label: 'TableCell · lineHeight [fn]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTableCell',
-      slot: 'root',
-      props: ({ ownerState }) => ownerState.variant === 'head' || ownerState.variant === 'footer',
-      nested: '',
-      cssProp: 'lineHeight',
-    },
-    values: { high: '1.25rem', medium: undefined, low: undefined },
-  },
-  {
-    id: 'MuiTablePagination|root|base||fontSize',
-    label: 'TablePagination · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTablePagination',
-      slot: 'root',
-      props: null,
-      nested: '',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.8125rem', medium: undefined, low: undefined },
-  },
-  {
     id: 'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight',
     label: 'TablePagination · minHeight',
     isDensity: false,
@@ -6250,7 +6005,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '& .MuiTablePagination-toolbar',
       cssProp: 'minHeight',
     },
-    values: { high: '44px', medium: '52px', low: '60px' },
+    values: { high: '52px', medium: '52px', low: '52px' },
   },
   {
     id: 'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight',
@@ -6372,7 +6127,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: '16px', medium: '18px', low: '20px' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiTableSortLabel|icon|base||marginInline',
@@ -6398,7 +6153,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTabs', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '40px', medium: '48px', low: '56px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=horizontal||width',
@@ -6412,7 +6167,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '32px', medium: '40px', low: '48px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=vertical||height',
@@ -6426,7 +6181,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '32px', medium: '40px', low: '48px' },
+    values: { high: '40px', medium: '40px', low: '40px' },
   },
   {
     id: 'MuiToggleButton|root|size=small||padding',
@@ -6486,7 +6241,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiToolbar|root|disableGutters=false||paddingInline',
     label: 'Toolbar · paddingInline [disableGutters=false]',
     isDensity: true,
-    densityKey: 'large',
+    densityKey: 'medium',
     target: {
       component: 'MuiToolbar',
       slot: 'root',
@@ -6495,16 +6250,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
     id: 'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline',
     label: 'Toolbar · paddingInline [disableGutters=false]',
     isDensity: true,
-    densityKey: 'x-large',
+    densityKey: 'medium',
     target: {
       component: 'MuiToolbar',
       slot: 'root',
@@ -6513,9 +6268,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-x-large)',
-      medium: 'var(--mui-density-x-large)',
-      low: 'var(--mui-density-x-large)',
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
     },
   },
   {
@@ -6530,7 +6285,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '40px', medium: '48px', low: '56px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiToolbar|root|variant=regular||minHeight',
@@ -6544,7 +6299,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'minHeight',
     },
-    values: { high: '48px', medium: '56px', low: '64px' },
+    values: { high: '56px', medium: '56px', low: '56px' },
   },
   {
     id: 'MuiToolbar|root|variant=regular|@media (orientation: landscape)|minHeight',
@@ -6558,7 +6313,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '@media (orientation: landscape)',
       cssProp: 'minHeight',
     },
-    values: { high: '40px', medium: '48px', low: '56px' },
+    values: { high: '48px', medium: '48px', low: '48px' },
   },
   {
     id: 'MuiToolbar|root|variant=regular|@media (min-width:600px)|minHeight',
@@ -6572,7 +6327,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '@media (min-width:600px)',
       cssProp: 'minHeight',
     },
-    values: { high: '56px', medium: '64px', low: '72px' },
+    values: { high: '64px', medium: '64px', low: '64px' },
   },
   {
     id: 'MuiTooltip|arrow|base||width',
@@ -6606,7 +6361,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_arrowSize',
     },
-    values: { high: '10px', medium: '11px', low: '14px' },
+    values: { high: '11px', medium: '11px', low: '11px' },
   },
   {
     id: 'MuiTooltip|popper|base|&[data-popper-placement*="bottom"] .MuiTooltip-arrow|marginTop',
@@ -6743,20 +6498,6 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'calc(var(--_arrowSize) * -0.71)',
       low: 'calc(var(--_arrowSize) * -0.71)',
     },
-  },
-  {
-    id: 'MuiTooltip|tooltip|base||fontSize',
-    label: 'Tooltip · tooltip · fontSize',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiTooltip',
-      slot: 'tooltip',
-      props: null,
-      nested: '',
-      cssProp: 'fontSize',
-    },
-    values: { high: '0.625rem', medium: undefined, low: undefined },
   },
   {
     id: 'MuiTooltip|tooltip|base||padding',

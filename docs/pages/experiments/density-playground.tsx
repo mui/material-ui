@@ -642,6 +642,66 @@ function ButtonMatrix() {
               </Stack>
             </Box>
           ))}
+          {/* Design-capture compositions (button.png): dropdown = icon + label
+              + caret (start icon mirrors the capture's iconLeftWrapper AND makes
+              the startIcon half of the icon-fontSize virtual knob visible),
+              split = label segment | caret segment (outlined/contained only —
+              the capture has no text split). Medium size = the capture's single
+              32px touch-target row. */}
+          <Box data-size-section="dropdown">
+            <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+              dropdown
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={10}
+              useFlexGap
+              sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+            >
+              {VARIANTS.map((variant) => (
+                <Button
+                  key={variant}
+                  variant={variant}
+                  size="medium"
+                  color="primary"
+                  startIcon={<CheckIcon />}
+                  endIcon={<ExpandMoreIcon />}
+                  data-cell={`dropdown-${variant}`}
+                >
+                  <span className="density-debug-text">{variant}</span>
+                </Button>
+              ))}
+            </Stack>
+          </Box>
+          <Box data-size-section="split">
+            <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+              split
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={10}
+              useFlexGap
+              sx={{ alignItems: 'center', flexWrap: 'wrap' }}
+            >
+              {(['outlined', 'contained'] as const).map((variant) => (
+                <ButtonGroup
+                  key={variant}
+                  variant={variant}
+                  color="primary"
+                  size="medium"
+                  aria-label={`${variant} split button`}
+                  data-cell={`split-${variant}`}
+                >
+                  <Button>
+                    <span className="density-debug-text">{variant}</span>
+                  </Button>
+                  <Button aria-label="open menu">
+                    <ExpandMoreIcon />
+                  </Button>
+                </ButtonGroup>
+              ))}
+            </Stack>
+          </Box>
         </Stack>
       </Box>
       <Box data-component-section="IconButton">
@@ -3183,7 +3243,7 @@ const COMPONENT_DEFS = {
     Matrix: React.memo(SelectMatrix),
   },
   SvgIcon: {
-    canvasLabel: 'SvgIcon — global size per fontSize variant (high-only emission)',
+    canvasLabel: 'SvgIcon — global size per fontSize variant (medium-only emission)',
     Matrix: React.memo(SvgIconMatrix),
   },
   Alert: {
@@ -3253,7 +3313,7 @@ function buildKnobEntries(group: (typeof densityGroups)[number]): KnobEntry[] {
   }
   for (const knob of virtualKnobsByGroup(group.key)) {
     const row = densityRow(knob.members[0]);
-    const slot = row ? row.target.slot : 'root';
+    const slot = knob.slot ?? (row ? row.target.slot : 'root');
     const rawComponent = row ? row.target.component : `Mui${group.key}`;
     entries.push({
       key: knob.id,
@@ -3345,6 +3405,9 @@ const familyReadIds = new Map(
 // class of their own (defaultProps → the boxes those props size) or future
 // convention misses.
 const SLOT_HIGHLIGHT_SELECTORS: Record<string, string> = {
+  // Synthetic `icon` slot (virtual:MuiButton:iconFontSize) — one knob drives
+  // both real icon slots, so the spotlight covers both.
+  'Button|icon': '.MuiButton-startIcon, .MuiButton-endIcon',
   'DataGrid|defaultProps': '.MuiDataGrid-row, .MuiDataGrid-columnHeader',
   // Upstream never applies these utility classes (emptyText: styled slot rendered
   // with no className; quickFilterControl: a later className spread wins) — only
@@ -4303,18 +4366,29 @@ export default function DensityExperiment() {
                           // Same placeholder/helper rules as the mapping knobs:
                           // placeholder = what you'd type (vars shortened, blank when
                           // no default); helper = the resolved value of draft-or-default.
-                          // A value equal to base is inherited, not preset-emitted →
-                          // blank (e.g. low touches only `button`, so h1…h6 stay blank).
                           // theme.spacing is a function → can't be read off the
                           // theme as a number; its default is the per-preset base.
                           const isSpacing = knob.id === 'spacing';
                           const emitted = isSpacing
                             ? String(PRESET_SPACING_DEFAULT[preset as PresetLevel])
                             : readThemeToken(presetTheme, knob.path);
-                          // A value equal to base is inherited, not preset-emitted →
-                          // blank (spacing always shows its per-preset default).
+                          // Typography authorship comes from the preset's own patch
+                          // record (theme.densityTypography): a preset value equal to
+                          // the MUI default still shows — blank means "the preset
+                          // never writes this" (a coverage gap to spec), not "the
+                          // value happens to equal the default". Non-typography
+                          // domains keep the value-diff heuristic; spacing always
+                          // shows its per-preset default.
+                          const typoPatch = (
+                            presetTheme as {
+                              densityTypography?: Record<string, Record<string, unknown>>;
+                            }
+                          ).densityTypography;
                           const inherited =
-                            !isSpacing && emitted === readThemeToken(baseTheme, knob.path);
+                            !isSpacing &&
+                            (knob.path[0] === 'typography' && typoPatch
+                              ? typoPatch[knob.path[1]]?.[knob.path[2]] == null
+                              : emitted === readThemeToken(baseTheme, knob.path));
                           const canon = inherited ? '' : emitted;
                           return (
                             <KnobInput

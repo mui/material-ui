@@ -23,8 +23,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiAccordionDetails|root|base||paddingBlockStart': 'AccordionDetails · paddingBlockStart',
   'MuiAccordionDetails|root|base||paddingBlockEnd': 'AccordionDetails · paddingBlockEnd',
   'MuiAccordionDetails|root|base||paddingInline': 'AccordionDetails · paddingInline',
-  'MuiAccordionDetails|root|base||fontSize': 'AccordionDetails · fontSize',
-  'MuiAccordionDetails|root|base||lineHeight': 'AccordionDetails · lineHeight',
   'MuiAccordionSummary|content|base||marginBlock': 'AccordionSummary · content · marginBlock',
   'MuiAccordionSummary|content|fn:ya70cs|&.Mui-expanded|marginBlock':
     'AccordionSummary · content · marginBlock (expanded)',
@@ -49,8 +47,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': 'Option block padding',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': 'Option inline padding',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|fontSize': 'Option font size',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|lineHeight': 'Option line height',
   'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock':
     'Autocomplete · Input root paddingBlock',
   'MuiAutocomplete|root|base||--_autocompleteInputPadBlock':
@@ -104,6 +100,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
+  'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize':
+    'Button · endIcon · fontSize [size=medium]',
   'MuiButton|root|size=small||paddingBlock': 'Button · paddingBlock [size=small]',
   'MuiButton|root|size=small||paddingInline': 'Button · paddingInline [size=small]',
   'MuiButton|root|size=small,variant=outlined||paddingBlock': {
@@ -122,6 +120,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Button · paddingBlock [size=large, outlined]',
     note: 'Linked write: follows the size=large paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
   },
+  'MuiButton|root|size=medium||minHeight': 'Button · minHeight [size=medium]',
+  'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize':
+    'Button · startIcon · fontSize [size=medium]',
   'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · button minWidth',
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
@@ -243,12 +244,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · chartsPanelDataAvailableFields · minHeight',
     note: '[Premium] mirrors pivotPanelAvailableFields — values never fork.',
   },
-  'MuiDataGrid|chartsPanelDataField|base||height': {
-    label: 'DataGrid · chartsPanelDataField · height',
-    note: '[Premium] mirrors pivotPanelField — values never fork.',
-  },
   'MuiDataGrid|chartsPanelDataField|base||marginInlineStart': {
     label: 'DataGrid · chartsPanelDataField · marginInlineStart',
+    note: '[Premium] mirrors pivotPanelField — values never fork.',
+  },
+  'MuiDataGrid|chartsPanelDataField|base||height': {
+    label: 'DataGrid · chartsPanelDataField · height',
     note: '[Premium] mirrors pivotPanelField — values never fork.',
   },
   'MuiDataGrid|chartsPanelDataPlaceholder|base||minHeight': {
@@ -301,12 +302,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiDataGrid|filterFormOperatorInput|base||width': 'DataGrid · filterFormOperatorInput · width',
   'MuiDataGrid|filterFormValueInput|base||width': 'DataGrid · filterFormValueInput · width',
   'MuiDataGrid|footerContainer|base||minHeight': 'DataGrid · footerContainer · minHeight',
+  'MuiDataGrid|groupingCriteriaCellToggle|base||marginRight':
+    'DataGrid · groupingCriteriaCellToggle · marginRight',
   'MuiDataGrid|groupingCriteriaCellToggle|base||flexBasis': {
     label: 'DataGrid · groupingCriteriaCellToggle · flexBasis',
     note: '[Premium] group-toggle gutter width (master 28px).',
   },
-  'MuiDataGrid|groupingCriteriaCellToggle|base||marginRight':
-    'DataGrid · groupingCriteriaCellToggle · marginRight',
   'MuiDataGrid|menu|base|& .MuiDataGrid-menuList|minWidth': {
     label: 'DataGrid · menuList · minWidth',
     note: 'Nested under the menu popup slot — the list is slot:internal and the menu portals outside the root. Opens on interaction only; verify via computed styles.',
@@ -325,11 +326,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'DataGrid · pivotPanelAvailableFields · minHeight',
     note: '⚑ [Premium] drop zone — straw-man, coupled to the field-row height (master 84).',
   },
-  'MuiDataGrid|pivotPanelField|base||height': 'DataGrid · pivotPanelField · height',
   'MuiDataGrid|pivotPanelField|base||marginInlineStart': {
     label: 'DataGrid · pivotPanelField · marginInlineStart',
     note: '[Premium] pulls the row off the sidebar edge so the hover drag handle (absolutely pinned to the row edge) gets space. No upstream margin.',
   },
+  'MuiDataGrid|pivotPanelField|base||height': 'DataGrid · pivotPanelField · height',
   'MuiDataGrid|pivotPanelHeader|base||height': {
     label: 'DataGrid · pivotPanelHeader · height',
     note: '[Premium] same 44/52/60 rhythm as toolbar/footer (master 52).',
@@ -367,21 +368,21 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiDataGrid|sidebar|base||width': 'DataGrid · sidebar · width',
   'MuiDataGrid|sidebar|base||minWidth': 'DataGrid · sidebar · minWidth',
   'MuiDataGrid|sidebar|base||maxWidth': 'DataGrid · sidebar · maxWidth',
-  'MuiDataGrid|toolbar|base||minHeight': 'DataGrid · toolbar · minHeight',
   'MuiDataGrid|toolbar|base||padding': 'DataGrid · toolbar · padding',
   'MuiDataGrid|toolbar|base||gap': 'DataGrid · toolbar · gap',
+  'MuiDataGrid|toolbar|base||minHeight': 'DataGrid · toolbar · minHeight',
   'MuiDataGrid|toolbarDivider|base||marginInline': 'DataGrid · toolbarDivider · marginInline',
   'MuiDataGrid|toolbarLabel|base||marginInline': 'DataGrid · toolbarLabel · marginInline',
   'MuiDataGrid|toolbarQuickFilterControl|expanded=true||width': {
     label: 'DataGrid · quick filter · width [expanded]',
     note: 'Variants matcher — the expanded state has no DOM hook; collapsed keeps var(--trigger-width). Master 260.',
   },
+  'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight':
+    'DataGrid · treeDataGroupingCellToggle · marginRight',
   'MuiDataGrid|treeDataGroupingCellToggle|base||flexBasis': {
     label: 'DataGrid · treeDataGroupingCellToggle · flexBasis',
     note: '[Pro] tree-data toggle gutter width (master 28px).',
   },
-  'MuiDataGrid|treeDataGroupingCellToggle|base||marginRight':
-    'DataGrid · treeDataGroupingCellToggle · marginRight',
   'MuiDateCalendar|root|base||height': {
     label: 'DateCalendar · height',
     note: "Raw per-preset (folds header + weekday + 6-week math at this preset's values); day-size knob edits do not reflow it — adjust to match.",
@@ -695,11 +696,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Cascade base for the standard variant — the per-variant pad var knobs (Input/OutlinedInput/FilledInput) own the value.',
   },
-  'MuiInputBase|input|base||height': {
-    label: 'InputBase · input · height',
-    hiddenIn: ['Select'],
-    note: 'TextField-only sizing — Select renders its value through the select slot, so hidden there.',
-  },
   'MuiInputBase|input|size=small||paddingTop': {
     label: 'InputBase · input · paddingTop [size=small]',
     hidden: true,
@@ -710,8 +706,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
-  'MuiInputBase|root|base||fontSize': 'InputBase · fontSize',
-  'MuiInputBase|root|base||lineHeight': 'InputBase · lineHeight',
   'MuiInputLabel|root|fn:1u4zrm||transform': {
     label: 'InputLabel · transform [fn]',
     hidden: true,
@@ -761,8 +755,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
   'MuiMenuItem|root|dense=true||paddingBlock': 'block padding [dense]',
-  'MuiMenuItem|root|dense=true|& .MuiListItemIcon-root svg|fontSize':
-    'MenuItem · icon font size [dense]',
   'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline':
     'inline padding [disableGutters]',
   'MuiMenuItem|root|dense=true,disableGutters=false||paddingInline':
@@ -962,18 +954,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'Step · paddingLeft [first, horizontal]',
   'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
     'Step · paddingRight [last, horizontal]',
-  'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft':
-    'StepConnector · marginLeft [vertical]',
-  'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight':
-    'StepConnector · marginRight [vertical, alternativeLabel]',
-  'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top':
-    'StepConnector · top [alternativeLabel, horizontal]',
-  'MuiStepContent|root|alternativeLabel=false||marginLeft': 'StepContent · marginLeft',
-  'MuiStepContent|root|alternativeLabel=false||paddingLeft': 'StepContent · paddingLeft',
-  'MuiStepContent|root|alternativeLabel=true||marginRight':
-    'StepContent · marginRight [alternativeLabel=true]',
-  'MuiStepContent|root|alternativeLabel=true||paddingRight':
-    'StepContent · paddingRight [alternativeLabel=true]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
   'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft':
     'StepLabel · iconContainer · paddingLeft [vertical alternativeLabel]',
@@ -1082,8 +1062,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiTab|root|base||paddingBlock': 'Tab block padding',
   'MuiTab|root|base||paddingInline': 'Tab inline padding',
-  'MuiTab|root|base||fontSize': 'Tab · fontSize',
-  'MuiTab|root|base||lineHeight': 'Tab · lineHeight',
   'MuiTab|root|fn:1bbekq||minHeight': {
     label: 'Icon+label min height',
     hidden: true,
@@ -1102,9 +1080,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Frozen 0 re-assert so the size padding never leaks into padding="none" cells — not tunable.',
   },
-  'MuiTableCell|root|fn:1k4u0u||fontSize': 'TableCell · fontSize [variant=head or footer]',
-  'MuiTableCell|root|fn:1k4u0u||lineHeight': 'TableCell · lineHeight [variant=head or footer]',
-  'MuiTablePagination|root|base||fontSize': 'TablePagination · fontSize',
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|minHeight':
     'TablePagination · toolbar minHeight',
   'MuiTablePagination|root|base|& .MuiTablePagination-toolbar|paddingRight':
@@ -1196,7 +1171,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Arrow geometry derives from the popper-slot --_arrowSize var — the var row is the knob.',
   },
-  'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
   'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':
     'Tooltip · tooltip · marginInlineEnd',

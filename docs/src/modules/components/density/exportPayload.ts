@@ -29,13 +29,23 @@ type Level = keyof typeof PRESET_FN;
 
 export type MappingByPreset = Record<Level, Record<string, string>>;
 
-// The preset's own theme.typography patch: every primitive that differs from the
-// base theme (high's type reflow; empty for medium/low today).
+// The preset's own theme.typography patch. Authorship-first: presets record
+// what they write on `theme.densityTypography`, and every recorded prop exports
+// even when its value equals the MUI default — it's spec'd, and the export
+// survives upstream default drift. Value-diff fallback for themes without the
+// record (e.g. `unset`).
 function typographyPatch(
   base: Record<string, any>,
   enhanced: Record<string, any>,
+  recorded?: Record<string, Record<string, string | number>>,
 ): ExportPresetPayload['typography'] {
   const patch: ExportPresetPayload['typography'] = {};
+  if (recorded) {
+    for (const [variant, styles] of Object.entries(recorded)) {
+      patch[variant] = { ...styles };
+    }
+    return patch;
+  }
   for (const [variant, styles] of Object.entries(enhanced)) {
     if (!styles || typeof styles !== 'object') {
       continue;
@@ -90,6 +100,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
       density: Record<string, string>;
       components: Record<string, any>;
       typography: Record<string, any>;
+      densityTypography?: Record<string, Record<string, string | number>>;
     };
     const presetComponents = enhanced.components ?? {};
     // This preset's user token edits: typography variants layer over the preset's
@@ -98,6 +109,7 @@ export function buildExportInput(mappingByPreset: MappingByPreset): ExportInput 
     const typography: ExportPresetPayload['typography'] = typographyPatch(
       base.typography as Record<string, any>,
       enhanced.typography,
+      enhanced.densityTypography,
     );
     const shape: ExportPresetPayload['shape'] = {};
     // theme.spacing base — the preset default (high tightens to 6), overridable

@@ -69,10 +69,10 @@ const slotRow = (
 });
 
 export const densityExtraRows: DensityExtraRow[] = [
-  radiusRowSized('MuiButton', 'root', 'Button', 'small'),
-  radiusRowSized('MuiButton', 'root', 'Button', 'medium'),
-  radiusRowSized('MuiButton', 'root', 'Button', 'large'),
-  radiusRow('MuiTooltip', 'tooltip', 'Tooltip'),
+  // radiusRowSized('MuiButton', 'root', 'Button', 'small'),
+  // radiusRowSized('MuiButton', 'root', 'Button', 'medium'),
+  // radiusRowSized('MuiButton', 'root', 'Button', 'large'),
+  // radiusRow('MuiTooltip', 'tooltip', 'Tooltip'),
   slotRow('MuiAlert', 'icon', 'fontSize', 'Alert · icon · fontSize'),
   slotRow('MuiAlert', 'message', 'paddingBlock', 'Alert · message · paddingBlock'),
   slotRow('MuiAlert', 'message', 'fontSize', 'Alert · message · fontSize'),
@@ -589,6 +589,14 @@ export interface DensityVirtualKnob {
   group: string;
   /** field ids this input writes to; all get the same value. */
   members: string[];
+  /**
+   * Display slot the sidebar nests the knob under (and highlights via its
+   * `Component|slot` key). Defaults to the first member's slot — set it when the
+   * members span slots and neither name fits (e.g. startIcon+endIcon → `icon`);
+   * a synthetic name has no `Mui<Component>-<slot>` class, so it needs a
+   * `SLOT_HIGHLIGHT_SELECTORS` entry in the playground.
+   */
+  slot?: string;
 }
 
 /**
@@ -656,6 +664,18 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     label: 'Avatar · size',
     group: 'Avatar',
     members: ['MuiAvatar|root|base||width', 'MuiAvatar|root|base||height'],
+  },
+  // Both icon slots share master's `& > *:nth-of-type(1)` fontSize seam — one
+  // glyph size, one knob, surfaced under a synthetic `icon` slot.
+  {
+    id: 'virtual:MuiButton:iconFontSize',
+    label: 'Button · icon · fontSize [size=medium]',
+    group: 'Button',
+    slot: 'icon',
+    members: [
+      'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize',
+      'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize',
+    ],
   },
   {
     id: 'virtual:MuiStepper:gap',
