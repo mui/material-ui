@@ -70,6 +70,12 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
     },
     'endIcon',
   );
+  // IconButton minimum size: semantic/size/touch-target/default (32px) — the
+  // capture's 32×32 buttonContainer. Raw px (sizing policy); medium-only. Both
+  // axes driven by ONE virtual knob (`virtual:MuiIconButton:minSize`).
+  addRootOverride(enhanced.components, 'MuiIconButton', {
+    variants: [{ props: { size: 'medium' }, style: { minWidth: '32px', minHeight: '32px' } }],
+  });
   // Medium-only: global icon size per fontSize variant (master: 20/24/35px).
   // High/low emit nothing — icons keep master sizes there. Raw px (sizing policy).
   addRootOverride(enhanced.components, 'MuiSvgIcon', {

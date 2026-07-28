@@ -611,6 +611,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
   'MuiIconButton|root|size=medium||padding': 'IconButton · padding [size=medium]',
   'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
+  'MuiIconButton|root|size=medium||minWidth': 'IconButton · minWidth [size=medium]',
+  'MuiIconButton|root|size=medium||minHeight': 'IconButton · minHeight [size=medium]',
   'MuiInput|input|base||paddingTop': {
     label: 'Input · input · paddingTop',
     hidden: true,

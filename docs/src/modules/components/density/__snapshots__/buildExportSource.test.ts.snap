@@ -2587,6 +2587,19 @@ const medium = {
               },
             ],
           },
+          {
+            variants: [
+              {
+                props: {
+                  size: 'medium',
+                },
+                style: {
+                  minWidth: '32px',
+                  minHeight: '32px',
+                },
+              },
+            ],
+          },
         ],
       },
     },

@@ -665,6 +665,16 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Avatar',
     members: ['MuiAvatar|root|base||width', 'MuiAvatar|root|base||height'],
   },
+  // Touch-target floor on both axes — one knob (the Avatar-size pattern).
+  {
+    id: 'virtual:MuiIconButton:minSize',
+    label: 'IconButton · minimum size [size=medium]',
+    group: 'Button',
+    members: [
+      'MuiIconButton|root|size=medium||minWidth',
+      'MuiIconButton|root|size=medium||minHeight',
+    ],
+  },
   // Both icon slots share master's `& > *:nth-of-type(1)` fontSize seam — one
   // glyph size, one knob, surfaced under a synthetic `icon` slot.
   {
