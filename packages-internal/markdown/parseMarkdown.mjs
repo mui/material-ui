@@ -264,20 +264,14 @@ const noSEOadvantage = [
   'https://m2.material.io/',
   'https://m3.material.io/',
   'https://material.io/',
-  'https://getbootstrap.com/',
-  'https://icons.getbootstrap.com/',
+  'https://themes.getbootstrap.com/',
   'https://pictogrammers.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
   'https://heroicons.com/',
   'https://react-icons.github.io/',
   'https://fontawesome.com/',
-  'https://react-spectrum.adobe.com/',
-  'https://headlessui.com/',
-  'https://refine.dev/',
-  'https://scaffoldhub.io/',
   'https://marmelab.com/',
-  'https://framesxdesign.com/',
 ];
 
 /**
@@ -436,7 +430,7 @@ function createRender(context) {
         '<button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">',
         '<span class="MuiCode-copy-label">Copy</span>',
         '<span class="MuiCode-copied-label">Copied</span>',
-        '<span class="MuiCode-copyKeypress"><span>(or</span> $keyC<span>)</span></span></button></div>',
+        '<span class="MuiCode-copyKeypress"><span>(or</span> <span class="MuiCode-copyKeypressKey" role="img" aria-label="Ctrl or CMD"></span>C<span>)</span></span></button></div>',
       ].join('')}\n`;
     };
 

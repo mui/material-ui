@@ -13,6 +13,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 import useSlot from '../utils/useSlot';
+import { getTransitionStyles } from '../transitions/utils';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, position } = ownerState;
@@ -96,7 +97,7 @@ const MobileStepperDot = styled('div', {
       {
         props: { variant: 'dots' },
         style: {
-          transition: theme.transitions.create('background-color', {
+          ...getTransitionStyles(theme, 'background-color', {
             duration: theme.transitions.duration.shortest,
           }),
           backgroundColor: (theme.vars || theme).palette.action.disabled,

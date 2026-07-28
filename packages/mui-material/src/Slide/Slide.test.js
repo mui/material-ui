@@ -72,6 +72,18 @@ describe('<Slide />', () => {
         },
       },
     },
+    reducedMotion: {
+      assertReducedTiming: (node) => {
+        if (isJsdom()) {
+          expect(node.style.transition).to.include('0ms');
+        } else {
+          expect(node.style.transitionDuration).to.equal('0ms');
+        }
+      },
+      testReflow: true,
+      testOptOut: true,
+      testNoDomPropLeak: true,
+    },
   }));
 
   it('should not override children styles', () => {

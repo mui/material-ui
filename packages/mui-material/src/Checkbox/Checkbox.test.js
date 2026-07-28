@@ -254,4 +254,34 @@ describe('<Checkbox />', () => {
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
   });
+
+  it('should respect a global disableRipple from MuiButtonBase defaultProps', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  it('should let an explicit disableRipple={false} override a global disableRipple', async () => {
+    const theme = createTheme({
+      components: { MuiButtonBase: { defaultProps: { disableRipple: true } } },
+    });
+    render(
+      <ThemeProvider theme={theme}>
+        <Checkbox disableRipple={false} TouchRippleProps={{ className: 'touch-ripple' }} />
+      </ThemeProvider>,
+    );
+
+    const checkbox = screen.getByRole('checkbox').parentElement;
+    await ripple.startTouch(checkbox);
+    expect(checkbox.querySelector('.touch-ripple')).not.to.equal(null);
+  });
 });

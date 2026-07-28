@@ -142,6 +142,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `selectOnFocus` to help the user clear the selected value.
 - `clearOnBlur` to help the user enter a new value.
 - `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
+- `resetHighlightOnMouseLeave` to clear mouse-created highlights when the pointer leaves the popup.
 - A last option, for instance: `Add "YOUR SEARCH"`.
 
 {{"demo": "FreeSoloCreateOption.js"}}

@@ -33,7 +33,7 @@ import {
   MaterialVsCustomToggle,
 } from '@mui/internal-core-docs/AppLayout';
 import { ShowcaseCodeWrapper } from 'docs/src/components/home/ShowcaseContainer';
-import { customTheme } from 'docs/src/components/home/MaterialDesignComponents';
+import { customTheme, defaultTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import { HighlightedCode } from '@mui/internal-core-docs/HighlightedCode';
 import { ROUTES } from '@mui/internal-core-docs/constants';
 
@@ -143,7 +143,7 @@ export default function MaterialComponents() {
         <Grid size={{ xs: 12, md: 6 }}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo className="mui-default-theme" sx={{ flexGrow: 1 }}>
-              <CssVarsProvider theme={customized ? customTheme : undefined}>
+              <CssVarsProvider theme={customized ? customTheme : defaultTheme}>
                 {demo === 'Button' && (
                   <Box
                     sx={{

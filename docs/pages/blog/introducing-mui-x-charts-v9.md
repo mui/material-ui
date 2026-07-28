@@ -17,7 +17,7 @@ hideFromHomeList: true
   }
 </style>
 
-In v9, we continued the same story you saw accelerate in v8: better default micro interactions and better default accessibility, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
+In v9, the v8 direction continues: better default micro-interactions and accessibility, a composition model centered on `Charts*` primitives and `ChartsLayerContainer`, and steadier Pro and Premium surfaces for dense and analytical charts.
 
 For line‑item changes, follow the [MUI X releases](https://github.com/mui/mui-x/releases) timeline.
 
@@ -44,7 +44,7 @@ See the [Charts](/x/react-charts/) overview for APIs and examples.
 
 ## Composition, naming, and breaking cleanup
 
-v9 is packed with changes to align components prefixes. Previously a mix of `Chart*` and `Charts*` prefixes were used. Now you should expect `Charts*` to be the only prefix left.
+v9 is packed with changes to align component prefixes. Previously, a mix of `Chart*` and `Charts*` prefixes were used. Now you should expect `Charts*` to be the only prefix left.
 
 Line charts adopt `preferStrictDomainInLineCharts` as the default; if you relied on the previous auto‑domain behavior, confirm axis ranges after upgrading.
 
@@ -55,7 +55,7 @@ For composition patterns and layering, see [Charts composition](/x/react-charts/
 ## Candlestick [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 [Candlestick charts](/x/react-charts/candlestick/) visualize OHLC (open, high, low, close) series over time, the familiar shape for equities, FX, and other interval‑based price data.
-The chart is build on top of WebGL to insure high performance.
+The chart is built on top of WebGL to ensure high performance.
 Candlestick and other advanced Charts preview features are available under the Premium plan.
 
 The feature is still in preview: visuals, APIs, and defaults may change in upcoming minors as we harden exports, interaction, and composition with WebGL layering alongside line or bar siblings.
@@ -82,7 +82,7 @@ The feature is still in preview: visuals, APIs, and defaults may change in upcom
 
 [Range bar charts](/x/react-charts/range-bar/) show the span between a minimum and a maximum for each category: weather bands, phase lengths on a roadmap, SLA windows, or any "from-to" reading where a single stacked bar does not tell the whole story.
 
-They sit on the Premium side of the line‑up and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
+They sit on the Premium side of the lineup and follow the same `Charts*` composition model as the rest of v9, including keyboard and tooltip behavior consistent with other bar‑family charts.
 
 <figure>
   <video
@@ -110,7 +110,7 @@ Breaking changes, codemods, and checklist items for moving to v9 are centralized
 
 On the commercial plan, expect continued polish on candlestick and other advanced charts. We'll keep pushing to deliver WebGL‑backed chart types where you need to render very large datasets without sacrificing responsiveness.
 
-We also want Charts to ride the same Base UI wave as Material UI: clearer composition, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
+We also want Charts to follow the same Base UI direction as Material UI: clearer composition, and styling hooks that do not require reverse‑engineering private markup. That is exploratory for now; expect it to show up in v9 minors as the shared patterns and documentation settle.
 
 Follow all updates in the [Charts](/x/react-charts/) documentation.
 

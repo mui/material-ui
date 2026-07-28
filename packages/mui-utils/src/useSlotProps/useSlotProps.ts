@@ -28,9 +28,7 @@ export type UseSlotPropsParameters<
    * The `slotProps.*` of the Base UI component.
    */
   externalSlotProps:
-    | ExternalSlotProps
-    | ((ownerState: OwnerState) => ExternalSlotProps)
-    | undefined;
+    ExternalSlotProps | ((ownerState: OwnerState) => ExternalSlotProps) | undefined;
   /**
    * The ownerState of the Base UI component.
    */

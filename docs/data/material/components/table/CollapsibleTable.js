@@ -43,7 +43,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > .MuiTableCell-root': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"

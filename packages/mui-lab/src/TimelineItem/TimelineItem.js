@@ -38,6 +38,11 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
+  [`&:not(:has(.${timelineOppositeContentClasses.root}))::before`]: {
+    content: '""',
+    flex: 1,
+    padding: '6px 16px',
+  },
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
@@ -50,13 +55,6 @@ const TimelineItemRoot = styled('li', {
       [`& .${timelineOppositeContentClasses.root}`]: {
         textAlign: 'left',
       },
-    },
-  }),
-  ...(!ownerState.hasOppositeContent && {
-    '&::before': {
-      content: '""',
-      flex: 1,
-      padding: '6px 16px',
     },
   }),
 }));

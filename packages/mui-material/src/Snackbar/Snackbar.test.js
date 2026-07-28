@@ -18,7 +18,7 @@ describe('<Snackbar />', () => {
    * `plainRender` is already wrapped in act().
    * However, React has a bug that flushes effects in a portal synchronously.
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
-   * React bug: https://github.com/facebook/react/issues/20074
+   * React bug: https://github.com/react/react/issues/20074
    */
   function render(...args) {
     // eslint-disable-next-line testing-library/render-result-naming-convention
@@ -174,6 +174,36 @@ describe('<Snackbar />', () => {
 
       expect(onClose.callCount).to.equal(messageCount);
       expect(onExited.callCount).to.equal(messageCount);
+    });
+  });
+
+  describe('reduced motion', () => {
+    it('still opens through transition slot props when reduced motion is always', () => {
+      const handleEnter = spy();
+      const theme = createTheme({
+        motion: {
+          reducedMotion: 'always',
+        },
+      });
+
+      function Test(props) {
+        return (
+          <ThemeProvider theme={theme}>
+            <Snackbar
+              message="message"
+              slotProps={{ transition: { onEnter: handleEnter } }}
+              {...props}
+            />
+          </ThemeProvider>
+        );
+      }
+
+      const { setProps } = render(<Test open={false} />);
+
+      setProps({ open: true });
+
+      expect(handleEnter.callCount).to.be.greaterThan(0);
+      expect(screen.getByText('message')).not.to.equal(null);
     });
   });
 
