@@ -126,7 +126,25 @@ The agreed rules for the shape, replacing a global flat-vs-compound choice with 
 - Structural/plumbing parts (Portal, Positioner, Popup, Paper, List) are bundled into a flat container component and exposed via `slots`/`slotProps` -- they exist for wiring, not day-to-day composition.
 - Customization-heavy parts stay standalone components (`MenuItem`-like parts, submenu triggers, checkbox/radio items) -- they need per-instance children and props and cannot be buried in a container.
 
-Hard precondition before the design is finalized: a behavior benchmark diffing the Material UI Menu against the Base UI Menu from the user's perspective (open/close semantics, focus behavior, keyboard model, dismissal, positioning defaults). The benchmark gates the design -- how close to drop-in the successor API can be -- not the positioning, which is decided above.
+Hard precondition before the design is finalized: a behavior benchmark diffing the Material UI Menu against the Base UI Menu from the user's perspective. This has now run -- it is executable, lives next to the component as `Menu2Benchmark.test.tsx`, and every row below is an assertion in real Chromium rather than a reading of the source. The benchmark gates the design -- how close to drop-in the successor API can be -- not the positioning, which is decided above.
+
+#### Benchmark results
+
+| Dimension                                 | Classic `Menu`                                                                 | Successor                                                           | Verdict                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------------------------- |
+| Opening from the trigger                  | no trigger part; the consumer wires `onClick` by hand                          | `Trigger` opens on click and on ArrowDown                           | successor adds behavior                            |
+| Focus after opening                       | moves onto the selected item (`variant="selectedMenu"` is the classic default) | lands on the popup; nothing is highlighted until the user navigates | **divergence**                                     |
+| Disabled items during keyboard navigation | skipped entirely                                                               | focusable, per the WAI-ARIA menu pattern                            | **divergence** (successor is the more correct one) |
+| Escape                                    | closes and restores focus to the trigger                                       | same                                                                | parity                                             |
+| Tab while open                            | menu stays open (focus is trapped)                                             | menu closes                                                         | **divergence**                                     |
+| Body scrolling while open                 | locked                                                                         | locked                                                              | parity                                             |
+| Backdrop element                          | rendered                                                                       | none; dismissal uses an outside-press listener                      | **divergence**                                     |
+| Sibling content while open                | marked `aria-hidden`                                                           | left in the accessibility tree                                      | **divergence** (successor is the more correct one) |
+| Default placement                         | surface overlays the trigger                                                   | surface sits below the trigger (`side="bottom"`)                    | **divergence**                                     |
+
+Reading: the successor is not drop-in, and the gaps are behavioral rather than cosmetic -- they cannot be closed by prop naming alone. Three of them are deliberate Base UI decisions the RFC should ratify rather than re-tune (disabled items stay focusable, sibling content stays in the accessibility tree, no backdrop), one is a straightforward default to align if we want continuity (placement), and two need an explicit decision because they change muscle memory: initial focus and Tab handling. `variant="selectedMenu"` is the sharpest of these -- it is already slated for removal on a11y grounds, and the benchmark shows it is also what makes classic focus behavior look different out of the box.
+
+Consequence for the API shape: a flat container can reproduce the classic _surface_ (props, slots, theming) but not the classic _behavior_, so the migration story has to be "same component, new interaction model" rather than "drop-in replacement". That argues for keeping the successor under its own name through a full major, which is what the lifecycle above already does.
 
 Illustrative sketch only (the container boundaries and the submenu shape are exactly what the design phase must settle; the experiment's fully compound API is the reference input at the other end of the spectrum):
 
@@ -215,7 +233,7 @@ Remaining:
 
 ### Rollout plan
 
-1. Behavior benchmark (hard precondition): diff Material UI Menu vs Base UI Menu from the user's perspective; publish the results in this RFC to set how close to drop-in the API can be. Include the structure-sensitive cases the experiment surfaced: parent-menu layout stability while submenus open and close, and height-constrained menus near the viewport edge.
+1. Behavior benchmark (hard precondition): **done** -- the classic Menu and the successor are diffed by an executable benchmark (`Menu2Benchmark.test.tsx`), and the results are in the API shape section above. Structure-sensitive cases found along the way (parent-menu layout stability while submenus open, height-constrained menus near the viewport edge) are pinned by their own regression tests.
 2. Design phase for the API shape under the rules above (container boundaries, submenu shape), validated in the companion experiment -- each open question resolved against a deploy preview rather than in the abstract.
 3. Land `Unstable_Menu2` in a v9 minor: conformance + legacy behavior suites with annotated skips, API reference docs, and a docs section on the Menu page (submenu, checkbox/radio, context-menu demos).
 4. Iterate on feedback; stabilize as `Menu2` once the graduation checklist passes (conformance minus documented skips, theme-registration parity, pinned `data-*` boundary, design sign-off).
