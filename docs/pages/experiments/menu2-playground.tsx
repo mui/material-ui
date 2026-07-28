@@ -55,7 +55,7 @@ interface PlaygroundSettings {
   sideOffset: number;
   alignOffset: number;
   keepMounted: boolean;
-  // Appearance / RFC open questions
+  // Appearance; only the default animation is still an open question
   elevation: number;
   animation: 'none' | 'grow';
   dense: boolean;
@@ -298,7 +298,7 @@ function ClassicVersusSuccessorDemo({ settings }: { settings: PlaygroundSettings
         >
           Successor
         </Menu2Trigger>
-        <Menu2Popup sideOffset={2} {...popupKnobProps}>
+        <Menu2Popup {...popupKnobProps}>
           {parityItems.map((item) => (
             <Menu2Item
               key={item.label}
@@ -492,7 +492,7 @@ function SettingsPanel({
         {renderCheckbox('keepMounted', 'keepMounted')}
       </div>
       <div>
-        <strong>Appearance (RFC open questions)</strong>
+        <strong>Appearance</strong>
         <label style={{ display: 'block' }}>
           elevation{' '}
           <select
@@ -507,7 +507,7 @@ function SettingsPanel({
           </select>
         </label>
         <label style={{ display: 'block' }}>
-          animation{' '}
+          animation (open question){' '}
           <select
             value={settings.animation}
             onChange={(event) => setSetting('animation', event.target.value as 'none' | 'grow')}

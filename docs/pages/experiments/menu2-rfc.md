@@ -30,7 +30,7 @@ Beyond the Menu itself, this RFC pilots the standards for how future Material U
 2. Production-grade pointer UX: safe-polygon hover intent ("safe triangle") and hover-open with configurable delays -- explicitly the bar that past attempts failed to clear.
 3. Collision-aware positioning with automatic anchor tracking: submenus flip at viewport edges instead of clipping.
 4. Pixel parity with the existing `Menu`/`MenuItem` visuals, and full theming integration: `sx`, `classes`, `component`, `slots`/`slotProps`, theme `defaultProps`/`styleOverrides`/`variants`.
-5. Zero cost and zero risk for existing users: the classic `Menu` keeps working unchanged, and apps that do not import the new component pay no bundle or behavior cost.
+5. Near-zero cost and zero risk for existing users: the classic `Menu` keeps working unchanged, and apps that do not import the new component pay no behavior cost and no Base UI bundle cost -- only the one-time ~77 B gzip from extracting the shared styles, which the classic components now consume too.
 6. API continuity with the classic `Menu` where the underlying model allows (item-level props, `container`, `keepMounted`), with deliberate and documented divergence where it does not (open/close control, positioning, transitions).
 7. Cover the adjacent long-requested menu capabilities in the same API so it does not need reshaping later: checkbox/radio items, groups, hover-open menus, context-menu (cursor) positioning.
 8. A credible graduation path: the component becomes `Menu` in the next major with a migration guide and codemods where feasible, so preview adopters are not stranded.
@@ -143,13 +143,13 @@ Hard precondition before the design is finalized: a behavior benchmark diffing t
 | Sibling content while open                | marked `aria-hidden`                                                                         | left in the accessibility tree                                        | **divergence**                                  |
 | Default placement                         | flush under the trigger, left aligned (`anchorOrigin` bottom/left)                           | flush under the trigger, left aligned (`side="bottom" align="start"`) | parity                                          |
 
-Reading: the successor is closer to drop-in than expected. Placement, scroll locking, Escape handling and Tab-closes-the-menu are already identical, and keyboard-opened menus highlight the first item in both. Four differences remain, and they split cleanly:
+Reading: the successor is closer to drop-in than expected. Placement, scroll locking, Escape handling and Tab-closes-the-menu are already identical. Keyboard opening cannot be compared side by side -- the classic Menu has no trigger part, so the benchmark records it as not applicable -- but classic highlights an item however it is opened, and the successor highlights the first item, so the two converge there. Five differences remain, and they split cleanly:
 
 - **Accessibility-driven, ratify them.** Disabled items stay focusable and sibling content stays in the accessibility tree; both follow the WAI-ARIA menu pattern, and the classic behavior is the outlier. The missing backdrop belongs here too -- dismissal now uses an outside-press listener, and a backdrop can be reintroduced as a slot if a design calls for it.
 - **Decided: keep the Base UI behavior.** Initial focus on pointer-opened menus stays as it is -- nothing highlighted, focus resting on the popup -- so Enter cannot activate an item the user never chose, matching native desktop menus. The menu button pattern only prescribes focus for _keyboard_ opening, where the two already agree, so this was ours to choose. Aligning to classic was the alternative and was rejected: Base UI exposes no `initialFocus` prop, so it would mean focusing an item ourselves after open -- fighting the substrate and reinstating the accidental-activation risk. This is a documented behavior change for migrating users, not a bug.
-- **Cosmetic, worth aligning.** Where focus lands after Tab. Classic swallows the Tab and returns focus to the trigger; the successor lets it through. The successor's behavior is what a user pressing Tab is asking for, so this is a documentation note rather than a fix.
+- **Cosmetic, document it.** Where focus lands after Tab. Classic swallows the Tab and returns focus to the trigger; the successor lets it through. The successor's behavior is what a user pressing Tab is asking for, so this is a documentation note rather than a fix.
 
-The one behavior that has to be dropped either way is `variant="selectedMenu"`: it is already slated for removal on accessibility grounds, and the benchmark shows it is also the source of most of the initial-focus difference.
+`variant="selectedMenu"` is dropped regardless: this RFC proposes removing it on accessibility grounds (menu items must not carry selection state), and it accounts for the selected-versus-first part of the initial-focus difference. It does not account for the rest: classic auto-focuses an item on pointer open under either variant, so dropping `selectedMenu` narrows the divergence decided above without closing it.
 
 Consequence for the API shape: the interaction model is close enough that a flat container really can carry the classic surface, so the migration story is "same component, a handful of documented behavior changes" rather than a rewrite. With pointer-open focus settled, none of the remaining differences change the API -- they are defaults to ratify and notes to document.
 
@@ -189,7 +189,7 @@ Continuity where it matters, honesty where it does not:
 - Changed deliberately (Base UI model replaces the old one): initial focus (pointer-opened menus highlight nothing, keyboard-opened menus highlight the first item), open/close control (`open`/`defaultOpen` + `onOpenChange(open, eventDetails)` instead of controlled-only `open` + `onClose(event, reason)`), positioning (`anchor`/`side`/`align`/offsets instead of `anchorEl`/`anchorOrigin`/`transformOrigin`), transitions (CSS `data-starting-style`/`data-ending-style` + `onOpenChangeComplete` instead of `TransitionComponent`/`Grow`).
 - Dropped intentionally:
   - `disableAutoFocus`, `disableEnforceFocus`, `disableRestoreFocus`, `disableEscapeKeyDown`: escape hatches that degrade accessibility; `modal` and `finalFocus` cover the legitimate cases.
-  - `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`: listbox-style selection behavior on `role="menu"`; initial focus is handled internally per the WAI-ARIA menu pattern.
+  - `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`: listbox-style selection behavior on `role="menu"`; initial focus is handled internally (keyboard opening follows the menu button pattern, pointer opening highlights nothing -- see the benchmark reading).
   - `anchorOrigin`/`transformOrigin`/`anchorReference`/`anchorPosition`, `PopoverClasses`, `transitionDuration`, `slots.transition`, `action.updatePosition`: superseded by Base UI's Floating-UI-based positioning with automatic anchor tracking and collision handling.
   - `disablePortal`: Base UI popups are always portalled.
 
@@ -198,7 +198,7 @@ A full old-to-new prop mapping is in the collapsible appendix at the end.
 ### New capabilities (vs classic Menu)
 
 - Submenus with correct keyboard, hover-intent, and ARIA behavior.
-- Checkbox and radio items (`role="menuitemcheckbox"`/`menuitemradio"` with `aria-checked` and indicators).
+- Checkbox and radio items (`role="menuitemcheckbox"` / `role="menuitemradio"` with `aria-checked` and indicators).
 - Groups with automatically associated labels (`role="group"` + `aria-labelledby`).
 - Trigger wiring for `aria-haspopup`/`aria-expanded`/`aria-controls` out of the box.
 - Typeahead with per-item `label` override.
@@ -213,16 +213,16 @@ Resolved in the experiment branch:
 - `MenuPreview` naming -> `Unstable_Menu2` lifecycle naming, per-part subpaths, Base UI-style short aliases dropped.
 - Docs tooling special-casing -> removed; the experiment is exercised via a non-public playground page instead of generated API docs.
 - Style sharing: classic and successor consume the same extracted style modules (single source of visual truth).
+- Composed list primitives keep working inside items: `ListItemText inset` aligns with the icon column as it does in the classic menu (verified in the experiment). Note `inset` is a `ListItemText`/`ListSubheader` prop, not a menu item prop, so nothing had to be implemented.
 - Prop surfaces on the renderless roots and the flattened popup inherit Base UI types via `Omit`/`Pick` (the item parts already followed the pattern); the roots gain `actionsRef` and future Base UI props for free (hover-open with delays lives on the trigger parts, already exposed).
 - Top-level `elevation` convenience prop exists on the popup (default 8, forwards to the Paper slot).
 
 Remaining:
 
 - Fully compound API -> per-part flat/standalone split per the design phase.
-- Style sharing is at the shared-style-function level (option 1) -> upgrade to shared styled elements via internal `render` where practical.
+- Style sharing is at the shared-style-function level -> upgrade to sharing the styled element itself via internal `render` where practical.
 - Slot plumbing is migrated to `@mui/utils`; what remains is the Base UI-specific residue listed in the standards section above, which should graduate into the shared utilities rather than stay per-component.
 - The legacy Menu behavior suite has not been rerun against the successor yet; it is written against the `anchorEl` API, so it needs the flat container from the design phase before it can run.
-- Composed list primitives keep working inside items: `ListItemText inset` aligns with the icon column as it does in the classic menu (verified in the experiment). Note `inset` is a `ListItemText`/`ListSubheader` prop, not a menu item prop.
 - No default open/close animation and no ripple -> open questions below.
 
 ### Open questions
@@ -241,7 +241,7 @@ Remaining:
 
 ### Rollout plan
 
-1. Behavior benchmark (hard precondition): **done** -- the classic Menu and the successor are diffed by an executable benchmark (`Menu2Benchmark.test.tsx`), and the results are in the API shape section above. Structure-sensitive cases found along the way (parent-menu layout stability while submenus open, height-constrained menus near the viewport edge) are pinned by their own regression tests.
+1. Behavior benchmark (hard precondition): **done** -- the classic Menu and the successor are diffed by an executable benchmark (`Menu2Benchmark.test.tsx`), and the results are in the API shape section above. Structure-sensitive cases found along the way are pinned by their own regression tests: parent-menu layout stability while a submenu is open, and the popup surface using a collision-aware max-height instead of the classic viewport-only clamp.
 2. Design phase for the API shape under the rules above (container boundaries, submenu shape), validated in the companion experiment -- each open question resolved against a deploy preview rather than in the abstract.
 3. Land `Unstable_Menu2` in a v9 minor: conformance + legacy behavior suites with annotated skips, API reference docs, and a docs section on the Menu page (submenu, checkbox/radio, context-menu demos).
 4. Iterate on feedback; stabilize as `Menu2` once the graduation checklist passes (conformance minus documented skips, theme-registration parity, pinned `data-*` boundary, design sign-off).
@@ -278,17 +278,17 @@ Remaining:
 <details>
 <summary>3. Focus and modality</summary>
 
-| Classic Menu                              | New equivalent        | Notes                                                         |
-| ----------------------------------------- | --------------------- | ------------------------------------------------------------- |
-| `autoFocus`, `disableAutoFocusItem`       | internal              | per WAI-ARIA menu pattern                                     |
-| `variant` (`menu`/`selectedMenu`)         | dropped               | selection state is invalid on menu items                      |
-| `disableAutoFocus`, `disableEnforceFocus` | dropped               | `modal` prop covers modality                                  |
-| `disableRestoreFocus`                     | `finalFocus`          | explicit focus target on close                                |
-| `disableEscapeKeyDown`                    | dropped               | contradicts the menu pattern; use `onKeyDown` if truly needed |
-| `disableScrollLock`                       | `modal`               | non-modal menus do not lock scroll                            |
-| `hideBackdrop`                            | partially via `modal` | see open question 4                                           |
-| `disablePortal`                           | dropped               | always portalled                                              |
-| `keepMounted`, `container`                | same                  | identical semantics                                           |
+| Classic Menu                              | New equivalent        | Notes                                                                                                          |
+| ----------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`, `disableAutoFocusItem`       | internal              | keyboard opening highlights the first item (menu button pattern); pointer opening highlights nothing (decided) |
+| `variant` (`menu`/`selectedMenu`)         | dropped               | selection state is invalid on menu items                                                                       |
+| `disableAutoFocus`, `disableEnforceFocus` | dropped               | `modal` prop covers modality                                                                                   |
+| `disableRestoreFocus`                     | `finalFocus`          | explicit focus target on close                                                                                 |
+| `disableEscapeKeyDown`                    | dropped               | contradicts the menu pattern; use `onKeyDown` if truly needed                                                  |
+| `disableScrollLock`                       | `modal`               | non-modal menus do not lock scroll                                                                             |
+| `hideBackdrop`                            | partially via `modal` | see open question 4                                                                                            |
+| `disablePortal`                           | dropped               | always portalled                                                                                               |
+| `keepMounted`, `container`                | same                  | identical semantics                                                                                            |
 
 </details>
 
