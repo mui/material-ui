@@ -891,16 +891,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiTooltip',
     {
-      // Padding + per-placement offset = density steps on the base (mirrors
-      // Tooltip.js base margins), so they apply to every tooltip; arrow doesn't
-      // change them. Arrow size lives on the popper slot (see the block below).
-      padding: `${d['xx-small']} ${d.small}`,
-      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: d.large },
+      // Padding = density steps on the base (mirrors Tooltip.js base margins),
+      // so it applies to every tooltip; arrow doesn't change it. Type: capture's
+      // semantic/font-size/variable/s (12px) / line-height 16px, raw px. Offset
+      // = FIXED 4px raw (anchor gap is not a density lever). Arrow size lives on
+      // the popper slot (see the block below).
+      padding: `${d['x-small']} ${d.small}`,
+      fontSize: '12px',
+      lineHeight: '16px',
+      [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: { marginInlineEnd: '4px' },
       [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
-        marginInlineStart: d.large,
+        marginInlineStart: '4px',
       },
-      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: d.large },
-      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: d.large },
+      [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: { marginBottom: '4px' },
+      [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: { marginTop: '4px' },
     },
     'tooltip',
   );

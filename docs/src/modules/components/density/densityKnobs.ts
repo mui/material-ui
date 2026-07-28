@@ -1170,6 +1170,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Arrow geometry derives from the popper-slot --_arrowSize var — the var row is the knob.',
   },
   'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
+  'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
+  'MuiTooltip|tooltip|base||lineHeight': 'Tooltip · tooltip · lineHeight',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':
     'Tooltip · tooltip · marginInlineEnd',
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="right"] &|marginInlineStart':

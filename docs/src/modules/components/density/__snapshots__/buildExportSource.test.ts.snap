@@ -232,18 +232,20 @@ const high = {
         ],
         tooltip: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-small)',
+            fontSize: '12px',
+            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: 'var(--mui-density-large)',
+              marginInlineEnd: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: 'var(--mui-density-large)',
+              marginInlineStart: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: 'var(--mui-density-large)',
+              marginBottom: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: 'var(--mui-density-large)',
+              marginTop: '4px',
             },
           },
         ],
@@ -2686,18 +2688,20 @@ const medium = {
         ],
         tooltip: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-small)',
+            fontSize: '12px',
+            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: 'var(--mui-density-large)',
+              marginInlineEnd: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: 'var(--mui-density-large)',
+              marginInlineStart: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: 'var(--mui-density-large)',
+              marginBottom: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: 'var(--mui-density-large)',
+              marginTop: '4px',
             },
           },
         ],
@@ -5130,18 +5134,20 @@ const low = {
         ],
         tooltip: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+            padding: 'var(--mui-density-x-small) var(--mui-density-small)',
+            fontSize: '12px',
+            lineHeight: '16px',
             '.MuiTooltip-popper[data-popper-placement*="left"] &': {
-              marginInlineEnd: 'var(--mui-density-large)',
+              marginInlineEnd: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="right"] &': {
-              marginInlineStart: 'var(--mui-density-large)',
+              marginInlineStart: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="top"] &': {
-              marginBottom: 'var(--mui-density-large)',
+              marginBottom: '4px',
             },
             '.MuiTooltip-popper[data-popper-placement*="bottom"] &': {
-              marginTop: 'var(--mui-density-large)',
+              marginTop: '4px',
             },
           },
         ],
