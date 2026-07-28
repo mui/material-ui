@@ -36,6 +36,7 @@ export const StyledSelectSelect = styled('select', {
   borderRadius: 0,
   cursor: 'pointer',
   '&:focus': {
+    backgroundColor: theme.alpha((theme.vars || theme).palette.text.primary, 0.05),
     // Reset Chrome style
     borderRadius: 0,
   },
