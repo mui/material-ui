@@ -88,20 +88,31 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
   });
 
   describe('initial focus', () => {
-    it('classic moves focus onto the selected item', async () => {
+    it('classic highlights an item as soon as it opens', async () => {
       const { user } = render(<ClassicMenuHarness withSelected />);
       await user.click(openTrigger());
       await waitForOpen();
-      // `variant="selectedMenu"` is the classic default.
+      // `variant="selectedMenu"` is the classic default: the selected item is
+      // focused, and without one the first item is.
       expect(screen.getByRole('menuitem', { name: 'Gamma' })).toHaveFocus();
     });
 
-    it('Menu2 focuses the popup, leaving no item highlighted', async () => {
+    it('Menu2 highlights the first item when opened from the keyboard', async () => {
+      const { user } = render(<Menu2Harness />);
+      openTrigger().focus();
+      await user.keyboard('{ArrowDown}');
+      await waitForOpen();
+      // Matches the WAI-ARIA menu button pattern, and matches classic's intent.
+      await waitFor(() => expect(screen.getByRole('menuitem', { name: 'Alpha' })).toHaveFocus());
+    });
+
+    it('Menu2 highlights nothing when opened by pointer', async () => {
       const { user } = render(<Menu2Harness withSelected />);
       await user.click(openTrigger());
       await waitForOpen();
-      // Focus lands on the popup a tick after it mounts, and stays there: the
-      // successor highlights nothing until the user navigates.
+      // Focus settles on the popup itself, so Enter cannot activate an item the
+      // user never chose. This is the one initial-focus divergence, and it only
+      // applies to pointer-opened menus.
       await waitFor(() => expect(menuEl()).toHaveFocus());
       expect(screen.getByRole('menuitem', { name: 'Gamma' })).not.toHaveFocus();
     });
@@ -160,19 +171,34 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       expect(successorTrigger).toHaveFocus();
     });
 
-    it('classic traps Tab inside the menu; Menu2 closes on Tab', async () => {
+    it('both close on Tab, but classic keeps focus on the trigger', async () => {
       const { user: classicUser, unmount: unmountClassic } = render(<ClassicMenuHarness />);
-      await classicUser.click(openTrigger());
+      const classicTrigger = openTrigger();
+      await classicUser.click(classicTrigger);
       await waitForOpen();
       await classicUser.tab();
-      expect(menuEl()).not.to.equal(null);
+      // The classic Menu closes on Tab (`onClose` reason `tabKeyDown`); the
+      // element lingers only while the Grow transition plays out.
+      await waitFor(() => expect(menuEl()).to.equal(null));
+      // It also calls preventDefault, so focus returns to the trigger instead
+      // of advancing through the tab sequence.
+      expect(classicTrigger).toHaveFocus();
       unmountClassic();
 
-      const { user: successorUser } = render(<Menu2Harness />);
+      const { user: successorUser } = render(
+        <React.Fragment>
+          <Menu2Harness />
+          <button type="button" data-testid="next">
+            Next
+          </button>
+        </React.Fragment>,
+      );
       await successorUser.click(openTrigger());
       await waitForOpen();
       await successorUser.tab();
       await waitFor(() => expect(menuEl()).to.equal(null));
+      // The successor lets the Tab through, so focus advances as the user asked.
+      expect(screen.getByTestId('next')).toHaveFocus();
     });
   });
 
@@ -213,26 +239,36 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
   });
 
   describe('placement', () => {
-    it('classic overlays the trigger; Menu2 sits below it', async () => {
-      const { user: classicUser, unmount: unmountClassic } = render(<ClassicMenuHarness />);
-      const classicTrigger = openTrigger();
-      const classicAnchor = classicTrigger.getBoundingClientRect();
-      await classicUser.click(classicTrigger);
+    it('both put the surface flush under the trigger, left aligned', async () => {
+      // Classic defaults to anchorOrigin bottom/left; the successor defaults to
+      // side="bottom" align="start". Keep the trigger away from the viewport
+      // edges so neither is nudged by collision handling.
+      const offscreenSafe = { marginLeft: 200, marginTop: 200 };
+
+      const { user: classicUser, unmount: unmountClassic } = render(
+        <div style={offscreenSafe}>
+          <ClassicMenuHarness />
+        </div>,
+      );
+      const classicAnchor = openTrigger().getBoundingClientRect();
+      await classicUser.click(openTrigger());
       await waitForOpen();
       const classicSurface = document.querySelector('.MuiPaper-root')!.getBoundingClientRect();
-      // Default anchorOrigin/transformOrigin put the surface over the anchor;
-      // it only moves to stay inside the viewport.
-      expect(classicSurface.top).to.be.lessThan(classicAnchor.bottom + 8);
+      expect(Math.round(classicSurface.left)).to.equal(Math.round(classicAnchor.left));
+      expect(Math.round(classicSurface.top)).to.equal(Math.round(classicAnchor.bottom));
       unmountClassic();
 
-      const { user: successorUser } = render(<Menu2Harness />);
-      const successorTrigger = openTrigger();
-      const successorAnchor = successorTrigger.getBoundingClientRect();
-      await successorUser.click(successorTrigger);
+      const { user: successorUser } = render(
+        <div style={offscreenSafe}>
+          <Menu2Harness />
+        </div>,
+      );
+      const successorAnchor = openTrigger().getBoundingClientRect();
+      await successorUser.click(openTrigger());
       await waitForOpen();
       const successorSurface = document.querySelector('.MuiPaper-root')!.getBoundingClientRect();
-      // `side="bottom"` places the surface under the trigger instead.
-      expect(successorSurface.top).to.be.at.least(successorAnchor.bottom - 1);
+      expect(Math.round(successorSurface.left)).to.equal(Math.round(successorAnchor.left));
+      expect(Math.round(successorSurface.top)).to.equal(Math.round(successorAnchor.bottom));
     });
   });
 });
