@@ -91,9 +91,17 @@ export function AdCarbonInline() {
 
         const data = await response.json();
         // Inspired by https://github.com/Semantic-Org/Semantic-UI-React/blob/2c7134128925dd831de85011e3eb0ec382ba7f73/docs/src/components/CarbonAd/CarbonAdNative.js#L9
+        const isHttpsUrl = (url: string) => {
+          try {
+            return new URL(url).protocol === 'https:';
+          } catch {
+            return false;
+          }
+        };
         const sanitizedAd = data.ads
           .filter((item: any) => Object.keys(item).length > 0)
           .filter((item: any) => item.statlink)
+          .filter((item: any) => isHttpsUrl(item.statlink) && isHttpsUrl(item.image) && isHttpsUrl(item.statimp))
           .filter(Boolean)[0];
 
         if (!sanitizedAd) {
