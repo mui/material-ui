@@ -706,7 +706,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       variants: [
         // semantic/spacing/variable/s — contentWrapper inline padding
         { props: { size: 'medium' }, style: { paddingInline: d.small } },
-        { props: { size: 'small' }, style: { paddingInline: d.small } },
+        { props: { size: 'small' }, style: { paddingInline: d['x-small'] } },
       ],
     },
     'label',

@@ -1368,7 +1368,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiChip|label|size=small||paddingInline',
     label: 'Chip · label · paddingInline [size=small]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiChip',
       slot: 'label',
@@ -1377,9 +1377,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingInline',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {

@@ -1334,7 +1334,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-small)',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
             ],
@@ -3896,7 +3896,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-small)',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
             ],
@@ -6424,7 +6424,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  paddingInline: 'var(--mui-density-small)',
+                  paddingInline: 'var(--mui-density-x-small)',
                 },
               },
             ],
