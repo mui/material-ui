@@ -13,151 +13,155 @@ Structured for `.github/ISSUE_TEMPLATE/3.rfc.yml` -- paste each section below in
 
 ## What's the problem?
 
-Material UI's `Menu` cannot express submenus (nested menus):
+Material UI's `Menu` cannot do submenus.
 
-- It is one of the oldest and most-requested features: https://github.com/mui/material-ui/issues/11723 has been open since 2018 with 120+ reactions (plus duplicates such as https://github.com/mui/material-ui/issues/8152).
-- Material UI v0.x supported nested menus (https://github.com/mui/material-ui/pull/2148); the capability was lost in the v1 rewrite and never recovered.
-- Community workarounds (`material-ui-nested-menu-item`, `mui-nested-menu`, `material-ui-popup-state` recipes, many sandboxes) are consistently incomplete on keyboard navigation and ARIA, which maintainers have called out repeatedly in the issue threads.
-- The Menubar docs page already ships Base UI-composed submenus as copy-paste code, and users immediately asked for a maintained, in-package component (https://github.com/mui/material-ui/issues/48336). Copy-paste code is not versioned, tested, or theme-integrated.
+- It is one of our oldest requests: [#11723](https://github.com/mui/material-ui/issues/11723) has been open since 2018 with 120+ reactions.
+- Material UI v0.x had nested menus ([#2148](https://github.com/mui/material-ui/pull/2148)). The v1 rewrite dropped them.
+- Community packages (`mui-nested-menu`, `material-ui-popup-state`, many sandboxes) all fall short on keyboard support and ARIA, which maintainers have pointed out repeatedly.
+- The Menubar docs page already ships Base UI submenus as copy-paste code, and people immediately asked for a real component ([#48336](https://github.com/mui/material-ui/issues/48336)). Copy-paste code is not versioned, tested, or themed.
 
-Desired outcome: first-class, accessible submenu support in `@mui/material` -- with Material visuals and full theming -- without destabilizing the existing `Menu`, and on a path to becoming the default `Menu` in the next major.
+We want submenus in `@mui/material` with Material visuals and full theming, without destabilizing today's `Menu`, on a path to becoming the default `Menu` in the next major.
 
-Beyond the Menu itself, this RFC pilots the standards for how future Material UI components are built on top of Base UI (customization contract, styling reuse, dependency shape, testing, tooling). Menu is the reference implementation; the cross-cutting decisions below are meant to apply to every Base UI-backed component that follows.
+This RFC also sets the rules for building future Material UI components on Base UI: customization, styling reuse, dependencies, testing, and tooling. Menu is the first one; the decisions here are meant to apply to the rest.
 
 ## What are the requirements?
 
-1. Correct WAI-ARIA menu pattern behavior across nesting levels: trigger semantics (`aria-haspopup`/`aria-expanded`), RTL-aware ArrowRight/ArrowLeft submenu navigation, Escape close ordering, focus restored to the parent trigger item on close, typeahead scoped per level, arbitrary nesting depth.
-2. Production-grade pointer UX: safe-polygon hover intent ("safe triangle") and hover-open with configurable delays -- explicitly the bar that past attempts failed to clear.
-3. Collision-aware positioning with automatic anchor tracking: submenus flip at viewport edges instead of clipping.
-4. Pixel parity with the existing `Menu`/`MenuItem` visuals, and full theming integration: `sx`, `classes`, `component`, `slots`/`slotProps`, theme `defaultProps`/`styleOverrides`/`variants`.
-5. Near-zero cost and zero risk for existing users: the classic `Menu` keeps working unchanged, and apps that do not import the new component pay no behavior cost and no Base UI bundle cost -- only the one-time ~77 B gzip from extracting the shared styles, which the classic components now consume too.
-6. API continuity with the classic `Menu` where the underlying model allows (item-level props, `container`, `keepMounted`), with deliberate and documented divergence where it does not (open/close control, positioning, transitions).
-7. Cover the adjacent long-requested menu capabilities in the same API so it does not need reshaping later: checkbox/radio items, groups, hover-open menus, context-menu (cursor) positioning.
-8. A credible graduation path: the component becomes `Menu` in the next major with a migration guide and codemods where feasible, so preview adopters are not stranded.
-9. Sustainable maintenance: reuse a maintained primitive rather than re-implementing focus, dismissal, and positioning machinery in this repo.
-10. Cross-cutting indistinguishability: the component must look indistinguishable from a normal Material UI component in tooling, theming, imports, and tests. The only new thing is the Base UI behavior substrate underneath. Users should not need to know Base UI is involved, nor install anything extra.
+1. Correct menu behavior at every nesting level: trigger semantics, RTL-aware arrow keys, Escape closing one level at a time, focus returning to the parent item, typeahead per level, any nesting depth.
+2. Good pointer behavior: a submenu must stay open while the pointer moves diagonally toward it (the "safe triangle"), plus hover-open delays. This is the bar earlier attempts failed to clear.
+3. Collision-aware positioning: submenus flip at screen edges instead of getting cut off.
+4. Same look as today's `Menu`/`MenuItem`, and full theming: `sx`, `classes`, `component`, `slots`/`slotProps`, and theme `defaultProps`/`styleOverrides`/`variants`.
+5. Near-zero cost for existing users. Today's `Menu` keeps working. Apps that do not import the new component get no behavior change and none of Base UI's bundle cost. They do pay a one-time ~77 B gzip, because the classic components now read the styles the new ones share.
+6. Keep the current API where the new foundation allows, and document the places where it cannot.
+7. Cover the other long-requested menu features at the same time, so the API does not need reshaping later: checkbox and radio items, groups, hover-open, context menus.
+8. A clear path to becoming `Menu` in the next major, with a migration guide and codemods, so early adopters are not stranded.
+9. Reuse a maintained library instead of rebuilding focus, dismissal, and positioning ourselves.
+10. It should look like any other Material UI component in tooling, theming, imports, and tests. Users should not need to know Base UI is involved or install anything extra.
 
 ## What are our options?
 
-### Option A: Add submenus to the existing Menu stack
+### Option A: Add submenus to the existing Menu
 
-This has been attempted three times over eight years; each attempt got further than the last and hit the same walls:
+Tried three times in eight years, always blocked by the same things:
 
-- https://github.com/mui/material-ui/pull/14700 (2019, +267 lines): recursive Menu-in-Menu. Closed with "It's something we will want to solve at the core level. I'm pretty sure we need to change the menu implementation and to expose new objects to make it happen."
-- https://github.com/mui/material-ui/pull/20591 (2020-2022, +1333 lines, ~22 months of review): `subMenu` prop on `MenuItem` implemented inside core via `cloneElement`. Stalled on a compound of blockers: a double-digit relative gzip increase to the core bundle, hard UX requirements (safe-triangle hover intent, collision-aware placement -- blocked on Popover internals), test-infrastructure churn, and the risk of destabilizing a core component right before v5. The closing review rejected the `cloneElement` approach and concluded the path forward was to rebuild on headless menu primitives.
-- https://github.com/mui/material-ui/pull/37570 (2023-2024): docs-demo-only approach. Closed after an accessibility review found fundamental gaps (Escape handling, `aria-expanded`, screen reader announcements, close ordering), with the explicit direction: "I think it would make more sense to focus on bringing this to Base UI."
+- [#14700](https://github.com/mui/material-ui/pull/14700) (2019): recursive Menu-in-Menu. Closed with "we need to change the menu implementation and to expose new objects to make it happen".
+- [#20591](https://github.com/mui/material-ui/pull/20591) (2020-2022, +1333 lines, ~22 months of review): a `subMenu` prop on `MenuItem` using `cloneElement`. Blocked by a double-digit percentage gzip increase to the core bundle, hover intent, missing collision handling in `Popover`, test churn, and the risk of touching a core component before v5. The final review rejected `cloneElement` and suggested rebuilding on headless primitives.
+- [#37570](https://github.com/mui/material-ui/pull/37570) (2023-2024): docs demo only. Closed after an accessibility review found gaps in Escape handling, `aria-expanded`, and screen reader support, with the note: "it would make more sense to focus on bringing this to Base UI".
 
-The failures are structural, not incidental. Every open `Menu` is a full `Modal` (`Menu -> Popover -> Modal -> FocusTrap/Backdrop/ModalManager`), and nesting two of them fights the stack in at least six places:
+The blockers are structural. Every open `Menu` is a full `Modal` (`Menu -> Popover -> Modal`), and nesting two of them breaks in six places:
 
-1. Dismissal model: each menu renders an invisible full-screen backdrop that captures clicks. A submenu's backdrop stacks above the parent's paper, making parent items non-interactive and closing the child on any parent click. Fixing this means replacing backdrop dismissal with a coordinated click-away model across the whole menu tree.
-2. `ModalManager` sets `aria-hidden="true"` on all body children except the top-most modal -- opening a submenu removes the parent menu from the accessibility tree.
-3. Keyboard: the roving tabindex handler treats ArrowRight/ArrowLeft as no-ops for vertical lists, and `MenuList`/`MenuItem` expose no hook point for "open submenu on ArrowRight" or trigger semantics.
-4. Focus: each modal has its own focus trap and per-trap restore target; closing a submenu must restore focus to the parent trigger item, which the per-trap model does not coordinate.
-5. Positioning: `Popover` has no collision flipping -- a right-opening submenu near the viewport edge clips instead of flipping to the other side.
-6. Each `MenuList` owns an isolated keyboard/typeahead registry; nested lists share no active-item model.
+1. Each menu renders a full-screen backdrop that captures clicks, so a submenu's backdrop covers its parent and closes the child when you click the parent.
+2. `ModalManager` sets `aria-hidden` on everything except the top modal, so opening a submenu hides the parent from screen readers.
+3. ArrowRight/ArrowLeft do nothing in a vertical list, and there is no hook for "open the submenu".
+4. Each modal has its own focus trap, and they do not coordinate when a submenu closes.
+5. `Popover` has no collision flipping, so a submenu near the screen edge is cut off.
+6. Each `MenuList` keeps its own keyboard state, so nested lists share nothing.
 
-Meeting requirements 1-3 this way means touching `Menu`, `MenuList`, `MenuItem`, `Popover`, `Modal`, `ModalManager`, and `FocusTrap`, and replacing two load-bearing models (backdrop dismissal, per-modal focus trapping) shared with `Dialog` and every `Popover` consumer. That is a re-implementation of exactly the machinery Base UI's `Menu` already ships, with disproportionate regression risk, as throwaway work ahead of the next major. Rejected.
+Fixing this means changing `Menu`, `MenuList`, `MenuItem`, `Popover`, `Modal`, `ModalManager`, and `FocusTrap`, and replacing two core models (backdrop dismissal and per-modal focus traps) that `Dialog` and every `Popover` also use. That rebuilds what Base UI's `Menu` already does, with high regression risk, and it would be thrown away in the next major. Rejected.
 
-### Option B: Keep it as copy-paste docs composition (like the Menubar page)
+### Option B: Leave it as copy-paste docs code
 
-Rejected as the end state: unversioned and untested code with no theming contract cannot be the first-class answer to an 8-year-old feature request, and users have already asked for the packaged component (https://github.com/mui/material-ui/issues/48336).
+Rejected as the end state. Unversioned, untested code with no theming contract is not an answer to an 8-year-old request, and people have already asked for the real component.
 
-### Option C: Wait for the next major rewrite
+### Option C: Wait for the next major
 
-Rejected: demand has waited since 2018, and shipping a public unstable component now battle-tests the API so the next major's `Menu` lands already validated instead of freshly designed.
+Rejected. The request has waited since 2018, and shipping now lets us validate the API before it becomes `Menu`.
 
-### Option D: Successor component built on Base UI, shipped as public unstable (proposed)
+### Option D: A successor built on Base UI, shipped as public unstable (proposed)
 
-Base UI's `Menu` (`@base-ui/react`, stable 1.x since early 2026, maintained by the same organization) covers requirements 1-3 out of the box, verified against its source and test suites: safe-polygon hover intent on submenu triggers (`openOnHover` default `true`, `delay` 100ms, `safePolygon` close handler), RTL-aware submenu keyboard navigation (parametrized ltr/rtl open/close key tests), Escape closing the innermost submenu by default (`closeParentOnEsc`, default `false`), focus returned to the parent trigger item on close (asserted in tests), per-level typeahead, and collision avoidance defaulting to flip with automatic anchor tracking. Material UI's job reduces to styling, theming, and API surface -- detailed below.
+Base UI's `Menu` (`@base-ui/react`, stable since early 2026, maintained by the same team) covers requirements 1-3 out of the box. Verified against its source and tests: hover intent on submenu triggers, RTL-aware submenu keys, Escape closing the innermost submenu, focus returning to the parent item, per-level typeahead, and collision handling that flips and tracks the anchor. Our job is styling, theming, and API surface.
 
 ## Proposed solution
 
-Introduce a Base UI-based successor to `Menu`, positioned as "Menu v2" and following the Grid lifecycle precedent. A proof of concept validates feasibility: https://github.com/mui/material-ui/pull/48663 (live demo: https://deploy-preview-48663--material-ui.netlify.app/experiments/menu-preview/), and a companion playground exercises the open questions: https://github.com/mui/material-ui/pull/48823.
+Build a Base UI-based successor to `Menu` and follow the Grid lifecycle. A proof of concept ([#48663](https://github.com/mui/material-ui/pull/48663)) shows it works, and a companion experiment ([#48823](https://github.com/mui/material-ui/pull/48823)) is where the open questions get tried out.
 
 ### Positioning and lifecycle (decided)
 
-The new component is a successor, not an in-place reimplementation of the legacy internals and not a permanently parallel namespace:
+The new component is a successor. It is not a rewrite of the current internals, and not a second namespace that stays forever.
 
-| Phase           | Component name   | What happens                                                                                                            |
-| --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Now (v9 minors) | `Unstable_Menu2` | Public incubation -- a real release, not docs-only. Theme keys and classes are `MuiMenu2*` (see the naming note below). |
-| Later in v9     | `Menu2`          | Stabilized under the interim name; users adopt. Legacy `Menu` untouched; theme keys unchanged.                          |
-| Next major      | `Menu`           | `Menu2` promoted to the canonical name.                                                                                 |
-| Next major      | `MenuLegacy`     | Old `Menu` renamed, deprecated; codemod provided.                                                                       |
+| Phase           | Component name   | What happens                                                                   |
+| --------------- | ---------------- | ------------------------------------------------------------------------------ |
+| Now (v9 minors) | `Unstable_Menu2` | Public incubation, a real release. Theme keys and classes are `MuiMenu2*`.     |
+| Later in v9     | `Menu2`          | Stable under the interim name. Today's `Menu` untouched, theme keys unchanged. |
+| Next major      | `Menu`           | `Menu2` becomes the canonical name.                                            |
+| Next major      | `MenuLegacy`     | Today's `Menu` renamed and deprecated, with a codemod.                         |
 
-Precedent: Grid (`Unstable_Grid2` -> `Grid2` -> `Grid`, with the old component renamed `GridLegacy`, see https://github.com/mui/material-ui/pull/45363). The rename at each step is a breaking change for early adopters, but it is codemoddable and Material UI has accepted this trade before. The `2`-suffixed interim name is what makes a stable pre-major phase possible at all: an unsuffixed name would collide with the still-shipping legacy `Menu` until the major.
+This follows Grid (`Unstable_Grid2` -> `Grid2` -> `Grid`, old one renamed `GridLegacy`, [#45363](https://github.com/mui/material-ui/pull/45363)). Each rename breaks early adopters, but it is codemoddable and we have accepted that trade before. The `2` suffix is what makes a stable phase before the major possible: an unsuffixed name would collide with the `Menu` we still ship.
 
-Naming note: only directories, subpaths, and export names carry the `Unstable_` prefix. Internal identifiers use clean `Menu2*` names and theme keys/classes use `MuiMenu2*` -- both enforced by the repo's naming-convention and name-matches-component lint rules, and both matching the Grid2 precedent (`Unstable_Grid2` used `MuiGrid2` keys). A side benefit: theme keys and classes written against the unstable component survive the `Unstable_Menu2` -> `Menu2` stabilization unchanged; only the final `Menu2` -> `Menu` promotion renames them (codemod).
+Only directories, subpaths, and exports carry the `Unstable_` prefix. Internal names are `Menu2*` and theme keys are `MuiMenu2*`, which our lint rules require and which matches Grid2. This also means theme keys survive the `Unstable_Menu2` -> `Menu2` step unchanged; only the final promotion to `Menu` renames them.
 
-Import ergonomics follow the existing convention -- flat-named components, one component per subpath, no Base UI-style short aliases (`Root`/`Item`/`Trigger`):
+Imports follow our usual convention: flat names, one component per subpath, no short aliases like `Root` or `Item`.
 
 ```jsx
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 ```
 
-Since the subpaths use default exports, adopters can locally drop the `Unstable_` prefix, as above -- the JSX then already reads like the future stable API. Root barrel exports are added at graduation (the experiment is deliberately subpath-only).
+Because the subpaths use default exports, adopters can drop the `Unstable_` prefix locally, so their JSX already reads like the future API. Barrel exports come at graduation.
 
-Graduation is gated by a fixed checklist, not judgment calls: the legacy `describeConformance` suite passing minus a documented skip list, theme-registration parity, the pinned `data-*` conformance boundary (see dependency riders below), and design/API sign-off.
+Graduation is gated by a checklist, not a judgment call: the conformance suite passing minus documented skips, theme registration parity, the pinned `data-*` boundary, and design sign-off.
 
-### Standards for Base UI-backed components (Menu is the pilot)
+### Rules for Base UI-backed components (Menu is the first)
 
-Meta-principle: a Base UI-backed component must be indistinguishable from a normal Material UI component in every cross-cutting concern. Decided:
+The rule: a Base UI-backed component should be indistinguishable from any other Material UI component. Only the behavior underneath is new.
 
-- Customization contract: `slots`/`slotProps` is the user-facing mechanism, as in every existing component. Base UI's `render` prop is used internally by Material UI to inject its styled elements (for example the trigger rendering a Material `Button`), and remains a last-resort escape hatch -- not the documented contract.
-- Slot plumbing: reuse the `@mui/utils` slot utilities (`useSlotProps`/`mergeSlotProps`/`appendOwnerState`/`resolveComponentProps`); extend them in place if genuine Base UI `render`-bridging gaps appear. No bespoke per-component bridge layers. Migrated in the experiment: the Material UI surfaces (paper, list) build their props with `useSlotProps`, and the bespoke slot-props resolver was replaced by `resolveComponentProps` across every part. Three Base UI-specific helpers remain, and they are the concrete candidates for graduating into the shared utilities: (a) host-slot prop omission -- when a user swaps a Base UI part for a host element, the part's own props (`anchor`, `side`, `keepMounted`, ...) must not reach the DOM, and `appendOwnerState` only handles `ownerState`; (b) state-callback className bridging -- Base UI accepts `className={(state) => string}`, which has to compose with Material UI utility classes; (c) `nativeButton` inference from the resolved root slot.
-- Styling reuse with the legacy component: share the actual styled element by passing it through Base UI's `render` internally (the model used by the Menubar docs components), falling back to a shared style function where element injection is impractical. The experiment already implements the fallback: classic `Menu`/`MenuItem` and the new parts consume the same extracted style modules, so there is a single source of visual truth. The remaining work is upgrading to element-level sharing where it fits; free-floating copies are not acceptable. Caution learned from two shipped regressions: extracted classic styles can embed DOM-context assumptions that silently change meaning under the Base UI structure -- a `maxHeight: calc(100% - 96px)` whose `100%` meant the viewport inside the classic full-screen Modal but resolved against the content-sized popup, and an `[item] + divider` adjacency margin that broke when Base UI mounted inline focus-guard nodes next to an open submenu trigger. Shared style functions need a per-consumer audit for positional values and structural selectors, and parts should own their own spacing instead of relying on sibling combinators.
-- Material presentational props are preserved (`dense`, `disableGutters`, `divider`, `selected`): Material UI owns presentation, Base UI owns behavior. The line is styling-vs-functionality, not old-vs-new; individual long-tail props can still be dropped case-by-case.
-- Dependency shape: `@base-ui/react` becomes a direct dependency of `@mui/material` (caret range), like `@popperjs/core` -- an implementation detail users never install or import directly. Two riders: (a) Base UI version bumps are deliberate, reviewed events, never auto-merged; (b) conformance tests pin the `data-*` attribute surface we consume, so an upstream rename or removal fails CI instead of silently regressing styles.
-- Docs and API tooling: existing infrastructure is a fixed constraint; the component conforms to it. If a component cannot be documented without tooling changes, that is a signal about the component.
-- Theme registration: standard `defaultProps`/`styleOverrides`/`variants` registration per part, under standard keys (`MuiMenu2*`, see the naming note above) -- no special rule for Base UI parts.
+Decided:
 
-Proposed, awaiting team reaction:
+- **Customization:** `slots`/`slotProps`, same as every other component. We use Base UI's `render` prop internally to inject our styled elements; it is not the documented contract.
+- **Slot plumbing:** reuse the `@mui/utils` helpers (`useSlotProps`, `mergeSlotProps`, `appendOwnerState`, `resolveComponentProps`) instead of writing our own. Done in the experiment. Three Base UI-specific helpers are left, and they should move into the shared utilities: hiding a Base UI part's own props when a slot is swapped for a plain element, bridging Base UI's `className={(state) => string}` callbacks to our utility classes, and inferring `nativeButton` from the root slot.
+- **Style reuse:** share the styled element itself through `render` where possible, and fall back to a shared style function. Today classic `Menu`/`MenuItem` and the new parts read the same style modules, so there is one source of truth. Two regressions taught us to audit shared styles per consumer: a `maxHeight: calc(100% - 96px)` that meant "the viewport" inside the old Modal but not inside the new popup, and an `[item] + divider` margin that broke when Base UI added focus-guard elements next to an open submenu trigger. Parts should own their spacing rather than depend on sibling selectors.
+- **Presentational props stay:** `dense`, `disableGutters`, `divider`, `selected`. We own presentation, Base UI owns behavior. The line is styling versus behavior, not old versus new, so individual rarely-used props can still go case by case.
+- **Dependency:** `@base-ui/react` becomes a direct dependency of `@mui/material`, like `@popperjs/core`. Users never install or import it. Two conditions: version bumps are reviewed, never auto-merged; and conformance tests pin the `data-*` attributes we rely on, so an upstream rename fails CI instead of quietly breaking styles.
+- **Docs tooling:** the component adapts to our tooling, not the other way around.
+- **Theme registration:** normal `defaultProps`/`styleOverrides`/`variants` per part, under `MuiMenu2*` keys.
 
-- Styling state source of truth (hybrid): `Mui-*` classes + `ownerState` remain the public contract that `styleOverrides`/`variants`/`sx` are written against; internal styles may read Base UI `data-*` attributes for positional or transient state (precedent: Tooltip's `[data-popper-placement]` selectors). Rule of thumb: state users theme or that appears in the documented API gets a class; purely positional/transient internal state stays `data-*`-only. The experiment already exercises the internal side of this rule: the popup surface consumes the positioner-provided `--available-height` variable for its collision-aware max-height.
-- Prop surface typing: `extends` the Base UI prop types with `Omit` for curated or renamed props -- inheritance by default (no drift as Base UI evolves), curation as an explicit, documented list. Consequence: callback signatures follow Base UI by default, for example `onOpenChange(open, eventDetails)` rather than the legacy event-first `onClose(event, reason)`. Validated in the experiment (renderless roots, flattened popup): the pattern type-checks, the spec's negative assertions hold, and the flattened container inherits its hoisted positioner/portal surface via `Pick`. One confirmed limitation: the proptypes generator does not expand members declared in `node_modules`, so runtime PropTypes on inherited props degrade to the locally declared ones (types still carry the full contract; `remove-proptypes` strips them in production anyway). Teaching the generator to expand external heritage is a shared-infra follow-up; until then the trade is inherited types + reduced dev-mode runtime validation.
-- Testing: reuse the existing harnesses on two fronts -- `describeConformance` for the Material UI contract (ref, className, `sx`, theme `styleOverrides`), and the legacy Menu behavior suite (keyboard navigation, open/close, focus) rerun against the successor. Every skip is annotated with why it is incompatible under the Base UI model. Parity is proven by the same tests passing, not by new bespoke tests. Rolled out in the experiment: all 14 rendering parts now run `describeConformance` (the two renderless roots have no DOM surface), which let the bespoke suite drop its hand-written theming, classes, slots and `component`-prop coverage. Two adaptations are needed and both are candidates for the shared harness: portalled roots have no parent whose `firstChild` is the part root (a `getRootElement` option would fix it), and suites whose part only mounts with real layout -- the nested submenu popup -- run in the browser project only.
+Still up for discussion:
 
-### API shape (pending a dedicated design phase)
+- **Where styling state lives:** `Mui-*` classes and `ownerState` stay the public contract for `styleOverrides`, `variants`, and `sx`. Internally we can read Base UI `data-*` attributes for positional state, like Tooltip already does with `[data-popper-placement]`. Rule of thumb: anything users theme gets a class; internal positional state stays a data attribute.
+- **Prop types:** extend Base UI's types and `Omit` what we hide or rename, so we inherit new props automatically. This means callbacks keep Base UI signatures, for example `onOpenChange(open, eventDetails)` instead of `onClose(event, reason)`. It works in the experiment, with one limitation: our proptypes generator cannot read types from `node_modules`, so runtime PropTypes only cover locally declared props. Types are unaffected, and PropTypes are stripped in production. Teaching the generator to follow external types is a separate infra task.
+- **Testing:** reuse `describeConformance` for the Material UI contract, and rerun the existing Menu behavior tests against the successor, annotating every skip. Parity should be shown by those suites passing, not by new tests written for the successor. All 14 rendering parts now run conformance, which let us delete the hand-written theming and slots tests. Two adaptations may belong in the shared harness: portalled roots need a way to point the harness at the real root element, and the nested submenu popup only mounts with real layout, so its suite runs in the browser project only.
 
-The agreed rules for the shape, replacing a global flat-vs-compound choice with a per-part split:
+### API shape (needs a design phase)
 
-- Keep the public API as close to the legacy `Menu` as the substrate allows; users should not need to know Base UI is involved.
-- Structural/plumbing parts (Portal, Positioner, Popup, Paper, List) are bundled into a flat container component and exposed via `slots`/`slotProps` -- they exist for wiring, not day-to-day composition.
-- Customization-heavy parts stay standalone components (`MenuItem`-like parts, submenu triggers, checkbox/radio items) -- they need per-instance children and props and cannot be buried in a container.
+Agreed rules, instead of one global flat-vs-compound choice:
 
-Hard precondition before the design is finalized: a behavior benchmark diffing the Material UI Menu against the Base UI Menu from the user's perspective. This has now run -- it is executable, lives next to the component as `Menu2Benchmark.test.tsx`, and every row below is an assertion in real Chromium rather than a reading of the source. The benchmark gates the design -- how close to drop-in the successor API can be -- not the positioning, which is decided above.
+- Stay as close to today's `Menu` as the foundation allows.
+- Wiring parts (Portal, Positioner, Popup, Paper, List) collapse into one flat container, configured through `slots`/`slotProps`.
+- Parts users customize per instance stay separate components: items, submenu triggers, checkbox and radio items.
+
+Before finalizing the shape we needed to know how far the behavior differs. That benchmark now exists as a test next to the component (`Menu2Benchmark.test.tsx`), so every row below is measured in a real browser, not read off the source.
 
 #### Benchmark results
 
-| Dimension                                 | Classic `Menu`                                                                               | Successor                                                             | Verdict                                         |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------- |
-| Opening from the trigger                  | no trigger part; the consumer wires `onClick` by hand                                        | `Trigger` opens on click and on ArrowDown                             | successor adds behavior                         |
-| Initial focus, opened by keyboard         | n/a (no trigger part)                                                                        | first item highlighted                                                | matches the menu button pattern                 |
-| Initial focus, opened by pointer          | selected item highlighted, or the first item when none is selected                           | nothing highlighted; focus rests on the popup                         | **divergence**                                  |
-| Disabled items during keyboard navigation | skipped entirely                                                                             | focusable, per the WAI-ARIA menu pattern                              | **divergence**                                  |
-| Escape                                    | closes, focus returns to the trigger                                                         | same                                                                  | parity                                          |
-| Tab while open                            | closes (`onClose` reason `tabKeyDown`), and `preventDefault` sends focus back to the trigger | closes, and focus advances to the next element in the tab sequence    | parity on closing; differs on where focus lands |
-| Body scrolling while open                 | locked                                                                                       | locked                                                                | parity                                          |
-| Backdrop element                          | rendered                                                                                     | none; dismissal uses an outside-press listener                        | **divergence**                                  |
-| Sibling content while open                | marked `aria-hidden`                                                                         | left in the accessibility tree                                        | **divergence**                                  |
-| Default placement                         | flush under the trigger, left aligned (`anchorOrigin` bottom/left)                           | flush under the trigger, left aligned (`side="bottom" align="start"`) | parity                                          |
+| Dimension                  | Classic `Menu`                                     | Successor                                   | Verdict                     |
+| -------------------------- | -------------------------------------------------- | ------------------------------------------- | --------------------------- |
+| Opening from the trigger   | no trigger part; you wire `onClick` yourself       | `Trigger` opens on click and ArrowDown      | successor adds behavior     |
+| Initial focus, keyboard    | n/a (no trigger part)                              | first item highlighted                      | matches the menu pattern    |
+| Initial focus, pointer     | selected item, or first item when none is selected | nothing highlighted, focus on the popup     | **difference**              |
+| Disabled items, keyboard   | skipped                                            | focusable, per the WAI-ARIA menu pattern    | **difference**              |
+| Escape                     | closes, focus returns to the trigger               | same                                        | same                        |
+| Tab while open             | closes, and focus goes back to the trigger         | closes, and focus moves to the next element | same close, different focus |
+| Body scrolling while open  | locked                                             | locked                                      | same                        |
+| Backdrop element           | rendered                                           | opt-in (see open question 4)                | **difference**              |
+| Sibling content while open | `aria-hidden`                                      | left in the accessibility tree              | **difference**              |
+| Default placement          | under the trigger, left aligned                    | under the trigger, left aligned             | same                        |
 
-Reading: the successor is closer to drop-in than expected. Placement, scroll locking, Escape handling and Tab-closes-the-menu are already identical. Keyboard opening cannot be compared side by side -- the classic Menu has no trigger part, so the benchmark records it as not applicable -- but classic highlights an item however it is opened, and the successor highlights the first item, so the two converge there. Five differences remain, and they split cleanly:
+What this means: the successor is closer to a drop-in than expected. Placement, scroll locking, Escape, and Tab-closes-the-menu already match. Keyboard opening cannot be compared directly because the classic Menu has no trigger part, but both end up highlighting an item, so they agree in practice. Five differences remain:
 
-- **Accessibility-driven, ratify them.** Disabled items stay focusable and sibling content stays in the accessibility tree; both follow the WAI-ARIA menu pattern, and the classic behavior is the outlier. The missing backdrop belongs here too -- dismissal now uses an outside-press listener, and a backdrop can be reintroduced as a slot if a design calls for it.
-- **Decided: keep the Base UI behavior.** Initial focus on pointer-opened menus stays as it is -- nothing highlighted, focus resting on the popup -- so Enter cannot activate an item the user never chose, matching native desktop menus. The menu button pattern only prescribes focus for _keyboard_ opening, where the two already agree, so this was ours to choose. Aligning to classic was the alternative and was rejected: Base UI exposes no `initialFocus` prop, so it would mean focusing an item ourselves after open -- fighting the substrate and reinstating the accidental-activation risk. This is a documented behavior change for migrating users, not a bug.
-- **Cosmetic, document it.** Where focus lands after Tab. Classic swallows the Tab and returns focus to the trigger; the successor lets it through. The successor's behavior is what a user pressing Tab is asking for, so this is a documentation note rather than a fix.
+- **Keep, they are accessibility fixes.** Disabled items stay focusable and sibling content stays in the accessibility tree. Both follow the WAI-ARIA menu pattern; the classic behavior is the odd one out. The backdrop belongs here too: dismissal no longer needs one, and it is available as a slot.
+- **Decided: keep Base UI's behavior** for initial focus when opening with the pointer. Nothing is highlighted, so Enter cannot trigger an item the user never picked, which is how native desktop menus work. The menu pattern only prescribes focus for keyboard opening, where both already agree, so this was ours to choose. Matching the classic behavior would mean focusing an item ourselves after opening, since Base UI has no `initialFocus` prop on Menu, which fights the library and brings back the accidental-activation risk. This is a documented change for people migrating.
+- **Document it.** Where focus goes after Tab. Classic sends it back to the trigger; the successor lets it move on, which is what pressing Tab asks for.
 
-`variant="selectedMenu"` is dropped, and unlike the other differences this one is a capability loss rather than a behavior change. What the prop buys is opening with the current value highlighted; measured against the code, it decides which item becomes the roving-tabindex active item (the selected one, falling back to the first) and suppresses the focus-visible ring for one initial handoff. Neither is reachable through Base UI: `Menu.Root` exposes no initial-highlight prop and `Menu.Popup` no `initialFocus`, and the accessible expression of "current value" does not fill the gap either -- a `RadioGroup` whose second item is checked still opens with the _first_ item highlighted (asserted in the benchmark). It also accounts for the selected-versus-first part of the initial-focus difference, but not the rest: classic auto-focuses an item on pointer open under either variant, so dropping `selectedMenu` narrows the divergence decided above without closing it.
+`variant="selectedMenu"` is dropped, and this one is a lost feature rather than a changed behavior. The prop opens the menu with the current value highlighted. In the code it decides which item is focused when the menu opens, and hides the focus ring for that first moment. Base UI cannot do either: `Menu.Root` has no initial-highlight prop and `Menu.Popup` has no `initialFocus`. Radio items do not fill the gap either. A `RadioGroup` with its second item checked still opens with the first item highlighted, which the benchmark asserts.
 
-The omission is deliberate upstream, not a gap waiting to be filled: `initialFocus` exists on Base UI's Combobox, Dialog, Drawer and Popover popups but not on Menu, and a maintainer states the reason directly in https://github.com/mui/base-ui/issues/2143 -- "Menu doesn't have the `initialFocus` prop (like Popover), because it's supposed to only contain menu items". In the same thread a user reports the pointer-versus-keyboard focus difference we decided to keep, and the guidance is to reach for a different pattern: "The `Menu` pattern is for listing a bunch of actions the user can take. The `Select` pattern is for choosing an option from a list of options." There is no open request to change this, so an upstream feature request is not the migration path -- the pattern boundary is.
+Dropping it also narrows the pointer-focus difference above without closing it: the classic Menu highlights an item on pointer open under either variant.
 
-This has a scope consequence the rest of this RFC does not cover. Material UI's `Select` renders a classic `<Menu>` without passing `variant`, so it inherits `selectedMenu` and depends on the selected option being focused on open (it also overrides the list `role` to `listbox`). The successor cannot serve that, and by the reasoning above it should not: a `Select` built on Base UI's `Select` is the counterpart, and it needs its own design work. Promoting the successor to `Menu` in the next major therefore does not automatically migrate `Select` -- either `Select` moves to Base UI `Select` in the same major, or the classic `Menu`/`MenuList` internals stay alive to back it.
+This is deliberate upstream, not an oversight. `initialFocus` exists on Base UI's Combobox, Dialog, Drawer, and Popover, but not Menu, and a maintainer explains why in [base-ui#2143](https://github.com/mui/base-ui/issues/2143): "Menu doesn't have the `initialFocus` prop (like Popover), because it's supposed to only contain menu items." The same thread recommends a different component for this case: "The `Menu` pattern is for listing a bunch of actions the user can take. The `Select` pattern is for choosing an option from a list of options." No open request exists to change it, so the answer is the pattern boundary, not an upstream feature request.
 
-Consequence for the API shape: the interaction model is close enough that a flat container really can carry the classic surface, so the migration story is "same component, a handful of documented behavior changes" rather than a rewrite. With pointer-open focus settled, none of the remaining differences change the API -- they are defaults to ratify and notes to document.
+That has a consequence this RFC does not otherwise cover. Material UI's `Select` renders a classic `<Menu>` without passing `variant`, so it relies on the selected option being focused on open, and it overrides the list role to `listbox`. The successor cannot serve that. So promoting the successor to `Menu` does not automatically migrate `Select`: either `Select` moves onto Base UI's `Select` in the same major, or the classic `Menu`/`MenuList` internals stay to back it.
 
-Illustrative sketch only (the container boundaries and the submenu shape are exactly what the design phase must settle; the experiment's fully compound API is the reference input at the other end of the spectrum):
+For the API shape this means a flat container really can carry today's surface, and the migration story is "same component, a few documented behavior changes" rather than a rewrite.
+
+A sketch, not a proposal. Container boundaries and the submenu shape are exactly what the design phase decides; the experiment's fully compound API is the other end of the range.
 
 ```jsx
 <Menu2
@@ -177,90 +181,88 @@ Illustrative sketch only (the container boundaries and the submenu shape are exa
 </Menu2>
 ```
 
-Behavior notes worth stating explicitly regardless of final shape:
+Behavior worth stating whatever shape we pick:
 
-- Submenus open on hover by default in Base UI (`openOnHover` default `true`, `delay` 100ms, safe-polygon close). This is new behavior the classic Menu never had; it matches native OS menus, and it is configurable.
-- Escape closes the innermost submenu and returns focus to its trigger item (APG behavior); closing the whole tree is opt-in.
-- Opening by pointer highlights no item; focus rests on the popup until the user navigates. Opening from the keyboard highlights the first item, as the menu button pattern prescribes. The classic Menu highlights an item in both cases, so this is a deliberate, documented change (decided).
-- While a submenu is open, inline focus-guard nodes sit next to its trigger inside the parent popup; see open question 7 for the styling-contract implications.
-- The menu surface constrains itself to `min(calc(100vh - 96px), var(--available-height))` and scrolls internally -- the classic viewport-only clamp replaced by a collision-aware one.
+- Submenus open on hover by default (100ms delay, hover intent on close). New compared to the classic Menu, matches native menus, and is configurable.
+- Escape closes the innermost submenu and returns focus to its trigger. Closing the whole tree is opt-in.
+- Opening with the pointer highlights nothing; opening with the keyboard highlights the first item.
+- While a submenu is open, Base UI puts focus-guard elements next to its trigger. See open question 7.
+- The menu surface caps its height against the available space and scrolls internally, instead of the old viewport-only clamp.
 
-### Compatibility posture
+### Compatibility
 
-Continuity where it matters, honesty where it does not:
-
-- Kept as-is: item-level presentational props (`dense`, `disableGutters`, `divider`, `selected` -- visual-only, as today), `disabled`, visual design, theming entry points, `keepMounted`, portal `container`.
-- Changed deliberately (Base UI model replaces the old one): initial focus (pointer-opened menus highlight nothing, keyboard-opened menus highlight the first item), open/close control (`open`/`defaultOpen` + `onOpenChange(open, eventDetails)` instead of controlled-only `open` + `onClose(event, reason)`), positioning (`anchor`/`side`/`align`/offsets instead of `anchorEl`/`anchorOrigin`/`transformOrigin`), transitions (CSS `data-starting-style`/`data-ending-style` + `onOpenChangeComplete` instead of `TransitionComponent`/`Grow`).
-- Dropped intentionally:
-  - `disableAutoFocus`, `disableEnforceFocus`, `disableRestoreFocus`, `disableEscapeKeyDown`: escape hatches that degrade accessibility; `modal` and `finalFocus` cover the legitimate cases.
-  - `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`: listbox-style selection behavior on `role="menu"`; initial focus is handled internally (keyboard opening follows the menu button pattern, pointer opening highlights nothing -- see the benchmark reading).
-  - `anchorOrigin`/`transformOrigin`/`anchorReference`/`anchorPosition`, `PopoverClasses`, `transitionDuration`, `slots.transition`, `action.updatePosition`: superseded by Base UI's Floating-UI-based positioning with automatic anchor tracking and collision handling.
+- **Unchanged:** item props (`dense`, `disableGutters`, `divider`, `selected`, `disabled`), visuals, theming, `keepMounted`, `container`.
+- **Changed on purpose:** initial focus (above), open/close control (`open`/`defaultOpen` + `onOpenChange` instead of controlled-only `open` + `onClose`), positioning (`anchor`/`side`/`align` instead of `anchorEl`/`anchorOrigin`/`transformOrigin`), transitions (CSS instead of `TransitionComponent`).
+- **Dropped:**
+  - `disableAutoFocus`, `disableEnforceFocus`, `disableRestoreFocus`, `disableEscapeKeyDown`: escape hatches that hurt accessibility. `modal` and `finalFocus` cover the real cases.
+  - `variant="selectedMenu"`, `autoFocus`, `disableAutoFocusItem`: selection state does not belong on menu items, and initial focus is handled internally.
+  - `anchorOrigin`, `transformOrigin`, `anchorReference`, `anchorPosition`, `PopoverClasses`, `transitionDuration`, `slots.transition`, `action.updatePosition`: replaced by the new positioning.
   - `disablePortal`: Base UI popups are always portalled.
 
-A full old-to-new prop mapping is in the collapsible appendix at the end.
+The full prop mapping is in the appendix.
 
-### New capabilities (vs classic Menu)
+### New capabilities
 
-- Submenus with correct keyboard, hover-intent, and ARIA behavior.
-- Checkbox and radio items (`role="menuitemcheckbox"` / `role="menuitemradio"` with `aria-checked` and indicators).
-- Groups with automatically associated labels (`role="group"` + `aria-labelledby`).
-- Trigger wiring for `aria-haspopup`/`aria-expanded`/`aria-controls` out of the box.
-- Typeahead with per-item `label` override.
-- Hover-open with configurable delays; reason-rich, cancelable `onOpenChange`.
+- Submenus, with correct keyboard, hover, and ARIA behavior.
+- Checkbox and radio items (`menuitemcheckbox` / `menuitemradio` with `aria-checked` and indicators).
+- Groups with labels wired up via `aria-labelledby`.
+- A trigger that sets `aria-haspopup`, `aria-expanded`, and `aria-controls` for you.
+- Typeahead, with a per-item `label` override.
+- Hover-open with delays, and a cancelable `onOpenChange` that says why the menu is closing.
 
-### Reference implementation and known deltas
+### Where the experiment stands
 
-The PoC (https://github.com/mui/material-ui/pull/48663) proves feasibility end-to-end: submenus, checkbox/radio items, groups, pixel parity with classic `MenuItem`, full theme registration, and a comprehensive test suite -- at +77 B gzip on the `@mui/material` barrel (Base UI code is only paid when importing the component). The companion experiment (https://github.com/mui/material-ui/pull/48823) iterates on it toward the standards above.
+The proof of concept ([#48663](https://github.com/mui/material-ui/pull/48663)) covers submenus, checkbox and radio items, groups, matching visuals, theme registration, and tests, at +77 B gzip on the `@mui/material` barrel. The companion experiment ([#48823](https://github.com/mui/material-ui/pull/48823)) moves it toward the rules above.
 
-Resolved in the experiment branch:
+Done:
 
-- `MenuPreview` naming -> `Unstable_Menu2` lifecycle naming, per-part subpaths, Base UI-style short aliases dropped.
-- Docs tooling special-casing -> removed; the experiment is exercised via a non-public playground page instead of generated API docs.
-- Style sharing: classic and successor consume the same extracted style modules (single source of visual truth).
-- Composed list primitives keep working inside items: `ListItemText inset` aligns with the icon column as it does in the classic menu (verified in the experiment). Note `inset` is a `ListItemText`/`ListSubheader` prop, not a menu item prop, so nothing had to be implemented.
-- Prop surfaces on the renderless roots and the flattened popup inherit Base UI types via `Omit`/`Pick` (the item parts already followed the pattern); the roots gain `actionsRef` and future Base UI props for free (hover-open with delays lives on the trigger parts, already exposed).
-- Top-level `elevation` convenience prop exists on the popup (default 8, forwards to the Paper slot).
+- Renamed to the `Unstable_Menu2` lifecycle naming, one component per subpath.
+- Docs tooling special-casing removed.
+- Classic and successor share the same style modules.
+- Composed list primitives still work inside items (`ListItemText inset` lines up with the icon column). `inset` is a `ListItemText` prop, not a menu item prop, so nothing needed implementing.
+- Prop types inherit from Base UI, so the roots get `actionsRef` and future props for free.
+- Top-level `elevation` on the popup, default 8.
+- Default open/close animation, and an opt-in backdrop slot.
 
-Remaining:
+Left:
 
-- Fully compound API -> per-part flat/standalone split per the design phase.
-- Style sharing is at the shared-style-function level -> upgrade to sharing the styled element itself via internal `render` where practical.
-- Slot plumbing is migrated to `@mui/utils`; what remains is the Base UI-specific residue listed in the standards section above, which should graduate into the shared utilities rather than stay per-component.
-- The legacy Menu behavior suite has not been rerun against the successor yet; it is written against the `anchorEl` API, so it needs the flat container from the design phase before it can run.
-- No default open/close animation and no ripple -> open questions below.
+- The compound API needs the flat/standalone split from the design phase.
+- Style sharing is at the style-function level; sharing the styled element itself is better where it fits.
+- The Base UI-specific slot helpers should move into `@mui/utils`.
+- The existing Menu behavior tests cannot run against the successor yet, because they are written against `anchorEl` and need the flat container first.
 
 ### Open questions
 
-1. Ripple. Items render as Base UI divs, so there is no `TouchRipple` by default. Measured: consumers can get ripple today by swapping the item root slot -- `slots={{ root: ButtonBase }}` renders a real `MuiTouchRipple` and produces a ripple on press -- but they lose the Material UI item styling with it, because that CSS lives on the default styled root. Wrapping a `ButtonBase` _inside_ an item is not an option: it puts a focusable element inside a `role="menuitem"`, which auto-highlights the item on open (https://github.com/mui/base-ui/issues/2622) and is the pattern Base UI maintainers explicitly rule out. So the question is whether to ship ripple by default (make the default item root a styled `ButtonBase`, restoring `disableRipple` and friends), or leave it to the root slot and document the recipe. Design-identity call, no accessibility stake.
-2. Default open/close animation. **Decided: ship one.** The popup surface carries a CSS transition matching the classic `Grow` -- same scale ramp (`scale(0.75, 0.5625)`), the theme's entering/leaving durations, and the transform running at two thirds of the opacity duration -- so migrating apps do not silently lose the animation the classic Menu had. It opts out under `prefers-reduced-motion` and is overridable through `slotProps.popup`, `styleOverrides` or the theme. It has to live on the popup element: Base UI waits for animations on the popup itself before unmounting (`useAnimationsFinished` calls `element.getAnimations()` with no `subtree`), so a transition on a descendant would animate in and then be clipped on exit. Two consequences: geometry read immediately after opening is mid-animation, and Base UI suppresses the transition for the frame in which it applies the starting style -- both mean measurements have to wait for it to settle.
-3. Convenience `elevation` prop on the container. **Decided: keep it.** The popup takes a top-level `elevation` (default 8, matching classic) and forwards it to the Paper slot, so the common case does not have to go through `slotProps.paper`.
-4. Backdrop. **Decided: surface it.** `slots.backdrop` and `slotProps.backdrop` exist on the popup, mirroring the classic Menu's backdrop slot, with a default element that is transparent and click-through -- the classic backdrop is invisible too, and dismissal stays with Base UI's outside-press listener rather than the backdrop. Dimming is `slotProps={{ backdrop: {{ sx: {{ bgcolor: ... }} }} }}`. One deliberate difference from classic: it renders only when the consumer opts in through those props, because rendering it unconditionally would hand _non-modal_ menus a full-screen layer they never had, and modal menus already receive Base UI's own inert backdrop.
-5. Imperative actions. **Decided: inherit Base UI's `actionsRef` as-is.** It arrives through the prop-typing standard (`close()`, `unmount()`), and we neither rename it to something Material UI-flavoured nor hand-roll a parallel `action` ref like the classic Menu had. Renaming would create permanent wrapper drift for no gain, and a hand-rolled ref would duplicate machinery Base UI already owns. The classic `action` ref's other job, `updatePosition()`, has no counterpart because the positioner tracks the anchor automatically.
-6. Context menu (right-click / cursor positioning): does this need its own component? Classic `anchorPosition` use cases work today through a virtual-element `anchor` recipe, but the recipe carries a focus-restore quirk that bit us in the experiment: a detached menu has no trigger to return focus to, so on close Base UI falls back to an internal previously-focused-element record, which can be a stale trigger from an unrelated menu elsewhere on the page. The recipe has to pass `finalFocus` (the invoked surface, per the APG context-menu pattern) to behave correctly, and nothing in the API makes that obvious -- it looks fine until a second menu exists on the page. A component wrapping Base UI's dedicated `ContextMenu` would own that internally, since its trigger is the right-click surface itself. So: ship the recipe with a documented caveat, or absorb the quirk into a component?
-7. Sibling-structure styling contract around submenu triggers. **Decided: do both.** While a submenu is open, Base UI keeps inline focus-guard and portal-anchor nodes next to the trigger inside the parent popup -- tab order into the portalled submenu depends on them -- so consumer CSS built on sibling combinators around a trigger (`+`/`~`, `:last-child`-style assumptions) silently breaks the moment a submenu opens. The experiment shipped exactly this bug, and the built-in parts now avoid it by owning their spacing. We document the constraint as part of the styling contract (the guard nodes are identifiable via `data-base-ui-focus-guard` for consumers who must target them), and separately raise upstream whether guard placement could avoid interleaving trigger siblings, since that would benefit every Base UI consumer.
-8. Bundle-size governance. Base UI adds real weight per component family; do we add a size-snapshot gate per Base UI-backed component?
-9. Residual accessibility obligation. Base UI owns the interaction a11y; what does Material UI still verify on top (an axe pass in conformance, screen-reader smoke tests, contrast of the styled surfaces)?
-10. Behavior defaults divergence. Two are now **decided**: initial focus on pointer-opened menus keeps the Base UI behavior (see the benchmark reading), and submenus keep opening on hover by default (`openOnHover` on the submenu trigger, 100ms delay, safe-polygon close) -- behavior the classic Menu never had, matching native desktop menus, and configurable per trigger. Correction to an earlier draft of this question: there is no open question about modality. Base UI's `modal` defaults to `true`, the classic Menu is always modal, and the benchmark measured scroll locking as parity. What the successor adds is the ability to opt out with `modal={false}`, a new capability rather than a changed default.
-11. SSR, `'use client'` boundaries, and ref typing are expected to follow the existing patterns with no divergence -- to confirm during implementation, not expected to be contentious.
+1. **Ripple.** Items are plain elements, so there is no ripple by default. Users can get one today by swapping the item root: `slots={{ root: ButtonBase }}` produces a real ripple, but it loses our item styling, because that CSS lives on the default root. Putting a `ButtonBase` inside an item is not an option: it places a focusable element inside a `menuitem`, which highlights the item on open ([base-ui#2622](https://github.com/mui/base-ui/issues/2622)) and is the pattern Base UI rules out. So: ship ripple by default (make the item root a styled `ButtonBase`, bringing back `disableRipple`), or leave it to the root slot and document the recipe? Design call, no accessibility stake.
+2. **Default animation. Decided: ship one.** The popup has a CSS transition matching the classic `Grow`, using the same scale and the theme's durations, so migrating apps do not lose their animation. It turns off under `prefers-reduced-motion` and can be overridden through `slotProps.popup`, `styleOverrides`, or the theme. It has to live on the popup element, because Base UI waits for animations on that element before unmounting; a transition on a child would be cut off when closing. One practical effect: anything measuring the menu right after it opens now reads it mid-animation, so tests have to wait for the transition to finish.
+3. **`elevation` prop. Decided: keep it.** The popup takes `elevation` (default 8) and passes it to the Paper slot, so the common case does not need `slotProps.paper`.
+4. **Backdrop. Decided: surface it.** `slots.backdrop` and `slotProps.backdrop` mirror the classic Menu, with a default element that is transparent and click-through, like the classic invisible backdrop. Dismissal stays with Base UI's outside-press handling. Dimming is `slotProps={{ backdrop: { sx: { bgcolor: ... } } }}`. One difference from classic: it only renders when you opt in, because always rendering it would give non-modal menus a full-screen layer they never had, and modal menus already get Base UI's own inert backdrop.
+5. **Imperative actions. Decided: use Base UI's `actionsRef` as-is.** It arrives with the inherited types and gives `close()` and `unmount()`. We do not rename it or build our own `action` ref: renaming means our API drifts from Base UI's for no gain, and rebuilding duplicates what Base UI already does. The classic `action.updatePosition()` has no equivalent because the position updates automatically.
+6. **Context menu: does it need its own component?** Right-click menus work today with a virtual anchor, but the recipe has a focus bug we hit ourselves: a menu with no trigger has nothing to return focus to, so Base UI falls back to the last element it remembers, which can be a trigger from an unrelated menu on the page. The recipe has to pass `finalFocus` pointing at the element that was right-clicked, and nothing in the API tells you that. It looks fine until a second menu exists. A component wrapping Base UI's `ContextMenu` would handle it internally, since its trigger is the right-click surface. So: document the recipe, or ship the component?
+7. **Styling around submenu triggers. Decided: do both.** While a submenu is open, Base UI keeps focus-guard elements next to the trigger, because tab order depends on them. Any CSS using sibling selectors (`+`, `~`, `:last-child`) around a trigger breaks the moment a submenu opens. We hit this bug ourselves, and our parts now own their spacing instead. We will document the rule (the guards are identifiable via `data-base-ui-focus-guard`) and separately ask upstream whether the guards could sit outside the item list, which would help every Base UI user.
+8. **Bundle size.** Base UI adds real weight per component. Do we want a size check per Base UI-backed component?
+9. **Accessibility ownership.** Base UI owns the interaction behavior. What do we still verify: an axe pass in conformance, screen reader smoke tests, contrast of our surfaces?
+10. **Other defaults.** Two are decided: pointer-opened menus highlight nothing, and submenus open on hover. There is no question about modality: Base UI's `modal` defaults to `true`, the classic Menu is always modal, and the benchmark measured scroll locking as the same. The successor only adds the option to turn it off.
+11. **SSR, `'use client'`, ref typing.** Expected to follow existing patterns; to confirm during implementation.
 
 ### Rollout plan
 
-1. Behavior benchmark (hard precondition): **done** -- the classic Menu and the successor are diffed by an executable benchmark (`Menu2Benchmark.test.tsx`), and the results are in the API shape section above. Structure-sensitive cases found along the way are pinned by their own regression tests: parent-menu layout stability while a submenu is open, and the popup surface using a collision-aware max-height instead of the classic viewport-only clamp.
-2. Design phase for the API shape under the rules above (container boundaries, submenu shape), validated in the companion experiment -- each open question resolved against a deploy preview rather than in the abstract.
-3. Land `Unstable_Menu2` in a v9 minor: conformance + legacy behavior suites with annotated skips, API reference docs, and a docs section on the Menu page (submenu, checkbox/radio, context-menu demos).
-4. Iterate on feedback; stabilize as `Menu2` once the graduation checklist passes (conformance minus documented skips, theme-registration parity, pinned `data-*` boundary, design sign-off).
-5. Next major: promote `Menu2` to `Menu`, rename legacy to `MenuLegacy` (deprecated), ship the migration guide and codemods for the renames and the mechanical parts of the mapping below (Grid precedent).
+1. Behavior benchmark: **done**, results above.
+2. Design phase for the API shape, tried out in the companion experiment so each question is answered against a real preview.
+3. Ship `Unstable_Menu2` in a v9 minor, with conformance tests, API docs, and demos on the Menu page.
+4. Iterate on feedback, then stabilize as `Menu2` once the graduation checklist passes.
+5. Next major: promote `Menu2` to `Menu`, rename the old one to `MenuLegacy`, and ship the migration guide and codemods.
 
-### Appendix: full prop mapping (classic Menu -> successor)
+### Appendix: full prop mapping
 
 <details>
-<summary>1. Open / close and control</summary>
+<summary>1. Open and close</summary>
 
-| Classic Menu                       | New equivalent                     | Notes                                                                                                                                                                                                 |
-| ---------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `open` (required, controlled-only) | `open` + `defaultOpen`             | uncontrolled becomes possible                                                                                                                                                                         |
-| `onClose(event, reason)`           | `onOpenChange(open, eventDetails)` | signature inherits Base UI types per the typing standard; reasons include `escape-key`, `outside-press`, `focus-out`, `trigger-press`, `item-press`; supports `cancel()` and exposes the native event |
-| n/a                                | `onOpenChangeComplete(open)`       | replaces `onTransitionExited`-style hooks                                                                                                                                                             |
+| Classic Menu                       | New equivalent                     | Notes                                                                                                                                    |
+| ---------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `open` (required, controlled-only) | `open` + `defaultOpen`             | uncontrolled is now possible                                                                                                             |
+| `onClose(event, reason)`           | `onOpenChange(open, eventDetails)` | reasons include `escape-key`, `outside-press`, `focus-out`, `trigger-press`, `item-press`; can be canceled, and exposes the native event |
+| n/a                                | `onOpenChangeComplete(open)`       | replaces `onTransitionExited`                                                                                                            |
 
 </details>
 
@@ -272,27 +274,27 @@ Remaining:
 | `anchorEl`                                            | `anchor`                                                                              | also accepts refs and virtual elements |
 | `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                                       | finer control                          |
 | `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                                             | see open question 6                    |
-| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                                        | equivalent concept                     |
-| `anchorReference="none"`                              | omit `anchor`, position via CSS                                                       | equivalent                             |
-| `action.updatePosition()`                             | automatic anchor tracking                                                             | `disableAnchorTracking` to opt out     |
-| --                                                    | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod`, `arrowPadding` | new capabilities                       |
+| `marginThreshold` (default 16)                        | `collisionPadding` (default 5)                                                        | same idea                              |
+| `anchorReference="none"`                              | omit `anchor`, position via CSS                                                       | same                                   |
+| `action.updatePosition()`                             | automatic                                                                             | `disableAnchorTracking` to opt out     |
+| --                                                    | `collisionBoundary`, `sticky`, `collisionAvoidance`, `positionMethod`, `arrowPadding` | new                                    |
 
 </details>
 
 <details>
 <summary>3. Focus and modality</summary>
 
-| Classic Menu                              | New equivalent        | Notes                                                                                                                                                                                                     |
-| ----------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `autoFocus`, `disableAutoFocusItem`       | internal              | keyboard opening highlights the first item (menu button pattern); pointer opening highlights nothing (decided)                                                                                            |
-| `variant` (`menu`/`selectedMenu`)         | dropped               | selection state is invalid on menu items; opening with the current value highlighted is not reproducible (see the benchmark reading). Use checkbox/radio items so the current value is at least indicated |
-| `disableAutoFocus`, `disableEnforceFocus` | dropped               | `modal` prop covers modality                                                                                                                                                                              |
-| `disableRestoreFocus`                     | `finalFocus`          | explicit focus target on close                                                                                                                                                                            |
-| `disableEscapeKeyDown`                    | dropped               | contradicts the menu pattern; use `onKeyDown` if truly needed                                                                                                                                             |
-| `disableScrollLock`                       | `modal`               | non-modal menus do not lock scroll                                                                                                                                                                        |
-| `hideBackdrop`                            | partially via `modal` | see open question 4                                                                                                                                                                                       |
-| `disablePortal`                           | dropped               | always portalled                                                                                                                                                                                          |
-| `keepMounted`, `container`                | same                  | identical semantics                                                                                                                                                                                       |
+| Classic Menu                              | New equivalent | Notes                                                                                                           |
+| ----------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------- |
+| `autoFocus`, `disableAutoFocusItem`       | internal       | keyboard opening highlights the first item; pointer opening highlights nothing                                  |
+| `variant` (`menu`/`selectedMenu`)         | dropped        | not reproducible on Base UI (see above). Use checkbox or radio items so the current value is at least indicated |
+| `disableAutoFocus`, `disableEnforceFocus` | dropped        | `modal` covers this                                                                                             |
+| `disableRestoreFocus`                     | `finalFocus`   | explicit focus target on close                                                                                  |
+| `disableEscapeKeyDown`                    | dropped        | goes against the menu pattern; use `onKeyDown` if you must                                                      |
+| `disableScrollLock`                       | `modal`        | non-modal menus do not lock scroll                                                                              |
+| `hideBackdrop`                            | backdrop slot  | the backdrop is opt-in (open question 4)                                                                        |
+| `disablePortal`                           | dropped        | always portalled                                                                                                |
+| `keepMounted`, `container`                | same           | same behavior                                                                                                   |
 
 </details>
 
@@ -304,39 +306,39 @@ Remaining:
 | `TransitionComponent` / `slots.transition` (default `Grow`)         | CSS via `data-starting-style` / `data-ending-style` |
 | `transitionDuration`                                                | CSS `transition-duration` on the popup              |
 | `onTransitionEnter` / `onTransitionExited` / `closeAfterTransition` | `onOpenChangeComplete` + `keepMounted`              |
-| default `Grow` animation                                            | open question 2 (proposal: default CSS transition)  |
+| default `Grow` animation                                            | shipped as a CSS default (open question 2)          |
 
 </details>
 
 <details>
-<summary>5. Styling / slots</summary>
+<summary>5. Styling and slots</summary>
 
-| Classic Menu                                                        | New equivalent                                                       | Notes                            |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------- |
-| `slots`: `root`, `paper`, `list`, `transition`, `backdrop`          | `portal`, `positioner`, `popup`, `paper`, `list`                     | no transition slot (CSS-based)   |
-| `elevation` (default 8)                                             | `elevation` (default 8, forwards to the Paper slot)                  | implemented; see open question 3 |
-| paper `maxHeight: calc(100% - 96px)` (viewport clamp via the Modal) | `min(calc(100vh - 96px), var(--available-height))` + internal scroll | collision-aware                  |
-| `slots.backdrop` + `BackdropProps`                                  | not surfaced                                                         | see open question 4              |
-| `PopoverClasses`                                                    | n/a                                                                  | no Popover underneath            |
+| Classic Menu                                                        | New equivalent                                                       | Notes                          |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------ |
+| `slots`: `root`, `paper`, `list`, `transition`, `backdrop`          | `portal`, `positioner`, `popup`, `paper`, `list`, `backdrop`         | no transition slot (CSS-based) |
+| `elevation` (default 8)                                             | `elevation` (default 8, forwarded to the Paper slot)                 | kept                           |
+| paper `maxHeight: calc(100% - 96px)` (viewport clamp via the Modal) | `min(calc(100vh - 96px), var(--available-height))` + internal scroll | collision-aware                |
+| `slots.backdrop` + `BackdropProps`                                  | `slots.backdrop` + `slotProps.backdrop`                              | opt-in (open question 4)       |
+| `PopoverClasses`                                                    | n/a                                                                  | no Popover underneath          |
 
 </details>
 
 <details>
-<summary>6. Item-level props</summary>
+<summary>6. Item props</summary>
 
-| Classic MenuItem / MenuList                                        | New equivalent                              | Notes                                                                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dense`, `disableGutters`, `divider`                               | same                                        | preserved (decided): Material UI owns presentation                                                                                                                                                                                                                                                            |
-| `<Divider />` between items                                        | `Separator` part                            | owns its 8px margins (stable while submenus are open); classic spacing relied on item-adjacency selectors                                                                                                                                                                                                     |
-| `selected`                                                         | same (visual-only, as today)                | preserved (decided); checkbox/radio items cover real selection semantics. Note: classic `MenuItem` now derives `aria-checked` from `selected` for `menuitemcheckbox`/`menuitemradio` roles (https://github.com/mui/material-ui/pull/48651) -- the successor's dedicated checkbox/radio items own this instead |
-| `disabled`                                                         | same                                        | `aria-disabled`, item stays focusable                                                                                                                                                                                                                                                                         |
-| `href` / `LinkComponent`                                           | link item variant                           | real `<a role="menuitem">`                                                                                                                                                                                                                                                                                    |
-| `autoFocus` (item)                                                 | dropped                                     | initial focus is internal                                                                                                                                                                                                                                                                                     |
-| ripple props                                                       | none currently                              | see open question 1                                                                                                                                                                                                                                                                                           |
-| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | `highlighted` state class / data attributes | style via CSS                                                                                                                                                                                                                                                                                                 |
-| `MenuList.disableListWrap`                                         | `loopFocus` (default true)                  | inverse                                                                                                                                                                                                                                                                                                       |
-| `MenuList.autoFocus`/`autoFocusItem`/`variant`                     | dropped                                     | internal / legacy                                                                                                                                                                                                                                                                                             |
-| `MenuList.disablePadding`, `subheader`                             | `slotProps.list`, group + group label parts | groups get proper ARIA association                                                                                                                                                                                                                                                                            |
+| Classic MenuItem / MenuList                                        | New equivalent                          | Notes                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dense`, `disableGutters`, `divider`                               | same                                    | kept: we own presentation                                                                                                                                                                                                                       |
+| `<Divider />` between items                                        | `Separator` part                        | owns its margins, so spacing stays put while a submenu is open                                                                                                                                                                                  |
+| `selected`                                                         | same (visual only)                      | kept. Checkbox and radio items cover real selection. Classic `MenuItem` now derives `aria-checked` from `selected` for checkbox and radio roles ([#48651](https://github.com/mui/material-ui/pull/48651)); our dedicated items own that instead |
+| `disabled`                                                         | same                                    | `aria-disabled`, item stays focusable                                                                                                                                                                                                           |
+| `href` / `LinkComponent`                                           | link item                               | real `<a role="menuitem">`                                                                                                                                                                                                                      |
+| `autoFocus` (item)                                                 | dropped                                 | initial focus is internal                                                                                                                                                                                                                       |
+| ripple props                                                       | none yet                                | see open question 1                                                                                                                                                                                                                             |
+| `focusVisibleClassName`, `onFocusVisible`, `action.focusVisible()` | `highlighted` class and data attributes | style via CSS                                                                                                                                                                                                                                   |
+| `MenuList.disableListWrap`                                         | `loopFocus` (default true)              | inverse                                                                                                                                                                                                                                         |
+| `MenuList.autoFocus`/`autoFocusItem`/`variant`                     | dropped                                 | internal or legacy                                                                                                                                                                                                                              |
+| `MenuList.disablePadding`, `subheader`                             | `slotProps.list`, group parts           | groups get proper ARIA                                                                                                                                                                                                                          |
 
 </details>
 
@@ -344,34 +346,32 @@ Remaining:
 
 Proof of concept and experiment:
 
-- PoC PR: https://github.com/mui/material-ui/pull/48663 (live demo: https://deploy-preview-48663--material-ui.netlify.app/experiments/menu-preview/)
-- RFC companion playground (use case demos + knobs for the open questions): https://github.com/mui/material-ui/pull/48823
-- Measured bundle impact of the PoC on `@mui/material`: +160 B parsed / +77 B gzip (~0.03%) -- the style-extraction refactor only; Base UI code is paid only when importing the new component.
+- PoC: [#48663](https://github.com/mui/material-ui/pull/48663) ([demo](https://deploy-preview-48663--material-ui.netlify.app/experiments/menu-preview/))
+- Companion playground: [#48823](https://github.com/mui/material-ui/pull/48823)
+- Bundle impact on `@mui/material`: +160 B parsed, +77 B gzip (~0.03%), from the style extraction only. Base UI code is only paid when you import the component.
 
 Demand:
 
-- https://github.com/mui/material-ui/issues/11723 (canonical request, open since 2018, 120+ reactions)
-- https://github.com/mui/material-ui/issues/8152 (closed as duplicate)
-- https://github.com/mui/material-ui/issues/48336 (packaged Menubar/submenu component request)
-- https://github.com/mui/material-ui/issues/45790 (nested menu docs demo request)
+- [#11723](https://github.com/mui/material-ui/issues/11723) (main request, open since 2018, 120+ reactions)
+- [#8152](https://github.com/mui/material-ui/issues/8152) (closed as duplicate)
+- [#48336](https://github.com/mui/material-ui/issues/48336) (packaged Menubar/submenu component)
+- [#45790](https://github.com/mui/material-ui/issues/45790) (nested menu docs demo)
 
-Prior attempts on the legacy stack:
+Earlier attempts:
 
-- https://github.com/mui/material-ui/pull/14700 (2019, closed)
-- https://github.com/mui/material-ui/pull/20591 (2020-2022, closed)
-- https://github.com/mui/material-ui/pull/37570 (2023-2024, closed)
-- v0.x nested menu support: https://github.com/mui/material-ui/pull/2148, https://github.com/mui/material-ui/pull/3265
+- [#14700](https://github.com/mui/material-ui/pull/14700) (2019, closed), [#20591](https://github.com/mui/material-ui/pull/20591) (2020-2022, closed), [#37570](https://github.com/mui/material-ui/pull/37570) (2023-2024, closed)
+- v0.x nested menus: [#2148](https://github.com/mui/material-ui/pull/2148), [#3265](https://github.com/mui/material-ui/pull/3265)
 
 Direction and precedent:
 
-- Maintainer statement (Dec 2024): https://github.com/mui/material-ui/issues/11723#issuecomment-2556390056 -- "Material UI will adopt (this new) Base UI component in its next major release."
-- Grid lifecycle precedent (legacy rename): https://github.com/mui/material-ui/pull/45363
-- Menubar docs page composed from Base UI with submenus: https://mui.com/material-ui/react-menubar/ (added in https://github.com/mui/material-ui/pull/47616)
-- Base UI Menu (submenu anatomy, keyboard model): https://base-ui.com/react/components/menu
-- Base UI releases (1.x stable): https://base-ui.com/react/overview/releases
+- Maintainer statement (Dec 2024): [#11723 comment](https://github.com/mui/material-ui/issues/11723#issuecomment-2556390056) -- "Material UI will adopt (this new) Base UI component in its next major release."
+- Grid lifecycle: [#45363](https://github.com/mui/material-ui/pull/45363)
+- Menubar docs page built on Base UI: [react-menubar](https://mui.com/material-ui/react-menubar/) (from [#47616](https://github.com/mui/material-ui/pull/47616))
+- [Base UI Menu](https://base-ui.com/react/components/menu) and [releases](https://base-ui.com/react/overview/releases)
+- Why Base UI's Menu has no `initialFocus`: [base-ui#2143](https://github.com/mui/base-ui/issues/2143)
 
-Community workarounds discussed in the threads:
+Community workarounds:
 
-- https://github.com/azmenak/material-ui-nested-menu-item (and its successor `mui-nested-menu`)
-- https://jcoreio.github.io/material-ui-popup-state/
-- https://www.npmjs.com/package/better-mui-menu
+- [material-ui-nested-menu-item](https://github.com/azmenak/material-ui-nested-menu-item) and `mui-nested-menu`
+- [material-ui-popup-state](https://jcoreio.github.io/material-ui-popup-state/)
+- [better-mui-menu](https://www.npmjs.com/package/better-mui-menu)
