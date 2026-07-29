@@ -1032,6 +1032,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiFormLabel', {
     lineHeight: enhanced.typography?.body1?.lineHeight,
   });
+  // Helper message offsets: block gap unconditional (master 3px). Inline scoped
+  // to contained (outlined/filled — master 14px); standard keeps master's flush
+  // 0 (negated-variant rule).
+  addRootOverride(enhanced.components, 'MuiFormHelperText', {
+    marginTop: d['xx-small'],
+    variants: [{ props: { contained: true }, style: { marginInline: d.small } }],
+  });
   addRootOverride(
     enhanced.components,
     'MuiInputBase',

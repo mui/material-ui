@@ -608,6 +608,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
+  'MuiFormHelperText|root|base||marginTop': 'FormHelperText · marginTop',
+  'MuiFormHelperText|root|contained=true||marginInline':
+    'FormHelperText · marginInline [contained=true]',
   'MuiFormLabel|root|base||lineHeight': {
     label: 'FormLabel · lineHeight',
     hidden: true,

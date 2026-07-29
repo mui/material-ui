@@ -26,8 +26,6 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
 import InputBase from '@mui/material/InputBase';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import FilledInput from '@mui/material/FilledInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
@@ -1179,44 +1177,65 @@ function StaticFieldMatrix() {
 }
 
 // Design-capture states: icon end-adornments (error badge / AI sparkle) and a
-// FormHelperText message with a leading icon on the error case. Raw
-// FormControl composition so the helper content is a free node.
+// FormHelperText message with a leading icon on the error case — 2 demos per
+// variant. TextField composition: `helperText` takes a free node and
+// `slotProps.formHelperText` styles the icon row.
 function AdornedFieldMatrix() {
   return (
-    <Stack
-      direction="row"
-      spacing={10}
-      useFlexGap
-      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
-    >
-      <FormControl error data-cell="adorned-error">
-        <OutlinedInput
-          defaultValue="Value"
-          endAdornment={
-            <InputAdornment position="end">
-              <ErrorOutlineIcon color="error" />
-            </InputAdornment>
-          }
-        />
-        <FormHelperText sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <ErrorOutlineIcon fontSize="inherit" />
-          <span className="density-debug-text">Message</span>
-        </FormHelperText>
-      </FormControl>
-      <FormControl data-cell="adorned-ai">
-        <FilledInput
-          hiddenLabel
-          defaultValue="Value"
-          endAdornment={
-            <InputAdornment position="end">
-              <AutoAwesomeIcon />
-            </InputAdornment>
-          }
-        />
-        <FormHelperText>
-          <span className="density-debug-text">Message</span>
-        </FormHelperText>
-      </FormControl>
+    <Stack spacing={3} sx={{ mt: 1 }}>
+      {(['outlined', 'filled', 'standard'] as const).map((variant) => (
+        <Box key={variant} data-adorned-section={variant}>
+          <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+            {variant}
+          </Typography>
+          <Stack
+            direction="row"
+            spacing={10}
+            useFlexGap
+            sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
+          >
+            <TextField
+              variant={variant}
+              error
+              label={<span className="density-debug-text">Label</span>}
+              defaultValue="Value"
+              data-cell={`adorned-error-${variant}`}
+              helperText={
+                <React.Fragment>
+                  <ErrorOutlineIcon fontSize="inherit" />
+                  <span className="density-debug-text">Message</span>
+                </React.Fragment>
+              }
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <ErrorOutlineIcon color="error" />
+                    </InputAdornment>
+                  ),
+                },
+                formHelperText: { sx: { display: 'flex', alignItems: 'center', gap: 0.5 } },
+              }}
+            />
+            <TextField
+              variant={variant}
+              label={<span className="density-debug-text">Label</span>}
+              defaultValue="Value"
+              data-cell={`adorned-ai-${variant}`}
+              helperText={<span className="density-debug-text">Message</span>}
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <AutoAwesomeIcon />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
+          </Stack>
+        </Box>
+      ))}
     </Stack>
   );
 }

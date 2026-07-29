@@ -3318,6 +3318,42 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: '9', medium: '9', low: '9' },
   },
   {
+    id: 'MuiFormHelperText|root|base||marginTop',
+    label: 'FormHelperText · marginTop',
+    isDensity: true,
+    densityKey: 'xx-small',
+    target: {
+      component: 'MuiFormHelperText',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'marginTop',
+    },
+    values: {
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
+    },
+  },
+  {
+    id: 'MuiFormHelperText|root|contained=true||marginInline',
+    label: 'FormHelperText · marginInline [contained=true]',
+    isDensity: true,
+    densityKey: 'small',
+    target: {
+      component: 'MuiFormHelperText',
+      slot: 'root',
+      props: { contained: true },
+      nested: '',
+      cssProp: 'marginInline',
+    },
+    values: {
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
+    },
+  },
+  {
     id: 'MuiFormLabel|root|base||lineHeight',
     label: 'FormLabel · lineHeight',
     isDensity: false,

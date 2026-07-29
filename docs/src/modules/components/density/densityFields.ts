@@ -245,6 +245,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiFilledInput: 'TextField',
   MuiInputBase: ['TextField', 'Select'],
   MuiFormLabel: 'TextField',
+  MuiFormHelperText: 'TextField',
   MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',
@@ -320,7 +321,14 @@ export const familyComponentOrder: Record<string, string[]> = {
   Stepper: ['Stepper', 'Step', 'StepLabel', 'StepConnector', 'StepContent', 'SvgIcon'],
   Table: ['TableCell', 'TableSortLabel', 'TablePagination'],
   Select: ['InputBase', 'Select'],
-  TextField: ['InputBase', 'InputAdornment', 'OutlinedInput', 'FilledInput', 'Input'],
+  TextField: [
+    'FormHelperText',
+    'InputBase',
+    'InputAdornment',
+    'OutlinedInput',
+    'FilledInput',
+    'Input',
+  ],
 };
 
 /** Ordered (and, when configured, scoped) component list for a family's sidebar group. */

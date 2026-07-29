@@ -1971,6 +1971,25 @@ const high = {
         ],
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -4453,6 +4472,25 @@ const medium = {
         ],
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     MuiTab: {
       styleOverrides: {
         root: [
@@ -6897,6 +6935,25 @@ const low = {
         root: [
           {
             lineHeight: 1.5,
+          },
+        ],
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: [
+          {
+            marginTop: 'var(--mui-density-xx-small)',
+            variants: [
+              {
+                props: {
+                  contained: true,
+                },
+                style: {
+                  marginInline: 'var(--mui-density-small)',
+                },
+              },
+            ],
           },
         ],
       },
