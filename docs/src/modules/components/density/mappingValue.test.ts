@@ -113,4 +113,26 @@ describe('mappingValue', () => {
     expect(appendPxToNumeric('1.5', 'lineHeight')).to.equal('1.5');
     expect(appendPxToNumeric('700', 'fontWeight')).to.equal('700');
   });
+
+  it('resolveValue expands density keys embedded in calc expressions', () => {
+    expect(resolveValue('calc(xx-small + 2px)')).to.equal(
+      'calc(var(--mui-density-xx-small) + 2px)',
+    );
+    expect(resolveValue('calc(small - 1px)')).to.equal('calc(var(--mui-density-small) - 1px)');
+    // already-resolved refs must not double-expand
+    expect(resolveValue('calc(var(--mui-density-x-small) - 1px)')).to.equal(
+      'calc(var(--mui-density-x-small) - 1px)',
+    );
+  });
+
+  it('previewText resolves steps inside calc and collapses flat arithmetic', () => {
+    const scale = { 'xx-small': '4px', small: '12px' };
+    expect(previewText('calc(xx-small + 2px)', scale)).to.equal('6px');
+    expect(previewText('calc(var(--mui-density-small) - 1px)', scale)).to.equal('11px');
+    expect(previewText('calc(var(--mui-density-small) * 2)', scale)).to.equal('24px');
+    expect(previewText('calc(11px * 0.71)', null)).to.equal('7.81px');
+    // unresolvable shapes echo (unknown step w/o scale, nested calc, non-length)
+    expect(previewText('calc(xx-small + 2px)', null)).to.equal('calc(xx-small + 2px)');
+    expect(previewText('calc(100% - 8px)', scale)).to.equal('calc(100% - 8px)');
+  });
 });

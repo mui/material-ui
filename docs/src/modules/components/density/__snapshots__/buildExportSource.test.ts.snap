@@ -335,10 +335,10 @@ const high = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
+              '--_restY': 'var(--_outlinedInputPadBlock)',
             },
             variants: [
               {
@@ -346,11 +346,8 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
-                  },
                   '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-small)',
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
                   },
                 },
               },
@@ -359,7 +356,7 @@ const high = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -368,7 +365,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -376,14 +373,14 @@ const high = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
               {
@@ -403,7 +400,7 @@ const high = {
       styleOverrides: {
         input: [
           {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
             variants: [
               {
@@ -439,8 +436,8 @@ const high = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-x-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-small)',
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -453,8 +450,8 @@ const high = {
                 },
                 style: {
                   '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': '18px',
-                    '--_filledInputPadBottom': '2px',
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
                     '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -513,14 +510,14 @@ const high = {
           {
             '.MuiFormControl-root:has(> &)': {
               '--_inputPadTop': 'var(--mui-density-x-small)',
-              '--_inputPadBottom': 'calc(var(--mui-density-x-small) - 1px)',
-              '--_inputMarginTop': '16px',
+              '--_inputPadBottom': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_inputMarginTop': 'var(--mui-density-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+              '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
             },
             'label + &, .MuiInputLabel-root + &': {
-              marginTop: 'var(--_inputMarginTop, 16px)',
+              marginTop: 'var(--_inputMarginTop, var(--mui-density-small))',
             },
             variants: [
               {
@@ -530,10 +527,10 @@ const high = {
                 style: {
                   '.MuiFormControl-root:has(> &)': {
                     '--_inputPadTop': 'var(--mui-density-xx-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-xx-small) - 1px)',
+                    '--_inputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
                   },
                 },
               },
@@ -543,7 +540,7 @@ const high = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-x-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -553,7 +550,7 @@ const high = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -1932,7 +1929,15 @@ const high = {
     },
     MuiInputBase: {
       styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
         input: [
+          {
+            height: 'auto',
+          },
           {
             paddingBlock: 'var(--mui-density-x-small)',
             variants: [
@@ -1953,6 +1958,15 @@ const high = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.5,
           },
         ],
       },
@@ -2791,10 +2805,10 @@ const medium = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
+              '--_restY': 'var(--_outlinedInputPadBlock)',
             },
             variants: [
               {
@@ -2802,11 +2816,8 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
-                  },
                   '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-small)',
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
                   },
                 },
               },
@@ -2815,7 +2826,7 @@ const medium = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -2824,7 +2835,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -2832,14 +2843,14 @@ const medium = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
               {
@@ -2859,7 +2870,7 @@ const medium = {
       styleOverrides: {
         input: [
           {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
             variants: [
               {
@@ -2895,8 +2906,8 @@ const medium = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-x-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-small)',
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -2909,8 +2920,8 @@ const medium = {
                 },
                 style: {
                   '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': '18px',
-                    '--_filledInputPadBottom': '2px',
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
                     '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -2969,14 +2980,14 @@ const medium = {
           {
             '.MuiFormControl-root:has(> &)': {
               '--_inputPadTop': 'var(--mui-density-x-small)',
-              '--_inputPadBottom': 'calc(var(--mui-density-x-small) - 1px)',
-              '--_inputMarginTop': '16px',
+              '--_inputPadBottom': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_inputMarginTop': 'var(--mui-density-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+              '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
             },
             'label + &, .MuiInputLabel-root + &': {
-              marginTop: 'var(--_inputMarginTop, 16px)',
+              marginTop: 'var(--_inputMarginTop, var(--mui-density-small))',
             },
             variants: [
               {
@@ -2986,10 +2997,10 @@ const medium = {
                 style: {
                   '.MuiFormControl-root:has(> &)': {
                     '--_inputPadTop': 'var(--mui-density-xx-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-xx-small) - 1px)',
+                    '--_inputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
                   },
                 },
               },
@@ -2999,7 +3010,7 @@ const medium = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-x-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -3009,7 +3020,7 @@ const medium = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -4400,7 +4411,15 @@ const medium = {
     },
     MuiInputBase: {
       styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.428571429,
+          },
+        ],
         input: [
+          {
+            height: 'auto',
+          },
           {
             paddingBlock: 'var(--mui-density-x-small)',
             variants: [
@@ -4421,6 +4440,15 @@ const medium = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.428571429,
           },
         ],
       },
@@ -5237,10 +5265,10 @@ const low = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
+              '--_outlinedInputPadBlock': 'calc(var(--mui-density-xx-small) + 2px)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
+              '--_restY': 'var(--_outlinedInputPadBlock)',
             },
             variants: [
               {
@@ -5248,11 +5276,8 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
-                  },
                   '.MuiFormControl-root:has(> &)': {
-                    '--_outlinedInputPadBlock': 'var(--mui-density-small)',
+                    '--_outlinedInputPadBlock': 'var(--mui-density-xx-small)',
                   },
                 },
               },
@@ -5261,7 +5286,7 @@ const low = {
                   multiline: true,
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -5270,7 +5295,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -5278,14 +5303,14 @@ const low = {
         ],
         input: [
           {
-            paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+            paddingBlock: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+                  paddingBlock: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
                 },
               },
               {
@@ -5305,7 +5330,7 @@ const low = {
       styleOverrides: {
         input: [
           {
-            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
+            paddingTop: 'var(--_filledInputPadTop, var(--mui-density-large))',
             paddingBottom: 'var(--_filledInputPadBottom, var(--mui-density-small))',
             variants: [
               {
@@ -5341,8 +5366,8 @@ const low = {
         root: [
           {
             '.MuiFormControl-root:has(> &)': {
-              '--_filledInputPadTop': 'var(--mui-density-x-large)',
-              '--_filledInputPadBottom': 'var(--mui-density-small)',
+              '--_filledInputPadTop': 'var(--mui-density-large)',
+              '--_filledInputPadBottom': 'var(--mui-density-x-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
               '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -5355,8 +5380,8 @@ const low = {
                 },
                 style: {
                   '.MuiFormControl-root:has(> &)': {
-                    '--_filledInputPadTop': '18px',
-                    '--_filledInputPadBottom': '2px',
+                    '--_filledInputPadTop': 'calc(var(--mui-density-medium) + 2px)',
+                    '--_filledInputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
                     '--_restY': 'calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)',
@@ -5415,14 +5440,14 @@ const low = {
           {
             '.MuiFormControl-root:has(> &)': {
               '--_inputPadTop': 'var(--mui-density-x-small)',
-              '--_inputPadBottom': 'calc(var(--mui-density-x-small) - 1px)',
-              '--_inputMarginTop': '16px',
+              '--_inputPadBottom': 'calc(var(--mui-density-xx-small) + 2px)',
+              '--_inputMarginTop': 'var(--mui-density-small)',
             },
             '.MuiInputLabel-root:has(~ &)': {
-              '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+              '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
             },
             'label + &, .MuiInputLabel-root + &': {
-              marginTop: 'var(--_inputMarginTop, 16px)',
+              marginTop: 'var(--_inputMarginTop, var(--mui-density-small))',
             },
             variants: [
               {
@@ -5432,10 +5457,10 @@ const low = {
                 style: {
                   '.MuiFormControl-root:has(> &)': {
                     '--_inputPadTop': 'var(--mui-density-xx-small)',
-                    '--_inputPadBottom': 'calc(var(--mui-density-xx-small) - 1px)',
+                    '--_inputPadBottom': 'var(--mui-density-xx-small)',
                   },
                   '.MuiInputLabel-root:has(~ &)': {
-                    '--_restY': 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+                    '--_restY': 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
                   },
                 },
               },
@@ -5445,7 +5470,7 @@ const low = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-x-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
                 },
               },
               {
@@ -5455,7 +5480,7 @@ const low = {
                 },
                 style: {
                   paddingTop: 'var(--_inputPadTop, var(--mui-density-xx-small))',
-                  paddingBottom: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
+                  paddingBottom: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
                 },
               },
             ],
@@ -6834,7 +6859,15 @@ const low = {
     },
     MuiInputBase: {
       styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.5,
+          },
+        ],
         input: [
+          {
+            height: 'auto',
+          },
           {
             paddingBlock: 'var(--mui-density-x-small)',
             variants: [
@@ -6855,6 +6888,15 @@ const low = {
                 },
               },
             ],
+          },
+        ],
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: [
+          {
+            lineHeight: 1.5,
           },
         ],
       },

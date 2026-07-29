@@ -244,6 +244,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiInputAdornment: 'TextField',
   MuiFilledInput: 'TextField',
   MuiInputBase: ['TextField', 'Select'],
+  MuiFormLabel: 'TextField',
   MuiInput: 'TextField',
   MuiCheckbox: 'Checkbox',
   MuiRadio: 'Radio',

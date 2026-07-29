@@ -168,30 +168,32 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // broadcast the variable to the formControl so the label can reach it via `:has(> &)` (the input is a child).
     // Default-size block pad: semantic/spacing/variable/xxs (dropdown inputContainer)
     // — yields the 32px input box (20px line + 2×pad + border).
-    [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
+    [`.${formControlClasses.root}:has(> &)`]: {
+      '--_outlinedInputPadBlock': `calc(${d['xx-small']} + 2px)`,
+    },
+    // Label line-height = input line-height (the FormLabel body1 normalization),
+    // so rest Y is exactly the block pad — the per-size ±0.5px optical fudge is
+    // gone, and small needs no restY re-declare of its own.
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc(var(--_outlinedInputPadBlock) - 0.5px)`,
+      '--_restY': 'var(--_outlinedInputPadBlock)',
     },
     variants: [
       {
         props: { size: 'small' },
         style: {
-          [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc(var(--_outlinedInputPadBlock) + 0.5px)`,
-          },
-          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d.small },
+          [`.${formControlClasses.root}:has(> &)`]: { '--_outlinedInputPadBlock': d['xx-small'] },
         },
       },
       {
         props: { multiline: true },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
+          paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
         },
       },
       {
         props: { multiline: true, size: 'small' },
         style: {
-          paddingBlock: `var(--_outlinedInputPadBlock, ${d.small})`,
+          paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
         },
       },
     ],
@@ -202,11 +204,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       // Only block padding reflows; inline stays master (fieldset-constrained).
       // Master already ships the adornment/multiline inline resets on this slot.
-      paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
+      paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
       variants: [
         {
           props: { size: 'small' },
-          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d.small})` },
+          style: { paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})` },
         },
         {
           props: { multiline: true },
@@ -222,7 +224,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       // Only block padding reflows; inline stays master (keeps label alignment).
       // hiddenLabel block padding stays at master literals (out of scope).
-      paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
+      paddingTop: `var(--_filledInputPadTop, ${d.large})`,
       paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
       variants: [
         {
@@ -250,14 +252,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   addRootOverride(enhanced.components, 'MuiInput', {
     [`.${formControlClasses.root}:has(> &)`]: {
       '--_inputPadTop': d['x-small'],
-      '--_inputPadBottom': `calc(${d['x-small']} - 1px)`,
-      '--_inputMarginTop': '16px',
+      '--_inputPadBottom': `calc(${d['xx-small']} + 2px)`,
+      '--_inputMarginTop': d.small,
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
-      '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d['x-small']}) + var(--_inputPadBottom, ${d['x-small']})) / 2)`,
+      '--_restY': `calc(var(--_inputMarginTop, ${d.small}) + (var(--_inputPadTop, ${d['x-small']}) + var(--_inputPadBottom, ${d['x-small']})) / 2)`,
     },
     [`label + &, .${inputLabelClasses.root} + &`]: {
-      marginTop: `var(--_inputMarginTop, 16px)`,
+      marginTop: `var(--_inputMarginTop, ${d.small})`,
     },
     variants: [
       {
@@ -265,10 +267,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
             '--_inputPadTop': d['xx-small'],
-            '--_inputPadBottom': `calc(${d['xx-small']} - 1px)`,
+            '--_inputPadBottom': d['xx-small'],
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
-            '--_restY': `calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, ${d['xx-small']}) + var(--_inputPadBottom, ${d['xx-small']})) / 2)`,
+            '--_restY': `calc(var(--_inputMarginTop, ${d.small}) + (var(--_inputPadTop, ${d['xx-small']}) + var(--_inputPadBottom, ${d['xx-small']})) / 2)`,
           },
         },
       },
@@ -276,14 +278,14 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { multiline: true },
         style: {
           paddingTop: `var(--_inputPadTop, ${d['x-small']})`,
-          paddingBottom: `var(--_inputPadBottom, calc(${d['x-small']} - 1px))`,
+          paddingBottom: `var(--_inputPadBottom, calc(${d['xx-small']} + 2px))`,
         },
       },
       {
         props: { multiline: true, size: 'small' },
         style: {
           paddingTop: `var(--_inputPadTop, ${d['xx-small']})`,
-          paddingBottom: `var(--_inputPadBottom, calc(${d['xx-small']} - 1px))`,
+          paddingBottom: `var(--_inputPadBottom, ${d['xx-small']})`,
         },
       },
     ],
@@ -971,8 +973,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // tuned raw px (no clean formula from topPad). hiddenLabel block padding stays
     // at master literals (out of scope).
     [`.${formControlClasses.root}:has(> &)`]: {
-      '--_filledInputPadTop': d['x-large'],
-      '--_filledInputPadBottom': d.small,
+      '--_filledInputPadTop': d.large,
+      '--_filledInputPadBottom': d['x-small'],
     },
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
@@ -983,8 +985,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { size: 'small' },
         style: {
           [`.${formControlClasses.root}:has(> &)`]: {
-            '--_filledInputPadTop': '18px',
-            '--_filledInputPadBottom': '2px',
+            // 18px, tracking the scale (medium + 2px) instead of a frozen literal
+            '--_filledInputPadTop': `calc(${d.medium} + 2px)`,
+            '--_filledInputPadBottom': d['xx-small'],
           },
           [`.${inputLabelClasses.root}:has(~ &)`]: {
             '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
@@ -1016,6 +1019,18 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: { paddingTop: 8, paddingBottom: 9 },
       },
     ],
+  });
+  // Normalization trio (hidden knobs): InputBase root + FormLabel line-height
+  // ride the theme's body1 (master hardcodes 1.4375em on both), and the input
+  // box height goes auto so the row height derives from line-height + padding
+  // instead of master's em height. With label metrics = input metrics the
+  // outlined `--_restY` writers need no ±0.5px optical fudge.
+  addRootOverride(enhanced.components, 'MuiInputBase', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
+  });
+  addRootOverride(enhanced.components, 'MuiInputBase', { height: 'auto' }, 'input');
+  addRootOverride(enhanced.components, 'MuiFormLabel', {
+    lineHeight: enhanced.typography?.body1?.lineHeight,
   });
   addRootOverride(
     enhanced.components,

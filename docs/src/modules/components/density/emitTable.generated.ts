@@ -2944,9 +2944,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingTop',
     },
     values: {
-      high: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
-      medium: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
-      low: 'var(--_filledInputPadTop, var(--mui-density-x-large))',
+      high: 'var(--_filledInputPadTop, var(--mui-density-large))',
+      medium: 'var(--_filledInputPadTop, var(--mui-density-large))',
+      low: 'var(--_filledInputPadTop, var(--mui-density-large))',
     },
   },
   {
@@ -3057,7 +3057,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop',
     label: 'FilledInput · --_filledInputPadTop',
     isDensity: true,
-    densityKey: 'x-large',
+    densityKey: 'large',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3066,16 +3066,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_filledInputPadTop',
     },
     values: {
-      high: 'var(--mui-density-x-large)',
-      medium: 'var(--mui-density-x-large)',
-      low: 'var(--mui-density-x-large)',
+      high: 'var(--mui-density-large)',
+      medium: 'var(--mui-density-large)',
+      low: 'var(--mui-density-large)',
     },
   },
   {
     id: 'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
     label: 'FilledInput · --_filledInputPadBottom',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3084,9 +3084,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_filledInputPadBottom',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -3133,13 +3133,17 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadTop',
     },
-    values: { high: '18px', medium: '18px', low: '18px' },
+    values: {
+      high: 'calc(var(--mui-density-medium) + 2px)',
+      medium: 'calc(var(--mui-density-medium) + 2px)',
+      low: 'calc(var(--mui-density-medium) + 2px)',
+    },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom',
     label: 'FilledInput · --_filledInputPadBottom [size=small]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-small',
     target: {
       component: 'MuiFilledInput',
       slot: 'root',
@@ -3147,7 +3151,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_filledInputPadBottom',
     },
-    values: { high: '2px', medium: '2px', low: '2px' },
+    values: {
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
+    },
   },
   {
     id: 'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
@@ -3308,6 +3316,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: { high: '9', medium: '9', low: '9' },
+  },
+  {
+    id: 'MuiFormLabel|root|base||lineHeight',
+    label: 'FormLabel · lineHeight',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiFormLabel',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'lineHeight',
+    },
+    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
   },
   {
     id: 'MuiIconButton|root|size=small||padding',
@@ -3504,16 +3526,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_inputPadBottom',
     },
     values: {
-      high: 'calc(var(--mui-density-x-small) - 1px)',
-      medium: 'calc(var(--mui-density-x-small) - 1px)',
-      low: 'calc(var(--mui-density-x-small) - 1px)',
+      high: 'calc(var(--mui-density-xx-small) + 2px)',
+      medium: 'calc(var(--mui-density-xx-small) + 2px)',
+      low: 'calc(var(--mui-density-xx-small) + 2px)',
     },
   },
   {
     id: 'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop',
     label: 'Input · --_inputMarginTop',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'small',
     target: {
       component: 'MuiInput',
       slot: 'root',
@@ -3521,7 +3543,11 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '.MuiFormControl-root:has(> &)',
       privateVar: '--_inputMarginTop',
     },
-    values: { high: '16px', medium: '16px', low: '16px' },
+    values: {
+      high: 'var(--mui-density-small)',
+      medium: 'var(--mui-density-small)',
+      low: 'var(--mui-density-small)',
+    },
   },
   {
     id: 'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY',
@@ -3536,10 +3562,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_restY',
     },
     values: {
-      high: 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+      high: 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
       medium:
-        'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
-      low: 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+        'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
+      low: 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-x-small)) + var(--_inputPadBottom, var(--mui-density-x-small))) / 2)',
     },
   },
   {
@@ -3555,9 +3581,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginTop',
     },
     values: {
-      high: 'var(--_inputMarginTop, 16px)',
-      medium: 'var(--_inputMarginTop, 16px)',
-      low: 'var(--_inputMarginTop, 16px)',
+      high: 'var(--_inputMarginTop, var(--mui-density-small))',
+      medium: 'var(--_inputMarginTop, var(--mui-density-small))',
+      low: 'var(--_inputMarginTop, var(--mui-density-small))',
     },
   },
   {
@@ -3581,8 +3607,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom',
     label: 'Input · --_inputPadBottom [size=small]',
-    isDensity: false,
-    densityKey: null,
+    isDensity: true,
+    densityKey: 'xx-small',
     target: {
       component: 'MuiInput',
       slot: 'root',
@@ -3591,9 +3617,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_inputPadBottom',
     },
     values: {
-      high: 'calc(var(--mui-density-xx-small) - 1px)',
-      medium: 'calc(var(--mui-density-xx-small) - 1px)',
-      low: 'calc(var(--mui-density-xx-small) - 1px)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -3609,10 +3635,10 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_restY',
     },
     values: {
-      high: 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+      high: 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
       medium:
-        'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
-      low: 'calc(var(--_inputMarginTop, 16px) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+        'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
+      low: 'calc(var(--_inputMarginTop, var(--mui-density-small)) + (var(--_inputPadTop, var(--mui-density-xx-small)) + var(--_inputPadBottom, var(--mui-density-xx-small))) / 2)',
     },
   },
   {
@@ -3646,9 +3672,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      high: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
-      medium: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
-      low: 'var(--_inputPadBottom, calc(var(--mui-density-x-small) - 1px))',
+      high: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
+      medium: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
+      low: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) + 2px))',
     },
   },
   {
@@ -3682,9 +3708,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBottom',
     },
     values: {
-      high: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
-      medium: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
-      low: 'var(--_inputPadBottom, calc(var(--mui-density-xx-small) - 1px))',
+      high: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
+      medium: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
+      low: 'var(--_inputPadBottom, var(--mui-density-xx-small))',
     },
   },
   {
@@ -3778,6 +3804,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiInputBase|input|base||height',
+    label: 'InputBase · input · height',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiInputBase',
+      slot: 'input',
+      props: null,
+      nested: '',
+      cssProp: 'height',
+    },
+    values: { high: 'auto', medium: 'auto', low: 'auto' },
+  },
+  {
     id: 'MuiInputBase|input|base||paddingBlock',
     label: 'InputBase · input · paddingBlock',
     isDensity: true,
@@ -3826,6 +3866,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: { high: '0', medium: '0', low: '0' },
+  },
+  {
+    id: 'MuiInputBase|root|base||lineHeight',
+    label: 'InputBase · lineHeight',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiInputBase',
+      slot: 'root',
+      props: null,
+      nested: '',
+      cssProp: 'lineHeight',
+    },
+    values: { high: '1.5', medium: '1.428571429', low: '1.5' },
   },
   {
     id: 'MuiInputLabel|root|fn:1u4zrm||transform',
@@ -4314,9 +4368,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      high: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      medium: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      low: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
     },
   },
   {
@@ -4332,9 +4386,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
     },
   },
   {
@@ -4354,8 +4408,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock',
     label: 'OutlinedInput · --_outlinedInputPadBlock',
-    isDensity: true,
-    densityKey: 'xx-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiOutlinedInput',
       slot: 'root',
@@ -4364,9 +4418,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-xx-small)',
+      high: 'calc(var(--mui-density-xx-small) + 2px)',
+      medium: 'calc(var(--mui-density-xx-small) + 2px)',
+      low: 'calc(var(--mui-density-xx-small) + 2px)',
     },
   },
   {
@@ -4382,34 +4436,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_restY',
     },
     values: {
-      high: 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
-      medium: 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
-      low: 'calc(var(--_outlinedInputPadBlock) - 0.5px)',
-    },
-  },
-  {
-    id: 'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY',
-    label: 'OutlinedInput · --_restY [size=small]',
-    isDensity: false,
-    densityKey: null,
-    target: {
-      component: 'MuiOutlinedInput',
-      slot: 'root',
-      props: { size: 'small' },
-      nested: '.MuiInputLabel-root:has(~ &)',
-      privateVar: '--_restY',
-    },
-    values: {
-      high: 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
-      medium: 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
-      low: 'calc(var(--_outlinedInputPadBlock) + 0.5px)',
+      high: 'var(--_outlinedInputPadBlock)',
+      medium: 'var(--_outlinedInputPadBlock)',
+      low: 'var(--_outlinedInputPadBlock)',
     },
   },
   {
     id: 'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock',
     label: 'OutlinedInput · --_outlinedInputPadBlock [size=small]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'xx-small',
     target: {
       component: 'MuiOutlinedInput',
       slot: 'root',
@@ -4418,9 +4454,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       privateVar: '--_outlinedInputPadBlock',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-xx-small)',
+      medium: 'var(--mui-density-xx-small)',
+      low: 'var(--mui-density-xx-small)',
     },
   },
   {
@@ -4436,9 +4472,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      high: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      medium: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
+      low: 'var(--_outlinedInputPadBlock, calc(var(--mui-density-xx-small) + 2px))',
     },
   },
   {
@@ -4454,9 +4490,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'paddingBlock',
     },
     values: {
-      high: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
-      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
-      low: 'var(--_outlinedInputPadBlock, var(--mui-density-small))',
+      high: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      medium: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
+      low: 'var(--_outlinedInputPadBlock, var(--mui-density-xx-small))',
     },
   },
   {

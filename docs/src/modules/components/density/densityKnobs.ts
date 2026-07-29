@@ -608,6 +608,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
+  'MuiFormLabel|root|base||lineHeight': {
+    label: 'FormLabel · lineHeight',
+    hidden: true,
+    note: 'Rides theme.typography.body1.lineHeight — label metrics match input metrics (no ±0.5px restY fudge).',
+  },
   'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
   'MuiIconButton|root|size=medium||padding': 'IconButton · padding [size=medium]',
   'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
@@ -693,6 +698,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
       hidden: true,
       note: 'Adornment top offset = calc(padTop - padBottom) — follows the FilledInput pad var knobs.',
     },
+  'MuiInputBase|input|base||height': {
+    label: 'InputBase · input · height',
+    hidden: true,
+    note: 'Normalization (master 1.4375em) — row height derives from line-height + padding.',
+  },
   'MuiInputBase|input|base||paddingBlock': {
     label: 'InputBase · input · paddingBlock',
     hidden: true,
@@ -707,6 +717,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'InputBase · input · paddingBlock [multiline=true]',
     hidden: true,
     note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
+  },
+  'MuiInputBase|root|base||lineHeight': {
+    label: 'InputBase · lineHeight',
+    hidden: true,
+    note: 'Rides theme.typography.body1.lineHeight — edit via the Typography tab.',
   },
   'MuiInputLabel|root|fn:1u4zrm||transform': {
     label: 'InputLabel · transform [fn]',
@@ -790,11 +805,6 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'OutlinedInput · --_restY',
     hidden: true,
     note: 'Floating-label rest-Y = calc(--_outlinedInputPadBlock - 0.5px) — follows the pad var knob; consumed by the InputLabel transform.',
-  },
-  'MuiOutlinedInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
-    label: 'OutlinedInput · --_restY [size=small]',
-    hidden: true,
-    note: 'Floating-label rest-Y (small) = calc(--_outlinedInputPadBlock + 0.5px) — follows the pad var knob; consumed by the InputLabel transform.',
   },
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block [size=small]',

@@ -23,7 +23,11 @@ import TableCell from '@mui/material/TableCell';
 import CssBaseline from '@mui/material/CssBaseline';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
+import InputBase from '@mui/material/InputBase';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import FilledInput from '@mui/material/FilledInput';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
@@ -94,6 +98,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import HighlightAltIcon from '@mui/icons-material/HighlightAlt';
 import {
   DataGrid,
@@ -905,10 +911,15 @@ function OutlinedInputMatrix() {
         <Typography variant="caption" color="text.secondary">
           medium
         </Typography>
-        <TextField label={<span className="density-debug-text">Label</span>} variant="outlined" />
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
+        />
         <TextField
           label={<span className="density-debug-text">Start adornment</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
           }}
@@ -916,6 +927,7 @@ function OutlinedInputMatrix() {
         <TextField
           label={<span className="density-debug-text">End adornment</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
           }}
@@ -923,6 +935,7 @@ function OutlinedInputMatrix() {
         <TextField
           label={<span className="density-debug-text">Multiline</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           multiline
           rows={3}
           defaultValue={'Line one\nLine two\nLine three'}
@@ -935,11 +948,13 @@ function OutlinedInputMatrix() {
         <TextField
           label={<span className="density-debug-text">Label</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
         />
         <TextField
           label={<span className="density-debug-text">Start adornment</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
@@ -948,6 +963,7 @@ function OutlinedInputMatrix() {
         <TextField
           label={<span className="density-debug-text">End adornment</span>}
           variant="outlined"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
@@ -972,15 +988,21 @@ function FilledInputMatrix() {
         <Typography variant="caption" color="text.secondary">
           medium
         </Typography>
-        <TextField label={<span className="density-debug-text">Label</span>} variant="filled" />
         <TextField
           label={<span className="density-debug-text">Label</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
+        />
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           defaultValue="Filled value"
         />
         <TextField
           label={<span className="density-debug-text">Amount</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
           }}
@@ -988,6 +1010,7 @@ function FilledInputMatrix() {
         <TextField
           label={<span className="density-debug-text">Multiline</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           multiline
           rows={3}
           defaultValue={'Line one\nLine two\nLine three'}
@@ -1000,17 +1023,20 @@ function FilledInputMatrix() {
         <TextField
           label={<span className="density-debug-text">Label</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
         />
         <TextField
           label={<span className="density-debug-text">Label</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           defaultValue="Filled value"
         />
         <TextField
           label={<span className="density-debug-text">Amount</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
@@ -1019,6 +1045,7 @@ function FilledInputMatrix() {
         <TextField
           label={<span className="density-debug-text">Weight</span>}
           variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
@@ -1041,10 +1068,15 @@ function InputMatrix() {
         <Typography variant="caption" color="text.secondary">
           medium
         </Typography>
-        <TextField label={<span className="density-debug-text">Label</span>} variant="standard" />
+        <TextField
+          label={<span className="density-debug-text">Label</span>}
+          variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
+        />
         <TextField
           label={<span className="density-debug-text">Start adornment</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
           }}
@@ -1052,6 +1084,7 @@ function InputMatrix() {
         <TextField
           label={<span className="density-debug-text">End adornment</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
           }}
@@ -1059,6 +1092,7 @@ function InputMatrix() {
         <TextField
           label={<span className="density-debug-text">Multiline</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           multiline
           rows={3}
           defaultValue={'Line one\nLine two\nLine three'}
@@ -1071,11 +1105,13 @@ function InputMatrix() {
         <TextField
           label={<span className="density-debug-text">Label</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
         />
         <TextField
           label={<span className="density-debug-text">Start adornment</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { startAdornment: <InputAdornment position="start">$</InputAdornment> },
@@ -1084,12 +1120,103 @@ function InputMatrix() {
         <TextField
           label={<span className="density-debug-text">End adornment</span>}
           variant="standard"
+          helperText={<span className="density-debug-text">Helper text</span>}
           size="small"
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
           }}
         />
       </Stack>
+    </Stack>
+  );
+}
+
+// Design-capture composition (text-input.png): static FormLabel (no floating
+// label) + InputBase + FormHelperText wired through one FormControl — label-side
+// (horizontal) and label-top (vertical). InputBase ships unstyled, so the demo
+// draws the capture's 1px border/radius itself to keep the box visible.
+function StaticFieldMatrix() {
+  return null;
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      <Box data-orientation-section="horizontal">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          horizontal
+        </Typography>
+        <FormControl sx={{ flexDirection: 'row', columnGap: 2 }}>
+          <FormLabel sx={{ alignSelf: 'center' }}>
+            <span className="density-debug-text">Label</span>
+          </FormLabel>
+          <div>
+            <InputBase placeholder="Hint text" />
+            <FormHelperText>
+              <span className="density-debug-text">Message</span>
+            </FormHelperText>
+          </div>
+        </FormControl>
+      </Box>
+      <Box data-orientation-section="vertical">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          vertical
+        </Typography>
+        <FormControl>
+          <FormLabel>
+            <span className="density-debug-text">Label</span>
+          </FormLabel>
+          <InputBase placeholder="Hint text" />
+          <FormHelperText>
+            <span className="density-debug-text">Message</span>
+          </FormHelperText>
+        </FormControl>
+      </Box>
+    </Stack>
+  );
+}
+
+// Design-capture states: icon end-adornments (error badge / AI sparkle) and a
+// FormHelperText message with a leading icon on the error case. Raw
+// FormControl composition so the helper content is a free node.
+function AdornedFieldMatrix() {
+  return (
+    <Stack
+      direction="row"
+      spacing={10}
+      useFlexGap
+      sx={{ mt: 1, alignItems: 'flex-start', flexWrap: 'wrap' }}
+    >
+      <FormControl error data-cell="adorned-error">
+        <OutlinedInput
+          defaultValue="Value"
+          endAdornment={
+            <InputAdornment position="end">
+              <ErrorOutlineIcon color="error" />
+            </InputAdornment>
+          }
+        />
+        <FormHelperText sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <ErrorOutlineIcon fontSize="inherit" />
+          <span className="density-debug-text">Message</span>
+        </FormHelperText>
+      </FormControl>
+      <FormControl data-cell="adorned-ai">
+        <FilledInput
+          hiddenLabel
+          defaultValue="Value"
+          endAdornment={
+            <InputAdornment position="end">
+              <AutoAwesomeIcon />
+            </InputAdornment>
+          }
+        />
+        <FormHelperText>
+          <span className="density-debug-text">Message</span>
+        </FormHelperText>
+      </FormControl>
     </Stack>
   );
 }
@@ -1102,6 +1229,8 @@ function TextFieldMatrix() {
           ['outlined', <OutlinedInputMatrix />],
           ['filled', <FilledInputMatrix />],
           ['standard', <InputMatrix />],
+          ['static label', <StaticFieldMatrix />],
+          ['adornments', <AdornedFieldMatrix />],
         ] as const
       ).map(([variant, node]) => (
         <Box key={variant} data-variant-section={variant}>
