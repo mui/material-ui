@@ -132,6 +132,13 @@ async function main() {
         ],
         config: { rules: { 'no-missing-references': 'warn' } },
       },
+      // Autocomplete keeps an empty aria-activedescendant on its input while
+      // the popup is open and writes the active option's id imperatively after
+      // hydration, so the demo rendering it open carries the empty placeholder.
+      {
+        path: ['/material-ui/customization/overriding-component-structure'],
+        config: { rules: { 'attribute-allowed-values': 'warn' } },
+      },
     ],
     ignores: [
       {
