@@ -432,8 +432,10 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     {
       // Bubble padding = steps (normal maps master's 0.25rem 0.75rem / 0.5rem
       // exactly); arrow box + placement offsets stay frozen.
-      padding: `${d['xx-small']} ${d.medium}`,
-      variants: [{ props: { size: 'small' }, style: { padding: `${d['xx-small']} ${d.small}` } }],
+      padding: `${d['xx-small']} ${d['x-small']}`,
+      variants: [
+        { props: { size: 'small' }, style: { padding: `${d['xx-small']} ${d['x-small']}` } },
+      ],
     },
     'valueLabel',
   );
@@ -1195,7 +1197,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { orientation: 'horizontal' },
         style: {
-          height: '4px',
+          height: '3px',
           paddingBlock: d.medium,
           '@media (pointer: coarse)': { paddingBlock: '20px' },
         },
@@ -1204,7 +1206,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { orientation: 'vertical' },
         style: {
-          width: '4px',
+          width: '3px',
           paddingInline: d.medium,
           '@media (pointer: coarse)': { paddingInline: '20px' },
         },
@@ -1217,8 +1219,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiSlider',
     {
       // Thumb square = raw px (sizing); the 42px ::after hit target stays frozen.
-      width: '20px',
-      height: '20px',
+      width: '18px',
+      height: '18px',
       variants: [{ props: { size: 'small' }, style: { width: '12px', height: '12px' } }],
     },
     'thumb',

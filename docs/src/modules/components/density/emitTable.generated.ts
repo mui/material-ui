@@ -5412,7 +5412,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '4px', medium: '4px', low: '4px' },
+    values: { high: '3px', medium: '3px', low: '3px' },
   },
   {
     id: 'MuiSlider|root|orientation=horizontal||paddingBlock',
@@ -5472,7 +5472,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '4px', medium: '4px', low: '4px' },
+    values: { high: '3px', medium: '3px', low: '3px' },
   },
   {
     id: 'MuiSlider|root|orientation=vertical||paddingInline',
@@ -5526,7 +5526,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSlider', slot: 'thumb', props: null, nested: '', cssProp: 'width' },
-    values: { high: '20px', medium: '20px', low: '20px' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiSlider|thumb|base||height',
@@ -5534,7 +5534,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiSlider', slot: 'thumb', props: null, nested: '', cssProp: 'height' },
-    values: { high: '20px', medium: '20px', low: '20px' },
+    values: { high: '18px', medium: '18px', low: '18px' },
   },
   {
     id: 'MuiSlider|thumb|size=small||width',
@@ -5577,9 +5577,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-xx-small) var(--mui-density-medium)',
-      medium: 'var(--mui-density-xx-small) var(--mui-density-medium)',
-      low: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+      high: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+      medium: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+      low: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
     },
   },
   {
@@ -5595,9 +5595,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-xx-small) var(--mui-density-small)',
-      medium: 'var(--mui-density-xx-small) var(--mui-density-small)',
-      low: 'var(--mui-density-xx-small) var(--mui-density-small)',
+      high: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+      medium: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
+      low: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
     },
   },
   {

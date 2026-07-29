@@ -760,14 +760,14 @@ const high = {
       styleOverrides: {
         valueLabel: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
                 },
               },
             ],
@@ -781,7 +781,7 @@ const high = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '4px',
+                  height: '3px',
                   paddingBlock: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingBlock: '20px',
@@ -802,7 +802,7 @@ const high = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '4px',
+                  width: '3px',
                   paddingInline: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingInline: '20px',
@@ -823,8 +823,8 @@ const high = {
         ],
         thumb: [
           {
-            width: '20px',
-            height: '20px',
+            width: '18px',
+            height: '18px',
             variants: [
               {
                 props: {
@@ -3310,14 +3310,14 @@ const medium = {
       styleOverrides: {
         valueLabel: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
                 },
               },
             ],
@@ -3331,7 +3331,7 @@ const medium = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '4px',
+                  height: '3px',
                   paddingBlock: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingBlock: '20px',
@@ -3352,7 +3352,7 @@ const medium = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '4px',
+                  width: '3px',
                   paddingInline: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingInline: '20px',
@@ -3373,8 +3373,8 @@ const medium = {
         ],
         thumb: [
           {
-            width: '20px',
-            height: '20px',
+            width: '18px',
+            height: '18px',
             variants: [
               {
                 props: {
@@ -5850,14 +5850,14 @@ const low = {
       styleOverrides: {
         valueLabel: [
           {
-            padding: 'var(--mui-density-xx-small) var(--mui-density-medium)',
+            padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
             variants: [
               {
                 props: {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-xx-small) var(--mui-density-small)',
+                  padding: 'var(--mui-density-xx-small) var(--mui-density-x-small)',
                 },
               },
             ],
@@ -5871,7 +5871,7 @@ const low = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  height: '4px',
+                  height: '3px',
                   paddingBlock: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingBlock: '20px',
@@ -5892,7 +5892,7 @@ const low = {
                   orientation: 'vertical',
                 },
                 style: {
-                  width: '4px',
+                  width: '3px',
                   paddingInline: 'var(--mui-density-medium)',
                   '@media (pointer: coarse)': {
                     paddingInline: '20px',
@@ -5913,8 +5913,8 @@ const low = {
         ],
         thumb: [
           {
-            width: '20px',
-            height: '20px',
+            width: '18px',
+            height: '18px',
             variants: [
               {
                 props: {
