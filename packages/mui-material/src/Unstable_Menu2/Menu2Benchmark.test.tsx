@@ -6,6 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
+import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
+import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
 import Menu2Trigger from '@mui/material/Unstable_Menu2Trigger';
 
 /**
@@ -115,6 +117,44 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       // applies to pointer-opened menus.
       await waitFor(() => expect(menuEl()).toHaveFocus());
       expect(screen.getByRole('menuitem', { name: 'Gamma' })).not.toHaveFocus();
+    });
+  });
+
+  describe('current-value menus', () => {
+    it('classic highlights the selected item, which is what variant="selectedMenu" buys', async () => {
+      const { user } = render(<ClassicMenuHarness withSelected />);
+      await user.click(openTrigger());
+      await waitForOpen();
+      expect(screen.getByRole('menuitem', { name: 'Gamma' })).toHaveFocus();
+    });
+
+    it('the successor highlights the first item, not the checked one', async () => {
+      const { user } = render(
+        <Menu2>
+          <Menu2Trigger slots={{ root: 'button' }}>Options</Menu2Trigger>
+          <Menu2Popup>
+            <Menu2RadioGroup defaultValue="200">
+              <Menu2RadioItem value="100">100%</Menu2RadioItem>
+              <Menu2RadioItem value="200">200%</Menu2RadioItem>
+            </Menu2RadioGroup>
+          </Menu2Popup>
+        </Menu2>,
+      );
+      openTrigger().focus();
+      await user.keyboard('{ArrowDown}');
+      await waitForOpen();
+
+      // Radio items are the accessible way to express "current value", but Base UI
+      // still starts navigation at the first item: there is no public API to open
+      // with the checked item highlighted. This is the capability that
+      // `variant="selectedMenu"` provided and that the successor cannot reproduce.
+      await waitFor(() =>
+        expect(screen.getByRole('menuitemradio', { name: '100%' })).toHaveFocus(),
+      );
+      expect(screen.getByRole('menuitemradio', { name: '200%' })).to.have.attribute(
+        'aria-checked',
+        'true',
+      );
     });
   });
 
