@@ -571,6 +571,51 @@ describe('<Transition />', () => {
   describe('interrupted transitions', () => {
     clock.withFakeTimers();
 
+    it.skipIf(!('Activity' in React))(
+      'restarts completion when effects reconnect while exiting',
+      () => {
+        const handlers = {
+          onExit: spy(),
+          onExiting: spy(),
+          onExited: spy(),
+        };
+
+        function ActivityHarness(props: { in: boolean; mode: 'hidden' | 'visible' }) {
+          return (
+            <React.Activity mode={props.mode}>
+              <TestHarness
+                in={props.in}
+                appear={false}
+                unmountOnExit
+                timeout={100}
+                handlers={handlers}
+              />
+            </React.Activity>
+          );
+        }
+
+        const { setProps } = render(<ActivityHarness in mode="visible" />);
+        setProps({ in: false, mode: 'visible' });
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+
+        // Activity disconnects effects while preserving state. This cancels the pending completion
+        setProps({ in: false, mode: 'hidden' });
+        clock.tick(100);
+        expect(screen.getByTestId('target')).to.have.attribute('data-status', 'exiting');
+        expect(handlers.onExited.callCount).to.equal(0);
+
+        setProps({ in: false, mode: 'visible' });
+        expect(handlers.onExit.callCount).to.equal(1);
+        expect(handlers.onExiting.callCount).to.equal(1);
+        clock.tick(100);
+
+        expect(screen.queryByTestId('target')).to.equal(null);
+        expect(handlers.onExited.callCount).to.equal(1);
+      },
+    );
+
     it('cancels entering when in flips to false mid-transition', () => {
       const handlers = {
         onEntered: spy(),
