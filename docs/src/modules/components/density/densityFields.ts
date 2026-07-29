@@ -655,6 +655,33 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
       wrap: (v) => `calc(50% + 20px + ${v})`,
     },
   ],
+  // Input inline padding -> the root-side re-emissions of master's 14/12px map
+  // (adorned root pads, --_trailingPad, multiline root inline). One knob moves
+  // the whole chain; the input-slot 0 re-asserts are constant (hidden knobs).
+  'MuiOutlinedInput|input|base||paddingInline': [
+    { id: 'MuiOutlinedInput|root|multiline=true||paddingInline', wrap: (v) => v },
+    { id: 'MuiOutlinedInput|root|fn:4q8gcu||paddingLeft', wrap: (v) => v },
+    { id: 'MuiOutlinedInput|root|fn:ho424h||--_trailingPad', wrap: (v) => v },
+    // label X broadcast — the InputLabel transforms consume it
+    { id: 'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad', wrap: (v) => v },
+    // the input-slot 0 re-asserts must ride along or the user layer (appended
+    // last) clobbers master's multiline/adorned resets with the new inline pad
+    { id: 'MuiOutlinedInput|input|multiline=true||paddingInline', wrap: () => '0px' },
+    { id: 'MuiOutlinedInput|input|fn:4q8gcu||paddingLeft', wrap: () => '0px' },
+    { id: 'MuiOutlinedInput|input|fn:ho424h||paddingRight', wrap: () => '0px' },
+  ],
+  'MuiFilledInput|input|base||paddingInline': [
+    { id: 'MuiFilledInput|root|multiline=true||paddingInline', wrap: (v) => v },
+    { id: 'MuiFilledInput|root|fn:4q8gcu||paddingLeft', wrap: (v) => v },
+    { id: 'MuiFilledInput|root|fn:ho424h||--_trailingPad', wrap: (v) => v },
+    // label X broadcast — the InputLabel transforms consume it
+    { id: 'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad', wrap: (v) => v },
+    // the input-slot 0 re-asserts must ride along or the user layer (appended
+    // last) clobbers master's multiline/adorned resets with the new inline pad
+    { id: 'MuiFilledInput|input|multiline=true||paddingInline', wrap: () => '0px' },
+    { id: 'MuiFilledInput|input|fn:4q8gcu||paddingLeft', wrap: () => '0px' },
+    { id: 'MuiFilledInput|input|fn:ho424h||paddingRight', wrap: () => '0px' },
+  ],
   // Switch gutter -> FormControlLabel pull (marginLeft/right = -gutter).
   'MuiSwitch|root|size=medium||--_pad': [
     {

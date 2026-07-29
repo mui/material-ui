@@ -515,31 +515,20 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
-  'MuiFilledInput|input|hiddenLabel=true||paddingTop': {
-    label: 'FilledInput · input · paddingTop [hiddenLabel=true]',
-    hidden: true,
-    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
-  },
-  'MuiFilledInput|input|hiddenLabel=true||paddingBottom': {
-    label: 'FilledInput · input · paddingBottom [hiddenLabel=true]',
-    hidden: true,
-    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
-  },
-  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingTop': {
-    label: 'FilledInput · input · paddingTop [hiddenLabel=true,size=small]',
-    hidden: true,
-    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
-  },
-  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBottom': {
-    label: 'FilledInput · input · paddingBottom [hiddenLabel=true,size=small]',
-    hidden: true,
-    note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
-  },
+  'MuiFilledInput|input|base||paddingInline': 'FilledInput · input · inline padding',
+  'MuiFilledInput|input|hiddenLabel=true||paddingBlock':
+    'FilledInput · input · paddingBlock [hiddenLabel=true]',
+  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBlock':
+    'FilledInput · input · paddingBlock [hiddenLabel=true,size=small]',
   'MuiFilledInput|input|multiline=true||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [multiline=true]',
     hidden: true,
     note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
+  'MuiFilledInput|input|multiline=true||paddingInline':
+    'FilledInput · input · paddingInline [multiline=true]',
+  'MuiFilledInput|input|fn:4q8gcu||paddingLeft': 'FilledInput · input · paddingLeft [fn]',
+  'MuiFilledInput|input|fn:ho424h||paddingRight': 'FilledInput · input · paddingRight [fn]',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
     'FilledInput · padding top',
   'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
@@ -554,6 +543,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Filled shrink-Y — tuned literal (no clean formula from the pads); consumed by the InputLabel filled-shrink transform.',
   },
+  'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
+    'FilledInput · --_inlinePad',
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
     'FilledInput · padding top [size=small]',
   'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
@@ -578,6 +569,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
+  'MuiFilledInput|root|multiline=true||paddingInline':
+    'FilledInput · paddingInline [multiline=true]',
   'MuiFilledInput|root|multiline=true,size=small||paddingTop': {
     label: 'FilledInput · paddingTop [multiline=true,size=small]',
     hidden: true,
@@ -608,6 +601,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'hiddenLabel multiline re-states master literals — no label to sync, kept out of the var plumbing.',
   },
+  'MuiFilledInput|root|fn:4q8gcu||paddingLeft': 'FilledInput · paddingLeft [fn]',
+  'MuiFilledInput|root|fn:ho424h||--_trailingPad': 'FilledInput · --_trailingPad [fn]',
   'MuiFormHelperText|root|base||marginTop': 'FormHelperText · marginTop',
   'MuiFormHelperText|root|contained=true||marginInline':
     'FormHelperText · marginInline [contained=true]',
@@ -792,6 +787,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_outlinedInputPadBlock — the FormControl writer var row is the knob.',
   },
+  'MuiOutlinedInput|input|base||paddingInline': 'OutlinedInput · input · inline padding',
   'MuiOutlinedInput|input|size=small||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock [size=small]',
     hidden: true,
@@ -802,6 +798,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
+  'MuiOutlinedInput|input|multiline=true||paddingInline':
+    'OutlinedInput · input · paddingInline [multiline=true]',
+  'MuiOutlinedInput|input|fn:4q8gcu||paddingLeft': 'OutlinedInput · input · paddingLeft [fn]',
+  'MuiOutlinedInput|input|fn:ho424h||paddingRight': 'OutlinedInput · input · paddingRight [fn]',
   'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block',
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
@@ -809,6 +809,8 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Floating-label rest-Y = calc(--_outlinedInputPadBlock - 0.5px) — follows the pad var knob; consumed by the InputLabel transform.',
   },
+  'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
+    'OutlinedInput · --_inlinePad',
   'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
     'OutlinedInput · padding block [size=small]',
   'MuiOutlinedInput|root|multiline=true||paddingBlock': {
@@ -816,11 +818,15 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Multiline box padding on the root — consumes --_outlinedInputPadBlock; the FormControl writer var row is the knob.',
   },
+  'MuiOutlinedInput|root|multiline=true||paddingInline':
+    'OutlinedInput · paddingInline [multiline=true]',
   'MuiOutlinedInput|root|multiline=true,size=small||paddingBlock': {
     label: 'OutlinedInput · paddingBlock [multiline=true,size=small]',
     hidden: true,
     note: 'Multiline box padding on the root — consumes --_outlinedInputPadBlock; the FormControl writer var row is the knob.',
   },
+  'MuiOutlinedInput|root|fn:4q8gcu||paddingLeft': 'OutlinedInput · paddingLeft [fn]',
+  'MuiOutlinedInput|root|fn:ho424h||--_trailingPad': 'OutlinedInput · --_trailingPad [fn]',
   'MuiPaginationItem|root|size=small||minWidth': 'PaginationItem · minWidth [size=small]',
   'MuiPaginationItem|root|size=small||paddingInline': {
     label: 'PaginationItem · paddingInline [size=small]',

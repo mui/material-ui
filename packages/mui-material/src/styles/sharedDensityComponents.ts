@@ -148,15 +148,15 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
       {
         props: { variant: 'filled' },
-        style: { transform: 'translate(12px, var(--_restY)) scale(1)' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
       },
       {
         props: { variant: 'filled', shrink: true },
-        style: { transform: 'translate(12px, var(--_shrinkY)) scale(0.75)' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_shrinkY)) scale(0.75)' },
       },
       {
         props: { variant: 'outlined' },
-        style: { transform: 'translate(14px, var(--_restY)) scale(1)' },
+        style: { transform: 'translate(var(--_inlinePad), var(--_restY)) scale(1)' },
       },
       {
         props: { variant: 'outlined', shrink: true },
@@ -176,6 +176,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // gone, and small needs no restY re-declare of its own.
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': 'var(--_outlinedInputPadBlock)',
+      // Label X = the box's inline pad (master 14px) — linked write of the
+      // input-slot inline knob; the InputLabel transforms consume it bare.
+      '--_inlinePad': d.small,
     },
     variants: [
       {
@@ -188,6 +191,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         props: { multiline: true },
         style: {
           paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
+          // multiline root carries the box's inline pad (master 14px) — linked
+          // write of the input-slot inline knob.
+          paddingInline: d.small,
         },
       },
       {
@@ -196,15 +202,33 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
           paddingBlock: `var(--_outlinedInputPadBlock, ${d['xx-small']})`,
         },
       },
+      // Adorned root pads (master 14px / --_trailingPad 14px; the Select nested
+      // --_trailingPad: 0 reset survives on specificity) — linked writes of the
+      // input-slot inline knob.
+      {
+        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
+          Boolean(ownerState.startAdornment),
+        style: { paddingLeft: d.small },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
+          Boolean(ownerState.endAdornment),
+        style: { '--_trailingPad': d.small },
+      },
     ],
   });
   addRootOverride(
     enhanced.components,
     'MuiOutlinedInput',
     {
-      // Only block padding reflows; inline stays master (fieldset-constrained).
-      // Master already ships the adornment/multiline inline resets on this slot.
+      // Block padding rides the label-communication var. Inline: ONE knob for
+      // both sizes (master 14px) — unconditional base emission + the SAME
+      // re-assert chain master ships on this slot (multiline/adorned zero their
+      // side; constant re-asserts, hidden knobs). The root-side 14s (adorned
+      // pads, --_trailingPad, multiline root inline) follow this knob via
+      // linked writes (densityLinkedWrites).
       paddingBlock: `var(--_outlinedInputPadBlock, calc(${d['xx-small']} + 2px))`,
+      paddingInline: d.small,
       variants: [
         {
           props: { size: 'small' },
@@ -212,7 +236,17 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         },
         {
           props: { multiline: true },
-          style: { paddingBlock: 0 },
+          style: { paddingBlock: 0, paddingInline: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
+            Boolean(ownerState.startAdornment),
+          style: { paddingLeft: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
+            Boolean(ownerState.endAdornment),
+          style: { paddingRight: 0 },
         },
       ],
     },
@@ -222,28 +256,38 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     enhanced.components,
     'MuiFilledInput',
     {
-      // Only block padding reflows; inline stays master (keeps label alignment).
-      // hiddenLabel block padding stays at master literals (out of scope).
+      // Block padding rides the label-communication vars. Inline: ONE knob for
+      // both sizes (master 12px) — same architecture as OutlinedInput above
+      // (base emission + master's re-assert chain; root-side 12s are linked
+      // writes of this knob).
       paddingTop: `var(--_filledInputPadTop, ${d.large})`,
       paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+      paddingInline: d.small,
       variants: [
+        // hiddenLabel: no floating label, so the `--_filledInputPad*` vars (the
+        // label-communication channel) don't apply — symmetric block padding set
+        // DIRECTLY, one step per size.
         {
           props: { hiddenLabel: true },
-          style: {
-            paddingTop: `var(--_filledInputPadTop, 16px)`,
-            paddingBottom: `var(--_filledInputPadBottom, 17px)`,
-          },
+          style: { paddingBlock: `calc(${d['xx-small']} + 2px)` },
         },
         {
           props: { hiddenLabel: true, size: 'small' },
-          style: {
-            paddingTop: `var(--_filledInputPadTop, 8px)`,
-            paddingBottom: `var(--_filledInputPadBottom, 9px)`,
-          },
+          style: { paddingBlock: d['xx-small'] },
         },
         {
           props: { multiline: true },
-          style: { paddingBlock: 0 },
+          style: { paddingBlock: 0, paddingInline: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
+            Boolean(ownerState.startAdornment),
+          style: { paddingLeft: 0 },
+        },
+        {
+          props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
+            Boolean(ownerState.endAdornment),
+          style: { paddingRight: 0 },
         },
       ],
     },
@@ -945,8 +989,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // Adornment gap (start marginRight / end marginLeft) + filled positionStart
     // marginTop = density steps, per size (medium default / small).
     variants: [
-      { props: { position: 'start' }, style: { marginRight: d.small } },
-      { props: { position: 'end' }, style: { marginLeft: d.small } },
+      { props: { position: 'start' }, style: { marginRight: d['x-small'] } },
+      { props: { position: 'end' }, style: { marginLeft: d['x-small'] } },
       {
         props: { position: 'start', size: 'small' },
         style: { marginRight: d['xx-small'] },
@@ -979,6 +1023,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     [`.${inputLabelClasses.root}:has(~ &)`]: {
       '--_restY': `calc((var(--_filledInputPadTop) + var(--_filledInputPadBottom)) / 2)`,
       '--_shrinkY': '7px',
+      // Label X = the box's inline pad (master 12px) — linked write of the
+      // input-slot inline knob; the InputLabel transforms consume it bare.
+      '--_inlinePad': d.small,
     },
     variants: [
       {
@@ -1000,6 +1047,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         style: {
           paddingTop: `var(--_filledInputPadTop, ${d['x-large']})`,
           paddingBottom: `var(--_filledInputPadBottom, ${d.small})`,
+          // multiline root carries the box's inline pad (master 12px) — linked
+          // write of the input-slot inline knob.
+          paddingInline: d.small,
         },
       },
       {
@@ -1017,6 +1067,19 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { multiline: true, hiddenLabel: true, size: 'small' },
         style: { paddingTop: 8, paddingBottom: 9 },
+      },
+      // Adorned root pads (master 12px / --_trailingPad 12px; Select's nested
+      // --_trailingPad: 0 reset survives on specificity) — linked writes of the
+      // input-slot inline knob.
+      {
+        props: ({ ownerState }: { ownerState: { startAdornment?: unknown } }) =>
+          Boolean(ownerState.startAdornment),
+        style: { paddingLeft: d.small },
+      },
+      {
+        props: ({ ownerState }: { ownerState: { endAdornment?: unknown } }) =>
+          Boolean(ownerState.endAdornment),
+        style: { '--_trailingPad': d.small },
       },
     ],
   });

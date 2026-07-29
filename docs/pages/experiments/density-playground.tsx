@@ -1013,6 +1013,15 @@ function FilledInputMatrix() {
           rows={3}
           defaultValue={'Line one\nLine two\nLine three'}
         />
+        {/* hiddenLabel: no floating label — its own master padding pair (the
+            hiddenLabel preset variants). */}
+        <TextField
+          hiddenLabel
+          variant="filled"
+          helperText={<span className="density-debug-text">Helper text</span>}
+          defaultValue="Hidden label"
+          data-cell="filled-hiddenlabel-medium"
+        />
       </Stack>
       <Stack spacing={3} sx={{ width: 200 }}>
         <Typography variant="caption" color="text.secondary">
@@ -1048,6 +1057,14 @@ function FilledInputMatrix() {
           slotProps={{
             input: { endAdornment: <InputAdornment position="end">kg</InputAdornment> },
           }}
+        />
+        <TextField
+          hiddenLabel
+          variant="filled"
+          size="small"
+          helperText={<span className="density-debug-text">Helper text</span>}
+          defaultValue="Hidden label"
+          data-cell="filled-hiddenlabel-small"
         />
       </Stack>
     </Stack>
@@ -4197,9 +4214,15 @@ export default function DensityExperiment() {
         for (const id of ids) {
           bucket[id] = value;
           // Linked writes: derived rows follow the key row (e.g. Switch label
-          // pull = -gutter); clearing the key clears them.
+          // pull = -gutter); clearing the key clears them. The value is px-sugared
+          // off the KEY row's prop BEFORE wrapping — the link target may be a
+          // custom property (--_inlinePad) or a calc() interpolation, where the
+          // collect-time sugar can't reach a bare number.
+          const keyRow = densityRow(id);
+          const keyProp = keyRow?.target.cssProp ?? keyRow?.target.privateVar;
+          const resolved = appendPxToNumeric(resolveValue(value), keyProp);
           for (const link of densityLinkedWrites[id] ?? []) {
-            bucket[link.id] = value.trim() ? link.wrap(resolveValue(value)) : '';
+            bucket[link.id] = value.trim() ? link.wrap(resolved) : '';
           }
         }
         return { ...prev, [level]: bucket };
