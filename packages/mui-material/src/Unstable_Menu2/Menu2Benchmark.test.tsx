@@ -67,6 +67,16 @@ const menuEl = () => document.querySelector('[role="menu"]');
 const openTrigger = () => screen.getByRole('button', { name: 'Options' });
 const waitForOpen = () => waitFor(() => expect(menuEl()).not.to.equal(null));
 
+// The successor animates its surface by default, so geometry has to be read
+// after the open transition settles.
+async function waitForSettled() {
+  await waitForOpen();
+  const popup = menuEl()!;
+  if (typeof popup.getAnimations === 'function') {
+    await Promise.all(popup.getAnimations().map((animation) => animation.finished.catch(() => {})));
+  }
+}
+
 describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
   const { render } = createRenderer();
 
@@ -292,7 +302,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       );
       const classicAnchor = openTrigger().getBoundingClientRect();
       await classicUser.click(openTrigger());
-      await waitForOpen();
+      await waitForSettled();
       const classicSurface = document.querySelector('.MuiPaper-root')!.getBoundingClientRect();
       expect(Math.round(classicSurface.left)).to.equal(Math.round(classicAnchor.left));
       expect(Math.round(classicSurface.top)).to.equal(Math.round(classicAnchor.bottom));
@@ -305,7 +315,7 @@ describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {
       );
       const successorAnchor = openTrigger().getBoundingClientRect();
       await successorUser.click(openTrigger());
-      await waitForOpen();
+      await waitForSettled();
       const successorSurface = document.querySelector('.MuiPaper-root')!.getBoundingClientRect();
       expect(Math.round(successorSurface.left)).to.equal(Math.round(successorAnchor.left));
       expect(Math.round(successorSurface.top)).to.equal(Math.round(successorAnchor.bottom));

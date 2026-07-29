@@ -25,6 +25,8 @@ export const menu2TriggerClasses: Menu2TriggerClasses = generateUtilityClasses('
 export interface Menu2PopupClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the backdrop element. */
+  backdrop: string;
   /** Styles applied to the Material Paper element. */
   paper: string;
   /** Styles applied to the Material List element. */
@@ -39,6 +41,7 @@ export function getMenu2PopupUtilityClass(slot: string): string {
 
 export const menu2PopupClasses: Menu2PopupClasses = generateUtilityClasses('MuiMenu2Popup', [
   'root',
+  'backdrop',
   'paper',
   'list',
 ]);

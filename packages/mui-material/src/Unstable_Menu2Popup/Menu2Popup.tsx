@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
+import { Menu as BaseMenu } from '@base-ui/react/menu';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import { SxProps } from '@mui/system';
 import Paper from '../Paper';
@@ -15,7 +16,11 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from '../Unstable_Menu2/menu2PopupShared';
-import { menu2PopupListStyles, menu2PopupPaperStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import {
+  menu2PopupListStyles,
+  menu2PopupPaperStyles,
+  menu2PopupTransitionStyles,
+} from '../Unstable_Menu2/menu2SharedStyles';
 import { getMenu2PopupUtilityClass, Menu2PopupClasses } from '../Unstable_Menu2/menu2Classes';
 
 export interface Menu2PopupProps extends Omit<
@@ -167,6 +172,7 @@ const useUtilityClasses = (ownerState: Menu2PopupOwnerState) => {
 
   const slots = {
     root: ['root'],
+    backdrop: ['backdrop'],
     paper: ['paper'],
     list: ['list'],
   };
@@ -178,9 +184,23 @@ const Menu2PopupRoot = styled('div', {
   name: 'MuiMenu2Popup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
+})({ outline: 0 }, menu2PopupTransitionStyles);
+
+const Menu2PopupBackdrop = styled(BaseMenu.Backdrop, {
+  name: 'MuiMenu2Popup',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => styles.backdrop,
 })({
-  outline: 0,
-});
+  position: 'fixed',
+  inset: 0,
+  // Invisible and inert by default, matching the classic Menu's backdrop.
+  // Dismissal is handled by Base UI's outside-press listener, so the backdrop
+  // does not need to capture clicks; set `pointerEvents` in `slotProps` to
+  // change that when dimming.
+  backgroundColor: 'transparent',
+  pointerEvents: 'none',
+  WebkitTapHighlightColor: 'transparent',
+}) as any;
 
 const Menu2PopupPaper = styled(Paper, {
   name: 'MuiMenu2Popup',
@@ -226,6 +246,7 @@ const Menu2Popup = React.forwardRef(function Menu2Popup(
         popup: Menu2PopupRoot,
         paper: Menu2PopupPaper,
         list: Menu2PopupList,
+        backdrop: Menu2PopupBackdrop,
       }}
       defaultPositionerProps={{
         side: 'bottom',
@@ -372,6 +393,7 @@ Menu2Popup.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),

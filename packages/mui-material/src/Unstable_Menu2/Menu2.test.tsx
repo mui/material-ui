@@ -300,6 +300,106 @@ describe('<Menu2 />', () => {
     expect(await screen.findByTestId('paper')).to.have.class(paperClasses.elevation4);
   });
 
+  it.skipIf(isJsdom())('animates the popup surface by default', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+    const popup = await screen.findByRole('menu');
+
+    // Assert the emitted rule rather than the computed style: the test runner
+    // emulates `prefers-reduced-motion`, under which the default deliberately
+    // resolves to `transition: none`.
+    const emitted = Array.from(document.styleSheets)
+      .flatMap((sheet) => {
+        try {
+          return Array.from(sheet.cssRules);
+        } catch {
+          return [];
+        }
+      })
+      .map((rule) => rule.cssText)
+      .join('\n');
+
+    expect(emitted).to.contain('scale(0.75, 0.5625)');
+    expect(emitted).to.contain('data-starting-style');
+    expect(emitted).to.contain('prefers-reduced-motion');
+    expect(popup).to.have.class(menu2PopupClasses.root);
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // Base UI suppresses the transition for the frame in which it applies the
+      // starting style, so this settles a tick after the popup appears.
+      await waitFor(() => {
+        const { transitionProperty } = window.getComputedStyle(popup);
+        expect(transitionProperty).to.contain('opacity');
+        expect(transitionProperty).to.contain('transform');
+      });
+    }
+  });
+
+  it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup slotProps={{ popup: { sx: { transition: 'none' } } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const popup = await screen.findByRole('menu');
+    expect(window.getComputedStyle(popup).transitionProperty).to.equal('none');
+  });
+
+  it('renders an invisible backdrop that does not swallow clicks', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}>
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const backdrop = await screen.findByTestId('backdrop');
+    expect(backdrop).to.have.class(menu2PopupClasses.backdrop);
+    // Invisible and inert by default, like the classic Menu's backdrop;
+    // dismissal stays with Base UI's outside-press listener.
+    const { backgroundColor, pointerEvents } = window.getComputedStyle(backdrop);
+    expect(backgroundColor).to.equal('rgba(0, 0, 0, 0)');
+    expect(pointerEvents).to.equal('none');
+  });
+
+  it('supports dimming through the backdrop slot', async () => {
+    const { user } = render(
+      <Menu2>
+        <Menu2Trigger>Options</Menu2Trigger>
+        <Menu2Popup
+          slotProps={{
+            backdrop: { 'data-testid': 'backdrop', sx: { backgroundColor: 'rgb(0, 0, 0)' } },
+          }}
+        >
+          <Menu2Item>Profile</Menu2Item>
+        </Menu2Popup>
+      </Menu2>,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Options' }));
+
+    const backdrop = await screen.findByTestId('backdrop');
+    expect(window.getComputedStyle(backdrop).backgroundColor).to.equal('rgb(0, 0, 0)');
+  });
+
   it.skipIf(isJsdom())('constrains the popup surface to the collision-aware height', async () => {
     const { user } = render(
       <Menu2>

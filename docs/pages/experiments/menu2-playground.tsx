@@ -55,9 +55,10 @@ interface PlaygroundSettings {
   sideOffset: number;
   alignOffset: number;
   keepMounted: boolean;
-  // Appearance; only the default animation is still an open question
+  // Appearance
   elevation: number;
-  animation: 'none' | 'grow';
+  backdrop: 'none' | 'dimmed';
+  animation: 'default' | 'off';
   dense: boolean;
   dividers: boolean;
   rtl: boolean;
@@ -78,7 +79,8 @@ const defaultSettings: PlaygroundSettings = {
   alignOffset: 0,
   keepMounted: false,
   elevation: 8,
-  animation: 'none',
+  backdrop: 'none',
+  animation: 'default',
   dense: false,
   dividers: false,
   rtl: false,
@@ -91,29 +93,21 @@ const ELEVATIONS = [0, 1, 4, 8, 16, 24];
 const theme = createTheme({});
 const rtlTheme = createTheme({ direction: 'rtl' });
 
-// RFC open question "default open/close animation": CSS approximation of the
-// classic Grow transition, driven by Base UI's data-starting/ending-style.
-const growPopupSx: SxProps<Theme> = {
-  transformOrigin: 'var(--transform-origin)',
-  transition:
-    'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1), transform 225ms cubic-bezier(0.4, 0, 0.2, 1)',
-  '&[data-starting-style], &[data-ending-style]': {
-    opacity: 0,
-    transform: 'scale(0.8, 0.6)',
-  },
-  '&[data-ending-style]': {
-    transitionDuration: '195ms, 195ms',
-  },
-};
+// The successor animates by default (a CSS match for the classic Grow); this
+// demonstrates overriding that default away through the popup slot.
+const noAnimationSx: SxProps<Theme> = { transition: 'none' };
 
 function usePopupKnobProps(settings: PlaygroundSettings) {
   return React.useMemo(
     () => ({
       // Top-level convenience prop (forwards to the Paper slot).
       elevation: settings.elevation,
-      ...(settings.animation === 'grow' ? { slotProps: { popup: { sx: growPopupSx } } } : null),
+      ...(settings.backdrop === 'dimmed'
+        ? { slotProps: { backdrop: { sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } } } }
+        : null),
+      ...(settings.animation === 'off' ? { slotProps: { popup: { sx: noAnimationSx } } } : null),
     }),
-    [settings.elevation, settings.animation],
+    [settings.elevation, settings.animation, settings.backdrop],
   );
 }
 
@@ -507,13 +501,23 @@ function SettingsPanel({
           </select>
         </label>
         <label style={{ display: 'block' }}>
-          animation (open question){' '}
+          animation{' '}
           <select
             value={settings.animation}
-            onChange={(event) => setSetting('animation', event.target.value as 'none' | 'grow')}
+            onChange={(event) => setSetting('animation', event.target.value as 'default' | 'off')}
           >
-            <option value="none">none (PoC default)</option>
-            <option value="grow">CSS Grow approximation</option>
+            <option value="default">default (Grow-like)</option>
+            <option value="off">off (overridden via slotProps.popup)</option>
+          </select>
+        </label>
+        <label style={{ display: 'block' }}>
+          backdrop{' '}
+          <select
+            value={settings.backdrop}
+            onChange={(event) => setSetting('backdrop', event.target.value as 'none' | 'dimmed')}
+          >
+            <option value="none">none (default)</option>
+            <option value="dimmed">dimmed via slotProps.backdrop</option>
           </select>
         </label>
         {renderCheckbox('dense', 'dense items')}

@@ -92,6 +92,12 @@ export interface Menu2PopupSharedSlots {
    */
   portal?: React.ElementType | undefined;
   /**
+   * The component used for the backdrop rendered beneath the menu.
+   * Only rendered by menus that provide a backdrop; it is transparent and
+   * click-through by default, matching the classic Menu's invisible backdrop.
+   */
+  backdrop?: React.ElementType | undefined;
+  /**
    * The component used for the positioner.
    * @default BaseMenu.Positioner
    */
@@ -115,6 +121,7 @@ export interface Menu2PopupSharedSlots {
 
 export interface Menu2PopupSharedSlotProps<OwnerState> {
   portal?: SlotProps<ExternalSlotProps<BaseMenu.Portal.Props>, OwnerState> | undefined;
+  backdrop?: SlotProps<ExternalSlotProps<BaseMenu.Backdrop.Props>, OwnerState> | undefined;
   positioner?: SlotProps<ExternalSlotProps<BaseMenu.Positioner.Props>, OwnerState> | undefined;
   popup?: SlotProps<ExternalSlotProps<BaseMenu.Popup.Props>, OwnerState> | undefined;
   paper?: SlotProps<ExternalSlotProps<PaperProps>, OwnerState> | undefined;
@@ -193,7 +200,7 @@ export interface Menu2PopupSharedProps<OwnerState>
   extends
     Omit<BaseMenu.Popup.Props, 'children' | 'className' | 'render' | 'style' | 'finalFocus'>,
     Menu2PopupPublicProps {
-  classes?: Partial<Record<'root' | 'paper' | 'list', string>> | undefined;
+  classes?: Partial<Record<'root' | 'backdrop' | 'paper' | 'list', string>> | undefined;
   ownerState: OwnerState;
   slots?: Menu2PopupSharedSlots | undefined;
   slotProps?: Menu2PopupSharedSlotProps<OwnerState> | undefined;
@@ -201,6 +208,7 @@ export interface Menu2PopupSharedProps<OwnerState>
     popup: React.ElementType;
     paper: React.ElementType;
     list: React.ElementType;
+    backdrop?: React.ElementType | undefined;
   };
   defaultPositionerProps?: Partial<BaseMenu.Positioner.Props> | undefined;
   sx?: SxProps<Theme> | undefined;
@@ -242,12 +250,16 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   } = props;
 
   const PortalSlot = slots?.portal ?? BaseMenu.Portal;
+  // Opt-in: rendering a backdrop unconditionally would hand non-modal menus a
+  // full-screen layer, and modal menus already get Base UI's inert backdrop.
+  const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
   const PositionerSlot = slots?.positioner ?? BaseMenu.Positioner;
   const PopupSlot = slots?.popup ?? defaultSlots.popup;
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
   const ListSlot = slots?.list ?? defaultSlots.list;
 
   const resolvedPortalProps = resolveComponentProps(slotProps?.portal, ownerState);
+  const resolvedBackdropProps = resolveComponentProps(slotProps?.backdrop, ownerState);
   const resolvedPositionerProps = resolveComponentProps(slotProps?.positioner, ownerState);
   const resolvedPopupProps = resolveComponentProps(slotProps?.popup, ownerState);
   const resolvedPaperProps = resolveComponentProps(slotProps?.paper, ownerState);
@@ -317,6 +329,13 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
 
   return (
     <PortalSlot {...portalSlotProps}>
+      {BackdropSlot ? (
+        <BackdropSlot
+          {...appendOwnerState(BackdropSlot, {}, ownerState)}
+          {...resolvedBackdropProps}
+          className={clsx(classes?.backdrop, resolvedBackdropProps?.className)}
+        />
+      ) : null}
       <PositionerSlot {...positionerSlotProps}>
         <BaseMenu.Popup
           id={id}

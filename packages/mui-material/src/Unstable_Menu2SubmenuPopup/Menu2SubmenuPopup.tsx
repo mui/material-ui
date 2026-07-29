@@ -15,7 +15,11 @@ import {
   Menu2PopupSharedProps,
   Menu2PopupSharedSlotProps,
 } from '../Unstable_Menu2/menu2PopupShared';
-import { menu2PopupListStyles, menu2PopupPaperStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import {
+  menu2PopupListStyles,
+  menu2PopupPaperStyles,
+  menu2PopupTransitionStyles,
+} from '../Unstable_Menu2/menu2SharedStyles';
 import {
   getMenu2SubmenuPopupUtilityClass,
   Menu2SubmenuPopupClasses,
@@ -181,9 +185,7 @@ const Menu2SubmenuPopupRoot = styled('div', {
   name: 'MuiMenu2SubmenuPopup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
-  outline: 0,
-});
+})({ outline: 0 }, menu2PopupTransitionStyles);
 
 const Menu2SubmenuPopupPaper = styled(Paper, {
   name: 'MuiMenu2SubmenuPopup',
@@ -375,6 +377,7 @@ Menu2SubmenuPopup.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
