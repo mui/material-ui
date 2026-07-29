@@ -363,12 +363,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'medium' },
         style: {
-          padding: d.small,
+          padding: d['x-small'],
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.small})`,
+            marginLeft: `calc(-2px - ${d['x-small']})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.small})`,
+            marginRight: `calc(-2px - ${d['x-small']})`,
           },
         },
       },
@@ -393,12 +393,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: { size: 'medium' },
         style: {
-          padding: d.small,
+          padding: d['x-small'],
           [`.${formControlLabelClasses.labelPlacementEnd}:has(> &)`]: {
-            marginLeft: `calc(-2px - ${d.small})`,
+            marginLeft: `calc(-2px - ${d['x-small']})`,
           },
           [`.${formControlLabelClasses.labelPlacementStart}:has(> &)`]: {
-            marginRight: `calc(-2px - ${d.small})`,
+            marginRight: `calc(-2px - ${d['x-small']})`,
           },
         },
       },

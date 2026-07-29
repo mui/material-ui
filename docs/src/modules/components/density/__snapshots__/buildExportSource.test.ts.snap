@@ -647,12 +647,12 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },
@@ -685,12 +685,12 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },
@@ -3197,12 +3197,12 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },
@@ -3235,12 +3235,12 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },
@@ -5737,12 +5737,12 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },
@@ -5775,12 +5775,12 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'var(--mui-density-x-small)',
                   '.MuiFormControlLabel-labelPlacementEnd:has(> &)': {
-                    marginLeft: 'calc(-2px - var(--mui-density-small))',
+                    marginLeft: 'calc(-2px - var(--mui-density-x-small))',
                   },
                   '.MuiFormControlLabel-labelPlacementStart:has(> &)': {
-                    marginRight: 'calc(-2px - var(--mui-density-small))',
+                    marginRight: 'calc(-2px - var(--mui-density-x-small))',
                   },
                 },
               },

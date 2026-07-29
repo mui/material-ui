@@ -994,7 +994,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiCheckbox|root|size=medium||padding',
     label: 'Checkbox · padding [size=medium]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiCheckbox',
       slot: 'root',
@@ -1003,9 +1003,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -1021,9 +1021,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginLeft',
     },
     values: {
-      high: 'calc(-2px - var(--mui-density-small))',
-      medium: 'calc(-2px - var(--mui-density-small))',
-      low: 'calc(-2px - var(--mui-density-small))',
+      high: 'calc(-2px - var(--mui-density-x-small))',
+      medium: 'calc(-2px - var(--mui-density-x-small))',
+      low: 'calc(-2px - var(--mui-density-x-small))',
     },
   },
   {
@@ -1039,9 +1039,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginRight',
     },
     values: {
-      high: 'calc(-2px - var(--mui-density-small))',
-      medium: 'calc(-2px - var(--mui-density-small))',
-      low: 'calc(-2px - var(--mui-density-small))',
+      high: 'calc(-2px - var(--mui-density-x-small))',
+      medium: 'calc(-2px - var(--mui-density-x-small))',
+      low: 'calc(-2px - var(--mui-density-x-small))',
     },
   },
   {
@@ -5210,7 +5210,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiRadio|root|size=medium||padding',
     label: 'Radio · padding [size=medium]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiRadio',
       slot: 'root',
@@ -5219,9 +5219,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -5237,9 +5237,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginLeft',
     },
     values: {
-      high: 'calc(-2px - var(--mui-density-small))',
-      medium: 'calc(-2px - var(--mui-density-small))',
-      low: 'calc(-2px - var(--mui-density-small))',
+      high: 'calc(-2px - var(--mui-density-x-small))',
+      medium: 'calc(-2px - var(--mui-density-x-small))',
+      low: 'calc(-2px - var(--mui-density-x-small))',
     },
   },
   {
@@ -5255,9 +5255,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginRight',
     },
     values: {
-      high: 'calc(-2px - var(--mui-density-small))',
-      medium: 'calc(-2px - var(--mui-density-small))',
-      low: 'calc(-2px - var(--mui-density-small))',
+      high: 'calc(-2px - var(--mui-density-x-small))',
+      medium: 'calc(-2px - var(--mui-density-x-small))',
+      low: 'calc(-2px - var(--mui-density-x-small))',
     },
   },
   {
