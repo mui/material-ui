@@ -806,6 +806,15 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Badge',
     members: ['MuiBadge|badge|variant=dot||minWidth', 'MuiBadge|badge|variant=dot||height'],
   },
+  // Tab base min-height is PAIRED with the Tabs container min-height (48==48
+  // in the preset) — an independent Tab edit would be masked by the container,
+  // so one knob writes both.
+  {
+    id: 'virtual:MuiTab:minHeight',
+    label: 'Tab · min height',
+    group: 'Tabs',
+    members: ['MuiTab|root|base||minHeight', 'MuiTabs|root|base||minHeight'],
+  },
   {
     id: 'virtual:MuiTab:iconGapBlock',
     label: 'Tab · icon gap (block)',

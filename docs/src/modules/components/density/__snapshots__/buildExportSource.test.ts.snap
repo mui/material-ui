@@ -2048,8 +2048,9 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
-            paddingBlock: 'var(--mui-density-small)',
+            minHeight: '32px',
+            lineHeight: 1.75,
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -2079,7 +2080,7 @@ const high = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-small)',
+                    marginRight: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -2087,7 +2088,7 @@ const high = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -2100,7 +2101,7 @@ const high = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
           },
         ],
       },
@@ -2115,7 +2116,7 @@ const high = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '40px',
+                  width: '32px',
                 },
               },
               {
@@ -2123,7 +2124,7 @@ const high = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '40px',
+                  height: '32px',
                 },
               },
             ],
@@ -4603,8 +4604,9 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
-            paddingBlock: 'var(--mui-density-small)',
+            minHeight: '32px',
+            lineHeight: 1.428571429,
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -4634,7 +4636,7 @@ const medium = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-small)',
+                    marginRight: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -4642,7 +4644,7 @@ const medium = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -4655,7 +4657,7 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
           },
         ],
       },
@@ -4670,7 +4672,7 @@ const medium = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '40px',
+                  width: '32px',
                 },
               },
               {
@@ -4678,7 +4680,7 @@ const medium = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '40px',
+                  height: '32px',
                 },
               },
             ],
@@ -7124,8 +7126,9 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
-            paddingBlock: 'var(--mui-density-small)',
+            minHeight: '32px',
+            lineHeight: 1.75,
+            paddingBlock: 'calc(var(--mui-density-xx-small) + 2px)',
             paddingInline: 'var(--mui-density-small)',
             variants: [
               {
@@ -7155,7 +7158,7 @@ const low = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "start",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginRight: 'var(--mui-density-small)',
+                    marginRight: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -7163,7 +7166,7 @@ const low = {
                 props: ({ ownerState }) => ownerState.icon && ownerState.label && ownerState.iconPosition === "end",
                 style: {
                   '& > .MuiTab-icon': {
-                    marginLeft: 'var(--mui-density-small)',
+                    marginLeft: 'var(--mui-density-x-small)',
                   },
                 },
               },
@@ -7176,7 +7179,7 @@ const low = {
       styleOverrides: {
         root: [
           {
-            minHeight: '48px',
+            minHeight: '32px',
           },
         ],
       },
@@ -7191,7 +7194,7 @@ const low = {
                   orientation: 'horizontal',
                 },
                 style: {
-                  width: '40px',
+                  width: '32px',
                 },
               },
               {
@@ -7199,7 +7202,7 @@ const low = {
                   orientation: 'vertical',
                 },
                 style: {
-                  height: '40px',
+                  height: '32px',
                 },
               },
             ],

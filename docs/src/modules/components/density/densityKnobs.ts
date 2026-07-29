@@ -1072,10 +1072,11 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
   },
-  'MuiTab|root|base||minHeight': {
-    label: 'Tab min height',
+  'MuiTab|root|base||minHeight': 'Tab min height',
+  'MuiTab|root|base||lineHeight': {
+    label: 'Tab · lineHeight',
     hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
+    note: 'Rides theme.typography.button.lineHeight — edit via the Typography tab.',
   },
   'MuiTab|root|base||paddingBlock': 'Tab block padding',
   'MuiTab|root|base||paddingInline': 'Tab inline padding',
@@ -1113,11 +1114,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'TablePagination · select paddingRight',
   'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
   'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
-  'MuiTabs|root|base||minHeight': {
-    label: 'Tabs min height',
-    hidden: true,
-    note: 'Preset-driven sizing, not independently tunable via sidebar.',
-  },
+  'MuiTabs|root|base||minHeight': 'Tabs min height',
   'MuiTabScrollButton|root|orientation=horizontal||width': 'TabScrollButton · width [horizontal]',
   'MuiTabScrollButton|root|orientation=vertical||height': 'TabScrollButton · height [vertical]',
   'MuiToggleButton|root|size=small||padding': 'ToggleButton · padding [size=small]',

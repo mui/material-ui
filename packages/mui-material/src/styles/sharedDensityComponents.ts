@@ -1124,8 +1124,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   addRootOverride(enhanced.components, 'MuiTab', {
     // Min-heights = raw px (paired with MuiTabs base below); padding = steps.
-    minHeight: '48px',
-    paddingBlock: d.small,
+    // 32px = semantic/size/touch-target/default (tab.yml).
+    minHeight: '32px',
+    // Rides the theme's button type (master hardcodes 1.25) — hidden knob,
+    // live-derived from the Typography tab like the InputBase/FormLabel body1 pair.
+    lineHeight: enhanced.typography?.button?.lineHeight,
+    paddingBlock: `calc(${d['xx-small']} + 2px)`,
     // semantic/spacing/variable/s — contentWrapper inline pad (right-side token unresolved, symmetric)
     paddingInline: d.small,
     variants: [
@@ -1146,22 +1150,22 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'start',
-        style: { [`& > .${tabClasses.icon}`]: { marginRight: d.small } },
+        style: { [`& > .${tabClasses.icon}`]: { marginRight: d['x-small'] } },
       },
       {
         props: ({ ownerState }: { ownerState: TabProps }) =>
           ownerState.icon && ownerState.label && ownerState.iconPosition === 'end',
-        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d.small } },
+        style: { [`& > .${tabClasses.icon}`]: { marginLeft: d['x-small'] } },
       },
     ],
   });
   addRootOverride(enhanced.components, 'MuiTabs', {
-    minHeight: '48px', // == MuiTab base minHeight (the pairing)
+    minHeight: '32px', // == MuiTab base minHeight (the pairing)
   });
   addRootOverride(enhanced.components, 'MuiTabScrollButton', {
     variants: [
-      { props: { orientation: 'horizontal' }, style: { width: '40px' } },
-      { props: { orientation: 'vertical' }, style: { height: '40px' } },
+      { props: { orientation: 'horizontal' }, style: { width: '32px' } },
+      { props: { orientation: 'vertical' }, style: { height: '32px' } },
     ],
   });
   addRootOverride(enhanced.components, 'MuiAvatar', {

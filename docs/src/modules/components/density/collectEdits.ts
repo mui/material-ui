@@ -36,18 +36,28 @@ export function collectDensityEdits(mapping: Record<string, string>): DensityEdi
       }
     }
   }
-  // Theme-token → component dependency: the presets bake InputBase root and
-  // FormLabel line-height FROM typography.body1.lineHeight at enhance time (a
-  // literal — it can't track later theme edits). Re-derive them here when the
-  // Typography tab edits body1.lineHeight, so the canvas AND export stay in
-  // sync with the enhance-after-user-theme semantics of the real API. Both rows
-  // are hidden knobs, so this is their only write path.
-  const body1LineHeight = (mapping['typography.body1.lineHeight'] ?? '').trim();
-  if (body1LineHeight) {
-    for (const id of ['MuiInputBase|root|base||lineHeight', 'MuiFormLabel|root|base||lineHeight']) {
+  // Theme-token → component dependencies: the presets bake these line-heights
+  // FROM theme typography at enhance time (literals — they can't track later
+  // theme edits). Re-derive them here when the Typography tab edits the source
+  // variant, so the canvas AND export stay in sync with the
+  // enhance-after-user-theme semantics of the real API. All target rows are
+  // hidden knobs, so this is their only write path.
+  const TYPOGRAPHY_DERIVED: Record<string, string[]> = {
+    'typography.body1.lineHeight': [
+      'MuiInputBase|root|base||lineHeight',
+      'MuiFormLabel|root|base||lineHeight',
+    ],
+    'typography.button.lineHeight': ['MuiTab|root|base||lineHeight'],
+  };
+  for (const [tokenId, rowIds] of Object.entries(TYPOGRAPHY_DERIVED)) {
+    const value = (mapping[tokenId] ?? '').trim();
+    if (!value) {
+      continue;
+    }
+    for (const id of rowIds) {
       const row = densityRow(id);
       if (row) {
-        edits.push({ row, value: body1LineHeight });
+        edits.push({ row, value });
       }
     }
   }

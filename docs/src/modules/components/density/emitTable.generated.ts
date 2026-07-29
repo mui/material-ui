@@ -6159,18 +6159,26 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
+  },
+  {
+    id: 'MuiTab|root|base||lineHeight',
+    label: 'Tab · lineHeight',
+    isDensity: false,
+    densityKey: null,
+    target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'lineHeight' },
+    values: { high: '1.75', medium: '1.428571429', low: '1.75' },
   },
   {
     id: 'MuiTab|root|base||paddingBlock',
     label: 'Tab · paddingBlock',
-    isDensity: true,
-    densityKey: 'small',
+    isDensity: false,
+    densityKey: null,
     target: { component: 'MuiTab', slot: 'root', props: null, nested: '', cssProp: 'paddingBlock' },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'calc(var(--mui-density-xx-small) + 2px)',
+      medium: 'calc(var(--mui-density-xx-small) + 2px)',
+      low: 'calc(var(--mui-density-xx-small) + 2px)',
     },
   },
   {
@@ -6265,7 +6273,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     id: 'MuiTab|root|fn:s0l8zx|& > .MuiTab-icon|marginRight',
     label: 'Tab · marginRight [fn]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiTab',
       slot: 'root',
@@ -6275,16 +6283,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginRight',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
     id: 'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft',
     label: 'Tab · marginLeft [fn]',
     isDensity: true,
-    densityKey: 'small',
+    densityKey: 'x-small',
     target: {
       component: 'MuiTab',
       slot: 'root',
@@ -6294,9 +6302,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'marginLeft',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'var(--mui-density-x-small)',
+      medium: 'var(--mui-density-x-small)',
+      low: 'var(--mui-density-x-small)',
     },
   },
   {
@@ -6523,7 +6531,7 @@ export const densityEmitTable: DensityEmitRow[] = [
     isDensity: false,
     densityKey: null,
     target: { component: 'MuiTabs', slot: 'root', props: null, nested: '', cssProp: 'minHeight' },
-    values: { high: '48px', medium: '48px', low: '48px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=horizontal||width',
@@ -6537,7 +6545,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'width',
     },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiTabScrollButton|root|orientation=vertical||height',
@@ -6551,7 +6559,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'height',
     },
-    values: { high: '40px', medium: '40px', low: '40px' },
+    values: { high: '32px', medium: '32px', low: '32px' },
   },
   {
     id: 'MuiToggleButton|root|size=small||padding',
