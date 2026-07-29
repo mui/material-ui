@@ -724,21 +724,27 @@ describe('<TablePagination />', () => {
 
           const { user } = render(
             <ThemeProvider theme={theme}>
-              <TablePagination
-                count={1}
-                page={0}
-                onPageChange={noop}
-                onRowsPerPageChange={noop}
-                rowsPerPage={10}
-              />
-              <TablePagination
-                count={1}
-                page={0}
-                onPageChange={noop}
-                onRowsPerPageChange={noop}
-                rowsPerPage={10}
-                slotProps={{ select: { variant: 'outlined' } }}
-              />
+              <table>
+                <TableFooter>
+                  <TableRow>
+                    <TablePagination
+                      count={1}
+                      page={0}
+                      onPageChange={noop}
+                      onRowsPerPageChange={noop}
+                      rowsPerPage={10}
+                    />
+                    <TablePagination
+                      count={1}
+                      page={0}
+                      onPageChange={noop}
+                      onRowsPerPageChange={noop}
+                      rowsPerPage={10}
+                      slotProps={{ select: { variant: 'outlined' } }}
+                    />
+                  </TableRow>
+                </TableFooter>
+              </table>
             </ThemeProvider>,
           );
 
