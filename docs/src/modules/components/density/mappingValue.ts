@@ -176,8 +176,10 @@ export const shortenDensityVars = (value: string) =>
 // and emotion appends `px`, but a knob edit travels as a STRING, which emotion
 // passes through verbatim — so `24` rendered as invalid `min-width: 24`. Mirror
 // emotion's rule at the edit layer: a pure-numeric token gains `px`, except on
-// custom properties (`--*` — e.g. DataGrid's cellOffsetMultiplier is genuinely
-// unitless; matches emotion skipping them too) and unitless CSS props.
+// unitless CSS props and the EXPLICIT unitless custom props below. Every other
+// custom property in this system (`--_caret`, `--_arrowSize`, the pad vars,
+// `--TreeView-itemHeight`) is a length consumed inside calc()/var() where a
+// bare number is invalid — so those DO get the sugar.
 const UNITLESS_PROPS = new Set([
   'lineHeight',
   'fontWeight',
@@ -186,10 +188,11 @@ const UNITLESS_PROPS = new Set([
   'flex',
   'flexGrow',
   'flexShrink',
+  '--DataGrid-cellOffsetMultiplier',
 ]);
 const NUMERIC_TOKEN_RE = /^-?(\d+\.?\d*|\.\d+)$/;
 export const appendPxToNumeric = (value: string, prop?: string) => {
-  if (prop && (prop.startsWith('--') || UNITLESS_PROPS.has(prop))) {
+  if (prop && UNITLESS_PROPS.has(prop)) {
     return value;
   }
   return tokenize(value)

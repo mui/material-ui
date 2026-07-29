@@ -934,6 +934,9 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
+  'MuiSelect|select|base|.MuiInputBase-root:has(> &)|--_caret': 'Select · select · --_caret',
+  'MuiSelect|select|base|.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)|--_endAdornment':
+    'Select · select · --_endAdornment',
   'MuiSimpleTreeView|defaultProps|base||itemChildrenIndentation': {
     label: 'SimpleTreeView · itemChildrenIndentation (defaultProps)',
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',

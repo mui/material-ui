@@ -806,6 +806,17 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Badge',
     members: ['MuiBadge|badge|variant=dot||minWidth', 'MuiBadge|badge|variant=dot||height'],
   },
+  // Select caret machinery — one value writes both master hooks (--_caret and
+  // the adorned --_endAdornment gutter).
+  {
+    id: 'virtual:MuiSelect:caretSize',
+    label: 'Select · select · caret size',
+    group: 'Select',
+    members: [
+      'MuiSelect|select|base|.MuiInputBase-root:has(> &)|--_caret',
+      'MuiSelect|select|base|.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)|--_endAdornment',
+    ],
+  },
   // Tab base min-height is PAIRED with the Tabs container min-height (48==48
   // in the preset) — an independent Tab edit would be masked by the container,
   // so one knob writes both.

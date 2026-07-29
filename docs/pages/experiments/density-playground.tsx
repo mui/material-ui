@@ -1504,6 +1504,35 @@ function SelectDemo({
           <span className="density-debug-text">Twenty</span>
         </MenuItem>
       </Select>
+      <FormHelperText>
+        <span className="density-debug-text">Helper text</span>
+      </FormHelperText>
+    </FormControl>
+  );
+}
+
+// Design-capture states: no label, a "Value" selection, and an error-badge end
+// adornment sitting BEFORE the dropdown caret (the Select nested
+// --_trailingPad: 0 reset keeps the caret gutter) — default and error.
+function AdornedSelectDemo({ error = false }: { error?: boolean }) {
+  return (
+    <FormControl error={error} sx={{ width: 220 }}>
+      <Select
+        value="value"
+        data-cell={error ? 'select-adorned-error' : 'select-adorned-default'}
+        endAdornment={
+          <InputAdornment position="end" sx={{ mr: 2 }}>
+            <ErrorOutlineIcon color="error" />
+          </InputAdornment>
+        }
+      >
+        <MenuItem value="value">
+          <span className="density-debug-text">Value</span>
+        </MenuItem>
+      </Select>
+      <FormHelperText>
+        <span className="density-debug-text">Message</span>
+      </FormHelperText>
     </FormControl>
   );
 }
@@ -1529,6 +1558,20 @@ function SelectMatrix() {
           </Stack>
         </Box>
       ))}
+      <Box data-variant-section="adorned">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          adorned
+        </Typography>
+        <Stack
+          direction="row"
+          spacing={10}
+          useFlexGap
+          sx={{ alignItems: 'flex-start', flexWrap: 'wrap' }}
+        >
+          <AdornedSelectDemo />
+          <AdornedSelectDemo error />
+        </Stack>
+      </Box>
     </Stack>
   );
 }

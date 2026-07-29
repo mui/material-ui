@@ -5347,6 +5347,42 @@ export const densityEmitTable: DensityEmitRow[] = [
     values: { high: 'auto', medium: 'auto', low: 'auto' },
   },
   {
+    id: 'MuiSelect|select|base|.MuiInputBase-root:has(> &)|--_caret',
+    label: 'Select · select · --_caret',
+    isDensity: true,
+    densityKey: 'medium',
+    target: {
+      component: 'MuiSelect',
+      slot: 'select',
+      props: null,
+      nested: '.MuiInputBase-root:has(> &)',
+      privateVar: '--_caret',
+    },
+    values: {
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
+    },
+  },
+  {
+    id: 'MuiSelect|select|base|.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)|--_endAdornment',
+    label: 'Select · select · --_endAdornment',
+    isDensity: true,
+    densityKey: 'medium',
+    target: {
+      component: 'MuiSelect',
+      slot: 'select',
+      props: null,
+      nested: '.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)',
+      privateVar: '--_endAdornment',
+    },
+    values: {
+      high: 'var(--mui-density-medium)',
+      medium: 'var(--mui-density-medium)',
+      low: 'var(--mui-density-medium)',
+    },
+  },
+  {
     id: 'MuiSimpleTreeView|defaultProps|base||itemChildrenIndentation',
     label: 'SimpleTreeView · defaultProps · itemChildrenIndentation',
     isDensity: true,

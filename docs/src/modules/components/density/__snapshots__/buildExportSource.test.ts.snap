@@ -1291,6 +1291,12 @@ const high = {
         select: [
           {
             minHeight: 'auto',
+            '.MuiInputBase-root:has(> &)': {
+              '--_caret': 'var(--mui-density-medium)',
+            },
+            '.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)': {
+              '--_endAdornment': 'var(--mui-density-medium)',
+            },
           },
         ],
       },
@@ -3847,6 +3853,12 @@ const medium = {
         select: [
           {
             minHeight: 'auto',
+            '.MuiInputBase-root:has(> &)': {
+              '--_caret': 'var(--mui-density-medium)',
+            },
+            '.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)': {
+              '--_endAdornment': 'var(--mui-density-medium)',
+            },
           },
         ],
       },
@@ -6369,6 +6381,12 @@ const low = {
         select: [
           {
             minHeight: 'auto',
+            '.MuiInputBase-root:has(> &)': {
+              '--_caret': 'var(--mui-density-medium)',
+            },
+            '.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)': {
+              '--_endAdornment': 'var(--mui-density-medium)',
+            },
           },
         ],
       },

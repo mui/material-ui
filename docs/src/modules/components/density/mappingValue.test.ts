@@ -107,9 +107,10 @@ describe('mappingValue', () => {
     expect(appendPxToNumeric('20')).to.equal('20px'); // no prop = length context (scale steps)
   });
 
-  it('appendPxToNumeric leaves custom properties and unitless props verbatim', () => {
+  it('appendPxToNumeric leaves unitless props verbatim, sugars length custom props', () => {
     expect(appendPxToNumeric('2', '--DataGrid-cellOffsetMultiplier')).to.equal('2');
-    expect(appendPxToNumeric('12', '--_arrowSize')).to.equal('12');
+    expect(appendPxToNumeric('12', '--_arrowSize')).to.equal('12px');
+    expect(appendPxToNumeric('16', '--_caret')).to.equal('16px');
     expect(appendPxToNumeric('1.5', 'lineHeight')).to.equal('1.5');
     expect(appendPxToNumeric('700', 'fontWeight')).to.equal('700');
   });
