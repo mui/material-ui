@@ -290,7 +290,25 @@ Fancy smaller inputs? Use the `size` prop.
 
 The `renderInput` prop allows you to customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
-Pay specific attention to the `ref` and `inputProps` keys.
+Pay specific attention to the `ref`, `slotProps.input`, and `slotProps.htmlInput` keys.
+
+When you customize `slotProps.input.startAdornment`, preserve
+`params.slotProps.input.startAdornment`; otherwise, selected values won't render when `multiple` is true:
+
+```tsx
+slotProps={{
+  ...params.slotProps,
+  input: {
+    ...params.slotProps.input,
+    startAdornment: (
+      <>
+        {customStartAdornment}
+        {params.slotProps.input.startAdornment}
+      </>
+    ),
+  },
+}}
+```
 
 :::warning
 If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
