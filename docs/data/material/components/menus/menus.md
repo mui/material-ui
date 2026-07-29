@@ -46,8 +46,8 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## Selected menu
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item.
-The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
+If used for item selection, when opened, simple menus place the initial focus on the selected menu item.
+The currently selected menu item is set using the [`selected`](/material-ui/api/menu-item/#menu-item-prop-selected) prop.
 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
