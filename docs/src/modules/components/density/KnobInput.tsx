@@ -1,5 +1,7 @@
 import * as React from 'react';
+import Chip from '@mui/material/Chip';
 import FormControl from '@mui/material/FormControl';
+import { alpha } from '@mui/material/styles';
 import FormHelperText from '@mui/material/FormHelperText';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
@@ -16,6 +18,8 @@ export interface KnobInputProps {
   value: string;
   placeholder: string;
   disabled?: boolean;
+  /** reviewed/confirmed for the ACTIVE preset — renders the green dot. */
+  done?: boolean;
   // Live feedback computed off the DRAFT per keystroke — passing helper text in
   // from the committed value would lag by the debounce.
   computeHelper?: (draft: string) => { helper?: string; error?: boolean };
@@ -37,6 +41,7 @@ export const KnobInput = React.memo(function KnobInput(props: KnobInputProps) {
     value,
     placeholder,
     disabled = false,
+    done = false,
     computeHelper,
     onCommit,
   } = props;
@@ -98,6 +103,25 @@ export const KnobInput = React.memo(function KnobInput(props: KnobInputProps) {
         color={disabled ? 'text.disabled' : 'text.secondary'}
       >
         {label}
+        {/* Done marker — swap this one element to restyle (icon/badge/etc). */}
+        {done && (
+          <Chip
+            component="span"
+            data-knob-done
+            label="per design"
+            size="small"
+            variant="outlined"
+            color="success"
+            sx={{
+              ml: 0.75,
+              height: 16,
+              fontSize: '0.625rem',
+              verticalAlign: 'middle',
+              bgcolor: (theme) => alpha(theme.palette.success.main, 0.08),
+              '& .MuiChip-label': { px: 0.75 },
+            }}
+          />
+        )}
       </Typography>
       <OutlinedInput
         id={`knob-${id}`}

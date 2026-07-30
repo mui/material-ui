@@ -1324,8 +1324,11 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     // Block pad per size (steps); inline pad shared. Re-assert the frozen
     // checkbox/none affordances the size padding would otherwise clobber.
     variants: [
-      { props: { size: 'medium' }, style: { padding: `${d.large} ${d.large}` } },
-      { props: { size: 'small' }, style: { padding: `${d['x-small']} ${d.large}` } },
+      // Block pads land the 40px (medium) / 32px (small) row rhythm of the
+      // grid capture: body2 cell line is 18px, +1px collapsed border, so pads
+      // carry the extra half px (18 + 2x10.5 + 1 = 40). Inline FIXED 8px raw.
+      { props: { size: 'medium' }, style: { padding: `calc(${d['x-small']} + 2.5px) 8px` } },
+      { props: { size: 'small' }, style: { padding: `calc(${d['xx-small']} + 2.5px) 8px` } },
       { props: { padding: 'checkbox' }, style: { padding: '0 0 0 4px' } },
       { props: { padding: 'none' }, style: { padding: 0 } },
     ],

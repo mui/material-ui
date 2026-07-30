@@ -309,7 +309,13 @@ ${rows.map(renderRow).join('\n')}
 
 // --- knobs file: keys managed by codegen, values hand-edited (merge-preserve) ---
 
-type KnobMeta = { label: string; hidden?: true; hiddenIn?: string[]; note?: string };
+type KnobMeta = {
+  label: string;
+  hidden?: true;
+  hiddenIn?: string[];
+  note?: string;
+  done?: Array<'high' | 'medium' | 'low'>;
+};
 type KnobValue = string | KnobMeta;
 
 // Read the existing knob map, tolerant of prettier's quote style / trailing commas
@@ -349,6 +355,8 @@ export interface DensityKnobMeta {
   hiddenIn?: string[];
   /** why hidden (kept across regens and id remaps). */
   note?: string;
+  /** presets this knob is reviewed/confirmed for — renders the sidebar done dot. */
+  done?: Array<'high' | 'medium' | 'low'>;
 }
 
 export const densityKnobs: Record<string, string | DensityKnobMeta> = {

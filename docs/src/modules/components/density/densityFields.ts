@@ -556,6 +556,14 @@ const rowById = new Map<string, DensityEmitRow>(allRows.map((r) => [r.id, r]));
 
 export const densityRow = (id: string): DensityEmitRow | undefined => rowById.get(id);
 
+/** Presets a knob is marked DONE for (reviewed/confirmed) — from densityKnobs meta. */
+export const knobDonePresets = (id: string): readonly string[] => {
+  const v = densityKnobs[id];
+  return typeof v === 'object' && Array.isArray((v as { done?: string[] }).done)
+    ? (v as { done: string[] }).done
+    : [];
+};
+
 /** Display label for a field id — codegen knob entries first, then override-only rows. */
 export const fieldLabel = (id: string): string => {
   const v = densityKnobs[id];

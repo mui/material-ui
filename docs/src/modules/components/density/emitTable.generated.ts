@@ -6424,9 +6424,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large) var(--mui-density-large)',
-      medium: 'var(--mui-density-large) var(--mui-density-large)',
-      low: 'var(--mui-density-large) var(--mui-density-large)',
+      high: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
+      medium: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
+      low: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
     },
   },
   {
@@ -6442,9 +6442,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-x-small) var(--mui-density-large)',
-      medium: 'var(--mui-density-x-small) var(--mui-density-large)',
-      low: 'var(--mui-density-x-small) var(--mui-density-large)',
+      high: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
+      medium: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
+      low: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
     },
   },
   {

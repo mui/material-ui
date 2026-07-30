@@ -17,6 +17,8 @@ export interface DensityKnobMeta {
   hiddenIn?: string[];
   /** why hidden (kept across regens and id remaps). */
   note?: string;
+  /** presets this knob is reviewed/confirmed for — renders the sidebar done dot. */
+  done?: Array<'high' | 'medium' | 'low'>;
 }
 
 export const densityKnobs: Record<string, string | DensityKnobMeta> = {
@@ -47,23 +49,32 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': 'Option block padding',
   'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': 'Option inline padding',
-  'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock':
-    'Autocomplete · Input root paddingBlock',
-  'MuiAutocomplete|root|base||--_autocompleteInputPadBlock':
-    'Autocomplete · Input inner paddingBlock',
+  'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock': {
+    label: 'Autocomplete · Input root paddingBlock',
+    done: ['medium'],
+  },
+  'MuiAutocomplete|root|base||--_autocompleteInputPadBlock': {
+    label: 'Autocomplete · Input inner paddingBlock',
+    done: ['medium'],
+  },
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock': {
     label: 'Autocomplete · inputRoot paddingBlock',
     hidden: true,
     note: 'Consumes --_autocompleteInputRootPadBlock — the var row is the knob.',
   },
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingLeft': 'Autocomplete · paddingLeft',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingLeft': {
+    label: 'Autocomplete · paddingLeft',
+    done: ['medium'],
+  },
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock': {
     label: 'Autocomplete · input paddingBlock',
     hidden: true,
     note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
   },
-  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingLeft':
-    'Autocomplete · paddingLeft',
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingLeft': {
+    label: 'Autocomplete · paddingLeft',
+    done: ['medium'],
+  },
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock':
     {
       label: 'Autocomplete · --_outlinedInputPadBlock',
@@ -85,7 +96,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
       hidden: true,
       note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
     },
-  'MuiAutocomplete|tag|base||margin': 'Autocomplete · tag · margin',
+  'MuiAutocomplete|tag|base||margin': { label: 'Autocomplete · tag · margin', done: ['medium'] },
   'MuiAvatar|root|base||width': 'Avatar · width',
   'MuiAvatar|root|base||height': 'Avatar · height',
   'MuiBadge|badge|variant=standard||minWidth': 'Badge · badge · minWidth [variant=standard]',
@@ -102,10 +113,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'BottomNavigationAction · paddingTop [icon-only]',
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
-  'MuiBreadcrumbs|ol|base||minHeight': 'Breadcrumbs · ol · minHeight',
+  'MuiBreadcrumbs|ol|base||minHeight': { label: 'Breadcrumbs · ol · minHeight', done: ['medium'] },
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
-  'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize':
-    'Button · endIcon · fontSize [size=medium]',
+  'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize': {
+    label: 'Button · endIcon · fontSize [size=medium]',
+    done: ['medium'],
+  },
   'MuiButton|root|size=small||paddingBlock': 'Button · paddingBlock [size=small]',
   'MuiButton|root|size=small||paddingInline': 'Button · paddingInline [size=small]',
   'MuiButton|root|size=small,variant=outlined||paddingBlock': {
@@ -124,9 +137,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Button · paddingBlock [size=large, outlined]',
     note: 'Linked write: follows the size=large paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
   },
-  'MuiButton|root|size=medium||minHeight': 'Button · minHeight [size=medium]',
-  'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize':
-    'Button · startIcon · fontSize [size=medium]',
+  'MuiButton|root|size=medium||minHeight': {
+    label: 'Button · minHeight [size=medium]',
+    done: ['medium'],
+  },
+  'MuiButton|startIcon|size=medium|& > *:nth-of-type(1)|fontSize': {
+    label: 'Button · startIcon · fontSize [size=medium]',
+    done: ['medium'],
+  },
   'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · button minWidth',
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
@@ -137,7 +155,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiCardHeader|action|base||marginRight': 'CardHeader · action · marginRight',
   'MuiCardHeader|avatar|base||marginRight': 'CardHeader · avatar · marginRight',
   'MuiCardHeader|root|base||padding': 'CardHeader · padding',
-  'MuiCheckbox|root|size=medium||padding': 'Checkbox · padding [size=medium]',
+  'MuiCheckbox|root|size=medium||padding': {
+    label: 'Checkbox · padding [size=medium]',
+    done: ['medium'],
+  },
   'MuiCheckbox|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Checkbox · marginLeft [size=medium]',
     hidden: true,
@@ -148,7 +169,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
   },
-  'MuiCheckbox|root|size=small||padding': 'Checkbox · padding [size=small]',
+  'MuiCheckbox|root|size=small||padding': {
+    label: 'Checkbox · padding [size=small]',
+    done: ['medium'],
+  },
   'MuiCheckbox|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Checkbox · marginLeft [size=small]',
     hidden: true,
@@ -215,8 +239,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiChip|icon|size=medium||fontSize': 'Chip · icon · fontSize [size=medium]',
   'MuiChip|icon|size=small||fontSize': 'Chip · icon · fontSize [size=small]',
-  'MuiChip|label|size=medium||paddingInline': 'Chip · label · paddingInline [size=medium]',
-  'MuiChip|label|size=small||paddingInline': 'Chip · label · paddingInline [size=small]',
+  'MuiChip|label|size=medium||paddingInline': {
+    label: 'Chip · label · paddingInline [size=medium]',
+    done: ['medium'],
+  },
+  'MuiChip|label|size=small||paddingInline': {
+    label: 'Chip · label · paddingInline [size=small]',
+    done: ['medium'],
+  },
   'MuiChip|root|size=medium||--_height': 'Chip · height [size=medium]',
   'MuiChip|root|size=medium||height': {
     label: 'Chip · height [size=medium]',
@@ -519,11 +549,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_filledInputPadTop/--_filledInputPadBottom — the FormControl writer var rows are the knobs.',
   },
-  'MuiFilledInput|input|base||paddingInline': 'FilledInput · input · inline padding',
-  'MuiFilledInput|input|hiddenLabel=true||paddingBlock':
-    'FilledInput · input · paddingBlock [hiddenLabel=true]',
-  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBlock':
-    'FilledInput · input · paddingBlock [hiddenLabel=true,size=small]',
+  'MuiFilledInput|input|base||paddingInline': {
+    label: 'FilledInput · input · inline padding',
+    done: ['medium'],
+  },
+  'MuiFilledInput|input|hiddenLabel=true||paddingBlock': {
+    label: 'FilledInput · input · paddingBlock [hiddenLabel=true]',
+    done: ['medium'],
+  },
+  'MuiFilledInput|input|hiddenLabel=true,size=small||paddingBlock': {
+    label: 'FilledInput · input · paddingBlock [hiddenLabel=true,size=small]',
+    done: ['medium'],
+  },
   'MuiFilledInput|input|multiline=true||paddingBlock': {
     label: 'FilledInput · input · paddingBlock [multiline=true]',
     hidden: true,
@@ -533,10 +570,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'FilledInput · input · paddingInline [multiline=true]',
   'MuiFilledInput|input|fn:4q8gcu||paddingLeft': 'FilledInput · input · paddingLeft [fn]',
   'MuiFilledInput|input|fn:ho424h||paddingRight': 'FilledInput · input · paddingRight [fn]',
-  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
-    'FilledInput · padding top',
-  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
-    'FilledInput · padding bottom',
+  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
+    label: 'FilledInput · padding top',
+    done: ['medium'],
+  },
+  'MuiFilledInput|root|base|.MuiFormControl-root:has(> &)|--_filledInputPadBottom': {
+    label: 'FilledInput · padding bottom',
+    done: ['medium'],
+  },
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY',
     hidden: true,
@@ -549,10 +590,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiFilledInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
     'FilledInput · --_inlinePad',
-  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop':
-    'FilledInput · padding top [size=small]',
-  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom':
-    'FilledInput · padding bottom [size=small]',
+  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadTop': {
+    label: 'FilledInput · padding top [size=small]',
+    done: ['medium'],
+  },
+  'MuiFilledInput|root|size=small|.MuiFormControl-root:has(> &)|--_filledInputPadBottom': {
+    label: 'FilledInput · padding bottom [size=small]',
+    done: ['medium'],
+  },
   'MuiFilledInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'FilledInput · --_restY [size=small]',
     hidden: true,
@@ -607,9 +652,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiFilledInput|root|fn:4q8gcu||paddingLeft': 'FilledInput · paddingLeft [fn]',
   'MuiFilledInput|root|fn:ho424h||--_trailingPad': 'FilledInput · --_trailingPad [fn]',
-  'MuiFormHelperText|root|base||marginTop': 'FormHelperText · marginTop',
-  'MuiFormHelperText|root|contained=true||marginInline':
-    'FormHelperText · marginInline [contained=true]',
+  'MuiFormHelperText|root|base||marginTop': {
+    label: 'FormHelperText · marginTop',
+    done: ['medium'],
+  },
+  'MuiFormHelperText|root|contained=true||marginInline': {
+    label: 'FormHelperText · marginInline [contained=true]',
+    done: ['medium'],
+  },
   'MuiFormLabel|root|base||lineHeight': {
     label: 'FormLabel · lineHeight',
     hidden: true,
@@ -618,8 +668,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
   'MuiIconButton|root|size=medium||padding': 'IconButton · padding [size=medium]',
   'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
-  'MuiIconButton|root|size=medium||minWidth': 'IconButton · minWidth [size=medium]',
-  'MuiIconButton|root|size=medium||minHeight': 'IconButton · minHeight [size=medium]',
+  'MuiIconButton|root|size=medium||minWidth': {
+    label: 'IconButton · minWidth [size=medium]',
+    done: ['medium'],
+  },
+  'MuiIconButton|root|size=medium||minHeight': {
+    label: 'IconButton · minHeight [size=medium]',
+    done: ['medium'],
+  },
   'MuiInput|input|base||paddingTop': {
     label: 'Input · input · paddingTop',
     hidden: true,
@@ -645,9 +701,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Multiline reset to 0 — the box padding moves to the root (master convention).',
   },
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': 'Input · padding top',
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': 'Input · padding bottom',
-  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': 'Input · margin top',
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadTop': {
+    label: 'Input · padding top',
+    done: ['medium'],
+  },
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputPadBottom': {
+    label: 'Input · padding bottom',
+    done: ['medium'],
+  },
+  'MuiInput|root|base|.MuiFormControl-root:has(> &)|--_inputMarginTop': {
+    label: 'Input · margin top',
+    done: ['medium'],
+  },
   'MuiInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY',
     hidden: true,
@@ -658,10 +723,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_inputMarginTop (label clearance) — the FormControl writer var row is the knob.',
   },
-  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop':
-    'Input · padding top [size=small]',
-  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom':
-    'Input · padding bottom [size=small]',
+  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadTop': {
+    label: 'Input · padding top [size=small]',
+    done: ['medium'],
+  },
+  'MuiInput|root|size=small|.MuiFormControl-root:has(> &)|--_inputPadBottom': {
+    label: 'Input · padding bottom [size=small]',
+    done: ['medium'],
+  },
   'MuiInput|root|size=small|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'Input · --_restY [size=small]',
     hidden: true,
@@ -687,13 +756,22 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_inputPadTop/--_inputPadBottom — the FormControl writer var rows are the knobs.',
   },
-  'MuiInputAdornment|root|position=start||marginRight':
-    'InputAdornment · marginRight [position=start]',
-  'MuiInputAdornment|root|position=end||marginLeft': 'InputAdornment · marginLeft [position=end]',
-  'MuiInputAdornment|root|position=start,size=small||marginRight':
-    'InputAdornment · marginRight [position=start,size=small]',
-  'MuiInputAdornment|root|position=end,size=small||marginLeft':
-    'InputAdornment · marginLeft [position=end,size=small]',
+  'MuiInputAdornment|root|position=start||marginRight': {
+    label: 'InputAdornment · marginRight [position=start]',
+    done: ['medium'],
+  },
+  'MuiInputAdornment|root|position=end||marginLeft': {
+    label: 'InputAdornment · marginLeft [position=end]',
+    done: ['medium'],
+  },
+  'MuiInputAdornment|root|position=start,size=small||marginRight': {
+    label: 'InputAdornment · marginRight [position=start,size=small]',
+    done: ['medium'],
+  },
+  'MuiInputAdornment|root|position=end,size=small||marginLeft': {
+    label: 'InputAdornment · marginLeft [position=end,size=small]',
+    done: ['medium'],
+  },
   'MuiInputAdornment|root|variant=filled|&.MuiInputAdornment-positionStart&:not(.MuiInputAdornment-hiddenLabel)|marginTop':
     {
       label: 'InputAdornment · marginTop [variant=filled]',
@@ -757,18 +835,27 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiLinearProgress|root|base||height': 'LinearProgress · height',
   'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
-  'MuiListItem|root|dense=false||minHeight': 'ListItem · minHeight [dense=false]',
+  'MuiListItem|root|dense=false||minHeight': {
+    label: 'ListItem · minHeight [dense=false]',
+    done: ['medium'],
+  },
   'MuiListItemButton|root|dense=false||paddingBlock': 'ListItemButton · paddingBlock [dense=false]',
   'MuiListItemButton|root|dense=true||paddingBlock': 'ListItemButton · paddingBlock [dense=true]',
   'MuiListItemButton|root|disableGutters=false||paddingInline':
     'ListItemButton · paddingInline [disableGutters=false]',
-  'MuiListItemButton|root|dense=false||minHeight': 'ListItemButton · minHeight [dense=false]',
-  'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': 'MenuItem · icon min width',
-  'MuiMenuItem|root|dense=false||minHeight': 'min height',
+  'MuiListItemButton|root|dense=false||minHeight': {
+    label: 'ListItemButton · minHeight [dense=false]',
+    done: ['medium'],
+  },
+  'MuiMenuItem|root|base|& .MuiListItemIcon-root|minWidth': {
+    label: 'MenuItem · icon min width',
+    done: ['medium'],
+  },
+  'MuiMenuItem|root|dense=false||minHeight': { label: 'min height', done: ['medium'] },
   'MuiMenuItem|root|dense=false||paddingBlock': 'block padding',
   'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight':
     'MenuItem · minHeight [dense=false]',
-  'MuiMenuItem|root|dense=true||minHeight': 'min height [dense]',
+  'MuiMenuItem|root|dense=true||minHeight': { label: 'min height [dense]', done: ['medium'] },
   'MuiMenuItem|root|dense=true||paddingBlock': 'block padding [dense]',
   'MuiMenuItem|root|dense=false,disableGutters=false||paddingInline':
     'inline padding [disableGutters]',
@@ -791,7 +878,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_outlinedInputPadBlock — the FormControl writer var row is the knob.',
   },
-  'MuiOutlinedInput|input|base||paddingInline': 'OutlinedInput · input · inline padding',
+  'MuiOutlinedInput|input|base||paddingInline': {
+    label: 'OutlinedInput · input · inline padding',
+    done: ['medium'],
+  },
   'MuiOutlinedInput|input|size=small||paddingBlock': {
     label: 'OutlinedInput · input · paddingBlock [size=small]',
     hidden: true,
@@ -806,8 +896,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'OutlinedInput · input · paddingInline [multiline=true]',
   'MuiOutlinedInput|input|fn:4q8gcu||paddingLeft': 'OutlinedInput · input · paddingLeft [fn]',
   'MuiOutlinedInput|input|fn:ho424h||paddingRight': 'OutlinedInput · input · paddingRight [fn]',
-  'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
-    'OutlinedInput · padding block',
+  'MuiOutlinedInput|root|base|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock': {
+    label: 'OutlinedInput · padding block',
+    done: ['medium'],
+  },
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_restY': {
     label: 'OutlinedInput · --_restY',
     hidden: true,
@@ -815,8 +907,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   },
   'MuiOutlinedInput|root|base|.MuiInputLabel-root:has(~ &)|--_inlinePad':
     'OutlinedInput · --_inlinePad',
-  'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock':
-    'OutlinedInput · padding block [size=small]',
+  'MuiOutlinedInput|root|size=small|.MuiFormControl-root:has(> &)|--_outlinedInputPadBlock': {
+    label: 'OutlinedInput · padding block [size=small]',
+    done: ['medium'],
+  },
   'MuiOutlinedInput|root|multiline=true||paddingBlock': {
     label: 'OutlinedInput · paddingBlock [multiline=true]',
     hidden: true,
@@ -907,7 +1001,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'PickersToolbar · padding (portrait)',
     note: 'Portrait-scoped — landscape keeps its own master padding (16).',
   },
-  'MuiRadio|root|size=medium||padding': 'Radio · padding [size=medium]',
+  'MuiRadio|root|size=medium||padding': {
+    label: 'Radio · padding [size=medium]',
+    done: ['medium'],
+  },
   'MuiRadio|root|size=medium|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Radio · marginLeft [size=medium]',
     hidden: true,
@@ -918,7 +1015,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Sibling-label margin = calc(-2px - padding), re-emitted by the padding knob (selectionControlPadding).',
   },
-  'MuiRadio|root|size=small||padding': 'Radio · padding [size=small]',
+  'MuiRadio|root|size=small||padding': { label: 'Radio · padding [size=small]', done: ['medium'] },
   'MuiRadio|root|size=small|.MuiFormControlLabel-labelPlacementEnd:has(> &)|marginLeft': {
     label: 'Radio · marginLeft [size=small]',
     hidden: true,
@@ -938,35 +1035,54 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
-  'MuiSelect|select|base|.MuiInputBase-root:has(> &)|--_caret': 'Select · select · --_caret',
-  'MuiSelect|select|base|.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)|--_endAdornment':
-    'Select · select · --_endAdornment',
+  'MuiSelect|select|base|.MuiInputBase-root:has(> &)|--_caret': {
+    label: 'Select · select · --_caret',
+    done: ['medium'],
+  },
+  'MuiSelect|select|base|.MuiInputBase-root:has(> & ~ .MuiInputAdornment-root)|--_endAdornment': {
+    label: 'Select · select · --_endAdornment',
+    done: ['medium'],
+  },
   'MuiSimpleTreeView|defaultProps|base||itemChildrenIndentation': {
     label: 'SimpleTreeView · itemChildrenIndentation (defaultProps)',
     note: 'Same lever as RichTreeView — inline-style var, defaultProp only.',
   },
-  'MuiSlider|root|orientation=horizontal||height': 'Slider · height [orientation=horizontal]',
-  'MuiSlider|root|orientation=horizontal||paddingBlock':
-    'Slider · paddingBlock [orientation=horizontal]',
+  'MuiSlider|root|orientation=horizontal||height': {
+    label: 'Slider · height [orientation=horizontal]',
+    done: ['medium'],
+  },
+  'MuiSlider|root|orientation=horizontal||paddingBlock': {
+    label: 'Slider · paddingBlock [orientation=horizontal]',
+    done: ['medium'],
+  },
   'MuiSlider|root|orientation=horizontal|@media (pointer: coarse)|paddingBlock': {
     label: 'Slider · paddingBlock [horizontal, coarse pointer]',
     hidden: true,
     note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
   },
-  'MuiSlider|root|orientation=horizontal,size=small||height':
-    'Slider · height [orientation=horizontal,size=small]',
-  'MuiSlider|root|orientation=vertical||width': 'Slider · width [orientation=vertical]',
-  'MuiSlider|root|orientation=vertical||paddingInline':
-    'Slider · paddingInline [orientation=vertical]',
+  'MuiSlider|root|orientation=horizontal,size=small||height': {
+    label: 'Slider · height [orientation=horizontal,size=small]',
+    done: ['medium'],
+  },
+  'MuiSlider|root|orientation=vertical||width': {
+    label: 'Slider · width [orientation=vertical]',
+    done: ['medium'],
+  },
+  'MuiSlider|root|orientation=vertical||paddingInline': {
+    label: 'Slider · paddingInline [orientation=vertical]',
+    done: ['medium'],
+  },
   'MuiSlider|root|orientation=vertical|@media (pointer: coarse)|paddingInline': {
     label: 'Slider · paddingInline [vertical, coarse pointer]',
     hidden: true,
     note: 'Frozen 20px re-assert of the 42px coarse-pointer touch floor — never densified.',
   },
-  'MuiSlider|root|orientation=vertical,size=small||width':
-    'Slider · width [orientation=vertical,size=small]',
-  'MuiSlider|thumb|base||width': 'Slider · thumb · width',
-  'MuiSlider|thumb|base||height': 'Slider · thumb · height',
+  'MuiSlider|root|orientation=vertical,size=small||width': {
+    label: 'Slider · width [orientation=vertical,size=small]',
+    done: ['medium'],
+  },
+  'MuiSlider|thumb|base||width': { label: 'Slider · thumb · width', done: ['medium'] },
+  'MuiSlider|thumb|base||height': { label: 'Slider · thumb · height', done: ['medium'] },
   'MuiSlider|thumb|size=small||width': 'Slider · thumb · width [size=small]',
   'MuiSlider|thumb|size=small||height': 'Slider · thumb · height [size=small]',
   'MuiSlider|valueLabel|base||padding': 'Slider · valueLabel · padding',
@@ -979,8 +1095,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
     'Step · paddingRight [last, horizontal]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
-  'MuiStepLabel|iconContainer|base||minWidth': 'StepLabel · iconContainer · minWidth',
-  'MuiStepLabel|iconContainer|base||minHeight': 'StepLabel · iconContainer · minHeight',
+  'MuiStepLabel|iconContainer|base||minWidth': {
+    label: 'StepLabel · iconContainer · minWidth',
+    done: ['medium'],
+  },
+  'MuiStepLabel|iconContainer|base||minHeight': {
+    label: 'StepLabel · iconContainer · minHeight',
+    done: ['medium'],
+  },
   'MuiStepLabel|iconContainer|base||alignItems': {
     label: 'StepLabel · iconContainer · alignItems',
     hidden: true,
@@ -990,7 +1112,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'StepLabel · iconContainer · paddingLeft [vertical alternativeLabel]',
   'MuiStepLabel|label|alternativeLabel=true,orientation=horizontal|&.MuiStepLabel-alternativeLabel|marginTop':
     'StepLabel · label · marginTop [horizontal alternativeLabel]',
-  'MuiSvgIcon|root|fontSize=small||fontSize': 'Svg icon · size [small]',
+  'MuiSvgIcon|root|fontSize=small||fontSize': {
+    label: 'Svg icon · size [small]',
+    done: ['medium'],
+  },
   'MuiSvgIcon|root|fontSize=medium||fontSize': 'Svg icon · size [medium]',
   'MuiSvgIcon|root|fontSize=large||fontSize': 'Svg icon · size [large]',
   'MuiSwitch|root|base||width': {
@@ -1086,14 +1211,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Geometry derives from the five per-size Switch vars — the var rows are the knobs.',
   },
-  'MuiTab|root|base||minHeight': 'Tab min height',
+  'MuiTab|root|base||minHeight': { label: 'Tab min height', done: ['medium'] },
   'MuiTab|root|base||lineHeight': {
     label: 'Tab · lineHeight',
     hidden: true,
     note: 'Rides theme.typography.button.lineHeight — edit via the Typography tab.',
   },
-  'MuiTab|root|base||paddingBlock': 'Tab block padding',
-  'MuiTab|root|base||paddingInline': 'Tab inline padding',
+  'MuiTab|root|base||paddingBlock': { label: 'Tab block padding', done: ['medium'] },
+  'MuiTab|root|base||paddingInline': { label: 'Tab inline padding', done: ['medium'] },
   'MuiTab|root|fn:1bbekq||minHeight': {
     label: 'Icon+label min height',
     hidden: true,
@@ -1104,8 +1229,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiTab|root|fn:ekzzmq|& > .MuiTab-icon|marginTop': 'Icon gap (bottom layout)',
   'MuiTab|root|fn:s0l8zx|& > .MuiTab-icon|marginRight': 'Icon gap (start layout)',
   'MuiTab|root|fn:8au602|& > .MuiTab-icon|marginLeft': 'Icon gap (end layout)',
-  'MuiTableCell|root|size=medium||padding': 'TableCell · padding [size=medium]',
-  'MuiTableCell|root|size=small||padding': 'TableCell · padding [size=small]',
+  'MuiTableCell|root|size=medium||padding': {
+    label: 'TableCell · padding [size=medium]',
+    done: ['medium'],
+  },
+  'MuiTableCell|root|size=small||padding': {
+    label: 'TableCell · padding [size=small]',
+    done: ['medium'],
+  },
   'MuiTableCell|root|padding=checkbox||padding': 'TableCell · padding [padding=checkbox]',
   'MuiTableCell|root|padding=none||padding': {
     label: 'TableCell · padding [padding=none]',
@@ -1128,12 +1259,27 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     'TablePagination · select paddingRight',
   'MuiTableSortLabel|icon|base||fontSize': 'TableSortLabel · icon · fontSize',
   'MuiTableSortLabel|icon|base||marginInline': 'TableSortLabel · icon · marginInline',
-  'MuiTabs|root|base||minHeight': 'Tabs min height',
-  'MuiTabScrollButton|root|orientation=horizontal||width': 'TabScrollButton · width [horizontal]',
-  'MuiTabScrollButton|root|orientation=vertical||height': 'TabScrollButton · height [vertical]',
-  'MuiToggleButton|root|size=small||padding': 'ToggleButton · padding [size=small]',
-  'MuiToggleButton|root|size=medium||padding': 'ToggleButton · padding [size=medium]',
-  'MuiToggleButton|root|size=large||padding': 'ToggleButton · padding [size=large]',
+  'MuiTabs|root|base||minHeight': { label: 'Tabs min height', done: ['medium'] },
+  'MuiTabScrollButton|root|orientation=horizontal||width': {
+    label: 'TabScrollButton · width [horizontal]',
+    done: ['medium'],
+  },
+  'MuiTabScrollButton|root|orientation=vertical||height': {
+    label: 'TabScrollButton · height [vertical]',
+    done: ['medium'],
+  },
+  'MuiToggleButton|root|size=small||padding': {
+    label: 'ToggleButton · padding [size=small]',
+    done: ['medium'],
+  },
+  'MuiToggleButton|root|size=medium||padding': {
+    label: 'ToggleButton · padding [size=medium]',
+    done: ['medium'],
+  },
+  'MuiToggleButton|root|size=large||padding': {
+    label: 'ToggleButton · padding [size=large]',
+    done: ['medium'],
+  },
   'MuiToolbar|root|disableGutters=false||paddingInline':
     'Toolbar · paddingInline [disableGutters=false]',
   'MuiToolbar|root|disableGutters=false|@media (min-width:600px)|paddingInline':
@@ -1199,17 +1345,26 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Arrow geometry derives from the popper-slot --_arrowSize var — the var row is the knob.',
   },
-  'MuiTooltip|tooltip|base||padding': 'Tooltip · tooltip · padding',
-  'MuiTooltip|tooltip|base||fontSize': 'Tooltip · tooltip · fontSize',
-  'MuiTooltip|tooltip|base||lineHeight': 'Tooltip · tooltip · lineHeight',
-  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd':
-    'Tooltip · tooltip · marginInlineEnd',
+  'MuiTooltip|tooltip|base||padding': { label: 'Tooltip · tooltip · padding', done: ['medium'] },
+  'MuiTooltip|tooltip|base||fontSize': { label: 'Tooltip · tooltip · fontSize', done: ['medium'] },
+  'MuiTooltip|tooltip|base||lineHeight': {
+    label: 'Tooltip · tooltip · lineHeight',
+    done: ['medium'],
+  },
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="left"] &|marginInlineEnd': {
+    label: 'Tooltip · tooltip · marginInlineEnd',
+    done: ['medium'],
+  },
   'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="right"] &|marginInlineStart':
-    'Tooltip · tooltip · marginInlineStart',
-  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="top"] &|marginBottom':
-    'Tooltip · tooltip · marginBottom',
-  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop':
-    'Tooltip · tooltip · marginTop',
+    { label: 'Tooltip · tooltip · marginInlineStart', done: ['medium'] },
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="top"] &|marginBottom': {
+    label: 'Tooltip · tooltip · marginBottom',
+    done: ['medium'],
+  },
+  'MuiTooltip|tooltip|base|.MuiTooltip-popper[data-popper-placement*="bottom"] &|marginTop': {
+    label: 'Tooltip · tooltip · marginTop',
+    done: ['medium'],
+  },
   'MuiTreeItem|content|base||paddingBlock': 'TreeItem · content · paddingBlock',
   'MuiTreeItem|content|base||paddingRight': 'TreeItem · content · paddingRight',
   'MuiTreeItem|content|base||paddingLeft': {

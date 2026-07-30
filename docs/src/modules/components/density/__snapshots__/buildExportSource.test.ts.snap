@@ -2217,7 +2217,7 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
                 },
               },
               {
@@ -2225,7 +2225,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
                 },
               },
               {
@@ -4789,7 +4789,7 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
                 },
               },
               {
@@ -4797,7 +4797,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
                 },
               },
               {
@@ -7327,7 +7327,7 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-x-small) + 2.5px) 8px',
                 },
               },
               {
@@ -7335,7 +7335,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-x-small) var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-xx-small) + 2.5px) 8px',
                 },
               },
               {

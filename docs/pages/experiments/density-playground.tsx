@@ -145,6 +145,7 @@ import {
   knobLabel,
   orderFamilyComponents,
   componentSlotOrder,
+  knobDonePresets,
   stripComponentSlot,
   densityVirtualKnobs,
   densityLinkedWrites,
@@ -3858,6 +3859,10 @@ const FamilyKnobs = React.memo(
                           id={entry.key}
                           idAttr="data-mapping-field"
                           label={entry.label}
+                          done={
+                            preset !== 'unset' &&
+                            entry.writeIds.every((id) => knobDonePresets(id).includes(preset))
+                          }
                           value={mapping[entry.writeIds[0]] ?? ''}
                           // Placeholder = what you'd TYPE: var refs shortened to bare
                           // step names; override-only knobs (no preset default) stay blank.
