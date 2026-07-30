@@ -5,6 +5,30 @@
   "lockFileMaintenance": {
     "schedule": "* 0-4 1 * *"
   },
+  "customManagers": [
+    {
+      "description": "Update Node.js versions in CircleCI download URLs",
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.circleci\\/config\\.yml$/"],
+      "matchStrings": [
+        "curl -fsSL https://nodejs\\.org/dist/v(?<currentValue>\\d+\\.\\d+\\.\\d+)/node-v\\d+\\.\\d+\\.\\d+-linux-x64\\.tar\\.gz"
+      ],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node",
+      "autoReplaceStringTemplate": "curl -fsSL https://nodejs.org/dist/v{{{newValue}}}/node-v{{{newValue}}}-linux-x64.tar.gz"
+    },
+    {
+      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^packages-internal\\/core-docs\\/src\\/AppLayout\\/components\\/AppSearch\\.tsx$/"
+      ],
+      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
+      "depNameTemplate": "@docsearch/css",
+      "datasourceTemplate": "npm"
+    }
+  ],
   "packageRules": [
     {
       "groupName": "Pigment CSS",
@@ -83,16 +107,6 @@
       "matchPackageNames": ["mcr.microsoft.com/playwright"],
       "matchCurrentVersion": "v1.49.1-noble",
       "enabled": false
-    }
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Track the @docsearch/css version pinned in the jsDelivr CDN URL as an npm dependency so Renovate bumps it (grouped with @docsearch/react).",
-      "managerFilePatterns": ["packages-internal/core-docs/src/AppLayout/components/AppSearch.tsx"],
-      "matchStrings": ["@docsearch/css@(?<currentValue>[\\d.]+)/dist/"],
-      "depNameTemplate": "@docsearch/css",
-      "datasourceTemplate": "npm"
     }
   ]
 }

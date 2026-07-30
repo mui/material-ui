@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
@@ -469,6 +470,32 @@ describe('<Stepper />', () => {
       await user.click(tabElements[0]);
       expect(tabElements[0]).to.have.attribute('tabIndex', '0');
       expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
+    });
+
+    it('should compose the onFocus and onKeyDown handlers', async () => {
+      const onFocusSpy = spy();
+      const onKeyDownSpy = spy();
+
+      const { user } = render(
+        <Stepper nonLinear>
+          <Step>
+            <StepButton onFocus={onFocusSpy} onKeyDown={onKeyDownSpy}>
+              one
+            </StepButton>
+          </Step>
+          <Step>
+            <StepButton>two</StepButton>
+          </Step>
+        </Stepper>,
+      );
+
+      const tabElements = screen.getAllByRole('tab');
+
+      await user.click(tabElements[0]);
+      expect(onFocusSpy.callCount).to.equal(1);
+
+      await user.keyboard('{ArrowRight}');
+      expect(onKeyDownSpy.callCount).to.equal(1);
     });
   });
 });
