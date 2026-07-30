@@ -312,7 +312,9 @@ export function AppSearch(props: AppSearchProps) {
       const parent =
         document.querySelector<HTMLElement>('.DocSearch-Dropdown') ??
         document.querySelector<HTMLElement>('.DocSearch-Modal');
-      if (parent && host.parentElement !== parent) {
+      // Keep it last so the product links stay below the recent searches, which DocSearch
+      // renders into the dropdown after we host ourselves there.
+      if (parent && (host.parentElement !== parent || host.nextSibling !== null)) {
         parent.appendChild(host);
         // Same node every time, so React bails out instead of re-rendering on later moves.
         setStartScreenHost(host);
