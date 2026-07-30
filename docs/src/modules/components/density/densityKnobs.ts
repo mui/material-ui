@@ -56,11 +56,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Consumes --_autocompleteInputRootPadBlock — the var row is the knob.',
   },
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingLeft': 'Autocomplete · paddingLeft',
   'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock': {
     label: 'Autocomplete · input paddingBlock',
     hidden: true,
     note: 'Consumes --_autocompleteInputPadBlock — the var row is the knob.',
   },
+  'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingLeft':
+    'Autocomplete · paddingLeft',
   'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock':
     {
       label: 'Autocomplete · --_outlinedInputPadBlock',

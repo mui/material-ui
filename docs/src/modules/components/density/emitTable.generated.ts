@@ -276,8 +276,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock',
     label: 'Autocomplete · --_autocompleteInputRootPadBlock',
-    isDensity: true,
-    densityKey: 'small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiAutocomplete',
       slot: 'root',
@@ -285,17 +285,13 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_autocompleteInputRootPadBlock',
     },
-    values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
-    },
+    values: { high: '3px', medium: '3px', low: '3px' },
   },
   {
     id: 'MuiAutocomplete|root|base||--_autocompleteInputPadBlock',
     label: 'Autocomplete · --_autocompleteInputPadBlock',
-    isDensity: true,
-    densityKey: 'x-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiAutocomplete',
       slot: 'root',
@@ -303,11 +299,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       privateVar: '--_autocompleteInputPadBlock',
     },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
+    values: { high: '3px', medium: '3px', low: '3px' },
   },
   {
     id: 'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingBlock',
@@ -328,6 +320,20 @@ export const densityEmitTable: DensityEmitRow[] = [
     },
   },
   {
+    id: 'MuiAutocomplete|root|base|& .MuiOutlinedInput-root|paddingLeft',
+    label: 'Autocomplete · paddingLeft',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiAutocomplete',
+      slot: 'root',
+      props: null,
+      nested: '& .MuiOutlinedInput-root',
+      cssProp: 'paddingLeft',
+    },
+    values: { high: '8px', medium: '8px', low: '8px' },
+  },
+  {
     id: 'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingBlock',
     label: 'Autocomplete · paddingBlock',
     isDensity: false,
@@ -344,6 +350,20 @@ export const densityEmitTable: DensityEmitRow[] = [
       medium: 'var(--_autocompleteInputPadBlock)',
       low: 'var(--_autocompleteInputPadBlock)',
     },
+  },
+  {
+    id: 'MuiAutocomplete|root|base|& .MuiOutlinedInput-root .MuiAutocomplete-input|paddingLeft',
+    label: 'Autocomplete · paddingLeft',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiAutocomplete',
+      slot: 'root',
+      props: null,
+      nested: '& .MuiOutlinedInput-root .MuiAutocomplete-input',
+      cssProp: 'paddingLeft',
+    },
+    values: { high: '4px', medium: '4px', low: '4px' },
   },
   {
     id: 'MuiAutocomplete|root|base|& .MuiFormControl-root:has(> .MuiOutlinedInput-root)|--_outlinedInputPadBlock',
@@ -366,8 +386,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputRootPadBlock',
     label: 'Autocomplete · --_autocompleteInputRootPadBlock',
-    isDensity: true,
-    densityKey: 'x-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiAutocomplete',
       slot: 'root',
@@ -375,11 +395,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '&:has(.MuiInputBase-sizeSmall)',
       privateVar: '--_autocompleteInputRootPadBlock',
     },
-    values: {
-      high: 'var(--mui-density-x-small)',
-      medium: 'var(--mui-density-x-small)',
-      low: 'var(--mui-density-x-small)',
-    },
+    values: { high: '0px', medium: '0px', low: '0px' },
   },
   {
     id: 'MuiAutocomplete|root|base|&:has(.MuiInputBase-sizeSmall)|--_autocompleteInputPadBlock',
@@ -438,8 +454,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiAutocomplete|tag|base||margin',
     label: 'Autocomplete · tag · margin',
-    isDensity: true,
-    densityKey: 'xx-small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiAutocomplete',
       slot: 'tag',
@@ -447,11 +463,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'margin',
     },
-    values: {
-      high: 'var(--mui-density-xx-small)',
-      medium: 'var(--mui-density-xx-small)',
-      low: 'var(--mui-density-xx-small)',
-    },
+    values: { high: '1px', medium: '1px', low: '1px' },
   },
   {
     id: 'MuiAvatar|root|base||width',
@@ -5756,7 +5768,7 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'fontSize',
     },
-    values: { high: undefined, medium: '12px', low: undefined },
+    values: { high: undefined, medium: '16px', low: undefined },
   },
   {
     id: 'MuiSvgIcon|root|fontSize=medium||fontSize',
@@ -6600,8 +6612,8 @@ export const densityEmitTable: DensityEmitRow[] = [
   {
     id: 'MuiToggleButton|root|size=small||padding',
     label: 'ToggleButton · padding [size=small]',
-    isDensity: true,
-    densityKey: 'small',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiToggleButton',
       slot: 'root',
@@ -6610,16 +6622,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-small)',
-      medium: 'var(--mui-density-small)',
-      low: 'var(--mui-density-small)',
+      high: 'calc(var(--mui-density-xx-small) - 1px)',
+      medium: 'calc(var(--mui-density-xx-small) - 1px)',
+      low: 'calc(var(--mui-density-xx-small) - 1px)',
     },
   },
   {
     id: 'MuiToggleButton|root|size=medium||padding',
     label: 'ToggleButton · padding [size=medium]',
-    isDensity: true,
-    densityKey: 'medium',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiToggleButton',
       slot: 'root',
@@ -6628,16 +6640,16 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-medium)',
-      medium: 'var(--mui-density-medium)',
-      low: 'var(--mui-density-medium)',
+      high: 'calc(var(--mui-density-x-small) - 1px)',
+      medium: 'calc(var(--mui-density-x-small) - 1px)',
+      low: 'calc(var(--mui-density-x-small) - 1px)',
     },
   },
   {
     id: 'MuiToggleButton|root|size=large||padding',
     label: 'ToggleButton · padding [size=large]',
-    isDensity: true,
-    densityKey: 'large',
+    isDensity: false,
+    densityKey: null,
     target: {
       component: 'MuiToggleButton',
       slot: 'root',
@@ -6646,9 +6658,9 @@ export const densityEmitTable: DensityEmitRow[] = [
       cssProp: 'padding',
     },
     values: {
-      high: 'var(--mui-density-large)',
-      medium: 'var(--mui-density-large)',
-      low: 'var(--mui-density-large)',
+      high: 'calc(var(--mui-density-small) - 1px)',
+      medium: 'calc(var(--mui-density-small) - 1px)',
+      low: 'calc(var(--mui-density-small) - 1px)',
     },
   },
   {

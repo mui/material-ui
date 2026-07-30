@@ -419,11 +419,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   // Separator inline margins (spacing step) on the separator slot.
   addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.small }, 'separator');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
-    // Emit uniform padding directly on the size variants ToggleButton ships (no seam).
+    // Emit uniform padding directly on the size variants ToggleButton ships (no
+    // seam). -1px = border compensation (master's own shape).
     variants: [
-      { props: { size: 'small' }, style: { padding: d.small } },
-      { props: { size: 'medium' }, style: { padding: d.medium } },
-      { props: { size: 'large' }, style: { padding: d.large } },
+      { props: { size: 'small' }, style: { padding: `calc(${d['xx-small']} - 1px)` } },
+      { props: { size: 'medium' }, style: { padding: `calc(${d['x-small']} - 1px)` } },
+      { props: { size: 'large' }, style: { padding: `calc(${d.small} - 1px)` } },
     ],
   });
   addRootOverride(
@@ -474,11 +475,20 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   );
   // Input wrapper block padding (around the value/tags) + tag (chip) margin = steps.
   addRootOverride(enhanced.components, 'MuiAutocomplete', {
-    '--_autocompleteInputRootPadBlock': d.small,
-    '--_autocompleteInputPadBlock': d['x-small'],
-    [`& .${outlinedInputClasses.root}`]: { paddingBlock: `var(--_autocompleteInputRootPadBlock)` },
+    // Root block pad is 0 — the input carries the WHOLE per-side pad, equal to
+    // the plain OutlinedInput pad (32px total; small 4px -> 28px). Keeps
+    // multi-select simple: chips stack in an unpadded root while the input's
+    // own pad still sets the row rhythm; the label restY broadcast below
+    // (root + input) lands on the same value as plain inputs either way.
+    '--_autocompleteInputRootPadBlock': '3px',
+    '--_autocompleteInputPadBlock': '3px',
+    [`& .${outlinedInputClasses.root}`]: {
+      paddingBlock: `var(--_autocompleteInputRootPadBlock)`,
+      paddingLeft: '8px',
+    },
     [`& .${outlinedInputClasses.root} .${autocompleteClasses.input}`]: {
       paddingBlock: `var(--_autocompleteInputPadBlock)`,
+      paddingLeft: '4px',
     },
     [`& .${formControlClasses.root}:has(> .${outlinedInputClasses.root})`]: {
       '--_outlinedInputPadBlock':
@@ -486,7 +496,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     },
     // small size
     [`&:has(.${inputBaseClasses.sizeSmall})`]: {
-      '--_autocompleteInputRootPadBlock': d['x-small'],
+      '--_autocompleteInputRootPadBlock': '0px',
       '--_autocompleteInputPadBlock': d['xx-small'],
     },
     [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
@@ -497,7 +507,7 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
         paddingBlock: `var(--_autocompleteInputPadBlock)`,
       },
   });
-  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: d['xx-small'] }, 'tag');
+  addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: '1px' }, 'tag');
   // Horizontal step gutter: paddingLeft (first) / paddingRight (last) = step.
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [

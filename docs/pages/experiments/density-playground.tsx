@@ -99,6 +99,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import HighlightAltIcon from '@mui/icons-material/HighlightAlt';
+import IosShareIcon from '@mui/icons-material/IosShare';
 import {
   DataGrid,
   GridActionsCellItem,
@@ -2779,7 +2780,35 @@ function AutocompleteMatrix() {
           <TextField {...params} label={<span className="density-debug-text">Fruit</span>} />
         )}
       />
-      <Stack spacing={2} sx={{ width: 500 }}>
+      <Stack spacing={2} sx={{ width: 500, mt: 16 }}>
+        <Autocomplete
+          multiple
+          id="size-medium-outlined-multi"
+          options={top100Films}
+          getOptionLabel={(option) => option.title}
+          defaultValue={[top100Films[13], top100Films[3]]}
+          renderValue={(values, getItemProps) =>
+            values.map((option, index) => {
+              const { key, ...itemProps } = getItemProps({ index });
+              return (
+                <Chip
+                  key={key}
+                  size="small"
+                  variant="outlined"
+                  label={<span className="density-debug-text">{option.title}</span>}
+                  {...itemProps}
+                />
+              );
+            })
+          }
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={<span className="density-debug-text">Size medium</span>}
+              placeholder="Favorites"
+            />
+          )}
+        />
         <Autocomplete
           id="size-small-standard"
           size="small"
@@ -4306,6 +4335,53 @@ export default function DensityExperiment() {
     });
   };
 
+  // Copy overrides: the ACTIVE preset's workspace as `<row id> = <typed value>`
+  // lines — the paste-to-agent handoff (each id is an exact seam address, so
+  // "make these the preset defaults" needs no screenshots). Virtual knobs
+  // compress to one line; linked-write plumbing is skipped (re-derived from the
+  // key row). Also on Cmd/Ctrl+Shift+X.
+  const [overridesCopied, setOverridesCopied] = React.useState(false);
+  const handleCopyOverrides = React.useCallback(() => {
+    if (preset === 'unset') {
+      return;
+    }
+    const bucket = mappingByPreset[preset as PresetLevel] ?? {};
+    const lines: string[] = [];
+    const covered = new Set<string>();
+    for (const knob of densityVirtualKnobs) {
+      const value = (bucket[knob.members[0]] ?? '').trim();
+      if (value && knob.members.every((m) => (bucket[m] ?? '').trim() === value)) {
+        lines.push(`${knob.id} = ${value}`);
+        knob.members.forEach((m) => covered.add(m));
+      }
+    }
+    for (const [id, raw] of Object.entries(bucket)) {
+      const value = (raw ?? '').trim();
+      if (!value || covered.has(id) || linkedTargetIds.has(id)) {
+        continue;
+      }
+      lines.push(`${id} = ${value}`);
+    }
+    if (!lines.length) {
+      return;
+    }
+    const text = `density overrides · preset=${preset}\n${lines.join('\n')}\n`;
+    navigator.clipboard.writeText(text).then(() => {
+      setOverridesCopied(true);
+      setTimeout(() => setOverridesCopied(false), 1500);
+    });
+  }, [preset, mappingByPreset]);
+  React.useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === 'x') {
+        event.preventDefault();
+        handleCopyOverrides();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [handleCopyOverrides]);
+
   return (
     <Box
       sx={{
@@ -4429,6 +4505,17 @@ export default function DensityExperiment() {
               data-copy-button
             >
               {copied ? <CheckIcon /> : <ContentCopyIcon />}
+            </IconButton>
+          </Tooltip>
+          <Tooltip
+            title={overridesCopied ? 'Copied!' : 'Copy overrides as seam = value lines (⌘⇧X)'}
+          >
+            <IconButton
+              onClick={handleCopyOverrides}
+              aria-label="copy overrides as seam lines"
+              data-copy-overrides-button
+            >
+              {overridesCopied ? <CheckIcon /> : <IosShareIcon />}
             </IconButton>
           </Tooltip>
         </Box>

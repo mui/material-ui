@@ -92,7 +92,7 @@ export default function enhanceMediumDensity<T extends EnhanceableTheme>(theme: 
   // High/low emit nothing — icons keep master sizes there. Raw px (sizing policy).
   addRootOverride(enhanced.components, 'MuiSvgIcon', {
     variants: [
-      { props: { fontSize: 'small' }, style: { fontSize: '12px' } },
+      { props: { fontSize: 'small' }, style: { fontSize: '16px' } },
       { props: { fontSize: 'medium' }, style: { fontSize: '16px' } },
       { props: { fontSize: 'large' }, style: { fontSize: '20px' } },
     ],

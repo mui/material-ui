@@ -732,7 +732,7 @@ const high = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
                 },
               },
               {
@@ -740,7 +740,7 @@ const high = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-medium)',
+                  padding: 'calc(var(--mui-density-x-small) - 1px)',
                 },
               },
               {
@@ -748,7 +748,7 @@ const high = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-small) - 1px)',
                 },
               },
             ],
@@ -925,19 +925,21 @@ const high = {
       styleOverrides: {
         root: [
           {
-            '--_autocompleteInputRootPadBlock': 'var(--mui-density-small)',
-            '--_autocompleteInputPadBlock': 'var(--mui-density-x-small)',
+            '--_autocompleteInputRootPadBlock': '3px',
+            '--_autocompleteInputPadBlock': '3px',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
+              paddingLeft: '8px',
             },
             '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
+              paddingLeft: '4px',
             },
             '& .MuiFormControl-root:has(> .MuiOutlinedInput-root)': {
               '--_outlinedInputPadBlock': 'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
             },
             '&:has(.MuiInputBase-sizeSmall)': {
-              '--_autocompleteInputRootPadBlock': 'var(--mui-density-x-small)',
+              '--_autocompleteInputRootPadBlock': '0px',
               '--_autocompleteInputPadBlock': 'var(--mui-density-xx-small)',
             },
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
@@ -950,7 +952,7 @@ const high = {
         ],
         tag: [
           {
-            margin: 'var(--mui-density-xx-small)',
+            margin: '1px',
           },
         ],
         listbox: [
@@ -3282,7 +3284,7 @@ const medium = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
                 },
               },
               {
@@ -3290,7 +3292,7 @@ const medium = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-medium)',
+                  padding: 'calc(var(--mui-density-x-small) - 1px)',
                 },
               },
               {
@@ -3298,7 +3300,7 @@ const medium = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-small) - 1px)',
                 },
               },
             ],
@@ -3475,19 +3477,21 @@ const medium = {
       styleOverrides: {
         root: [
           {
-            '--_autocompleteInputRootPadBlock': 'var(--mui-density-small)',
-            '--_autocompleteInputPadBlock': 'var(--mui-density-x-small)',
+            '--_autocompleteInputRootPadBlock': '3px',
+            '--_autocompleteInputPadBlock': '3px',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
+              paddingLeft: '8px',
             },
             '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
+              paddingLeft: '4px',
             },
             '& .MuiFormControl-root:has(> .MuiOutlinedInput-root)': {
               '--_outlinedInputPadBlock': 'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
             },
             '&:has(.MuiInputBase-sizeSmall)': {
-              '--_autocompleteInputRootPadBlock': 'var(--mui-density-x-small)',
+              '--_autocompleteInputRootPadBlock': '0px',
               '--_autocompleteInputPadBlock': 'var(--mui-density-xx-small)',
             },
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
@@ -3500,7 +3504,7 @@ const medium = {
         ],
         tag: [
           {
-            margin: 'var(--mui-density-xx-small)',
+            margin: '1px',
           },
         ],
         listbox: [
@@ -5064,7 +5068,7 @@ const medium = {
                   fontSize: 'small',
                 },
                 style: {
-                  fontSize: '12px',
+                  fontSize: '16px',
                 },
               },
               {
@@ -5822,7 +5826,7 @@ const low = {
                   size: 'small',
                 },
                 style: {
-                  padding: 'var(--mui-density-small)',
+                  padding: 'calc(var(--mui-density-xx-small) - 1px)',
                 },
               },
               {
@@ -5830,7 +5834,7 @@ const low = {
                   size: 'medium',
                 },
                 style: {
-                  padding: 'var(--mui-density-medium)',
+                  padding: 'calc(var(--mui-density-x-small) - 1px)',
                 },
               },
               {
@@ -5838,7 +5842,7 @@ const low = {
                   size: 'large',
                 },
                 style: {
-                  padding: 'var(--mui-density-large)',
+                  padding: 'calc(var(--mui-density-small) - 1px)',
                 },
               },
             ],
@@ -6015,19 +6019,21 @@ const low = {
       styleOverrides: {
         root: [
           {
-            '--_autocompleteInputRootPadBlock': 'var(--mui-density-small)',
-            '--_autocompleteInputPadBlock': 'var(--mui-density-x-small)',
+            '--_autocompleteInputRootPadBlock': '3px',
+            '--_autocompleteInputPadBlock': '3px',
             '& .MuiOutlinedInput-root': {
               paddingBlock: 'var(--_autocompleteInputRootPadBlock)',
+              paddingLeft: '8px',
             },
             '& .MuiOutlinedInput-root .MuiAutocomplete-input': {
               paddingBlock: 'var(--_autocompleteInputPadBlock)',
+              paddingLeft: '4px',
             },
             '& .MuiFormControl-root:has(> .MuiOutlinedInput-root)': {
               '--_outlinedInputPadBlock': 'calc(var(--_autocompleteInputRootPadBlock) + var(--_autocompleteInputPadBlock))',
             },
             '&:has(.MuiInputBase-sizeSmall)': {
-              '--_autocompleteInputRootPadBlock': 'var(--mui-density-x-small)',
+              '--_autocompleteInputRootPadBlock': '0px',
               '--_autocompleteInputPadBlock': 'var(--mui-density-xx-small)',
             },
             '& .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
@@ -6040,7 +6046,7 @@ const low = {
         ],
         tag: [
           {
-            margin: 'var(--mui-density-xx-small)',
+            margin: '1px',
           },
         ],
         listbox: [
