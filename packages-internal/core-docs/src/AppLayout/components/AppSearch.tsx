@@ -295,24 +295,27 @@ export function AppSearch(props: AppSearchProps) {
 
     // IMPORTANT: never call setState while the search input is being typed into. Re-rendering
     // DocSearchModal mid-keystroke makes React revert its controlled input, which breaks typing.
-    // So the start screen is hosted on the stable `.DocSearch-Modal` (set once) and its
-    // visibility is toggled imperatively (no React state) - the same approach the v3 code used.
+    // The start screen renders into this stable node, so reparenting it below is a plain DOM
+    // move that React never re-renders through.
+    const host = document.createElement('div');
+    host.className = 'DocSearch-NewStartScreenHost';
+
     const updateStartScreenVisibility = () => {
-      const el = document.querySelector<HTMLElement>('.DocSearch-NewStartScreen');
-      if (!el) {
-        return;
-      }
       const input = document.querySelector<HTMLInputElement>('.DocSearch-Input');
-      el.style.display = input && input.value !== '' ? 'none' : 'grid';
+      host.style.display = input && input.value !== '' ? 'none' : '';
     };
 
-    // DocSearch mounts the modal asynchronously; find it once, then host the start screen on it.
-    let hosted = false;
+    // Host the start screen inside the dropdown so recent searches and the product links share
+    // one fixed-height scroll container (as in v3) instead of stacking and growing the modal.
+    // v4 only renders the dropdown when it has content, so fall back to the modal.
     const setup = () => {
-      const modalEl = document.querySelector<HTMLElement>('.DocSearch-Modal');
-      if (modalEl && !hosted) {
-        hosted = true;
-        setStartScreenHost(modalEl);
+      const parent =
+        document.querySelector<HTMLElement>('.DocSearch-Dropdown') ??
+        document.querySelector<HTMLElement>('.DocSearch-Modal');
+      if (parent && host.parentElement !== parent) {
+        parent.appendChild(host);
+        // Same node every time, so React bails out instead of re-rendering on later moves.
+        setStartScreenHost(host);
       }
       updateStartScreenVisibility();
     };
@@ -326,6 +329,7 @@ export function AppSearch(props: AppSearchProps) {
     return () => {
       observer.disconnect();
       document.removeEventListener('input', updateStartScreenVisibility, true);
+      host.remove();
       setStartScreenHost(null);
     };
   }, [isOpen]);
@@ -452,14 +456,17 @@ export function AppSearch(props: AppSearchProps) {
               display: 'none',
             },
             '& .DocSearch-NewStartScreen': {
-              // Placed between the search bar and the footer (see also DocSearch-Footer order).
-              order: 1,
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: theme.spacing(2),
-              // Horizontal padding replaces the v3 `.DocSearch-Dropdown` padding.
-              padding: theme.spacing(0, 1.5, 2),
-              // Keep the start screen within the modal height and let it scroll if taller.
+              paddingBottom: theme.spacing(2),
+            },
+            // Only when there is no dropdown to host it: sit between the search bar and the
+            // footer (see also DocSearch-Footer order) and take over the dropdown's padding,
+            // height cap and scrolling.
+            '& .DocSearch-Modal > .DocSearch-NewStartScreenHost': {
+              order: 1,
+              padding: theme.spacing(0, 1.5),
               maxHeight:
                 'calc(var(--docsearch-modal-height) - var(--docsearch-spacing) - var(--docsearch-footer-height))',
               overflowY: 'auto',
