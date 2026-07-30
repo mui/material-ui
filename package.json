@@ -79,7 +79,7 @@
     "@netlify/functions": "^5.3.0",
     "@slack/bolt": "^5.0.0",
     "@vitest/eslint-plugin": "^1.6.23",
-    "execa": "^9.6.1"
+    "execa": "^10.0.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
@@ -89,7 +89,7 @@
     "@eslint/compat": "2.1.0",
     "@mui/internal-babel-plugin-minify-errors": "2.0.8-canary.27",
     "@mui/internal-bundle-size-checker": "1.0.9-canary.78",
-    "@mui/internal-code-infra": "0.0.4-canary.74",
+    "@mui/internal-code-infra": "0.0.4-canary.101",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-netlify-cache": "0.0.3-canary.5",
     "@mui/internal-scripts": "workspace:^",
@@ -148,9 +148,9 @@
   "config": {
     "valeVersion": "3.15.2"
   },
-  "packageManager": "pnpm@11.13.1",
+  "packageManager": "pnpm@11.17.0",
   "engines": {
-    "pnpm": "11.13.1",
-    "node": ">=22.22.3"
+    "pnpm": "11.17.0",
+    "node": ">=22.23.1"
   }
 }
