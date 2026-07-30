@@ -3786,6 +3786,12 @@ interface FamilyKnobsProps {
   setFields: (ids: string[], value: string) => void;
   highlightSlot: string | null;
   onToggleHighlight: (key: string) => void;
+  /** staged done-checks for the ACTIVE preset (entry keys). */
+  doneDraft: ReadonlySet<string>;
+  onToggleDoneDraft: (key: string, checked: boolean) => void;
+  /** staged done-REMOVALS for the ACTIVE preset (entry keys). */
+  undoneDraft: ReadonlySet<string>;
+  onToggleUndoneDraft: (key: string, staged: boolean) => void;
 }
 
 // One family's mapping tree. Memo comparator: skip re-render unless THIS family's
@@ -3794,8 +3800,19 @@ interface FamilyKnobsProps {
 // placeholders and previews all derive from those three).
 const FamilyKnobs = React.memo(
   function FamilyKnobs(props: FamilyKnobsProps) {
-    const { familyKey, mapping, preset, scalePx, setFields, highlightSlot, onToggleHighlight } =
-      props;
+    const {
+      familyKey,
+      mapping,
+      preset,
+      scalePx,
+      setFields,
+      highlightSlot,
+      onToggleHighlight,
+      doneDraft,
+      onToggleDoneDraft,
+      undoneDraft,
+      onToggleUndoneDraft,
+    } = props;
     return (
       <React.Fragment>
         {(familyKnobTree.get(familyKey) ?? []).map(({ component, slots }) => (
@@ -3863,6 +3880,10 @@ const FamilyKnobs = React.memo(
                             preset !== 'unset' &&
                             entry.writeIds.every((id) => knobDonePresets(id).includes(preset))
                           }
+                          doneDraft={doneDraft.has(entry.key)}
+                          onDoneDraft={(checked) => onToggleDoneDraft(entry.key, checked)}
+                          undoneDraft={undoneDraft.has(entry.key)}
+                          onUndoneDraft={(staged) => onToggleUndoneDraft(entry.key, staged)}
                           value={mapping[entry.writeIds[0]] ?? ''}
                           // Placeholder = what you'd TYPE: var refs shortened to bare
                           // step names; override-only knobs (no preset default) stay blank.
@@ -3896,6 +3917,10 @@ const FamilyKnobs = React.memo(
     prev.setFields === next.setFields &&
     prev.highlightSlot === next.highlightSlot &&
     prev.onToggleHighlight === next.onToggleHighlight &&
+    prev.doneDraft === next.doneDraft &&
+    prev.onToggleDoneDraft === next.onToggleDoneDraft &&
+    prev.undoneDraft === next.undoneDraft &&
+    prev.onToggleUndoneDraft === next.onToggleUndoneDraft &&
     (familyReadIds.get(next.familyKey) ?? []).every((id) => prev.mapping[id] === next.mapping[id]),
 );
 
@@ -4366,6 +4391,83 @@ export default function DensityExperiment() {
     [preset],
   );
 
+  // Done-draft staging: in-page checks on not-yet-done knobs, carried into the
+  // copy-overrides block as `done:` lines so the agent persists them into
+  // densityKnobs meta. localStorage so a reload doesn't lose staged checks.
+  const [doneDraftByPreset, setDoneDraftByPreset] = React.useState<Record<string, string[]>>(() => {
+    if (typeof window === 'undefined') {
+      return {};
+    }
+    try {
+      return JSON.parse(window.localStorage.getItem('density-done-draft') ?? '{}');
+    } catch {
+      return {};
+    }
+  });
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem('density-done-draft', JSON.stringify(doneDraftByPreset));
+    } catch {
+      // storage unavailable — staging just won't survive reloads
+    }
+  }, [doneDraftByPreset]);
+  const doneDraft = React.useMemo(
+    () => new Set(doneDraftByPreset[preset] ?? []),
+    [doneDraftByPreset, preset],
+  );
+  const toggleDoneDraft = React.useCallback(
+    (key: string, checked: boolean) => {
+      setDoneDraftByPreset((prev) => {
+        const current = new Set(prev[preset] ?? []);
+        if (checked) {
+          current.add(key);
+        } else {
+          current.delete(key);
+        }
+        return { ...prev, [preset]: [...current] };
+      });
+    },
+    [preset],
+  );
+  // Mirror staging for REMOVING a persisted done mark (chip delete icon).
+  const [undoneDraftByPreset, setUndoneDraftByPreset] = React.useState<Record<string, string[]>>(
+    () => {
+      if (typeof window === 'undefined') {
+        return {};
+      }
+      try {
+        return JSON.parse(window.localStorage.getItem('density-undone-draft') ?? '{}');
+      } catch {
+        return {};
+      }
+    },
+  );
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem('density-undone-draft', JSON.stringify(undoneDraftByPreset));
+    } catch {
+      // storage unavailable — staging just won't survive reloads
+    }
+  }, [undoneDraftByPreset]);
+  const undoneDraft = React.useMemo(
+    () => new Set(undoneDraftByPreset[preset] ?? []),
+    [undoneDraftByPreset, preset],
+  );
+  const toggleUndoneDraft = React.useCallback(
+    (key: string, staged: boolean) => {
+      setUndoneDraftByPreset((prev) => {
+        const current = new Set(prev[preset] ?? []);
+        if (staged) {
+          current.add(key);
+        } else {
+          current.delete(key);
+        }
+        return { ...prev, [preset]: [...current] };
+      });
+    },
+    [preset],
+  );
+
   // Clears the ACTIVE preset's workspace only — other presets keep theirs.
   const resetMapping = () => {
     if (preset !== 'unset') {
@@ -4425,6 +4527,26 @@ export default function DensityExperiment() {
       }
       lines.push(`${id} = ${value}`);
     }
+    for (const key of doneDraftByPreset[preset] ?? []) {
+      // staged checks already persisted as done meta drop out of the block
+      const memberIds = key.startsWith('virtual:')
+        ? (densityVirtualKnobs.find((k) => k.id === key)?.members ?? [key])
+        : [key];
+      if (memberIds.every((id) => knobDonePresets(id).includes(preset))) {
+        continue;
+      }
+      lines.push(`done: ${key}`);
+    }
+    for (const key of undoneDraftByPreset[preset] ?? []) {
+      // only ids still marked done need undoing; persisted removals drop out
+      const memberIds = key.startsWith('virtual:')
+        ? (densityVirtualKnobs.find((k) => k.id === key)?.members ?? [key])
+        : [key];
+      if (!memberIds.every((id) => knobDonePresets(id).includes(preset))) {
+        continue;
+      }
+      lines.push(`undone: ${key}`);
+    }
     if (!lines.length) {
       return;
     }
@@ -4433,10 +4555,12 @@ export default function DensityExperiment() {
       setOverridesCopied(true);
       setTimeout(() => setOverridesCopied(false), 1500);
     });
-  }, [preset, mappingByPreset]);
+  }, [preset, mappingByPreset, doneDraftByPreset, undoneDraftByPreset]);
   React.useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === 'x') {
+      // Ctrl+Option+X (macOS) / Ctrl+Alt+X — `code` not `key`: Option+X types
+      // a dead/altered character, so event.key is not 'x' on mac layouts.
+      if (event.ctrlKey && event.altKey && !event.metaKey && event.code === 'KeyX') {
         event.preventDefault();
         handleCopyOverrides();
       }
@@ -4571,7 +4695,7 @@ export default function DensityExperiment() {
             </IconButton>
           </Tooltip>
           <Tooltip
-            title={overridesCopied ? 'Copied!' : 'Copy overrides as seam = value lines (⌘⇧X)'}
+            title={overridesCopied ? 'Copied!' : 'Copy overrides as seam = value lines (⌃⌥X)'}
           >
             <IconButton
               onClick={handleCopyOverrides}
@@ -4665,6 +4789,10 @@ export default function DensityExperiment() {
                       setFields={setFields}
                       highlightSlot={highlightSlot}
                       onToggleHighlight={toggleHighlightSlot}
+                      doneDraft={doneDraft}
+                      onToggleDoneDraft={toggleDoneDraft}
+                      undoneDraft={undoneDraft}
+                      onToggleUndoneDraft={toggleUndoneDraft}
                     />
                   ))}
                   <Button size="small" variant="outlined" onClick={resetMapping} sx={{ mt: 2 }}>

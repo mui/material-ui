@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Box from '@mui/material/Box';
+import Checkbox from '@mui/material/Checkbox';
 import Chip from '@mui/material/Chip';
 import FormControl from '@mui/material/FormControl';
 import { alpha } from '@mui/material/styles';
@@ -18,8 +20,16 @@ export interface KnobInputProps {
   value: string;
   placeholder: string;
   disabled?: boolean;
-  /** reviewed/confirmed for the ACTIVE preset — renders the green dot. */
+  /** reviewed/confirmed for the ACTIVE preset — renders the "per design" chip. */
   done?: boolean;
+  /** staged done-check (not yet persisted) — carried into the copy-overrides block. */
+  doneDraft?: boolean;
+  /** present = show the (hover-revealed) stage-done checkbox when not done. */
+  onDoneDraft?: (checked: boolean) => void;
+  /** staged UN-done (chip delete clicked, not yet persisted) — chip dims. */
+  undoneDraft?: boolean;
+  /** present = chip shows its delete icon; toggles the staged removal. */
+  onUndoneDraft?: (staged: boolean) => void;
   // Live feedback computed off the DRAFT per keystroke — passing helper text in
   // from the committed value would lag by the debounce.
   computeHelper?: (draft: string) => { helper?: string; error?: boolean };
@@ -42,6 +52,10 @@ export const KnobInput = React.memo(function KnobInput(props: KnobInputProps) {
     placeholder,
     disabled = false,
     done = false,
+    doneDraft = false,
+    onDoneDraft,
+    undoneDraft = false,
+    onUndoneDraft,
     computeHelper,
     onCommit,
   } = props;
@@ -96,33 +110,66 @@ export const KnobInput = React.memo(function KnobInput(props: KnobInputProps) {
 
   return (
     <FormControl fullWidth size="small" disabled={disabled} error={Boolean(feedback?.error)}>
-      <Typography
-        variant="caption"
-        component="label"
-        htmlFor={`knob-${id}`}
-        color={disabled ? 'text.disabled' : 'text.secondary'}
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          // stage-done checkbox reveals on row hover (or when checked)
+          '&:hover [data-knob-done-toggle]': { opacity: 1 },
+        }}
       >
-        {label}
-        {/* Done marker — swap this one element to restyle (icon/badge/etc). */}
-        {done && (
-          <Chip
-            component="span"
-            data-knob-done
-            label="per design"
+        <Typography
+          variant="caption"
+          component="label"
+          htmlFor={`knob-${id}`}
+          color={disabled ? 'text.disabled' : 'text.secondary'}
+        >
+          {label}
+          {/* Done marker — swap this one element to restyle (icon/badge/etc). */}
+          {done && (
+            <Chip
+              component="span"
+              data-knob-done
+              label="per design"
+              size="small"
+              variant="outlined"
+              color="success"
+              // delete = stage removal (copied as an `undone:` line); click
+              // again to unstage. Dimmed while staged.
+              onDelete={onUndoneDraft ? () => onUndoneDraft(!undoneDraft) : undefined}
+              sx={{
+                ml: 0.75,
+                mb: '4px',
+                height: 16,
+                fontSize: '0.625rem',
+                verticalAlign: 'middle',
+                bgcolor: (theme) => alpha(theme.palette.success.main, 0.08),
+                opacity: undoneDraft ? 0.4 : 1,
+                '& .MuiChip-label': { px: 0.75 },
+                '& .MuiChip-deleteIcon': { fontSize: 12, mr: '2px' },
+              }}
+            />
+          )}
+        </Typography>
+        {!done && onDoneDraft && (
+          <Checkbox
             size="small"
-            variant="outlined"
-            color="success"
+            checked={doneDraft}
+            onChange={(event) => onDoneDraft(event.target.checked)}
+            data-knob-done-toggle
+            aria-label="stage as per design"
             sx={{
+              p: 0,
               ml: 0.75,
-              height: 16,
-              fontSize: '0.625rem',
-              verticalAlign: 'middle',
-              bgcolor: (theme) => alpha(theme.palette.success.main, 0.08),
-              '& .MuiChip-label': { px: 0.75 },
+              opacity: doneDraft ? 1 : 0,
+              '&.Mui-focusVisible': { opacity: 1 },
+              '& .MuiSvgIcon-root': { fontSize: 14 },
+              color: 'success.main',
+              '&.Mui-checked': { color: 'success.main' },
             }}
           />
         )}
-      </Typography>
+      </Box>
       <OutlinedInput
         id={`knob-${id}`}
         size="small"

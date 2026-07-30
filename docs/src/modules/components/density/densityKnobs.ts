@@ -125,8 +125,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Button · paddingBlock [size=small, outlined]',
     note: 'Linked write: follows the size=small paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
   },
-  'MuiButton|root|size=medium||paddingBlock': 'Button · paddingBlock [size=medium]',
-  'MuiButton|root|size=medium||paddingInline': 'Button · paddingInline [size=medium]',
+  'MuiButton|root|size=medium||paddingBlock': {
+    label: 'Button · paddingBlock [size=medium]',
+    done: ['medium'],
+  },
+  'MuiButton|root|size=medium||paddingInline': {
+    label: 'Button · paddingInline [size=medium]',
+    done: ['medium'],
+  },
   'MuiButton|root|size=medium,variant=outlined||paddingBlock': {
     label: 'Button · paddingBlock [size=medium, outlined]',
     note: 'Linked write: follows the size=medium paddingBlock knob at calc(v − 1px) — the outlined border compensation keeps all variants at equal height.',
@@ -666,7 +672,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Rides theme.typography.body1.lineHeight — label metrics match input metrics (no ±0.5px restY fudge).',
   },
   'MuiIconButton|root|size=small||padding': 'IconButton · padding [size=small]',
-  'MuiIconButton|root|size=medium||padding': 'IconButton · padding [size=medium]',
+  'MuiIconButton|root|size=medium||padding': {
+    label: 'IconButton · padding [size=medium]',
+    done: ['medium'],
+  },
   'MuiIconButton|root|size=large||padding': 'IconButton · padding [size=large]',
   'MuiIconButton|root|size=medium||minWidth': {
     label: 'IconButton · minWidth [size=medium]',
@@ -834,7 +843,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     note: 'Floating-Y transform re-emitted off the preset-closed --_restY/--_shrinkY vars — driven by the input padding knobs, not independently tunable.',
   },
   'MuiLinearProgress|root|base||height': 'LinearProgress · height',
-  'MuiList|root|disablePadding=false||paddingBlock': 'List block padding',
+  'MuiList|root|disablePadding=false||paddingBlock': {
+    label: 'List block padding',
+    done: ['medium'],
+  },
   'MuiListItem|root|dense=false||minHeight': {
     label: 'ListItem · minHeight [dense=false]',
     done: ['medium'],
@@ -852,7 +864,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     done: ['medium'],
   },
   'MuiMenuItem|root|dense=false||minHeight': { label: 'min height', done: ['medium'] },
-  'MuiMenuItem|root|dense=false||paddingBlock': 'block padding',
+  'MuiMenuItem|root|dense=false||paddingBlock': { label: 'block padding', done: ['medium'] },
   'MuiMenuItem|root|dense=false|@media (min-width:600px)|minHeight':
     'MenuItem · minHeight [dense=false]',
   'MuiMenuItem|root|dense=true||minHeight': { label: 'min height [dense]', done: ['medium'] },
