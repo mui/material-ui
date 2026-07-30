@@ -1744,18 +1744,76 @@ function SwitchMatrix() {
 }
 
 function BreadcrumbsMatrix() {
-  return (
-    <Breadcrumbs sx={{ mt: 1 }}>
-      <Link underline="hover" color="inherit" href="#">
-        <span className="density-debug-text">Home</span>
-      </Link>
-      <Link underline="hover" color="inherit" href="#">
-        <span className="density-debug-text">Catalog</span>
-      </Link>
-      <Typography color="text.primary">
-        <span className="density-debug-text">Current</span>
+  const iconCrumb = (label: string, last = false) =>
+    last ? (
+      <Typography key={label} color="text.primary" sx={{ display: 'flex', alignItems: 'center' }}>
+        <InboxIcon fontSize="inherit" sx={{ mr: 0.5 }} />
+        <span className="density-debug-text">{label}</span>
       </Typography>
-    </Breadcrumbs>
+    ) : (
+      <Link
+        key={label}
+        underline="hover"
+        color="inherit"
+        href="#"
+        sx={{ display: 'flex', alignItems: 'center' }}
+      >
+        <InboxIcon fontSize="inherit" sx={{ mr: 0.5 }} />
+        <span className="density-debug-text">{label}</span>
+      </Link>
+    );
+  return (
+    <Stack spacing={3} sx={{ mt: 1 }}>
+      <Box data-crumb-section="default">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          default
+        </Typography>
+        <Breadcrumbs>
+          <Link underline="hover" color="inherit" href="#">
+            <span className="density-debug-text">Home</span>
+          </Link>
+          <Link underline="hover" color="inherit" href="#">
+            <span className="density-debug-text">Catalog</span>
+          </Link>
+          <Typography color="text.primary">
+            <span className="density-debug-text">Current</span>
+          </Typography>
+        </Breadcrumbs>
+      </Box>
+      {/* Design-capture composition (breadcrumb.png): icon + label crumbs,
+          slash separators, emphasized last item. */}
+      <Box data-crumb-section="icons">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          icon + label
+        </Typography>
+        <Breadcrumbs separator="/">
+          {iconCrumb('Label')}
+          {iconCrumb('Label')}
+          {iconCrumb('Label', true)}
+        </Breadcrumbs>
+      </Box>
+      {/* Capture's collapsePosition variants — MUI collapses to an ellipsis via
+          maxItems (the ellipsis button is a ButtonBase, so it reflows with
+          density too). */}
+      <Box data-crumb-section="collapsed">
+        <Typography variant="caption" color="text.secondary" component="div" sx={{ mb: 1 }}>
+          collapsed
+        </Typography>
+        <Breadcrumbs separator="/" maxItems={3}>
+          {['Home', 'Catalog', 'Group', 'Section', 'Current'].map((label, i) =>
+            i === 4 ? (
+              <Typography key={label} color="text.primary">
+                <span className="density-debug-text">{label}</span>
+              </Typography>
+            ) : (
+              <Link key={label} underline="hover" color="inherit" href="#">
+                <span className="density-debug-text">{label}</span>
+              </Link>
+            ),
+          )}
+        </Breadcrumbs>
+      </Box>
+    </Stack>
   );
 }
 

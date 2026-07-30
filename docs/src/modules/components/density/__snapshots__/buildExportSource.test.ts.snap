@@ -720,6 +720,11 @@ const high = {
             marginInline: 'var(--mui-density-small)',
           },
         ],
+        ol: [
+          {
+            minHeight: '32px',
+          },
+        ],
       },
     },
     MuiToggleButton: {
@@ -1018,6 +1023,9 @@ const high = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-small)',
+            minWidth: '32px',
+            minHeight: '32px',
+            alignItems: 'center',
             variants: [
               {
                 props: {
@@ -3272,6 +3280,11 @@ const medium = {
             marginInline: 'var(--mui-density-small)',
           },
         ],
+        ol: [
+          {
+            minHeight: '32px',
+          },
+        ],
       },
     },
     MuiToggleButton: {
@@ -3570,6 +3583,9 @@ const medium = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-small)',
+            minWidth: '32px',
+            minHeight: '32px',
+            alignItems: 'center',
             variants: [
               {
                 props: {
@@ -5814,6 +5830,11 @@ const low = {
             marginInline: 'var(--mui-density-small)',
           },
         ],
+        ol: [
+          {
+            minHeight: '32px',
+          },
+        ],
       },
     },
     MuiToggleButton: {
@@ -6112,6 +6133,9 @@ const low = {
         iconContainer: [
           {
             paddingRight: 'var(--mui-density-small)',
+            minWidth: '32px',
+            minHeight: '32px',
+            alignItems: 'center',
             variants: [
               {
                 props: {

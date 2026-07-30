@@ -418,6 +418,9 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
   });
   // Separator inline margins (spacing step) on the separator slot.
   addRootOverride(enhanced.components, 'MuiBreadcrumbs', { marginInline: d.small }, 'separator');
+  // Row floor = capture footprint (32px, raw px sizing). On the `ol` slot — the
+  // flex row with align-items: center — so crumbs stay vertically centered.
+  addRootOverride(enhanced.components, 'MuiBreadcrumbs', { minHeight: '32px' }, 'ol');
   addRootOverride(enhanced.components, 'MuiToggleButton', {
     // Emit uniform padding directly on the size variants ToggleButton ships (no
     // seam). -1px = border compensation (master's own shape).
@@ -547,6 +550,13 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     'MuiStepLabel',
     {
       paddingRight: d.small,
+      // Node touch box: semantic/size/touch-target/default (32px, raw px) —
+      // step-indicator.yml's node wrapper. ONE virtual knob writes both axes;
+      // alignItems centers the 24px icon in the taller box (rides the knob,
+      // hidden). Border-box: 24px icon + the 8px gap fill the 32 width exactly.
+      minWidth: '32px',
+      minHeight: '32px',
+      alignItems: 'center',
       variants: [
         {
           props: { orientation: 'vertical', alternativeLabel: true },

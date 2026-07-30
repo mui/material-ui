@@ -806,6 +806,16 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     group: 'Badge',
     members: ['MuiBadge|badge|variant=dot||minWidth', 'MuiBadge|badge|variant=dot||height'],
   },
+  // Step node touch box — capture's 32x32 touch-target wrapper, both axes.
+  {
+    id: 'virtual:MuiStepLabel:nodeTouchTarget',
+    label: 'StepLabel · iconContainer · node touch target',
+    group: 'Stepper',
+    members: [
+      'MuiStepLabel|iconContainer|base||minWidth',
+      'MuiStepLabel|iconContainer|base||minHeight',
+    ],
+  },
   // Select caret machinery — one value writes both master hooks (--_caret and
   // the adorned --_endAdornment gutter).
   {

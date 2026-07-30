@@ -102,6 +102,7 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'BottomNavigationAction · paddingTop [icon-only]',
     note: 'Centers the icon when unselected with a hidden label (net master condition — the no-label zero state stays untouched).',
   },
+  'MuiBreadcrumbs|ol|base||minHeight': 'Breadcrumbs · ol · minHeight',
   'MuiBreadcrumbs|separator|base||marginInline': 'Breadcrumbs · separator · marginInline',
   'MuiButton|endIcon|size=medium|& > *:nth-of-type(1)|fontSize':
     'Button · endIcon · fontSize [size=medium]',
@@ -978,6 +979,13 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
     'Step · paddingRight [last, horizontal]',
   'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
+  'MuiStepLabel|iconContainer|base||minWidth': 'StepLabel · iconContainer · minWidth',
+  'MuiStepLabel|iconContainer|base||minHeight': 'StepLabel · iconContainer · minHeight',
+  'MuiStepLabel|iconContainer|base||alignItems': {
+    label: 'StepLabel · iconContainer · alignItems',
+    hidden: true,
+    note: 'Centers the icon in the touch box — rides the node touch target knob, not a length.',
+  },
   'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft':
     'StepLabel · iconContainer · paddingLeft [vertical alternativeLabel]',
   'MuiStepLabel|label|alternativeLabel=true,orientation=horizontal|&.MuiStepLabel-alternativeLabel|marginTop':
