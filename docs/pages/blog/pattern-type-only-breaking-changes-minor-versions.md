@@ -179,7 +179,7 @@ import type {} from '@mui/x-charts-premium/moduleAugmentation/rangeBarOnClick';
 function RangeBarChart() {
   const [seriesValues, setSeriesValues] = useState<
     RangeBarValueType | number | null | undefined
-    // ^^^^^^^^^^^^^^^ Correct the type
+    // ^^^^^^^^^^^^^^ Correct the type
   >();
 
   return (
