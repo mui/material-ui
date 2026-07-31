@@ -13,7 +13,6 @@ import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
@@ -21,7 +20,6 @@ import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
@@ -351,20 +349,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
             <Menu2Group>
               <Menu2GroupLabel>Document display</Menu2GroupLabel>
               <Menu2RadioGroup defaultValue="100">
-                <Menu2RadioItem value="100">
-                  <Menu2RadioItemIndicator keepMounted />
-                  100%
-                </Menu2RadioItem>
-                <Menu2RadioItem value="fit">
-                  <Menu2RadioItemIndicator keepMounted />
-                  Fit
-                </Menu2RadioItem>
-                <Menu2RadioItem value="page-width">
-                  <Menu2RadioItemIndicator keepMounted />
-                  Page width
-                </Menu2RadioItem>
+                <Menu2RadioItem value="100">100%</Menu2RadioItem>
+                <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
+                <Menu2RadioItem value="page-width">Page width</Menu2RadioItem>
                 <Menu2RadioItem value="custom" disabled>
-                  <Menu2RadioItemIndicator keepMounted />
                   Custom zoom unavailable
                 </Menu2RadioItem>
               </Menu2RadioGroup>
@@ -374,22 +362,10 @@ function Menu2Demo({ settings }: { settings: MenuSettings }) {
 
             <Menu2Group>
               <Menu2GroupLabel>Show</Menu2GroupLabel>
-              <Menu2CheckboxItem defaultChecked>
-                <Menu2CheckboxItemIndicator keepMounted />
-                Ruler
-              </Menu2CheckboxItem>
-              <Menu2CheckboxItem defaultChecked>
-                <Menu2CheckboxItemIndicator keepMounted />
-                Document outline
-              </Menu2CheckboxItem>
-              <Menu2CheckboxItem>
-                <Menu2CheckboxItemIndicator keepMounted />
-                Line numbers
-              </Menu2CheckboxItem>
-              <Menu2CheckboxItem disabled>
-                <Menu2CheckboxItemIndicator keepMounted />
-                Page breaks unavailable
-              </Menu2CheckboxItem>
+              <Menu2CheckboxItem defaultChecked>Ruler</Menu2CheckboxItem>
+              <Menu2CheckboxItem defaultChecked>Document outline</Menu2CheckboxItem>
+              <Menu2CheckboxItem>Line numbers</Menu2CheckboxItem>
+              <Menu2CheckboxItem disabled>Page breaks unavailable</Menu2CheckboxItem>
             </Menu2Group>
 
             <Menu2Separator />
@@ -491,16 +467,10 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
             <Menu2Group>
               <Menu2GroupLabel>Show</Menu2GroupLabel>
               <MenuTooltip title="Display comments in the document">
-                <Menu2CheckboxItem defaultChecked>
-                  <Menu2CheckboxItemIndicator keepMounted />
-                  Comments
-                </Menu2CheckboxItem>
+                <Menu2CheckboxItem defaultChecked>Comments</Menu2CheckboxItem>
               </MenuTooltip>
               <DisabledTooltip title="Page breaks are locked in published view">
-                <Menu2CheckboxItem disabled>
-                  <Menu2CheckboxItemIndicator keepMounted />
-                  Page breaks
-                </Menu2CheckboxItem>
+                <Menu2CheckboxItem disabled>Page breaks</Menu2CheckboxItem>
               </DisabledTooltip>
             </Menu2Group>
 
@@ -510,14 +480,10 @@ function Menu2WithTooltipsDemo({ submenusOpenOnHover }: { submenusOpenOnHover: b
               <Menu2GroupLabel>Zoom</Menu2GroupLabel>
               <Menu2RadioGroup defaultValue="fit">
                 <MenuTooltip title="Use the available viewport width">
-                  <Menu2RadioItem value="fit">
-                    <Menu2RadioItemIndicator keepMounted />
-                    Fit
-                  </Menu2RadioItem>
+                  <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
                 </MenuTooltip>
                 <DisabledTooltip title="Custom zoom is unavailable in preview">
                   <Menu2RadioItem value="custom" disabled>
-                    <Menu2RadioItemIndicator keepMounted />
                     Custom
                   </Menu2RadioItem>
                 </DisabledTooltip>

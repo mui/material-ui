@@ -9,10 +9,14 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import Menu2CheckboxItemIndicator, {
+  Menu2CheckboxItemIndicatorProps,
+} from '../Unstable_Menu2CheckboxItemIndicator';
 import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
+  SlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
@@ -35,9 +39,19 @@ export interface Menu2CheckboxItemSlots {
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component that renders the check indicator.
+   * Pass `null` to render no indicator.
+   * @default Menu2CheckboxItemIndicator
+   */
+  indicator?: React.ElementType | null | undefined;
 }
 
-export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {}
+export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
+  indicator?:
+    | SlotProps<Partial<Menu2CheckboxItemIndicatorProps> & Record<string, any>, Menu2ItemOwnerState>
+    | undefined;
+}
 
 export interface Menu2CheckboxItemProps
   extends
@@ -126,6 +140,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
   });
 
   const {
+    children,
     checked,
     className,
     classes: classesProp,
@@ -173,6 +188,9 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     [onChange],
   );
   const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
+  const IndicatorSlot =
+    slots?.indicator === undefined ? Menu2CheckboxItemIndicator : slots.indicator;
+  const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -197,7 +215,11 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
         onCheckedChange={handleCheckedChange}
         style={style}
         {...other}
-      />
+      >
+        {/* Reserved by default: an unmounted indicator would shift the label. */}
+        {IndicatorSlot ? <IndicatorSlot keepMounted {...resolvedIndicatorProps} /> : null}
+        {children}
+      </BaseMenu.CheckboxItem>
     </ListContext.Provider>
   );
 });
@@ -284,12 +306,14 @@ Menu2CheckboxItem.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

@@ -11,7 +11,6 @@ import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem, {
   menu2CheckboxItemClasses,
 } from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item, { menu2ItemClasses } from '@mui/material/Unstable_Menu2Item';
@@ -19,7 +18,6 @@ import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup, { menu2PopupClasses } from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
@@ -357,7 +355,6 @@ describe('<Menu2 />', () => {
               <Menu2Item>Profile</Menu2Item>
               <Menu2CheckboxItem defaultChecked>
                 {/* The indicator only mounts while checked. */}
-                <Menu2CheckboxItemIndicator />
                 Bookmarks
               </Menu2CheckboxItem>
               <Menu2SubmenuRoot>
@@ -718,19 +715,10 @@ describe('<Menu2 />', () => {
       <Menu2>
         <Menu2Trigger>Options</Menu2Trigger>
         <Menu2Popup>
-          <Menu2CheckboxItem onChange={handleCheckboxChange}>
-            <Menu2CheckboxItemIndicator />
-            Show hidden files
-          </Menu2CheckboxItem>
+          <Menu2CheckboxItem onChange={handleCheckboxChange}>Show hidden files</Menu2CheckboxItem>
           <Menu2RadioGroup defaultValue="small" onChange={handleRadioChange}>
-            <Menu2RadioItem value="small">
-              <Menu2RadioItemIndicator />
-              Small
-            </Menu2RadioItem>
-            <Menu2RadioItem value="large">
-              <Menu2RadioItemIndicator />
-              Large
-            </Menu2RadioItem>
+            <Menu2RadioItem value="small">Small</Menu2RadioItem>
+            <Menu2RadioItem value="large">Large</Menu2RadioItem>
           </Menu2RadioGroup>
         </Menu2Popup>
       </Menu2>,
@@ -770,17 +758,20 @@ describe('<Menu2 />', () => {
       <Menu2 open>
         <Menu2Trigger>Options</Menu2Trigger>
         <Menu2Popup>
-          <Menu2CheckboxItem>
-            <Menu2CheckboxItemIndicator keepMounted data-testid="checkbox-indicator" />
+          <Menu2CheckboxItem slotProps={{ indicator: { 'data-testid': 'checkbox-indicator' } }}>
             Show hidden files
           </Menu2CheckboxItem>
           <Menu2RadioGroup defaultValue="small">
-            <Menu2RadioItem value="small">
-              <Menu2RadioItemIndicator keepMounted data-testid="checked-radio-indicator" />
+            <Menu2RadioItem
+              value="small"
+              slotProps={{ indicator: { 'data-testid': 'checked-radio-indicator' } }}
+            >
               Small
             </Menu2RadioItem>
-            <Menu2RadioItem value="large">
-              <Menu2RadioItemIndicator keepMounted data-testid="unchecked-radio-indicator" />
+            <Menu2RadioItem
+              value="large"
+              slotProps={{ indicator: { 'data-testid': 'unchecked-radio-indicator' } }}
+            >
               Large
             </Menu2RadioItem>
           </Menu2RadioGroup>
@@ -991,17 +982,11 @@ describe('<Menu2 />', () => {
             <Menu2Item>New document</Menu2Item>
           </Tooltip>
           <Tooltip title="Toggle comments" describeChild enterDelay={0} leaveDelay={0}>
-            <Menu2CheckboxItem>
-              <Menu2CheckboxItemIndicator />
-              Comments
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem>Comments</Menu2CheckboxItem>
           </Tooltip>
           <Menu2RadioGroup defaultValue="fit">
             <Tooltip title="Fit to viewport" describeChild enterDelay={0} leaveDelay={0}>
-              <Menu2RadioItem value="fit">
-                <Menu2RadioItemIndicator />
-                Fit
-              </Menu2RadioItem>
+              <Menu2RadioItem value="fit">Fit</Menu2RadioItem>
             </Tooltip>
           </Menu2RadioGroup>
         </Menu2Popup>

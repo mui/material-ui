@@ -69,7 +69,6 @@ function Menu2Composition() {
               eventDetails.cancel();
             }}
           >
-            <Menu2CheckboxItemIndicator keepMounted />
             Checkbox
           </Menu2CheckboxItem>
           <Menu2RadioGroup
@@ -81,7 +80,6 @@ function Menu2Composition() {
             }}
           >
             <Menu2RadioItem value="one" nativeButton={false}>
-              <Menu2RadioItemIndicator keepMounted />
               One
             </Menu2RadioItem>
           </Menu2RadioGroup>

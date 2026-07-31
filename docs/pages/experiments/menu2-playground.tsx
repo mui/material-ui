@@ -23,7 +23,6 @@ import { DirectionProvider } from '@base-ui/react/direction-provider';
 // prefix and the JSX mirrors the future stable names.
 import Menu2 from '@mui/material/Unstable_Menu2';
 import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Menu2CheckboxItemIndicator from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import Menu2Group from '@mui/material/Unstable_Menu2Group';
 import Menu2GroupLabel from '@mui/material/Unstable_Menu2GroupLabel';
 import Menu2Item from '@mui/material/Unstable_Menu2Item';
@@ -31,7 +30,6 @@ import Menu2LinkItem from '@mui/material/Unstable_Menu2LinkItem';
 import Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Menu2RadioGroup from '@mui/material/Unstable_Menu2RadioGroup';
 import Menu2RadioItem from '@mui/material/Unstable_Menu2RadioItem';
-import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndicator';
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
@@ -210,15 +208,12 @@ function PlaygroundDemo({
               <Menu2SubmenuPopup {...submenuPopupProps}>
                 <Menu2RadioGroup defaultValue="pdf">
                   <Menu2RadioItem {...itemProps} value="pdf">
-                    <Menu2RadioItemIndicator keepMounted />
                     PDF document
                   </Menu2RadioItem>
                   <Menu2RadioItem {...itemProps} value="epub">
-                    <Menu2RadioItemIndicator keepMounted />
                     EPUB publication
                   </Menu2RadioItem>
                   <Menu2RadioItem {...itemProps} value="markdown">
-                    <Menu2RadioItemIndicator keepMounted />
                     Markdown
                   </Menu2RadioItem>
                 </Menu2RadioGroup>
@@ -234,13 +229,9 @@ function PlaygroundDemo({
           </Menu2SubmenuTrigger>
           <Menu2SubmenuPopup {...submenuPopupProps}>
             <Menu2CheckboxItem {...itemProps} defaultChecked>
-              <Menu2CheckboxItemIndicator keepMounted />
               Show ruler
             </Menu2CheckboxItem>
-            <Menu2CheckboxItem {...itemProps}>
-              <Menu2CheckboxItemIndicator keepMounted />
-              Show outline
-            </Menu2CheckboxItem>
+            <Menu2CheckboxItem {...itemProps}>Show outline</Menu2CheckboxItem>
           </Menu2SubmenuPopup>
         </Menu2SubmenuRoot>
         <Menu2Separator />

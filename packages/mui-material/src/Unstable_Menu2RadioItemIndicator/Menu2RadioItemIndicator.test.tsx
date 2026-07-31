@@ -21,7 +21,9 @@ describe('<Menu2RadioItemIndicator />', () => {
           <Unstable_Menu2 defaultOpen modal={false}>
             <Unstable_Menu2Popup anchor={document.body}>
               <Unstable_Menu2RadioGroup>
-                <Unstable_Menu2RadioItem value="one">{node}One</Unstable_Menu2RadioItem>
+                <Unstable_Menu2RadioItem value="one" slots={{ indicator: null }}>
+                  {node}One
+                </Unstable_Menu2RadioItem>
               </Unstable_Menu2RadioGroup>
             </Unstable_Menu2Popup>
           </Unstable_Menu2>,

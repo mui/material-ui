@@ -9,10 +9,14 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from '../Unstable_Menu2/menu2SharedStyles';
+import Menu2RadioItemIndicator, {
+  Menu2RadioItemIndicatorProps,
+} from '../Unstable_Menu2RadioItemIndicator';
 import {
   getMenu2RootRender,
   isMenu2RootNativeButton,
   Menu2RootSlotProps,
+  SlotProps,
 } from '../Unstable_Menu2/menu2Utils';
 import {
   getMenu2ItemClassName,
@@ -35,9 +39,19 @@ export interface Menu2RadioItemSlots {
    * @default 'div'
    */
   root?: React.ElementType | undefined;
+  /**
+   * The component that renders the check indicator.
+   * Pass `null` to render no indicator.
+   * @default Menu2RadioItemIndicator
+   */
+  indicator?: React.ElementType | null | undefined;
 }
 
-export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {}
+export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
+  indicator?:
+    | SlotProps<Partial<Menu2RadioItemIndicatorProps> & Record<string, any>, Menu2ItemOwnerState>
+    | undefined;
+}
 
 export interface Menu2RadioItemProps
   extends
@@ -100,6 +114,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
   });
 
   const {
+    children,
     className,
     classes: classesProp,
     component,
@@ -132,6 +147,8 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2RadioItemRoot;
+  const IndicatorSlot = slots?.indicator === undefined ? Menu2RadioItemIndicator : slots.indicator;
+  const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
   return (
     <ListContext.Provider value={childContext}>
@@ -154,7 +171,11 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
         nativeButton={nativeButtonProp ?? isMenu2RootNativeButton(RootSlot, component)}
         style={style}
         {...other}
-      />
+      >
+        {/* Reserved by default: an unmounted indicator would shift the label. */}
+        {IndicatorSlot ? <IndicatorSlot keepMounted {...resolvedIndicatorProps} /> : null}
+        {children}
+      </BaseMenu.RadioItem>
     </ListContext.Provider>
   );
 });
@@ -224,12 +245,14 @@ Menu2RadioItem.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    */
   slotProps: PropTypes.shape({
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
+    indicator: PropTypes.elementType,
     root: PropTypes.elementType,
   }),
   /**

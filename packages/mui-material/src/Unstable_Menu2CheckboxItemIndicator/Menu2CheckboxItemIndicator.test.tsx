@@ -19,7 +19,9 @@ describe('<Menu2CheckboxItemIndicator />', () => {
         render(
           <Unstable_Menu2 defaultOpen modal={false}>
             <Unstable_Menu2Popup anchor={document.body}>
-              <Unstable_Menu2CheckboxItem>{node}Ruler</Unstable_Menu2CheckboxItem>
+              <Unstable_Menu2CheckboxItem slots={{ indicator: null }}>
+                {node}Ruler
+              </Unstable_Menu2CheckboxItem>
             </Unstable_Menu2Popup>
           </Unstable_Menu2>,
         ),
