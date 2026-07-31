@@ -255,7 +255,7 @@ importers:
         specifier: catalog:docs
         version: 1.6.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@docsearch/react':
-        specifier: ^4.7.0
+        specifier: catalog:docs
         version: 4.7.0(@algolia/client-search@5.18.0)(@types/react@19.2.17)(algoliasearch@5.18.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(search-insights@2.13.0)
       '@emotion/cache':
         specifier: catalog:docs
