@@ -444,6 +444,11 @@ export function AppSearch(props: AppSearchProps) {
               '--docsearch-searchbox-focus-background': 'unset',
               '--docsearch-footer-background': 'unset',
               '--docsearch-modal-background': (theme.vars || theme).palette.background.paper,
+              // Height left for the scrollable area between the search bar and the footer. v4
+              // dropped the search box from its own budget, which makes the modal overshoot
+              // --docsearch-modal-height; subtract it again so the modal stays 600px.
+              '--muidocs-docsearch-content-max-height':
+                'calc(var(--docsearch-modal-height) - var(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-footer-height))',
             },
           },
           body: {
@@ -469,8 +474,7 @@ export function AppSearch(props: AppSearchProps) {
             '& .DocSearch-Modal > .DocSearch-NewStartScreenHost': {
               order: 1,
               padding: theme.spacing(0, 1.5),
-              maxHeight:
-                'calc(var(--docsearch-modal-height) - var(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-footer-height))',
+              maxHeight: 'var(--muidocs-docsearch-content-max-height)',
               overflowY: 'auto',
             },
             '& .DocSearch-NewStartScreenCategory': {
@@ -596,10 +600,7 @@ export function AppSearch(props: AppSearchProps) {
               // v4 fixes the dropdown to 60dvh; make it fit its content instead so recent
               // searches stay compact and don't leave a gap above the product links.
               height: 'auto',
-              // v4 dropped the search box from its height budget, so the modal overshoots
-              // --docsearch-modal-height by that much; subtract it again to keep 600px total.
-              maxHeight:
-                'calc(var(--docsearch-modal-height) - var(--docsearch-searchbox-height) - var(--docsearch-spacing) - var(--docsearch-footer-height))',
+              maxHeight: 'var(--muidocs-docsearch-content-max-height)',
               '&::-webkit-scrollbar-thumb': {
                 borderColor: (theme.vars || theme).palette.background.paper,
                 backgroundColor: (theme.vars || theme).palette.grey[500],
