@@ -221,7 +221,7 @@ export interface AppSearchProps {
 
 export function AppSearch(props: AppSearchProps) {
   useLazyCSS(
-    'https://cdn.jsdelivr.net/npm/@docsearch/css@4.6.3/dist/style.min.css',
+    'https://cdn.jsdelivr.net/npm/@docsearch/css@4.7.0/dist/style.min.css',
     '#app-search',
     { layer: 'docsearch' },
   );
@@ -611,11 +611,6 @@ export function AppSearch(props: AppSearchProps) {
               '* ul': {
                 marginTop: theme.spacing(1),
               },
-            },
-            // The no-results title inherits a too-small line-height, so its long query text
-            // overlaps instead of wrapping; restore a readable line-height (matches prod).
-            '& .DocSearch-NoResults .DocSearch-Title': {
-              lineHeight: 1.5,
             },
             // The v4 screen icon (no-results / empty state) hardcodes an inline stroke="#5a5e9a"
             // that no variable can reach; recolor it to the MUI muted grey.
