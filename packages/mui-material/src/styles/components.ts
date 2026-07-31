@@ -566,6 +566,11 @@ export interface Components<Theme = unknown> {
         variants?: ComponentsVariants<Theme>['MuiMenu2SubmenuPopup'] | undefined;
       }
     | undefined;
+  MuiMenu2Submenu?:
+    | {
+        defaultProps?: ComponentsProps['MuiMenu2Submenu'] | undefined;
+      }
+    | undefined;
   MuiMenu2SubmenuRoot?:
     | {
         defaultProps?: ComponentsProps['MuiMenu2SubmenuRoot'] | undefined;

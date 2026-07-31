@@ -77,6 +77,7 @@ import { Menu2RadioItemProps } from '../Unstable_Menu2RadioItem';
 import { Menu2RadioItemIndicatorProps } from '../Unstable_Menu2RadioItemIndicator';
 import { Menu2SeparatorProps } from '../Unstable_Menu2Separator';
 import { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
+import { Menu2SubmenuProps } from '../Unstable_Menu2Submenu';
 import { Menu2SubmenuRootProps } from '../Unstable_Menu2SubmenuRoot';
 import { Menu2SubmenuTriggerProps } from '../Unstable_Menu2SubmenuTrigger';
 import { Menu2TriggerProps } from '../Unstable_Menu2Trigger';
@@ -218,6 +219,7 @@ export interface ComponentsPropsList {
   MuiMenu2RadioItemIndicator: Menu2RadioItemIndicatorProps;
   MuiMenu2Separator: Menu2SeparatorProps;
   MuiMenu2SubmenuPopup: Menu2SubmenuPopupProps;
+  MuiMenu2Submenu: Menu2SubmenuProps;
   MuiMenu2SubmenuRoot: Menu2SubmenuRootProps;
   MuiMenu2SubmenuTrigger: Menu2SubmenuTriggerProps;
   MuiMenu2Trigger: Menu2TriggerProps;

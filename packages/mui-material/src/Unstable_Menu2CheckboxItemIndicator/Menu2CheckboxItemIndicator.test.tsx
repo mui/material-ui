@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2Popup from '@mui/material/Unstable_Menu2Popup';
 import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
 import Unstable_Menu2CheckboxItemIndicator, {
   menu2CheckboxItemIndicatorClasses as classes,
@@ -17,12 +16,10 @@ describe('<Menu2CheckboxItemIndicator />', () => {
     render: (node) =>
       withPortalledRoot(
         render(
-          <Unstable_Menu2 defaultOpen modal={false}>
-            <Unstable_Menu2Popup anchor={document.body}>
-              <Unstable_Menu2CheckboxItem slots={{ indicator: null }}>
-                {node}Ruler
-              </Unstable_Menu2CheckboxItem>
-            </Unstable_Menu2Popup>
+          <Unstable_Menu2 defaultOpen modal={false} anchor={document.body}>
+            <Unstable_Menu2CheckboxItem slots={{ indicator: null }}>
+              {node}Ruler
+            </Unstable_Menu2CheckboxItem>
           </Unstable_Menu2>,
         ),
         `.${classes.root}`,

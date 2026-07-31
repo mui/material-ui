@@ -1,57 +1,53 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
-import Menu2Popup, { Menu2PopupProps } from '../Unstable_Menu2Popup';
-import Menu2Trigger from '../Unstable_Menu2Trigger';
+import Menu2SubmenuPopup, { Menu2SubmenuPopupProps } from '../Unstable_Menu2SubmenuPopup';
+import Menu2SubmenuTrigger from '../Unstable_Menu2SubmenuTrigger';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import { menu2TriggerClasses } from './menu2Classes';
-import { SlotProps } from './menu2Utils';
+import { SlotProps } from '../Unstable_Menu2/menu2Utils';
 
-export interface Menu2Slots extends NonNullable<Menu2PopupProps['slots']> {
+export interface Menu2SubmenuSlots extends NonNullable<Menu2SubmenuPopupProps['slots']> {
   /**
    * The component that renders the trigger, when `trigger` is not an element.
-   * @default Menu2Trigger
+   * @default Menu2SubmenuTrigger
    */
   trigger?: React.ElementType | undefined;
 }
 
-export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']> {
-  trigger?: SlotProps<Record<string, any>, Menu2Props> | undefined;
+export interface Menu2SubmenuSlotProps extends NonNullable<Menu2SubmenuPopupProps['slotProps']> {
+  trigger?: SlotProps<Record<string, any>, Menu2SubmenuProps> | undefined;
 }
 
 /**
- * Inherits the Base UI `Menu.Root` prop surface (open/close control, modality,
- * `actionsRef`, keyboard behavior) plus the popup's positioning and appearance
- * props, so one menu is one component. `Omit` (a mapped type) is used instead
- * of bare `extends` so the proptypes generator resolves the inherited members.
+ * The submenu counterpart of `Menu2`, with the same shape: a prop-only root,
+ * the trigger passed as a prop, and the children forming the popup.
  */
-export interface Menu2Props
-  extends Omit<BaseMenu.Root.Props, 'children'>,
-    Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
+export interface Menu2SubmenuProps
+  extends
+    Omit<BaseMenu.SubmenuRoot.Props, 'children'>,
+    Omit<Menu2SubmenuPopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
-   * The menu items.
+   * The submenu items.
    */
   children?: React.ReactNode;
   /**
-   * The element that opens the menu.
+   * The content of the item that opens the submenu.
    *
-   * An element is rendered as-is with the trigger behavior merged into it, so
-   * it keeps whatever component you passed. Anything else renders inside the
-   * default trigger. Omit it and drive the menu with `open` and `anchor`
-   * instead, which is the classic controlled pattern.
+   * Unlike the root menu, this is the label rather than the element: a submenu
+   * trigger is always a menu item, so passing one would nest an item inside an
+   * item. Swap the component through `slots.trigger` instead.
    */
   trigger?: React.ReactNode;
   /**
    * The components used for each slot inside.
    */
-  slots?: Menu2Slots | undefined;
+  slots?: Menu2SubmenuSlots | undefined;
   /**
    * The props used for each slot inside.
    */
-  slotProps?: Menu2SlotProps | undefined;
+  slotProps?: Menu2SubmenuSlotProps | undefined;
 }
 
 /**
@@ -60,10 +56,10 @@ export interface Menu2Props
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
-function Menu2(props: Menu2Props): React.JSX.Element {
+function Menu2Submenu(props: Menu2SubmenuProps): React.JSX.Element {
   const themedProps = useDefaultProps({
     props,
-    name: 'MuiMenu2',
+    name: 'MuiMenu2Submenu',
   });
 
   const {
@@ -99,36 +95,20 @@ function Menu2(props: Menu2Props): React.JSX.Element {
   const { trigger: triggerSlotProps, ...popupSlotProps } = slotProps ?? {};
   const resolvedTriggerProps = resolveComponentProps(triggerSlotProps, themedProps);
 
-  let triggerNode: React.ReactNode = null;
-  if (trigger != null) {
-    triggerNode = React.isValidElement(trigger) ? (
-      // Base UI's `render` merges the trigger behavior into the element, so the
-      // caller keeps whatever component they passed.
-      <BaseMenu.Trigger
-        render={trigger}
-        {...resolvedTriggerProps}
-        className={(state) =>
-          clsx(
-            menu2TriggerClasses.root,
-            state.open && menu2TriggerClasses.open,
-            resolvedTriggerProps?.className,
-          )
-        }
-      />
-    ) : (
-      <Menu2Trigger
+  const triggerNode =
+    trigger == null ? null : (
+      <Menu2SubmenuTrigger
         slots={triggerSlot ? { root: triggerSlot } : undefined}
         {...resolvedTriggerProps}
       >
         {trigger}
-      </Menu2Trigger>
+      </Menu2SubmenuTrigger>
     );
-  }
 
   return (
-    <BaseMenu.Root {...rootProps}>
+    <BaseMenu.SubmenuRoot {...rootProps}>
       {triggerNode}
-      <Menu2Popup
+      <Menu2SubmenuPopup
         align={align}
         alignOffset={alignOffset}
         anchor={anchor}
@@ -153,18 +133,18 @@ function Menu2(props: Menu2Props): React.JSX.Element {
         sx={sx}
       >
         {children}
-      </Menu2Popup>
-    </BaseMenu.Root>
+      </Menu2SubmenuPopup>
+    </BaseMenu.SubmenuRoot>
   );
 }
 
-Menu2.propTypes /* remove-proptypes */ = {
+Menu2Submenu.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * The menu items.
+   * The submenu items.
    */
   children: PropTypes.node,
   /**
@@ -176,9 +156,9 @@ Menu2.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.object,
   /**
-   * The element that opens the menu.
+   * The item that opens the submenu.
    */
   trigger: PropTypes.node,
 } as any;
 
-export default Menu2;
+export default Menu2Submenu;
