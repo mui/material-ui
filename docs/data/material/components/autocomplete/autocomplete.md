@@ -294,7 +294,7 @@ Pay particular attention to `params.slotProps.input` (including its `ref`) and `
 Autocomplete renders selected values through `params.slotProps.input.startAdornment`. When adding a custom start
 adornment, preserve the provided adornment:
 
-````tsx
+```tsx
 renderInput={(params) => (
   <TextField
     {...params}
@@ -312,6 +312,7 @@ renderInput={(params) => (
     }}
   />
 )}
+```
 
 Likewise, preserve `params.slotProps.input.endAdornment` when customizing it. It contains Autocomplete's built-in controls.
 
@@ -358,7 +359,7 @@ You can use it to change the default option filter behavior.
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
-````
+```
 
 ### `createFilterOptions(config) => filterOptions`
 
