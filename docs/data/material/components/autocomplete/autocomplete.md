@@ -288,27 +288,32 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Custom input
 
-The `renderInput` prop allows you to customize the rendered input.
-The first argument of this render prop contains props that you need to forward.
-Pay specific attention to the `ref`, `slotProps.input`, and `slotProps.htmlInput` keys.
+The `renderInput` prop allows you to customize the rendered input. Its argument contains props that must be forwarded.
+Pay particular attention to `params.slotProps.input` (including its `ref`) and `params.slotProps.htmlInput`.
 
-When you customize `slotProps.input.startAdornment`, preserve
-`params.slotProps.input.startAdornment`; otherwise, selected values won't render when `multiple` is true:
+Autocomplete renders selected values through `params.slotProps.input.startAdornment`. When adding a custom start
+adornment, preserve the provided adornment:
 
-```tsx
-slotProps={{
-  ...params.slotProps,
-  input: {
-    ...params.slotProps.input,
-    startAdornment: (
-      <>
-        {customStartAdornment}
-        {params.slotProps.input.startAdornment}
-      </>
-    ),
-  },
-}}
-```
+````tsx
+renderInput={(params) => (
+  <TextField
+    {...params}
+    slotProps={{
+      ...params.slotProps,
+      input: {
+        ...params.slotProps.input,
+        startAdornment: (
+          <>
+            {customStartAdornment}
+            {params.slotProps.input.startAdornment}
+          </>
+        ),
+      },
+    }}
+  />
+)}
+
+Likewise, preserve `params.slotProps.input.endAdornment` when customizing it. It contains Autocomplete's built-in controls.
 
 :::warning
 If you're using a custom input component inside the Autocomplete, make sure that you forward the ref to the underlying DOM element.
@@ -353,7 +358,7 @@ You can use it to change the default option filter behavior.
 
 ```js
 import { createFilterOptions } from '@mui/material/Autocomplete';
-```
+````
 
 ### `createFilterOptions(config) => filterOptions`
 
