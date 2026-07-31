@@ -23,8 +23,11 @@ import Menu2RadioItemIndicator from '@mui/material/Unstable_Menu2RadioItemIndica
 import Menu2Separator from '@mui/material/Unstable_Menu2Separator';
 import Menu2SubmenuPopup from '@mui/material/Unstable_Menu2SubmenuPopup';
 import Menu2SubmenuRoot from '@mui/material/Unstable_Menu2SubmenuRoot';
-import Menu2SubmenuTrigger from '@mui/material/Unstable_Menu2SubmenuTrigger';
+import Menu2SubmenuTrigger, {
+  menu2SubmenuTriggerClasses,
+} from '@mui/material/Unstable_Menu2SubmenuTrigger';
 import Menu2Trigger, { menu2TriggerClasses } from '@mui/material/Unstable_Menu2Trigger';
+import { createTheme, enhanceHighContrast, ThemeProvider } from '@mui/material/styles';
 
 describe('<Menu2 />', () => {
   const { render } = createRenderer();
@@ -342,6 +345,55 @@ describe('<Menu2 />', () => {
       });
     }
   });
+
+  it.skipIf(isJsdom())(
+    'emits forced-colors rules for items under the contrast enhancer',
+    async () => {
+      const { user } = render(
+        <ThemeProvider theme={enhanceHighContrast(createTheme())}>
+          <Menu2>
+            <Menu2Trigger>Options</Menu2Trigger>
+            <Menu2Popup>
+              <Menu2Item>Profile</Menu2Item>
+              <Menu2CheckboxItem defaultChecked>
+                {/* The indicator only mounts while checked. */}
+                <Menu2CheckboxItemIndicator />
+                Bookmarks
+              </Menu2CheckboxItem>
+              <Menu2SubmenuRoot>
+                <Menu2SubmenuTrigger>View</Menu2SubmenuTrigger>
+                <Menu2SubmenuPopup>
+                  <Menu2Item>Zoom in</Menu2Item>
+                </Menu2SubmenuPopup>
+              </Menu2SubmenuRoot>
+            </Menu2Popup>
+          </Menu2>
+        </ThemeProvider>,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Options' }));
+      await screen.findByRole('menu');
+
+      // The rules only apply in forced colors, which the runner cannot emulate;
+      // assert that the enhancer's overrides reach the stylesheet at all.
+      const emitted = Array.from(document.styleSheets)
+        .flatMap((sheet) => {
+          try {
+            return Array.from(sheet.cssRules);
+          } catch {
+            return [];
+          }
+        })
+        .map((rule) => rule.cssText)
+        .join('\n');
+
+      expect(emitted).to.contain('forced-colors');
+      expect(emitted).to.contain(menu2ItemClasses.highlighted);
+      expect(emitted).to.contain(menu2CheckboxItemClasses.highlighted);
+      expect(emitted).to.contain(menu2SubmenuTriggerClasses.open);
+      expect(emitted).to.contain('data-mui-menu2-checkbox-checkmark');
+    },
+  );
 
   it.skipIf(isJsdom())('lets the default animation be overridden', async () => {
     const { user } = render(

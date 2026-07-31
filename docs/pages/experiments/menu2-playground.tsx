@@ -11,7 +11,13 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
-import { ThemeProvider, createTheme, type SxProps, type Theme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  enhanceHighContrast,
+  type SxProps,
+  type Theme,
+} from '@mui/material/styles';
 import { DirectionProvider } from '@base-ui/react/direction-provider';
 // The Unstable_ subpaths use default exports, so the local bindings drop the
 // prefix and the JSX mirrors the future stable names.
@@ -62,6 +68,7 @@ interface PlaygroundSettings {
   dense: boolean;
   dividers: boolean;
   rtl: boolean;
+  highContrast: boolean;
 }
 
 const defaultSettings: PlaygroundSettings = {
@@ -84,6 +91,7 @@ const defaultSettings: PlaygroundSettings = {
   dense: false,
   dividers: false,
   rtl: false,
+  highContrast: true,
 };
 
 const SIDES: PopupSide[] = ['bottom', 'top', 'left', 'right', 'inline-start', 'inline-end'];
@@ -92,6 +100,11 @@ const ELEVATIONS = [0, 1, 4, 8, 16, 24];
 
 const theme = createTheme({});
 const rtlTheme = createTheme({ direction: 'rtl' });
+// Docs demos always run through the enhancer (see `DemoInstanceThemeProvider`);
+// the toggle is here so the forced-colors rules can be compared against their
+// absence while emulating high contrast in the browser.
+const highContrastTheme = enhanceHighContrast(createTheme({}));
+const rtlHighContrastTheme = enhanceHighContrast(createTheme({ direction: 'rtl' }));
 
 // The successor animates by default (a CSS match for the classic Grow); this
 // demonstrates overriding that default away through the popup slot.
@@ -523,6 +536,7 @@ function SettingsPanel({
         {renderCheckbox('dense', 'dense items')}
         {renderCheckbox('dividers', 'item dividers')}
         {renderCheckbox('rtl', 'RTL direction')}
+        {renderCheckbox('highContrast', 'enhanceHighContrast theme')}
       </div>
     </Box>
   );
@@ -536,7 +550,12 @@ export default function MenuRfcExperiment() {
     setLog((currentLog) => [...currentLog.slice(-11), entry]);
   }, []);
 
-  const playgroundTheme = settings.rtl ? rtlTheme : theme;
+  const playgroundTheme = (() => {
+    if (settings.rtl) {
+      return settings.highContrast ? rtlHighContrastTheme : rtlTheme;
+    }
+    return settings.highContrast ? highContrastTheme : theme;
+  })();
 
   return (
     <ThemeProvider theme={theme}>
@@ -565,6 +584,11 @@ export default function MenuRfcExperiment() {
             <p>
               Nested submenus (three levels), groups with labels, checkbox and radio items, a
               disabled item, a visual-only selected item, and a link item. All knobs apply.
+            </p>
+            <p>
+              To check the forced-colors rules, emulate high contrast in the browser (in Chrome
+              DevTools: Rendering &gt; Emulate CSS media feature forced-colors) and toggle the
+              <code>enhanceHighContrast theme</code> knob.
             </p>
             <ThemeProvider theme={playgroundTheme}>
               <DirectionProvider direction={settings.rtl ? 'rtl' : 'ltr'}>
