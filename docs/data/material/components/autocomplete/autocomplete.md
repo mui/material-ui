@@ -295,23 +295,28 @@ Autocomplete renders selected values through `params.slotProps.input.startAdornm
 adornment, preserve the provided adornment:
 
 ```tsx
-renderInput={(params) => (
-  <TextField
-    {...params}
-    slotProps={{
-      ...params.slotProps,
-      input: {
-        ...params.slotProps.input,
-        startAdornment: (
-          <>
-            {customStartAdornment}
-            {params.slotProps.input.startAdornment}
-          </>
-        ),
-      },
-    }}
-  />
-)}
+const getInputSlotProps = (params) => ({
+  ...params.slotProps.input,
+  startAdornment: (
+    <>
+      {customStartAdornment}
+      {params.slotProps.input.startAdornment}
+    </>
+  ),
+});
+
+<Autocomplete
+  options={options}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      slotProps={{
+        ...params.slotProps,
+        input: getInputSlotProps(params),
+      }}
+    />
+  )}
+/>;
 ```
 
 Likewise, preserve `params.slotProps.input.endAdornment` when customizing it. It contains Autocomplete's built-in controls.
