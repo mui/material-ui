@@ -667,13 +667,62 @@ describe('enhanceHighContrast', () => {
       });
     });
 
+    test.each(itemCases)('%s keeps the disabled cue when highlighted', (component, classes) => {
+      // Base UI keeps disabled items focusable, so this combination is
+      // reachable here even though it is not on the classic item.
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = (theme.components as any)[component].styleOverrides
+        .root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+
+      expect(hcmOverride[`&.${classes.disabled}.${classes.highlighted}`]).to.deep.equal({
+        [HCM]: {
+          forcedColorAdjust: 'none',
+          color: 'GrayText',
+          backgroundColor: 'Canvas',
+          outline: '1px solid ButtonBorder',
+        },
+      });
+    });
+
+    test.each(itemCases)(
+      '%s orders the disabled rules after the highlight',
+      (component, classes) => {
+        const theme = enhanceHighContrast(createTheme());
+        const rootOverrides = (theme.components as any)[component].styleOverrides
+          .root as Array<StyleOverride>;
+        const keys = Object.keys(rootOverrides[rootOverrides.length - 1]);
+
+        expect(keys.indexOf(`&.${classes.disabled}`)).to.be.greaterThan(
+          keys.indexOf(`&.${classes.highlighted}, &:hover`),
+        );
+      },
+    );
+
+    test('MuiMenu2CheckboxItem repaints the checkmark for the selected background', () => {
+      const theme = enhanceHighContrast(createTheme());
+      const rootOverrides = theme.components?.MuiMenu2CheckboxItem?.styleOverrides
+        ?.root as Array<StyleOverride>;
+      const hcmOverride = rootOverrides[rootOverrides.length - 1];
+      const selectedKey = `&.${menu2CheckboxItemClasses.selected} [data-mui-menu2-checkbox-checkmark]`;
+      const selectedActiveKey = `&.${menu2CheckboxItemClasses.selected}.${menu2CheckboxItemClasses.highlighted} [data-mui-menu2-checkbox-checkmark]`;
+
+      expect(hcmOverride[selectedKey]).to.deep.equal({
+        [HCM]: { forcedColorAdjust: 'none', fill: 'SelectedItem' },
+      });
+      expect(hcmOverride[selectedActiveKey]).to.deep.equal({
+        [HCM]: { fill: 'Highlight' },
+      });
+    });
+
     test('MuiMenu2SubmenuTrigger also marks the open state as active', () => {
       const theme = enhanceHighContrast(createTheme());
       const rootOverrides = theme.components?.MuiMenu2SubmenuTrigger?.styleOverrides
         ?.root as Array<StyleOverride>;
       const hcmOverride = rootOverrides[rootOverrides.length - 1];
 
-      expect(hcmOverride[`&.${menu2SubmenuTriggerClasses.open}`]).to.deep.equal({
+      const openKey = `&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`;
+      expect(hcmOverride[openKey]).to.deep.equal({
         [HCM]: {
           forcedColorAdjust: 'none',
           color: 'HighlightText',

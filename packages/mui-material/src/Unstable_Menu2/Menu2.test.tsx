@@ -376,7 +376,10 @@ describe('<Menu2 />', () => {
 
       // The rules only apply in forced colors, which the runner cannot emulate;
       // assert that the enhancer's overrides reach the stylesheet at all.
-      const emitted = Array.from(document.styleSheets)
+      // Look inside the forced-colors media rules specifically: the class names
+      // and the media query itself are both emitted without the enhancer, so
+      // matching on the whole stylesheet would pass with the overrides removed.
+      const menu2ForcedColorsRules = Array.from(document.styleSheets)
         .flatMap((sheet) => {
           try {
             return Array.from(sheet.cssRules);
@@ -384,14 +387,19 @@ describe('<Menu2 />', () => {
             return [];
           }
         })
+        .filter((rule) => (rule as CSSMediaRule).conditionText?.includes('forced-colors'))
+        .flatMap((rule) => Array.from((rule as CSSMediaRule).cssRules ?? []))
         .map((rule) => rule.cssText)
-        .join('\n');
+        .filter((text) => text.includes('MuiMenu2'));
 
-      expect(emitted).to.contain('forced-colors');
-      expect(emitted).to.contain(menu2ItemClasses.highlighted);
-      expect(emitted).to.contain(menu2CheckboxItemClasses.highlighted);
-      expect(emitted).to.contain(menu2SubmenuTriggerClasses.open);
-      expect(emitted).to.contain('data-mui-menu2-checkbox-checkmark');
+      // The CSSOM lowercases system colour keywords.
+      expect(menu2ForcedColorsRules.join('\n').toLowerCase()).to.contain('highlighttext');
+      const matches = (needle: string) =>
+        menu2ForcedColorsRules.some((text) => text.includes(needle));
+      expect(matches(menu2ItemClasses.highlighted)).to.equal(true);
+      expect(matches(menu2CheckboxItemClasses.highlighted)).to.equal(true);
+      expect(matches(menu2SubmenuTriggerClasses.open)).to.equal(true);
+      expect(matches('data-mui-menu2-checkbox-checkmark')).to.equal(true);
     },
   );
 

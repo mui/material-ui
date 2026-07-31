@@ -94,12 +94,6 @@ function menu2ItemOverrides(
   hcTokens: Required<HighContrastTokens>,
 ) {
   return {
-    [`&.${classes.disabled}`]: {
-      [HCM]: {
-        color: hcTokens.disabled,
-        opacity: 1,
-      },
-    },
     [`&.${classes.highlighted}, &:hover`]: {
       [HCM]: {
         forcedColorAdjust: 'none',
@@ -119,6 +113,24 @@ function menu2ItemOverrides(
       [HCM]: {
         color: hcTokens.activeText,
         backgroundColor: hcTokens.activeBackground,
+      },
+    },
+    // Base UI keeps disabled items focusable, so unlike the classic item a
+    // disabled one can be highlighted. The disabled cue has to outrank the
+    // highlight, so it comes last, and the combination gets its own rule to
+    // keep the cue off the highlight background while still showing focus.
+    [`&.${classes.disabled}`]: {
+      [HCM]: {
+        color: hcTokens.disabled,
+        opacity: 1,
+      },
+    },
+    [`&.${classes.disabled}.${classes.highlighted}`]: {
+      [HCM]: {
+        forcedColorAdjust: 'none',
+        color: hcTokens.disabled,
+        backgroundColor: hcTokens.canvas,
+        outline: `1px solid ${hcTokens.buttonBorder}`,
       },
     },
   };
@@ -468,7 +480,24 @@ export default function enhanceHighContrast<
         ...c?.MuiMenu2CheckboxItem?.styleOverrides,
         root: [
           c?.MuiMenu2CheckboxItem?.styleOverrides?.root,
-          menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
+          {
+            ...menu2ItemOverrides(menu2CheckboxItemClasses, hcTokens),
+            // The indicator has no `selected` class of its own, so the
+            // knocked-out checkmark has to follow the item background from
+            // here; left alone it stays Canvas and merges into the box.
+            [`&.${menu2CheckboxItemClasses.selected} [data-mui-menu2-checkbox-checkmark]`]: {
+              [HCM]: {
+                forcedColorAdjust: 'none',
+                fill: hcTokens.selectedBackground,
+              },
+            },
+            [`&.${menu2CheckboxItemClasses.selected}.${menu2CheckboxItemClasses.highlighted} [data-mui-menu2-checkbox-checkmark]`]:
+              {
+                [HCM]: {
+                  fill: hcTokens.activeBackground,
+                },
+              },
+          },
         ],
       },
     },
@@ -491,13 +520,16 @@ export default function enhanceHighContrast<
           {
             ...menu2ItemOverrides(menu2SubmenuTriggerClasses, hcTokens),
             // A trigger whose submenu is open carries the focus background.
-            [`&.${menu2SubmenuTriggerClasses.open}`]: {
-              [HCM]: {
-                forcedColorAdjust: 'none',
-                color: hcTokens.activeText,
-                backgroundColor: hcTokens.activeBackground,
+            // The selected variant needs spelling out: the base style pairs
+            // `selected` with `open`, which outranks a lone `open` selector.
+            [`&.${menu2SubmenuTriggerClasses.open}, &.${menu2SubmenuTriggerClasses.selected}.${menu2SubmenuTriggerClasses.open}`]:
+              {
+                [HCM]: {
+                  forcedColorAdjust: 'none',
+                  color: hcTokens.activeText,
+                  backgroundColor: hcTokens.activeBackground,
+                },
               },
-            },
           },
         ],
       },
