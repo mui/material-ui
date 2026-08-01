@@ -268,7 +268,7 @@ export class ModalManager {
 
       ariaHiddenSiblings(
         containerInfo.container,
-        modal.mount,
+        containerInfo.container,
         modal.modalRef,
         containerInfo.hiddenSiblings,
         false,

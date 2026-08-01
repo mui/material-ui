@@ -438,5 +438,36 @@ describe('ModalManager', () => {
       expect(container2.children[1]).toBeInaccessible();
       expect(container2.children[2]).not.toBeInaccessible();
     });
+
+    it('should restore aria-hidden when a modal is re-registered to a nested container', () => {
+      const containerA = document.createElement('div');
+      const containerB = document.createElement('div');
+      const sibling = document.createElement('div');
+      const modalRef = document.createElement('div');
+      containerA.appendChild(sibling);
+      containerA.appendChild(containerB);
+      containerA.appendChild(modalRef);
+      document.body.appendChild(containerA);
+
+      try {
+        const modal = { mount: containerA, modalRef };
+        modalManager.add(modal, containerA);
+        modalManager.mount(modal, {});
+        expect(containerB).toBeInaccessible();
+        expect(sibling).toBeInaccessible();
+
+        // Simulates the portal having moved into containerB before the manager is notified.
+        modal.mount = containerB;
+
+        modalManager.remove(modal);
+        modalManager.add(modal, containerB);
+
+        expect(containerB).not.toBeInaccessible();
+        expect(sibling).not.toBeInaccessible();
+        expect(modalRef).not.toBeInaccessible();
+      } finally {
+        document.body.removeChild(containerA);
+      }
+    });
   });
 });
