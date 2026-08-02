@@ -70,6 +70,12 @@ Current customers will still benefit from a 20% renewal discount (vs. 25% early 
 This means you will be able to renew your licenses or purchase additional licenses at a 7% price increase while gaining access to new features.
 You'll receive the discount via email, or you can also request it by contacting our [sales team](mailto:sales@mui.com).
 
+:::warning
+**Clarification (added August 2026):** This 20% renewal discount is tied to the Premium licenses that were already active under the early bird program before September 1st, 2024.
+It applies when renewing those existing licenses, but it does not carry forward to new license purchases or to newer major versions of MUI X (v9 and later), which are billed under current pricing.
+If you're unsure whether a specific license qualifies, please check with our [sales team](mailto:sales@mui.com) before renewing.
+:::
+
 ## Effective date
 
 The new pricing updates will take effect on September 1st, 2024.
