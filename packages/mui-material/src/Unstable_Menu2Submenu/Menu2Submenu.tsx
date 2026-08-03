@@ -56,7 +56,10 @@ export interface Menu2SubmenuProps
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
-function Menu2Submenu(props: Menu2SubmenuProps): React.JSX.Element {
+const Menu2Submenu = React.forwardRef(function Menu2Submenu(
+  props: Menu2SubmenuProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const themedProps = useDefaultProps({
     props,
     name: 'MuiMenu2Submenu',
@@ -109,6 +112,7 @@ function Menu2Submenu(props: Menu2SubmenuProps): React.JSX.Element {
     <BaseMenu.SubmenuRoot {...rootProps}>
       {triggerNode}
       <Menu2SubmenuPopup
+        ref={ref}
         align={align}
         alignOffset={alignOffset}
         anchor={anchor}
@@ -136,7 +140,7 @@ function Menu2Submenu(props: Menu2SubmenuProps): React.JSX.Element {
       </Menu2SubmenuPopup>
     </BaseMenu.SubmenuRoot>
   );
-}
+});
 
 Menu2Submenu.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐

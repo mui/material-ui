@@ -52,22 +52,6 @@ function getSlotProps<ElementType extends React.ElementType, Props extends Recor
   return isHostComponent(Slot) ? omitProps(props, hostOmittedProps) : props;
 }
 
-const portalHostOmittedProps = ['container', 'keepMounted'] as const;
-const positionerHostOmittedProps = [
-  'align',
-  'alignOffset',
-  'anchor',
-  'arrowPadding',
-  'collisionAvoidance',
-  'collisionBoundary',
-  'collisionPadding',
-  'disableAnchorTracking',
-  'positionMethod',
-  'render',
-  'side',
-  'sideOffset',
-  'sticky',
-] as const;
 const paperHostOmittedProps = [
   'classes',
   'component',
@@ -249,11 +233,15 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
     ...other
   } = props;
 
-  const PortalSlot = slots?.portal ?? BaseMenu.Portal;
+  // The portal and positioner are context providers, not just elements: the
+  // positioner needs the portal's context and the popup needs the positioner's.
+  // Swapping either for a plain element breaks the tree, so the Base parts are
+  // always rendered and a slot only changes what they render, through `render`.
+  const PortalSlot = slots?.portal;
   // Opt-in: rendering a backdrop unconditionally would hand non-modal menus a
   // full-screen layer, and modal menus already get Base UI's inert backdrop.
   const BackdropSlot = slots?.backdrop ?? (slotProps?.backdrop ? defaultSlots.backdrop : undefined);
-  const PositionerSlot = slots?.positioner ?? BaseMenu.Positioner;
+  const PositionerSlot = slots?.positioner;
   const PopupSlot = slots?.popup ?? defaultSlots.popup;
   const PaperSlot = slots?.paper ?? defaultSlots.paper;
   const ListSlot = slots?.list ?? defaultSlots.list;
@@ -285,23 +273,21 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
 
   const popupClassName = clsx(classes?.root, className, resolvedPopupClassName);
   const popupRender = <PopupSlot {...appendOwnerState(PopupSlot, {}, ownerState)} />;
-  const portalSlotProps = getSlotProps(
-    PortalSlot,
-    {
-      container,
-      keepMounted,
-      ...resolvedPortalProps,
-    },
-    portalHostOmittedProps,
-  );
-  const positionerSlotProps = getSlotProps(
-    PositionerSlot,
-    {
-      ...positionerProps,
-      ...resolvedPositionerProps,
-    },
-    positionerHostOmittedProps,
-  );
+  const portalRender = PortalSlot ? (
+    <PortalSlot {...appendOwnerState(PortalSlot, {}, ownerState)} />
+  ) : undefined;
+  const positionerRender = PositionerSlot ? (
+    <PositionerSlot {...appendOwnerState(PositionerSlot, {}, ownerState)} />
+  ) : undefined;
+  const portalSlotProps = {
+    container,
+    keepMounted,
+    ...resolvedPortalProps,
+  };
+  const positionerSlotProps = {
+    ...positionerProps,
+    ...resolvedPositionerProps,
+  };
   // The Material surfaces go through the shared slot plumbing (className
   // merging, ref forking, host-aware ownerState). Base UI-specific host-prop
   // omission is layered on top; see `getSlotProps`.
@@ -328,7 +314,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
   const listSlotProps = getSlotProps(ListSlot, mergedListProps, listHostOmittedProps);
 
   return (
-    <PortalSlot {...portalSlotProps}>
+    <BaseMenu.Portal {...portalSlotProps} render={portalRender}>
       {BackdropSlot ? (
         <BackdropSlot
           {...appendOwnerState(BackdropSlot, {}, ownerState)}
@@ -336,7 +322,7 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
           className={clsx(classes?.backdrop, resolvedBackdropProps?.className)}
         />
       ) : null}
-      <PositionerSlot {...positionerSlotProps}>
+      <BaseMenu.Positioner {...positionerSlotProps} render={positionerRender}>
         <BaseMenu.Popup
           id={id}
           finalFocus={finalFocus}
@@ -351,8 +337,8 @@ export const Menu2PopupBase = React.forwardRef(function Menu2PopupBase<OwnerStat
             <ListSlot {...listSlotProps}>{children}</ListSlot>
           </PaperSlot>
         </BaseMenu.Popup>
-      </PositionerSlot>
-    </PortalSlot>
+      </BaseMenu.Positioner>
+    </BaseMenu.Portal>
   );
 }) as <OwnerState>(
   props: Menu2PopupSharedProps<OwnerState> & React.RefAttributes<HTMLDivElement>,

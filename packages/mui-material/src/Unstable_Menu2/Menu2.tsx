@@ -61,7 +61,12 @@ export interface Menu2Props
  *
  * - [Menu](https://mui.com/material-ui/react-menu/)
  */
-function Menu2(props: Menu2Props): React.JSX.Element {
+const Menu2 = React.forwardRef(function Menu2(
+  props: Menu2Props,
+  // The popup surface is the element callers reach for, the way the classic
+  // Menu's ref lands on its Paper.
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const themedProps = useDefaultProps({
     props,
     name: 'MuiMenu2',
@@ -130,6 +135,7 @@ function Menu2(props: Menu2Props): React.JSX.Element {
     <BaseMenu.Root {...rootProps}>
       {triggerNode}
       <Menu2Popup
+        ref={ref}
         align={align}
         alignOffset={alignOffset}
         anchor={anchor}
@@ -157,7 +163,7 @@ function Menu2(props: Menu2Props): React.JSX.Element {
       </Menu2Popup>
     </BaseMenu.Root>
   );
-}
+});
 
 Menu2.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -184,6 +190,7 @@ Menu2.propTypes /* remove-proptypes */ = {
    * The components used for each slot inside.
    */
   slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
     list: PropTypes.elementType,
     paper: PropTypes.elementType,
     popup: PropTypes.elementType,

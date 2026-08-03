@@ -149,6 +149,11 @@ export interface Menu2PopupSlots {
    */
   positioner?: React.ElementType | undefined;
   /**
+   * The component used for the backdrop rendered beneath the menu.
+   * Only rendered when a backdrop is opted into.
+   */
+  backdrop?: React.ElementType | undefined;
+  /**
    * The component rendered by the Base UI popup.
    * @default 'div'
    */
