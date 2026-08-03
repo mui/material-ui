@@ -46,11 +46,11 @@
     "@types/prop-types": "15.7.15",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@types/sinon": "17.0.4",
+    "@types/sinon": "22.0.0",
     "chai": "6.2.2",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "sinon": "22.0.0"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sinon": "22.1.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

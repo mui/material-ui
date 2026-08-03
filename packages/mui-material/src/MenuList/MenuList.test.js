@@ -266,5 +266,32 @@ describe('<MenuList />', () => {
       expect(tabElements[0]).to.have.attribute('tabIndex', '0');
       expect(tabElements[1]).to.have.attribute('tabIndex', '-1');
     });
+
+    it('should compose the onFocus and onKeyDown props', async () => {
+      const onFocusSpy = spy();
+      const onKeyDownSpy = spy();
+      const { user } = render(
+        <MenuList onFocus={onFocusSpy} onKeyDown={onKeyDownSpy}>
+          <MenuItem>one</MenuItem>
+          <Divider />
+          <MenuItem>two</MenuItem>
+        </MenuList>,
+      );
+
+      await user.tab();
+      expect(screen.getByRole('menuitem', { name: 'one' })).toHaveFocus();
+
+      expect(onFocusSpy.callCount).to.equal(1);
+
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('menuitem', { name: 'two' })).toHaveFocus();
+
+      expect(onKeyDownSpy.callCount).to.equal(1);
+
+      await user.keyboard('{ArrowUp}');
+      expect(screen.getByRole('menuitem', { name: 'one' })).toHaveFocus();
+
+      expect(onKeyDownSpy.callCount).to.equal(2);
+    });
   });
 });
