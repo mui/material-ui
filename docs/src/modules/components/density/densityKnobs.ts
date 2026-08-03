@@ -47,8 +47,14 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Preset-driven sizing, not independently tunable via sidebar.',
   },
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': 'Option block padding',
-  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': 'Option inline padding',
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingBlock': {
+    label: 'Option block padding',
+    done: ['medium'],
+  },
+  'MuiAutocomplete|listbox|base|& .MuiAutocomplete-option|paddingInline': {
+    label: 'Option inline padding',
+    done: ['medium'],
+  },
   'MuiAutocomplete|root|base||--_autocompleteInputRootPadBlock': {
     label: 'Autocomplete · Input root paddingBlock',
     done: ['medium'],
@@ -151,7 +157,10 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     label: 'Button · startIcon · fontSize [size=medium]',
     done: ['medium'],
   },
-  'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': 'ButtonGroup · button minWidth',
+  'MuiButtonGroup|root|base|& .MuiButtonGroup-grouped|minWidth': {
+    label: 'ButtonGroup · button minWidth',
+    done: ['medium'],
+  },
   'MuiCardActions|root|base||padding': 'CardActions · padding',
   'MuiCardActions|root|disableSpacing=false|& > :not(style) ~ :not(style)|marginLeft':
     'CardActions · child gap',
@@ -1102,11 +1111,53 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
   'MuiSnackbarContent|action|base||paddingLeft': 'SnackbarContent · action · paddingLeft',
   'MuiSnackbarContent|message|base||paddingBlock': 'SnackbarContent · message · paddingBlock',
   'MuiSnackbarContent|root|base||padding': 'SnackbarContent · padding',
-  'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft':
-    'Step · paddingLeft [first, horizontal]',
-  'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight':
-    'Step · paddingRight [last, horizontal]',
-  'MuiStepLabel|iconContainer|base||paddingRight': 'StepLabel · iconContainer · paddingRight',
+  'MuiStep|root|alternativeLabel=false,hasConnector=false,orientation=horizontal||paddingLeft': {
+    label: 'Step · paddingLeft [first, horizontal]',
+    done: ['medium'],
+  },
+  'MuiStep|root|alternativeLabel=false,last=true,orientation=horizontal||paddingRight': {
+    label: 'Step · paddingRight [last, horizontal]',
+    done: ['medium'],
+  },
+  'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top': {
+    label: 'StepConnector · top [horizontal alt]',
+    done: ['medium'],
+  },
+  'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft': {
+    label: 'StepConnector · marginLeft [vertical]',
+    done: ['medium'],
+  },
+  'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight': {
+    label: 'StepConnector · marginRight [vertical alt]',
+    done: ['medium'],
+  },
+  'MuiStepContent|root|alternativeLabel=false||marginLeft': {
+    label: 'StepContent · marginLeft [vertical]',
+    done: ['medium'],
+  },
+  'MuiStepContent|root|alternativeLabel=false||paddingLeft': {
+    label: 'StepContent · paddingLeft [vertical]',
+    done: ['medium'],
+  },
+  'MuiStepContent|root|alternativeLabel=true||marginRight': {
+    label: 'StepContent · marginRight [vertical alt]',
+    done: ['medium'],
+  },
+  'MuiStepContent|root|alternativeLabel=true||paddingRight': {
+    label: 'StepContent · paddingRight [vertical alt]',
+    done: ['medium'],
+  },
+  'MuiStepIcon|root|base||fontSize': { label: 'StepIcon · size', done: ['medium'] },
+  'MuiStepIcon|text|base||fontSize': { label: 'StepIcon · text · fontSize', done: ['medium'] },
+  'MuiStepLabel|iconContainer|base||padding': {
+    label: 'StepLabel · iconContainer · padding',
+    done: ['medium'],
+  },
+  'MuiStepLabel|iconContainer|base||justifyContent': {
+    label: 'StepLabel · iconContainer · justifyContent',
+    hidden: true,
+    note: 'Centers the icon horizontally in the touch box — rides the node touch target knob, not a length.',
+  },
   'MuiStepLabel|iconContainer|base||minWidth': {
     label: 'StepLabel · iconContainer · minWidth',
     done: ['medium'],
@@ -1120,10 +1171,12 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Centers the icon in the touch box — rides the node touch target knob, not a length.',
   },
-  'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft':
-    'StepLabel · iconContainer · paddingLeft [vertical alternativeLabel]',
   'MuiStepLabel|label|alternativeLabel=true,orientation=horizontal|&.MuiStepLabel-alternativeLabel|marginTop':
-    'StepLabel · label · marginTop [horizontal alternativeLabel]',
+    { label: 'StepLabel · label · marginTop [horizontal alternativeLabel]', done: ['medium'] },
+  'MuiStepLabel|root|orientation=vertical||paddingBlock': {
+    label: 'StepLabel · paddingBlock [vertical]',
+    done: ['medium'],
+  },
   'MuiSvgIcon|root|fontSize=small||fontSize': {
     label: 'Svg icon · size [small]',
     done: ['medium'],

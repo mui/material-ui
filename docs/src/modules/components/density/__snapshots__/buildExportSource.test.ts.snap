@@ -983,7 +983,7 @@ const high = {
                   hasConnector: false,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  paddingLeft: '0px',
                 },
               },
               {
@@ -993,7 +993,7 @@ const high = {
                   last: true,
                 },
                 style: {
-                  paddingRight: 'var(--mui-density-small)',
+                  paddingRight: '0px',
                 },
               },
             ],
@@ -1003,6 +1003,20 @@ const high = {
     },
     MuiStepLabel: {
       styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  paddingBlock: '0px',
+                },
+              },
+            ],
+          },
+        ],
         label: [
           {
             variants: [
@@ -1013,7 +1027,7 @@ const high = {
                 },
                 style: {
                   '&.MuiStepLabel-alternativeLabel': {
-                    marginTop: 'var(--mui-density-medium)',
+                    marginTop: '0px',
                   },
                 },
               },
@@ -1022,18 +1036,87 @@ const high = {
         ],
         iconContainer: [
           {
-            paddingRight: 'var(--mui-density-small)',
+            padding: '0px',
+            justifyContent: 'center',
             minWidth: '32px',
             minHeight: '32px',
             alignItems: 'center',
+          },
+        ],
+      },
+    },
+    MuiStepIcon: {
+      styleOverrides: {
+        root: [
+          {
+            fontSize: '22px',
+          },
+        ],
+        text: [
+          {
+            fontSize: '0.875rem',
+          },
+        ],
+      },
+    },
+    MuiStepConnector: {
+      styleOverrides: {
+        root: [
+          {
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                  alternativeLabel: true,
+                },
+                style: {
+                  top: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                },
+              },
               {
                 props: {
                   orientation: 'vertical',
                   alternativeLabel: true,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  marginRight: 'calc(32px / 2)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiStepContent: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                  paddingLeft: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  alternativeLabel: true,
+                },
+                style: {
+                  marginRight: 'calc(32px / 2)',
+                  paddingRight: 'calc(32px / 2)',
                 },
               },
             ],
@@ -2201,7 +2284,7 @@ const high = {
         root: [
           {
             '& .MuiButtonGroup-grouped': {
-              minWidth: '40px',
+              minWidth: '32px',
             },
           },
         ],
@@ -3543,7 +3626,7 @@ const medium = {
                   hasConnector: false,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  paddingLeft: '0px',
                 },
               },
               {
@@ -3553,7 +3636,7 @@ const medium = {
                   last: true,
                 },
                 style: {
-                  paddingRight: 'var(--mui-density-small)',
+                  paddingRight: '0px',
                 },
               },
             ],
@@ -3563,6 +3646,20 @@ const medium = {
     },
     MuiStepLabel: {
       styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  paddingBlock: '0px',
+                },
+              },
+            ],
+          },
+        ],
         label: [
           {
             variants: [
@@ -3573,7 +3670,7 @@ const medium = {
                 },
                 style: {
                   '&.MuiStepLabel-alternativeLabel': {
-                    marginTop: 'var(--mui-density-medium)',
+                    marginTop: '0px',
                   },
                 },
               },
@@ -3582,18 +3679,87 @@ const medium = {
         ],
         iconContainer: [
           {
-            paddingRight: 'var(--mui-density-small)',
+            padding: '0px',
+            justifyContent: 'center',
             minWidth: '32px',
             minHeight: '32px',
             alignItems: 'center',
+          },
+        ],
+      },
+    },
+    MuiStepIcon: {
+      styleOverrides: {
+        root: [
+          {
+            fontSize: '22px',
+          },
+        ],
+        text: [
+          {
+            fontSize: '0.875rem',
+          },
+        ],
+      },
+    },
+    MuiStepConnector: {
+      styleOverrides: {
+        root: [
+          {
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                  alternativeLabel: true,
+                },
+                style: {
+                  top: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                },
+              },
               {
                 props: {
                   orientation: 'vertical',
                   alternativeLabel: true,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  marginRight: 'calc(32px / 2)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiStepContent: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                  paddingLeft: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  alternativeLabel: true,
+                },
+                style: {
+                  marginRight: 'calc(32px / 2)',
+                  paddingRight: 'calc(32px / 2)',
                 },
               },
             ],
@@ -4773,7 +4939,7 @@ const medium = {
         root: [
           {
             '& .MuiButtonGroup-grouped': {
-              minWidth: '40px',
+              minWidth: '32px',
             },
           },
         ],
@@ -6093,7 +6259,7 @@ const low = {
                   hasConnector: false,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  paddingLeft: '0px',
                 },
               },
               {
@@ -6103,7 +6269,7 @@ const low = {
                   last: true,
                 },
                 style: {
-                  paddingRight: 'var(--mui-density-small)',
+                  paddingRight: '0px',
                 },
               },
             ],
@@ -6113,6 +6279,20 @@ const low = {
     },
     MuiStepLabel: {
       styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  orientation: 'vertical',
+                },
+                style: {
+                  paddingBlock: '0px',
+                },
+              },
+            ],
+          },
+        ],
         label: [
           {
             variants: [
@@ -6123,7 +6303,7 @@ const low = {
                 },
                 style: {
                   '&.MuiStepLabel-alternativeLabel': {
-                    marginTop: 'var(--mui-density-medium)',
+                    marginTop: '0px',
                   },
                 },
               },
@@ -6132,18 +6312,87 @@ const low = {
         ],
         iconContainer: [
           {
-            paddingRight: 'var(--mui-density-small)',
+            padding: '0px',
+            justifyContent: 'center',
             minWidth: '32px',
             minHeight: '32px',
             alignItems: 'center',
+          },
+        ],
+      },
+    },
+    MuiStepIcon: {
+      styleOverrides: {
+        root: [
+          {
+            fontSize: '22px',
+          },
+        ],
+        text: [
+          {
+            fontSize: '0.875rem',
+          },
+        ],
+      },
+    },
+    MuiStepConnector: {
+      styleOverrides: {
+        root: [
+          {
             variants: [
+              {
+                props: {
+                  orientation: 'horizontal',
+                  alternativeLabel: true,
+                },
+                style: {
+                  top: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  orientation: 'vertical',
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                },
+              },
               {
                 props: {
                   orientation: 'vertical',
                   alternativeLabel: true,
                 },
                 style: {
-                  paddingLeft: 'var(--mui-density-small)',
+                  marginRight: 'calc(32px / 2)',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+    MuiStepContent: {
+      styleOverrides: {
+        root: [
+          {
+            variants: [
+              {
+                props: {
+                  alternativeLabel: false,
+                },
+                style: {
+                  marginLeft: 'calc(32px / 2)',
+                  paddingLeft: 'calc(32px / 2)',
+                },
+              },
+              {
+                props: {
+                  alternativeLabel: true,
+                },
+                style: {
+                  marginRight: 'calc(32px / 2)',
+                  paddingRight: 'calc(32px / 2)',
                 },
               },
             ],
@@ -7311,7 +7560,7 @@ const low = {
         root: [
           {
             '& .MuiButtonGroup-grouped': {
-              minWidth: '40px',
+              minWidth: '32px',
             },
           },
         ],

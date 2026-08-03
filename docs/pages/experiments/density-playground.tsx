@@ -478,6 +478,8 @@ const MEASURE_SLOTS = [
   '[data-canvas-component="DataGrid"] .MuiDataGrid-aiAssistantPanelHeader',
   '[data-canvas-component="BottomNavigation"] .MuiBottomNavigation-root',
   '[data-canvas-component="Dialog"] .MuiDialog-paper',
+  // Step node circle = the StepIcon root fontSize seam (22px, w/h = 1em).
+  '[data-canvas-component="Stepper"] .MuiStepIcon-root',
   '[data-canvas-component="TreeView"] .MuiTreeItem-content',
   '[data-canvas-component="DatePicker"] .MuiDateCalendar-root',
   '[data-canvas-component="DatePicker"] .MuiDayCalendar-weekDayLabel:first-of-type',

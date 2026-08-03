@@ -511,24 +511,30 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       },
   });
   addRootOverride(enhanced.components, 'MuiAutocomplete', { margin: '1px' }, 'tag');
-  // Horizontal step gutter: paddingLeft (first) / paddingRight (last) = step.
+  // Horizontal step gutter: first paddingLeft / last paddingRight zeroed so the
+  // end nodes sit flush with the stepper edge (raw px).
   addRootOverride(enhanced.components, 'MuiStep', {
     variants: [
       {
         props: { orientation: 'horizontal', alternativeLabel: false, hasConnector: false },
-        style: { paddingLeft: d.small },
+        style: { paddingLeft: '0px' },
       },
       {
         props: { orientation: 'horizontal', alternativeLabel: false, last: true },
-        style: { paddingRight: d.small },
+        style: { paddingRight: '0px' },
       },
     ],
   });
-  // alternativeLabel icon→label gap — master sets it on the label slot at
+  // Vertical StepLabel row: drop master's 8px block padding so vertical steps
+  // pack tighter (raw px). Horizontal has no root block padding — leave it.
+  addRootOverride(enhanced.components, 'MuiStepLabel', {
+    variants: [{ props: { orientation: 'vertical' }, style: { paddingBlock: '0px' } }],
+  });
+  // alternativeLabel icon→label gap zeroed. Master sets it on the label slot at
   // 2-class specificity (&.alternativeLabel, 16px), so re-emit the same nested
-  // selector; a plain props variant (1 class) would lose. Scoped to horizontal:
-  // master zeroes the gap for vertical alternativeLabel (variant marginTop: 0)
-  // and an unscoped emission would stomp that reset.
+  // selector to win; a plain props variant (1 class) would lose. Scoped to
+  // horizontal: master already zeroes vertical alternativeLabel, and an unscoped
+  // emission would stomp that reset.
   addRootOverride(
     enhanced.components,
     'MuiStepLabel',
@@ -536,36 +542,71 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
       variants: [
         {
           props: { orientation: 'horizontal', alternativeLabel: true },
-          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: d.medium } },
+          style: { [`&.${stepLabelClasses.alternativeLabel}`]: { marginTop: '0px' } },
         },
       ],
     },
     'label',
   );
-  // Icon→label gap on the iconContainer slot: paddingRight in row layouts;
-  // vertical alternativeLabel flips the gap to paddingLeft (master 8px).
-  // alternativeLabel paddingRight:0 stays frozen (higher-specificity class).
+  // Node touch box: semantic/size/touch-target/default (32px, raw px) —
+  // step-indicator.yml's node wrapper. padding:0 kills master's paddingRight
+  // gap; the icon→label spacing now falls out of centering the 22px icon in the
+  // wider box (justify/align center both axes; both ride the touch-target knob).
   addRootOverride(
     enhanced.components,
     'MuiStepLabel',
     {
-      paddingRight: d.small,
-      // Node touch box: semantic/size/touch-target/default (32px, raw px) —
-      // step-indicator.yml's node wrapper. ONE virtual knob writes both axes;
-      // alignItems centers the 24px icon in the taller box (rides the knob,
-      // hidden). Border-box: 24px icon + the 8px gap fill the 32 width exactly.
+      padding: '0px',
+      justifyContent: 'center',
       minWidth: '32px',
       minHeight: '32px',
       alignItems: 'center',
-      variants: [
-        {
-          props: { orientation: 'vertical', alternativeLabel: true },
-          style: { paddingLeft: d.small },
-        },
-      ],
     },
     'iconContainer',
   );
+  // Step node circle = design node size (22px, raw px). Must land on MuiStepIcon
+  // root, not iconContainer: StepIcon is an SvgIcon sized from its own fontSize
+  // (w/h = 1em), so a parent iconContainer fontSize can't reach it. The number
+  // glyph rides the text slot (0.875rem, raw rem).
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: '22px' });
+  addRootOverride(enhanced.components, 'MuiStepIcon', { fontSize: '0.875rem' }, 'text');
+  // Connector aligns to the node touch box: touchTarget/2 (icon center, since the
+  // icon is centered in the box). Master's `half icon` (12) is off now the icon
+  // lives in a 32px box. Scoped per case; the node-touch-target knob re-derives
+  // via a linked write. (Vertical alt keeps master's marginLeft:auto; only the
+  // marginRight side moves.)
+  addRootOverride(enhanced.components, 'MuiStepConnector', {
+    variants: [
+      {
+        props: { orientation: 'horizontal', alternativeLabel: true },
+        style: { top: 'calc(32px / 2)' },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: false },
+        style: { marginLeft: 'calc(32px / 2)' },
+      },
+      {
+        props: { orientation: 'vertical', alternativeLabel: true },
+        style: { marginRight: 'calc(32px / 2)' },
+      },
+    ],
+  });
+  // StepContent border + text track the node touch box (vertical only). margin =
+  // touchTarget/2 puts the left border on the icon center (== connector); margin +
+  // padding = touchTarget so the content text lines up with the label. Mirrored on
+  // the right for vertical alt. Both derive from the node-touch-target knob.
+  addRootOverride(enhanced.components, 'MuiStepContent', {
+    variants: [
+      {
+        props: { alternativeLabel: false },
+        style: { marginLeft: 'calc(32px / 2)', paddingLeft: 'calc(32px / 2)' },
+      },
+      {
+        props: { alternativeLabel: true },
+        style: { marginRight: 'calc(32px / 2)', paddingRight: 'calc(32px / 2)' },
+      },
+    ],
+  });
   addRootOverride(enhanced.components, 'MuiSnackbarContent', {
     // Block: semantic/spacing/fixed/s (8px, px unverified — assumed from fixed
     // ladder 2/4/8/12); inline: no Figma capture, stays a step.
@@ -1317,8 +1358,8 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     ],
   });
   addRootOverride(enhanced.components, 'MuiButtonGroup', {
-    // Grouped-button min-width floor = raw px (sizing).
-    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '40px' },
+    // Grouped-button min-width floor = raw px (sizing; == the 32px touch target).
+    [`& .${buttonGroupClasses.grouped}`]: { minWidth: '32px' },
   });
   addRootOverride(enhanced.components, 'MuiTableCell', {
     // Block pad per size (steps); inline pad shared. Re-assert the frozen

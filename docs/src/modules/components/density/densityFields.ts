@@ -275,6 +275,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiStepConnector: 'Stepper',
   MuiStepContent: 'Stepper',
   MuiStepLabel: 'Stepper',
+  MuiStepIcon: 'Stepper',
   MuiToolbar: 'Toolbar',
   MuiBadge: 'Badge',
   MuiToggleButton: 'ToggleButton',
@@ -283,7 +284,7 @@ export const componentFamily: Record<string, string | string[]> = {
   MuiCardContent: 'Card',
   MuiCardHeader: 'Card',
   MuiSelect: 'Select',
-  MuiSvgIcon: ['SvgIcon', 'ToggleButton', 'Stepper'],
+  MuiSvgIcon: ['SvgIcon', 'ToggleButton'],
   MuiSwitch: 'Switch',
   MuiAlert: 'Alert',
   MuiChip: 'Chip',
@@ -318,7 +319,7 @@ export const familyComponentOrder: Record<string, string[]> = {
   Switch: ['Switch', 'FormControlLabel'],
   ButtonGroup: ['ButtonGroup', 'Button'],
   ToggleButton: ['ToggleButton', 'SvgIcon'],
-  Stepper: ['Stepper', 'Step', 'StepLabel', 'StepConnector', 'StepContent', 'SvgIcon'],
+  Stepper: ['Stepper', 'Step', 'StepLabel', 'StepIcon', 'StepConnector', 'StepContent'],
   Table: ['TableCell', 'TableSortLabel', 'TablePagination'],
   Select: ['InputBase', 'Select'],
   TextField: [
@@ -633,6 +634,7 @@ export interface DensityLinkedWrite {
 }
 
 const negate = (v: string) => `calc(-1 * ${v})`;
+const half = (v: string) => `calc(${v} / 2)`;
 
 export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
   // Button block padding -> outlined re-emission at -1px (border keeps all
@@ -662,6 +664,28 @@ export const densityLinkedWrites: Record<string, DensityLinkedWrite[]> = {
       id: 'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||right',
       wrap: (v) => `calc(50% + 20px + ${v})`,
     },
+  ],
+  // Node touch target -> connector + StepContent offsets (touchTarget/2 = icon
+  // center). minWidth drives every horizontal offset: connector margins, and the
+  // StepContent border margin + its equal padding (margin+padding = touchTarget,
+  // so content text aligns with the label). minHeight drives the horizontal-alt
+  // connector `top`. All follow the touch box when it resizes.
+  'MuiStepLabel|iconContainer|base||minWidth': [
+    {
+      id: 'MuiStepConnector|root|alternativeLabel=false,orientation=vertical||marginLeft',
+      wrap: half,
+    },
+    {
+      id: 'MuiStepConnector|root|alternativeLabel=true,orientation=vertical||marginRight',
+      wrap: half,
+    },
+    { id: 'MuiStepContent|root|alternativeLabel=false||marginLeft', wrap: half },
+    { id: 'MuiStepContent|root|alternativeLabel=false||paddingLeft', wrap: half },
+    { id: 'MuiStepContent|root|alternativeLabel=true||marginRight', wrap: half },
+    { id: 'MuiStepContent|root|alternativeLabel=true||paddingRight', wrap: half },
+  ],
+  'MuiStepLabel|iconContainer|base||minHeight': [
+    { id: 'MuiStepConnector|root|alternativeLabel=true,orientation=horizontal||top', wrap: half },
   ],
   // Input inline padding -> the root-side re-emissions of master's 14/12px map
   // (adorned root pads, --_trailingPad, multiline root inline). One knob moves
@@ -747,17 +771,6 @@ export const densityVirtualKnobs: DensityVirtualKnob[] = [
     label: 'Stepper · column gap',
     group: 'Stepper',
     members: ['MuiStepper|root|base||columnGap', 'MuiStep|root|base||columnGap'],
-  },
-  // Icon→label gap: paddingRight in row layouts, paddingLeft when vertical
-  // alternativeLabel flips the icon to the label's right — one knob, one gap.
-  {
-    id: 'virtual:MuiStepLabel:labelSpacing',
-    label: 'StepLabel · iconContainer · row label spacing',
-    group: 'Stepper',
-    members: [
-      'MuiStepLabel|iconContainer|base||paddingRight',
-      'MuiStepLabel|iconContainer|alternativeLabel=true,orientation=vertical||paddingLeft',
-    ],
   },
   // Slider — symmetric orientation/axis pairs collapse to one knob each.
   {
