@@ -8,6 +8,12 @@ import Menu2CheckboxItemIndicator, {
 import describeConformance from '../../test/describeConformance';
 import withPortalledRoot from '../../test/menu2Conformance';
 
+// The item renders its own indicator; this suppresses it so the suite can
+// mount one directly.
+function NoIndicator() {
+  return null;
+}
+
 describe('<Menu2CheckboxItemIndicator />', () => {
   const { render } = createRenderer();
 
@@ -17,7 +23,7 @@ describe('<Menu2CheckboxItemIndicator />', () => {
       withPortalledRoot(
         render(
           <Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Menu2CheckboxItem slots={{ indicator: null }}>{node}Ruler</Menu2CheckboxItem>
+            <Menu2CheckboxItem slots={{ indicator: NoIndicator }}>{node}Ruler</Menu2CheckboxItem>
           </Menu2>,
         ),
         `.${classes.root}`,

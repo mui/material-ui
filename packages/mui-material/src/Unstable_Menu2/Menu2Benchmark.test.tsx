@@ -63,13 +63,21 @@ const openTrigger = () => screen.getByRole('button', { name: 'Options' });
 const waitForOpen = () => waitFor(() => expect(menuEl()).not.to.equal(null));
 
 // The successor animates its surface by default, so geometry has to be read
-// after the open transition settles.
+// after the open transition settles. Awaiting `getAnimations()` alone is not
+// enough: a CSS transition is absent from that list until it actually starts,
+// so the call can return an empty list and let a mid-transition rect through,
+// which reads as a small offset rather than an obvious failure.
 async function waitForSettled() {
   await waitForOpen();
   const popup = menuEl()!;
   if (typeof popup.getAnimations === 'function') {
     await Promise.all(popup.getAnimations().map((animation) => animation.finished.catch(() => {})));
   }
+  await waitFor(() => {
+    const { transform, opacity } = window.getComputedStyle(popup);
+    expect(transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)').to.equal(true);
+    expect(Number(opacity)).to.equal(1);
+  });
 }
 
 describe.skipIf(isJsdom())('Menu behavior benchmark: classic vs Menu2', () => {

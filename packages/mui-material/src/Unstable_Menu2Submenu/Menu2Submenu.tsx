@@ -150,13 +150,32 @@ Menu2Submenu.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside.
    */
-  slots: PropTypes.object,
+  slots: PropTypes.shape({
+    list: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    popup: PropTypes.elementType,
+    portal: PropTypes.elementType,
+    positioner: PropTypes.elementType,
+    trigger: PropTypes.elementType,
+  }),
   /**
-   * The item that opens the submenu.
+   * The content of the item that opens the submenu.
+   *
+   * Unlike the root menu, this is the label rather than the element: a submenu
+   * trigger is always a menu item, so passing one would nest an item inside an
+   * item. Swap the component through `slots.trigger` instead.
    */
   trigger: PropTypes.node,
 } as any;

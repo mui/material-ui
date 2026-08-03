@@ -171,13 +171,33 @@ Menu2.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    */
-  slotProps: PropTypes.object,
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popup: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    portal: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    positioner: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * The components used for each slot inside.
    */
-  slots: PropTypes.object,
+  slots: PropTypes.shape({
+    list: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    popup: PropTypes.elementType,
+    portal: PropTypes.elementType,
+    positioner: PropTypes.elementType,
+    trigger: PropTypes.elementType,
+  }),
   /**
    * The element that opens the menu.
+   *
+   * An element is rendered as-is with the trigger behavior merged into it, so
+   * it keeps whatever component you passed. Anything else renders inside the
+   * default trigger. Omit it and drive the menu with `open` and `anchor`
+   * instead, which is the classic controlled pattern.
    */
   trigger: PropTypes.node,
 } as any;

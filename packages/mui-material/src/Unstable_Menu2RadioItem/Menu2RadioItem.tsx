@@ -41,10 +41,9 @@ export interface Menu2RadioItemSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the check indicator.
-   * Pass `null` to render no indicator.
    * @default Menu2RadioItemIndicator
    */
-  indicator?: React.ElementType | null | undefined;
+  indicator?: React.ElementType | undefined;
 }
 
 export interface Menu2RadioItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
@@ -147,7 +146,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
     [dense, disableGutters],
   );
   const RootSlot = slots?.root ?? Menu2RadioItemRoot;
-  const IndicatorSlot = slots?.indicator === undefined ? Menu2RadioItemIndicator : slots.indicator;
+  const IndicatorSlot = slots?.indicator ?? Menu2RadioItemIndicator;
   const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
   return (
@@ -173,7 +172,7 @@ const Menu2RadioItem = React.forwardRef(function Menu2RadioItem(
         {...other}
       >
         {/* Reserved by default: an unmounted indicator would shift the label. */}
-        {IndicatorSlot ? <IndicatorSlot keepMounted {...resolvedIndicatorProps} /> : null}
+        <IndicatorSlot keepMounted {...resolvedIndicatorProps} />
         {children}
       </BaseMenu.RadioItem>
     </ListContext.Provider>

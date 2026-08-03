@@ -41,10 +41,9 @@ export interface Menu2CheckboxItemSlots {
   root?: React.ElementType | undefined;
   /**
    * The component that renders the check indicator.
-   * Pass `null` to render no indicator.
    * @default Menu2CheckboxItemIndicator
    */
-  indicator?: React.ElementType | null | undefined;
+  indicator?: React.ElementType | undefined;
 }
 
 export interface Menu2CheckboxItemSlotProps extends Menu2RootSlotProps<Menu2ItemOwnerState> {
@@ -188,8 +187,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
     [onChange],
   );
   const RootSlot = slots?.root ?? Menu2CheckboxItemRoot;
-  const IndicatorSlot =
-    slots?.indicator === undefined ? Menu2CheckboxItemIndicator : slots.indicator;
+  const IndicatorSlot = slots?.indicator ?? Menu2CheckboxItemIndicator;
   const resolvedIndicatorProps = resolveComponentProps(slotProps?.indicator, ownerState);
 
   return (
@@ -217,7 +215,7 @@ const Menu2CheckboxItem = React.forwardRef(function Menu2CheckboxItem(
         {...other}
       >
         {/* Reserved by default: an unmounted indicator would shift the label. */}
-        {IndicatorSlot ? <IndicatorSlot keepMounted {...resolvedIndicatorProps} /> : null}
+        <IndicatorSlot keepMounted {...resolvedIndicatorProps} />
         {children}
       </BaseMenu.CheckboxItem>
     </ListContext.Provider>
