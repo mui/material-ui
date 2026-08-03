@@ -73,7 +73,12 @@ import { Menu2GroupClassKey } from '../Unstable_Menu2Group';
 import { Menu2GroupLabelClassKey } from '../Unstable_Menu2GroupLabel';
 import { Menu2ItemClassKey } from '../Unstable_Menu2Item';
 import { Menu2LinkItemClassKey } from '../Unstable_Menu2LinkItem';
-import { Menu2PopupClassKey , Menu2SubmenuPopupClassKey , Menu2SubmenuTriggerClassKey , Menu2TriggerClassKey } from '../Unstable_Menu2/menu2Classes';
+import {
+  Menu2PopupClassKey,
+  Menu2SubmenuPopupClassKey,
+  Menu2SubmenuTriggerClassKey,
+  Menu2TriggerClassKey,
+} from '../Unstable_Menu2/menu2Classes';
 import { Menu2RadioGroupClassKey } from '../Unstable_Menu2RadioGroup';
 import { Menu2RadioItemClassKey } from '../Unstable_Menu2RadioItem';
 import { Menu2RadioItemIndicatorClassKey } from '../Unstable_Menu2RadioItemIndicator';

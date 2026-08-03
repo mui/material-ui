@@ -29,7 +29,8 @@ export interface Menu2SlotProps extends NonNullable<Menu2PopupProps['slotProps']
  * of bare `extends` so the proptypes generator resolves the inherited members.
  */
 export interface Menu2Props
-  extends Omit<BaseMenu.Root.Props, 'children'>,
+  extends
+    Omit<BaseMenu.Root.Props, 'children'>,
     Omit<Menu2PopupProps, 'children' | 'slots' | 'slotProps'> {
   /**
    * The menu items.

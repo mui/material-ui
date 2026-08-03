@@ -9,11 +9,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getMenu2ItemStyles } from './menu2SharedStyles';
-import {
-  getMenu2RootRender,
-  isMenu2RootNativeButton,
-  Menu2RootSlotProps,
-} from './menu2Utils';
+import { getMenu2RootRender, isMenu2RootNativeButton, Menu2RootSlotProps } from './menu2Utils';
 import {
   getMenu2ItemClassName,
   getMenu2ItemOwnerState,

@@ -20,10 +20,7 @@ import {
   menu2PopupPaperStyles,
   menu2PopupTransitionStyles,
 } from './menu2SharedStyles';
-import {
-  getMenu2SubmenuPopupUtilityClass,
-  Menu2SubmenuPopupClasses,
-} from './menu2Classes';
+import { getMenu2SubmenuPopupUtilityClass, Menu2SubmenuPopupClasses } from './menu2Classes';
 
 export interface Menu2SubmenuPopupProps extends Omit<
   Menu2PopupSharedProps<Menu2SubmenuPopupOwnerState>,

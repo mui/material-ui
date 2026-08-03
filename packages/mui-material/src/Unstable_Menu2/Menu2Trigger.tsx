@@ -10,11 +10,7 @@ import Button, { ButtonProps } from '../Button';
 import { Theme } from '../styles';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import {
-  getMenu2RootRender,
-  isMenu2RootNativeButton,
-  Menu2RootSlotProps,
-} from './menu2Utils';
+import { getMenu2RootRender, isMenu2RootNativeButton, Menu2RootSlotProps } from './menu2Utils';
 import { getMenu2TriggerUtilityClass, Menu2TriggerClasses } from './menu2Classes';
 
 export interface Menu2TriggerSlots {
