@@ -643,6 +643,11 @@ export function AppSearch(props: AppSearchProps) {
               },
               '& .DocSearch-Hit-Container': {
                 height: '52px',
+                // v4.7 wraps long hits below this width and grows the row to fit them, but our
+                // height sits outside the docsearch layer and would win, so drop it here.
+                '@media (max-width: 768px)': {
+                  height: 'auto',
+                },
               },
             },
             '& .DocSearch-Hit a': {
