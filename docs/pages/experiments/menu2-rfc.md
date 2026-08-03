@@ -120,7 +120,7 @@ Still up for discussion:
 - **Prop types:** extend Base UI's types and `Omit` what we hide or rename, so we inherit new props automatically. This means callbacks keep Base UI signatures, for example `onOpenChange(open, eventDetails)` instead of `onClose(event, reason)`. It works in the experiment, with one limitation: our proptypes generator cannot read types from `node_modules`, so runtime PropTypes only cover locally declared props. Types are unaffected, and PropTypes are stripped in production. Teaching the generator to follow external types is a separate infra task.
 - **Testing:** reuse `describeConformance` for the Material UI contract, and rerun the existing Menu behavior tests against the successor, annotating every skip. Parity should be shown by those suites passing, not by new tests written for the successor. All 14 rendering parts now run conformance, which let us delete the hand-written theming and slots tests. Two adaptations may belong in the shared harness: portalled roots need a way to point the harness at the real root element, and the nested submenu popup only mounts with real layout, so its suite runs in the browser project only.
 
-### API shape (needs a design phase)
+### API shape (settled by review)
 
 Agreed rules, instead of one global flat-vs-compound choice:
 
@@ -159,25 +159,30 @@ This is deliberate upstream, not an oversight. `initialFocus` exists on Base UI
 
 For the API shape this means a flat container really can carry today's surface, and the migration story is "same component, a few documented behavior changes" rather than a rewrite.
 
-A sketch, not a proposal. Container boundaries and the submenu shape are exactly what the design phase decides; the experiment's fully compound API is the other end of the range.
+Settled by review. The experiment started fully compound, one component per Base UI part. It is now one component per menu, at both levels: the root carries the trigger and the popup surface, and a submenu is the same shape one level down.
 
 ```jsx
 <Menu2
-  anchor={anchorEl}
-  open={open}
-  onOpenChange={handleOpenChange}
+  trigger={<Button>Options</Button>}
   slotProps={{ paper: { elevation: 4 } }}
 >
   <Menu2Item onClick={handleCut}>Cut</Menu2Item>
-  {/* strawman: submenu as a nested container owned by a standalone trigger item */}
-  <Menu2SubmenuTrigger label="Share">
-    <Menu2>
-      <Menu2Item>Email</Menu2Item>
-      <Menu2Item>Copy link</Menu2Item>
-    </Menu2>
-  </Menu2SubmenuTrigger>
+  <Menu2Submenu trigger="Share">
+    <Menu2Item>Email</Menu2Item>
+    <Menu2Item>Copy link</Menu2Item>
+  </Menu2Submenu>
 </Menu2>
 ```
+
+The trigger and popup parts still exist, but they are internal; only their class hooks are exported, so `styleOverrides` and `sx` are unaffected.
+
+Three things fell out of building it:
+
+- The root `trigger` takes an element and Base UI's `render` merges the behavior into it, so the caller keeps their own component. Anything else renders inside the default trigger.
+- The submenu `trigger` takes content, not an element. This is the one place the levels cannot match: a submenu trigger is already a menu item, so passing `<Menu2Item>` nests an item inside an item and the submenu never opens.
+- Wrapping a trigger in a `Tooltip` got harder. The compound shape wrapped the element directly; now the wrapper has to move into the trigger's root slot, which costs a `forwardRef` component. The test suite and the recipes page both hit it.
+
+Omit `trigger` and drive the menu with `open` and `anchor` for the classic controlled pattern, which is what the context-menu recipe uses.
 
 Behavior worth stating whatever shape we pick:
 
