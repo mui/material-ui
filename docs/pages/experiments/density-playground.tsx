@@ -77,6 +77,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -3189,8 +3190,13 @@ function DialogMatrix() {
             disableScrollLock
             sx={{ position: 'absolute' }}
           >
-            <DialogTitle>
+            <DialogTitle
+              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+            >
               <span className="density-debug-text">Use location service?</span>
+              <IconButton aria-label="close">
+                <CloseIcon />
+              </IconButton>
             </DialogTitle>
             <DialogContent>
               <Typography variant="body2">
@@ -3220,8 +3226,11 @@ function DialogStaticComposition() {
   // `dividers` on the content covers its distinct (frozen, re-asserted) padding leaf.
   return (
     <Paper sx={{ width: 360 }}>
-      <DialogTitle>
+      <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span className="density-debug-text">Use location service?</span>
+        <IconButton aria-label="close">
+          <CloseIcon />
+        </IconButton>
       </DialogTitle>
       <DialogContent dividers>
         <Typography variant="body2">

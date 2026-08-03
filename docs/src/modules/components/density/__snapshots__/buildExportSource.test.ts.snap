@@ -1162,7 +1162,15 @@ const high = {
                   dividers: false,
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-medium)',
+                  padding: '0px 16px',
+                },
+              },
+              {
+                props: {
+                  dividers: true,
+                },
+                style: {
+                  padding: '0px 16px',
                 },
               },
             ],
@@ -3805,7 +3813,15 @@ const medium = {
                   dividers: false,
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-medium)',
+                  padding: '0px 16px',
+                },
+              },
+              {
+                props: {
+                  dividers: true,
+                },
+                style: {
+                  padding: '0px 16px',
                 },
               },
             ],
@@ -6438,7 +6454,15 @@ const low = {
                   dividers: false,
                 },
                 style: {
-                  padding: 'var(--mui-density-large) var(--mui-density-medium)',
+                  padding: '0px 16px',
+                },
+              },
+              {
+                props: {
+                  dividers: true,
+                },
+                style: {
+                  padding: '0px 16px',
                 },
               },
             ],

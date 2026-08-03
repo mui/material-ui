@@ -2830,11 +2830,21 @@ export const densityEmitTable: DensityEmitRow[] = [
       nested: '',
       cssProp: 'padding',
     },
-    values: {
-      high: 'var(--mui-density-large) var(--mui-density-medium)',
-      medium: 'var(--mui-density-large) var(--mui-density-medium)',
-      low: 'var(--mui-density-large) var(--mui-density-medium)',
+    values: { high: '0px 16px', medium: '0px 16px', low: '0px 16px' },
+  },
+  {
+    id: 'MuiDialogContent|root|dividers=true||padding',
+    label: 'DialogContent · padding [dividers=true]',
+    isDensity: false,
+    densityKey: null,
+    target: {
+      component: 'MuiDialogContent',
+      slot: 'root',
+      props: { dividers: true },
+      nested: '',
+      cssProp: 'padding',
     },
+    values: { high: '0px 16px', medium: '0px 16px', low: '0px 16px' },
   },
   {
     id: 'MuiDialogTitle|root|base||padding',

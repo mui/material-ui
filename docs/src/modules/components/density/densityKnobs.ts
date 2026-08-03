@@ -534,16 +534,18 @@ export const densityKnobs: Record<string, string | DensityKnobMeta> = {
     hidden: true,
     note: 'Derived from --_dialogMargin — the var row is the knob.',
   },
-  'MuiDialogActions|root|base||padding': 'DialogActions · padding',
+  'MuiDialogActions|root|base||padding': { label: 'DialogActions · padding', done: ['medium'] },
   'MuiDialogActions|root|fn:1jmonb|& > :not(style) ~ :not(style)|marginLeft': {
     label: 'DialogActions · button gap',
     note: 'Inter-button gap under !disableSpacing (master 8 — CardActions twin).',
+    done: ['medium'],
   },
   'MuiDialogContent|root|dividers=false||padding': {
     label: 'DialogContent · padding [dividers=false]',
-    note: 'Scoped so master dividers padding (16 24) stays untouched — knob edits cannot leak into the dividers state.',
+    done: ['medium'],
   },
-  'MuiDialogTitle|root|base||padding': 'DialogTitle · padding',
+  'MuiDialogContent|root|dividers=true||padding': 'DialogContent · padding [dividers=true]',
+  'MuiDialogTitle|root|base||padding': { label: 'DialogTitle · padding', done: ['medium'] },
   'MuiDigitalClock|item|base||padding': {
     label: 'DigitalClock · item · padding',
     note: "Item = styled(MenuItem) — Material Menu emissions cascade under this. The 2px 4px item margin is frozen: the scroll positioning math subtracts the first item's 4px in JS.",

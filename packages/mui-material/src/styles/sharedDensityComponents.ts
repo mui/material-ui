@@ -620,11 +620,12 @@ export default function applySharedDensity<T extends EnhanceableTheme>(
     padding: `${d.small} ${d.small} ${d.small} ${d.medium}`,
   });
   addRootOverride(enhanced.components, 'MuiDialogContent', {
-    // Scoped to dividers:false so master's distinct dividers padding (16 24)
-    // stays untouched — an unconditional root padding would clobber it (and a
-    // knob edit would too).
-    // Inline: semantic/spacing/variable/m; block: no Figma capture, stays a step.
-    variants: [{ props: { dividers: false }, style: { padding: `${d.large} ${d.medium}` } }],
+    // Both dividers states pad 0px 16px (raw). Separate variants keep one knob
+    // per state; dividers:true now overrides master's distinct 16 24.
+    variants: [
+      { props: { dividers: false }, style: { padding: '0px 16px' } },
+      { props: { dividers: true }, style: { padding: '0px 16px' } },
+    ],
   });
   addRootOverride(enhanced.components, 'MuiDialogActions', {
     // Root inset: footer bottomContentWrapper semantic/spacing/variable/m;
