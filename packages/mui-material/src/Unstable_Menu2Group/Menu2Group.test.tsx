@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
-import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2Group, {
-  menu2GroupClasses as classes,
-} from '@mui/material/Unstable_Menu2Group';
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Group, { menu2GroupClasses as classes } from '@mui/material/Unstable_Menu2Group';
 import describeConformance from '../../test/describeConformance';
 import withPortalledRoot from '../../test/menu2Conformance';
 
 describe('<Menu2Group />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Unstable_Menu2Group>Group</Unstable_Menu2Group>, () => ({
+  describeConformance(<Menu2Group>Group</Menu2Group>, () => ({
     classes,
     render: (node) =>
       withPortalledRoot(
         render(
-          <Unstable_Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
             {node}
-          </Unstable_Menu2>,
+          </Menu2>,
         ),
         `.${classes.root}`,
       ),

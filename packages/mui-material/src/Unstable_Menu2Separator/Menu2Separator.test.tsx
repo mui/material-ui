@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
-import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2Separator, {
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2Separator, {
   menu2SeparatorClasses as classes,
 } from '@mui/material/Unstable_Menu2Separator';
 import describeConformance from '../../test/describeConformance';
@@ -10,14 +10,14 @@ import withPortalledRoot from '../../test/menu2Conformance';
 describe('<Menu2Separator />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Unstable_Menu2Separator />, () => ({
+  describeConformance(<Menu2Separator />, () => ({
     classes,
     render: (node) =>
       withPortalledRoot(
         render(
-          <Unstable_Menu2 defaultOpen modal={false} anchor={document.body}>
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
             {node}
-          </Unstable_Menu2>,
+          </Menu2>,
         ),
         `.${classes.root}`,
       ),

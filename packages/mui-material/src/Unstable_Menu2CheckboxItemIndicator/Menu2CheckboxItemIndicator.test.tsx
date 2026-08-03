@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
-import Unstable_Menu2 from '@mui/material/Unstable_Menu2';
-import Unstable_Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
-import Unstable_Menu2CheckboxItemIndicator, {
+import Menu2 from '@mui/material/Unstable_Menu2';
+import Menu2CheckboxItem from '@mui/material/Unstable_Menu2CheckboxItem';
+import Menu2CheckboxItemIndicator, {
   menu2CheckboxItemIndicatorClasses as classes,
 } from '@mui/material/Unstable_Menu2CheckboxItemIndicator';
 import describeConformance from '../../test/describeConformance';
@@ -11,16 +11,14 @@ import withPortalledRoot from '../../test/menu2Conformance';
 describe('<Menu2CheckboxItemIndicator />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Unstable_Menu2CheckboxItemIndicator keepMounted />, () => ({
+  describeConformance(<Menu2CheckboxItemIndicator keepMounted />, () => ({
     classes,
     render: (node) =>
       withPortalledRoot(
         render(
-          <Unstable_Menu2 defaultOpen modal={false} anchor={document.body}>
-            <Unstable_Menu2CheckboxItem slots={{ indicator: null }}>
-              {node}Ruler
-            </Unstable_Menu2CheckboxItem>
-          </Unstable_Menu2>,
+          <Menu2 defaultOpen modal={false} anchor={document.body}>
+            <Menu2CheckboxItem slots={{ indicator: null }}>{node}Ruler</Menu2CheckboxItem>
+          </Menu2>,
         ),
         `.${classes.root}`,
       ),

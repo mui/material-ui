@@ -79,7 +79,7 @@ Build a Base UI-based successor to `Menu` and follow the Grid lifecycle. A proo
 The new component is a successor. It is not a rewrite of the current internals, and not a second namespace that stays forever.
 
 | Phase           | Component name   | What happens                                                                   |
-| --------------- | ---------------- | ------------------------------------------------------------------------------ |
+| :-------------- | :--------------- | :----------------------------------------------------------------------------- |
 | Now (v9 minors) | `Unstable_Menu2` | Public incubation, a real release. Theme keys and classes are `MuiMenu2*`.     |
 | Later in v9     | `Menu2`          | Stable under the interim name. Today's `Menu` untouched, theme keys unchanged. |
 | Next major      | `Menu`           | `Menu2` becomes the canonical name.                                            |
@@ -133,7 +133,7 @@ Before finalizing the shape we needed to know how far the behavior differs. That
 #### Benchmark results
 
 | Dimension                  | Classic `Menu`                                     | Successor                                   | Verdict                     |
-| -------------------------- | -------------------------------------------------- | ------------------------------------------- | --------------------------- |
+| :------------------------- | :------------------------------------------------- | :------------------------------------------ | :-------------------------- |
 | Opening from the trigger   | no trigger part; you wire `onClick` yourself       | `Trigger` opens on click and ArrowDown      | successor adds behavior     |
 | Initial focus, keyboard    | n/a (no trigger part)                              | first item highlighted                      | matches the menu pattern    |
 | Initial focus, pointer     | selected item, or first item when none is selected | nothing highlighted, focus on the popup     | **difference**              |
@@ -162,10 +162,7 @@ For the API shape this means a flat container really can carry today's surface, 
 Settled by review. The experiment started fully compound, one component per Base UI part. It is now one component per menu, at both levels: the root carries the trigger and the popup surface, and a submenu is the same shape one level down.
 
 ```jsx
-<Menu2
-  trigger={<Button>Options</Button>}
-  slotProps={{ paper: { elevation: 4 } }}
->
+<Menu2 trigger={<Button>Options</Button>} slotProps={{ paper: { elevation: 4 } }}>
   <Menu2Item onClick={handleCut}>Cut</Menu2Item>
   <Menu2Submenu trigger="Share">
     <Menu2Item>Email</Menu2Item>
@@ -262,7 +259,7 @@ Left:
 <summary>1. Open and close</summary>
 
 | Classic Menu                       | New equivalent                     | Notes                                                                                                                                    |
-| ---------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| :--------------------------------- | :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
 | `open` (required, controlled-only) | `open` + `defaultOpen`             | uncontrolled is now possible                                                                                                             |
 | `onClose(event, reason)`           | `onOpenChange(open, eventDetails)` | reasons include `escape-key`, `outside-press`, `focus-out`, `trigger-press`, `item-press`; can be canceled, and exposes the native event |
 | n/a                                | `onOpenChangeComplete(open)`       | replaces `onTransitionExited`                                                                                                            |
@@ -273,7 +270,7 @@ Left:
 <summary>2. Positioning</summary>
 
 | Classic Menu / Popover                                | New equivalent                                                                        | Notes                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------- |
+| :---------------------------------------------------- | :------------------------------------------------------------------------------------ | :------------------------------------- |
 | `anchorEl`                                            | `anchor`                                                                              | also accepts refs and virtual elements |
 | `anchorOrigin` + `transformOrigin`                    | `side` + `align` + `sideOffset` + `alignOffset`                                       | finer control                          |
 | `anchorReference="anchorPosition"` + `anchorPosition` | `anchor={virtualElement}`                                                             | see open question 6                    |
@@ -288,7 +285,7 @@ Left:
 <summary>3. Focus and modality</summary>
 
 | Classic Menu                              | New equivalent | Notes                                                                                                           |
-| ----------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------- |
+| :---------------------------------------- | :------------- | :-------------------------------------------------------------------------------------------------------------- |
 | `autoFocus`, `disableAutoFocusItem`       | internal       | keyboard opening highlights the first item; pointer opening highlights nothing                                  |
 | `variant` (`menu`/`selectedMenu`)         | dropped        | not reproducible on Base UI (see above). Use checkbox or radio items so the current value is at least indicated |
 | `disableAutoFocus`, `disableEnforceFocus` | dropped        | `modal` covers this                                                                                             |
@@ -305,7 +302,7 @@ Left:
 <summary>4. Transitions</summary>
 
 | Classic Menu                                                        | New equivalent                                      |
-| ------------------------------------------------------------------- | --------------------------------------------------- |
+| :------------------------------------------------------------------ | :-------------------------------------------------- |
 | `TransitionComponent` / `slots.transition` (default `Grow`)         | CSS via `data-starting-style` / `data-ending-style` |
 | `transitionDuration`                                                | CSS `transition-duration` on the popup              |
 | `onTransitionEnter` / `onTransitionExited` / `closeAfterTransition` | `onOpenChangeComplete` + `keepMounted`              |
@@ -317,7 +314,7 @@ Left:
 <summary>5. Styling and slots</summary>
 
 | Classic Menu                                                        | New equivalent                                                       | Notes                          |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------ |
+| :------------------------------------------------------------------ | :------------------------------------------------------------------- | :----------------------------- |
 | `slots`: `root`, `paper`, `list`, `transition`, `backdrop`          | `portal`, `positioner`, `popup`, `paper`, `list`, `backdrop`         | no transition slot (CSS-based) |
 | `elevation` (default 8)                                             | `elevation` (default 8, forwarded to the Paper slot)                 | kept                           |
 | paper `maxHeight: calc(100% - 96px)` (viewport clamp via the Modal) | `min(calc(100vh - 96px), var(--available-height))` + internal scroll | collision-aware                |
@@ -330,7 +327,7 @@ Left:
 <summary>6. Item props</summary>
 
 | Classic MenuItem / MenuList                                        | New equivalent                          | Notes                                                                                                                                                                                                                                           |
-| ------------------------------------------------------------------ | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :----------------------------------------------------------------- | :-------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `dense`, `disableGutters`, `divider`                               | same                                    | kept: we own presentation                                                                                                                                                                                                                       |
 | `<Divider />` between items                                        | `Separator` part                        | owns its margins, so spacing stays put while a submenu is open                                                                                                                                                                                  |
 | `selected`                                                         | same (visual only)                      | kept. Checkbox and radio items cover real selection. Classic `MenuItem` now derives `aria-checked` from `selected` for checkbox and radio roles ([#48651](https://github.com/mui/material-ui/pull/48651)); our dedicated items own that instead |
